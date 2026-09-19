@@ -1,0 +1,113 @@
+from datetime import date
+
+import pytest
+
+from trading_calendar.sources.taifex_calendar import (
+    TAIFEXCalendarSource,
+)
+
+
+PDF_PATH = "data/raw/taifex/calendar"
+
+
+@pytest.fixture
+def calendar_source():
+    return TAIFEXCalendarSource(raw_path=PDF_PATH)
+
+
+def test_load_2026_calendar(calendar_source):
+    records = calendar_source.load_year(2026)
+
+    assert len(records) == 365
+
+
+def test_2026_new_year_is_non_trading(calendar_source):
+    records = calendar_source.load_year(2026)
+
+    record = next(
+        r for r in records
+        if r.trade_date == date(2026, 1, 1)
+    )
+
+    assert record.is_trading_day is False
+
+
+def test_2026_january_2_is_trading_day(calendar_source):
+    records = calendar_source.load_year(2026)
+
+    record = next(
+        r for r in records
+        if r.trade_date == date(2026, 1, 2)
+    )
+
+    assert record.is_trading_day is True
+
+
+def test_2026_february_12_is_non_trading(calendar_source):
+    records = calendar_source.load_year(2026)
+
+    record = next(
+        r for r in records
+        if r.trade_date == date(2026, 2, 12)
+    )
+
+    assert record.is_trading_day is False
+
+
+def test_2026_february_13_is_non_trading(calendar_source):
+    records = calendar_source.load_year(2026)
+
+    record = next(
+        r for r in records
+        if r.trade_date == date(2026, 2, 13)
+    )
+
+    assert record.is_trading_day is False
+
+
+def test_2026_september_15_is_trading_day(calendar_source):
+    records = calendar_source.load_year(2026)
+
+    record = next(
+        r for r in records
+        if r.trade_date == date(2026, 9, 15)
+    )
+
+    assert record.is_trading_day is True
+
+
+def test_2026_september_18_is_trading_day(calendar_source):
+    records = calendar_source.load_year(2026)
+
+    record = next(
+        r for r in records
+        if r.trade_date == date(2026, 9, 18)
+    )
+
+    assert record.is_trading_day is True
+
+
+def test_2026_september_21_is_trading_day(calendar_source):
+    records = calendar_source.load_year(2026)
+
+    record = next(
+        r for r in records
+        if r.trade_date == date(2026, 9, 21)
+    )
+
+    assert record.is_trading_day is True
+
+
+def test_2026_july_10_is_not_overridden_by_annual_pdf(
+    calendar_source,
+):
+    records = calendar_source.load_year(2026)
+
+    record = next(
+        r for r in records
+        if r.trade_date == date(2026, 7, 10)
+    )
+
+    # 7/10 is handled later by calendar_exceptions.
+    # The annual PDF itself does not mark it pink.
+    assert record.is_trading_day is True

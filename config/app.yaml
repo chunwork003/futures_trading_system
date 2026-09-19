@@ -1,0 +1,14 @@
+project:
+  name: futures_trading_system
+  timezone: Asia/Taipei
+
+storage:
+  raw: data/raw
+  parquet: data/parquet
+  feature: data/parquet/feature
+
+database:
+  duckdb: database/market.duckdb
+
+market:
+  default_timeframe: 1m

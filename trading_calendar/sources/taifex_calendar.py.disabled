@@ -1,0 +1,91 @@
+    def _parse_month(
+        self,
+        page,
+        year: int,
+        month: int,
+        center_x: float,
+        top_y: float,
+        non_trading_rects,
+        source_file: str,
+    ) -> list[TAIFEXCalendarRecord]:
+        """
+        Parse all date words belonging to one month.
+
+        The PDF uses a regular 7-column calendar grid.
+        We use a generous bounding box around the month block,
+        then validate the actual calendar date.
+        """
+
+        words = page.get_text("words")
+
+        # Month block boundaries.
+        #
+        # Do not make the vertical range too tight.
+        # The PDF contains different text baselines and
+        # several calendar annotations.
+        x_min = center_x - 50
+        x_max = center_x + 50
+
+        y_min = top_y + 20
+        y_max = top_y + 125
+
+        month_days = []
+
+        for word in words:
+            x0, y0, x1, y1, text = word[:5]
+
+            if not text.isdigit():
+                continue
+
+            day = int(text)
+
+            if not 1 <= day <= 31:
+                continue
+
+            center_word_x = (x0 + x1) / 2
+            center_word_y = (y0 + y1) / 2
+
+            if not (
+                x_min <= center_word_x <= x_max
+                and y_min <= center_word_y <= y_max
+            ):
+                continue
+
+            try:
+                trade_date = date(year, month, day)
+            except ValueError:
+                continue
+
+            month_days.append(
+                (
+                    trade_date,
+                    center_word_x,
+                    center_word_y,
+                )
+            )
+
+        # Remove duplicate PDF text objects.
+        unique_days = {}
+
+        for trade_date, x, y in month_days:
+            unique_days[trade_date] = (x, y)
+
+        records = []
+
+        for trade_date, (x, y) in sorted(unique_days.items()):
+            is_non_trading = self._point_in_non_trading_rect(
+                x,
+                y,
+                non_trading_rects,
+            )
+
+            records.append(
+                TAIFEXCalendarRecord(
+                    trade_date=trade_date,
+                    is_trading_day=not is_non_trading,
+                    notes=None,
+                    source_file=source_file,
+                )
+            )
+
+        return records

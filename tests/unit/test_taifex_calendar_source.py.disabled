@@ -1,0 +1,18 @@
+from pathlib import Path
+
+import pytest
+
+from trading_calendar.sources.taifex_calendar import (
+    TAIFEXCalendarSource,
+)
+
+
+def test_missing_calendar_file(tmp_path: Path):
+
+    source = TAIFEXCalendarSource(
+        raw_path=str(tmp_path)
+    )
+
+    with pytest.raises(FileNotFoundError):
+
+        source.load_year(2026)
