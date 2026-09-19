@@ -16,6 +16,7 @@ from backtest.models import (
     Trade,
 )
 from backtest.position import PositionManager
+from backtest.portfolio import Portfolio
 
 
 class BacktestEngine:
@@ -38,6 +39,11 @@ class BacktestEngine:
 
         self.position_manager = PositionManager(
             intrabar_priority=config.intrabar_priority
+        )
+
+        self.portfolio = Portfolio(
+            initial_capital=config.initial_capital,
+            multiplier=config.multiplier,
         )
 
         self.trades: list[Trade] = []
@@ -64,7 +70,9 @@ class BacktestEngine:
         self.trades = []
         self.pending_entry_signal = None
         self.pending_exit_signal = None
+
         self.position_manager.close_position()
+        self.portfolio.reset()
 
         for row in bars_list:
 
@@ -123,6 +131,13 @@ class BacktestEngine:
                         row=row,
                         exit_reason=exit_reason,
                         exit_price=exit_price,
+                    )
+
+                else:
+                    # Mark the still-open position to the
+                    # current bar close.
+                    self.portfolio.mark_to_market(
+                        row["close"]
                     )
 
             # -------------------------------------------------
@@ -219,6 +234,14 @@ class BacktestEngine:
             fill=entry_fill,
         )
 
+        # Portfolio accounting must use the actual fill.
+        self.portfolio.open_position(
+            direction=signal.direction.value,
+            entry_price=entry_fill.price,
+            quantity=entry_fill.quantity,
+            commission=entry_fill.commission,
+        )
+
     def _close_trade(
         self,
         row: dict,
@@ -253,6 +276,18 @@ class BacktestEngine:
             order=exit_order,
             market_price=exit_price,
             is_entry=False,
+        )
+
+        # -----------------------------------------------------
+        # Portfolio accounting
+        #
+        # Uses actual exit fill price and exit commission.
+        # Entry commission was already accounted for when
+        # the position was opened.
+        # -----------------------------------------------------
+        self.portfolio.close_position(
+            exit_price=exit_fill.price,
+            commission=exit_fill.commission,
         )
 
         # -----------------------------------------------------
