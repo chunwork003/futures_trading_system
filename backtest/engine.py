@@ -2,6 +2,8 @@
 
 from typing import Iterable
 
+from analysis.equity import EquityCurve
+
 from backtest.cost import CostCalculator, CostConfig
 from backtest.execution import ExecutionEngine
 from backtest.models import (
@@ -46,6 +48,8 @@ class BacktestEngine:
             multiplier=config.multiplier,
         )
 
+        self.equity_curve = EquityCurve()
+
         self.trades: list[Trade] = []
         self.pending_entry_signal: Signal | None = None
         self.pending_exit_signal: Signal | None = None
@@ -70,6 +74,7 @@ class BacktestEngine:
         self.trades = []
         self.pending_entry_signal = None
         self.pending_exit_signal = None
+        self.equity_curve.reset()
 
         self.position_manager.close_position()
         self.portfolio.reset()
@@ -141,6 +146,16 @@ class BacktestEngine:
                     )
 
             # -------------------------------------------------
+            # Record equity snapshot
+            # -------------------------------------------------
+            self.equity_curve.add_snapshot(
+                timestamp=timestamp,
+                equity=self.portfolio.equity,
+                realized_pnl=self.portfolio.realized_pnl,
+                unrealized_pnl=self.portfolio.unrealized_pnl,
+            )
+
+            # -------------------------------------------------
             # 4. Generate signal for NEXT BAR
             # -------------------------------------------------
             if timestamp not in signal_map:
@@ -198,6 +213,19 @@ class BacktestEngine:
                 row=last_row,
                 exit_reason=ExitReason.END_OF_DATA,
                 exit_price=last_row["close"],
+            )
+
+        # Refresh final equity snapshot after end-of-data exit.
+        if self.equity_curve.snapshots:
+            self.equity_curve.snapshots.pop()
+
+            last_row = bars_list[-1]
+
+            self.equity_curve.add_snapshot(
+                timestamp=last_row["timestamp"],
+                equity=self.portfolio.equity,
+                realized_pnl=self.portfolio.realized_pnl,
+                unrealized_pnl=self.portfolio.unrealized_pnl,
             )
 
         return self.trades
