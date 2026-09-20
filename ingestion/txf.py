@@ -1,10 +1,21 @@
-from abc import ABC, abstractmethod
+﻿import polars as pl
 
-import polars as pl
+from .base import DataSource
 
 
-class DataSource(ABC):
+class TXFDataSource(DataSource):
+    """TXF market-data source base implementation."""
 
-    @abstractmethod
-    def download(self, start_date, end_date) -> pl.DataFrame:
-        raise NotImplementedError
+    @property
+    def source_name(self) -> str:
+        return "txf"
+
+    def download(
+        self,
+        start_date,
+        end_date,
+        symbol: str = "TXF",
+    ) -> pl.DataFrame:
+        raise NotImplementedError(
+            "TXF data source has not been implemented."
+        )
