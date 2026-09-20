@@ -143,14 +143,32 @@ class MonteCarloEngine:
                 self.config.initial_capital + original_total_pnl
             ),
             median_final_equity=median(final_equities),
-            p05_final_equity=self._percentile(final_equities, 0.05),
-            p95_final_equity=self._percentile(final_equities, 0.95),
+            p05_final_equity=self._percentile(
+                final_equities,
+                0.05,
+            ),
+            p95_final_equity=self._percentile(
+                final_equities,
+                0.95,
+            ),
             median_total_pnl=median(total_pnls),
-            p05_total_pnl=self._percentile(total_pnls, 0.05),
-            p95_total_pnl=self._percentile(total_pnls, 0.95),
+            p05_total_pnl=self._percentile(
+                total_pnls,
+                0.05,
+            ),
+            p95_total_pnl=self._percentile(
+                total_pnls,
+                0.95,
+            ),
             median_max_drawdown=median(max_drawdowns),
-            p05_max_drawdown=self._percentile(max_drawdowns, 0.05),
-            p95_max_drawdown=self._percentile(max_drawdowns, 0.95),
+            p05_max_drawdown=self._percentile(
+                max_drawdowns,
+                0.05,
+            ),
+            p95_max_drawdown=self._percentile(
+                max_drawdowns,
+                0.95,
+            ),
             median_max_drawdown_pct=median(max_drawdown_pcts),
             p05_max_drawdown_pct=self._percentile(
                 max_drawdown_pcts,
