@@ -15,6 +15,7 @@ from backtest.optimization import (
     TrendParameterSet,
 )
 from backtest.walk_forward import WalkForwardConfig, WalkForwardWindowGenerator
+from domain.trades import Trade
 from features.trend import trend_features
 from strategies.trend_state_exit import TrendStateExitStrategy
 
@@ -54,6 +55,12 @@ class WalkForwardOptimizationResult:
     oos_final_equity: float
 
 
+@dataclass(frozen=True)
+class WalkForwardOptimizationRun:
+    results: list[WalkForwardOptimizationResult]
+    oos_trades: list[Trade]
+
+
 class WalkForwardOptimizer:
     def __init__(
         self,
@@ -67,6 +74,12 @@ class WalkForwardOptimizer:
         self,
         bars: pl.DataFrame,
     ) -> list[WalkForwardOptimizationResult]:
+        return self.run_with_trades(bars).results
+
+    def run_with_trades(
+        self,
+        bars: pl.DataFrame,
+    ) -> WalkForwardOptimizationRun:
         if bars.is_empty():
             raise ValueError("bars must not be empty")
 
@@ -79,6 +92,7 @@ class WalkForwardOptimizer:
         windows = generator.generate(timestamps)
 
         results: list[WalkForwardOptimizationResult] = []
+        all_oos_trades: list[Trade] = []
 
         for window in windows:
             train_df = bars.slice(
@@ -94,7 +108,7 @@ class WalkForwardOptimizer:
             train_results = self._optimize_train(train_df)
             selected = self._select_parameter(train_results)
 
-            oos_report = self._evaluate_parameter(
+            oos_report, oos_trades = self._evaluate_parameter_with_trades(
                 train_df=train_df,
                 test_df=test_df,
                 parameter=selected,
@@ -124,7 +138,12 @@ class WalkForwardOptimizer:
                 )
             )
 
-        return results
+            all_oos_trades.extend(oos_trades)
+
+        return WalkForwardOptimizationRun(
+            results=results,
+            oos_trades=all_oos_trades,
+        )
 
     def _optimize_train(
         self,
@@ -162,6 +181,19 @@ class WalkForwardOptimizer:
         test_df: pl.DataFrame,
         parameter: OptimizationResult,
     ) -> PerformanceReport:
+        report, _ = self._evaluate_parameter_with_trades(
+            train_df=train_df,
+            test_df=test_df,
+            parameter=parameter,
+        )
+        return report
+
+    def _evaluate_parameter_with_trades(
+        self,
+        train_df: pl.DataFrame,
+        test_df: pl.DataFrame,
+        parameter: OptimizationResult,
+    ) -> tuple[PerformanceReport, list[Trade]]:
         combined = pl.concat(
             [
                 train_df,
@@ -198,7 +230,11 @@ class WalkForwardOptimizer:
             signals=signals,
         )
 
-        return PerformanceReport.from_trades(
-            trade_result,
+        trades = list(trade_result)
+
+        report = PerformanceReport.from_trades(
+            trades,
             equity_curve=engine.equity_curve,
         )
+
+        return report, trades
