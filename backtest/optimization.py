@@ -133,5 +133,3 @@ class TrendParameterOptimizer:
             )
 
         return results
-
-
