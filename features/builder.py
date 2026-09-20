@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import polars as pl
 
@@ -7,6 +7,12 @@ from features.trend import add_trend_features
 
 
 class FeatureBuilder:
+    """
+    Backward-compatible standard feature builder.
+
+    The original project API is intentionally preserved.
+    """
+
     def build(self, df: pl.DataFrame) -> pl.DataFrame:
         result = df.clone()
 
