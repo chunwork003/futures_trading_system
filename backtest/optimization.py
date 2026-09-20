@@ -6,8 +6,7 @@ from typing import Iterable
 import polars as pl
 
 from analysis.performance_report import PerformanceReport
-from backtest.engine import BacktestEngine
-from backtest.models import BacktestConfig
+from backtest.engine import BacktestConfig, BacktestEngine
 from features.trend import trend_features
 from strategies.trend_state_exit import TrendStateExitStrategy
 
@@ -22,12 +21,18 @@ class TrendParameterSet:
         return f"ema_{self.fast_window}_{self.slow_window}"
 
 
-@dataclass
+@dataclass(frozen=True)
+class OptimizationConstraint:
+    min_trades: int = 100
+    min_profit_factor: float = 1.0
+    max_drawdown_pct: float = -80.0
+
+
+@dataclass(frozen=True)
 class OptimizationResult:
     parameter_id: str
     fast_window: int
     slow_window: int
-
     total_trades: int
     win_rate: float
     net_profit: float
@@ -37,118 +42,96 @@ class OptimizationResult:
     max_drawdown: float
     max_drawdown_pct: float
     final_equity: float
-
-    is_baseline: bool = False
+    is_baseline: bool
+    passes_constraints: bool
 
 
 DEFAULT_PARAMETER_GRID = [
+    TrendParameterSet(5, 20),
+    TrendParameterSet(10, 30),
     TrendParameterSet(10, 40),
+    TrendParameterSet(15, 45),
     TrendParameterSet(15, 50),
     TrendParameterSet(20, 60),
     TrendParameterSet(20, 80),
     TrendParameterSet(25, 75),
     TrendParameterSet(30, 90),
+    TrendParameterSet(40, 120),
 ]
 
 
 class TrendParameterOptimizer:
     def __init__(
         self,
-        *,
-        symbol: str = "TXF",
-        timeframe: str = "1m",
-        initial_capital: float = 1_000_000.0,
-        quantity: int = 1,
-        multiplier: float = 200.0,
+        backtest_config: BacktestConfig,
+        parameter_grid: Iterable[TrendParameterSet] | None = None,
+        baseline: TrendParameterSet = TrendParameterSet(20, 60),
+        constraints: OptimizationConstraint = OptimizationConstraint(),
     ) -> None:
-        self.symbol = symbol
-        self.timeframe = timeframe
-        self.initial_capital = initial_capital
-        self.quantity = quantity
-        self.multiplier = multiplier
+        self.backtest_config = backtest_config
+        self.parameter_grid = list(parameter_grid or DEFAULT_PARAMETER_GRID)
+        self.baseline = baseline
+        self.constraints = constraints
 
-    def run(
-        self,
-        bars: pl.DataFrame,
-        parameters: Iterable[TrendParameterSet],
-    ) -> list[OptimizationResult]:
+    def run(self, bars: pl.DataFrame) -> list[OptimizationResult]:
         results: list[OptimizationResult] = []
 
-        for parameter in parameters:
-            features = trend_features(
+        for params in self.parameter_grid:
+            if params.fast_window >= params.slow_window:
+                raise ValueError(
+                    f"fast_window must be smaller than slow_window: "
+                    f"{params.fast_window}/{params.slow_window}"
+                )
+
+            featured = trend_features(
                 bars,
-                fast_window=parameter.fast_window,
-                slow_window=parameter.slow_window,
+                fast_window=params.fast_window,
+                slow_window=params.slow_window,
             )
 
-            signals = self._generate_signals(features)
+            strategy = TrendStateExitStrategy(symbol=self.backtest_config.symbol)
+            strategy.reset()
 
-            config = BacktestConfig(
-                initial_capital=self.initial_capital,
-                symbol=self.symbol,
-                timeframe=self.timeframe,
-                quantity=self.quantity,
-                multiplier=self.multiplier,
-                commission_per_contract=0.0,
-                slippage_points=0.0,
-                allow_multiple_positions=False,
-                intrabar_priority="SL_FIRST",
-                end_of_data_exit=True,
-            )
+            signals = []
+            for row in featured.iter_rows(named=True):
+                signals.extend(strategy.on_bar(row))
 
-            engine = BacktestEngine(config)
-
-            trades = engine.run(
-                bars=features.iter_rows(named=True),
-                signals=signals,
-            )
+            engine = BacktestEngine(self.backtest_config)
+            result = engine.run(bars=featured.iter_rows(named=True), signals=signals)
 
             report = PerformanceReport.from_trades(
-                trades,
-                engine.equity_curve,
+                result,
+                equity_curve=engine.equity_curve,
             )
 
-            statistics = report.trade_statistics
+            stats = report.trade_statistics
             metrics = report.performance_metrics
+
+            passes_constraints = (
+                stats.total_trades >= self.constraints.min_trades
+                and metrics.profit_factor >= self.constraints.min_profit_factor
+                and report.max_drawdown_pct >= self.constraints.max_drawdown_pct
+            )
 
             results.append(
                 OptimizationResult(
-                    parameter_id=parameter.parameter_id,
-                    fast_window=parameter.fast_window,
-                    slow_window=parameter.slow_window,
-                    total_trades=statistics.total_trades,
-                    win_rate=statistics.win_rate,
-                    net_profit=statistics.net_profit,
-                    average_trade=statistics.average_trade,
+                    parameter_id=params.parameter_id,
+                    fast_window=params.fast_window,
+                    slow_window=params.slow_window,
+                    total_trades=stats.total_trades,
+                    win_rate=stats.win_rate,
+                    net_profit=stats.net_profit,
+                    average_trade=stats.average_trade,
                     profit_factor=metrics.profit_factor,
                     expectancy=metrics.expectancy,
                     max_drawdown=report.max_drawdown,
                     max_drawdown_pct=report.max_drawdown_pct,
                     final_equity=report.final_equity,
-                    is_baseline=(
-                        parameter.fast_window == 20
-                        and parameter.slow_window == 60
-                    ),
+                    is_baseline=params == self.baseline,
+                    passes_constraints=passes_constraints,
                 )
             )
 
         return results
 
-    def _generate_signals(
-        self,
-        df: pl.DataFrame,
-    ) -> list:
-        strategy = TrendStateExitStrategy(
-            symbol=self.symbol,
-            timeframe=self.timeframe,
-            quantity=self.quantity,
-        )
 
-        strategy.reset()
-
-        signals = []
-
-        for row in df.iter_rows(named=True):
-            signals.extend(strategy.on_bar(row))
-
-        return signals

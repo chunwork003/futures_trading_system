@@ -12,28 +12,64 @@ if str(PROJECT_ROOT) not in sys.path:
 import duckdb
 import polars as pl
 
+from analysis.performance_report import PerformanceReport
+from backtest.engine import BacktestEngine
+from backtest.models import BacktestConfig
 from backtest.optimization import (
     DEFAULT_PARAMETER_GRID,
+    OptimizationConstraint,
     TrendParameterOptimizer,
 )
 
 
 DATABASE_PATH = PROJECT_ROOT / "database" / "market.duckdb"
-OUTPUT_DIR = PROJECT_ROOT / "data" / "backtest_results"
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+OUTPUT_PATH = (
+    PROJECT_ROOT
+    / "data"
+    / "backtest_results"
+    / "trend_state_parameter_optimization.json"
+)
 
 SYMBOL = "TXF"
+TIMEFRAME = "1m"
+INITIAL_CAPITAL = 1_000_000.0
+QUANTITY = 1
+MULTIPLIER = 200.0
 
 
-def load_bars() -> pl.DataFrame:
+def load_txf_1m() -> pl.DataFrame:
     if not DATABASE_PATH.exists():
         raise FileNotFoundError(
             f"DuckDB not found: {DATABASE_PATH}"
         )
 
-    conn = duckdb.connect(str(DATABASE_PATH))
+    conn = duckdb.connect(
+        str(DATABASE_PATH),
+        read_only=True,
+    )
 
     try:
+        tables = conn.execute(
+            """
+            SELECT table_name
+            FROM information_schema.tables
+            WHERE table_name = 'txf_1m'
+            """
+        ).fetchall()
+
+        views = conn.execute(
+            """
+            SELECT table_name
+            FROM information_schema.views
+            WHERE table_name = 'txf_1m'
+            """
+        ).fetchall()
+
+        if not tables and not views:
+            raise RuntimeError(
+                "DuckDB view/table 'txf_1m' does not exist."
+            )
+
         query = """
             SELECT
                 timestamp,
@@ -68,25 +104,159 @@ def load_bars() -> pl.DataFrame:
             "No TXF bars found in txf_1m."
         )
 
+    required_columns = {
+        "timestamp",
+        "trade_date",
+        "symbol",
+        "contract",
+        "timeframe",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume",
+        "session",
+        "source",
+    }
+
+    missing_columns = required_columns - set(df.columns)
+
+    if missing_columns:
+        raise RuntimeError(
+            "Missing required columns: "
+            f"{sorted(missing_columns)}"
+        )
+
     return df
 
 
-def serialize_results(
-    df: pl.DataFrame,
-    results: list,
-) -> dict:
-    return {
-        "optimization": {
-            "symbol": SYMBOL,
-            "timeframe": "1m",
-            "objective": "expectancy",
-            "parameter_count": len(results),
-            "baseline": "ema_20_60",
-        },
-        "data": {
-            "rows": df.height,
-            "first_timestamp": str(df["timestamp"][0]),
-            "last_timestamp": str(df["timestamp"][-1]),
+def main() -> None:
+    print("=== P6 Parameter Optimization ===")
+    print(f"Database : {DATABASE_PATH}")
+    print(f"Symbol   : {SYMBOL}")
+    print()
+
+    print("[1/4] Loading TXF 1m data...")
+
+    bars = load_txf_1m()
+
+    print(
+        f"       rows={bars.height:,}, "
+        f"first={bars['timestamp'][0]}, "
+        f"last={bars['timestamp'][-1]}"
+    )
+
+    print()
+    print("[2/4] Parameter grid...")
+
+    for params in DEFAULT_PARAMETER_GRID:
+        baseline = (
+            " [BASELINE]"
+            if (
+                params.fast_window == 20
+                and params.slow_window == 60
+            )
+            else ""
+        )
+
+        print(
+            f"       {params.parameter_id}"
+            f"{baseline}"
+        )
+
+    print()
+    print("[3/4] Running optimization...")
+
+    config = BacktestConfig(
+        initial_capital=INITIAL_CAPITAL,
+        symbol=SYMBOL,
+        timeframe=TIMEFRAME,
+        quantity=QUANTITY,
+        multiplier=MULTIPLIER,
+        commission_per_contract=0.0,
+        slippage_points=0.0,
+        allow_multiple_positions=False,
+        intrabar_priority="SL_FIRST",
+        end_of_data_exit=True,
+    )
+
+    constraints = OptimizationConstraint(
+        min_trades=100,
+        min_profit_factor=1.0,
+        max_drawdown_pct=-80.0,
+    )
+
+    optimizer = TrendParameterOptimizer(
+        backtest_config=config,
+        constraints=constraints,
+    )
+
+    results = optimizer.run(bars)
+
+    results.sort(
+        key=lambda item: (
+            item.passes_constraints,
+            item.expectancy,
+            item.profit_factor,
+        ),
+        reverse=True,
+    )
+
+    print()
+    print("[4/4] Results")
+
+    for index, result in enumerate(
+        results,
+        start=1,
+    ):
+        baseline = (
+            " BASELINE"
+            if result.is_baseline
+            else ""
+        )
+
+        candidate = (
+            " PASS"
+            if result.passes_constraints
+            else " FAIL"
+        )
+
+        print(
+            f"{index:2d}. "
+            f"{result.parameter_id:12s} "
+            f"trades={result.total_trades:6d} "
+            f"win={result.win_rate * 100:6.2f}% "
+            f"PF={result.profit_factor:7.4f} "
+            f"Exp={result.expectancy:9.2f} "
+            f"DD={result.max_drawdown_pct:8.2%}"
+            f"{candidate}"
+            f"{baseline}"
+        )
+
+    OUTPUT_PATH.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    payload = {
+        "symbol": SYMBOL,
+        "timeframe": TIMEFRAME,
+        "data_rows": bars.height,
+        "first_timestamp": str(
+            bars["timestamp"][0]
+        ),
+        "last_timestamp": str(
+            bars["timestamp"][-1]
+        ),
+        "baseline": "ema_20_60",
+        "constraints": {
+            "min_trades": constraints.min_trades,
+            "min_profit_factor": (
+                constraints.min_profit_factor
+            ),
+            "max_drawdown_pct": (
+                constraints.max_drawdown_pct
+            ),
         },
         "results": [
             {
@@ -103,88 +273,17 @@ def serialize_results(
                 "max_drawdown_pct": result.max_drawdown_pct,
                 "final_equity": result.final_equity,
                 "is_baseline": result.is_baseline,
+                "passes_constraints": (
+                    result.passes_constraints
+                ),
             }
             for result in results
         ],
     }
 
-
-def main() -> None:
-    print("=== P6 Parameter Optimization ===")
-    print(f"Database : {DATABASE_PATH}")
-    print(f"Symbol   : {SYMBOL}")
-    print()
-
-    print("[1/4] Loading TXF 1m data...")
-
-    df = load_bars()
-
-    print(
-        f"       rows={df.height:,}, "
-        f"first={df['timestamp'][0]}, "
-        f"last={df['timestamp'][-1]}"
-    )
-
-    print("[2/4] Parameter grid...")
-
-    for parameter in DEFAULT_PARAMETER_GRID:
-        baseline = " [BASELINE]" if (
-            parameter.fast_window == 20
-            and parameter.slow_window == 60
-        ) else ""
-
-        print(
-            f"       {parameter.parameter_id}"
-            f"{baseline}"
-        )
-
-    print()
-    print("[3/4] Running parameter optimization...")
-
-    optimizer = TrendParameterOptimizer(
-        symbol=SYMBOL,
-        timeframe="1m",
-        initial_capital=1_000_000.0,
-        quantity=1,
-        multiplier=200.0,
-    )
-
-    results = optimizer.run(
-        df,
-        DEFAULT_PARAMETER_GRID,
-    )
-
-    print()
-    print("[4/4] Results")
-
-    ranked = sorted(
-        results,
-        key=lambda result: result.expectancy,
-        reverse=True,
-    )
-
-    for index, result in enumerate(ranked, start=1):
-        baseline = " BASELINE" if result.is_baseline else ""
-
-        print(
-            f"{index:>2}. "
-            f"{result.parameter_id:<12} "
-            f"trades={result.total_trades:>6,} "
-            f"win={result.win_rate:>7.2%} "
-            f"PF={result.profit_factor:>7.4f} "
-            f"Exp={result.expectancy:>9.2f} "
-            f"DD={result.max_drawdown_pct:>8.2%}"
-            f"{baseline}"
-        )
-
-    output_path = (
-        OUTPUT_DIR
-        / "trend_state_parameter_optimization.json"
-    )
-
-    output_path.write_text(
+    OUTPUT_PATH.write_text(
         json.dumps(
-            serialize_results(df, results),
+            payload,
             ensure_ascii=False,
             indent=2,
         ),
@@ -192,8 +291,9 @@ def main() -> None:
     )
 
     print()
-    print(f"Report: {output_path}")
+    print(f"Report   : {OUTPUT_PATH}")
 
 
 if __name__ == "__main__":
     main()
+
