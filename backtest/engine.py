@@ -5,6 +5,7 @@ from typing import Iterable
 from analysis.equity import EquityCurve
 from backtest.cost import CostCalculator, CostConfig
 from backtest.execution import ExecutionEngine
+from backtest.order_factory import OrderFactory
 from backtest.models import (
     BacktestConfig, Direction, ExitReason, Order, OrderStatus,
     OrderType, Signal, SignalAction, Trade,
@@ -131,17 +132,10 @@ class BacktestEngine:
         ):
             return
 
-        entry_order = Order(
-            order_id=f"ENTRY-{signal.signal_id}",
-            signal_id=signal.signal_id,
+        entry_order = OrderFactory.create_entry_order(
+            signal=signal,
             timestamp=row["timestamp"],
-            symbol=signal.symbol,
-            contract=signal.contract,
-            direction=signal.direction,
-            order_type=OrderType.MARKET,
-            quantity=signal.quantity,
             requested_price=row["open"],
-            status=OrderStatus.PENDING,
         )
         entry_fill = self.execution.execute_market_order(
             order=entry_order,
