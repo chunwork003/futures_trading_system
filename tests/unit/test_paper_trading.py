@@ -123,3 +123,27 @@ def test_paper_trading_engine_updates_portfolio_on_entry() -> None:
     assert engine.portfolio.position.quantity == position.quantity
     assert engine.portfolio.unrealized_pnl == 0.0
 
+def test_paper_trading_engine_closes_position_and_realizes_pnl() -> None:
+    engine = make_engine()
+
+    engine.open_position(
+        signal=make_signal(),
+        order=make_order(),
+    )
+
+    exit_order = make_order().model_copy(
+        update={
+            "order_id": "ORD-002",
+            "direction": Direction.SHORT,
+            "requested_price": 20_100.0,
+        }
+    )
+
+    pnl = engine.close_position(exit_order)
+
+    assert pnl == 20_000.0
+    assert engine.position_manager.current_position is None
+    assert engine.portfolio is not None
+    assert engine.portfolio.position is None
+    assert engine.portfolio.realized_pnl == 20_000.0
+

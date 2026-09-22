@@ -54,3 +54,26 @@ class PaperTradingEngine:
 
         return position
 
+
+
+    def close_position(
+        self,
+        order: Order,
+    ) -> float:
+        fill = self.broker.submit_order(order)
+
+        position = self.position_manager.current_position
+        if position is None:
+            raise RuntimeError("Cannot close position while flat.")
+
+        if self.portfolio is not None:
+            pnl = self.portfolio.close_position(
+                exit_price=fill.price,
+                commission=fill.commission,
+            )
+        else:
+            pnl = 0.0
+
+        self.position_manager.close_position()
+
+        return pnl
