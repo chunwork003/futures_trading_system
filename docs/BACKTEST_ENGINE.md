@@ -131,6 +131,6 @@ Not implemented:
 - Partial exits
 - Live trading
 - Broker execution
-- Margin model
+- Advanced margin / portfolio risk features
 - Advanced cash management
 - Advanced slippage models

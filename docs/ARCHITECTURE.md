@@ -141,6 +141,13 @@ Slippage 反映於實際成交價，不應在 Trade PnL 再重複扣除。
 - intrabar priority
 - EOD exit
 - signal exit
+- Portfolio Risk Model
+- Initial margin
+- Maintenance margin
+- Max contracts
+- Margin utilization
+- Entry risk check
+- Forced liquidation
 
 尚未支援：
 
@@ -148,4 +155,3 @@ Slippage 反映於實際成交價，不應在 Trade PnL 再重複扣除。
 - Partial exit
 - REVERSE
 - Live execution
-- Margin model

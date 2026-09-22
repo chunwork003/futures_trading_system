@@ -74,7 +74,7 @@ Not implemented:
 - Partial exits
 - Live trading
 - Broker integration
-- Margin model
+- Advanced margin / portfolio risk features
 - Advanced cash management
 
 These are intentionally deferred.
