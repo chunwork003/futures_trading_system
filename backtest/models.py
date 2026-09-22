@@ -1,10 +1,12 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from datetime import date, datetime
 from enum import Enum
 from typing import Optional
 
 from pydantic import BaseModel, Field
+
+from backtest.risk import RiskConfig
 
 
 class Direction(str, Enum):
@@ -45,6 +47,7 @@ class ExitReason(str, Enum):
     SIGNAL = "SIGNAL"
     END_OF_DATA = "END_OF_DATA"
     MANUAL = "MANUAL"
+    FORCED_LIQUIDATION = "FORCED_LIQUIDATION"
 
 
 class Signal(BaseModel):
@@ -203,3 +206,5 @@ class BacktestConfig(BaseModel):
     intrabar_priority: str = "SL_FIRST"
 
     end_of_data_exit: bool = True
+
+    risk_config: Optional[RiskConfig] = None
