@@ -60,6 +60,7 @@ def make_order() -> Order:
 def make_engine(
     *,
     broker: PaperBroker | None = None,
+    max_contracts: int = 2,
     max_margin_utilization: float = 1.0,
 ) -> PaperTradingEngine:
     return PaperTradingEngine(
@@ -73,7 +74,7 @@ def make_engine(
             RiskConfig(
                 initial_margin_per_contract=50_000,
                 maintenance_margin_per_contract=25_000,
-                max_contracts=2,
+                max_contracts=max_contracts,
                 max_margin_utilization=max_margin_utilization,
             )
         ),
@@ -484,9 +485,56 @@ class FillablePendingPaperBroker(PendingPaperBroker):
         self,
         order_id: str,
         fills: list[Fill],
+        status: OrderStatus = OrderStatus.FILLED,
     ) -> None:
         self._fills[order_id] = fills
+        self.orders[order_id] = self.orders[order_id].model_copy(
+            update={"status": status}
+        )
 
+
+
+def test_paper_trading_engine_keeps_pending_order_after_partial_fill() -> None:
+    broker = FillablePendingPaperBroker()
+    engine = make_engine(
+        broker=broker,
+    )
+    signal = make_signal()
+    order = make_order().model_copy(
+        update={"quantity": 2}
+    )
+
+    result = engine.open_position(
+        signal=signal,
+        order=order,
+    )
+
+    assert result is None
+    assert order.order_id in engine.pending_orders
+
+    fill = Fill(
+        order_id=order.order_id,
+        timestamp=order.timestamp,
+        requested_price=order.requested_price,
+        price=order.requested_price,
+        quantity=1,
+        commission=0.0,
+        slippage_points=0.0,
+    )
+
+    broker.complete_order(
+        order_id=order.order_id,
+        fills=[fill],
+        status=OrderStatus.PARTIALLY_FILLED,
+    )
+
+    position = engine.sync_pending_order(
+        order_id=order.order_id,
+    )
+
+    assert position is not None
+    assert position.quantity == 1
+    assert order.order_id in engine.pending_orders
 
 def test_paper_trading_engine_syncs_pending_entry_fills() -> None:
     broker = FillablePendingPaperBroker()
@@ -515,6 +563,7 @@ def test_paper_trading_engine_syncs_pending_entry_fills() -> None:
     broker.complete_order(
         order_id=order.order_id,
         fills=[fill],
+        status=OrderStatus.FILLED,
     )
 
     position = engine.sync_pending_order(

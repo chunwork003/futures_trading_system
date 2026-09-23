@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 from backtest.broker import Broker
 from backtest.execution_result import OrderSubmission
-from backtest.models import Fill, Order, Position, Signal
+from backtest.models import Fill, Order, OrderStatus, Position, Signal
 from backtest.paper_broker import PaperBroker
 from backtest.portfolio import Portfolio
 from backtest.position import PositionManager
@@ -119,7 +119,11 @@ class PaperTradingEngine:
             signal=pending.signal,
             fills=fills,
         )
-        del self._pending_orders[order_id]
+
+        current_order = self.broker.get_order(order_id)
+        if current_order is not None and current_order.status == OrderStatus.FILLED:
+            del self._pending_orders[order_id]
+
         return position
 
     def open_position(
