@@ -5,12 +5,12 @@ from backtest.models import Direction
 from backtest.target_position import TargetAccountPosition
 
 
-def test_determine_decision_action_returns_hold_for_same_position():
+def test_determine_decision_action_returns_reduce_when_target_quantity_decreases():
     current = AccountPosition(
         symbol="TXF",
         contract="TX1",
         direction=Direction.LONG,
-        quantity=2,
+        quantity=3,
     )
 
     target = TargetAccountPosition(
@@ -20,4 +20,4 @@ def test_determine_decision_action_returns_hold_for_same_position():
         quantity=2,
     )
 
-    assert determine_decision_action(current, target) == DecisionAction.HOLD
+    assert determine_decision_action(current, target) == DecisionAction.REDUCE
