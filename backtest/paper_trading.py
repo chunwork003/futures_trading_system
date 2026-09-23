@@ -105,8 +105,15 @@ class PaperTradingEngine:
         self,
         signal: Signal,
         order: Order,
-    ) -> Position:
+    ) -> Position | None:
         submission = self.submit_order(order)
+
+        if not submission.fills:
+            self._pending_orders[order.order_id] = PendingOrder(
+                order=order,
+                signal=signal,
+            )
+            return None
 
         return self.apply_entry_fills(
             signal=signal,

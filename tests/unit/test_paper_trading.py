@@ -447,3 +447,34 @@ def test_paper_trading_engine_tracks_pending_order() -> None:
 
     assert pending.order.order_id == order.order_id
     assert pending.signal is signal
+
+
+class PendingPaperBroker(PaperBroker):
+    def submit_order(self, order: Order) -> OrderSubmission:
+        submitted_order = order.model_copy(
+            update={"status": OrderStatus.SUBMITTED}
+        )
+        self.orders[order.order_id] = submitted_order
+        self._fills[order.order_id] = []
+        return OrderSubmission(
+            order=submitted_order,
+            fills=[],
+        )
+
+
+def test_paper_trading_engine_open_position_tracks_unfilled_order() -> None:
+    engine = make_engine(
+        broker=PendingPaperBroker(),
+    )
+    signal = make_signal()
+    order = make_order()
+
+    result = engine.open_position(
+        signal=signal,
+        order=order,
+    )
+
+    assert result is None
+    assert order.order_id in engine.pending_orders
+    assert engine.pending_orders[order.order_id].order == order
+    assert engine.pending_orders[order.order_id].signal is signal
