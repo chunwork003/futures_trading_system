@@ -19,6 +19,7 @@ def test_shioaji_broker_get_order_updates_fill_price() -> None:
                     ts=make_order().timestamp.timestamp(),
                     price=20005.0,
                     quantity=1,
+                seq="TEST-DEAL-005",
                 )
             ],
         )

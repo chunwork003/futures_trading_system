@@ -20,6 +20,7 @@ def test_shioaji_broker_submit_order_returns_partial_fill() -> None:
                     ts=make_order().timestamp.timestamp(),
                     price=20001.0,
                     quantity=1,
+                seq="TEST-DEAL-006",
                 )
             ],
         )

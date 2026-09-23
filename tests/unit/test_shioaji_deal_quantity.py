@@ -20,12 +20,13 @@ def test_shioaji_get_fills_matches_deal_quantity() -> None:
             ts=order.timestamp.timestamp(),
             price=20005.0,
             quantity=1,
+                seq="TEST-DEAL-002",
         )
     ]
 
     broker = ShioajiBroker(api)
-    broker.submit_order(order)
+    submission = broker.submit_order(order)
 
-    fills = broker.get_fills("ENTRY-001")
+    fills = submission.fills
 
     assert sum(fill.quantity for fill in fills) == api.trade.status.deal_quantity

@@ -60,12 +60,18 @@ def make_order() -> Order:
     )
 
 
-def make_deal(price: float, quantity: int, ts: float):
+def make_deal(
+    price: float,
+    quantity: int,
+    ts: float,
+    seq: str | None = None,
+):
     return SimpleNamespace(
         price=price,
         quantity=quantity,
         ts=ts,
         datetime=datetime.fromtimestamp(ts),
+        seq=seq or f"DEAL-{int(ts)}",
     )
 
 
@@ -73,8 +79,8 @@ def test_get_fills_returns_all_shioaji_deals():
     api = FakeAPI()
 
     api.trade.status.deals = [
-        make_deal(20000, 1, 1767574800),
-        make_deal(20005, 2, 1767574860),
+        make_deal(20000, 1, 1767574800, "DEAL-001"),
+        make_deal(20005, 2, 1767574860, "DEAL-002"),
     ]
 
     broker = ShioajiBroker(api)
@@ -109,3 +115,52 @@ def test_submit_order_keeps_submitted_order_without_fill():
     assert result.order.order_id == "ENTRY-001"
     assert result.order.status == OrderStatus.SUBMITTED
     assert result.fills == []
+def test_get_fills_returns_only_new_shioaji_deals() -> None:
+    api = FakeAPI()
+
+    api.trade.status.deals = [
+        make_deal(20000, 1, 1767574800, "DEAL-001"),
+        make_deal(20005, 2, 1767574860, "DEAL-002"),
+    ]
+
+    broker = ShioajiBroker(api)
+    order = make_order()
+
+    broker._orders[order.order_id] = order
+    broker._trades[order.order_id] = api.trade
+
+    first_fills = broker.get_fills(order.order_id)
+
+    assert len(first_fills) == 2
+    assert sum(fill.quantity for fill in first_fills) == 3
+
+    api.trade.status.deals = [
+        make_deal(20000, 1, 1767574800, "DEAL-001"),
+        make_deal(20005, 2, 1767574860, "DEAL-002"),
+        make_deal(20010, 5, 1767574920, "DEAL-003"),
+    ]
+
+    second_fills = broker.get_fills(order.order_id)
+
+    assert len(second_fills) == 1
+    assert second_fills[0].quantity == 5
+    assert second_fills[0].price == 20010
+
+
+def test_submit_order_marks_immediate_fills_as_delivered() -> None:
+    api = FakeAPI(status=sj.OrderStatus.Filled)
+    api.trade.status.deals = [
+        make_deal(20000, 1, 1767574800, "DEAL-001"),
+        make_deal(20005, 2, 1767574860, "DEAL-002"),
+    ]
+
+    broker = ShioajiBroker(api)
+    order = make_order()
+
+    submission = broker.submit_order(order)
+
+    assert len(submission.fills) == 2
+
+    later_fills = broker.get_fills(order.order_id)
+
+    assert later_fills == []

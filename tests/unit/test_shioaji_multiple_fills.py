@@ -18,12 +18,14 @@ def test_shioaji_broker_get_fills_returns_all_deals() -> None:
                     ts=make_order().timestamp.timestamp(),
                     price=20001.0,
                     quantity=1,
+                seq="TEST-DEAL-003",
                 ),
                 SimpleNamespace(
                     datetime=make_order().timestamp,
                     ts=make_order().timestamp.timestamp(),
                     price=20002.0,
                     quantity=1,
+                seq="TEST-DEAL-004",
                 ),
             ],
         )
@@ -33,11 +35,11 @@ def test_shioaji_broker_get_fills_returns_all_deals() -> None:
 
     broker = ShioajiBroker(api)
 
-    broker.submit_order(
+    submission = broker.submit_order(
         make_order().model_copy(update={"quantity": 2})
     )
 
-    fills = broker.get_fills("ENTRY-001")
+    fills = submission.fills
 
     assert len(fills) == 2
     assert fills[0].quantity == 1

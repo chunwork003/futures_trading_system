@@ -18,15 +18,16 @@ def test_shioaji_cancel_order_preserves_partial_fills() -> None:
             ts=order.timestamp.timestamp(),
             price=20005.0,
             quantity=1,
+                seq="TEST-DEAL-001",
         )
     ]
 
     broker = ShioajiBroker(api)
 
-    broker.submit_order(order)
+    submission = broker.submit_order(order)
 
     cancelled_order = broker.cancel_order("ENTRY-001")
-    fills = broker.get_fills("ENTRY-001")
+    fills = submission.fills
 
     assert cancelled_order.status == OrderStatus.CANCELLED
     assert len(fills) == 1

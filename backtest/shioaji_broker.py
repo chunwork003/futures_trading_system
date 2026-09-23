@@ -18,6 +18,7 @@ class ShioajiBroker(Broker):
         self.account = account
         self._orders: dict[str, Order] = {}
         self._trades: dict[str, Any] = {}
+        self._delivered_fill_seqs: dict[str, set[str]] = {}
 
     def submit_order(self, order: Order) -> OrderSubmission:
         contracts = self.api.Contracts
@@ -57,6 +58,15 @@ class ShioajiBroker(Broker):
             requested_price=order.requested_price or 0.0,
             commission=order.commission,
             slippage_points=order.slippage_points,
+        )
+
+        delivered_seqs = self._delivered_fill_seqs.setdefault(
+            order.order_id,
+            set(),
+        )
+        delivered_seqs.update(
+            deal.seq
+            for deal in trade.status.deals
         )
 
         if fills:
@@ -123,13 +133,31 @@ class ShioajiBroker(Broker):
 
         self.api.update_status(trade=trade)
 
-        return to_fills(
+        delivered_seqs = self._delivered_fill_seqs.setdefault(
+            order_id,
+            set(),
+        )
+
+        new_deals = [
+            deal
+            for deal in trade.status.deals
+            if deal.seq not in delivered_seqs
+        ]
+
+        fills = to_fills(
             order_id=order_id,
-            deals=trade.status.deals,
+            deals=new_deals,
             requested_price=order.requested_price or 0.0,
             commission=order.commission,
             slippage_points=order.slippage_points,
         )
+
+        delivered_seqs.update(
+            deal.seq
+            for deal in new_deals
+        )
+
+        return fills
 
     def cancel_order(self, order_id: str) -> Order:
         order = self._orders.get(order_id)
