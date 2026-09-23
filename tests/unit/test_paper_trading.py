@@ -651,3 +651,299 @@ def test_paper_trading_engine_keeps_partial_fill_after_cancel() -> None:
     assert position is not None
     assert position.quantity == 1
     assert order.order_id not in engine.pending_orders
+
+def test_paper_trading_engine_keeps_pending_exit_order() -> None:
+    class PendingExitBroker(PaperBroker):
+        def submit_order(self, order: Order) -> OrderSubmission:
+            if order.order_id == "ORD-002":
+                submitted_order = order.model_copy(
+                    update={"status": OrderStatus.SUBMITTED}
+                )
+                self.orders[order.order_id] = submitted_order
+                return OrderSubmission(
+                    order=submitted_order,
+                    fills=[],
+                )
+            return super().submit_order(order)
+
+    broker = PendingExitBroker()
+    engine = make_engine(broker=broker)
+
+    engine.open_position(
+        signal=make_signal(),
+        order=make_order(),
+    )
+
+    exit_order = make_order().model_copy(
+        update={
+            "order_id": "ORD-002",
+            "direction": Direction.SHORT,
+            "requested_price": 20_100.0,
+        }
+    )
+
+    result = engine.close_position(exit_order)
+
+    assert result is None
+    assert exit_order.order_id in engine.pending_orders
+    assert engine.pending_orders[exit_order.order_id].signal is None
+
+def test_paper_trading_engine_syncs_pending_exit_fill() -> None:
+    class FillableExitBroker(PaperBroker):
+        def __init__(self) -> None:
+            super().__init__()
+            self._exit_fills: dict[str, list[Fill]] = {}
+
+        def submit_order(self, order: Order) -> OrderSubmission:
+            if order.order_id == "ORD-002":
+                submitted_order = order.model_copy(
+                    update={"status": OrderStatus.SUBMITTED}
+                )
+                self.orders[order.order_id] = submitted_order
+                return OrderSubmission(
+                    order=submitted_order,
+                    fills=[],
+                )
+            return super().submit_order(order)
+
+        def complete_exit(
+            self,
+            order_id: str,
+            fill: Fill,
+        ) -> None:
+            self._exit_fills[order_id] = [fill]
+            self.orders[order_id] = self.orders[order_id].model_copy(
+                update={"status": OrderStatus.FILLED}
+            )
+
+        def get_fills(self, order_id: str) -> list[Fill]:
+            return self._exit_fills.get(order_id, [])
+
+    broker = FillableExitBroker()
+    engine = make_engine(broker=broker)
+
+    engine.open_position(
+        signal=make_signal(),
+        order=make_order(),
+    )
+
+    exit_order = make_order().model_copy(
+        update={
+            "order_id": "ORD-002",
+            "direction": Direction.SHORT,
+            "requested_price": 20_100.0,
+        }
+    )
+
+    result = engine.close_position(exit_order)
+
+    assert result is None
+    assert exit_order.order_id in engine.pending_orders
+    assert engine.position_manager.current_position is not None
+
+    fill = Fill(
+        order_id=exit_order.order_id,
+        timestamp=exit_order.timestamp,
+        requested_price=20_100.0,
+        price=20_100.0,
+        quantity=1,
+        commission=0.0,
+        slippage_points=0.0,
+    )
+
+    broker.complete_exit(
+        order_id=exit_order.order_id,
+        fill=fill,
+    )
+
+    pnl = engine.sync_pending_order(
+        order_id=exit_order.order_id,
+    )
+
+    assert pnl == 20_000.0
+    assert engine.position_manager.current_position is None
+    assert exit_order.order_id not in engine.pending_orders
+
+def test_paper_trading_engine_keeps_pending_exit_after_partial_fill() -> None:
+    class PartialExitBroker(PaperBroker):
+        def __init__(self) -> None:
+            super().__init__()
+            self._exit_fills: dict[str, list[Fill]] = {}
+            self._exit_status: OrderStatus = OrderStatus.SUBMITTED
+
+        def submit_order(self, order: Order) -> OrderSubmission:
+            if order.order_id == "ORD-002":
+                submitted_order = order.model_copy(
+                    update={"status": OrderStatus.SUBMITTED}
+                )
+                self.orders[order.order_id] = submitted_order
+                return OrderSubmission(
+                    order=submitted_order,
+                    fills=[],
+                )
+            return super().submit_order(order)
+
+        def complete_exit(
+            self,
+            order_id: str,
+            fills: list[Fill],
+            status: OrderStatus,
+        ) -> None:
+            self._exit_fills[order_id] = fills
+            self._exit_status = status
+            self.orders[order_id] = self.orders[order_id].model_copy(
+                update={"status": status}
+            )
+
+        def get_fills(self, order_id: str) -> list[Fill]:
+            return self._exit_fills.get(order_id, [])
+
+    broker = PartialExitBroker()
+    engine = make_engine(broker=broker, max_contracts=2)
+
+    engine.open_position(
+        signal=make_signal().model_copy(update={"quantity": 2}),
+        order=make_order().model_copy(update={"quantity": 2}),
+    )
+
+    exit_order = make_order().model_copy(
+        update={
+            "order_id": "ORD-002",
+            "direction": Direction.SHORT,
+            "quantity": 2,
+            "requested_price": 20_100.0,
+        }
+    )
+
+    result = engine.close_position(exit_order)
+
+    assert result is None
+    assert exit_order.order_id in engine.pending_orders
+
+    partial_fill = Fill(
+        order_id=exit_order.order_id,
+        timestamp=exit_order.timestamp,
+        requested_price=20_100.0,
+        price=20_100.0,
+        quantity=1,
+        commission=0.0,
+        slippage_points=0.0,
+    )
+
+    broker.complete_exit(
+        order_id=exit_order.order_id,
+        fills=[partial_fill],
+        status=OrderStatus.PARTIALLY_FILLED,
+    )
+
+    pnl = engine.sync_pending_order(
+        order_id=exit_order.order_id,
+    )
+
+    assert pnl == 20_000.0
+    assert engine.position_manager.current_position is not None
+    assert engine.position_manager.current_position.quantity == 1
+    assert exit_order.order_id in engine.pending_orders
+
+def test_paper_trading_engine_completes_pending_exit_after_remaining_fill() -> None:
+    class MultiFillExitBroker(PaperBroker):
+        def __init__(self) -> None:
+            super().__init__()
+            self._exit_fills: dict[str, list[Fill]] = {}
+
+        def submit_order(self, order: Order) -> OrderSubmission:
+            if order.order_id == "ORD-002":
+                submitted_order = order.model_copy(
+                    update={"status": OrderStatus.SUBMITTED}
+                )
+                self.orders[order.order_id] = submitted_order
+                return OrderSubmission(
+                    order=submitted_order,
+                    fills=[],
+                )
+            return super().submit_order(order)
+
+        def set_exit_state(
+            self,
+            order_id: str,
+            fills: list[Fill],
+            status: OrderStatus,
+        ) -> None:
+            self._exit_fills[order_id] = fills
+            self.orders[order_id] = self.orders[order_id].model_copy(
+                update={"status": status}
+            )
+
+        def get_fills(self, order_id: str) -> list[Fill]:
+            return self._exit_fills.get(order_id, [])
+
+    broker = MultiFillExitBroker()
+    engine = make_engine(broker=broker, max_contracts=2)
+
+    engine.open_position(
+        signal=make_signal().model_copy(update={"quantity": 2}),
+        order=make_order().model_copy(update={"quantity": 2}),
+    )
+
+    exit_order = make_order().model_copy(
+        update={
+            "order_id": "ORD-002",
+            "direction": Direction.SHORT,
+            "quantity": 2,
+            "requested_price": 20_100.0,
+        }
+    )
+
+    result = engine.close_position(exit_order)
+
+    assert result is None
+    assert exit_order.order_id in engine.pending_orders
+
+    first_fill = Fill(
+        order_id=exit_order.order_id,
+        timestamp=exit_order.timestamp,
+        requested_price=20_100.0,
+        price=20_100.0,
+        quantity=1,
+        commission=0.0,
+        slippage_points=0.0,
+    )
+
+    broker.set_exit_state(
+        order_id=exit_order.order_id,
+        fills=[first_fill],
+        status=OrderStatus.PARTIALLY_FILLED,
+    )
+
+    first_pnl = engine.sync_pending_order(
+        order_id=exit_order.order_id,
+    )
+
+    assert first_pnl == 20_000.0
+    assert engine.position_manager.current_position is not None
+    assert engine.position_manager.current_position.quantity == 1
+    assert exit_order.order_id in engine.pending_orders
+
+    second_fill = Fill(
+        order_id=exit_order.order_id,
+        timestamp=exit_order.timestamp,
+        requested_price=20_100.0,
+        price=20_100.0,
+        quantity=1,
+        commission=0.0,
+        slippage_points=0.0,
+    )
+
+    broker.set_exit_state(
+        order_id=exit_order.order_id,
+        fills=[second_fill],
+        status=OrderStatus.FILLED,
+    )
+
+    second_pnl = engine.sync_pending_order(
+        order_id=exit_order.order_id,
+    )
+
+    assert second_pnl == 20_000.0
+    assert engine.position_manager.current_position is None
+    assert exit_order.order_id not in engine.pending_orders

@@ -118,9 +118,18 @@ class PaperTradingEngine:
             return None
 
         if pending.signal is None:
-            raise RuntimeError(
-                f"Pending entry order has no signal: {order_id}"
+            pnl = self.apply_exit_fills(
+                fills=fills,
             )
+
+            if current_order is not None and current_order.status in {
+                OrderStatus.FILLED,
+                OrderStatus.CANCELLED,
+                OrderStatus.REJECTED,
+            }:
+                del self._pending_orders[order_id]
+
+            return pnl
 
         position = self.apply_entry_fills(
             signal=pending.signal,
@@ -158,8 +167,15 @@ class PaperTradingEngine:
     def close_position(
         self,
         order: Order,
-    ) -> float:
+    ) -> float | None:
         submission: OrderSubmission = self.broker.submit_order(order)
+
+        if not submission.fills:
+            self._pending_orders[order.order_id] = PendingOrder(
+                order=order,
+                signal=None,
+            )
+            return None
 
         return self.apply_exit_fills(
             fills=submission.fills,
