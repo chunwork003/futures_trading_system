@@ -37,7 +37,11 @@ def test_paper_runner_processes_latest_bar():
             "trade_date": date(2026, 1, 5),
             "symbol": "TXF",
             "contract": "TXF202601",
+            "open": 20_000,
+            "high": 20_000,
+            "low": 20_000,
             "close": 20_000,
+            "volume": 1,
             "trend_state": "UP",
         }
     ]
@@ -116,7 +120,11 @@ def test_paper_runner_entry_then_exit():
             "trade_date": date(2026, 1, 5),
             "symbol": "TXF",
             "contract": "TXF202601",
+            "open": 20_000,
+            "high": 20_000,
+            "low": 20_000,
             "close": 20_000,
+            "volume": 1,
             "trend_state": "UP",
         },
         {
@@ -124,7 +132,11 @@ def test_paper_runner_entry_then_exit():
             "trade_date": date(2026, 1, 5),
             "symbol": "TXF",
             "contract": "TXF202601",
+            "open": 20_100,
+            "high": 20_100,
+            "low": 20_100,
             "close": 20_100,
+            "volume": 1,
             "trend_state": "DOWN",
         },
     ]
@@ -163,3 +175,4 @@ def test_paper_runner_entry_then_exit():
     assert engine.portfolio is not None
     assert engine.portfolio.position is None
     assert engine.portfolio.realized_pnl == 20_000.0
+

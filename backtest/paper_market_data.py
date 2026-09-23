@@ -17,15 +17,52 @@ class PaperMarketDataProvider(MarketDataProvider):
 
     @staticmethod
     def _to_market_bar(bar: dict[str, Any]) -> MarketBar:
+        standard_fields = {
+            "timestamp",
+            "trade_date",
+            "symbol",
+            "open",
+            "high",
+            "low",
+            "close",
+            "volume",
+            "amount",
+            "tick_count",
+            "timeframe",
+            "exchange",
+            "contract",
+            "session",
+            "source",
+        }
+
         return MarketBar(
             timestamp=bar.get("timestamp", datetime.min),
             trade_date=bar.get("trade_date", date.min),
             symbol=bar.get("symbol", ""),
+            open=float(bar["open"]),
+            high=float(bar["high"]),
+            low=float(bar["low"]),
             close=float(bar["close"]),
+            volume=int(bar["volume"]),
+            amount=(
+                float(bar["amount"])
+                if bar.get("amount") is not None
+                else None
+            ),
+            tick_count=(
+                int(bar["tick_count"])
+                if bar.get("tick_count") is not None
+                else None
+            ),
+            timeframe=bar.get("timeframe"),
+            exchange=bar.get("exchange"),
+            contract=bar.get("contract"),
+            session=bar.get("session"),
+            source=bar.get("source"),
             data={
                 key: value
                 for key, value in bar.items()
-                if key not in {"timestamp", "trade_date", "symbol", "close"}
+                if key not in standard_fields
             },
         )
 

@@ -41,7 +41,18 @@ class PaperTradingRunner:
             "timestamp": row.timestamp,
             "trade_date": row.trade_date,
             "symbol": row.symbol,
+            "open": row.open,
+            "high": row.high,
+            "low": row.low,
             "close": row.close,
+            "volume": row.volume,
+            "amount": row.amount,
+            "tick_count": row.tick_count,
+            "timeframe": row.timeframe,
+            "exchange": row.exchange,
+            "contract": row.contract,
+            "session": row.session,
+            "source": row.source,
             **row.data,
         }
 
