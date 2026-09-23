@@ -56,21 +56,59 @@ class PaperTradingEngine:
                 f"Order has not been filled: {signal.signal_id}"
             )
 
-        position = self.position_manager.open_position(
-            signal=signal,
-            fill=fills[0],
-        )
+        had_position = not self.position_manager.is_flat
 
-        for fill in fills[1:]:
-            position = self.position_manager.add_fill(fill=fill)
+        if had_position:
+            position = self.position_manager.current_position
+
+            if position is None:
+                raise RuntimeError(
+                    "Position manager state is inconsistent."
+                )
+
+            for fill in fills:
+                position = self.position_manager.add_fill(fill=fill)
+        else:
+            position = self.position_manager.open_position(
+                signal=signal,
+                fill=fills[0],
+            )
+
+            for fill in fills[1:]:
+                position = self.position_manager.add_fill(fill=fill)
 
         if self.portfolio is not None:
-            self.portfolio.open_position(
-                direction=position.direction,
-                entry_price=position.entry_price,
-                quantity=position.quantity,
-                commission=position.entry_commission,
-            )
+            if self.portfolio.position is None:
+                self.portfolio.open_position(
+                    direction=position.direction,
+                    entry_price=position.entry_price,
+                    quantity=position.quantity,
+                    commission=position.entry_commission,
+                )
+            else:
+                portfolio_position = self.portfolio.position
+
+                old_quantity = portfolio_position.quantity
+                new_quantity = old_quantity + sum(
+                    fill.quantity for fill in fills
+                )
+
+                weighted_entry_price = (
+                    portfolio_position.entry_price * old_quantity
+                    + sum(
+                        fill.price * fill.quantity
+                        for fill in fills
+                    )
+                ) / new_quantity
+
+                portfolio_position.entry_price = weighted_entry_price
+                portfolio_position.quantity = new_quantity
+
+                additional_commission = sum(
+                    fill.commission for fill in fills
+                )
+                self.portfolio.commission_paid += additional_commission
+                self.portfolio.realized_pnl -= additional_commission
 
         return position
 
