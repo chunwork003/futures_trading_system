@@ -107,7 +107,14 @@ class PaperTradingEngine:
             raise ValueError(f"Pending order not found: {order_id}")
 
         fills = self.broker.get_fills(order_id)
+        current_order = self.broker.get_order(order_id)
+
         if not fills:
+            if current_order is not None and current_order.status in {
+                OrderStatus.CANCELLED,
+                OrderStatus.REJECTED,
+            }:
+                del self._pending_orders[order_id]
             return None
 
         if pending.signal is None:
@@ -120,8 +127,11 @@ class PaperTradingEngine:
             fills=fills,
         )
 
-        current_order = self.broker.get_order(order_id)
-        if current_order is not None and current_order.status == OrderStatus.FILLED:
+        if current_order is not None and current_order.status in {
+            OrderStatus.FILLED,
+            OrderStatus.CANCELLED,
+            OrderStatus.REJECTED,
+        }:
             del self._pending_orders[order_id]
 
         return position

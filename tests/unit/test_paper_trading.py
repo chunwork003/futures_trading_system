@@ -574,3 +574,80 @@ def test_paper_trading_engine_syncs_pending_entry_fills() -> None:
     assert position.quantity == order.quantity
     assert position.entry_price == fill.price
     assert order.order_id not in engine.pending_orders
+
+@pytest.mark.parametrize(
+    "terminal_status",
+    [
+        OrderStatus.CANCELLED,
+        OrderStatus.REJECTED,
+    ],
+)
+def test_paper_trading_engine_clears_pending_terminal_order(
+    terminal_status: OrderStatus,
+) -> None:
+    broker = FillablePendingPaperBroker()
+    engine = make_engine(broker=broker)
+    signal = make_signal()
+    order = make_order()
+
+    result = engine.open_position(
+        signal=signal,
+        order=order,
+    )
+
+    assert result is None
+    assert order.order_id in engine.pending_orders
+
+    broker.complete_order(
+        order_id=order.order_id,
+        fills=[],
+        status=terminal_status,
+    )
+
+    position = engine.sync_pending_order(
+        order_id=order.order_id,
+    )
+
+    assert position is None
+    assert order.order_id not in engine.pending_orders
+
+
+def test_paper_trading_engine_keeps_partial_fill_after_cancel() -> None:
+    broker = FillablePendingPaperBroker()
+    engine = make_engine(broker=broker)
+    signal = make_signal()
+    order = make_order().model_copy(
+        update={"quantity": 2}
+    )
+
+    result = engine.open_position(
+        signal=signal,
+        order=order,
+    )
+
+    assert result is None
+    assert order.order_id in engine.pending_orders
+
+    fill = Fill(
+        order_id=order.order_id,
+        timestamp=datetime(2024, 1, 1, 9, 0),
+        requested_price=20_000.0,
+        price=20_100.0,
+        quantity=1,
+        commission=0.0,
+        slippage_points=0.0,
+    )
+
+    broker.complete_order(
+        order_id=order.order_id,
+        fills=[fill],
+        status=OrderStatus.CANCELLED,
+    )
+
+    position = engine.sync_pending_order(
+        order_id=order.order_id,
+    )
+
+    assert position is not None
+    assert position.quantity == 1
+    assert order.order_id not in engine.pending_orders
