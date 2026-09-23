@@ -56,11 +56,68 @@ class PaperTradingRunner:
             **row.data,
         }
 
-        signals = self.strategy.on_bar(bar)
-
         orders: list[Order] = []
         positions: list[Any] = []
         realized_pnl: list[float] = []
+
+        exit_reason, exit_price = (
+            self.trading_engine.position_manager.update_bar(
+                timestamp=row.timestamp,
+                open_price=row.open,
+                high_price=row.high,
+                low_price=row.low,
+                close_price=row.close,
+            )
+        )
+
+        if (
+            exit_reason is not None
+            and exit_price is not None
+            and self.trading_engine.position_manager.current_position
+            is not None
+        ):
+            position = (
+                self.trading_engine.position_manager.current_position
+            )
+
+            exit_signal = Signal(
+                signal_id=f"EXIT-{position.signal_id}-{row.timestamp.isoformat()}",
+                timestamp=row.timestamp,
+                trade_date=row.trade_date,
+                strategy_id=position.strategy_id,
+                strategy_version=position.strategy_version,
+                symbol=position.symbol,
+                contract=position.contract,
+                timeframe=row.timeframe or "1m",
+                action=SignalAction.EXIT,
+                direction=position.direction,
+                quantity=position.quantity,
+                entry_type=position.entry_type,
+                entry_price=position.entry_price,
+                stop_price=position.stop_price,
+                target_price=position.target_price,
+                market_state=position.market_state,
+                setup=position.setup,
+            )
+
+            order = OrderFactory.create_exit_order(
+                signal=exit_signal,
+                timestamp=row.timestamp,
+                requested_price=exit_price,
+                quantity=position.quantity,
+            )
+
+            pnl = self.trading_engine.close_position(order)
+            orders.append(order)
+            if pnl is not None:
+                realized_pnl = [pnl]
+            else:
+                realized_pnl = []
+
+        else:
+            realized_pnl = []
+
+        signals = self.strategy.on_bar(bar)
 
         for signal in signals:
             if signal.action == SignalAction.ENTER:

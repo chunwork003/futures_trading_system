@@ -83,3 +83,120 @@ def test_close_position_reduces_quantity_on_partial_fill():
 
     assert position.quantity == 1
     assert manager.current_position is position
+
+def test_short_position_stop_loss():
+    manager = PositionManager()
+
+    signal = make_signal().model_copy(
+        update={
+            "direction": Direction.SHORT,
+            "stop_price": 20100.0,
+            "target_price": 19800.0,
+        }
+    )
+
+    manager.open_position(
+        signal=signal,
+        fill=make_fill(
+            price=20000.0,
+            quantity=1,
+            commission=10.0,
+        ),
+    )
+
+    reason, exit_price = manager.update_bar(
+        timestamp=datetime(2026, 1, 1, 9, 1),
+        open_price=20000.0,
+        high_price=20150.0,
+        low_price=19950.0,
+        close_price=20050.0,
+    )
+
+    assert reason.name == "SL"
+    assert exit_price == 20100.0
+
+
+def test_short_position_take_profit():
+    manager = PositionManager()
+
+    signal = make_signal().model_copy(
+        update={
+            "direction": Direction.SHORT,
+            "stop_price": 20100.0,
+            "target_price": 19800.0,
+        }
+    )
+
+    manager.open_position(
+        signal=signal,
+        fill=make_fill(
+            price=20000.0,
+            quantity=1,
+            commission=10.0,
+        ),
+    )
+
+    reason, exit_price = manager.update_bar(
+        timestamp=datetime(2026, 1, 1, 9, 1),
+        open_price=20000.0,
+        high_price=20050.0,
+        low_price=19750.0,
+        close_price=19800.0,
+    )
+
+    assert reason.name == "TP"
+    assert exit_price == 19800.0
+
+
+def test_short_position_intrabar_priority():
+    signal = make_signal().model_copy(
+        update={
+            "direction": Direction.SHORT,
+            "stop_price": 20100.0,
+            "target_price": 19800.0,
+        }
+    )
+
+    manager = PositionManager(intrabar_priority="SL_FIRST")
+
+    manager.open_position(
+        signal=signal,
+        fill=make_fill(
+            price=20000.0,
+            quantity=1,
+            commission=10.0,
+        ),
+    )
+
+    reason, exit_price = manager.update_bar(
+        timestamp=datetime(2026, 1, 1, 9, 1),
+        open_price=20000.0,
+        high_price=20200.0,
+        low_price=19700.0,
+        close_price=20000.0,
+    )
+
+    assert reason.name == "SL"
+    assert exit_price == 20100.0
+
+    manager = PositionManager(intrabar_priority="TP_FIRST")
+
+    manager.open_position(
+        signal=signal,
+        fill=make_fill(
+            price=20000.0,
+            quantity=1,
+            commission=10.0,
+        ),
+    )
+
+    reason, exit_price = manager.update_bar(
+        timestamp=datetime(2026, 1, 1, 9, 1),
+        open_price=20000.0,
+        high_price=20200.0,
+        low_price=19700.0,
+        close_price=20000.0,
+    )
+
+    assert reason.name == "TP"
+    assert exit_price == 19800.0
