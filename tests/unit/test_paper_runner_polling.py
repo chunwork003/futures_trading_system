@@ -47,12 +47,20 @@ def test_paper_runner_run_processes_multiple_iterations():
         {
             "timestamp": datetime(2026, 1, 5, 9, 0),
             "trade_date": date(2026, 1, 5),
+            "open": 20000,
+            "high": 20000,
+            "low": 20000,
             "close": 20000,
+            "volume": 1,
         },
         {
             "timestamp": datetime(2026, 1, 5, 9, 1),
             "trade_date": date(2026, 1, 5),
+            "open": 20010,
+            "high": 20010,
+            "low": 20010,
             "close": 20010,
+            "volume": 1,
         },
     ]
 
@@ -190,12 +198,20 @@ def test_paper_runner_syncs_pending_orders_before_processing_next_bar():
         {
             "timestamp": datetime(2026, 1, 5, 9, 0),
             "trade_date": date(2026, 1, 5),
+            "open": 20000,
+            "high": 20000,
+            "low": 20000,
             "close": 20000,
+            "volume": 1,
         },
         {
             "timestamp": datetime(2026, 1, 5, 9, 1),
             "trade_date": date(2026, 1, 5),
+            "open": 20010,
+            "high": 20010,
+            "low": 20010,
             "close": 20010,
+            "volume": 1,
         },
     ]
 
@@ -389,17 +405,29 @@ def test_paper_runner_syncs_pending_exit_before_next_strategy_bar():
         {
             "timestamp": datetime(2026, 1, 5, 9, 0),
             "trade_date": date(2026, 1, 5),
+            "open": 20000,
+            "high": 20000,
+            "low": 20000,
             "close": 20000,
+            "volume": 1,
         },
         {
             "timestamp": datetime(2026, 1, 5, 9, 1),
             "trade_date": date(2026, 1, 5),
+            "open": 20010,
+            "high": 20010,
+            "low": 20010,
             "close": 20010,
+            "volume": 1,
         },
         {
             "timestamp": datetime(2026, 1, 5, 9, 2),
             "trade_date": date(2026, 1, 5),
+            "open": 20100,
+            "high": 20100,
+            "low": 20100,
             "close": 20100,
+            "volume": 1,
         },
     ]
 
@@ -513,12 +541,20 @@ def test_paper_runner_full_entry_exit_lifecycle():
         {
             "timestamp": datetime(2026, 1, 5, 9, 0),
             "trade_date": date(2026, 1, 5),
+            "open": 20000,
+            "high": 20000,
+            "low": 20000,
             "close": 20000,
+            "volume": 1,
         },
         {
             "timestamp": datetime(2026, 1, 5, 9, 1),
             "trade_date": date(2026, 1, 5),
+            "open": 20100,
+            "high": 20100,
+            "low": 20100,
             "close": 20100,
+            "volume": 1,
         },
     ]
 
@@ -672,17 +708,29 @@ def test_paper_runner_full_partial_entry_lifecycle():
         {
             "timestamp": datetime(2026, 1, 5, 9, 0),
             "trade_date": date(2026, 1, 5),
+            "open": 20000,
+            "high": 20000,
+            "low": 20000,
             "close": 20000,
+            "volume": 1,
         },
         {
             "timestamp": datetime(2026, 1, 5, 9, 1),
             "trade_date": date(2026, 1, 5),
+            "open": 20010,
+            "high": 20010,
+            "low": 20010,
             "close": 20010,
+            "volume": 1,
         },
         {
             "timestamp": datetime(2026, 1, 5, 9, 2),
             "trade_date": date(2026, 1, 5),
+            "open": 20020,
+            "high": 20020,
+            "low": 20020,
             "close": 20020,
+            "volume": 1,
         },
     ]
 
@@ -924,22 +972,38 @@ def test_paper_runner_full_partial_exit_lifecycle():
         {
             "timestamp": datetime(2026, 1, 5, 9, 0),
             "trade_date": date(2026, 1, 5),
+            "open": 20000,
+            "high": 20000,
+            "low": 20000,
             "close": 20000,
+            "volume": 1,
         },
         {
             "timestamp": datetime(2026, 1, 5, 9, 1),
             "trade_date": date(2026, 1, 5),
+            "open": 20010,
+            "high": 20010,
+            "low": 20010,
             "close": 20010,
+            "volume": 1,
         },
         {
             "timestamp": datetime(2026, 1, 5, 9, 2),
             "trade_date": date(2026, 1, 5),
+            "open": 20020,
+            "high": 20020,
+            "low": 20020,
             "close": 20020,
+            "volume": 1,
         },
         {
             "timestamp": datetime(2026, 1, 5, 9, 3),
             "trade_date": date(2026, 1, 5),
+            "open": 20030,
+            "high": 20030,
+            "low": 20030,
             "close": 20030,
+            "volume": 1,
         },
     ]
 
@@ -1002,6 +1066,8 @@ def test_paper_runner_full_partial_exit_lifecycle():
     assert engine.portfolio is not None
     assert engine.portfolio.position is None
     assert engine.portfolio.realized_pnl == 6000.0
+
+
 
 def test_paper_runner_full_short_lifecycle():
     from backtest.paper_broker import PaperBroker
@@ -1314,6 +1380,83 @@ def test_paper_runner_full_short_partial_entry_lifecycle():
     assert engine.portfolio.position.quantity == 2
     assert engine.portfolio.position.entry_price == 20005.0
     assert engine.pending_orders == {}
+from datetime import date, datetime
+
+
+def test_paper_runner_passes_full_market_bar_to_strategy():
+    from backtest.paper_broker import PaperBroker
+    from backtest.market_data_models import MarketBar
+    from backtest.paper_market_data import PaperMarketDataProvider
+    from backtest.paper_runner import PaperTradingRunner
+    from backtest.paper_trading import PaperTradingEngine
+    from backtest.position import PositionManager
+    from backtest.portfolio import Portfolio
+    from backtest.risk import PortfolioRiskManager, RiskConfig
+
+    class CaptureStrategy:
+        name = "CAPTURE"
+        version = "1.0"
+
+        def __init__(self):
+            self.received_bar = None
+
+        def on_bar(self, bar):
+            self.received_bar = bar
+            return []
+
+    bar = MarketBar(
+        timestamp=datetime(2026, 1, 5, 9, 0),
+        trade_date=date(2026, 1, 5),
+        symbol="TXF",
+        open=20000.0,
+        high=20050.0,
+        low=19980.0,
+        close=20030.0,
+        volume=1250,
+        amount=25037500.0,
+    )
+
+    strategy = CaptureStrategy()
+
+    engine = PaperTradingEngine(
+        broker=PaperBroker(),
+        position_manager=PositionManager(),
+        portfolio=Portfolio(initial_capital=100000, multiplier=200),
+        risk_manager=PortfolioRiskManager(
+            RiskConfig(
+                initial_margin_per_contract=50000,
+                maintenance_margin_per_contract=25000,
+                max_contracts=1,
+                max_margin_utilization=1.0,
+            )
+        ),
+    )
+
+    runner = PaperTradingRunner(
+        market_data=PaperMarketDataProvider([bar]),
+        strategy=strategy,
+        trading_engine=engine,
+    )
+
+    runner.process_latest()
+
+    assert strategy.received_bar["open"] == 20000.0
+    assert strategy.received_bar["high"] == 20050.0
+    assert strategy.received_bar["low"] == 19980.0
+    assert strategy.received_bar["close"] == 20030.0
+    assert strategy.received_bar["volume"] == 1250
+    assert strategy.received_bar["amount"] == 25037500.0
+
+
+
+
+
+
+
+
+
+
+
 
 def test_paper_runner_full_short_partial_exit_lifecycle():
     from backtest.broker import Broker
