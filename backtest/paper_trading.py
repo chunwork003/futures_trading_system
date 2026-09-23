@@ -33,26 +33,22 @@ class PaperTradingEngine:
 
         return self.broker.submit_order(order)
 
-    def open_position(
+    def apply_entry_fills(
         self,
         signal: Signal,
-        order: Order,
+        fills: list[Fill],
     ) -> Position:
-        submission = self.submit_order(order)
-
-        if not submission.fills:
+        if not fills:
             raise RuntimeError(
-                f"Order has not been filled: {order.order_id}"
+                f"Order has not been filled: {signal.signal_id}"
             )
-
-        fill = submission.fills[0]
 
         position = self.position_manager.open_position(
             signal=signal,
-            fill=fill,
+            fill=fills[0],
         )
 
-        for fill in submission.fills[1:]:
+        for fill in fills[1:]:
             position = self.position_manager.add_fill(fill=fill)
 
         if self.portfolio is not None:
@@ -65,16 +61,12 @@ class PaperTradingEngine:
 
         return position
 
-    def close_position(
+    def apply_exit_fills(
         self,
-        order: Order,
+        fills: list[Fill],
     ) -> float:
-        submission: OrderSubmission = self.broker.submit_order(order)
-
-        if not submission.fills:
-            raise RuntimeError(
-                f"Order has not been filled: {order.order_id}"
-            )
+        if not fills:
+            raise RuntimeError("Order has not been filled.")
 
         position = self.position_manager.current_position
         if position is None:
@@ -82,7 +74,7 @@ class PaperTradingEngine:
 
         total_pnl = 0.0
 
-        for fill in submission.fills:
+        for fill in fills:
             if self.portfolio is not None:
                 total_pnl += self.portfolio.close_position(
                     exit_price=fill.price,
@@ -95,3 +87,25 @@ class PaperTradingEngine:
             )
 
         return total_pnl
+
+    def open_position(
+        self,
+        signal: Signal,
+        order: Order,
+    ) -> Position:
+        submission = self.submit_order(order)
+
+        return self.apply_entry_fills(
+            signal=signal,
+            fills=submission.fills,
+        )
+
+    def close_position(
+        self,
+        order: Order,
+    ) -> float:
+        submission: OrderSubmission = self.broker.submit_order(order)
+
+        return self.apply_exit_fills(
+            fills=submission.fills,
+        )

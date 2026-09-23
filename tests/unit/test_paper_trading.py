@@ -355,3 +355,80 @@ def test_paper_trading_engine_keeps_position_after_partial_exit_fill() -> None:
     assert engine.portfolio.position is not None
     assert engine.portfolio.position.quantity == 1
     assert engine.portfolio.realized_pnl == 19_990.0
+
+def test_paper_trading_engine_apply_entry_fills() -> None:
+    engine = make_engine()
+
+    fills = [
+        Fill(
+            order_id="ORD-001",
+            timestamp=datetime(2024, 1, 2, 9, 0),
+            requested_price=20_000.0,
+            price=20_000.0,
+            quantity=1,
+            commission=10.0,
+            slippage_points=0.0,
+        ),
+        Fill(
+            order_id="ORD-001",
+            timestamp=datetime(2024, 1, 2, 9, 0),
+            requested_price=20_010.0,
+            price=20_010.0,
+            quantity=1,
+            commission=10.0,
+            slippage_points=0.0,
+        ),
+    ]
+
+    position = engine.apply_entry_fills(
+        signal=make_signal().model_copy(update={"quantity": 2}),
+        fills=fills,
+    )
+
+    assert position.quantity == 2
+    assert position.entry_price == 20_005.0
+    assert position.entry_commission == 20.0
+
+    assert engine.portfolio is not None
+    assert engine.portfolio.position is not None
+    assert engine.portfolio.position.quantity == 2
+    assert engine.portfolio.position.entry_price == 20_005.0
+
+
+def test_paper_trading_engine_apply_exit_fills() -> None:
+    engine = make_engine()
+
+    engine.open_position(
+        signal=make_signal().model_copy(update={"quantity": 2}),
+        order=make_order().model_copy(update={"quantity": 2}),
+    )
+
+    fills = [
+        Fill(
+            order_id="ORD-002",
+            timestamp=datetime(2024, 1, 2, 9, 1),
+            requested_price=20_100.0,
+            price=20_100.0,
+            quantity=1,
+            commission=10.0,
+            slippage_points=0.0,
+        ),
+        Fill(
+            order_id="ORD-002",
+            timestamp=datetime(2024, 1, 2, 9, 1),
+            requested_price=20_110.0,
+            price=20_110.0,
+            quantity=1,
+            commission=10.0,
+            slippage_points=0.0,
+        ),
+    ]
+
+    pnl = engine.apply_exit_fills(fills=fills)
+
+    assert pnl == 41_980.0
+    assert engine.position_manager.current_position is None
+
+    assert engine.portfolio is not None
+    assert engine.portfolio.position is None
+    assert engine.portfolio.realized_pnl == 41_980.0
