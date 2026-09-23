@@ -1003,3 +1003,587 @@ def test_paper_runner_full_partial_exit_lifecycle():
     assert engine.portfolio.position is None
     assert engine.portfolio.realized_pnl == 6000.0
 
+def test_paper_runner_full_short_lifecycle():
+    from backtest.paper_broker import PaperBroker
+
+    class ShortLifecycleStrategy(Strategy):
+        name = "SHORT_LIFECYCLE"
+        version = "1.0"
+
+        def __init__(self):
+            self.called = 0
+
+        def on_bar(self, bar):
+            self.called += 1
+
+            if self.called == 1:
+                return [
+                    Signal(
+                        signal_id="short-entry",
+                        timestamp=bar["timestamp"],
+                        trade_date=bar["timestamp"].date(),
+                        symbol="TXF",
+                        timeframe="1m",
+                        strategy_id=self.name,
+                        strategy_name=self.name,
+                        strategy_version=self.version,
+                        action=SignalAction.ENTER,
+                        direction=Direction.SHORT,
+                        setup="TEST",
+                        entry_type="MARKET",
+                        entry_price=bar["close"],
+                        stop_loss=None,
+                        take_profit=None,
+                        quantity=1,
+                    )
+                ]
+
+            if self.called == 2:
+                return [
+                    Signal(
+                        signal_id="short-exit",
+                        timestamp=bar["timestamp"],
+                        trade_date=bar["timestamp"].date(),
+                        symbol="TXF",
+                        timeframe="1m",
+                        strategy_id=self.name,
+                        strategy_name=self.name,
+                        strategy_version=self.version,
+                        action=SignalAction.EXIT,
+                        direction=Direction.SHORT,
+                        setup="TEST",
+                        entry_type="MARKET",
+                        entry_price=bar["close"],
+                        stop_loss=None,
+                        take_profit=None,
+                        quantity=1,
+                    )
+                ]
+
+            return []
+
+    bars = [
+        {
+            "timestamp": datetime(2026, 1, 1, 9, 0),
+            "trade_date": date(2026, 1, 1),
+            "symbol": "TXF",
+            "open": 20000,
+            "high": 20000,
+            "low": 20000,
+            "close": 20000,
+            "volume": 1,
+        },
+        {
+            "timestamp": datetime(2026, 1, 1, 9, 1),
+            "trade_date": date(2026, 1, 1),
+            "symbol": "TXF",
+            "open": 19900,
+            "high": 19900,
+            "low": 19900,
+            "close": 19900,
+            "volume": 1,
+        },
+    ]
+
+    engine = PaperTradingEngine(
+        broker=PaperBroker(),
+        portfolio=Portfolio(
+            initial_capital=100000,
+            multiplier=200,
+        ),
+        position_manager=PositionManager(),
+        risk_manager=PortfolioRiskManager(
+            RiskConfig(
+                initial_margin_per_contract=50000,
+                maintenance_margin_per_contract=25000,
+                max_contracts=1,
+                max_margin_utilization=1.0,
+            )
+        ),
+    )
+
+    runner = PaperTradingRunner(
+        market_data=PaperMarketDataProvider(bars),
+        strategy=ShortLifecycleStrategy(),
+        trading_engine=engine,
+    )
+
+    first = runner.process_latest()
+
+    assert first.signals[0].action == SignalAction.ENTER
+    assert first.signals[0].direction == Direction.SHORT
+    assert engine.position_manager.current_position is not None
+    assert engine.position_manager.current_position.direction == Direction.SHORT
+    assert engine.position_manager.current_position.quantity == 1
+
+    second = runner.process_latest()
+
+    assert second.signals[0].action == SignalAction.EXIT
+    assert second.signals[0].direction == Direction.SHORT
+    assert engine.position_manager.current_position is None
+    assert engine.pending_orders == {}
+    assert engine.portfolio.realized_pnl == 20000.0
+
+def test_paper_runner_full_short_partial_entry_lifecycle():
+    from backtest.broker import Broker
+    from backtest.market_data_models import MarketBar
+    from backtest.execution_result import OrderSubmission
+    from backtest.models import Fill, OrderStatus
+
+    class ShortPartialEntryBroker(Broker):
+        def __init__(self):
+            self.orders: dict[str, Order] = {}
+            self.stage = 0
+
+        def submit_order(self, order: Order) -> OrderSubmission:
+            submitted = order.model_copy(
+                update={"status": OrderStatus.SUBMITTED}
+            )
+            self.orders[order.order_id] = submitted
+            return OrderSubmission(
+                order=submitted,
+                fills=[],
+            )
+
+        def get_order(self, order_id: str) -> Order | None:
+            return self.orders.get(order_id)
+
+        def get_fills(self, order_id: str) -> list[Fill]:
+            if self.stage == 0:
+                return []
+
+            if self.stage == 1:
+                self.stage = 2
+                return [
+                    Fill(
+                        order_id=order_id,
+                        timestamp=datetime(2026, 1, 1, 9, 1),
+                        requested_price=20000.0,
+                        price=20000.0,
+                        quantity=1,
+                        commission=10.0,
+                        slippage_points=0.0,
+                    )
+                ]
+
+            if self.stage == 2:
+                self.stage = 3
+                self.orders[order_id] = self.orders[order_id].model_copy(
+                    update={"status": OrderStatus.FILLED}
+                )
+                return [
+                    Fill(
+                        order_id=order_id,
+                        timestamp=datetime(2026, 1, 1, 9, 2),
+                        requested_price=20000.0,
+                        price=20010.0,
+                        quantity=1,
+                        commission=10.0,
+                        slippage_points=0.0,
+                    )
+                ]
+
+            return []
+
+        def cancel_order(self, order_id: str) -> Order:
+            cancelled = self.orders[order_id].model_copy(
+                update={"status": OrderStatus.CANCELLED}
+            )
+            self.orders[order_id] = cancelled
+            return cancelled
+
+    class ShortPartialEntryStrategy(Strategy):
+        name = "SHORT_PARTIAL_ENTRY"
+        version = "1.0"
+
+        def __init__(self):
+            self.called = 0
+
+        def on_bar(self, bar):
+            self.called += 1
+
+            if self.called == 1:
+                return [
+                    Signal(
+                        signal_id="SIG-SHORT-PARTIAL",
+                        strategy_id=self.name,
+                        timestamp=bar["timestamp"],
+                        trade_date=bar["trade_date"],
+                        symbol="TXF",
+                        contract="TXF202601",
+                        timeframe="1m",
+                        strategy_name=self.name,
+                        strategy_version=self.version,
+                        action=SignalAction.ENTER,
+                        direction=Direction.SHORT,
+                        setup="TEST",
+                        entry_type="MARKET",
+                        entry_price=20000.0,
+                        quantity=2,
+                        stop_price=None,
+                        target_price=None,
+                        market_state="TREND",
+                    )
+                ]
+
+            return []
+
+    bars = [
+        MarketBar(
+            timestamp=datetime(2026, 1, 1, 9, 0),
+            trade_date=date(2026, 1, 1),
+            symbol="TXF",
+            open=20000.0,
+            high=20000.0,
+            low=20000.0,
+            close=20000.0,
+            volume=1,
+        ),
+        MarketBar(
+            timestamp=datetime(2026, 1, 1, 9, 1),
+            trade_date=date(2026, 1, 1),
+            symbol="TXF",
+            open=20000.0,
+            high=20010.0,
+            low=19990.0,
+            close=20005.0,
+            volume=1,
+        ),
+        MarketBar(
+            timestamp=datetime(2026, 1, 1, 9, 2),
+            trade_date=date(2026, 1, 1),
+            symbol="TXF",
+            open=20005.0,
+            high=20010.0,
+            low=20000.0,
+            close=20005.0,
+            volume=1,
+        ),
+    ]
+
+    broker = ShortPartialEntryBroker()
+
+    engine = PaperTradingEngine(
+        broker=broker,
+        portfolio=Portfolio(
+            initial_capital=100000,
+            multiplier=200,
+        ),
+        position_manager=PositionManager(),
+        risk_manager=PortfolioRiskManager(
+            RiskConfig(
+                initial_margin_per_contract=50000,
+                maintenance_margin_per_contract=25000,
+                max_contracts=2,
+                max_margin_utilization=1.0,
+            )
+        ),
+    )
+
+    runner = PaperTradingRunner(
+        market_data=PaperMarketDataProvider(bars),
+        strategy=ShortPartialEntryStrategy(),
+        trading_engine=engine,
+    )
+
+    first = runner.process_latest()
+
+    assert first.positions == [None]
+    assert len(engine.pending_orders) == 1
+
+    broker.stage = 1
+    second = runner.process_latest()
+
+    position = engine.position_manager.current_position
+
+    assert position is not None
+    assert position.direction == Direction.SHORT
+    assert position.quantity == 1
+    assert position.entry_price == 20000.0
+    assert len(engine.pending_orders) == 1
+
+    third = runner.process_latest()
+
+    position = engine.position_manager.current_position
+
+    assert position is not None
+    assert position.direction == Direction.SHORT
+    assert position.quantity == 2
+    assert position.entry_price == 20005.0
+    assert engine.portfolio.position is not None
+    assert engine.portfolio.position.quantity == 2
+    assert engine.portfolio.position.entry_price == 20005.0
+    assert engine.pending_orders == {}
+
+def test_paper_runner_full_short_partial_exit_lifecycle():
+    from backtest.broker import Broker
+    from backtest.execution_result import OrderSubmission
+    from backtest.models import Fill, OrderStatus
+
+    class ShortPartialExitBroker(Broker):
+        def __init__(self):
+            self.orders: dict[str, Order] = {}
+            self.completed = False
+            self.exit_order_id: str | None = None
+            self.exit_fill_stage = 0
+
+        def submit_order(self, order: Order) -> OrderSubmission:
+            if order.order_id.startswith("EXIT-"):
+                submitted = order.model_copy(
+                    update={"status": OrderStatus.SUBMITTED}
+                )
+                self.orders[order.order_id] = submitted
+                self.exit_order_id = order.order_id
+                return OrderSubmission(
+                    order=submitted,
+                    fills=[],
+                )
+
+            filled = order.model_copy(
+                update={
+                    "status": OrderStatus.FILLED,
+                    "fill_price": 20000.0,
+                }
+            )
+            self.orders[order.order_id] = filled
+
+            return OrderSubmission(
+                order=filled,
+                fills=[
+                    Fill(
+                        order_id=order.order_id,
+                        timestamp=order.timestamp,
+                        requested_price=order.requested_price or 20000.0,
+                        price=20000.0,
+                        quantity=2,
+                        commission=0.0,
+                        slippage_points=0.0,
+                    )
+                ],
+            )
+
+        def get_order(self, order_id: str) -> Order | None:
+            order = self.orders.get(order_id)
+
+            if order is None:
+                return None
+
+            if order_id == self.exit_order_id and self.completed:
+                return order.model_copy(
+                    update={"status": OrderStatus.FILLED}
+                )
+
+            if order_id == self.exit_order_id:
+                return order.model_copy(
+                    update={"status": OrderStatus.PARTIALLY_FILLED}
+                )
+
+            return order.model_copy(
+                update={"status": OrderStatus.FILLED}
+            )
+
+        def get_fills(self, order_id: str) -> list[Fill]:
+            order = self.orders[order_id]
+
+            if order_id != self.exit_order_id:
+                return []
+
+            if self.exit_fill_stage == 0:
+                self.exit_fill_stage = 1
+                return [
+                    Fill(
+                        order_id=order_id,
+                        timestamp=order.timestamp,
+                        requested_price=order.requested_price or 20000.0,
+                        price=19990.0,
+                        quantity=1,
+                        commission=0.0,
+                        slippage_points=0.0,
+                    )
+                ]
+
+            if self.completed and self.exit_fill_stage == 1:
+                self.exit_fill_stage = 2
+                return [
+                    Fill(
+                        order_id=order_id,
+                        timestamp=order.timestamp,
+                        requested_price=order.requested_price or 20000.0,
+                        price=19980.0,
+                        quantity=1,
+                        commission=0.0,
+                        slippage_points=0.0,
+                    )
+                ]
+
+            return []
+
+        def cancel_order(self, order_id: str) -> Order:
+            order = self.orders[order_id]
+            cancelled = order.model_copy(
+                update={"status": OrderStatus.CANCELLED}
+            )
+            self.orders[order_id] = cancelled
+            return cancelled
+
+    class ShortEnterThenExitStrategy(Strategy):
+        name = "SHORT_PARTIAL_EXIT"
+        version = "1.0"
+
+        def __init__(self):
+            self.called = 0
+
+        def on_bar(self, bar):
+            self.called += 1
+
+            if self.called == 1:
+                return [
+                    Signal(
+                        signal_id="SIG-SHORT-ENTRY",
+                        strategy_id=self.name,
+                        timestamp=bar["timestamp"],
+                        trade_date=bar["trade_date"],
+                        symbol="TXF",
+                        contract="TXF202601",
+                        timeframe="1m",
+                        strategy_name=self.name,
+                        strategy_version=self.version,
+                        action=SignalAction.ENTER,
+                        direction=Direction.SHORT,
+                        setup="TEST",
+                        entry_type="MARKET",
+                        entry_price=bar["close"],
+                        stop_loss=None,
+                        take_profit=None,
+                        quantity=2,
+                    )
+                ]
+
+            if self.called == 2:
+                return [
+                    Signal(
+                        signal_id="SIG-SHORT-EXIT",
+                        strategy_id=self.name,
+                        timestamp=bar["timestamp"],
+                        trade_date=bar["trade_date"],
+                        symbol="TXF",
+                        contract="TXF202601",
+                        timeframe="1m",
+                        strategy_name=self.name,
+                        strategy_version=self.version,
+                        action=SignalAction.EXIT,
+                        direction=Direction.SHORT,
+                        setup="TEST",
+                        entry_type="MARKET",
+                        entry_price=bar["close"],
+                        stop_loss=None,
+                        take_profit=None,
+                        quantity=2,
+                    )
+                ]
+
+            return []
+
+    bars = [
+        {
+            "timestamp": datetime(2026, 1, 5, 9, 0),
+            "trade_date": date(2026, 1, 5),
+            "symbol": "TXF",
+            "open": 20000,
+            "high": 20000,
+            "low": 20000,
+            "close": 20000,
+            "volume": 1,
+        },
+        {
+            "timestamp": datetime(2026, 1, 5, 9, 1),
+            "trade_date": date(2026, 1, 5),
+            "symbol": "TXF",
+            "open": 19990,
+            "high": 20000,
+            "low": 19980,
+            "close": 19990,
+            "volume": 1,
+        },
+        {
+            "timestamp": datetime(2026, 1, 5, 9, 2),
+            "trade_date": date(2026, 1, 5),
+            "symbol": "TXF",
+            "open": 19980,
+            "high": 19990,
+            "low": 19970,
+            "close": 19980,
+            "volume": 1,
+        },
+        {
+            "timestamp": datetime(2026, 1, 5, 9, 3),
+            "trade_date": date(2026, 1, 5),
+            "symbol": "TXF",
+            "open": 19980,
+            "high": 19990,
+            "low": 19970,
+            "close": 19980,
+            "volume": 1,
+        },
+    ]
+
+    broker = ShortPartialExitBroker()
+
+    engine = PaperTradingEngine(
+        broker=broker,
+        portfolio=Portfolio(
+            initial_capital=100000,
+            multiplier=200,
+        ),
+        position_manager=PositionManager(),
+        risk_manager=PortfolioRiskManager(
+            RiskConfig(
+                initial_margin_per_contract=50000,
+                maintenance_margin_per_contract=25000,
+                max_contracts=2,
+                max_margin_utilization=1.0,
+            )
+        ),
+    )
+
+    runner = PaperTradingRunner(
+        market_data=PaperMarketDataProvider(bars),
+        strategy=ShortEnterThenExitStrategy(),
+        trading_engine=engine,
+    )
+
+    first = runner.process_latest()
+
+    assert first.positions[0] is not None
+    assert first.positions[0].direction == Direction.SHORT
+    assert first.positions[0].quantity == 2
+
+    second = runner.process_latest()
+
+    position = engine.position_manager.current_position
+
+    assert position is not None
+    assert position.direction == Direction.SHORT
+    assert position.quantity == 2
+    assert len(engine.pending_orders) == 1
+    assert second.realized_pnl == [None]
+
+    third = runner.process_latest()
+
+    position = engine.position_manager.current_position
+
+    assert position is not None
+    assert position.direction == Direction.SHORT
+    assert position.quantity == 1
+    assert len(engine.pending_orders) == 1
+    assert third.realized_pnl == []
+
+    broker.completed = True
+
+    fourth = runner.process_latest()
+
+    assert engine.position_manager.current_position is None
+    assert engine.pending_orders == {}
+    assert engine.portfolio is not None
+    assert engine.portfolio.position is None
+    assert engine.portfolio.realized_pnl == 6000.0
