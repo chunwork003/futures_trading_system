@@ -101,6 +101,27 @@ class PaperTradingEngine:
 
         return total_pnl
 
+    def sync_pending_order(self, order_id: str) -> Position | None:
+        pending = self._pending_orders.get(order_id)
+        if pending is None:
+            raise ValueError(f"Pending order not found: {order_id}")
+
+        fills = self.broker.get_fills(order_id)
+        if not fills:
+            return None
+
+        if pending.signal is None:
+            raise RuntimeError(
+                f"Pending entry order has no signal: {order_id}"
+            )
+
+        position = self.apply_entry_fills(
+            signal=pending.signal,
+            fills=fills,
+        )
+        del self._pending_orders[order_id]
+        return position
+
     def open_position(
         self,
         signal: Signal,

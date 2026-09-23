@@ -478,3 +478,50 @@ def test_paper_trading_engine_open_position_tracks_unfilled_order() -> None:
     assert order.order_id in engine.pending_orders
     assert engine.pending_orders[order.order_id].order == order
     assert engine.pending_orders[order.order_id].signal is signal
+
+class FillablePendingPaperBroker(PendingPaperBroker):
+    def complete_order(
+        self,
+        order_id: str,
+        fills: list[Fill],
+    ) -> None:
+        self._fills[order_id] = fills
+
+
+def test_paper_trading_engine_syncs_pending_entry_fills() -> None:
+    broker = FillablePendingPaperBroker()
+    engine = make_engine(broker=broker)
+    signal = make_signal()
+    order = make_order()
+
+    result = engine.open_position(
+        signal=signal,
+        order=order,
+    )
+
+    assert result is None
+    assert order.order_id in engine.pending_orders
+
+    fill = Fill(
+        order_id=order.order_id,
+        timestamp=order.timestamp,
+        requested_price=order.requested_price,
+        price=order.requested_price,
+        quantity=order.quantity,
+        commission=0.0,
+        slippage_points=0.0,
+    )
+
+    broker.complete_order(
+        order_id=order.order_id,
+        fills=[fill],
+    )
+
+    position = engine.sync_pending_order(
+        order_id=order.order_id,
+    )
+
+    assert position is not None
+    assert position.quantity == order.quantity
+    assert position.entry_price == fill.price
+    assert order.order_id not in engine.pending_orders
