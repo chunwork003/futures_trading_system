@@ -14,7 +14,7 @@ from backtest.models import (
     Signal,
 )
 from backtest.paper_broker import PaperBroker
-from backtest.paper_trading import PaperTradingEngine
+from backtest.paper_trading import PaperTradingEngine, PendingOrder
 from backtest.portfolio import Portfolio
 from backtest.position import PositionManager
 from backtest.risk import PortfolioRiskManager, RiskConfig
@@ -432,3 +432,18 @@ def test_paper_trading_engine_apply_exit_fills() -> None:
     assert engine.portfolio is not None
     assert engine.portfolio.position is None
     assert engine.portfolio.realized_pnl == 41_980.0
+
+def test_paper_trading_engine_tracks_pending_order() -> None:
+    engine = make_engine()
+    signal = make_signal()
+    order = make_order()
+
+    engine._pending_orders[order.order_id] = PendingOrder(
+        order=order,
+        signal=signal,
+    )
+
+    pending = engine.pending_orders[order.order_id]
+
+    assert pending.order.order_id == order.order_id
+    assert pending.signal is signal

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 from backtest.broker import Broker
 from backtest.execution_result import OrderSubmission
 from backtest.models import Fill, Order, Position, Signal
@@ -7,6 +9,12 @@ from backtest.paper_broker import PaperBroker
 from backtest.portfolio import Portfolio
 from backtest.position import PositionManager
 from backtest.risk import PortfolioRiskManager, RiskConfig
+
+
+@dataclass(frozen=True)
+class PendingOrder:
+    order: Order
+    signal: Signal | None = None
 
 
 class PaperTradingEngine:
@@ -23,6 +31,11 @@ class PaperTradingEngine:
         self.risk_manager = risk_manager or PortfolioRiskManager(
             RiskConfig()
         )
+        self._pending_orders: dict[str, PendingOrder] = {}
+
+    @property
+    def pending_orders(self) -> dict[str, PendingOrder]:
+        return dict(self._pending_orders)
 
     def submit_order(self, order: Order) -> OrderSubmission:
         if not self.risk_manager.can_open(
