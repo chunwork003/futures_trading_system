@@ -82,6 +82,52 @@ class PositionManager:
 
         return self.position
 
+    def add_fill(self, fill: Fill) -> Position:
+        if self.position is None:
+            raise ValueError(
+                "Cannot add fill while position is flat."
+            )
+
+        position = self.position
+
+        old_quantity = position.quantity
+        new_quantity = old_quantity + fill.quantity
+
+        weighted_entry_price = (
+            position.entry_price * old_quantity
+            + fill.price * fill.quantity
+        ) / new_quantity
+
+        position.quantity = new_quantity
+        position.entry_price = weighted_entry_price
+        position.entry_commission += fill.commission
+        position.entry_slippage_points += fill.slippage_points
+
+        return position
+
+    def reduce_position(self, quantity: int) -> Position | None:
+        if self.position is None:
+            raise ValueError(
+                "Cannot reduce position while flat."
+            )
+
+        if quantity <= 0:
+            raise ValueError(
+                "quantity must be > 0"
+            )
+
+        if quantity > self.position.quantity:
+            raise ValueError(
+                "quantity cannot exceed current position quantity"
+            )
+
+        self.position.quantity -= quantity
+
+        if self.position.quantity == 0:
+            return self.close_position()
+
+        return self.position
+
     def update_bar(
         self,
         timestamp: datetime,

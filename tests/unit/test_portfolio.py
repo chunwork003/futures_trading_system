@@ -206,3 +206,29 @@ def test_reset_returns_portfolio_to_initial_state():
     assert portfolio.equity == 1_000_000
     assert portfolio.commission_paid == 0
     assert portfolio.position is None
+
+
+def test_partial_close_reduces_position_quantity() -> None:
+    portfolio = Portfolio(
+        initial_capital=1_000_000,
+        multiplier=200,
+    )
+
+    portfolio.open_position(
+        direction="LONG",
+        entry_price=25_000,
+        quantity=2,
+    )
+
+    realized = portfolio.close_position(
+        exit_price=25_010,
+        quantity=1,
+    )
+
+    assert realized == 2_000
+    assert portfolio.realized_pnl == 2_000
+    assert portfolio.position is not None
+    assert portfolio.position.direction == "LONG"
+    assert portfolio.position.entry_price == 25_000
+    assert portfolio.position.quantity == 1
+    assert portfolio.unrealized_pnl == 0

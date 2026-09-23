@@ -1,9 +1,13 @@
+from __future__ import annotations
+
 from datetime import date, datetime
 
 import pytest
 
+from backtest.execution_result import OrderSubmission
 from backtest.models import (
     Direction,
+    Fill,
     Order,
     OrderStatus,
     OrderType,
@@ -55,10 +59,11 @@ def make_order() -> Order:
 
 def make_engine(
     *,
+    broker: PaperBroker | None = None,
     max_margin_utilization: float = 1.0,
 ) -> PaperTradingEngine:
     return PaperTradingEngine(
-        broker=PaperBroker(),
+        broker=broker or PaperBroker(),
         position_manager=PositionManager(),
         portfolio=Portfolio(
             initial_capital=100_000,
@@ -68,7 +73,7 @@ def make_engine(
             RiskConfig(
                 initial_margin_per_contract=50_000,
                 maintenance_margin_per_contract=25_000,
-                max_contracts=1,
+                max_contracts=2,
                 max_margin_utilization=max_margin_utilization,
             )
         ),
@@ -78,11 +83,42 @@ def make_engine(
 def test_paper_trading_engine_submits_order() -> None:
     engine = make_engine()
 
-    fill = engine.submit_order(make_order())
+    submission = engine.submit_order(make_order())
 
-    assert fill.order_id == "ORD-001"
-    assert fill.price == 20_000.0
-    assert fill.quantity == 1
+    assert isinstance(submission, OrderSubmission)
+    assert submission.order.order_id == "ORD-001"
+    assert submission.order.status == OrderStatus.FILLED
+    assert len(submission.fills) == 1
+    assert submission.fills[0].order_id == "ORD-001"
+    assert submission.fills[0].price == 20_000.0
+    assert submission.fills[0].quantity == 1
+
+
+def test_paper_trading_engine_submits_unfilled_order() -> None:
+    class SubmittedBroker(PaperBroker):
+        def submit_order(self, order: Order) -> OrderSubmission:
+            submitted_order = order.model_copy(
+                update={"status": OrderStatus.SUBMITTED}
+            )
+            self.orders[order.order_id] = submitted_order
+            self._fills[order.order_id] = []
+            return OrderSubmission(
+                order=submitted_order,
+                fills=[],
+            )
+
+    engine = PaperTradingEngine(
+        broker=SubmittedBroker(),
+        portfolio=Portfolio(
+            initial_capital=100_000,
+            multiplier=200,
+        ),
+    )
+
+    submission = engine.submit_order(make_order())
+
+    assert submission.order.status == OrderStatus.SUBMITTED
+    assert submission.fills == []
 
 
 def test_paper_trading_engine_rejects_order_by_risk() -> None:
@@ -107,6 +143,8 @@ def test_paper_trading_engine_opens_position_from_fill() -> None:
     assert position.quantity == 1
     assert position.entry_price == 20_000.0
     assert engine.position_manager.current_position is position
+
+
 def test_paper_trading_engine_updates_portfolio_on_entry() -> None:
     engine = make_engine()
 
@@ -122,6 +160,7 @@ def test_paper_trading_engine_updates_portfolio_on_entry() -> None:
     assert engine.portfolio.position.entry_price == position.entry_price
     assert engine.portfolio.position.quantity == position.quantity
     assert engine.portfolio.unrealized_pnl == 0.0
+
 
 def test_paper_trading_engine_closes_position_and_realizes_pnl() -> None:
     engine = make_engine()
@@ -147,3 +186,172 @@ def test_paper_trading_engine_closes_position_and_realizes_pnl() -> None:
     assert engine.portfolio.position is None
     assert engine.portfolio.realized_pnl == 20_000.0
 
+
+def test_paper_trading_engine_accumulates_multiple_entry_fills() -> None:
+    class MultiFillBroker(PaperBroker):
+        def submit_order(self, order: Order) -> OrderSubmission:
+            first_fill = Fill(
+                order_id=order.order_id,
+                timestamp=order.timestamp,
+                requested_price=20_000.0,
+                price=20_000.0,
+                quantity=1,
+                commission=10.0,
+                slippage_points=0.0,
+            )
+            second_fill = Fill(
+                order_id=order.order_id,
+                timestamp=order.timestamp,
+                requested_price=20_010.0,
+                price=20_010.0,
+                quantity=1,
+                commission=10.0,
+                slippage_points=0.0,
+            )
+            submitted_order = order.model_copy(
+                update={
+                    "status": OrderStatus.FILLED,
+                    "fill_price": 20_005.0,
+                }
+            )
+            return OrderSubmission(
+                order=submitted_order,
+                fills=[first_fill, second_fill],
+            )
+
+    engine = make_engine(
+        broker=MultiFillBroker(),
+    )
+
+    position = engine.open_position(
+        signal=make_signal(),
+        order=make_order(),
+    )
+
+    assert position.quantity == 2
+    assert position.entry_price == 20_005.0
+    assert position.entry_commission == 20.0
+
+    assert engine.portfolio is not None
+    assert engine.portfolio.position is not None
+    assert engine.portfolio.position.quantity == 2
+    assert engine.portfolio.position.entry_price == 20_005.0
+
+
+def test_paper_trading_engine_closes_position_from_multiple_exit_fills() -> None:
+    class MultiFillExitBroker(PaperBroker):
+        def submit_order(self, order: Order) -> OrderSubmission:
+            if order.order_id == "ORD-001":
+                return super().submit_order(order)
+
+            first_fill = Fill(
+                order_id=order.order_id,
+                timestamp=order.timestamp,
+                requested_price=20_100.0,
+                price=20_100.0,
+                quantity=1,
+                commission=10.0,
+                slippage_points=0.0,
+            )
+            second_fill = Fill(
+                order_id=order.order_id,
+                timestamp=order.timestamp,
+                requested_price=20_110.0,
+                price=20_110.0,
+                quantity=1,
+                commission=10.0,
+                slippage_points=0.0,
+            )
+            submitted_order = order.model_copy(
+                update={
+                    "status": OrderStatus.FILLED,
+                    "fill_price": 20_105.0,
+                }
+            )
+            return OrderSubmission(
+                order=submitted_order,
+                fills=[first_fill, second_fill],
+            )
+
+    engine = make_engine(
+        broker=MultiFillExitBroker(),
+    )
+
+    engine.open_position(
+        signal=make_signal().model_copy(update={"quantity": 2}),
+        order=make_order().model_copy(update={"quantity": 2}),
+    )
+
+    exit_order = make_order().model_copy(
+        update={
+            "order_id": "ORD-002",
+            "direction": Direction.SHORT,
+            "quantity": 2,
+            "requested_price": 20_100.0,
+        }
+    )
+
+    pnl = engine.close_position(exit_order)
+
+    assert pnl == 41_980.0
+    assert engine.position_manager.current_position is None
+    assert engine.portfolio is not None
+    assert engine.portfolio.position is None
+    assert engine.portfolio.realized_pnl == 41_980.0
+
+
+def test_paper_trading_engine_keeps_position_after_partial_exit_fill() -> None:
+    class PartialExitBroker(PaperBroker):
+        def submit_order(self, order: Order) -> OrderSubmission:
+            if order.order_id == "ORD-001":
+                return super().submit_order(order)
+
+            fill = Fill(
+                order_id=order.order_id,
+                timestamp=order.timestamp,
+                requested_price=20_100.0,
+                price=20_100.0,
+                quantity=1,
+                commission=10.0,
+                slippage_points=0.0,
+            )
+            submitted_order = order.model_copy(
+                update={
+                    "status": OrderStatus.PARTIALLY_FILLED,
+                    "fill_price": 20_100.0,
+                }
+            )
+            return OrderSubmission(
+                order=submitted_order,
+                fills=[fill],
+            )
+
+    engine = make_engine(
+        broker=PartialExitBroker(),
+    )
+
+    engine.open_position(
+        signal=make_signal().model_copy(update={"quantity": 2}),
+        order=make_order().model_copy(update={"quantity": 2}),
+    )
+
+    exit_order = make_order().model_copy(
+        update={
+            "order_id": "ORD-002",
+            "direction": Direction.SHORT,
+            "quantity": 2,
+            "requested_price": 20_100.0,
+        }
+    )
+
+    pnl = engine.close_position(exit_order)
+
+    assert pnl == 19_990.0
+
+    assert engine.position_manager.current_position is not None
+    assert engine.position_manager.current_position.quantity == 1
+
+    assert engine.portfolio is not None
+    assert engine.portfolio.position is not None
+    assert engine.portfolio.position.quantity == 1
+    assert engine.portfolio.realized_pnl == 19_990.0

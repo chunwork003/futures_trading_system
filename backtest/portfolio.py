@@ -113,6 +113,7 @@ class Portfolio:
         self,
         exit_price: float,
         commission: float = 0.0,
+        quantity: Optional[int] = None,
     ) -> float:
         if self.position is None:
             raise RuntimeError("Cannot close portfolio while flat.")
@@ -122,6 +123,20 @@ class Portfolio:
 
         position = self.position
 
+        close_quantity = (
+            position.quantity
+            if quantity is None
+            else quantity
+        )
+
+        if close_quantity <= 0:
+            raise ValueError("quantity must be > 0")
+
+        if close_quantity > position.quantity:
+            raise ValueError(
+                "quantity cannot exceed current position quantity"
+            )
+
         if position.direction == "LONG":
             points = exit_price - position.entry_price
         else:
@@ -129,7 +144,7 @@ class Portfolio:
 
         gross_pnl = (
             points
-            * position.quantity
+            * close_quantity
             * self.multiplier
         )
 
@@ -140,8 +155,14 @@ class Portfolio:
         self.realized_pnl += net_pnl
         self.commission_paid += commission
 
-        self.unrealized_pnl = 0.0
-        self.position = None
+        remaining_quantity = position.quantity - close_quantity
+
+        if remaining_quantity == 0:
+            self.unrealized_pnl = 0.0
+            self.position = None
+        else:
+            position.quantity = remaining_quantity
+            self.unrealized_pnl = 0.0
 
         return net_pnl
 
