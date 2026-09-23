@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from backtest.broker import Broker
+from backtest.execution_result import OrderSubmission
 from backtest.models import Fill, Order, Position, Signal
 from backtest.paper_broker import PaperBroker
 from backtest.portfolio import Portfolio
@@ -30,7 +31,14 @@ class PaperTradingEngine:
         ):
             raise ValueError("Order rejected by risk manager")
 
-        return self.broker.submit_order(order)
+        submission: OrderSubmission = self.broker.submit_order(order)
+
+        if not submission.fills:
+            raise RuntimeError(
+                f"Order has not been filled: {order.order_id}"
+            )
+
+        return submission.fills[0]
 
     def open_position(
         self,
@@ -54,13 +62,18 @@ class PaperTradingEngine:
 
         return position
 
-
-
     def close_position(
         self,
         order: Order,
     ) -> float:
-        fill = self.broker.submit_order(order)
+        submission: OrderSubmission = self.broker.submit_order(order)
+
+        if not submission.fills:
+            raise RuntimeError(
+                f"Order has not been filled: {order.order_id}"
+            )
+
+        fill = submission.fills[0]
 
         position = self.position_manager.current_position
         if position is None:

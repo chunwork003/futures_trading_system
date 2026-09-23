@@ -19,6 +19,9 @@ class DummyBroker(Broker):
     def get_order(self, order_id: str) -> Order | None:
         return None
 
+    def get_fills(self, order_id: str) -> list[Fill]:
+        return []
+
     def cancel_order(self, order_id: str) -> Order:
         raise NotImplementedError
 
