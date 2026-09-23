@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections.abc import Iterable
 
 from backtest.models import Direction
+from backtest.strategy_attribution import StrategyAttribution
 from backtest.strategy_conflict_policy import StrategyConflictPolicy
 from backtest.strategy_position import StrategyVirtualPosition
 from backtest.target_position import TargetAccountPosition
@@ -58,16 +59,40 @@ class MultiStrategyDecisionLayer:
                 for position in selected
             )
 
+            attributions = [
+                StrategyAttribution(
+                    strategy_id=position.strategy_id,
+                    symbol=position.symbol,
+                    contract=position.contract,
+                    direction=position.direction,
+                    quantity=position.quantity,
+                )
+                for position in selected
+            ]
+
             return TargetAccountPosition(
                 symbol=first.symbol,
                 contract=first.contract,
                 direction=direction,
                 quantity=quantity,
+                attributions=attributions,
             )
+
+        attributions = [
+            StrategyAttribution(
+                strategy_id=position.strategy_id,
+                symbol=position.symbol,
+                contract=position.contract,
+                direction=position.direction,
+                quantity=position.quantity,
+            )
+            for position in positions
+        ]
 
         return TargetAccountPosition(
             symbol=first.symbol,
             contract=first.contract,
             direction=first.direction,
             quantity=sum(position.quantity for position in positions),
+            attributions=attributions,
         )
