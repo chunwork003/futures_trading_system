@@ -32,6 +32,9 @@ class PaperTradingRunner:
         self.trading_engine = trading_engine
 
     def process_latest(self) -> PaperRunnerResult:
+        for order_id in list(self.trading_engine.pending_orders):
+            self.trading_engine.sync_pending_order(order_id)
+
         row: MarketBar = self.market_data.get_next()
 
         bar = {
