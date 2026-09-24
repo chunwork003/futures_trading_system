@@ -215,3 +215,61 @@ def test_native_broker_object_cannot_be_stored() -> None:
             broker_product_code="TXF",
             native_contract=object(),
         )
+
+
+def test_reverse_contract_mapping_is_exact_case_sensitive_and_inclusive() -> None:
+    reference = _reference(
+        contract_id=101,
+        product_code=None,
+        contract_code="TX-synthetic-202601",
+        effective_from=date(2026, 1, 1),
+        effective_to=date(2026, 1, 31),
+    )
+    resolver = BrokerInstrumentResolver([reference])
+
+    assert resolver.resolve_by_broker_contract_code(
+        broker=" sinopac ",
+        broker_contract_code=" TX-synthetic-202601 ",
+        as_of_date=date(2026, 1, 31),
+    ) is reference
+    with pytest.raises(BrokerInstrumentMappingNotFound):
+        resolver.resolve_by_broker_contract_code(
+            broker="SINOPAC",
+            broker_contract_code="tx-synthetic-202601",
+            as_of_date=date(2026, 1, 31),
+        )
+
+
+def test_reverse_contract_mapping_never_falls_back_to_instrument_reference() -> None:
+    resolver = BrokerInstrumentResolver([_reference(contract_code="TXF")])
+
+    with pytest.raises(BrokerInstrumentMappingNotFound):
+        resolver.resolve_by_broker_contract_code(
+            broker="SINOPAC",
+            broker_contract_code="TXF",
+            as_of_date=date(2026, 1, 15),
+        )
+
+
+def test_reverse_contract_mapping_rejects_ambiguity() -> None:
+    resolver = BrokerInstrumentResolver(
+        [
+            _reference(
+                contract_id=101,
+                product_code=None,
+                contract_code="TX-synthetic-202601",
+            ),
+            _reference(
+                contract_id=102,
+                product_code=None,
+                contract_code="TX-synthetic-202601",
+            ),
+        ]
+    )
+
+    with pytest.raises(AmbiguousBrokerInstrumentMapping):
+        resolver.resolve_by_broker_contract_code(
+            broker="SINOPAC",
+            broker_contract_code="TX-synthetic-202601",
+            as_of_date=date(2026, 1, 15),
+        )

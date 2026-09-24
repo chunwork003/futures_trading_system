@@ -121,3 +121,48 @@ class BrokerInstrumentResolver:
                 f"contract_id={contract_id}, as_of_date={as_of_date}"
             )
         return matches[0]
+
+    def resolve_by_broker_contract_code(
+        self,
+        *,
+        broker: str,
+        broker_contract_code: str,
+        as_of_date: date,
+    ) -> BrokerInstrumentReference:
+        """以 case-sensitive native contract code 反查唯一 canonical listed contract。"""
+
+        normalized_broker = broker.strip().upper()
+        normalized_code = broker_contract_code.strip()
+        if not normalized_broker:
+            raise ValueError("broker must not be blank")
+        if not normalized_code:
+            raise ValueError("broker_contract_code must not be blank")
+
+        matches = [
+            reference
+            for reference in self._references
+            if reference.broker == normalized_broker
+            and reference.contract_id is not None
+            and reference.broker_contract_code == normalized_code
+            and (
+                reference.effective_from is None
+                or reference.effective_from <= as_of_date
+            )
+            and (
+                reference.effective_to is None
+                or as_of_date <= reference.effective_to
+            )
+        ]
+        if not matches:
+            raise BrokerInstrumentMappingNotFound(
+                "broker contract mapping not found for "
+                f"broker={normalized_broker}, broker_contract_code={normalized_code}, "
+                f"as_of_date={as_of_date}"
+            )
+        if len(matches) > 1:
+            raise AmbiguousBrokerInstrumentMapping(
+                "multiple broker contract mappings are valid for "
+                f"broker={normalized_broker}, broker_contract_code={normalized_code}, "
+                f"as_of_date={as_of_date}"
+            )
+        return matches[0]

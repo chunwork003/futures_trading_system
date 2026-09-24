@@ -1,0 +1,1 @@
+"""Sinopac Shioaji adapter boundary。"""
