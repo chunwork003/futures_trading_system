@@ -6,7 +6,8 @@
 
 | ID | Added Date | Reason | Priority | Dependency | Status |
 |---|---|---|---|---|---|
-| GAP-07-E | 2026-09-24 | 建立 Backtest / Risk explicit override 與 canonical specification 的 compatibility resolution seam | P1 | GAP-07-D, ADR-001 | Implemented / review pending |
+| GAP-07-F | 2026-09-24 | 建立 canonical identity 與 external broker codes 的 effective-dated mapping contract及 native lookup seam | P1 | GAP-07-E, ADR-001 | Implemented / review pending |
+| GAP-07-E | 2026-09-24 | 建立 Backtest / Risk explicit override 與 canonical specification 的 compatibility resolution seam | P1 | GAP-07-D, ADR-001 | Complete |
 | GAP-07-MARGIN-001 | 2026-09-24 | Effective-date canonical margin、contract precedence 與 override separation；DuckDB 尚缺 currency/source/contract_id/published_at 且使用 DOUBLE，broker actual snapshot 未建立 | P1 | GAP-07-D | Partial — runtime domain and compatibility path complete; database/live pending |
 | GAP-07-D | 2026-09-24 | 建立 canonical MarginScheduleEntry 與 effective-date resolver | P1 | GAP-07-C, ADR-001 | Complete |
 | GAP-07-C | 2026-09-24 | 建立 canonical TradingSessionRef 與 `[open, close)` boundary policy | P1 | GAP-07-B, ADR-001 | Complete |
@@ -23,8 +24,8 @@
 | GAP-ARCH-001 | 2026-09-24 | Backtest / Trading / Broker package boundary 未明確 | P1 | M0-B | Open |
 | GAP-ARCH-002 | 2026-09-24 | domain/backtest model duplication | P1 | M0-B | Open |
 | GAP-ARCH-003 | 2026-09-24 | `strategy/` 與 `strategies/` duplication | P2 | M0-B | Open |
-| GAP-BROKER-001 | 2026-09-24 | explicit OrderIntent / PositionEffect | P1 | GAP-07, M0-B | Open |
-| GAP-BROKER-002 | 2026-09-24 | broker capability matrix | P2 | M0-B | Open |
+| GAP-BROKER-001 | 2026-09-24 | explicit OrderIntent / PositionEffect；legacy `Order.contract` 仍直接作為 broker lookup key | P1 | GAP-07, M0-B | Open |
+| GAP-BROKER-002 | 2026-09-24 | broker capability matrix 與 remaining mapping semantics / persistence | P2 | M0-B, GAP-07-F | Partial — mapping contract complete; capability matrix pending |
 | GAP-PERSIST-001 | 2026-09-24 | Decision Provenance 未持久化 | P1 | GAP-08 | Open |
 | GAP-SIM-001 | 2026-09-24 | SimulationBroker / fault injection 未建立 | P2 | Broker boundary | Open |
 | GAP-APP-001 | 2026-09-24 | ASP.NET Core Application/API 未建立 | P1 | Operational state model | Planned |
@@ -49,14 +50,15 @@
 | 9.2 | GAP-07-SESSION-001 | Session rule duplication / boundary consistency | Open — later session-rule slice |
 | 9.3 | GAP-07-SESSION-EXPIRY | Expiry-day special session rule consolidation | Open — MUST FIX BEFORE LIVE |
 | 9.4 | GAP-07-D | Canonical Margin Schedule / Effective-Date Resolver | Complete |
-| 9.5 | GAP-07-E | Backtest / Risk Compatibility Resolution | Implemented / review pending |
-| 9.6 | GAP-07-MARGIN-001 | Margin schema / broker actual completion | Partial — runtime domain and compatibility path complete; database/live pending |
-| 9.7 | GAP-07 | Remaining Contract / Futures Specification slices | In progress |
+| 9.5 | GAP-07-E | Backtest / Risk Compatibility Resolution | Complete |
+| 9.6 | GAP-07-F | BrokerInstrumentReference / Broker Mapping Contract | Implemented / review pending |
+| 9.7 | GAP-07-MARGIN-001 | Margin schema / broker actual completion | Partial — runtime domain and compatibility path complete; database/live pending |
+| 9.8 | GAP-07 | Remaining Contract / Futures Specification slices | In progress |
 | 10 | GAP-ARCH-001 | Backtest / Trading / Broker package boundary | Open |
 | 11 | GAP-ARCH-002 | Canonical domain/backtest model boundary | Open |
 | 12 | GAP-ARCH-003 | Strategy package consolidation direction | Open |
 | 13 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | Open |
-| 14 | GAP-BROKER-002 | Broker capability matrix | Open |
+| 14 | GAP-BROKER-002 | Broker capability matrix / remaining mapping semantics | Partial — mapping contract complete; capability matrix pending |
 | 15 | GAP-ACCOUNT-001 | Broker Account / Position Sync | Pending |
 | 16 | GAP-08 | Trading State Persistence & Recovery | Pending |
 | 17 | GAP-PERSIST-001 | Decision Provenance | Open |

@@ -4,7 +4,7 @@
 
 - Repository：`futures_trading_system`
 - Branch：`master`
-- HEAD：`804ec1f`
+- HEAD：`df58118`
 - Source of truth：`CURRENT_STATE.md`、`CURRENT_WORK.md`、`GAP_REGISTER.md`、本文件。
 
 ## Current Architecture Summary
@@ -25,8 +25,9 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 - GAP-07-B — Canonical Contract Specification：COMPLETE。
 - GAP-07-C — Canonical Trading Session Reference：COMPLETE。
 - GAP-07-D — Canonical Margin Schedule and Effective-Date Resolver：COMPLETE。
-- GAP-07-E — Backtest / Risk Compatibility Resolution：implemented / review pending。
-- Recorded regression baseline：712 passed（701 existing + 11 GAP-07-E tests）。
+- GAP-07-E — Backtest / Risk Compatibility Resolution：COMPLETE。
+- GAP-07-F — BrokerInstrumentReference / Broker Mapping Contract：implemented / review pending。
+- Recorded regression baseline：733 passed（712 existing + 21 GAP-07-F tests）。
 - Codex full pytest 曾因 TEMP directory permission setup errors；不是已確認 assertion regression。
 
 ## Confirmed Decisions
@@ -46,6 +47,7 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 - Full timezone-aware timestamp migration 延後並列入 GAP-07-TIME-001；Live 前必須完成。
 - Canonical margin 是 effective-dated reference；contract-specific 優先於 instrument-level。RiskConfig margin 保留為 explicit scenario/resolved override，未來流程為 explicit override，否則使用 `MarginScheduleResolver`。Broker actual margin snapshot 必須保持獨立。
 - Backtest compatibility precedence 為 explicit override → canonical resolution；缺值不得 silent default。No-margin 必須明確選擇。Legacy `BacktestConfig.multiplier=200` 保留既有相容性，但不是 canonical truth。
+- Canonical Instrument / Contract identity、broker product code、broker contract code 與 native broker object 必須分離。`BrokerInstrumentReference` 是 broker-neutral mapping；Shioaji native lookup 與 object lifecycle 仍由 adapter boundary 負責。
 - Margin ordering 尚無跨市場充分依據，暫不建立 `clearing <= maintenance <= initial` canonical invariant。DuckDB schema refinement 屬 GAP-07-MARGIN-001 後續工作。
 
 ## Persistence and Reconciliation Direction
@@ -62,7 +64,7 @@ Live / money risk、broker ambiguity、reconciliation、recovery、core regressi
 
 ## Next Recommended Work
 
-GAP-07-E 已實作並等待 review。後續 runtime 修改只能依 approved Work Package 與 ADR-001 migration sequence 執行；下一工作須由 approved Work Package 指定。
+GAP-07-F 已實作並等待 review。Legacy `Order.contract` broker lookup 與 OrderIntent / PositionEffect 必須依 GAP-BROKER-001 approved Work Package 遷移；不得在本 slice 擴張。
 
 ## Do Not Change
 
