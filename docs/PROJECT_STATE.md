@@ -1,142 +1,218 @@
-﻿# Project State
+# Project State
 
 ## Current Phase
 
-P1-05
+P12 Trading Core
 
-## Completed
+Current development status:
 
-- P1-01 EMA + Signal
-- P1-02 Strategy
-- P1-03 Portfolio
-- P1-04-A Backtest foundation
-- P1-04-B Execution / Position integration
-- P1-04-C Portfolio integration
-- P1-04-D Determinism / Regression tests
+- GAP-03 Execution Lifecycle: Completed
+- G-5 Multi-Strategy Decision Architecture: Completed
+- GAP-06 Position Sizing / Capital Allocation: Completed
+- GAP-07 Contract / Futures Specification: Pending
 
 ## Current Commit
 
-8297008
+b0465407c4fe72cd46a186e4bdd21c13393b8145
 
 Commit:
 
-test(backtest): restore determinism regression coverage
+feat(risk): add position sizing comparison
+
+HEAD and origin/master are synchronized.
 
 ## Test Status
 
-Full test suite:
+GAP-06 targeted regression:
 
-118 passed
+96 passed
 
-Determinism test:
+Full regression:
 
-5 passed
+611 passed
 
-## Backtest Engine
+## Completed Major Development
 
-Current capabilities:
+### P1 Backtest Foundation
 
+Completed capabilities include:
+
+- Signal domain
+- Strategy execution
+- Portfolio accounting
+- Backtest foundation
+- Execution / Position integration
+- Portfolio integration
+- Deterministic regression coverage
 - Next-bar execution
-- Actual fill price
+- Actual fill price accounting
 - Commission
 - Slippage
-- Long / Short
+- LONG / SHORT
 - Stop loss
 - Take profit
 - Intrabar priority
 - Signal exit
 - End-of-data exit
-- Portfolio accounting
 - Realized PnL
 - Unrealized PnL
-- Equity
-- Deterministic repeated execution
-- Regression tests
+- Equity curve
+- Drawdown
+- Trade statistics
 
-## Current Execution Semantics
+Return and Sharpe finalization remain deferred until after P12.
 
-Signal generated at T:
+### P10 Multi-Strategy Backtest
 
--> pending signal
+Completed:
 
--> execute at T+1 OPEN
+- Strategy Registry
+- MultiStrategyRunner
+- MultiStrategyBacktestRunner
+- Multi-strategy backtest integration
+- Actual TXF 1m regression coverage
 
-Actual fill price is used for accounting and Trade PnL.
+### P11 Portfolio Risk
 
-Slippage is already reflected in actual fill price and must not be double-counted.
+Completed:
 
-## Known Limitations
+- RiskConfig
+- RiskState
+- PortfolioRiskManager
+- Initial margin
+- Maintenance margin
+- Maximum contracts
+- Maximum margin utilization
+- Available capital
+- Position exposure
+- Entry risk rejection
+- Forced liquidation
+- Multi-strategy risk integration
 
-Not implemented:
+### P12-01 Broker Domain
 
-- REVERSE
-- Multiple positions
-- Partial exits
-- Live trading
-- Broker integration
-- Advanced margin / portfolio risk features
-- Advanced cash management
+Completed:
 
-These are intentionally deferred.
+- Broker abstraction
+- OrderSubmission
+- submit_order
+- get_order
+- get_fills
+- cancel_order
+- SUBMITTED order status
+- PARTIALLY_FILLED order status
 
-## Next Development Target
+### P12-02 Paper Trading Core
 
-P1-05 Equity + Performance Metrics
+Completed trading flow:
 
-Initial target:
+Signal
+-> Order
+-> Broker
+-> Fill
+-> PositionManager
+-> Portfolio
+-> Risk
 
-1. Equity curve
-2. Peak equity
-3. Drawdown
-4. Maximum drawdown
-5. Return
-6. Win rate
-7. Average win
-8. Average loss
-9. Profit factor
-10. Expectancy
-11. Sharpe ratio
-12. Trade statistics
+Supports asynchronous order lifecycle integration.
 
-P1-05 should consume existing Trade / Portfolio outputs and should not change current execution semantics.
+### P12-03 Market Data / Polling
 
-## Repository Rules
+Completed:
 
-- Do not rewrite Git history.
-- Do not amend historical commits.
-- Do not force push.
-- Keep tests green.
-- Make small, reviewable commits.
+- MarketDataProvider
+- Canonical MarketBar
+- PaperMarketDataProvider
+- PaperTradingRunner
+- PollingConfig
+- PollingLoop
+- PollingResult
 
-## P12 / GAP Development Tracking
+Canonical MarketBar currently includes:
 
-### GAP-03 Execution Lifecycle
+- timestamp
+- trade_date
+- symbol
+- OHLC
+- volume
+- amount
+- tick_count
+- timeframe
+- exchange
+- contract
+- session
+- source
+- extension data
 
-- A Pending Order Sync: Completed
-- B1 Shioaji Fill Deduplication: Completed
-- B2 Partial Fill Accumulation: Completed
-- C Terminal Order Handling: Completed
-- D Async Exit: Completed
-- E PaperRunner Integration: Completed
-- F Full Lifecycle Integration: Completed
-- G-1 SHORT Basic Lifecycle: Completed
-- G-2 SHORT Partial Entry: Completed
-- G-3 SHORT Partial Exit: Completed
-- G-4 SHORT Stop Loss / Take Profit: Completed
+### P12-04 Shioaji Broker Adapter
 
-### G-5 Multi-Strategy Decision Architecture
+Completed:
 
-Status: Design confirmed, implementation pending.
+- Shioaji broker adapter
+- Contract resolution
+- Core / Shioaji enum mapping
+- Order submission
+- Order status synchronization
+- Fill conversion
+- Fill deduplication using Shioaji deal sequence
+- Cancellation
+- Async fill retrieval
+- Fill price synchronization
 
-Architecture direction:
+Current Shioaji version used during implementation:
 
-- Strategy positions are logically independent.
-- Portfolio / Account position represents the physical account position.
-- Broker position represents the actual broker-side position.
-- Multi-Strategy Decision Layer determines the final account target position.
-- Strategy signals must not directly determine the final account position.
+1.7.6
 
-Planned responsibilities:
+## GAP-03 Execution Lifecycle
+
+Status: Completed.
+
+Completed:
+
+- A Pending Order Sync
+- B1 Shioaji Fill Deduplication
+- B2 Partial Fill Accumulation
+- C Terminal Order Handling
+- D Async Exit
+- E PaperRunner Integration
+- F Full Lifecycle Integration
+- G-1 SHORT Basic Lifecycle
+- G-2 SHORT Partial Entry
+- G-3 SHORT Partial Exit
+- G-4 SHORT Stop Loss / Take Profit
+
+Paper trading supports:
+
+- Pending entry
+- Partial entry
+- Multiple fills
+- Pending exit
+- Partial exit
+- Terminal cancellation
+- Terminal rejection
+- LONG lifecycle
+- SHORT lifecycle
+- SHORT SL / TP
+
+## G-5 Multi-Strategy Decision Architecture
+
+Status: Completed.
+
+Architecture:
+
+Strategy Position
+!=
+Target Account Position
+!=
+Account Position
+!=
+Broker Position
+
+Strategies maintain logically independent positions.
+
+The Multi-Strategy Decision Layer determines the physical account target.
+
+Completed:
 
 1. Strategy Virtual Position Model
 2. Multi-Strategy Decision Layer
@@ -148,7 +224,7 @@ Planned responsibilities:
 8. Global Risk Constraint
 9. Direction Change Lifecycle
 
-Direction change rule:
+Direction changes use:
 
 EXIT
 -> confirm FLAT
@@ -158,12 +234,209 @@ EXIT
 
 Direct LONG -> SHORT or SHORT -> LONG reversal is not the intended lifecycle.
 
-### Later Development Order
+## GAP-06 Position Sizing / Capital Allocation
 
-After G-5 design / implementation:
+Status: Completed.
 
-1. GAP-06 Position Sizing / Capital Allocation
-2. GAP-07 Contract / Futures Specification
-3. Broker Account / Position Sync
-4. GAP-08 Trading State Persistence & Recovery
-5. GAP-09 Incremental Feature / Market State Engine
+### Position Sizing Domain
+
+Completed:
+
+- PositionSizingInput
+- PositionSizingStrategy interface
+- FixedQuantitySizing
+- FixedAmountSizing
+- FixedRiskSizing
+- StopBasedRiskSizing
+- PerContractRiskSizing
+
+### Capital Position Management
+
+Completed:
+
+- CapitalReferenceMethod
+- CapitalReferenceStrategy
+- MovingPeakCapitalReference
+- MovingAverageCapitalReference
+- PreviousPeriodCapitalReference
+- CapitalProtectionReference
+- Capital drawdown calculation
+- FixedRatioRiskLevel
+- FixedRatioRiskThresholds
+- FixedRatioRiskMultipliers
+- FixedRatioParameters
+- FixedRatioCapitalPositionInput
+- FixedRatioCapitalPositionStrategy
+
+### Registries
+
+Completed:
+
+- PositionSizingRegistry
+- Default PositionSizingRegistry
+- CapitalPositionManagementRegistry
+- Default CapitalPositionManagementRegistry
+
+### Backtest Integration
+
+Completed:
+
+- BacktestSizingAdapter
+- Signal position sizing
+- PositionSizingInput builder
+- BacktestConfig risk_budget
+- Optional PositionSizingStrategy integration in BacktestEngine
+- Zero sizing result prevents entry
+- Existing engine behavior preserved when no sizing strategy is supplied
+
+### Sizing Comparison
+
+Completed:
+
+- SizingComparisonResult
+- SizingComparisonRunner
+- Same-market multi-sizing execution
+- Different sizing quantity comparison
+- Net PnL comparison
+- Final equity comparison
+- Maximum drawdown output
+
+Validated comparison example:
+
+- Fixed Quantity: 1 contract
+- Fixed Risk: 5 contracts
+- Position sizing differences correctly produce different PnL and final equity
+
+GAP-06 targeted regression:
+
+96 passed
+
+Full project regression:
+
+611 passed
+
+## Known Technical Follow-ups
+
+These are recorded but intentionally not mixed into GAP-06 completion.
+
+### Position Sizing Input Builder
+
+Current builder requires signal.stop_price for every sizing strategy.
+
+Fixed Quantity and Fixed Amount conceptually do not require stop distance.
+
+This should be refined separately if necessary.
+
+### Capital Strategy Interface
+
+FixedRatioCapitalPositionStrategy and PositionSizingStrategy currently represent separate sizing / capital-management abstractions.
+
+Their long-term integration boundary should be reviewed separately instead of being changed during GAP-06 completion.
+
+### Previous Period Capital Reference
+
+The current "days" behavior represents previous N equity observations rather than calendar-day sampling.
+
+Calendar-period semantics should be reviewed if required later.
+
+## Remaining P12 Development Order
+
+Development order is fixed as follows:
+
+1. GAP-07 Contract / Futures Specification
+2. Broker Account / Position Sync
+3. GAP-08 Trading State Persistence & Recovery
+4. GAP-09 Incremental Feature / Market State Engine
+5. P12 Full Integration Validation
+
+## GAP-07 Contract / Futures Specification
+
+Status: Pending.
+
+Purpose:
+
+Centralize futures contract information currently distributed across configuration and broker layers.
+
+Expected domain includes:
+
+- Symbol
+- Contract
+- Exchange
+- Multiplier
+- Tick size
+- Tick value
+- Initial margin
+- Maintenance margin
+- Trading session metadata
+- Contract-specific execution metadata
+
+Exact model should be designed only after GAP-07 pre-check.
+
+## Broker Account / Position Sync
+
+Status: Pending.
+
+Required before real broker operation.
+
+Expected responsibilities:
+
+- Broker account synchronization
+- Broker position synchronization
+- Core AccountPosition reconciliation
+- Startup consistency check
+- Broker / local position mismatch detection
+
+## GAP-08 Trading State Persistence & Recovery
+
+Status: Pending.
+
+Existing database and storage infrastructure primarily stores market / backtest data.
+
+Trading-state persistence remains separate work.
+
+Expected responsibilities:
+
+- Order persistence
+- Fill persistence
+- Position persistence
+- Account / Equity persistence
+- Trading event persistence
+- Restart recovery
+- Broker reconciliation after restart
+
+## GAP-09 Incremental Feature / Market State Engine
+
+Status: Pending.
+
+Historical strategies currently can calculate features from full historical data.
+
+Paper / live trading receives market bars incrementally.
+
+Future engine should maintain required market state and calculate strategy features incrementally before strategy evaluation.
+
+## Performance / Analysis Finalization
+
+Status: Deferred until after P12.
+
+Remaining:
+
+- Return
+- Sharpe Ratio
+- Full Analysis / Performance validation
+- Position sizing performance comparison using final metrics
+
+## Repository Rules
+
+- Use master as the primary branch.
+- Do not rewrite Git history.
+- Do not amend historical commits.
+- Do not force push.
+- Keep tests green.
+- Develop one independent feature at a time.
+- Pre-check before modification.
+- Run targeted regression after modification.
+- Run full regression before completion.
+- Commit and push only after tests pass.
+- Do not mix unrelated GAP items.
+- Keep GAP ordering synchronized after every completed stage.
+- Do not stage or modify data/ unless explicitly required.

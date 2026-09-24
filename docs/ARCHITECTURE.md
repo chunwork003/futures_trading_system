@@ -155,3 +155,57 @@ Slippage 反映於實際成交價，不應在 Trade PnL 再重複扣除。
 - Partial exit
 - REVERSE
 - Live execution
+
+## Position Sizing / Capital Management
+
+Position sizing is modeled as an independent, backtestable strategy component.
+
+Core flow:
+
+Strategy Signal
+-> Position Sizing
+-> Sized Signal
+-> Portfolio Risk
+-> Execution
+
+Position sizing methods currently include:
+
+- Fixed Quantity
+- Fixed Amount
+- Fixed Risk %
+- Stop-Based Risk
+- Per-Contract Risk
+
+Capital-management components additionally support:
+
+- Fixed Ratio position growth
+- Moving Peak capital reference
+- Moving Average capital reference
+- Previous Period capital reference
+- Capital protection based on drawdown thresholds
+
+Position sizing strategies are registered through PositionSizingRegistry.
+
+Capital-management strategies use a separate CapitalPositionManagementRegistry.
+
+BacktestEngine optionally accepts a PositionSizingStrategy before entry execution.
+
+If no sizing strategy is supplied, existing Signal.quantity behavior is preserved.
+
+SizingComparisonRunner can execute the same bars and signals with multiple sizing strategies so PnL, drawdown and final equity can be compared under identical market conditions.
+
+Current architectural distinction:
+
+Position Sizing Strategy
+!=
+Capital Position Management Strategy
+!=
+Portfolio Risk Constraint
+
+Position sizing determines desired quantity.
+
+Capital management adjusts exposure according to capital state.
+
+Portfolio risk provides the final account-level risk constraint.
+
+These responsibilities should remain separated even if their interfaces are unified later.

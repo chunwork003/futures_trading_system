@@ -134,3 +134,46 @@ Not implemented:
 - Advanced margin / portfolio risk features
 - Advanced cash management
 - Advanced slippage models
+
+## Position Sizing Integration
+
+BacktestEngine supports an optional PositionSizingStrategy.
+
+Entry processing flow:
+
+Signal ENTER
+-> build PositionSizingInput
+-> PositionSizingStrategy.calculate()
+-> update Signal.quantity
+-> PortfolioRiskManager.can_open()
+-> pending entry
+-> next-bar execution
+
+PositionSizingInput currently contains:
+
+- equity
+- price
+- stop_price
+- multiplier
+- risk_budget
+
+If the calculated quantity is zero or less, the entry is skipped.
+
+If no PositionSizingStrategy is supplied, the engine preserves the original signal quantity and existing execution behavior.
+
+Supported sizing implementations currently include:
+
+- FixedQuantitySizing
+- FixedAmountSizing
+- FixedRiskSizing
+- StopBasedRiskSizing
+- PerContractRiskSizing
+
+SizingComparisonRunner can execute identical bars and signals through multiple sizing strategies and return:
+
+- Total trades
+- Net PnL
+- Maximum drawdown
+- Final equity
+
+Return and Sharpe are intentionally deferred until the post-P12 performance-analysis stage.
