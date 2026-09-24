@@ -4,7 +4,7 @@
 
 - Repository：`futures_trading_system`
 - Branch：`master`
-- HEAD：`1ae1aa8`
+- HEAD：`efb5687`
 - Source of truth：`CURRENT_STATE.md`、`CURRENT_WORK.md`、`GAP_REGISTER.md`、本文件。
 
 ## Current Architecture Summary
@@ -22,8 +22,9 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 ## Current Milestone and Test Baseline
 
 - GAP-07-A — Canonical Instrument Specification：COMPLETE。
-- GAP-07-B — Canonical Contract Specification：implemented / review pending。
-- Recorded regression baseline：660 passed（632 existing + 28 GAP-07-B tests）。
+- GAP-07-B — Canonical Contract Specification：COMPLETE。
+- GAP-07-C — Canonical Trading Session Reference：implemented / review pending。
+- Recorded regression baseline：670 passed（660 existing + 10 GAP-07-C tests）。
 - Codex full pytest 曾因 TEMP directory permission setup errors；不是已確認 assertion regression。
 
 ## Confirmed Decisions
@@ -39,6 +40,8 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 - ADR-001 已接受：canonical ownership、adapter dependency direction、compatibility strategy 與 migration sequence 已定義。
 - Canonical TAIFEX instrument symbol 為 TX / MTX / TMF；broker 與 dataset alias 使用獨立 mapping namespace，不屬於 canonical instrument identity。
 - `ContractSpec` 支援 monthly / quarterly / weekly / other listed series；continuous contract 維持獨立，broker contract code 仍由 adapter 負責。
+- `TradingSessionRef` 由 `domain` 擁有；effective-dated calendar/session rules 由 `trading_calendar` 擁有。Canonical session interval 為 `[open, close)`。
+- Full timezone-aware timestamp migration 延後並列入 GAP-07-TIME-001；Live 前必須完成。
 
 ## Persistence and Reconciliation Direction
 
@@ -54,7 +57,7 @@ Live / money risk、broker ambiguity、reconciliation、recovery、core regressi
 
 ## Next Recommended Work
 
-GAP-07-B 已實作並等待 review。後續 runtime 修改只能依 approved Work Package 與 ADR-001 migration sequence 執行；下一建議工作為 GAP-07-C Trading Session / Calendar Reference。
+GAP-07-C 已實作並等待 review。後續 runtime 修改只能依 approved Work Package 與 ADR-001 migration sequence 執行；下一建議工作為 GAP-07-D Margin Schedule。
 
 ## Do Not Change
 

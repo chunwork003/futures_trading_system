@@ -2,18 +2,18 @@
 
 ## Current Work Package
 
-- ID：GAP-07-B — Canonical Contract Specification
+- ID：GAP-07-C — Canonical Trading Session Reference
 - Status：Implemented / review pending；尚未 commit。
-- Scope：broker-neutral `ContractSpec`、listed contract series/lifecycle 與既有 `domain.Contract` compatibility。
-- Runtime impact：新增 canonical model 與 legacy conversion；未遷移既有 consumer。
+- Scope：broker-neutral `TradingSessionRef` 與 canonical session interval `[open, close)`。
+- Runtime impact：新增 domain reference，並將 `Session.contains()` close boundary 改為 exclusive；未改 Resolver / Normalizer trade-date logic。
 
 ## Blockers
 
-無 GAP-07-B blocker。pytest 使用 repository-local `.tmp/`；完整 regression 通過。
+無 GAP-07-C blocker。pytest 使用 repository-local `.tmp/`；完整 regression 通過。
 
 ## Pending Decisions
 
-- GAP-07-C 之 Trading Session / Calendar reference exact model。
+- GAP-07-D 之 effective-dated Margin Schedule exact model。
 
 ## Confirmed V1 Decision
 
@@ -24,7 +24,7 @@
 
 ## Next Queue
 
-1. GAP-07-C — Trading Session / Calendar Reference。
+1. GAP-07-D — Margin Schedule。
 2. GAP-BROKER-001 — explicit OrderIntent / PositionEffect。
 3. Broker Account / Position Sync。
 4. GAP-08 — Trading State Persistence & Recovery。
@@ -35,4 +35,5 @@
 - Overall V1：40–50%。
 - GAP-07-A0：COMPLETE。
 - GAP-07-A：COMPLETE。
-- GAP-07-B：implemented / review pending。
+- GAP-07-B：COMPLETE。
+- GAP-07-C：implemented / review pending。

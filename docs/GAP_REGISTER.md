@@ -6,7 +6,11 @@
 
 | ID | Added Date | Reason | Priority | Dependency | Status |
 |---|---|---|---|---|---|
-| GAP-07-B | 2026-09-24 | 建立 broker-neutral listed Contract Specification、series/lifecycle 與 legacy compatibility | P1 | GAP-07-A, ADR-001 | Implemented / review pending |
+| GAP-07-C | 2026-09-24 | 建立 canonical TradingSessionRef 與 `[open, close)` boundary policy | P1 | GAP-07-B, ADR-001 | Implemented / review pending |
+| GAP-07-SESSION-EXPIRY | 2026-09-24 | Expiry-day 13:30 close 僅存在 Resolver 特例，規則尚未集中 | P1 | GAP-07-SESSION-001 | Open — MUST FIX BEFORE LIVE |
+| GAP-07-SESSION-001 | 2026-09-24 | Session rule/time 在 rules、source、resolver、normalizer 間重複 | P1 | GAP-07-C | Open — later session-rule slice |
+| GAP-07-TIME-001 | 2026-09-24 | Operational timestamp 尚未全面建立 timezone-aware boundary | P1 | GAP-07-C | Open — MUST FIX BEFORE LIVE |
+| GAP-07-B | 2026-09-24 | 建立 broker-neutral listed Contract Specification、series/lifecycle 與 legacy compatibility | P1 | GAP-07-A, ADR-001 | Complete |
 | GAP-07-A | 2026-09-24 | 建立 broker-neutral canonical Instrument Specification 與 legacy compatibility | P1 | GAP-07-A0, ADR-001 | Complete |
 | GAP-07-A0 | 2026-09-24 | 確認 canonical symbol 與 V1 official product semantics | P1 | GAP-07 pre-check | Complete |
 | GAP-REPO-001 | 2026-09-24 | GitHub default branch `main`，開發使用 `master` | P2 | Governance decision | Open |
@@ -36,8 +40,12 @@
 | 5 | GAP-ENV-001 | Codex pytest TEMP permission | Open |
 | 6 | GAP-07-A0 | Canonical symbol / official product semantics decision | Complete |
 | 7 | GAP-07-A | Canonical Instrument Specification | Complete |
-| 8 | GAP-07-B | Canonical Contract Specification | Implemented / review pending |
-| 9 | GAP-07 | Remaining Contract / Futures Specification slices | In progress |
+| 8 | GAP-07-B | Canonical Contract Specification | Complete |
+| 9 | GAP-07-C | Canonical Trading Session Reference | Implemented / review pending |
+| 9.1 | GAP-07-TIME-001 | Timezone-aware timestamp boundary | Open — MUST FIX BEFORE LIVE |
+| 9.2 | GAP-07-SESSION-001 | Session rule duplication / boundary consistency | Open — later session-rule slice |
+| 9.3 | GAP-07-SESSION-EXPIRY | Expiry-day special session rule consolidation | Open — MUST FIX BEFORE LIVE |
+| 9.4 | GAP-07 | Remaining Contract / Futures Specification slices | In progress |
 | 10 | GAP-ARCH-001 | Backtest / Trading / Broker package boundary | Open |
 | 11 | GAP-ARCH-002 | Canonical domain/backtest model boundary | Open |
 | 12 | GAP-ARCH-003 | Strategy package consolidation direction | Open |

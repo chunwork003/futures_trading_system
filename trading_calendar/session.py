@@ -38,12 +38,12 @@ class Session:
             return (
                 self.open_time
                 <= current_time
-                <= self.close_time
+                < self.close_time
             )
 
         return (
             current_time >= self.open_time
-            or current_time <= self.close_time
+            or current_time < self.close_time
         )
 
     def get_trade_date(

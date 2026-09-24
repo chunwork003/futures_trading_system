@@ -20,14 +20,28 @@
 ### Milestone and Progress
 
 - Current milestone：GAP-07 — Contract / Futures Specification。
-- Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07-A0。
-- Pending：GAP-07-B review 與後續 slices、broker sync/reconciliation、persistence/recovery、incremental state。
+- Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07-A0、GAP-07-A、GAP-07-B。
+- Pending：GAP-07-C review 與後續 slices、broker sync/reconciliation、persistence/recovery、incremental state。
 - Overall V1：40–50%。以 Work Package weight 與 acceptance criteria 評估；不可使用 LOC 或 file count。
-- GAP-07-B remaining：< 1 engineering hour（等待 review / commit authorization）。
+- GAP-07-C remaining：< 1 engineering hour（等待 review / commit authorization）。
 - V1 provisional remaining：45–75 engineering hours。
 - 此為 dynamic estimate，不是 deadline；每個 checkpoint / milestone 後重新估算。發現 architecture blocker 或新增 scope 時可上調；已有功能比預期成熟時可下調。
 
 ## Chronological Log
+
+### 2026-09-24 20:59 +08:00
+
+- Milestone：GAP-07-C — Canonical Trading Session Reference。
+- Overall progress：40–50%（provisional；本 slice 不重新估算整體百分比）。
+- Major completed count：3（GAP-03、G-5、GAP-06）。
+- Minor completed count：GAP-07-B complete；GAP-07-C implemented / review pending。
+- Added scope：GAP-07-TIME-001、GAP-07-SESSION-001、GAP-07-SESSION-EXPIRY。
+- Completed：domain-owned `TradingSessionRef`、IANA timezone validation、canonical `[open, close)` boundary；targeted 15 passed；full regression 670 passed。
+- In progress：architect review 與 commit authorization。
+- Blocked：無。
+- Pending review：GAP-07-C implementation；timezone migration、session rule duplication 與 expiry-day consolidation 留待已登錄 GAP。
+- Estimated remaining hours：V1 provisional 45–75 engineering hours；GAP-07 後續 slices 完成後重新估算。
+- Next：GAP-07-D — Margin Schedule。
 
 ### 2026-09-24 20:41 +08:00
 
