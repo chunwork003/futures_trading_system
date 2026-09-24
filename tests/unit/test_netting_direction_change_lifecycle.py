@@ -1,22 +1,23 @@
 from backtest.account_position import AccountPosition
 from backtest.models import Direction
+from backtest.netting import NettingResult
 from backtest.netting_calculator import calculate_netting
 from backtest.target_position import TargetAccountPosition
 
 
-def test_calculate_netting_requires_exit_before_direction_change():
+def test_direction_change_netting_requires_exit_first():
     current = AccountPosition(
         symbol="TXF",
         contract="TX1",
         direction=Direction.LONG,
-        quantity=3,
+        quantity=1,
     )
 
     target = TargetAccountPosition(
         symbol="TXF",
         contract="TX1",
         direction=Direction.SHORT,
-        quantity=2,
+        quantity=1,
     )
 
     result = calculate_netting(
@@ -24,6 +25,7 @@ def test_calculate_netting_requires_exit_before_direction_change():
         target=target,
     )
 
+    assert isinstance(result, NettingResult)
     assert result.action.value == "EXIT"
     assert result.direction == Direction.LONG
-    assert result.quantity == 3
+    assert result.quantity == 1

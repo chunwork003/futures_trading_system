@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from backtest.account_position import AccountPosition
-from backtest.models import Direction
 from backtest.netting import NettingResult
 from backtest.target_position import TargetAccountPosition
 
@@ -32,10 +31,16 @@ def calculate_netting(
     if (
         current.symbol != target.symbol
         or current.contract != target.contract
-        or current.direction != target.direction
     ):
         raise NotImplementedError(
             "position identity changes are not implemented"
+        )
+
+    if current.direction != target.direction:
+        return NettingResult(
+            action="EXIT",
+            direction=current.direction,
+            quantity=current.quantity,
         )
 
     if target.quantity > current.quantity:
