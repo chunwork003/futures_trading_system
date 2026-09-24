@@ -16,6 +16,7 @@ class ResolvedParameterSource(str, Enum):
     CANONICAL_SPEC = "CANONICAL_SPEC"
     CANONICAL_MARGIN_SCHEDULE = "CANONICAL_MARGIN_SCHEDULE"
     NO_MARGIN_MODE = "NO_MARGIN_MODE"
+    LEGACY_CONFIG = "LEGACY_CONFIG"
 
 
 class SpecificationResolutionError(ValueError):

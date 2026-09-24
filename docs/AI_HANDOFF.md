@@ -4,7 +4,7 @@
 
 - Repository：`futures_trading_system`
 - Branch：`master`
-- HEAD：`df58118`
+- HEAD：`e882e57`
 - Source of truth：`CURRENT_STATE.md`、`CURRENT_WORK.md`、`GAP_REGISTER.md`、本文件。
 
 ## Current Architecture Summary
@@ -26,8 +26,9 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 - GAP-07-C — Canonical Trading Session Reference：COMPLETE。
 - GAP-07-D — Canonical Margin Schedule and Effective-Date Resolver：COMPLETE。
 - GAP-07-E — Backtest / Risk Compatibility Resolution：COMPLETE。
-- GAP-07-F — BrokerInstrumentReference / Broker Mapping Contract：implemented / review pending。
-- Recorded regression baseline：733 passed（712 existing + 21 GAP-07-F tests）。
+- GAP-07-F — BrokerInstrumentReference / Broker Mapping Contract：COMPLETE。
+- GAP-07-E2 — Actual Backtest / Risk Consumer Integration：implemented / review pending。
+- Recorded regression baseline：737 passed（733 existing + 4 GAP-07-E2 tests）。
 - Codex full pytest 曾因 TEMP directory permission setup errors；不是已確認 assertion regression。
 
 ## Confirmed Decisions
@@ -47,6 +48,7 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 - Full timezone-aware timestamp migration 延後並列入 GAP-07-TIME-001；Live 前必須完成。
 - Canonical margin 是 effective-dated reference；contract-specific 優先於 instrument-level。RiskConfig margin 保留為 explicit scenario/resolved override，未來流程為 explicit override，否則使用 `MarginScheduleResolver`。Broker actual margin snapshot 必須保持獨立。
 - Backtest compatibility precedence 為 explicit override → canonical resolution；缺值不得 silent default。No-margin 必須明確選擇。Legacy `BacktestConfig.multiplier=200` 保留既有相容性，但不是 canonical truth。
+- GAP-07-E2 已將 multiplier resolution 接入 `BacktestEngine.from_instrument_spec()`；resolved value 於 initialization 形成單一 run-time config，供既有 calculation consumers 使用。Legacy constructor 仍走原 config path，source 標記為 `LEGACY_CONFIG`。
 - Canonical Instrument / Contract identity、broker product code、broker contract code 與 native broker object 必須分離。`BrokerInstrumentReference` 是 broker-neutral mapping；Shioaji native lookup 與 object lifecycle 仍由 adapter boundary 負責。
 - Margin ordering 尚無跨市場充分依據，暫不建立 `clearing <= maintenance <= initial` canonical invariant。DuckDB schema refinement 屬 GAP-07-MARGIN-001 後續工作。
 
@@ -64,7 +66,7 @@ Live / money risk、broker ambiguity、reconciliation、recovery、core regressi
 
 ## Next Recommended Work
 
-GAP-07-F 已實作並等待 review。Legacy `Order.contract` broker lookup 與 OrderIntent / PositionEffect 必須依 GAP-BROKER-001 approved Work Package 遷移；不得在本 slice 擴張。
+GAP-07-E2 已實作並等待 review。Margin actual risk consumer wiring 留待 GAP-07-E3，必須使用 explicit deterministic `as_of_date`；不得使用 `date.today()` 或 `datetime.now()`。Legacy `Order.contract` migration 仍依 GAP-BROKER-001。
 
 ## Do Not Change
 

@@ -20,14 +20,28 @@
 ### Milestone and Progress
 
 - Current milestone：GAP-07 — Contract / Futures Specification。
-- Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07-A0、GAP-07-A、GAP-07-B、GAP-07-C、GAP-07-D、GAP-07-E。
-- Pending：GAP-07-F review、broker execution migration、sync/reconciliation、persistence/recovery、incremental state。
+- Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07-A0、GAP-07-A、GAP-07-B、GAP-07-C、GAP-07-D、GAP-07-E、GAP-07-F。
+- Pending：GAP-07-E2 review、GAP-07-E3 margin consumer wiring、broker execution migration、sync/reconciliation、persistence/recovery、incremental state。
 - Overall V1：40–50%。以 Work Package weight 與 acceptance criteria 評估；不可使用 LOC 或 file count。
-- GAP-07-F remaining：< 1 engineering hour（等待 review / commit authorization）。
+- GAP-07-E2 remaining：< 1 engineering hour（等待 review / commit authorization）。
 - V1 provisional remaining：45–75 engineering hours。
 - 此為 dynamic estimate，不是 deadline；每個 checkpoint / milestone 後重新估算。發現 architecture blocker 或新增 scope 時可上調；已有功能比預期成熟時可下調。
 
 ## Chronological Log
+
+### 2026-09-24 21:41 +08:00
+
+- Milestone：GAP-07-E2 — Actual Backtest / Risk Consumer Integration。
+- Overall progress：40–50%（provisional；本 slice 不重新估算整體百分比）。
+- Major completed count：3（GAP-03、G-5、GAP-06）。
+- Minor completed count：GAP-07-F complete；GAP-07-E2 implemented / review pending。
+- Added scope：GAP-07-E3 — deterministic margin actual consumer wiring。
+- Completed：optional canonical engine factory、single run-time multiplier config、legacy/default source traceability、Portfolio real calculation proof；targeted 4 passed、related existing 41 passed、full regression 737 passed。
+- In progress：architect review 與 commit authorization。
+- Blocked：無。
+- Pending review：GAP-07-E2 implementation；margin consumer wiring 留待 GAP-07-E3，避免 hidden current date 與 risk config scope expansion。
+- Estimated remaining hours：V1 provisional 45–75 engineering hours；GAP-07-E3 pre-check 後重新估算。
+- Next：GAP-07-E3 approved Work Package。
 
 ### 2026-09-24 21:31 +08:00
 

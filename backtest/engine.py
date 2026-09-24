@@ -15,6 +15,12 @@ from backtest.position_sizing import PositionSizingStrategy
 from backtest.position_sizing_input_builder import build_position_sizing_input
 from backtest.portfolio import Portfolio
 from backtest.risk import PortfolioRiskManager, RiskConfig
+from backtest.specification_resolution import (
+    BacktestSpecificationResolver,
+    ResolvedMultiplier,
+    ResolvedParameterSource,
+)
+from domain.instruments import InstrumentSpec
 
 
 class BacktestEngine:
@@ -22,30 +28,62 @@ class BacktestEngine:
         self,
         config: BacktestConfig,
         position_sizing_strategy: PositionSizingStrategy | None = None,
+        *,
+        resolved_multiplier: ResolvedMultiplier | None = None,
     ):
-        self.config = config
+        if resolved_multiplier is None:
+            self.resolved_multiplier = ResolvedMultiplier(
+                value=float(config.multiplier),
+                source=ResolvedParameterSource.LEGACY_CONFIG,
+            )
+            self.config = config
+        else:
+            self.resolved_multiplier = resolved_multiplier
+            self.config = config.model_copy(
+                update={"multiplier": resolved_multiplier.value}
+            )
         self.position_sizing_strategy = position_sizing_strategy
         self.cost_calculator = CostCalculator(
             CostConfig(
-                commission_per_contract=config.commission_per_contract,
-                slippage_points=config.slippage_points,
+                commission_per_contract=self.config.commission_per_contract,
+                slippage_points=self.config.slippage_points,
             )
         )
         self.execution = ExecutionEngine(self.cost_calculator)
         self.position_manager = PositionManager(
-            intrabar_priority=config.intrabar_priority
+            intrabar_priority=self.config.intrabar_priority
         )
         self.portfolio = Portfolio(
-            initial_capital=config.initial_capital,
-            multiplier=config.multiplier,
+            initial_capital=self.config.initial_capital,
+            multiplier=self.config.multiplier,
         )
         self.risk_manager = PortfolioRiskManager(
-            config.risk_config or RiskConfig()
+            self.config.risk_config or RiskConfig()
         )
         self.equity_curve = EquityCurve()
         self.trades: list[Trade] = []
         self.pending_entry_signal: Signal | None = None
         self.pending_exit_signal: Signal | None = None
+
+    @classmethod
+    def from_instrument_spec(
+        cls,
+        config: BacktestConfig,
+        instrument_spec: InstrumentSpec,
+        position_sizing_strategy: PositionSizingStrategy | None = None,
+        *,
+        multiplier_override: float | None = None,
+    ) -> "BacktestEngine":
+        """由 explicit override 或 canonical spec 建立單一 run-time multiplier。"""
+        resolved_multiplier = BacktestSpecificationResolver.resolve_multiplier(
+            explicit_override=multiplier_override,
+            instrument_spec=instrument_spec,
+        )
+        return cls(
+            config=config,
+            position_sizing_strategy=position_sizing_strategy,
+            resolved_multiplier=resolved_multiplier,
+        )
 
     def run(self, bars: Iterable[dict], signals: Iterable[Signal]) -> list[Trade]:
         bars_list = list(bars)

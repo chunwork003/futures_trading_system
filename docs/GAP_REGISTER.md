@@ -6,7 +6,9 @@
 
 | ID | Added Date | Reason | Priority | Dependency | Status |
 |---|---|---|---|---|---|
-| GAP-07-F | 2026-09-24 | 建立 canonical identity 與 external broker codes 的 effective-dated mapping contract及 native lookup seam | P1 | GAP-07-E, ADR-001 | Implemented / review pending |
+| GAP-07-E3 | 2026-09-24 | 將 canonical margin resolution 接入 actual risk consumer；需明確 deterministic as_of_date injection | P1 | GAP-07-E2, GAP-07-D | Open |
+| GAP-07-E2 | 2026-09-24 | 將 canonical multiplier resolution seam 接入 actual BacktestEngine / Portfolio consumer path | P1 | GAP-07-E | Implemented / review pending |
+| GAP-07-F | 2026-09-24 | 建立 canonical identity 與 external broker codes 的 effective-dated mapping contract及 native lookup seam | P1 | GAP-07-E, ADR-001 | Complete |
 | GAP-07-E | 2026-09-24 | 建立 Backtest / Risk explicit override 與 canonical specification 的 compatibility resolution seam | P1 | GAP-07-D, ADR-001 | Complete |
 | GAP-07-MARGIN-001 | 2026-09-24 | Effective-date canonical margin、contract precedence 與 override separation；DuckDB 尚缺 currency/source/contract_id/published_at 且使用 DOUBLE，broker actual snapshot 未建立 | P1 | GAP-07-D | Partial — runtime domain and compatibility path complete; database/live pending |
 | GAP-07-D | 2026-09-24 | 建立 canonical MarginScheduleEntry 與 effective-date resolver | P1 | GAP-07-C, ADR-001 | Complete |
@@ -51,9 +53,11 @@
 | 9.3 | GAP-07-SESSION-EXPIRY | Expiry-day special session rule consolidation | Open — MUST FIX BEFORE LIVE |
 | 9.4 | GAP-07-D | Canonical Margin Schedule / Effective-Date Resolver | Complete |
 | 9.5 | GAP-07-E | Backtest / Risk Compatibility Resolution | Complete |
-| 9.6 | GAP-07-F | BrokerInstrumentReference / Broker Mapping Contract | Implemented / review pending |
-| 9.7 | GAP-07-MARGIN-001 | Margin schema / broker actual completion | Partial — runtime domain and compatibility path complete; database/live pending |
-| 9.8 | GAP-07 | Remaining Contract / Futures Specification slices | In progress |
+| 9.6 | GAP-07-F | BrokerInstrumentReference / Broker Mapping Contract | Complete |
+| 9.7 | GAP-07-E2 | Actual Backtest multiplier consumer integration | Implemented / review pending |
+| 9.8 | GAP-07-E3 | Margin actual risk consumer wiring | Open |
+| 9.9 | GAP-07-MARGIN-001 | Margin schema / broker actual completion | Partial — runtime domain and compatibility path complete; database/live pending |
+| 9.10 | GAP-07 | Remaining Contract / Futures Specification slices | In progress |
 | 10 | GAP-ARCH-001 | Backtest / Trading / Broker package boundary | Open |
 | 11 | GAP-ARCH-002 | Canonical domain/backtest model boundary | Open |
 | 12 | GAP-ARCH-003 | Strategy package consolidation direction | Open |
