@@ -26,7 +26,7 @@
 
 | Order | ID | Scope | Status |
 |---:|---|---|---|
-| 1 | M0-B | Architecture Boundary ADR | Next |
+| 1 | M0-B | Architecture Boundary ADR | Complete / pending commit |
 | 2 | GAP-DOC-001 | Documentation drift | Open |
 | 3 | GAP-REPO-001 | Default branch governance | Open |
 | 4 | GAP-REPO-002 | Local data asset governance | Open |

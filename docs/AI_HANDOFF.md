@@ -21,7 +21,7 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 
 ## Current Milestone and Test Baseline
 
-- M0-A — Governance Scaffold：等待 review，未 commit。
+- M0-B — Architecture Boundary ADR：`ADR-001-TRADING-CORE-BOUNDARIES.md` 已 ACCEPTED；architecture design complete，final documentation commit pending。
 - Recorded regression baseline：611 passed。
 - Codex full pytest 曾因 TEMP directory permission setup errors；不是已確認 assertion regression。
 
@@ -35,6 +35,7 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 - `StrategyDefinition != StrategyInstance`；config 必須版本化，持倉期間不得 silent parameter mutation，預設在安全 boundary 生效。
 - `LogicalAccount != BrokerAccount`；一個 broker account 可服務多個 logical account / capital bucket。V1 使用 manual capital；cross-strategy capital borrowing 預設 OFF。
 - Modes：BACKTEST、SIMULATED、BROKER_PAPER、LIVE_CONFIRM、LIVE_AUTO。LIVE_AUTO 真實金流另需 authorization gate。
+- ADR-001 已接受：canonical ownership、adapter dependency direction、compatibility strategy 與 migration sequence 已定義。
 
 ## Persistence and Reconciliation Direction
 
@@ -50,7 +51,7 @@ Live / money risk、broker ambiguity、reconciliation、recovery、core regressi
 
 ## Next Recommended Work
 
-在 M0-A / M0-B Architecture Consolidation 尚未完成前，不開始 Live execution、database migration 或 runtime architecture refactor。M0 完成後，依 `docs/CURRENT_WORK.md` 與 approved Work Package 執行。
+M0-B architecture design 已完成。後續 runtime 修改只能依 approved Work Package 與 ADR-001 migration sequence 執行。
 
 ## Do Not Change
 

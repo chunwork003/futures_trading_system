@@ -29,6 +29,34 @@
 
 ## Chronological Log
 
+### 2026-09-24 20:00 +08:00
+
+- Milestone：M0-B — Architecture Boundary ADR final corrections。
+- Overall progress：40–50%（provisional）。
+- Major completed count：3（GAP-03、G-5、GAP-06）。
+- Minor completed count：以既有 research / analysis 能力計，未在本次重新估算。
+- Added scope：ADR-001 architecture ownership、dependency direction、migration strategy 已 ACCEPTED。
+- Completed：architecture boundary accepted；無 runtime change，無 test change。
+- In progress：final documentation / commit pending。
+- Blocked：無。
+- Pending review：GAP-07 Contract / Futures Specification exact model。
+- Estimated remaining hours：V1 provisional 45–75 engineering hours；GAP-07 pre-check 完成後重新估算。
+- Next：GAP-07 Contract / Futures Specification Pre-check。
+
+### 2026-09-24 19:59 +08:00
+
+- Milestone：M0-B — Architecture Boundary ADR。
+- Overall progress：40–50%。
+- Major completed count：3（GAP-03、G-5、GAP-06）。
+- Minor completed count：以既有 research / analysis 能力計，未在本次重新估算。
+- Added scope：ADR-001 提出 canonical ownership、adapter dependency direction、compatibility strategy 與 migration gates。
+- Completed：完成 read/analyze/design；未修改 runtime behavior。
+- In progress：architect review ADR-001。
+- Blocked：無；broker semantics、reconciliation 與 persistence 仍為後續 feature GAP。
+- Pending review：canonical `trading/` 最小首次範圍、Python/C# REST V1 default、migration sequence。
+- Estimated remaining hours：M0-B review < 2 engineering hours；V1 provisional 45–75 engineering hours（dynamic estimate，非 deadline）。
+- Next：GAP-07 pre-check，僅於 ADR review 後開始。
+
 ### 2026-09-24 19:41 +08:00
 
 - Milestone：M0-A — Project Governance Scaffold。
