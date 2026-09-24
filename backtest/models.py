@@ -199,6 +199,7 @@ class BacktestConfig(BaseModel):
 
     quantity: int = Field(default=1, gt=0)
     multiplier: float = Field(default=200, gt=0)
+    risk_budget: float = Field(default=0.01, gt=0, le=1)
 
     commission_per_contract: float = Field(default=0.0, ge=0)
     slippage_points: float = Field(default=0.0, ge=0)

@@ -11,13 +11,20 @@ from backtest.models import (
     OrderType, Signal, SignalAction, Trade,
 )
 from backtest.position import PositionManager
+from backtest.position_sizing import PositionSizingStrategy
+from backtest.position_sizing_input_builder import build_position_sizing_input
 from backtest.portfolio import Portfolio
 from backtest.risk import PortfolioRiskManager, RiskConfig
 
 
 class BacktestEngine:
-    def __init__(self, config: BacktestConfig):
+    def __init__(
+        self,
+        config: BacktestConfig,
+        position_sizing_strategy: PositionSizingStrategy | None = None,
+    ):
         self.config = config
+        self.position_sizing_strategy = position_sizing_strategy
         self.cost_calculator = CostCalculator(
             CostConfig(
                 commission_per_contract=config.commission_per_contract,
@@ -103,6 +110,24 @@ class BacktestEngine:
                     and self.pending_entry_signal is None
                     and self.pending_exit_signal is None
                 ):
+                    if self.position_sizing_strategy is not None:
+                        sizing_input = build_position_sizing_input(
+                            config=self.config,
+                            signal=signal,
+                            equity=self.portfolio.equity,
+                        )
+
+                        quantity = self.position_sizing_strategy.calculate(
+                            sizing_input
+                        )
+
+                        if quantity <= 0:
+                            continue
+
+                        signal = signal.model_copy(
+                            update={"quantity": quantity}
+                        )
+
                     self.pending_entry_signal = signal
                 continue
             if signal.action == SignalAction.REVERSE:
