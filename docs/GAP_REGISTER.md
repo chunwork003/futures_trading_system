@@ -57,7 +57,7 @@
 | 9.7 | GAP-07-E2 | Actual Backtest multiplier consumer integration | Complete |
 | 9.8 | GAP-07-E3 | Margin actual risk consumer wiring | Complete |
 | 9.9 | GAP-07-MARGIN-001 | Margin schema / broker actual completion | Partial — runtime domain and compatibility path complete; database/live pending |
-| 9.10 | GAP-07 | Contract / Futures Specification final acceptance | Closure pending |
+| 9.10 | GAP-07 | Contract / Futures Specification | CLOSED |
 | 10 | GAP-ARCH-001 | Backtest / Trading / Broker package boundary | Open |
 | 11 | GAP-ARCH-002 | Canonical domain/backtest model boundary | Open |
 | 12 | GAP-ARCH-003 | Strategy package consolidation direction | Open |

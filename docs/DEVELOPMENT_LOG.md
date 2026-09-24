@@ -19,15 +19,29 @@
 
 ### Milestone and Progress
 
-- Current milestone：GAP-07 — Contract / Futures Specification。
-- Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07-A0、GAP-07-A、GAP-07-B、GAP-07-C、GAP-07-D、GAP-07-E、GAP-07-F、GAP-07-E2、GAP-07-E3。
-- Pending：GAP-07 final acceptance / closure、broker sync/reconciliation、persistence/recovery、incremental state。
+- Current milestone：Broker Account / Position Sync + Reconciliation（next mainline；尚未開始）。
+- Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07（A0/A/B/C/D/E/F/E2/E3）。
+- Pending：broker sync/reconciliation、persistence/recovery、incremental state。
 - Overall V1：40–50%。以 Work Package weight 與 acceptance criteria 評估；不可使用 LOC 或 file count。
-- GAP-07 closure remaining：< 1 engineering hour（Stage B acceptance / governance closure）。
+- GAP-07 remaining：0 engineering hours；CLOSED。
 - V1 provisional remaining：45–75 engineering hours。
 - 此為 dynamic estimate，不是 deadline；每個 checkpoint / milestone 後重新估算。發現 architecture blocker 或新增 scope 時可上調；已有功能比預期成熟時可下調。
 
 ## Chronological Log
+
+### 2026-09-24 21:56 +08:00
+
+- Milestone：GAP-07-CLOSE Stage B — Final Acceptance。
+- Overall progress：40–50%（provisional；下一 mainline pre-check 後重新估算）。
+- Major completed count：4（GAP-03、G-5、GAP-06、GAP-07）。
+- Minor completed count：GAP-07 A0/A/B/C/D/E/F/E2/E3 全部 complete。
+- Added scope：無。
+- Completed：canonical model inventory、domain/Shioaji dependency boundary、identity separation與 deferred follow-up classification；final full regression 745 passed；GAP-07 CLOSED。
+- In progress：無；本 Bundle 完成後停止。
+- Blocked：無。
+- Pending review：無；deferred follow-ups 保留既有 GAP，不阻塞 closure。
+- Estimated remaining hours：GAP-07 0；V1 provisional 45–75 engineering hours，下一 mainline pre-check 後重新估算。
+- Next：Broker Account / Position Sync + Reconciliation。
 
 ### 2026-09-24 21:52 +08:00
 

@@ -2,11 +2,11 @@
 
 - Repository：`futures_trading_system`
 - Branch：`master`
-- HEAD：`4205dad`
-- Current phase：GAP-07 — Contract / Futures Specification
+- HEAD：`3c4ed81`
+- Current phase：Post GAP-07 — Broker Account / Position Sync + Reconciliation
 - M0-A：COMPLETE
 - M0-B：COMPLETE；ADR-001 已 ACCEPTED 並完成 documentation commit。
-- Latest completed：GAP-07-E3 Canonical Margin Actual Consumer Wiring
+- Latest completed：GAP-07 Contract / Futures Specification — CLOSED
 - Recorded regression baseline：745 passed（737 existing + 8 GAP-07-E3 tests）
 - V1 estimated progress：40–50%（以 Work Package acceptance criteria 評估，非 LOC 或檔案數）
 
@@ -19,11 +19,12 @@
 
 ## Critical Missing
 
-- GAP-07 final acceptance / closure 尚待 Stage B；runtime implementation slices 已完成。
 - Broker Account / Position Sync、Reconciliation。
 - Trading Persistence、Restart Recovery、Incremental Feature / Market State。
 - Simulation fault model、Operational PostgreSQL、Application API、Web Workspace。
 - LIVE_AUTO control / recovery。
+
+GAP-07 deferred follow-ups 不阻塞 closure：timezone-aware inbound boundary、session rule duplication、expiry-day consolidation、DuckDB margin refinement、broker actual margin snapshot、continuous roll、legacy `Order.contract` migration 與 broker capability matrix。細節以 `GAP_REGISTER.md` 為準。
 
 ## Known Non-blocking
 

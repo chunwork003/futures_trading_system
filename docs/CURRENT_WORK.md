@@ -2,14 +2,14 @@
 
 ## Current Work Package
 
-- ID：GAP-07-CLOSE Stage A — Canonical Margin Actual Consumer Wiring
-- Status：COMPLETE；Stage A commit pending。
-- Scope：將 explicit/canonical/no-margin resolution 接入 `BacktestEngine` initialization 與既有 `PortfolioRiskManager` consumer。
-- Runtime impact：新增 deterministic `from_specifications(..., as_of_date=...)` entry point；legacy constructor/config 行為不變，未修改 broker、database 或 domain。
+- ID：GAP-07-CLOSE Stage B — Final Acceptance
+- Status：COMPLETE；GAP-07 CLOSED。
+- Scope：確認 canonical market specification inventory、actual consumer wiring、broker mapping seam 與 architecture boundaries。
+- Runtime impact：無；Stage B 僅執行 acceptance、regression 與 governance closure。
 
 ## Blockers
 
-無 Stage A blocker。targeted 與完整 regression 通過；下一步為 GAP-07 final acceptance / closure。
+無 blocker。Final regression 745 passed；GAP-07 closure criteria 全部通過。
 
 ## Pending Decisions
 
@@ -26,11 +26,11 @@
 
 ## Next Queue
 
-1. GAP-07 final acceptance / closure（本 Bundle Stage B）。
-2. Broker Account / Position Sync + Reconciliation。
-3. GAP-BROKER-001 — explicit OrderIntent / PositionEffect。
-4. GAP-BROKER-002 — broker capability matrix / remaining mapping semantics。
-5. GAP-08 — Trading State Persistence & Recovery。
+1. Broker Account / Position Sync + Reconciliation。
+2. GAP-BROKER-001 — explicit OrderIntent / PositionEffect。
+3. GAP-BROKER-002 — broker capability matrix / remaining mapping semantics。
+4. GAP-08 — Trading State Persistence & Recovery。
+5. GAP-09 — Incremental Feature / Market State Engine。
 
 ## Estimated Progress
 
@@ -44,3 +44,4 @@
 - GAP-07-F：COMPLETE。
 - GAP-07-E2：COMPLETE。
 - GAP-07-E3：COMPLETE。
+- GAP-07：CLOSED。

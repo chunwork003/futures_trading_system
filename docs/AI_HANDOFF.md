@@ -4,7 +4,7 @@
 
 - Repository：`futures_trading_system`
 - Branch：`master`
-- HEAD：`4205dad`
+- HEAD：`3c4ed81`
 - Source of truth：`CURRENT_STATE.md`、`CURRENT_WORK.md`、`GAP_REGISTER.md`、本文件。
 
 ## Current Architecture Summary
@@ -29,6 +29,7 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 - GAP-07-F — BrokerInstrumentReference / Broker Mapping Contract：COMPLETE。
 - GAP-07-E2 — Actual Backtest / Risk Consumer Integration：COMPLETE。
 - GAP-07-E3 — Canonical Margin Actual Consumer Wiring：COMPLETE。
+- GAP-07 — Contract / Futures Specification：CLOSED。
 - Recorded regression baseline：745 passed（737 existing + 8 GAP-07-E3 tests）。
 - Codex full pytest 曾因 TEMP directory permission setup errors；不是已確認 assertion regression。
 
@@ -60,7 +61,7 @@ Trading State 必須持久化 order、fill、position、strategy state、account
 
 ## Known Risks / Open GAPs
 
-優先參照 `GAP_REGISTER.md`：GAP-07、GAP-ARCH-001/002/003、GAP-BROKER-001、GAP-ACCOUNT-001、GAP-08、GAP-PERSIST-001、GAP-09、GAP-LIVE-001。另有 data governance、documentation drift、default branch 與 pytest TEMP environment 問題。
+優先參照 `GAP_REGISTER.md`：GAP-ARCH-001/002/003、GAP-BROKER-001/002、GAP-ACCOUNT-001、GAP-08、GAP-PERSIST-001、GAP-09、GAP-LIVE-001。GAP-07 已 CLOSED；TIME/SESSION/MARGIN deferred follow-ups 保留於既有 GAP。另有 data governance、documentation drift、default branch 與 pytest TEMP environment 問題。
 
 ## Blocking Issues
 
@@ -68,7 +69,7 @@ Live / money risk、broker ambiguity、reconciliation、recovery、core regressi
 
 ## Next Recommended Work
 
-GAP-07 runtime implementation slices 已完成；本 Bundle 下一步僅做 final acceptance / governance closure。完成後 mainline 為 Broker Account / Position Sync + Reconciliation。Legacy `Order.contract` migration 仍依 GAP-BROKER-001。
+GAP-07 已 CLOSED。下一 mainline 為 Broker Account / Position Sync + Reconciliation；尚未開始。Legacy `Order.contract` migration 仍依 GAP-BROKER-001，其他 deferred follow-ups 不得重新開啟 GAP-07，除非發現已完成範圍的 correctness defect。
 
 ## Do Not Change
 
