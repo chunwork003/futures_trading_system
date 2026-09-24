@@ -2,14 +2,14 @@
 
 ## Current Work Package
 
-- ID：GAP-07-D — Canonical Margin Schedule and Effective-Date Resolver
+- ID：GAP-07-E — Backtest / Risk Compatibility Resolution
 - Status：Implemented / review pending；尚未 commit。
-- Scope：broker-neutral `MarginScheduleEntry`、effective-date lookup、contract-specific precedence 與 duplicate ambiguity detection。
-- Runtime impact：新增獨立 domain model/resolver；未修改 RiskConfig、BacktestEngine、broker 或 database schema。
+- Scope：建立 explicit override → canonical specification / margin schedule → explicit no-margin mode 的可追溯 resolution seam。
+- Runtime impact：新增獨立 backtest compatibility resolver；未修改既有 config、RiskConfig、BacktestEngine、domain model、broker 或 database schema。
 
 ## Blockers
 
-無 GAP-07-D blocker。pytest 使用 repository-local `.tmp/`；完整 regression 通過。
+無 GAP-07-E blocker。pytest 使用 repository-local `.tmp/`；完整 regression 通過。
 
 ## Pending Decisions
 
@@ -24,7 +24,7 @@
 
 ## Next Queue
 
-1. GAP-07-E — Backtest / Risk compatibility adapter。
+1. GAP-07 後續 approved slice。
 2. GAP-BROKER-001 — explicit OrderIntent / PositionEffect。
 3. Broker Account / Position Sync。
 4. GAP-08 — Trading State Persistence & Recovery。
@@ -37,4 +37,5 @@
 - GAP-07-A：COMPLETE。
 - GAP-07-B：COMPLETE。
 - GAP-07-C：COMPLETE。
-- GAP-07-D：implemented / review pending。
+- GAP-07-D：COMPLETE。
+- GAP-07-E：implemented / review pending。

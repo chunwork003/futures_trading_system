@@ -6,8 +6,9 @@
 
 | ID | Added Date | Reason | Priority | Dependency | Status |
 |---|---|---|---|---|---|
-| GAP-07-MARGIN-001 | 2026-09-24 | Effective-date canonical margin、contract precedence 與 override separation；DuckDB 尚缺 currency/source/contract_id/published_at 且使用 DOUBLE，broker actual snapshot 未建立 | P1 | GAP-07-D | Partial — runtime domain complete; database/live pending |
-| GAP-07-D | 2026-09-24 | 建立 canonical MarginScheduleEntry 與 effective-date resolver | P1 | GAP-07-C, ADR-001 | Implemented / review pending |
+| GAP-07-E | 2026-09-24 | 建立 Backtest / Risk explicit override 與 canonical specification 的 compatibility resolution seam | P1 | GAP-07-D, ADR-001 | Implemented / review pending |
+| GAP-07-MARGIN-001 | 2026-09-24 | Effective-date canonical margin、contract precedence 與 override separation；DuckDB 尚缺 currency/source/contract_id/published_at 且使用 DOUBLE，broker actual snapshot 未建立 | P1 | GAP-07-D | Partial — runtime domain and compatibility path complete; database/live pending |
+| GAP-07-D | 2026-09-24 | 建立 canonical MarginScheduleEntry 與 effective-date resolver | P1 | GAP-07-C, ADR-001 | Complete |
 | GAP-07-C | 2026-09-24 | 建立 canonical TradingSessionRef 與 `[open, close)` boundary policy | P1 | GAP-07-B, ADR-001 | Complete |
 | GAP-07-SESSION-EXPIRY | 2026-09-24 | Expiry-day 13:30 close 僅存在 Resolver 特例，規則尚未集中 | P1 | GAP-07-SESSION-001 | Open — MUST FIX BEFORE LIVE |
 | GAP-07-SESSION-001 | 2026-09-24 | Session rule/time 在 rules、source、resolver、normalizer 間重複 | P1 | GAP-07-C | Open — later session-rule slice |
@@ -47,9 +48,10 @@
 | 9.1 | GAP-07-TIME-001 | Timezone-aware timestamp boundary | Open — MUST FIX BEFORE LIVE |
 | 9.2 | GAP-07-SESSION-001 | Session rule duplication / boundary consistency | Open — later session-rule slice |
 | 9.3 | GAP-07-SESSION-EXPIRY | Expiry-day special session rule consolidation | Open — MUST FIX BEFORE LIVE |
-| 9.4 | GAP-07-D | Canonical Margin Schedule / Effective-Date Resolver | Implemented / review pending |
-| 9.5 | GAP-07-MARGIN-001 | Margin schema / broker actual completion | Partial — runtime domain complete; database/live pending |
-| 9.6 | GAP-07 | Remaining Contract / Futures Specification slices | In progress |
+| 9.4 | GAP-07-D | Canonical Margin Schedule / Effective-Date Resolver | Complete |
+| 9.5 | GAP-07-E | Backtest / Risk Compatibility Resolution | Implemented / review pending |
+| 9.6 | GAP-07-MARGIN-001 | Margin schema / broker actual completion | Partial — runtime domain and compatibility path complete; database/live pending |
+| 9.7 | GAP-07 | Remaining Contract / Futures Specification slices | In progress |
 | 10 | GAP-ARCH-001 | Backtest / Trading / Broker package boundary | Open |
 | 11 | GAP-ARCH-002 | Canonical domain/backtest model boundary | Open |
 | 12 | GAP-ARCH-003 | Strategy package consolidation direction | Open |
