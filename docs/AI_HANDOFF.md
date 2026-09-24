@@ -697,11 +697,21 @@ Architecture / Design Freeze 已完成。
 
 Runtime Launch Gate：
 
-`HOLD_FOR_BLUEPRINT_BASELINE`
+`RELEASED_BLUEPRINT_BASELINE`
 
-GAP-ACCOUNT-001 仍為 `READY_FOR_EXECUTION`。
+GAP-ACCOUNT-001：
 
-此 HOLD 是一次性的 Blueprint baseline gate，不是 runtime failure。
+`READY_FOR_EXECUTION / AUTHORIZED_FOR_LEVEL_3A_RUNTIME`
+
+Baseline evidence：
+
+`432c48fb63c3d8d2760c0f2f5338e205ded63d30`
+
+Recommended calibration model：
+
+`GPT-5.6 Sol / 輕度`
+
+同一 Work Package 中途不得切換 model 或 effort。
 
 ---
 
@@ -736,9 +746,16 @@ Current status：
 
 GAP-ACCOUNT-001 runtime：
 
-`HOLD_FOR_BLUEPRINT_BASELINE`
+`RELEASED_BLUEPRINT_BASELINE`
 
-Blueprint baseline 啟用前必須完成 A～O、92/92 capability mapping、connection、state authority、source registry、traceability、metrics 與 consistency audit。
+Blueprint baseline activation 已完成：
+
+- A～O complete。
+- 92/92 capability mapping PASS。
+- connection / state authority / source registry / traceability PASS。
+- 603 engineering leaves。
+- lifecycle-weighted baseline 34.30%。
+- baseline commit：`432c48fb63c3d8d2760c0f2f5338e205ded63d30`。
 
 Blueprint baseline accepted 後，ACTIVE 必須列 Implements / Touches / Does Not Implement Blueprint IDs。
 

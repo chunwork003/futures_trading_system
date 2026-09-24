@@ -57,19 +57,25 @@ Recommended Model：
 
 GPT-5.6 Sol
 
+Recommended Effort：
+
+輕度
+
+Model Rule：
+
+本 Work Package 中途不得切換 model 或 effort。
+
 Runtime Launch Gate：
 
-HOLD_FOR_BLUEPRINT_BASELINE
+RELEASED_BLUEPRINT_BASELINE
 
-Reason：
+Release Evidence：
 
-先完成一次性的 V1 Engineering Blueprint baseline。
+432c48fb63c3d8d2760c0f2f5338e205ded63d30
 
-此 gate：
+GAP-ACCOUNT-001：
 
-- 不改變 GAP-ACCOUNT-001 READY_FOR_EXECUTION 狀態。
-- 不代表 runtime blocker。
-- 不允許在 Blueprint baseline commit 前啟動 Codex runtime。
+READY_FOR_EXECUTION / AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
 
 Why Next：
 

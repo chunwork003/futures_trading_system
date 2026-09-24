@@ -22,19 +22,31 @@ Architecture review 已完成。
 
 Runtime execution authorization：
 
-暫時 HOLD。
+AUTHORIZED。
 
 Launch Gate：
 
-`HOLD_FOR_BLUEPRINT_BASELINE`
+`RELEASED_BLUEPRINT_BASELINE`
 
-Blueprint baseline commit 完成後才解除並啟動 Level 3A runtime execution。
+Release evidence：
+
+`432c48fb63c3d8d2760c0f2f5338e205ded63d30`
+
+Level 3A runtime execution 已可開始。
 
 ---
 
 ## 4. Recommended Model
 
 GPT-5.6 Sol
+
+Effort：
+
+輕度
+
+Calibration rule：
+
+本 Work Package 中途不得切換 model 或 effort。
 
 Reason：
 
@@ -1195,9 +1207,9 @@ HARD_BLOCK。
 
 Current：
 
-    HOLD_FOR_BLUEPRINT_BASELINE
+    RELEASED_BLUEPRINT_BASELINE
 
-Release requirements：
+Release requirements（全部完成）：
 
 1. `V1_SYSTEM_BLUEPRINT.md` baseline accepted。
 2. A～O domain files complete。
@@ -1205,7 +1217,7 @@ Release requirements：
 4. Blueprint scope IDs in this ACTIVE validated。
 5. connection / authority consistency PASS。
 6. source registry baseline PASS。
-7. Blueprint commit pushed。
+7. Blueprint commit pushed：`432c48fb63c3d8d2760c0f2f5338e205ded63d30`。
 
 Release 後：
 
