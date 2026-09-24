@@ -295,3 +295,73 @@ Automation 不成為新的產品主線。
 完成 authoritative documentation baseline 後：
 
 立即回到 Broker Account / Position Sync。
+## 2026-09-24 — GAP-ACCOUNT-001 Architecture Review
+
+Architecture baseline documentation 已於：
+
+`771f10f docs(project): establish authoritative v1 architecture baseline`
+
+完成並 push。
+
+GAP-ACCOUNT-001 architecture review 已完成。
+
+### Confirmed Decisions
+
+Broker Account / Position Sync：
+
+採 separate read-only account/position capability interface。
+
+不擴充：
+
+`backtest.broker.Broker`
+
+原因：
+
+execution capability 與 broker actual-state observation capability 必須分離，避免迫使 PaperBroker / historical implementations 實作 live-only methods。
+
+Existing：
+
+`backtest.account_position.AccountPosition`
+
+本 Work Package 保持 compatibility，不執行 ownership migration。
+
+Package strategy：
+
+只建立 immediate implementation 需要的 package/module。
+
+禁止預建完整 target architecture 空骨架。
+
+如果 runtime 首次建立 `trading/`：
+
+同步更新 `pyproject.toml` package discovery 加入 `trading*`。
+
+### Work Allocation
+
+人工 / PowerShell：
+
+- architecture decisions。
+- Work Package preparation。
+- deterministic status/queue/GAP updates。
+- documentation closure。
+
+Codex Sol：
+
+- runtime implementation。
+- tests。
+- debugging。
+- integration。
+- broker semantics。
+- reconciliation semantics。
+- runtime commit / push。
+
+### Automation
+
+GAP-ACCOUNT-001：
+
+`READY_FOR_EXECUTION`
+
+Execution：
+
+Level 3A bounded。
+
+完成後必須停止，不得自動開始下一個 Work Package。

@@ -46,7 +46,7 @@ Mainline：
 
 | ID | Priority | Handling | Current Blocking | Scope | Status |
 |---|---|---|---|---|---|
-| GAP-ACCOUNT-001 | P1 | REVIEW_AT_CHECKPOINT | No | Broker Account / Position Sync | READY |
+| GAP-ACCOUNT-001 | P1 | REVIEW_AT_CHECKPOINT | No | Broker Account / Position Sync | READY_FOR_EXECUTION |
 | GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | BLOCKED_BY_ACCOUNT |
 | GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | Corrective execution | Explicit OrderIntent / PositionEffect | OPEN |
 | GAP-BROKER-002 | P2 | RECORD_AND_CONTINUE | No | Capability matrix / mapping semantics | PARTIAL |
@@ -204,6 +204,14 @@ broker-neutral：
 Allowed before GAP-BROKER-001：
 
 read-only snapshot and mismatch detection。
+
+Architecture review decision：
+
+- account/position query 使用 separate read-only capability interface。
+- 不擴充 existing execution Broker ABC。
+- existing `backtest.account_position.AccountPosition` 保持 compatibility，不在此 GAP 搬移。
+- 不預建完整 target package hierarchy。
+- only immediate implementation packages/modules may be created。
 
 Not allowed：
 

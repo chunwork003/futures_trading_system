@@ -2,7 +2,7 @@
 
 ## 專案與導航
 
-台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。目前是 M0 — Governance / Architecture Consolidation；人工集中審核與重大決策，Codex 依已核准 Work Package 執行。
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0 — Governance / Architecture Consolidation 已完成；目前主線為 M4 / GAP-ACCOUNT-001 Broker Account / Position Sync Foundation。人工集中架構決策與 deterministic documentation，Codex 依已核准 Work Package 執行 runtime implementation、tests、debugging 與 integration。
 
 Primary source of truth 與必讀順序：
 

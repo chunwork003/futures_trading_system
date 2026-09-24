@@ -12,11 +12,11 @@ Branch：
 
 Committed HEAD：
 
-`87ff47b6050e519d2496d2f319bc66755870e158`
+`771f10f`
 
 Latest commit：
 
-`docs(project): close gap-07 contract specification`
+`docs(project): establish authoritative v1 architecture baseline`
 
 Recorded full regression：
 
@@ -160,9 +160,11 @@ Validated by GAP-07-CLOSE。
 
 Repository queue + ACTIVE full Work Package。
 
-Documentation scaffold being established。
+Documentation scaffold 已建立。
 
-尚未 runtime validated。
+GAP-ACCOUNT-001 已完成 architecture review 並 READY_FOR_EXECUTION。
+
+尚待第一次 queue-driven runtime validation。
 
 ### Level 3B
 
@@ -242,6 +244,8 @@ GAP-ACCOUNT-001 Broker Account / Position Sync Foundation。
 
 Status：
 
-READY_FOR_ARCHITECT_REVIEW。
+READY_FOR_EXECUTION。
 
-尚未授權 Codex 開始 runtime implementation。
+Architecture review 已完成。
+
+已授權一次 Level 3A bounded runtime execution。

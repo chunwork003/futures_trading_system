@@ -10,7 +10,7 @@ Architecture baseline date：
 
 Repository baseline：
 
-master@87ff47b
+master@771f10f
 
 Recorded full regression：
 

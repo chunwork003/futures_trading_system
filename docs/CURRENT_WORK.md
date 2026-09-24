@@ -39,7 +39,7 @@ Broker Account / Position Sync Foundation
 
 Status：
 
-READY_FOR_ARCHITECT_REVIEW
+READY_FOR_EXECUTION
 
 Priority：
 
@@ -47,7 +47,7 @@ P1 MAINLINE
 
 Execution Mode：
 
-REVIEW_REQUIRED
+LEVEL_3A_BOUNDED
 
 Recommended Model：
 
@@ -60,6 +60,22 @@ GAP-07 已 CLOSED。
 在 persistence / live 之前：
 
 系統必須明確區分 internal expected AccountPosition 與 broker actual BrokerPositionSnapshot。
+
+---
+
+# Architecture Review Decision
+
+GAP-ACCOUNT-001 architecture review 已完成。
+
+固定：
+
+- account/position query 使用 separate read-only capability interface。
+- 不擴充 execution `backtest.broker.Broker`。
+- 不在本 GAP 搬移 existing `backtest.account_position.AccountPosition`。
+- 不預建完整 `trading/` 空 package hierarchy。
+- 只有立即 implementation 需要時才建立 module/package。
+- Codex 負責 runtime implementation/tests/integration。
+- deterministic docs closure 由人工 / PowerShell 處理。
 
 ---
 
@@ -85,7 +101,7 @@ GAP-BROKER-001 OrderIntent / PositionEffect。
 
 | Order | ID | Work | Status | Dependency |
 |---:|---|---|---|---|
-| 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | READY_FOR_REVIEW | GAP-07 |
+| 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | READY_FOR_EXECUTION | GAP-07 |
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | READY_AFTER_ACCOUNT_FOUNDATION | GAP-07 |
 | 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | BLOCKED | Account foundation + execution semantics |
 | 4 | GAP-BROKER-002 | Broker capability matrix | PENDING | Broker mapping + execution semantics |

@@ -12,7 +12,7 @@ Development branch：
 
 Architecture baseline：
 
-`87ff47b6050e519d2496d2f319bc66755870e158`
+`771f10f`
 
 Recorded full regression：
 
@@ -348,6 +348,13 @@ GAP-ACCOUNT-001。
 - position query capability。
 - expected/actual mismatch detection。
 
+Architecture review 已固定：
+
+- account/position query 採 separate read-only capability interface。
+- 不擴充 execution `backtest.broker.Broker`。
+- 不在 GAP-ACCOUNT-001 搬移 existing AccountPosition。
+- 不預建完整 target architecture 空 package hierarchy。
+
 不允許：
 
 - corrective broker order。
@@ -671,9 +678,11 @@ GAP-ACCOUNT-001 Broker Account / Position Sync Foundation。
 
 Status：
 
-READY_FOR_ARCHITECT_REVIEW。
+READY_FOR_EXECUTION。
 
-尚未授權 runtime execution。
+Architecture review 已完成。
+
+已授權一次 Level 3A bounded runtime execution。
 
 ---
 
