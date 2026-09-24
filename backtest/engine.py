@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import date
 from typing import Iterable
 
 from analysis.equity import EquityCurve
@@ -17,10 +18,12 @@ from backtest.portfolio import Portfolio
 from backtest.risk import PortfolioRiskManager, RiskConfig
 from backtest.specification_resolution import (
     BacktestSpecificationResolver,
+    ResolvedMargins,
     ResolvedMultiplier,
     ResolvedParameterSource,
 )
 from domain.instruments import InstrumentSpec
+from domain.margins import MarginScheduleResolver
 
 
 class BacktestEngine:
@@ -30,18 +33,49 @@ class BacktestEngine:
         position_sizing_strategy: PositionSizingStrategy | None = None,
         *,
         resolved_multiplier: ResolvedMultiplier | None = None,
+        resolved_margins: ResolvedMargins | None = None,
     ):
+        runtime_updates: dict[str, object] = {}
         if resolved_multiplier is None:
             self.resolved_multiplier = ResolvedMultiplier(
                 value=float(config.multiplier),
                 source=ResolvedParameterSource.LEGACY_CONFIG,
             )
-            self.config = config
         else:
             self.resolved_multiplier = resolved_multiplier
-            self.config = config.model_copy(
-                update={"multiplier": resolved_multiplier.value}
+            runtime_updates["multiplier"] = resolved_multiplier.value
+
+        legacy_risk_config = config.risk_config or RiskConfig()
+        if resolved_margins is None:
+            self.resolved_margins = ResolvedMargins(
+                initial_margin_per_contract=(
+                    legacy_risk_config.initial_margin_per_contract
+                ),
+                maintenance_margin_per_contract=(
+                    legacy_risk_config.maintenance_margin_per_contract
+                ),
+                source=ResolvedParameterSource.LEGACY_CONFIG,
             )
+        else:
+            self.resolved_margins = resolved_margins
+            runtime_updates["risk_config"] = RiskConfig(
+                initial_margin_per_contract=(
+                    resolved_margins.initial_margin_per_contract
+                ),
+                maintenance_margin_per_contract=(
+                    resolved_margins.maintenance_margin_per_contract
+                ),
+                max_contracts=legacy_risk_config.max_contracts,
+                max_margin_utilization=(
+                    legacy_risk_config.max_margin_utilization
+                ),
+            )
+
+        self.config = (
+            config.model_copy(update=runtime_updates)
+            if runtime_updates
+            else config
+        )
         self.position_sizing_strategy = position_sizing_strategy
         self.cost_calculator = CostCalculator(
             CostConfig(
@@ -83,6 +117,39 @@ class BacktestEngine:
             config=config,
             position_sizing_strategy=position_sizing_strategy,
             resolved_multiplier=resolved_multiplier,
+        )
+
+    @classmethod
+    def from_specifications(
+        cls,
+        config: BacktestConfig,
+        instrument_spec: InstrumentSpec,
+        *,
+        as_of_date: date,
+        margin_resolver: MarginScheduleResolver | None = None,
+        contract_id: int | None = None,
+        multiplier_override: float | None = None,
+        no_margin_mode: bool = False,
+        position_sizing_strategy: PositionSizingStrategy | None = None,
+    ) -> "BacktestEngine":
+        """以明確日期解析 canonical multiplier 與 margin，建立 deterministic runtime。"""
+        resolved_multiplier = BacktestSpecificationResolver.resolve_multiplier(
+            explicit_override=multiplier_override,
+            instrument_spec=instrument_spec,
+        )
+        resolved_margins = BacktestSpecificationResolver.resolve_margins(
+            explicit_override=config.risk_config,
+            margin_resolver=margin_resolver,
+            instrument_id=instrument_spec.instrument_id,
+            contract_id=contract_id,
+            as_of_date=as_of_date,
+            no_margin_mode=no_margin_mode,
+        )
+        return cls(
+            config=config,
+            position_sizing_strategy=position_sizing_strategy,
+            resolved_multiplier=resolved_multiplier,
+            resolved_margins=resolved_margins,
         )
 
     def run(self, bars: Iterable[dict], signals: Iterable[Signal]) -> list[Trade]:
