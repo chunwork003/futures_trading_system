@@ -14,7 +14,7 @@
 |---|---|
 | `../AGENTS.md` | Agent 執行規則、scope、issue 分級、Git/test policy |
 | `work/ACTIVE.md` | 目前唯一完整 Work Package |
-| `CURRENT_STATE.md` | 現在 HEAD、tests、milestone、能力狀態 |
+| `CURRENT_STATE.md` | validated baselines、tests、milestone、能力狀態 |
 | `CURRENT_WORK.md` | Mainline execution queue |
 | `V1_CAPABILITY_MAP.md` | V1 完整功能清單與完成度 |
 | `ARCHITECTURE.md` | 全系統 logical/package/dependency architecture |
@@ -64,7 +64,7 @@ authoritative 文件優先。
 
 回答：
 
-「現在 HEAD、tests、完成度、目前能力是什麼？」
+「目前 validated baseline、tests、完成度、目前能力是什麼？」
 
 ### CURRENT_WORK.md
 

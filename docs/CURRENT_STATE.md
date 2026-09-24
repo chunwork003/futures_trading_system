@@ -10,13 +10,19 @@ Branch：
 
 `master`
 
-Committed HEAD：
+Architecture baseline：
 
 `771f10f`
 
-Latest commit：
+GAP-ACCOUNT-001 execution authorization baseline：
 
-`docs(project): establish authoritative v1 architecture baseline`
+`5e24960`
+
+Actual runtime execution HEAD：
+
+由每次 Work Package precheck 取得。
+
+本文件不保存「精確 current HEAD」，避免 documentation commit 造成自我參照與立即 stale。
 
 Recorded full regression：
 

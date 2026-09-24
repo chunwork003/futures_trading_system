@@ -183,12 +183,13 @@ Migration gates：small commit、targeted test、full regression、`git diff --c
 |---|---|---|
 | A | 接受 ADR；建立 canonical inventory 與 compatibility plan | 無 runtime refactor。 |
 | B | GAP-07：Instrument / Contract Specification read boundary，保留 domain/database mapping | 一份 shared contract truth。 |
-| C | GAP-BROKER-001：OrderIntent/PositionEffect；adapter mapping 使用明確語意 | 不再以 prefix 判定 New/Cover。 |
-| D | GAP-ACCOUNT-001：BrokerAccount snapshot、AccountPosition、reconciliation use case/port | startup 可偵測 mismatch。 |
-| E | GAP-08 + GAP-PERSIST-001：event/persistence port、recovery、provenance | restart 不遺失 state。 |
-| F | GAP-SIM-001：SimulationBroker/fault model；保留 PaperBroker baseline | 故障條件可驗證。 |
-| G | 逐 slice 遷移 paper runner / Shioaji adapter 至 adapter/application boundary | compatibility imports 保持。 |
-| H | GAP-APP-001 / GAP-WEB-001：versioned API 接入 workflow | 不暴露 broker SDK。 |
+| C | GAP-ACCOUNT-001：read-only BrokerAccount / BrokerPositionSnapshot / comparison foundation | expected 與 broker actual 可安全分離；不得 corrective execution。 |
+| D | GAP-BROKER-001：OrderIntent/PositionEffect；adapter mapping 使用明確語意 | 不再以 prefix 判定 New/Cover。 |
+| E | GAP-RECON-001：reconciliation policy / startup readiness | mismatch 可依 strict/manual policy gate startup；不得 silent overwrite。 |
+| F | GAP-08 + GAP-PERSIST-001：event/persistence port、recovery、provenance | restart 不遺失 state。 |
+| G | GAP-SIM-001：SimulationBroker/fault model；保留 PaperBroker baseline | 故障條件可驗證。 |
+| H | 逐 slice 遷移 paper runner / Shioaji execution adapter 至 adapter/application boundary | compatibility imports 保持。 |
+| I | GAP-APP-001 / GAP-WEB-001：versioned API 接入 workflow | 不暴露 broker SDK。 |
 
 ## 18. Deferred Items
 
@@ -204,7 +205,7 @@ Migration gates：small commit、targeted test、full regression、`git diff --c
 
 ## 20. Risks
 
-- 過早搬移可破壞 611 regression baseline，故 model migration 必須在功能 GAP 內小步進行。
+- 過早搬移可破壞既有 full regression baseline，故 model migration 必須在功能 GAP 內小步進行。
 - Contract Specification 未完成前，RiskConfig、BacktestConfig、broker metadata 仍可能漂移。
 - 未定義 OrderIntent 前，live broker New/Cover 是 safety blocker。
 - persistence/reconciliation 未完成前，LIVE_AUTO 不可授權。

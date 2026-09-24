@@ -163,12 +163,22 @@ Level 3A：
 
 每次 autonomous run 只執行一個 ACTIVE Work Package。
 
-完成後：
+Runtime Codex 完成後：
 
-- 更新 state。
-- 更新 queue。
-- 停止。
+- 完成 runtime implementation / tests。
+- runtime commit / push。
+- final report。
+- STOP。
 
-不得自動開始下一個 mainline。
+若 ACTIVE 指定 deterministic docs closure 由人工負責：
+
+人工再更新：
+
+- CURRENT_STATE。
+- CURRENT_WORK。
+- GAP_REGISTER。
+- DEVELOPMENT_LOG。
+
+不得由 runtime executor 自動開始下一個 mainline。
 
 至少 2–3 個 queue-driven runtime Work Package 穩定後，再評估 Level 3B。

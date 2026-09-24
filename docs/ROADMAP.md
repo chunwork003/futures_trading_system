@@ -114,7 +114,7 @@ Completed：
 
 Status：
 
-NEXT
+READY_FOR_EXECUTION
 
 Main scope：
 

@@ -284,8 +284,8 @@ Confidence：
 主要 engineering weight：
 
     Account / Position Sync
-    → Reconciliation
     → OrderIntent / PositionEffect
+    → Reconciliation
     → Persistence / Recovery / Provenance
     → Incremental Feature / Market State
     → Simulation / Live Safety

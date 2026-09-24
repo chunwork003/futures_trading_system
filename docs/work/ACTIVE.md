@@ -396,10 +396,12 @@ HARD_BLOCK。
 Precheck / possible changes：
 
     trading/**
-    domain/**
+    adapters/sinopac/**
+    domain/broker_instruments.py
     backtest/broker.py
     backtest/account_position.py
     backtest/shioaji_*
+    pyproject.toml
 
 Tests：
 
@@ -587,3 +589,501 @@ STOP。
 18. Recommendation。
 
 不要自動開始下一個 Work Package。
+---
+
+## 29. Architect Design Freeze — GAP-ACCOUNT-001
+
+本節為人工 architecture review 的最終 implementation contract。
+
+Codex 不得重新設計以下 public semantics。
+
+### 29.1 Minimal Runtime Layout
+
+本 Work Package 預期只建立立即需要的 target modules：
+
+    trading/__init__.py
+    trading/account.py
+    trading/reconciliation.py
+
+    adapters/__init__.py
+    adapters/sinopac/__init__.py
+    adapters/sinopac/account_mapping.py
+
+必要時修改：
+
+    domain/broker_instruments.py
+    pyproject.toml
+
+Existing：
+
+    backtest/account_position.py
+    backtest/broker.py
+    backtest/shioaji_*
+
+保持 compatibility。
+
+不得把既有 Shioaji execution implementation 搬入 adapters。
+
+新 account observation mapping 直接放：
+
+    adapters/sinopac/
+
+這不是 full adapter relocation。
+
+如果建立 `trading/`：
+
+`pyproject.toml` 加入：
+
+    "trading*"
+
+如果建立 `adapters/`：
+
+加入：
+
+    "adapters*"
+
+不得加入尚未存在的 future packages。
+
+### 29.2 Canonical Position Direction
+
+`trading.account` 建立 broker-neutral：
+
+    PositionDirection
+
+只允許：
+
+    LONG
+    SHORT
+
+不得讓 trading core import：
+
+    backtest.models.Direction
+
+Existing backtest Direction 保持 compatibility，不在本 GAP migration。
+
+### 29.3 BrokerAccount Contract
+
+`BrokerAccount` 至少：
+
+    broker: str
+    account_ref: str
+    account_type: str | None
+    display_name: str | None
+
+Rules：
+
+- `broker` trim + uppercase。
+- `account_ref` trim、不可 blank。
+- `account_type` 是 broker-neutral metadata，不保存 native SDK object。
+- extra fields forbid。
+- 不保存 password。
+- 不保存 API key / secret。
+- 不保存 person_id。
+- 不保存 username。
+- 不保存 Shioaji native account object。
+
+Shioaji mapping：
+
+    broker = "SINOPAC"
+
+`account_ref` 使用官方 CLI/API 已採用的：
+
+    BROKER_ID-ACCOUNT_ID
+
+形式組成 opaque provider-scoped reference。
+
+Native：
+
+    F → FUTURES_OPTIONS
+    S → SECURITIES
+    H → INTERNATIONAL
+
+本 Work Package 的 position mapping 只處理 futures/options account。
+
+### 29.4 Canonical AccountPosition Contract
+
+建立新的：
+
+    trading.account.AccountPosition
+
+表示：
+
+internal expected physical account state。
+
+至少：
+
+    broker: str
+    account_ref: str
+    instrument_id: int
+    contract_id: int | None
+    direction: PositionDirection
+    quantity: int > 0
+
+Rules：
+
+- futures listed position 的 `contract_id` 必須存在。
+- future stocks / non-listed instruments 可允許 `contract_id=None`。
+- quantity=0 不表示 FLAT。
+- FLAT 使用「position absence」表示。
+
+Existing：
+
+    backtest.account_position.AccountPosition
+
+保持原樣。
+
+本 GAP 不 rename、不刪除、不搬移。
+
+### 29.5 BrokerPositionSnapshot Contract
+
+至少：
+
+    broker: str
+    account_ref: str
+    instrument_id: int
+    contract_id: int | None
+    direction: PositionDirection
+    quantity: int > 0
+    observed_at: timezone-aware datetime
+    average_price: Decimal | None
+
+Rules：
+
+- broker actual observation。
+- extra fields forbid。
+- quantity=0 不建立 snapshot。
+- `observed_at` 必須 timezone-aware。
+- 禁止 naive datetime。
+- operational price 使用 Decimal。
+- adapter 若來源為 float，使用 `Decimal(str(value))`。
+- 不保存 native broker position object。
+
+### 29.6 Read-Only Ports
+
+建立 two interface-segregated read-only capabilities：
+
+    BrokerAccountProvider
+    BrokerPositionProvider
+
+Conceptual signatures：
+
+    list_accounts() -> tuple[BrokerAccount, ...]
+
+    list_positions(
+        account: BrokerAccount
+    ) -> tuple[BrokerPositionSnapshot, ...]
+
+Rules：
+
+- 不擴充 `backtest.broker.Broker`。
+- port 本身無 corrective methods。
+- port 不包含 submit/cancel/repair。
+- 本 Work Package 不實作 real network provider。
+
+### 29.7 Reverse Broker Instrument Resolution
+
+Shioaji position 回報 broker `code`。
+
+Existing `BrokerInstrumentResolver.resolve()` 是：
+
+canonical → broker。
+
+本 Work Package 允許在：
+
+    domain/broker_instruments.py
+
+新增 exact reverse contract-level lookup：
+
+    resolve_by_broker_contract_code(
+        broker,
+        broker_contract_code,
+        as_of_date
+    )
+
+Rules：
+
+- broker normalize。
+- broker contract code trim。
+- broker contract code 保持 case-sensitive。
+- 只接受 `contract_id is not None` 的 contract-level reference。
+- effective date 使用既有 inclusive semantics。
+- listed broker position 禁止 instrument-level fallback。
+- missing → existing explicit mapping-not-found error。
+- multiple valid mappings → existing ambiguous mapping error。
+
+不得猜 canonical contract。
+
+### 29.8 Approved Shioaji Account Semantics
+
+人工 architecture review 已以 Sinopac 官方 Shioaji documentation 確認：
+
+Account query：
+
+    api.list_accounts()
+
+native account 可提供：
+
+    account_type
+    broker_id
+    account_id
+    signed
+    username
+    person_id
+
+Core mapping 本 GAP 只使用：
+
+    account_type
+    broker_id
+    account_id
+
+不得把：
+
+    person_id
+    username
+
+帶入 canonical BrokerAccount。
+
+### 29.9 Approved Shioaji Futures Position Semantics
+
+官方 `FuturePosition` 明確提供：
+
+    id
+    code
+    direction
+    quantity
+    price
+    last_price
+    pnl
+
+本 Work Package 只使用：
+
+    code
+    direction
+    quantity
+    price
+
+Mapping：
+
+    Buy  → LONG
+    Sell → SHORT
+
+    quantity → quantity
+    price → average_price
+
+不將：
+
+    last_price
+    pnl
+
+納入本 GAP canonical snapshot。
+
+Futures top-level `FuturePosition` 不提供 yd_quantity：
+
+不得自行建立 today/yesterday position semantics。
+
+### 29.10 Pure Sinopac Mapping
+
+建立 pure mapping seam：
+
+    adapters/sinopac/account_mapping.py
+
+不得登入。
+
+不得 network。
+
+不得建立 real Shioaji session。
+
+Mapper 必須由 caller 明確提供：
+
+    observed_at
+    as_of_date
+    BrokerInstrumentResolver
+
+禁止 hidden current date/time。
+
+Unknown：
+
+- direction。
+- account type。
+- broker contract code。
+- ambiguous canonical mapping。
+
+必須 explicit error。
+
+不得猜。
+
+### 29.11 Reconciliation Foundation
+
+本 Gap 只做 pairwise pure comparison。
+
+建立：
+
+    ReconciliationStatus
+    ReconciliationResult
+    compare_positions(...)
+
+Required statuses：
+
+    MATCH
+    INTERNAL_ONLY
+    BROKER_ONLY
+    CONTRACT_MISMATCH
+    DIRECTION_MISMATCH
+    QUANTITY_MISMATCH
+
+Expected：
+
+    trading.account.AccountPosition | None
+
+Actual：
+
+    BrokerPositionSnapshot | None
+
+Semantics：
+
+- expected=None + actual=None → MATCH。
+- expected!=None + actual=None → INTERNAL_ONLY。
+- expected=None + actual!=None → BROKER_ONLY。
+
+兩邊都有 position 時：
+
+先確認：
+
+    broker
+    account_ref
+    instrument_id
+
+相同。
+
+若上述 identity 不同：
+
+不是同一可比較 position pair。
+
+raise explicit comparison error。
+
+Comparison precedence：
+
+1. contract_id 不同 → CONTRACT_MISMATCH。
+2. direction 不同 → DIRECTION_MISMATCH。
+3. quantity 不同 → QUANTITY_MISMATCH。
+4. otherwise → MATCH。
+
+`ReconciliationResult` 至少保存：
+
+    status
+    expected
+    actual
+
+不得：
+
+- mutate expected。
+- mutate actual。
+- submit order。
+- repair broker state。
+- silent overwrite。
+
+多 position collection matching / startup policy：
+
+留給 GAP-RECON-001。
+
+### 29.12 Compatibility Boundary
+
+本 GAP 不修改既有：
+
+    backtest.account_position.AccountPosition
+
+public behavior。
+
+不要求 legacy AccountPosition 立即轉為 canonical AccountPosition。
+
+Compatibility acceptance：
+
+existing account/paper/backtest tests 必須保持 green。
+
+Canonical AccountPosition 將供新 account/reconciliation path 使用。
+
+Legacy migration 留 GAP-ARCH-001 / GAP-ARCH-002。
+
+### 29.13 Expected New Tests
+
+至少新增：
+
+    tests/unit/test_trading_account.py
+    tests/unit/test_reconciliation.py
+    tests/unit/test_sinopac_account_mapping.py
+
+並擴充：
+
+    tests/unit/test_broker_instrument_reference.py
+
+Required cases：
+
+- model normalization / validation。
+- native object extra rejection。
+- timezone-aware observed_at。
+- Decimal average price。
+- exact reverse broker contract mapping。
+- missing mapping。
+- ambiguous mapping。
+- Buy/LONG。
+- Sell/SHORT。
+- account identity mapping。
+- no PII/native object leakage。
+- MATCH。
+- INTERNAL_ONLY。
+- BROKER_ONLY。
+- CONTRACT_MISMATCH。
+- DIRECTION_MISMATCH。
+- QUANTITY_MISMATCH。
+- non-comparable identity explicit error。
+- no corrective behavior。
+
+### 29.14 Re-entry Precheck Scope
+
+Codex restart 不做 whole-repo re-analysis。
+
+預設只重新讀：
+
+    AGENTS.md
+    docs/work/ACTIVE.md
+    pyproject.toml
+    domain/broker_instruments.py
+    backtest/broker.py
+    backtest/account_position.py
+    backtest/shioaji_mapping.py
+
+以及直接相關 tests。
+
+只有發現 dependency conflict 才擴大讀取範圍。
+
+### 29.15 Architect / Codex Responsibility Freeze
+
+人工已決定：
+
+- package ownership。
+- account identity。
+- canonical models。
+- read-only port split。
+- operational time semantics。
+- numeric semantics。
+- Shioaji field mapping。
+- reverse contract resolution。
+- reconciliation precedence。
+- compatibility boundary。
+- migration boundary。
+- corrective execution prohibition。
+
+Codex 只需決定：
+
+- private helper implementation。
+- local code decomposition。
+- test fixture organization。
+- scope-internal implementation detail。
+
+如果 implementation 需要改變上述人工決策：
+
+STOP。
+
+回報 LEVEL 3 architecture conflict。
+
+不得自行重新設計。

@@ -13,13 +13,13 @@ Primary source of truth 與必讀順序：
 5. `docs/AI_HANDOFF.md`：架構決策與交接。
 6. `docs/DEVELOPMENT_LOG.md`：歷程與進度。
 
-Historical / supplemental documents：`docs/PROJECT_STATE.md`、`docs/DEVELOPMENT.md`、`docs/ROADMAP.md`、`docs/ARCHITECTURE.md`、`docs/BACKTEST_ENGINE.md`、`docs/DATA_ARCHITECTURE.md`。
+Historical / supplemental documents：`docs/PROJECT_STATE.md`、`docs/DEVELOPMENT.md`、`docs/BACKTEST_ENGINE.md`、`docs/DATA_ARCHITECTURE.md`。`docs/ARCHITECTURE.md` 與 `docs/ROADMAP.md` 為 authoritative documents，不得降級為 supplemental。
 
 不得刪除舊文件。若 legacy / supplemental 文件與 primary source 衝突，不得自行猜測；以 primary source 的已確認決策為準，登錄或更新 GAP-DOC-001。若為重大 architecture semantics conflict，升級為 LEVEL 3。
 
 ## 執行規則
 
-- 每個 Work Package：precheck → 修改 → targeted tests → full regression → `git diff --check` → scope validation → docs/GAP update → commit → push → verify。
+- 每個 Work Package：precheck → 修改 → targeted tests → full regression → `git diff --check` → scope validation → commit → push → verify → final report。若 ACTIVE 明確指定 deterministic docs closure 由人工處理，runtime executor 完成 runtime commit/push/report 後必須 STOP；CURRENT_STATE / CURRENT_WORK / GAP_REGISTER / DEVELOPMENT_LOG 由人工 closure。
 - 禁止 silent unrelated fix、silent architecture change、scope 外修改、rewrite history、force push。
 - 不得修改 `data/`，除非 Work Package 明確授權；不得提交本機資料、資料庫或 generated assets。
 - identifiers 使用 English；重要 comment、docstring、C# XML comment 與文件使用繁體中文，說明用途、責任、上游/資料來源、下游/使用者與非顯而易見商業規則。未來 PostgreSQL 重要 TABLE / COLUMN / FUNCTION 必須加入繁體中文 COMMENT。

@@ -28,6 +28,7 @@ One of：
 
 - AUTO_ALLOWED
 - REVIEW_REQUIRED
+- LEVEL_3A_BOUNDED
 - HUMAN_ONLY
 
 ---
@@ -62,7 +63,8 @@ One of：
 至少包含：
 
 - branch。
-- HEAD。
+- required architecture/runtime ancestor。
+- actual execution HEAD 由 precheck 取得，不用文件自我參照。
 - regression。
 - known warnings。
 - known untracked files。
@@ -91,6 +93,48 @@ One of：
 - expected vs actual。
 - business semantics。
 - broker semantics。
+
+---
+
+## 9A. Architect Design Freeze Gate
+
+Work Package 在變成 `READY_FOR_EXECUTION` 前，人工 architect 必須先固定與此次 capability 有關的：
+
+- canonical ownership。
+- public model / contract。
+- stable identity / key。
+- expected vs actual boundary。
+- state semantics。
+- dependency direction。
+- port / I/O boundary。
+- time / timezone semantics。
+- numeric / precision semantics。
+- error / ambiguity behavior。
+- broker mapping semantics。
+- persistence authority（若適用）。
+- compatibility / migration boundary。
+- package placement rule。
+- acceptance / test semantics。
+
+Codex 可以自行決定：
+
+- private helper。
+- local function decomposition。
+- fixture organization。
+- non-public implementation detail。
+
+Codex 不得自行決定新的：
+
+- business semantics。
+- broker semantics。
+- canonical ownership。
+- public API contract。
+- persistence authority。
+- security / live-money behavior。
+
+任何未被 Design Freeze 覆蓋、且會影響上述 public semantics 的問題：
+
+`HARD_BLOCK` 或 `REVIEW_AT_CHECKPOINT`。
 
 ---
 
@@ -281,8 +325,14 @@ PASS / FAIL。
 
 Level 3A：
 
-完成 current ACTIVE 後停止。
+完成 current ACTIVE runtime 後停止。
 
-允許更新 queue。
+是否更新 docs / queue：
+
+依 ACTIVE 的 responsibility split。
+
+若 ACTIVE 指定人工 closure：
+
+runtime executor 不更新下一個 ACTIVE，不開始下一個 mainline。
 
 不得自動開始下一個 mainline。
