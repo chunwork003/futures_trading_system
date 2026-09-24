@@ -2,12 +2,12 @@
 
 - Repository：`futures_trading_system`
 - Branch：`master`
-- HEAD：`fb4d9ab`
-- Current phase：M0-B — Architecture Boundary ADR
+- HEAD：`d668bf6`
+- Current phase：GAP-07 — Contract / Futures Specification
 - M0-A：COMPLETE
-- M0-B：Architecture decision accepted in principle；等待 documentation commit。
-- Latest completed：GAP-06 Position Sizing / Capital Allocation
-- Recorded regression baseline：611 passed
+- M0-B：COMPLETE；ADR-001 已 ACCEPTED 並完成 documentation commit。
+- Latest completed：GAP-07-A0 Canonical Symbol / Official Product Semantics Decision
+- Recorded regression baseline：628 passed（611 existing + 17 GAP-07-A tests）
 - V1 estimated progress：40–50%（以 Work Package acceptance criteria 評估，非 LOC 或檔案數）
 
 ## Existing Core
@@ -19,7 +19,7 @@
 
 ## Critical Missing
 
-- GAP-07 Contract / Futures Specification Pre-check。
+- GAP-07 Contract / Futures Specification 後續 slices；GAP-07-A 已實作，等待 review。
 - Broker Account / Position Sync、Reconciliation。
 - Trading Persistence、Restart Recovery、Incremental Feature / Market State。
 - Simulation fault model、Operational PostgreSQL、Application API、Web Workspace。
