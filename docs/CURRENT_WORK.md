@@ -2,18 +2,18 @@
 
 ## Current Work Package
 
-- ID：GAP-07-C — Canonical Trading Session Reference
+- ID：GAP-07-D — Canonical Margin Schedule and Effective-Date Resolver
 - Status：Implemented / review pending；尚未 commit。
-- Scope：broker-neutral `TradingSessionRef` 與 canonical session interval `[open, close)`。
-- Runtime impact：新增 domain reference，並將 `Session.contains()` close boundary 改為 exclusive；未改 Resolver / Normalizer trade-date logic。
+- Scope：broker-neutral `MarginScheduleEntry`、effective-date lookup、contract-specific precedence 與 duplicate ambiguity detection。
+- Runtime impact：新增獨立 domain model/resolver；未修改 RiskConfig、BacktestEngine、broker 或 database schema。
 
 ## Blockers
 
-無 GAP-07-C blocker。pytest 使用 repository-local `.tmp/`；完整 regression 通過。
+無 GAP-07-D blocker。pytest 使用 repository-local `.tmp/`；完整 regression 通過。
 
 ## Pending Decisions
 
-- GAP-07-D 之 effective-dated Margin Schedule exact model。
+- DuckDB margin schema refinement 與 future broker actual margin snapshot 仍待 approved slice。
 
 ## Confirmed V1 Decision
 
@@ -24,7 +24,7 @@
 
 ## Next Queue
 
-1. GAP-07-D — Margin Schedule。
+1. GAP-07-E — Backtest / Risk compatibility adapter。
 2. GAP-BROKER-001 — explicit OrderIntent / PositionEffect。
 3. Broker Account / Position Sync。
 4. GAP-08 — Trading State Persistence & Recovery。
@@ -36,4 +36,5 @@
 - GAP-07-A0：COMPLETE。
 - GAP-07-A：COMPLETE。
 - GAP-07-B：COMPLETE。
-- GAP-07-C：implemented / review pending。
+- GAP-07-C：COMPLETE。
+- GAP-07-D：implemented / review pending。

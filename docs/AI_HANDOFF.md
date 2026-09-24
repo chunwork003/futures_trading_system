@@ -4,7 +4,7 @@
 
 - Repository：`futures_trading_system`
 - Branch：`master`
-- HEAD：`efb5687`
+- HEAD：`31dccc5`
 - Source of truth：`CURRENT_STATE.md`、`CURRENT_WORK.md`、`GAP_REGISTER.md`、本文件。
 
 ## Current Architecture Summary
@@ -23,8 +23,9 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 
 - GAP-07-A — Canonical Instrument Specification：COMPLETE。
 - GAP-07-B — Canonical Contract Specification：COMPLETE。
-- GAP-07-C — Canonical Trading Session Reference：implemented / review pending。
-- Recorded regression baseline：670 passed（660 existing + 10 GAP-07-C tests）。
+- GAP-07-C — Canonical Trading Session Reference：COMPLETE。
+- GAP-07-D — Canonical Margin Schedule and Effective-Date Resolver：implemented / review pending。
+- Recorded regression baseline：701 passed（670 existing + 31 GAP-07-D tests）。
 - Codex full pytest 曾因 TEMP directory permission setup errors；不是已確認 assertion regression。
 
 ## Confirmed Decisions
@@ -42,6 +43,8 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 - `ContractSpec` 支援 monthly / quarterly / weekly / other listed series；continuous contract 維持獨立，broker contract code 仍由 adapter 負責。
 - `TradingSessionRef` 由 `domain` 擁有；effective-dated calendar/session rules 由 `trading_calendar` 擁有。Canonical session interval 為 `[open, close)`。
 - Full timezone-aware timestamp migration 延後並列入 GAP-07-TIME-001；Live 前必須完成。
+- Canonical margin 是 effective-dated reference；contract-specific 優先於 instrument-level。RiskConfig margin 保留為 explicit scenario/resolved override，未來流程為 explicit override，否則使用 `MarginScheduleResolver`。Broker actual margin snapshot 必須保持獨立。
+- Margin ordering 尚無跨市場充分依據，暫不建立 `clearing <= maintenance <= initial` canonical invariant。DuckDB schema refinement 屬 GAP-07-MARGIN-001 後續工作。
 
 ## Persistence and Reconciliation Direction
 
@@ -57,7 +60,7 @@ Live / money risk、broker ambiguity、reconciliation、recovery、core regressi
 
 ## Next Recommended Work
 
-GAP-07-C 已實作並等待 review。後續 runtime 修改只能依 approved Work Package 與 ADR-001 migration sequence 執行；下一建議工作為 GAP-07-D Margin Schedule。
+GAP-07-D 已實作並等待 review。後續 runtime 修改只能依 approved Work Package 與 ADR-001 migration sequence 執行；下一建議工作為 GAP-07-E Backtest / Risk compatibility adapter。
 
 ## Do Not Change
 
