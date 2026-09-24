@@ -6,7 +6,8 @@
 
 | ID | Added Date | Reason | Priority | Dependency | Status |
 |---|---|---|---|---|---|
-| GAP-07-A | 2026-09-24 | 建立 broker-neutral canonical Instrument Specification 與 legacy compatibility | P1 | GAP-07-A0, ADR-001 | Implemented / review pending |
+| GAP-07-B | 2026-09-24 | 建立 broker-neutral listed Contract Specification、series/lifecycle 與 legacy compatibility | P1 | GAP-07-A, ADR-001 | Implemented / review pending |
+| GAP-07-A | 2026-09-24 | 建立 broker-neutral canonical Instrument Specification 與 legacy compatibility | P1 | GAP-07-A0, ADR-001 | Complete |
 | GAP-07-A0 | 2026-09-24 | 確認 canonical symbol 與 V1 official product semantics | P1 | GAP-07 pre-check | Complete |
 | GAP-REPO-001 | 2026-09-24 | GitHub default branch `main`，開發使用 `master` | P2 | Governance decision | Open |
 | GAP-REPO-002 | 2026-09-24 | `data/` 為未追蹤本機資產，需可重現性與提交治理 | P1 | Data governance design | Open |
@@ -34,22 +35,23 @@
 | 4 | GAP-REPO-002 | Local data asset governance | Open |
 | 5 | GAP-ENV-001 | Codex pytest TEMP permission | Open |
 | 6 | GAP-07-A0 | Canonical symbol / official product semantics decision | Complete |
-| 7 | GAP-07-A | Canonical Instrument Specification | Implemented / review pending |
-| 8 | GAP-07 | Remaining Contract / Futures Specification slices | In progress |
-| 9 | GAP-ARCH-001 | Backtest / Trading / Broker package boundary | Open |
-| 10 | GAP-ARCH-002 | Canonical domain/backtest model boundary | Open |
-| 11 | GAP-ARCH-003 | Strategy package consolidation direction | Open |
-| 12 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | Open |
-| 13 | GAP-BROKER-002 | Broker capability matrix | Open |
-| 14 | GAP-ACCOUNT-001 | Broker Account / Position Sync | Pending |
-| 15 | GAP-08 | Trading State Persistence & Recovery | Pending |
-| 16 | GAP-PERSIST-001 | Decision Provenance | Open |
-| 17 | GAP-09 | Incremental Feature / Market State Engine | Pending |
-| 18 | GAP-SIM-001 | SimulationBroker / fault injection | Open |
-| 19 | GAP-LIVE-001 | LIVE_AUTO authorization / runtime safety | Open |
-| 20 | GAP-REVIEW-001 | Trading Review / audit interface | Open |
-| 21 | GAP-APP-001 | ASP.NET Core Application/API | Planned |
-| 22 | GAP-WEB-001 | React/TypeScript Workspace | Planned |
+| 7 | GAP-07-A | Canonical Instrument Specification | Complete |
+| 8 | GAP-07-B | Canonical Contract Specification | Implemented / review pending |
+| 9 | GAP-07 | Remaining Contract / Futures Specification slices | In progress |
+| 10 | GAP-ARCH-001 | Backtest / Trading / Broker package boundary | Open |
+| 11 | GAP-ARCH-002 | Canonical domain/backtest model boundary | Open |
+| 12 | GAP-ARCH-003 | Strategy package consolidation direction | Open |
+| 13 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | Open |
+| 14 | GAP-BROKER-002 | Broker capability matrix | Open |
+| 15 | GAP-ACCOUNT-001 | Broker Account / Position Sync | Pending |
+| 16 | GAP-08 | Trading State Persistence & Recovery | Pending |
+| 17 | GAP-PERSIST-001 | Decision Provenance | Open |
+| 18 | GAP-09 | Incremental Feature / Market State Engine | Pending |
+| 19 | GAP-SIM-001 | SimulationBroker / fault injection | Open |
+| 20 | GAP-LIVE-001 | LIVE_AUTO authorization / runtime safety | Open |
+| 21 | GAP-REVIEW-001 | Trading Review / audit interface | Open |
+| 22 | GAP-APP-001 | ASP.NET Core Application/API | Planned |
+| 23 | GAP-WEB-001 | React/TypeScript Workspace | Planned |
 
 ## Entry Rules
 

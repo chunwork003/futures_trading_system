@@ -4,7 +4,7 @@
 
 - Repository：`futures_trading_system`
 - Branch：`master`
-- HEAD：`d668bf6`
+- HEAD：`1ae1aa8`
 - Source of truth：`CURRENT_STATE.md`、`CURRENT_WORK.md`、`GAP_REGISTER.md`、本文件。
 
 ## Current Architecture Summary
@@ -21,8 +21,9 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 
 ## Current Milestone and Test Baseline
 
-- GAP-07-A — Canonical Instrument Specification：implemented / review pending；GAP-07-A0 已 COMPLETE。
-- Recorded regression baseline：628 passed（611 existing + 17 GAP-07-A tests）。
+- GAP-07-A — Canonical Instrument Specification：COMPLETE。
+- GAP-07-B — Canonical Contract Specification：implemented / review pending。
+- Recorded regression baseline：660 passed（632 existing + 28 GAP-07-B tests）。
 - Codex full pytest 曾因 TEMP directory permission setup errors；不是已確認 assertion regression。
 
 ## Confirmed Decisions
@@ -37,6 +38,7 @@ Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、p
 - Modes：BACKTEST、SIMULATED、BROKER_PAPER、LIVE_CONFIRM、LIVE_AUTO。LIVE_AUTO 真實金流另需 authorization gate。
 - ADR-001 已接受：canonical ownership、adapter dependency direction、compatibility strategy 與 migration sequence 已定義。
 - Canonical TAIFEX instrument symbol 為 TX / MTX / TMF；broker 與 dataset alias 使用獨立 mapping namespace，不屬於 canonical instrument identity。
+- `ContractSpec` 支援 monthly / quarterly / weekly / other listed series；continuous contract 維持獨立，broker contract code 仍由 adapter 負責。
 
 ## Persistence and Reconciliation Direction
 
@@ -52,7 +54,7 @@ Live / money risk、broker ambiguity、reconciliation、recovery、core regressi
 
 ## Next Recommended Work
 
-GAP-07-A 已實作並等待 review。後續 runtime 修改只能依 approved Work Package 與 ADR-001 migration sequence 執行；下一建議工作為 GAP-07-B Canonical Contract Specification。
+GAP-07-B 已實作並等待 review。後續 runtime 修改只能依 approved Work Package 與 ADR-001 migration sequence 執行；下一建議工作為 GAP-07-C Trading Session / Calendar Reference。
 
 ## Do Not Change
 
