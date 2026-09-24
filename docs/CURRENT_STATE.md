@@ -1,34 +1,247 @@
 # Current State
 
-- Repository：`futures_trading_system`
-- Branch：`master`
-- HEAD：`3c4ed81`
-- Current phase：Post GAP-07 — Broker Account / Position Sync + Reconciliation
-- M0-A：COMPLETE
-- M0-B：COMPLETE；ADR-001 已 ACCEPTED 並完成 documentation commit。
-- Latest completed：GAP-07 Contract / Futures Specification — CLOSED
-- Recorded regression baseline：745 passed（737 existing + 8 GAP-07-E3 tests）
-- V1 estimated progress：40–50%（以 Work Package acceptance criteria 評估，非 LOC 或檔案數）
+## Repository Baseline
 
-## Existing Core
+Repository：
 
-- Backtest Core、LONG / SHORT、SL / TP、Execution Lifecycle。
-- Partial Fill / Partial Exit、Paper Trading。
-- Multi-Strategy Decision、Target Account Position、Global Risk。
-- Position Sizing、Capital Position Management、Shioaji Adapter foundation。
+`futures_trading_system`
 
-## Critical Missing
+Branch：
 
-- Broker Account / Position Sync、Reconciliation。
-- Trading Persistence、Restart Recovery、Incremental Feature / Market State。
-- Simulation fault model、Operational PostgreSQL、Application API、Web Workspace。
-- LIVE_AUTO control / recovery。
+`master`
 
-GAP-07 deferred follow-ups 不阻塞 closure：timezone-aware inbound boundary、session rule duplication、expiry-day consolidation、DuckDB margin refinement、broker actual margin snapshot、continuous roll、legacy `Order.contract` migration 與 broker capability matrix。細節以 `GAP_REGISTER.md` 為準。
+Committed HEAD：
 
-## Known Non-blocking
+`87ff47b6050e519d2496d2f319bc66755870e158`
 
-- Codex pytest TEMP permission：`C:\Users\CHUNs\AppData\Local\Temp\pytest-of-CHUNs` 曾出現 `PermissionError`。
-- `data/` governance、docs drift、GitHub default branch `main` 與 development branch `master` 不一致、repository public。
+Latest commit：
 
-細節與順序以 `GAP_REGISTER.md`、`CURRENT_WORK.md` 為準。
+`docs(project): close gap-07 contract specification`
+
+Recorded full regression：
+
+745 passed
+
+Known warning：
+
+1 PytestCacheWarning / GAP-ENV-001。
+
+Known local untracked：
+
+`data/`
+
+`data/` 不得自動 stage。
+
+---
+
+## Current Phase
+
+GAP-07：
+
+CLOSED。
+
+Current mainline：
+
+Broker Account / Position Sync Foundation
+
+then：
+
+Explicit OrderIntent / PositionEffect + Reconciliation。
+
+---
+
+## Existing Major Foundation
+
+已完成或高度成熟：
+
+- historical ingestion。
+- validation / cleaning。
+- bar aggregation。
+- Parquet / DuckDB analytical layer。
+- trading calendar foundation。
+- batch features。
+- strategy framework。
+- deterministic backtest。
+- LONG / SHORT。
+- SL / TP。
+- commission / slippage。
+- analysis / optimization。
+- OOS / WFO。
+- Monte Carlo。
+- paper trading。
+- async order lifecycle。
+- partial entry / exit。
+- strategy virtual positions。
+- conflict resolution。
+- TargetAccountPosition。
+- attribution / netting。
+- direction-change wait-for-flat。
+- portfolio risk。
+- position sizing。
+- capital management。
+- Shioaji adapter foundation。
+- InstrumentSpec。
+- ContractSpec。
+- TradingSessionRef。
+- MarginSchedule。
+- BrokerInstrumentReference。
+- actual canonical multiplier consumer。
+- actual canonical margin consumer。
+
+---
+
+## Critical Missing V1
+
+主要剩餘：
+
+- BrokerAccount。
+- BrokerPositionSnapshot。
+- complete AccountPosition semantics。
+- Reconciliation。
+- OrderIntent / PositionEffect。
+- capability matrix。
+- operational PostgreSQL。
+- trading persistence。
+- restart recovery。
+- decision/risk provenance。
+- incremental feature state。
+- SimulationBroker。
+- LIVE authorization / safety。
+- Python service API。
+- ASP.NET Core Application。
+- React Workspace。
+- operational review / audit。
+
+---
+
+## Progress
+
+Total V1 capability blocks：
+
+92。
+
+Provisional weighted V1 completion：
+
+45–52%。
+
+Center estimate：
+
+約 49%。
+
+Confidence：
+
+Medium-Low。
+
+原因：
+
+Research/backtest/trading foundation 已成熟，但 remaining persistence/recovery/application/web/live safety engineering weight 很大。
+
+下一次重新估算：
+
+Broker Account / Position Sync + Reconciliation foundation 完成後。
+
+---
+
+## Automation Status
+
+### Level 1
+
+Manual Work Package relay。
+
+Validated。
+
+### Level 2
+
+Bounded autonomous bundle。
+
+Validated by GAP-07-CLOSE。
+
+### Level 3A
+
+Repository queue + ACTIVE full Work Package。
+
+Documentation scaffold being established。
+
+尚未 runtime validated。
+
+### Level 3B
+
+Continuous autonomous queue execution。
+
+Not enabled。
+
+---
+
+## Automation Efficiency Observation
+
+### GAP-07-CLOSE
+
+User-observed 5HR-window usage：
+
+約 4–5%。
+
+成果：
+
+- margin runtime integration。
+- targeted tests。
+- full regression。
+- runtime commit。
+- GAP final acceptance。
+- closure commit。
+
+### Initial AUTO-001 Codex attempt
+
+User-observed 5HR-window usage：
+
+約 8%。
+
+成果：
+
+- docs-only partial changes。
+- quota exhausted before completion。
+
+結論：
+
+Codex quota 優先：
+
+- runtime implementation。
+- tests。
+- debugging。
+- integration。
+- broker/reconciliation/persistence semantics。
+
+Deterministic documentation rewrite 優先：
+
+- PowerShell/manual/script。
+
+此 observation 不可線性推算 quota capacity。
+
+---
+
+## Live State
+
+Real-money LIVE_AUTO：
+
+NOT AUTHORIZED。
+
+原因：
+
+Account Sync、Reconciliation、OrderIntent、Persistence、Recovery、Live Safety 尚未完成。
+
+---
+
+## Current Active Work
+
+詳見：
+
+`docs/work/ACTIVE.md`
+
+Current candidate：
+
+GAP-ACCOUNT-001 Broker Account / Position Sync Foundation。
+
+Status：
+
+READY_FOR_ARCHITECT_REVIEW。
+
+尚未授權 Codex 開始 runtime implementation。

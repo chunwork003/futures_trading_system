@@ -1,4 +1,21 @@
-﻿# Development Guide
+<!-- AUTHORITATIVE-DOC-NOTICE -->
+
+> **Documentation Status**
+>
+> 本文件是 Supplemental Development Command Reference。
+> 部分 baseline commit、test count 或流程描述可能已過期。
+>
+> Current governance：
+>
+> - `AGENTS.md`
+> - `docs/CURRENT_STATE.md`
+> - `docs/CURRENT_WORK.md`
+> - `docs/work/ACTIVE.md`
+>
+> 若衝突，以 authoritative 文件為準。
+
+---
+# Development Guide
 
 ## Environment
 

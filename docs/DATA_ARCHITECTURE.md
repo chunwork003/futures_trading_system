@@ -1,4 +1,22 @@
-﻿# Data Architecture
+<!-- AUTHORITATIVE-DOC-NOTICE -->
+
+> **Documentation Status**
+>
+> 本文件是 Supplemental Data-Layer Notes。
+> 它保留 Parquet、DuckDB、trading calendar 與 historical data 設計背景。
+>
+> 完整 V1 system architecture：
+>
+> - `docs/ARCHITECTURE.md`
+>
+> Current capability status：
+>
+> - `docs/V1_CAPABILITY_MAP.md`
+>
+> 若責任邊界或 current status 衝突，以 authoritative 文件為準。
+
+---
+# Data Architecture
 
 ## Storage Strategy
 

@@ -1,3 +1,21 @@
+<!-- AUTHORITATIVE-DOC-NOTICE -->
+
+> **Documentation Status**
+>
+> 本文件是 Historical Project Snapshot。
+> 其中 HEAD、test count、GAP 狀態與 current phase 可能已過期。
+>
+> Current source of truth：
+>
+> - `docs/CURRENT_STATE.md`
+> - `docs/CURRENT_WORK.md`
+> - `docs/V1_CAPABILITY_MAP.md`
+> - `docs/ARCHITECTURE.md`
+> - `docs/GAP_REGISTER.md`
+>
+> 本文件不得覆蓋 authoritative current state。
+
+---
 # Project State
 
 ## Current Phase

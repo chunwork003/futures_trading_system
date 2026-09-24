@@ -1,143 +1,318 @@
-﻿# Project Roadmap
+# V1 Roadmap
 
-## Phase 1 — Backtest Core
+## Status
 
-### P1-01 EMA + Signal
-Status: COMPLETE
+AUTHORITATIVE MILESTONE ROADMAP
 
-完成：
+詳細 capability：
 
-- EMA
-- Signal model
-- Signal generation
+`V1_CAPABILITY_MAP.md`
 
-### P1-02 Strategy
-Status: COMPLETE
+Technical issues：
 
-完成：
+`GAP_REGISTER.md`
 
-- Strategy abstraction
-- Strategy execution flow
+Current execution queue：
 
-### P1-03 Portfolio
-Status: COMPLETE
-
-完成：
-
-- Portfolio module
-- Initial capital
-- Realized PnL
-- Unrealized PnL
-- Commission
-- Equity
-- Long / Short accounting
-
-### P1-04-A Backtest Foundation
-Status: COMPLETE
-
-### P1-04-B Execution / Position Integration
-Status: COMPLETE
-
-完成：
-
-- ExecutionEngine
-- CostCalculator
-- PositionManager
-- SL / TP
-- Next-bar execution
-
-### P1-04-C Portfolio Integration
-Status: COMPLETE
-
-完成：
-
-- BacktestEngine integrated with Portfolio
-- Actual fill price used for accounting
-- Trade PnL and Portfolio PnL consistency
-
-### P1-04-D Determinism / Regression
-Status: COMPLETE
-
-完成：
-
-- Same Engine repeated run
-- Different Engine instances
-- Trade field determinism
-- Portfolio state determinism
-- Input-change regression test
-
-Current test count:
-
-118 passed
+`CURRENT_WORK.md`
 
 ---
 
-# P1-05 Equity + Performance Metrics
+# M0 — Governance / Architecture
 
-Status: NEXT
+Status：
 
-Planned:
+CLOSED
 
-1. Equity curve
-2. Drawdown
-3. Peak equity
-4. Maximum drawdown
-5. Return
-6. Win rate
-7. Average win
-8. Average loss
-9. Profit factor
-10. Expectancy
-11. Sharpe ratio
-12. Trade statistics
+Completed：
 
-P1-05 must be based on existing Trade / Portfolio results and should not modify the established execution semantics.
+- governance。
+- authoritative docs。
+- ADR-001。
+- Work Package quality gate。
+- issue classification。
 
 ---
 
-# P1-06 Integration
+# M1 — Historical Data / Research Foundation
 
-Planned:
+Status：
 
-- End-to-end data → strategy → backtest flow
-- Integration tests
-- Representative dataset
+MOSTLY COMPLETE
 
-# P1-07 Regression
+Completed foundation：
 
-Planned:
+- ingestion。
+- validation。
+- cleaning。
+- aggregation。
+- Parquet。
+- DuckDB。
+- trading calendar。
+- features。
+- strategy。
+- backtest。
+- analysis。
+- optimization。
+- OOS。
+- WFO。
+- Monte Carlo。
 
-- Full regression suite
-- Edge cases
-- Deterministic baseline
-- Performance regression
+Remaining：
+
+- local data governance。
+- continuous roll completeness。
+- final Return/Sharpe validation。
 
 ---
 
-# Later Phases
+# M2 — Trading Core Foundation
 
-## Research
+Status：
 
-- Strategy comparison
-- Parameter analysis
-- Market regime analysis
-- MAE / MFE analysis
-- R-multiple analysis
+MOSTLY COMPLETE
 
-## Validation
+Completed：
 
-- Walk-Forward
-- Out-of-Sample
-- Monte Carlo
-- Parameter stability
+- execution lifecycle。
+- partial fills。
+- LONG/SHORT。
+- paper trading。
+- multi-strategy decision。
+- target position。
+- global risk。
+- position sizing。
+- capital management。
+- Shioaji adapter foundation。
 
-## Production
+---
 
-- Real-time data
-- Order management
-- Broker integration
-- Position synchronization
-- Risk management
-- Live monitoring
+# M3 — Canonical Futures Specification
 
-Production/live trading must not be implemented before the research and backtest layers are sufficiently validated.
+ID：
+
+GAP-07
+
+Status：
+
+CLOSED
+
+Completed：
+
+- InstrumentSpec。
+- ContractSpec。
+- TradingSessionRef。
+- MarginSchedule。
+- specification resolution。
+- BrokerInstrumentReference。
+- actual multiplier consumer。
+- actual margin consumer。
+
+---
+
+# M4 — Broker Account / Position Sync Foundation
+
+Status：
+
+NEXT
+
+Main scope：
+
+- BrokerAccount。
+- BrokerPositionSnapshot。
+- internal AccountPosition boundary。
+- account/position read port。
+- Shioaji fake mapping tests。
+- pure expected/actual mismatch detection。
+
+Safety：
+
+此階段只允許 read-only sync foundation。
+
+不得 automatic corrective broker order。
+
+---
+
+# M5 — Explicit Execution Semantics + Reconciliation
+
+Status：
+
+PENDING
+
+GAP-BROKER-001：
+
+- OrderIntent。
+- PositionEffect。
+- OPEN/CLOSE/REDUCE semantics。
+- 移除 ID prefix 推定 New/Cover。
+
+Reconciliation：
+
+- ReconciliationResult。
+- mismatch policies。
+- startup readiness。
+- strict/manual handling。
+
+GAP-BROKER-002：
+
+- broker capability matrix。
+- verified semantics。
+- mapping persistence follow-up。
+
+---
+
+# M6 — Persistence / Recovery / Provenance
+
+Status：
+
+PENDING
+
+GAP-08：
+
+- PostgreSQL operational SOR。
+- Order persistence。
+- Fill persistence。
+- OrderEvent persistence。
+- Position/account snapshots。
+- strategy state。
+- event history。
+- idempotency。
+- restart recovery。
+- broker reconciliation after restart。
+
+GAP-PERSIST-001：
+
+- DecisionContext。
+- RiskDecision。
+- correlation/causation。
+- audit trace。
+
+---
+
+# M7 — Incremental Feature / Market State
+
+ID：
+
+GAP-09
+
+Status：
+
+PENDING
+
+- incremental feature state。
+- paper/live market state。
+- no full-history recalculation per bar。
+- deterministic reconstruction。
+
+---
+
+# M8 — Simulation / Live Safety
+
+Status：
+
+PENDING
+
+- SimulationBroker。
+- latency。
+- partial fill。
+- rejection。
+- disconnect。
+- stale state。
+- execution modes。
+- authorization。
+- runtime risk。
+- manual override。
+- force-flat。
+- kill switch。
+- verification matrix。
+
+---
+
+# M9 — Python Service Boundary
+
+Status：
+
+PENDING
+
+- versioned REST/JSON。
+- wire DTO。
+- research/backtest API。
+- account/trading API。
+- stable IDs。
+- versioned payloads。
+
+---
+
+# M10 — ASP.NET Core Application
+
+Status：
+
+PENDING
+
+- Api。
+- Application。
+- Contracts。
+- Infrastructure。
+- Realtime。
+- authentication。
+- authorization。
+- workflows。
+- approval gates。
+- configuration。
+
+---
+
+# M11 — React Workspace
+
+Status：
+
+PENDING
+
+- shell。
+- research/backtest。
+- strategy/configuration。
+- account/orders/positions。
+- risk/live control。
+- review/audit。
+- system status。
+
+---
+
+# M12 — Full V1 Integration / Readiness
+
+Status：
+
+PENDING
+
+Required：
+
+- end-to-end workflow。
+- restart recovery drill。
+- broker disconnect drill。
+- reconciliation mismatch drill。
+- backup/restore drill。
+- security review。
+- operational observability。
+- simulation verification。
+- Shioaji connectivity verification。
+- complete full regression。
+
+LIVE_AUTO real money：
+
+仍需獨立 production authorization。
+
+---
+
+# Current Progress
+
+Provisional weighted V1 completion：
+
+45–52%。
+
+Center：
+
+約 49%。
+
+下一次正式 re-estimate：
+
+M4 Broker Account / Position Sync + Reconciliation foundation 完成後。

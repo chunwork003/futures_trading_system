@@ -1,81 +1,691 @@
 # AI Handoff
 
-## Repository
+## 1. Repository Baseline
 
-- Repository：`futures_trading_system`
-- Branch：`master`
-- HEAD：`3c4ed81`
-- Source of truth：`CURRENT_STATE.md`、`CURRENT_WORK.md`、`GAP_REGISTER.md`、本文件。
+Repository：
 
-## Current Architecture Summary
+`futures_trading_system`
 
-Python = Quant / Data / Research / ML / AI engine。未來 C# / ASP.NET Core = Application / Server / Workflow / API / Realtime；React + TypeScript = main investment workspace。PostgreSQL + PostGIS = operational system of record / GIS；Parquet = 大型歷史與分析資料；DuckDB + Polars = 本機研究層。
+Development branch：
 
-Broker 必須保持 neutral。第一個 broker 是 Sinopac Shioaji；目前 futures-first，但不得阻塞 equity、ETF、其他資產或 property。
+`master`
 
-概念流程：`Market Data → Feature → Strategy → Strategy Intent → Multi-Strategy Decision Layer → Target Account Position → Risk → Order / OMS → Broker`。
+Architecture baseline：
 
-## Completed Capabilities
+`87ff47b6050e519d2496d2f319bc66755870e158`
 
-Backtest core、LONG/SHORT、SL/TP、execution lifecycle、partial fill/exit、paper trading、multi-strategy decision、target account position、global risk、position sizing、capital position management、Shioaji adapter foundation。
+Recorded full regression：
 
-## Current Milestone and Test Baseline
+`745 passed`
 
-- GAP-07-A — Canonical Instrument Specification：COMPLETE。
-- GAP-07-B — Canonical Contract Specification：COMPLETE。
-- GAP-07-C — Canonical Trading Session Reference：COMPLETE。
-- GAP-07-D — Canonical Margin Schedule and Effective-Date Resolver：COMPLETE。
-- GAP-07-E — Backtest / Risk Compatibility Resolution：COMPLETE。
-- GAP-07-F — BrokerInstrumentReference / Broker Mapping Contract：COMPLETE。
-- GAP-07-E2 — Actual Backtest / Risk Consumer Integration：COMPLETE。
-- GAP-07-E3 — Canonical Margin Actual Consumer Wiring：COMPLETE。
-- GAP-07 — Contract / Futures Specification：CLOSED。
-- Recorded regression baseline：745 passed（737 existing + 8 GAP-07-E3 tests）。
-- Codex full pytest 曾因 TEMP directory permission setup errors；不是已確認 assertion regression。
+Known local untracked：
 
-## Confirmed Decisions
+`data/`
 
-- `Strategy Position != Target Account Position != Account Position != Broker Actual Position`。
-- Strategy 是邏輯意圖；Broker Position Controller 是實體帳戶控制，不可混同。
-- 方向變更：`EXIT → confirm FLAT → re-evaluate → ENTER opposite side`；不得 silent direct reversal。
-- 所有 material action 可追溯：`Signal → Decision → Risk → Order → Fill → Position → Trade → Review`。Expected 與 Actual 必須分離。
-- DecisionContext 應支援 strategy/config/feature versions、market state、indicators、expected/actual price、fees、risk decision、strategy influence、correlation/causation IDs。
-- `StrategyDefinition != StrategyInstance`；config 必須版本化，持倉期間不得 silent parameter mutation，預設在安全 boundary 生效。
-- `LogicalAccount != BrokerAccount`；一個 broker account 可服務多個 logical account / capital bucket。V1 使用 manual capital；cross-strategy capital borrowing 預設 OFF。
-- Modes：BACKTEST、SIMULATED、BROKER_PAPER、LIVE_CONFIRM、LIVE_AUTO。LIVE_AUTO 真實金流另需 authorization gate。
-- ADR-001 已接受：canonical ownership、adapter dependency direction、compatibility strategy 與 migration sequence 已定義。
-- Canonical TAIFEX instrument symbol 為 TX / MTX / TMF；broker 與 dataset alias 使用獨立 mapping namespace，不屬於 canonical instrument identity。
-- `ContractSpec` 支援 monthly / quarterly / weekly / other listed series；continuous contract 維持獨立，broker contract code 仍由 adapter 負責。
-- `TradingSessionRef` 由 `domain` 擁有；effective-dated calendar/session rules 由 `trading_calendar` 擁有。Canonical session interval 為 `[open, close)`。
-- Full timezone-aware timestamp migration 延後並列入 GAP-07-TIME-001；Live 前必須完成。
-- Canonical margin 是 effective-dated reference；contract-specific 優先於 instrument-level。RiskConfig margin 保留為 explicit scenario/resolved override，未來流程為 explicit override，否則使用 `MarginScheduleResolver`。Broker actual margin snapshot 必須保持獨立。
-- Backtest compatibility precedence 為 explicit override → canonical resolution；缺值不得 silent default。No-margin 必須明確選擇。Legacy `BacktestConfig.multiplier=200` 保留既有相容性，但不是 canonical truth。
-- GAP-07-E2 已將 multiplier resolution 接入 `BacktestEngine.from_instrument_spec()`；resolved value 於 initialization 形成單一 run-time config，供既有 calculation consumers 使用。Legacy constructor 仍走原 config path，source 標記為 `LEGACY_CONFIG`。
-- GAP-07-E3 已將 margin resolution 接入 `BacktestEngine.from_specifications()` 與 `PortfolioRiskManager`。`as_of_date` 必須由 caller 明確傳入；precedence 為 explicit `RiskConfig` → canonical schedule → explicit no-margin mode → error。
-- Canonical Instrument / Contract identity、broker product code、broker contract code 與 native broker object 必須分離。`BrokerInstrumentReference` 是 broker-neutral mapping；Shioaji native lookup 與 object lifecycle 仍由 adapter boundary 負責。
-- Margin ordering 尚無跨市場充分依據，暫不建立 `clearing <= maintenance <= initial` canonical invariant。DuckDB schema refinement 屬 GAP-07-MARGIN-001 後續工作。
+`data/` 不得自動 stage。
 
-## Persistence and Reconciliation Direction
+---
 
-Trading State 必須持久化 order、fill、position、strategy state、account/equity、event history，並支援 restart recovery 與 broker reconciliation。broker actual state 與 internal state 不一致時必須明確呈現；不得猜測。
+## 2. Default Agent Reading
 
-## Known Risks / Open GAPs
+Runtime Work Package 預設只讀：
 
-優先參照 `GAP_REGISTER.md`：GAP-ARCH-001/002/003、GAP-BROKER-001/002、GAP-ACCOUNT-001、GAP-08、GAP-PERSIST-001、GAP-09、GAP-LIVE-001。GAP-07 已 CLOSED；TIME/SESSION/MARGIN deferred follow-ups 保留於既有 GAP。另有 data governance、documentation drift、default branch 與 pytest TEMP environment 問題。
+1. `AGENTS.md`
+2. `docs/work/ACTIVE.md`
 
-## Blocking Issues
+ACTIVE 明確要求時，再讀：
 
-Live / money risk、broker ambiguity、reconciliation、recovery、core regression、secrets/security 與 business logic 猜測均為 LEVEL 3 blocker：停止該 Work Package；互不依賴工作可繼續。
+- `docs/CURRENT_STATE.md`
+- `docs/CURRENT_WORK.md`
+- `docs/V1_CAPABILITY_MAP.md`
+- `docs/ARCHITECTURE.md`
+- `docs/GAP_REGISTER.md`
+- `docs/adr/ADR-001-TRADING-CORE-BOUNDARIES.md`
+- 指定 runtime source files
 
-## Next Recommended Work
+禁止每次 whole-repo / whole-documentation rescan。
 
-GAP-07 已 CLOSED。下一 mainline 為 Broker Account / Position Sync + Reconciliation；尚未開始。Legacy `Order.contract` migration 仍依 GAP-BROKER-001，其他 deferred follow-ups 不得重新開啟 GAP-07，除非發現已完成範圍的 correctness defect。
+---
 
-## Do Not Change
+## 3. Product Architecture
 
-- 不得未經 Work Package 授權修改 runtime、tests、database 或 `data/`。
-- 不得 silent unrelated fix、改寫 Git history、force push 或假設 trading / broker semantics。
-- Day-7 是 Dynamic Sprint；不可為趕期限跳過測試、保留已知重大缺陷、以 fake data 冒充驗證或降低驗收標準。
-- 超過 7 天需建立 Delay Review：原因、V1 影響、Post-V1 可否延後、scope creep、過度優化、拆分與模型選擇。
+Python：
 
-每個 major milestone 必須更新本文件一次。
+Quant / Data / Research / Feature / Strategy / Backtest / Optimization / Simulation / Trading Core。
+
+ASP.NET Core：
+
+Application / Workflow / Authorization / Operational API / Realtime / Broker orchestration。
+
+React + TypeScript：
+
+Main investment workspace。
+
+PostgreSQL + PostGIS：
+
+Operational System of Record / GIS extension。
+
+Parquet：
+
+Historical / feature / analytical data。
+
+DuckDB + Polars：
+
+Local research / analytical layer。
+
+First broker：
+
+Sinopac Shioaji。
+
+Architecture 必須 broker-neutral，且不得阻塞未來 equity、ETF、其他 broker、其他 asset class。
+
+---
+
+## 4. Authoritative Trading Flow
+
+    Market Data
+    → Feature / Market State
+    → Strategy
+    → Strategy Intent
+    → Multi-Strategy Decision
+    → TargetAccountPosition
+    → Risk
+    → Order / OMS
+    → Broker
+    → Fill
+    → AccountPosition
+    → Reconciliation
+    → Persistence
+    → Review
+
+---
+
+## 5. Position Identity Invariant
+
+固定：
+
+    StrategyPosition
+    != TargetAccountPosition
+    != AccountPosition
+    != BrokerPositionSnapshot
+
+StrategyPosition：
+
+個別 strategy logical position。
+
+TargetAccountPosition：
+
+Decision Layer 產生的 physical account target。
+
+AccountPosition：
+
+internal expected physical position。
+
+BrokerPositionSnapshot：
+
+broker actual observation。
+
+Broker actual state 不得 silent overwrite internal expected state。
+
+---
+
+## 6. Direction Change
+
+固定：
+
+    EXIT
+    → confirm FLAT
+    → re-evaluate
+    → ENTER opposite side
+
+禁止 silent direct reversal。
+
+---
+
+## 7. Strategy Architecture
+
+固定：
+
+    StrategyDefinition != StrategyInstance
+
+StrategyDefinition：
+
+algorithm identity / factory / version。
+
+StrategyInstance：
+
+definition + versioned configuration + instrument/timeframe scope。
+
+持倉期間不得 silent mutate strategy parameters。
+
+Configuration change 預設於 safe boundary 生效。
+
+---
+
+## 8. Multi-Strategy Decision
+
+Strategies 維護 independent logical positions。
+
+Multi-Strategy Decision Layer 統合 intents。
+
+Final account actions：
+
+- HOLD。
+- ADD。
+- REDUCE。
+- EXIT。
+- ENTER。
+
+Strategy 不直接決定 broker physical position。
+
+---
+
+## 9. Account Architecture
+
+固定：
+
+    LogicalAccount != BrokerAccount
+
+LogicalAccount：
+
+internal capital bucket / strategy allocation。
+
+BrokerAccount：
+
+physical broker identity/reference。
+
+一個 BrokerAccount 可服務多個 LogicalAccount。
+
+V1：
+
+- CapitalSource = MANUAL。
+- Cross-strategy capital borrowing = OFF by default。
+
+---
+
+## 10. Trading Modes
+
+- BACKTEST。
+- SIMULATED。
+- BROKER_PAPER。
+- LIVE_CONFIRM。
+- LIVE_AUTO。
+
+Market environment 與 execution environment 分離。
+
+LIVE_AUTO：
+
+default disabled。
+
+---
+
+## 11. Canonical Instrument / Contract
+
+Canonical futures symbols：
+
+- TX。
+- MTX。
+- TMF。
+
+Canonical symbol 不得等同：
+
+- dataset alias。
+- broker product code。
+- broker contract code。
+- continuous contract symbol。
+
+Instrument / Contract canonical ownership：
+
+`domain/`
+
+Broker native identity：
+
+adapter-owned。
+
+---
+
+## 12. GAP-07 Result
+
+GAP-07：
+
+CLOSED。
+
+Completed：
+
+- InstrumentSpec。
+- ContractSpec。
+- TradingSessionRef。
+- MarginScheduleEntry。
+- MarginScheduleResolver。
+- Backtest/Risk specification resolution。
+- BrokerInstrumentReference。
+- actual multiplier consumer。
+- actual margin consumer。
+
+Margin precedence：
+
+    explicit RiskConfig
+    → canonical MarginSchedule
+    → explicit no-margin
+    → error
+
+Missing canonical margin 不得 silent convert to zero。
+
+Effective-date resolution 必須明確提供 as_of_date。
+
+---
+
+## 13. Time / Session
+
+Canonical interval：
+
+    [open, close)
+
+Deferred：
+
+- GAP-07-TIME-001。
+- GAP-07-SESSION-001。
+- GAP-07-SESSION-EXPIRY。
+
+Operational timestamps：
+
+timezone-aware。
+
+Persistence：
+
+PostgreSQL TIMESTAMPTZ。
+
+Exchange/session interpretation：
+
+Asia/Taipei。
+
+---
+
+## 14. Broker Boundary
+
+Canonical identity 不等同 broker code。
+
+BrokerInstrumentReference：
+
+broker-neutral mapping。
+
+Shioaji native contract / account / position objects：
+
+adapter-only。
+
+Core 不得保存 `sj.*` object。
+
+---
+
+## 15. Broker Safety Gap
+
+Current ShioajiBroker still derives New/Cover from：
+
+    order_id.startswith("ENTRY-")
+
+GAP-BROKER-001 必須建立：
+
+- OrderIntent。
+- PositionEffect。
+
+之後移除 prefix inference。
+
+任何 automatic corrective broker execution 不得在此 GAP 前完成。
+
+---
+
+## 16. Account Sync Sequencing
+
+下一 mainline：
+
+GAP-ACCOUNT-001。
+
+允許先建立 read-only：
+
+- BrokerAccount。
+- BrokerPositionSnapshot。
+- account query capability。
+- position query capability。
+- expected/actual mismatch detection。
+
+不允許：
+
+- corrective broker order。
+- automatic broker repair。
+- automatic position close/open。
+
+Corrective action 必須等 GAP-BROKER-001。
+
+---
+
+## 17. Reconciliation
+
+Target inputs：
+
+- internal expected state。
+- persisted expected state。
+- broker actual observation。
+
+Target outputs：
+
+- MATCH。
+- INTERNAL_ONLY。
+- BROKER_ONLY。
+- DIRECTION_MISMATCH。
+- QUANTITY_MISMATCH。
+- CONTRACT_MISMATCH。
+- UNKNOWN_EXTERNAL_STATE。
+
+Policies：
+
+- STRICT_HALT。
+- BROKER_AUTHORITATIVE。
+- INTERNAL_AUTHORITATIVE。
+- MANUAL_REVIEW。
+
+V1 startup 預設偏向：
+
+STRICT_HALT / MANUAL_REVIEW。
+
+禁止 silent overwrite。
+
+---
+
+## 18. Persistence Direction
+
+Future operational SOR：
+
+PostgreSQL。
+
+至少保存：
+
+- TradingSession。
+- TradingDecision。
+- DecisionContext。
+- RiskDecision。
+- Order。
+- OrderEvent。
+- Fill。
+- AccountPositionSnapshot。
+- BrokerPositionSnapshot。
+- StrategyStateSnapshot。
+- TradeRecord。
+- ReconciliationCase。
+- ManualOverride。
+- Authorization。
+
+Execution authority：
+
+Order / OrderEvent / Fill。
+
+Position：
+
+state projection。
+
+TradeRecord：
+
+completed economic/accounting/review representation。
+
+Recovery 不得只依賴 TradeRecord。
+
+---
+
+## 19. Decision Provenance
+
+Material action：
+
+    Signal
+    → Decision
+    → Risk
+    → Order
+    → Fill
+    → Position
+    → Trade
+    → Review
+
+Future identifiers：
+
+- signal_id。
+- decision_id。
+- order_id。
+- broker_order_id。
+- fill_id。
+- trade_id。
+- strategy_id。
+- strategy_instance_id。
+- logical_account_id。
+- broker_account_id。
+- correlation_id。
+- causation_id。
+- idempotency_key。
+
+DecisionContext 可包含：
+
+- strategy version。
+- config version。
+- git commit。
+- feature version。
+- market regime。
+- indicator values。
+- competing signals。
+- target position。
+- risk outcome。
+- expected/actual execution data。
+- future ML/news reference。
+
+---
+
+## 20. Recovery Direction
+
+    load persisted state
+    → query broker actual
+    → reconcile
+    → reconstruct strategy state
+    → validate
+    → READY
+
+Mismatch：
+
+依 policy halt / review / explicit recovery。
+
+禁止 silent overwrite。
+
+---
+
+## 21. Numeric Boundary
+
+Operational trading / persistence：
+
+Decimal / NUMERIC。
+
+Research：
+
+float allowed。
+
+Canonical margin reference：
+
+不等同 RiskConfig scenario override。
+
+Broker actual margin：
+
+不等同 canonical reference margin。
+
+---
+
+## 22. Simulation Boundary
+
+PaperBroker：
+
+simple deterministic baseline。
+
+SimulationBroker：
+
+future separate component。
+
+Target：
+
+- latency。
+- partial fills。
+- reject。
+- cancel。
+- disconnect。
+- stale status。
+- delayed update。
+- fault injection。
+
+---
+
+## 23. Python / ASP.NET Boundary
+
+V1 default：
+
+versioned REST / JSON。
+
+ASP.NET Core：
+
+不得 import/embed Python domain objects。
+
+Domain model：
+
+不等於 wire DTO。
+
+Wire DTO：
+
+應使用 stable IDs、version、timestamp、expected/actual、correlation/causation。
+
+gRPC：
+
+只有 profiling 證明 REST 不足才評估。
+
+V1 不導入 Kafka/RabbitMQ。
+
+---
+
+## 24. UI Boundary
+
+React：
+
+只透過 Application API。
+
+禁止：
+
+- direct database。
+- direct Shioaji。
+- direct secrets。
+
+---
+
+## 25. LIVE Safety
+
+LIVE_AUTO 前至少：
+
+- Account Sync。
+- Reconciliation。
+- explicit OrderIntent / PositionEffect。
+- persistence。
+- restart recovery。
+- stale-data guard。
+- runtime risk。
+- authorization scope。
+- manual override。
+- force-flat。
+- kill switch。
+- audit。
+- capability/verification matrix。
+
+目前：
+
+LIVE_AUTO NOT AUTHORIZED。
+
+---
+
+## 26. Current Progress
+
+Total V1 capability blocks：
+
+92。
+
+Provisional weighted completion：
+
+45–52%。
+
+Center：
+
+約 49%。
+
+Confidence：
+
+Medium-Low。
+
+主要 remaining engineering：
+
+- account/reconciliation。
+- persistence/recovery。
+- incremental state。
+- simulation/live safety。
+- Python service。
+- ASP.NET Core。
+- React。
+
+下一次正式 re-estimate：
+
+Broker Account / Position Sync + Reconciliation foundation 完成後。
+
+---
+
+## 27. Automation Efficiency
+
+GAP-07-CLOSE：
+
+user-observed 5HR usage 約 4–5%。
+
+完成 runtime + tests + 2 commits + closure。
+
+Initial docs-only AUTO-001：
+
+user-observed 約 8%。
+
+quota exhausted before docs completion。
+
+Current policy：
+
+Deterministic docs：
+
+PowerShell/manual preferred。
+
+Codex quota：
+
+優先 runtime、tests、debugging、integration、broker semantics、reconciliation、persistence/recovery。
+
+目前樣本不足以線性預測 quota capacity。
+
+---
+
+## 28. Current Active Candidate
+
+`docs/work/ACTIVE.md`
+
+Current：
+
+GAP-ACCOUNT-001 Broker Account / Position Sync Foundation。
+
+Status：
+
+READY_FOR_ARCHITECT_REVIEW。
+
+尚未授權 runtime execution。
+
+---
+
+## 29. Hard Stop
+
+立即停止受影響工作：
+
+- real-money risk。
+- broker semantics ambiguity。
+- business-rule ambiguity。
+- destructive migration。
+- architecture invariant conflict。
+- unrelated core regression。
+- secrets/security。
+- Git history/remote anomaly。

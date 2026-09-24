@@ -1,4 +1,22 @@
-﻿# Backtest Engine
+<!-- AUTHORITATIVE-DOC-NOTICE -->
+
+> **Documentation Status**
+>
+> 本文件是 Supplemental BacktestEngine Design Notes。
+> 部分 Current Limitations 已被後續 implementation 取代。
+>
+> Current capability status：
+>
+> - `docs/V1_CAPABILITY_MAP.md`
+>
+> Current architecture：
+>
+> - `docs/ARCHITECTURE.md`
+>
+> 本文件保留 backtest semantics 說明，但不得作為整體系統 current-state authority。
+
+---
+# Backtest Engine
 
 ## Execution Model
 

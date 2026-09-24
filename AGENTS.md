@@ -25,6 +25,21 @@ Historical / supplemental documents：`docs/PROJECT_STATE.md`、`docs/DEVELOPMEN
 - identifiers 使用 English；重要 comment、docstring、C# XML comment 與文件使用繁體中文，說明用途、責任、上游/資料來源、下游/使用者與非顯而易見商業規則。未來 PostgreSQL 重要 TABLE / COLUMN / FUNCTION 必須加入繁體中文 COMMENT。
 - 新問題先登錄 GAP，不以猜測取代設計決策。
 
+## 可執行工作佇列
+
+- `docs/CURRENT_WORK.md` 是 queue source；先選最高優先且依賴已滿足的 READY mainline item。
+- 不得從 queue 直接修改 runtime。必須依 `docs/work/WORK_PACKAGE_TEMPLATE.md` 完整填入 `docs/work/ACTIVE.md`，重新讀取後確認 baseline、dependencies、scope、allowed files、stop conditions 與 acceptance criteria，才可開始。
+- ACTIVE 過度簡略、存在 unresolved HARD_BLOCK，或與已確認 architecture 衝突時，不得開始 runtime。
+- 發現問題不等於立即實作。READY mainline 存在時，不得因 P2、P3 或 OBS 離開主線；只有 P0 + HARD_BLOCK 可阻止受影響主線。
+- Level 3A：每次 autonomous execution 最多一個 mainline Work Package；完成後更新 queue 並停止。每個 failing test 最多兩個 scope-internal correction cycles，仍失敗則依分類 REVIEW 或 HARD_BLOCK。
+- 不得 whole-repo rescan，除非 ACTIVE 明確要求；沒有 READY item 時不得自行找工作。
+
+## Issue Classification 與模型建議
+
+- Priority 與 Handling 為獨立維度：P0/P1/P2/P3/OBS；AUTO_FIX、RECORD_AND_CONTINUE、REVIEW_AT_CHECKPOINT、HARD_BLOCK。定義與逐項分類以 `GAP_REGISTER.md` 為準。
+- Terra：routine implementation、tests、docs、Git operations。Sol：broker semantics、reconciliation、persistence/recovery、複雜跨模組與 live/money safety。Recommended Model 只是建議；Stop Conditions 優先。
+- Automation 必須服務 development。AUTO-001 後回到 READY mainline `GAP-ACCOUNT-001`；不得自行增加 automation 系列工作，除非 queue-driven execution 已證明 blocker。
+
 ## 人工介入與停止條件
 
 - LEVEL 1：低風險命名、fixture、註解或明確實作細節，可自主執行並記錄。
