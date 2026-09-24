@@ -18,7 +18,17 @@ READY_FOR_EXECUTION
 
 Architecture review 已完成。
 
-此 Work Package 已授權一次 Level 3A bounded runtime execution。
+此 Work Package architecture / design freeze 已完成。
+
+Runtime execution authorization：
+
+暫時 HOLD。
+
+Launch Gate：
+
+`HOLD_FOR_BLUEPRINT_BASELINE`
+
+Blueprint baseline commit 完成後才解除並啟動 Level 3A runtime execution。
 
 ---
 
@@ -1087,3 +1097,118 @@ STOP。
 回報 LEVEL 3 architecture conflict。
 
 不得自行重新設計。
+---
+
+## 30. Blueprint Scope
+
+Status：
+
+BLUEPRINT_BASELINE_ACCEPTED。
+
+Implements：
+
+    D630
+
+    I510
+    I520
+    I530
+
+    I610
+    I620
+    I630
+    I640
+    I650
+
+    J210
+    J220
+    J230
+    J240
+
+    J310
+    J320
+    J330
+
+    J410
+    J420
+    J430
+    J440
+
+    J510
+    J520
+    J530
+    J540
+    J550
+    J560
+    J570
+    J580
+    J590
+
+Touches：
+
+    D610
+    D620
+
+Does Not Implement：
+
+    H200
+    J600
+    J700
+    K000+
+    L000+
+
+Blueprint baseline 建立時：
+
+必須驗證上述 IDs 與 Domain Blueprint 一致。
+
+---
+
+## 31. Source Requirements
+
+Required：
+
+    SRC-SINOPAC-LOGIN-001
+    SRC-SINOPAC-POSITION-001
+    SRC-SINOPAC-CONTRACT-001
+    SRC-PYDANTIC-001
+    SRC-ADR-001
+    SRC-ARCH-001
+
+Broker source last verified：
+
+2026-09-25。
+
+Change risk：
+
+HIGH。
+
+Runtime execution 前：
+
+如果 official Shioaji semantics 與 Design Freeze 發生 material conflict：
+
+HARD_BLOCK。
+
+不得由 Codex 自行改變 public semantics。
+
+---
+
+## 32. Runtime Launch Gate
+
+Current：
+
+    HOLD_FOR_BLUEPRINT_BASELINE
+
+Release requirements：
+
+1. `V1_SYSTEM_BLUEPRINT.md` baseline accepted。
+2. A～O domain files complete。
+3. 92/92 capability mapping PASS。
+4. Blueprint scope IDs in this ACTIVE validated。
+5. connection / authority consistency PASS。
+6. source registry baseline PASS。
+7. Blueprint commit pushed。
+
+Release 後：
+
+只解除 launch gate。
+
+不得重新開放 architecture design。

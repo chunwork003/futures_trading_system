@@ -16,7 +16,9 @@
 | `work/ACTIVE.md` | 目前唯一完整 Work Package |
 | `CURRENT_STATE.md` | validated baselines、tests、milestone、能力狀態 |
 | `CURRENT_WORK.md` | Mainline execution queue |
-| `V1_CAPABILITY_MAP.md` | V1 完整功能清單與完成度 |
+| `V1_CAPABILITY_MAP.md` | V1 capability inventory 與正式 Blueprint lifecycle metrics |
+| `V1_SYSTEM_BLUEPRINT.md` | AUTHORITATIVE V1 大／中／小 engineering blueprint master；runtime execution 仍由 `work/ACTIVE.md` 控制 |
+| `blueprint/*.md` | Engineering leaf、connection、authority、sources、traceability、metrics |
 | `ARCHITECTURE.md` | 全系統 logical/package/dependency architecture |
 | `ROADMAP.md` | V1 milestone sequence |
 | `GAP_REGISTER.md` | 問題、technical gap、blocker、follow-up |
@@ -53,6 +55,38 @@ authoritative 文件優先。
 回答：
 
 「V1 到底有多少功能？哪些完成？哪些未完成？」
+
+### V1_SYSTEM_BLUEPRINT.md
+
+回答：
+
+「完整 V1 可以拆成哪些 Domain、capability group、engineering leaf？每個 leaf 的 owner、連接、來源、驗證與進度是什麼？」
+
+Blueprint baseline 已正式啟用：
+
+作為 V1 engineering architecture authority，並與既有 architecture / capability inventory 分工。
+
+Runtime execution：
+
+Work Package 必須 mapping Blueprint IDs。
+
+### blueprint/SOURCE_REGISTRY.md
+
+回答：
+
+「broker、交易所、framework semantics 應參考哪份官方來源？」
+
+### blueprint/CONNECTION_MATRIX.md / STATE_AUTHORITY.md
+
+回答：
+
+「誰連到誰？誰是 state truth？哪些 dependency direction 被禁止？」
+
+### blueprint/TRACEABILITY.md / METRICS.md
+
+回答：
+
+「功能如何一路追到 GAP、code、test、commit？進度如何量化？」
 
 ### ROADMAP.md
 

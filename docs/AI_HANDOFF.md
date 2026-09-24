@@ -38,6 +38,8 @@ ACTIVE 明確要求時，再讀：
 - `docs/CURRENT_STATE.md`
 - `docs/CURRENT_WORK.md`
 - `docs/V1_CAPABILITY_MAP.md`
+- `docs/V1_SYSTEM_BLUEPRINT.md`
+- relevant `docs/blueprint/*.md`
 - `docs/ARCHITECTURE.md`
 - `docs/GAP_REGISTER.md`
 - `docs/adr/ADR-001-TRADING-CORE-BOUNDARIES.md`
@@ -612,17 +614,30 @@ Total V1 capability blocks：
 
 92。
 
-Provisional weighted completion：
+Engineering leaves：
 
-45–52%。
+603。
 
-Center：
+Lifecycle-weighted completion：
 
-約 49%。
+34.30%。
 
-Confidence：
+Architecture Design Coverage：85.63%。
+Design Freeze Coverage：47.54%。
+Runtime Implementation：28.08%。
+Unit Verification：24.85%。
+Integration Verification：24.75%。
+Accepted Capability：24.75%。
 
-Medium-Low。
+Capability status：
+
+COMPLETE 9 / PARTIAL 45 / NOT_STARTED 38。
+
+Readiness：
+
+- Operational：NOT_READY。
+- Production Live：BLOCKED。
+- LIVE_AUTO：NOT_AUTHORIZED。
 
 主要 remaining engineering：
 
@@ -633,10 +648,6 @@ Medium-Low。
 - Python service。
 - ASP.NET Core。
 - React。
-
-下一次正式 re-estimate：
-
-Broker Account / Position Sync + Reconciliation foundation 完成後。
 
 ---
 
@@ -682,7 +693,15 @@ READY_FOR_EXECUTION。
 
 Architecture review 已完成。
 
-已授權一次 Level 3A bounded runtime execution。
+Architecture / Design Freeze 已完成。
+
+Runtime Launch Gate：
+
+`HOLD_FOR_BLUEPRINT_BASELINE`
+
+GAP-ACCOUNT-001 仍為 `READY_FOR_EXECUTION`。
+
+此 HOLD 是一次性的 Blueprint baseline gate，不是 runtime failure。
 
 ---
 
@@ -698,3 +717,31 @@ Architecture review 已完成。
 - unrelated core regression。
 - secrets/security。
 - Git history/remote anomaly。
+
+---
+
+## 29A. Blueprint Governance
+
+V1 Engineering Blueprint：
+
+`docs/V1_SYSTEM_BLUEPRINT.md`
+
+Supporting：
+
+`docs/blueprint/`
+
+Current status：
+
+`AUTHORITATIVE`
+
+GAP-ACCOUNT-001 runtime：
+
+`HOLD_FOR_BLUEPRINT_BASELINE`
+
+Blueprint baseline 啟用前必須完成 A～O、92/92 capability mapping、connection、state authority、source registry、traceability、metrics 與 consistency audit。
+
+Blueprint baseline accepted 後，ACTIVE 必須列 Implements / Touches / Does Not Implement Blueprint IDs。
+
+Runtime Codex 只讀 ACTIVE 指定的 Blueprint 與 source documents，不得 whole-repo rescan，也不得重新設計已凍結 architecture。
+
+Broker / exchange / live-money semantics 優先使用 `docs/blueprint/SOURCE_REGISTRY.md` 的官方來源；不足時 HARD_BLOCK / REVIEW，不得猜測。

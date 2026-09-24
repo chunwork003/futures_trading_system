@@ -138,6 +138,54 @@ Codex 不得自行決定新的：
 
 ---
 
+## 9B. Blueprint Scope
+
+Blueprint baseline 啟用後必填：
+
+    Implements:
+        <Blueprint IDs>
+
+    Touches:
+        <Blueprint IDs>
+
+    Does Not Implement:
+        <Blueprint IDs / groups>
+
+不得只寫模糊 module name。
+
+---
+
+## 9C. Source Requirements
+
+若 Work Package 涉及：
+
+- broker。
+- exchange。
+- external API。
+- framework version semantics。
+- persistence engine semantics。
+
+必填：
+
+    Source IDs:
+    Last Verified:
+    Revalidation Required:
+    Change Risk:
+
+Source IDs：
+
+使用：
+
+`docs/blueprint/SOURCE_REGISTRY.md`
+
+未有 source：
+
+先人工 verify 並登錄 registry。
+
+不得由 runtime executor 靠未審核二手來源決定 public semantics。
+
+---
+
 ## 10. Scope Freeze
 
 明確寫：
@@ -182,6 +230,25 @@ Codex 不得自行決定新的：
 - refactor as needed。
 
 這類無邊界描述。
+
+---
+
+## 13A. Code Documentation Requirements
+
+重要新 module / class / public function / public contract：
+
+繁體中文 comment / docstring 至少描述適用項目：
+
+- 用途。
+- 責任。
+- upstream / 資料來源。
+- downstream / 使用者。
+- important invariant。
+- non-obvious business rule。
+- Source ID。
+- 明確不負責的事項。
+
+禁止只做名稱翻譯式低價值註解。
 
 ---
 

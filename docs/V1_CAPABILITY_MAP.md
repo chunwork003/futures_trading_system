@@ -17,6 +17,18 @@ GAP Register 記錄問題。
 
 Capability Map 記錄產品與平台能力。
 
+Engineering detail：
+
+`V1_SYSTEM_BLUEPRINT.md`
+
+Blueprint baseline 完成後：
+
+每一個 capability block 必須 mapping 至一個或多個 engineering leaf。
+
+Blueprint baseline 已啟用：
+
+本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 34.30% baseline。
+
 ---
 
 ## 2. Status
@@ -41,21 +53,47 @@ Capability Map 記錄產品與平台能力。
 
 capability acceptance + relative engineering weight。
 
-Provisional V1 weighted completion：
+Lifecycle-weighted completion：
 
-    45–52%
+    34.30%
 
-Center estimate：
+Architecture Design Coverage：
 
-    約 49%
+    85.63%
 
-Confidence：
+Design Freeze Coverage：
 
-    Medium-Low
+    47.54%
 
-下一次重新估算：
+Runtime Implementation：
 
-    GAP-ACCOUNT-001 + Reconciliation foundation 完成後
+    28.08%
+
+Unit Verification：
+
+    24.85%
+
+Integration Verification：
+
+    24.75%
+
+Accepted Capability：
+
+    24.75%
+
+Metric basis：
+
+    603 engineering leaves / total weight 2137
+
+Capability status：
+
+    COMPLETE 9 / PARTIAL 45 / NOT_STARTED 38
+
+Readiness：
+
+    Operational NOT_READY
+    Production Live BLOCKED
+    LIVE_AUTO NOT_AUTHORIZED
 
 ---
 
@@ -63,22 +101,22 @@ Confidence：
 
 | Domain | Count | Estimated Completion |
 |---|---:|---:|
-| A Governance / Development | 4 | ~75% |
-| B Data Pipeline | 6 | ~80% |
-| C Calendar / Contract Data | 5 | ~70% |
-| D Canonical Domain | 6 | ~85% |
-| E Feature / Strategy | 7 | ~70% |
-| F Backtest / Research | 8 | ~85% |
-| G Decision / Risk | 8 | ~80% |
-| H Execution / Paper | 8 | ~70% |
-| I Broker Adapter | 6 | ~55% |
-| J Account / Reconciliation | 6 | ~10% |
-| K Persistence / Recovery | 7 | ~5% |
-| L Simulation / Live Safety | 7 | ~15% |
-| M Python Service Boundary | 4 | ~0% |
-| N ASP.NET Core Application | 5 | ~0% |
-| O React Workspace | 5 | ~0% |
-| TOTAL | 92 | 45–52% weighted |
+| A Governance / Development | 4 | 70.68% |
+| B Data Pipeline | 6 | 66.44% |
+| C Calendar / Contract Data | 5 | 59.77% |
+| D Canonical Domain | 6 | 74.85% |
+| E Feature / Strategy | 7 | 50.11% |
+| F Backtest / Research | 8 | 90.40% |
+| G Decision / Risk | 8 | 67.86% |
+| H Execution / Paper | 8 | 54.52% |
+| I Broker Adapter | 6 | 40.62% |
+| J Account / Reconciliation | 6 | 16.82% |
+| K Persistence / Recovery | 7 | 11.58% |
+| L Simulation / Live Safety | 7 | 3.66% |
+| M Python Service Boundary | 4 | 12.42% |
+| N ASP.NET Core Application | 5 | 11.26% |
+| O React Workspace | 5 | 10.31% |
+| TOTAL | 92 | 34.30% lifecycle-weighted |
 
 ---
 
@@ -86,8 +124,8 @@ Confidence：
 
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
-| A01 | Authoritative architecture/docs hierarchy | COMPLETE | Maintain |
-| A02 | Work Package → tests → Git quality gate | COMPLETE | Maintain |
+| A01 | Authoritative architecture/docs hierarchy | PARTIAL | Maintain |
+| A02 | Work Package → tests → Git quality gate | PARTIAL | Maintain |
 | A03 | Executable queue + full ACTIVE prompt | PARTIAL | Runtime validation |
 | A04 | Continuous queue-driven Codex orchestration | NOT_STARTED | After 2–3 Level 3A validations |
 
@@ -97,8 +135,8 @@ Confidence：
 
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
-| B01 | Multi-source market ingestion foundation | COMPLETE | Extend sources later |
-| B02 | Tick/bar validation and cleaning | COMPLETE | Production QA later |
+| B01 | Multi-source market ingestion foundation | PARTIAL | Extend sources later |
+| B02 | Tick/bar validation and cleaning | PARTIAL | Production QA later |
 | B03 | Tick/1m/session bar aggregation | COMPLETE | More edge validation |
 | B04 | Canonical Parquet analytical storage | PARTIAL | Align richer MarketBar/provenance |
 | B05 | DuckDB analytical query/storage | PARTIAL | Schema/bootstrap refinement |
@@ -110,10 +148,10 @@ Confidence：
 
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
-| C01 | Trading dates/calendar | COMPLETE | Maintain |
-| C02 | Day/night session resolution | COMPLETE | Consolidate duplicate rules |
+| C01 | Trading dates/calendar | PARTIAL | Maintain |
+| C02 | Day/night session resolution | PARTIAL | Consolidate duplicate rules |
 | C03 | Holiday/exception handling | PARTIAL | Production completeness validation |
-| C04 | Contract dates/repository/generation | COMPLETE | Multi-series refinement later |
+| C04 | Contract dates/repository/generation | PARTIAL | Multi-series refinement later |
 | C05 | Continuous/listed roll resolution | PARTIAL | Full roll engine |
 
 ---
@@ -122,11 +160,11 @@ Confidence：
 
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
-| D01 | InstrumentSpec | COMPLETE | Consumer migration only |
-| D02 | ContractSpec | COMPLETE | Consumer migration only |
-| D03 | TradingSessionRef | COMPLETE | Full timezone boundary pending |
-| D04 | MarginSchedule / resolver | COMPLETE | DB/broker snapshot refinement |
-| D05 | BrokerInstrumentReference | COMPLETE | Persistence/capability follow-up |
+| D01 | InstrumentSpec | PARTIAL | Consumer migration only |
+| D02 | ContractSpec | PARTIAL | Consumer migration only |
+| D03 | TradingSessionRef | PARTIAL | Full timezone boundary pending |
+| D04 | MarginSchedule / resolver | PARTIAL | DB/broker snapshot refinement |
+| D05 | BrokerInstrumentReference | PARTIAL | Persistence/capability follow-up |
 | D06 | Canonical MarketBar ownership | PARTIAL | Rich model ownership migration |
 
 ---
@@ -135,12 +173,12 @@ Confidence：
 
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
-| E01 | Batch feature modules | COMPLETE | Extend indicators as needed |
-| E02 | Feature builder / registry | COMPLETE | Maintain |
+| E01 | Batch feature modules | PARTIAL | Extend indicators as needed |
+| E02 | Feature builder / registry | PARTIAL | Maintain |
 | E03 | Incremental Feature / Market State | NOT_STARTED | GAP-09 |
 | E04 | Strategy base / concrete strategy flow | COMPLETE | Maintain |
-| E05 | StrategyDefinition / version registry | COMPLETE | StrategyInstance/config expansion |
-| E06 | Multi-strategy runner | COMPLETE | Runtime operational integration later |
+| E05 | StrategyDefinition / version registry | PARTIAL | StrategyInstance/config expansion |
+| E06 | Multi-strategy runner | PARTIAL | Runtime operational integration later |
 | E07 | strategy/ vs strategies/ ownership cleanup | PARTIAL | Opportunistic migration only |
 
 ---
@@ -152,11 +190,11 @@ Confidence：
 | F01 | Deterministic next-bar BacktestEngine | COMPLETE | Preserve semantics |
 | F02 | Commission/slippage/fill accounting | COMPLETE | Advanced models later |
 | F03 | LONG/SHORT/SL/TP/exit lifecycle | COMPLETE | Preserve regression |
-| F04 | Portfolio/equity/drawdown projection | COMPLETE | Operational account separate |
+| F04 | Portfolio/equity/drawdown projection | PARTIAL | Operational account separate |
 | F05 | Performance/trade statistics | PARTIAL | Final Return/Sharpe validation |
-| F06 | Optimization/sensitivity/stability | COMPLETE | Scale/performance later |
-| F07 | OOS/Walk-Forward | COMPLETE | More strategy coverage later |
-| F08 | Monte Carlo/comparison tooling | COMPLETE | Reporting integration later |
+| F06 | Optimization/sensitivity/stability | PARTIAL | Scale/performance later |
+| F07 | OOS/Walk-Forward | PARTIAL | More strategy coverage later |
+| F08 | Monte Carlo/comparison tooling | PARTIAL | Reporting integration later |
 
 ---
 
@@ -164,14 +202,14 @@ Confidence：
 
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
-| G01 | Strategy virtual positions | COMPLETE | Ownership migration later |
-| G02 | Strategy conflict resolution | COMPLETE | Maintain |
+| G01 | Strategy virtual positions | PARTIAL | Ownership migration later |
+| G02 | Strategy conflict resolution | PARTIAL | Maintain |
 | G03 | TargetAccountPosition | COMPLETE | Operational account consumer pending |
-| G04 | Attribution/netting | COMPLETE | Persistence pending |
-| G05 | Direction-change wait-for-flat | COMPLETE | Broker operational integration |
-| G06 | PortfolioRiskManager | COMPLETE | Account-aware live risk |
-| G07 | Position sizing/capital management | COMPLETE | Operational integration |
-| G08 | Auditable RiskDecision | PARTIAL | Canonical model + persistence |
+| G04 | Attribution/netting | PARTIAL | Persistence pending |
+| G05 | Direction-change wait-for-flat | PARTIAL | Broker operational integration |
+| G06 | PortfolioRiskManager | PARTIAL | Account-aware live risk |
+| G07 | Position sizing/capital management | PARTIAL | Operational integration |
+| G08 | Auditable RiskDecision | NOT_STARTED | Canonical model + persistence |
 
 ---
 
@@ -179,10 +217,10 @@ Confidence：
 
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
-| H01 | Order/Fill foundation | COMPLETE | Canonical ownership migration |
+| H01 | Order/Fill foundation | PARTIAL | Canonical ownership migration |
 | H02 | Broker submit/query/fills/cancel port | COMPLETE | Account capability separate |
-| H03 | Async/partial/terminal lifecycle | COMPLETE | Expanded production states |
-| H04 | PaperBroker deterministic baseline | COMPLETE | Preserve |
+| H03 | Async/partial/terminal lifecycle | PARTIAL | Expanded production states |
+| H04 | PaperBroker deterministic baseline | PARTIAL | Preserve |
 | H05 | PaperTradingEngine | COMPLETE | Canonical contract migration later |
 | H06 | PaperTradingRunner/polling | COMPLETE | Incremental state integration |
 | H07 | Explicit OrderIntent / PositionEffect | NOT_STARTED | GAP-BROKER-001 |
@@ -194,10 +232,10 @@ Confidence：
 
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
-| I01 | Contract/native mapping | COMPLETE | Adapter relocation later |
-| I02 | Submit/status/cancel | COMPLETE | Explicit PositionEffect |
-| I03 | Fill conversion/dedup/partial fill | COMPLETE | Production verification |
-| I04 | BrokerInstrumentReference seam | COMPLETE | Persistence later |
+| I01 | Contract/native mapping | PARTIAL | Adapter relocation later |
+| I02 | Submit/status/cancel | PARTIAL | Explicit PositionEffect |
+| I03 | Fill conversion/dedup/partial fill | PARTIAL | Production verification |
+| I04 | BrokerInstrumentReference seam | PARTIAL | Persistence later |
 | I05 | Broker account/position snapshot | NOT_STARTED | GAP-ACCOUNT-001 |
 | I06 | Broker capability matrix | NOT_STARTED | GAP-BROKER-002 |
 
@@ -239,7 +277,7 @@ Confidence：
 | L03 | LIVE authorization gate | NOT_STARTED | GAP-LIVE-001 |
 | L04 | Manual override/force-flat/kill switch | NOT_STARTED | GAP-LIVE-001 |
 | L05 | Runtime stale/reconciliation/risk guards | NOT_STARTED | GAP-LIVE-001 |
-| L06 | Secrets/operational authorization/audit | PARTIAL | Application/security phase |
+| L06 | Secrets/operational authorization/audit | NOT_STARTED | Application/security phase |
 | L07 | Production verification matrix | NOT_STARTED | Pre-live gate |
 
 ---

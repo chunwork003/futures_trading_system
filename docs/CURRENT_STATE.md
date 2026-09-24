@@ -40,6 +40,34 @@ Known local untracked：
 
 ---
 
+## Blueprint Baseline
+
+Status：
+
+AUTHORITATIVE。
+
+Goal：
+
+建立 A～O 大／中／小完整 engineering blueprint，使 future Work Package 可以：
+
+- 按 Blueprint ID 施工。
+- 明確知道 ownership / input / output / authority。
+- 使用受控 official sources。
+- trace 到 code / tests / commit。
+- 使用 leaf weight / lifecycle 量化。
+
+Runtime GAP-ACCOUNT-001：
+
+仍為 READY_FOR_EXECUTION。
+
+但目前 Launch Gate：
+
+`HOLD_FOR_BLUEPRINT_BASELINE`
+
+Blueprint baseline 完成後解除。
+
+---
+
 ## Current Phase
 
 GAP-07：
@@ -126,25 +154,34 @@ Total V1 capability blocks：
 
 92。
 
-Provisional weighted V1 completion：
+Engineering leaves：
 
-45–52%。
+603。
 
-Center estimate：
+Lifecycle-weighted completion：
 
-約 49%。
+34.30%。
 
-Confidence：
+Architecture Design Coverage：85.63%。
+Design Freeze Coverage：47.54%。
+Runtime Implementation：28.08%。
+Unit Verification：24.85%。
+Integration Verification：24.75%。
+Accepted Capability：24.75%。
 
-Medium-Low。
+Capability status：
 
-原因：
+COMPLETE 9 / PARTIAL 45 / NOT_STARTED 38。
 
-Research/backtest/trading foundation 已成熟，但 remaining persistence/recovery/application/web/live safety engineering weight 很大。
+Readiness：
 
-下一次重新估算：
+- Operational：NOT_READY。
+- Production Live：BLOCKED。
+- LIVE_AUTO：NOT_AUTHORIZED。
 
-Broker Account / Position Sync + Reconciliation foundation 完成後。
+說明：
+
+Blueprint leaf-level metric 已取代舊 provisional capability estimate。
 
 ---
 

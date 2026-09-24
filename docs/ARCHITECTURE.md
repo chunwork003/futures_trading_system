@@ -1338,3 +1338,51 @@ V1 不以檔案數判定。
 即使 V1 software completion：
 
 LIVE_AUTO real money 仍需獨立 production verification 與 authorization。
+---
+
+# Engineering Blueprint Layer
+
+System architecture：
+
+定義：
+
+- layer。
+- canonical ownership。
+- dependency direction。
+- system invariants。
+- technology responsibility。
+
+Engineering Blueprint：
+
+`V1_SYSTEM_BLUEPRINT.md`
+
+進一步定義：
+
+- A～O Domains。
+- capability groups。
+- engineering leaves。
+- upstream / downstream。
+- current / target / migration。
+- external source。
+- acceptance。
+- test。
+- weight / lifecycle。
+- GAP / Work Package mapping。
+
+Blueprint 不得：
+
+- 改寫本文件既有 architecture invariant。
+- 建立第二份 canonical truth。
+- 因 target architecture 存在就執行 big-bang migration。
+
+Architecture：
+
+    定義「系統怎麼組成」
+
+Blueprint：
+
+    定義「系統如何拆成可施工、可追蹤、可量化的工程項目」
+
+ACTIVE：
+
+    定義「這一次允許實作哪些 Blueprint leaves」

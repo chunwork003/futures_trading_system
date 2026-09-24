@@ -11,7 +11,8 @@ Primary source of truth 與必讀順序：
 3. `docs/CURRENT_WORK.md`：目前工作、阻塞、佇列。
 4. `docs/GAP_REGISTER.md`：有序 GAP。
 5. `docs/AI_HANDOFF.md`：架構決策與交接。
-6. `docs/DEVELOPMENT_LOG.md`：歷程與進度。
+6. `docs/V1_SYSTEM_BLUEPRINT.md`：V1 工程施工圖 master index；正式 baseline 後由 ACTIVE 引用相關 Blueprint IDs。
+7. `docs/DEVELOPMENT_LOG.md`：歷程與進度。
 
 Historical / supplemental documents：`docs/PROJECT_STATE.md`、`docs/DEVELOPMENT.md`、`docs/BACKTEST_ENGINE.md`、`docs/DATA_ARCHITECTURE.md`。`docs/ARCHITECTURE.md` 與 `docs/ROADMAP.md` 為 authoritative documents，不得降級為 supplemental。
 
@@ -24,6 +25,9 @@ Historical / supplemental documents：`docs/PROJECT_STATE.md`、`docs/DEVELOPMEN
 - 不得修改 `data/`，除非 Work Package 明確授權；不得提交本機資料、資料庫或 generated assets。
 - identifiers 使用 English；重要 comment、docstring、C# XML comment 與文件使用繁體中文，說明用途、責任、上游/資料來源、下游/使用者與非顯而易見商業規則。未來 PostgreSQL 重要 TABLE / COLUMN / FUNCTION 必須加入繁體中文 COMMENT。
 - 新問題先登錄 GAP，不以猜測取代設計決策。
+- Broker / exchange / live-money semantics 優先使用 `docs/blueprint/SOURCE_REGISTRY.md` 的 S0 / S1 官方來源；來源不足時不得以二手文章猜測。
+- Blueprint baseline 啟用後，ACTIVE 必須列出 Implements / Touches / Does Not Implement 的 Blueprint IDs。
+- 若 CURRENT_WORK 或 ACTIVE 標示 `HOLD_FOR_BLUEPRINT_BASELINE`，不得開始 runtime Codex execution。
 
 ## 可執行工作佇列
 

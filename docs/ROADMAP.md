@@ -16,6 +16,16 @@ Current execution queue：
 
 `CURRENT_WORK.md`
 
+Engineering decomposition：
+
+`V1_SYSTEM_BLUEPRINT.md`
+
+Blueprint：
+
+不是額外產品 milestone。
+
+它是 M0～M12 的跨 milestone engineering decomposition / traceability layer。
+
 ---
 
 # M0 — Governance / Architecture
@@ -305,14 +315,18 @@ LIVE_AUTO real money：
 
 # Current Progress
 
-Provisional weighted V1 completion：
+Lifecycle-weighted V1 completion：
 
-45–52%。
+34.30%。
 
-Center：
+Architecture Design Coverage：85.63%。
+Runtime Implementation：28.08%。
+Accepted Capability：24.75%。
 
-約 49%。
+Operational readiness：NOT_READY。
+Production Live readiness：BLOCKED。
+LIVE_AUTO：NOT_AUTHORIZED。
 
-下一次正式 re-estimate：
+Progress source：
 
-M4 Broker Account / Position Sync + Reconciliation foundation 完成後。
+`docs/blueprint/METRICS.md` + 603 engineering-leaf lifecycle baseline。

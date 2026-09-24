@@ -13,6 +13,10 @@
 
 `V1_CAPABILITY_MAP.md`
 
+完整工程拆解：
+
+`V1_SYSTEM_BLUEPRINT.md`
+
 完整 architecture：
 
 `ARCHITECTURE.md`
@@ -52,6 +56,20 @@ LEVEL_3A_BOUNDED
 Recommended Model：
 
 GPT-5.6 Sol
+
+Runtime Launch Gate：
+
+HOLD_FOR_BLUEPRINT_BASELINE
+
+Reason：
+
+先完成一次性的 V1 Engineering Blueprint baseline。
+
+此 gate：
+
+- 不改變 GAP-ACCOUNT-001 READY_FOR_EXECUTION 狀態。
+- 不代表 runtime blocker。
+- 不允許在 Blueprint baseline commit 前啟動 Codex runtime。
 
 Why Next：
 

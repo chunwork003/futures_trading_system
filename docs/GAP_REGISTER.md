@@ -17,6 +17,18 @@ GAP Register 不是產品 roadmap。
 
 `V1_CAPABILITY_MAP.md`
 
+完整 engineering decomposition：
+
+`V1_SYSTEM_BLUEPRINT.md`
+
+Blueprint ID：
+
+不是 GAP ID。
+
+Blueprint 描述 planned capability。
+
+GAP 描述問題 / 缺口 / blocker / follow-up。
+
 Mainline：
 
 `CURRENT_WORK.md`

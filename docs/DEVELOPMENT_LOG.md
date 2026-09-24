@@ -366,3 +366,45 @@ Execution：
 Level 3A bounded。
 
 完成後必須停止，不得自動開始下一個 Work Package。
+## 2026-09-25 — V1 Engineering Blueprint Baseline Build
+
+Repository starting baseline：
+
+`305f70c docs(architecture): freeze gap-account-001 design`
+
+User requirement：
+
+在重新啟動 Codex runtime 前，先由人工建立可照表施工、可追蹤、可量化的 V1 大／中／小 Engineering Blueprint。
+
+Blueprint goals：
+
+- A～O V1 Domain。
+- x100 capability group。
+- x110 engineering leaf。
+- current / target / migration。
+- owner / upstream / downstream。
+- state authority。
+- official source registry。
+- traceability。
+- metrics。
+- Work Package Blueprint Scope。
+
+Current GAP-ACCOUNT-001：
+
+仍 READY_FOR_EXECUTION。
+
+Runtime Launch Gate：
+
+`HOLD_FOR_BLUEPRINT_BASELINE`
+
+此 gate：
+
+是一次性的 manual architecture baseline gate，不是 runtime failure。
+
+Codex quota：
+
+本 Blueprint deterministic documentation 由人工 / PowerShell 處理。
+
+Codex：
+
+Blueprint baseline 完成後才恢復 runtime implementation。
