@@ -1,0 +1,39 @@
+# futures_trading_system — Agent Guide
+
+## 專案與導航
+
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。目前是 M0 — Governance / Architecture Consolidation；人工集中審核與重大決策，Codex 依已核准 Work Package 執行。
+
+Primary source of truth 與必讀順序：
+
+1. `AGENTS.md`：agent 導航與執行規則。
+2. `docs/CURRENT_STATE.md`：現況與基線。
+3. `docs/CURRENT_WORK.md`：目前工作、阻塞、佇列。
+4. `docs/GAP_REGISTER.md`：有序 GAP。
+5. `docs/AI_HANDOFF.md`：架構決策與交接。
+6. `docs/DEVELOPMENT_LOG.md`：歷程與進度。
+
+Historical / supplemental documents：`docs/PROJECT_STATE.md`、`docs/DEVELOPMENT.md`、`docs/ROADMAP.md`、`docs/ARCHITECTURE.md`、`docs/BACKTEST_ENGINE.md`、`docs/DATA_ARCHITECTURE.md`。
+
+不得刪除舊文件。若 legacy / supplemental 文件與 primary source 衝突，不得自行猜測；以 primary source 的已確認決策為準，登錄或更新 GAP-DOC-001。若為重大 architecture semantics conflict，升級為 LEVEL 3。
+
+## 執行規則
+
+- 每個 Work Package：precheck → 修改 → targeted tests → full regression → `git diff --check` → scope validation → docs/GAP update → commit → push → verify。
+- 禁止 silent unrelated fix、silent architecture change、scope 外修改、rewrite history、force push。
+- 不得修改 `data/`，除非 Work Package 明確授權；不得提交本機資料、資料庫或 generated assets。
+- identifiers 使用 English；重要 comment、docstring、C# XML comment 與文件使用繁體中文，說明用途、責任、上游/資料來源、下游/使用者與非顯而易見商業規則。未來 PostgreSQL 重要 TABLE / COLUMN / FUNCTION 必須加入繁體中文 COMMENT。
+- 新問題先登錄 GAP，不以猜測取代設計決策。
+
+## 人工介入與停止條件
+
+- LEVEL 1：低風險命名、fixture、註解或明確實作細節，可自主執行並記錄。
+- LEVEL 2：不阻塞其他工作者，登錄 Pending Decision，固定 checkpoint 集中審核。
+- LEVEL 3：Live/money risk、破壞性 migration、架構語意衝突、核心 regression、broker ambiguity、secrets/security、business logic 猜測或重大 scope 擴張。停止該 Work Package，不要猜；互不依賴工作可繼續。
+- Checkpoint：08:00、12:00、18:00、22:00（Asia/Taipei）。集中回報 Completed、Tests、Git commits、Current Work、New GAPs、Blocking decisions、Non-blocking decisions、Incidents、Next Queue、Overall progress 及 Estimated remaining effort；不要重複已確認內容。
+
+## 品質原則
+
+Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7 天時建立 Delay Review：延遲原因、V1 影響、Post-V1 延後可能、scope creep、低價值過度優化、Work Package 拆分與模型選擇。
+
+方向變更必須遵守 `EXIT → confirm FLAT → re-evaluate → ENTER`；不得 silent direct reversal。

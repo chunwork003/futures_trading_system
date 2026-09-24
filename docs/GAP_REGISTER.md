@@ -1,0 +1,54 @@
+# GAP Register
+
+新增 GAP 必須先寫入 **Newly Inserted**，標記 Added Date、Reason、Priority、Dependency、Status，再同步更新 Master Ordered GAP。禁止只在聊天或 commit message 記錄問題。
+
+## Newly Inserted
+
+| ID | Added Date | Reason | Priority | Dependency | Status |
+|---|---|---|---|---|---|
+| GAP-REPO-001 | 2026-09-24 | GitHub default branch `main`，開發使用 `master` | P2 | Governance decision | Open |
+| GAP-REPO-002 | 2026-09-24 | `data/` 為未追蹤本機資產，需可重現性與提交治理 | P1 | Data governance design | Open |
+| GAP-ENV-001 | 2026-09-24 | Codex pytest TEMP directory PermissionError | P2 | Environment access | Open |
+| GAP-DOC-001 | 2026-09-24 | 舊文件 commit、測試與能力描述漂移 | P2 | M0-A | Open |
+| GAP-ARCH-001 | 2026-09-24 | Backtest / Trading / Broker package boundary 未明確 | P1 | M0-B | Open |
+| GAP-ARCH-002 | 2026-09-24 | domain/backtest model duplication | P1 | M0-B | Open |
+| GAP-ARCH-003 | 2026-09-24 | `strategy/` 與 `strategies/` duplication | P2 | M0-B | Open |
+| GAP-BROKER-001 | 2026-09-24 | explicit OrderIntent / PositionEffect | P1 | GAP-07, M0-B | Open |
+| GAP-BROKER-002 | 2026-09-24 | broker capability matrix | P2 | M0-B | Open |
+| GAP-PERSIST-001 | 2026-09-24 | Decision Provenance 未持久化 | P1 | GAP-08 | Open |
+| GAP-SIM-001 | 2026-09-24 | SimulationBroker / fault injection 未建立 | P2 | Broker boundary | Open |
+| GAP-APP-001 | 2026-09-24 | ASP.NET Core Application/API 未建立 | P1 | Operational state model | Planned |
+| GAP-WEB-001 | 2026-09-24 | React/TypeScript Workspace 未建立 | P1 | Application API | Planned |
+| GAP-LIVE-001 | 2026-09-24 | LIVE_AUTO authorization / runtime safety 未建立 | P0 | Reconciliation, persistence, OMS | Open |
+| GAP-REVIEW-001 | 2026-09-24 | Trading Review / audit interface 未建立 | P2 | Decision provenance | Open |
+
+## Master Ordered GAP
+
+| Order | ID | Scope | Status |
+|---:|---|---|---|
+| 1 | M0-B | Architecture Boundary ADR | Next |
+| 2 | GAP-DOC-001 | Documentation drift | Open |
+| 3 | GAP-REPO-001 | Default branch governance | Open |
+| 4 | GAP-REPO-002 | Local data asset governance | Open |
+| 5 | GAP-ENV-001 | Codex pytest TEMP permission | Open |
+| 6 | GAP-07 | Contract / Futures Specification | Pending |
+| 7 | GAP-ARCH-001 | Backtest / Trading / Broker package boundary | Open |
+| 8 | GAP-ARCH-002 | Canonical domain/backtest model boundary | Open |
+| 9 | GAP-ARCH-003 | Strategy package consolidation direction | Open |
+| 10 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | Open |
+| 11 | GAP-BROKER-002 | Broker capability matrix | Open |
+| 12 | GAP-ACCOUNT-001 | Broker Account / Position Sync | Pending |
+| 13 | GAP-08 | Trading State Persistence & Recovery | Pending |
+| 14 | GAP-PERSIST-001 | Decision Provenance | Open |
+| 15 | GAP-09 | Incremental Feature / Market State Engine | Pending |
+| 16 | GAP-SIM-001 | SimulationBroker / fault injection | Open |
+| 17 | GAP-LIVE-001 | LIVE_AUTO authorization / runtime safety | Open |
+| 18 | GAP-REVIEW-001 | Trading Review / audit interface | Open |
+| 19 | GAP-APP-001 | ASP.NET Core Application/API | Planned |
+| 20 | GAP-WEB-001 | React/TypeScript Workspace | Planned |
+
+## Entry Rules
+
+- P0：money / live safety；P1：V1 architecture blocker；P2：重要但可分離；P3：Post-V1 deferred。
+- GAP 不等於立即實作。先確認 dependency、acceptance criteria、owner 與可否獨立執行。
+- 7 天可能延遲時建立 Delay Review：原因、V1 影響、Post-V1 可能、scope creep、低價值過度優化、拆分與模型選擇。
