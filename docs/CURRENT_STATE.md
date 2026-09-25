@@ -363,3 +363,25 @@ Reason for 中度：
 single bundle now crosses execution state machine、multi-table transaction、account reconciliation、strategy state reconstruction and recovery safety。
 
 No runtime until freeze commit/push is verified。
+
+## Decision Checkpoint 5A State
+
+Architecture Decision Status：
+
+- R-01：DECIDED / AMENDED。
+- R-02：DECIDED / AMENDED。
+- R-03：DECIDED / UNCHANGED。
+- R-04：DECIDED / AMENDED。
+- R-05：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+R-05 final contract：Read + Validate + Explicit Result；Coherent Complete RecoveryCut；validated transitive recovery dependency closure；positive baseline proof；deterministic projection validation anchors；staged RecoveryExecutionContext。
+
+Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+
+Runtime conformance to these decisions is NOT asserted。
+
+Runtime Authorization：NOT_AUTHORIZED。
+
+Architecture Acceptance：HOLD。
+
+Next architecture work：R-06 + R-07 Recovery Boundary Cluster。

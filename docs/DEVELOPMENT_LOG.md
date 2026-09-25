@@ -1056,3 +1056,24 @@ K520 remains GAP-09。
 Projected full-acceptance lifecycle：approximately 53.57%。
 
 Runtime gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+
+### 2026-09-25 — Recovery Architecture Decision Checkpoint 5A
+
+- Baseline：`462a3d541cb6b0bccc9bb5e3e1a118cd1c2cf351`。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Closed-loop consistency audit completed for R-01 through R-05。
+- R-01：DECIDED / AMENDED。
+- R-02：DECIDED / AMENDED。
+- R-03：DECIDED / UNCHANGED。
+- R-04：DECIDED / AMENDED。
+- R-05：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-05 complete RecoveryCut explicitly includes currentness proof for recovery-critical evidence that may change without advancing account_revision。
+- No per-dependency physical high-water schema was prescribed。
+- R-05 required recovery closure is all-or-nothing for VALID，without requiring full historical archive replay。
+- Initialization revision 1 does not imply READY；R-04H race-safe final handoff remains mandatory。
+- BROKER_SEED remains explicit position genesis with no fabricated historical execution provenance。
+- UNMANAGED_EXTERNAL_EXECUTION integrated into broker recovery evaluation。
+- Architecture Acceptance remains HOLD。
+- Runtime Authorization remains NOT_AUTHORIZED。
+- Runtime tests not rerun because this checkpoint is docs-only。
+- Next：R-06 + R-07 Recovery Boundary Cluster。

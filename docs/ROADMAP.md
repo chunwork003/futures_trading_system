@@ -383,3 +383,19 @@ GAP-08EFGHI READY_FOR_EXECUTION / RELEASED_ARCHITECTURE_FREEZE。
 Progress source：
 
 `docs/blueprint/METRICS.md` + 603 engineering-leaf lifecycle baseline。
+
+## Recovery Architecture Checkpoint 5A
+
+Closed through this checkpoint：R-01、R-02、R-03、R-04、R-05。
+
+R-01/R-02/R-04 include architecture amendments discovered by closed-loop consistency audit。
+
+R-05 ExecutionStateLoader contract is DECIDED but runtime conformance remains unimplemented/unverified。
+
+Immediate next：R-06 + R-07 Recovery Boundary Cluster。
+
+Runtime correction remains gated behind later：
+
+decision completion → correction scope freeze → reweight → explicit runtime authorization。
+
+Runtime Gate：NOT_AUTHORIZED。

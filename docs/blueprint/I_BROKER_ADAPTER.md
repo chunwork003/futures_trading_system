@@ -575,3 +575,21 @@ Broker adapter requirements：
 - read-only recovery/discovery capability must remain separate from legacy process-memory Trade cache semantics。
 
 Current Shioaji architecture therefore remains production default-deny for any unverified retry/idempotency assumption。
+
+## Recovery Decision Checkpoint 5A — Unmanaged External Execution
+
+Account-scoped broker discovery must evaluate material broker execution evidence that has no deterministic canonical local counterpart。
+
+Such evidence is classified as `UNMANAGED_EXTERNAL_EXECUTION` where it has required current/recovery impact。
+
+Adapter/recovery code must not：
+
+- heuristically auto-import it。
+- silently cancel it。
+- invent historical Order/Fill provenance。
+
+Incomplete broker discovery cannot prove absence of unmanaged external execution。
+
+Final REVIEW/HALT disposition remains R-04H。
+
+Existing broker capability verification gates remain unchanged。

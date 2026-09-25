@@ -539,3 +539,23 @@ Current：
 Runtime authorization：
 
     AUTHORIZED
+
+## Decision Checkpoint 5A — Active Queue
+
+Completed：
+
+- R-01 DECIDED / AMENDED。
+- R-02 DECIDED / AMENDED。
+- R-03 DECIDED / UNCHANGED。
+- R-04 DECIDED / AMENDED。
+- R-05 DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+Runtime Authorization：NOT_AUTHORIZED。
+
+Current architecture task：
+
+    R-06 + R-07 Recovery Boundary Cluster
+
+Do not re-open R-01 through R-05 without a concrete contradiction/new authoritative evidence。
+
+Do not begin bounded runtime correction until correction scope freeze/reweight and explicit authorization are complete。

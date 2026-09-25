@@ -1154,3 +1154,29 @@ Persistence/recovery correction direction：
 - production manual/out-of-band release depends on R-13 and remains default-deny until implemented。
 
 Expanded R-03/R-04 scope must be mapped and lifecycle-reweighted before correction runtime authorization。
+
+## Recovery Decision Checkpoint 5A — Complete RecoveryCut Contract
+
+R-05 establishes a coherent complete RecoveryCut as the persistence read boundary。
+
+AccountStateHead revision identifies the BrokerAccount material authority frontier but is not sufficient by itself to identify the entire recovery cut when required recovery evidence can change without advancing account_revision。
+
+Required RecoveryCut currentness semantics must cover，where applicable：
+
+- durable broker-report/callback inbox arrival/application state。
+- AccountRecoveryControl / recovery-session generation。
+- other explicitly recovery-critical non-revision-advancing dependencies。
+
+No physical representation is mandated。
+
+A single consistency witness may cover multiple dependency classes；architecture does not require one high-water/version field per dependency。
+
+AccountAuthorityCommitReceipt belongs to authority validation closure and is validated against the corresponding authority commit。
+
+Required transitive recovery closure must be complete before result may be labelled `VALID`。
+
+Full historical archive replay is not required。
+
+`BASELINE_NOT_ESTABLISHED` requires positive durable lifecycle/initialization proof；missing authority rows alone are insufficient。
+
+All records claimed as one RecoveryCut must satisfy the verified persistence-consistency-domain requirement。

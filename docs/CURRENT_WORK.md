@@ -336,3 +336,22 @@ Runtime Codex 完成後：
 不得由 runtime executor 自動開始下一個 mainline。
 
 至少 2–3 個 queue-driven runtime Work Package 穩定後，再評估 Level 3B。
+
+## Decision Checkpoint 5A Work Boundary
+
+Completed architecture work：
+
+- R-01 amendments A1-A4。
+- R-02 amendments A5-A6。
+- R-03 unchanged confirmation。
+- R-04 unmanaged-external-execution + complete-RecoveryCut handoff clarification。
+- R-05A-F final contract。
+
+Current runtime work：NONE AUTHORIZED。
+
+Next decision cluster：
+
+    R-06 — Multi-strategy recovery boundary
+    R-07 — ReconciliationCase / BrokerAccount recovery scope formal closure
+
+Do not start runtime correction from this checkpoint。

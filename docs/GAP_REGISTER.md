@@ -446,3 +446,21 @@ LIVE BLOCKER。
 - mandatory dependency。
 
 才可以插入 mainline。
+
+## Decision Checkpoint 5A — Recovery Decision Ledger
+
+- R-01：DECIDED / AMENDED / runtime correction still required where implementation drifts。
+- R-02：DECIDED / AMENDED / runtime correction required。
+- R-03：DECIDED / UNCHANGED / existing correction expansion remains unweighted。
+- R-04：DECIDED / AMENDED / broker capability gates remain。
+- R-05：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+New decision status does not change Architecture Acceptance from HOLD。
+
+Original 35 leaves / weight 151 remain IMPLEMENTED CANDIDATE / NOT ACCEPTED。
+
+Post-R-03/R-04/R-05 correction expansion remains RECORDED / NOT YET REWEIGHTED。
+
+Next decision work：R-06 + R-07。
+
+No runtime correction is authorized。

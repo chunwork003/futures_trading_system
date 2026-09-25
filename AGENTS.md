@@ -77,3 +77,19 @@ Historical / supplemental documents：`docs/PROJECT_STATE.md`、`docs/DEVELOPMEN
 Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7 天時建立 Delay Review：延遲原因、V1 影響、Post-V1 延後可能、scope creep、低價值過度優化、Work Package 拆分與模型選擇。
 
 方向變更必須遵守 `EXIT → confirm FLAT → re-evaluate → ENTER`；不得 silent direct reversal。
+
+## CURRENT AUTHORITY — DECISION CHECKPOINT 5A
+
+- Authoritative decision baseline before this checkpoint：`462a3d541cb6b0bccc9bb5e3e1a118cd1c2cf351`。
+- R-01：DECIDED / AMENDED。
+- R-02：DECIDED / AMENDED。
+- R-03：DECIDED / UNCHANGED。
+- R-04：DECIDED / AMENDED。
+- R-05：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-05 RecoveryCut is broader than AccountStateHead revision alone when recovery-critical evidence may change without account_revision advancement。
+- No physical per-dependency high-water schema is prescribed。
+- R-05 VALID is local restore consistency only；VALID != broker-current / READY / Strategy READY / trading authority。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Architecture Acceptance：HOLD。
+- Next：R-06 + R-07 Recovery Boundary Cluster。
+- Do not begin runtime correction until the expanded correction Work Package is later frozen、reweighted and explicitly authorized。

@@ -836,3 +836,27 @@ Blueprint baseline accepted 後，ACTIVE 必須列 Implements / Touches / Does N
 Runtime Codex 只讀 ACTIVE 指定的 Blueprint 與 source documents，不得 whole-repo rescan，也不得重新設計已凍結 architecture。
 
 Broker / exchange / live-money semantics 優先使用 `docs/blueprint/SOURCE_REGISTRY.md` 的官方來源；不足時 HARD_BLOCK / REVIEW，不得猜測。
+
+## Decision Checkpoint 5A Handoff
+
+Authoritative recovery architecture status after this checkpoint：
+
+- R-01 DECIDED / AMENDED。
+- R-02 DECIDED / AMENDED。
+- R-03 DECIDED / UNCHANGED。
+- R-04 DECIDED / AMENDED。
+- R-05 DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+Important R-05 semantics：
+
+- `ExecutionStateLoader` is read + validate only。
+- `RecoveryCut != account_revision only` when relevant recovery evidence can change without advancing AccountStateHead。
+- no physical high-water schema is frozen。
+- `VALID` means coherent local restore cut + complete required recovery dependency closure。
+- `VALID` does not mean broker-current、READY、Strategy READY or trading authority。
+- never-initialized requires positive durable proof；missing rows alone do not prove it。
+- normal execution activation remains behind R-04H race-safe handoff。
+
+This checkpoint is docs-only and does not authorize correction runtime。
+
+Next：R-06 + R-07 Recovery Boundary Cluster。

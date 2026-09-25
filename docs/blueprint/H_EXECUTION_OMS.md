@@ -533,3 +533,20 @@ Execution/OMS correction direction：
 - BrokerAccount READY / REVIEW / HALT is operational readiness and does not itself advance economic AccountStateHead。
 
 No runtime correction is authorized by this checkpoint。
+
+## Recovery Decision Checkpoint 5A — Execution Restore Boundary
+
+`ExecutionStateLoader` may restore/validate local durable execution state but owns no broker I/O、economic mutation or final readiness decision。
+
+A successful restore produces a recovery-isolated `RecoveryExecutionContext` only。
+
+Normal execution remains blocked until R-04H final handoff validates：
+
+- evaluated AccountStateHead authority frontier is still valid。
+- no relevant non-revision-advancing recovery evidence appeared outside the evaluated RecoveryCut。
+- no unapplied material broker evidence exists outside the evaluated application frontier。
+- the same recovery-control/handoff generation remains valid。
+
+`UNMANAGED_EXTERNAL_EXECUTION` blocks automatic initialization/READY where material；it is not automatically imported、cancelled or converted into fabricated canonical history。
+
+Recovery material broker side effects remain governed by R-04G and R-13。

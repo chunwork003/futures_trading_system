@@ -1227,3 +1227,337 @@ Runtime commit remains a useful implementation baseline and is not reverted。
 However GAP-08EFGHI cannot move to ACCEPTED until the post-R-03/R-04 expanded correction scope is explicitly mapped/frozen/reweighted，required linked dependencies and capability gates are classified，and bounded correction runtime passes targeted/compatibility/full-regression verification。
 
 No LIVE authorization is implied。
+
+## Decision Checkpoint 5A — R-01 through R-05 Closed
+
+**DECISION CHECKPOINT 5A ACCEPTED — ARCHITECTURE DECISIONS ONLY**
+
+- Baseline decision commit：`462a3d541cb6b0bccc9bb5e3e1a118cd1c2cf351`。
+- Runtime implementation candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Architecture acceptance remains：HOLD。
+- Runtime authorization remains：NOT_AUTHORIZED。
+- R-01：DECIDED / AMENDED。
+- R-02：DECIDED / AMENDED。
+- R-03：DECIDED / UNCHANGED。
+- R-04：DECIDED / AMENDED。
+- R-05：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- Next architecture cluster：R-06 + R-07 Recovery Boundary Cluster。
+
+This checkpoint records architecture decisions only。
+
+It does NOT assert：
+
+- runtime conformance。
+- broker capability verification completion。
+- production readiness。
+- authorization to begin runtime correction。
+
+### R-01 Amendments
+
+#### A1 — Production initialization authorization
+
+All production `EXPECTED_STATE_INITIALIZED` transitions require R-13-authorized initialization authority。
+
+`FLAT` and `BROKER_SEED` are both production default-deny until that authority exists。
+
+`BROKER_SEED` may require a stronger authorization policy；R-01 does not freeze a particular UI、approval count or workflow implementation。
+
+#### A2 / A2b — Initialization authority revision and READY separation
+
+Successful `EXPECTED_STATE_INITIALIZED` establishes the first committed BrokerAccount material authority revision：
+
+    account_revision = 1
+
+The physical persistence model may either create the head at revision 1 or advance a pre-existing reserved/control revision-0 row to revision 1。
+
+Architecture does not require physical `AccountStateHead` row absence before initialization。
+
+Fresh broker I/O occurs before the authority transaction and never while holding the AccountStateHead authority lock。
+
+The revision-1 initialization authority commit atomically establishes：
+
+- initialization authority event。
+- first complete `AccountPositionSnapshot`。
+- logical AccountStateHead revision 1。
+- exact `AccountRecoveryCheckpoint(1)`。
+- exact expected snapshot reference。
+- stable authority-commit/idempotency receipt。
+- persisted immutable broker observation evidence required by initialization。
+
+Broker observation persistence by itself does not advance AccountStateHead；the initialization authority transition does。
+
+Initialization revision 1 establishes the local durable authority baseline but does NOT itself grant BrokerAccount `READY`。
+
+The fresh broker observation is evidence，not a broker-side linearizable fence。
+
+Final activation still requires the existing R-04H race-safe recovery/currentness handoff。
+
+#### A3 / A3b — BROKER_SEED as account-position genesis
+
+`BROKER_SEED` is an explicit one-time account-position genesis authority。
+
+It does not fabricate historical Order、OrderEvent or Fill evidence and does not claim historical execution attribution。
+
+Conceptually：
+
+    ExpectedPosition at revision N
+    = InitializationBaseline
+      + canonical economic effects accepted after initialization
+
+This is a semantic authority relationship，not a requirement to implement position reconstruction as naive arithmetic over all history。
+
+All economically authoritative facts required to establish the seeded position must come from approved authoritative sources at the initialization boundary。
+
+Fresh broker evidence supplies broker-state/economic facts for which the broker is authoritative。
+
+Canonical instrument/reference authority may supply separately frozen reference facts such as canonical instrument interpretation where appropriate。
+
+Economically material reference authority/version used by initialization must remain auditable。
+
+No economically material value may be guessed、heuristically inferred or synthetically fabricated。
+
+If a complete canonical initialization `AccountPositionSnapshot` cannot be formed from verified authorities，production initialization remains blocked。
+
+#### A4 — UNMANAGED_EXTERNAL_EXECUTION
+
+`UNMANAGED_EXTERNAL_EXECUTION` is a recovery classification，not an OrderStatus。
+
+It covers material broker execution evidence within required recovery scope that has no deterministic canonical local counterpart。
+
+Active/non-terminal unmatched broker execution always blocks automatic initialization / automatic READY。
+
+Terminal unmatched broker execution also blocks automatic READY when it is inside required recovery scope、has unresolved current economic impact or affects current broker/account reconciliation。
+
+Historical terminal evidence outside required recovery scope with no current economic/recovery impact does not automatically block READY。
+
+Recovery must not：
+
+- auto-import unmatched broker execution into fabricated canonical history。
+- silently cancel unmatched broker execution。
+- fabricate Order / Fill provenance。
+
+Final REVIEW versus HALT integration remains R-04H authority。
+
+### R-02 Amendments
+
+#### A5 — account_revision semantics
+
+`account_revision` means BrokerAccount material authority commit sequence。
+
+It does NOT mean OrderEvent sequence。
+
+Every accepted canonical OrderEvent belongs to exactly one revision-advancing material authority commit。
+
+One authority revision contains at most one canonical OrderEvent。
+
+Some material authority revisions may contain no OrderEvent，including initialization、BrokerActionAttempt or valid standalone material BrokerActionResolution transitions。
+
+Every successful authority revision produces exactly one exact AccountRecoveryCheckpoint。
+
+#### A6 — causal atomic crash invariant
+
+Material StrategyStateSnapshot + initial PENDING persistence must preserve the frozen atomic crash invariant。
+
+It must be impossible for a successful durable strategy frontier to claim that the material observation was consumed while the corresponding durable execution boundary required by the frozen causal contract is absent，and vice versa where that contract requires atomicity。
+
+V1 targets one verified PostgreSQL transactional consistency domain。
+
+A future cross-store design may claim equivalent semantics only if it preserves the same crash invariant。
+
+Best-effort、eventual or ordinary dual-write is not equivalent。
+
+### R-03 Confirmation
+
+R-03A/B/C/D remain DECIDED / UNCHANGED。
+
+D340、R-14/GAP-DATA-001 and K520 remain explicit dependencies/gates and do not reopen R-03。
+
+### R-04 Amendments
+
+`UNMANAGED_EXTERNAL_EXECUTION` is integrated into account-scoped broker recovery evaluation。
+
+R-04H final activation must validate complete RecoveryCut currentness，not AccountStateHead equality alone。
+
+Final activation requires：
+
+1. AccountStateHead still satisfies the evaluated authority-frontier precondition。
+2. no new relevant non-revision-advancing recovery evidence appeared outside the evaluated RecoveryCut。
+3. no unapplied material broker evidence exists outside the evaluated/application frontier。
+4. AccountRecoveryControl / recovery-session generation or equivalent recovery fence still identifies the same valid handoff generation。
+
+Failure of final-currentness validation produces `STALE_RECOVERY_EVALUATION` and requires reevaluation；it does not silently activate the account。
+
+This clarification does not reopen R-04A-H。
+
+### R-05 — ExecutionStateLoader Contract
+
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+#### R-05A — Read + Validate + Explicit Result
+
+`ExecutionStateLoader` is the local durable execution restore + validation boundary。
+
+It returns explicit immutable restore evidence/result。
+
+It is not：
+
+- broker discovery。
+- broker network I/O。
+- reconciliation authority。
+- repair/re-anchor authority。
+- economic mutation authority。
+- AccountStateHead advancement authority。
+- final READY / REVIEW / HALT authority。
+
+#### R-05B — Coherent Complete RecoveryCut
+
+Loader restores exactly one coherent BrokerAccount-local durable RecoveryCut from a verified persistence consistency domain。
+
+Independent repository `latest` reads are forbidden as recovery authority。
+
+AccountStateHead revision N identifies the BrokerAccount material/economic authority frontier only。
+
+`account_revision = N` alone is not a complete RecoveryCut identity when recovery-critical dependencies may change without advancing AccountStateHead。
+
+RecoveryCut therefore consists conceptually of：
+
+- exact BrokerAccount authority frontier；and
+- sufficient deterministic cut/currentness evidence covering recovery-critical dependencies that may change independently of `account_revision`。
+
+At minimum，where applicable，the cut/currentness proof must cover：
+
+- durable broker-report/callback inbox arrival/application state。
+- AccountRecoveryControl / recovery-session generation or equivalent recovery fence。
+- future recovery-critical dependencies explicitly permitted to change without advancing account_revision。
+
+AccountAuthorityCommitReceipt remains part of authority validation closure，but does not require a separate independent frontier when atomically committed with the corresponding authority revision。
+
+Architecture does not prescribe physical fields such as：
+
+- `broker_inbox_high_water`。
+- `recovery_control_version`。
+- database snapshot/XID token。
+- one high-water/version column per dependency。
+
+The requirement is semantic：implementation must be able to prove whether relevant recovery evidence appeared outside/after the evaluated RecoveryCut。
+
+All records claimed to belong to one RecoveryCut must be observed under a verified consistency boundary capable of proving that coherent view。
+
+If required authority/recovery data cannot be observed under a provable consistency boundary，loader must not synthesize a coherent cut。
+
+A captured RecoveryCut remains historically valid as the coherent world that was observed；final-currentness at activation remains R-04H responsibility。
+
+#### R-05C — VALID guarantee / required transitive closure
+
+`ExecutionRestoreResult = VALID` guarantees：
+
+1. one coherent local RecoveryCut was captured。
+2. its BrokerAccount authority frontier is exactly account_revision N。
+3. the required transitive recovery dependency closure visible at that cut is complete and internally consistent。
+4. every validated materialized projection has a deterministic canonical validation anchor at the captured RecoveryCut。
+5. every recovery-critical dependency capable of changing without account_revision advancement is covered by deterministic cut/currentness evidence。
+6. required AccountAuthorityCommit receipts and canonical provenance resolve consistently with the authority frontier。
+7. no detected local integrity defect prevents subsequent recovery evaluation。
+
+Required recovery roots include at least，where applicable：
+
+- AccountStateHead(N)。
+- AccountRecoveryCheckpoint(N)。
+- exact expected_snapshot_id。
+- current non-terminal canonical Orders。
+- unresolved/open BrokerActionAttempt / BrokerActionHead state。
+- pending durable broker-report/callback evidence that can still affect canonical execution。
+- active AccountRecoveryControl / recovery-session state。
+
+The transitive closure then resolves required canonical evidence such as OrderEvent、Fill、BrokerActionResolution、authority-commit receipt and canonical provenance/reference evidence。
+
+`VALID` does NOT mean：
+
+- broker-current。
+- final-current。
+- BrokerAccount READY。
+- Strategy READY。
+- trading authorized。
+- entire historical archive proven corruption-free。
+
+Completed terminal history that is no longer a required current recovery dependency does not need eager full replay during every startup。
+
+#### R-05D — Restore outcomes / initialization boundary
+
+Architecture-level outcomes：
+
+    VALID
+
+    BASELINE_NOT_ESTABLISHED
+
+    RESTORE_FAILURE
+        READ_FAILURE
+        MISSING_REQUIRED_AUTHORITY
+        INTEGRITY_FAILURE
+        UNSUPPORTED_SCHEMA_OR_CAPABILITY
+
+`BASELINE_NOT_ESTABLISHED` may be returned only when durable account lifecycle/initialization authority positively proves that no successful BrokerAccount initialization authority commit has ever existed。
+
+Absence of head/checkpoint/snapshot rows alone is insufficient to prove never-initialized。
+
+If prior successful initialization cannot be excluded，restore fails closed as `MISSING_REQUIRED_AUTHORITY` or `INTEGRITY_FAILURE` according to evidence。
+
+Required versus optional evidence is defined by the frozen contract，not inferred ad hoc from repository `None` values。
+
+Authority restore is all-or-nothing for the required recovery dependency closure。
+
+Partial diagnostic evidence may be retained，but cannot be exposed as `VALID`。
+
+All-or-nothing recovery authority validation does not require eager loading or full replay of the entire historical archive。
+
+A RecoveryCut becoming superseded after successful load is not an R-05 loader failure；R-04H final-currentness evaluation handles that condition。
+
+#### R-05E — Projection + canonical evidence validation
+
+V1 does not require full-history event replay。
+
+Loader validates persisted materialized projections against bounded canonical evidence at the captured RecoveryCut。
+
+Every validated materialized projection must deterministically resolve to its applicable canonical authority/validation anchor at that cut。
+
+Projection-only trust is forbidden。
+
+Wall-clock `latest` is not authority。
+
+Architecture does not require a particular physical anchor field such as `last_event_id`。
+
+Validation failure produces integrity failure；ExecutionStateLoader does not repair、rewrite、re-anchor or silently reconstruct durable authority state。
+
+#### R-05F — RecoveryExecutionContext / activation boundary
+
+A VALID restore may hydrate only a recovery-isolated `RecoveryExecutionContext`。
+
+Before successful R-04H final handoff，that context may support recovery evaluation、broker discovery、diagnostics、reconciliation planning and deterministic evidence comparison。
+
+It may not be treated as normal live execution authority。
+
+Normal strategy submission、normal cancel workflow and normal live trading remain blocked until R-04H race-safe activation succeeds。
+
+If recovery remediation itself requires a material broker side effect，it remains governed by R-04G side-effect safety plus R-13 authority where applicable。
+
+`RecoveryExecutionContext` is not a second economic authority。
+
+`Execution READY != Strategy READY`；strategy restoration/readiness remains R-06。
+
+### Explanatory Notes — Non-Decisions
+
+1. `deterministic cut/currentness witness` does not require every dependency to own an independent physical high-water/version column。
+
+The requirement is only that implementation can prove whether relevant recovery evidence appeared after/outside the evaluated RecoveryCut。
+
+2. R-05D all-or-nothing authority restore does not require eager loading/full replay of the complete historical archive。
+
+It means only that the required recovery dependency closure may not partially succeed and still be labelled `VALID`。
+
+### Decision Queue After Checkpoint 5A
+
+Next：R-06 + R-07 Recovery Boundary Cluster。
+
+Then continue in authoritative queue order：R-08 → R-09 → R-10 formal closure → R-11 → R-12 → R-13 boundary → R-14 boundary → K520 defer confirmation → broker capability gate classification → correction scope freeze/reweight → later runtime authorization。
+
+No correction runtime is authorized by this checkpoint。
