@@ -14,15 +14,35 @@ Operational Persistence + Recovery
 
 ## 3. Status
 
-READY_FOR_EXECUTION
+RUNTIME_IMPLEMENTED_CANDIDATE
 
-Design Freeze：COMPLETED。
+Runtime commit：
 
-Runtime Authorization：AUTHORIZED。
+`6b62239bca1d11543944f9f078e577e16010bcbf`
+
+Runtime verification：
+
+934 passed / 4 skipped / 1 warning。
+
+Architecture Acceptance：HOLD。
+
+Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
 
 Launch Gate：
 
-`RELEASED_ARCHITECTURE_FREEZE`
+`HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS`
+
+Decision checkpoint：R-01 / R-02 / R-03A / R-03B DECIDED。
+
+Remaining decisions：R-03C / R-03D / R-04。
+
+Detailed authority：
+
+`docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
+
+Do not rerun this Work Package。
+
+Do not promote 35 leaves / weight 151 to ACCEPTED until bounded correction runtime and final acceptance。
 
 Architecture ancestor：
 
@@ -31,8 +51,6 @@ Architecture ancestor：
 Design freeze commit：
 
 `f463f82beb8426c36b91efbd03ad943918954b65`
-
----
 
 ## 4. Recommended Model
 

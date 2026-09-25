@@ -99,6 +99,22 @@ Target ownership：
 
 ---
 
+## Post-Runtime Recovery Decision Checkpoint
+
+ADR-002 R-02 supersedes any interpretation that broker submission may occur before durable execution evidence。
+
+Required correction direction：
+
+- sequence-0 PENDING must commit before broker network side effect。
+- unresolved/non-terminal execution is a recovery-time derived classification，not a new OrderStatus。
+- every new canonical OrderEvent advances the BrokerAccount authority revision。
+- material-emitting strategy snapshots and initial PENDING causal boundary commit atomically。
+- ExecutionTriggerRef provides minimal crash/audit backlink；full Decision/Risk provenance remains K810-K840。
+- exact broker discovery/remediation remains R-04。
+
+This checkpoint does not promote H lifecycle values and does not authorize runtime correction yet。
+
+
 ## CURRENT / TARGET / MIGRATION
 
 CURRENT：

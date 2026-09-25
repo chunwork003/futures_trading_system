@@ -26,6 +26,27 @@ Known local untracked：
 
 ---
 
+## 1A. GAP-08EFGHI Post-Runtime Decision Checkpoint
+
+Runtime candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+
+Runtime verification：934 passed / 4 skipped / 1 warning。
+
+Architecture acceptance：HOLD。
+
+Do not rerun GAP-08EFGHI and do not mark 35 / 151 ACCEPTED。
+
+Decided：R-01、R-02、R-03A、R-03B。
+
+Open：R-03C、R-03D、R-04。
+
+Detailed authoritative decision record：
+
+`docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
+
+No runtime execution is authorized until remaining architecture decisions are frozen into a bounded correction Work Package。
+
+
 ## 2. Default Agent Reading
 
 Runtime Work Package 預設只讀：

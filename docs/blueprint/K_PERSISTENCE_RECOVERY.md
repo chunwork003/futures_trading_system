@@ -122,6 +122,27 @@ DuckDB PostgreSQL extension only serves optional analytical bridge use cases。
 
 ---
 
+## Post-Runtime Recovery Decision Checkpoint
+
+ADR-002 R-01 / R-02 are authoritative for current GAP-08 acceptance correction。
+
+Required correction direction：
+
+- missing expected snapshot = NOT_INITIALIZED，never implicit FLAT。
+- read failure and checkpoint/snapshot integrity failure are distinct typed failures。
+- recovery/HALT isolation minimum scope = BrokerAccount。
+- initialization is explicit、idempotent、audited and production-gated by R-04/R-13。
+- BrokerAccount owns a transactional contiguous AccountStateHead revision。
+- checkpoint exact-references expected_snapshot_id；no SELECT-latest fallback。
+- strategy/account recovery uses causal frontier validation，not timestamp equality。
+- market observation evidence becomes revision-specific under R-03。
+- K520 remains deferred；unknown historical correction impact in required feature horizon -> REVIEW。
+
+R-03C / R-03D / R-04 remain open。
+
+This checkpoint does not promote K lifecycle values and does not authorize correction runtime。
+
+
 ## Core Persistent Entities
 
 至少包含：

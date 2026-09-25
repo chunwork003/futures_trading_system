@@ -26,7 +26,7 @@ Actual runtime execution HEAD：
 
 Recorded full regression：
 
-869 passed
+934 passed / 4 skipped
 
 Known warning：
 
@@ -77,29 +77,45 @@ Current Work Package：
 
 GAP-08EFGHI — Operational Persistence + Recovery。
 
-Merged scope：
-
-- EF execution/account persistence。
-- required OMS canonical dependencies。
-- GHI strategy state/recovery/readiness。
-- E510/E520 StrategyInstance identity/scope。
-- J340/J810-J830 account projection/snapshot dependencies。
-
 Blueprint：35 leaves / weight 151。
 
-Status：READY_FOR_EXECUTION。
+Runtime implementation：COMPLETED_CANDIDATE。
 
-Design Freeze：COMPLETED。
+Runtime commit：`6b62239bca1d11543944f9f078e577e16010bcbf`。
 
-Runtime Launch Gate：RELEASED_ARCHITECTURE_FREEZE。
+Runtime verification：934 passed / 4 skipped / 1 warning。
 
-Runtime authorization：AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+User-observed 5HR usage：28%。
+
+Architecture acceptance：HOLD。
+
+Reason：post-runtime review identified recovery/execution correctness gaps and underspecified semantics。
+
+Decision checkpoint：
+
+- R-01 DECIDED / CORRECTION_REQUIRED。
+- R-02 DECIDED / CORRECTION_REQUIRED。
+- R-03A DECIDED / CORRECTION_REQUIRED。
+- R-03B DECIDED / CORRECTION_REQUIRED。
+- R-03C OPEN。
+- R-03D OPEN。
+- R-04 OPEN / mandatory dependency。
+
+Authoritative detailed record：
+
+`docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
+
+Runtime authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
+
+Launch Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS。
+
+35 / 151 must not be counted as ACCEPTED yet。
 
 K520：DEFERRED_TO_GAP_09。
 
 PG17 / PG18：PENDING_INTEGRATION_VERIFICATION。
 
-Projected lifecycle after full acceptance：approximately 53.57%。
+Official lifecycle metric remains the 47.92% architecture-freeze baseline until correction/acceptance rebase。
 
 Level 3B：NOT_ENABLED。
 
@@ -186,7 +202,7 @@ Engineering leaves：
 
 603。
 
-Lifecycle-weighted completion：
++
 
 44.17%。
 
@@ -209,7 +225,7 @@ Readiness：
 
 Latest accepted runtime：
 
-`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
+`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
 
 ## Automation Status
 
@@ -229,27 +245,23 @@ Validated by GAP-07-CLOSE。
 
 Repository queue + ACTIVE full Work Package。
 
-Formal runtime calibration samples：5。
+Formal runtime calibration samples：7。
 
-Completed：
+Completed runtime samples：
 
-- GAP-ACCOUNT-001。
-- GAP-BROKER-001。
-- GAP-RECON-001A。
-- GAP-RECON-001B。
-- GAP-BROKER-002。
+- GAP-ACCOUNT-001：12%。
+- GAP-BROKER-001：14%。
+- GAP-RECON-001A：11%。
+- GAP-RECON-001B：16%。
+- GAP-BROKER-002：10%。
+- GAP-08ABCD：12%。
+- GAP-08EFGHI：28%。
 
-Observed 5HR runtime usage：
+Observed average 5HR usage：14.71%。
 
-- 12%。
-- 14%。
-- 11%。
-- 16%。
-- 10%。
+Total implementation correction cycles：4。
 
-Observed average：12.60%。
-
-Total implementation correction cycles：1。
+GAP-08EFGHI runtime test result is PASS but architecture acceptance is HOLD；this sample is retained for sizing calibration。
 
 ### Level 3B
 

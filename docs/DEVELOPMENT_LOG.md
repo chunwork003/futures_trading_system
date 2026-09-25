@@ -29,6 +29,22 @@
 
 ## Chronological Log
 
+### 2026-09-25 — GAP-08EFGHI Post-Runtime Architecture Decision Checkpoint 1
+
+- Runtime candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Runtime verification：934 passed / 4 skipped / 1 warning。
+- User-observed 5HR usage：28%。
+- Runtime result：TEST_PASS。
+- Architecture acceptance：HOLD。
+- Accepted architecture decisions：R-01、R-02、R-03A、R-03B。
+- Open mandatory decisions：R-03C、R-03D、R-04。
+- Added explicit dependencies：R-12 reconciliation-run audit、R-13 operator authorization/approval runtime、K520 historical feature-state impact horizon。
+- 35 leaves / weight 151 remains implementation candidate；not promoted to ACCEPTED。
+- No runtime correction authorized in this checkpoint。
+- Detailed record：docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md。
+- Next：R-03C / R-03D / R-04 decision discussion，then bounded correction freeze。
+
+
 ### 2026-09-24 21:56 +08:00
 
 - Milestone：GAP-07-CLOSE Stage B — Final Acceptance。

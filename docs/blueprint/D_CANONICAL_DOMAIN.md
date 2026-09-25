@@ -112,6 +112,25 @@ Trading consumer：
 
 ---
 
+## Post-Runtime Recovery Identity Decision Checkpoint
+
+ADR-002 R-03A / R-03B are authoritative for the current Market Observation correction review。
+
+Key decisions：
+
+- logical observation identity = instrument_id + listed contract_id when applicable + normalized timeframe + timezone-aware UTC interval_start_at。
+- trade_date/session/source/OHLCV are not logical-key fields。
+- listed futures without resolved contract_id reject/quarantine；no silent None fallback。
+- synthetic/continuous series do not yet have operational recovery identity。
+- observation revisions use deterministic content fingerprint + authority-local revision_seq。
+- candidate != accepted revision；no canonical last-write-wins。
+- StrategyStateSnapshot must ultimately reference immutable revision-specific observation evidence。
+- accepted market-data correction in required recovery horizon -> REVIEW。
+- classification-only correction may bypass REVIEW only when explicit verified strategy dependency proves it non-material。
+
+R-03C / R-03D remain open；D310-D350 lifecycle values are not promoted by this checkpoint。
+
+
 ## CURRENT / TARGET / MIGRATION
 
 ### Instrument / Contract / Session / Margin / Broker Reference

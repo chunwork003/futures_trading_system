@@ -39,33 +39,39 @@ Work Package：GAP-08EFGHI
 
 Title：Operational Persistence + Recovery
 
-Status：READY_FOR_EXECUTION
-
 Priority：P1 MAINLINE
 
-Blueprint Implements：
+Runtime implementation：COMPLETED_CANDIDATE
 
-E510 E520
+Runtime commit：`6b62239bca1d11543944f9f078e577e16010bcbf`
 
-H170 H440 H450 H510 H520 H530 H540 H550 H830
+Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
-J340 J810 J820 J830
+Architecture acceptance：HOLD
 
-K310 K320 K330 K340 K350
-K410 K420 K430 K440 K450
-K510 K530 K540
-K710 K720 K730 K740 K750 K760 K770
+Current activity：POST_RUNTIME_ARCHITECTURE_DECISION_REVIEW
 
-Size：35 leaves / weight 151
+Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION
 
-Runtime Authorization：AUTHORIZED_FOR_LEVEL_3A_RUNTIME
+Launch Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS
 
-Launch Gate：RELEASED_ARCHITECTURE_FREEZE
+Accepted decision checkpoint：R-01 / R-02 / R-03A / R-03B。
 
-Execution：GPT-5.6 Sol / 中度 / LEVEL_3A_BOUNDED
+Open decisions：R-03C / R-03D / R-04。
+
+Detailed decision record：
+
+`docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
+
+Blueprint scope remains：35 leaves / weight 151。
+
+The 35 / 151 runtime candidate must not be promoted to ACCEPTED until bounded correction + verification completes。
 
 K520 remains GAP-09-owned。
 
+Next action：finish R-03C / R-03D / R-04 architecture decisions，then freeze a bounded correction Work Package。
+
+No Codex runtime execution is authorized during this decision hold。
 
 # Completed Work Package — GAP-BROKER-002
 

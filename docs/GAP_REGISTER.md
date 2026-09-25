@@ -62,7 +62,7 @@ Mainline：
 | GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | CLOSED |
 | GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | No | Explicit OrderIntent / PositionEffect | CLOSED |
 | GAP-BROKER-002 | P2 | REVIEW_AT_CHECKPOINT | No | Capability matrix / mapping semantics | CLOSED |
-| GAP-08 | P1 | REVIEW_AT_CHECKPOINT | No | Trading State Persistence / Recovery | IN_PROGRESS / DECOMPOSED |
+| GAP-08 | P1 | REVIEW_AT_CHECKPOINT | Yes — acceptance | Trading State Persistence / Recovery | IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD |
 | GAP-PERSIST-001 | P1 | RECORD_AND_CONTINUE | No | Decision / Risk Provenance | OPEN |
 | GAP-09 | P1 | REVIEW_AT_CHECKPOINT | No | Incremental Feature / Market State | PENDING |
 | GAP-SIM-001 | P2 | RECORD_AND_CONTINUE | No | SimulationBroker / fault injection | OPEN |
@@ -345,43 +345,47 @@ Capability evidence does not authorize LIVE。
 
 # GAP-08 Detail
 
-Status：IN_PROGRESS / GAP-08EFGHI_READY_FOR_EXECUTION。
+Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD。
 
 Accepted：
 
 GAP-08ABCD Persistence Foundation + Event Ledger。
 
-Current：
+GAP-08EFGHI runtime candidate：
 
-GAP-08EFGHI Operational Persistence + Recovery。
+`6b62239bca1d11543944f9f078e577e16010bcbf`
 
-Design Freeze：COMPLETED。
+Runtime verification：934 passed / 4 skipped / 1 warning。
 
-Blueprint：35 leaves / weight 151。
+User-observed 5HR usage：28%。
 
-Merged because EF/GHI conditional semantics were explicitly resolved before runtime：
+Blueprint scope：35 leaves / weight 151。
 
-- canonical Order / Fill / OrderEvent。
-- OMS transition/idempotency/correlation。
-- atomic execution/account transaction boundary。
-- expected/actual snapshot collections。
-- append-only ReconciliationCase history。
-- StrategyInstance identity/config fingerprint。
-- StrategyStateSnapshot / codecs。
-- deterministic recovery order/readiness mapping。
+Runtime code is retained，but 35 / 151 is NOT ACCEPTED。
 
-Runtime Launch Gate：RELEASED_ARCHITECTURE_FREEZE。
+Post-runtime architecture review decision checkpoint：
 
-Runtime Authorization：AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+- R-01 expected-state initialization/read semantics：DECIDED / CORRECTION_REQUIRED。
+- R-02 account checkpoint/causal frontier：DECIDED / CORRECTION_REQUIRED。
+- R-03A market observation logical key：DECIDED / CORRECTION_REQUIRED。
+- R-03B market observation revision/content identity：DECIDED / CORRECTION_REQUIRED。
+- R-03C ID encoding/value object：OPEN。
+- R-03D cross-environment/source authority：OPEN。
+- R-04 non-terminal broker discovery/reconciliation：OPEN / mandatory dependency。
+
+Detailed authoritative record：
+
+`docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
+
+Runtime Launch Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS。
+
+Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
 
 K520：DEFERRED_TO_GAP_09。
 
 PG17 / PG18：PENDING。
 
-Parent GAP may close after GAP-08EFGHI acceptance，subject to acceptance verification。
-
----
-
+Parent GAP cannot close until the correction Work Package is frozen、implemented、verified and accepted。
 
 # GAP-09 Detail
 

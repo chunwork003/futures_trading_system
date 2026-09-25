@@ -203,29 +203,37 @@ Accepted runtime commit：`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`。
 
 # M6 — Persistence / Recovery / Provenance
 
-Status：IN_PROGRESS / GAP-08EFGHI_READY_FOR_EXECUTION
+Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD
 
 Accepted：
 
 - GAP-08ABCD Persistence Foundation + Event Ledger。
 
-Current：
+GAP-08EFGHI：
 
-GAP-08EFGHI Operational Persistence + Recovery。
+- runtime candidate implemented。
+- runtime commit：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- verification：934 passed / 4 skipped / 1 warning。
+- architecture acceptance：HOLD。
+- 35 leaves / weight 151：NOT ACCEPTED。
 
-Merged scope：EF + required OMS + GHI + necessary StrategyInstance/Account dependencies。
+Post-runtime decision checkpoint：
 
-Design Freeze：COMPLETED。
+- R-01 DECIDED。
+- R-02 DECIDED。
+- R-03A DECIDED。
+- R-03B DECIDED。
+- R-03C OPEN。
+- R-03D OPEN。
+- R-04 OPEN / mandatory dependency。
 
-Runtime Gate：RELEASED / AUTHORIZED_LEVEL_3A。
+Runtime Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS。
 
-Runtime：NOT_YET_AUTHORIZED。
+Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
 
 K520：DEFERRED_TO_GAP_09。
 
-Projected lifecycle after full acceptance：約 53.57%。
-
----
+Official lifecycle remains 47.92% architecture-freeze baseline until correction/acceptance rebase。
 
 
 # M7 — Incremental Feature / Market State
