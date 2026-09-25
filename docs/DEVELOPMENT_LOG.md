@@ -885,3 +885,28 @@ K520：DEFERRED_TO_GAP_09。
 Current：GAP-08A READY_FOR_DESIGN_FREEZE。
 
 Runtime：NOT_YET_AUTHORIZED。
+
+## 2026-09-25 — GAP-08ABCD Design Freeze
+
+Work Package：Persistence Foundation + Event Ledger。
+
+Expanded bundle：19 leaves / weight 77。
+
+Combines former GAP-08A/B/C/D runtime slices to reduce repeated context/precheck/regression overhead。
+
+Frozen：
+
+- storage-neutral contracts。
+- PostgreSQL driver/UoW/migration boundary。
+- PostgreSQL 17/18 compatibility evidence contract。
+- TradingEvent envelope。
+- append-only event ledger。
+- sequence/version/idempotency/correlation semantics。
+
+PostgreSQL 17/18 remain PENDING until actual integration evidence。
+
+Dynamic sizing policy：evaluate accepted work per resource；no fixed quota target。
+
+Runtime gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+
+Runtime authorization：NOT_YET_AUTHORIZED。

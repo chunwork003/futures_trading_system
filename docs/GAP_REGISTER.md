@@ -347,81 +347,50 @@ Capability evidence does not authorize LIVE。
 
 Status：
 
-IN_PROGRESS / ARCHITECTURE_REVIEW_COMPLETED / DECOMPOSED。
+IN_PROGRESS / GAP-08ABCD_READY_FOR_EXECUTION。
 
-Priority：
+Architecture：
 
-P1 MAINLINE。
+storage-neutral contracts + PostgreSQL operational adapter family + Parquet/DuckDB/Polars analytical plane。
 
-Architecture pattern：
+Runtime bundles：
 
-storage-neutral contracts + backend-specific adapters。
+- GAP-08ABCD：Persistence Foundation + Event Ledger。
+- GAP-08EF：Execution + Account/Reconciliation Persistence。
+- GAP-08GHI：Strategy State + Recovery / Readiness。
 
-Operational adapter family：
+Current：
 
-PostgreSQL。
+GAP-08ABCD。
 
-Initial compatibility targets：
+Blueprint：
 
-- PostgreSQL 17。
-- PostgreSQL 18。
+K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680。
 
-Project integration support：
+Design Freeze：
 
-NOT_YET_VERIFIED。
+COMPLETED。
 
-Driver family：
+Runtime Launch Gate：
 
-Psycopg 3。
-
-Analytical plane：
-
-- Parquet。
-- DuckDB。
-- Polars。
-
-Authority rules：
-
-- operational and analytical authorities remain separate。
-- no PostgreSQL-major semantics leak into domain ports。
-- no generic CRUD abstraction across PostgreSQL / DuckDB / Parquet。
-- DuckDB PostgreSQL extension is analytical convenience only。
-
-Bounded Work Packages：
-
-- GAP-08A：K110 K130 K140 K150 K170 K210。
-- GAP-08B：K120 K160 K220 K230 K240。
-- GAP-08C：K610 K620 K630 K640。
-- GAP-08D：K650 K660 K670 K680。
-- GAP-08E：K310 K320 K330 K340 K350。
-- GAP-08F：K410 K420 K430 K440 K450。
-- GAP-08G：K510 K530 K540。
-- GAP-08H：K710 K720 K730。
-- GAP-08I：K740 K750 K760 K770。
-
-Current slice：
-
-GAP-08A Storage-Neutral Persistence Core Contracts。
-
-Status：
-
-READY_FOR_DESIGN_FREEZE。
-
-GAP-08B：
-
-first PostgreSQL-specific implementation slice；compatibility / migration / transaction semantics。
-
-K520：
-
-DEFERRED_TO_GAP_09 because incremental feature-state public contract is not yet frozen。
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
 Runtime Authorization：
 
 NOT_YET_AUTHORIZED。
 
+PostgreSQL compatibility：
+
+- 17：PENDING。
+- 18：PENDING。
+
+Compatibility evidence does not authorize LIVE。
+
+K520：DEFERRED_TO_GAP_09。
+
 Parent closure：
 
-GAP-08 closes only after required GAP-08A-I acceptance；K520 remains GAP-09-owned。
+GAP-08 closes after required GAP-08ABCD / GAP-08EF / GAP-08GHI acceptance。
 
 ---
 

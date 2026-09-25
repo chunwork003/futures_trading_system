@@ -2,7 +2,7 @@
 
 ## 專案與導航
 
-台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0、M5、GAP-RECON-001 與 GAP-BROKER-002 已完成；目前主線為 M6 / GAP-08 Trading State Persistence & Recovery。GAP-08 shared architecture/source review 已完成並拆為 GAP-08A～08I；上層 persistence contracts storage-neutral，V1 operational adapter family 為 PostgreSQL，17/18 為 explicit verification targets；Parquet/DuckDB/Polars 保留 analytical plane；目前 GAP-08A READY_FOR_DESIGN_FREEZE，所有 GAP-08 runtime 尚未授權；Level 3B 仍 ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0、M5、GAP-RECON-001 與 GAP-BROKER-002 已完成；目前主線為 M6 / GAP-08。runtime bundles 已合併為 GAP-08ABCD、GAP-08EF、GAP-08GHI；目前 GAP-08ABCD Persistence Foundation + Event Ledger 已 design frozen，runtime gate 尚待 architecture-freeze commit/push verification；PostgreSQL 17/18 仍只是 explicit verification targets，Parquet/DuckDB/Polars 保留 analytical plane；Level 3B 仍 ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
 
 Primary source of truth 與必讀順序：
 
@@ -36,6 +36,7 @@ Historical / supplemental documents：`docs/PROJECT_STATE.md`、`docs/DEVELOPMEN
 - ACTIVE 過度簡略、存在 unresolved HARD_BLOCK，或與已確認 architecture 衝突時，不得開始 runtime。
 - 發現問題不等於立即實作。READY mainline 存在時，不得因 P2、P3 或 OBS 離開主線；只有 P0 + HARD_BLOCK 可阻止受影響主線。
 - Level 3A：每次 autonomous execution 最多一個 mainline Work Package；完成後更新 queue 並停止。每個 failing test 最多兩個 scope-internal correction cycles，仍失敗則依分類 REVIEW 或 HARD_BLOCK。
+- Work Package sizing 採效益動態校準：同一 architecture context、transaction boundary、repository family、test set 優先合併；只有 unresolved public semantics、authority/safety boundary、external verification dependency 或明確 debugging isolation 才拆分。不得以固定 leaf 數或固定 5HR% 作為切包目標。
 - 不得 whole-repo rescan，除非 ACTIVE 明確要求；沒有 READY item 時不得自行找工作。
 
 ## Issue Classification 與模型建議

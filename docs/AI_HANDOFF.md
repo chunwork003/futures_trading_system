@@ -692,58 +692,47 @@ Policy：
 
 ## 28. Current Active Candidate
 
-Parent GAP：
+Parent：GAP-08。
 
-GAP-08 Trading State Persistence & Recovery。
+Current Work Package：
 
-Architecture / Source Review：
-
-COMPLETED。
-
-Architecture：
-
-storage-neutral contracts + backend-specific adapters。
-
-Operational backend family：
-
-PostgreSQL。
-
-Initial compatibility targets：
-
-- PostgreSQL 17。
-- PostgreSQL 18。
-
-Project support：
-
-NOT_YET_VERIFIED。
-
-Analytical plane：
-
-Parquet + DuckDB + Polars。
-
-Current Work Package candidate：
-
-GAP-08A Storage-Neutral Persistence Core Contracts。
+GAP-08ABCD Persistence Foundation + Event Ledger。
 
 Blueprint：
 
-K110 / K130 / K140 / K150 / K170 / K210。
+K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680。
+
+Size：
+
+19 leaves / weight 77。
 
 Status：
 
-READY_FOR_DESIGN_FREEZE。
+READY_FOR_EXECUTION。
 
-Runtime authorization：
+Design Freeze：
+
+COMPLETED。
+
+Runtime Gate：
+
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+
+Runtime Authorization：
 
 NOT_YET_AUTHORIZED。
 
-GAP-08B：
+Execution：
 
-first PostgreSQL-specific implementation / compatibility slice。
+GPT-5.6 Sol / 輕度 / LEVEL_3A_BOUNDED。
 
-K520：
+Calibration purpose：
 
-DEFERRED_TO_GAP_09。
+first expanded bundle；measure accepted work per resource instead of fixed quota target。
+
+PostgreSQL 17/18：
+
+PENDING_INTEGRATION_VERIFICATION。
 
 Level 3B：
 
@@ -792,7 +781,7 @@ Blueprint baseline activation 已完成：
 - 92/92 capability mapping PASS。
 - connection / state authority / source registry / traceability PASS。
 - 603 engineering leaves。
-- current lifecycle-weighted completion 44.17%。
+- current lifecycle-weighted completion 44.42%。
 - baseline commit：`432c48fb63c3d8d2760c0f2f5338e205ded63d30`。
 
 Blueprint baseline accepted 後，ACTIVE 必須列 Implements / Touches / Does Not Implement Blueprint IDs。

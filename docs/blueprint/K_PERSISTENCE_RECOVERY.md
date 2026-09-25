@@ -71,17 +71,17 @@ DuckDB PostgreSQL extension only serves optional analytical bridge use cases。
 
 | ID | Name | Purpose | Lifecycle | Weight | Maps |
 |---|---|---|---|---:|---|
-| K110 | PostgreSQL SOR Boundary | PostgreSQL 是 operational trading truth persistence | DESIGN_FROZEN | 5 | K01 |
-| K120 | Schema Versioning / Migration | DB schema change 必須 versioned / reviewable | DESIGNED | 4 | K01 |
+| K110 | Operational SOR Boundary | storage-neutral operational authority；PostgreSQL 為 V1 adapter family | DESIGN_FROZEN | 5 | K01 |
+| K120 | Schema Versioning / Migration | DB schema change 必須 versioned / reviewable | DESIGN_FROZEN | 4 | K01 |
 | K130 | Operational Numeric Types | money/price/margin 使用 NUMERIC-compatible exact semantics | DESIGN_FROZEN | 4 | K01 |
 | K140 | Operational Time Types | event / observation timestamps 使用 TIMESTAMPTZ | DESIGN_FROZEN | 4 | K01 |
-| K150 | Stable Identifier Types | signal/decision/order/fill/trade/account IDs 不依 display text | DESIGNED | 4 | K01 |
-| K160 | Transaction Boundary | related state/event writes 有明確 transaction semantics | DESIGNED | 5 | K01 |
+| K150 | Stable Identifier Types | signal/decision/order/fill/trade/account IDs 不依 display text | DESIGN_FROZEN | 4 | K01 |
+| K160 | Transaction Boundary | related state/event writes 有明確 transaction semantics | DESIGN_FROZEN | 5 | K01 |
 | K170 | DB Documentation | important table/column/function 使用繁體中文 COMMENT | DESIGN_FROZEN | 2 | K01 |
 | K210 | Repository Port Boundary | trading/domain 不直接依賴 PostgreSQL ORM/driver | DESIGN_FROZEN | 4 | K01 |
-| K220 | Append Repository Contract | event/evidence insert 與 mutable projection update 分離 | DESIGNED | 4 | K01,K05 |
-| K230 | Snapshot Repository Contract | latest / as-of snapshot query semantics | DESIGNED | 4 | K03 |
-| K240 | Unit-of-Work Boundary | multi-write use case consistency contract | DESIGNED | 4 | K01 |
+| K220 | Append Repository Contract | event/evidence insert 與 mutable projection update 分離 | DESIGN_FROZEN | 4 | K01,K05 |
+| K230 | Snapshot Repository Contract | latest / as-of snapshot query semantics | DESIGN_FROZEN | 4 | K03 |
+| K240 | Unit-of-Work Boundary | multi-write use case consistency contract | DESIGN_FROZEN | 4 | K01 |
 | K310 | Order Persistence | internal/broker order identity、status、intent linkage | DESIGNED | 4 | K02 |
 | K320 | OrderEvent Persistence | append-only order lifecycle event | DESIGNED | 5 | K02,K05 |
 | K330 | Fill Persistence | actual fill evidence durable storage | DESIGNED | 5 | K02 |
@@ -96,13 +96,13 @@ DuckDB PostgreSQL extension only serves optional analytical bridge use cases。
 | K520 | Incremental Feature State Snapshot | GAP-09 state 可 persistence/reconstruct | DESIGNED | 4 | K06 |
 | K530 | Strategy Config / Version Link | state 可連 strategy/config version | DESIGNED | 3 | K06 |
 | K540 | Safe Snapshot Boundary | snapshot 只在一致 state boundary 保存 | DESIGNED | 4 | K06 |
-| K610 | Trading Event Ledger | append-only material trading event history | DESIGNED | 5 | K05 |
-| K620 | Event ID | globally/stably unique event identity | DESIGNED | 3 | K05 |
-| K630 | Occurred / Received Time | event occurrence 與接收時間分離 | DESIGNED | 4 | K05 |
-| K640 | Event Sequence | source/entity ordering 可檢查 | DESIGNED | 4 | K05 |
-| K650 | Event Version | event schema/version 可演進 | DESIGNED | 3 | K05 |
-| K660 | Idempotency Key | duplicate request/event 可安全辨識 | DESIGNED | 5 | K05 |
-| K670 | Correlation / Causation IDs | material workflow 可完整 trace | DESIGNED | 4 | K04,K05 |
+| K610 | Trading Event Ledger | append-only material trading event history | DESIGN_FROZEN | 5 | K05 |
+| K620 | Event ID | globally/stably unique event identity | DESIGN_FROZEN | 3 | K05 |
+| K630 | Occurred / Received Time | event occurrence 與接收時間分離 | DESIGN_FROZEN | 4 | K05 |
+| K640 | Event Sequence | source/entity ordering 可檢查 | DESIGN_FROZEN | 4 | K05 |
+| K650 | Event Version | event schema/version 可演進 | DESIGN_FROZEN | 3 | K05 |
+| K660 | Idempotency Key | duplicate request/event 可安全辨識 | DESIGN_FROZEN | 5 | K05 |
+| K670 | Correlation / Causation IDs | material workflow 可完整 trace | DESIGN_FROZEN | 4 | K04,K05 |
 | K680 | No Silent Event Mutation | historical execution evidence 不以 update 覆蓋原事件 | DESIGN_FROZEN | 5 | K05 |
 | K710 | Recovery State Load | process start 載入 persisted expected / execution / strategy state | DESIGNED | 5 | K07 |
 | K720 | Broker Actual Query Dependency | recovery 必須取得 broker actual observation | DESIGNED | 5 | K07 |
@@ -392,27 +392,413 @@ Forbidden：operational Order/Fill persistence、startup recovery、transaction 
 
 | Order | Work Package | Blueprint Leaves | Scope | Status |
 |---:|---|---|---|---|
-| 1 | GAP-08A | K110 K130 K140 K150 K170 K210 | Storage-Neutral Persistence Core Contracts | READY_FOR_DESIGN_FREEZE |
-| 2 | GAP-08B | K120 K160 K220 K230 K240 | PostgreSQL Adapter / Compatibility / Migration / Transaction | BLOCKED_BY_08A_ACCEPTANCE |
-| 3 | GAP-08C | K610 K620 K630 K640 | Trading Event Ledger Core | BLOCKED_BY_08B_ACCEPTANCE |
-| 4 | GAP-08D | K650 K660 K670 K680 | Event Version / Idempotency / Correlation | BLOCKED_BY_08C_ACCEPTANCE |
-| 5 | GAP-08E | K310 K320 K330 K340 K350 | Execution Persistence | BLOCKED_BY_08D_ACCEPTANCE |
-| 6 | GAP-08F | K410 K420 K430 K440 K450 | Account / Reconciliation Persistence | BLOCKED_BY_08E_ACCEPTANCE |
-| 7 | GAP-08G | K510 K530 K540 | Strategy State Persistence | BLOCKED_BY_08F_ACCEPTANCE |
-| 8 | GAP-08H | K710 K720 K730 | Recovery Load / Broker Observation / Reconcile | BLOCKED_BY_08G_ACCEPTANCE |
-| 9 | GAP-08I | K740 K750 K760 K770 | Reconstruction / Validation / Readiness | BLOCKED_BY_08H_ACCEPTANCE |
+| 1 | GAP-08ABCD | K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680 | Persistence Foundation + Event Ledger | READY_FOR_DESIGN_FREEZE |
+| 2 | GAP-08EF | K310 K320 K330 K340 K350 K410 K420 K430 K440 K450 | Execution + Account/Reconciliation Persistence | BLOCKED_BY_08ABCD_ACCEPTANCE |
+| 3 | GAP-08GHI | K510 K530 K540 K710 K720 K730 K740 K750 K760 K770 | Strategy State + Recovery / Readiness | BLOCKED_BY_08EF_ACCEPTANCE |
 
-GAP-08A：pure storage-neutral contracts；no psycopg / DB connection / migration SQL。
+GAP-08ABCD：first expanded runtime calibration bundle。
 
-GAP-08B：first PostgreSQL-specific slice；compatibility support comes from tests, not assumptions。
+Scope combines storage-neutral contracts、PostgreSQL adapter foundation、migration/transaction semantics、event ledger、version/sequence/idempotency/correlation。
+
+PostgreSQL 17 / 18 support remains PENDING unless actual integration evidence is produced。
 
 K520：
 
     DEFERRED_TO_GAP_09
 
-GAP-08 closes after required GAP-08A through GAP-08I acceptance；K520 remains GAP-09-owned。
+GAP-08 closes after required GAP-08ABCD、GAP-08EF、GAP-08GHI acceptance；K520 remains GAP-09-owned。
 
 Level 3B remains NOT_ENABLED。
+
+---
+
+## GAP-08ABCD Architect Design Freeze
+
+Status：
+
+DESIGN_FROZEN。
+
+Runtime bundle：
+
+    GAP-08ABCD
+
+Title：
+
+    Persistence Foundation + Event Ledger
+
+Blueprint Implements：
+
+    K110 K120 K130 K140 K150 K160 K170
+    K210 K220 K230 K240
+    K610 K620 K630 K640 K650 K660 K670 K680
+
+Total：19 leaves / weight 77。
+
+### Canonical Ownership
+
+Storage-neutral contracts：
+
+    persistence/
+
+PostgreSQL implementation：
+
+    persistence/postgres/
+
+PostgreSQL migrations：
+
+    persistence/postgres/migrations/
+
+No persistence contract may import psycopg。
+
+No trading / strategy / backtest package may import psycopg。
+
+### Package / Dependency Freeze
+
+pyproject package discovery must include：
+
+    persistence*
+
+PostgreSQL optional dependency：
+
+    psycopg[binary]==3.3.6
+
+The dependency is adapter implementation detail；domain public contracts remain Psycopg-neutral。
+
+### Persistence Contract Errors
+
+Public errors：
+
+    PersistenceContractError(ValueError)
+    PersistenceTransactionError(RuntimeError)
+    PersistenceConflictError(RuntimeError)
+    EventIdentityConflictError(PersistenceConflictError)
+    EventSequenceConflictError(PersistenceConflictError)
+    IdempotencyConflictError(PersistenceConflictError)
+
+PostgreSQL adapter errors：
+
+    PostgresDriverUnavailableError(RuntimeError)
+    MigrationConflictError(RuntimeError)
+
+### Stable Identifier Contract
+
+Public helper：
+
+    normalize_stable_id(value: str) -> str
+
+Rules：
+
+- trim。
+- blank rejected。
+- storage backend does not rewrite canonical identity。
+- no automatic UUID migration。
+- broker external ID remains separate from internal ID。
+
+### Exact Numeric Contract
+
+Public helper：
+
+    require_exact_decimal(value: Decimal) -> Decimal
+
+Rules：
+
+- only Decimal accepted for persistence-critical exact values。
+- NaN / Infinity rejected。
+- no float conversion。
+- PostgreSQL adapter binds Decimal directly to NUMERIC-compatible columns。
+
+### Time Contract
+
+Public helper：
+
+    normalize_aware_utc(value: datetime) -> datetime
+
+Rules：
+
+- naive datetime rejected。
+- normalized result uses UTC。
+- business event timestamps are caller supplied。
+- PostgreSQL TIMESTAMPTZ mapping does not create hidden business time。
+
+### AppendOnlyRepository
+
+runtime-checkable Protocol：
+
+    append(record) -> None
+
+No update / delete contract。
+
+### SnapshotRepository
+
+runtime-checkable Protocol：
+
+    append_snapshot(snapshot) -> None
+    latest(key)
+    as_of(key, at)
+
+Rules：
+
+- snapshot append creates historical observation。
+- latest / as_of are query semantics。
+- no silent overwrite of previous snapshot。
+- as_of time must be timezone-aware。
+
+Concrete account/position snapshot persistence remains GAP-08EF。
+
+### UnitOfWork
+
+runtime-checkable Protocol：
+
+    __enter__
+    __exit__
+    commit()
+    rollback()
+
+Semantics：
+
+- explicit commit only。
+- exit without commit -> rollback。
+- exception -> rollback and propagate。
+- repository never independently commits。
+- no hidden retry。
+- finalized UnitOfWork cannot commit/rollback twice。
+
+### PostgreSQL UnitOfWork
+
+PostgresUnitOfWork accepts a connection factory。
+
+Connection must use autocommit=False。
+
+Adapter-internal connection access may exist under persistence/postgres only；domain code must type against UnitOfWork。
+
+### Driver Boundary
+
+Public PostgreSQL adapter function：
+
+    connect_postgres(dsn: str)
+
+Rules：
+
+- lazy psycopg import。
+- nonblank DSN required。
+- autocommit=False。
+- credentials/DSN must not be logged。
+- missing driver -> PostgresDriverUnavailableError。
+
+### PostgreSQL Compatibility
+
+PostgresIntegrationStatus exact values：
+
+    PENDING
+    VERIFIED
+    FAILED
+
+PostgresCompatibilityEvidence immutable fields：
+
+    major: int
+    status: PostgresIntegrationStatus
+    server_version_num: int | None
+    driver_version: str | None
+    verified_on: date | None
+    evidence: tuple[str, ...]
+
+Rules：
+
+- PENDING carries no claimed integration evidence。
+- VERIFIED / FAILED require explicit server version、driver version、verified date、nonblank evidence。
+- compatibility evidence does not authorize production/live。
+
+Initial constant：
+
+    POSTGRES_COMPATIBILITY_TARGETS
+
+contains PostgreSQL 17 and 18 as PENDING。
+
+Public pure helper：
+
+    detect_postgres_major(server_version_num: int) -> int
+
+No automatic PENDING -> VERIFIED promotion merely because major is 17 or 18。
+
+### Database Namespace
+
+V1 PostgreSQL operational schema：
+
+    trading
+
+Migration metadata：
+
+    trading.schema_migrations
+
+Important PostgreSQL TABLE / COLUMN / FUNCTION receives Traditional Chinese COMMENT。
+
+### Migration Contract
+
+Migration filename：
+
+    NNNN_name.sql
+
+Rules：
+
+- deterministic ascending version ordering。
+- duplicate version rejected。
+- applied version + different name -> MigrationConflictError。
+- migration runner never commits or rolls back。
+- UnitOfWork / caller owns transaction。
+- migration record inserted only after SQL succeeds in same transaction。
+- destructive migration outside this Work Package。
+
+Bootstrap may idempotently ensure trading schema and schema_migrations metadata before planning versioned migrations。
+
+### TradingEvent
+
+Immutable Pydantic model / extra forbid。
+
+Fields：
+
+    event_id: str
+    event_type: str
+    source: str
+    entity_type: str
+    entity_id: str
+    occurred_at: datetime
+    received_at: datetime
+    sequence: int
+    event_version: int
+    idempotency_scope: str
+    idempotency_key: str
+    correlation_id: str | None = None
+    causation_id: str | None = None
+    payload_json: str
+
+Rules：
+
+- IDs / names trim + nonblank。
+- sequence >= 0。
+- event_version >= 1。
+- occurred_at / received_at timezone-aware and normalized UTC。
+- received_at >= occurred_at is NOT required because clock/source skew is possible。
+- payload_json must parse to a JSON object。
+- payload_json normalized to deterministic canonical JSON text。
+- optional correlation/causation IDs nonblank when present。
+
+### Event Sequence Scope
+
+Sequence identity：
+
+    (source, entity_type, entity_id, sequence)
+
+This scope is unique in PostgreSQL event ledger。
+
+### Idempotency Scope
+
+Idempotency identity：
+
+    (idempotency_scope, idempotency_key)
+
+This pair is unique in PostgreSQL event ledger。
+
+### Event Append Result
+
+EventAppendStatus exact values：
+
+    APPENDED
+    DUPLICATE
+
+EventAppendResult immutable fields：
+
+    status: EventAppendStatus
+    event_id: str
+
+Duplicate is returned only when persisted event is canonically identical。
+
+Same identity / sequence / idempotency key with different canonical event must raise explicit conflict。
+
+### EventLedgerRepository
+
+storage-neutral runtime-checkable Protocol：
+
+    append(event: TradingEvent) -> EventAppendResult
+    get(event_id: str) -> TradingEvent | None
+    get_by_idempotency(scope: str, key: str) -> TradingEvent | None
+    list_after(source, entity_type, entity_id, after_sequence, limit) -> tuple[TradingEvent, ...]
+
+list_after ordering：
+
+    sequence ascending
+
+limit must be positive。
+
+No update/delete API。
+
+### PostgreSQL Event Ledger
+
+Canonical table：
+
+    trading.event_ledger
+
+Required constraints：
+
+- event_id primary key。
+- UNIQUE(idempotency_scope, idempotency_key)。
+- UNIQUE(source, entity_type, entity_id, sequence)。
+- sequence >= 0。
+- event_version >= 1。
+- occurred_at / received_at TIMESTAMPTZ。
+- payload uses JSONB storage。
+
+PostgresEventLedgerRepository never commits。
+
+### Optional Integration Verification
+
+Environment variables：
+
+    POSTGRES17_TEST_DSN
+    POSTGRES18_TEST_DSN
+
+Integration tests：
+
+- absent DSN -> explicit SKIP。
+- provided DSN -> server major must exactly match expected target。
+- verification runs inside transaction and rolls back test material。
+- no production authorization。
+
+If no real PostgreSQL test environment exists during this Work Package：
+
+    PostgreSQL 17 = PENDING
+    PostgreSQL 18 = PENDING
+
+and Work Package must not claim VERIFIED。
+
+### Explicitly Not Implemented
+
+- Order / Fill entity persistence。
+- AccountPosition / BrokerPosition persistence。
+- ReconciliationCase persistence。
+- Strategy state persistence。
+- restart recovery orchestration。
+- LIVE authorization。
+- backup/restore。
+- DuckDB as operational repository。
+- PostgreSQL 17/18 production certification without evidence。
+
+### Dynamic Work Package Calibration
+
+This is the first expanded persistence bundle。
+
+Sizing is measured by outcome efficiency，not a fixed quota target。
+
+After runtime record：
+
+- user-observed 5HR usage。
+- wall time。
+- files read/changed。
+- tool operations。
+- correction cycles。
+- accepted leaves / weight。
+- progress gain。
+
+Next bundle may expand or contract based on accepted work per resource and correction/safety behavior。
 
 ---
 

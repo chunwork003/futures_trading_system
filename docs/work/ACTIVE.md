@@ -2,60 +2,41 @@
 
 ## 1. Work Package ID
 
-GAP-BROKER-002
+GAP-08ABCD
 
 ---
 
 ## 2. Title
 
-Broker Capability Matrix / Mapping Semantics
+Persistence Foundation + Event Ledger
 
 ---
 
 ## 3. Status
 
-COMPLETED / ACCEPTED
+READY_FOR_EXECUTION
 
-Architecture / Source Review：
+Design Freeze：COMPLETED。
 
-COMPLETED。
-
-Architecture / Design Freeze：
-
-COMPLETED for I120 / I130 / I140 / I940。
-
-Runtime execution authorization：
-
-COMPLETED。
+Runtime Authorization：NOT_YET_AUTHORIZED。
 
 Launch Gate：
 
-`CONSUMED`
+`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
 
-Architecture freeze commit：
+Architecture ancestor：
 
-`b5c0a1c3af50e0a2d31261b81eb1630380d496d9`
+`0b410ac8fb18887f96acc4e0bbde72d21cd16d6c`
 
-Runtime gate release commit：
-
-`767b1e3e22a1ab1baeebefa0c0731008503f23aa`
-
-Accepted runtime commit：
-
-`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
-
+---
 
 ## 4. Recommended Model
 
 GPT-5.6 Sol
 
-Effort：
+Effort：輕度
 
-輕度
-
-Execution Mode：
-
-LEVEL_3A_BOUNDED
+Execution Mode：LEVEL_3A_BOUNDED
 
 Model / effort不得中途切換。
 
@@ -65,17 +46,33 @@ Level 3B remains NOT_ENABLED。
 
 ## 5. Goal
 
-建立 broker-neutral capability evidence contract 與 Sinopac documentation-backed capability matrix。
+一次建立 storage-neutral persistence contracts、PostgreSQL foundation、migration/UoW 與可實際承載 material event evidence 的 append-only event ledger。
 
-Capability matrix 只描述已知支援與 verification evidence；不執行 broker action，也不授權 LIVE。
+這是第一個 expanded runtime calibration bundle，不拆回 A/B/C/D 四次 execution。
 
 ---
 
-## 6. Why This Is Next
+## 6. Blueprint Scope
 
-GAP-BROKER-001 與 GAP-RECON-001 已 CLOSED / ACCEPTED。
+Implements：
 
-Broker capability matrix 是 persistence/live phases 前的 explicit integration-safety boundary。
+K110 K120 K130 K140 K150 K160 K170
+K210 K220 K230 K240
+K610 K620 K630 K640 K650 K660 K670 K680
+
+19 leaves / weight 77。
+
+Touches：
+
+K300 K400 K500 K700 future consumers。
+
+Does Not Implement：
+
+K310-K540
+K710-K770
+K810-K930
+
+K520 remains GAP-09-owned。
 
 ---
 
@@ -83,347 +80,407 @@ Broker capability matrix 是 persistence/live phases 前的 explicit integration
 
 Branch：master
 
-Expected architecture baseline ancestor：
+Required architecture ancestor：
 
-    457dc054641551f04dea5e6b1eda80f042a07c64
+`0b410ac8fb18887f96acc4e0bbde72d21cd16d6c`
 
-Recorded full regression：
+Recorded full regression：869 passed
 
-    847 passed
+Known warning：GAP-ENV-001 / PytestCacheWarning
 
-Known warning：
+Known untracked：data/
 
-    GAP-ENV-001 / PytestCacheWarning
-
-Known untracked：
-
-    data/
-
-不得修改、刪除、stage data/。
+data/ must not be modified/staged。
 
 ---
 
-## 8. Source Freeze
+## 8. Architecture Freeze
 
-Last verified：2026-09-25
+Canonical ownership：
 
-Current reviewed upstream release：Shioaji 1.7.6
+- persistence/ = storage-neutral contracts。
+- persistence/postgres/ = PostgreSQL implementation。
+- persistence/postgres/migrations/ = PostgreSQL versioned SQL。
 
-Required Source IDs：
+Analytical plane remains Parquet / DuckDB / Polars。
 
-    SRC-SINOPAC-LOGIN-001
-    SRC-SINOPAC-FUT-ORDER-001
-    SRC-SINOPAC-POSITION-001
-    SRC-SINOPAC-SIMULATION-001
-    SRC-SINOPAC-ORDER-STATUS-001
-    SRC-SINOPAC-ORDER-EVENT-001
-    SRC-SINOPAC-RELEASE-001
-    SRC-PYDANTIC-001
-    SRC-ADR-001
-    SRC-ARCH-001
-    SRC-BLUEPRINT-001
-
-Runtime executor不得自行重新定義 broker semantics。
-
-Source conflict -> HARD_BLOCK。
+DuckDB postgres extension is not operational authority。
 
 ---
 
-## 9. Canonical Ownership
+## 9. Dependency / Package Freeze
 
-Broker-neutral capability contracts：
+pyproject package discovery must include persistence*。
 
-    adapters/capabilities.py
+Optional PostgreSQL dependency：
 
-Sinopac evidence matrix：
+psycopg[binary]==3.3.6
 
-    adapters/sinopac/capabilities.py
-
-No parallel model elsewhere。
+Use lazy import at driver boundary so base package/unit tests do not require PostgreSQL connectivity。
 
 ---
 
-## 10. BrokerCapability
+## 10. Public Storage-Neutral Contracts
 
-Exact values：
+Errors：
 
-    ACCOUNT_QUERY
-    POSITION_QUERY
-    ORDER_PLACE
-    ORDER_UPDATE
-    ORDER_CANCEL
-    ORDER_STATUS
-    TRADE_LIST
-    ORDER_DEAL_EVENT
+- PersistenceContractError(ValueError)
+- PersistenceTransactionError(RuntimeError)
+- PersistenceConflictError(RuntimeError)
+- EventIdentityConflictError
+- EventSequenceConflictError
+- IdempotencyConflictError
 
----
+Helpers：
 
-## 11. BrokerCapabilitySupport
+- normalize_stable_id(str) -> str
+- require_exact_decimal(Decimal) -> Decimal
+- normalize_aware_utc(datetime) -> datetime
 
-Exact values：
+Protocols：
 
-    SUPPORTED
-    UNSUPPORTED
-    UNKNOWN
+- AppendOnlyRepository.append(record) -> None
+- SnapshotRepository.append_snapshot(snapshot) -> None
+- SnapshotRepository.latest(key)
+- SnapshotRepository.as_of(key, at)
+- UnitOfWork context manager + commit/rollback
 
----
+No generic CRUD API。
 
-## 12. BrokerVerificationMode
-
-Exact values：
-
-    DOCUMENTATION
-    FAKE
-    SIMULATION
-    PRODUCTION
-
-No implicit hierarchy。
-
-DOCUMENTATION != SIMULATION != PRODUCTION。
+No update/delete on AppendOnlyRepository。
 
 ---
 
-## 13. BrokerCapabilityEvidence
+## 11. Numeric / Time / Identity
 
-Immutable Pydantic model：
+- exact persistence values use Decimal；float rejected。
+- non-finite Decimal rejected。
+- timestamps must be timezone-aware and normalize UTC。
+- stable string IDs trim/nonblank。
+- database/backend must not rewrite canonical ID。
+- no automatic UUID migration。
 
-    capability: BrokerCapability
-    support: BrokerCapabilitySupport
-    source_ids: tuple[str, ...]
-    verification_modes: tuple[BrokerVerificationMode, ...]
-    sdk_version: str | None
-    verified_on: date
-    note: str | None = None
+---
+
+## 12. UnitOfWork
+
+- explicit commit only。
+- exit without commit -> rollback。
+- exception -> rollback + propagate。
+- repository never commits。
+- no hidden retry。
+- no double finalize。
+
+PostgresUnitOfWork：
+
+- connection factory based。
+- autocommit=False required。
+- connection remains adapter-internal。
+
+---
+
+## 13. PostgreSQL Driver
+
+connect_postgres(dsn)：
+
+- lazy psycopg import。
+- nonblank DSN。
+- autocommit=False。
+- never log DSN/credentials。
+- missing driver -> PostgresDriverUnavailableError。
+
+---
+
+## 14. PostgreSQL Compatibility Contract
+
+PostgresIntegrationStatus：
+
+PENDING / VERIFIED / FAILED
+
+PostgresCompatibilityEvidence immutable：
+
+- major
+- status
+- server_version_num
+- driver_version
+- verified_on
+- evidence
+
+Initial POSTGRES_COMPATIBILITY_TARGETS：
+
+- PostgreSQL 17 PENDING
+- PostgreSQL 18 PENDING
+
+detect_postgres_major(server_version_num) pure。
+
+No automatic verification from version number alone。
+
+No production/live authorization field or behavior。
+
+---
+
+## 15. PostgreSQL Namespace / Migration
+
+Operational schema：trading
+
+Migration metadata：trading.schema_migrations
+
+Migration filename：NNNN_name.sql
 
 Rules：
 
-- frozen / extra forbid。
-- source IDs trim/nonblank/no duplicates。
-- verification modes no duplicates；normalize to enum order。
-- sdk_version optional but nonblank after trim。
-- note optional but nonblank after trim。
-- SUPPORTED / UNSUPPORTED requires source evidence。
-- UNKNOWN cannot claim verification mode。
-- no hidden current date。
+- ascending deterministic versions。
+- duplicate version reject。
+- applied version/name mismatch -> MigrationConflictError。
+- runner does not commit/rollback。
+- migration record written after migration SQL succeeds in same transaction。
+- important TABLE/COLUMN/FUNCTION Traditional Chinese COMMENT。
+- no destructive migration。
 
 ---
 
-## 14. BrokerCapabilityMatrix
+## 16. TradingEvent
 
-Immutable：
+Immutable Pydantic / extra forbid。
 
-    broker: str
-    entries: tuple[BrokerCapabilityEvidence, ...]
+Fields：
+
+event_id
+event_type
+source
+entity_type
+entity_id
+occurred_at
+received_at
+sequence
+event_version
+idempotency_scope
+idempotency_key
+correlation_id optional
+causation_id optional
+payload_json
 
 Rules：
 
-- broker uppercase/trim/nonblank。
-- duplicate capability rejected。
-- deterministic enum-order entries。
-- evidence only；not execution authority。
+- required strings trim/nonblank。
+- sequence >= 0。
+- event_version >= 1。
+- timestamps aware + UTC normalized。
+- no received_at >= occurred_at requirement。
+- payload_json must be JSON object and canonicalized deterministically。
 
 ---
 
-## 15. Failure Contract
+## 17. Event Identity / Idempotency
 
-Explicit：
+Event ID unique globally within ledger。
 
-    BrokerCapabilityUnavailableError(RuntimeError)
+Sequence scope：
 
-Public pure functions：
+(source, entity_type, entity_id, sequence)
 
-    get_broker_capability(matrix, capability)
+Idempotency scope：
 
-    require_broker_capability(
-        matrix,
-        capability,
-        *,
-        required_mode=None
-    )
+(idempotency_scope, idempotency_key)
 
-require must reject：
-
-- missing entry。
-- UNSUPPORTED。
-- UNKNOWN。
-- requested verification mode absent。
-
-No fallback。
+Semi-duplicate with different canonical event is conflict，not silent duplicate。
 
 ---
 
-## 16. SINOPAC_CAPABILITY_MATRIX
+## 18. Event Append Result
 
-Exact broker：
+EventAppendStatus：APPENDED / DUPLICATE
 
-    SINOPAC
+EventAppendResult：
 
-Initial source-reviewed evidence：
+- status
+- event_id
 
-    sdk_version = 1.7.6
-    verified_on = 2026-09-25
-    verification_modes = (DOCUMENTATION,)
-
-Supported capability source mapping：
-
-- ACCOUNT_QUERY -> SRC-SINOPAC-LOGIN-001。
-- POSITION_QUERY -> SRC-SINOPAC-POSITION-001。
-- ORDER_PLACE / ORDER_UPDATE / ORDER_CANCEL -> SRC-SINOPAC-FUT-ORDER-001。
-- ORDER_STATUS / TRADE_LIST -> SRC-SINOPAC-ORDER-STATUS-001。
-- ORDER_DEAL_EVENT -> SRC-SINOPAC-ORDER-EVENT-001 + SRC-SINOPAC-RELEASE-001。
-
-Initial concrete matrix MUST NOT contain SIMULATION or PRODUCTION verification modes。
-
-Official simulation documentation is source context only；not an executed verification run。
+DUPLICATE only for canonically identical persisted event。
 
 ---
 
-## 17. Scope Freeze
+## 19. EventLedgerRepository
 
-Implements only：
+Storage-neutral Protocol：
 
-    I120
-    I130
-    I140
-    I940
+- append(event) -> EventAppendResult
+- get(event_id)
+- get_by_idempotency(scope, key)
+- list_after(source, entity_type, entity_id, after_sequence, limit)
 
-Touches：
+list_after：sequence ascending；limit > 0。
 
-    I110
-    I210-I660
-    I830
-    I910
-
-Does Not Implement：
-
-    I720
-    I730
-    I740
-    I820
-    I920
-    I930
-
-Also not implemented：
-
-- login / logout。
-- CA activation。
-- reconnect logic。
-- live account-selection orchestration。
-- real broker network call。
-- actual simulation verification。
-- production verification。
-- adapter relocation。
-- execution mapping changes。
+No update/delete。
 
 ---
 
-## 18. Allowed Runtime Files
+## 20. PostgreSQL Event Ledger
+
+Table：trading.event_ledger
+
+Constraints：
+
+- event_id PRIMARY KEY
+- UNIQUE(idempotency_scope, idempotency_key)
+- UNIQUE(source, entity_type, entity_id, sequence)
+- sequence >= 0
+- event_version >= 1
+- occurred_at / received_at TIMESTAMPTZ
+- payload JSONB
+
+PostgresEventLedgerRepository never commits。
+
+Conflict mapping must preserve：
+
+- event identity conflict
+- sequence conflict
+- idempotency conflict
+
+---
+
+## 21. Optional Real PostgreSQL Verification
+
+Environment variables：
+
+POSTGRES17_TEST_DSN
+POSTGRES18_TEST_DSN
+
+If absent：integration tests SKIP and status remains PENDING。
+
+If present：
+
+- server major must match target exactly。
+- run migration/event smoke in transaction。
+- rollback test material。
+- record evidence only when test actually passes。
+
+No Docker/service installation without explicit environment support。
+
+No fake VERIFIED result。
+
+---
+
+## 22. Allowed Runtime Files
 
 Primary：
 
-    adapters/capabilities.py
-    adapters/sinopac/capabilities.py
+pyproject.toml
+persistence/__init__.py
+persistence/contracts.py
+persistence/events.py
+persistence/postgres/__init__.py
+persistence/postgres/compatibility.py
+persistence/postgres/driver.py
+persistence/postgres/migrations.py
+persistence/postgres/uow.py
+persistence/postgres/event_ledger.py
+persistence/postgres/migrations/*.sql
 
 Tests：
 
-    tests/unit/test_broker_capabilities.py
+tests/unit/test_persistence_contracts.py
+tests/unit/test_postgres_foundation.py
+tests/unit/test_event_ledger.py
+tests/integration/test_postgres_foundation.py
 
-Only if export compatibility requires：
+Optional CLI only if useful and within frozen semantics：
 
-    adapters/__init__.py
-    adapters/sinopac/__init__.py
-
-No other runtime files without direct dependency evidence。
-
----
-
-## 19. Forbidden
-
-    data/**
-    database/**
-    trading/**
-    backtest/**
-    strategy/**
-    strategies/**
-    features/**
-
-Do not modify existing Shioaji execution/mapping runtime。
-
-No credentials。
-
-No broker login。
-
-No network tests。
+scripts/verify_postgres_compatibility.py
 
 ---
 
-## 20. Required Tests
+## 23. Forbidden Areas
 
-At minimum：
+data/**
+database/**
+trading/**
+backtest/**
+strategy/**
+strategies/**
+features/**
+adapters/**
 
-1. BrokerCapability exact values。
-2. BrokerCapabilitySupport exact values。
-3. BrokerVerificationMode exact values。
-4. evidence immutable / extra-forbid。
-5. source_ids trim/nonblank。
-6. duplicate source_ids reject。
-7. verification mode duplicate reject。
-8. verification modes canonical ordering。
-9. sdk_version trim/nonblank。
-10. note trim/nonblank。
-11. SUPPORTED requires source evidence。
-12. UNSUPPORTED requires source evidence。
-13. UNKNOWN cannot claim verification modes。
-14. matrix broker normalization。
-15. duplicate capability reject。
-16. deterministic entry ordering。
-17. get known capability。
-18. get missing capability -> None。
-19. require supported capability PASS。
-20. require missing capability explicit failure。
-21. require UNSUPPORTED explicit failure。
-22. require UNKNOWN explicit failure。
-23. require absent requested mode explicit failure。
-24. DOCUMENTATION does not satisfy SIMULATION。
-25. SIMULATION does not satisfy PRODUCTION。
-26. concrete matrix broker = SINOPAC。
-27. concrete matrix exact eight capabilities。
-28. concrete matrix sdk_version = 1.7.6。
-29. concrete matrix verified_on = 2026-09-25。
-30. concrete matrix source mappings correct。
-31. concrete matrix only DOCUMENTATION mode。
-32. no SIMULATION claim。
-33. no PRODUCTION claim。
-34. no network / credential / broker action surface。
-35. existing account mapping compatibility。
-36. existing Shioaji mapping/submission compatibility。
-37. full regression。
+No unrelated cleanup。
+
+No broker execution changes。
+
+No LIVE authorization。
 
 ---
 
-## 21. Compatibility Tests
+## 24. Required Unit Verification
 
-At least：
+At minimum verify：
 
-    tests/unit/test_trading_account.py
-    tests/unit/test_trading_execution.py
-    tests/unit/test_shioaji_mapping.py
-    tests/unit/test_shioaji_submission.py
-    tests/unit/test_shioaji_broker.py
-
-Then full regression。
+1. stable ID normalization/rejection。
+2. Decimal exact/non-finite/float rejection。
+3. aware datetime UTC normalization / naive reject。
+4. Protocol runtime-checkable behavior。
+5. UnitOfWork explicit commit。
+6. rollback on uncommitted exit。
+7. rollback on exception。
+8. double finalize reject。
+9. autocommit=True reject。
+10. migration deterministic discovery。
+11. duplicate migration version reject。
+12. migration conflict detection。
+13. migration runner does not commit。
+14. compatibility targets exactly 17/18 PENDING。
+15. server_version_num major detection。
+16. PENDING evidence does not claim verification。
+17. VERIFIED/FAILED evidence requires explicit metadata。
+18. TradingEvent immutable/extra-forbid。
+19. event string normalization。
+20. event timestamps UTC。
+21. event sequence/version validation。
+22. canonical JSON object normalization。
+23. append APPENDED。
+24. identical retry -> DUPLICATE。
+25. event identity conflict。
+26. idempotency conflict。
+27. sequence conflict。
+28. get/get_by_idempotency。
+29. list_after ordering/limit。
+30. repository never commits。
+31. migration SQL contains required PK/UNIQUE/CHECK/TIMESTAMPTZ/JSONB semantics。
+32. Traditional Chinese DB comments present。
 
 ---
 
-## 22. Acceptance
+## 25. Targeted / Compatibility / Regression
+
+Targeted：
+
+.\.venv\Scripts\python.exe -m pytest tests\unit\test_persistence_contracts.py tests\unit\test_postgres_foundation.py tests\unit\test_event_ledger.py -q
+
+Optional integration：
+
+.\.venv\Scripts\python.exe -m pytest tests\integration\test_postgres_foundation.py -q
+
+Absent DSNs may produce SKIP，not VERIFIED。
+
+Compatibility：
+
+.\.venv\Scripts\python.exe -m pytest tests\unit\test_trading_account.py tests\unit\test_reconciliation.py tests\unit\test_trading_execution.py -q
+
+Then full regression：
+
+.\.venv\Scripts\python.exe -m pytest -q
+
+---
+
+## 26. Acceptance
 
 PASS requires：
 
-- exact frozen contracts implemented。
-- initial SINOPAC matrix documentation-only。
-- unsupported/unverified explicit failure。
-- no live authorization implication。
-- no existing execution behavior modified。
+- frozen public contracts exact。
+- storage-neutral domain boundary preserved。
+- PostgreSQL code isolated。
+- migration/UoW semantics explicit。
+- operational event ledger implemented。
+- no silent conflict/overwrite。
+- PostgreSQL 17/18 remain PENDING unless real integration passes。
 - targeted PASS。
 - compatibility PASS。
 - full regression PASS。
@@ -432,162 +489,98 @@ PASS requires：
 
 ---
 
-## 23. Stop Conditions
+## 27. Hard Stop
 
-HARD_BLOCK if：
+STOP if：
 
-- official source conflicts with frozen semantics。
-- implementation requires login/network/CA。
-- implementation requires existing execution adapter changes。
-- public capability IDs need redesign。
-- simulation/production evidence cannot be distinguished。
+- frozen persistence authority must change。
+- generic CRUD abstraction becomes necessary。
+- trading/domain must import psycopg。
+- destructive migration required。
+- idempotency conflict semantics ambiguous。
+- transaction authority ambiguous。
+- secret/DSN exposure。
 - unrelated core regression。
 - data/ modified。
-- secret exposure。
 
 ---
 
-## 24. Git
+## 28. Git
 
-After gate release：
+Commit message：
 
-    precheck
-    -> implementation
-    -> targeted
-    -> compatibility
-    -> full regression
-    -> git diff --check
-    -> exact scope
-    -> stage
-    -> commit
-    -> push
-    -> remote verify
-    -> final report
-    -> STOP
+feat(persistence): add foundation and event ledger
 
-Runtime commit message：
+Exact stage only allowed runtime/test files。
 
-    feat(adapters): add broker capability matrix
+Push origin master，fetch，verify local == remote。
 
-No amend / rebase public history / force push / reset --hard。
+Final status only known data/。
+
+No amend / rebase / force push / reset --hard。
 
 ---
 
-## 24A. Runtime Completion Evidence
+## 29. Dynamic Calibration
 
-Result：
+This bundle intentionally expands scope versus prior Level 3A samples。
 
-PASS / ACCEPTED。
+Do not judge success by low quota alone。
 
-Runtime commit：
+Final report must include：
 
-`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
+- user-observed 5HR supplied later。
+- wall time if observable。
+- files read/created/modified。
+- tool operations。
+- correction cycles。
+- retries。
+- targeted/compatibility/full regression。
+- PostgreSQL 17 integration status。
+- PostgreSQL 18 integration status。
+- implemented leaves / weight = 19 / 77。
 
-Runtime files：
-
-- adapters/capabilities.py。
-- adapters/sinopac/capabilities.py。
-- tests/unit/test_broker_capabilities.py。
-
-Verification：
-
-- targeted：22 passed。
-- compatibility：45 passed。
-- full regression：869 passed。
-- git diff --check：PASS。
-- implementation correction cycles：0。
-- final status：only `?? data/`。
-
-Calibration：
-
-- formal Level 3A sample：5。
-- GPT-5.6 Sol / 輕度。
-- user-observed 5HR usage：10%。
-- files read：12。
-- files created：3。
-- existing files modified：0。
-- tool operations：17。
-- command/tool retries：2。
-- wall time：約 3m44s。
-- token/context：unavailable。
-- five-sample 5HR average：12.60%。
-
-Closure：
-
-- GAP-BROKER-002 CLOSED / ACCEPTED。
-- capability evidence remains non-authoritative for LIVE。
-- SIMULATION / PRODUCTION evidence still deferred。
-- GAP-08 not runtime-authorized。
+Compare accepted work / resource after deterministic acceptance。
 
 ---
 
-## 25. Documentation Responsibility
+## 30. Documentation Responsibility
 
-Runtime Codex only：implementation / tests / debug / runtime commit / push / report。
+Codex runtime does not update deterministic governance/metrics/queue closure docs。
 
-Deterministic acceptance remains manual。
+After runtime commit/push/report：STOP。
 
-完成後 STOP。
-
-Do not start GAP-08。
+Do not begin GAP-08EF。
 
 Do not enable Level 3B。
 
 ---
 
-## 26. Re-entry Precheck Scope
+## 31. Re-entry Scope
 
-Default：
+Read first：
 
-    AGENTS.md
-    docs/work/ACTIVE.md
-    adapters/__init__.py
-    adapters/sinopac/__init__.py
-    adapters/sinopac/account_mapping.py
+AGENTS.md
+docs/work/ACTIVE.md
 
-Compatibility-only reads：
+Then only minimum dependency reads：
 
-    backtest/shioaji_mapping.py
-    backtest/shioaji_broker.py
-    relevant listed tests
+pyproject.toml
+trading/account.py
+trading/reconciliation.py
+
+and directly relevant existing tests required for compatibility。
 
 No whole-repo rescan。
 
 ---
 
-## 27. Architect / Codex Responsibility Freeze
-
-Architect frozen：
-
-- canonical ownership。
-- public capability IDs。
-- support enum。
-- verification-mode enum。
-- evidence fields / invariants。
-- matrix fields / uniqueness。
-- explicit error semantics。
-- query / require functions。
-- Sinopac source mappings。
-- initial evidence version/date/mode。
-- deferred live/session scope。
-
-Codex only decides private helpers、fixture layout、local implementation detail。
-
-Public semantic change -> STOP + LEVEL 3。
-
----
-
-## 28. Runtime Launch Gate
+## 32. Runtime Launch Gate
 
 Current：
 
-    CONSUMED
+    HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
 
-Release requires：
+Runtime authorization：
 
-1. this architecture freeze + complete ACTIVE committed。
-2. push verified。
-3. local master == origin/master。
-4. working tree only known data/。
-
-Release authorizes only GAP-BROKER-002。
+    NOT_YET_AUTHORIZED

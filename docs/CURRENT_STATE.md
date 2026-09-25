@@ -69,10 +69,6 @@ Blueprint launch gate 已完成使命，不再阻塞 runtime。
 
 ## Current Phase
 
-GAP-BROKER-002：
-
-CLOSED / ACCEPTED。
-
 Current milestone：
 
 M6 — Persistence / Recovery / Provenance。
@@ -81,39 +77,44 @@ Parent GAP：
 
 GAP-08 Trading State Persistence & Recovery。
 
-Parent status：
+Runtime bundles：
 
-IN_PROGRESS / ARCHITECTURE_REVIEW_COMPLETED / DECOMPOSED。
+1. GAP-08ABCD — Persistence Foundation + Event Ledger。
+2. GAP-08EF — Execution + Account/Reconciliation Persistence。
+3. GAP-08GHI — Strategy State + Recovery / Readiness。
 
-Storage architecture：
+Current Work Package：
 
-- persistence/domain contracts：storage-neutral。
-- V1 operational adapter family：PostgreSQL。
-- PostgreSQL 17 / 18：explicit integration verification targets。
-- project-supported major：NOT_YET_VERIFIED。
-- Psycopg 3：adapter family；exact dependency pin deferred to GAP-08B freeze。
-- Parquet / DuckDB / Polars：analytical plane preserved。
-- DuckDB PostgreSQL extension：optional analytical bridge only。
+GAP-08ABCD。
 
-Bounded decomposition：
+Blueprint scope：
 
-GAP-08A through GAP-08I。
+K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680。
 
-Current slice：
+Size：
 
-GAP-08A Storage-Neutral Persistence Core Contracts。
+19 leaves / weight 77。
 
 Status：
 
-READY_FOR_DESIGN_FREEZE。
+READY_FOR_EXECUTION。
+
+Design Freeze：
+
+COMPLETED。
+
+Runtime Launch Gate：
+
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
 Runtime authorization：
 
 NOT_YET_AUTHORIZED。
 
-K520：
+PostgreSQL compatibility：
 
-DEFERRED_TO_GAP_09。
+- 17：PENDING_INTEGRATION_VERIFICATION。
+- 18：PENDING_INTEGRATION_VERIFICATION。
 
 Level 3B：
 
@@ -326,46 +327,38 @@ Persistence、Recovery、Live Safety 尚未完成。
 
 ## Current Active Work
 
-Parent GAP：
+Work Package：
 
-GAP-08 Trading State Persistence & Recovery。
-
-Architecture / Source Review：
-
-COMPLETED。
-
-Architecture pattern：
-
-storage-neutral contracts + backend-specific adapters。
-
-Runtime decomposition：
-
-GAP-08A through GAP-08I。
-
-Current candidate：
-
-GAP-08A Storage-Neutral Persistence Core Contracts。
-
-Blueprint scope：
-
-K110 / K130 / K140 / K150 / K170 / K210。
+GAP-08ABCD Persistence Foundation + Event Ledger。
 
 Status：
 
-READY_FOR_DESIGN_FREEZE。
+READY_FOR_EXECUTION。
+
+Runtime Launch Gate：
+
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
 Runtime authorization：
 
 NOT_YET_AUTHORIZED。
 
-GAP-08A boundary：
+Execution Mode：
 
-- no psycopg。
-- no PostgreSQL connection。
-- no migration SQL。
-- no PostgreSQL-major-specific runtime semantics。
-- no DuckDB operational dependency。
+LEVEL_3A_BOUNDED。
 
-Next action：
+Recommended model：
 
-完成 GAP-08A storage-neutral public persistence contract design freeze、完整 ACTIVE Work Package、commit/push；之後才可 release runtime gate。
+GPT-5.6 Sol / 輕度。
+
+Purpose：
+
+建立第一個完整 operational persistence vertical slice：contracts + PostgreSQL foundation + migration/UoW + append-only event ledger + idempotency/correlation。
+
+PostgreSQL 17 / 18 integration evidence：
+
+PENDING unless real test DSNs are available。
+
+Next：
+
+architecture-freeze commit/push verification 後 release runtime gate，然後一次交 Codex 執行 GAP-08ABCD。

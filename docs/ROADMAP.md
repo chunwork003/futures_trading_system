@@ -205,58 +205,37 @@ Accepted runtime commit：`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`。
 
 Status：
 
-IN_PROGRESS / GAP-08_DECOMPOSED
+IN_PROGRESS / GAP-08ABCD_READY_FOR_EXECUTION
 
-Parent GAP：
+Runtime bundles：
 
-GAP-08 Trading State Persistence & Recovery。
-
-Architecture / Source Review：
-
-COMPLETED。
-
-Architecture pattern：
-
-storage-neutral persistence contracts + backend-specific adapters。
-
-Operational backend family：
-
-PostgreSQL。
-
-Initial version verification targets：
-
-- PostgreSQL 17。
-- PostgreSQL 18。
-
-Analytical plane：
-
-Parquet + DuckDB + Polars。
-
-Runtime decomposition：
-
-1. GAP-08A Storage-Neutral Persistence Core Contracts。
-2. GAP-08B PostgreSQL Adapter / Compatibility / Migration / Transaction。
-3. GAP-08C Trading Event Ledger Core。
-4. GAP-08D Event Version / Idempotency / Correlation。
-5. GAP-08E Execution Persistence。
-6. GAP-08F Account / Reconciliation Persistence。
-7. GAP-08G Strategy State Persistence。
-8. GAP-08H Recovery Load / Broker Observation / Reconcile。
-9. GAP-08I Reconstruction / Validation / Readiness。
+1. GAP-08ABCD — Persistence Foundation + Event Ledger。
+2. GAP-08EF — Execution + Account/Reconciliation Persistence。
+3. GAP-08GHI — Strategy State + Recovery / Readiness。
 
 Current：
 
-GAP-08A READY_FOR_DESIGN_FREEZE。
+GAP-08ABCD。
 
-Runtime：
+Design Freeze：
 
-NOT_YET_AUTHORIZED。
+COMPLETED。
+
+Runtime Gate：
+
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+
+PostgreSQL 17/18 project integration：
+
+PENDING。
 
 K520：
 
 DEFERRED_TO_GAP_09。
 
-GAP-PERSIST-001 remains after GAP-08 foundation。
+Sizing：
+
+dynamic efficiency calibration；no fixed leaf count or quota target。
 
 ---
 
