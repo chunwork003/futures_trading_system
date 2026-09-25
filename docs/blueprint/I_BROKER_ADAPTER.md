@@ -50,9 +50,9 @@ Target ownership：
 | ID | Name | Purpose | Lifecycle | Weight | Maps |
 |---|---|---|---|---:|---|
 | I110 | Broker Identity | adapter 使用 stable broker identifier `SINOPAC` | DESIGN_FROZEN | 2 | I01,I04 |
-| I120 | Broker Capability Contract | adapter 宣告可支援 account/order/position/status semantics | DESIGN_FROZEN | 4 | I06 |
-| I130 | Capability Verification Matrix | 每個 capability 有 source + fake/paper/live verification state | DESIGN_FROZEN | 4 | I06 |
-| I140 | Unsupported Capability Failure | 未驗證/不支援功能 explicit reject，不 fallback 猜測 | DESIGN_FROZEN | 4 | I06 |
+| I120 | Broker Capability Contract | adapter 宣告可支援 account/order/position/status semantics | ACCEPTED | 4 | I06 |
+| I130 | Capability Verification Matrix | 每個 capability 有 source + fake/paper/live verification state | ACCEPTED | 4 | I06 |
+| I140 | Unsupported Capability Failure | 未驗證/不支援功能 explicit reject，不 fallback 猜測 | ACCEPTED | 4 | I06 |
 | I210 | BrokerInstrumentReference Consumption | adapter 只消費 broker-neutral mapping reference | ACCEPTED | 4 | I01,I04 |
 | I220 | Futures Contract Native Lookup | broker_contract_code → native Shioaji futures contract | ACCEPTED | 3 | I01 |
 | I230 | Canonical Product / Contract Separation | canonical symbol/code 不等同 Shioaji native code | ACCEPTED | 3 | I01,I04 |
@@ -89,7 +89,7 @@ Target ownership：
 | I910 | Deterministic Fake Tests | no login/network/credentials 的 adapter unit tests | ACCEPTED | 3 | I01-I04 |
 | I920 | Broker Paper Verification | broker paper environment semantics verification | NOT_DESIGNED | 4 | I06 |
 | I930 | Production Connectivity Verification | production connectivity only after live safety authorization | NOT_DESIGNED | 5 | I06 |
-| I940 | Capability Evidence Record | source / version / tested mode / date / result 可追蹤 | DESIGN_FROZEN | 4 | I06 |
+| I940 | Capability Evidence Record | source / version / tested mode / date / result 可追蹤 | ACCEPTED | 4 | I06 |
 
 ---
 
@@ -101,7 +101,7 @@ CURRENT：
 - submit / status / cancel 已存在。
 - deal → Fill、multi-fill、dedup、partial fill 已存在。
 - BrokerInstrumentReference native lookup 已有 foundation。
-- GAP-ACCOUNT-001 已完成 account / position canonical mapping foundation；real network provider、broker paper verification 與 capability matrix 仍待後續。
+- GAP-ACCOUNT-001 已完成 account / position canonical mapping foundation；GAP-BROKER-002 capability matrix foundation 已接受；real network provider 與 broker paper verification 仍待後續。
 - `ShioajiBroker.submit_order()` 已要求 explicit OrderIntent；New/Cover 由 PositionEffect 決定，不再依賴 order_id prefix。
 
 TARGET：
@@ -115,6 +115,7 @@ MIGRATION：
 
 - GAP-ACCOUNT-001 只新增 account/position mapping seam，不搬 existing order execution。
 - GAP-BROKER-001 已將 New/Cover inference 替換為 explicit PositionEffect mapping。
+- GAP-BROKER-002 已建立 broker-neutral capability/evidence contract 與 Sinopac documentation-only matrix。
 - full adapter relocation 是後續 bounded migration，不與 current GAP 混做。
 
 ---
@@ -203,7 +204,8 @@ Broker API source change risk：HIGH。
 
 - I510-I660 → GAP-ACCOUNT-001。
 - I340-I350 → GAP-BROKER-001。
-- I120-I140 / I720-I940 → GAP-BROKER-002 / GAP-LIVE-001。
+- I120-I140 / I940 → GAP-BROKER-002 ACCEPTED。
+- I720 / I730 / I740 / I820 / I920 / I930 → later broker/live phases。
 - full physical relocation → GAP-ARCH-001 bounded migration。
 
 ---

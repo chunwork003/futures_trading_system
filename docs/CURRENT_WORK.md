@@ -35,67 +35,76 @@ Technical issues：
 
 GAP：
 
-GAP-BROKER-002
+GAP-08
 
 Title：
 
-Broker Capability Matrix / Mapping Semantics
+Trading State Persistence & Recovery
+
+Milestone：
+
+M6 — Persistence / Recovery / Provenance
 
 Status：
 
-READY_FOR_EXECUTION
+READY_FOR_ARCHITECTURE_REVIEW
 
 Priority：
 
-P2 / ordered mainline
-
-Execution Mode：
-
-LEVEL_3A_BOUNDED
-
-Recommended Model：
-
-GPT-5.6 Sol
-
-Recommended Effort：
-
-輕度
-
-Architecture / Source Review：
-
-COMPLETED
-
-Design Freeze：
-
-I120 / I130 / I140 / I940
+P1 MAINLINE
 
 Runtime Authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME
+NOT_YET_AUTHORIZED
 
-Runtime Launch Gate：
+Architecture focus：
 
-RELEASED_ARCHITECTURE_FREEZE
+- K100 PostgreSQL Operational SOR。
+- K200 Persistence Ports。
+- K300 Execution Persistence。
+- K400 Account / Position Persistence。
+- K500 Strategy State。
+- K600 Event Ledger / Idempotency。
+- K700 Restart Recovery。
 
-Implements：
+Required before runtime：
 
-- I120 Broker Capability Contract。
-- I130 Capability Verification Matrix。
-- I140 Unsupported Capability Failure。
-- I940 Capability Evidence Record。
+- PostgreSQL project major version pin。
+- official source review。
+- state authority / transaction boundary freeze。
+- repository/event/snapshot contract freeze。
+- recovery sequence freeze。
+- bounded Work Package split。
 
-Explicitly deferred：
+Codex runtime 尚未授權。
 
-- I720 authentication runtime。
-- I730 reconnect/session recovery。
-- I740 live account selection。
-- I820 network error classification。
-- I920 actual simulation/paper verification。
-- I930 production verification。
+# Completed Work Package — GAP-BROKER-002
 
-Next required action：
+Status：
 
-GAP-BROKER-002 runtime 已授權；執行 ACTIVE bounded Level 3A，完成後 STOP。
+CLOSED / ACCEPTED
+
+Accepted runtime commit：
+
+`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
+
+Accepted：
+
+- broker-neutral BrokerCapability contract。
+- BrokerCapabilitySupport。
+- BrokerVerificationMode。
+- immutable capability evidence/matrix。
+- explicit unsupported/unverified failure。
+- Sinopac documentation-only capability matrix。
+- no SIMULATION / PRODUCTION claim。
+- no live authorization implication。
+
+Verification：
+
+- targeted 22 passed。
+- compatibility 45 passed。
+- full regression 869 passed。
+- correction cycles 0。
 
 
 # Completed Work Package — GAP-RECON-001B
@@ -222,17 +231,20 @@ Corrective execution 仍未授權。
 
 Current order：
 
-1. GAP-RECON-001A：COMPLETED / ACCEPTED。
-2. GAP-RECON-001B：COMPLETED / ACCEPTED。
-3. GAP-RECON-001：CLOSED / ACCEPTED。
-4. GAP-BROKER-002 architecture review / design freeze。
-5. 若 gate release，執行 bounded runtime Work Package。
-6. GAP-08 persistence / recovery。
-7. Level 3B 另行 evaluation；不得自動啟用。
+1. GAP-RECON-001：CLOSED / ACCEPTED。
+2. GAP-BROKER-002：CLOSED / ACCEPTED。
+3. GAP-08 architecture/source review。
+4. split GAP-08 into bounded persistence/recovery Work Packages。
+5. release runtime only after individual design freeze。
+6. GAP-PERSIST-001 decision/risk provenance。
+7. Level 3B separately evaluate；不得自動啟用。
 
-Corrective reconciliation execution：
+Persistence/recovery safety：
 
-仍未因 GAP-RECON closure 自動授權。
+- PostgreSQL operational SOR authority must be explicit。
+- expected / actual state must remain separate。
+- append-only evidence cannot be silently mutated。
+- recovery mismatch cannot silently become READY。
 
 # Mainline Queue
 
@@ -241,8 +253,8 @@ Corrective reconciliation execution：
 | 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | CLOSED | GAP-07 |
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
 | 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | CLOSED / ACCEPTED | GAP-ACCOUNT-001 + GAP-BROKER-001 |
-| 4 | GAP-BROKER-002 | Broker capability matrix | READY_FOR_EXECUTION / AUTHORIZED_LEVEL_3A | Broker mapping + execution semantics |
-| 5 | GAP-08 | Trading State Persistence & Recovery | BLOCKED | Reconciliation foundation |
+| 4 | GAP-BROKER-002 | Broker capability matrix | CLOSED / ACCEPTED | Broker mapping + execution semantics |
+| 5 | GAP-08 | Trading State Persistence & Recovery | READY_FOR_ARCHITECTURE_REVIEW | Reconciliation + broker capability foundation satisfied |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |
 | 7 | GAP-09 | Incremental Feature / Market State | PENDING | Trading core stable |
 | 8 | GAP-SIM-001 | SimulationBroker / fault injection | PENDING | Execution port stable |

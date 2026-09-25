@@ -194,9 +194,9 @@ Safety preserved：
 
 Next ordered mainline：
 
-GAP-BROKER-002 READY_FOR_EXECUTION / AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+GAP-BROKER-002 CLOSED / ACCEPTED。
 
-Architecture/source freeze committed and verified；bounded Level 3A runtime authorized。
+Accepted runtime commit：`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`。
 
 ---
 
@@ -205,22 +205,40 @@ Architecture/source freeze committed and verified；bounded Level 3A runtime aut
 
 Status：
 
-PENDING
+IN_PROGRESS / ARCHITECTURE_REVIEW
 
-GAP-08：
+Current mainline：
 
-- PostgreSQL operational SOR。
-- Order persistence。
-- Fill persistence。
-- OrderEvent persistence。
-- Position/account snapshots。
-- strategy state。
-- event history。
-- idempotency。
-- restart recovery。
-- broker reconciliation after restart。
+GAP-08 Trading State Persistence & Recovery。
 
-GAP-PERSIST-001：
+GAP-08 status：
+
+READY_FOR_ARCHITECTURE_REVIEW。
+
+Runtime：
+
+NOT_YET_AUTHORIZED。
+
+Architecture scope：
+
+- K100 PostgreSQL Operational SOR。
+- K200 Persistence Ports。
+- K300 Execution Persistence。
+- K400 Account / Position Persistence。
+- K500 Strategy State。
+- K600 Event Ledger / Idempotency。
+- K700 Restart Recovery。
+
+Required before runtime：
+
+- PostgreSQL version/source pinning。
+- architecture freeze。
+- bounded Work Package split。
+- explicit transaction/idempotency semantics。
+- expected/actual persistence separation。
+- deterministic recovery gate。
+
+GAP-PERSIST-001 remains after persistence foundation：
 
 - DecisionContext。
 - RiskDecision。
@@ -228,6 +246,7 @@ GAP-PERSIST-001：
 - audit trace。
 
 ---
+
 
 # M7 — Incremental Feature / Market State
 

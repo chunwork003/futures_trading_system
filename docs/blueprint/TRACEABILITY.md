@@ -460,3 +460,89 @@ Conservative metric rule：
 只有 ACTIVE Implements 的 8 leaves 在本次 acceptance 升為 ACCEPTED。
 
 GAP-RECON-001 runtime scope 已完成；parent closure 由 deterministic documentation phase 執行。
+
+---
+
+## 9. GAP-BROKER-002 Acceptance Evidence
+
+Work Package：
+
+    GAP-BROKER-002
+
+Runtime commit：
+
+    7d7fdabcb99da59d3d23ccec62b11c6572ceea82
+
+Accepted Blueprint leaves：
+
+    I120 I130 I140 I940
+
+Runtime paths：
+
+    adapters/capabilities.py
+    adapters/sinopac/capabilities.py
+
+Primary verification path：
+
+    tests/unit/test_broker_capabilities.py
+
+Runtime evidence：
+
+- BrokerCapability exact 8 frozen values。
+- BrokerCapabilitySupport exact SUPPORTED / UNSUPPORTED / UNKNOWN。
+- BrokerVerificationMode exact DOCUMENTATION / FAKE / SIMULATION / PRODUCTION。
+- verification modes have no implicit hierarchy。
+- immutable BrokerCapabilityEvidence with source/version/date/mode evidence。
+- immutable deterministic BrokerCapabilityMatrix。
+- duplicate capability / evidence inconsistencies explicit reject。
+- BrokerCapabilityUnavailableError for missing / unsupported / unknown / insufficient verification。
+- SINOPAC matrix contains exact 8 capabilities。
+- SDK evidence version 1.7.6。
+- evidence date 2026-09-25。
+- concrete initial matrix is DOCUMENTATION-only。
+- no SIMULATION evidence claimed。
+- no PRODUCTION evidence claimed。
+- no network/login/logout/CA/credential/order/LIVE action surface added。
+
+Verification：
+
+    targeted tests: 22 passed
+    compatibility tests: 45 passed
+    full regression: 869 passed
+    git diff --check: PASS
+
+Acceptance：
+
+    PASS
+
+Calibration：
+
+    model: GPT-5.6 Sol
+    effort: 輕度
+    user-observed 5HR usage: 10%
+    files read: 12
+    files created: 3
+    existing files modified: 0
+    tool operations: 17
+    implementation correction cycles: 0
+    command/tool retries: 2
+    wall time: approximately 3m44s
+    token/context usage: unavailable
+
+Five-sample calibration：
+
+    5HR observations: 12%, 14%, 11%, 16%, 10%
+    average: 12.60%
+    total implementation correction cycles: 1
+
+Retry note：
+
+- sandbox fetch escalation。
+- pytest executable path correction。
+- neither retry changed frozen public semantics。
+
+Conservative metric rule：
+
+只有 ACTIVE Implements 的 I120 / I130 / I140 / I940 在本次升為 ACCEPTED。
+
+I720 / I730 / I740 / I820 / I920 / I930 remain outside this accepted runtime scope。

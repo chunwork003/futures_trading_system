@@ -26,7 +26,7 @@ Actual runtime execution HEAD：
 
 Recorded full regression：
 
-847 passed
+869 passed
 
 Known warning：
 
@@ -73,37 +73,37 @@ GAP-RECON-001：
 
 CLOSED / ACCEPTED。
 
-M5：
+GAP-BROKER-002：
 
-COMPLETED / ACCEPTED。
+CLOSED / ACCEPTED。
+
+Accepted runtime commit：
+
+`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
+
+Current milestone：
+
+M6 — Persistence / Recovery / Provenance。
 
 Current mainline：
 
-GAP-BROKER-002 Broker Capability Matrix / Mapping Semantics。
-
-Architecture / Source Review：
-
-COMPLETED。
-
-Design Freeze：
-
-COMPLETED for I120 / I130 / I140 / I940。
+GAP-08 Trading State Persistence & Recovery。
 
 Status：
 
-READY_FOR_EXECUTION。
+READY_FOR_ARCHITECTURE_REVIEW。
 
-Runtime Launch Gate：
+Architecture / Design Freeze：
 
-RELEASED_ARCHITECTURE_FREEZE。
+NOT_YET_COMPLETED。
 
 Runtime authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+NOT_YET_AUTHORIZED。
 
-Execution Mode：
+Required next action：
 
-LEVEL_3A_BOUNDED。
+先完成 K100-K770 architecture review、scope split、source/version pinning 與 bounded Work Package design freeze。
 
 Level 3B：
 
@@ -170,7 +170,6 @@ ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
 
 - AccountPosition fill/event projection。
 
-- broker capability matrix。
 - operational PostgreSQL。
 - trading persistence。
 - restart recovery。
@@ -195,18 +194,18 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-43.57%。
+44.17%。
 
 Architecture Design Coverage：87.60%。
 Design Freeze Coverage：52.22%。
-Runtime Implementation：38.84%。
-Unit Verification：35.61%。
-Integration Verification：35.52%。
-Accepted Capability：35.52%。
+Runtime Implementation：39.59%。
+Unit Verification：36.36%。
+Integration Verification：36.27%。
+Accepted Capability：36.27%。
 
 Capability status：
 
-COMPLETE 11 / PARTIAL 49 / NOT_STARTED 32。
+COMPLETE 12 / PARTIAL 49 / NOT_STARTED 31。
 
 Readiness：
 
@@ -216,7 +215,7 @@ Readiness：
 
 Latest accepted runtime：
 
-`4049f982474454556baf8734a5729ecbedc7a438`
+`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
 
 ## Automation Status
 
@@ -236,7 +235,7 @@ Validated by GAP-07-CLOSE。
 
 Repository queue + ACTIVE full Work Package。
 
-Formal runtime calibration samples：4。
+Formal runtime calibration samples：5。
 
 Completed：
 
@@ -244,8 +243,7 @@ Completed：
 - GAP-BROKER-001。
 - GAP-RECON-001A。
 - GAP-RECON-001B。
-
-Total implementation correction cycles：1。
+- GAP-BROKER-002。
 
 Observed 5HR runtime usage：
 
@@ -253,8 +251,11 @@ Observed 5HR runtime usage：
 - 14%。
 - 11%。
 - 16%。
+- 10%。
 
-Observed average：13.25%。
+Observed average：12.60%。
+
+Total implementation correction cycles：1。
 
 ### Level 3B
 
@@ -264,7 +265,7 @@ ELIGIBLE_FOR_EVALUATION。
 
 NOT_ENABLED。
 
-必須獨立完成 automation evaluation，不能因樣本數自動啟用。
+Persistence/recovery mainline 不因 Level 3A 樣本數自動升級 Level 3B。
 
 ---
 
@@ -278,17 +279,28 @@ Formal Level 3A runtime samples：
 | 2 | GAP-BROKER-001 | 14% | ~22 | 20 | 24 | 0 | 800 |
 | 3 | GAP-RECON-001A | 11% | 8 | 2 | 19 | 0 | 821 |
 | 4 | GAP-RECON-001B | 16% | 8 | 2 | 22 | 1 | 847 |
+| 5 | GAP-BROKER-002 | 10% | 12 | 3 | 17 | 0 | 869 |
 
-Sample 4 correction：
+Five-sample average：
 
-測試 fixture 修正，使唯一雙側 leftover 正確遵循 frozen CONTRACT_MISMATCH rule；不是 architecture redesign。
+12.60%。
+
+Total implementation correction cycles：
+
+1。
+
+Sample 5 runtime：
+
+- wall time：約 3m44s。
+- command/tool retries：2。
+- token/context：unavailable。
 
 Policy：
 
 - 5HR usage 是 quota proxy，不是 token percentage。
 - token/context 未 exposed 時不得估算。
-- deterministic documentation 與 runtime quota 分開觀察。
-- 不以四個樣本線性推算固定 token/quota capacity。
+- deterministic docs 與 runtime quota 分開觀察。
+- 不以目前五個樣本線性推算固定 token/quota capacity。
 
 ## Live State
 
@@ -304,39 +316,41 @@ Persistence、Recovery、Live Safety 尚未完成。
 
 ## Current Active Work
 
-Work Package：
+Last completed Work Package：
 
 GAP-BROKER-002 Broker Capability Matrix / Mapping Semantics。
 
-Architecture / Source Review：
+Status：
 
-COMPLETED。
+CLOSED / ACCEPTED。
 
-Design Freeze：
+Accepted runtime commit：
 
-I120 / I130 / I140 / I940 DESIGN_FROZEN。
+`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
+
+Verification：
+
+- targeted：22 passed。
+- compatibility：45 passed。
+- full regression：869 passed。
+- implementation correction cycles：0。
+
+Next mainline：
+
+GAP-08 Trading State Persistence & Recovery。
+
+Milestone：
+
+M6 — Persistence / Recovery / Provenance。
 
 Status：
 
-READY_FOR_EXECUTION。
-
-Runtime Launch Gate：
-
-RELEASED_ARCHITECTURE_FREEZE。
+READY_FOR_ARCHITECTURE_REVIEW。
 
 Runtime authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+NOT_YET_AUTHORIZED。
 
-Recommended runtime：
+Next action：
 
-GPT-5.6 Sol / 輕度 / LEVEL_3A_BOUNDED。
-
-Scope：
-
-- broker-neutral capability/evidence contract。
-- Sinopac documentation-backed capability matrix。
-- explicit unsupported/unverified failure。
-- no network。
-- no login / CA。
-- no simulation or production verification claim。
+完成 persistence/recovery architecture review、PostgreSQL version/source pinning、scope split 與 design freeze；不得直接開始 runtime。

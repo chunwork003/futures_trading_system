@@ -743,3 +743,88 @@ Deferred：I720 / I730 / I740 / I820 / I920 / I930。
 Runtime：NOT_YET_AUTHORIZED。
 
 Next：commit/push/remote verify freeze，then release runtime gate。
+
+## 2026-09-25 — GAP-BROKER-002 Runtime Acceptance
+
+Work Package：
+
+`GAP-BROKER-002 Broker Capability Matrix / Mapping Semantics`
+
+Architecture freeze commit：
+
+`b5c0a1c3af50e0a2d31261b81eb1630380d496d9`
+
+Runtime gate release commit：
+
+`767b1e3e22a1ab1baeebefa0c0731008503f23aa`
+
+Accepted runtime commit：
+
+`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
+
+Runtime configuration：
+
+- Model：GPT-5.6 Sol。
+- Effort：輕度。
+- Mode：LEVEL_3A_BOUNDED。
+
+Completed：
+
+- BrokerCapability exact eight values。
+- BrokerCapabilitySupport。
+- BrokerVerificationMode。
+- immutable BrokerCapabilityEvidence。
+- immutable BrokerCapabilityMatrix。
+- explicit BrokerCapabilityUnavailableError。
+- Sinopac documentation-only capability matrix。
+- source/version/date evidence。
+- no verification-mode hierarchy。
+- no live authorization implication。
+
+Verification：
+
+- targeted：22 passed。
+- compatibility：45 passed。
+- full regression：869 passed。
+- git diff --check：PASS。
+- implementation correction cycles：0。
+- command/tool retries：2。
+- final status：only `?? data/`。
+
+Blueprint acceptance：
+
+- I120 / I130 / I140 / I940 -> ACCEPTED。
+- ACCEPTED：250 leaves / weight 775。
+- lifecycle：44.17%。
+- runtime：39.59%。
+- unit：36.36%。
+- integration / accepted：36.27%。
+- I Broker Adapter：73.38%。
+- capability status：12 COMPLETE / 49 PARTIAL / 31 NOT_STARTED。
+
+Calibration：
+
+- formal Level 3A runtime sample：5。
+- user-observed 5HR usage：10%。
+- files read：12。
+- files created：3。
+- existing files modified：0。
+- tool operations：17。
+- wall time：約 3m44s。
+- token/context：unavailable。
+- five-sample observed 5HR average：12.60%。
+- total implementation correction cycles across five samples：1。
+
+Closure：
+
+GAP-BROKER-002 CLOSED / ACCEPTED。
+
+Next mainline：
+
+M6 / GAP-08 Trading State Persistence & Recovery。
+
+Status：READY_FOR_ARCHITECTURE_REVIEW。
+
+Runtime：NOT_YET_AUTHORIZED。
+
+Level 3B：ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。

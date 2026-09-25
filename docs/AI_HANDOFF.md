@@ -638,18 +638,18 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-43.57%。
+44.17%。
 
 Architecture Design Coverage：87.60%。
 Design Freeze Coverage：52.22%。
-Runtime Implementation：38.84%。
-Unit Verification：35.61%。
-Integration Verification：35.52%。
-Accepted Capability：35.52%。
+Runtime Implementation：39.59%。
+Unit Verification：36.36%。
+Integration Verification：36.27%。
+Accepted Capability：36.27%。
 
 Capability status：
 
-COMPLETE 11 / PARTIAL 49 / NOT_STARTED 32。
+COMPLETE 12 / PARTIAL 49 / NOT_STARTED 31。
 
 Readiness：
 
@@ -667,66 +667,75 @@ Formal Level 3A runtime samples：
 | 2 | GAP-BROKER-001 | 14% | ~22 | 20 | 24 | 0 | 800 |
 | 3 | GAP-RECON-001A | 11% | 8 | 2 | 19 | 0 | 821 |
 | 4 | GAP-RECON-001B | 16% | 8 | 2 | 22 | 1 | 847 |
+| 5 | GAP-BROKER-002 | 10% | 12 | 3 | 17 | 0 | 869 |
 
 Observed average 5HR runtime usage：
 
-13.25%。
+12.60%。
 
 Total implementation correction cycles：
 
 1。
 
-Sample 4 correction：
+Sample 5：
 
-測試 fixture 修正以符合 frozen unique-leftover CONTRACT_MISMATCH rule；未變更 architecture contract。
+- wall time：約 3m44s。
+- retries：2。
+- token/context：unavailable。
 
 Policy：
 
 - 5HR quota percentage != token percentage。
 - token/context unavailable 時不得估算。
-- 不用目前樣本線性推算 capacity。
+- 不用目前樣本線性推算 fixed capacity。
 - Level 3B：ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
 
 ## 28. Current Active Candidate
 
-GAP：
+Last completed Work Package：
 
-GAP-BROKER-002。
-
-Title：
-
-Broker Capability Matrix / Mapping Semantics。
-
-Architecture / Source Review：
-
-COMPLETED。
-
-Design Freeze：
-
-I120 / I130 / I140 / I940 COMPLETED。
+GAP-BROKER-002 Broker Capability Matrix / Mapping Semantics。
 
 Status：
 
-READY_FOR_EXECUTION。
+CLOSED / ACCEPTED。
+
+Accepted runtime commit：
+
+`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
+
+Next mainline：
+
+GAP-08 Trading State Persistence & Recovery。
+
+Milestone：
+
+M6。
+
+Status：
+
+READY_FOR_ARCHITECTURE_REVIEW。
 
 Runtime authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+NOT_YET_AUTHORIZED。
 
-Runtime launch gate：
+Architecture focus：
 
-`RELEASED_ARCHITECTURE_FREEZE`
+- PostgreSQL operational SOR。
+- persistence ports / transaction boundaries。
+- execution/account/state persistence。
+- append-only event ledger / idempotency。
+- deterministic restart recovery。
 
-Source baseline：
+Required：
 
-- Shioaji 1.7.6。
-- official source review 2026-09-25。
-- initial matrix DOCUMENTATION only。
-- SIMULATION / PRODUCTION not claimed。
-
-Recommended calibration：
-
-`GPT-5.6 Sol / 輕度 / LEVEL_3A_BOUNDED`
+- source/version pinning。
+- architecture review。
+- bounded scope split。
+- design freeze。
+- ACTIVE Work Package。
+- runtime gate release。
 
 Level 3B：
 
@@ -775,7 +784,7 @@ Blueprint baseline activation 已完成：
 - 92/92 capability mapping PASS。
 - connection / state authority / source registry / traceability PASS。
 - 603 engineering leaves。
-- current lifecycle-weighted completion 43.46%。
+- current lifecycle-weighted completion 44.17%。
 - baseline commit：`432c48fb63c3d8d2760c0f2f5338e205ded63d30`。
 
 Blueprint baseline accepted 後，ACTIVE 必須列 Implements / Touches / Does Not Implement Blueprint IDs。

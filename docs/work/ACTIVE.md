@@ -14,7 +14,7 @@ Broker Capability Matrix / Mapping Semantics
 
 ## 3. Status
 
-READY_FOR_EXECUTION
+COMPLETED / ACCEPTED
 
 Architecture / Source Review：
 
@@ -26,21 +26,24 @@ COMPLETED for I120 / I130 / I140 / I940。
 
 Runtime execution authorization：
 
-AUTHORIZED。
+COMPLETED。
 
 Launch Gate：
 
-`RELEASED_ARCHITECTURE_FREEZE`
-
-Required baseline ancestor：
-
-`457dc054641551f04dea5e6b1eda80f042a07c64`
+`CONSUMED`
 
 Architecture freeze commit：
 
 `b5c0a1c3af50e0a2d31261b81eb1630380d496d9`
 
----
+Runtime gate release commit：
+
+`767b1e3e22a1ab1baeebefa0c0731008503f23aa`
+
+Accepted runtime commit：
+
+`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
+
 
 ## 4. Recommended Model
 
@@ -470,6 +473,54 @@ No amend / rebase public history / force push / reset --hard。
 
 ---
 
+## 24A. Runtime Completion Evidence
+
+Result：
+
+PASS / ACCEPTED。
+
+Runtime commit：
+
+`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
+
+Runtime files：
+
+- adapters/capabilities.py。
+- adapters/sinopac/capabilities.py。
+- tests/unit/test_broker_capabilities.py。
+
+Verification：
+
+- targeted：22 passed。
+- compatibility：45 passed。
+- full regression：869 passed。
+- git diff --check：PASS。
+- implementation correction cycles：0。
+- final status：only `?? data/`。
+
+Calibration：
+
+- formal Level 3A sample：5。
+- GPT-5.6 Sol / 輕度。
+- user-observed 5HR usage：10%。
+- files read：12。
+- files created：3。
+- existing files modified：0。
+- tool operations：17。
+- command/tool retries：2。
+- wall time：約 3m44s。
+- token/context：unavailable。
+- five-sample 5HR average：12.60%。
+
+Closure：
+
+- GAP-BROKER-002 CLOSED / ACCEPTED。
+- capability evidence remains non-authoritative for LIVE。
+- SIMULATION / PRODUCTION evidence still deferred。
+- GAP-08 not runtime-authorized。
+
+---
+
 ## 25. Documentation Responsibility
 
 Runtime Codex only：implementation / tests / debug / runtime commit / push / report。
@@ -530,7 +581,7 @@ Public semantic change -> STOP + LEVEL 3。
 
 Current：
 
-    RELEASED_ARCHITECTURE_FREEZE
+    CONSUMED
 
 Release requires：
 

@@ -11,13 +11,13 @@ Formal baseline：
 
 - Engineering leaves：603。
 - Total weight：2137。
-- Lifecycle-weighted completion：43.57%。
+- Lifecycle-weighted completion：44.17%。
 - Architecture Design Coverage：87.60%。
 - Design Freeze Coverage：52.22%。
-- Runtime Implementation：38.84%。
-- Unit Verification：35.61%。
-- Integration Verification：35.52%。
-- Accepted Capability：35.52%。
+- Runtime Implementation：39.59%。
+- Unit Verification：36.36%。
+- Integration Verification：36.27%。
+- Accepted Capability：36.27%。
 - Operational Readiness：NOT_READY。
 - Production Live Readiness：BLOCKED。
 - LIVE_AUTO：NOT_AUTHORIZED。
@@ -26,13 +26,13 @@ Lifecycle inventory：
 
 - NOT_DESIGNED：60 leaves / weight 265。
 - DESIGNED：199 leaves / weight 756。
-- DESIGN_FROZEN：70 leaves / weight 286。
+- DESIGN_FROZEN：66 leaves / weight 270。
 - IMPLEMENTED：27 leaves / weight 69。
 - UNIT_VERIFIED：1 leaf / weight 2。
 - INTEGRATION_VERIFIED：0 leaves / weight 0。
-- ACCEPTED：246 leaves / weight 759。
+- ACCEPTED：250 leaves / weight 775。
 
-Latest accepted runtime commit：`4049f982474454556baf8734a5729ecbedc7a438`。
+Latest accepted runtime commit：`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`。
 
 ---
 

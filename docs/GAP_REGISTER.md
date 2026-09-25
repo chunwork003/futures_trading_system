@@ -61,8 +61,8 @@ Mainline：
 | GAP-ACCOUNT-001 | P1 | REVIEW_AT_CHECKPOINT | No | Broker Account / Position Sync | CLOSED |
 | GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | CLOSED |
 | GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | No | Explicit OrderIntent / PositionEffect | CLOSED |
-| GAP-BROKER-002 | P2 | REVIEW_AT_CHECKPOINT | No | Capability matrix / mapping semantics | READY_FOR_EXECUTION |
-| GAP-08 | P1 | REVIEW_AT_CHECKPOINT | No | Trading State Persistence / Recovery | PENDING |
+| GAP-BROKER-002 | P2 | REVIEW_AT_CHECKPOINT | No | Capability matrix / mapping semantics | CLOSED |
+| GAP-08 | P1 | REVIEW_AT_CHECKPOINT | No | Trading State Persistence / Recovery | READY_FOR_ARCHITECTURE_REVIEW |
 | GAP-PERSIST-001 | P1 | RECORD_AND_CONTINUE | No | Decision / Risk Provenance | OPEN |
 | GAP-09 | P1 | REVIEW_AT_CHECKPOINT | No | Incremental Feature / Market State | PENDING |
 | GAP-SIM-001 | P2 | RECORD_AND_CONTINUE | No | SimulationBroker / fault injection | OPEN |
@@ -301,78 +301,104 @@ Corrective broker execution remains separately gated。
 
 Status：
 
-READY_FOR_EXECUTION。
+CLOSED / ACCEPTED。
 
-Architecture / Source Review：
+Accepted runtime commit：
 
-COMPLETED。
+`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
 
-Design Freeze：
+Accepted Blueprint scope：
 
-COMPLETED for I120 / I130 / I140 / I940。
+- I120。
+- I130。
+- I140。
+- I940。
 
-Runtime Launch Gate：
+Accepted runtime：
 
-RELEASED_ARCHITECTURE_FREEZE。
-
-Runtime Authorization：
-
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
-
-Canonical runtime scope：
-
-- adapters/capabilities.py。
-- adapters/sinopac/capabilities.py。
-- broker capability/evidence models。
-- documentation-backed SINOPAC matrix。
+- broker-neutral capability contract。
+- support / verification mode contract。
+- capability evidence/matrix。
 - explicit unsupported/unverified failure。
+- Sinopac documentation-only evidence matrix。
 
-Initial evidence baseline：
+Verification：
 
-- Shioaji 1.7.6。
-- source review 2026-09-25。
-- DOCUMENTATION only。
-- no SIMULATION claim。
-- no PRODUCTION claim。
+- targeted：22 passed。
+- compatibility：45 passed。
+- full regression：869 passed。
+- correction cycles：0。
 
-Deferred：
+Still deferred：
 
-- authentication / CA。
-- reconnect/session recovery。
-- live default-account enforcement。
-- network error classification。
-- actual simulation/paper verification。
-- production connectivity verification。
-- physical adapter relocation。
+- I720 authentication。
+- I730 reconnect/session recovery。
+- I740 live account-selection enforcement。
+- I820 network/broker error classification。
+- I920 actual broker paper/simulation verification。
+- I930 production connectivity verification。
 
-Safety：
-
-- capability evidence != live authorization。
-- missing/unknown/unverified capability explicit reject。
-- no silent fallback。
-- no broker login/network tests。
+Capability evidence does not authorize LIVE。
 
 ---
 
-# GAP-08 Detail
 
 # GAP-08 Detail
+
+Status：
+
+READY_FOR_ARCHITECTURE_REVIEW。
+
+Priority：
+
+P1 MAINLINE。
+
+Milestone：
+
+M6 — Persistence / Recovery / Provenance。
+
+Blueprint range：
+
+K100-K770。
 
 Target：
 
 - PostgreSQL operational SOR。
-- Order persistence。
-- OrderEvent persistence。
-- Fill persistence。
-- Position snapshots。
-- Account snapshots。
-- trading event history。
-- idempotency。
+- schema/migration/transaction boundary。
+- repository ports。
+- Order / OrderEvent / Fill persistence。
+- expected / actual position snapshots。
+- ReconciliationCase persistence。
 - strategy state snapshot。
-- restart recovery。
+- append-only event ledger。
+- idempotency / correlation / causation。
+- deterministic restart recovery。
 - broker reconciliation after restart。
+- READY / HALT recovery gate。
+
+Architecture review requirements：
+
+- pin PostgreSQL project major version。
+- official PostgreSQL source revalidation。
+- preserve Decimal / NUMERIC semantics。
+- preserve timezone-aware / TIMESTAMPTZ semantics。
+- expected state != broker actual state。
+- event evidence != mutable projection。
+- domain packages must not depend directly on DB driver/ORM。
+- no silent event mutation。
+- no silent expected overwrite。
+- no silent recovery to READY。
+- define transaction / idempotency boundaries。
+- split K100-K770 into bounded Work Packages before runtime。
+
+Runtime Authorization：
+
+NOT_YET_AUTHORIZED。
+
+GAP-08 must not start as one monolithic runtime package。
 
 ---
+
 
 # GAP-09 Detail
 
