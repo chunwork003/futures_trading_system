@@ -707,15 +707,23 @@ Design Freeze：
 
 COMPLETED。
 
+Runtime Authorization：
+
+`AUTHORIZED_FOR_LEVEL_3A_RUNTIME`
+
 Runtime Launch Gate：
 
-`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
+`RELEASED_ARCHITECTURE_FREEZE`
+
+Architecture freeze evidence：
+
+`d74de0cbad75fa32f39fd2e6a04dc7f865c527bb`
 
 Recommended calibration：
 
 `GPT-5.6 Sol / 輕度`
 
-完成 architecture freeze commit / push 後才解除 runtime gate。
+Runtime executor 可開始一個 bounded GAP-BROKER-001 Work Package；完成後必須 STOP。
 
 ## 29. Hard Stop
 

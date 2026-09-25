@@ -83,11 +83,11 @@ GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
 
 Current state：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_EXECUTION。
 
 Reason：
 
-H210-H250 與 I340-I350 尚未完成 architecture / design freeze；不得直接啟動 runtime Codex。
+H210-H250 與 I340-I350 architecture / design freeze 已完成並 commit：`d74de0cbad75fa32f39fd2e6a04dc7f865c527bb`。
 
 After：
 
@@ -321,10 +321,10 @@ GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_EXECUTION。
 
 Runtime authorization：
 
-NOT_YET_AUTHORIZED。
+AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
 
-下一步先完成 architecture review / design freeze，再建立新的 ACTIVE Work Package。
+ACTIVE Work Package 已完成 design freeze 並解除 runtime launch gate，可執行一個 Level 3A bounded runtime Work Package。

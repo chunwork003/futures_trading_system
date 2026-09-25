@@ -73,15 +73,21 @@ Design Freeze：
 
 COMPLETED
 
+Runtime Authorization：
+
+AUTHORIZED_FOR_LEVEL_3A_RUNTIME
+
 Runtime Launch Gate：
 
-HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
+RELEASED_ARCHITECTURE_FREEZE
+
+Release Evidence：
+
+`d74de0cbad75fa32f39fd2e6a04dc7f865c527bb`
 
 Reason：
 
-H210-H250 / I340-I350 public semantics 已凍結。
-
-但必須先 commit / push architecture freeze，才能解除 runtime gate。
+H210-H250 / I340-I350 public semantics 已凍結，architecture freeze 已 commit / push / remote verify。
 
 # Completed Work Package — GAP-ACCOUNT-001
 
@@ -116,9 +122,9 @@ Corrective execution 仍未授權。
 
 Current order：
 
-1. commit / push GAP-BROKER-001 architecture freeze。
-2. release GAP-BROKER-001 runtime launch gate。
-3. GAP-BROKER-001 bounded runtime implementation。
+1. GAP-BROKER-001 bounded runtime implementation。
+2. targeted / compatibility / full regression。
+3. runtime commit / push / remote verify。
 4. deterministic acceptance / closure。
 5. GAP-RECON-001 architecture review / runtime。
 

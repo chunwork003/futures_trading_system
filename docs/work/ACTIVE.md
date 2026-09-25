@@ -26,13 +26,13 @@ COMPLETED。
 
 Runtime execution authorization：
 
-HOLD。
+AUTHORIZED。
 
 Launch Gate：
 
-`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
+`RELEASED_ARCHITECTURE_FREEZE`
 
-必須先將本 architecture freeze commit / push / remote verify。
+Architecture freeze commit 已 push 並 remote verify：`d74de0cbad75fa32f39fd2e6a04dc7f865c527bb`。
 
 ---
 
@@ -788,7 +788,7 @@ STOP + LEVEL 3。
 
 Current：
 
-    HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
+    RELEASED_ARCHITECTURE_FREEZE
 
 Release requirements：
 
@@ -797,7 +797,7 @@ Release requirements：
 3. ACTIVE complete。
 4. CURRENT_WORK / GAP_REGISTER / AI_HANDOFF synchronized。
 5. official source revalidation PASS。
-6. architecture freeze commit pushed。
+6. architecture freeze commit pushed：`d74de0cbad75fa32f39fd2e6a04dc7f865c527bb`。
 7. local master == origin/master。
 
 Release 後只解除 runtime launch gate。

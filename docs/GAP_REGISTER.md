@@ -176,9 +176,17 @@ Architecture / Design Freeze：
 
 COMPLETED。
 
+Architecture freeze commit：
+
+`d74de0cbad75fa32f39fd2e6a04dc7f865c527bb`
+
+Runtime Authorization：
+
+AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+
 Runtime Launch Gate：
 
-HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+RELEASED_ARCHITECTURE_FREEZE。
 
 Frozen semantics：
 
