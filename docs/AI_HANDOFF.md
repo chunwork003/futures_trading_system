@@ -740,7 +740,7 @@ COMPLETED for J710-J780。
 
 Status：
 
-READY_FOR_WORK_PACKAGE_PREPARATION。
+READY_FOR_EXECUTION。
 
 Runtime authorization：
 
@@ -748,7 +748,7 @@ NOT_YET_AUTHORIZED。
 
 Runtime launch gate：
 
-`NOT_RELEASED`
+`HOLD_FOR_WORK_PACKAGE_COMMIT`
 
 Recommended calibration：
 

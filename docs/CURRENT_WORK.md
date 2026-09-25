@@ -47,7 +47,7 @@ Collection / Startup Readiness
 
 Status：
 
-READY_FOR_WORK_PACKAGE_PREPARATION
+READY_FOR_EXECUTION
 
 Priority：
 
@@ -75,7 +75,7 @@ NOT_YET_AUTHORIZED
 
 Runtime Launch Gate：
 
-NOT_RELEASED
+HOLD_FOR_WORK_PACKAGE_COMMIT
 
 Implements：
 
@@ -87,7 +87,7 @@ Dependency：
 
 Next required action：
 
-建立完整 GAP-RECON-001B ACTIVE Work Package，再 release runtime gate。
+完整 GAP-RECON-001B ACTIVE 已建立；commit / push / verify 後 release runtime gate。
 
 # Completed Work Package — GAP-RECON-001A
 
@@ -201,7 +201,7 @@ GAP-RECON-001B 不得 automatic broker repair、expected overwrite 或 correctiv
 |---:|---|---|---|---|
 | 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | CLOSED | GAP-07 |
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
-| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | IN_PROGRESS / 001A_ACCEPTED / 001B_PREPARATION | GAP-ACCOUNT-001 + GAP-BROKER-001 |
+| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | IN_PROGRESS / 001A_ACCEPTED / 001B_READY_FOR_EXECUTION | GAP-ACCOUNT-001 + GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | PENDING | Broker mapping + execution semantics |
 | 5 | GAP-08 | Trading State Persistence & Recovery | BLOCKED | Reconciliation foundation |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |

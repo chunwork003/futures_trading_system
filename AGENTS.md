@@ -2,7 +2,7 @@
 
 ## 專案與導航
 
-台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0 — Governance / Architecture Consolidation 已完成；目前主線為 M5 / GAP-RECON-001B Collection / Startup Readiness preparation。GAP-RECON-001A 已完成 runtime acceptance；J710-J780 public semantics 已 design frozen，但 001B ACTIVE / runtime launch gate 尚未建立與解除，因此 Codex 尚未授權執行 001B；人工集中架構決策與 deterministic documentation，Codex 依已核准 Work Package 執行 runtime implementation、tests、debugging 與 integration。
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0 — Governance / Architecture Consolidation 已完成；目前主線為 M5 / GAP-RECON-001B Collection / Startup Readiness。GAP-RECON-001A 已完成 runtime acceptance；J710-J780 public semantics 與完整 001B Work Package 已 frozen/prepared，但 runtime launch gate 尚待 Work Package commit/push 後解除，因此 Codex 尚未授權執行 001B；人工集中架構決策與 deterministic documentation，Codex 依已核准 Work Package 執行 runtime implementation、tests、debugging 與 integration。
 
 Primary source of truth 與必讀順序：
 

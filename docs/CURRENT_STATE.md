@@ -103,11 +103,11 @@ Collection / Startup Readiness。
 
 Status：
 
-READY_FOR_WORK_PACKAGE_PREPARATION。
+READY_FOR_EXECUTION。
 
 Runtime Launch Gate：
 
-NOT_RELEASED。
+HOLD_FOR_WORK_PACKAGE_COMMIT。
 
 Runtime authorization：
 
@@ -372,11 +372,11 @@ COMPLETED for J710-J780。
 
 Status：
 
-READY_FOR_WORK_PACKAGE_PREPARATION。
+READY_FOR_EXECUTION。
 
 Runtime Launch Gate：
 
-NOT_RELEASED。
+HOLD_FOR_WORK_PACKAGE_COMMIT。
 
 Runtime authorization：
 
