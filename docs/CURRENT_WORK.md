@@ -33,13 +33,17 @@ Technical issues：
 
 # Current Active Candidate
 
-GAP：
+Parent GAP：
 
 GAP-08
 
+Work Package：
+
+GAP-08A
+
 Title：
 
-Trading State Persistence & Recovery
+Storage-Neutral Persistence Core Contracts
 
 Milestone：
 
@@ -47,7 +51,7 @@ M6 — Persistence / Recovery / Provenance
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW
+READY_FOR_DESIGN_FREEZE
 
 Priority：
 
@@ -57,26 +61,38 @@ Runtime Authorization：
 
 NOT_YET_AUTHORIZED
 
-Architecture focus：
+Blueprint Implements：
 
-- K100 PostgreSQL Operational SOR。
-- K200 Persistence Ports。
-- K300 Execution Persistence。
-- K400 Account / Position Persistence。
-- K500 Strategy State。
-- K600 Event Ledger / Idempotency。
-- K700 Restart Recovery。
+- K110 operational SOR authority boundary。
+- K130 operational exact numeric semantics。
+- K140 operational time semantics。
+- K150 stable identifier semantics。
+- K170 persistence documentation requirement。
+- K210 repository port boundary。
 
-Required before runtime：
+Shared architecture：
 
-- PostgreSQL project major version pin。
-- official source review。
-- state authority / transaction boundary freeze。
-- repository/event/snapshot contract freeze。
-- recovery sequence freeze。
-- bounded Work Package split。
+- upper contracts storage-neutral。
+- PostgreSQL is V1 operational adapter family。
+- PostgreSQL 17 / 18 are verification targets, not assumed project support。
+- Psycopg remains behind persistence/postgres。
+- Parquet / DuckDB / Polars remain analytical plane。
+- no generic CRUD abstraction across PostgreSQL / DuckDB / Parquet。
+
+GAP-08A must not implement：
+
+- psycopg adapter。
+- real database connection。
+- migration SQL。
+- PostgreSQL-major-specific semantics。
+- DuckDB PostgreSQL operational write path。
+
+Next required action：
+
+人工完成 GAP-08A Architect Design Freeze Gate 與完整 ACTIVE。
 
 Codex runtime 尚未授權。
+
 
 # Completed Work Package — GAP-BROKER-002
 
@@ -229,22 +245,35 @@ Corrective execution 仍未授權。
 
 # Sequencing Rule
 
-Current order：
+GAP-08 ordered bounded sequence：
 
-1. GAP-RECON-001：CLOSED / ACCEPTED。
-2. GAP-BROKER-002：CLOSED / ACCEPTED。
-3. GAP-08 architecture/source review。
-4. split GAP-08 into bounded persistence/recovery Work Packages。
-5. release runtime only after individual design freeze。
-6. GAP-PERSIST-001 decision/risk provenance。
-7. Level 3B separately evaluate；不得自動啟用。
+1. GAP-08A — Storage-Neutral Persistence Core Contracts。
+2. GAP-08B — PostgreSQL Adapter / Compatibility / Migration / Transaction。
+3. GAP-08C — Trading Event Ledger Core。
+4. GAP-08D — Event Version / Idempotency / Correlation。
+5. GAP-08E — Execution Persistence。
+6. GAP-08F — Account / Reconciliation Persistence。
+7. GAP-08G — Strategy State Persistence。
+8. GAP-08H — Recovery Load / Broker Observation / Reconcile。
+9. GAP-08I — Reconstruction / Validation / Readiness。
 
-Persistence/recovery safety：
+Backend policy：
 
-- PostgreSQL operational SOR authority must be explicit。
-- expected / actual state must remain separate。
-- append-only evidence cannot be silently mutated。
-- recovery mismatch cannot silently become READY。
+- domain / persistence ports storage-neutral。
+- PostgreSQL-specific implementation begins at GAP-08B。
+- PostgreSQL 17 / 18 project support requires explicit integration evidence。
+- Parquet / DuckDB / Polars remain analytical plane。
+
+K520：
+
+DEFERRED_TO_GAP_09。
+
+Rules：
+
+- one bounded Work Package per Level 3A runtime。
+- next slice blocked until previous required acceptance。
+- GAP-08 must not become monolithic runtime work。
+- Level 3B remains NOT_ENABLED。
 
 # Mainline Queue
 
@@ -254,7 +283,7 @@ Persistence/recovery safety：
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
 | 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | CLOSED / ACCEPTED | GAP-ACCOUNT-001 + GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | CLOSED / ACCEPTED | Broker mapping + execution semantics |
-| 5 | GAP-08 | Trading State Persistence & Recovery | READY_FOR_ARCHITECTURE_REVIEW | Reconciliation + broker capability foundation satisfied |
+| 5 | GAP-08 | Trading State Persistence & Recovery | IN_PROGRESS / 08A_READY_FOR_DESIGN_FREEZE | Reconciliation + broker capability foundation satisfied |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |
 | 7 | GAP-09 | Incremental Feature / Market State | PENDING | Trading core stable |
 | 8 | GAP-SIM-001 | SimulationBroker / fault injection | PENDING | Execution port stable |

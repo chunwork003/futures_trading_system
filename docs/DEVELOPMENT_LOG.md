@@ -828,3 +828,60 @@ Status：READY_FOR_ARCHITECTURE_REVIEW。
 Runtime：NOT_YET_AUTHORIZED。
 
 Level 3B：ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
+
+## 2026-09-25 — GAP-08 Storage Architecture Review
+
+Status：ARCHITECTURE_REVIEW_COMPLETED / DECOMPOSED。
+
+Decision：
+
+storage-neutral contracts + backend-specific adapters。
+
+Operational implementation family：
+
+PostgreSQL。
+
+Initial compatibility targets：
+
+- PostgreSQL 17 / reviewed current 17.11。
+- PostgreSQL 18 / reviewed current 18.6。
+
+Project support：
+
+PENDING_INTEGRATION_VERIFICATION。
+
+Psycopg：
+
+- generation 3。
+- reviewed stable 3.3.6。
+- exact project dependency pin deferred to GAP-08B freeze。
+
+Analytical plane preserved：
+
+- Parquet historical / feature datasets。
+- DuckDB analytical SQL。
+- Polars DataFrame / feature / research computation。
+
+DuckDB PostgreSQL extension：
+
+- optional analytical bridge only。
+- not operational persistence dependency。
+- not System of Record。
+
+Decomposition：
+
+- GAP-08A storage-neutral contracts。
+- GAP-08B PostgreSQL adapter/version compatibility/migration/transaction。
+- GAP-08C event ledger。
+- GAP-08D idempotency/correlation。
+- GAP-08E execution persistence。
+- GAP-08F account/reconciliation persistence。
+- GAP-08G strategy-state persistence。
+- GAP-08H recovery load/reconcile。
+- GAP-08I reconstruction/readiness。
+
+K520：DEFERRED_TO_GAP_09。
+
+Current：GAP-08A READY_FOR_DESIGN_FREEZE。
+
+Runtime：NOT_YET_AUTHORIZED。

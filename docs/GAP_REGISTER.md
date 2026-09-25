@@ -62,7 +62,7 @@ Mainline：
 | GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | CLOSED |
 | GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | No | Explicit OrderIntent / PositionEffect | CLOSED |
 | GAP-BROKER-002 | P2 | REVIEW_AT_CHECKPOINT | No | Capability matrix / mapping semantics | CLOSED |
-| GAP-08 | P1 | REVIEW_AT_CHECKPOINT | No | Trading State Persistence / Recovery | READY_FOR_ARCHITECTURE_REVIEW |
+| GAP-08 | P1 | REVIEW_AT_CHECKPOINT | No | Trading State Persistence / Recovery | IN_PROGRESS / DECOMPOSED |
 | GAP-PERSIST-001 | P1 | RECORD_AND_CONTINUE | No | Decision / Risk Provenance | OPEN |
 | GAP-09 | P1 | REVIEW_AT_CHECKPOINT | No | Incremental Feature / Market State | PENDING |
 | GAP-SIM-001 | P2 | RECORD_AND_CONTINUE | No | SimulationBroker / fault injection | OPEN |
@@ -347,55 +347,81 @@ Capability evidence does not authorize LIVE。
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+IN_PROGRESS / ARCHITECTURE_REVIEW_COMPLETED / DECOMPOSED。
 
 Priority：
 
 P1 MAINLINE。
 
-Milestone：
+Architecture pattern：
 
-M6 — Persistence / Recovery / Provenance。
+storage-neutral contracts + backend-specific adapters。
 
-Blueprint range：
+Operational adapter family：
 
-K100-K770。
+PostgreSQL。
 
-Target：
+Initial compatibility targets：
 
-- PostgreSQL operational SOR。
-- schema/migration/transaction boundary。
-- repository ports。
-- Order / OrderEvent / Fill persistence。
-- expected / actual position snapshots。
-- ReconciliationCase persistence。
-- strategy state snapshot。
-- append-only event ledger。
-- idempotency / correlation / causation。
-- deterministic restart recovery。
-- broker reconciliation after restart。
-- READY / HALT recovery gate。
+- PostgreSQL 17。
+- PostgreSQL 18。
 
-Architecture review requirements：
+Project integration support：
 
-- pin PostgreSQL project major version。
-- official PostgreSQL source revalidation。
-- preserve Decimal / NUMERIC semantics。
-- preserve timezone-aware / TIMESTAMPTZ semantics。
-- expected state != broker actual state。
-- event evidence != mutable projection。
-- domain packages must not depend directly on DB driver/ORM。
-- no silent event mutation。
-- no silent expected overwrite。
-- no silent recovery to READY。
-- define transaction / idempotency boundaries。
-- split K100-K770 into bounded Work Packages before runtime。
+NOT_YET_VERIFIED。
+
+Driver family：
+
+Psycopg 3。
+
+Analytical plane：
+
+- Parquet。
+- DuckDB。
+- Polars。
+
+Authority rules：
+
+- operational and analytical authorities remain separate。
+- no PostgreSQL-major semantics leak into domain ports。
+- no generic CRUD abstraction across PostgreSQL / DuckDB / Parquet。
+- DuckDB PostgreSQL extension is analytical convenience only。
+
+Bounded Work Packages：
+
+- GAP-08A：K110 K130 K140 K150 K170 K210。
+- GAP-08B：K120 K160 K220 K230 K240。
+- GAP-08C：K610 K620 K630 K640。
+- GAP-08D：K650 K660 K670 K680。
+- GAP-08E：K310 K320 K330 K340 K350。
+- GAP-08F：K410 K420 K430 K440 K450。
+- GAP-08G：K510 K530 K540。
+- GAP-08H：K710 K720 K730。
+- GAP-08I：K740 K750 K760 K770。
+
+Current slice：
+
+GAP-08A Storage-Neutral Persistence Core Contracts。
+
+Status：
+
+READY_FOR_DESIGN_FREEZE。
+
+GAP-08B：
+
+first PostgreSQL-specific implementation slice；compatibility / migration / transaction semantics。
+
+K520：
+
+DEFERRED_TO_GAP_09 because incremental feature-state public contract is not yet frozen。
 
 Runtime Authorization：
 
 NOT_YET_AUTHORIZED。
 
-GAP-08 must not start as one monolithic runtime package。
+Parent closure：
+
+GAP-08 closes only after required GAP-08A-I acceptance；K520 remains GAP-09-owned。
 
 ---
 

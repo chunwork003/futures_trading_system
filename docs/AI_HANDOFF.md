@@ -692,50 +692,58 @@ Policy：
 
 ## 28. Current Active Candidate
 
-Last completed Work Package：
-
-GAP-BROKER-002 Broker Capability Matrix / Mapping Semantics。
-
-Status：
-
-CLOSED / ACCEPTED。
-
-Accepted runtime commit：
-
-`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
-
-Next mainline：
+Parent GAP：
 
 GAP-08 Trading State Persistence & Recovery。
 
-Milestone：
+Architecture / Source Review：
 
-M6。
+COMPLETED。
+
+Architecture：
+
+storage-neutral contracts + backend-specific adapters。
+
+Operational backend family：
+
+PostgreSQL。
+
+Initial compatibility targets：
+
+- PostgreSQL 17。
+- PostgreSQL 18。
+
+Project support：
+
+NOT_YET_VERIFIED。
+
+Analytical plane：
+
+Parquet + DuckDB + Polars。
+
+Current Work Package candidate：
+
+GAP-08A Storage-Neutral Persistence Core Contracts。
+
+Blueprint：
+
+K110 / K130 / K140 / K150 / K170 / K210。
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_DESIGN_FREEZE。
 
 Runtime authorization：
 
 NOT_YET_AUTHORIZED。
 
-Architecture focus：
+GAP-08B：
 
-- PostgreSQL operational SOR。
-- persistence ports / transaction boundaries。
-- execution/account/state persistence。
-- append-only event ledger / idempotency。
-- deterministic restart recovery。
+first PostgreSQL-specific implementation / compatibility slice。
 
-Required：
+K520：
 
-- source/version pinning。
-- architecture review。
-- bounded scope split。
-- design freeze。
-- ACTIVE Work Package。
-- runtime gate release。
+DEFERRED_TO_GAP_09。
 
 Level 3B：
 

@@ -205,45 +205,58 @@ Accepted runtime commit：`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`。
 
 Status：
 
-IN_PROGRESS / ARCHITECTURE_REVIEW
+IN_PROGRESS / GAP-08_DECOMPOSED
 
-Current mainline：
+Parent GAP：
 
 GAP-08 Trading State Persistence & Recovery。
 
-GAP-08 status：
+Architecture / Source Review：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+COMPLETED。
+
+Architecture pattern：
+
+storage-neutral persistence contracts + backend-specific adapters。
+
+Operational backend family：
+
+PostgreSQL。
+
+Initial version verification targets：
+
+- PostgreSQL 17。
+- PostgreSQL 18。
+
+Analytical plane：
+
+Parquet + DuckDB + Polars。
+
+Runtime decomposition：
+
+1. GAP-08A Storage-Neutral Persistence Core Contracts。
+2. GAP-08B PostgreSQL Adapter / Compatibility / Migration / Transaction。
+3. GAP-08C Trading Event Ledger Core。
+4. GAP-08D Event Version / Idempotency / Correlation。
+5. GAP-08E Execution Persistence。
+6. GAP-08F Account / Reconciliation Persistence。
+7. GAP-08G Strategy State Persistence。
+8. GAP-08H Recovery Load / Broker Observation / Reconcile。
+9. GAP-08I Reconstruction / Validation / Readiness。
+
+Current：
+
+GAP-08A READY_FOR_DESIGN_FREEZE。
 
 Runtime：
 
 NOT_YET_AUTHORIZED。
 
-Architecture scope：
+K520：
 
-- K100 PostgreSQL Operational SOR。
-- K200 Persistence Ports。
-- K300 Execution Persistence。
-- K400 Account / Position Persistence。
-- K500 Strategy State。
-- K600 Event Ledger / Idempotency。
-- K700 Restart Recovery。
+DEFERRED_TO_GAP_09。
 
-Required before runtime：
-
-- PostgreSQL version/source pinning。
-- architecture freeze。
-- bounded Work Package split。
-- explicit transaction/idempotency semantics。
-- expected/actual persistence separation。
-- deterministic recovery gate。
-
-GAP-PERSIST-001 remains after persistence foundation：
-
-- DecisionContext。
-- RiskDecision。
-- correlation/causation。
-- audit trace。
+GAP-PERSIST-001 remains after GAP-08 foundation。
 
 ---
 

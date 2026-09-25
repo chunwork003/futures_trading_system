@@ -135,10 +135,81 @@ effective-dated。
 
 | Source ID | Tier | Scope | Host | Path | Version Policy |
 |---|---|---|---|---|---|
-| SRC-POSTGRES-001 | S1 | PostgreSQL | `postgresql.org` | `/docs/` | project major must be pinned before implementation |
+| SRC-POSTGRES-001 | S1 | PostgreSQL current documentation | `postgresql.org` | `/docs/current/` | operational adapter family; project support requires explicit verification |
+| SRC-POSTGRES-VERSIONING-001 | S1 | PostgreSQL version/support policy | `postgresql.org` | `/support/versioning/` | verify supported majors before deployment |
+| SRC-POSTGRES-17-001 | S1 | PostgreSQL 17 documentation | `postgresql.org` | `/docs/17/` | official current minor reviewed: 17.11 |
+| SRC-POSTGRES-18-001 | S1 | PostgreSQL 18 documentation | `postgresql.org` | `/docs/18/` | official current minor reviewed: 18.6 |
+| SRC-PSYCOPG-001 | S1 | Psycopg 3 PostgreSQL adapter | `psycopg.org` | `/psycopg3/docs/` | reviewed stable 3.3.6; PostgreSQL 10-18 documented support |
+| SRC-DUCKDB-POSTGRES-001 | S1 | DuckDB PostgreSQL extension | `duckdb.org` | `/docs/current/core_extensions/postgres/overview` | analytical bridge only; not operational authority |
+| SRC-DUCKDB-EXTENSIONS-001 | S1 | DuckDB extension support tiers | `duckdb.org` | `/docs/current/core_extensions/overview` | postgres extension is Secondary / best-effort |
 | SRC-ASPNET-001 | S1 | ASP.NET Core | `learn.microsoft.com` | `/aspnet/core/` | project .NET version must be pinned before scaffold |
 | SRC-REACT-LEARN-001 | S1 | React architecture / usage | `react.dev` | `/learn` | project major must be pinned before scaffold |
 | SRC-REACT-REF-001 | S1 | React API reference | `react.dev` | `/reference/react` | project major must be pinned before scaffold |
+
+---
+
+### GAP-08 Persistence Architecture Source Review
+
+Reviewed：
+
+    2026-09-25
+
+Architecture decision：
+
+    storage-neutral contracts + backend-specific adapters
+
+Operational implementation family：
+
+    PostgreSQL
+
+Initial PostgreSQL compatibility targets：
+
+    17
+    18
+
+Official current minors reviewed：
+
+    PostgreSQL 17.11
+    PostgreSQL 18.6
+
+Project support status：
+
+    PENDING_INTEGRATION_VERIFICATION
+
+Rules：
+
+- official PostgreSQL support != project integration verification。
+- PostgreSQL 17 / 18 不因 architecture 文件自動成為 production-supported。
+- domain / repository contracts 不得感知 PostgreSQL major。
+- PostgreSQL-specific implementation 隔離於 persistence/postgres。
+
+Python adapter family：
+
+    Psycopg 3
+
+Reviewed stable：
+
+    3.3.6
+
+Analytical plane：
+
+    Parquet + DuckDB + Polars
+
+Authority：
+
+- Parquet：historical / feature datasets。
+- DuckDB：analytical SQL / research / cross-store query。
+- Polars：DataFrame / feature / research computation。
+- PostgreSQL adapter：operational trading state implementation。
+
+No generic lowest-common-denominator CRUD abstraction across PostgreSQL / DuckDB / Parquet。
+
+DuckDB PostgreSQL extension：
+
+- research / ETL / audit convenience only。
+- not operational write path。
+- not startup/recovery persistence dependency。
+- not System of Record authority。
 
 ---
 

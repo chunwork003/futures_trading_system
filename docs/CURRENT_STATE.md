@@ -69,41 +69,51 @@ Blueprint launch gate 已完成使命，不再阻塞 runtime。
 
 ## Current Phase
 
-GAP-RECON-001：
-
-CLOSED / ACCEPTED。
-
 GAP-BROKER-002：
 
 CLOSED / ACCEPTED。
-
-Accepted runtime commit：
-
-`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
 
 Current milestone：
 
 M6 — Persistence / Recovery / Provenance。
 
-Current mainline：
+Parent GAP：
 
 GAP-08 Trading State Persistence & Recovery。
 
+Parent status：
+
+IN_PROGRESS / ARCHITECTURE_REVIEW_COMPLETED / DECOMPOSED。
+
+Storage architecture：
+
+- persistence/domain contracts：storage-neutral。
+- V1 operational adapter family：PostgreSQL。
+- PostgreSQL 17 / 18：explicit integration verification targets。
+- project-supported major：NOT_YET_VERIFIED。
+- Psycopg 3：adapter family；exact dependency pin deferred to GAP-08B freeze。
+- Parquet / DuckDB / Polars：analytical plane preserved。
+- DuckDB PostgreSQL extension：optional analytical bridge only。
+
+Bounded decomposition：
+
+GAP-08A through GAP-08I。
+
+Current slice：
+
+GAP-08A Storage-Neutral Persistence Core Contracts。
+
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
-
-Architecture / Design Freeze：
-
-NOT_YET_COMPLETED。
+READY_FOR_DESIGN_FREEZE。
 
 Runtime authorization：
 
 NOT_YET_AUTHORIZED。
 
-Required next action：
+K520：
 
-先完成 K100-K770 architecture review、scope split、source/version pinning 與 bounded Work Package design freeze。
+DEFERRED_TO_GAP_09。
 
 Level 3B：
 
@@ -316,41 +326,46 @@ Persistence、Recovery、Live Safety 尚未完成。
 
 ## Current Active Work
 
-Last completed Work Package：
-
-GAP-BROKER-002 Broker Capability Matrix / Mapping Semantics。
-
-Status：
-
-CLOSED / ACCEPTED。
-
-Accepted runtime commit：
-
-`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
-
-Verification：
-
-- targeted：22 passed。
-- compatibility：45 passed。
-- full regression：869 passed。
-- implementation correction cycles：0。
-
-Next mainline：
+Parent GAP：
 
 GAP-08 Trading State Persistence & Recovery。
 
-Milestone：
+Architecture / Source Review：
 
-M6 — Persistence / Recovery / Provenance。
+COMPLETED。
+
+Architecture pattern：
+
+storage-neutral contracts + backend-specific adapters。
+
+Runtime decomposition：
+
+GAP-08A through GAP-08I。
+
+Current candidate：
+
+GAP-08A Storage-Neutral Persistence Core Contracts。
+
+Blueprint scope：
+
+K110 / K130 / K140 / K150 / K170 / K210。
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_DESIGN_FREEZE。
 
 Runtime authorization：
 
 NOT_YET_AUTHORIZED。
 
+GAP-08A boundary：
+
+- no psycopg。
+- no PostgreSQL connection。
+- no migration SQL。
+- no PostgreSQL-major-specific runtime semantics。
+- no DuckDB operational dependency。
+
 Next action：
 
-完成 persistence/recovery architecture review、PostgreSQL version/source pinning、scope split 與 design freeze；不得直接開始 runtime。
+完成 GAP-08A storage-neutral public persistence contract design freeze、完整 ACTIVE Work Package、commit/push；之後才可 release runtime gate。
