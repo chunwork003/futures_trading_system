@@ -30,13 +30,13 @@ COMPLETED。
 
 Runtime execution authorization：
 
-HOLD。
+AUTHORIZED。
 
 Launch Gate：
 
-`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
+`RELEASED_ARCHITECTURE_FREEZE`
 
-Architecture freeze / Work Package 必須先 commit、push、remote verify。
+Architecture freeze / Work Package 已 commit、push、remote verify：`a5f98bea429b964bab05782d1f71bad3e9393888`。
 
 ---
 
@@ -724,7 +724,7 @@ STOP + LEVEL 3。
 
 Current：
 
-    HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
+    RELEASED_ARCHITECTURE_FREEZE
 
 Release requires：
 

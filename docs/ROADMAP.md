@@ -176,7 +176,7 @@ Policy / Result / Case。
 
 Status：
 
-READY_FOR_EXECUTION / runtime gate not yet released。
+READY_FOR_EXECUTION / AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
 
 Runtime slice 001B：
 
