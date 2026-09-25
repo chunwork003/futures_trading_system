@@ -549,3 +549,88 @@ Next mainline：
 GAP-RECON-001 READY_FOR_ARCHITECTURE_REVIEW。
 
 Runtime 尚未授權；先完成 architecture / design freeze。
+
+## 2026-09-25 — GAP-RECON-001A Runtime Acceptance
+
+Work Package：
+
+`GAP-RECON-001A Reconciliation Policy / Result / Case`
+
+Architecture freeze commit：
+
+`a5f98bea429b964bab05782d1f71bad3e9393888`
+
+Runtime gate release commit：
+
+`f88439e08c67536245625e74f5175a966d8815e8`
+
+Accepted runtime commit：
+
+`d7dbd884f09e72d7737726409e11e0679206ed8d`
+
+Runtime configuration：
+
+- Model：GPT-5.6 Sol。
+- Effort：輕度。
+- Mode：LEVEL_3A_BOUNDED。
+
+Completed：
+
+- ReconciliationResult evidence semantics。
+- UNKNOWN_EXTERNAL_STATE。
+- ExternalStateUnknownError contract。
+- ReconciliationPolicy。
+- ReconciliationCase lifecycle。
+- pure case creation / resolution。
+- comparison precedence compatibility。
+- explicit no-corrective-action boundary。
+
+Verification：
+
+- targeted：32 passed。
+- compatibility：22 passed。
+- full regression：821 passed。
+- git diff --check：PASS。
+- implementation correction cycles：0。
+- command/tool retries：0。
+- final status：only `?? data/`。
+
+Blueprint acceptance：
+
+- 9 explicit Implements leaves -> ACCEPTED。
+- ACCEPTED：238 leaves / weight 722。
+- lifecycle completion：42.08%。
+- Runtime Implementation：37.11%。
+- Unit Verification：33.88%。
+- Integration / Accepted：33.79%。
+- J Account / Reconciliation：65.45%。
+
+Calibration：
+
+- formal Level 3A runtime sample：3。
+- user-observed 5HR usage：11%。
+- files read：8。
+- runtime/test files changed：2。
+- tool operations：19。
+- wall time：unavailable。
+- token/context：unavailable。
+- 5HR percentage 不視為 token percentage。
+- 不做 token 或 quota capacity 線性外推。
+
+Automation decision：
+
+- 三個正式 Level 3A samples 均完成且 correction cycle = 0。
+- Level 3B 已達 evaluation threshold，但 NOT_ENABLED。
+- GAP-RECON-001B 維持 LEVEL_3A_BOUNDED。
+
+Closure：
+
+GAP-RECON-001A COMPLETED / ACCEPTED。
+
+Parent GAP-RECON-001 remains IN_PROGRESS。
+
+Next mainline：
+
+GAP-RECON-001B Collection / Startup Readiness。
+
+Runtime 尚未授權；先建立完整 ACTIVE Work Package 並 release gate。

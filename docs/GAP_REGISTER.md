@@ -256,8 +256,6 @@ Architecture / Design Freeze：
 
 COMPLETED for J610-J780。
 
-Runtime decomposition：
-
 GAP-RECON-001A：
 
     Policy / Result / Case
@@ -266,15 +264,18 @@ GAP-RECON-001A：
 
 Status：
 
-READY_FOR_EXECUTION。
+COMPLETED / ACCEPTED。
 
-Runtime Launch Gate：
+Accepted runtime commit：
 
-RELEASED_ARCHITECTURE_FREEZE。
+`d7dbd884f09e72d7737726409e11e0679206ed8d`
 
-Runtime Authorization：
+Verification：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+- targeted：32 passed。
+- compatibility：22 passed。
+- full regression：821 passed。
+- correction cycles：0。
 
 GAP-RECON-001B：
 
@@ -284,28 +285,30 @@ GAP-RECON-001B：
 
 Status：
 
-BLOCKED_BY_001A_ACCEPTANCE。
+READY_FOR_WORK_PACKAGE_PREPARATION。
 
-Frozen policies：
+Runtime Launch Gate：
 
-- STRICT_HALT。
-- MANUAL_REVIEW。
-- BROKER_AUTHORITATIVE。
-- INTERNAL_AUTHORITATIVE。
+NOT_RELEASED。
+
+Runtime Authorization：
+
+NOT_YET_AUTHORIZED。
 
 Frozen safety：
 
+- deterministic collection matching only。
+- explicit ExternalStateUnknownError boundary。
+- no catch-all downgrade。
+- strategy_state_ready explicit dependency。
 - no silent expected overwrite。
 - no automatic broker repair。
 - no automatic corrective OrderIntent。
-- no catch-all exception downgrade to UNKNOWN_EXTERNAL_STATE。
-- no persistence in GAP-RECON-001。
+- no persistence implementation。
 
 Closure rule：
 
-001A acceptance alone does not close GAP-RECON-001。
-
-Parent GAP closes only after 001B acceptance。
+Parent GAP closes only after GAP-RECON-001B acceptance。
 
 
 # GAP-08 Detail

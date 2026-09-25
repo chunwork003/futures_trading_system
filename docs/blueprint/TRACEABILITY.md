@@ -297,3 +297,84 @@ Conservative metric rule：
 只有 ACTIVE Implements 的 7 leaves 在本次 acceptance 升為 ACCEPTED。
 
 H910-H940 保持 DESIGN_FROZEN，不因本 Work Package 自動升級。
+
+---
+
+## 7. GAP-RECON-001A Acceptance Evidence
+
+Work Package：
+
+    GAP-RECON-001A
+
+Parent GAP：
+
+    GAP-RECON-001
+
+Runtime commit：
+
+    d7dbd884f09e72d7737726409e11e0679206ed8d
+
+Accepted Blueprint leaves：
+
+    J610 J620 J630 J640 J650 J660 J670 J680 J690
+
+Runtime path：
+
+    trading/reconciliation.py
+
+Primary verification path：
+
+    tests/unit/test_reconciliation.py
+
+Runtime evidence：
+
+- ReconciliationStatus 保留既有六值並新增 UNKNOWN_EXTERNAL_STATE。
+- ReconciliationResult evidence immutable、trim / nonblank。
+- UNKNOWN_EXTERNAL_STATE 必須有 evidence 且 actual=None。
+- ExternalStateUnknownError 為 explicit RuntimeError contract。
+- ReconciliationPolicy exact four values。
+- ReconciliationCaseState exact HALT / REVIEW_REQUIRED / RESOLVED。
+- MATCH 不建立 ReconciliationCase。
+- STRICT_HALT mismatch -> HALT。
+- 其他 frozen policies mismatch -> REVIEW_REQUIRED。
+- resolution pure transition，原 case 不 mutation。
+- BROKER_AUTHORITATIVE / INTERNAL_AUTHORITATIVE 不執行 corrective action。
+- compare_positions precedence 保持 contract -> direction -> quantity -> MATCH。
+- no persistence。
+- no startup orchestration。
+- no corrective OrderIntent / broker action。
+- GAP-RECON-001B 未開始。
+
+Verification：
+
+    targeted tests: 32 passed
+    compatibility tests: 22 passed
+    full regression: 821 passed
+    git diff --check: PASS
+
+Acceptance：
+
+    PASS
+
+Calibration：
+
+    model: GPT-5.6 Sol
+    effort: 輕度
+    user-observed 5HR usage: 11%
+    files read: 8
+    runtime/test files changed: 2
+    tool operations: 19
+    implementation correction cycles: 0
+    command/tool retries: 0
+    wall time: unavailable
+    token/context usage: unavailable
+
+Conservative metric rule：
+
+只有 ACTIVE Implements 的 9 leaves 在本次 acceptance 升為 ACCEPTED。
+
+J710-J780 保持 DESIGN_FROZEN。
+
+GAP-RECON-001 parent remains IN_PROGRESS。
+
+GAP-RECON-001B 尚未授權。

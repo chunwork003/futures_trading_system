@@ -176,7 +176,11 @@ Policy / Result / Case。
 
 Status：
 
-READY_FOR_EXECUTION / AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+COMPLETED / ACCEPTED。
+
+Accepted runtime commit：
+
+`d7dbd884f09e72d7737726409e11e0679206ed8d`
 
 Runtime slice 001B：
 
@@ -184,7 +188,7 @@ Collection / Startup Readiness。
 
 Status：
 
-BLOCKED_BY_001A_ACCEPTANCE。
+READY_FOR_WORK_PACKAGE_PREPARATION / NOT_YET_AUTHORIZED。
 
 Safety：
 

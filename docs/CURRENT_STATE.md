@@ -26,7 +26,7 @@ Actual runtime execution HEAD：
 
 Recorded full regression：
 
-800 passed
+821 passed
 
 Known warning：
 
@@ -89,30 +89,31 @@ Architecture / Design Freeze：
 
 COMPLETED for J610-J780。
 
-Runtime plan：
+GAP-RECON-001A：
 
-- GAP-RECON-001A：Policy / Result / Case。
-- GAP-RECON-001B：Collection / Startup Readiness。
+COMPLETED / ACCEPTED。
 
-Current runtime slice：
+Accepted runtime commit：
 
-GAP-RECON-001A。
-
-Status：
-
-READY_FOR_EXECUTION。
-
-Runtime Launch Gate：
-
-RELEASED_ARCHITECTURE_FREEZE。
-
-Runtime authorization：
-
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+`d7dbd884f09e72d7737726409e11e0679206ed8d`
 
 GAP-RECON-001B：
 
-BLOCKED_BY_001A_ACCEPTANCE。
+Collection / Startup Readiness。
+
+Status：
+
+READY_FOR_WORK_PACKAGE_PREPARATION。
+
+Runtime Launch Gate：
+
+NOT_RELEASED。
+
+Runtime authorization：
+
+NOT_YET_AUTHORIZED。
+
+Parent GAP remains IN_PROGRESS until 001B acceptance。
 
 ## Existing Major Foundation
 
@@ -171,8 +172,7 @@ BLOCKED_BY_001A_ACCEPTANCE。
 主要剩餘：
 
 - AccountPosition fill/event projection。
-- ReconciliationResult / ReconciliationCase。
-- reconciliation policy / collection matching / startup readiness。
+- reconciliation collection matching / startup readiness。
 - broker capability matrix。
 - operational PostgreSQL。
 - trading persistence。
@@ -198,14 +198,14 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-40.54%。
+42.08%。
 
 Architecture Design Coverage：87.23%。
 Design Freeze Coverage：51.47%。
-Runtime Implementation：35.19%。
-Unit Verification：31.96%。
-Integration Verification：31.87%。
-Accepted Capability：31.87%。
+Runtime Implementation：37.11%。
+Unit Verification：33.88%。
+Integration Verification：33.79%。
+Accepted Capability：33.79%。
 
 Capability status：
 
@@ -219,7 +219,7 @@ Readiness：
 
 Latest accepted runtime：
 
-`b5d309cc91c6dbdf539c17a46662cdde46716224`
+`d7dbd884f09e72d7737726409e11e0679206ed8d`
 
 ## Automation Status
 
@@ -239,24 +239,27 @@ Validated by GAP-07-CLOSE。
 
 Repository queue + ACTIVE full Work Package。
 
-Documentation scaffold 已建立。
+正式 runtime calibration samples：3。
 
-GAP-ACCOUNT-001 已完成第一個正式 queue-driven Level 3A runtime validation 並 ACCEPTED。
-
-目前正式 Level 3A runtime calibration samples：2。
-
-已完成：
+Completed：
 
 - GAP-ACCOUNT-001。
 - GAP-BROKER-001。
+- GAP-RECON-001A。
 
-維持 Level 3A；完成第 3 個穩定 runtime Work Package 後再評估 Level 3B。
+三個正式樣本皆無 implementation correction cycle。
+
+GAP-RECON-001B 仍採 LEVEL_3A_BOUNDED。
 
 ### Level 3B
 
 Continuous autonomous queue execution。
 
-Not enabled。
+ELIGIBLE_FOR_EVALUATION。
+
+NOT_ENABLED。
+
+不得因達成三個樣本而自動啟用。
 
 ---
 
@@ -303,11 +306,28 @@ User-observed 5HR-window usage：約 8%。
 - wall time：unavailable。
 - token/context：unavailable。
 
+### GAP-RECON-001A Runtime — Formal Level 3A Sample 3
+
+- GPT-5.6 Sol / 輕度。
+- user-observed 5HR usage：11%。
+- files read：8。
+- runtime/test files changed：2。
+- tool operations：19。
+- implementation correction cycles：0。
+- command/tool retries：0。
+- targeted：32 passed。
+- compatibility：22 passed。
+- full regression：821 passed。
+- wall time：unavailable。
+- token/context：unavailable。
+
 Policy：
 
 - runtime sample 與 deterministic docs quota observation 分開記錄。
+- 5HR usage 不等於 token count。
+- token/context 未暴露時不得估算。
 - 不用目前樣本線性外推固定 quota capacity。
-- 第 3 個穩定 Level 3A runtime Work Package 完成後再評估 Level 3B。
+- Level 3B 可正式評估，但尚未啟用。
 
 ## Live State
 
@@ -325,34 +345,39 @@ Reconciliation policy / startup readiness、Persistence、Recovery、Live Safety
 
 Last completed Work Package：
 
-GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
+GAP-RECON-001A Reconciliation Policy / Result / Case。
 
 Status：
 
 COMPLETED / ACCEPTED。
 
-Current Work Package：
+Accepted runtime commit：
 
-GAP-RECON-001A Reconciliation Policy / Result / Case。
+`d7dbd884f09e72d7737726409e11e0679206ed8d`
 
-Architecture Review：
+Verification：
 
-COMPLETED。
+- targeted：32 passed。
+- compatibility：22 passed。
+- full regression：821 passed。
+- correction cycles：0。
 
-Design Freeze：
+Next Work Package：
 
-COMPLETED。
+GAP-RECON-001B Collection / Startup Readiness。
 
-Work Package Status：
+Architecture / Design Freeze：
 
-READY_FOR_EXECUTION。
+COMPLETED for J710-J780。
+
+Status：
+
+READY_FOR_WORK_PACKAGE_PREPARATION。
 
 Runtime Launch Gate：
 
-RELEASED_ARCHITECTURE_FREEZE。
+NOT_RELEASED。
 
 Runtime authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
-
-GAP-RECON-001B remains blocked until 001A runtime acceptance。
+NOT_YET_AUTHORIZED。

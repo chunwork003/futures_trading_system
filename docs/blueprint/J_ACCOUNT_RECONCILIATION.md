@@ -78,15 +78,15 @@ Current compatibility：
 | J570 | DIRECTION_MISMATCH | contract comparable，但 direction 不一致 | ACCEPTED | 5 | J05 |
 | J580 | QUANTITY_MISMATCH | contract/direction 相同，但 quantity 不一致 | ACCEPTED | 4 | J05 |
 | J590 | Non-Comparable Identity Error | broker/account/instrument identity 不同時 explicit comparison error | ACCEPTED | 4 | J05 |
-| J610 | ReconciliationResult | 保存 status / expected / actual / evidence | DESIGN_FROZEN | 4 | J05 |
-| J620 | ReconciliationCase | mismatch lifecycle / review / resolution record | DESIGN_FROZEN | 4 | J05 |
-| J630 | STRICT_HALT Policy | unresolved mismatch 阻止 READY / live continuation | DESIGN_FROZEN | 5 | J05,J06 |
-| J640 | MANUAL_REVIEW Policy | mismatch 交明確人工處理，不 silent repair | DESIGN_FROZEN | 5 | J05,J06 |
-| J650 | BROKER_AUTHORITATIVE Policy Contract | 可表示 broker-authoritative resolution，但不隱含 automatic order/mutation | DESIGN_FROZEN | 5 | J05 |
-| J660 | INTERNAL_AUTHORITATIVE Policy Contract | 可表示 expected-authoritative resolution，但 corrective execution 需另行授權 | DESIGN_FROZEN | 5 | J05 |
-| J670 | Comparison Precedence | contract → direction → quantity → MATCH | DESIGN_FROZEN | 3 | J05 |
-| J680 | UNKNOWN_EXTERNAL_STATE | broker response 無法安全解讀時 explicit unknown state | DESIGN_FROZEN | 5 | J05,J06 |
-| J690 | No Automatic Corrective Action | comparison/result 本身不產生 broker order | DESIGN_FROZEN | 5 | J05 |
+| J610 | ReconciliationResult | 保存 status / expected / actual / evidence | ACCEPTED | 4 | J05 |
+| J620 | ReconciliationCase | mismatch lifecycle / review / resolution record | ACCEPTED | 4 | J05 |
+| J630 | STRICT_HALT Policy | unresolved mismatch 阻止 READY / live continuation | ACCEPTED | 5 | J05,J06 |
+| J640 | MANUAL_REVIEW Policy | mismatch 交明確人工處理，不 silent repair | ACCEPTED | 5 | J05,J06 |
+| J650 | BROKER_AUTHORITATIVE Policy Contract | 可表示 broker-authoritative resolution，但不隱含 automatic order/mutation | ACCEPTED | 5 | J05 |
+| J660 | INTERNAL_AUTHORITATIVE Policy Contract | 可表示 expected-authoritative resolution，但 corrective execution 需另行授權 | ACCEPTED | 5 | J05 |
+| J670 | Comparison Precedence | contract → direction → quantity → MATCH | ACCEPTED | 3 | J05 |
+| J680 | UNKNOWN_EXTERNAL_STATE | broker response 無法安全解讀時 explicit unknown state | ACCEPTED | 5 | J05,J06 |
+| J690 | No Automatic Corrective Action | comparison/result 本身不產生 broker order | ACCEPTED | 5 | J05 |
 | J710 | Startup Expected-State Load | process start 載入 persisted expected state | DESIGN_FROZEN | 4 | J06 |
 | J720 | Startup Broker Observation | startup query broker actual account/position | DESIGN_FROZEN | 4 | J06 |
 | J730 | Collection Matching | 多 position collection identity matching | DESIGN_FROZEN | 5 | J06 |
@@ -173,7 +173,7 @@ CURRENT：
 - `backtest.account_position.AccountPosition` 僅有 symbol/contract/direction/quantity。
 - canonical BrokerAccount 已由 GAP-ACCOUNT-001 runtime implemented。
 - canonical BrokerPositionSnapshot 已由 GAP-ACCOUNT-001 runtime implemented。
-- pairwise expected/actual comparison foundation 已完成；reconciliation policy、collection matching 與 startup readiness 尚未 implemented。
+- pairwise expected/actual comparison、reconciliation result/policy/case foundation 已完成；collection matching 與 startup readiness 尚未 implemented。
 
 TARGET：
 
@@ -185,7 +185,7 @@ MIGRATION：
 
 - GAP-ACCOUNT-001 不移除 legacy AccountPosition。
 - 新 canonical model 與 legacy behavior 先 coexist。
-- multi-position/startup/policy 留 GAP-RECON-001。
+- multi-position / startup readiness 留 GAP-RECON-001B。
 
 ---
 

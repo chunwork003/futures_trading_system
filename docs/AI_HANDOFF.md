@@ -638,14 +638,14 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-40.54%。
+42.08%。
 
 Architecture Design Coverage：87.23%。
 Design Freeze Coverage：51.47%。
-Runtime Implementation：35.19%。
-Unit Verification：31.96%。
-Integration Verification：31.87%。
-Accepted Capability：31.87%。
+Runtime Implementation：37.11%。
+Unit Verification：33.88%。
+Integration Verification：33.79%。
+Accepted Capability：33.79%。
 
 Capability status：
 
@@ -685,11 +685,32 @@ Formal Level 3A runtime sample 2 — GAP-BROKER-001：
 - wall time：unavailable。
 - token/context：unavailable。
 
+Formal Level 3A runtime sample 3 — GAP-RECON-001A：
+
+- GPT-5.6 Sol / 輕度。
+- user-observed 5HR usage：11%。
+- files read：8。
+- files created/modified：2。
+- tool operations：19。
+- implementation correction cycles：0。
+- command/tool retries：0。
+- targeted：32 passed。
+- compatibility：22 passed。
+- full regression：821 passed。
+- wall time：unavailable。
+- token/context：unavailable。
+
+Observed runtime average 5HR usage：
+
+約 12.3%。
+
 Policy：
 
-- 不用目前樣本線性推算 quota capacity。
-- 維持 Level 3A。
-- 第 3 個穩定 runtime Work Package 完成後再評估 Level 3B。
+- 5HR usage 是 quota proxy，不是 token percentage。
+- token/context 未 exposed 時不得估算。
+- 三個正式 Level 3A samples 均為 0 implementation correction cycle。
+- Level 3B 現在可正式評估，但尚未啟用。
+- GAP-RECON-001B 仍使用 LEVEL_3A_BOUNDED。
 
 ## 28. Current Active Candidate
 
@@ -697,37 +718,41 @@ Parent GAP：
 
 GAP-RECON-001。
 
-Architecture / Design Freeze：
-
-COMPLETED for J610-J780。
-
-Current Work Package：
+Completed slice：
 
 GAP-RECON-001A Reconciliation Policy / Result / Case。
 
 Status：
 
-READY_FOR_EXECUTION。
+COMPLETED / ACCEPTED。
+
+Accepted runtime commit：
+
+`d7dbd884f09e72d7737726409e11e0679206ed8d`
+
+Next Work Package：
+
+GAP-RECON-001B Collection / Startup Readiness。
+
+Architecture / Design Freeze：
+
+COMPLETED for J710-J780。
+
+Status：
+
+READY_FOR_WORK_PACKAGE_PREPARATION。
 
 Runtime authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+NOT_YET_AUTHORIZED。
 
 Runtime launch gate：
 
-`RELEASED_ARCHITECTURE_FREEZE`
+`NOT_RELEASED`
 
 Recommended calibration：
 
-`GPT-5.6 Sol / 輕度`
-
-Implements：
-
-J610-J690。
-
-Next slice：
-
-GAP-RECON-001B J710-J780 remains BLOCKED_BY_001A_ACCEPTANCE。
+`GPT-5.6 Sol / 輕度 / LEVEL_3A_BOUNDED`
 
 Parent GAP remains open until 001B acceptance。
 

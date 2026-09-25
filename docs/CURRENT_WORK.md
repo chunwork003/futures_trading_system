@@ -39,15 +39,15 @@ GAP-RECON-001
 
 Work Package：
 
-GAP-RECON-001A
+GAP-RECON-001B
 
 Title：
 
-Reconciliation Policy / Result / Case
+Collection / Startup Readiness
 
 Status：
 
-READY_FOR_EXECUTION
+READY_FOR_WORK_PACKAGE_PREPARATION
 
 Priority：
 
@@ -65,35 +65,58 @@ Recommended Effort：
 
 輕度
 
-Architecture Review：
+Architecture / Design Freeze：
 
-COMPLETED
-
-Design Freeze：
-
-COMPLETED
+COMPLETED for J710-J780
 
 Runtime Authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME
+NOT_YET_AUTHORIZED
 
 Runtime Launch Gate：
 
-RELEASED_ARCHITECTURE_FREEZE
+NOT_RELEASED
 
 Implements：
 
-- J610-J690。
+- J710-J780。
 
-Does Not Implement：
+Dependency：
 
-- J710-J780 startup readiness。
-- corrective execution。
-- persistence。
+- GAP-RECON-001A：SATISFIED / ACCEPTED。
 
-Next slice：
+Next required action：
 
-GAP-RECON-001B is BLOCKED_BY_001A_ACCEPTANCE。
+建立完整 GAP-RECON-001B ACTIVE Work Package，再 release runtime gate。
+
+# Completed Work Package — GAP-RECON-001A
+
+Status：
+
+COMPLETED / ACCEPTED
+
+Accepted runtime commit：
+
+`d7dbd884f09e72d7737726409e11e0679206ed8d`
+
+Accepted：
+
+- ReconciliationResult evidence semantics。
+- UNKNOWN_EXTERNAL_STATE。
+- ReconciliationPolicy。
+- ReconciliationCase lifecycle。
+- pure create / resolve。
+- no corrective action boundary。
+
+Verification：
+
+- targeted 32 passed。
+- compatibility 22 passed。
+- full regression 821 passed。
+- correction cycles 0。
+
+Parent GAP remains IN_PROGRESS until 001B acceptance。
+
 
 # Completed Work Package — GAP-BROKER-001
 
@@ -159,18 +182,18 @@ Corrective execution 仍未授權。
 
 Current order：
 
-1. commit / push GAP-RECON-001 architecture freeze + 001A Work Package。
-2. release GAP-RECON-001A runtime launch gate。
-3. execute GAP-RECON-001A bounded Level 3A runtime。
-4. deterministic 001A acceptance；parent GAP remains PARTIAL。
-5. prepare / execute GAP-RECON-001B。
-6. only after 001B acceptance close GAP-RECON-001。
+1. GAP-RECON-001A deterministic acceptance / closure：COMPLETED。
+2. prepare complete GAP-RECON-001B ACTIVE Work Package。
+3. release GAP-RECON-001B runtime gate。
+4. execute bounded Level 3A runtime implementation。
+5. deterministic 001B acceptance / close parent GAP-RECON-001。
+6. evaluate Level 3B separately；不得自動啟用。
 7. GAP-BROKER-002。
 8. GAP-08 persistence / recovery。
 
 Corrective action：
 
-001A / 001B 都不得 automatic broker repair、expected overwrite 或 corrective OrderIntent。
+GAP-RECON-001B 不得 automatic broker repair、expected overwrite 或 corrective OrderIntent。
 
 # Mainline Queue
 
@@ -178,7 +201,7 @@ Corrective action：
 |---:|---|---|---|---|
 | 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | CLOSED | GAP-07 |
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
-| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | IN_PROGRESS / 001A_READY_FOR_EXECUTION | GAP-ACCOUNT-001 + GAP-BROKER-001 |
+| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | IN_PROGRESS / 001A_ACCEPTED / 001B_PREPARATION | GAP-ACCOUNT-001 + GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | PENDING | Broker mapping + execution semantics |
 | 5 | GAP-08 | Trading State Persistence & Recovery | BLOCKED | Reconciliation foundation |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |
