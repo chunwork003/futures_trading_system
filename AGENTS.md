@@ -2,7 +2,7 @@
 
 ## 專案與導航
 
-台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0、M5、GAP-RECON-001 與 GAP-BROKER-002 已完成；目前主線為 M6 / GAP-08。runtime bundles 已合併為 GAP-08ABCD、GAP-08EF、GAP-08GHI；目前 GAP-08ABCD Persistence Foundation + Event Ledger 已 design frozen，runtime gate 尚待 architecture-freeze commit/push verification；PostgreSQL 17/18 仍只是 explicit verification targets，Parquet/DuckDB/Polars 保留 analytical plane；Level 3B 仍 ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0、M5、GAP-RECON-001 與 GAP-BROKER-002 已完成；目前主線為 M6 / GAP-08。runtime bundles 已合併為 GAP-08ABCD、GAP-08EF、GAP-08GHI；目前 GAP-08ABCD Persistence Foundation + Event Ledger 已 design frozen，runtime gate 已解除並授權 bounded Level 3A execution；PostgreSQL 17/18 仍只是 explicit verification targets，Parquet/DuckDB/Polars 保留 analytical plane；Level 3B 仍 ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
 
 Primary source of truth 與必讀順序：
 

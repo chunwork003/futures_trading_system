@@ -71,15 +71,15 @@ Bundle size：
 
 Runtime Authorization：
 
-NOT_YET_AUTHORIZED
+AUTHORIZED_FOR_LEVEL_3A_RUNTIME
 
 Launch Gate：
 
-HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
+RELEASED_ARCHITECTURE_FREEZE
 
 Next：
 
-commit/push architecture freeze，verify remote，then release this runtime gate。
+GAP-08ABCD runtime gate released；execute ACTIVE once，then STOP。
 
 
 # Completed Work Package — GAP-BROKER-002
