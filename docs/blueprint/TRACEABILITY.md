@@ -378,3 +378,85 @@ J710-J780 保持 DESIGN_FROZEN。
 GAP-RECON-001 parent remains IN_PROGRESS。
 
 GAP-RECON-001B 尚未授權。
+
+---
+
+## 8. GAP-RECON-001B Acceptance Evidence
+
+Work Package：
+
+    GAP-RECON-001B
+
+Parent GAP：
+
+    GAP-RECON-001
+
+Runtime commit：
+
+    4049f982474454556baf8734a5729ecbedc7a438
+
+Accepted Blueprint leaves：
+
+    J710 J720 J730 J740 J750 J760 J770 J780
+
+Runtime path：
+
+    trading/reconciliation.py
+
+Primary verification path：
+
+    tests/unit/test_reconciliation.py
+
+Runtime evidence：
+
+- ReconciliationCollectionError explicit collection failure contract。
+- deterministic broker/account/instrument scope matching。
+- exact contract identity 優先。
+- unique opposite leftovers -> CONTRACT_MISMATCH。
+- ambiguous unmatched collections explicit reject。
+- no list-order / quantity / direction guessing。
+- ExpectedPositionLoader read-only Protocol。
+- existing BrokerPositionProvider startup observation。
+- startup returned account scope validation。
+- StartupReadinessState exact READY / HALT / REVIEW。
+- StartupReconciliationResult immutable / extra-forbid。
+- strategy_state_ready=False 優先 HALT。
+- only broker ExternalStateUnknownError converts to UNKNOWN_EXTERNAL_STATE。
+- unrelated loader/provider/programming errors propagate。
+- no automatic repair / adoption / corrective OrderIntent。
+- no persistence backend。
+- no strategy reconstruction implementation。
+
+Verification：
+
+    targeted tests: 58 passed
+    compatibility tests: 22 passed
+    full regression: 847 passed
+    git diff --check: PASS
+
+Acceptance：
+
+    PASS
+
+Calibration：
+
+    model: GPT-5.6 Sol
+    effort: 輕度
+    user-observed 5HR usage: 16%
+    files read: 8
+    runtime/test files changed: 2
+    tool operations: 22
+    implementation correction cycles: 1
+    command/tool retries: 0
+    wall time: unavailable
+    token/context usage: unavailable
+
+Correction note：
+
+唯一 correction cycle 為測試 fixture 修正，使唯一雙側 leftover 正確遵循 frozen CONTRACT_MISMATCH rule。
+
+Conservative metric rule：
+
+只有 ACTIVE Implements 的 8 leaves 在本次 acceptance 升為 ACCEPTED。
+
+GAP-RECON-001 runtime scope 已完成；parent closure 由 deterministic documentation phase 執行。

@@ -638,18 +638,18 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-42.08%。
+43.46%。
 
 Architecture Design Coverage：87.23%。
 Design Freeze Coverage：51.47%。
-Runtime Implementation：37.11%。
-Unit Verification：33.88%。
-Integration Verification：33.79%。
-Accepted Capability：33.79%。
+Runtime Implementation：38.84%。
+Unit Verification：35.61%。
+Integration Verification：35.52%。
+Accepted Capability：35.52%。
 
 Capability status：
 
-COMPLETE 9 / PARTIAL 50 / NOT_STARTED 33。
+COMPLETE 11 / PARTIAL 49 / NOT_STARTED 32。
 
 Readiness：
 
@@ -659,102 +659,73 @@ Readiness：
 
 ## 27. Automation Efficiency
 
-Formal Level 3A runtime sample 1 — GAP-ACCOUNT-001：
+Formal Level 3A runtime samples：
 
-- GPT-5.6 Sol / 輕度。
-- user-observed 5HR usage：12%。
-- full regression：776 passed。
-- implementation correction cycles：0。
+| Sample | Work Package | 5HR | Files Read | Files Changed | Tool Ops | Corrections | Regression |
+|---:|---|---:|---:|---:|---:|---:|---:|
+| 1 | GAP-ACCOUNT-001 | 12% | 8 | 12 | 18 | 0 | 776 |
+| 2 | GAP-BROKER-001 | 14% | ~22 | 20 | 24 | 0 | 800 |
+| 3 | GAP-RECON-001A | 11% | 8 | 2 | 19 | 0 | 821 |
+| 4 | GAP-RECON-001B | 16% | 8 | 2 | 22 | 1 | 847 |
 
-GAP-ACCOUNT-001 deterministic Phase 4A acceptance：
+Observed average 5HR runtime usage：
 
-- user-observed 5HR usage：5%。
+13.25%。
 
-Formal Level 3A runtime sample 2 — GAP-BROKER-001：
+Total implementation correction cycles：
 
-- GPT-5.6 Sol / 輕度。
-- user-observed 5HR usage：14%。
-- files inspected：約 22。
-- files created/modified：20。
-- tool operations：24。
-- implementation correction cycles：0。
-- command syntax retries：2。
-- targeted：49 passed。
-- compatibility：80 passed。
-- full regression：800 passed。
-- wall time：unavailable。
-- token/context：unavailable。
+1。
 
-Formal Level 3A runtime sample 3 — GAP-RECON-001A：
+Sample 4 correction：
 
-- GPT-5.6 Sol / 輕度。
-- user-observed 5HR usage：11%。
-- files read：8。
-- files created/modified：2。
-- tool operations：19。
-- implementation correction cycles：0。
-- command/tool retries：0。
-- targeted：32 passed。
-- compatibility：22 passed。
-- full regression：821 passed。
-- wall time：unavailable。
-- token/context：unavailable。
-
-Observed runtime average 5HR usage：
-
-約 12.3%。
+測試 fixture 修正以符合 frozen unique-leftover CONTRACT_MISMATCH rule；未變更 architecture contract。
 
 Policy：
 
-- 5HR usage 是 quota proxy，不是 token percentage。
-- token/context 未 exposed 時不得估算。
-- 三個正式 Level 3A samples 均為 0 implementation correction cycle。
-- Level 3B 現在可正式評估，但尚未啟用。
-- GAP-RECON-001B 仍使用 LEVEL_3A_BOUNDED。
+- 5HR quota percentage != token percentage。
+- token/context unavailable 時不得估算。
+- 不用目前樣本線性推算 capacity。
+- Level 3B：ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
 
 ## 28. Current Active Candidate
 
-Parent GAP：
+Last completed parent GAP：
 
 GAP-RECON-001。
 
-Completed slice：
+Status：
 
-GAP-RECON-001A Reconciliation Policy / Result / Case。
+CLOSED / ACCEPTED。
+
+Accepted runtime slices：
+
+- 001A：`d7dbd884f09e72d7737726409e11e0679206ed8d`。
+- 001B：`4049f982474454556baf8734a5729ecbedc7a438`。
+
+Next mainline：
+
+GAP-BROKER-002 Broker Capability Matrix / Mapping Semantics。
 
 Status：
 
-COMPLETED / ACCEPTED。
-
-Accepted runtime commit：
-
-`d7dbd884f09e72d7737726409e11e0679206ed8d`
-
-Next Work Package：
-
-GAP-RECON-001B Collection / Startup Readiness。
-
-Architecture / Design Freeze：
-
-COMPLETED for J710-J780。
-
-Status：
-
-READY_FOR_EXECUTION。
+READY_FOR_ARCHITECTURE_REVIEW。
 
 Runtime authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+NOT_YET_AUTHORIZED。
 
-Runtime launch gate：
+Required before runtime：
 
-`RELEASED_WORK_PACKAGE_COMMIT`
+- official source revalidation。
+- architecture review。
+- scope split。
+- design freeze。
+- complete ACTIVE Work Package。
+- runtime gate release。
 
-Recommended calibration：
+Level 3B：
 
-`GPT-5.6 Sol / 輕度 / LEVEL_3A_BOUNDED`
-
-Parent GAP remains open until 001B acceptance。
+ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
 
 ## 29. Hard Stop
 
@@ -799,7 +770,7 @@ Blueprint baseline activation 已完成：
 - 92/92 capability mapping PASS。
 - connection / state authority / source registry / traceability PASS。
 - 603 engineering leaves。
-- current lifecycle-weighted completion 40.31%。
+- current lifecycle-weighted completion 43.46%。
 - baseline commit：`432c48fb63c3d8d2760c0f2f5338e205ded63d30`。
 
 Blueprint baseline accepted 後，ACTIVE 必須列 Implements / Touches / Does Not Implement Blueprint IDs。

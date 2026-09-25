@@ -33,61 +33,74 @@ Technical issues：
 
 # Current Active Candidate
 
-Parent GAP：
+GAP：
 
-GAP-RECON-001
-
-Work Package：
-
-GAP-RECON-001B
+GAP-BROKER-002
 
 Title：
 
-Collection / Startup Readiness
+Broker Capability Matrix / Mapping Semantics
 
 Status：
 
-READY_FOR_EXECUTION
+READY_FOR_ARCHITECTURE_REVIEW
 
 Priority：
 
-P1 MAINLINE
-
-Execution Mode：
-
-LEVEL_3A_BOUNDED
-
-Recommended Model：
-
-GPT-5.6 Sol
-
-Recommended Effort：
-
-輕度
-
-Architecture / Design Freeze：
-
-COMPLETED for J710-J780
+P2 / ordered mainline
 
 Runtime Authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME
+NOT_YET_AUTHORIZED
 
-Runtime Launch Gate：
+Architecture dependency：
 
-RELEASED_WORK_PACKAGE_COMMIT
+- GAP-BROKER-001：CLOSED / ACCEPTED。
+- GAP-RECON-001：CLOSED / ACCEPTED。
 
-Implements：
+Blueprint focus：
 
-- J710-J780。
-
-Dependency：
-
-- GAP-RECON-001A：SATISFIED / ACCEPTED。
+- I120 Broker Capability Contract。
+- I130 Capability Verification Matrix。
+- I140 Unsupported Capability Failure。
+- related I720-I940 only after explicit architecture/source review。
 
 Next required action：
 
-GAP-RECON-001B runtime 已授權；執行 ACTIVE bounded Level 3A，完成後 STOP。
+人工完成 broker capability architecture review、official-source revalidation、scope split 與 design freeze。
+
+Codex runtime 尚未授權。
+
+# Completed Work Package — GAP-RECON-001B
+
+Status：
+
+COMPLETED / ACCEPTED
+
+Accepted runtime commit：
+
+`4049f982474454556baf8734a5729ecbedc7a438`
+
+Accepted：
+
+- deterministic collection reconciliation。
+- ExpectedPositionLoader seam。
+- BrokerPositionProvider startup orchestration。
+- StartupReadinessState。
+- StartupReconciliationResult。
+- explicit UNKNOWN external-state conversion。
+- strategy_state_ready dependency。
+- no silent startup repair。
+
+Verification：
+
+- targeted 58 passed。
+- compatibility 22 passed。
+- full regression 847 passed。
+- implementation correction cycles 1。
+
+Parent GAP-RECON-001：CLOSED / ACCEPTED。
+
 
 # Completed Work Package — GAP-RECON-001A
 
@@ -182,18 +195,17 @@ Corrective execution 仍未授權。
 
 Current order：
 
-1. GAP-RECON-001A deterministic acceptance / closure：COMPLETED。
-2. prepare complete GAP-RECON-001B ACTIVE Work Package。
-3. release GAP-RECON-001B runtime gate。
-4. execute bounded Level 3A runtime implementation。
-5. deterministic 001B acceptance / close parent GAP-RECON-001。
-6. evaluate Level 3B separately；不得自動啟用。
-7. GAP-BROKER-002。
-8. GAP-08 persistence / recovery。
+1. GAP-RECON-001A：COMPLETED / ACCEPTED。
+2. GAP-RECON-001B：COMPLETED / ACCEPTED。
+3. GAP-RECON-001：CLOSED / ACCEPTED。
+4. GAP-BROKER-002 architecture review / design freeze。
+5. 若 gate release，執行 bounded runtime Work Package。
+6. GAP-08 persistence / recovery。
+7. Level 3B 另行 evaluation；不得自動啟用。
 
-Corrective action：
+Corrective reconciliation execution：
 
-GAP-RECON-001B 不得 automatic broker repair、expected overwrite 或 corrective OrderIntent。
+仍未因 GAP-RECON closure 自動授權。
 
 # Mainline Queue
 
@@ -201,8 +213,8 @@ GAP-RECON-001B 不得 automatic broker repair、expected overwrite 或 correctiv
 |---:|---|---|---|---|
 | 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | CLOSED | GAP-07 |
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
-| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | IN_PROGRESS / 001A_ACCEPTED / 001B_READY_FOR_EXECUTION | GAP-ACCOUNT-001 + GAP-BROKER-001 |
-| 4 | GAP-BROKER-002 | Broker capability matrix | PENDING | Broker mapping + execution semantics |
+| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | CLOSED / ACCEPTED | GAP-ACCOUNT-001 + GAP-BROKER-001 |
+| 4 | GAP-BROKER-002 | Broker capability matrix | READY_FOR_ARCHITECTURE_REVIEW | Broker mapping + execution semantics |
 | 5 | GAP-08 | Trading State Persistence & Recovery | BLOCKED | Reconciliation foundation |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |
 | 7 | GAP-09 | Incremental Feature / Market State | PENDING | Trading core stable |

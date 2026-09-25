@@ -18,7 +18,7 @@ Collection / Startup Readiness
 
 ## 3. Status
 
-READY_FOR_EXECUTION
+COMPLETED / ACCEPTED
 
 Architecture review：
 
@@ -30,11 +30,11 @@ COMPLETED for J710-J780。
 
 Runtime execution authorization：
 
-AUTHORIZED。
+COMPLETED。
 
 Launch Gate：
 
-`RELEASED_WORK_PACKAGE_COMMIT`
+`CONSUMED`
 
 Architecture freeze commit：
 
@@ -44,15 +44,18 @@ Architecture freeze commit：
 
 `d7dbd884f09e72d7737726409e11e0679206ed8d`
 
-001A deterministic closure：
-
-`c4d799ed2fce3d09836aec41b5b91cb12ccc408f`
-
 001B Work Package preparation commit：
 
 `1772949978f18186d26460434130757f1670a0ea`
 
----
+001B runtime gate release commit：
+
+`a5d17f60b64e015c1147c18a90167889a01e525f`
+
+Accepted runtime commit：
+
+`4049f982474454556baf8734a5729ecbedc7a438`
+
 
 ## 4. Recommended Model
 
@@ -709,6 +712,51 @@ No amend / force push / reset --hard。
 
 ---
 
+## 30A. Runtime Completion Evidence
+
+Result：
+
+PASS / ACCEPTED。
+
+Runtime commit：
+
+`4049f982474454556baf8734a5729ecbedc7a438`
+
+Verification：
+
+- targeted：58 passed。
+- compatibility：22 passed。
+- full regression：847 passed。
+- git diff --check：PASS。
+- implementation correction cycles：1。
+- command/tool retries：0。
+- final status：only `?? data/`。
+
+Calibration：
+
+- formal Level 3A sample：4。
+- GPT-5.6 Sol / 輕度。
+- user-observed 5HR usage：16%。
+- files read：8。
+- runtime/test files changed：2。
+- tool operations：22。
+- token/context：unavailable。
+
+Correction：
+
+- test fixture corrected to obey frozen unique-leftover CONTRACT_MISMATCH rule。
+- no architecture change。
+
+Closure：
+
+- GAP-RECON-001B accepted。
+- GAP-RECON-001 CLOSED / ACCEPTED。
+- no corrective execution authorized。
+- no persistence implemented。
+- GAP-BROKER-002 not yet runtime-authorized。
+
+---
+
 ## 31. Documentation Responsibility
 
 Runtime Codex：
@@ -838,7 +886,7 @@ STOP + LEVEL 3。
 
 Current：
 
-    RELEASED_WORK_PACKAGE_COMMIT
+    CONSUMED
 
 Release requires：
 

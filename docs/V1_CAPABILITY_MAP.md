@@ -27,7 +27,7 @@ Blueprint baseline 完成後：
 
 Blueprint baseline 已啟用：
 
-本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 42.08% baseline。
+本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 43.46% baseline。
 
 ---
 
@@ -55,7 +55,7 @@ capability acceptance + relative engineering weight。
 
 Lifecycle-weighted completion：
 
-    42.08%
+    43.46%
 
 Architecture Design Coverage：
 
@@ -67,19 +67,19 @@ Design Freeze Coverage：
 
 Runtime Implementation：
 
-    37.11%
+    38.84%
 
 Unit Verification：
 
-    33.88%
+    35.61%
 
 Integration Verification：
 
-    33.79%
+    35.52%
 
 Accepted Capability：
 
-    33.79%
+    35.52%
 
 Metric basis：
 
@@ -87,7 +87,7 @@ Metric basis：
 
 Capability status：
 
-    COMPLETE 9 / PARTIAL 50 / NOT_STARTED 33
+    COMPLETE 11 / PARTIAL 49 / NOT_STARTED 32
 
 Readiness：
 
@@ -110,13 +110,13 @@ Readiness：
 | G Decision / Risk | 8 | 67.86% |
 | H Execution / Paper | 8 | 68.01% |
 | I Broker Adapter | 6 | 63.88% |
-| J Account / Reconciliation | 6 | 65.45% |
+| J Account / Reconciliation | 6 | 79.48% |
 | K Persistence / Recovery | 7 | 11.58% |
 | L Simulation / Live Safety | 7 | 3.66% |
 | M Python Service Boundary | 4 | 12.42% |
 | N ASP.NET Core Application | 5 | 11.26% |
 | O React Workspace | 5 | 10.31% |
-| TOTAL | 92 | 42.08% lifecycle-weighted |
+| TOTAL | 92 | 43.46% lifecycle-weighted |
 
 ---
 
@@ -249,8 +249,8 @@ Readiness：
 | J02 | BrokerAccount | PARTIAL | BrokerAccount foundation accepted; logical mapping/account snapshot pending |
 | J03 | Internal AccountPosition | PARTIAL | Canonical expected model accepted; fill/event projection and legacy migration pending |
 | J04 | BrokerPositionSnapshot | PARTIAL | BrokerPositionSnapshot foundation accepted; real provider/startup observation pending |
-| J05 | ReconciliationResult / policies | PARTIAL | Pairwise comparison + policy/case foundation accepted; collection/startup reconciliation pending |
-| J06 | Startup sync / readiness gate | NOT_STARTED | Required before live |
+| J05 | ReconciliationResult / policies | COMPLETE | Pairwise comparison、policy/case 與 deterministic collection reconciliation accepted |
+| J06 | Startup sync / readiness gate | COMPLETE | Startup orchestration/readiness accepted; persistence/recovery backend remains K Domain |
 
 ---
 

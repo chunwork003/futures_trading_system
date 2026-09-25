@@ -156,7 +156,7 @@ Safety：
 
 Status：
 
-IN_PROGRESS
+COMPLETED / ACCEPTED
 
 GAP-BROKER-001：
 
@@ -164,7 +164,7 @@ CLOSED / ACCEPTED。
 
 GAP-RECON-001：
 
-IN_PROGRESS。
+CLOSED / ACCEPTED。
 
 Architecture / Design Freeze：
 
@@ -172,31 +172,31 @@ J610-J780 COMPLETED。
 
 Runtime slice 001A：
 
-Policy / Result / Case。
-
-Status：
-
 COMPLETED / ACCEPTED。
 
-Accepted runtime commit：
+Runtime commit：
 
 `d7dbd884f09e72d7737726409e11e0679206ed8d`
 
 Runtime slice 001B：
 
-Collection / Startup Readiness。
+COMPLETED / ACCEPTED。
 
-Status：
+Runtime commit：
 
-READY_FOR_EXECUTION / AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+`4049f982474454556baf8734a5729ecbedc7a438`
 
-Safety：
+Safety preserved：
 
 - no silent repair。
 - no automatic corrective execution。
-- no persistence in reconciliation runtime slices。
+- no persistence implementation inside reconciliation。
 
-M5 remains IN_PROGRESS until GAP-RECON-001B accepted。
+Next ordered mainline：
+
+GAP-BROKER-002 READY_FOR_ARCHITECTURE_REVIEW。
+
+Runtime not yet authorized。
 
 ---
 

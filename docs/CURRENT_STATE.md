@@ -26,7 +26,7 @@ Actual runtime execution HEAD：
 
 Recorded full regression：
 
-821 passed
+847 passed
 
 Known warning：
 
@@ -83,37 +83,36 @@ CLOSED / ACCEPTED。
 
 GAP-RECON-001：
 
-IN_PROGRESS。
+CLOSED / ACCEPTED。
 
 Architecture / Design Freeze：
 
 COMPLETED for J610-J780。
 
-GAP-RECON-001A：
+Accepted runtime slices：
+
+- GAP-RECON-001A：`d7dbd884f09e72d7737726409e11e0679206ed8d`。
+- GAP-RECON-001B：`4049f982474454556baf8734a5729ecbedc7a438`。
+
+J610-J780：
+
+ACCEPTED。
+
+M5：
 
 COMPLETED / ACCEPTED。
 
-Accepted runtime commit：
+Next mainline：
 
-`d7dbd884f09e72d7737726409e11e0679206ed8d`
-
-GAP-RECON-001B：
-
-Collection / Startup Readiness。
+GAP-BROKER-002 Broker Capability Matrix。
 
 Status：
 
-READY_FOR_EXECUTION。
-
-Runtime Launch Gate：
-
-RELEASED_WORK_PACKAGE_COMMIT。
+READY_FOR_ARCHITECTURE_REVIEW。
 
 Runtime authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
-
-Parent GAP remains IN_PROGRESS until 001B acceptance。
+NOT_YET_AUTHORIZED。
 
 ## Existing Major Foundation
 
@@ -159,6 +158,9 @@ Parent GAP remains IN_PROGRESS until 001B acceptance。
 - Sinopac pure account / position mapping。
 - broker contract reverse resolution。
 - pure expected / actual pairwise reconciliation foundation。
+- ReconciliationResult / policy / case lifecycle。
+- deterministic multi-position collection reconciliation。
+- startup reconciliation readiness gate。
 - broker-neutral OrderIntent。
 - PositionEffect OPEN / REDUCE / CLOSE。
 - pure PositionEffect validation。
@@ -172,7 +174,7 @@ Parent GAP remains IN_PROGRESS until 001B acceptance。
 主要剩餘：
 
 - AccountPosition fill/event projection。
-- reconciliation collection matching / startup readiness。
+
 - broker capability matrix。
 - operational PostgreSQL。
 - trading persistence。
@@ -198,18 +200,18 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-42.08%。
+43.46%。
 
 Architecture Design Coverage：87.23%。
 Design Freeze Coverage：51.47%。
-Runtime Implementation：37.11%。
-Unit Verification：33.88%。
-Integration Verification：33.79%。
-Accepted Capability：33.79%。
+Runtime Implementation：38.84%。
+Unit Verification：35.61%。
+Integration Verification：35.52%。
+Accepted Capability：35.52%。
 
 Capability status：
 
-COMPLETE 9 / PARTIAL 50 / NOT_STARTED 33。
+COMPLETE 11 / PARTIAL 49 / NOT_STARTED 32。
 
 Readiness：
 
@@ -219,7 +221,7 @@ Readiness：
 
 Latest accepted runtime：
 
-`d7dbd884f09e72d7737726409e11e0679206ed8d`
+`4049f982474454556baf8734a5729ecbedc7a438`
 
 ## Automation Status
 
@@ -239,17 +241,25 @@ Validated by GAP-07-CLOSE。
 
 Repository queue + ACTIVE full Work Package。
 
-正式 runtime calibration samples：3。
+Formal runtime calibration samples：4。
 
 Completed：
 
 - GAP-ACCOUNT-001。
 - GAP-BROKER-001。
 - GAP-RECON-001A。
+- GAP-RECON-001B。
 
-三個正式樣本皆無 implementation correction cycle。
+Total implementation correction cycles：1。
 
-GAP-RECON-001B 仍採 LEVEL_3A_BOUNDED。
+Observed 5HR runtime usage：
+
+- 12%。
+- 14%。
+- 11%。
+- 16%。
+
+Observed average：13.25%。
 
 ### Level 3B
 
@@ -259,75 +269,31 @@ ELIGIBLE_FOR_EVALUATION。
 
 NOT_ENABLED。
 
-不得因達成三個樣本而自動啟用。
+必須獨立完成 automation evaluation，不能因樣本數自動啟用。
 
 ---
 
 ## Automation Efficiency Observation
 
-### GAP-07-CLOSE
+Formal Level 3A runtime samples：
 
-User-observed 5HR-window usage：約 4–5%。
+| Sample | Work Package | 5HR | Files Read | Files Changed | Tool Ops | Corrections | Regression |
+|---:|---|---:|---:|---:|---:|---:|---:|
+| 1 | GAP-ACCOUNT-001 | 12% | 8 | 12 | 18 | 0 | 776 |
+| 2 | GAP-BROKER-001 | 14% | ~22 | 20 | 24 | 0 | 800 |
+| 3 | GAP-RECON-001A | 11% | 8 | 2 | 19 | 0 | 821 |
+| 4 | GAP-RECON-001B | 16% | 8 | 2 | 22 | 1 | 847 |
 
-### Initial AUTO-001 Codex attempt
+Sample 4 correction：
 
-User-observed 5HR-window usage：約 8%。
-
-### GAP-ACCOUNT-001 Runtime — Formal Level 3A Sample 1
-
-- GPT-5.6 Sol / 輕度。
-- user-observed 5HR usage：12%。
-- files read：8。
-- runtime/test files changed：12。
-- tool operations：18。
-- implementation correction cycles：0。
-- targeted：50 passed。
-- compatibility：48 passed。
-- full regression：776 passed。
-- token/context：not exposed。
-
-### GAP-ACCOUNT-001 Phase 4A Acceptance
-
-- user-observed 5HR usage：5%。
-- deterministic Blueprint acceptance / metrics / traceability。
-
-### GAP-BROKER-001 Runtime — Formal Level 3A Sample 2
-
-- GPT-5.6 Sol / 輕度。
-- user-observed 5HR usage：14%。
-- files inspected：約 22。
-- runtime/test files changed：20。
-- tool operations：24。
-- implementation correction cycles：0。
-- read/test command syntax retries：2。
-- targeted：49 passed。
-- compatibility：80 passed。
-- full regression：800 passed。
-- wall time：unavailable。
-- token/context：unavailable。
-
-### GAP-RECON-001A Runtime — Formal Level 3A Sample 3
-
-- GPT-5.6 Sol / 輕度。
-- user-observed 5HR usage：11%。
-- files read：8。
-- runtime/test files changed：2。
-- tool operations：19。
-- implementation correction cycles：0。
-- command/tool retries：0。
-- targeted：32 passed。
-- compatibility：22 passed。
-- full regression：821 passed。
-- wall time：unavailable。
-- token/context：unavailable。
+測試 fixture 修正，使唯一雙側 leftover 正確遵循 frozen CONTRACT_MISMATCH rule；不是 architecture redesign。
 
 Policy：
 
-- runtime sample 與 deterministic docs quota observation 分開記錄。
-- 5HR usage 不等於 token count。
-- token/context 未暴露時不得估算。
-- 不用目前樣本線性外推固定 quota capacity。
-- Level 3B 可正式評估，但尚未啟用。
+- 5HR usage 是 quota proxy，不是 token percentage。
+- token/context 未 exposed 時不得估算。
+- deterministic documentation 與 runtime quota 分開觀察。
+- 不以四個樣本線性推算固定 token/quota capacity。
 
 ## Live State
 
@@ -337,7 +303,7 @@ NOT AUTHORIZED。
 
 原因：
 
-Reconciliation policy / startup readiness、Persistence、Recovery、Live Safety 尚未完成。
+Persistence、Recovery、Live Safety 尚未完成。
 
 ---
 
@@ -345,7 +311,7 @@ Reconciliation policy / startup readiness、Persistence、Recovery、Live Safety
 
 Last completed Work Package：
 
-GAP-RECON-001A Reconciliation Policy / Result / Case。
+GAP-RECON-001B Collection / Startup Readiness。
 
 Status：
 
@@ -353,31 +319,31 @@ COMPLETED / ACCEPTED。
 
 Accepted runtime commit：
 
-`d7dbd884f09e72d7737726409e11e0679206ed8d`
+`4049f982474454556baf8734a5729ecbedc7a438`
 
 Verification：
 
-- targeted：32 passed。
+- targeted：58 passed。
 - compatibility：22 passed。
-- full regression：821 passed。
-- correction cycles：0。
+- full regression：847 passed。
+- implementation correction cycles：1。
 
-Next Work Package：
+Parent GAP：
 
-GAP-RECON-001B Collection / Startup Readiness。
+GAP-RECON-001 CLOSED / ACCEPTED。
 
-Architecture / Design Freeze：
+Next mainline：
 
-COMPLETED for J710-J780。
+GAP-BROKER-002 Broker Capability Matrix。
 
 Status：
 
-READY_FOR_EXECUTION。
-
-Runtime Launch Gate：
-
-RELEASED_WORK_PACKAGE_COMMIT。
+READY_FOR_ARCHITECTURE_REVIEW。
 
 Runtime authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+NOT_YET_AUTHORIZED。
+
+Next action：
+
+完成 broker capability matrix architecture/source review 與 design freeze；不得直接啟動 runtime。

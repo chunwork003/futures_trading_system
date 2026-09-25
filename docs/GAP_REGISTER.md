@@ -59,9 +59,9 @@ Mainline：
 | ID | Priority | Handling | Current Blocking | Scope | Status |
 |---|---|---|---|---|---|
 | GAP-ACCOUNT-001 | P1 | REVIEW_AT_CHECKPOINT | No | Broker Account / Position Sync | CLOSED |
-| GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | IN_PROGRESS |
+| GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | CLOSED |
 | GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | No | Explicit OrderIntent / PositionEffect | CLOSED |
-| GAP-BROKER-002 | P2 | RECORD_AND_CONTINUE | No | Capability matrix / mapping semantics | PARTIAL |
+| GAP-BROKER-002 | P2 | REVIEW_AT_CHECKPOINT | No | Capability matrix / mapping semantics | READY_FOR_ARCHITECTURE_REVIEW |
 | GAP-08 | P1 | REVIEW_AT_CHECKPOINT | No | Trading State Persistence / Recovery | PENDING |
 | GAP-PERSIST-001 | P1 | RECORD_AND_CONTINUE | No | Decision / Risk Provenance | OPEN |
 | GAP-09 | P1 | REVIEW_AT_CHECKPOINT | No | Incremental Feature / Market State | PENDING |
@@ -250,7 +250,7 @@ automatic corrective broker order。
 
 Status：
 
-IN_PROGRESS。
+CLOSED / ACCEPTED。
 
 Architecture / Design Freeze：
 
@@ -258,58 +258,81 @@ COMPLETED for J610-J780。
 
 GAP-RECON-001A：
 
-    Policy / Result / Case
-
-    J610 J620 J630 J640 J650 J660 J670 J680 J690
-
-Status：
-
 COMPLETED / ACCEPTED。
 
-Accepted runtime commit：
+Runtime commit：
 
 `d7dbd884f09e72d7737726409e11e0679206ed8d`
 
-Verification：
-
-- targeted：32 passed。
-- compatibility：22 passed。
-- full regression：821 passed。
-- correction cycles：0。
-
 GAP-RECON-001B：
 
-    Collection / Startup Readiness
+COMPLETED / ACCEPTED。
 
-    J710 J720 J730 J740 J750 J760 J770 J780
+Runtime commit：
+
+`4049f982474454556baf8734a5729ecbedc7a438`
+
+Accepted scope：
+
+- J610-J780。
+- reconciliation result / policy / case。
+- UNKNOWN_EXTERNAL_STATE。
+- deterministic collection matching。
+- startup expected/actual orchestration。
+- READY / HALT / REVIEW gate。
+- explicit strategy-state readiness dependency。
+- no automatic corrective action。
+- no silent startup repair。
+
+Final verification：
+
+- 001A full regression：821 passed。
+- 001B targeted：58 passed。
+- 001B compatibility：22 passed。
+- 001B full regression：847 passed。
+
+Persistence/recovery implementation remains GAP-08。
+
+Corrective broker execution remains separately gated。
+
+---
+
+# GAP-BROKER-002 Detail
 
 Status：
 
-READY_FOR_EXECUTION。
+READY_FOR_ARCHITECTURE_REVIEW。
 
-Runtime Launch Gate：
+Target：
 
-RELEASED_WORK_PACKAGE_COMMIT。
+- broker capability contract。
+- capability verification matrix。
+- unsupported capability explicit failure。
+- source / version / verification-mode evidence。
 
-Runtime Authorization：
+Initial Blueprint focus：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+- I120。
+- I130。
+- I140。
 
-Frozen safety：
+Potential related scope：
 
-- deterministic collection matching only。
-- explicit ExternalStateUnknownError boundary。
-- no catch-all downgrade。
-- strategy_state_ready explicit dependency。
-- no silent expected overwrite。
-- no automatic broker repair。
-- no automatic corrective OrderIntent。
-- no persistence implementation。
+- I720-I940。
 
-Closure rule：
+Potential related scope 不得直接全部納入同一 runtime Work Package。
 
-Parent GAP closes only after GAP-RECON-001B acceptance。
+Architecture review 必須先決定 scope split、source requirements、paper/live boundaries 與 production-only exclusions。
 
+Broker/exchange semantics 需依 SOURCE_REGISTRY 官方來源重新確認。
+
+Runtime：
+
+NOT_YET_AUTHORIZED。
+
+---
+
+# GAP-08 Detail
 
 # GAP-08 Detail
 

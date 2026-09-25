@@ -634,3 +634,87 @@ Next mainline：
 GAP-RECON-001B Collection / Startup Readiness。
 
 Runtime 尚未授權；先建立完整 ACTIVE Work Package 並 release gate。
+
+## 2026-09-25 — GAP-RECON-001B Runtime Acceptance
+
+Work Package：
+
+`GAP-RECON-001B Collection / Startup Readiness`
+
+Runtime gate release commit：
+
+`a5d17f60b64e015c1147c18a90167889a01e525f`
+
+Accepted runtime commit：
+
+`4049f982474454556baf8734a5729ecbedc7a438`
+
+Runtime configuration：
+
+- Model：GPT-5.6 Sol。
+- Effort：輕度。
+- Mode：LEVEL_3A_BOUNDED。
+
+Completed：
+
+- deterministic collection reconciliation。
+- ReconciliationCollectionError。
+- ExpectedPositionLoader read-only protocol。
+- startup BrokerPositionProvider orchestration。
+- StartupReadinessState READY / HALT / REVIEW。
+- immutable StartupReconciliationResult。
+- explicit ExternalStateUnknownError conversion。
+- strategy_state_ready explicit dependency。
+- no silent repair。
+
+Verification：
+
+- targeted：58 passed。
+- compatibility：22 passed。
+- full regression：847 passed。
+- git diff --check：PASS。
+- implementation correction cycles：1。
+- command/tool retries：0。
+- final status：only `?? data/`。
+
+Correction：
+
+- 測試 fixture 修正，使唯一雙側 leftover 遵循 frozen CONTRACT_MISMATCH rule。
+- architecture/public contract 未變更。
+
+Blueprint acceptance：
+
+- J710-J780 -> ACCEPTED。
+- ACCEPTED：246 leaves / weight 759。
+- lifecycle completion：43.46%。
+- Runtime Implementation：38.84%。
+- Unit Verification：35.61%。
+- Integration / Accepted：35.52%。
+- J Account / Reconciliation：79.48%。
+- capability status：11 COMPLETE / 49 PARTIAL / 32 NOT_STARTED。
+
+Calibration：
+
+- formal Level 3A runtime sample：4。
+- user-observed 5HR usage：16%。
+- files read：8。
+- runtime/test files changed：2。
+- tool operations：22。
+- wall time：unavailable。
+- token/context：unavailable。
+- four-sample observed 5HR average：13.25%。
+- 5HR percentage 不等於 token percentage。
+
+Parent closure：
+
+GAP-RECON-001 CLOSED / ACCEPTED。
+
+M5 Explicit Execution Semantics + Reconciliation COMPLETED / ACCEPTED。
+
+Next mainline：
+
+GAP-BROKER-002 READY_FOR_ARCHITECTURE_REVIEW。
+
+Runtime 尚未授權。
+
+Level 3B：ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。

@@ -87,14 +87,14 @@ Current compatibility：
 | J670 | Comparison Precedence | contract → direction → quantity → MATCH | ACCEPTED | 3 | J05 |
 | J680 | UNKNOWN_EXTERNAL_STATE | broker response 無法安全解讀時 explicit unknown state | ACCEPTED | 5 | J05,J06 |
 | J690 | No Automatic Corrective Action | comparison/result 本身不產生 broker order | ACCEPTED | 5 | J05 |
-| J710 | Startup Expected-State Load | process start 載入 persisted expected state | DESIGN_FROZEN | 4 | J06 |
-| J720 | Startup Broker Observation | startup query broker actual account/position | DESIGN_FROZEN | 4 | J06 |
-| J730 | Collection Matching | 多 position collection identity matching | DESIGN_FROZEN | 5 | J06 |
-| J740 | Startup Reconciliation | persisted/runtime expected 與 broker actual reconcile | DESIGN_FROZEN | 5 | J06 |
-| J750 | Strategy-State Reconstruction Dependency | account reconciliation 後驗證/reconstruct strategy state | DESIGN_FROZEN | 4 | J06 |
-| J760 | Readiness Decision | validation 完成後才轉 READY | DESIGN_FROZEN | 5 | J06 |
-| J770 | HALT / REVIEW Startup State | unresolved mismatch 不得進 unrestricted runtime | DESIGN_FROZEN | 5 | J06 |
-| J780 | No Silent Startup Repair | startup 不得自動以任一側覆蓋另一側 | DESIGN_FROZEN | 5 | J06 |
+| J710 | Startup Expected-State Load | process start 載入 persisted expected state | ACCEPTED | 4 | J06 |
+| J720 | Startup Broker Observation | startup query broker actual account/position | ACCEPTED | 4 | J06 |
+| J730 | Collection Matching | 多 position collection identity matching | ACCEPTED | 5 | J06 |
+| J740 | Startup Reconciliation | persisted/runtime expected 與 broker actual reconcile | ACCEPTED | 5 | J06 |
+| J750 | Strategy-State Reconstruction Dependency | account reconciliation 後驗證/reconstruct strategy state | ACCEPTED | 4 | J06 |
+| J760 | Readiness Decision | validation 完成後才轉 READY | ACCEPTED | 5 | J06 |
+| J770 | HALT / REVIEW Startup State | unresolved mismatch 不得進 unrestricted runtime | ACCEPTED | 5 | J06 |
+| J780 | No Silent Startup Repair | startup 不得自動以任一側覆蓋另一側 | ACCEPTED | 5 | J06 |
 | J810 | AccountSnapshot Contract | future cash/equity/margin/positions aggregate observation | DESIGNED | 4 | J02,J03,J04 |
 | J820 | Account Snapshot Observed Time | account-level observation 使用 timezone-aware timestamp | DESIGNED | 3 | J04 |
 | J830 | Account Snapshot Authority Separation | cash/equity/margin actual observation 不等於 risk scenario config | DESIGNED | 4 | J04 |
@@ -173,7 +173,7 @@ CURRENT：
 - `backtest.account_position.AccountPosition` 僅有 symbol/contract/direction/quantity。
 - canonical BrokerAccount 已由 GAP-ACCOUNT-001 runtime implemented。
 - canonical BrokerPositionSnapshot 已由 GAP-ACCOUNT-001 runtime implemented。
-- pairwise expected/actual comparison、reconciliation result/policy/case foundation 已完成；collection matching 與 startup readiness 尚未 implemented。
+- pairwise / collection reconciliation、policy/case 與 startup readiness foundation 已完成；persistence-backed expected loader 與 restart recovery 留 K Domain。
 
 TARGET：
 
@@ -185,7 +185,7 @@ MIGRATION：
 
 - GAP-ACCOUNT-001 不移除 legacy AccountPosition。
 - 新 canonical model 與 legacy behavior 先 coexist。
-- multi-position / startup readiness 留 GAP-RECON-001B。
+- GAP-RECON-001A / 001B runtime foundation 已完成；persistence-backed recovery integration 留 GAP-08。
 
 ---
 
