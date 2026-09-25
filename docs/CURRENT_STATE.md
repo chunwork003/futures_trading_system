@@ -69,50 +69,45 @@ Blueprint launch gate 已完成使命，不再阻塞 runtime。
 
 ## Current Phase
 
-GAP-07：
-
-CLOSED。
-
-GAP-ACCOUNT-001：
-
-CLOSED / ACCEPTED。
-
-GAP-BROKER-001：
-
-CLOSED / ACCEPTED。
-
 GAP-RECON-001：
 
 CLOSED / ACCEPTED。
-
-Architecture / Design Freeze：
-
-COMPLETED for J610-J780。
-
-Accepted runtime slices：
-
-- GAP-RECON-001A：`d7dbd884f09e72d7737726409e11e0679206ed8d`。
-- GAP-RECON-001B：`4049f982474454556baf8734a5729ecbedc7a438`。
-
-J610-J780：
-
-ACCEPTED。
 
 M5：
 
 COMPLETED / ACCEPTED。
 
-Next mainline：
+Current mainline：
 
-GAP-BROKER-002 Broker Capability Matrix。
+GAP-BROKER-002 Broker Capability Matrix / Mapping Semantics。
+
+Architecture / Source Review：
+
+COMPLETED。
+
+Design Freeze：
+
+COMPLETED for I120 / I130 / I140 / I940。
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_EXECUTION。
+
+Runtime Launch Gate：
+
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
 Runtime authorization：
 
 NOT_YET_AUTHORIZED。
+
+Execution Mode：
+
+LEVEL_3A_BOUNDED。
+
+Level 3B：
+
+ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
 
 ## Existing Major Foundation
 
@@ -200,10 +195,10 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-43.46%。
+43.57%。
 
-Architecture Design Coverage：87.23%。
-Design Freeze Coverage：51.47%。
+Architecture Design Coverage：87.60%。
+Design Freeze Coverage：52.22%。
 Runtime Implementation：38.84%。
 Unit Verification：35.61%。
 Integration Verification：35.52%。
@@ -309,41 +304,39 @@ Persistence、Recovery、Live Safety 尚未完成。
 
 ## Current Active Work
 
-Last completed Work Package：
+Work Package：
 
-GAP-RECON-001B Collection / Startup Readiness。
+GAP-BROKER-002 Broker Capability Matrix / Mapping Semantics。
 
-Status：
+Architecture / Source Review：
 
-COMPLETED / ACCEPTED。
+COMPLETED。
 
-Accepted runtime commit：
+Design Freeze：
 
-`4049f982474454556baf8734a5729ecbedc7a438`
-
-Verification：
-
-- targeted：58 passed。
-- compatibility：22 passed。
-- full regression：847 passed。
-- implementation correction cycles：1。
-
-Parent GAP：
-
-GAP-RECON-001 CLOSED / ACCEPTED。
-
-Next mainline：
-
-GAP-BROKER-002 Broker Capability Matrix。
+I120 / I130 / I140 / I940 DESIGN_FROZEN。
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_EXECUTION。
+
+Runtime Launch Gate：
+
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
 Runtime authorization：
 
 NOT_YET_AUTHORIZED。
 
-Next action：
+Recommended runtime：
 
-完成 broker capability matrix architecture/source review 與 design freeze；不得直接啟動 runtime。
+GPT-5.6 Sol / 輕度 / LEVEL_3A_BOUNDED。
+
+Scope：
+
+- broker-neutral capability/evidence contract。
+- Sinopac documentation-backed capability matrix。
+- explicit unsupported/unverified failure。
+- no network。
+- no login / CA。
+- no simulation or production verification claim。

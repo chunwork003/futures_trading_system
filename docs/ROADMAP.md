@@ -194,9 +194,9 @@ Safety preserved：
 
 Next ordered mainline：
 
-GAP-BROKER-002 READY_FOR_ARCHITECTURE_REVIEW。
+GAP-BROKER-002 READY_FOR_EXECUTION / HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
-Runtime not yet authorized。
+Architecture/source freeze completed；runtime not yet authorized until freeze commit/push verification。
 
 ---
 

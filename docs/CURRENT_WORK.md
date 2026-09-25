@@ -43,33 +43,60 @@ Broker Capability Matrix / Mapping Semantics
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW
+READY_FOR_EXECUTION
 
 Priority：
 
 P2 / ordered mainline
 
+Execution Mode：
+
+LEVEL_3A_BOUNDED
+
+Recommended Model：
+
+GPT-5.6 Sol
+
+Recommended Effort：
+
+輕度
+
+Architecture / Source Review：
+
+COMPLETED
+
+Design Freeze：
+
+I120 / I130 / I140 / I940
+
 Runtime Authorization：
 
 NOT_YET_AUTHORIZED
 
-Architecture dependency：
+Runtime Launch Gate：
 
-- GAP-BROKER-001：CLOSED / ACCEPTED。
-- GAP-RECON-001：CLOSED / ACCEPTED。
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
 
-Blueprint focus：
+Implements：
 
 - I120 Broker Capability Contract。
 - I130 Capability Verification Matrix。
 - I140 Unsupported Capability Failure。
-- related I720-I940 only after explicit architecture/source review。
+- I940 Capability Evidence Record。
+
+Explicitly deferred：
+
+- I720 authentication runtime。
+- I730 reconnect/session recovery。
+- I740 live account selection。
+- I820 network error classification。
+- I920 actual simulation/paper verification。
+- I930 production verification。
 
 Next required action：
 
-人工完成 broker capability architecture review、official-source revalidation、scope split 與 design freeze。
+commit / push / remote verify architecture freeze + ACTIVE，then release runtime gate。
 
-Codex runtime 尚未授權。
 
 # Completed Work Package — GAP-RECON-001B
 
@@ -214,7 +241,7 @@ Corrective reconciliation execution：
 | 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | CLOSED | GAP-07 |
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
 | 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | CLOSED / ACCEPTED | GAP-ACCOUNT-001 + GAP-BROKER-001 |
-| 4 | GAP-BROKER-002 | Broker capability matrix | READY_FOR_ARCHITECTURE_REVIEW | Broker mapping + execution semantics |
+| 4 | GAP-BROKER-002 | Broker capability matrix | READY_FOR_EXECUTION / GATE_HOLD | Broker mapping + execution semantics |
 | 5 | GAP-08 | Trading State Persistence & Recovery | BLOCKED | Reconciliation foundation |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |
 | 7 | GAP-09 | Incremental Feature / Market State | PENDING | Trading core stable |

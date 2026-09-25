@@ -2,60 +2,41 @@
 
 ## 1. Work Package ID
 
-GAP-RECON-001B
-
-Parent GAP：
-
-GAP-RECON-001
+GAP-BROKER-002
 
 ---
 
 ## 2. Title
 
-Collection / Startup Readiness
+Broker Capability Matrix / Mapping Semantics
 
 ---
 
 ## 3. Status
 
-COMPLETED / ACCEPTED
+READY_FOR_EXECUTION
 
-Architecture review：
+Architecture / Source Review：
 
 COMPLETED。
 
 Architecture / Design Freeze：
 
-COMPLETED for J710-J780。
+COMPLETED for I120 / I130 / I140 / I940。
 
 Runtime execution authorization：
 
-COMPLETED。
+NOT_YET_AUTHORIZED。
 
 Launch Gate：
 
-`CONSUMED`
+`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
 
-Architecture freeze commit：
+Required baseline ancestor：
 
-`a5f98bea429b964bab05782d1f71bad3e9393888`
+`457dc054641551f04dea5e6b1eda80f042a07c64`
 
-001A accepted runtime dependency：
-
-`d7dbd884f09e72d7737726409e11e0679206ed8d`
-
-001B Work Package preparation commit：
-
-`1772949978f18186d26460434130757f1670a0ea`
-
-001B runtime gate release commit：
-
-`a5d17f60b64e015c1147c18a90167889a01e525f`
-
-Accepted runtime commit：
-
-`4049f982474454556baf8734a5729ecbedc7a438`
-
+---
 
 ## 4. Recommended Model
 
@@ -65,838 +46,493 @@ Effort：
 
 輕度
 
-Calibration rule：
-
-本 Work Package 中途不得切換 model 或 effort。
-
-Level 3B 已達 evaluation threshold，但本 Work Package 維持 LEVEL_3A_BOUNDED。
-
----
-
-## 5. Execution Mode
+Execution Mode：
 
 LEVEL_3A_BOUNDED
 
-只執行 GAP-RECON-001B。
+Model / effort不得中途切換。
 
-完成後 STOP。
-
-不得自動開始 GAP-BROKER-002。
-
-不得自動開始 GAP-08。
-
-不得自動啟用 Level 3B。
+Level 3B remains NOT_ENABLED。
 
 ---
 
-## 6. Goal
+## 5. Goal
 
-在已接受的 GAP-RECON-001A reconciliation policy/case foundation 上建立：
+建立 broker-neutral capability evidence contract 與 Sinopac documentation-backed capability matrix。
 
-- deterministic multi-position collection reconciliation。
-- ExpectedPositionLoader read-only seam。
-- BrokerPositionProvider startup observation orchestration。
-- StartupReadinessState。
-- StartupReconciliationResult。
-- explicit ExternalStateUnknownError conversion boundary。
-- strategy_state_ready explicit dependency。
-- READY / HALT / REVIEW startup decision。
-
-不實作 persistence、strategy reconstruction 或 corrective action。
+Capability matrix 只描述已知支援與 verification evidence；不執行 broker action，也不授權 LIVE。
 
 ---
 
-## 7. Why This Is Next
+## 6. Why This Is Next
 
-GAP-RECON-001A 已 COMPLETED / ACCEPTED。
+GAP-BROKER-001 與 GAP-RECON-001 已 CLOSED / ACCEPTED。
 
-J710-J780 已完成 design freeze。
-
-GAP-08 persistence/recovery 依賴 reconciliation startup foundation。
-
-因此 001B 為目前唯一 P1 mainline runtime slice。
+Broker capability matrix 是 persistence/live phases 前的 explicit integration-safety boundary。
 
 ---
 
-## 8. Baseline
+## 7. Baseline
 
-Expected branch：
+Branch：master
 
-master
+Expected architecture baseline ancestor：
 
-Accepted dependency baseline：
-
-`c4d799ed2fce3d09836aec41b5b91cb12ccc408f`
-
-Architecture freeze ancestor：
-
-`a5f98bea429b964bab05782d1f71bad3e9393888`
-
-Accepted 001A runtime：
-
-`d7dbd884f09e72d7737726409e11e0679206ed8d`
+    457dc054641551f04dea5e6b1eda80f042a07c64
 
 Recorded full regression：
 
-821 passed
+    847 passed
 
 Known warning：
 
-GAP-ENV-001 / PytestCacheWarning。
+    GAP-ENV-001 / PytestCacheWarning
 
-Known local untracked：
+Known untracked：
 
-data/
+    data/
 
 不得修改、刪除、stage data/。
 
-Runtime precheck：
+---
 
-- branch = master。
-- local master == origin/master。
-- execution HEAD 必須包含本 Work Package gate-release commit。
-- tracked working tree clean。
-- only known untracked data/。
+## 8. Source Freeze
+
+Last verified：2026-09-25
+
+Current reviewed upstream release：Shioaji 1.7.6
+
+Required Source IDs：
+
+    SRC-SINOPAC-LOGIN-001
+    SRC-SINOPAC-FUT-ORDER-001
+    SRC-SINOPAC-POSITION-001
+    SRC-SINOPAC-SIMULATION-001
+    SRC-SINOPAC-ORDER-STATUS-001
+    SRC-SINOPAC-ORDER-EVENT-001
+    SRC-SINOPAC-RELEASE-001
+    SRC-PYDANTIC-001
+    SRC-ADR-001
+    SRC-ARCH-001
+    SRC-BLUEPRINT-001
+
+Runtime executor不得自行重新定義 broker semantics。
+
+Source conflict -> HARD_BLOCK。
 
 ---
 
-## 9. Dependencies
+## 9. Canonical Ownership
 
-Accepted：
+Broker-neutral capability contracts：
 
-- BrokerAccount。
-- AccountPosition。
-- BrokerPositionSnapshot。
-- BrokerPositionProvider。
-- ReconciliationResult。
-- ReconciliationPolicy。
-- ReconciliationStatus including UNKNOWN_EXTERNAL_STATE。
-- ExternalStateUnknownError。
-- compare_positions()。
-- GAP-RECON-001A policy/case foundation。
+    adapters/capabilities.py
 
-Not required：
+Sinopac evidence matrix：
 
-- PostgreSQL implementation。
-- strategy reconstruction implementation。
-- broker execution port changes。
-- corrective OrderIntent。
+    adapters/sinopac/capabilities.py
+
+No parallel model elsewhere。
 
 ---
 
-## 10. Canonical Ownership
+## 10. BrokerCapability
 
-Owner：
+Exact values：
 
-    trading/reconciliation.py
-
-不得建立 parallel startup/reconciliation domain module。
-
-Dependency direction：
-
-    trading.reconciliation
-        -> trading.account read-only contracts
-
-不得 depend on：
-
-- backtest domain models。
-- Shioaji native SDK objects。
-- persistence implementation。
-- execution Broker port。
+    ACCOUNT_QUERY
+    POSITION_QUERY
+    ORDER_PLACE
+    ORDER_UPDATE
+    ORDER_CANCEL
+    ORDER_STATUS
+    TRADE_LIST
+    ORDER_DEAL_EVENT
 
 ---
 
-## 11. ReconciliationCollectionError
+## 11. BrokerCapabilitySupport
 
-建立：
+Exact values：
 
-    ReconciliationCollectionError
-
-Base：
-
-    ValueError
-
-用途：
-
-- duplicate exact position key。
-- ambiguous unmatched collection。
-- startup provider 回傳錯誤 account scope。
-
-不得 silent drop / arbitrary pair。
+    SUPPORTED
+    UNSUPPORTED
+    UNKNOWN
 
 ---
 
-## 12. Collection Identity
+## 12. BrokerVerificationMode
 
-Scope key：
+Exact values：
 
-    broker
-    account_ref
-    instrument_id
+    DOCUMENTATION
+    FAKE
+    SIMULATION
+    PRODUCTION
 
-Exact position key：
+No implicit hierarchy。
 
-    broker
-    account_ref
-    instrument_id
-    contract_id
-
-同一 side duplicate exact key：
-
-    ReconciliationCollectionError
-
-contract_id=None 仍是 exact key 的合法值。
+DOCUMENTATION != SIMULATION != PRODUCTION。
 
 ---
 
-## 13. Collection Public Contract
+## 13. BrokerCapabilityEvidence
 
-Public pure function：
+Immutable Pydantic model：
 
-    reconcile_position_collections(
+    capability: BrokerCapability
+    support: BrokerCapabilitySupport
+    source_ids: tuple[str, ...]
+    verification_modes: tuple[BrokerVerificationMode, ...]
+    sdk_version: str | None
+    verified_on: date
+    note: str | None = None
+
+Rules：
+
+- frozen / extra forbid。
+- source IDs trim/nonblank/no duplicates。
+- verification modes no duplicates；normalize to enum order。
+- sdk_version optional but nonblank after trim。
+- note optional but nonblank after trim。
+- SUPPORTED / UNSUPPORTED requires source evidence。
+- UNKNOWN cannot claim verification mode。
+- no hidden current date。
+
+---
+
+## 14. BrokerCapabilityMatrix
+
+Immutable：
+
+    broker: str
+    entries: tuple[BrokerCapabilityEvidence, ...]
+
+Rules：
+
+- broker uppercase/trim/nonblank。
+- duplicate capability rejected。
+- deterministic enum-order entries。
+- evidence only；not execution authority。
+
+---
+
+## 15. Failure Contract
+
+Explicit：
+
+    BrokerCapabilityUnavailableError(RuntimeError)
+
+Public pure functions：
+
+    get_broker_capability(matrix, capability)
+
+    require_broker_capability(
+        matrix,
+        capability,
         *,
-        expected_positions: tuple[AccountPosition, ...],
-        actual_positions: tuple[BrokerPositionSnapshot, ...]
-    ) -> tuple[ReconciliationResult, ...]
-
-Function 必須 pure：
-
-- 不 mutate input。
-- 不 broker call。
-- 不 persistence。
-- 不 create OrderIntent。
-- 不 create corrective action。
-
----
-
-## 14. Deterministic Collection Matching
-
-所有 scope 先依下列 key deterministic sort：
-
-    broker
-    account_ref
-    instrument_id
-
-每個 scope：
-
-1. 先配對 exact contract_id。
-2. exact pair 使用 compare_positions()。
-3. 若剩餘只有 expected side，依 contract_id deterministic order 產生 INTERNAL_ONLY。
-4. 若剩餘只有 actual side，依 contract_id deterministic order 產生 BROKER_ONLY。
-5. 若 exactly one expected + one actual leftover，建立 CONTRACT_MISMATCH pair。
-6. 若雙方都有 unmatched 且不是唯一 one-to-one，raise ReconciliationCollectionError。
-
-contract_id deterministic ordering：
-
-- None 先於 numeric contract_id。
-- numeric contract_id ascending。
-
-禁止：
-
-- list-order pairing。
-- quantity-based pairing。
-- direction-based pairing。
-- silent duplicate removal。
-
-輸入順序不同不得改變 output order。
-
----
-
-## 15. ExpectedPositionLoader
-
-Public read-only Protocol：
-
-    ExpectedPositionLoader
-
-Contract：
-
-    load_positions(
-        account: BrokerAccount
-    ) -> tuple[AccountPosition, ...]
-
-Rules：
-
-- owner = trading.reconciliation。
-- read-only。
-- 不 mutation。
-- 不實作 PostgreSQL repository。
-- persisted backend 留 GAP-08。
-
----
-
-## 16. Broker Observation
-
-使用既有：
-
-    BrokerPositionProvider
-
-Contract：
-
-    list_positions(
-        account: BrokerAccount
-    ) -> tuple[BrokerPositionSnapshot, ...]
-
-Rules：
-
-- 不擴充 execution Broker。
-- read-only。
-- native broker objects 不得進 reconciliation domain。
-
-Startup orchestration 必須驗證 loader/provider 回傳 position 的 broker/account_ref 與 supplied BrokerAccount 一致。
-
-不一致：
-
-    ReconciliationCollectionError
-
----
-
-## 17. StartupReadinessState
-
-Exact enum：
-
-    READY
-    HALT
-    REVIEW
-
-不得新增其他 values。
-
-READY：
-
-- expected load success。
-- broker observation success。
-- collection reconciliation complete。
-- results 全部 MATCH。
-- strategy_state_ready=True。
-
-空 expected + 空 actual collection 視為 clean；strategy_state_ready=True 時可 READY。
-
-HALT：
-
-- strategy_state_ready=False。
-- STRICT_HALT 有任何 unresolved non-MATCH。
-- STRICT_HALT 遇 UNKNOWN_EXTERNAL_STATE。
-
-REVIEW：
-
-- MANUAL_REVIEW 有 unresolved non-MATCH。
-- BROKER_AUTHORITATIVE 有 unresolved non-MATCH。
-- INTERNAL_AUTHORITATIVE 有 unresolved non-MATCH。
-- non-STRICT policy 遇 UNKNOWN_EXTERNAL_STATE。
-
-strategy_state_ready=False 的 HALT 優先於 REVIEW。
-
----
-
-## 18. StartupReconciliationResult
-
-Canonical immutable model：
-
-    policy: ReconciliationPolicy
-    state: StartupReadinessState
-    results: tuple[ReconciliationResult, ...]
-    strategy_state_ready: bool
-
-Rules：
-
-- frozen / immutable。
-- extra forbid。
-- READY 只允許 strategy_state_ready=True 且 results 全 MATCH。
-- result 不 repair。
-- result 不 persistence。
-- result 不啟動 strategy。
-
----
-
-## 19. Startup Public Contract
-
-Public function：
-
-    reconcile_startup(
-        *,
-        account: BrokerAccount,
-        expected_loader: ExpectedPositionLoader,
-        broker_position_provider: BrokerPositionProvider,
-        policy: ReconciliationPolicy,
-        strategy_state_ready: bool
-    ) -> StartupReconciliationResult
-
-Flow：
-
-1. expected_loader.load_positions(account)。
-2. broker_position_provider.list_positions(account)。
-3. validate returned account scope。
-4. reconcile_position_collections()。
-5. evaluate policy。
-6. apply explicit strategy_state_ready dependency。
-7. return READY / HALT / REVIEW。
-
-不得啟動 strategy。
-
----
-
-## 20. ExternalStateUnknownError Conversion
-
-只允許：
-
-    ExternalStateUnknownError
-
-從 broker observation path 轉成：
-
-    ReconciliationResult(
-        status=UNKNOWN_EXTERNAL_STATE,
-        expected=None,
-        actual=None,
-        evidence=(nonblank explicit error evidence,)
+        required_mode=None
     )
 
-若 exception message blank：
+require must reject：
 
-使用 deterministic nonblank evidence：
+- missing entry。
+- UNSUPPORTED。
+- UNKNOWN。
+- requested verification mode absent。
 
-    broker external state unavailable
-
-Policy mapping：
-
-- STRICT_HALT -> HALT。
-- other policies -> REVIEW。
-- strategy_state_ready=False -> HALT。
-
-不得 catch：
-
-- arbitrary Exception。
-- programming errors。
-- expected loader errors。
-- unrelated validation/runtime errors。
-
-上述錯誤必須 propagate。
+No fallback。
 
 ---
 
-## 21. Policy Evaluation
+## 16. SINOPAC_CAPABILITY_MATRIX
 
-Regular collection results：
+Exact broker：
 
-- results 全 MATCH + strategy_state_ready=True -> READY。
-- any non-MATCH + STRICT_HALT -> HALT。
-- any non-MATCH + non-STRICT policy -> REVIEW。
-- strategy_state_ready=False -> HALT。
+    SINOPAC
 
-BROKER_AUTHORITATIVE / INTERNAL_AUTHORITATIVE：
+Initial source-reviewed evidence：
 
-- 不 auto resolve。
-- 不 adopt position。
-- 不 overwrite expected。
-- 不 corrective execution。
+    sdk_version = 1.7.6
+    verified_on = 2026-09-25
+    verification_modes = (DOCUMENTATION,)
 
----
+Supported capability source mapping：
 
-## 22. Strategy-State Dependency
+- ACCOUNT_QUERY -> SRC-SINOPAC-LOGIN-001。
+- POSITION_QUERY -> SRC-SINOPAC-POSITION-001。
+- ORDER_PLACE / ORDER_UPDATE / ORDER_CANCEL -> SRC-SINOPAC-FUT-ORDER-001。
+- ORDER_STATUS / TRADE_LIST -> SRC-SINOPAC-ORDER-STATUS-001。
+- ORDER_DEAL_EVENT -> SRC-SINOPAC-ORDER-EVENT-001 + SRC-SINOPAC-RELEASE-001。
 
-本 Work Package 只接受 caller supplied：
+Initial concrete matrix MUST NOT contain SIMULATION or PRODUCTION verification modes。
 
-    strategy_state_ready: bool
-
-不實作：
-
-- strategy persistence。
-- reconstruction algorithm。
-- feature state restoration。
-
-False：
-
-    HALT
-
-True：
-
-    account reconciliation clean 才可 READY
-
-真正 recovery 留 GAP-08。
+Official simulation documentation is source context only；not an executed verification run。
 
 ---
 
-## 23. Scope Freeze
+## 17. Scope Freeze
 
-Implement only：
+Implements only：
 
-- J710 Startup Expected-State Load seam。
-- J720 Startup Broker Observation orchestration。
-- J730 Collection Matching。
-- J740 Startup Reconciliation。
-- J750 Strategy-State Reconstruction Dependency seam。
-- J760 Readiness Decision。
-- J770 HALT / REVIEW Startup State。
-- J780 No Silent Startup Repair。
+    I120
+    I130
+    I140
+    I940
 
-Do not implement：
+Touches：
 
-- J340 expected fill/event projection。
-- J810-J830 AccountSnapshot。
-- PostgreSQL。
-- persistence repositories。
-- restart persistence recovery。
-- strategy reconstruction algorithm。
-- feature-state recovery。
-- broker native mapping changes。
-- corrective execution。
-- automatic position adoption。
-- LIVE authorization。
+    I110
+    I210-I660
+    I830
+    I910
+
+Does Not Implement：
+
+    I720
+    I730
+    I740
+    I820
+    I920
+    I930
+
+Also not implemented：
+
+- login / logout。
+- CA activation。
+- reconnect logic。
+- live account-selection orchestration。
+- real broker network call。
+- actual simulation verification。
+- production verification。
+- adapter relocation。
+- execution mapping changes。
 
 ---
 
-## 24. Allowed Runtime Files
+## 18. Allowed Runtime Files
 
 Primary：
 
-    trading/reconciliation.py
+    adapters/capabilities.py
+    adapters/sinopac/capabilities.py
 
 Tests：
 
-    tests/unit/test_reconciliation.py
+    tests/unit/test_broker_capabilities.py
 
-Only if directly required for compatibility：
+Only if export compatibility requires：
 
-    trading/__init__.py
+    adapters/__init__.py
+    adapters/sinopac/__init__.py
 
 No other runtime files without direct dependency evidence。
 
 ---
 
-## 25. Forbidden Areas
-
-Forbidden：
+## 19. Forbidden
 
     data/**
     database/**
-    adapters/**
+    trading/**
+    backtest/**
     strategy/**
     strategies/**
     features/**
-    backtest/**
 
-Do not modify：
-
-    trading/account.py
-    trading/execution.py
-
-unless frozen contract is impossible without direct dependency conflict；then HARD_BLOCK。
-
-No real broker login。
-
-No network-dependent tests。
+Do not modify existing Shioaji execution/mapping runtime。
 
 No credentials。
 
+No broker login。
+
+No network tests。
+
 ---
 
-## 26. Required Tests
+## 20. Required Tests
 
 At minimum：
 
-1. ReconciliationCollectionError explicit type。
-2. exact-key duplicate expected rejected。
-3. exact-key duplicate actual rejected。
-4. exact contract pair uses compare_positions。
-5. expected-only -> INTERNAL_ONLY。
-6. actual-only -> BROKER_ONLY。
-7. unique leftover pair -> CONTRACT_MISMATCH。
-8. ambiguous unmatched collections rejected。
-9. no list-order pairing。
-10. no quantity/direction guessing。
-11. deterministic output under permuted input。
-12. deterministic multi-scope ordering。
-13. contract_id None deterministic handling。
-14. ExpectedPositionLoader protocol contract。
-15. StartupReadinessState exact READY/HALT/REVIEW。
-16. StartupReconciliationResult immutable / extra-forbid。
-17. clean empty collections + strategy ready -> READY。
-18. clean matched collections + strategy ready -> READY。
-19. strategy_state_ready=False -> HALT。
-20. STRICT_HALT mismatch -> HALT。
-21. MANUAL_REVIEW mismatch -> REVIEW。
-22. BROKER_AUTHORITATIVE mismatch -> REVIEW。
-23. INTERNAL_AUTHORITATIVE mismatch -> REVIEW。
-24. ExternalStateUnknownError + STRICT -> HALT。
-25. ExternalStateUnknownError + non-STRICT -> REVIEW。
-26. UNKNOWN conversion has actual=None and nonblank evidence。
-27. blank external-error message still produces deterministic evidence。
-28. unexpected broker exception propagates。
-29. expected loader exception propagates。
-30. wrong-account expected/provider output rejected。
-31. provider/loader receives supplied BrokerAccount。
-32. no input mutation。
-33. no submit / repair / overwrite / adoption capability。
-34. all existing GAP-RECON-001A tests remain green。
-35. GAP-ACCOUNT compatibility。
-36. GAP-BROKER compatibility。
+1. BrokerCapability exact values。
+2. BrokerCapabilitySupport exact values。
+3. BrokerVerificationMode exact values。
+4. evidence immutable / extra-forbid。
+5. source_ids trim/nonblank。
+6. duplicate source_ids reject。
+7. verification mode duplicate reject。
+8. verification modes canonical ordering。
+9. sdk_version trim/nonblank。
+10. note trim/nonblank。
+11. SUPPORTED requires source evidence。
+12. UNSUPPORTED requires source evidence。
+13. UNKNOWN cannot claim verification modes。
+14. matrix broker normalization。
+15. duplicate capability reject。
+16. deterministic entry ordering。
+17. get known capability。
+18. get missing capability -> None。
+19. require supported capability PASS。
+20. require missing capability explicit failure。
+21. require UNSUPPORTED explicit failure。
+22. require UNKNOWN explicit failure。
+23. require absent requested mode explicit failure。
+24. DOCUMENTATION does not satisfy SIMULATION。
+25. SIMULATION does not satisfy PRODUCTION。
+26. concrete matrix broker = SINOPAC。
+27. concrete matrix exact eight capabilities。
+28. concrete matrix sdk_version = 1.7.6。
+29. concrete matrix verified_on = 2026-09-25。
+30. concrete matrix source mappings correct。
+31. concrete matrix only DOCUMENTATION mode。
+32. no SIMULATION claim。
+33. no PRODUCTION claim。
+34. no network / credential / broker action surface。
+35. existing account mapping compatibility。
+36. existing Shioaji mapping/submission compatibility。
 37. full regression。
 
 ---
 
-## 27. Compatibility Test Scope
+## 21. Compatibility Tests
 
-Targeted：
-
-    tests/unit/test_reconciliation.py
-
-Compatibility at least：
+At least：
 
     tests/unit/test_trading_account.py
     tests/unit/test_trading_execution.py
+    tests/unit/test_shioaji_mapping.py
+    tests/unit/test_shioaji_submission.py
+    tests/unit/test_shioaji_broker.py
 
 Then full regression。
 
 ---
 
-## 28. Acceptance Criteria
+## 22. Acceptance
 
 PASS requires：
 
-- J710-J780 frozen contracts implemented。
-- collection matching deterministic。
-- duplicate/ambiguity explicit。
-- startup account scope enforced。
-- only ExternalStateUnknownError converted to UNKNOWN。
-- unexpected exceptions propagate。
-- READY only on clean reconciliation + strategy_state_ready=True。
-- all non-STRICT mismatches remain REVIEW。
-- no automatic repair/adoption/order。
-- no persistence。
-- no strategy reconstruction implementation。
-- targeted tests PASS。
-- compatibility tests PASS。
+- exact frozen contracts implemented。
+- initial SINOPAC matrix documentation-only。
+- unsupported/unverified explicit failure。
+- no live authorization implication。
+- no existing execution behavior modified。
+- targeted PASS。
+- compatibility PASS。
 - full regression PASS。
 - git diff --check PASS。
-- no scope creep。
+- data/ untouched。
 
 ---
 
-## 29. Stop Conditions
+## 23. Stop Conditions
 
 HARD_BLOCK if：
 
-- frozen collection matching semantics require change。
-- account identity contract requires redesign。
-- UNKNOWN semantics require widening catch boundary。
-- implementation requires persistence。
-- implementation requires broker execution。
-- implementation requires strategy reconstruction。
+- official source conflicts with frozen semantics。
+- implementation requires login/network/CA。
+- implementation requires existing execution adapter changes。
+- public capability IDs need redesign。
+- simulation/production evidence cannot be distinguished。
 - unrelated core regression。
 - data/ modified。
 - secret exposure。
 
 ---
 
-## 30. Git
+## 24. Git
 
-After runtime gate release：
+After gate release：
 
     precheck
     -> implementation
-    -> targeted tests
-    -> compatibility tests
+    -> targeted
+    -> compatibility
     -> full regression
     -> git diff --check
-    -> scope validation
-    -> exact staging
+    -> exact scope
+    -> stage
     -> commit
     -> push
-    -> verify origin/master
+    -> remote verify
     -> final report
     -> STOP
 
-Commit message：
+Runtime commit message：
 
-    feat(trading): add startup reconciliation readiness
+    feat(adapters): add broker capability matrix
 
-No amend / force push / reset --hard。
-
----
-
-## 30A. Runtime Completion Evidence
-
-Result：
-
-PASS / ACCEPTED。
-
-Runtime commit：
-
-`4049f982474454556baf8734a5729ecbedc7a438`
-
-Verification：
-
-- targeted：58 passed。
-- compatibility：22 passed。
-- full regression：847 passed。
-- git diff --check：PASS。
-- implementation correction cycles：1。
-- command/tool retries：0。
-- final status：only `?? data/`。
-
-Calibration：
-
-- formal Level 3A sample：4。
-- GPT-5.6 Sol / 輕度。
-- user-observed 5HR usage：16%。
-- files read：8。
-- runtime/test files changed：2。
-- tool operations：22。
-- token/context：unavailable。
-
-Correction：
-
-- test fixture corrected to obey frozen unique-leftover CONTRACT_MISMATCH rule。
-- no architecture change。
-
-Closure：
-
-- GAP-RECON-001B accepted。
-- GAP-RECON-001 CLOSED / ACCEPTED。
-- no corrective execution authorized。
-- no persistence implemented。
-- GAP-BROKER-002 not yet runtime-authorized。
+No amend / rebase public history / force push / reset --hard。
 
 ---
 
-## 31. Documentation Responsibility
+## 25. Documentation Responsibility
 
-Runtime Codex：
+Runtime Codex only：implementation / tests / debug / runtime commit / push / report。
 
-- implementation。
-- tests。
-- debugging。
-- integration。
-- runtime commit/push。
-- final report。
+Deterministic acceptance remains manual。
 
-Manual deterministic acceptance：
+完成後 STOP。
 
-- Blueprint lifecycle。
-- metrics。
-- traceability。
-- CURRENT_STATE。
-- CURRENT_WORK。
-- GAP_REGISTER。
-- DEVELOPMENT_LOG。
+Do not start GAP-08。
 
-001B runtime complete 後 STOP。
-
-Parent GAP 不由 runtime executor 自動 close。
+Do not enable Level 3B。
 
 ---
 
-## 32. Blueprint Scope
+## 26. Re-entry Precheck Scope
 
-Implements：
-
-    J710
-    J720
-    J730
-    J740
-    J750
-    J760
-    J770
-    J780
-
-Touches：
-
-    J510-J690
-    J210-J440
-
-Does Not Implement：
-
-    J340
-    J810-J830
-    K000+
-    L000+
-
----
-
-## 33. Source Requirements
-
-Source IDs：
-
-    SRC-PYDANTIC-001
-    SRC-ADR-001
-    SRC-ARCH-001
-    SRC-BLUEPRINT-001
-
-External broker source revalidation：
-
-NOT_REQUIRED。
-
-Reason：
-
-本 Work Package 使用既有 broker-neutral BrokerPositionProvider contract，不新增 native Shioaji mapping。
-
----
-
-## 34. Re-entry Precheck Scope
-
-Default reads：
+Default：
 
     AGENTS.md
     docs/work/ACTIVE.md
-    trading/reconciliation.py
-    trading/account.py
-    tests/unit/test_reconciliation.py
-    tests/unit/test_trading_account.py
+    adapters/__init__.py
+    adapters/sinopac/__init__.py
+    adapters/sinopac/account_mapping.py
 
-Only read trading/execution.py / tests/unit/test_trading_execution.py when compatibility validation requires。
+Compatibility-only reads：
+
+    backtest/shioaji_mapping.py
+    backtest/shioaji_broker.py
+    relevant listed tests
 
 No whole-repo rescan。
 
 ---
 
-## 35. Architect / Codex Responsibility Freeze
+## 27. Architect / Codex Responsibility Freeze
 
-Architect has frozen：
+Architect frozen：
 
 - canonical ownership。
-- public error type。
-- collection keys。
-- public collection function signature。
-- matching algorithm。
-- deterministic ordering。
-- ExpectedPositionLoader contract。
-- broker observation boundary。
-- StartupReadinessState。
-- StartupReconciliationResult fields。
-- reconcile_startup() public signature。
-- UNKNOWN conversion boundary。
-- state precedence。
-- strategy-state dependency。
-- no-corrective-action boundary。
-- persistence boundary。
+- public capability IDs。
+- support enum。
+- verification-mode enum。
+- evidence fields / invariants。
+- matrix fields / uniqueness。
+- explicit error semantics。
+- query / require functions。
+- Sinopac source mappings。
+- initial evidence version/date/mode。
+- deferred live/session scope。
 
-Codex may decide only：
+Codex only decides private helpers、fixture layout、local implementation detail。
 
-- private helper decomposition。
-- fixture organization。
-- local error message wording。
-- internal sort helper representation。
-- other non-public implementation details。
-
-Any required frozen semantic change：
-
-STOP + LEVEL 3。
+Public semantic change -> STOP + LEVEL 3。
 
 ---
 
-## 36. Runtime Launch Gate
+## 28. Runtime Launch Gate
 
 Current：
 
-    CONSUMED
+    HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
 
 Release requires：
 
-1. complete GAP-RECON-001B ACTIVE committed。
-2. CURRENT_STATE / CURRENT_WORK / GAP_REGISTER / AI_HANDOFF synchronized。
-3. Work Package preparation push verified。
-4. local master == origin/master。
+1. this architecture freeze + complete ACTIVE committed。
+2. push verified。
+3. local master == origin/master。
+4. working tree only known data/。
 
-Release only authorizes GAP-RECON-001B。
-
-GAP-BROKER-002 remains blocked。
-
-Level 3B remains NOT_ENABLED。
+Release authorizes only GAP-BROKER-002。

@@ -638,10 +638,10 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-43.46%。
+43.57%。
 
-Architecture Design Coverage：87.23%。
-Design Freeze Coverage：51.47%。
+Architecture Design Coverage：87.60%。
+Design Freeze Coverage：52.22%。
 Runtime Implementation：38.84%。
 Unit Verification：35.61%。
 Integration Verification：35.52%。
@@ -689,39 +689,44 @@ Policy：
 
 ## 28. Current Active Candidate
 
-Last completed parent GAP：
+GAP：
 
-GAP-RECON-001。
+GAP-BROKER-002。
+
+Title：
+
+Broker Capability Matrix / Mapping Semantics。
+
+Architecture / Source Review：
+
+COMPLETED。
+
+Design Freeze：
+
+I120 / I130 / I140 / I940 COMPLETED。
 
 Status：
 
-CLOSED / ACCEPTED。
-
-Accepted runtime slices：
-
-- 001A：`d7dbd884f09e72d7737726409e11e0679206ed8d`。
-- 001B：`4049f982474454556baf8734a5729ecbedc7a438`。
-
-Next mainline：
-
-GAP-BROKER-002 Broker Capability Matrix / Mapping Semantics。
-
-Status：
-
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_EXECUTION。
 
 Runtime authorization：
 
 NOT_YET_AUTHORIZED。
 
-Required before runtime：
+Runtime launch gate：
 
-- official source revalidation。
-- architecture review。
-- scope split。
-- design freeze。
-- complete ACTIVE Work Package。
-- runtime gate release。
+`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
+
+Source baseline：
+
+- Shioaji 1.7.6。
+- official source review 2026-09-25。
+- initial matrix DOCUMENTATION only。
+- SIMULATION / PRODUCTION not claimed。
+
+Recommended calibration：
+
+`GPT-5.6 Sol / 輕度 / LEVEL_3A_BOUNDED`
 
 Level 3B：
 

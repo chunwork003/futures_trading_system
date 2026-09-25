@@ -62,6 +62,29 @@ S4 不得單獨作為 authoritative semantics。
 | SRC-SINOPAC-CONTRACT-001 | S1 | Contract / product mapping | `sinotrade.github.io` | `/tutor/contract/` | HIGH | 2026-09-25 |
 | SRC-SINOPAC-FUT-ORDER-001 | S1 | Futures / options orders | `sinotrade.github.io` | `/tutor/order/FutureOption/` | HIGH | 2026-09-25 |
 | SRC-SINOPAC-POSITION-001 | S1 | Account positions | `sinotrade.github.io` | `/tutor/accounting/position/` | HIGH | 2026-09-25 |
+| SRC-SINOPAC-SIMULATION-001 | S1 | Simulation capability availability | `sinotrade.github.io` | `/tutor/simulation/` | HIGH | 2026-09-25 |
+| SRC-SINOPAC-ORDER-STATUS-001 | S1 | Order status refresh / trade list | `sinotrade.github.io` | `/tutor/order/UpdateStatus/` | HIGH | 2026-09-25 |
+| SRC-SINOPAC-ORDER-EVENT-001 | S1 | Futures order / deal events | `sinotrade.github.io` | `/tutor/order/order_deal_event/futures/` | HIGH | 2026-09-25 |
+| SRC-SINOPAC-RELEASE-001 | S1 | SDK release / behavior changes | `sinotrade.github.io` | `/release/` | HIGH | 2026-09-25 |
+
+### GAP-BROKER-002 Source Review
+
+Reviewed：
+
+    2026-09-25
+
+Current official upstream release observed：
+
+    Shioaji v1.7.6 / 2026-09-22
+
+Architecture conclusion：
+
+- official documentation support 與實際 fake / simulation / production verification 必須分開記錄。
+- source review 不等於 simulation verification。
+- simulation availability 不等於 production verification。
+- broker SDK/version 必須成為 capability evidence。
+- default account semantics 不得作 live execution implicit authority。
+- production authentication / CA、reconnect、live verification 不納入 GAP-BROKER-002 runtime。
 
 ### Current Known Usage
 

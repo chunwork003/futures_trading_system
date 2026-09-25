@@ -61,7 +61,7 @@ Mainline：
 | GAP-ACCOUNT-001 | P1 | REVIEW_AT_CHECKPOINT | No | Broker Account / Position Sync | CLOSED |
 | GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | CLOSED |
 | GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | No | Explicit OrderIntent / PositionEffect | CLOSED |
-| GAP-BROKER-002 | P2 | REVIEW_AT_CHECKPOINT | No | Capability matrix / mapping semantics | READY_FOR_ARCHITECTURE_REVIEW |
+| GAP-BROKER-002 | P2 | REVIEW_AT_CHECKPOINT | No | Capability matrix / mapping semantics | READY_FOR_EXECUTION |
 | GAP-08 | P1 | REVIEW_AT_CHECKPOINT | No | Trading State Persistence / Recovery | PENDING |
 | GAP-PERSIST-001 | P1 | RECORD_AND_CONTINUE | No | Decision / Risk Provenance | OPEN |
 | GAP-09 | P1 | REVIEW_AT_CHECKPOINT | No | Incremental Feature / Market State | PENDING |
@@ -301,34 +301,56 @@ Corrective broker execution remains separately gated。
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_EXECUTION。
 
-Target：
+Architecture / Source Review：
 
-- broker capability contract。
-- capability verification matrix。
-- unsupported capability explicit failure。
-- source / version / verification-mode evidence。
+COMPLETED。
 
-Initial Blueprint focus：
+Design Freeze：
 
-- I120。
-- I130。
-- I140。
+COMPLETED for I120 / I130 / I140 / I940。
 
-Potential related scope：
+Runtime Launch Gate：
 
-- I720-I940。
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
-Potential related scope 不得直接全部納入同一 runtime Work Package。
-
-Architecture review 必須先決定 scope split、source requirements、paper/live boundaries 與 production-only exclusions。
-
-Broker/exchange semantics 需依 SOURCE_REGISTRY 官方來源重新確認。
-
-Runtime：
+Runtime Authorization：
 
 NOT_YET_AUTHORIZED。
+
+Canonical runtime scope：
+
+- adapters/capabilities.py。
+- adapters/sinopac/capabilities.py。
+- broker capability/evidence models。
+- documentation-backed SINOPAC matrix。
+- explicit unsupported/unverified failure。
+
+Initial evidence baseline：
+
+- Shioaji 1.7.6。
+- source review 2026-09-25。
+- DOCUMENTATION only。
+- no SIMULATION claim。
+- no PRODUCTION claim。
+
+Deferred：
+
+- authentication / CA。
+- reconnect/session recovery。
+- live default-account enforcement。
+- network error classification。
+- actual simulation/paper verification。
+- production connectivity verification。
+- physical adapter relocation。
+
+Safety：
+
+- capability evidence != live authorization。
+- missing/unknown/unverified capability explicit reject。
+- no silent fallback。
+- no broker login/network tests。
 
 ---
 

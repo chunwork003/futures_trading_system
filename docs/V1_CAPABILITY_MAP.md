@@ -27,7 +27,7 @@ Blueprint baseline 完成後：
 
 Blueprint baseline 已啟用：
 
-本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 43.46% baseline。
+本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 43.57% baseline。
 
 ---
 
@@ -55,15 +55,15 @@ capability acceptance + relative engineering weight。
 
 Lifecycle-weighted completion：
 
-    43.46%
+    43.57%
 
 Architecture Design Coverage：
 
-    87.23%
+    87.60%
 
 Design Freeze Coverage：
 
-    51.47%
+    52.22%
 
 Runtime Implementation：
 
@@ -109,14 +109,14 @@ Readiness：
 | F Backtest / Research | 8 | 90.40% |
 | G Decision / Risk | 8 | 67.86% |
 | H Execution / Paper | 8 | 68.01% |
-| I Broker Adapter | 6 | 63.88% |
+| I Broker Adapter | 6 | 65.38% |
 | J Account / Reconciliation | 6 | 79.48% |
 | K Persistence / Recovery | 7 | 11.58% |
 | L Simulation / Live Safety | 7 | 3.66% |
 | M Python Service Boundary | 4 | 12.42% |
 | N ASP.NET Core Application | 5 | 11.26% |
 | O React Workspace | 5 | 10.31% |
-| TOTAL | 92 | 43.46% lifecycle-weighted |
+| TOTAL | 92 | 43.57% lifecycle-weighted |
 
 ---
 
@@ -237,7 +237,7 @@ Readiness：
 | I03 | Fill conversion/dedup/partial fill | PARTIAL | Production verification |
 | I04 | BrokerInstrumentReference seam | PARTIAL | Persistence later |
 | I05 | Broker account/position snapshot | PARTIAL | Canonical mapping foundation accepted; real provider/paper verification pending |
-| I06 | Broker capability matrix | NOT_STARTED | GAP-BROKER-002 |
+| I06 | Broker capability matrix | NOT_STARTED | Design frozen; runtime gate pending |
 
 ---
 

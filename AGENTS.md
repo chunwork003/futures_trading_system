@@ -2,7 +2,7 @@
 
 ## 專案與導航
 
-台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0 — Governance / Architecture Consolidation 已完成；M5 / GAP-RECON-001 已 CLOSED / ACCEPTED；目前下一主線為 GAP-BROKER-002 Broker Capability Matrix architecture review。GAP-BROKER-002 runtime 尚未授權；Level 3B 仍僅 ELIGIBLE_FOR_EVALUATION / NOT_ENABLED；人工集中架構決策與 deterministic documentation，Codex 只依已核准 Work Package 執行 runtime implementation、tests、debugging 與 integration。
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0 — Governance / Architecture Consolidation 與 M5 / GAP-RECON-001 已完成；目前主線為 GAP-BROKER-002 Broker Capability Matrix。I120/I130/I140/I940 architecture/source review 已完成並 design frozen，完整 bounded Work Package 已建立，但 runtime gate 尚待 architecture-freeze commit/push 後解除；Codex 尚未授權執行 runtime；Level 3B 仍 ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
 
 Primary source of truth 與必讀順序：
 

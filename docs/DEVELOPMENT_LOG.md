@@ -718,3 +718,28 @@ GAP-BROKER-002 READY_FOR_ARCHITECTURE_REVIEW。
 Runtime 尚未授權。
 
 Level 3B：ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
+
+## 2026-09-25 — GAP-BROKER-002 Architecture Freeze
+
+Status：DESIGN_FROZEN / runtime gate HOLD。
+
+Blueprint：I120 / I130 / I140 / I940。
+
+Source review：
+
+- official Shioaji current reviewed release：1.7.6。
+- source review date：2026-09-25。
+- documentation support 與 simulation/production verification separated。
+- initial capability matrix may claim DOCUMENTATION only。
+- actual SIMULATION / PRODUCTION verification deferred。
+
+Canonical ownership：
+
+- adapters/capabilities.py。
+- adapters/sinopac/capabilities.py。
+
+Deferred：I720 / I730 / I740 / I820 / I920 / I930。
+
+Runtime：NOT_YET_AUTHORIZED。
+
+Next：commit/push/remote verify freeze，then release runtime gate。

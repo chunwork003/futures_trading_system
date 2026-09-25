@@ -50,9 +50,9 @@ Target ownership：
 | ID | Name | Purpose | Lifecycle | Weight | Maps |
 |---|---|---|---|---:|---|
 | I110 | Broker Identity | adapter 使用 stable broker identifier `SINOPAC` | DESIGN_FROZEN | 2 | I01,I04 |
-| I120 | Broker Capability Contract | adapter 宣告可支援 account/order/position/status semantics | DESIGNED | 4 | I06 |
-| I130 | Capability Verification Matrix | 每個 capability 有 source + fake/paper/live verification state | NOT_DESIGNED | 4 | I06 |
-| I140 | Unsupported Capability Failure | 未驗證/不支援功能 explicit reject，不 fallback 猜測 | DESIGNED | 4 | I06 |
+| I120 | Broker Capability Contract | adapter 宣告可支援 account/order/position/status semantics | DESIGN_FROZEN | 4 | I06 |
+| I130 | Capability Verification Matrix | 每個 capability 有 source + fake/paper/live verification state | DESIGN_FROZEN | 4 | I06 |
+| I140 | Unsupported Capability Failure | 未驗證/不支援功能 explicit reject，不 fallback 猜測 | DESIGN_FROZEN | 4 | I06 |
 | I210 | BrokerInstrumentReference Consumption | adapter 只消費 broker-neutral mapping reference | ACCEPTED | 4 | I01,I04 |
 | I220 | Futures Contract Native Lookup | broker_contract_code → native Shioaji futures contract | ACCEPTED | 3 | I01 |
 | I230 | Canonical Product / Contract Separation | canonical symbol/code 不等同 Shioaji native code | ACCEPTED | 3 | I01,I04 |
@@ -89,7 +89,7 @@ Target ownership：
 | I910 | Deterministic Fake Tests | no login/network/credentials 的 adapter unit tests | ACCEPTED | 3 | I01-I04 |
 | I920 | Broker Paper Verification | broker paper environment semantics verification | NOT_DESIGNED | 4 | I06 |
 | I930 | Production Connectivity Verification | production connectivity only after live safety authorization | NOT_DESIGNED | 5 | I06 |
-| I940 | Capability Evidence Record | source / version / tested mode / date / result 可追蹤 | NOT_DESIGNED | 4 | I06 |
+| I940 | Capability Evidence Record | source / version / tested mode / date / result 可追蹤 | DESIGN_FROZEN | 4 | I06 |
 
 ---
 
@@ -173,6 +173,10 @@ MIGRATION：
 - SRC-SINOPAC-CONTRACT-001。
 - SRC-SINOPAC-FUT-ORDER-001。
 - SRC-SINOPAC-POSITION-001。
+- SRC-SINOPAC-SIMULATION-001。
+- SRC-SINOPAC-ORDER-STATUS-001。
+- SRC-SINOPAC-ORDER-EVENT-001。
+- SRC-SINOPAC-RELEASE-001。
 - SRC-PYDANTIC-001。
 - SRC-ADR-001。
 
@@ -291,6 +295,229 @@ ENTRY / EXIT prefix 可以暫時保留作 legacy identifier formatting。
 - order ID inference。
 - silent New。
 - silent Cover。
+
+## GAP-BROKER-002 Architect Design Freeze
+
+Status：
+
+DESIGN_FROZEN。
+
+Runtime scope：
+
+    I120
+    I130
+    I140
+    I940
+
+Canonical ownership：
+
+    adapters/capabilities.py
+
+Sinopac concrete matrix：
+
+    adapters/sinopac/capabilities.py
+
+This Work Package does not relocate existing backtest/shioaji_* execution code。
+
+### Public Capability IDs
+
+BrokerCapability exact V1 values：
+
+    ACCOUNT_QUERY
+    POSITION_QUERY
+    ORDER_PLACE
+    ORDER_UPDATE
+    ORDER_CANCEL
+    ORDER_STATUS
+    TRADE_LIST
+    ORDER_DEAL_EVENT
+
+### Support State
+
+BrokerCapabilitySupport exact values：
+
+    SUPPORTED
+    UNSUPPORTED
+    UNKNOWN
+
+### Verification Mode
+
+BrokerVerificationMode exact values：
+
+    DOCUMENTATION
+    FAKE
+    SIMULATION
+    PRODUCTION
+
+Modes are independent evidence labels, not an implied hierarchy。
+
+DOCUMENTATION does not imply SIMULATION。
+
+SIMULATION does not imply PRODUCTION。
+
+### BrokerCapabilityEvidence
+
+Immutable fields：
+
+    capability: BrokerCapability
+    support: BrokerCapabilitySupport
+    source_ids: tuple[str, ...]
+    verification_modes: tuple[BrokerVerificationMode, ...]
+    sdk_version: str | None
+    verified_on: date
+    note: str | None = None
+
+Rules：
+
+- frozen / extra forbid。
+- source_ids trim + nonblank + no duplicates。
+- verification_modes no duplicates and deterministic canonical ordering。
+- sdk_version if supplied trim + nonblank。
+- note if supplied trim + nonblank。
+- SUPPORTED / UNSUPPORTED require at least one source_id。
+- UNKNOWN may have no source, but must not claim verification_modes。
+- no hidden now()；verified_on is explicit evidence date。
+
+### BrokerCapabilityMatrix
+
+Immutable fields：
+
+    broker: str
+    entries: tuple[BrokerCapabilityEvidence, ...]
+
+Rules：
+
+- broker trim + uppercase + nonblank。
+- one entry per BrokerCapability。
+- duplicate capability explicit validation error。
+- deterministic entry ordering by BrokerCapability enum order。
+- matrix is evidence, not execution authority。
+
+### Explicit Failure Contract
+
+BrokerCapabilityUnavailableError：
+
+    RuntimeError
+
+Public pure functions：
+
+    get_broker_capability(
+        matrix,
+        capability
+    ) -> BrokerCapabilityEvidence | None
+
+    require_broker_capability(
+        matrix,
+        capability,
+        *,
+        required_mode: BrokerVerificationMode | None = None
+    ) -> BrokerCapabilityEvidence
+
+require rules：
+
+- missing capability -> explicit error。
+- UNSUPPORTED -> explicit error。
+- UNKNOWN -> explicit error。
+- requested verification mode absent -> explicit error。
+- no fallback / no assumption from another mode。
+
+### SINOPAC_CAPABILITY_MATRIX
+
+Broker：
+
+    SINOPAC
+
+Initial evidence baseline：
+
+    sdk_version = 1.7.6
+    verified_on = 2026-09-25
+
+Initial records may claim：
+
+    support = SUPPORTED
+    verification_modes = (DOCUMENTATION,)
+
+for capabilities directly supported by reviewed official documentation。
+
+Initial matrix MUST NOT claim：
+
+    SIMULATION
+    PRODUCTION
+
+unless an actual explicit verification run is recorded separately。
+
+### Source Mapping
+
+ACCOUNT_QUERY：
+
+    SRC-SINOPAC-LOGIN-001
+
+POSITION_QUERY：
+
+    SRC-SINOPAC-POSITION-001
+
+ORDER_PLACE / ORDER_UPDATE / ORDER_CANCEL：
+
+    SRC-SINOPAC-FUT-ORDER-001
+
+ORDER_STATUS / TRADE_LIST：
+
+    SRC-SINOPAC-ORDER-STATUS-001
+
+ORDER_DEAL_EVENT：
+
+    SRC-SINOPAC-ORDER-EVENT-001
+    SRC-SINOPAC-RELEASE-001
+
+Simulation documentation context：
+
+    SRC-SINOPAC-SIMULATION-001
+
+### Explicitly Deferred
+
+Not implemented by GAP-BROKER-002：
+
+- I720 Authentication Boundary runtime。
+- I730 Reconnect / Session Recovery。
+- I740 live account-selection enforcement。
+- I820 network/broker error classification。
+- I920 actual broker simulation/paper verification run。
+- I930 production connectivity verification。
+- CA / credential handling。
+- production login。
+- real broker network calls。
+- live-money authorization。
+- adapter physical relocation。
+
+I830 existing ambiguous-semantics HARD_BLOCK invariant remains unchanged。
+
+### Runtime Safety
+
+- capability evidence never authorizes LIVE by itself。
+- DOCUMENTATION evidence never upgrades to SIMULATION / PRODUCTION automatically。
+- missing / unknown / insufficiently verified capability fails explicitly。
+- default broker account behavior must not be adopted as canonical live account selection。
+- no credentials / secrets / person_id in capability evidence。
+
+### Source Review
+
+Last verified：
+
+    2026-09-25
+
+Current reviewed Shioaji release：
+
+    1.7.6
+
+Change risk：
+
+    HIGH
+
+Revalidation required before future simulation/production evidence update：
+
+    YES
+
+---
 
 ## Domain Acceptance
 
