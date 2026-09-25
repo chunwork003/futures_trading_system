@@ -1,8 +1,12 @@
 from __future__ import annotations
 
+from datetime import datetime
+from decimal import Decimal
 from enum import Enum
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+
+from persistence.contracts import normalize_aware_utc, normalize_stable_id, require_exact_decimal
 
 from trading.account import AccountPosition, PositionDirection
 
@@ -13,6 +17,165 @@ class PositionEffect(str, Enum):
     OPEN = "OPEN"
     REDUCE = "REDUCE"
     CLOSE = "CLOSE"
+
+
+class OrderType(str, Enum):
+    MARKET = "MARKET"
+    LIMIT = "LIMIT"
+    STOP = "STOP"
+
+
+class OrderStatus(str, Enum):
+    PENDING = "PENDING"
+    SUBMITTED = "SUBMITTED"
+    PARTIALLY_FILLED = "PARTIALLY_FILLED"
+    FILLED = "FILLED"
+    CANCELLED = "CANCELLED"
+    REJECTED = "REJECTED"
+
+
+TERMINAL_ORDER_STATUSES = frozenset(
+    {OrderStatus.FILLED, OrderStatus.CANCELLED, OrderStatus.REJECTED}
+)
+
+LEGAL_ORDER_TRANSITIONS = {
+    OrderStatus.PENDING: frozenset(
+        {OrderStatus.SUBMITTED, OrderStatus.CANCELLED, OrderStatus.REJECTED}
+    ),
+    OrderStatus.SUBMITTED: frozenset(
+        {OrderStatus.PARTIALLY_FILLED, OrderStatus.FILLED, OrderStatus.CANCELLED, OrderStatus.REJECTED}
+    ),
+    OrderStatus.PARTIALLY_FILLED: frozenset(
+        {OrderStatus.PARTIALLY_FILLED, OrderStatus.FILLED, OrderStatus.CANCELLED}
+    ),
+}
+
+
+class OrderStateTransitionError(ValueError):
+    """Order event 不符合 frozen lifecycle、sequence 或 terminal invariant。"""
+
+
+class _ExecutionModel(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    @field_validator("*", mode="before")
+    @classmethod
+    def _normalize_known_ids(cls, value: object, info):
+        if info.field_name.endswith("_id") and value is not None and isinstance(value, str):
+            return normalize_stable_id(value)
+        return value
+
+
+class Order(_ExecutionModel):
+    """Canonical derived order projection；historical authority remains OrderEvent/Fill。"""
+
+    order_id: str
+    intent_id: str
+    correlation_id: str
+    causation_id: str | None = None
+    broker_order_id: str | None = None
+    instrument_id: int = Field(gt=0)
+    contract_id: int | None = Field(default=None, gt=0)
+    direction: PositionDirection
+    position_effect: PositionEffect
+    order_type: OrderType
+    quantity: int = Field(gt=0)
+    limit_price: Decimal | None = None
+    stop_price: Decimal | None = None
+    status: OrderStatus = OrderStatus.PENDING
+    filled_quantity: int = Field(default=0, ge=0)
+    average_fill_price: Decimal | None = None
+    version: int = Field(default=0, ge=0)
+    created_at: datetime
+    updated_at: datetime
+
+    @field_validator("created_at", "updated_at")
+    @classmethod
+    def _utc(cls, value: datetime) -> datetime: return normalize_aware_utc(value)
+
+    @field_validator("limit_price", "stop_price", "average_fill_price", mode="before")
+    @classmethod
+    def _decimal(cls, value: object) -> object:
+        return None if value is None else require_exact_decimal(value)  # type: ignore[arg-type]
+
+    @model_validator(mode="after")
+    def _quantity_invariant(self) -> "Order":
+        if self.filled_quantity > self.quantity:
+            raise ValueError("filled_quantity cannot exceed quantity")
+        return self
+
+
+class Fill(_ExecutionModel):
+    """Immutable execution evidence；broker identifiers remain opaque references。"""
+
+    fill_id: str
+    order_id: str
+    event_id: str
+    correlation_id: str
+    causation_id: str
+    quantity: int = Field(gt=0)
+    price: Decimal
+    occurred_at: datetime
+    broker_trade_id: str | None = None
+    broker_deal_id: str | None = None
+
+    @field_validator("price", mode="before")
+    @classmethod
+    def _exact_price(cls, value: object) -> Decimal: return require_exact_decimal(value)  # type: ignore[arg-type]
+
+    @field_validator("occurred_at")
+    @classmethod
+    def _utc(cls, value: datetime) -> datetime: return normalize_aware_utc(value)
+
+
+class OrderEvent(_ExecutionModel):
+    """Order lifecycle 的 immutable canonical evidence，sequence 由 OMS 嚴格驗證。"""
+
+    event_id: str
+    order_id: str
+    correlation_id: str
+    causation_id: str
+    idempotency_key: str
+    sequence: int = Field(ge=0)
+    previous_status: OrderStatus | None
+    status: OrderStatus
+    occurred_at: datetime
+    broker_order_id: str | None = None
+    payload_json: dict[str, object] = Field(default_factory=dict)
+
+    @field_validator("occurred_at")
+    @classmethod
+    def _utc(cls, value: datetime) -> datetime: return normalize_aware_utc(value)
+
+    @model_validator(mode="after")
+    def _creation_invariant(self) -> "OrderEvent":
+        if self.sequence == 0:
+            if self.previous_status is not None or self.status is not OrderStatus.PENDING:
+                raise ValueError("sequence 0 must create None -> PENDING")
+        elif self.previous_status is None:
+            raise ValueError("subsequent event requires previous_status")
+        return self
+
+
+def validate_order_event_transition(previous: OrderEvent | None, current: OrderEvent) -> None:
+    """驗證 contiguous sequence 與 frozen transition table；duplicate 由 ledger 先處理。"""
+
+    if previous is None:
+        if current.sequence != 0:
+            raise OrderStateTransitionError("creation event sequence must be 0")
+        return
+    if current.order_id != previous.order_id or current.correlation_id != previous.correlation_id:
+        raise OrderStateTransitionError("order event identity mismatch")
+    if current.sequence != previous.sequence + 1:
+        raise OrderStateTransitionError("order event sequence must be contiguous")
+    if current.previous_status is not previous.status:
+        raise OrderStateTransitionError("previous_status does not match prior event")
+    if previous.status in TERMINAL_ORDER_STATUSES:
+        raise OrderStateTransitionError("terminal order status is immutable")
+    if current.status not in LEGAL_ORDER_TRANSITIONS[previous.status]:
+        raise OrderStateTransitionError(
+            f"illegal order transition: {previous.status.value} -> {current.status.value}"
+        )
 
 
 class OrderIntent(BaseModel):

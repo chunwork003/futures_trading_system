@@ -21,6 +21,7 @@ class TrendStateExitStrategy:
 
     strategy_id = "TREND_STATE_EXIT"
     strategy_version = "1.0.0"
+    state_schema_version = 1
 
     def __init__(
         self,
@@ -221,3 +222,32 @@ class TrendStateExitStrategy:
     @staticmethod
     def _timestamp_string(timestamp: datetime) -> str:
         return timestamp.strftime("%Y%m%d%H%M%S")
+
+    def export_state(self) -> dict[str, object]:
+        """匯出 reversal-safe virtual position 與 pending-entry state。"""
+
+        return {
+            "schema_version": self.state_schema_version,
+            "previous_state": self._previous_state,
+            "virtual_position": None if self._position is None else self._position.value,
+            "pending_entry_state": self._pending_entry_state,
+        }
+
+    def restore_state(self, state: dict[str, object]) -> None:
+        expected = {"schema_version", "previous_state", "virtual_position", "pending_entry_state"}
+        if set(state) != expected:
+            raise ValueError("invalid TREND_STATE_EXIT state fields")
+        if state["schema_version"] != self.state_schema_version:
+            raise ValueError("TREND_STATE_EXIT state schema mismatch")
+        previous = state["previous_state"]
+        pending = state["pending_entry_state"]
+        position = state["virtual_position"]
+        if previous is not None and not isinstance(previous, str):
+            raise ValueError("previous_state must be string or null")
+        if pending not in {None, "UP", "DOWN"}:
+            raise ValueError("pending_entry_state is invalid")
+        if position not in {None, Direction.LONG.value, Direction.SHORT.value}:
+            raise ValueError("virtual_position is invalid")
+        self._previous_state = previous
+        self._pending_entry_state = pending
+        self._position = None if position is None else Direction(position)

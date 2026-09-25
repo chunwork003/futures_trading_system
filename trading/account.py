@@ -5,7 +5,9 @@ from decimal import Decimal
 from enum import Enum
 from typing import Protocol, runtime_checkable
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+
+from persistence.contracts import normalize_aware_utc, normalize_stable_id, require_exact_decimal
 
 
 class PositionDirection(str, Enum):
@@ -85,6 +87,52 @@ class BrokerPositionSnapshot(_BrokerAccountIdentity):
         if value.tzinfo is None or value.utcoffset() is None:
             raise ValueError("observed_at must be timezone-aware")
         return value
+
+
+class AccountSnapshot(_BrokerAccountIdentity):
+    """Broker-observed account money evidence；不是 risk config 或 scenario assumption。"""
+
+    snapshot_id: str
+    observed_at: datetime
+    recorded_at: datetime
+    currency: str
+    cash_balance: Decimal | None = None
+    equity: Decimal | None = None
+    available_funds: Decimal | None = None
+    margin_used: Decimal | None = None
+
+    @field_validator("snapshot_id", mode="before")
+    @classmethod
+    def _id(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @field_validator("observed_at", "recorded_at")
+    @classmethod
+    def _utc(cls, value: datetime) -> datetime: return normalize_aware_utc(value)
+
+    @field_validator("currency", mode="before")
+    @classmethod
+    def _currency(cls, value: object) -> object:
+        if isinstance(value, str):
+            normalized = value.strip().upper()
+            if len(normalized) != 3 or not normalized.isascii() or not normalized.isalpha():
+                raise ValueError("currency must be three ASCII letters")
+            return normalized
+        return value
+
+    @field_validator("cash_balance", "equity", "available_funds", "margin_used", mode="before")
+    @classmethod
+    def _money(cls, value: object) -> object:
+        return None if value is None else require_exact_decimal(value)  # type: ignore[arg-type]
+
+    @model_validator(mode="after")
+    def _requires_observation(self) -> "AccountSnapshot":
+        if all(
+            value is None
+            for value in (self.cash_balance, self.equity, self.available_funds, self.margin_used)
+        ):
+            raise ValueError("at least one monetary observation is required")
+        return self
 
 
 @runtime_checkable

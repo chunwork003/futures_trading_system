@@ -10,6 +10,7 @@ from strategies.base import Strategy
 class EMACrossStrategy(Strategy):
     strategy_id = "EMA_CROSS"
     strategy_version = "1.0.0"
+    state_schema_version = 1
 
     def __init__(
         self,
@@ -152,3 +153,24 @@ class EMACrossStrategy(Strategy):
 
         if ema60 is not None:
             self._previous_ema60 = float(ema60)
+
+    def export_state(self) -> dict[str, object]:
+        """只匯出明確核准的 EMA crossover state。"""
+
+        return {
+            "schema_version": self.state_schema_version,
+            "previous_ema20": self._previous_ema20,
+            "previous_ema60": self._previous_ema60,
+        }
+
+    def restore_state(self, state: dict[str, object]) -> None:
+        if set(state) != {"schema_version", "previous_ema20", "previous_ema60"}:
+            raise ValueError("invalid EMA_CROSS state fields")
+        if state["schema_version"] != self.state_schema_version:
+            raise ValueError("EMA_CROSS state schema mismatch")
+        for key in ("previous_ema20", "previous_ema60"):
+            value = state[key]
+            if value is not None and not isinstance(value, (int, float)):
+                raise ValueError(f"{key} must be numeric or null")
+        self._previous_ema20 = None if state["previous_ema20"] is None else float(state["previous_ema20"])
+        self._previous_ema60 = None if state["previous_ema60"] is None else float(state["previous_ema60"])

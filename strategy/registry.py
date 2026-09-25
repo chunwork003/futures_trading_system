@@ -57,6 +57,23 @@ class StrategyRegistry:
         definition = self.get(strategy_id)
         return definition.factory(**kwargs)
 
+    def create_instance(self, instance: "StrategyInstance") -> Any:
+        """依 immutable StrategyInstance 建立 runtime，拒絕 version/config/scope drift。"""
+
+        from strategy.instance import StrategyInstance
+
+        if not isinstance(instance, StrategyInstance):
+            raise TypeError("instance must be StrategyInstance")
+        definition = self.get(instance.strategy_id)
+        if definition.version != instance.strategy_version:
+            raise ValueError("strategy version mismatch")
+        config = dict(instance.config_json)
+        config_instrument = config.pop("instrument_id", instance.instrument_id)
+        config_timeframe = config.get("timeframe", instance.timeframe)
+        if config_instrument != instance.instrument_id or config_timeframe != instance.timeframe:
+            raise ValueError("strategy config scope mismatch")
+        return definition.factory(**config)
+
     def contains(self, strategy_id: str) -> bool:
         return strategy_id in self._strategies
 

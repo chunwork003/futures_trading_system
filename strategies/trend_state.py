@@ -27,6 +27,7 @@ class TrendStateStrategy(Strategy):
 
     strategy_id = "TREND_STATE"
     strategy_version = "1.0.0"
+    state_schema_version = 1
 
     def __init__(
         self,
@@ -163,3 +164,18 @@ class TrendStateStrategy(Strategy):
         raise ValueError(
             "row must contain trade_date or datetime timestamp"
         )
+
+    def export_state(self) -> dict[str, object]:
+        """匯出已完成 observation 後的 trend state。"""
+
+        return {"schema_version": self.state_schema_version, "previous_state": self._previous_state}
+
+    def restore_state(self, state: dict[str, object]) -> None:
+        if set(state) != {"schema_version", "previous_state"}:
+            raise ValueError("invalid TREND_STATE state fields")
+        if state["schema_version"] != self.state_schema_version:
+            raise ValueError("TREND_STATE state schema mismatch")
+        previous = state["previous_state"]
+        if previous is not None and not isinstance(previous, str):
+            raise ValueError("previous_state must be string or null")
+        self._previous_state = previous
