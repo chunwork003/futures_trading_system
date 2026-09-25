@@ -29,6 +29,27 @@
 
 ## Chronological Log
 
+### 2026-09-25 — GAP-08EFGHI Post-Runtime Architecture Decision Checkpoint 3
+
+- Checkpoint 2 baseline：`79923d6a4398838e4a501f4e241a44380a2031e4`。
+- Runtime candidate remains `6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Runtime verification remains 934 passed / 4 skipped / 1 warning。
+- Architecture acceptance remains HOLD。
+- R-04A accepted：account-scoped broker execution discovery authority / refresh / exact account isolation。
+- R-04B accepted：durable immutable broker_client_order_ref / no heuristic matching / Shioaji round-trip production gate。
+- R-04C accepted：discovery completeness + exact-match classification / BrokerActionAttempt-Resolution-Head / SUBMIT+CANCEL uncertainty semantics。
+- R-04D accepted：Discovery vs Continuity gates / coherent discovery run / health interpretation / ExecutionContinuityEpoch re-anchor。
+- R-04E accepted：non-fabricated recovery reconstruction / deal-level Fill identity / recovery fence / durable inbox / atomic account-authority commit / terminal economic immutability / Fill-set authority。
+- R-04 remains IN_PROGRESS；R-04F / R-04G / R-04H remain open。
+- R-04 correction scope expansion outside original 35 / 151 explicitly recorded。
+- New correction concepts include BrokerReportInbox、AccountRecoveryControl、AccountAuthorityCommitReceipt and shared AccountAuthorityCommitService。
+- Broker capability verification gates remain and do not authorize production use。
+- No new lifecycle weight claimed。
+- No runtime correction authorized。
+- Documentation consistency corrected：CURRENT_STATE lifecycle baseline 47.92%；AI_HANDOFF runtime verification aligned to 934 / 4 / 1。
+- Next architecture work：R-04F / R-04G / R-04H。
+
+
 ### 2026-09-25 — GAP-08EFGHI Post-Runtime Architecture Decision Checkpoint 2
 
 - Decision checkpoint commit preparation after checkpoint 1 `f580c0f2f9a9f6fdde175f872557ce6fb334f1f5`。

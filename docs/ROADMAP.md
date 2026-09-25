@@ -226,7 +226,13 @@ Post-runtime decision checkpoint：
 - R-03C DECIDED。
 - R-03D DECIDED。
 - R-03 overall DECIDED。
-- R-04 OPEN / mandatory dependency。
+- R-04 overall IN_PROGRESS。
+- R-04A DECIDED。
+- R-04B DECIDED。
+- R-04C DECIDED。
+- R-04D DECIDED。
+- R-04E DECIDED。
+- R-04F / R-04G / R-04H OPEN / mandatory dependency。
 
 R-03 identified mandatory correction scope beyond the original 35 / 151：
 
@@ -238,6 +244,21 @@ R-03 identified mandatory correction scope beyond the original 35 / 151：
 Additional scope is not yet reweighted and does not authorize runtime。
 
 R-14 / GAP-DATA-001 tracks market-data completeness/gap detection for later production safety。
+
+R-04A-E identified further mandatory correction scope beyond the original 35 / 151：
+
+- restart-safe broker execution discovery/correlation。
+- durable broker action attempts/resolutions。
+- discovery / execution-continuity fences。
+- durable broker-report inbox。
+- account recovery control。
+- stable authority-commit idempotency receipt。
+- shared atomic BrokerAccount authority commit。
+- recovery execution reconstruction and terminal-economic sealing。
+
+Additional R-04 scope is not yet reweighted and does not authorize runtime。
+
+Broker-specific capability verification remains required before production use。
 
 Runtime Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS。
 

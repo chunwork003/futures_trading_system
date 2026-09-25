@@ -2,7 +2,7 @@
 
 ## 專案與導航
 
-台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。GAP-08ABCD 已完成/接受；GAP-08EFGHI 原始 35 leaves / weight 151 runtime 已於 `6b62239bca1d11543944f9f078e577e16010bcbf` 完成並通過 tests，但目前仍為 ARCHITECTURE_ACCEPTANCE_HOLD，禁止再次執行 runtime 或標記 ACCEPTED。ADR-002 已正式決定 R-01、R-02、R-03A/B/C/D；R-03 整體 DECIDED，R-04 尚待決策。R-03 新增 operational MarketObservation evidence correction scope，明確位於原 35/151 之外，尚未重新計權/授權。R-14/GAP-DATA-001 記錄 market-data completeness/gap detection 後續需求。PostgreSQL 17/18 仍為 PENDING integration targets；K520 仍屬 GAP-09；Level 3B 仍 NOT_ENABLED。
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。GAP-08ABCD 已完成/接受；GAP-08EFGHI 原始 35 leaves / weight 151 runtime 已於 `6b62239bca1d11543944f9f078e577e16010bcbf` 完成並通過 tests，但目前仍為 ARCHITECTURE_ACCEPTANCE_HOLD，禁止再次執行 runtime 或標記 ACCEPTED。ADR-002 已正式決定 R-01、R-02、R-03A/B/C/D 與 R-04A/B/C/D/E；R-03 整體 DECIDED，R-04 仍 IN_PROGRESS，尚餘 R-04F/G/H。R-03 與 R-04 已新增 operational recovery/evidence correction scope，明確位於原 35/151 之外，尚未重新計權/授權。R-14/GAP-DATA-001 記錄 market-data completeness/gap detection 後續需求。PostgreSQL 17/18 仍為 PENDING integration targets；K520 仍屬 GAP-09；Level 3B 仍 NOT_ENABLED。
 
 Primary source of truth 與必讀順序：
 

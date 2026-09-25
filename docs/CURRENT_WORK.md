@@ -55,9 +55,9 @@ Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION
 
 Launch Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS
 
-Accepted decision checkpoint：R-01 / R-02 / R-03A / R-03B / R-03C / R-03D；R-03 overall DECIDED。
+Accepted decision checkpoint：R-01 / R-02 / R-03A/B/C/D / R-04A/B/C/D/E；R-03 overall DECIDED，R-04 remains IN_PROGRESS。
 
-Open mandatory decision：R-04。
+Open mandatory decisions：R-04F / R-04G / R-04H。
 
 Correction scope expansion from R-03：
 
@@ -71,6 +71,22 @@ This is additional to the original 35 / 151 bundle and has not yet been reweight
 
 R-14 / GAP-DATA-001 tracks market-data completeness/gap detection separately and does not reopen R-03 identity decisions。
 
+Correction scope expansion from R-04A-E：
+
+- account-scoped broker execution discovery port。
+- durable broker_client_order_ref。
+- BrokerAction attempt/resolution/head authority evidence。
+- coherent discovery observation / continuity epoch。
+- durable broker callback inbox + serialized application。
+- durable account recovery fence/control。
+- stable AccountAuthorityCommit identity / committed receipt。
+- shared BrokerAccount authority-commit transaction primitive。
+- broker-discovery re-anchor into OrderEvent / Fill / expected snapshots。
+
+This additional scope is outside the original 35 / 151 and has not yet been reweighted。
+
+Broker capability verification gates remain implementation/production gates and do not reopen R-04E architecture。
+
 Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
@@ -81,7 +97,7 @@ The 35 / 151 runtime candidate must not be promoted to ACCEPTED until bounded co
 
 K520 remains GAP-09-owned。
 
-Next action：decide R-04 Broker Non-Terminal Order Discovery / submission-outcome reconciliation，then freeze and reweight the bounded correction Work Package。
+Next action：decide R-04F / R-04G / R-04H，then freeze、map and reweight the bounded correction Work Package before any runtime authorization。
 
 No Codex runtime execution is authorized during this decision hold。
 

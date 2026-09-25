@@ -101,19 +101,41 @@ Target ownership：
 
 ## Post-Runtime Recovery Decision Checkpoint
 
-ADR-002 R-02 supersedes any interpretation that broker submission may occur before durable execution evidence。
+ADR-002 R-02 and R-04A-E are authoritative for the current OMS/recovery correction。
 
 Required correction direction：
 
-- sequence-0 PENDING must commit before broker network side effect。
-- unresolved/non-terminal execution is a recovery-time derived classification，not a new OrderStatus。
-- every new canonical OrderEvent advances the BrokerAccount authority revision。
-- material-emitting strategy snapshots and initial PENDING causal boundary commit atomically。
-- ExecutionTriggerRef provides minimal crash/audit backlink；full Decision/Risk provenance remains K810-K840。
-- exact broker discovery/remediation remains R-04。
+- sequence-0 PENDING commits before broker side effect。
+- durable PENDING already contains immutable broker_client_order_ref。
+- all SUBMIT retries for one canonical order reuse the same broker_client_order_ref。
+- broker_order_id remains a separate broker-assigned identity。
+- BrokerActionAttempt is durable before SUBMIT/CANCEL broker side effect。
+- BrokerActionAttempt / Resolution are not OrderStatus。
+- one unresolved action attempt per order/action is enforced transactionally。
+- no attribute/time heuristic may become recovery identity authority。
+- OrderEvent means canonical material order-lifecycle evidence；it is not restricted to literal broker callback messages。
+- BROKER_DISCOVERY may produce a canonical recovery-sourced OrderEvent。
+- recovery must not fabricate unsupported intermediate lifecycle events。
+- direct PENDING -> PARTIALLY_FILLED / FILLED transitions must be supported when evidence proves them。
+- PARTIALLY_FILLED -> PARTIALLY_FILLED with new Fill evidence is a material same-status lifecycle change。
+- Fill reconstruction requires verified deal-level restart-stable identity。
+- callback-only identity does not satisfy restart recovery by itself。
+- cumulative broker quantity cannot synthesize missing Fill evidence。
+- late lower-information callback cannot regress projection。
+- contradictory authoritative discovery requires explicit conflict/incomplete evaluation。
+- terminal canonical acceptance seals lifecycle and economics。
+- after terminal acceptance no extra Fill / filled quantity / average price / expected-position enrichment is permitted。
+- canonical Fill set is the internal filled-economic authority。
+- broker aggregates remain external reconciliation evidence。
+- live/recovery/broker-action persistence must share one BrokerAccount authority-commit primitive。
+- one account revision contains at most one canonical OrderEvent。
+- no broker network I/O occurs while account authority lock is held。
 
-This checkpoint does not promote H lifecycle values and does not authorize runtime correction yet。
+Broker capability gates remain for Shioaji client-ref round-trip、exact FillKey、event tracking、PreSubmitted/Inactive/Failed semantics and quantity modification。
 
+R-04F/G/H remain open。
+
+This documentation checkpoint does not promote H lifecycle values and does not authorize runtime correction。
 
 ## CURRENT / TARGET / MIGRATION
 

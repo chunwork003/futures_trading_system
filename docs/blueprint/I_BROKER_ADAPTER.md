@@ -93,6 +93,35 @@ Target ownership：
 
 ---
 
+## Post-Runtime Broker Recovery Decision Checkpoint
+
+ADR-002 R-04A-E define the current broker-adapter recovery safety contract。
+
+Required adapter direction：
+
+- provide account-scoped authoritative broker execution discovery without relying on pre-restart native Trade memory。
+- exact native account filtering is mandatory。
+- authoritative refresh precedes restart discovery evaluation。
+- health diagnostics do not substitute for refresh。
+- broker_client_order_ref requires a verified native round-trip carrier；Shioaji custom_field is candidate only。
+- exact attribute/time heuristic matching is forbidden。
+- adapter preserves native broker/deal/event evidence required for canonicalization and audit。
+- health interpretation uses event_type + reason + required scope。
+- NoBaseline is informational by itself。
+- NotSubscribed requires continuity remediation rather than automatic current-state failure。
+- SequenceGap may be current-state re-anchored while preserving historical degradation。
+- persistent PendingReport / UntrackableEventId / ProjectionFailed prevent the affected readiness guarantees according to R-04D。
+- deal-before-order-report is supported。
+- exact restart-stable Fill identity must be capability-verified。
+- callback-only event identity may be provenance but cannot be the sole restart Fill identity。
+- PendingSubmit is a broker non-terminal observation and does not automatically mean canonical SUBMITTED。
+- PreSubmitted / Inactive / relevant Failed mapping remains verification-gated。
+- quantity modification recovery remains default-deny until broker quantity semantics are explicitly verified/frozen。
+
+Production default-deny remains in force for unverified broker correlation/recovery capabilities。
+
+This checkpoint does not promote existing I lifecycle values and does not authorize live connectivity。
+
 ## CURRENT / TARGET / MIGRATION
 
 CURRENT：

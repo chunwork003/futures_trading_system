@@ -124,36 +124,48 @@ DuckDB PostgreSQL extension only serves optional analytical bridge use cases。
 
 ## Post-Runtime Recovery Decision Checkpoint
 
-ADR-002 R-01 / R-02 / R-03 are authoritative for current GAP-08 acceptance correction。
+ADR-002 R-01 / R-02 / R-03 / R-04A-E are authoritative for current GAP-08 acceptance correction。
 
 Required correction direction：
 
 - missing expected snapshot = NOT_INITIALIZED，never implicit FLAT。
 - read failure and checkpoint/snapshot integrity failure are distinct typed failures。
-- recovery/HALT isolation minimum scope = BrokerAccount。
-- initialization is explicit、idempotent、audited and production-gated by R-04/R-13。
-- BrokerAccount owns a transactional contiguous AccountStateHead revision。
-- checkpoint exact-references expected_snapshot_id；no SELECT-latest fallback。
-- strategy/account recovery uses causal frontier validation，not timestamp equality。
-- sequence-0 PENDING is durable before broker side effect。
-- material-emitting StrategyStateSnapshot causal state and initial PENDING commit atomically。
-- StrategyStateSnapshot / ExecutionTriggerRef reference immutable MarketObservationRevision evidence。
-- operational recovery therefore requires resolvable durable MarketObservationRevision evidence。
-- candidate/provenance evidence must be retained sufficiently to support conflict/quarantine audit。
-- accepted operational observation is durable before recovery-capable strategy delivery。
-- K520 remains deferred；unknown historical correction impact in required feature horizon -> REVIEW。
+- BrokerAccount is the minimum recovery isolation scope。
+- BrokerAccount owns a contiguous transactional AccountStateHead revision。
+- every account authority revision gets one exact AccountRecoveryCheckpoint。
+- checkpoint exact-references expected_snapshot_id；no SELECT-latest recovery fallback。
+- sequence-0 PENDING and broker_client_order_ref are durable before broker submission。
+- material-emitting strategy snapshots and initial PENDING causal boundary commit atomically。
+- MarketObservation revision references must resolve to durable immutable observation evidence。
+- BrokerActionAttempt / BrokerActionResolution are append-only material authority evidence。
+- BrokerActionHead is concurrency projection，not historical authority。
+- BrokerDiscoveryObservation / health/raw broker evidence are observation evidence and do not advance AccountStateHead by themselves。
+- ExecutionContinuityEpoch records local post-reconciliation continuity re-anchor without rewriting historical degradation。
+- BrokerReportInboxEntry durably captures broker ingress before deferred canonical application。
+- BrokerReportApplication records application/corroboration/defer/conflict evidence without mutating historical inbox rows。
+- AccountRecoveryControl is durable operational concurrency control and is separate from AccountStateHead economic authority。
+- one atomic material authority commit equals one BrokerAccount revision。
+- one revision contains at most one canonical OrderEvent but may contain multiple Fill / BrokerActionResolution records。
+- recovery_cut_revision must match locked AccountStateHead before authority mutation commit。
+- stale reconstruction aborts/re-evaluates；it is not silently applied。
+- position-changing Fill requires a complete new expected snapshot in the same transaction。
+- status-only authority mutation carries forward prior exact expected_snapshot_id。
+- terminal canonical economic state is immutable after accepted closure。
+- canonical Fill set is the sole internal filled-economic projection authority。
+- AccountAuthorityCommit has stable pre-commit identity + mutation fingerprint。
+- ambiguous COMMIT is resolved by querying committed receipt before retry。
+- committed_revision is a commit result，not idempotency identity。
+- V1 AccountAuthorityCommitReceipt may use the existing append-only Trading Event Ledger as physical persistence envelope。
+- live and recovery paths must share one account-authority persistence primitive；no parallel recovery persistence authority。
+- K520 remains deferred；unknown historical feature/state correction impact -> REVIEW。
 
-Scope expansion：
+Scope expansion beyond original 35 / 151 now includes both R-03 operational market-observation evidence and R-04 broker recovery/action/inbox/authority-commit infrastructure。
 
-MarketObservationRevision operational evidence persistence was not implemented or counted in the original GAP-08EFGHI 35 / 151 bundle。
+All expanded scope remains unweighted and runtime-unauthorized until R-04F/G/H close and a replacement correction Work Package is frozen。
 
-The correction Work Package must explicitly map and size this additional storage-neutral port + PostgreSQL adapter/orchestration scope before runtime authorization。
+Retention/archive remains K930；no evidence required by recovery/audit may be silently deleted。
 
-Retention/archive details remain future K930/implementation work；no evidence required by active recovery/audit references may be silently deleted。
-
-R-04 remains open mandatory architecture dependency。
-
-This checkpoint does not promote K lifecycle values and does not authorize correction runtime。
+This checkpoint does not promote K lifecycle values。
 
 ## Core Persistent Entities
 
@@ -168,6 +180,15 @@ This checkpoint does not promote K lifecycle values and does not authorize corre
 - Order。
 - OrderEvent。
 - Fill。
+- BrokerActionAttempt。
+- BrokerActionResolution。
+- BrokerDiscoveryObservation。
+- ExecutionContinuityEpoch。
+- BrokerReportInboxEntry。
+- BrokerReportApplication。
+- AccountAuthorityCommitReceipt。
+- AccountRecoveryCheckpoint。
+- AccountRecoveryControl。
 - AccountPositionSnapshot。
 - BrokerPositionSnapshot。
 - StrategyStateSnapshot。

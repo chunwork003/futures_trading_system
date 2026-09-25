@@ -86,6 +86,37 @@ Architecture conclusion：
 - default account semantics 不得作 live execution implicit authority。
 - production authentication / CA、reconnect、live verification 不納入 GAP-BROKER-002 runtime。
 
+### R-04 Broker Recovery Source Review
+
+Reviewed：
+
+    2026-09-25
+
+Official sources：
+
+- SRC-SINOPAC-ORDER-STATUS-001。
+- SRC-SINOPAC-ORDER-EVENT-001。
+- SRC-SINOPAC-FUT-ORDER-001。
+- SRC-SINOPAC-RELEASE-001。
+
+Architecture conclusions：
+
+- authoritative refresh / list-trades semantics are distinct from process-memory Trade cache。
+- trade-cache health is diagnostic evidence，not standalone recovery authority。
+- broker callback arrival may be duplicated/reordered and deal may precede order report。
+- event_id supports callback tracking/dedup capability but deployment/version capability must still be verified。
+- official documentation availability does not prove production round-trip stability of custom_field as broker_client_order_ref。
+- official Deal.seq visibility in restart discovery does not yet prove the exact production FillKey uniqueness/stability contract。
+- PreSubmitted / Inactive / relevant Failed transition semantics remain verification-gated。
+- quantity-modification semantics remain unverified for recovery authority。
+
+Production safety rule：
+
+    source documentation support != broker capability verification
+
+Unverified correlation、Fill identity、event tracking or quantity-modification behavior remains default-deny for production recovery。
+
+
 ### Current Known Usage
 
 GAP-ACCOUNT-001：

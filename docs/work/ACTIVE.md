@@ -32,9 +32,9 @@ Launch Gate：
 
 `HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS`
 
-Decision checkpoint：R-01 / R-02 / R-03A / R-03B / R-03C / R-03D DECIDED；R-03 overall DECIDED。
+Decision checkpoint：R-01 / R-02 / R-03A/B/C/D / R-04A/B/C/D/E DECIDED；R-03 overall DECIDED，R-04 remains IN_PROGRESS。
 
-Remaining mandatory architecture decision：R-04。
+Remaining mandatory architecture decisions：R-04F / R-04G / R-04H。
 
 Detailed authority：
 
@@ -66,6 +66,23 @@ Post-R-03 correction scope expansion：
 This expansion was not part of the original 35 / 151。
 
 Do not begin implementation until R-04 is decided and a replacement correction Work Package explicitly maps、sizes and authorizes the expanded scope。
+
+
+Post-R-04A-E correction scope expansion：
+
+- BrokerOrderStateProvider。
+- broker_client_order_ref。
+- BrokerActionAttempt / BrokerActionResolution / BrokerActionHead。
+- BrokerDiscoveryObservation / ExecutionContinuityEpoch。
+- BrokerReportInbox / BrokerReportApplication。
+- AccountRecoveryControl。
+- AccountAuthorityCommitReceipt / mutation fingerprint。
+- shared AccountAuthorityCommitService / equivalent authority UoW。
+- recovery reconstruction / terminal-economic invariants。
+
+This expansion is also outside the original 35 / 151 and is not yet weighted。
+
+Do not begin correction implementation until R-04F/G/H are decided and the replacement Work Package explicitly maps、sizes and authorizes all R-01 through R-04 correction scope。
 
 
 ## 4. Recommended Model

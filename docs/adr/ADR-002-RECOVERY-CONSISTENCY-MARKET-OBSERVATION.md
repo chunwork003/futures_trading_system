@@ -2,7 +2,7 @@
 
 ## 1. Status
 
-**DECISION CHECKPOINT 2 ACCEPTED — ADR REMAINS OPEN**
+**DECISION CHECKPOINT 3 ACCEPTED — ADR REMAINS OPEN**
 
 - Decision date：2026-09-25。
 - Runtime implementation baseline：`6b62239bca1d11543944f9f078e577e16010bcbf`。
@@ -11,8 +11,8 @@
 - Runtime result：TEST_PASS。
 - Architecture acceptance：HOLD。
 - 35 leaves / weight 151：IMPLEMENTED CANDIDATE，NOT ACCEPTED。
-- Accepted decisions through this checkpoint：R-01、R-02、R-03A、R-03B、R-03C、R-03D；R-03 is fully DECIDED。
-- Still open：R-04；R-12/R-13/R-14/K520 remain linked dependencies。
+- Accepted decisions through this checkpoint：R-01、R-02、R-03A/B/C/D、R-04A/B/C/D/E；R-03 is fully DECIDED，R-04A-E are DECIDED and R-04 remains IN_PROGRESS。
+- Still open：R-04F、R-04G、R-04H；R-12/R-13/R-14/K520 remain linked dependencies。
 - No further runtime execution is authorized by this ADR。
 
 ## 2. Why Acceptance Is On Hold
@@ -751,19 +751,346 @@ R-14 maps to GAP-DATA-001 and relates to B250/B720、D340 and K520。
 
 R-14 does not reopen R-03 identity decisions and does not block Decision Checkpoint 2；it is a future production market-data/recovery safety dependency。
 
-## 10. Open Decisions After Checkpoint 2
+## 10. R-04A — Broker Order Discovery Authority
 
-R-04 — non-terminal broker order discovery / submission outcome reconciliation / safe remediation。
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+Production restart recovery requires an account-scoped broker-neutral read-only BrokerOrderStateProvider or equivalent capability。
+
+It is separate from the legacy execution Broker submit/cancel interface and must not depend on restart-preexisting native Trade objects or process-memory caches。
+
+Recovery discovery for Shioaji requires authoritative account refresh before evaluating broker execution state。
+
+trade_cache_health is diagnostic evidence and does not replace authoritative refresh。
+
+Exact BrokerAccount filtering is mandatory because list_trades may expose trades from more than one account context。
+
+Wrong-account contamination is an adapter contract failure。
+
+Broker execution query failure becomes typed unknown external execution state for the affected BrokerAccount。
+
+BrokerAccount recovery HALT blocks material execution/readiness actions but does not prohibit read-only audit/history access to already durable internal evidence。
+
+## 11. R-04B — Durable Broker Correlation Identity
+
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED / BROKER_CAPABILITY_GATE。
+
+Every production submission requires an immutable broker_client_order_ref durable before broker I/O。
+
+broker_client_order_ref must be generated and persisted inside the same sequence-0 PENDING causal transaction。
+
+Therefore every durable PENDING order is defined to already contain a valid broker_client_order_ref。
+
+broker_client_order_ref is distinct from broker-assigned broker_order_id。
+
+All SUBMIT attempts for the same canonical order reuse the same broker_client_order_ref。
+
+Retry must not create a new correlation identity；reusing the same ref intentionally preserves duplicate-submission detection。
+
+Recovery matching authority is exact deterministic identity only。
+
+Attribute/time-window heuristic matching is forbidden as money-risk authority。
+
+For Shioaji，custom_field is the leading broker-native carrier candidate，but production order submission is default-deny until exact place-order -> refresh -> restart-like list_trades round-trip stability is verified for the pinned SDK capability。
+
+If the candidate field cannot preserve exact deterministic identity，production-safe Shioaji submission remains BLOCKED until another broker-supported deterministic correlation mechanism is verified。
+
+## 12. R-04C — Discovery Classification / Broker Action Attempt
+
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+Discovery completeness and exact-match cardinality are separate axes。
+
+Discovery result distinguishes：
+
+- COMPLETE_FOR_REQUIRED_SCOPE。
+- INCOMPLETE。
+- typed query/external-state failure。
+
+Exact match cardinality distinguishes：
+
+- zero。
+- exactly one。
+- more than one。
+
+Positive broker evidence may be retained even when discovery is incomplete；absence has no authority unless required scope/horizon is complete。
+
+Material external side effects use append-only BrokerActionAttempt evidence。
+
+V1 action types include SUBMIT and CANCEL；future AMEND/REPLACE must use the same durable-before-broker-call pattern。
+
+BrokerActionAttempt is not OrderStatus。
+
+Attempt evidence commits and advances BrokerAccount authority revision before broker API invocation。
+
+SUBMIT attempt absent after durable PENDING proves broker submission could not yet have been invoked by contract。
+
+SUBMIT attempt present with no authoritative exact broker match is SUBMISSION_OUTCOME_UNRESOLVED and must not be blindly retried。
+
+CANCEL attempt present while broker order remains active is CANCEL_OUTCOME_UNRESOLVED；active external state does not prove cancel failed。
+
+More than one exact external order for one immutable client correlation identity is AMBIGUOUS_DUPLICATE_EXTERNAL_ORDER -> integrity incident。
+
+BrokerActionAttempt / BrokerActionResolution are immutable evidence。
+
+BrokerActionHead or equivalent mutable concurrency projection prevents concurrent unresolved attempts for the same order/action。
+
+The constraint must be database-enforced；check-then-write TOCTOU is forbidden。
+
+Manual release/retry of unresolved submit/cancel outcomes is high-risk authority and depends on R-13；production default-deny until R-13。
+
+Automated recovery guarantee is bounded by the broker verified discovery horizon。
+
+For Shioaji current official semantics，cross-day unresolved actions outside verified order-discovery horizon require out-of-band evidence and are not claimed as fully automated V1 recovery。
+
+## 13. R-04D — Discovery Health / Execution Continuity
+
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+R-04D uses two orthogonal broker-neutral gates：
+
+- RecoveryDiscoveryGate：PASS / INCOMPLETE。
+- ExecutionContinuityGate：READY / DEGRADED_RECOVERABLE / NOT_READY。
+
+Final BrokerAccount READY / REVIEW / HALT belongs to R-04H，not R-04D。
+
+trade_cache_health is broker-specific diagnostic evidence and never the sole recovery authority。
+
+Healthy is neither necessary nor sufficient for COMPLETE_FOR_REQUIRED_SCOPE。
+
+Health meaning depends on event_type + reason + required recovery scope + unresolved execution context。
+
+A coherent BrokerDiscoveryObservation / discovery_run_id fences one recovery evidence collection。
+
+Required ordering：authoritative refresh completes -> broker state read/filter/canonicalize -> post-refresh health observed -> same-run completeness evaluated。
+
+Stale/pre-refresh health evidence cannot be combined with later broker records。
+
+NoBaseline is informational by itself。
+
+NotSubscribed may leave current discovery complete while continuity is NOT_READY；automatic subscribe -> refresh -> re-evaluate is allowed because subscription repair is not an economic mutation。
+
+SequenceGap before authoritative reconciliation prevents discovery/continuity trust。
+
+After successful authoritative current-state reconciliation，a new ExecutionContinuityEpoch may be established while historical_stream_integrity remains DEGRADED。
+
+Re-anchor never rewrites history to pretend the gap did not occur。
+
+PendingReport surviving authoritative reconciliation is unresolved material broker evidence；Discovery remains INCOMPLETE and Continuity NOT_READY。
+
+Historical UntrackableEventId may be re-anchored for current-state discovery，but persistent inability to track required future material event identity prevents Continuity READY。
+
+No ad-hoc synthetic broker event identity is allowed。
+
+ProjectionFailed invalidates affected Trade/list_trades projection as sufficient discovery authority unless successful reconciliation repairs it or a separately frozen authoritative reconstruction path exists。
+
+ExecutionContinuityEpoch is a local operational fence，not a claim of broker-side linearizable snapshot/high-water semantics。
+
+Pinned/verified Shioaji event-tracking capability remains a production gate。
+
+## 14. R-04E — Broker Snapshot to Canonical Execution Reconstruction
+
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED / BROKER_CAPABILITY_GATES_REMAIN。
+
+### 14.1 Reconstruction authority
+
+Observed current state reconstruction is not historical broker-event reconstruction。
+
+Recovery must never fabricate unsupported SUBMITTED / PARTIALLY_FILLED intermediate events、broker callback event IDs or guessed historical timestamps merely to make history contiguous。
+
+OrderEvent is canonical immutable material order-lifecycle evidence，not a literal broker callback DTO。
+
+OrderEvent provenance may therefore originate from LOCAL_OMS、BROKER_CALLBACK or BROKER_DISCOVERY。
+
+Authoritative discovery may re-anchor canonical Order state only when all economically material evidence required by that transition can be reconstructed and atomically committed。
+
+Broker target state may be known while canonical reconstruction remains incomplete。
+
+### 14.2 Fill evidence / identity
+
+Canonical Fill may be reconstructed only from deal-level broker evidence。
+
+Cumulative deal_quantity or average values alone do not authorize synthetic Fill creation。
+
+Fill identity must derive from verified broker-native restart-stable BrokerDealIdentity evidence。
+
+Callback-only identity is insufficient as the sole recovery key。
+
+No timestamp/price/quantity heuristic hash fallback is allowed。
+
+Shioaji Deal.seq is the leading V1 candidate but remains production capability verification required。
+
+Same DealIdentity + same canonical content is duplicate/corroborating evidence。
+
+Same DealIdentity + different material content is an integrity conflict。
+
+### 14.3 Lifecycle reconstruction
+
+Deal-before-order-report is a valid normal path。
+
+PENDING -> PARTIALLY_FILLED and PENDING -> FILLED are legal recovery/live transitions when supported by material evidence。
+
+PARTIALLY_FILLED -> PARTIALLY_FILLED with newly accepted Fill evidence is a material same-status change and requires a new canonical OrderEvent/account revision。
+
+Late lower-information callback evidence must not regress canonical projection。
+
+A contradictory coherent authoritative discovery is not merely ignored；it requires integrity/incompleteness evaluation。
+
+PendingSubmit is a supported broker non-terminal observation but does not automatically promote canonical state to SUBMITTED。
+
+PreSubmitted / Inactive / relevant Failed transition semantics remain broker capability verification required。
+
+Unverified quantity-modification recovery is V1 default-deny。
+
+Canonical Order.quantity remains the known original execution request；broker effective/reduced quantity semantics may not silently rewrite it。
+
+### 14.4 Terminal economic immutability
+
+Terminal acceptance means lifecycle terminal + economic result sealed。
+
+FILLED / CANCELLED / REJECTED may be canonically accepted only when all economically required evidence for that terminal result is reconstructable and atomically committable。
+
+After terminal canonical acceptance：
+
+- no additional Fill may be attached to that Order。
+- filled_quantity may not change。
+- average_fill_price may not change。
+- expected-position effect may not change。
+- terminal status may not regress or receive same-terminal economic enrichment。
+
+Complete authoritative broker evidence contradicting sealed terminal economics is INTEGRITY_CONFLICT。
+
+Incomplete broker evidence yields RECONSTRUCTION_INCOMPLETE instead of false corruption claims。
+
+Future broker/exchange trade correction or bust semantics require a separate explicit correction-domain contract；they are not implemented by weakening terminal immutability。
+
+### 14.5 Fill-set economic authority
+
+Verified broker deal evidence -> canonical Fill set -> Order filled economics -> expected AccountPositionSnapshot is the internal authority chain。
+
+Canonical Fill set is the internal filled-economic authority。
+
+Order.filled_quantity is derived from the canonical Fill set。
+
+Order.average_fill_price is derived from the quantity-weighted canonical Fill set when fills exist。
+
+Broker aggregate deal_quantity / average values are external validation/reconciliation evidence and may not directly overwrite canonical economics。
+
+A broker identifiable DealSet proper superset may reconstruct verified missing Fill(s)。
+
+A complete broker DealSet proper subset of durable LocalFillSet is an integrity conflict。
+
+Aggregate mismatch without sufficient individual deal identity is RECONSTRUCTION_INCOMPLETE。
+
+### 14.6 Account recovery mutation fence
+
+Recovery must compare broker evidence against a durable local recovery cut。
+
+recovery_cut_revision is AccountStateHead.current_revision，not a parallel high-water system。
+
+New material strategy execution is blocked while the recovery fence is active。
+
+Broker evidence ingress is not blocked。
+
+Post-cut callback evidence must not directly bypass the recovery fence and must not be dropped。
+
+Production broker callback ingress uses durable BrokerReportInbox evidence before deferred canonical application。
+
+Account-serialized coordination controls ordering/application；durable inbox provides crash-safe evidence capture。
+
+BrokerReportInboxEntry itself does not advance AccountStateHead。
+
+BrokerReportApplication records APPLIED / DUPLICATE / CORROBORATED / DEFERRED / CONFLICT semantics without mutating historical inbox evidence。
+
+AccountRecoveryControl or equivalent durable control row owns short recovery-session/final-handoff concurrency control and is distinct from economic AccountStateHead authority。
+
+Final handoff from RECOVERING to normal must be race-free with callback ingress。
+
+### 14.7 Atomic account-authority commit
+
+One atomic material authority commit equals one BrokerAccount revision。
+
+One revision contains at most one canonical OrderEvent but may include multiple Fill records、one new complete expected-position snapshot、multiple BrokerActionResolution records/head mutations and exactly one AccountRecoveryCheckpoint。
+
+Every accepted OrderEvent belongs to exactly one revision-advancing authority commit，but not every authority commit requires an OrderEvent。
+
+A single discovery run affecting multiple orders may therefore generate multiple sequential account revisions；revision order is canonical acceptance order，not claimed broker callback history。
+
+Before recovery mutation commit，AccountStateHead must be locked and equal recovery_cut_revision。
+
+Mismatch is STALE_RECOVERY_CUT and causes abort/re-evaluation，not silent application of stale broker evidence。
+
+Broker network I/O never occurs while AccountStateHead is locked。
+
+When one broker evidence set both changes lifecycle and resolves an open BrokerActionAttempt，Order/Fill/expected-position effects and BrokerActionResolution/head clear belong to the same authority transaction/revision。
+
+Position-changing Fill requires a complete new AccountPositionSnapshot in the same transaction。
+
+Status-only transition carries forward the prior exact expected_snapshot_id。
+
+Incomplete/conflicting/unverified reconstruction never creates a partial authority revision。
+
+### 14.8 Bundle idempotency / ambiguous commit
+
+Every material authority mutation has a stable AccountAuthorityCommit identity that is reproducible across retry/reconnect/process recovery。
+
+committed_revision is a result，not the idempotency identity。
+
+authority_commit_id and mutation_fingerprint are separate responsibilities。
+
+same commit identity + same fingerprint -> return/deduplicate prior committed result。
+
+same commit identity + different fingerprint -> IDEMPOTENCY_INTEGRITY_CONFLICT。
+
+Retry first checks committed receipt identity；only if absent may it validate expected_head_revision and attempt the mutation。
+
+Ambiguous COMMIT outcome is resolved by querying the authoritative PostgreSQL SOR for the same committed receipt before retry。
+
+Commit receipt and all economic/account authority mutations must be in the same database transaction。
+
+Domain retains a typed AccountAuthorityCommitReceipt contract。
+
+V1 physical persistence may map that receipt into the existing append-only Trading Event Ledger rather than create a parallel receipt authority table。
+
+InboxEntry identity、BrokerDeal/Fill identity and AccountAuthorityCommit identity are distinct。
+
+The system does not claim exactly-once broker callback delivery；it requires durable evidence capture + idempotent canonical application + deterministic exactly-once economic effect。
+
+### 14.9 Shared persistence primitive
+
+Live execution、recovery re-anchor and broker-action resolution must share one BrokerAccount authority-commit primitive。
+
+Do not create an independent recovery persistence authority that reimplements Fill / snapshot / order / revision invariants。
+
+Existing ExecutionPersistenceService may become/delegate to a higher AccountAuthorityCommitService compatibility facade rather than grow into an opaque giant procedure。
+
+### 14.10 Remaining broker capability gates
+
+- Shioaji exact restart-stable FillKey：VERIFICATION_REQUIRED。
+- broker_client_order_ref/custom_field round-trip：VERIFICATION_REQUIRED / production default-deny。
+- PreSubmitted / Inactive / relevant Failed mapping：CAPABILITY_VERIFICATION_REQUIRED。
+- quantity modification recovery：DEFAULT_DENY / DEFERRED。
+- pinned Shioaji event tracking capability：VERIFICATION_REQUIRED。
+
+These gates do not reopen R-04E architecture；they remain implementation/production authorization gates。
+
+## 15. Open Decisions After Checkpoint 3
+
+R-04F — remaining terminal/non-terminal recovery policy and operational remediation boundary。
+
+R-04G — safe retry / resend / manual-clearance policy。
+
+R-04H — final BrokerAccount READY / REVIEW / HALT composition。
 
 R-12 — ReconciliationRun audit contract。
 
-R-13 — Operator Authorization / Approval Runtime Contract mapped to existing L/N Blueprint。
+R-13 — Operator Authorization / Approval Runtime Contract。
 
 R-14 / GAP-DATA-001 — market-data completeness / gap detection。
 
-K520 — incremental feature/state provenance required for exact historical correction impact horizon。
+K520 — incremental feature/state provenance horizon。
 
-## 11. Runtime Correction Items Already Identified
+## 16. Runtime Correction Items Already Identified
 
 These are not new design choices unless a later decision explicitly changes them：
 
@@ -776,10 +1103,10 @@ These are not new design choices unless a later decision explicitly changes them
 - production broker submission orchestration must commit initial PENDING before broker I/O。
 - StrategyStateSnapshot persistence must be integrated with material execution causal boundary。
 
-## 12. Consequence
+## 17. Consequence
 
 Runtime commit remains a useful implementation baseline and is not reverted。
 
-However GAP-08EFGHI cannot move to ACCEPTED until R-04 and remaining mandatory correction dependencies are resolved、the expanded correction scope is explicitly frozen/weighted，and bounded correction runtime passes targeted/compatibility/full-regression verification。
+However GAP-08EFGHI cannot move to ACCEPTED until R-04F/G/H and remaining mandatory correction dependencies are resolved、the full R-03/R-04 correction scope is explicitly frozen/weighted，and bounded correction runtime passes targeted/compatibility/full-regression verification。
 
 No LIVE authorization is implied。

@@ -373,7 +373,13 @@ Post-runtime architecture review decision checkpoint：
 - R-03C revision ID/value-object contract：DECIDED / CORRECTION_REQUIRED。
 - R-03D cross-environment/source authority：DECIDED / CORRECTION_REQUIRED。
 - R-03 overall：DECIDED。
-- R-04 non-terminal broker discovery/reconciliation：OPEN / mandatory dependency。
+- R-04 overall：IN_PROGRESS / mandatory dependency。
+- R-04A broker order discovery authority：DECIDED / CORRECTION_REQUIRED。
+- R-04B durable broker correlation identity：DECIDED / CORRECTION_REQUIRED / capability gate。
+- R-04C discovery classification / BrokerActionAttempt：DECIDED / CORRECTION_REQUIRED。
+- R-04D discovery health / execution continuity：DECIDED / CORRECTION_REQUIRED。
+- R-04E canonical execution reconstruction：DECIDED / CORRECTION_REQUIRED / capability gates remain。
+- R-04F / R-04G / R-04H：OPEN。
 - R-14 / GAP-DATA-001 market-data completeness/gap detection：OPEN / future production safety dependency。
 
 Post-R-03 correction scope expansion：
@@ -389,6 +395,33 @@ Post-R-03 correction scope expansion：
 This scope was not part of the original 35 leaves / weight 151 implementation candidate。
 
 No new lifecycle weight is claimed yet；the correction Work Package must map/reweight it before runtime authorization。
+
+Post-R-04A-E correction scope expansion：
+
+- BrokerOrderStateProvider / authoritative account-scoped order discovery。
+- broker_client_order_ref in durable sequence-0 PENDING authority boundary。
+- BrokerActionAttempt / BrokerActionResolution / BrokerActionHead。
+- BrokerDiscoveryObservation / DiscoveryCompleteness / ExecutionContinuityEpoch。
+- BrokerReportInboxEntry / BrokerReportApplication。
+- AccountRecoveryControl durable recovery fence。
+- AccountAuthorityCommitReceipt / stable mutation fingerprint。
+- AccountAuthorityCommitService or equivalent shared account-authority UoW。
+- recovery OrderEvent / Fill / Order projection / expected snapshot / checkpoint atomic commit。
+- terminal economic sealing and Fill-set economic authority。
+
+R-04A-E scope was not part of the original 35 leaves / weight 151 implementation candidate。
+
+No lifecycle weight is claimed yet。
+
+Production capability gates：
+
+- Shioaji client correlation round-trip verification。
+- exact restart-stable FillKey verification。
+- pinned event-id/tracking capability verification。
+- PreSubmitted / Inactive / relevant Failed status semantics。
+- quantity-modification recovery remains default-deny。
+
+R-13 remains mandatory for high-risk manual unresolved-action clearance/retry。
 
 Detailed authoritative record：
 

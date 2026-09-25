@@ -16,7 +16,7 @@ Architecture baseline：
 
 Recorded full regression：
 
-`800 passed`
+`934 passed / 4 skipped / 1 warning`
 
 Known local untracked：
 
@@ -36,9 +36,9 @@ Architecture acceptance：HOLD。
 
 Do not rerun GAP-08EFGHI and do not mark 35 / 151 ACCEPTED。
 
-Decided：R-01、R-02、R-03A、R-03B、R-03C、R-03D；R-03 overall DECIDED。
+Decided：R-01、R-02、R-03A/B/C/D、R-04A/B/C/D/E；R-03 overall DECIDED，R-04 remains IN_PROGRESS。
 
-Open mandatory decision：R-04。R-14/GAP-DATA-001 is a separate future market-data completeness dependency。
+Open mandatory decisions：R-04F / R-04G / R-04H。R-14/GAP-DATA-001 remains a separate future market-data completeness dependency。
 
 R-03 correction scope expansion：
 
@@ -49,6 +49,22 @@ R-03 correction scope expansion：
 - durable accepted observation before strategy delivery。
 
 This additional scope is outside the original 35 / 151 and is not yet reweighted。
+
+
+R-04A-E correction scope expansion：
+
+- restart-safe broker order discovery / correlation。
+- durable BrokerAction attempt/resolution evidence。
+- discovery/continuity observation fences。
+- durable callback inbox and recovery control。
+- bundle-level AccountAuthorityCommit idempotency。
+- shared atomic BrokerAccount authority-commit primitive。
+- broker-discovery OrderEvent/Fill reconstruction。
+- terminal economic immutability / Fill-set authority。
+
+This additional scope is outside the original 35 / 151 and is not yet reweighted。
+
+No Codex/runtime correction is authorized before R-04F/G/H closure and a replacement correction Work Package freeze。
 
 
 Detailed authoritative decision record：

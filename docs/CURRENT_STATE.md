@@ -100,7 +100,13 @@ Decision checkpoint：
 - R-03C DECIDED / CORRECTION_REQUIRED。
 - R-03D DECIDED / CORRECTION_REQUIRED。
 - R-03 overall DECIDED。
-- R-04 OPEN / mandatory dependency。
+- R-04 overall IN_PROGRESS / mandatory dependency。
+- R-04A Broker Order Discovery：DECIDED / CORRECTION_REQUIRED。
+- R-04B Durable Broker Correlation：DECIDED / CORRECTION_REQUIRED / capability gate。
+- R-04C Discovery Classification / BrokerActionAttempt：DECIDED / CORRECTION_REQUIRED。
+- R-04D Discovery Health / Execution Continuity：DECIDED / CORRECTION_REQUIRED。
+- R-04E Broker Snapshot Reconstruction：DECIDED / CORRECTION_REQUIRED / capability gates remain。
+- R-04F / R-04G / R-04H：OPEN。
 - R-14 / GAP-DATA-001 OPEN / production market-data completeness follow-up。
 
 Correction scope expansion discovered by R-03：
@@ -113,6 +119,26 @@ Correction scope expansion discovered by R-03：
 This scope was not contained in the original 35 leaves / weight 151 runtime bundle。
 
 It is not yet lifecycle-weighted and must be explicitly mapped/frozen before correction runtime authorization。
+
+Correction scope expansion discovered by R-04A-E：
+
+- BrokerOrderStateProvider / account-scoped authoritative execution discovery。
+- immutable broker_client_order_ref persisted with sequence-0 PENDING。
+- BrokerActionAttempt / BrokerActionResolution / BrokerActionHead。
+- BrokerDiscoveryObservation / coherent discovery-run evidence。
+- ExecutionContinuityEpoch。
+- durable BrokerReportInbox / BrokerReportApplication。
+- durable AccountRecoveryControl recovery fence / final handoff。
+- AccountAuthorityCommitReceipt contract and bundle-level idempotency。
+- shared AccountAuthorityCommitService or equivalent BrokerAccount authority-commit primitive。
+- recovery-sourced OrderEvent / Fill / expected-position atomic reconstruction。
+- terminal economic immutability / Fill-set economic authority。
+
+This R-04 expansion is additional to both the original 35 / 151 bundle and the R-03 expansion。
+
+It is not yet lifecycle-weighted and does not authorize runtime implementation。
+
+Broker capability gates remain for exact Shioaji FillKey、client-ref round-trip、event tracking、PreSubmitted/Inactive/Failed semantics and quantity modification。
 
 Authoritative detailed record：
 
@@ -217,7 +243,7 @@ Engineering leaves：
 
 +
 
-44.17%。
+47.92%。
 
 Architecture Design Coverage：87.60%。
 Design Freeze Coverage：52.22%。
