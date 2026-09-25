@@ -205,37 +205,36 @@ Accepted runtime commit：`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`。
 
 Status：
 
-IN_PROGRESS / GAP-08ABCD_READY_FOR_EXECUTION
+IN_PROGRESS / GAP-08EF_ARCHITECTURE_REVIEW
 
-Runtime bundles：
+Accepted：
 
-1. GAP-08ABCD — Persistence Foundation + Event Ledger。
-2. GAP-08EF — Execution + Account/Reconciliation Persistence。
-3. GAP-08GHI — Strategy State + Recovery / Readiness。
+- GAP-08ABCD Persistence Foundation + Event Ledger。
+- runtime commit `98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`。
 
 Current：
 
-GAP-08ABCD。
+GAP-08EF Execution + Account/Reconciliation Persistence。
 
-Design Freeze：
+Status：
 
-COMPLETED。
+READY_FOR_ARCHITECTURE_REVIEW。
 
-Runtime Gate：
+Review：
 
-RELEASED / AUTHORIZED_LEVEL_3A。
+- K310-K450。
+- direct OMS persistence seam / canonical execution ownership。
+- maximize coherent bundle size without crossing unresolved semantics。
 
-PostgreSQL 17/18 project integration：
+Runtime：
 
-PENDING。
+NOT_YET_AUTHORIZED。
 
-K520：
+Later：
 
-DEFERRED_TO_GAP_09。
+GAP-08GHI Strategy State + Recovery / Readiness。
 
-Sizing：
-
-dynamic efficiency calibration；no fixed leaf count or quota target。
+K520：DEFERRED_TO_GAP_09。
 
 ---
 

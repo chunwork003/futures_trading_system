@@ -14,15 +14,15 @@ Persistence Foundation + Event Ledger
 
 ## 3. Status
 
-READY_FOR_EXECUTION
+COMPLETED / ACCEPTED
 
 Design Freeze：COMPLETED。
 
-Runtime Authorization：AUTHORIZED。
+Runtime Authorization：COMPLETED。
 
 Launch Gate：
 
-`RELEASED_ARCHITECTURE_FREEZE`
+`CONSUMED`
 
 Architecture ancestor：
 
@@ -31,6 +31,10 @@ Architecture ancestor：
 Design freeze commit：
 
 `17ef3eabe924a45e62fb4f22451c3c19b2497ff3`
+
+Accepted runtime commit：
+
+`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
 
 ---
 
@@ -548,6 +552,50 @@ Compare accepted work / resource after deterministic acceptance。
 
 ---
 
+## 29A. Runtime Completion Evidence
+
+Result：PASS。
+
+Accepted runtime commit：
+
+`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
+
+Verification：
+
+- targeted：28 passed。
+- PostgreSQL integration：2 skipped。
+- compatibility：80 passed。
+- full regression：897 passed / 2 skipped。
+- git diff --check：PASS。
+- final status：only `?? data/`。
+
+PostgreSQL compatibility：
+
+- 17：PENDING。
+- 18：PENDING。
+
+Calibration：
+
+- user-observed 5HR：12%。
+- files read：8。
+- files created：14。
+- existing files modified：1。
+- tool operations：23。
+- retries：1。
+- correction cycles：1。
+- wall time：約 12m09s。
+- token/context：UNAVAILABLE。
+
+Accepted Blueprint：
+
+19 leaves / weight 77。
+
+Next runtime：
+
+NOT AUTHORIZED until GAP-08EF architecture/design freeze and gate release。
+
+---
+
 ## 30. Documentation Responsibility
 
 Codex runtime does not update deterministic governance/metrics/queue closure docs。
@@ -583,8 +631,8 @@ No whole-repo rescan。
 
 Current：
 
-    RELEASED_ARCHITECTURE_FREEZE
+    CONSUMED
 
 Runtime authorization：
 
-    AUTHORIZED
+    COMPLETED

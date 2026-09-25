@@ -546,3 +546,61 @@ Conservative metric rule：
 只有 ACTIVE Implements 的 I120 / I130 / I140 / I940 在本次升為 ACCEPTED。
 
 I720 / I730 / I740 / I820 / I920 / I930 remain outside this accepted runtime scope。
+
+## 10. GAP-08ABCD Acceptance Evidence
+
+Work Package：
+
+    GAP-08ABCD
+
+Runtime commit：
+
+    98dc38ce39bdab191ce0bc6d71e37ef69059ec9c
+
+Accepted Blueprint leaves：
+
+    K110 K120 K130 K140 K150 K160 K170
+    K210 K220 K230 K240
+    K610 K620 K630 K640 K650 K660 K670 K680
+
+Accepted weight：
+
+    77
+
+Verification：
+
+    targeted: 28 passed
+    PostgreSQL integration: 2 skipped
+    compatibility: 80 passed
+    full regression: 897 passed / 2 skipped
+    git diff --check: PASS
+
+PostgreSQL compatibility：
+
+    17: PENDING
+    18: PENDING
+
+Calibration：
+
+    model: GPT-5.6 Sol
+    effort: 輕度
+    user-observed 5HR usage: 12%
+    files read: 8
+    files created: 14
+    existing files modified: 1
+    tool operations: 23
+    implementation correction cycles: 1
+    command/tool retries: 1
+    wall time: approximately 12m09s
+    token/context usage: unavailable
+
+Six-sample calibration：
+
+    5HR observations: 12%, 14%, 11%, 16%, 10%, 12%
+    average: 12.50%
+    total implementation correction cycles: 2
+
+Sizing conclusion：
+
+expanded coherent scope did not increase observed quota usage，
+but future expansion remains bounded by canonical ownership / authority / recovery safety seams。

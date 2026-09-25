@@ -347,50 +347,56 @@ Capability evidence does not authorize LIVE。
 
 Status：
 
-IN_PROGRESS / GAP-08ABCD_READY_FOR_EXECUTION。
+IN_PROGRESS / GAP-08EF_READY_FOR_ARCHITECTURE_REVIEW。
 
-Architecture：
+Accepted：
 
-storage-neutral contracts + PostgreSQL operational adapter family + Parquet/DuckDB/Polars analytical plane。
+GAP-08ABCD Persistence Foundation + Event Ledger。
 
-Runtime bundles：
+Accepted runtime commit：
 
-- GAP-08ABCD：Persistence Foundation + Event Ledger。
-- GAP-08EF：Execution + Account/Reconciliation Persistence。
-- GAP-08GHI：Strategy State + Recovery / Readiness。
+`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
 
-Current：
-
-GAP-08ABCD。
-
-Blueprint：
+Accepted scope：
 
 K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680。
 
-Design Freeze：
+Verification：
 
-COMPLETED。
+- targeted 28 passed。
+- compatibility 80 passed。
+- full regression 897 passed / 2 skipped。
+- PG17 / PG18 PENDING。
 
-Runtime Launch Gate：
+Current candidate：
 
-RELEASED_ARCHITECTURE_FREEZE。
+GAP-08EF Execution + Account/Reconciliation Persistence。
+
+Base Blueprint scope：
+
+K310 K320 K330 K340 K350 K410 K420 K430 K440 K450。
+
+Architecture review dependency：
+
+- canonical Order / Fill / OrderEvent ownership。
+- H170 / H440 / H510-H550 / H830 direct OMS persistence seam。
+- expected / actual schema separation。
+- ReconciliationCase persistence lifecycle。
+- execution/account transaction authority。
 
 Runtime Authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+NOT_YET_AUTHORIZED。
 
-PostgreSQL compatibility：
+GAP-08GHI：
 
-- 17：PENDING。
-- 18：PENDING。
-
-Compatibility evidence does not authorize LIVE。
+BLOCKED_BY_08EF_ACCEPTANCE。
 
 K520：DEFERRED_TO_GAP_09。
 
 Parent closure：
 
-GAP-08 closes after required GAP-08ABCD / GAP-08EF / GAP-08GHI acceptance。
+GAP-08 closes after required persistence/recovery bundles are accepted。
 
 ---
 

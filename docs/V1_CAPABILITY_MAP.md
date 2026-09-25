@@ -27,7 +27,7 @@ Blueprint baseline 完成後：
 
 Blueprint baseline 已啟用：
 
-本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 44.42% baseline。
+本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 47.30% baseline。
 
 ---
 
@@ -55,7 +55,7 @@ capability acceptance + relative engineering weight。
 
 Lifecycle-weighted completion：
 
-    44.42%
+    47.30%
 
 Architecture Design Coverage：
 
@@ -67,19 +67,19 @@ Design Freeze Coverage：
 
 Runtime Implementation：
 
-    39.59%
+    43.19%
 
 Unit Verification：
 
-    36.36%
+    39.96%
 
 Integration Verification：
 
-    36.27%
+    39.87%
 
 Accepted Capability：
 
-    36.27%
+    39.87%
 
 Metric basis：
 
@@ -87,7 +87,7 @@ Metric basis：
 
 Capability status：
 
-    COMPLETE 12 / PARTIAL 49 / NOT_STARTED 31
+    COMPLETE 12 / PARTIAL 51 / NOT_STARTED 29
 
 Readiness：
 
@@ -111,12 +111,12 @@ Readiness：
 | H Execution / Paper | 8 | 68.01% |
 | I Broker Adapter | 6 | 73.38% |
 | J Account / Reconciliation | 6 | 79.48% |
-| K Persistence / Recovery | 7 | 14.19% |
+| K Persistence / Recovery | 7 | 44.53% |
 | L Simulation / Live Safety | 7 | 3.66% |
 | M Python Service Boundary | 4 | 12.42% |
 | N ASP.NET Core Application | 5 | 11.26% |
 | O React Workspace | 5 | 10.31% |
-| TOTAL | 92 | 44.42% lifecycle-weighted |
+| TOTAL | 92 | 47.30% lifecycle-weighted |
 
 ---
 
@@ -258,11 +258,11 @@ Readiness：
 
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
-| K01 | PostgreSQL operational SOR | NOT_STARTED | Schema + adapter |
+| K01 | PostgreSQL operational SOR | PARTIAL | Foundation accepted；PG17/18 integration remains PENDING |
 | K02 | Order/OrderEvent/Fill persistence | NOT_STARTED | GAP-08 |
 | K03 | Position/account snapshots | NOT_STARTED | GAP-08 |
 | K04 | Decision/Risk provenance persistence | NOT_STARTED | GAP-PERSIST-001 |
-| K05 | Trading event ledger/idempotency | NOT_STARTED | GAP-08 |
+| K05 | Trading event ledger/idempotency | PARTIAL | Event ledger accepted；execution OrderEvent persistence remains GAP-08EF |
 | K06 | Strategy state snapshot | NOT_STARTED | Recovery |
 | K07 | Restart recovery + broker reconciliation | NOT_STARTED | GAP-08 |
 

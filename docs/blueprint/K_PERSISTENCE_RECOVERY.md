@@ -71,17 +71,17 @@ DuckDB PostgreSQL extension only serves optional analytical bridge use cases。
 
 | ID | Name | Purpose | Lifecycle | Weight | Maps |
 |---|---|---|---|---:|---|
-| K110 | Operational SOR Boundary | storage-neutral operational authority；PostgreSQL 為 V1 adapter family | DESIGN_FROZEN | 5 | K01 |
-| K120 | Schema Versioning / Migration | DB schema change 必須 versioned / reviewable | DESIGN_FROZEN | 4 | K01 |
-| K130 | Operational Numeric Types | money/price/margin 使用 NUMERIC-compatible exact semantics | DESIGN_FROZEN | 4 | K01 |
-| K140 | Operational Time Types | event / observation timestamps 使用 TIMESTAMPTZ | DESIGN_FROZEN | 4 | K01 |
-| K150 | Stable Identifier Types | signal/decision/order/fill/trade/account IDs 不依 display text | DESIGN_FROZEN | 4 | K01 |
-| K160 | Transaction Boundary | related state/event writes 有明確 transaction semantics | DESIGN_FROZEN | 5 | K01 |
-| K170 | DB Documentation | important table/column/function 使用繁體中文 COMMENT | DESIGN_FROZEN | 2 | K01 |
-| K210 | Repository Port Boundary | trading/domain 不直接依賴 PostgreSQL ORM/driver | DESIGN_FROZEN | 4 | K01 |
-| K220 | Append Repository Contract | event/evidence insert 與 mutable projection update 分離 | DESIGN_FROZEN | 4 | K01,K05 |
-| K230 | Snapshot Repository Contract | latest / as-of snapshot query semantics | DESIGN_FROZEN | 4 | K03 |
-| K240 | Unit-of-Work Boundary | multi-write use case consistency contract | DESIGN_FROZEN | 4 | K01 |
+| K110 | Operational SOR Boundary | storage-neutral operational authority；PostgreSQL 為 V1 adapter family | ACCEPTED | 5 | K01 |
+| K120 | Schema Versioning / Migration | DB schema change 必須 versioned / reviewable | ACCEPTED | 4 | K01 |
+| K130 | Operational Numeric Types | money/price/margin 使用 NUMERIC-compatible exact semantics | ACCEPTED | 4 | K01 |
+| K140 | Operational Time Types | event / observation timestamps 使用 TIMESTAMPTZ | ACCEPTED | 4 | K01 |
+| K150 | Stable Identifier Types | signal/decision/order/fill/trade/account IDs 不依 display text | ACCEPTED | 4 | K01 |
+| K160 | Transaction Boundary | related state/event writes 有明確 transaction semantics | ACCEPTED | 5 | K01 |
+| K170 | DB Documentation | important table/column/function 使用繁體中文 COMMENT | ACCEPTED | 2 | K01 |
+| K210 | Repository Port Boundary | trading/domain 不直接依賴 PostgreSQL ORM/driver | ACCEPTED | 4 | K01 |
+| K220 | Append Repository Contract | event/evidence insert 與 mutable projection update 分離 | ACCEPTED | 4 | K01,K05 |
+| K230 | Snapshot Repository Contract | latest / as-of snapshot query semantics | ACCEPTED | 4 | K03 |
+| K240 | Unit-of-Work Boundary | multi-write use case consistency contract | ACCEPTED | 4 | K01 |
 | K310 | Order Persistence | internal/broker order identity、status、intent linkage | DESIGNED | 4 | K02 |
 | K320 | OrderEvent Persistence | append-only order lifecycle event | DESIGNED | 5 | K02,K05 |
 | K330 | Fill Persistence | actual fill evidence durable storage | DESIGNED | 5 | K02 |
@@ -96,14 +96,14 @@ DuckDB PostgreSQL extension only serves optional analytical bridge use cases。
 | K520 | Incremental Feature State Snapshot | GAP-09 state 可 persistence/reconstruct | DESIGNED | 4 | K06 |
 | K530 | Strategy Config / Version Link | state 可連 strategy/config version | DESIGNED | 3 | K06 |
 | K540 | Safe Snapshot Boundary | snapshot 只在一致 state boundary 保存 | DESIGNED | 4 | K06 |
-| K610 | Trading Event Ledger | append-only material trading event history | DESIGN_FROZEN | 5 | K05 |
-| K620 | Event ID | globally/stably unique event identity | DESIGN_FROZEN | 3 | K05 |
-| K630 | Occurred / Received Time | event occurrence 與接收時間分離 | DESIGN_FROZEN | 4 | K05 |
-| K640 | Event Sequence | source/entity ordering 可檢查 | DESIGN_FROZEN | 4 | K05 |
-| K650 | Event Version | event schema/version 可演進 | DESIGN_FROZEN | 3 | K05 |
-| K660 | Idempotency Key | duplicate request/event 可安全辨識 | DESIGN_FROZEN | 5 | K05 |
-| K670 | Correlation / Causation IDs | material workflow 可完整 trace | DESIGN_FROZEN | 4 | K04,K05 |
-| K680 | No Silent Event Mutation | historical execution evidence 不以 update 覆蓋原事件 | DESIGN_FROZEN | 5 | K05 |
+| K610 | Trading Event Ledger | append-only material trading event history | ACCEPTED | 5 | K05 |
+| K620 | Event ID | globally/stably unique event identity | ACCEPTED | 3 | K05 |
+| K630 | Occurred / Received Time | event occurrence 與接收時間分離 | ACCEPTED | 4 | K05 |
+| K640 | Event Sequence | source/entity ordering 可檢查 | ACCEPTED | 4 | K05 |
+| K650 | Event Version | event schema/version 可演進 | ACCEPTED | 3 | K05 |
+| K660 | Idempotency Key | duplicate request/event 可安全辨識 | ACCEPTED | 5 | K05 |
+| K670 | Correlation / Causation IDs | material workflow 可完整 trace | ACCEPTED | 4 | K04,K05 |
+| K680 | No Silent Event Mutation | historical execution evidence 不以 update 覆蓋原事件 | ACCEPTED | 5 | K05 |
 | K710 | Recovery State Load | process start 載入 persisted expected / execution / strategy state | DESIGNED | 5 | K07 |
 | K720 | Broker Actual Query Dependency | recovery 必須取得 broker actual observation | DESIGNED | 5 | K07 |
 | K730 | Recovery Reconciliation | persisted expected vs actual broker state | DESIGNED | 5 | K07 |
@@ -392,8 +392,8 @@ Forbidden：operational Order/Fill persistence、startup recovery、transaction 
 
 | Order | Work Package | Blueprint Leaves | Scope | Status |
 |---:|---|---|---|---|
-| 1 | GAP-08ABCD | K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680 | Persistence Foundation + Event Ledger | READY_FOR_DESIGN_FREEZE |
-| 2 | GAP-08EF | K310 K320 K330 K340 K350 K410 K420 K430 K440 K450 | Execution + Account/Reconciliation Persistence | BLOCKED_BY_08ABCD_ACCEPTANCE |
+| 1 | GAP-08ABCD | K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680 | Persistence Foundation + Event Ledger | ACCEPTED |
+| 2 | GAP-08EF | K310 K320 K330 K340 K350 K410 K420 K430 K440 K450 | Execution + Account/Reconciliation Persistence | READY_FOR_ARCHITECTURE_REVIEW |
 | 3 | GAP-08GHI | K510 K530 K540 K710 K720 K730 K740 K750 K760 K770 | Strategy State + Recovery / Readiness | BLOCKED_BY_08EF_ACCEPTANCE |
 
 GAP-08ABCD：first expanded runtime calibration bundle。
@@ -799,6 +799,60 @@ After runtime record：
 - progress gain。
 
 Next bundle may expand or contract based on accepted work per resource and correction/safety behavior。
+
+---
+
+## GAP-08ABCD Runtime Acceptance
+
+Status：
+
+ACCEPTED。
+
+Runtime commit：
+
+    98dc38ce39bdab191ce0bc6d71e37ef69059ec9c
+
+Accepted scope：
+
+    19 leaves / weight 77
+
+Verification：
+
+- targeted：28 passed。
+- PostgreSQL integration：2 skipped because test DSNs absent。
+- compatibility：80 passed。
+- full regression：897 passed / 2 skipped。
+- git diff --check：PASS。
+- PG17：PENDING。
+- PG18：PENDING。
+
+Runtime evidence：
+
+- storage-neutral persistence contracts。
+- PostgreSQL driver / UnitOfWork / migration foundation。
+- compatibility evidence contract。
+- canonical TradingEvent。
+- append-only PostgreSQL event ledger。
+- explicit identity / sequence / idempotency conflict semantics。
+- no PostgreSQL production verification claim。
+- no LIVE authorization implication。
+
+Calibration：
+
+- user-observed 5HR：12%。
+- wall time：約 12m09s。
+- files read：8。
+- files created：14。
+- existing files modified：1。
+- tool operations：23。
+- command/tool retries：1。
+- implementation correction cycles：1。
+- token/context：UNAVAILABLE。
+
+Dynamic sizing observation：
+
+expanded scope did not increase 5HR usage above previous sample average；
+future sizing remains empirical and must still respect public-semantics / authority / recovery safety seams。
 
 ---
 

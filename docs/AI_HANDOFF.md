@@ -628,28 +628,22 @@ LIVE_AUTO NOT AUTHORIZED。
 
 ## 26. Current Progress
 
-Total V1 capability blocks：
+Total V1 capability blocks：92。
 
-92。
+Engineering leaves：603。
 
-Engineering leaves：
-
-603。
-
-Lifecycle-weighted completion：
-
-44.17%。
+Lifecycle-weighted completion：47.30%。
 
 Architecture Design Coverage：87.60%。
-Design Freeze Coverage：52.22%。
-Runtime Implementation：39.59%。
-Unit Verification：36.36%。
-Integration Verification：36.27%。
-Accepted Capability：36.27%。
+Design Freeze Coverage：54.70%。
+Runtime Implementation：43.19%。
+Unit Verification：39.96%。
+Integration Verification：39.87%。
+Accepted Capability：39.87%。
 
 Capability status：
 
-COMPLETE 12 / PARTIAL 49 / NOT_STARTED 31。
+COMPLETE 12 / PARTIAL 51 / NOT_STARTED 29。
 
 Readiness：
 
@@ -668,71 +662,58 @@ Formal Level 3A runtime samples：
 | 3 | GAP-RECON-001A | 11% | 8 | 2 | 19 | 0 | 821 |
 | 4 | GAP-RECON-001B | 16% | 8 | 2 | 22 | 1 | 847 |
 | 5 | GAP-BROKER-002 | 10% | 12 | 3 | 17 | 0 | 869 |
+| 6 | GAP-08ABCD | 12% | 8 | 15 | 23 | 1 | 897 |
 
 Observed average 5HR runtime usage：
 
-12.60%。
+12.50%。
 
 Total implementation correction cycles：
 
-1。
+2。
 
-Sample 5：
+Sample 6：
 
-- wall time：約 3m44s。
-- retries：2。
-- token/context：unavailable。
+- scope：19 leaves / weight 77。
+- wall time：約 12m09s。
+- retries：1。
+- PostgreSQL integration：2 skipped。
+- PG17 / PG18：PENDING。
+- token/context：UNAVAILABLE。
 
-Policy：
+Sizing observation：
 
-- 5HR quota percentage != token percentage。
-- token/context unavailable 時不得估算。
-- 不用目前樣本線性推算 fixed capacity。
-- Level 3B：ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
+- expanded coherent bundle did not increase observed 5HR above prior mean。
+- larger bundle increased wall/tool work but remained low-correction。
+- future bundle size must be chosen by accepted work/resource and semantic safety，not fixed quota target。
 
 ## 28. Current Active Candidate
 
-Parent：GAP-08。
-
-Current Work Package：
+Last accepted：
 
 GAP-08ABCD Persistence Foundation + Event Ledger。
 
-Blueprint：
+Runtime commit：
 
-K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680。
+`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
 
-Size：
+Next mainline：
 
-19 leaves / weight 77。
+GAP-08EF Execution + Account/Reconciliation Persistence。
 
 Status：
 
-READY_FOR_EXECUTION。
+READY_FOR_ARCHITECTURE_REVIEW。
 
-Design Freeze：
+Runtime authorization：
 
-COMPLETED。
+NOT_YET_AUTHORIZED。
 
-Runtime Gate：
+Sizing intent：
 
-RELEASED_ARCHITECTURE_FREEZE。
+expand GAP-08EF with direct OMS persistence dependencies where required；do not split merely to preserve old A/B/C/D-style package size。
 
-Runtime Authorization：
-
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
-
-Execution：
-
-GPT-5.6 Sol / 輕度 / LEVEL_3A_BOUNDED。
-
-Calibration purpose：
-
-first expanded bundle；measure accepted work per resource instead of fixed quota target。
-
-PostgreSQL 17/18：
-
-PENDING_INTEGRATION_VERIFICATION。
+GAP-08GHI remains separate until strategy/recovery public semantics are resolved。
 
 Level 3B：
 
@@ -781,7 +762,7 @@ Blueprint baseline activation 已完成：
 - 92/92 capability mapping PASS。
 - connection / state authority / source registry / traceability PASS。
 - 603 engineering leaves。
-- current lifecycle-weighted completion 44.42%。
+- current lifecycle-weighted completion 47.30%。
 - baseline commit：`432c48fb63c3d8d2760c0f2f5338e205ded63d30`。
 
 Blueprint baseline accepted 後，ACTIVE 必須列 Implements / Touches / Does Not Implement Blueprint IDs。

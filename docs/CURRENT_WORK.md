@@ -37,49 +37,48 @@ Parent GAP：
 
 GAP-08
 
-Work Package：
+Candidate：
 
-GAP-08ABCD
+GAP-08EF
 
 Title：
 
-Persistence Foundation + Event Ledger
+Execution + Account/Reconciliation Persistence
 
 Status：
 
-READY_FOR_EXECUTION
+READY_FOR_ARCHITECTURE_REVIEW
 
 Priority：
 
 P1 MAINLINE
 
-Execution Mode：
-
-LEVEL_3A_BOUNDED
-
-Recommended Model：
-
-GPT-5.6 Sol / 輕度
-
-Blueprint Implements：
-
-K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680
-
-Bundle size：
-
-19 leaves / weight 77
-
 Runtime Authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME
+NOT_YET_AUTHORIZED
 
-Launch Gate：
+Base Blueprint scope：
 
-RELEASED_ARCHITECTURE_FREEZE
+K310 K320 K330 K340 K350 K410 K420 K430 K440 K450
 
-Next：
+Architecture review must evaluate direct dependency expansion：
 
-GAP-08ABCD runtime gate released；execute ACTIVE once，then STOP。
+- H170 canonical execution ownership。
+- H440 OrderEvent contract。
+- H510-H550 OMS identity/state/persistence/recovery seams。
+- H830 persisted event idempotency identity。
+
+Reason：
+
+do not persist legacy execution ownership as a new canonical persistence contract merely to keep Work Package small。
+
+GAP-08GHI：
+
+remains blocked pending EF/OMS persistence foundation。
+
+Next action：
+
+freeze the largest coherent execution/account persistence bundle；do not start runtime before design freeze/gate。
 
 
 # Completed Work Package — GAP-BROKER-002
@@ -233,22 +232,33 @@ Corrective execution 仍未授權。
 
 # Sequencing Rule
 
-Current GAP-08 runtime bundles：
+Accepted：
 
-1. GAP-08ABCD — Persistence Foundation + Event Ledger。
-2. GAP-08EF — Execution + Account/Reconciliation Persistence。
-3. GAP-08GHI — Strategy State + Recovery / Readiness。
+1. GAP-08ABCD — CLOSED / ACCEPTED。
+
+Current：
+
+2. GAP-08EF — READY_FOR_ARCHITECTURE_REVIEW。
+
+Later：
+
+3. GAP-08GHI — BLOCKED_BY_08EF_ACCEPTANCE。
 
 K520：DEFERRED_TO_GAP_09。
 
-Dynamic sizing：
+Dynamic sizing evidence after GAP-08ABCD：
 
-- do not optimize for a fixed 5HR percentage。
-- compare accepted weight / 5HR、progress gain / 5HR、wall time、tool ops、correction cycles。
-- same context/transaction/test family may be merged。
-- split only when semantics、authority、safety、external verification or debugging isolation requires it。
+- 19 leaves / weight 77。
+- 12% user-observed 5HR。
+- six-sample 5HR average 12.50%。
+- one correction cycle。
+- 23 tool operations。
+- ~12m09s wall time。
 
-After GAP-08ABCD runtime，re-evaluate whether GAP-08EF and GAP-08GHI should remain separate or merge。
+Sizing rule：
+
+continue expanding coherent mainline work when shared context reduces repeated overhead；
+do not cross unresolved canonical ownership / recovery safety semantics merely to increase bundle size。
 
 # Mainline Queue
 
@@ -258,7 +268,7 @@ After GAP-08ABCD runtime，re-evaluate whether GAP-08EF and GAP-08GHI should rem
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
 | 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | CLOSED / ACCEPTED | GAP-ACCOUNT-001 + GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | CLOSED / ACCEPTED | Broker mapping + execution semantics |
-| 5 | GAP-08 | Trading State Persistence & Recovery | IN_PROGRESS / 08ABCD_READY_FOR_EXECUTION | Current persistence foundation bundle |
+| 5 | GAP-08 | Trading State Persistence & Recovery | IN_PROGRESS / 08EF_READY_FOR_ARCHITECTURE_REVIEW | GAP-08ABCD accepted |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |
 | 7 | GAP-09 | Incremental Feature / Market State | PENDING | Trading core stable |
 | 8 | GAP-SIM-001 | SimulationBroker / fault injection | PENDING | Execution port stable |

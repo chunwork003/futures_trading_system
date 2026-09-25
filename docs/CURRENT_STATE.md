@@ -73,48 +73,43 @@ Current milestone：
 
 M6 — Persistence / Recovery / Provenance。
 
-Parent GAP：
+GAP-08ABCD：
 
-GAP-08 Trading State Persistence & Recovery。
+COMPLETED / ACCEPTED。
 
-Runtime bundles：
+Accepted runtime commit：
 
-1. GAP-08ABCD — Persistence Foundation + Event Ledger。
-2. GAP-08EF — Execution + Account/Reconciliation Persistence。
-3. GAP-08GHI — Strategy State + Recovery / Readiness。
+`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
 
-Current Work Package：
+Verification：
 
-GAP-08ABCD。
+- targeted 28 passed。
+- PostgreSQL integration 2 skipped。
+- compatibility 80 passed。
+- full regression 897 passed / 2 skipped。
+- PG17 / PG18 remain PENDING。
 
-Blueprint scope：
+Current mainline：
 
-K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680。
-
-Size：
-
-19 leaves / weight 77。
+GAP-08EF — Execution + Account/Reconciliation Persistence。
 
 Status：
 
-READY_FOR_EXECUTION。
+READY_FOR_ARCHITECTURE_REVIEW。
 
-Design Freeze：
+Review focus：
 
-COMPLETED。
-
-Runtime Launch Gate：
-
-RELEASED_ARCHITECTURE_FREEZE。
+- K310-K450。
+- canonical Order / Fill / OrderEvent ownership。
+- H170 / H440 / H510-H550 / H830 direct OMS persistence seam。
+- expected / actual schema separation。
+- execution/account/reconciliation transaction boundary。
 
 Runtime authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+NOT_YET_AUTHORIZED。
 
-PostgreSQL compatibility：
-
-- 17：PENDING_INTEGRATION_VERIFICATION。
-- 18：PENDING_INTEGRATION_VERIFICATION。
+GAP-08GHI remains blocked until the required EF/OMS persistence foundation is accepted。
 
 Level 3B：
 
@@ -291,27 +286,33 @@ Formal Level 3A runtime samples：
 | 3 | GAP-RECON-001A | 11% | 8 | 2 | 19 | 0 | 821 |
 | 4 | GAP-RECON-001B | 16% | 8 | 2 | 22 | 1 | 847 |
 | 5 | GAP-BROKER-002 | 10% | 12 | 3 | 17 | 0 | 869 |
+| 6 | GAP-08ABCD | 12% | 8 | 15 | 23 | 1 | 897 |
 
-Five-sample average：
+Six-sample average：
 
-12.60%。
+12.50%。
 
 Total implementation correction cycles：
 
-1。
+2。
 
-Sample 5 runtime：
+Sample 6：
 
-- wall time：約 3m44s。
-- command/tool retries：2。
-- token/context：unavailable。
+- expanded bundle：19 leaves / weight 77。
+- wall time：約 12m09s。
+- retries：1。
+- PG17 / PG18 integration：PENDING。
+- token/context：UNAVAILABLE。
+
+Observation：
+
+larger coherent scope did not increase observed 5HR usage；however wall time / tool operations / correction behavior remain part of sizing evaluation。
 
 Policy：
 
-- 5HR usage 是 quota proxy，不是 token percentage。
-- token/context 未 exposed 時不得估算。
-- deterministic docs 與 runtime quota 分開觀察。
-- 不以目前五個樣本線性推算固定 token/quota capacity。
+- do not target a fixed quota percentage。
+- merge same-context work when semantics permit。
+- split only at genuine public-semantics / authority / safety / external-verification seams。
 
 ## Live State
 
@@ -327,38 +328,26 @@ Persistence、Recovery、Live Safety 尚未完成。
 
 ## Current Active Work
 
-Work Package：
+Last accepted Work Package：
 
 GAP-08ABCD Persistence Foundation + Event Ledger。
 
+Accepted runtime commit：
+
+`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
+
+Next mainline：
+
+GAP-08EF Execution + Account/Reconciliation Persistence。
+
 Status：
 
-READY_FOR_EXECUTION。
-
-Runtime Launch Gate：
-
-RELEASED_ARCHITECTURE_FREEZE。
+READY_FOR_ARCHITECTURE_REVIEW。
 
 Runtime authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+NOT_YET_AUTHORIZED。
 
-Execution Mode：
+Sizing direction：
 
-LEVEL_3A_BOUNDED。
-
-Recommended model：
-
-GPT-5.6 Sol / 輕度。
-
-Purpose：
-
-建立第一個完整 operational persistence vertical slice：contracts + PostgreSQL foundation + migration/UoW + append-only event ledger + idempotency/correlation。
-
-PostgreSQL 17 / 18 integration evidence：
-
-PENDING unless real test DSNs are available。
-
-Next：
-
-architecture-freeze commit/push verification 後 release runtime gate，然後一次交 Codex 執行 GAP-08ABCD。
+do not shrink back to small slices；review direct OMS persistence dependencies and freeze the largest coherent safe bundle。

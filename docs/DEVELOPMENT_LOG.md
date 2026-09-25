@@ -910,3 +910,51 @@ Dynamic sizing policy：evaluate accepted work per resource；no fixed quota tar
 Runtime gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
 Runtime authorization：NOT_YET_AUTHORIZED。
+
+## 2026-09-25 — GAP-08ABCD Runtime Acceptance
+
+Result：PASS。
+
+Runtime commit：
+
+`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
+
+Accepted：19 leaves / weight 77。
+
+Verification：
+
+- targeted 28 passed。
+- PostgreSQL integration 2 skipped。
+- compatibility 80 passed。
+- full regression 897 passed / 2 skipped。
+- PG17 / PG18 PENDING。
+
+Calibration：
+
+- 5HR：12%。
+- wall time：約 12m09s。
+- files read：8。
+- files changed：15。
+- tool ops：23。
+- retries：1。
+- correction cycles：1。
+- six-sample average：12.50%。
+- total correction cycles：2。
+
+Progress after acceptance：
+
+- lifecycle：47.30%。
+- runtime：43.19%。
+- unit：39.96%。
+- integration / accepted：39.87%。
+- K Persistence / Recovery：44.53%。
+
+Next mainline：
+
+GAP-08EF READY_FOR_ARCHITECTURE_REVIEW。
+
+Sizing：
+
+retain larger coherent bundle strategy；evaluate direct OMS persistence dependency before runtime freeze。
+
+Runtime：NOT_YET_AUTHORIZED。
