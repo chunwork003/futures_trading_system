@@ -29,6 +29,22 @@
 
 ## Chronological Log
 
+### 2026-09-25 — GAP-08EFGHI Post-Runtime Architecture Decision Checkpoint 2
+
+- Decision checkpoint commit preparation after checkpoint 1 `f580c0f2f9a9f6fdde175f872557ce6fb334f1f5`。
+- Runtime candidate remains `6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Runtime verification remains 934 passed / 4 skipped / 1 warning。
+- Architecture acceptance remains HOLD。
+- R-03C accepted：versioned opaque mor1 SHA-256 revision identity、typed value objects、canonical encoding、atomic identity conflict handling、shared canonical validation、migration rule、golden vectors。
+- R-03D accepted：shared canonicalizer、versioned acceptance policy、source-role separation、candidate vs accepted evidence、conflict/quarantine rules、operational evidence persistence、durable-before-delivery、derived provenance、manual-resolution gate。
+- R-03 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- New explicit follow-up：R-14 / GAP-DATA-001 — operational market-data completeness / gap detection。
+- New correction scope outside original 35 / 151：MarketObservationRevision operational evidence repository + PostgreSQL adapter + candidate/provenance evidence + delivery orchestration。
+- Additional correction scope is not yet lifecycle-weighted。
+- No runtime correction authorized。
+- Next mandatory architecture decision：R-04 Broker Non-Terminal Order Discovery / submission-outcome reconciliation / safe remediation。
+
+
 ### 2026-09-25 — GAP-08EFGHI Post-Runtime Architecture Decision Checkpoint 1
 
 - Runtime candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。

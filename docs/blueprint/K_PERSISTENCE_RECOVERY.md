@@ -124,7 +124,7 @@ DuckDB PostgreSQL extension only serves optional analytical bridge use cases。
 
 ## Post-Runtime Recovery Decision Checkpoint
 
-ADR-002 R-01 / R-02 are authoritative for current GAP-08 acceptance correction。
+ADR-002 R-01 / R-02 / R-03 are authoritative for current GAP-08 acceptance correction。
 
 Required correction direction：
 
@@ -135,19 +135,33 @@ Required correction direction：
 - BrokerAccount owns a transactional contiguous AccountStateHead revision。
 - checkpoint exact-references expected_snapshot_id；no SELECT-latest fallback。
 - strategy/account recovery uses causal frontier validation，not timestamp equality。
-- market observation evidence becomes revision-specific under R-03。
+- sequence-0 PENDING is durable before broker side effect。
+- material-emitting StrategyStateSnapshot causal state and initial PENDING commit atomically。
+- StrategyStateSnapshot / ExecutionTriggerRef reference immutable MarketObservationRevision evidence。
+- operational recovery therefore requires resolvable durable MarketObservationRevision evidence。
+- candidate/provenance evidence must be retained sufficiently to support conflict/quarantine audit。
+- accepted operational observation is durable before recovery-capable strategy delivery。
 - K520 remains deferred；unknown historical correction impact in required feature horizon -> REVIEW。
 
-R-03C / R-03D / R-04 remain open。
+Scope expansion：
+
+MarketObservationRevision operational evidence persistence was not implemented or counted in the original GAP-08EFGHI 35 / 151 bundle。
+
+The correction Work Package must explicitly map and size this additional storage-neutral port + PostgreSQL adapter/orchestration scope before runtime authorization。
+
+Retention/archive details remain future K930/implementation work；no evidence required by active recovery/audit references may be silently deleted。
+
+R-04 remains open mandatory architecture dependency。
 
 This checkpoint does not promote K lifecycle values and does not authorize correction runtime。
-
 
 ## Core Persistent Entities
 
 至少包含：
 
 - TradingSession。
+- MarketObservationCandidateEvidence。
+- MarketObservationRevision。
 - TradingDecision。
 - DecisionContext。
 - RiskDecision。

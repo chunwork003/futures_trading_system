@@ -71,6 +71,24 @@ Analytical query：DuckDB / Polars。
 
 ---
 
+## Operational Completeness Follow-Up — R-14 / GAP-DATA-001
+
+R-03 defines canonical identity/revision/acceptance for observations that exist。
+
+It does not define whether a missing candidate for an interval means legitimate no-trade activity or data-pipeline failure。
+
+Historical B250 missing/coverage validation does not by itself prove production live completeness。
+
+Until session/calendar-aware operational completeness semantics exist：
+
+- no candidate received must not be silently treated as a valid empty/no-trade interval。
+- continuous-interval feature/strategy consumers must not claim completeness when the missing interval cannot be proven irrelevant。
+- source outage / transport failure / ingestion loss / legitimate market inactivity remain distinct future classifications。
+
+Production source-health/coverage semantics map primarily to B720，with dependencies on D340 and K520。
+
+This follow-up does not reopen R-03 identity decisions。
+
 ## Connections
 
 | From | To | Contract |

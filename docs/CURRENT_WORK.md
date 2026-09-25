@@ -55,9 +55,21 @@ Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION
 
 Launch Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS
 
-Accepted decision checkpoint：R-01 / R-02 / R-03A / R-03B。
+Accepted decision checkpoint：R-01 / R-02 / R-03A / R-03B / R-03C / R-03D；R-03 overall DECIDED。
 
-Open decisions：R-03C / R-03D / R-04。
+Open mandatory decision：R-04。
+
+Correction scope expansion from R-03：
+
+- canonical MarketObservation revision/value-object contract。
+- MarketObservationRevision operational repository/evidence。
+- PostgreSQL operational adapter。
+- candidate/provenance conflict evidence。
+- durable-before-strategy delivery orchestration。
+
+This is additional to the original 35 / 151 bundle and has not yet been reweighted。
+
+R-14 / GAP-DATA-001 tracks market-data completeness/gap detection separately and does not reopen R-03 identity decisions。
 
 Detailed decision record：
 
@@ -69,7 +81,7 @@ The 35 / 151 runtime candidate must not be promoted to ACCEPTED until bounded co
 
 K520 remains GAP-09-owned。
 
-Next action：finish R-03C / R-03D / R-04 architecture decisions，then freeze a bounded correction Work Package。
+Next action：decide R-04 Broker Non-Terminal Order Discovery / submission-outcome reconciliation，then freeze and reweight the bounded correction Work Package。
 
 No Codex runtime execution is authorized during this decision hold。
 

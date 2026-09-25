@@ -223,9 +223,21 @@ Post-runtime decision checkpoint：
 - R-02 DECIDED。
 - R-03A DECIDED。
 - R-03B DECIDED。
-- R-03C OPEN。
-- R-03D OPEN。
+- R-03C DECIDED。
+- R-03D DECIDED。
+- R-03 overall DECIDED。
 - R-04 OPEN / mandatory dependency。
+
+R-03 identified mandatory correction scope beyond the original 35 / 151：
+
+- operational immutable MarketObservationRevision evidence。
+- PostgreSQL operational observation adapter。
+- candidate/provenance conflict evidence。
+- durable-before-strategy delivery。
+
+Additional scope is not yet reweighted and does not authorize runtime。
+
+R-14 / GAP-DATA-001 tracks market-data completeness/gap detection for later production safety。
 
 Runtime Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS。
 

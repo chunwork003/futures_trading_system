@@ -112,24 +112,41 @@ Trading consumer：
 
 ---
 
-## Post-Runtime Recovery Identity Decision Checkpoint
+## Post-Runtime Market Observation Decision Checkpoint
 
-ADR-002 R-03A / R-03B are authoritative for the current Market Observation correction review。
+ADR-002 R-03A / R-03B / R-03C / R-03D are authoritative for the current Market Observation correction review。
 
-Key decisions：
+R-03 overall status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-- logical observation identity = instrument_id + listed contract_id when applicable + normalized timeframe + timezone-aware UTC interval_start_at。
-- trade_date/session/source/OHLCV are not logical-key fields。
-- listed futures without resolved contract_id reject/quarantine；no silent None fallback。
-- synthetic/continuous series do not yet have operational recovery identity。
-- observation revisions use deterministic content fingerprint + authority-local revision_seq。
-- candidate != accepted revision；no canonical last-write-wins。
-- StrategyStateSnapshot must ultimately reference immutable revision-specific observation evidence。
-- accepted market-data correction in required recovery horizon -> REVIEW。
-- classification-only correction may bypass REVIEW only when explicit verified strategy dependency proves it non-material。
+Canonical decisions：
 
-R-03C / R-03D remain open；D310-D350 lifecycle values are not promoted by this checkpoint。
+- LogicalKey = instrument_id + listed contract_id where applicable + normalized timeframe + timezone-aware UTC interval_start_at。
+- trade_date/session/source/OHLCV are not LogicalKey fields。
+- listed futures without canonical contract_id reject/quarantine；no silent None fallback。
+- synthetic/continuous futures series do not yet receive operational recovery identity。
+- immutable revisions use deterministic content fingerprint + authority-local revision_seq。
+- revision-specific reference uses opaque versioned mor1_<SHA256> identity。
+- revision_seq / source / provenance / acceptance policy do not enter mor1 identity。
+- LogicalKey / ContentFingerprint / RevisionId are distinct D Domain value objects。
+- shared D Domain canonicalizer owns canonical eligibility validation and deterministic identity construction。
+- raw float / naive timestamp / unresolved listed-future contract are not valid operational canonical evidence。
+- source adapters submit candidate evidence；they do not independently define canonical eligibility or accepted truth。
+- PRIMARY routing role != AUTHORITATIVE_FOR_SCOPE truth authority。
+- candidate != accepted revision；no first-write/last-write/majority implicit truth selection。
+- conflicting unresolvable candidate -> logical-key quarantine。
+- same canonical content from multiple sources corroborates the same revision。
+- MarketObservation revision references consumed by strategy/execution are immutable。
+- superseded consumed MARKET_DATA_REVISION applies REVIEW semantics。
+- classification-only correction bypasses REVIEW only when explicit verified strategy dependency proves non-materiality。
+- derived canonical observations retain derivation provenance and follow the same consumed-evidence REVIEW semantics。
+- recovery-capable paper/live strategy sees only durable accepted observation evidence。
+- cross-language golden vectors are required for deterministic identity。
 
+Operational MarketObservationRevision persistence is a newly identified GAP-08 correction-scope expansion and is not part of the original 35 / 151 acceptance claim。
+
+R-14 / GAP-DATA-001 separately tracks missing-observation completeness/gap detection。
+
+D310-D350 lifecycle values are not promoted by this documentation checkpoint；runtime verification remains required。
 
 ## CURRENT / TARGET / MIGRATION
 

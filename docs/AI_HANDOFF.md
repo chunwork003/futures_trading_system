@@ -36,9 +36,20 @@ Architecture acceptance：HOLD。
 
 Do not rerun GAP-08EFGHI and do not mark 35 / 151 ACCEPTED。
 
-Decided：R-01、R-02、R-03A、R-03B。
+Decided：R-01、R-02、R-03A、R-03B、R-03C、R-03D；R-03 overall DECIDED。
 
-Open：R-03C、R-03D、R-04。
+Open mandatory decision：R-04。R-14/GAP-DATA-001 is a separate future market-data completeness dependency。
+
+R-03 correction scope expansion：
+
+- deterministic MarketObservation revision identity。
+- operational MarketObservationRevision evidence repository。
+- PostgreSQL observation evidence adapter。
+- candidate/provenance conflict evidence。
+- durable accepted observation before strategy delivery。
+
+This additional scope is outside the original 35 / 151 and is not yet reweighted。
+
 
 Detailed authoritative decision record：
 

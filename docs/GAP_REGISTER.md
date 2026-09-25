@@ -65,6 +65,7 @@ Mainline：
 | GAP-08 | P1 | REVIEW_AT_CHECKPOINT | Yes — acceptance | Trading State Persistence / Recovery | IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD |
 | GAP-PERSIST-001 | P1 | RECORD_AND_CONTINUE | No | Decision / Risk Provenance | OPEN |
 | GAP-09 | P1 | REVIEW_AT_CHECKPOINT | No | Incremental Feature / Market State | PENDING |
+| GAP-DATA-001 | P1 | RECORD_AND_CONTINUE | No; Production Live blocker later | Operational market-data completeness / gap detection | OPEN |
 | GAP-SIM-001 | P2 | RECORD_AND_CONTINUE | No | SimulationBroker / fault injection | OPEN |
 | GAP-LIVE-001 | P0 | HARD_BLOCK | Production Live | LIVE_AUTO authorization / runtime safety | OPEN |
 | GAP-APP-001 | P1 | RECORD_AND_CONTINUE | No | ASP.NET Core Application/API | PLANNED |
@@ -369,9 +370,25 @@ Post-runtime architecture review decision checkpoint：
 - R-02 account checkpoint/causal frontier：DECIDED / CORRECTION_REQUIRED。
 - R-03A market observation logical key：DECIDED / CORRECTION_REQUIRED。
 - R-03B market observation revision/content identity：DECIDED / CORRECTION_REQUIRED。
-- R-03C ID encoding/value object：OPEN。
-- R-03D cross-environment/source authority：OPEN。
+- R-03C revision ID/value-object contract：DECIDED / CORRECTION_REQUIRED。
+- R-03D cross-environment/source authority：DECIDED / CORRECTION_REQUIRED。
+- R-03 overall：DECIDED。
 - R-04 non-terminal broker discovery/reconciliation：OPEN / mandatory dependency。
+- R-14 / GAP-DATA-001 market-data completeness/gap detection：OPEN / future production safety dependency。
+
+Post-R-03 correction scope expansion：
+
+- MarketObservation logical/revision canonical contract。
+- deterministic mor1 revision identity / golden vectors。
+- storage-neutral MarketObservationRevision operational persistence。
+- PostgreSQL operational observation evidence adapter。
+- candidate/provenance conflict/quarantine evidence。
+- durable accepted observation before strategy delivery。
+- derived-observation provenance。
+
+This scope was not part of the original 35 leaves / weight 151 implementation candidate。
+
+No new lifecycle weight is claimed yet；the correction Work Package must map/reweight it before runtime authorization。
 
 Detailed authoritative record：
 
@@ -386,6 +403,36 @@ K520：DEFERRED_TO_GAP_09。
 PG17 / PG18：PENDING。
 
 Parent GAP cannot close until the correction Work Package is frozen、implemented、verified and accepted。
+
+# GAP-DATA-001 Detail
+
+Related decision：R-14 — Market Data Completeness / Gap Detection。
+
+Priority：P1。
+
+Handling：RECORD_AND_CONTINUE。
+
+Current blocker：No for the current R-03 identity decision/correction design；required before claiming production-live market-data completeness safety。
+
+Problem：
+
+A missing candidate observation is not equivalent to a quarantined candidate and is not evidence of a legitimate no-trade interval。
+
+The system must eventually distinguish at least：
+
+- legitimate no-trade interval。
+- non-trading/session/calendar interval。
+- source outage。
+- transport failure。
+- ingestion/data loss。
+
+Until session/calendar-aware completeness detection exists，continuous-interval features/strategies may not silently treat absence as a valid empty market interval。
+
+Blueprint relation：B250 / B720 / D340 / K520。
+
+R-03 remains DECIDED；this GAP is a separate follow-up。
+
+---
 
 # GAP-09 Detail
 

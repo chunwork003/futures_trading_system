@@ -32,9 +32,9 @@ Launch Gate：
 
 `HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS`
 
-Decision checkpoint：R-01 / R-02 / R-03A / R-03B DECIDED。
+Decision checkpoint：R-01 / R-02 / R-03A / R-03B / R-03C / R-03D DECIDED；R-03 overall DECIDED。
 
-Remaining decisions：R-03C / R-03D / R-04。
+Remaining mandatory architecture decision：R-04。
 
 Detailed authority：
 
@@ -51,6 +51,22 @@ Architecture ancestor：
 Design freeze commit：
 
 `f463f82beb8426c36b91efbd03ad943918954b65`
+
+Post-R-03 correction scope expansion：
+
+- MarketObservationLogicalKey / ContentFingerprint / RevisionId。
+- shared D Domain canonicalizer / validation boundary。
+- versioned market observation acceptance policy。
+- operational MarketObservationRevision evidence repository。
+- PostgreSQL operational evidence adapter。
+- candidate/provenance conflict evidence。
+- durable-before-strategy delivery。
+- derived-observation provenance。
+
+This expansion was not part of the original 35 / 151。
+
+Do not begin implementation until R-04 is decided and a replacement correction Work Package explicitly maps、sizes and authorizes the expanded scope。
+
 
 ## 4. Recommended Model
 
@@ -87,7 +103,7 @@ K410 K420 K430 K440 K450
 K510 K530 K540
 K710 K720 K730 K740 K750 K760 K770
 
-35 leaves / weight 151。
+35 leaves / weight 151（original runtime scope only；post-R-03 correction expansion is not yet weighted）。
 
 Touches：E530 E540 / existing H/J/K accepted contracts。
 

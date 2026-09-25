@@ -2,7 +2,7 @@
 
 ## 1. Status
 
-**DECISION CHECKPOINT 1 ACCEPTED — ADR REMAINS OPEN**
+**DECISION CHECKPOINT 2 ACCEPTED — ADR REMAINS OPEN**
 
 - Decision date：2026-09-25。
 - Runtime implementation baseline：`6b62239bca1d11543944f9f078e577e16010bcbf`。
@@ -11,8 +11,8 @@
 - Runtime result：TEST_PASS。
 - Architecture acceptance：HOLD。
 - 35 leaves / weight 151：IMPLEMENTED CANDIDATE，NOT ACCEPTED。
-- Accepted decisions in this checkpoint：R-01、R-02、R-03A、R-03B。
-- Still open：R-03C、R-03D、R-04；R-12/R-13/K520 remain linked dependencies。
+- Accepted decisions through this checkpoint：R-01、R-02、R-03A、R-03B、R-03C、R-03D；R-03 is fully DECIDED。
+- Still open：R-04；R-12/R-13/R-14/K520 remain linked dependencies。
 - No further runtime execution is authorized by this ADR。
 
 ## 2. Why Acceptance Is On Hold
@@ -379,7 +379,7 @@ Propagation into derived bars/features requires later provenance/dependency rule
 
 StrategyStateSnapshot.last_market_observation_id and R-02 ExecutionTriggerRef.market_observation_id must resolve to an immutable revision-specific accepted observation evidence record，not merely the logical key。
 
-Exact final ID encoding remains R-03C。
+Exact revision-specific ID encoding is defined by R-03C。
 
 ### 6.8 Superseded consumed evidence
 
@@ -401,11 +401,357 @@ Production REVIEW release/approval belongs to R-13 operator authorization/approv
 
 Until R-13 is implemented，production release from these REVIEW states is default-deny；paper/sandbox workflow testing only。
 
-## 7. Open Decisions After Checkpoint 1
+## 7. R-03C — Revision-Specific Observation ID / Canonical Value Objects
 
-R-03C — revision-specific MarketObservation ID encoding / canonical value object。
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-R-03D — cross-environment canonicalization / source authority / correction acceptance policy。
+### 7.1 Revision ID
+
+Canonical revision-specific reference uses a deterministic versioned opaque ID：
+
+    mor1_<64 lowercase SHA-256 hex>
+
+The digest is derived from a versioned canonical identity envelope containing：
+
+- identity_schema_version。
+- instrument_id。
+- contract_id or canonical null where legitimately absent。
+- normalized timeframe。
+- timezone-aware UTC interval_start_at。
+- content_schema_version。
+- deterministic content_fingerprint。
+
+revision_seq、supersedes、accepted_at、source/provenance、change_class and acceptance policy metadata must not enter the revision-ID preimage。
+
+revision_seq is authority-local ordering only and is never cross-environment identity。
+
+### 7.2 Distinct canonical value objects
+
+D Domain owns distinct concepts：
+
+- MarketObservationLogicalKey。
+- MarketObservationContentFingerprint。
+- MarketObservationRevisionId。
+
+Persistence/wire layers may serialize them，but canonical code must not treat them as interchangeable arbitrary strings。
+
+MarketObservationRevisionId is opaque to consumers。
+
+Consumers must not parse instrument、contract、timeframe or business semantics from the ID。
+
+### 7.3 Canonical encoding
+
+Identity encoding is an explicit versioned byte-level contract，not generic object/JSON serialization。
+
+V1 UTC timestamp lexical form is deterministic and uses UTC Z form with fixed microsecond precision。
+
+Naive datetime is rejected。
+
+Canonical numeric fingerprint input uses exact numeric semantics：
+
+- no raw binary float hashing。
+- no silent rounding to force equality。
+- insignificant trailing decimal zeros normalize to the same semantic value。
+- negative zero normalizes to zero。
+- NaN / Infinity are rejected。
+
+### 7.4 Persistence representation
+
+Operational persistence stores the opaque revision ID together with explicit structured logical-key/content/revision columns。
+
+Conceptual uniqueness includes：
+
+- unique observation_revision_id。
+- unique logical key + content schema version + content fingerprint。
+- unique logical key + revision_seq。
+
+A single opaque ID must not replace structured query fields。
+
+### 7.5 Atomic identity conflict detection
+
+Atomic uniqueness must be enforced by the operational storage adapter at write time。
+
+For V1 PostgreSQL，UNIQUE(observation_revision_id) or an equivalent database uniqueness constraint is mandatory。
+
+Application-level SELECT -> if missing -> INSERT is forbidden because it creates a TOCTOU race。
+
+When atomic insert reports an existing revision ID，the adapter/repository classifies the collision by comparing persisted canonical identity/content evidence：
+
+- exact same canonical evidence -> idempotent duplicate。
+- same revision ID but different canonical identity/content -> MarketObservationIdentityConflictError。
+
+A uniqueness violation itself must never be silently retried or treated as duplicate without canonical comparison。
+
+If PostgreSQL transaction state is aborted by the uniqueness violation，comparison may occur after rollback in a new read transaction；the architecture does not require querying through an aborted transaction。
+
+Identity/fingerprint conflict is an integrity incident，quarantines the affected logical key and forbids automatic READY。
+
+No salt/regenerated ID workaround is allowed。
+
+### 7.6 Canonicalization / validation ownership
+
+Canonical ownership belongs to D Domain，not domain.Bar、backtest.MarketBar、DataFrame rows or source adapters。
+
+Shared canonical entry point conceptually owns both eligibility validation and deterministic construction：
+
+    canonicalize_market_observation_content(...)
+
+It validates at least：
+
+- resolved canonical instrument/contract identity。
+- listed-future contract requirement。
+- normalized supported timeframe。
+- timezone-aware interval semantics。
+- canonical market values / numeric validity。
+- required observation fields。
+
+Source adapters may parse source-native data but may not independently decide fallback eligibility。
+
+Missing contract identity、naive time、invalid numeric value、unsupported timeframe or otherwise invalid canonical envelope must be rejected through shared typed errors / quarantine semantics。
+
+Adapters must not each implement separate permissive eligibility rules。
+
+### 7.7 Strategy/recovery reference migration
+
+Canonical target names are explicit：
+
+- StrategyStateSnapshot.last_market_observation_revision_id。
+- ExecutionTriggerRef.market_observation_revision_id。
+
+Legacy last_market_observation_id may remain only as a compatibility read surface during bounded migration。
+
+Once a writer can produce a valid MarketObservationRevisionId，the new revision-specific field becomes the sole recovery/audit authority。
+
+Long-lived dual-write/dual-authority state where legacy free-form ID and canonical revision ID may disagree is forbidden。
+
+### 7.8 Golden-vector contract
+
+Cross-language golden vectors are acceptance requirements，not optional unit-test conveniences。
+
+The same canonical input must produce the same content fingerprint and mor1 ID in Python and future C# implementations。
+
+Vectors must cover contract present/null legitimate cases、UTC normalization、decimal normalization、classification-only change、market-data change and same-content replay。
+
+## 8. R-03D — Cross-Environment Canonicalization / Source Authority
+
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+### 8.1 Shared canonicalizer / environment adapters
+
+Historical、paper and live producers use environment-specific source parsing/acquisition but one shared pure D Domain canonical identity/validation contract。
+
+Shared semantics include：
+
+- logical-key construction。
+- timeframe normalization。
+- time normalization。
+- exact numeric normalization。
+- content fingerprint。
+- mor1 revision ID。
+- canonical eligibility validation。
+
+Producer paths may not independently redefine those semantics。
+
+### 8.2 Versioned acceptance policy
+
+Candidate acquisition is separate from canonical truth acceptance。
+
+Canonical acceptance uses an explicit versioned MarketObservationAcceptancePolicy containing sufficient scope/source/correction/conflict semantics。
+
+Policy metadata does not enter mor1 identity。
+
+A change in policy never retroactively rewrites historical accepted evidence。
+
+### 8.3 Source roles
+
+Routing role and truth authority are separate concepts。
+
+PRIMARY means normal acquisition preference only。
+
+AUTHORITATIVE_FOR_SCOPE means a versioned verified policy may use that source as truth authority for the stated scope。
+
+Source Registry S0/S1/S2 documentation authority tier is not automatically market-price-feed truth precedence。
+
+No source becomes canonical truth merely because it is the normal PRIMARY feed。
+
+### 8.4 Candidate evidence vs accepted revision
+
+MarketObservationCandidateEvidence and accepted MarketObservationRevision are separate evidence concepts。
+
+Candidate evidence retains source/provenance information without forcing a new canonical content revision。
+
+Multiple sources providing identical logical key + content fingerprint corroborate one accepted revision rather than creating artificial revisions。
+
+Provenance changes alone do not create a new content revision。
+
+### 8.5 Same-content handling
+
+- same source + same content -> duplicate/corroborating evidence；no new revision。
+- different source + same content -> corroborating evidence；no new revision。
+- re-ingestion + same content -> idempotent；no new revision。
+- newer provenance metadata with same canonical content -> append provenance evidence only。
+
+### 8.6 Different-content correction acceptance
+
+Different content is never accepted merely because it arrived later。
+
+Automatic correction acceptance requires policy-provable evidence：
+
+- candidate source eligible for the policy scope。
+- policy explicitly authorizes its correction semantics。
+- source evidence proves a newer/formal correction according to verified semantics。
+- canonical validation passes。
+- per-logical-key revision-head precondition succeeds。
+
+Same-source different content without such proof is not automatically a correction。
+
+If evidence/policy cannot prove acceptance，the logical observation enters CONFLICT/QUARANTINE。
+
+### 8.7 Cross-source conflict
+
+Where policy explicitly establishes a verified AUTHORITATIVE_FOR_SCOPE source，its accepted evidence may remain canonical while conflicting validation-source evidence is retained as discrepancy evidence。
+
+Without explicit truth authority：
+
+    CONFLICT / QUARANTINE
+
+Forbidden conflict-selection shortcuts include：
+
+- keep first。
+- keep last。
+- majority vote。
+- Source Registry tier automatically wins。
+
+### 8.8 Quarantine/runtime blast radius
+
+Direct market-data quarantine scope is the logical observation key and is orthogonal to BrokerAccount recovery isolation。
+
+Before strategy consumption，a quarantined observation is unavailable as material market evidence。
+
+If an already-consumed accepted revision later becomes disputed by a material candidate/conflict，affected strategy state becomes DATA_REVIEW_REQUIRED。
+
+DATA_REVIEW_REQUIRED blocks new material/speculative strategy actions that depend on the disputed evidence。
+
+It must not disable existing account/execution safety machinery、position protection、broker reconciliation or other actions required to reduce/control existing exposure。
+
+### 8.9 Historical / paper / live producer modes
+
+Historical mode：
+
+raw source -> parse -> shared canonicalizer -> versioned acceptance policy -> accepted revision -> historical dataset。
+
+Historical dataset reproducibility metadata records canonicalizer/policy/source versions。
+
+Paper recovery-capable mode consumes accepted canonical revisions rather than arbitrary dict/MarketBar values。
+
+Legacy simple PaperMarketDataProvider may remain for deterministic compatibility tests but does not constitute R-02/R-03 recovery-safety evidence。
+
+Live mode：
+
+source candidate -> parse -> shared canonicalizer -> acceptance policy -> durable accepted revision -> strategy delivery。
+
+### 8.10 Operational market-observation evidence
+
+R-03 exposes a correction-scope expansion that did not exist in the original GAP-08EFGHI 35 leaves / weight 151 runtime bundle。
+
+Recovery/audit-safe operational references require storage-neutral market-observation evidence persistence，including at minimum immutable accepted revision resolution and candidate/provenance evidence sufficient for conflict/quarantine audit。
+
+V1 operational implementation family remains PostgreSQL。
+
+Required correction direction includes：
+
+- MarketObservationRevisionRepository or equivalent storage-neutral port。
+- PostgreSQL operational accepted-revision evidence adapter。
+- bounded candidate/provenance evidence persistence required by acceptance/conflict rules。
+- accepted-observation-before-strategy orchestration。
+
+This does not replace Parquet as historical dataset authority。
+
+The additional correction scope has not yet been assigned new Blueprint lifecycle weight and must not be hidden inside the original 35 / 151 acceptance claim。
+
+Retention/partitioning/archive policy is intentionally not decided by R-03D and remains a later implementation/K930 concern。
+
+No implementation may delete evidence still required by recovery/audit references merely because retention policy is unresolved。
+
+### 8.11 Durable before strategy delivery
+
+All recovery-capable paper/live strategy processing consumes only durable accepted MarketObservationRevision evidence。
+
+Strategy delivery before operational evidence commit is forbidden。
+
+This introduces a synchronous durability/write-latency cost in live bar processing。
+
+That latency is an explicit safety trade-off，not an implementation bug。
+
+Any future ultra-low-latency exception requires a separate architecture decision and may not silently bypass durable-before-delivery ordering。
+
+### 8.12 Derived observations
+
+Derived 5m/15m/30m/60m observations are first-class canonical observation revisions。
+
+Derivation evidence records sufficient aggregation policy/version and input MarketObservationRevision references。
+
+If input provenance changes but derived canonical content is identical，append derivation provenance without inventing a new content revision。
+
+If input correction changes derived canonical content，a new derived revision candidate is produced。
+
+A superseded derived observation already consumed by strategy applies the same R-03B8 consumed-evidence REVIEW rules as a direct/raw observation；aggregation does not reduce severity。
+
+### 8.13 Policy/failover history
+
+Acceptance-policy change never retroactively updates prior accepted revisions。
+
+Accepted evidence retains the acceptance policy/version/context needed for audit，but those fields do not enter mor1 identity。
+
+Source failover must be explicitly permitted by policy and recorded。
+
+Silent exception-driven fallback is forbidden。
+
+Failover candidates still pass the same canonical validation/correction/conflict policy；failover does not weaken truth-selection rules。
+
+### 8.14 Cross-environment equality
+
+Same mor1 ID means the same logical key + content schema + canonical content semantics。
+
+It does not imply same source、same revision_seq、same provenance、same acceptance policy、same accepted_at or same latest frontier。
+
+Different environments may temporarily have different latest accepted revisions without invalidating deterministic identity。
+
+### 8.15 Manual resolution
+
+Manual candidate acceptance、source selection or release from data REVIEW are high-risk authority actions。
+
+Production manual resolution depends on R-13 authorization/approval semantics and is default-deny until R-13 is implemented。
+
+Paper/sandbox may exercise the workflow。
+
+Manual resolution must append auditable actor/time/reason/evidence/policy context；it may not mutate historical evidence in place。
+
+## 9. R-14 — Market Data Completeness / Gap Detection
+
+Status：OPEN FOLLOW-UP / NOT PART OF R-03 IDENTITY DECISION。
+
+Missing observation and quarantined observation are different conditions。
+
+R-03A-D define identity/revision/acceptance for candidate observations that exist；they do not prove whether an interval with no candidate represents：
+
+- a legitimate no-trade interval。
+- an exchange/session/calendar condition。
+- source outage。
+- transport failure。
+- ingestion/data loss。
+
+Until a formal session/calendar-aware completeness/gap-detection contract exists，a strategy or feature pipeline that depends on continuous intervals must not assume：
+
+    no candidate received == legitimate no-trade interval
+
+If irrelevance cannot be proven，the system must conservatively avoid claiming complete market-data recovery safety。
+
+R-14 maps to GAP-DATA-001 and relates to B250/B720、D340 and K520。
+
+R-14 does not reopen R-03 identity decisions and does not block Decision Checkpoint 2；it is a future production market-data/recovery safety dependency。
+
+## 10. Open Decisions After Checkpoint 2
 
 R-04 — non-terminal broker order discovery / submission outcome reconciliation / safe remediation。
 
@@ -413,9 +759,11 @@ R-12 — ReconciliationRun audit contract。
 
 R-13 — Operator Authorization / Approval Runtime Contract mapped to existing L/N Blueprint。
 
+R-14 / GAP-DATA-001 — market-data completeness / gap detection。
+
 K520 — incremental feature/state provenance required for exact historical correction impact horizon。
 
-## 8. Runtime Correction Items Already Identified
+## 11. Runtime Correction Items Already Identified
 
 These are not new design choices unless a later decision explicitly changes them：
 
@@ -428,10 +776,10 @@ These are not new design choices unless a later decision explicitly changes them
 - production broker submission orchestration must commit initial PENDING before broker I/O。
 - StrategyStateSnapshot persistence must be integrated with material execution causal boundary。
 
-## 9. Consequence
+## 12. Consequence
 
 Runtime commit remains a useful implementation baseline and is not reverted。
 
-However GAP-08EFGHI cannot move to ACCEPTED until open recovery/identity dependencies are decided and the bounded correction runtime passes targeted/compatibility/full-regression verification。
+However GAP-08EFGHI cannot move to ACCEPTED until R-04 and remaining mandatory correction dependencies are resolved、the expanded correction scope is explicitly frozen/weighted，and bounded correction runtime passes targeted/compatibility/full-regression verification。
 
 No LIVE authorization is implied。

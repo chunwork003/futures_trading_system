@@ -97,9 +97,22 @@ Decision checkpoint：
 - R-02 DECIDED / CORRECTION_REQUIRED。
 - R-03A DECIDED / CORRECTION_REQUIRED。
 - R-03B DECIDED / CORRECTION_REQUIRED。
-- R-03C OPEN。
-- R-03D OPEN。
+- R-03C DECIDED / CORRECTION_REQUIRED。
+- R-03D DECIDED / CORRECTION_REQUIRED。
+- R-03 overall DECIDED。
 - R-04 OPEN / mandatory dependency。
+- R-14 / GAP-DATA-001 OPEN / production market-data completeness follow-up。
+
+Correction scope expansion discovered by R-03：
+
+- storage-neutral MarketObservationRevision evidence repository。
+- PostgreSQL operational accepted-revision evidence adapter。
+- candidate/provenance persistence required for conflict/quarantine audit。
+- durable accepted observation before recovery-capable strategy delivery。
+
+This scope was not contained in the original 35 leaves / weight 151 runtime bundle。
+
+It is not yet lifecycle-weighted and must be explicitly mapped/frozen before correction runtime authorization。
 
 Authoritative detailed record：
 
