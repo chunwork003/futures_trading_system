@@ -60,8 +60,8 @@ Target ownership：
 | I310 | Direction → Native Action | LONG/SHORT execution direction → Buy/Sell mapping | ACCEPTED | 3 | I02 |
 | I320 | OrderType → Native PriceType | MARKET/LIMIT/STOP → supported native type | ACCEPTED | 3 | I02 |
 | I330 | Native Order Duration / Qualifier | supported native ROD/other qualifier semantics 明確 | IMPLEMENTED | 2 | I02 |
-| I340 | PositionEffect → New/Cover | OPEN/CLOSE/REDUCE → explicit native FuturesOCType | NOT_DESIGNED | 5 | I02 |
-| I350 | Remove Order-ID Prefix Inference | 禁止從 ENTRY-/EXIT- 推定 New/Cover | NOT_DESIGNED | 5 | I02 |
+| I340 | PositionEffect → New/Cover | OPEN/CLOSE/REDUCE → explicit native FuturesOCType | DESIGN_FROZEN | 5 | I02 |
+| I350 | Remove Order-ID Prefix Inference | 禁止從 ENTRY-/EXIT- 推定 New/Cover | DESIGN_FROZEN | 5 | I02 |
 | I360 | Native Order Construction | canonical order + effect → native FuturesOrder | ACCEPTED | 4 | I02 |
 | I410 | Native Order Status Mapping | Shioaji status → canonical OrderStatus | ACCEPTED | 4 | I02,I03 |
 | I420 | Native Deal → Fill | deal price / quantity / timestamp → Fill | ACCEPTED | 4 | I03 |
@@ -203,6 +203,94 @@ Broker API source change risk：HIGH。
 - full physical relocation → GAP-ARCH-001 bounded migration。
 
 ---
+
+## GAP-BROKER-001 Sinopac Mapping Freeze
+
+Status：
+
+DESIGN_FROZEN。
+
+Official source：
+
+    SRC-SINOPAC-FUT-ORDER-001
+
+Last verified：
+
+    2026-09-25
+
+### Explicit Mapping Matrix
+
+| Position Direction | PositionEffect | Shioaji Action | FuturesOCType |
+|---|---|---|---|
+| LONG | OPEN | Buy | New |
+| SHORT | OPEN | Sell | New |
+| LONG | REDUCE | Sell | Cover |
+| SHORT | REDUCE | Buy | Cover |
+| LONG | CLOSE | Sell | Cover |
+| SHORT | CLOSE | Buy | Cover |
+
+Rules：
+
+- OPEN 只映射 explicit New semantics。
+- REDUCE / CLOSE 只映射 explicit Cover semantics。
+- 本 GAP 不使用 FuturesOCType.Auto。
+- 本 GAP 不使用 FuturesOCType.DayTrade。
+- DayTrade semantics 未在本 Work Package 定義，不得猜測。
+- native action 必須由 PositionDirection + PositionEffect 共同決定。
+- native octype 必須由 PositionEffect 決定。
+
+### Mapping API
+
+to_shioaji_order 不再接受 caller 任意傳入 native octype 作為 business truth。
+
+Target conceptual seam：
+
+    to_shioaji_order(
+        order,
+        intent
+    )
+
+Mapper 必須：
+
+- validate order / intent consistency。
+- derive native Action。
+- derive native FuturesOCType。
+- preserve existing price type / order type / quantity mapping。
+
+### Prefix Removal
+
+禁止：
+
+    order_id.startswith("ENTRY-")
+
+或任何其他 ID naming convention 決定：
+
+- New。
+- Cover。
+- Buy。
+- Sell。
+
+ENTRY / EXIT prefix 可以暫時保留作 legacy identifier formatting。
+
+但不得再具有 broker execution semantics。
+
+### Failure Semantics
+
+以下必須 explicit error：
+
+- missing intent。
+- unknown PositionEffect。
+- unsupported PositionDirection。
+- order / intent quantity mismatch。
+- order / intent direction mismatch。
+- direct opposite-side reversal request。
+
+不得 fallback：
+
+- Auto。
+- order ID inference。
+- silent New。
+- silent Cover。
 
 ## Domain Acceptance
 

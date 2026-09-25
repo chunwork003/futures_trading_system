@@ -55,11 +55,11 @@ Target ownership：
 | H150 | Broker Execution Port | submit / query / fills / cancel capability | ACCEPTED | 4 | H02 |
 | H160 | Submission Result | submit 可回傳 current order + immediate fills | ACCEPTED | 2 | H02,H03 |
 | H170 | Canonical Execution Ownership | Order / Fill long-term owner 為 trading.execution | DESIGN_FROZEN | 4 | H01 |
-| H210 | OrderIntent | 描述為何要下單，而非只描述 order mechanics | NOT_DESIGNED | 5 | H07 |
-| H220 | PositionEffect | OPEN / CLOSE / REDUCE 等 explicit effect | NOT_DESIGNED | 5 | H07 |
-| H230 | OrderIntent Identity | correlation / causation / source target/risk decision | NOT_DESIGNED | 4 | H07,H08 |
-| H240 | PositionEffect Validation | effect 必須與 current expected position / target transition 相容 | NOT_DESIGNED | 5 | H07 |
-| H250 | Broker Open/Close Mapping Boundary | adapter 只能由 explicit PositionEffect 決定 New/Cover | NOT_DESIGNED | 5 | H07 |
+| H210 | OrderIntent | 描述為何要下單，而非只描述 order mechanics | DESIGN_FROZEN | 5 | H07 |
+| H220 | PositionEffect | OPEN / CLOSE / REDUCE 等 explicit effect | DESIGN_FROZEN | 5 | H07 |
+| H230 | OrderIntent Identity | correlation / causation / source target/risk decision | DESIGN_FROZEN | 4 | H07,H08 |
+| H240 | PositionEffect Validation | effect 必須與 current expected position / target transition 相容 | DESIGN_FROZEN | 5 | H07 |
+| H250 | Broker Open/Close Mapping Boundary | adapter 只能由 explicit PositionEffect 決定 New/Cover | DESIGN_FROZEN | 5 | H07 |
 | H310 | Pending State | submitted 前/等待 broker acceptance | ACCEPTED | 2 | H03 |
 | H320 | Submitted State | broker 已接受但未完全成交 | ACCEPTED | 2 | H03 |
 | H330 | Partial Fill State | 多 fill / partial quantity 累積 | ACCEPTED | 4 | H03 |
@@ -170,6 +170,138 @@ MIGRATION：
 - ownership migration → GAP-ARCH-001 bounded slices。
 
 ---
+
+## GAP-BROKER-001 Architect Design Freeze
+
+Status：
+
+DESIGN_FROZEN。
+
+Canonical owner：
+
+    trading/execution.py
+
+### PositionEffect
+
+Canonical enum：
+
+    OPEN
+    REDUCE
+    CLOSE
+
+不得加入：
+
+    REVERSE
+
+Semantics：
+
+- OPEN：增加指定 position direction 的 exposure；可為 FLAT → position，或同方向 ADD。
+- REDUCE：減少 existing position，但 execution 後 quantity 必須仍大於 0。
+- CLOSE：減少 existing position 至 exactly FLAT。
+- opposite-side transition 不得用單一 intent 直接 reversal。
+- reversal 固定 EXIT / CLOSE → confirmed FLAT → re-evaluate → OPEN opposite。
+
+### OrderIntent
+
+建立 immutable broker-neutral OrderIntent。
+
+至少：
+
+    intent_id: str
+    correlation_id: str
+    causation_id: str | None
+    position_direction: PositionDirection
+    position_effect: PositionEffect
+    quantity: int > 0
+    target_position_ref: str | None
+    risk_decision_ref: str | None
+
+Rules：
+
+- extra fields forbid。
+- intent_id / correlation_id trim 且不可 blank。
+- optional refs 若存在不可 blank。
+- PositionDirection 使用 trading.account.PositionDirection。
+- trading.execution 不得 import backtest models。
+- typed TargetAccountPosition / RiskDecision persistence identity 尚未完成，因此 refs 保持 optional opaque reference。
+- provenance persistence 留 GAP-PERSIST-001。
+
+### PositionEffect Validation
+
+建立 pure validation seam。
+
+Input：
+
+    OrderIntent
+    AccountPosition | None
+
+Rules：
+
+- expected=None：只允許 OPEN。
+- expected!=None：intent position_direction 必須與 existing expected direction 一致。
+- OPEN：允許同方向增加 exposure。
+- REDUCE：0 < intent.quantity < expected.quantity。
+- CLOSE：intent.quantity == expected.quantity。
+- REDUCE / CLOSE quantity > expected.quantity：reject。
+- opposite direction while non-FLAT：reject。
+- validation 是 pure；不得 submit、mutate 或 repair broker state。
+
+### Legacy Order Compatibility
+
+Existing backtest.models.Order 保持 mechanical order contract。
+
+Legacy Order.direction 在本 migration slice 明確解讀為：
+
+    position direction
+
+不是 broker-native Buy / Sell action。
+
+因此：
+
+- OPEN LONG 的 native action 是 Buy。
+- OPEN SHORT 的 native action 是 Sell。
+- CLOSE / REDUCE LONG 的 native action 是 Sell。
+- CLOSE / REDUCE SHORT 的 native action 是 Buy。
+
+不得再把 Order.direction 單獨直接等同 broker action。
+
+### Broker Submission Compatibility
+
+Existing execution Broker port 保持同一 capability。
+
+本 GAP 允許 bounded signature extension：
+
+    submit_order(
+        order,
+        *,
+        intent: OrderIntent | None = None
+    )
+
+Rules：
+
+- generic / PaperBroker caller 可暫時省略 intent，以保持 existing paper/backtest compatibility。
+- ShioajiBroker submission 必須要求 explicit intent。
+- ShioajiBroker 收到 intent=None 必須 fail fast。
+- 不得從 order_id、signal_id、prefix 或 caller name 推定 PositionEffect。
+
+### Order / Intent Consistency
+
+Shioaji submission 前至少驗證：
+
+- intent.quantity == order.quantity。
+- intent.position_direction value == legacy order.direction value。
+- mismatch 必須 explicit error。
+
+### Out of Scope
+
+- persistence。
+- corrective reconciliation。
+- account startup readiness。
+- full Order ownership migration。
+- full adapter relocation。
+- direct reversal。
+- DayTrade business semantics。
+- broker Auto open/close inference。
 
 ## Domain Acceptance
 

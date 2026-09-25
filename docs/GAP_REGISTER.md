@@ -60,7 +60,7 @@ Mainline：
 |---|---|---|---|---|---|
 | GAP-ACCOUNT-001 | P1 | REVIEW_AT_CHECKPOINT | No | Broker Account / Position Sync | CLOSED |
 | GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | BLOCKED_BY_BROKER_EXECUTION |
-| GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | Corrective execution | Explicit OrderIntent / PositionEffect | READY_FOR_ARCHITECTURE_REVIEW |
+| GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | Corrective execution | Explicit OrderIntent / PositionEffect | READY_FOR_EXECUTION |
 | GAP-BROKER-002 | P2 | RECORD_AND_CONTINUE | No | Capability matrix / mapping semantics | PARTIAL |
 | GAP-08 | P1 | REVIEW_AT_CHECKPOINT | No | Trading State Persistence / Recovery | PENDING |
 | GAP-PERSIST-001 | P1 | RECORD_AND_CONTINUE | No | Decision / Risk Provenance | OPEN |
@@ -170,11 +170,27 @@ Completed：
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_EXECUTION。
 
-Runtime：
+Architecture / Design Freeze：
 
-NOT_YET_AUTHORIZED。
+COMPLETED。
+
+Runtime Launch Gate：
+
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+
+Frozen semantics：
+
+- PositionEffect = OPEN / REDUCE / CLOSE。
+- OrderIntent explicit。
+- LONG OPEN = Buy + New。
+- SHORT OPEN = Sell + New。
+- LONG REDUCE/CLOSE = Sell + Cover。
+- SHORT REDUCE/CLOSE = Buy + Cover。
+- no Auto inference。
+- no DayTrade semantics。
+- no order-ID business inference。
 
 Problem：
 

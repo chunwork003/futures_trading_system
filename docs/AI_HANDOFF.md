@@ -16,7 +16,7 @@ Architecture baseline：
 
 Recorded full regression：
 
-`745 passed`
+`776 passed`
 
 Known local untracked：
 
@@ -319,22 +319,40 @@ Core 不得保存 `sj.*` object。
 
 ---
 
-## 15. Broker Safety Gap
+## 15. Broker Execution Semantics
 
-Current ShioajiBroker still derives New/Cover from：
+Current unsafe runtime：
 
     order_id.startswith("ENTRY-")
 
-GAP-BROKER-001 必須建立：
+GAP-BROKER-001 architecture / design freeze 已完成。
 
-- OrderIntent。
-- PositionEffect。
+Canonical：
 
-之後移除 prefix inference。
+    PositionEffect = OPEN / REDUCE / CLOSE
 
-任何 automatic corrective broker execution 不得在此 GAP 前完成。
+Shioaji explicit mapping：
 
----
+- LONG + OPEN -> Buy + New。
+- SHORT + OPEN -> Sell + New。
+- LONG + REDUCE/CLOSE -> Sell + Cover。
+- SHORT + REDUCE/CLOSE -> Buy + Cover。
+
+禁止：
+
+- FuturesOCType.Auto business inference。
+- DayTrade semantics。
+- order ID / signal ID prefix inference。
+- direct reversal。
+
+Reversal：
+
+    CLOSE
+    -> confirmed FLAT
+    -> re-evaluate
+    -> OPEN opposite
+
+Runtime 尚需 architecture-freeze commit / push 後才授權。
 
 ## 16. Account Sync Foundation
 
@@ -619,10 +637,10 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-38.72%。
+39.03%。
 
-Architecture Design Coverage：85.63%。
-Design Freeze Coverage：47.54%。
+Architecture Design Coverage：87.23%。
+Design Freeze Coverage：49.13%。
 Runtime Implementation：33.60%。
 Unit Verification：30.37%。
 Integration Verification：30.28%。
@@ -671,37 +689,33 @@ Policy：
 - 不以目前樣本線性推算固定 WP capacity。
 - 至少累積 2–3 個穩定 Level 3A runtime samples 後再評估。
 
-## 28. Next Mainline Candidate
+## 28. Current Active Candidate
 
-Last completed：
-
-GAP-ACCOUNT-001 Broker Account / Position Sync Foundation。
-
-Status：
-
-CLOSED / ACCEPTED。
-
-Runtime commit：
-
-`50813b679f818f3837a9f50fdcda9921495ab507`
-
-Next：
+Current：
 
 GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_EXECUTION。
 
-Runtime authorization：
+Architecture review：
 
-NOT_YET_AUTHORIZED。
+COMPLETED。
 
-Reason：
+Design Freeze：
 
-H210-H250 / I340-I350 public semantics 尚未完成 design freeze。
+COMPLETED。
 
-下一步先完成人工 architecture review，再建立新的 ACTIVE Work Package。
+Runtime Launch Gate：
+
+`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
+
+Recommended calibration：
+
+`GPT-5.6 Sol / 輕度`
+
+完成 architecture freeze commit / push 後才解除 runtime gate。
 
 ## 29. Hard Stop
 

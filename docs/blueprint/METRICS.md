@@ -11,9 +11,9 @@ Formal baseline：
 
 - Engineering leaves：603。
 - Total weight：2137。
-- Lifecycle-weighted completion：38.72%。
-- Architecture Design Coverage：85.63%。
-- Design Freeze Coverage：47.54%。
+- Lifecycle-weighted completion：39.03%。
+- Architecture Design Coverage：87.23%。
+- Design Freeze Coverage：49.13%。
 - Runtime Implementation：33.60%。
 - Unit Verification：30.37%。
 - Integration Verification：30.28%。
@@ -24,9 +24,9 @@ Formal baseline：
 
 Lifecycle inventory：
 
-- NOT_DESIGNED：69 leaves / weight 307。
+- NOT_DESIGNED：62 leaves / weight 273。
 - DESIGNED：212 leaves / weight 814。
-- DESIGN_FROZEN：72 leaves / weight 298。
+- DESIGN_FROZEN：79 leaves / weight 332。
 - IMPLEMENTED：27 leaves / weight 69。
 - UNIT_VERIFIED：1 leaf / weight 2。
 - INTEGRATION_VERIFIED：0 leaves / weight 0。

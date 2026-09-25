@@ -31,7 +31,7 @@ Technical issues：
 
 ---
 
-# Next Mainline Candidate
+# Current Active Candidate
 
 ID：
 
@@ -43,29 +43,45 @@ Explicit OrderIntent / PositionEffect
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW
+READY_FOR_EXECUTION
 
 Priority：
 
 P1 MAINLINE
 
-Runtime Authorization：
+Execution Mode：
 
-NOT_YET_AUTHORIZED
+LEVEL_3A_BOUNDED
+
+Recommended Model：
+
+GPT-5.6 Sol
+
+Recommended Effort：
+
+輕度
+
+Model Rule：
+
+本 Work Package 中途不得切換 model 或 effort。
+
+Architecture Review：
+
+COMPLETED
+
+Design Freeze：
+
+COMPLETED
+
+Runtime Launch Gate：
+
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
 
 Reason：
 
-GAP-ACCOUNT-001 已完成並 accepted。
+H210-H250 / I340-I350 public semantics 已凍結。
 
-但 GAP-BROKER-001 對應 Blueprint leaves：
-
-- H210-H250。
-- H910-H940。
-- I340-I350。
-
-其中 public OrderIntent / PositionEffect / broker New-Cover semantics 尚未完成 design freeze。
-
-因此下一步是人工 architecture review，不直接啟動 Codex runtime。
+但必須先 commit / push architecture freeze，才能解除 runtime gate。
 
 # Completed Work Package — GAP-ACCOUNT-001
 
@@ -100,22 +116,22 @@ Corrective execution 仍未授權。
 
 Current order：
 
-1. GAP-BROKER-001 architecture review / design freeze。
-2. GAP-BROKER-001 bounded runtime implementation。
-3. GAP-RECON-001 policy / startup readiness。
-4. GAP-BROKER-002 capability matrix。
-5. GAP-08 persistence / recovery。
+1. commit / push GAP-BROKER-001 architecture freeze。
+2. release GAP-BROKER-001 runtime launch gate。
+3. GAP-BROKER-001 bounded runtime implementation。
+4. deterministic acceptance / closure。
+5. GAP-RECON-001 architecture review / runtime。
 
 Corrective reconciliation execution：
 
-在 explicit OrderIntent / PositionEffect 完成前仍禁止。
+在 GAP-BROKER-001 runtime acceptance 前仍禁止。
 
 # Mainline Queue
 
 | Order | ID | Work | Status | Dependency |
 |---:|---|---|---|---|
 | 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | CLOSED | GAP-07 |
-| 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | READY_FOR_ARCHITECTURE_REVIEW | GAP-ACCOUNT-001 |
+| 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | READY_FOR_EXECUTION | GAP-ACCOUNT-001 |
 | 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | BLOCKED_BY_BROKER_EXECUTION | GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | PENDING | Broker mapping + execution semantics |
 | 5 | GAP-08 | Trading State Persistence & Recovery | BLOCKED | Reconciliation foundation |

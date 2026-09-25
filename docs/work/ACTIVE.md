@@ -2,37 +2,37 @@
 
 ## 1. Work Package ID
 
-GAP-ACCOUNT-001
+GAP-BROKER-001
 
 ---
 
 ## 2. Title
 
-Broker Account / Position Sync Foundation
+Explicit OrderIntent / PositionEffect
 
 ---
 
 ## 3. Status
 
-COMPLETED
+READY_FOR_EXECUTION
 
-Architecture review 已完成。
-
-此 Work Package architecture / design freeze 已完成。
-
-Runtime execution authorization：
+Architecture review：
 
 COMPLETED。
 
+Architecture / Design Freeze：
+
+COMPLETED。
+
+Runtime execution authorization：
+
+HOLD。
+
 Launch Gate：
 
-`RELEASED_BLUEPRINT_BASELINE`
+`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
 
-Release evidence：
-
-`432c48fb63c3d8d2760c0f2f5338e205ded63d30`
-
-本 Work Package 已完成並 accepted；不得重跑或自動開始下一個 Work Package。
+必須先將本 architecture freeze commit / push / remote verify。
 
 ---
 
@@ -50,13 +50,10 @@ Calibration rule：
 
 Reason：
 
-涉及：
-
-- broker actual state。
-- account identity。
-- position semantics。
-- expected/actual boundary。
-- reconciliation semantics。
+- broker money semantics。
+- OPEN / REDUCE / CLOSE business meaning。
+- Shioaji New / Cover mapping。
+- cross-module execution compatibility。
 
 ---
 
@@ -66,41 +63,42 @@ LEVEL_3A_BOUNDED
 
 一次只執行本 Work Package。
 
-完成後必須 STOP，不得自動開始下一個 Work Package。
+完成後必須 STOP。
+
+不得自動開始 GAP-RECON-001。
 
 ---
 
 ## 6. Goal
 
-建立 broker-neutral、read-only Account / Position Sync foundation。
+移除 Shioaji execution 對 order ID naming 的 New / Cover business inference。
 
-使系統可以明確表示：
+建立 broker-neutral：
 
-- BrokerAccount。
-- internal expected AccountPosition。
-- BrokerPositionSnapshot。
-- broker actual observation。
-- expected vs actual mismatch。
+- OrderIntent。
+- PositionEffect。
+- pure PositionEffect validation。
+- explicit Shioaji Action / FuturesOCType mapping。
 
-本 Work Package 不執行 corrective broker order。
+Current unsafe truth：
+
+    order_id.startswith("ENTRY-")
+
+完成後：
+
+order ID 只保留 identity / legacy formatting，不能再決定 broker execution semantics。
 
 ---
 
 ## 7. Why This Is Next
 
-GAP-07 已 CLOSED。
+GAP-ACCOUNT-001 已 CLOSED / ACCEPTED。
 
-Canonical instrument/contract/broker mapping 已完成。
+GAP-RECON-001 的任何 corrective execution 必須先有 explicit execution semantics。
 
-Persistence、Recovery、Live Safety 前：
+因此目前 mainline dependency 是：
 
-系統必須先能表示與比較：
-
-internal expected account state
-
-與
-
-broker actual state。
+    GAP-BROKER-001
 
 ---
 
@@ -110,26 +108,13 @@ Expected branch：
 
 master
 
-Required architecture baseline ancestor：
+Required closure baseline ancestor：
 
-771f10f
+40953f3a9b3e55cbe497990102c8078b609298f8
 
-Execution precheck：
+Recorded full regression：
 
-- current branch 必須是 `master`。
-- `master` 必須與 `origin/master` 一致。
-- actual execution HEAD 由 Codex 啟動時記錄。
-- actual execution HEAD 必須包含 `771f10f` architecture baseline。
-- tracked working tree 必須 clean。
-- 允許既知 untracked `data/`，但不得修改、刪除或 stage。
-
-不再要求 ACTIVE 文件內保存「精確 current HEAD」：
-
-因為 ACTIVE 本身的 documentation commit 會改變 HEAD，精確 SHA 會形成自我參照並立即 stale。
-
-Recorded regression baseline：
-
-745 passed
+776 passed
 
 Known warning：
 
@@ -139,7 +124,15 @@ Known local untracked：
 
 data/
 
-不得修改、刪除或 stage `data/`。
+不得修改、刪除或 stage data/。
+
+Execution precheck：
+
+- branch 必須 master。
+- local master 必須與 origin/master 一致。
+- actual execution HEAD 必須包含 architecture-freeze commit。
+- tracked working tree 必須 clean。
+- 只允許既知 untracked data/。
 
 ---
 
@@ -147,293 +140,368 @@ data/
 
 Completed：
 
-- ADR-001。
 - GAP-07。
-- Broker port foundation。
-- Shioaji adapter foundation。
-- BrokerInstrumentReference。
+- GAP-ACCOUNT-001。
+- Order / Fill foundation。
+- Broker execution port。
+- Shioaji submit/status/fill/cancel foundation。
+- partial fill / dedup / terminal lifecycle。
 
 Relevant pending：
 
-- GAP-BROKER-001。
 - GAP-RECON-001。
 - GAP-08。
 
 ---
 
-## 10. Confirmed Architecture
+## 10. Core Invariants
 
 Fixed：
 
-    LogicalAccount != BrokerAccount
+    Order ID != PositionEffect
 
 Fixed：
 
-    StrategyPosition
-    != TargetAccountPosition
-    != AccountPosition
-    != BrokerPositionSnapshot
+    PositionDirection != broker native Action
 
-BrokerPositionSnapshot：
+Fixed：
 
-broker actual observation。
+    PositionEffect determines New / Cover semantics
 
-AccountPosition：
+Direction change：
 
-internal expected state。
+    CLOSE
+    -> confirmed FLAT
+    -> re-evaluate
+    -> OPEN opposite
 
-不得 silent overwrite。
-
----
-
-## 11. Sequencing Safety
-
-本 Work Package 可以：
-
-- 建立 read-only account/position models。
-- 建立 broker query seam。
-- 建立 mismatch comparison foundation。
-
-本 Work Package 不可以：
-
-- corrective broker order。
-- automatic repair。
-- force close/open。
-- reconciliation action that changes broker state。
-
-Corrective execution 必須等：
-
-GAP-BROKER-001 OrderIntent / PositionEffect。
+禁止 single-intent silent reversal。
 
 ---
 
-## 12. Scope Freeze
+## 11. Scope Freeze
 
 只做：
 
-- BrokerAccount。
-- BrokerPositionSnapshot。
-- read-only account/position query contract。
-- minimal Shioaji mapping seam。
-- pure mismatch comparison。
-- compatibility tests。
+- trading.execution PositionEffect。
+- trading.execution OrderIntent。
+- pure expected-position validation。
+- Broker submit compatibility seam。
+- PaperBroker compatibility。
+- ShioajiBroker explicit intent requirement。
+- explicit Action mapping。
+- explicit New / Cover mapping。
+- remove order-ID prefix inference。
+- fake / deterministic tests。
 - full regression。
 
 不做：
 
+- reconciliation corrective action。
+- reconciliation policy。
 - persistence。
-- database。
+- OrderEvent persistence。
 - restart recovery。
-- LIVE_AUTO。
-- capability matrix。
-- corrective order。
+- full OMS migration。
 - full adapter relocation。
-- package cleanup。
 - strategy changes。
-- ASP.NET Core。
-- React。
+- direct reversal。
+- FuturesOCType.Auto business inference。
+- DayTrade business semantics。
+- LIVE_AUTO。
 
 ---
 
-## 13. Preferred Ownership
+## 12. Canonical Ownership
 
-Target：
+新增：
 
-    trading/account
-    trading/reconciliation
+    trading/execution.py
 
-但此次只建立 immediate consumer 需要的最小 modules。
+Owner：
 
-禁止建立：
+- PositionEffect。
+- OrderIntent。
+- PositionEffect validation。
 
-- service locator。
-- event bus。
-- DDD aggregate framework。
-- empty package hierarchy。
+Rule：
 
-Package rule：
+`trading.execution` 不得 import `backtest.*`。
 
-只有存在本 Work Package 的立即 implementation / consumer / test 時，才建立新 package/module。
+允許 import：
 
-不得預先建立完整 target architecture 空骨架。
+    trading.account.PositionDirection
+    trading.account.AccountPosition
 
-如果本 Work Package 首次建立 `trading/` package：
+Existing mechanical Order / Fill 暫時仍在 backtest models。
 
-同步更新 `pyproject.toml` package discovery 加入 `trading*`。
-
-只有真的建立 `adapters/` package 時才加入 `adapters*`。
-
-不得預先加入不存在的 future packages。
+Ownership migration 留 GAP-ARCH-001。
 
 ---
 
-## 14. BrokerAccount Requirements
+## 13. PositionEffect Contract
 
-Broker-neutral。
+Canonical enum：
 
-至少表示：
+    OPEN
+    REDUCE
+    CLOSE
 
-- broker identifier。
-- broker account stable reference。
-- optional display metadata。
+不得加入：
 
-不得保存：
+    REVERSE
 
-- password。
-- API secret。
-- Shioaji account native object。
-- any broker SDK object。
+OPEN：
 
----
+- FLAT -> position。
+- 或 existing same-direction position 增加 exposure。
 
-## 15. BrokerPositionSnapshot Requirements
+REDUCE：
 
-至少表示：
+- 減少 existing exposure。
+- 執行後 quantity 必須仍 > 0。
 
-- broker。
-- broker account reference。
-- canonical instrument identity。
-- canonical/listed contract reference。
-- direction。
-- quantity。
-- observed timestamp。
+CLOSE：
 
-如果 broker source 有明確已知 average price：
-
-可以 optional observation。
-
-不得將 BrokerPositionSnapshot 當成 internal AccountPosition。
+- quantity exactly 關閉 existing position 至 FLAT。
 
 ---
 
-## 16. Internal AccountPosition
+## 14. OrderIntent Contract
+
+Immutable broker-neutral model。
+
+至少：
+
+    intent_id: str
+    correlation_id: str
+    causation_id: str | None
+    position_direction: PositionDirection
+    position_effect: PositionEffect
+    quantity: int > 0
+    target_position_ref: str | None
+    risk_decision_ref: str | None
+
+Rules：
+
+- extra fields forbid。
+- frozen / immutable。
+- intent_id trim + nonblank。
+- correlation_id trim + nonblank。
+- optional refs 若存在必須 trim + nonblank。
+- quantity > 0。
+- 不保存 native Shioaji object。
+- 不保存 secret。
+
+target_position_ref / risk_decision_ref：
+
+本 GAP 只作 optional opaque provenance references。
+
+完整 provenance persistence 留 GAP-PERSIST-001。
+
+---
+
+## 15. PositionEffect Validation
+
+建立 pure validation seam。
+
+Conceptual public contract：
+
+    validate_position_effect(
+        intent: OrderIntent,
+        expected: AccountPosition | None
+    ) -> None
+
+Explicit error：
+
+    PositionEffectValidationError
+
+Rules：
+
+- expected=None：只允許 OPEN。
+- expected!=None：intent direction 必須與 expected direction 一致。
+- OPEN：允許同方向增加 exposure。
+- REDUCE：0 < intent.quantity < expected.quantity。
+- CLOSE：intent.quantity == expected.quantity。
+- REDUCE / CLOSE 超過 expected quantity：reject。
+- CLOSE 少於 expected quantity：reject。
+- opposite-side intent while non-FLAT：reject。
+- 不 mutate expected。
+- 不 submit broker order。
+
+---
+
+## 16. Legacy Order Compatibility
 
 Existing：
 
-`backtest/account_position.py`
+    backtest.models.Order
 
-Architecture review decision：
+保持 mechanical order contract。
 
-本 Work Package 不搬移、不刪除、不 big-bang rewrite 此 model。
+Legacy Order.direction 在本 migration slice 定義為：
 
-先查 current consumers。
+    position direction
 
-如果新 broker-neutral account layer 需要與 existing AccountPosition 整合：
+不是 native Buy / Sell action。
 
-建立最小 compatibility seam。
+Mapping matrix：
 
-GAP-ARCH-001 / GAP-ARCH-002 ownership migration 不得混入本 Work Package。
-
----
-
-## 17. Broker Query Port
-
-Architecture review decision：
-
-固定採用：
-
-B. separate read-only account/position capability interface。
-
-不得擴充目前：
-
-`backtest.broker.Broker`
-
-原因：
-
-目前 Broker port 是 execution capability：
-
-- submit_order。
-- get_order。
-- get_fills。
-- cancel_order。
-
-Account / Position observation 是不同 capability。
-
-不得迫使：
-
-- PaperBroker。
-- historical backtest broker。
-- unrelated execution implementations。
-
-實作 live-only account query methods。
-
-Preferred direction：
-
-- account snapshot/query capability。
-- position snapshot/query capability。
-
-具體 class/protocol 命名可由 implementation 在 scope 內決定，但 responsibility 不得重新合併回 execution Broker ABC。
+| Position Direction | PositionEffect | Native Action | Native OCType |
+|---|---|---|---|
+| LONG | OPEN | Buy | New |
+| SHORT | OPEN | Sell | New |
+| LONG | REDUCE | Sell | Cover |
+| SHORT | REDUCE | Buy | Cover |
+| LONG | CLOSE | Sell | Cover |
+| SHORT | CLOSE | Buy | Cover |
 
 ---
 
-## 18. Shioaji Boundary
+## 17. Broker Port Compatibility
 
-只允許：
+Existing execution capability 保持同一 responsibility。
 
-- fake objects。
-- mocks。
-- deterministic unit tests。
+允許 bounded signature extension：
 
-禁止：
+    submit_order(
+        order,
+        *,
+        intent: OrderIntent | None = None
+    )
 
-- real broker login。
-- real account query。
-- real order。
-- network-dependent tests。
-- credentials。
+Rules：
 
-如果 Shioaji native position semantics 無法從 existing implementation 或 approved source 確認：
-
-HARD_BLOCK。
-
-不得猜：
-
-- side semantics。
-- quantity semantics。
-- today/yesterday position meaning。
-- account selection semantics。
-- contract identity semantics。
+- backtest.broker.Broker 不新增 account/reconciliation capability。
+- PaperBroker 必須保持既有 caller 可省略 intent。
+- PaperBroker 可接受 optional intent，但不得改變 fill semantics。
+- ShioajiBroker 必須要求 explicit intent。
+- ShioajiBroker intent=None 必須 fail fast。
+- 不得從 order_id / signal_id / prefix 推定 intent。
 
 ---
 
-## 19. Reconciliation Foundation
+## 18. Order / Intent Consistency
 
-本 Work Package 只建立 pure comparison foundation。
+Shioaji submission 前必須驗證：
 
-至少能表示：
+- intent.quantity == order.quantity。
+- intent.position_direction.value == order.direction.value。
 
-- MATCH。
-- INTERNAL_ONLY。
-- BROKER_ONLY。
-- DIRECTION_MISMATCH。
-- QUANTITY_MISMATCH。
-- CONTRACT_MISMATCH。
+Mismatch：
 
-禁止 corrective action。
+explicit error。
+
+不得 silent coerce。
 
 ---
 
-## 20. Preferred Runtime Areas
+## 19. Shioaji Mapping
 
-Precheck / possible changes：
+Approved official source：
 
-    trading/**
-    adapters/sinopac/**
-    domain/broker_instruments.py
+    SRC-SINOPAC-FUT-ORDER-001
+
+Official API supports：
+
+- Action Buy / Sell。
+- FuturesOCType Auto / New / Cover / DayTrade。
+
+本 GAP 只允許：
+
+- New。
+- Cover。
+
+本 GAP 禁止：
+
+- Auto business inference。
+- DayTrade business semantics。
+
+Native action 必須由：
+
+    PositionDirection + PositionEffect
+
+共同決定。
+
+Native OCType 必須由：
+
+    PositionEffect
+
+決定。
+
+---
+
+## 20. Shioaji Mapping API
+
+Target conceptual seam：
+
+    to_shioaji_order(
+        order,
+        intent
+    )
+
+Mapper：
+
+- validate order / intent consistency。
+- derive native Action。
+- derive native FuturesOCType。
+- preserve price type mapping。
+- preserve ROD mapping。
+- preserve quantity mapping。
+
+不得由 caller 任意傳 native octype 作 business truth。
+
+---
+
+## 21. Prefix Removal
+
+必須移除：
+
+    order_id.startswith("ENTRY-")
+
+以及任何 equivalent prefix inference。
+
+ENTRY / EXIT 字串可暫時保留作 legacy order ID formatting。
+
+但不能影響：
+
+- Buy / Sell。
+- New / Cover。
+- OPEN / REDUCE / CLOSE。
+
+Regression test 必須證明：
+
+- ENTRY-prefixed CLOSE 仍映射 Cover。
+- EXIT-prefixed OPEN 仍映射 New。
+
+---
+
+## 22. Preferred Runtime Areas
+
+Expected：
+
+    trading/execution.py
     backtest/broker.py
-    backtest/account_position.py
-    backtest/shioaji_*
-    pyproject.toml
+    backtest/paper_broker.py
+    backtest/shioaji_broker.py
+    backtest/shioaji_mapping.py
+
+Possible direct compatibility consumers only if required：
+
+    backtest/paper_trading.py
 
 Tests：
 
-    tests/unit/**
+    tests/unit/test_trading_execution.py
+    tests/unit/test_shioaji_mapping.py
+    tests/unit/test_shioaji_broker.py
+    tests/unit/test_paper_broker.py
 
 只修改真正必要 files。
 
 ---
 
-## 21. Forbidden Areas
+## 23. Forbidden Areas
 
 不得修改：
 
@@ -443,734 +511,199 @@ Tests：
     strategies/**
     features/**
 
+除非直接 dependency conflict，否則不得修改：
+
+    domain/**
+    trading/account.py
+    trading/reconciliation.py
+
 禁止：
 
-- real credentials。
-- live order execution。
-- persistence implementation。
-- full backtest model migration。
+- real broker login。
+- real order。
+- network-dependent tests。
+- credentials。
 - unrelated cleanup。
-- Git history rewrite。
+- mass ownership migration。
 
 ---
 
-## 22. Compatibility
+## 24. Required Tests
 
-必須保持：
+至少：
 
-- PaperBroker。
-- PaperTradingEngine。
-- PaperTradingRunner。
-- ShioajiBroker existing order lifecycle。
-- BacktestEngine。
-- current 745-test baseline behavior。
-
----
-
-## 23. Required Tests
-
-至少覆蓋：
-
-1. BrokerAccount validation。
-2. BrokerPositionSnapshot validation。
-3. Core model 禁止 native broker object。
-4. internal expected 與 broker actual 明確分離。
-5. account identity mapping。
-6. MATCH。
-7. INTERNAL_ONLY。
-8. BROKER_ONLY。
-9. DIRECTION_MISMATCH。
-10. QUANTITY_MISMATCH。
-11. CONTRACT_MISMATCH。
-12. no corrective execution。
-13. fake Shioaji mapping only。
-14. current PaperBroker compatibility。
-15. full regression。
+1. PositionEffect exact enum values。
+2. OrderIntent normalization / nonblank validation。
+3. OrderIntent extra forbid / immutability。
+4. FLAT only OPEN。
+5. same-direction OPEN allowed。
+6. valid REDUCE。
+7. REDUCE cannot reach zero。
+8. valid exact CLOSE。
+9. CLOSE under/over quantity reject。
+10. opposite direction while non-FLAT reject。
+11. PaperBroker omission of intent remains compatible。
+12. ShioajiBroker missing intent fails explicitly。
+13. six-case LONG/SHORT x OPEN/REDUCE/CLOSE mapping matrix。
+14. quantity mismatch reject。
+15. direction mismatch reject。
+16. ENTRY-prefixed CLOSE maps Cover。
+17. EXIT-prefixed OPEN maps New。
+18. no Auto fallback。
+19. no DayTrade mapping。
+20. existing Shioaji status/fill/cancel lifecycle remains green。
+21. PaperTradingEngine / Runner compatibility。
+22. full regression。
 
 ---
 
-## 24. Acceptance Criteria
+## 25. Acceptance Criteria
 
 PASS 必須：
 
-- broker-neutral BrokerAccount。
-- BrokerPositionSnapshot。
-- expected/actual separation。
-- read-only query seam。
-- pure mismatch comparison。
-- no corrective execution。
-- no secrets。
-- no native object leaked into core。
-- no DB dependency。
-- no network test。
+- OrderIntent broker-neutral。
+- PositionEffect explicit。
+- OPEN / REDUCE / CLOSE validation deterministic。
+- native Buy/Sell explicit。
+- native New/Cover explicit。
+- zero order-ID business inference。
+- no Auto fallback。
+- no DayTrade guessing。
+- PaperBroker compatibility preserved。
+- Shioaji lifecycle preserved。
+- no corrective reconciliation。
 - targeted tests PASS。
+- compatibility tests PASS。
 - full regression PASS。
+- git diff --check PASS。
 - no scope creep。
 
 ---
 
-## 25. Stop Conditions
+## 26. Stop Conditions
 
 HARD_BLOCK if：
 
-- Shioaji account/position semantics 需要猜。
-- 需要 real broker login 才能定義 model。
-- 必須先做 corrective order。
-- existing Broker ABC compatibility 無法安全維持。
-- expected/actual architecture 發生 conflict。
+- official Shioaji semantics conflict with frozen mapping。
+- implementation requires FuturesOCType.Auto to preserve correctness。
+- DayTrade semantics becomes required。
+- explicit intent cannot be added without breaking core Broker compatibility。
+- implementation requires direct reversal。
 - unrelated regression。
-- `data/` modified。
+- data/ modified。
 - secret exposed。
-- business semantics unclear。
+- business semantics require guessing。
 
 ---
 
-## 26. Git
+## 27. Git
 
-正式批准後才執行。
-
-流程：
+Runtime launch gate release 後：
 
     precheck
-    → implementation
-    → targeted tests
-    → relevant tests
-    → full regression
-    → git diff --check
-    → scope validation
-    → exact staging
-    → commit
-    → push
-    → verify
+    -> implementation
+    -> targeted tests
+    -> compatibility tests
+    -> full regression
+    -> git diff --check
+    -> scope validation
+    -> exact staging
+    -> commit
+    -> push
+    -> verify origin/master
+    -> final report
+    -> STOP
 
-禁止：
-
-- amend historical commit。
-- force push。
-- reset --hard。
+禁止 amend / force push / reset --hard。
 
 ---
 
-## 27. Documentation
+## 28. Documentation Responsibility
 
-Runtime Codex 本次主要責任：
+Runtime Codex：
 
 - implementation。
 - tests。
 - debugging。
 - integration。
-- scope validation。
 - runtime commit / push。
 - final report。
 
-Deterministic documentation closure 預設由人工 / PowerShell 處理：
+Deterministic closure 由人工 / PowerShell：
 
 - CURRENT_STATE。
 - CURRENT_WORK。
 - GAP_REGISTER。
 - DEVELOPMENT_LOG。
+- Blueprint lifecycle acceptance。
 
-只有 runtime implementation 發現真正 architecture decision change 時：
-
-回報 LEVEL 2 / LEVEL 3。
-
-不要自行大規模重寫：
-
-- ARCHITECTURE。
-- AI_HANDOFF。
-
-Runtime 完成後：
-
-STOP。
-
-不得因 documentation closure 自動開始下一個 Work Package。
+Runtime 完成後 STOP。
 
 ---
 
-## 28. Final Report
+## 29. Final Report
 
-回報：
+至少回報：
 
 1. Precheck findings。
-2. Chosen account-query port design。
-3. Account models。
-4. Broker snapshot semantics。
-5. Expected/actual separation。
-6. Reconciliation comparison。
-7. Shioaji fake mapping。
-8. Files created。
-9. Files modified。
-10. Targeted tests。
-11. Relevant integration tests。
-12. Full regression。
-13. Warnings。
+2. OrderIntent contract implementation。
+3. PositionEffect implementation。
+4. validation semantics。
+5. Broker port compatibility。
+6. PaperBroker compatibility。
+7. Shioaji mapping matrix。
+8. prefix inference removal evidence。
+9. files created / modified。
+10. targeted tests。
+11. compatibility tests。
+12. full regression。
+13. warnings。
 14. git diff --check。
 15. git status。
-16. New LEVEL 2 items。
+16. LEVEL 2 items。
 17. LEVEL 3 blockers。
-18. Recommendation。
+18. final commit SHA。
+19. origin/master SHA。
+20. calibration observations。
 
-不要自動開始下一個 Work Package。
----
+不得自動開始 GAP-RECON-001。
 
-## 29. Architect Design Freeze — GAP-ACCOUNT-001
-
-本節為人工 architecture review 的最終 implementation contract。
-
-Codex 不得重新設計以下 public semantics。
-
-### 29.1 Minimal Runtime Layout
-
-本 Work Package 預期只建立立即需要的 target modules：
-
-    trading/__init__.py
-    trading/account.py
-    trading/reconciliation.py
-
-    adapters/__init__.py
-    adapters/sinopac/__init__.py
-    adapters/sinopac/account_mapping.py
-
-必要時修改：
-
-    domain/broker_instruments.py
-    pyproject.toml
-
-Existing：
-
-    backtest/account_position.py
-    backtest/broker.py
-    backtest/shioaji_*
-
-保持 compatibility。
-
-不得把既有 Shioaji execution implementation 搬入 adapters。
-
-新 account observation mapping 直接放：
-
-    adapters/sinopac/
-
-這不是 full adapter relocation。
-
-如果建立 `trading/`：
-
-`pyproject.toml` 加入：
-
-    "trading*"
-
-如果建立 `adapters/`：
-
-加入：
-
-    "adapters*"
-
-不得加入尚未存在的 future packages。
-
-### 29.2 Canonical Position Direction
-
-`trading.account` 建立 broker-neutral：
-
-    PositionDirection
-
-只允許：
-
-    LONG
-    SHORT
-
-不得讓 trading core import：
-
-    backtest.models.Direction
-
-Existing backtest Direction 保持 compatibility，不在本 GAP migration。
-
-### 29.3 BrokerAccount Contract
-
-`BrokerAccount` 至少：
-
-    broker: str
-    account_ref: str
-    account_type: str | None
-    display_name: str | None
-
-Rules：
-
-- `broker` trim + uppercase。
-- `account_ref` trim、不可 blank。
-- `account_type` 是 broker-neutral metadata，不保存 native SDK object。
-- extra fields forbid。
-- 不保存 password。
-- 不保存 API key / secret。
-- 不保存 person_id。
-- 不保存 username。
-- 不保存 Shioaji native account object。
-
-Shioaji mapping：
-
-    broker = "SINOPAC"
-
-`account_ref` 使用官方 CLI/API 已採用的：
-
-    BROKER_ID-ACCOUNT_ID
-
-形式組成 opaque provider-scoped reference。
-
-Native：
-
-    F → FUTURES_OPTIONS
-    S → SECURITIES
-    H → INTERNATIONAL
-
-本 Work Package 的 position mapping 只處理 futures/options account。
-
-### 29.4 Canonical AccountPosition Contract
-
-建立新的：
-
-    trading.account.AccountPosition
-
-表示：
-
-internal expected physical account state。
-
-至少：
-
-    broker: str
-    account_ref: str
-    instrument_id: int
-    contract_id: int | None
-    direction: PositionDirection
-    quantity: int > 0
-
-Rules：
-
-- futures listed position 的 `contract_id` 必須存在。
-- future stocks / non-listed instruments 可允許 `contract_id=None`。
-- quantity=0 不表示 FLAT。
-- FLAT 使用「position absence」表示。
-
-Existing：
-
-    backtest.account_position.AccountPosition
-
-保持原樣。
-
-本 GAP 不 rename、不刪除、不搬移。
-
-### 29.5 BrokerPositionSnapshot Contract
-
-至少：
-
-    broker: str
-    account_ref: str
-    instrument_id: int
-    contract_id: int | None
-    direction: PositionDirection
-    quantity: int > 0
-    observed_at: timezone-aware datetime
-    average_price: Decimal | None
-
-Rules：
-
-- broker actual observation。
-- extra fields forbid。
-- quantity=0 不建立 snapshot。
-- `observed_at` 必須 timezone-aware。
-- 禁止 naive datetime。
-- operational price 使用 Decimal。
-- adapter 若來源為 float，使用 `Decimal(str(value))`。
-- 不保存 native broker position object。
-
-### 29.6 Read-Only Ports
-
-建立 two interface-segregated read-only capabilities：
-
-    BrokerAccountProvider
-    BrokerPositionProvider
-
-Conceptual signatures：
-
-    list_accounts() -> tuple[BrokerAccount, ...]
-
-    list_positions(
-        account: BrokerAccount
-    ) -> tuple[BrokerPositionSnapshot, ...]
-
-Rules：
-
-- 不擴充 `backtest.broker.Broker`。
-- port 本身無 corrective methods。
-- port 不包含 submit/cancel/repair。
-- 本 Work Package 不實作 real network provider。
-
-### 29.7 Reverse Broker Instrument Resolution
-
-Shioaji position 回報 broker `code`。
-
-Existing `BrokerInstrumentResolver.resolve()` 是：
-
-canonical → broker。
-
-本 Work Package 允許在：
-
-    domain/broker_instruments.py
-
-新增 exact reverse contract-level lookup：
-
-    resolve_by_broker_contract_code(
-        broker,
-        broker_contract_code,
-        as_of_date
-    )
-
-Rules：
-
-- broker normalize。
-- broker contract code trim。
-- broker contract code 保持 case-sensitive。
-- 只接受 `contract_id is not None` 的 contract-level reference。
-- effective date 使用既有 inclusive semantics。
-- listed broker position 禁止 instrument-level fallback。
-- missing → existing explicit mapping-not-found error。
-- multiple valid mappings → existing ambiguous mapping error。
-
-不得猜 canonical contract。
-
-### 29.8 Approved Shioaji Account Semantics
-
-人工 architecture review 已以 Sinopac 官方 Shioaji documentation 確認：
-
-Account query：
-
-    api.list_accounts()
-
-native account 可提供：
-
-    account_type
-    broker_id
-    account_id
-    signed
-    username
-    person_id
-
-Core mapping 本 GAP 只使用：
-
-    account_type
-    broker_id
-    account_id
-
-不得把：
-
-    person_id
-    username
-
-帶入 canonical BrokerAccount。
-
-### 29.9 Approved Shioaji Futures Position Semantics
-
-官方 `FuturePosition` 明確提供：
-
-    id
-    code
-    direction
-    quantity
-    price
-    last_price
-    pnl
-
-本 Work Package 只使用：
-
-    code
-    direction
-    quantity
-    price
-
-Mapping：
-
-    Buy  → LONG
-    Sell → SHORT
-
-    quantity → quantity
-    price → average_price
-
-不將：
-
-    last_price
-    pnl
-
-納入本 GAP canonical snapshot。
-
-Futures top-level `FuturePosition` 不提供 yd_quantity：
-
-不得自行建立 today/yesterday position semantics。
-
-### 29.10 Pure Sinopac Mapping
-
-建立 pure mapping seam：
-
-    adapters/sinopac/account_mapping.py
-
-不得登入。
-
-不得 network。
-
-不得建立 real Shioaji session。
-
-Mapper 必須由 caller 明確提供：
-
-    observed_at
-    as_of_date
-    BrokerInstrumentResolver
-
-禁止 hidden current date/time。
-
-Unknown：
-
-- direction。
-- account type。
-- broker contract code。
-- ambiguous canonical mapping。
-
-必須 explicit error。
-
-不得猜。
-
-### 29.11 Reconciliation Foundation
-
-本 Gap 只做 pairwise pure comparison。
-
-建立：
-
-    ReconciliationStatus
-    ReconciliationResult
-    compare_positions(...)
-
-Required statuses：
-
-    MATCH
-    INTERNAL_ONLY
-    BROKER_ONLY
-    CONTRACT_MISMATCH
-    DIRECTION_MISMATCH
-    QUANTITY_MISMATCH
-
-Expected：
-
-    trading.account.AccountPosition | None
-
-Actual：
-
-    BrokerPositionSnapshot | None
-
-Semantics：
-
-- expected=None + actual=None → MATCH。
-- expected!=None + actual=None → INTERNAL_ONLY。
-- expected=None + actual!=None → BROKER_ONLY。
-
-兩邊都有 position 時：
-
-先確認：
-
-    broker
-    account_ref
-    instrument_id
-
-相同。
-
-若上述 identity 不同：
-
-不是同一可比較 position pair。
-
-raise explicit comparison error。
-
-Comparison precedence：
-
-1. contract_id 不同 → CONTRACT_MISMATCH。
-2. direction 不同 → DIRECTION_MISMATCH。
-3. quantity 不同 → QUANTITY_MISMATCH。
-4. otherwise → MATCH。
-
-`ReconciliationResult` 至少保存：
-
-    status
-    expected
-    actual
-
-不得：
-
-- mutate expected。
-- mutate actual。
-- submit order。
-- repair broker state。
-- silent overwrite。
-
-多 position collection matching / startup policy：
-
-留給 GAP-RECON-001。
-
-### 29.12 Compatibility Boundary
-
-本 GAP 不修改既有：
-
-    backtest.account_position.AccountPosition
-
-public behavior。
-
-不要求 legacy AccountPosition 立即轉為 canonical AccountPosition。
-
-Compatibility acceptance：
-
-existing account/paper/backtest tests 必須保持 green。
-
-Canonical AccountPosition 將供新 account/reconciliation path 使用。
-
-Legacy migration 留 GAP-ARCH-001 / GAP-ARCH-002。
-
-### 29.13 Expected New Tests
-
-至少新增：
-
-    tests/unit/test_trading_account.py
-    tests/unit/test_reconciliation.py
-    tests/unit/test_sinopac_account_mapping.py
-
-並擴充：
-
-    tests/unit/test_broker_instrument_reference.py
-
-Required cases：
-
-- model normalization / validation。
-- native object extra rejection。
-- timezone-aware observed_at。
-- Decimal average price。
-- exact reverse broker contract mapping。
-- missing mapping。
-- ambiguous mapping。
-- Buy/LONG。
-- Sell/SHORT。
-- account identity mapping。
-- no PII/native object leakage。
-- MATCH。
-- INTERNAL_ONLY。
-- BROKER_ONLY。
-- CONTRACT_MISMATCH。
-- DIRECTION_MISMATCH。
-- QUANTITY_MISMATCH。
-- non-comparable identity explicit error。
-- no corrective behavior。
-
-### 29.14 Re-entry Precheck Scope
-
-Codex restart 不做 whole-repo re-analysis。
-
-預設只重新讀：
-
-    AGENTS.md
-    docs/work/ACTIVE.md
-    pyproject.toml
-    domain/broker_instruments.py
-    backtest/broker.py
-    backtest/account_position.py
-    backtest/shioaji_mapping.py
-
-以及直接相關 tests。
-
-只有發現 dependency conflict 才擴大讀取範圍。
-
-### 29.15 Architect / Codex Responsibility Freeze
-
-人工已決定：
-
-- package ownership。
-- account identity。
-- canonical models。
-- read-only port split。
-- operational time semantics。
-- numeric semantics。
-- Shioaji field mapping。
-- reverse contract resolution。
-- reconciliation precedence。
-- compatibility boundary。
-- migration boundary。
-- corrective execution prohibition。
-
-Codex 只需決定：
-
-- private helper implementation。
-- local code decomposition。
-- test fixture organization。
-- scope-internal implementation detail。
-
-如果 implementation 需要改變上述人工決策：
-
-STOP。
-
-回報 LEVEL 3 architecture conflict。
-
-不得自行重新設計。
 ---
 
 ## 30. Blueprint Scope
 
-Status：
-
-BLUEPRINT_BASELINE_ACCEPTED。
-
 Implements：
 
-    D630
+    H210
+    H220
+    H230
+    H240
+    H250
 
-    I510
-    I520
-    I530
-
-    I610
-    I620
-    I630
-    I640
-    I650
-
-    J210
-    J220
-    J230
-    J240
-
-    J310
-    J320
-    J330
-
-    J410
-    J420
-    J430
-    J440
-
-    J510
-    J520
-    J530
-    J540
-    J550
-    J560
-    J570
-    J580
-    J590
+    I340
+    I350
 
 Touches：
 
-    D610
-    D620
+    H150
+    H610
+    H710
+
+    I310
+    I320
+    I360
 
 Does Not Implement：
 
-    H200
+    H440
+    H500+
+    H840
     J600
     J700
     K000+
     L000+
 
-Blueprint baseline 建立時：
-
-必須驗證上述 IDs 與 Domain Blueprint 一致。
+H910-H940 已有 direction-transition design freeze，但本 GAP 不新增 direct reversal runtime path。
 
 ---
 
@@ -1178,12 +711,12 @@ Blueprint baseline 建立時：
 
 Required：
 
-    SRC-SINOPAC-LOGIN-001
-    SRC-SINOPAC-POSITION-001
+    SRC-SINOPAC-FUT-ORDER-001
     SRC-SINOPAC-CONTRACT-001
     SRC-PYDANTIC-001
     SRC-ADR-001
     SRC-ARCH-001
+    SRC-BLUEPRINT-001
 
 Broker source last verified：
 
@@ -1193,73 +726,80 @@ Change risk：
 
 HIGH。
 
-Runtime execution 前：
-
-如果 official Shioaji semantics 與 Design Freeze 發生 material conflict：
+Runtime execution 前若 official Shioaji semantics material conflict：
 
 HARD_BLOCK。
 
-不得由 Codex 自行改變 public semantics。
+---
+
+## 32. Re-entry Precheck Scope
+
+Codex 不做 whole-repo rescan。
+
+預設只讀：
+
+    AGENTS.md
+    docs/work/ACTIVE.md
+    trading/account.py
+    backtest/broker.py
+    backtest/models.py
+    backtest/paper_broker.py
+    backtest/shioaji_broker.py
+    backtest/shioaji_mapping.py
+
+以及直接相關 tests。
+
+只有 direct dependency conflict 才擴大。
 
 ---
 
-## 32. Runtime Launch Gate
+## 33. Architect / Codex Responsibility Freeze
+
+人工已決定：
+
+- canonical ownership。
+- PositionEffect values。
+- OrderIntent public fields。
+- validation semantics。
+- legacy Order.direction interpretation。
+- Broker submit compatibility seam。
+- Shioaji Action matrix。
+- Shioaji New / Cover matrix。
+- Auto prohibition。
+- DayTrade exclusion。
+- prefix inference prohibition。
+- reversal sequencing。
+- migration boundary。
+
+Codex 只決定：
+
+- private helper decomposition。
+- local exception message wording。
+- fixture organization。
+- scope-internal implementation detail。
+
+如果需要改變 frozen public semantics：
+
+STOP + LEVEL 3。
+
+---
+
+## 34. Runtime Launch Gate
 
 Current：
 
-    RELEASED_BLUEPRINT_BASELINE
+    HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
 
-Release requirements（全部完成）：
+Release requirements：
 
-1. `V1_SYSTEM_BLUEPRINT.md` baseline accepted。
-2. A～O domain files complete。
-3. 92/92 capability mapping PASS。
-4. Blueprint scope IDs in this ACTIVE validated。
-5. connection / authority consistency PASS。
-6. source registry baseline PASS。
-7. Blueprint commit pushed：`432c48fb63c3d8d2760c0f2f5338e205ded63d30`。
+1. H210-H250 DESIGN_FROZEN。
+2. I340-I350 DESIGN_FROZEN。
+3. ACTIVE complete。
+4. CURRENT_WORK / GAP_REGISTER / AI_HANDOFF synchronized。
+5. official source revalidation PASS。
+6. architecture freeze commit pushed。
+7. local master == origin/master。
 
-Release 後：
+Release 後只解除 runtime launch gate。
 
-只解除 launch gate。
-
-不得重新開放 architecture design。
-
----
-
-## 33. Closure Evidence
-
-Status：
-
-CLOSED / ACCEPTED
-
-Accepted runtime commit：
-
-`50813b679f818f3837a9f50fdcda9921495ab507`
-
-Verification：
-
-- targeted：50 passed。
-- compatibility：48 passed。
-- full regression：776 passed。
-- git diff --check：PASS。
-- correction cycles：0。
-
-Blueprint acceptance：
-
-- 29 explicit Implements leaves ACCEPTED。
-- lifecycle completion：38.72%。
-
-Calibration：
-
-- GPT-5.6 Sol / 輕度。
-- runtime user-observed 5HR usage：12%。
-- Phase 4A deterministic acceptance user-observed 5HR usage：5%。
-
-Next：
-
-GAP-BROKER-001 READY_FOR_ARCHITECTURE_REVIEW。
-
-本 ACTIVE 保留為 completed Work Package evidence。
-
-新的 runtime ACTIVE 必須等 GAP-BROKER-001 architecture review / design freeze 完成後才建立。
+不得重新開放 frozen architecture。
