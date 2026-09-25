@@ -2,7 +2,7 @@
 
 ## 專案與導航
 
-台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0 — Governance / Architecture Consolidation 已完成；目前主線為 M4 / GAP-ACCOUNT-001 Broker Account / Position Sync Foundation。人工集中架構決策與 deterministic documentation，Codex 依已核准 Work Package 執行 runtime implementation、tests、debugging 與 integration。
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0 — Governance / Architecture Consolidation 已完成；目前主線為 M5 / GAP-RECON-001 Reconciliation / Startup Readiness architecture review。GAP-ACCOUNT-001 與 GAP-BROKER-001 已完成；人工集中架構決策與 deterministic documentation，Codex 依已核准 Work Package 執行 runtime implementation、tests、debugging 與 integration。
 
 Primary source of truth 與必讀順序：
 
@@ -42,7 +42,7 @@ Historical / supplemental documents：`docs/PROJECT_STATE.md`、`docs/DEVELOPMEN
 
 - Priority 與 Handling 為獨立維度：P0/P1/P2/P3/OBS；AUTO_FIX、RECORD_AND_CONTINUE、REVIEW_AT_CHECKPOINT、HARD_BLOCK。定義與逐項分類以 `GAP_REGISTER.md` 為準。
 - Terra：routine implementation、tests、docs、Git operations。Sol：broker semantics、reconciliation、persistence/recovery、複雜跨模組與 live/money safety。Recommended Model 只是建議；Stop Conditions 優先。
-- Automation 必須服務 development。AUTO-001 後回到 READY mainline `GAP-ACCOUNT-001`；不得自行增加 automation 系列工作，除非 queue-driven execution 已證明 blocker。
+- Automation 必須服務 development。runtime executor 只能執行 CURRENT_WORK / ACTIVE 已核准的 mainline Work Package；不得自行增加 automation 系列工作，除非 queue-driven execution 已證明 blocker。
 
 ## 人工介入與停止條件
 

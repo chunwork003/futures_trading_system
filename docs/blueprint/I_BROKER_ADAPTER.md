@@ -60,8 +60,8 @@ Target ownership：
 | I310 | Direction → Native Action | LONG/SHORT execution direction → Buy/Sell mapping | ACCEPTED | 3 | I02 |
 | I320 | OrderType → Native PriceType | MARKET/LIMIT/STOP → supported native type | ACCEPTED | 3 | I02 |
 | I330 | Native Order Duration / Qualifier | supported native ROD/other qualifier semantics 明確 | IMPLEMENTED | 2 | I02 |
-| I340 | PositionEffect → New/Cover | OPEN/CLOSE/REDUCE → explicit native FuturesOCType | DESIGN_FROZEN | 5 | I02 |
-| I350 | Remove Order-ID Prefix Inference | 禁止從 ENTRY-/EXIT- 推定 New/Cover | DESIGN_FROZEN | 5 | I02 |
+| I340 | PositionEffect → New/Cover | OPEN/CLOSE/REDUCE → explicit native FuturesOCType | ACCEPTED | 5 | I02 |
+| I350 | Remove Order-ID Prefix Inference | 禁止從 ENTRY-/EXIT- 推定 New/Cover | ACCEPTED | 5 | I02 |
 | I360 | Native Order Construction | canonical order + effect → native FuturesOrder | ACCEPTED | 4 | I02 |
 | I410 | Native Order Status Mapping | Shioaji status → canonical OrderStatus | ACCEPTED | 4 | I02,I03 |
 | I420 | Native Deal → Fill | deal price / quantity / timestamp → Fill | ACCEPTED | 4 | I03 |
@@ -102,7 +102,7 @@ CURRENT：
 - deal → Fill、multi-fill、dedup、partial fill 已存在。
 - BrokerInstrumentReference native lookup 已有 foundation。
 - GAP-ACCOUNT-001 已完成 account / position canonical mapping foundation；real network provider、broker paper verification 與 capability matrix 仍待後續。
-- `ShioajiBroker.submit_order()` 仍使用 order_id prefix 推定 New/Cover。
+- `ShioajiBroker.submit_order()` 已要求 explicit OrderIntent；New/Cover 由 PositionEffect 決定，不再依賴 order_id prefix。
 
 TARGET：
 
@@ -114,7 +114,7 @@ TARGET：
 MIGRATION：
 
 - GAP-ACCOUNT-001 只新增 account/position mapping seam，不搬 existing order execution。
-- GAP-BROKER-001 才替換 New/Cover inference。
+- GAP-BROKER-001 已將 New/Cover inference 替換為 explicit PositionEffect mapping。
 - full adapter relocation 是後續 bounded migration，不與 current GAP 混做。
 
 ---

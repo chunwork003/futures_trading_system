@@ -55,11 +55,11 @@ Target ownership：
 | H150 | Broker Execution Port | submit / query / fills / cancel capability | ACCEPTED | 4 | H02 |
 | H160 | Submission Result | submit 可回傳 current order + immediate fills | ACCEPTED | 2 | H02,H03 |
 | H170 | Canonical Execution Ownership | Order / Fill long-term owner 為 trading.execution | DESIGN_FROZEN | 4 | H01 |
-| H210 | OrderIntent | 描述為何要下單，而非只描述 order mechanics | DESIGN_FROZEN | 5 | H07 |
-| H220 | PositionEffect | OPEN / CLOSE / REDUCE 等 explicit effect | DESIGN_FROZEN | 5 | H07 |
-| H230 | OrderIntent Identity | correlation / causation / source target/risk decision | DESIGN_FROZEN | 4 | H07,H08 |
-| H240 | PositionEffect Validation | effect 必須與 current expected position / target transition 相容 | DESIGN_FROZEN | 5 | H07 |
-| H250 | Broker Open/Close Mapping Boundary | adapter 只能由 explicit PositionEffect 決定 New/Cover | DESIGN_FROZEN | 5 | H07 |
+| H210 | OrderIntent | 描述為何要下單，而非只描述 order mechanics | ACCEPTED | 5 | H07 |
+| H220 | PositionEffect | OPEN / CLOSE / REDUCE 等 explicit effect | ACCEPTED | 5 | H07 |
+| H230 | OrderIntent Identity | correlation / causation / source target/risk decision | ACCEPTED | 4 | H07,H08 |
+| H240 | PositionEffect Validation | effect 必須與 current expected position / target transition 相容 | ACCEPTED | 5 | H07 |
+| H250 | Broker Open/Close Mapping Boundary | adapter 只能由 explicit PositionEffect 決定 New/Cover | ACCEPTED | 5 | H07 |
 | H310 | Pending State | submitted 前/等待 broker acceptance | ACCEPTED | 2 | H03 |
 | H320 | Submitted State | broker 已接受但未完全成交 | ACCEPTED | 2 | H03 |
 | H330 | Partial Fill State | 多 fill / partial quantity 累積 | ACCEPTED | 4 | H03 |
@@ -108,7 +108,7 @@ CURRENT：
 - partial fill / dedup / terminal lifecycle 已完成。
 - PaperBroker / PaperTradingEngine / Runner 已存在。
 - OrderFactory 使用 ENTRY / EXIT naming。
-- Shioaji execution 目前仍用 order_id prefix 推定 New/Cover。
+- GAP-BROKER-001 已建立 explicit OrderIntent / PositionEffect；Shioaji execution 不再由 order_id prefix 推定 New/Cover。
 
 TARGET：
 
@@ -118,8 +118,8 @@ TARGET：
 
 MIGRATION：
 
-- GAP-BROKER-001 先新增 explicit OrderIntent / PositionEffect。
-- 移除 New/Cover prefix inference。
+- GAP-BROKER-001 已完成 explicit OrderIntent / PositionEffect runtime foundation。
+- New/Cover prefix inference 已移除。
 - existing PaperBroker / Backtest consumers 保持 compatibility。
 - 不為 ownership cleanup mass-move unrelated models。
 

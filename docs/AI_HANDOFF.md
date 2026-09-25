@@ -16,7 +16,7 @@ Architecture baseline：
 
 Recorded full regression：
 
-`776 passed`
+`800 passed`
 
 Known local untracked：
 
@@ -321,38 +321,39 @@ Core 不得保存 `sj.*` object。
 
 ## 15. Broker Execution Semantics
 
-Current unsafe runtime：
+GAP-BROKER-001：
 
-    order_id.startswith("ENTRY-")
+CLOSED / ACCEPTED。
 
-GAP-BROKER-001 architecture / design freeze 已完成。
+Accepted runtime commit：
+
+`b5d309cc91c6dbdf539c17a46662cdde46716224`
 
 Canonical：
 
     PositionEffect = OPEN / REDUCE / CLOSE
 
-Shioaji explicit mapping：
+Accepted Shioaji mapping：
 
 - LONG + OPEN -> Buy + New。
 - SHORT + OPEN -> Sell + New。
 - LONG + REDUCE/CLOSE -> Sell + Cover。
 - SHORT + REDUCE/CLOSE -> Buy + Cover。
 
-禁止：
+Accepted invariants：
 
-- FuturesOCType.Auto business inference。
-- DayTrade semantics。
-- order ID / signal ID prefix inference。
-- direct reversal。
+- explicit OrderIntent required by ShioajiBroker。
+- no order-ID New/Cover inference。
+- no FuturesOCType.Auto business inference。
+- no DayTrade semantics。
+- no direct reversal。
 
-Reversal：
+Reversal remains：
 
     CLOSE
     -> confirmed FLAT
     -> re-evaluate
     -> OPEN opposite
-
-Runtime 尚需 architecture-freeze commit / push 後才授權。
 
 ## 16. Account Sync Foundation
 
@@ -637,18 +638,18 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-39.03%。
+40.31%。
 
 Architecture Design Coverage：87.23%。
 Design Freeze Coverage：49.13%。
-Runtime Implementation：33.60%。
-Unit Verification：30.37%。
-Integration Verification：30.28%。
-Accepted Capability：30.28%。
+Runtime Implementation：35.19%。
+Unit Verification：31.96%。
+Integration Verification：31.87%。
+Accepted Capability：31.87%。
 
 Capability status：
 
-COMPLETE 9 / PARTIAL 49 / NOT_STARTED 34。
+COMPLETE 9 / PARTIAL 50 / NOT_STARTED 33。
 
 Readiness：
 
@@ -658,72 +659,65 @@ Readiness：
 
 ## 27. Automation Efficiency
 
-GAP-07-CLOSE：
-
-user-observed 5HR usage 約 4–5%。
-
-Initial docs-only AUTO-001：
-
-user-observed 約 8%。
-
-GAP-ACCOUNT-001 runtime：
+Formal Level 3A runtime sample 1 — GAP-ACCOUNT-001：
 
 - GPT-5.6 Sol / 輕度。
 - user-observed 5HR usage：12%。
-- files read：8。
-- tool operations：18。
-- correction cycles：0。
-- targeted：50 passed。
-- compatibility：48 passed。
 - full regression：776 passed。
-- token/context：not exposed。
+- implementation correction cycles：0。
 
-GAP-ACCOUNT-001 Phase 4A acceptance：
+GAP-ACCOUNT-001 deterministic Phase 4A acceptance：
 
 - user-observed 5HR usage：5%。
-- deterministic Blueprint acceptance / metrics / traceability。
+
+Formal Level 3A runtime sample 2 — GAP-BROKER-001：
+
+- GPT-5.6 Sol / 輕度。
+- user-observed 5HR usage：14%。
+- files inspected：約 22。
+- files created/modified：20。
+- tool operations：24。
+- implementation correction cycles：0。
+- command syntax retries：2。
+- targeted：49 passed。
+- compatibility：80 passed。
+- full regression：800 passed。
+- wall time：unavailable。
+- token/context：unavailable。
 
 Policy：
 
-- 12% 與 5% 分開記錄。
-- 不以目前樣本線性推算固定 WP capacity。
-- 至少累積 2–3 個穩定 Level 3A runtime samples 後再評估。
+- 不用目前樣本線性推算 quota capacity。
+- 維持 Level 3A。
+- 第 3 個穩定 runtime Work Package 完成後再評估 Level 3B。
 
-## 28. Current Active Candidate
+## 28. Next Mainline Candidate
 
-Current：
+Last completed：
 
 GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
 
 Status：
 
-READY_FOR_EXECUTION。
+CLOSED / ACCEPTED。
 
-Architecture review：
+Runtime commit：
 
-COMPLETED。
+`b5d309cc91c6dbdf539c17a46662cdde46716224`
 
-Design Freeze：
+Next：
 
-COMPLETED。
+GAP-RECON-001 Reconciliation Policy / Startup Readiness。
 
-Runtime Authorization：
+Status：
 
-`AUTHORIZED_FOR_LEVEL_3A_RUNTIME`
+READY_FOR_ARCHITECTURE_REVIEW。
 
-Runtime Launch Gate：
+Runtime authorization：
 
-`RELEASED_ARCHITECTURE_FREEZE`
+NOT_YET_AUTHORIZED。
 
-Architecture freeze evidence：
-
-`d74de0cbad75fa32f39fd2e6a04dc7f865c527bb`
-
-Recommended calibration：
-
-`GPT-5.6 Sol / 輕度`
-
-Runtime executor 可開始一個 bounded GAP-BROKER-001 Work Package；完成後必須 STOP。
+下一步先凍結 J600/J700 reconciliation policy / startup readiness semantics，再建立新的 ACTIVE Work Package。
 
 ## 29. Hard Stop
 
@@ -768,7 +762,7 @@ Blueprint baseline activation 已完成：
 - 92/92 capability mapping PASS。
 - connection / state authority / source registry / traceability PASS。
 - 603 engineering leaves。
-- lifecycle-weighted baseline 34.30%。
+- current lifecycle-weighted completion 40.31%。
 - baseline commit：`432c48fb63c3d8d2760c0f2f5338e205ded63d30`。
 
 Blueprint baseline accepted 後，ACTIVE 必須列 Implements / Touches / Does Not Implement Blueprint IDs。

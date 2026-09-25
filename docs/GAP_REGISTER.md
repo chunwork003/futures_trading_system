@@ -59,8 +59,8 @@ Mainline：
 | ID | Priority | Handling | Current Blocking | Scope | Status |
 |---|---|---|---|---|---|
 | GAP-ACCOUNT-001 | P1 | REVIEW_AT_CHECKPOINT | No | Broker Account / Position Sync | CLOSED |
-| GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | BLOCKED_BY_BROKER_EXECUTION |
-| GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | Corrective execution | Explicit OrderIntent / PositionEffect | READY_FOR_EXECUTION |
+| GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | READY_FOR_ARCHITECTURE_REVIEW |
+| GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | No | Explicit OrderIntent / PositionEffect | CLOSED |
 | GAP-BROKER-002 | P2 | RECORD_AND_CONTINUE | No | Capability matrix / mapping semantics | PARTIAL |
 | GAP-08 | P1 | REVIEW_AT_CHECKPOINT | No | Trading State Persistence / Recovery | PENDING |
 | GAP-PERSIST-001 | P1 | RECORD_AND_CONTINUE | No | Decision / Risk Provenance | OPEN |
@@ -170,68 +170,39 @@ Completed：
 
 Status：
 
-READY_FOR_EXECUTION。
-
-Architecture / Design Freeze：
-
-COMPLETED。
+CLOSED / ACCEPTED。
 
 Architecture freeze commit：
 
 `d74de0cbad75fa32f39fd2e6a04dc7f865c527bb`
 
-Runtime Authorization：
+Accepted runtime commit：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+`b5d309cc91c6dbdf539c17a46662cdde46716224`
 
-Runtime Launch Gate：
-
-RELEASED_ARCHITECTURE_FREEZE。
-
-Frozen semantics：
+Completed：
 
 - PositionEffect = OPEN / REDUCE / CLOSE。
-- OrderIntent explicit。
+- immutable broker-neutral OrderIntent。
+- explicit position-effect validation。
 - LONG OPEN = Buy + New。
 - SHORT OPEN = Sell + New。
 - LONG REDUCE/CLOSE = Sell + Cover。
 - SHORT REDUCE/CLOSE = Buy + Cover。
-- no Auto inference。
-- no DayTrade semantics。
-- no order-ID business inference。
+- FuturesOCType.Auto business inference prohibited。
+- DayTrade semantics excluded。
+- order ID prefix no longer determines broker execution semantics。
 
-Problem：
+Verification：
 
-Shioaji adapter currently uses order ID naming to infer New/Cover semantics。
+- targeted：49 passed。
+- compatibility：80 passed。
+- full regression：800 passed。
 
-Current unsafe pattern：
+Remaining：
 
-    order_id.startswith("ENTRY-")
+Corrective reconciliation execution is not part of this closed GAP。
 
-Target：
-
-explicit：
-
-- OrderIntent。
-- PositionEffect。
-
-至少支援：
-
-- OPEN。
-- CLOSE。
-- REDUCE。
-
-Reversal 仍使用：
-
-    EXIT
-    → confirm FLAT
-    → ENTER
-
-Safety：
-
-任何 reconciliation corrective execution 必須等此 GAP 完成。
-
----
 
 # GAP-ACCOUNT-001 Detail
 
@@ -279,34 +250,45 @@ automatic corrective broker order。
 
 Status：
 
-BLOCKED_BY_BROKER_EXECUTION。
+READY_FOR_ARCHITECTURE_REVIEW。
 
-Account foundation dependency：
+Dependencies：
 
-SATISFIED。
+- Account foundation：SATISFIED。
+- Explicit execution semantics：SATISFIED。
 
-Remaining dependency：
+Existing accepted foundation：
 
-GAP-BROKER-001 explicit execution semantics。
+- pairwise expected / actual comparator。
+- MATCH。
+- INTERNAL_ONLY。
+- BROKER_ONLY。
+- CONTRACT_MISMATCH。
+- DIRECTION_MISMATCH。
+- QUANTITY_MISMATCH。
+- explicit non-comparable identity error。
 
-Target：
+Architecture review target：
 
 - ReconciliationResult。
-- mismatch classification。
-- policy。
-- startup readiness。
-- expected-vs-actual comparison。
-
-Policies：
-
+- ReconciliationCase。
 - STRICT_HALT。
-- BROKER_AUTHORITATIVE。
-- INTERNAL_AUTHORITATIVE。
 - MANUAL_REVIEW。
+- BROKER_AUTHORITATIVE contract。
+- INTERNAL_AUTHORITATIVE contract。
+- UNKNOWN_EXTERNAL_STATE。
+- collection matching。
+- startup expected-state load。
+- startup broker observation。
+- startup reconciliation。
+- readiness decision。
+- HALT / REVIEW state。
+- no silent startup repair。
 
 No silent overwrite。
 
----
+No automatic corrective order unless explicitly authorized by a later frozen Work Package。
+
 
 # GAP-08 Detail
 

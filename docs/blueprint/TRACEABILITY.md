@@ -219,3 +219,81 @@ Conservative metric rule：
 
 只有 ACTIVE 明確 Implements 的 29 leaves 在本次 closure 升為 ACCEPTED。
 其他因 implementation 產生的 supporting evidence 不在本次自動升級 lifecycle。
+
+---
+
+## 6. GAP-BROKER-001 Acceptance Evidence
+
+Work Package：
+
+    GAP-BROKER-001
+
+Runtime commit：
+
+    b5d309cc91c6dbdf539c17a46662cdde46716224
+
+Accepted Blueprint leaves：
+
+    H210 H220 H230 H240 H250
+    I340 I350
+
+Runtime paths：
+
+    trading/execution.py
+    backtest/broker.py
+    backtest/paper_broker.py
+    backtest/shioaji_broker.py
+    backtest/shioaji_mapping.py
+
+Primary verification paths：
+
+    tests/unit/test_trading_execution.py
+    tests/unit/test_shioaji_mapping.py
+    tests/unit/test_shioaji_broker.py
+    tests/unit/test_paper_broker.py
+
+Runtime evidence：
+
+- PositionEffect exact values：OPEN / REDUCE / CLOSE。
+- immutable broker-neutral OrderIntent。
+- pure expected-position validation。
+- ShioajiBroker requires explicit intent。
+- LONG OPEN -> Buy + New。
+- SHORT OPEN -> Sell + New。
+- LONG REDUCE/CLOSE -> Sell + Cover。
+- SHORT REDUCE/CLOSE -> Buy + Cover。
+- ENTRY-prefixed CLOSE -> Cover。
+- EXIT-prefixed OPEN -> New。
+- no order-ID New/Cover inference。
+- no Auto business inference。
+- no DayTrade mapping。
+
+Verification：
+
+    targeted tests: 49 passed
+    compatibility tests: 80 passed
+    full regression: 800 passed
+    git diff --check: PASS
+
+Acceptance：
+
+    PASS
+
+Calibration：
+
+    model: GPT-5.6 Sol
+    effort: 輕度
+    user-observed 5HR usage: 14%
+    files inspected: about 22
+    runtime/test files changed: 20
+    tool operations: 24
+    implementation correction cycles: 0
+    command syntax retries: 2
+    wall time: unavailable
+    token/context usage: unavailable
+
+Conservative metric rule：
+
+只有 ACTIVE Implements 的 7 leaves 在本次 acceptance 升為 ACCEPTED。
+
+H910-H940 保持 DESIGN_FROZEN，不因本 Work Package 自動升級。

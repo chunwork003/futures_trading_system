@@ -14,7 +14,7 @@ Explicit OrderIntent / PositionEffect
 
 ## 3. Status
 
-READY_FOR_EXECUTION
+COMPLETED
 
 Architecture review：
 
@@ -26,7 +26,7 @@ COMPLETED。
 
 Runtime execution authorization：
 
-AUTHORIZED。
+COMPLETED。
 
 Launch Gate：
 
@@ -803,3 +803,49 @@ Release requirements：
 Release 後只解除 runtime launch gate。
 
 不得重新開放 frozen architecture。
+
+---
+
+## 35. Closure Evidence
+
+Status：
+
+CLOSED / ACCEPTED
+
+Accepted runtime commit：
+
+`b5d309cc91c6dbdf539c17a46662cdde46716224`
+
+Verification：
+
+- targeted：49 passed。
+- compatibility：80 passed。
+- full regression：800 passed。
+- git diff --check：PASS。
+- implementation correction cycles：0。
+- command syntax retries：2。
+
+Blueprint acceptance：
+
+- H210 H220 H230 H240 H250 ACCEPTED。
+- I340 I350 ACCEPTED。
+- lifecycle completion：40.31%。
+
+Calibration：
+
+- GPT-5.6 Sol / 輕度。
+- formal Level 3A runtime sample：2。
+- user-observed 5HR usage：14%。
+- files inspected：約 22。
+- runtime/test files changed：20。
+- tool operations：24。
+- wall time：unavailable。
+- token/context：unavailable。
+
+Next：
+
+GAP-RECON-001 READY_FOR_ARCHITECTURE_REVIEW。
+
+本 ACTIVE 保留為 completed Work Package evidence。
+
+新的 runtime ACTIVE 必須等 GAP-RECON-001 architecture review / design freeze 完成後才建立。

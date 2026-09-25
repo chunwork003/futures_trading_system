@@ -156,29 +156,45 @@ Safety：
 
 Status：
 
-READY_FOR_EXECUTION
+IN_PROGRESS
 
 GAP-BROKER-001：
 
+CLOSED / ACCEPTED。
+
+Accepted runtime commit：
+
+`b5d309cc91c6dbdf539c17a46662cdde46716224`
+
+Completed execution semantics：
+
 - OrderIntent。
-- PositionEffect。
-- OPEN/CLOSE/REDUCE semantics。
-- 移除 ID prefix 推定 New/Cover。
+- PositionEffect OPEN / REDUCE / CLOSE。
+- explicit Buy / Sell mapping。
+- explicit New / Cover mapping。
+- order-ID prefix inference removed。
 
-Reconciliation：
+GAP-RECON-001：
 
-- ReconciliationResult。
-- mismatch policies。
-- startup readiness。
-- strict/manual handling。
+READY_FOR_ARCHITECTURE_REVIEW。
 
-GAP-BROKER-002：
+Next：
 
-- broker capability matrix。
-- verified semantics。
-- mapping persistence follow-up。
+- ReconciliationResult / case。
+- mismatch policy。
+- collection matching。
+- startup reconciliation。
+- readiness / halt / review state。
+
+Safety：
+
+- no silent overwrite。
+- no automatic corrective execution without explicit later authorization。
+
+GAP-BROKER-002 remains after reconciliation foundation。
 
 ---
+
 
 # M6 — Persistence / Recovery / Provenance
 
@@ -326,22 +342,26 @@ LIVE_AUTO real money：
 
 Lifecycle-weighted V1 completion：
 
-38.72%。
+40.31%。
 
-Architecture Design Coverage：85.63%。
-Design Freeze Coverage：47.54%。
-Runtime Implementation：33.60%。
-Unit Verification：30.37%。
-Integration Verification：30.28%。
-Accepted Capability：30.28%。
+Architecture Design Coverage：87.23%。
+Design Freeze Coverage：49.13%。
+Runtime Implementation：35.19%。
+Unit Verification：31.96%。
+Integration Verification：31.87%。
+Accepted Capability：31.87%。
 
 Capability status：
 
-COMPLETE 9 / PARTIAL 49 / NOT_STARTED 34。
+COMPLETE 9 / PARTIAL 50 / NOT_STARTED 33。
 
 Operational readiness：NOT_READY。
 Production Live readiness：BLOCKED。
 LIVE_AUTO：NOT_AUTHORIZED。
+
+Current mainline：
+
+GAP-RECON-001 READY_FOR_ARCHITECTURE_REVIEW。
 
 Progress source：
 

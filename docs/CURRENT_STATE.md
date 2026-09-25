@@ -26,7 +26,7 @@ Actual runtime execution HEAD：
 
 Recorded full regression：
 
-776 passed
+800 passed
 
 Known warning：
 
@@ -75,23 +75,31 @@ CLOSED。
 
 GAP-ACCOUNT-001：
 
-CLOSED。
+CLOSED / ACCEPTED。
+
+GAP-BROKER-001：
+
+CLOSED / ACCEPTED。
+
+Accepted runtime commit：
+
+`b5d309cc91c6dbdf539c17a46662cdde46716224`
 
 Current mainline：
 
-GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
+GAP-RECON-001 Reconciliation Policy / Startup Readiness。
 
 Current state：
 
-READY_FOR_EXECUTION。
+READY_FOR_ARCHITECTURE_REVIEW。
 
 Reason：
 
-H210-H250 與 I340-I350 architecture / design freeze 已完成並 commit：`d74de0cbad75fa32f39fd2e6a04dc7f865c527bb`。
+Account observation foundation 與 explicit execution semantics 依賴已滿足；J600/J700 policy、case、collection matching 與 startup READY semantics 尚需 architecture / design freeze。
 
-After：
+Runtime authorization：
 
-GAP-RECON-001 Reconciliation policy + startup readiness。
+NOT_YET_AUTHORIZED。
 
 ## Existing Major Foundation
 
@@ -137,6 +145,11 @@ GAP-RECON-001 Reconciliation policy + startup readiness。
 - Sinopac pure account / position mapping。
 - broker contract reverse resolution。
 - pure expected / actual pairwise reconciliation foundation。
+- broker-neutral OrderIntent。
+- PositionEffect OPEN / REDUCE / CLOSE。
+- pure PositionEffect validation。
+- explicit Shioaji Buy / Sell + New / Cover mapping。
+- order-ID New/Cover inference removed。
 
 ---
 
@@ -144,8 +157,8 @@ GAP-RECON-001 Reconciliation policy + startup readiness。
 
 主要剩餘：
 
-- explicit OrderIntent / PositionEffect。
 - AccountPosition fill/event projection。
+- ReconciliationResult / ReconciliationCase。
 - reconciliation policy / collection matching / startup readiness。
 - broker capability matrix。
 - operational PostgreSQL。
@@ -172,18 +185,18 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-38.72%。
+40.31%。
 
-Architecture Design Coverage：85.63%。
-Design Freeze Coverage：47.54%。
-Runtime Implementation：33.60%。
-Unit Verification：30.37%。
-Integration Verification：30.28%。
-Accepted Capability：30.28%。
+Architecture Design Coverage：87.23%。
+Design Freeze Coverage：49.13%。
+Runtime Implementation：35.19%。
+Unit Verification：31.96%。
+Integration Verification：31.87%。
+Accepted Capability：31.87%。
 
 Capability status：
 
-COMPLETE 9 / PARTIAL 49 / NOT_STARTED 34。
+COMPLETE 9 / PARTIAL 50 / NOT_STARTED 33。
 
 Readiness：
 
@@ -193,7 +206,7 @@ Readiness：
 
 Latest accepted runtime：
 
-`50813b679f818f3837a9f50fdcda9921495ab507`
+`b5d309cc91c6dbdf539c17a46662cdde46716224`
 
 ## Automation Status
 
@@ -217,9 +230,14 @@ Documentation scaffold 已建立。
 
 GAP-ACCOUNT-001 已完成第一個正式 queue-driven Level 3A runtime validation 並 ACCEPTED。
 
-目前正式 Level 3A runtime calibration sample：1。
+目前正式 Level 3A runtime calibration samples：2。
 
-維持 Level 3A；至少累積 2–3 個穩定 runtime Work Packages 後再評估 Level 3B。
+已完成：
+
+- GAP-ACCOUNT-001。
+- GAP-BROKER-001。
+
+維持 Level 3A；完成第 3 個穩定 runtime Work Package 後再評估 Level 3B。
 
 ### Level 3B
 
@@ -233,61 +251,50 @@ Not enabled。
 
 ### GAP-07-CLOSE
 
-User-observed 5HR-window usage：
-
-約 4–5%。
+User-observed 5HR-window usage：約 4–5%。
 
 ### Initial AUTO-001 Codex attempt
 
-User-observed 5HR-window usage：
+User-observed 5HR-window usage：約 8%。
 
-約 8%。
+### GAP-ACCOUNT-001 Runtime — Formal Level 3A Sample 1
 
-### GAP-ACCOUNT-001 Runtime
-
-Configuration：
-
-- GPT-5.6 Sol。
-- 輕度。
-- LEVEL_3A_BOUNDED。
-- model / effort 中途未切換。
-
-User-observed 5HR-window usage：
-
-12%。
-
-Execution evidence：
-
-- 8 files read。
-- 12 runtime/test files changed：9 new / 3 modified。
-- 18 tool operations。
-- correction cycles：0。
+- GPT-5.6 Sol / 輕度。
+- user-observed 5HR usage：12%。
+- files read：8。
+- runtime/test files changed：12。
+- tool operations：18。
+- implementation correction cycles：0。
 - targeted：50 passed。
 - compatibility：48 passed。
 - full regression：776 passed。
-- token/context usage：not exposed。
+- token/context：not exposed。
 
 ### GAP-ACCOUNT-001 Phase 4A Acceptance
 
-User-observed 5HR-window usage：
+- user-observed 5HR usage：5%。
+- deterministic Blueprint acceptance / metrics / traceability。
 
-5%。
+### GAP-BROKER-001 Runtime — Formal Level 3A Sample 2
 
-用途：
+- GPT-5.6 Sol / 輕度。
+- user-observed 5HR usage：14%。
+- files inspected：約 22。
+- runtime/test files changed：20。
+- tool operations：24。
+- implementation correction cycles：0。
+- read/test command syntax retries：2。
+- targeted：49 passed。
+- compatibility：80 passed。
+- full regression：800 passed。
+- wall time：unavailable。
+- token/context：unavailable。
 
-- Blueprint leaf acceptance。
-- formal metric recomputation。
-- traceability evidence。
+Policy：
 
-注意：
-
-12% 與 5% 分別保留為 observation，不以目前樣本直接線性推算 quota capacity。
-
-Current policy：
-
-Codex quota 優先 runtime / tests / debugging / broker semantics。
-
-Deterministic closure 優先 PowerShell/manual。
+- runtime sample 與 deterministic docs quota observation 分開記錄。
+- 不用目前樣本線性外推固定 quota capacity。
+- 第 3 個穩定 Level 3A runtime Work Package 完成後再評估 Level 3B。
 
 ## Live State
 
@@ -297,7 +304,7 @@ NOT AUTHORIZED。
 
 原因：
 
-Reconciliation policy、OrderIntent / PositionEffect、Persistence、Recovery、Live Safety 尚未完成。
+Reconciliation policy / startup readiness、Persistence、Recovery、Live Safety 尚未完成。
 
 ---
 
@@ -305,7 +312,7 @@ Reconciliation policy、OrderIntent / PositionEffect、Persistence、Recovery、
 
 Last completed Work Package：
 
-GAP-ACCOUNT-001 Broker Account / Position Sync Foundation。
+GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
 
 Status：
 
@@ -313,18 +320,24 @@ COMPLETED / ACCEPTED。
 
 Runtime commit：
 
-`50813b679f818f3837a9f50fdcda9921495ab507`
+`b5d309cc91c6dbdf539c17a46662cdde46716224`
+
+Verification：
+
+- targeted：49 passed。
+- compatibility：80 passed。
+- full regression：800 passed。
 
 Next mainline candidate：
 
-GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
+GAP-RECON-001 Reconciliation Policy / Startup Readiness。
 
 Status：
 
-READY_FOR_EXECUTION。
+READY_FOR_ARCHITECTURE_REVIEW。
 
 Runtime authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+NOT_YET_AUTHORIZED。
 
-ACTIVE Work Package 已完成 design freeze 並解除 runtime launch gate，可執行一個 Level 3A bounded runtime Work Package。
+下一步先完成人工 architecture review / design freeze，再建立新的 ACTIVE Work Package。

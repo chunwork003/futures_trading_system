@@ -474,3 +474,78 @@ Next mainline：
 GAP-BROKER-001 READY_FOR_ARCHITECTURE_REVIEW。
 
 不得直接啟動 runtime；先完成 architecture / design freeze。
+
+## 2026-09-25 — GAP-BROKER-001 Runtime Acceptance
+
+Work Package：
+
+`GAP-BROKER-001 Explicit OrderIntent / PositionEffect`
+
+Architecture freeze commit：
+
+`d74de0cbad75fa32f39fd2e6a04dc7f865c527bb`
+
+Accepted runtime commit：
+
+`b5d309cc91c6dbdf539c17a46662cdde46716224`
+
+Runtime configuration：
+
+- Model：GPT-5.6 Sol。
+- Effort：輕度。
+- Mode：LEVEL_3A_BOUNDED。
+- model / effort 中途未切換。
+
+Completed：
+
+- PositionEffect OPEN / REDUCE / CLOSE。
+- immutable broker-neutral OrderIntent。
+- pure PositionEffect validation。
+- Broker optional-intent compatibility seam。
+- PaperBroker backward compatibility。
+- Shioaji explicit intent requirement。
+- explicit LONG/SHORT x OPEN/REDUCE/CLOSE mapping。
+- order-ID prefix inference removal。
+- no Auto fallback。
+- no DayTrade mapping。
+
+Verification：
+
+- targeted：49 passed。
+- compatibility：80 passed。
+- full regression：800 passed。
+- git diff --check：PASS。
+- implementation correction cycles：0。
+- command syntax retries：2。
+- final status：only `?? data/`。
+
+Blueprint acceptance：
+
+- 7 explicit Implements leaves -> ACCEPTED。
+- ACCEPTED：229 leaves / weight 681。
+- lifecycle completion：40.31%。
+- Runtime Implementation：35.19%。
+- Unit Verification：31.96%。
+- Integration / Accepted：31.87%。
+- capability status：9 COMPLETE / 50 PARTIAL / 33 NOT_STARTED。
+
+Calibration：
+
+- formal Level 3A runtime sample：2。
+- user-observed 5HR usage：14%。
+- files inspected：約 22。
+- runtime/test files changed：20。
+- tool operations：24。
+- wall time：unavailable。
+- token/context：unavailable。
+- 不做線性 quota capacity 推估。
+
+Closure：
+
+GAP-BROKER-001 CLOSED / ACCEPTED。
+
+Next mainline：
+
+GAP-RECON-001 READY_FOR_ARCHITECTURE_REVIEW。
+
+Runtime 尚未授權；先完成 architecture / design freeze。

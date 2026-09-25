@@ -31,63 +31,75 @@ Technical issues：
 
 ---
 
-# Current Active Candidate
+# Next Mainline Candidate
 
 ID：
 
-GAP-BROKER-001
+GAP-RECON-001
 
 Title：
 
-Explicit OrderIntent / PositionEffect
+Reconciliation Policy / Startup Readiness
 
 Status：
 
-READY_FOR_EXECUTION
+READY_FOR_ARCHITECTURE_REVIEW
 
 Priority：
 
 P1 MAINLINE
 
-Execution Mode：
-
-LEVEL_3A_BOUNDED
-
-Recommended Model：
-
-GPT-5.6 Sol
-
-Recommended Effort：
-
-輕度
-
-Model Rule：
-
-本 Work Package 中途不得切換 model 或 effort。
-
-Architecture Review：
-
-COMPLETED
-
-Design Freeze：
-
-COMPLETED
-
 Runtime Authorization：
 
-AUTHORIZED_FOR_LEVEL_3A_RUNTIME
+NOT_YET_AUTHORIZED
 
-Runtime Launch Gate：
+Dependencies：
 
-RELEASED_ARCHITECTURE_FREEZE
+- GAP-ACCOUNT-001：SATISFIED。
+- GAP-BROKER-001：SATISFIED。
 
-Release Evidence：
+Architecture work required before runtime：
 
-`d74de0cbad75fa32f39fd2e6a04dc7f865c527bb`
+- ReconciliationResult。
+- ReconciliationCase。
+- STRICT_HALT / MANUAL_REVIEW operational semantics。
+- BROKER_AUTHORITATIVE / INTERNAL_AUTHORITATIVE boundaries。
+- UNKNOWN_EXTERNAL_STATE。
+- multi-position collection matching。
+- startup reconciliation。
+- readiness / HALT / REVIEW state。
+- no silent repair。
 
-Reason：
+# Completed Work Package — GAP-BROKER-001
 
-H210-H250 / I340-I350 public semantics 已凍結，architecture freeze 已 commit / push / remote verify。
+Status：
+
+CLOSED / ACCEPTED
+
+Accepted runtime commit：
+
+`b5d309cc91c6dbdf539c17a46662cdde46716224`
+
+Accepted：
+
+- OrderIntent。
+- PositionEffect OPEN / REDUCE / CLOSE。
+- pure PositionEffect validation。
+- Broker optional-intent compatibility seam。
+- PaperBroker compatibility。
+- Shioaji explicit intent requirement。
+- explicit Buy/Sell + New/Cover mapping。
+- order-ID prefix inference removal。
+
+Verification：
+
+- targeted 49 passed。
+- compatibility 80 passed。
+- full regression 800 passed。
+- correction cycles 0。
+
+Corrective reconciliation remains outside this completed Work Package。
+
 
 # Completed Work Package — GAP-ACCOUNT-001
 
@@ -122,23 +134,25 @@ Corrective execution 仍未授權。
 
 Current order：
 
-1. GAP-BROKER-001 bounded runtime implementation。
-2. targeted / compatibility / full regression。
-3. runtime commit / push / remote verify。
-4. deterministic acceptance / closure。
-5. GAP-RECON-001 architecture review / runtime。
+1. GAP-RECON-001 architecture review / design freeze。
+2. prepare full ACTIVE Work Package。
+3. release runtime gate。
+4. bounded Level 3A runtime implementation。
+5. deterministic acceptance / closure。
+6. GAP-BROKER-002 capability matrix。
+7. GAP-08 persistence / recovery。
 
 Corrective reconciliation execution：
 
-在 GAP-BROKER-001 runtime acceptance 前仍禁止。
+即使 GAP-BROKER-001 已完成，也不得在 GAP-RECON-001 未明確授權的情況下自動 repair broker/internal state。
 
 # Mainline Queue
 
 | Order | ID | Work | Status | Dependency |
 |---:|---|---|---|---|
 | 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | CLOSED | GAP-07 |
-| 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | READY_FOR_EXECUTION | GAP-ACCOUNT-001 |
-| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | BLOCKED_BY_BROKER_EXECUTION | GAP-BROKER-001 |
+| 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
+| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | READY_FOR_ARCHITECTURE_REVIEW | GAP-ACCOUNT-001 + GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | PENDING | Broker mapping + execution semantics |
 | 5 | GAP-08 | Trading State Persistence & Recovery | BLOCKED | Reconciliation foundation |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |

@@ -27,7 +27,7 @@ Blueprint baseline 完成後：
 
 Blueprint baseline 已啟用：
 
-本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 39.03% baseline。
+本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 40.31% baseline。
 
 ---
 
@@ -55,7 +55,7 @@ capability acceptance + relative engineering weight。
 
 Lifecycle-weighted completion：
 
-    39.03%
+    40.31%
 
 Architecture Design Coverage：
 
@@ -67,19 +67,19 @@ Design Freeze Coverage：
 
 Runtime Implementation：
 
-    33.60%
+    35.19%
 
 Unit Verification：
 
-    30.37%
+    31.96%
 
 Integration Verification：
 
-    30.28%
+    31.87%
 
 Accepted Capability：
 
-    30.28%
+    31.87%
 
 Metric basis：
 
@@ -87,7 +87,7 @@ Metric basis：
 
 Capability status：
 
-    COMPLETE 9 / PARTIAL 49 / NOT_STARTED 34
+    COMPLETE 9 / PARTIAL 50 / NOT_STARTED 33
 
 Readiness：
 
@@ -108,15 +108,15 @@ Readiness：
 | E Feature / Strategy | 7 | 50.11% |
 | F Backtest / Research | 8 | 90.40% |
 | G Decision / Risk | 8 | 67.86% |
-| H Execution / Paper | 8 | 57.22% |
-| I Broker Adapter | 6 | 58.88% |
+| H Execution / Paper | 8 | 68.01% |
+| I Broker Adapter | 6 | 63.88% |
 | J Account / Reconciliation | 6 | 47.54% |
 | K Persistence / Recovery | 7 | 11.58% |
 | L Simulation / Live Safety | 7 | 3.66% |
 | M Python Service Boundary | 4 | 12.42% |
 | N ASP.NET Core Application | 5 | 11.26% |
 | O React Workspace | 5 | 10.31% |
-| TOTAL | 92 | 39.03% lifecycle-weighted |
+| TOTAL | 92 | 40.31% lifecycle-weighted |
 
 ---
 
@@ -223,7 +223,7 @@ Readiness：
 | H04 | PaperBroker deterministic baseline | PARTIAL | Preserve |
 | H05 | PaperTradingEngine | COMPLETE | Canonical contract migration later |
 | H06 | PaperTradingRunner/polling | COMPLETE | Incremental state integration |
-| H07 | Explicit OrderIntent / PositionEffect | NOT_STARTED | GAP-BROKER-001 |
+| H07 | Explicit OrderIntent / PositionEffect | PARTIAL | Explicit semantics accepted; direction-transition operational integration remains |
 | H08 | Production OMS idempotency/status model | PARTIAL | Persistence/live phases |
 
 ---
@@ -233,7 +233,7 @@ Readiness：
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
 | I01 | Contract/native mapping | PARTIAL | Adapter relocation later |
-| I02 | Submit/status/cancel | PARTIAL | Explicit PositionEffect |
+| I02 | Submit/status/cancel | PARTIAL | Explicit PositionEffect accepted; production verification remains |
 | I03 | Fill conversion/dedup/partial fill | PARTIAL | Production verification |
 | I04 | BrokerInstrumentReference seam | PARTIAL | Persistence later |
 | I05 | Broker account/position snapshot | PARTIAL | Canonical mapping foundation accepted; real provider/paper verification pending |
