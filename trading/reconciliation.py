@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from enum import Enum
+from typing import Protocol, runtime_checkable
 
 from pydantic import (
     BaseModel,
@@ -9,7 +10,12 @@ from pydantic import (
     model_validator,
 )
 
-from trading.account import AccountPosition, BrokerPositionSnapshot
+from trading.account import (
+    AccountPosition,
+    BrokerAccount,
+    BrokerPositionProvider,
+    BrokerPositionSnapshot,
+)
 
 
 class ReconciliationStatus(str, Enum):
@@ -174,6 +180,228 @@ def resolve_reconciliation_case(
         policy=case.policy,
         state=ReconciliationCaseState.RESOLVED,
         resolution_note=normalized_note,
+    )
+
+
+class ReconciliationCollectionError(ValueError):
+    """Collection 無法依 exact identity 唯一配對，或超出指定帳戶 scope。"""
+
+
+@runtime_checkable
+class ExpectedPositionLoader(Protocol):
+    """讀取指定 BrokerAccount 內部預期部位的唯讀 port；backend 留給 GAP-08。"""
+
+    def load_positions(
+        self,
+        account: BrokerAccount,
+    ) -> tuple[AccountPosition, ...]: ...
+
+
+class StartupReadinessState(str, Enum):
+    """Startup reconciliation 的固定 gate 結果，不負責啟動策略。"""
+
+    READY = "READY"
+    HALT = "HALT"
+    REVIEW = "REVIEW"
+
+
+class StartupReconciliationResult(BaseModel):
+    """不可變 startup 判斷；只回報 readiness，不修復或採用任何部位。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    policy: ReconciliationPolicy
+    state: StartupReadinessState
+    results: tuple[ReconciliationResult, ...]
+    strategy_state_ready: bool
+
+    @model_validator(mode="after")
+    def validate_ready_invariants(self) -> "StartupReconciliationResult":
+        if self.state != StartupReadinessState.READY:
+            return self
+        if not self.strategy_state_ready:
+            raise ValueError("READY requires strategy_state_ready")
+        if any(
+            result.status != ReconciliationStatus.MATCH
+            for result in self.results
+        ):
+            raise ValueError("READY requires all reconciliation results to MATCH")
+        return self
+
+
+def _scope_key(
+    position: AccountPosition | BrokerPositionSnapshot,
+) -> tuple[str, str, int]:
+    return (
+        position.broker,
+        position.account_ref,
+        position.instrument_id,
+    )
+
+
+def _contract_sort_key(contract_id: int | None) -> tuple[int, int]:
+    return (0, 0) if contract_id is None else (1, contract_id)
+
+
+def _index_positions(
+    positions: tuple[AccountPosition, ...]
+    | tuple[BrokerPositionSnapshot, ...],
+    *,
+    side: str,
+) -> dict[tuple[str, str, int], dict[int | None, object]]:
+    indexed: dict[tuple[str, str, int], dict[int | None, object]] = {}
+    for position in positions:
+        scope = _scope_key(position)
+        by_contract = indexed.setdefault(scope, {})
+        if position.contract_id in by_contract:
+            raise ReconciliationCollectionError(
+                f"duplicate {side} exact position key: "
+                f"{scope + (position.contract_id,)}"
+            )
+        by_contract[position.contract_id] = position
+    return indexed
+
+
+def reconcile_position_collections(
+    *,
+    expected_positions: tuple[AccountPosition, ...],
+    actual_positions: tuple[BrokerPositionSnapshot, ...],
+) -> tuple[ReconciliationResult, ...]:
+    """依 scope 與 exact contract identity 決定性配對，不猜 quantity/direction。"""
+
+    expected_index = _index_positions(expected_positions, side="expected")
+    actual_index = _index_positions(actual_positions, side="actual")
+    results: list[ReconciliationResult] = []
+
+    for scope in sorted(set(expected_index) | set(actual_index)):
+        expected_by_contract = expected_index.get(scope, {})
+        actual_by_contract = actual_index.get(scope, {})
+        exact_contracts = sorted(
+            set(expected_by_contract) & set(actual_by_contract),
+            key=_contract_sort_key,
+        )
+        for contract_id in exact_contracts:
+            results.append(
+                compare_positions(
+                    expected_by_contract[contract_id],
+                    actual_by_contract[contract_id],
+                )
+            )
+
+        expected_left = sorted(
+            set(expected_by_contract) - set(exact_contracts),
+            key=_contract_sort_key,
+        )
+        actual_left = sorted(
+            set(actual_by_contract) - set(exact_contracts),
+            key=_contract_sort_key,
+        )
+        if expected_left and actual_left:
+            if len(expected_left) != 1 or len(actual_left) != 1:
+                raise ReconciliationCollectionError(
+                    f"ambiguous unmatched collection for scope={scope}"
+                )
+            results.append(
+                compare_positions(
+                    expected_by_contract[expected_left[0]],
+                    actual_by_contract[actual_left[0]],
+                )
+            )
+        elif expected_left:
+            results.extend(
+                compare_positions(expected_by_contract[contract_id], None)
+                for contract_id in expected_left
+            )
+        else:
+            results.extend(
+                compare_positions(None, actual_by_contract[contract_id])
+                for contract_id in actual_left
+            )
+
+    return tuple(results)
+
+
+def _validate_account_scope(
+    *,
+    account: BrokerAccount,
+    positions: tuple[AccountPosition, ...]
+    | tuple[BrokerPositionSnapshot, ...],
+    source: str,
+) -> None:
+    for position in positions:
+        if (
+            position.broker != account.broker
+            or position.account_ref != account.account_ref
+        ):
+            raise ReconciliationCollectionError(
+                f"{source} returned position outside supplied account scope"
+            )
+
+
+def _startup_state(
+    *,
+    results: tuple[ReconciliationResult, ...],
+    policy: ReconciliationPolicy,
+    strategy_state_ready: bool,
+) -> StartupReadinessState:
+    if not strategy_state_ready:
+        return StartupReadinessState.HALT
+    if all(result.status == ReconciliationStatus.MATCH for result in results):
+        return StartupReadinessState.READY
+    if policy == ReconciliationPolicy.STRICT_HALT:
+        return StartupReadinessState.HALT
+    return StartupReadinessState.REVIEW
+
+
+def reconcile_startup(
+    *,
+    account: BrokerAccount,
+    expected_loader: ExpectedPositionLoader,
+    broker_position_provider: BrokerPositionProvider,
+    policy: ReconciliationPolicy,
+    strategy_state_ready: bool,
+) -> StartupReconciliationResult:
+    """協調唯讀 expected/actual sources 並判斷 startup gate，不啟動或修復交易。"""
+
+    expected_positions = expected_loader.load_positions(account)
+    _validate_account_scope(
+        account=account,
+        positions=expected_positions,
+        source="expected loader",
+    )
+    try:
+        actual_positions = broker_position_provider.list_positions(account)
+    except ExternalStateUnknownError as exc:
+        evidence = str(exc).strip() or "broker external state unavailable"
+        results = (
+            ReconciliationResult(
+                status=ReconciliationStatus.UNKNOWN_EXTERNAL_STATE,
+                expected=None,
+                actual=None,
+                evidence=(evidence,),
+            ),
+        )
+    else:
+        _validate_account_scope(
+            account=account,
+            positions=actual_positions,
+            source="broker position provider",
+        )
+        results = reconcile_position_collections(
+            expected_positions=expected_positions,
+            actual_positions=actual_positions,
+        )
+
+    state = _startup_state(
+        results=results,
+        policy=policy,
+        strategy_state_ready=strategy_state_ready,
+    )
+    return StartupReconciliationResult(
+        policy=policy,
+        state=state,
+        results=results,
+        strategy_state_ready=strategy_state_ready,
     )
 
 
