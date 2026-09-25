@@ -71,11 +71,11 @@ I120 / I130 / I140 / I940
 
 Runtime Authorization：
 
-NOT_YET_AUTHORIZED
+AUTHORIZED_FOR_LEVEL_3A_RUNTIME
 
 Runtime Launch Gate：
 
-HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
+RELEASED_ARCHITECTURE_FREEZE
 
 Implements：
 
@@ -95,7 +95,7 @@ Explicitly deferred：
 
 Next required action：
 
-commit / push / remote verify architecture freeze + ACTIVE，then release runtime gate。
+GAP-BROKER-002 runtime 已授權；執行 ACTIVE bounded Level 3A，完成後 STOP。
 
 
 # Completed Work Package — GAP-RECON-001B
@@ -241,7 +241,7 @@ Corrective reconciliation execution：
 | 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | CLOSED | GAP-07 |
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
 | 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | CLOSED / ACCEPTED | GAP-ACCOUNT-001 + GAP-BROKER-001 |
-| 4 | GAP-BROKER-002 | Broker capability matrix | READY_FOR_EXECUTION / GATE_HOLD | Broker mapping + execution semantics |
+| 4 | GAP-BROKER-002 | Broker capability matrix | READY_FOR_EXECUTION / AUTHORIZED_LEVEL_3A | Broker mapping + execution semantics |
 | 5 | GAP-08 | Trading State Persistence & Recovery | BLOCKED | Reconciliation foundation |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |
 | 7 | GAP-09 | Incremental Feature / Market State | PENDING | Trading core stable |

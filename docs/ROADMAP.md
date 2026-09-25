@@ -194,9 +194,9 @@ Safety preserved：
 
 Next ordered mainline：
 
-GAP-BROKER-002 READY_FOR_EXECUTION / HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+GAP-BROKER-002 READY_FOR_EXECUTION / AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
 
-Architecture/source freeze completed；runtime not yet authorized until freeze commit/push verification。
+Architecture/source freeze committed and verified；bounded Level 3A runtime authorized。
 
 ---
 

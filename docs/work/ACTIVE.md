@@ -26,15 +26,19 @@ COMPLETED for I120 / I130 / I140 / I940。
 
 Runtime execution authorization：
 
-NOT_YET_AUTHORIZED。
+AUTHORIZED。
 
 Launch Gate：
 
-`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
+`RELEASED_ARCHITECTURE_FREEZE`
 
 Required baseline ancestor：
 
 `457dc054641551f04dea5e6b1eda80f042a07c64`
+
+Architecture freeze commit：
+
+`b5c0a1c3af50e0a2d31261b81eb1630380d496d9`
 
 ---
 
@@ -526,7 +530,7 @@ Public semantic change -> STOP + LEVEL 3。
 
 Current：
 
-    HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
+    RELEASED_ARCHITECTURE_FREEZE
 
 Release requires：
 
