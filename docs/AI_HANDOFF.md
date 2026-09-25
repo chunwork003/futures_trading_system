@@ -632,10 +632,10 @@ Total V1 capability blocks：92。
 
 Engineering leaves：603。
 
-Lifecycle-weighted completion：47.30%。
+Lifecycle-weighted completion：47.92%。
 
 Architecture Design Coverage：87.60%。
-Design Freeze Coverage：54.70%。
+Design Freeze Coverage：60.88%。
 Runtime Implementation：43.19%。
 Unit Verification：39.96%。
 Integration Verification：39.87%。
@@ -689,35 +689,27 @@ Sizing observation：
 
 ## 28. Current Active Candidate
 
-Last accepted：
+Current Work Package：
 
-GAP-08ABCD Persistence Foundation + Event Ledger。
+GAP-08EFGHI Operational Persistence + Recovery。
 
-Runtime commit：
+Scope：35 leaves / weight 151。
 
-`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
+Status：READY_FOR_EXECUTION。
 
-Next mainline：
+Design Freeze：COMPLETED。
 
-GAP-08EF Execution + Account/Reconciliation Persistence。
+Runtime Gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
-Status：
+Runtime Authorization：NOT_YET_AUTHORIZED。
 
-READY_FOR_ARCHITECTURE_REVIEW。
+Recommended execution：GPT-5.6 Sol / 中度 / LEVEL_3A_BOUNDED。
 
-Runtime authorization：
+Projected lifecycle after acceptance：approximately 53.57%。
 
-NOT_YET_AUTHORIZED。
+K520 remains GAP-09。
 
-Sizing intent：
-
-expand GAP-08EF with direct OMS persistence dependencies where required；do not split merely to preserve old A/B/C/D-style package size。
-
-GAP-08GHI remains separate until strategy/recovery public semantics are resolved。
-
-Level 3B：
-
-ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
+Level 3B：NOT_ENABLED。
 
 ## 29. Hard Stop
 
@@ -762,7 +754,7 @@ Blueprint baseline activation 已完成：
 - 92/92 capability mapping PASS。
 - connection / state authority / source registry / traceability PASS。
 - 603 engineering leaves。
-- current lifecycle-weighted completion 47.30%。
+- current lifecycle-weighted completion 47.92%。
 - baseline commit：`432c48fb63c3d8d2760c0f2f5338e205ded63d30`。
 
 Blueprint baseline accepted 後，ACTIVE 必須列 Implements / Touches / Does Not Implement Blueprint IDs。

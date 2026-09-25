@@ -82,20 +82,20 @@ DuckDB PostgreSQL extension only serves optional analytical bridge use cases。
 | K220 | Append Repository Contract | event/evidence insert 與 mutable projection update 分離 | ACCEPTED | 4 | K01,K05 |
 | K230 | Snapshot Repository Contract | latest / as-of snapshot query semantics | ACCEPTED | 4 | K03 |
 | K240 | Unit-of-Work Boundary | multi-write use case consistency contract | ACCEPTED | 4 | K01 |
-| K310 | Order Persistence | internal/broker order identity、status、intent linkage | DESIGNED | 4 | K02 |
-| K320 | OrderEvent Persistence | append-only order lifecycle event | DESIGNED | 5 | K02,K05 |
-| K330 | Fill Persistence | actual fill evidence durable storage | DESIGNED | 5 | K02 |
-| K340 | Execution Correlation | intent → order → event → fill correlation/causation | DESIGNED | 4 | K02,K04 |
-| K350 | Broker External ID Persistence | broker order/trade/deal identity 明確保存 | DESIGNED | 4 | K02 |
-| K410 | AccountPositionSnapshot Persistence | internal expected state snapshot | DESIGNED | 4 | K03 |
-| K420 | BrokerPositionSnapshot Persistence | broker actual observation history | DESIGNED | 4 | K03 |
-| K430 | AccountSnapshot Persistence | cash/equity/margin/position observation | DESIGNED | 4 | K03 |
-| K440 | ReconciliationCase Persistence | mismatch / evidence / resolution lifecycle | DESIGNED | 5 | K03,K07 |
+| K310 | Order Persistence | internal/broker order identity、status、intent linkage | DESIGN_FROZEN | 4 | K02 |
+| K320 | OrderEvent Persistence | append-only order lifecycle event | DESIGN_FROZEN | 5 | K02,K05 |
+| K330 | Fill Persistence | actual fill evidence durable storage | DESIGN_FROZEN | 5 | K02 |
+| K340 | Execution Correlation | intent → order → event → fill correlation/causation | DESIGN_FROZEN | 4 | K02,K04 |
+| K350 | Broker External ID Persistence | broker order/trade/deal identity 明確保存 | DESIGN_FROZEN | 4 | K02 |
+| K410 | AccountPositionSnapshot Persistence | internal expected state snapshot | DESIGN_FROZEN | 4 | K03 |
+| K420 | BrokerPositionSnapshot Persistence | broker actual observation history | DESIGN_FROZEN | 4 | K03 |
+| K430 | AccountSnapshot Persistence | cash/equity/margin/position observation | DESIGN_FROZEN | 4 | K03 |
+| K440 | ReconciliationCase Persistence | mismatch / evidence / resolution lifecycle | DESIGN_FROZEN | 5 | K03,K07 |
 | K450 | Expected / Actual Separation in Schema | expected 與 actual 不共用可 silent overwrite row | DESIGN_FROZEN | 5 | K03 |
-| K510 | StrategyStateSnapshot | restart-required strategy state | DESIGNED | 4 | K06 |
+| K510 | StrategyStateSnapshot | restart-required strategy state | DESIGN_FROZEN | 4 | K06 |
 | K520 | Incremental Feature State Snapshot | GAP-09 state 可 persistence/reconstruct | DESIGNED | 4 | K06 |
-| K530 | Strategy Config / Version Link | state 可連 strategy/config version | DESIGNED | 3 | K06 |
-| K540 | Safe Snapshot Boundary | snapshot 只在一致 state boundary 保存 | DESIGNED | 4 | K06 |
+| K530 | Strategy Config / Version Link | state 可連 strategy/config version | DESIGN_FROZEN | 3 | K06 |
+| K540 | Safe Snapshot Boundary | snapshot 只在一致 state boundary 保存 | DESIGN_FROZEN | 4 | K06 |
 | K610 | Trading Event Ledger | append-only material trading event history | ACCEPTED | 5 | K05 |
 | K620 | Event ID | globally/stably unique event identity | ACCEPTED | 3 | K05 |
 | K630 | Occurred / Received Time | event occurrence 與接收時間分離 | ACCEPTED | 4 | K05 |
@@ -104,11 +104,11 @@ DuckDB PostgreSQL extension only serves optional analytical bridge use cases。
 | K660 | Idempotency Key | duplicate request/event 可安全辨識 | ACCEPTED | 5 | K05 |
 | K670 | Correlation / Causation IDs | material workflow 可完整 trace | ACCEPTED | 4 | K04,K05 |
 | K680 | No Silent Event Mutation | historical execution evidence 不以 update 覆蓋原事件 | ACCEPTED | 5 | K05 |
-| K710 | Recovery State Load | process start 載入 persisted expected / execution / strategy state | DESIGNED | 5 | K07 |
-| K720 | Broker Actual Query Dependency | recovery 必須取得 broker actual observation | DESIGNED | 5 | K07 |
-| K730 | Recovery Reconciliation | persisted expected vs actual broker state | DESIGNED | 5 | K07 |
-| K740 | Strategy Reconstruction | account/reconciliation safe 後 reconstruct strategy state | DESIGNED | 5 | K06,K07 |
-| K750 | Recovery Validation | identity / sequence / config / state consistency verification | DESIGNED | 5 | K07 |
+| K710 | Recovery State Load | process start 載入 persisted expected / execution / strategy state | DESIGN_FROZEN | 5 | K07 |
+| K720 | Broker Actual Query Dependency | recovery 必須取得 broker actual observation | DESIGN_FROZEN | 5 | K07 |
+| K730 | Recovery Reconciliation | persisted expected vs actual broker state | DESIGN_FROZEN | 5 | K07 |
+| K740 | Strategy Reconstruction | account/reconciliation safe 後 reconstruct strategy state | DESIGN_FROZEN | 5 | K06,K07 |
+| K750 | Recovery Validation | identity / sequence / config / state consistency verification | DESIGN_FROZEN | 5 | K07 |
 | K760 | Recovery READY Gate | validation success 才允許 operational continuation | DESIGN_FROZEN | 5 | K07 |
 | K770 | Recovery HALT / Manual Review | unresolved mismatch 不 silent recover | DESIGN_FROZEN | 5 | K07 |
 | K810 | TradingDecision Persistence | target / action / attribution evidence | DESIGNED | 4 | K04 |
@@ -393,8 +393,8 @@ Forbidden：operational Order/Fill persistence、startup recovery、transaction 
 | Order | Work Package | Blueprint Leaves | Scope | Status |
 |---:|---|---|---|---|
 | 1 | GAP-08ABCD | K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680 | Persistence Foundation + Event Ledger | ACCEPTED |
-| 2 | GAP-08EF | K310 K320 K330 K340 K350 K410 K420 K430 K440 K450 | Execution + Account/Reconciliation Persistence | READY_FOR_ARCHITECTURE_REVIEW |
-| 3 | GAP-08GHI | K510 K530 K540 K710 K720 K730 K740 K750 K760 K770 | Strategy State + Recovery / Readiness | BLOCKED_BY_08EF_ACCEPTANCE |
+| 2 | GAP-08EFGHI | K310 K320 K330 K340 K350 K410 K420 K430 K440 K450 K510 K530 K540 K710 K720 K730 K740 K750 K760 K770 | Operational Persistence + Recovery | READY_FOR_EXECUTION |
+| 3 | GAP-08GHI | merged into GAP-08EFGHI | Strategy State + Recovery / Readiness | MERGED |
 
 GAP-08ABCD：first expanded runtime calibration bundle。
 
@@ -406,7 +406,7 @@ K520：
 
     DEFERRED_TO_GAP_09
 
-GAP-08 closes after required GAP-08ABCD、GAP-08EF、GAP-08GHI acceptance；K520 remains GAP-09-owned。
+GAP-08 closes after GAP-08ABCD and merged GAP-08EFGHI acceptance；K520 remains GAP-09-owned。
 
 Level 3B remains NOT_ENABLED。
 
@@ -853,6 +853,215 @@ Dynamic sizing observation：
 
 expanded scope did not increase 5HR usage above previous sample average；
 future sizing remains empirical and must still respect public-semantics / authority / recovery safety seams。
+
+---
+
+## GAP-08EFGHI Architect Design Freeze
+
+Status：DESIGN_FROZEN。
+
+Title：
+
+    Operational Persistence + Recovery
+
+Runtime target：
+
+    one expanded Level 3A execution
+
+Blueprint Implements：
+
+    E510 E520
+    H170 H440 H450 H510 H520 H530 H540 H550 H830
+    J340 J810 J820 J830
+    K310 K320 K330 K340 K350
+    K410 K420 K430 K440 K450
+    K510 K530 K540
+    K710 K720 K730 K740 K750 K760 K770
+
+Total：
+
+    35 leaves / weight 151
+
+E530 / E540 remain frozen constraints but are not claimed as runtime acceptance scope。
+
+K520 remains DEFERRED_TO_GAP_09。
+
+### PostgreSQL Tables / Authority
+
+V1 migration adds separate operational objects for：
+
+- orders projection。
+- fills append-only evidence。
+- expected-position snapshot batches/items。
+- broker-position observation batches/items。
+- account snapshots。
+- reconciliation-case history。
+- strategy-state snapshots。
+
+OrderEvent uses existing append-only trading.event_ledger；no duplicate mutable OrderEvent table。
+
+Important TABLE/COLUMN/FUNCTION continue Traditional Chinese COMMENT requirement。
+
+### Execution Repository Contracts
+
+OrderRepository：
+
+- add initial order projection。
+- get by order_id。
+- save next projection with optimistic expected version。
+- lookup optional broker order ID。
+- repository never commits。
+
+FillRepository：
+
+- append-only。
+- get/list by order。
+- duplicate internal fill ID -> identical duplicate or explicit conflict。
+- native broker deal identity when present is uniqueness evidence。
+
+OrderEventRepository：
+
+- domain-specific adapter over EventLedgerRepository。
+- append / get / list order events by contiguous sequence。
+- no update/delete。
+
+### Atomic Execution Boundary
+
+One UnitOfWork must atomically cover the material processing of one new execution event：
+
+1. append OrderEvent。
+2. append zero or more new Fill evidence。
+3. update derived Order projection。
+4. append resulting complete expected-position snapshot batch when account projection changes。
+
+Any failure rolls back all four effects。
+
+Repositories never independently commit。
+
+Broker actual observation is a separate observation transaction and never joins fill projection as hidden actual authority。
+
+### ReconciliationCase History
+
+Persistence model：append-only version history。
+
+Fields：
+
+    case_id
+    version >= 1
+    recorded_at
+    reconciliation_case
+    actor_ref optional
+    evidence tuple[str, ...]
+
+Rules：
+
+- unique(case_id, version)。
+- resolution appends a new immutable version。
+- previous version is never updated/deleted。
+- latest(case_id) is derived query semantics。
+- persistence never executes corrective broker action。
+
+### StrategyStateSnapshot
+
+Canonical persistence owner：
+
+    persistence/strategy_state.py
+
+Immutable fields：
+
+    snapshot_id
+    strategy_instance_id
+    strategy_id
+    strategy_version
+    config_version
+    config_fingerprint
+    instrument_id
+    timeframe
+    state_schema_version >= 1
+    last_market_observation_id
+    captured_at
+    state_json JSON object
+
+Strategy state codecs own state_json schema。
+
+### Stateful Strategy Contract
+
+Runtime-checkable protocol：
+
+    state_schema_version
+    export_state() -> JSON object
+    restore_state(state) -> None
+
+Initial strategy codecs required for：
+
+- EMA_CROSS：previous EMA20 / EMA60。
+- TREND_STATE：previous state。
+- TREND_STATE_EXIT：previous state / virtual position / pending entry state。
+
+Private attributes are not persisted directly outside explicit codec methods。
+
+### Safe Strategy Snapshot Boundary
+
+Snapshot is valid only after one completed market observation has finished strategy processing and before the next observation begins。
+
+Snapshot represents logical strategy state only；it does not claim broker/account execution is simultaneously complete。
+
+Recovery therefore reconciles persisted execution/account state before restoring strategy state。
+
+READY requires snapshot.last_market_observation_id to exactly match the caller-required recovery observation boundary。
+
+Missing/mismatched snapshot never silently replays guessed feature state。
+
+### Recovery Order
+
+Fixed sequence：
+
+1. load persisted Order / Fill / expected account projections。
+2. query BrokerPositionProvider actual state。
+3. reconcile expected vs actual。
+4. evaluate unresolved persisted ReconciliationCase history。
+5. only when account/reconciliation permits continuation，load StrategyInstance + StrategyStateSnapshot。
+6. validate strategy definition/version/config fingerprint/scope/state schema/market observation boundary。
+7. instantiate strategy from canonical StrategyDefinition + StrategyInstance config。
+8. restore through explicit state codec。
+9. produce READY / HALT / REVIEW。
+
+### Recovery Readiness Mapping
+
+- account reconciliation HALT -> HALT。
+- account reconciliation REVIEW -> REVIEW。
+- unresolved HALT ReconciliationCase -> HALT。
+- unresolved REVIEW_REQUIRED case -> REVIEW。
+- missing strategy snapshot -> HALT。
+- unknown strategy/version -> HALT。
+- config/version/fingerprint/scope mismatch -> HALT。
+- state schema mismatch -> HALT。
+- state decode/restore failure -> HALT。
+- market observation boundary mismatch -> HALT。
+- READY only when account result is READY and every required strategy state restores successfully。
+
+No automatic repair。
+
+### Explicit Exclusions
+
+- K520 incremental feature state。
+- feature-history reconstruction design。
+- H840 automatic safe broker retry。
+- K810-K850 decision/risk provenance。
+- LIVE authorization。
+- backup/restore policy。
+- destructive migration。
+- big-bang conversion of all backtest consumers。
+
+### Progress Experiment
+
+Current lifecycle before freeze：47.30%。
+
+Design-freeze lifecycle target：47.92%。
+
+If all 35 leaves / weight 151 become ACCEPTED，projected lifecycle is approximately 53.57%，a gain of approximately 6.27 percentage points from current accepted baseline。
+
+This is a sizing experiment，not a completion guarantee or quota target。
 
 ---
 

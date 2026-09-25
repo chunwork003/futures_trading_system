@@ -70,13 +70,13 @@ Target ownership：
 | H410 | Fill Conversion Boundary | broker deal → canonical Fill | ACCEPTED | 4 | H01,H03 |
 | H420 | Multi-Fill Accumulation | 同 order 多 fills 合併 quantity / weighted price | ACCEPTED | 4 | H03 |
 | H430 | Fill Deduplication | broker duplicate deal 不重複套用 account state | ACCEPTED | 4 | H03,H08 |
-| H440 | OrderEvent Contract | future append-only order status/change event | DESIGNED | 4 | H08 |
-| H450 | Execution Time Semantics | broker event / fill timestamp 必須 canonical timezone-aware | DESIGNED | 4 | H03,H08 |
-| H510 | OMS Order Identity | internal order_id / broker_order_id 分離 | DESIGNED | 4 | H08 |
-| H520 | OMS State Machine | legal transition / terminal immutability | DESIGNED | 5 | H08 |
-| H530 | Correlation / Causation | intent → order → event → fill 可追蹤 | DESIGNED | 4 | H08 |
-| H540 | OMS Persistence Seam | execution state 由 K Domain persistence port 保存 | DESIGNED | 4 | H08 |
-| H550 | OMS Recovery Seam | restart 可由 persisted events + broker query reconstruct | DESIGNED | 5 | H08 |
+| H440 | OrderEvent Contract | future append-only order status/change event | DESIGN_FROZEN | 4 | H08 |
+| H450 | Execution Time Semantics | broker event / fill timestamp 必須 canonical timezone-aware | DESIGN_FROZEN | 4 | H03,H08 |
+| H510 | OMS Order Identity | internal order_id / broker_order_id 分離 | DESIGN_FROZEN | 4 | H08 |
+| H520 | OMS State Machine | legal transition / terminal immutability | DESIGN_FROZEN | 5 | H08 |
+| H530 | Correlation / Causation | intent → order → event → fill 可追蹤 | DESIGN_FROZEN | 4 | H08 |
+| H540 | OMS Persistence Seam | execution state 由 K Domain persistence port 保存 | DESIGN_FROZEN | 4 | H08 |
+| H550 | OMS Recovery Seam | restart 可由 persisted events + broker query reconstruct | DESIGN_FROZEN | 5 | H08 |
 | H610 | PaperBroker Submit | deterministic immediate fill baseline | ACCEPTED | 3 | H04 |
 | H620 | PaperBroker Query | in-memory order / fill query | ACCEPTED | 2 | H04 |
 | H630 | PaperBroker Cancel | pending order cancellation baseline | ACCEPTED | 2 | H04 |
@@ -90,7 +90,7 @@ Target ownership：
 | H770 | Paper Market Data Boundary | runner 消費 canonical-style MarketBar，不呼叫 broker行情 native object | ACCEPTED | 3 | H06 |
 | H810 | Duplicate Submission Protection | same order identity 不可 silent duplicate submit | IMPLEMENTED | 3 | H08 |
 | H820 | Fill Delivery Idempotency | repeated status polling 不重覆交付相同 fill | ACCEPTED | 4 | H08 |
-| H830 | Event Idempotency Key | persisted/live OrderEvent future explicit idempotency identity | DESIGNED | 4 | H08 |
+| H830 | Event Idempotency Key | persisted/live OrderEvent future explicit idempotency identity | DESIGN_FROZEN | 4 | H08 |
 | H840 | Safe Retry Policy | timeout / reconnect retry 不得造成 duplicate economic order | NOT_DESIGNED | 5 | H08 |
 | H910 | EXIT Intent Generation | opposite direction transition 先要求 exit current exposure | DESIGN_FROZEN | 4 | H07 |
 | H920 | Confirmed FLAT Gate | 未確認 account flat 不得 enter opposite side | DESIGN_FROZEN | 5 | H07,H08 |
@@ -302,6 +302,173 @@ Shioaji submission 前至少驗證：
 - direct reversal。
 - DayTrade business semantics。
 - broker Auto open/close inference。
+
+## GAP-08EFGHI OMS Dependency Freeze
+
+Status：DESIGN_FROZEN。
+
+Implements：
+
+H170 H440 H450 H510 H520 H530 H540 H550 H830。
+
+Canonical owner：
+
+    trading/execution.py
+
+Legacy backtest Order / Fill remain compatibility models；no big-bang migration。
+
+### Canonical OrderType
+
+Exact values：
+
+    MARKET
+    LIMIT
+    STOP
+
+### Canonical OrderStatus
+
+Exact values：
+
+    PENDING
+    SUBMITTED
+    PARTIALLY_FILLED
+    FILLED
+    CANCELLED
+    REJECTED
+
+Terminal：FILLED / CANCELLED / REJECTED。
+
+### Canonical Order
+
+Immutable public projection model，minimum fields：
+
+    order_id
+    intent_id
+    correlation_id
+    causation_id optional
+    broker
+    account_ref
+    instrument_id
+    contract_id optional
+    position_direction
+    position_effect
+    order_type
+    quantity
+    requested_price Decimal optional
+    status
+    filled_quantity
+    average_fill_price Decimal optional
+    created_at
+    broker_order_id optional
+    version
+
+Rules：
+
+- quantity > 0。
+- 0 <= filled_quantity <= quantity。
+- price uses finite Decimal；legacy float adapter converts via Decimal(str(value)) only。
+- all timestamps timezone-aware UTC。
+- broker_order_id once assigned cannot change to a different value。
+- version equals last applied OrderEvent sequence。
+
+Status invariants：
+
+- PENDING / SUBMITTED：filled_quantity = 0。
+- PARTIALLY_FILLED：0 < filled_quantity < quantity。
+- FILLED：filled_quantity = quantity。
+- CANCELLED：0 <= filled_quantity < quantity；partial-then-cancelled is valid。
+- REJECTED：filled_quantity = 0。
+
+### Canonical Fill
+
+Immutable evidence model：
+
+    fill_id
+    order_id
+    order_event_id
+    correlation_id
+    causation_id
+    broker
+    account_ref
+    instrument_id
+    contract_id optional
+    broker_order_id optional
+    broker_trade_id optional
+    broker_deal_id optional
+    occurred_at
+    quantity
+    price Decimal
+    commission Decimal
+
+Rules：
+
+- fill_id is internal stable identity。
+- causation_id == order_event_id。
+- broker native IDs remain separate opaque identities。
+- broker deal identity when present is persisted and deduplicated explicitly。
+
+### OrderEvent
+
+Immutable append-only event model：
+
+    event_id
+    order_id
+    previous_status optional
+    status
+    occurred_at
+    received_at
+    sequence
+    filled_quantity
+    average_fill_price Decimal optional
+    broker_order_id optional
+    idempotency_key
+    correlation_id
+    causation_id
+    reason optional
+
+Sequence：
+
+- starts at 0。
+- sequence 0 = creation event：previous_status=None / status=PENDING。
+- subsequent event sequence must be exactly previous version + 1。
+- per-order sequence cannot gap or regress。
+
+Correlation：
+
+- Order copies intent_id / correlation_id / causation_id from OrderIntent。
+- every OrderEvent keeps same correlation_id。
+- first event causation_id = intent_id。
+- later event causation_id = immediately preceding OrderEvent.event_id。
+- Fill causation_id = producing OrderEvent.event_id。
+
+Idempotency：
+
+- EventLedger source = OMS。
+- entity_type = ORDER。
+- entity_id = order_id。
+- idempotency scope = ORDER_EVENT:<order_id>。
+- caller supplies stable nonblank idempotency_key。
+- identical replay -> DUPLICATE。
+- same identity/sequence/key with different canonical content -> explicit conflict。
+
+Legal state transitions：
+
+- creation None -> PENDING。
+- PENDING -> SUBMITTED / PARTIALLY_FILLED / FILLED / CANCELLED / REJECTED。
+- SUBMITTED -> PARTIALLY_FILLED / FILLED / CANCELLED / REJECTED。
+- PARTIALLY_FILLED -> PARTIALLY_FILLED / FILLED / CANCELLED。
+- terminal state accepts no new unique lifecycle event。
+- duplicate terminal callback is handled by idempotency before transition application。
+
+OMS authority：
+
+- append-only OrderEvent + Fill = historical evidence。
+- Order row = mutable derived projection。
+- recovery reconstructs/validates projection against persisted evidence；projection never replaces evidence authority。
+
+H840 Safe Retry remains outside scope。
+
+---
 
 ## Domain Acceptance
 

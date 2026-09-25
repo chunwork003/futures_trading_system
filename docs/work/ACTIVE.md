@@ -2,39 +2,31 @@
 
 ## 1. Work Package ID
 
-GAP-08ABCD
+GAP-08EFGHI
 
 ---
 
 ## 2. Title
 
-Persistence Foundation + Event Ledger
+Operational Persistence + Recovery
 
 ---
 
 ## 3. Status
 
-COMPLETED / ACCEPTED
+READY_FOR_EXECUTION
 
 Design Freeze：COMPLETED。
 
-Runtime Authorization：COMPLETED。
+Runtime Authorization：NOT_YET_AUTHORIZED。
 
 Launch Gate：
 
-`CONSUMED`
+`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
 
 Architecture ancestor：
 
-`0b410ac8fb18887f96acc4e0bbde72d21cd16d6c`
-
-Design freeze commit：
-
-`17ef3eabe924a45e62fb4f22451c3c19b2497ff3`
-
-Accepted runtime commit：
-
-`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
+`10fb882fded93b98b39f39258005dce7e232f898`
 
 ---
 
@@ -42,7 +34,7 @@ Accepted runtime commit：
 
 GPT-5.6 Sol
 
-Effort：輕度
+Effort：中度
 
 Execution Mode：LEVEL_3A_BOUNDED
 
@@ -54,33 +46,36 @@ Level 3B remains NOT_ENABLED。
 
 ## 5. Goal
 
-一次建立 storage-neutral persistence contracts、PostgreSQL foundation、migration/UoW 與可實際承載 material event evidence 的 append-only event ledger。
+一次完成 operational execution/account persistence、OMS canonical ownership、strategy state persistence與 restart recovery/readiness。
 
-這是第一個 expanded runtime calibration bundle，不拆回 A/B/C/D 四次 execution。
+這是第一個目標推進總 lifecycle 約 5% 以上的大型 runtime sizing experiment。
 
 ---
 
-## 6. Blueprint Scope
+## 6. Blueprint Implements
 
-Implements：
+E510 E520
 
-K110 K120 K130 K140 K150 K160 K170
-K210 K220 K230 K240
-K610 K620 K630 K640 K650 K660 K670 K680
+H170 H440 H450 H510 H520 H530 H540 H550 H830
 
-19 leaves / weight 77。
+J340 J810 J820 J830
 
-Touches：
+K310 K320 K330 K340 K350
+K410 K420 K430 K440 K450
+K510 K530 K540
+K710 K720 K730 K740 K750 K760 K770
 
-K300 K400 K500 K700 future consumers。
+35 leaves / weight 151。
+
+Touches：E530 E540 / existing H/J/K accepted contracts。
 
 Does Not Implement：
 
-K310-K540
-K710-K770
+E310-E350 incremental feature runtime
+H840 safe retry
+K520
 K810-K930
-
-K520 remains GAP-09-owned。
+LIVE authorization
 
 ---
 
@@ -88,13 +83,11 @@ K520 remains GAP-09-owned。
 
 Branch：master
 
-Required architecture ancestor：
+Required ancestor：
 
-`0b410ac8fb18887f96acc4e0bbde72d21cd16d6c`
+`10fb882fded93b98b39f39258005dce7e232f898`
 
-Recorded full regression：869 passed
-
-Known warning：GAP-ENV-001 / PytestCacheWarning
+Recorded full regression：897 passed / 2 skipped
 
 Known untracked：data/
 
@@ -102,537 +95,425 @@ data/ must not be modified/staged。
 
 ---
 
-## 8. Architecture Freeze
+## 8. Canonical Execution
 
-Canonical ownership：
+Implement trading.execution canonical OrderType / OrderStatus / Order / Fill / OrderEvent exactly as frozen in H blueprint。
 
-- persistence/ = storage-neutral contracts。
-- persistence/postgres/ = PostgreSQL implementation。
-- persistence/postgres/migrations/ = PostgreSQL versioned SQL。
+Legacy backtest models remain compatibility surfaces。
 
-Analytical plane remains Parquet / DuckDB / Polars。
-
-DuckDB postgres extension is not operational authority。
+No big-bang consumer migration。
 
 ---
 
-## 9. Dependency / Package Freeze
+## 9. OMS State Machine
 
-pyproject package discovery must include persistence*。
+Creation sequence 0：None -> PENDING。
 
-Optional PostgreSQL dependency：
+Then enforce frozen legal transition table、contiguous sequence、terminal immutability、partial-cancel semantics。
 
-psycopg[binary]==3.3.6
+OrderEvent uses existing TradingEvent/EventLedger as append-only evidence。
 
-Use lazy import at driver boundary so base package/unit tests do not require PostgreSQL connectivity。
-
----
-
-## 10. Public Storage-Neutral Contracts
-
-Errors：
-
-- PersistenceContractError(ValueError)
-- PersistenceTransactionError(RuntimeError)
-- PersistenceConflictError(RuntimeError)
-- EventIdentityConflictError
-- EventSequenceConflictError
-- IdempotencyConflictError
-
-Helpers：
-
-- normalize_stable_id(str) -> str
-- require_exact_decimal(Decimal) -> Decimal
-- normalize_aware_utc(datetime) -> datetime
-
-Protocols：
-
-- AppendOnlyRepository.append(record) -> None
-- SnapshotRepository.append_snapshot(snapshot) -> None
-- SnapshotRepository.latest(key)
-- SnapshotRepository.as_of(key, at)
-- UnitOfWork context manager + commit/rollback
-
-No generic CRUD API。
-
-No update/delete on AppendOnlyRepository。
+Order projection is derived mutable state only。
 
 ---
 
-## 11. Numeric / Time / Identity
+## 10. Execution Identity
 
-- exact persistence values use Decimal；float rejected。
-- non-finite Decimal rejected。
-- timestamps must be timezone-aware and normalize UTC。
-- stable string IDs trim/nonblank。
-- database/backend must not rewrite canonical ID。
-- no automatic UUID migration。
+Internal：order_id / event_id / fill_id。
 
----
+External：broker_order_id / broker_trade_id / broker_deal_id remain separate opaque references。
 
-## 12. UnitOfWork
-
-- explicit commit only。
-- exit without commit -> rollback。
-- exception -> rollback + propagate。
-- repository never commits。
-- no hidden retry。
-- no double finalize。
-
-PostgresUnitOfWork：
-
-- connection factory based。
-- autocommit=False required。
-- connection remains adapter-internal。
+Do not infer economics from IDs。
 
 ---
 
-## 13. PostgreSQL Driver
+## 11. Atomic Execution UoW
 
-connect_postgres(dsn)：
+One material execution update transaction atomically：
 
-- lazy psycopg import。
-- nonblank DSN。
-- autocommit=False。
-- never log DSN/credentials。
-- missing driver -> PostgresDriverUnavailableError。
+1. append OrderEvent
+2. append new Fill evidence
+3. save Order projection
+4. append complete expected-position snapshot batch when position changes
 
----
+Any failure rolls back all。
 
-## 14. PostgreSQL Compatibility Contract
-
-PostgresIntegrationStatus：
-
-PENDING / VERIFIED / FAILED
-
-PostgresCompatibilityEvidence immutable：
-
-- major
-- status
-- server_version_num
-- driver_version
-- verified_on
-- evidence
-
-Initial POSTGRES_COMPATIBILITY_TARGETS：
-
-- PostgreSQL 17 PENDING
-- PostgreSQL 18 PENDING
-
-detect_postgres_major(server_version_num) pure。
-
-No automatic verification from version number alone。
-
-No production/live authorization field or behavior。
+Repositories never commit。
 
 ---
 
-## 15. PostgreSQL Namespace / Migration
+## 12. Account Persistence
 
-Operational schema：trading
+Implement complete-batch expected AccountPositionSnapshot and BrokerPositionObservation contracts。
 
-Migration metadata：trading.schema_migrations
+Both support empty collection = FLAT。
 
-Migration filename：NNNN_name.sql
+Expected and actual use separate tables/repositories。
 
-Rules：
+latest/as_of expected ordering：effective_at -> recorded_at -> snapshot_id。
 
-- ascending deterministic versions。
-- duplicate version reject。
-- applied version/name mismatch -> MigrationConflictError。
-- runner does not commit/rollback。
-- migration record written after migration SQL succeeds in same transaction。
-- important TABLE/COLUMN/FUNCTION Traditional Chinese COMMENT。
-- no destructive migration。
+Persisted broker observation is audit only；startup actual still comes from BrokerPositionProvider。
 
 ---
 
-## 16. TradingEvent
+## 13. AccountSnapshot
 
-Immutable Pydantic / extra forbid。
+Implement canonical immutable trading.account.AccountSnapshot with frozen fields/Decimal/time semantics。
 
-Fields：
-
-event_id
-event_type
-source
-entity_type
-entity_id
-occurred_at
-received_at
-sequence
-event_version
-idempotency_scope
-idempotency_key
-correlation_id optional
-causation_id optional
-payload_json
-
-Rules：
-
-- required strings trim/nonblank。
-- sequence >= 0。
-- event_version >= 1。
-- timestamps aware + UTC normalized。
-- no received_at >= occurred_at requirement。
-- payload_json must be JSON object and canonicalized deterministically。
+At least one account monetary observation required。
 
 ---
 
-## 17. Event Identity / Idempotency
+## 14. ReconciliationCase Persistence
 
-Event ID unique globally within ledger。
+Append-only version history。
 
-Sequence scope：
+Resolution appends new version；never overwrites historical case evidence。
 
-(source, entity_type, entity_id, sequence)
-
-Idempotency scope：
-
-(idempotency_scope, idempotency_key)
-
-Semi-duplicate with different canonical event is conflict，not silent duplicate。
+No corrective broker action。
 
 ---
 
-## 18. Event Append Result
+## 15. StrategyInstance
 
-EventAppendStatus：APPENDED / DUPLICATE
+Implement strategy.instance.StrategyInstance：
 
-EventAppendResult：
+- strategy_instance_id
+- strategy_id
+- strategy_version
+- config_version
+- config_fingerprint
+- instrument_id
+- timeframe
+- config_json
 
-- status
-- event_id
+Canonical config fingerprint is SHA-256 of deterministic JSON。
 
-DUPLICATE only for canonically identical persisted event。
-
----
-
-## 19. EventLedgerRepository
-
-Storage-neutral Protocol：
-
-- append(event) -> EventAppendResult
-- get(event_id)
-- get_by_idempotency(scope, key)
-- list_after(source, entity_type, entity_id, after_sequence, limit)
-
-list_after：sequence ascending；limit > 0。
-
-No update/delete。
+Do not implement incremental feature state。
 
 ---
 
-## 20. PostgreSQL Event Ledger
+## 16. Stateful Strategy
 
-Table：trading.event_ledger
+Explicit protocol：
 
-Constraints：
+- state_schema_version
+- export_state()
+- restore_state()
 
-- event_id PRIMARY KEY
-- UNIQUE(idempotency_scope, idempotency_key)
-- UNIQUE(source, entity_type, entity_id, sequence)
-- sequence >= 0
-- event_version >= 1
-- occurred_at / received_at TIMESTAMPTZ
-- payload JSONB
+Implement explicit codecs for EMA_CROSS、TREND_STATE、TREND_STATE_EXIT。
 
-PostgresEventLedgerRepository never commits。
-
-Conflict mapping must preserve：
-
-- event identity conflict
-- sequence conflict
-- idempotency conflict
+Do not persist arbitrary __dict__ / private attributes generically。
 
 ---
 
-## 21. Optional Real PostgreSQL Verification
+## 17. StrategyStateSnapshot
 
-Environment variables：
+Implement frozen immutable snapshot envelope with exact identity/config/scope/schema/market-observation validation。
+
+Snapshot boundary = completed market observation after strategy processing and before next observation。
+
+K520 remains excluded。
+
+---
+
+## 18. Recovery
+
+Fixed order：
+
+load persisted execution/account
+-> query broker actual
+-> reconcile
+-> unresolved-case gate
+-> validate/load strategy snapshot
+-> instantiate strategy
+-> restore explicit codec
+-> validate
+-> READY/HALT/REVIEW
+
+Never restore strategy before account/reconciliation permits continuation。
+
+---
+
+## 19. Recovery Failure Mapping
+
+Account HALT -> HALT。
+Account REVIEW -> REVIEW。
+Missing snapshot -> HALT。
+Unknown strategy/version -> HALT。
+Config/fingerprint/scope mismatch -> HALT。
+State schema mismatch -> HALT。
+State restore failure -> HALT。
+Market observation boundary mismatch -> HALT。
+
+No silent repair/replay guess。
+
+---
+
+## 20. PostgreSQL
+
+Add one versioned non-destructive migration after 0001_event_ledger.sql。
+
+Separate tables for order projection、fills、expected snapshots、broker observations、account snapshots、reconciliation history、strategy snapshots。
+
+OrderEvents remain in event_ledger。
+
+Traditional Chinese comments required。
+
+PG17/PG18 integration remains PENDING when DSNs absent。
+
+---
+
+## 21. Allowed Runtime Files
+
+Primary canonical：
+
+trading/execution.py
+trading/account.py
+trading/reconciliation.py only if persistence-facing compatibility requires bounded additions
+trading/__init__.py
+
+strategy/instance.py
+strategy/state.py
+strategy/registry.py
+strategy/__init__.py
+
+strategies/base.py
+strategies/ema_cross.py
+strategies/trend_state.py
+strategies/trend_state_exit.py
+
+Persistence：
+
+persistence/contracts.py
+persistence/events.py
+persistence/execution.py
+persistence/account.py
+persistence/reconciliation.py
+persistence/strategy_state.py
+persistence/recovery.py
+persistence/__init__.py
+
+persistence/postgres/execution.py
+persistence/postgres/account.py
+persistence/postgres/reconciliation.py
+persistence/postgres/strategy_state.py
+persistence/postgres/event_ledger.py only for bounded reuse/integration
+persistence/postgres/uow.py only for bounded integration
+persistence/postgres/__init__.py
+persistence/postgres/migrations/0002_operational_persistence.sql
+
+Compatibility files only when required：
+
+backtest/models.py
+backtest/broker.py
+backtest/execution_result.py
+backtest/order_factory.py
+backtest/paper_broker.py
+backtest/shioaji_fill.py
+backtest/shioaji_mapping.py
+backtest/shioaji_broker.py
+
+Tests may add bounded unit/integration files corresponding to this Work Package。
+
+---
+
+## 22. Forbidden
+
+data/**
+database/**
+features/**
+analysis/**
+unrelated decision/risk/sizing code
+K520 incremental feature implementation
+H840 retry implementation
+K810-K850 provenance
+LIVE authorization
+deployment/secrets
+destructive migration
+unrelated cleanup
+
+---
+
+## 23. Required Verification — Execution
+
+- canonical model validation/immutability
+- exact Decimal and timezone-aware time
+- legal/illegal transition matrix
+- sequence 0 creation
+- contiguous sequence
+- terminal immutability
+- partial fill -> filled
+- partial fill -> cancelled
+- duplicate OrderEvent replay
+- event identity/idempotency/sequence conflicts
+- fill identity/dedup
+- native broker-deal duplicate conflict
+- correlation/causation chain
+- order projection optimistic version conflict
+- repository no commit
+- atomic rollback across event/fill/order/expected snapshot
+
+---
+
+## 24. Required Verification — Account/Reconciliation
+
+- OPEN/ADD/REDUCE/CLOSE fill projection
+- no silent reversal
+- expected complete snapshot including empty FLAT
+- broker observation including empty FLAT
+- expected/actual separate repository/table
+- latest/as_of ordering/tie break
+- AccountSnapshot Decimal/time
+- append-only ReconciliationCase versions
+- unresolved case gating
+- resolution never submits broker action
+- persisted expected loader compatibility
+- broker actual still queried from provider
+
+---
+
+## 25. Required Verification — Strategy/Recovery
+
+- StrategyInstance identity/config fingerprint
+- config mismatch rejection
+- explicit state export/restore for three strategies
+- invalid state payload rejection
+- uninterrupted vs restored next-decision equivalence
+- missing snapshot HALT
+- version mismatch HALT
+- schema mismatch HALT
+- market observation mismatch HALT
+- account HALT prevents strategy restore
+- account REVIEW prevents READY
+- successful reconciliation + state restore -> READY
+- K520 not required
+
+---
+
+## 26. PostgreSQL Integration
+
+Use existing：
 
 POSTGRES17_TEST_DSN
 POSTGRES18_TEST_DSN
 
-If absent：integration tests SKIP and status remains PENDING。
+Absent -> SKIP / remain PENDING。
 
-If present：
+Present -> exact-major migration/repository/restart smoke in rollback-safe test scope。
 
-- server major must match target exactly。
-- run migration/event smoke in transaction。
-- rollback test material。
-- record evidence only when test actually passes。
-
-No Docker/service installation without explicit environment support。
-
-No fake VERIFIED result。
+Never fake VERIFIED。
 
 ---
 
-## 22. Allowed Runtime Files
+## 27. Compatibility
 
-Primary：
+Run existing：
 
-pyproject.toml
-persistence/__init__.py
-persistence/contracts.py
-persistence/events.py
-persistence/postgres/__init__.py
-persistence/postgres/compatibility.py
-persistence/postgres/driver.py
-persistence/postgres/migrations.py
-persistence/postgres/uow.py
-persistence/postgres/event_ledger.py
-persistence/postgres/migrations/*.sql
+- OrderIntent/PositionEffect
+- PaperBroker/PaperTradingEngine
+- async/partial/multi-fill
+- Shioaji mapping/submission/status/deal dedup
+- account/reconciliation
+- event ledger
+- strategy registry/multi-runner/concrete strategies
+- direction-transition
 
-Tests：
-
-tests/unit/test_persistence_contracts.py
-tests/unit/test_postgres_foundation.py
-tests/unit/test_event_ledger.py
-tests/integration/test_postgres_foundation.py
-
-Optional CLI only if useful and within frozen semantics：
-
-scripts/verify_postgres_compatibility.py
+Then full regression。
 
 ---
 
-## 23. Forbidden Areas
+## 28. Acceptance
 
-data/**
-database/**
-trading/**
-backtest/**
-strategy/**
-strategies/**
-features/**
-adapters/**
+PASS requires all frozen semantics implemented with targeted/compatibility/full regression PASS。
 
-No unrelated cleanup。
+PG17/18 may remain PENDING only when test DSNs absent。
 
-No broker execution changes。
+No scope creep。
 
-No LIVE authorization。
+No data/ changes。
+
+No governance docs modified by runtime executor。
 
 ---
 
-## 24. Required Unit Verification
+## 29. Hard Stop
 
-At minimum verify：
-
-1. stable ID normalization/rejection。
-2. Decimal exact/non-finite/float rejection。
-3. aware datetime UTC normalization / naive reject。
-4. Protocol runtime-checkable behavior。
-5. UnitOfWork explicit commit。
-6. rollback on uncommitted exit。
-7. rollback on exception。
-8. double finalize reject。
-9. autocommit=True reject。
-10. migration deterministic discovery。
-11. duplicate migration version reject。
-12. migration conflict detection。
-13. migration runner does not commit。
-14. compatibility targets exactly 17/18 PENDING。
-15. server_version_num major detection。
-16. PENDING evidence does not claim verification。
-17. VERIFIED/FAILED evidence requires explicit metadata。
-18. TradingEvent immutable/extra-forbid。
-19. event string normalization。
-20. event timestamps UTC。
-21. event sequence/version validation。
-22. canonical JSON object normalization。
-23. append APPENDED。
-24. identical retry -> DUPLICATE。
-25. event identity conflict。
-26. idempotency conflict。
-27. sequence conflict。
-28. get/get_by_idempotency。
-29. list_after ordering/limit。
-30. repository never commits。
-31. migration SQL contains required PK/UNIQUE/CHECK/TIMESTAMPTZ/JSONB semantics。
-32. Traditional Chinese DB comments present。
+- canonical state model must change
+- transaction authority ambiguity
+- expected/actual cannot remain separated
+- strategy private state cannot be explicitly serialized safely
+- recovery needs K520/incremental feature semantics
+- broker/live-money behavior requires guessing
+- destructive migration required
+- secret exposure
+- unrelated regression
+- data/ modified
 
 ---
 
-## 25. Targeted / Compatibility / Regression
-
-Targeted：
-
-.\.venv\Scripts\python.exe -m pytest tests\unit\test_persistence_contracts.py tests\unit\test_postgres_foundation.py tests\unit\test_event_ledger.py -q
-
-Optional integration：
-
-.\.venv\Scripts\python.exe -m pytest tests\integration\test_postgres_foundation.py -q
-
-Absent DSNs may produce SKIP，not VERIFIED。
-
-Compatibility：
-
-.\.venv\Scripts\python.exe -m pytest tests\unit\test_trading_account.py tests\unit\test_reconciliation.py tests\unit\test_trading_execution.py -q
-
-Then full regression：
-
-.\.venv\Scripts\python.exe -m pytest -q
-
----
-
-## 26. Acceptance
-
-PASS requires：
-
-- frozen public contracts exact。
-- storage-neutral domain boundary preserved。
-- PostgreSQL code isolated。
-- migration/UoW semantics explicit。
-- operational event ledger implemented。
-- no silent conflict/overwrite。
-- PostgreSQL 17/18 remain PENDING unless real integration passes。
-- targeted PASS。
-- compatibility PASS。
-- full regression PASS。
-- git diff --check PASS。
-- data/ untouched。
-
----
-
-## 27. Hard Stop
-
-STOP if：
-
-- frozen persistence authority must change。
-- generic CRUD abstraction becomes necessary。
-- trading/domain must import psycopg。
-- destructive migration required。
-- idempotency conflict semantics ambiguous。
-- transaction authority ambiguous。
-- secret/DSN exposure。
-- unrelated core regression。
-- data/ modified。
-
----
-
-## 28. Git
+## 30. Git
 
 Commit message：
 
-feat(persistence): add foundation and event ledger
+feat(persistence): add operational recovery persistence
 
-Exact stage only allowed runtime/test files。
+Exact staging only。
 
-Push origin master，fetch，verify local == remote。
+Push origin master / fetch / verify。
 
-Final status only known data/。
-
-No amend / rebase / force push / reset --hard。
+No amend/rebase/force/reset-hard。
 
 ---
 
-## 29. Dynamic Calibration
+## 31. Dynamic Calibration
 
-This bundle intentionally expands scope versus prior Level 3A samples。
+Record：
 
-Do not judge success by low quota alone。
+- user-observed 5HR
+- wall time
+- files read/created/modified
+- tool ops
+- retries
+- correction cycles
+- targeted/compatibility/full regression
+- PG17/PG18 status
+- implemented leaves/weight = 35 / 151
 
-Final report must include：
+Do not estimate token/context if unavailable。
 
-- user-observed 5HR supplied later。
-- wall time if observable。
-- files read/created/modified。
-- tool operations。
-- correction cycles。
-- retries。
-- targeted/compatibility/full regression。
-- PostgreSQL 17 integration status。
-- PostgreSQL 18 integration status。
-- implemented leaves / weight = 19 / 77。
-
-Compare accepted work / resource after deterministic acceptance。
+After acceptance compare lifecycle gain per 5HR against previous samples。
 
 ---
 
-## 29A. Runtime Completion Evidence
+## 32. Documentation Responsibility
 
-Result：PASS。
+Runtime executor commits/pushes runtime only and then STOPS。
 
-Accepted runtime commit：
+Do not close GAP-08。
 
-`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
-
-Verification：
-
-- targeted：28 passed。
-- PostgreSQL integration：2 skipped。
-- compatibility：80 passed。
-- full regression：897 passed / 2 skipped。
-- git diff --check：PASS。
-- final status：only `?? data/`。
-
-PostgreSQL compatibility：
-
-- 17：PENDING。
-- 18：PENDING。
-
-Calibration：
-
-- user-observed 5HR：12%。
-- files read：8。
-- files created：14。
-- existing files modified：1。
-- tool operations：23。
-- retries：1。
-- correction cycles：1。
-- wall time：約 12m09s。
-- token/context：UNAVAILABLE。
-
-Accepted Blueprint：
-
-19 leaves / weight 77。
-
-Next runtime：
-
-NOT AUTHORIZED until GAP-08EF architecture/design freeze and gate release。
-
----
-
-## 30. Documentation Responsibility
-
-Codex runtime does not update deterministic governance/metrics/queue closure docs。
-
-After runtime commit/push/report：STOP。
-
-Do not begin GAP-08EF。
+Do not begin GAP-09。
 
 Do not enable Level 3B。
 
 ---
 
-## 31. Re-entry Scope
+## 33. Re-entry Scope
 
-Read first：
+Read AGENTS.md + ACTIVE.md first。
 
-AGENTS.md
-docs/work/ACTIVE.md
-
-Then only minimum dependency reads：
-
-pyproject.toml
-trading/account.py
-trading/reconciliation.py
-
-and directly relevant existing tests required for compatibility。
+Then bounded direct dependencies only。
 
 No whole-repo rescan。
 
 ---
 
-## 32. Runtime Launch Gate
+## 34. Runtime Launch Gate
 
 Current：
 
-    CONSUMED
+    HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
 
 Runtime authorization：
 
-    COMPLETED
+    NOT_YET_AUTHORIZED

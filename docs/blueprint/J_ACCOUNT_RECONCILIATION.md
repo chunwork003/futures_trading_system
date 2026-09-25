@@ -59,7 +59,7 @@ Current compatibility：
 | J310 | Canonical AccountPosition | internal expected consolidated physical position | ACCEPTED | 5 | J03 |
 | J320 | Expected Position Identity | broker / account_ref / instrument / listed contract identity | ACCEPTED | 4 | J03 |
 | J330 | Expected Quantity / Direction Semantics | LONG/SHORT + quantity > 0；zero 代表 position absence | ACCEPTED | 4 | J03 |
-| J340 | Expected State Projection | accepted execution fills/events 投影 internal expected state | DESIGNED | 5 | J03 |
+| J340 | Expected State Projection | accepted execution fills/events 投影 internal expected state | DESIGN_FROZEN | 5 | J03 |
 | J350 | Legacy AccountPosition Compatibility | existing minimal backtest model 保留，bounded migration | DESIGN_FROZEN | 3 | J03 |
 | J360 | Legacy Minimal AccountPosition Runtime Foundation | `backtest.account_position.AccountPosition` 已存在並有直接 unit test；僅代表 legacy runtime foundation，不是 canonical target | UNIT_VERIFIED | 2 | J03 |
 | J410 | BrokerPositionProvider | separate read-only broker position capability | ACCEPTED | 4 | J04 |
@@ -95,9 +95,9 @@ Current compatibility：
 | J760 | Readiness Decision | validation 完成後才轉 READY | ACCEPTED | 5 | J06 |
 | J770 | HALT / REVIEW Startup State | unresolved mismatch 不得進 unrestricted runtime | ACCEPTED | 5 | J06 |
 | J780 | No Silent Startup Repair | startup 不得自動以任一側覆蓋另一側 | ACCEPTED | 5 | J06 |
-| J810 | AccountSnapshot Contract | future cash/equity/margin/positions aggregate observation | DESIGNED | 4 | J02,J03,J04 |
-| J820 | Account Snapshot Observed Time | account-level observation 使用 timezone-aware timestamp | DESIGNED | 3 | J04 |
-| J830 | Account Snapshot Authority Separation | cash/equity/margin actual observation 不等於 risk scenario config | DESIGNED | 4 | J04 |
+| J810 | AccountSnapshot Contract | future cash/equity/margin/positions aggregate observation | DESIGN_FROZEN | 4 | J02,J03,J04 |
+| J820 | Account Snapshot Observed Time | account-level observation 使用 timezone-aware timestamp | DESIGN_FROZEN | 3 | J04 |
+| J830 | Account Snapshot Authority Separation | cash/equity/margin actual observation 不等於 risk scenario config | DESIGN_FROZEN | 4 | J04 |
 
 ---
 
@@ -682,6 +682,96 @@ GAP-RECON-001B — Collection / Startup Readiness：
 - broker native mapping changes。
 - strategy changes。
 - LIVE authorization。
+
+## GAP-08EFGHI Account Persistence Dependency Freeze
+
+Status：DESIGN_FROZEN。
+
+Implements：
+
+J340 J810 J820 J830。
+
+### Expected Position Projection
+
+Pure projection uses canonical Order + Fill + current AccountPosition。
+
+Rules：
+
+- OPEN on FLAT creates expected position from actual filled quantity。
+- OPEN same direction adds actual filled quantity。
+- REDUCE subtracts actual filled quantity and must remain positive。
+- CLOSE subtracts fills；only exact zero becomes position absence。
+- partial CLOSE keeps remaining position。
+- opposite direction never silently reverses。
+- identity mismatch rejects。
+
+### AccountPositionSnapshot Batch
+
+Persistence snapshot represents a complete expected-position collection for one broker account。
+
+Fields：
+
+    snapshot_id
+    broker
+    account_ref
+    effective_at
+    recorded_at
+    source_event_id
+    positions tuple[AccountPosition, ...]
+
+Empty positions is valid and explicitly means expected FLAT collection。
+
+latest/as_of ordering：
+
+    effective_at
+    then recorded_at
+    then snapshot_id
+
+as_of compares effective_at <= requested time。
+
+### BrokerPositionObservation Batch
+
+Fields：
+
+    observation_id
+    broker
+    account_ref
+    observed_at
+    recorded_at
+    positions tuple[BrokerPositionSnapshot, ...]
+
+Empty positions is valid and preserves an observed FLAT account state。
+
+All contained positions must match broker/account and observed_at of the batch。
+
+Persisted broker observations are audit/history；startup actual authority still comes from BrokerPositionProvider query。
+
+### AccountSnapshot
+
+Canonical actual account observation owner：
+
+    trading/account.py
+
+Minimum immutable fields：
+
+    snapshot_id
+    broker
+    account_ref
+    observed_at
+    recorded_at
+    currency
+    cash_balance Decimal optional
+    equity Decimal optional
+    available_funds Decimal optional
+    margin_used Decimal optional
+
+At least one monetary observation must exist。
+
+AccountSnapshot is broker-observed actual evidence；not risk configuration。
+
+Expected position snapshots and broker actual observations use separate repositories/tables and can never overwrite each other。
+
+---
 
 ## Domain Acceptance
 

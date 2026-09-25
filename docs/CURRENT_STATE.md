@@ -69,51 +69,39 @@ Blueprint launch gate 已完成使命，不再阻塞 runtime。
 
 ## Current Phase
 
-Current milestone：
+Current milestone：M6 — Persistence / Recovery / Provenance。
 
-M6 — Persistence / Recovery / Provenance。
+GAP-08ABCD：COMPLETED / ACCEPTED。
 
-GAP-08ABCD：
+Current Work Package：
 
-COMPLETED / ACCEPTED。
+GAP-08EFGHI — Operational Persistence + Recovery。
 
-Accepted runtime commit：
+Merged scope：
 
-`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
+- EF execution/account persistence。
+- required OMS canonical dependencies。
+- GHI strategy state/recovery/readiness。
+- E510/E520 StrategyInstance identity/scope。
+- J340/J810-J830 account projection/snapshot dependencies。
 
-Verification：
+Blueprint：35 leaves / weight 151。
 
-- targeted 28 passed。
-- PostgreSQL integration 2 skipped。
-- compatibility 80 passed。
-- full regression 897 passed / 2 skipped。
-- PG17 / PG18 remain PENDING。
+Status：READY_FOR_EXECUTION。
 
-Current mainline：
+Design Freeze：COMPLETED。
 
-GAP-08EF — Execution + Account/Reconciliation Persistence。
+Runtime Launch Gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
-Status：
+Runtime authorization：NOT_YET_AUTHORIZED。
 
-READY_FOR_ARCHITECTURE_REVIEW。
+K520：DEFERRED_TO_GAP_09。
 
-Review focus：
+PG17 / PG18：PENDING_INTEGRATION_VERIFICATION。
 
-- K310-K450。
-- canonical Order / Fill / OrderEvent ownership。
-- H170 / H440 / H510-H550 / H830 direct OMS persistence seam。
-- expected / actual schema separation。
-- execution/account/reconciliation transaction boundary。
+Projected lifecycle after full acceptance：approximately 53.57%。
 
-Runtime authorization：
-
-NOT_YET_AUTHORIZED。
-
-GAP-08GHI remains blocked until the required EF/OMS persistence foundation is accepted。
-
-Level 3B：
-
-ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
+Level 3B：NOT_ENABLED。
 
 ## Existing Major Foundation
 
@@ -328,26 +316,24 @@ Persistence、Recovery、Live Safety 尚未完成。
 
 ## Current Active Work
 
-Last accepted Work Package：
+Work Package：
 
-GAP-08ABCD Persistence Foundation + Event Ledger。
+GAP-08EFGHI Operational Persistence + Recovery。
 
-Accepted runtime commit：
+Status：READY_FOR_EXECUTION。
 
-`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
+Blueprint：35 leaves / weight 151。
 
-Next mainline：
+Runtime Gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
-GAP-08EF Execution + Account/Reconciliation Persistence。
+Runtime authorization：NOT_YET_AUTHORIZED。
 
-Status：
+Execution Mode：LEVEL_3A_BOUNDED。
 
-READY_FOR_ARCHITECTURE_REVIEW。
+Recommended model：GPT-5.6 Sol / 中度。
 
-Runtime authorization：
+Reason for 中度：
 
-NOT_YET_AUTHORIZED。
+single bundle now crosses execution state machine、multi-table transaction、account reconciliation、strategy state reconstruction and recovery safety。
 
-Sizing direction：
-
-do not shrink back to small slices；review direct OMS persistence dependencies and freeze the largest coherent safe bundle。
+No runtime until freeze commit/push is verified。

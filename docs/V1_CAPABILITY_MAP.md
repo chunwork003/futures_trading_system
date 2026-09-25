@@ -27,7 +27,7 @@ Blueprint baseline 完成後：
 
 Blueprint baseline 已啟用：
 
-本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 47.30% baseline。
+本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 47.92% baseline。
 
 ---
 
@@ -55,7 +55,7 @@ capability acceptance + relative engineering weight。
 
 Lifecycle-weighted completion：
 
-    47.30%
+    47.92%
 
 Architecture Design Coverage：
 
@@ -63,7 +63,7 @@ Architecture Design Coverage：
 
 Design Freeze Coverage：
 
-    54.70%
+    60.88%
 
 Runtime Implementation：
 
@@ -105,18 +105,18 @@ Readiness：
 | B Data Pipeline | 6 | 66.44% |
 | C Calendar / Contract Data | 5 | 59.77% |
 | D Canonical Domain | 6 | 77.25% |
-| E Feature / Strategy | 7 | 50.11% |
+| E Feature / Strategy | 7 | 50.92% |
 | F Backtest / Research | 8 | 90.40% |
 | G Decision / Risk | 8 | 67.86% |
-| H Execution / Paper | 8 | 68.01% |
+| H Execution / Paper | 8 | 69.92% |
 | I Broker Adapter | 6 | 73.38% |
-| J Account / Reconciliation | 6 | 79.48% |
-| K Persistence / Recovery | 7 | 44.53% |
+| J Account / Reconciliation | 6 | 80.24% |
+| K Persistence / Recovery | 7 | 48.23% |
 | L Simulation / Live Safety | 7 | 3.66% |
 | M Python Service Boundary | 4 | 12.42% |
 | N ASP.NET Core Application | 5 | 11.26% |
 | O React Workspace | 5 | 10.31% |
-| TOTAL | 92 | 47.30% lifecycle-weighted |
+| TOTAL | 92 | 47.92% lifecycle-weighted |
 
 ---
 

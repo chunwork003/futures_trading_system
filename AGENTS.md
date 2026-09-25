@@ -2,7 +2,7 @@
 
 ## 專案與導航
 
-台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0、M5、GAP-RECON-001、GAP-BROKER-002 與 GAP-08ABCD 已完成/接受；目前主線為 M6 / GAP-08EF architecture review。GAP-08EF 將優先評估直接 OMS persistence dependency 與 canonical Order/Fill/OrderEvent ownership seam，避免切成過小 package；runtime 尚未授權。PostgreSQL 17/18 仍為 PENDING integration targets；Parquet/DuckDB/Polars 保留 analytical plane；Level 3B 仍 ELIGIBLE_FOR_EVALUATION / NOT_ENABLED。
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。GAP-08ABCD 已完成/接受；EF-specific architecture review 已完成，EF + required OMS + GHI + necessary StrategyInstance/Account dependencies 合併為 GAP-08EFGHI Operational Persistence + Recovery。35 leaves / weight 151 已 design frozen；runtime gate 尚待 freeze commit verification。PostgreSQL 17/18 仍為 PENDING integration targets；K520 仍屬 GAP-09；Level 3B 仍 NOT_ENABLED。
 
 Primary source of truth 與必讀順序：
 

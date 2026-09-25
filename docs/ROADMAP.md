@@ -203,38 +203,27 @@ Accepted runtime commit：`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`。
 
 # M6 — Persistence / Recovery / Provenance
 
-Status：
-
-IN_PROGRESS / GAP-08EF_ARCHITECTURE_REVIEW
+Status：IN_PROGRESS / GAP-08EFGHI_READY_FOR_EXECUTION
 
 Accepted：
 
 - GAP-08ABCD Persistence Foundation + Event Ledger。
-- runtime commit `98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`。
 
 Current：
 
-GAP-08EF Execution + Account/Reconciliation Persistence。
+GAP-08EFGHI Operational Persistence + Recovery。
 
-Status：
+Merged scope：EF + required OMS + GHI + necessary StrategyInstance/Account dependencies。
 
-READY_FOR_ARCHITECTURE_REVIEW。
+Design Freeze：COMPLETED。
 
-Review：
+Runtime Gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
-- K310-K450。
-- direct OMS persistence seam / canonical execution ownership。
-- maximize coherent bundle size without crossing unresolved semantics。
-
-Runtime：
-
-NOT_YET_AUTHORIZED。
-
-Later：
-
-GAP-08GHI Strategy State + Recovery / Readiness。
+Runtime：NOT_YET_AUTHORIZED。
 
 K520：DEFERRED_TO_GAP_09。
+
+Projected lifecycle after full acceptance：約 53.57%。
 
 ---
 
@@ -357,18 +346,18 @@ LIVE_AUTO real money：
 
 Lifecycle-weighted V1 completion：
 
-40.31%。
+47.92%。
 
-Architecture Design Coverage：87.23%。
-Design Freeze Coverage：49.13%。
-Runtime Implementation：35.19%。
-Unit Verification：31.96%。
-Integration Verification：31.87%。
-Accepted Capability：31.87%。
+Architecture Design Coverage：87.60%。
+Design Freeze Coverage：60.88%。
+Runtime Implementation：43.19%。
+Unit Verification：39.96%。
+Integration Verification：39.87%。
+Accepted Capability：39.87%。
 
 Capability status：
 
-COMPLETE 9 / PARTIAL 50 / NOT_STARTED 33。
+COMPLETE 12 / PARTIAL 51 / NOT_STARTED 29。
 
 Operational readiness：NOT_READY。
 Production Live readiness：BLOCKED。
@@ -376,7 +365,7 @@ LIVE_AUTO：NOT_AUTHORIZED。
 
 Current mainline：
 
-GAP-RECON-001 READY_FOR_ARCHITECTURE_REVIEW。
+GAP-08EFGHI READY_FOR_EXECUTION / HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
 Progress source：
 

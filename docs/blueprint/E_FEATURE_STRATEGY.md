@@ -58,8 +58,8 @@ BUILDING / PROVISIONAL until Blueprint baseline acceptance。
 | E420 | Strategy Version | strategy algorithm version 可追蹤 | ACCEPTED | 3 | E05 |
 | E430 | Strategy Base Contract | concrete strategy 遵循共同 input/output contract | ACCEPTED | 3 | E04 |
 | E440 | Concrete Strategy Implementations | EMA / trend state 等 concrete algorithm | ACCEPTED | 2 | E04 |
-| E510 | Strategy Instance Identity | definition + versioned configuration 的 runtime instance | DESIGNED | 4 | E05 |
-| E520 | Instrument / Timeframe Scope | StrategyInstance 綁定 instrument / timeframe scope | DESIGNED | 3 | E05 |
+| E510 | Strategy Instance Identity | definition + versioned configuration 的 runtime instance | DESIGN_FROZEN | 4 | E05 |
+| E520 | Instrument / Timeframe Scope | StrategyInstance 綁定 instrument / timeframe scope | DESIGN_FROZEN | 3 | E05 |
 | E530 | Config Versioning | parameter configuration 可追蹤且不能持倉中 silent mutate | DESIGN_FROZEN | 4 | E05 |
 | E540 | Safe Configuration Boundary | config change 在安全 boundary 生效 | DESIGN_FROZEN | 3 | E05 |
 | E610 | Strategy Registry | strategy definition lookup / factory resolution | ACCEPTED | 2 | E05,E06 |
@@ -142,6 +142,51 @@ MIGRATION：
 - E310-E350 → GAP-09。
 - E730 → GAP-ARCH-003。
 - strategy config / instance deeper operational integration → future bounded Work Package。
+
+---
+
+## GAP-08EFGHI Strategy Identity Dependency Freeze
+
+Status：DESIGN_FROZEN。
+
+Implements in this Work Package：
+
+- E510 Strategy Instance Identity。
+- E520 Instrument / Timeframe Scope。
+
+E530 / E540 remain existing DESIGN_FROZEN constraints；this Work Package does not claim full runtime config-change lifecycle acceptance。
+
+Canonical owner：
+
+    strategy/instance.py
+
+### StrategyInstance
+
+Immutable public model：
+
+    strategy_instance_id: str
+    strategy_id: str
+    strategy_version: str
+    config_version: str
+    config_fingerprint: str
+    instrument_id: int > 0
+    timeframe: str
+    config_json: JSON object
+
+Rules：
+
+- strings trim / nonblank。
+- config_json deterministic canonical JSON object。
+- config_fingerprint = SHA-256 of canonical config_json。
+- config fingerprint mismatch rejected。
+- StrategyDefinition.version must exactly match StrategyInstance.strategy_version during recovery。
+- config change does not silently mutate an existing persisted instance。
+- a materially changed configuration requires explicit new instance/config identity。
+- symbol/display text is not canonical instrument identity。
+
+StrategyDefinition != StrategyInstance。
+
+K520 incremental feature state remains excluded。
 
 ---
 

@@ -345,58 +345,40 @@ Capability evidence does not authorize LIVE。
 
 # GAP-08 Detail
 
-Status：
-
-IN_PROGRESS / GAP-08EF_READY_FOR_ARCHITECTURE_REVIEW。
+Status：IN_PROGRESS / GAP-08EFGHI_READY_FOR_EXECUTION。
 
 Accepted：
 
 GAP-08ABCD Persistence Foundation + Event Ledger。
 
-Accepted runtime commit：
+Current：
 
-`98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
+GAP-08EFGHI Operational Persistence + Recovery。
 
-Accepted scope：
+Design Freeze：COMPLETED。
 
-K110 K120 K130 K140 K150 K160 K170 K210 K220 K230 K240 K610 K620 K630 K640 K650 K660 K670 K680。
+Blueprint：35 leaves / weight 151。
 
-Verification：
+Merged because EF/GHI conditional semantics were explicitly resolved before runtime：
 
-- targeted 28 passed。
-- compatibility 80 passed。
-- full regression 897 passed / 2 skipped。
-- PG17 / PG18 PENDING。
+- canonical Order / Fill / OrderEvent。
+- OMS transition/idempotency/correlation。
+- atomic execution/account transaction boundary。
+- expected/actual snapshot collections。
+- append-only ReconciliationCase history。
+- StrategyInstance identity/config fingerprint。
+- StrategyStateSnapshot / codecs。
+- deterministic recovery order/readiness mapping。
 
-Current candidate：
+Runtime Launch Gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
-GAP-08EF Execution + Account/Reconciliation Persistence。
-
-Base Blueprint scope：
-
-K310 K320 K330 K340 K350 K410 K420 K430 K440 K450。
-
-Architecture review dependency：
-
-- canonical Order / Fill / OrderEvent ownership。
-- H170 / H440 / H510-H550 / H830 direct OMS persistence seam。
-- expected / actual schema separation。
-- ReconciliationCase persistence lifecycle。
-- execution/account transaction authority。
-
-Runtime Authorization：
-
-NOT_YET_AUTHORIZED。
-
-GAP-08GHI：
-
-BLOCKED_BY_08EF_ACCEPTANCE。
+Runtime Authorization：NOT_YET_AUTHORIZED。
 
 K520：DEFERRED_TO_GAP_09。
 
-Parent closure：
+PG17 / PG18：PENDING。
 
-GAP-08 closes after required persistence/recovery bundles are accepted。
+Parent GAP may close after GAP-08EFGHI acceptance，subject to acceptance verification。
 
 ---
 

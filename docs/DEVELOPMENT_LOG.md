@@ -958,3 +958,30 @@ Sizing：
 retain larger coherent bundle strategy；evaluate direct OMS persistence dependency before runtime freeze。
 
 Runtime：NOT_YET_AUTHORIZED。
+
+## 2026-09-25 — GAP-08EFGHI Design Freeze
+
+Merged runtime：Operational Persistence + Recovery。
+
+Scope：35 leaves / weight 151。
+
+Reason：
+
+GAP-08ABCD demonstrated 19 leaves / weight 77 at 12% 5HR；architecture review then identified EF+GHI merge as conditional on explicit public semantics。
+
+Architect decisions now frozen for：
+
+- canonical OMS Order/Fill/OrderEvent。
+- execution transaction authority。
+- expected/actual snapshot batches。
+- account snapshot。
+- reconciliation history。
+- StrategyInstance identity/config fingerprint。
+- strategy state codecs/snapshot boundary。
+- recovery ordering/readiness mapping。
+
+K520 remains GAP-09。
+
+Projected full-acceptance lifecycle：approximately 53.57%。
+
+Runtime gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
