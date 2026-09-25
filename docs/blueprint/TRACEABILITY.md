@@ -38,9 +38,9 @@ AUTHORITATIVE
 
 ---
 
-## 3. GAP-ACCOUNT-001 Initial Mapping
+## 3. GAP-ACCOUNT-001 Accepted Mapping
 
-此 mapping 在 Domain Blueprint baseline 時進一步驗證。
+此 mapping 已由 accepted runtime commit `50813b679f818f3837a9f50fdcda9921495ab507` 驗證。
 
 ### Canonical / Broker Identity
 
@@ -172,3 +172,50 @@ Tests：
 Final exact path：
 
 以 accepted runtime commit 為準。
+
+---
+
+## 5. GAP-ACCOUNT-001 Acceptance Evidence
+
+Work Package：
+
+    GAP-ACCOUNT-001
+
+Runtime commit：
+
+    50813b679f818f3837a9f50fdcda9921495ab507
+
+Accepted Blueprint leaves：
+
+    D630
+
+    I510 I520 I530
+    I610 I620 I630 I640 I650
+
+    J210 J220 J230 J240
+    J310 J320 J330
+    J410 J420 J430 J440
+    J510 J520 J530 J540 J550 J560 J570 J580 J590
+
+Runtime paths：
+
+    trading/account.py
+    trading/reconciliation.py
+    adapters/sinopac/account_mapping.py
+    domain/broker_instruments.py
+
+Verification：
+
+    targeted tests: 50 passed
+    compatibility tests: 48 passed
+    full regression: 776 passed
+    git diff --check: PASS
+
+Acceptance：
+
+    PASS
+
+Conservative metric rule：
+
+只有 ACTIVE 明確 Implements 的 29 leaves 在本次 closure 升為 ACCEPTED。
+其他因 implementation 產生的 supporting evidence 不在本次自動升級 lifecycle。

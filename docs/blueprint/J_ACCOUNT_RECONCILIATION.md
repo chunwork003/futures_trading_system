@@ -51,33 +51,33 @@ Current compatibility：
 | J120 | Logical / Broker Separation | LogicalAccount 不等同 BrokerAccount | DESIGN_FROZEN | 4 | J01,J02 |
 | J130 | Strategy Allocation | logical account 可承載 strategy allocation | DESIGNED | 3 | J01 |
 | J140 | Capital Source Policy | V1 MANUAL capital source；cross-strategy borrowing OFF | DESIGN_FROZEN | 3 | J01 |
-| J210 | BrokerAccount Model | broker-neutral physical account reference | DESIGN_FROZEN | 4 | J02 |
-| J220 | Broker Stable Account Reference | broker + stable opaque account_ref | DESIGN_FROZEN | 4 | J02 |
-| J230 | Broker Account Metadata Validation | optional account type / display metadata，禁止 secret/PII/native object | DESIGN_FROZEN | 4 | J02 |
-| J240 | BrokerAccountProvider | separate read-only broker account capability | DESIGN_FROZEN | 4 | J02 |
+| J210 | BrokerAccount Model | broker-neutral physical account reference | ACCEPTED | 4 | J02 |
+| J220 | Broker Stable Account Reference | broker + stable opaque account_ref | ACCEPTED | 4 | J02 |
+| J230 | Broker Account Metadata Validation | optional account type / display metadata，禁止 secret/PII/native object | ACCEPTED | 4 | J02 |
+| J240 | BrokerAccountProvider | separate read-only broker account capability | ACCEPTED | 4 | J02 |
 | J250 | LogicalAccount-to-BrokerAccount Mapping | future allocation-to-physical-account relation | DESIGNED | 4 | J01,J02 |
-| J310 | Canonical AccountPosition | internal expected consolidated physical position | DESIGN_FROZEN | 5 | J03 |
-| J320 | Expected Position Identity | broker / account_ref / instrument / listed contract identity | DESIGN_FROZEN | 4 | J03 |
-| J330 | Expected Quantity / Direction Semantics | LONG/SHORT + quantity > 0；zero 代表 position absence | DESIGN_FROZEN | 4 | J03 |
+| J310 | Canonical AccountPosition | internal expected consolidated physical position | ACCEPTED | 5 | J03 |
+| J320 | Expected Position Identity | broker / account_ref / instrument / listed contract identity | ACCEPTED | 4 | J03 |
+| J330 | Expected Quantity / Direction Semantics | LONG/SHORT + quantity > 0；zero 代表 position absence | ACCEPTED | 4 | J03 |
 | J340 | Expected State Projection | accepted execution fills/events 投影 internal expected state | DESIGNED | 5 | J03 |
 | J350 | Legacy AccountPosition Compatibility | existing minimal backtest model 保留，bounded migration | DESIGN_FROZEN | 3 | J03 |
 | J360 | Legacy Minimal AccountPosition Runtime Foundation | `backtest.account_position.AccountPosition` 已存在並有直接 unit test；僅代表 legacy runtime foundation，不是 canonical target | UNIT_VERIFIED | 2 | J03 |
-| J410 | BrokerPositionProvider | separate read-only broker position capability | DESIGN_FROZEN | 4 | J04 |
-| J420 | BrokerPositionSnapshot | broker-neutral actual position observation | DESIGN_FROZEN | 5 | J04 |
-| J430 | Actual Position Identity | broker/account/instrument/listed-contract exact identity | DESIGN_FROZEN | 5 | J04 |
-| J440 | Observation / Decimal Semantics | timezone-aware observed_at；average_price 使用 Decimal | DESIGN_FROZEN | 4 | J04 |
+| J410 | BrokerPositionProvider | separate read-only broker position capability | ACCEPTED | 4 | J04 |
+| J420 | BrokerPositionSnapshot | broker-neutral actual position observation | ACCEPTED | 5 | J04 |
+| J430 | Actual Position Identity | broker/account/instrument/listed-contract exact identity | ACCEPTED | 5 | J04 |
+| J440 | Observation / Decimal Semantics | timezone-aware observed_at；average_price 使用 Decimal | ACCEPTED | 4 | J04 |
 | J450 | Actual Quantity / Direction | broker actual LONG/SHORT + quantity > 0 | DESIGN_FROZEN | 4 | J04 |
 | J460 | Snapshot Immutability Semantics | observation 是當下事實，不是 mutable expected state | DESIGN_FROZEN | 4 | J04 |
 | J470 | No Silent Expected-State Overwrite | broker snapshot 不得直接覆寫 AccountPosition | DESIGN_FROZEN | 5 | J03,J04 |
-| J510 | Pairwise Position Comparator | pure expected / actual comparison | DESIGN_FROZEN | 5 | J05 |
-| J520 | ReconciliationStatus | mismatch classification enum | DESIGN_FROZEN | 3 | J05 |
-| J530 | MATCH | expected 與 actual contract/direction/quantity 一致 | DESIGN_FROZEN | 2 | J05 |
-| J540 | INTERNAL_ONLY | expected 有 position；broker actual 無 position | DESIGN_FROZEN | 3 | J05 |
-| J550 | BROKER_ONLY | broker actual 有 position；internal expected 無 position | DESIGN_FROZEN | 4 | J05 |
-| J560 | CONTRACT_MISMATCH | same account/instrument scope but listed contract 不一致 | DESIGN_FROZEN | 4 | J05 |
-| J570 | DIRECTION_MISMATCH | contract comparable，但 direction 不一致 | DESIGN_FROZEN | 5 | J05 |
-| J580 | QUANTITY_MISMATCH | contract/direction 相同，但 quantity 不一致 | DESIGN_FROZEN | 4 | J05 |
-| J590 | Non-Comparable Identity Error | broker/account/instrument identity 不同時 explicit comparison error | DESIGN_FROZEN | 4 | J05 |
+| J510 | Pairwise Position Comparator | pure expected / actual comparison | ACCEPTED | 5 | J05 |
+| J520 | ReconciliationStatus | mismatch classification enum | ACCEPTED | 3 | J05 |
+| J530 | MATCH | expected 與 actual contract/direction/quantity 一致 | ACCEPTED | 2 | J05 |
+| J540 | INTERNAL_ONLY | expected 有 position；broker actual 無 position | ACCEPTED | 3 | J05 |
+| J550 | BROKER_ONLY | broker actual 有 position；internal expected 無 position | ACCEPTED | 4 | J05 |
+| J560 | CONTRACT_MISMATCH | same account/instrument scope but listed contract 不一致 | ACCEPTED | 4 | J05 |
+| J570 | DIRECTION_MISMATCH | contract comparable，但 direction 不一致 | ACCEPTED | 5 | J05 |
+| J580 | QUANTITY_MISMATCH | contract/direction 相同，但 quantity 不一致 | ACCEPTED | 4 | J05 |
+| J590 | Non-Comparable Identity Error | broker/account/instrument identity 不同時 explicit comparison error | ACCEPTED | 4 | J05 |
 | J610 | ReconciliationResult | 保存 status / expected / actual / evidence | DESIGNED | 4 | J05 |
 | J620 | ReconciliationCase | mismatch lifecycle / review / resolution record | DESIGNED | 4 | J05 |
 | J630 | STRICT_HALT Policy | unresolved mismatch 阻止 READY / live continuation | DESIGN_FROZEN | 5 | J05,J06 |
@@ -171,9 +171,9 @@ Comparator：
 CURRENT：
 
 - `backtest.account_position.AccountPosition` 僅有 symbol/contract/direction/quantity。
-- canonical BrokerAccount 尚未 runtime implemented。
-- canonical BrokerPositionSnapshot 尚未 runtime implemented。
-- reconciliation policy/startup 尚未 implemented。
+- canonical BrokerAccount 已由 GAP-ACCOUNT-001 runtime implemented。
+- canonical BrokerPositionSnapshot 已由 GAP-ACCOUNT-001 runtime implemented。
+- pairwise expected/actual comparison foundation 已完成；reconciliation policy、collection matching 與 startup readiness 尚未 implemented。
 
 TARGET：
 

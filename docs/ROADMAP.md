@@ -124,22 +124,31 @@ Completed：
 
 Status：
 
-READY_FOR_EXECUTION
+CLOSED
 
-Main scope：
+Accepted runtime commit：
+
+`50813b679f818f3837a9f50fdcda9921495ab507`
+
+Completed：
 
 - BrokerAccount。
+- canonical internal AccountPosition foundation。
 - BrokerPositionSnapshot。
-- internal AccountPosition boundary。
-- account/position read port。
-- Shioaji fake mapping tests。
-- pure expected/actual mismatch detection。
+- separate account / position read ports。
+- exact broker contract reverse resolution。
+- Sinopac pure account / position mapping。
+- pure mismatch comparison。
+
+Verification：
+
+- targeted 50 passed。
+- compatibility 48 passed。
+- full regression 776 passed。
 
 Safety：
 
-此階段只允許 read-only sync foundation。
-
-不得 automatic corrective broker order。
+無 corrective broker order。
 
 ---
 
@@ -147,7 +156,7 @@ Safety：
 
 Status：
 
-PENDING
+READY_FOR_ARCHITECTURE_REVIEW
 
 GAP-BROKER-001：
 
@@ -317,11 +326,18 @@ LIVE_AUTO real money：
 
 Lifecycle-weighted V1 completion：
 
-34.30%。
+38.72%。
 
 Architecture Design Coverage：85.63%。
-Runtime Implementation：28.08%。
-Accepted Capability：24.75%。
+Design Freeze Coverage：47.54%。
+Runtime Implementation：33.60%。
+Unit Verification：30.37%。
+Integration Verification：30.28%。
+Accepted Capability：30.28%。
+
+Capability status：
+
+COMPLETE 9 / PARTIAL 49 / NOT_STARTED 34。
 
 Operational readiness：NOT_READY。
 Production Live readiness：BLOCKED。

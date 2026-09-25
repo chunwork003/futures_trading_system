@@ -71,7 +71,7 @@ Canonical Domain 不負責：
 | D560 | Margin Authority Separation | canonical margin != RiskConfig override != broker actual margin | DESIGN_FROZEN | 4 | D04 |
 | D610 | BrokerInstrumentReference | broker-neutral canonical ↔ broker code reference | ACCEPTED | 4 | D05 |
 | D620 | Canonical-to-Broker Resolution | broker + canonical IDs + effective date → exact mapping | ACCEPTED | 3 | D05 |
-| D630 | Broker-to-Canonical Reverse Resolution | broker contract code → exact canonical listed contract | DESIGN_FROZEN | 3 | D05 |
+| D630 | Broker-to-Canonical Reverse Resolution | broker contract code → exact canonical listed contract | ACCEPTED | 3 | D05 |
 | D640 | Mapping Effective Range | effective_from / effective_to inclusive semantics | ACCEPTED | 2 | D05 |
 | D650 | Mapping Ambiguity / Missing Errors | missing / duplicate mapping 明確 error，不猜測 | ACCEPTED | 3 | D05 |
 | D660 | Native Object Exclusion | canonical mapping 不保存 broker SDK object | ACCEPTED | 3 | D05 |

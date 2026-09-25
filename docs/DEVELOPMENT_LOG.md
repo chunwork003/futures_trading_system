@@ -408,3 +408,69 @@ Codex quota：
 Codex：
 
 Blueprint baseline 完成後才恢復 runtime implementation。
+
+## 2026-09-25 — GAP-ACCOUNT-001 Runtime Acceptance
+
+Work Package：
+
+`GAP-ACCOUNT-001 Broker Account / Position Sync Foundation`
+
+Runtime configuration：
+
+- Model：GPT-5.6 Sol。
+- Effort：輕度。
+- Mode：LEVEL_3A_BOUNDED。
+- model / effort 中途未切換。
+
+Accepted runtime commit：
+
+`50813b679f818f3837a9f50fdcda9921495ab507`
+
+Completed：
+
+- BrokerAccount。
+- canonical AccountPosition foundation。
+- BrokerPositionSnapshot。
+- BrokerAccountProvider / BrokerPositionProvider。
+- reverse broker contract resolution。
+- pure Sinopac account / position mapping。
+- pure pairwise reconciliation statuses。
+- no corrective execution。
+
+Verification：
+
+- targeted：50 passed。
+- compatibility：48 passed。
+- full regression：776 passed。
+- git diff --check：PASS。
+- correction cycles：0。
+- final status：only `?? data/`。
+
+Blueprint acceptance：
+
+- 29 explicit Implements leaves → ACCEPTED。
+- 603 leaves / total weight 2137。
+- lifecycle completion：38.72%。
+- Runtime Implementation：33.60%。
+- Unit Verification：30.37%。
+- Integration / Accepted：30.28%。
+- capability status：9 COMPLETE / 49 PARTIAL / 34 NOT_STARTED。
+
+Calibration：
+
+- runtime user-observed 5HR usage：12%。
+- Phase 4A deterministic acceptance user-observed 5HR usage：5%。
+- files read：8。
+- tool operations：18。
+- token/context：not exposed。
+- 不做線性 quota capacity 推估。
+
+Closure：
+
+GAP-ACCOUNT-001 CLOSED / ACCEPTED。
+
+Next mainline：
+
+GAP-BROKER-001 READY_FOR_ARCHITECTURE_REVIEW。
+
+不得直接啟動 runtime；先完成 architecture / design freeze。

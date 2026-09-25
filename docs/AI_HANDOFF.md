@@ -336,36 +336,35 @@ GAP-BROKER-001 必須建立：
 
 ---
 
-## 16. Account Sync Sequencing
+## 16. Account Sync Foundation
 
-下一 mainline：
+GAP-ACCOUNT-001：
 
-GAP-ACCOUNT-001。
+CLOSED / ACCEPTED。
 
-允許先建立 read-only：
+Accepted runtime commit：
+
+`50813b679f818f3837a9f50fdcda9921495ab507`
+
+Completed：
 
 - BrokerAccount。
+- canonical AccountPosition foundation。
 - BrokerPositionSnapshot。
-- account query capability。
-- position query capability。
-- expected/actual mismatch detection。
+- separate read-only account / position capability interfaces。
+- reverse broker contract resolution。
+- Sinopac pure mapping。
+- expected / actual pairwise mismatch detection。
 
-Architecture review 已固定：
-
-- account/position query 採 separate read-only capability interface。
-- 不擴充 execution `backtest.broker.Broker`。
-- 不在 GAP-ACCOUNT-001 搬移 existing AccountPosition。
-- 不預建完整 target architecture 空 package hierarchy。
-
-不允許：
+Still prohibited：
 
 - corrective broker order。
 - automatic broker repair。
-- automatic position close/open。
+- silent expected / actual overwrite。
 
-Corrective action 必須等 GAP-BROKER-001。
+Next prerequisite：
 
----
+GAP-BROKER-001 explicit OrderIntent / PositionEffect。
 
 ## 17. Reconciliation
 
@@ -620,18 +619,18 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-34.30%。
+38.72%。
 
 Architecture Design Coverage：85.63%。
 Design Freeze Coverage：47.54%。
-Runtime Implementation：28.08%。
-Unit Verification：24.85%。
-Integration Verification：24.75%。
-Accepted Capability：24.75%。
+Runtime Implementation：33.60%。
+Unit Verification：30.37%。
+Integration Verification：30.28%。
+Accepted Capability：30.28%。
 
 Capability status：
 
-COMPLETE 9 / PARTIAL 45 / NOT_STARTED 38。
+COMPLETE 9 / PARTIAL 49 / NOT_STARTED 34。
 
 Readiness：
 
@@ -639,81 +638,70 @@ Readiness：
 - Production Live：BLOCKED。
 - LIVE_AUTO：NOT_AUTHORIZED。
 
-主要 remaining engineering：
-
-- account/reconciliation。
-- persistence/recovery。
-- incremental state。
-- simulation/live safety。
-- Python service。
-- ASP.NET Core。
-- React。
-
----
-
 ## 27. Automation Efficiency
 
 GAP-07-CLOSE：
 
 user-observed 5HR usage 約 4–5%。
 
-完成 runtime + tests + 2 commits + closure。
-
 Initial docs-only AUTO-001：
 
 user-observed 約 8%。
 
-quota exhausted before docs completion。
+GAP-ACCOUNT-001 runtime：
 
-Current policy：
+- GPT-5.6 Sol / 輕度。
+- user-observed 5HR usage：12%。
+- files read：8。
+- tool operations：18。
+- correction cycles：0。
+- targeted：50 passed。
+- compatibility：48 passed。
+- full regression：776 passed。
+- token/context：not exposed。
 
-Deterministic docs：
+GAP-ACCOUNT-001 Phase 4A acceptance：
 
-PowerShell/manual preferred。
+- user-observed 5HR usage：5%。
+- deterministic Blueprint acceptance / metrics / traceability。
 
-Codex quota：
+Policy：
 
-優先 runtime、tests、debugging、integration、broker semantics、reconciliation、persistence/recovery。
+- 12% 與 5% 分開記錄。
+- 不以目前樣本線性推算固定 WP capacity。
+- 至少累積 2–3 個穩定 Level 3A runtime samples 後再評估。
 
-目前樣本不足以線性預測 quota capacity。
+## 28. Next Mainline Candidate
 
----
-
-## 28. Current Active Candidate
-
-`docs/work/ACTIVE.md`
-
-Current：
+Last completed：
 
 GAP-ACCOUNT-001 Broker Account / Position Sync Foundation。
 
 Status：
 
-READY_FOR_EXECUTION。
+CLOSED / ACCEPTED。
 
-Architecture review 已完成。
+Runtime commit：
 
-Architecture / Design Freeze 已完成。
+`50813b679f818f3837a9f50fdcda9921495ab507`
 
-Runtime Launch Gate：
+Next：
 
-`RELEASED_BLUEPRINT_BASELINE`
+GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
 
-GAP-ACCOUNT-001：
+Status：
 
-`READY_FOR_EXECUTION / AUTHORIZED_FOR_LEVEL_3A_RUNTIME`
+READY_FOR_ARCHITECTURE_REVIEW。
 
-Baseline evidence：
+Runtime authorization：
 
-`432c48fb63c3d8d2760c0f2f5338e205ded63d30`
+NOT_YET_AUTHORIZED。
 
-Recommended calibration model：
+Reason：
 
-`GPT-5.6 Sol / 輕度`
+H210-H250 / I340-I350 public semantics 尚未完成 design freeze。
 
-同一 Work Package 中途不得切換 model 或 effort。
-
----
+下一步先完成人工 architecture review，再建立新的 ACTIVE Work Package。
 
 ## 29. Hard Stop
 
@@ -746,7 +734,11 @@ Current status：
 
 GAP-ACCOUNT-001 runtime：
 
-`RELEASED_BLUEPRINT_BASELINE`
+`COMPLETED / ACCEPTED`
+
+Accepted runtime commit：
+
+`50813b679f818f3837a9f50fdcda9921495ab507`
 
 Blueprint baseline activation 已完成：
 

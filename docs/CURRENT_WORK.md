@@ -31,103 +31,92 @@ Technical issues：
 
 ---
 
-# Current Active Candidate
+# Next Mainline Candidate
 
 ID：
 
-GAP-ACCOUNT-001
+GAP-BROKER-001
 
 Title：
 
-Broker Account / Position Sync Foundation
+Explicit OrderIntent / PositionEffect
 
 Status：
 
-READY_FOR_EXECUTION
+READY_FOR_ARCHITECTURE_REVIEW
 
 Priority：
 
 P1 MAINLINE
 
-Execution Mode：
+Runtime Authorization：
 
-LEVEL_3A_BOUNDED
+NOT_YET_AUTHORIZED
 
-Recommended Model：
+Reason：
 
-GPT-5.6 Sol
+GAP-ACCOUNT-001 已完成並 accepted。
 
-Recommended Effort：
+但 GAP-BROKER-001 對應 Blueprint leaves：
 
-輕度
+- H210-H250。
+- H910-H940。
+- I340-I350。
 
-Model Rule：
+其中 public OrderIntent / PositionEffect / broker New-Cover semantics 尚未完成 design freeze。
 
-本 Work Package 中途不得切換 model 或 effort。
+因此下一步是人工 architecture review，不直接啟動 Codex runtime。
 
-Runtime Launch Gate：
+# Completed Work Package — GAP-ACCOUNT-001
 
-RELEASED_BLUEPRINT_BASELINE
+Status：
 
-Release Evidence：
+CLOSED / ACCEPTED
 
-432c48fb63c3d8d2760c0f2f5338e205ded63d30
+Accepted runtime commit：
 
-GAP-ACCOUNT-001：
+`50813b679f818f3837a9f50fdcda9921495ab507`
 
-READY_FOR_EXECUTION / AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+Accepted：
 
-Why Next：
+- BrokerAccount。
+- canonical AccountPosition foundation。
+- BrokerPositionSnapshot。
+- separate read-only query ports。
+- exact reverse broker contract resolution。
+- pure Sinopac account / position mapping。
+- pure pairwise expected / actual comparison。
 
-GAP-07 已 CLOSED。
+Verification：
 
-在 persistence / live 之前：
+- targeted 50 passed。
+- compatibility 48 passed。
+- full regression 776 passed。
+- correction cycles 0。
 
-系統必須明確區分 internal expected AccountPosition 與 broker actual BrokerPositionSnapshot。
-
----
-
-# Architecture Review Decision
-
-GAP-ACCOUNT-001 architecture review 已完成。
-
-固定：
-
-- account/position query 使用 separate read-only capability interface。
-- 不擴充 execution `backtest.broker.Broker`。
-- 不在本 GAP 搬移 existing `backtest.account_position.AccountPosition`。
-- 不預建完整 `trading/` 空 package hierarchy。
-- 只有立即 implementation 需要時才建立 module/package。
-- Codex 負責 runtime implementation/tests/integration。
-- deterministic docs closure 由人工 / PowerShell 處理。
-
----
+Corrective execution 仍未授權。
 
 # Sequencing Rule
 
-Read-only Broker Account / Position Sync 可以先做：
+Current order：
 
-- BrokerAccount。
-- BrokerPositionSnapshot。
-- account/position query contract。
-- snapshot mapping。
-- pure mismatch detection。
+1. GAP-BROKER-001 architecture review / design freeze。
+2. GAP-BROKER-001 bounded runtime implementation。
+3. GAP-RECON-001 policy / startup readiness。
+4. GAP-BROKER-002 capability matrix。
+5. GAP-08 persistence / recovery。
 
-任何 corrective broker execution：
+Corrective reconciliation execution：
 
-必須先完成：
-
-GAP-BROKER-001 OrderIntent / PositionEffect。
-
----
+在 explicit OrderIntent / PositionEffect 完成前仍禁止。
 
 # Mainline Queue
 
 | Order | ID | Work | Status | Dependency |
 |---:|---|---|---|---|
-| 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | READY_FOR_EXECUTION | GAP-07 |
-| 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | READY_AFTER_ACCOUNT_FOUNDATION | GAP-07 |
-| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | BLOCKED | Account foundation + execution semantics |
+| 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | CLOSED | GAP-07 |
+| 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | READY_FOR_ARCHITECTURE_REVIEW | GAP-ACCOUNT-001 |
+| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | BLOCKED_BY_BROKER_EXECUTION | GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | PENDING | Broker mapping + execution semantics |
 | 5 | GAP-08 | Trading State Persistence & Recovery | BLOCKED | Reconciliation foundation |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |

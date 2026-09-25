@@ -26,7 +26,7 @@ Actual runtime execution HEAD：
 
 Recorded full regression：
 
-745 passed
+776 passed
 
 Known warning：
 
@@ -46,27 +46,26 @@ Status：
 
 AUTHORITATIVE。
 
-Goal：
+Baseline commit：
 
-建立 A～O 大／中／小完整 engineering blueprint，使 future Work Package 可以：
+`432c48fb63c3d8d2760c0f2f5338e205ded63d30`
 
-- 按 Blueprint ID 施工。
-- 明確知道 ownership / input / output / authority。
-- 使用受控 official sources。
-- trace 到 code / tests / commit。
-- 使用 leaf weight / lifecycle 量化。
+Engineering inventory：
 
-Runtime GAP-ACCOUNT-001：
+- A～O V1 Domains。
+- 603 engineering leaves。
+- total weight 2137。
+- Blueprint IDs / source / authority / traceability / metrics 已啟用。
 
-仍為 READY_FOR_EXECUTION。
+GAP-ACCOUNT-001：
 
-但目前 Launch Gate：
+COMPLETED / ACCEPTED。
 
-`HOLD_FOR_BLUEPRINT_BASELINE`
+Accepted runtime commit：
 
-Blueprint baseline 完成後解除。
+`50813b679f818f3837a9f50fdcda9921495ab507`
 
----
+Blueprint launch gate 已完成使命，不再阻塞 runtime。
 
 ## Current Phase
 
@@ -74,15 +73,25 @@ GAP-07：
 
 CLOSED。
 
+GAP-ACCOUNT-001：
+
+CLOSED。
+
 Current mainline：
 
-Broker Account / Position Sync Foundation
+GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
 
-then：
+Current state：
 
-Explicit OrderIntent / PositionEffect + Reconciliation。
+READY_FOR_ARCHITECTURE_REVIEW。
 
----
+Reason：
+
+H210-H250 與 I340-I350 尚未完成 architecture / design freeze；不得直接啟動 runtime Codex。
+
+After：
+
+GAP-RECON-001 Reconciliation policy + startup readiness。
 
 ## Existing Major Foundation
 
@@ -121,6 +130,13 @@ Explicit OrderIntent / PositionEffect + Reconciliation。
 - BrokerInstrumentReference。
 - actual canonical multiplier consumer。
 - actual canonical margin consumer。
+- BrokerAccount。
+- canonical internal AccountPosition foundation。
+- BrokerPositionSnapshot。
+- read-only broker account / position query ports。
+- Sinopac pure account / position mapping。
+- broker contract reverse resolution。
+- pure expected / actual pairwise reconciliation foundation。
 
 ---
 
@@ -128,12 +144,10 @@ Explicit OrderIntent / PositionEffect + Reconciliation。
 
 主要剩餘：
 
-- BrokerAccount。
-- BrokerPositionSnapshot。
-- complete AccountPosition semantics。
-- Reconciliation。
-- OrderIntent / PositionEffect。
-- capability matrix。
+- explicit OrderIntent / PositionEffect。
+- AccountPosition fill/event projection。
+- reconciliation policy / collection matching / startup readiness。
+- broker capability matrix。
 - operational PostgreSQL。
 - trading persistence。
 - restart recovery。
@@ -145,8 +159,6 @@ Explicit OrderIntent / PositionEffect + Reconciliation。
 - ASP.NET Core Application。
 - React Workspace。
 - operational review / audit。
-
----
 
 ## Progress
 
@@ -160,18 +172,18 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-34.30%。
+38.72%。
 
 Architecture Design Coverage：85.63%。
 Design Freeze Coverage：47.54%。
-Runtime Implementation：28.08%。
-Unit Verification：24.85%。
-Integration Verification：24.75%。
-Accepted Capability：24.75%。
+Runtime Implementation：33.60%。
+Unit Verification：30.37%。
+Integration Verification：30.28%。
+Accepted Capability：30.28%。
 
 Capability status：
 
-COMPLETE 9 / PARTIAL 45 / NOT_STARTED 38。
+COMPLETE 9 / PARTIAL 49 / NOT_STARTED 34。
 
 Readiness：
 
@@ -179,11 +191,9 @@ Readiness：
 - Production Live：BLOCKED。
 - LIVE_AUTO：NOT_AUTHORIZED。
 
-說明：
+Latest accepted runtime：
 
-Blueprint leaf-level metric 已取代舊 provisional capability estimate。
-
----
+`50813b679f818f3837a9f50fdcda9921495ab507`
 
 ## Automation Status
 
@@ -205,9 +215,11 @@ Repository queue + ACTIVE full Work Package。
 
 Documentation scaffold 已建立。
 
-GAP-ACCOUNT-001 已完成 architecture review 並 READY_FOR_EXECUTION。
+GAP-ACCOUNT-001 已完成第一個正式 queue-driven Level 3A runtime validation 並 ACCEPTED。
 
-尚待第一次 queue-driven runtime validation。
+目前正式 Level 3A runtime calibration sample：1。
+
+維持 Level 3A；至少累積 2–3 個穩定 runtime Work Packages 後再評估 Level 3B。
 
 ### Level 3B
 
@@ -225,43 +237,57 @@ User-observed 5HR-window usage：
 
 約 4–5%。
 
-成果：
-
-- margin runtime integration。
-- targeted tests。
-- full regression。
-- runtime commit。
-- GAP final acceptance。
-- closure commit。
-
 ### Initial AUTO-001 Codex attempt
 
 User-observed 5HR-window usage：
 
 約 8%。
 
-成果：
+### GAP-ACCOUNT-001 Runtime
 
-- docs-only partial changes。
-- quota exhausted before completion。
+Configuration：
 
-結論：
+- GPT-5.6 Sol。
+- 輕度。
+- LEVEL_3A_BOUNDED。
+- model / effort 中途未切換。
 
-Codex quota 優先：
+User-observed 5HR-window usage：
 
-- runtime implementation。
-- tests。
-- debugging。
-- integration。
-- broker/reconciliation/persistence semantics。
+12%。
 
-Deterministic documentation rewrite 優先：
+Execution evidence：
 
-- PowerShell/manual/script。
+- 8 files read。
+- 12 runtime/test files changed：9 new / 3 modified。
+- 18 tool operations。
+- correction cycles：0。
+- targeted：50 passed。
+- compatibility：48 passed。
+- full regression：776 passed。
+- token/context usage：not exposed。
 
-此 observation 不可線性推算 quota capacity。
+### GAP-ACCOUNT-001 Phase 4A Acceptance
 
----
+User-observed 5HR-window usage：
+
+5%。
+
+用途：
+
+- Blueprint leaf acceptance。
+- formal metric recomputation。
+- traceability evidence。
+
+注意：
+
+12% 與 5% 分別保留為 observation，不以目前樣本直接線性推算 quota capacity。
+
+Current policy：
+
+Codex quota 優先 runtime / tests / debugging / broker semantics。
+
+Deterministic closure 優先 PowerShell/manual。
 
 ## Live State
 
@@ -271,24 +297,34 @@ NOT AUTHORIZED。
 
 原因：
 
-Account Sync、Reconciliation、OrderIntent、Persistence、Recovery、Live Safety 尚未完成。
+Reconciliation policy、OrderIntent / PositionEffect、Persistence、Recovery、Live Safety 尚未完成。
 
 ---
 
 ## Current Active Work
 
-詳見：
-
-`docs/work/ACTIVE.md`
-
-Current candidate：
+Last completed Work Package：
 
 GAP-ACCOUNT-001 Broker Account / Position Sync Foundation。
 
 Status：
 
-READY_FOR_EXECUTION。
+COMPLETED / ACCEPTED。
 
-Architecture review 已完成。
+Runtime commit：
 
-已授權一次 Level 3A bounded runtime execution。
+`50813b679f818f3837a9f50fdcda9921495ab507`
+
+Next mainline candidate：
+
+GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
+
+Status：
+
+READY_FOR_ARCHITECTURE_REVIEW。
+
+Runtime authorization：
+
+NOT_YET_AUTHORIZED。
+
+下一步先完成 architecture review / design freeze，再建立新的 ACTIVE Work Package。

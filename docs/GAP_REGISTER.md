@@ -58,9 +58,9 @@ Mainline：
 
 | ID | Priority | Handling | Current Blocking | Scope | Status |
 |---|---|---|---|---|---|
-| GAP-ACCOUNT-001 | P1 | REVIEW_AT_CHECKPOINT | No | Broker Account / Position Sync | READY_FOR_EXECUTION |
-| GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | BLOCKED_BY_ACCOUNT |
-| GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | Corrective execution | Explicit OrderIntent / PositionEffect | OPEN |
+| GAP-ACCOUNT-001 | P1 | REVIEW_AT_CHECKPOINT | No | Broker Account / Position Sync | CLOSED |
+| GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | BLOCKED_BY_BROKER_EXECUTION |
+| GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | Corrective execution | Explicit OrderIntent / PositionEffect | READY_FOR_ARCHITECTURE_REVIEW |
 | GAP-BROKER-002 | P2 | RECORD_AND_CONTINUE | No | Capability matrix / mapping semantics | PARTIAL |
 | GAP-08 | P1 | REVIEW_AT_CHECKPOINT | No | Trading State Persistence / Recovery | PENDING |
 | GAP-PERSIST-001 | P1 | RECORD_AND_CONTINUE | No | Decision / Risk Provenance | OPEN |
@@ -168,6 +168,14 @@ Completed：
 
 # GAP-BROKER-001 Detail
 
+Status：
+
+READY_FOR_ARCHITECTURE_REVIEW。
+
+Runtime：
+
+NOT_YET_AUTHORIZED。
+
 Problem：
 
 Shioaji adapter currently uses order ID naming to infer New/Cover semantics。
@@ -203,6 +211,18 @@ Safety：
 
 # GAP-ACCOUNT-001 Detail
 
+Status：
+
+CLOSED / ACCEPTED。
+
+Accepted runtime commit：
+
+`50813b679f818f3837a9f50fdcda9921495ab507`
+
+Full regression：
+
+776 passed。
+
 Target：
 
 broker-neutral：
@@ -232,6 +252,18 @@ automatic corrective broker order。
 ---
 
 # GAP-RECON-001 Detail
+
+Status：
+
+BLOCKED_BY_BROKER_EXECUTION。
+
+Account foundation dependency：
+
+SATISFIED。
+
+Remaining dependency：
+
+GAP-BROKER-001 explicit execution semantics。
 
 Target：
 

@@ -27,7 +27,7 @@ Blueprint baseline 完成後：
 
 Blueprint baseline 已啟用：
 
-本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 34.30% baseline。
+本文件的 92 capability blocks 已完成 603 engineering-leaf rebase；official progress metric 使用 lifecycle-weighted 38.72% baseline。
 
 ---
 
@@ -55,7 +55,7 @@ capability acceptance + relative engineering weight。
 
 Lifecycle-weighted completion：
 
-    34.30%
+    38.72%
 
 Architecture Design Coverage：
 
@@ -67,19 +67,19 @@ Design Freeze Coverage：
 
 Runtime Implementation：
 
-    28.08%
+    33.60%
 
 Unit Verification：
 
-    24.85%
+    30.37%
 
 Integration Verification：
 
-    24.75%
+    30.28%
 
 Accepted Capability：
 
-    24.75%
+    30.28%
 
 Metric basis：
 
@@ -87,7 +87,7 @@ Metric basis：
 
 Capability status：
 
-    COMPLETE 9 / PARTIAL 45 / NOT_STARTED 38
+    COMPLETE 9 / PARTIAL 49 / NOT_STARTED 34
 
 Readiness：
 
@@ -104,19 +104,19 @@ Readiness：
 | A Governance / Development | 4 | 70.68% |
 | B Data Pipeline | 6 | 66.44% |
 | C Calendar / Contract Data | 5 | 59.77% |
-| D Canonical Domain | 6 | 74.85% |
+| D Canonical Domain | 6 | 77.25% |
 | E Feature / Strategy | 7 | 50.11% |
 | F Backtest / Research | 8 | 90.40% |
 | G Decision / Risk | 8 | 67.86% |
 | H Execution / Paper | 8 | 54.52% |
-| I Broker Adapter | 6 | 40.62% |
-| J Account / Reconciliation | 6 | 16.82% |
+| I Broker Adapter | 6 | 57.63% |
+| J Account / Reconciliation | 6 | 47.54% |
 | K Persistence / Recovery | 7 | 11.58% |
 | L Simulation / Live Safety | 7 | 3.66% |
 | M Python Service Boundary | 4 | 12.42% |
 | N ASP.NET Core Application | 5 | 11.26% |
 | O React Workspace | 5 | 10.31% |
-| TOTAL | 92 | 34.30% lifecycle-weighted |
+| TOTAL | 92 | 38.72% lifecycle-weighted |
 
 ---
 
@@ -236,7 +236,7 @@ Readiness：
 | I02 | Submit/status/cancel | PARTIAL | Explicit PositionEffect |
 | I03 | Fill conversion/dedup/partial fill | PARTIAL | Production verification |
 | I04 | BrokerInstrumentReference seam | PARTIAL | Persistence later |
-| I05 | Broker account/position snapshot | NOT_STARTED | GAP-ACCOUNT-001 |
+| I05 | Broker account/position snapshot | PARTIAL | Canonical mapping foundation accepted; real provider/paper verification pending |
 | I06 | Broker capability matrix | NOT_STARTED | GAP-BROKER-002 |
 
 ---
@@ -246,10 +246,10 @@ Readiness：
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
 | J01 | LogicalAccount | NOT_STARTED | Canonical account model |
-| J02 | BrokerAccount | NOT_STARTED | Canonical broker model |
-| J03 | Internal AccountPosition | PARTIAL | Existing minimal model insufficient |
-| J04 | BrokerPositionSnapshot | NOT_STARTED | Adapter observation model |
-| J05 | ReconciliationResult / policies | NOT_STARTED | Comparison + mismatch classification |
+| J02 | BrokerAccount | PARTIAL | BrokerAccount foundation accepted; logical mapping/account snapshot pending |
+| J03 | Internal AccountPosition | PARTIAL | Canonical expected model accepted; fill/event projection and legacy migration pending |
+| J04 | BrokerPositionSnapshot | PARTIAL | BrokerPositionSnapshot foundation accepted; real provider/startup observation pending |
+| J05 | ReconciliationResult / policies | PARTIAL | Pairwise mismatch classification accepted; policy/case/startup reconciliation pending |
 | J06 | Startup sync / readiness gate | NOT_STARTED | Required before live |
 
 ---

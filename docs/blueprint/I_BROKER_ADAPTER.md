@@ -69,15 +69,15 @@ Target ownership：
 | I440 | Deal Dedup Identity | native deal seq 防止重複 delivery | ACCEPTED | 4 | I03 |
 | I450 | Partial Fill Synchronization | PartFilled / deals 與 internal order 狀態同步 | ACCEPTED | 4 | I03 |
 | I460 | Cancel / Reject Status Mapping | broker terminal state 明確轉換 | ACCEPTED | 3 | I02,I03 |
-| I510 | Broker Account Identity Mapping | native account → broker + stable account_ref | DESIGN_FROZEN | 4 | I05 |
-| I520 | Account Type Normalization | native account type → broker-neutral display/type metadata | DESIGN_FROZEN | 3 | I05 |
-| I530 | Native / PII Filtering | username/person_id/secret/native SDK object 不進 core | DESIGN_FROZEN | 5 | I05 |
+| I510 | Broker Account Identity Mapping | native account → broker + stable account_ref | ACCEPTED | 4 | I05 |
+| I520 | Account Type Normalization | native account type → broker-neutral display/type metadata | ACCEPTED | 3 | I05 |
+| I530 | Native / PII Filtering | username/person_id/secret/native SDK object 不進 core | ACCEPTED | 5 | I05 |
 | I540 | Account Provider Adapter Seam | read-only account observation mapping seam | DESIGN_FROZEN | 3 | I05 |
-| I610 | Futures Position Mapping | native FuturePosition → BrokerPositionSnapshot | DESIGN_FROZEN | 5 | I05 |
-| I620 | Position Direction Mapping | native Buy → LONG、Sell → SHORT | DESIGN_FROZEN | 4 | I05 |
-| I630 | Position Quantity / Average Price Mapping | quantity / price → canonical quantity / Decimal average_price | DESIGN_FROZEN | 4 | I05 |
-| I640 | Position Contract Reverse Resolution | broker contract code → exact canonical listed contract | DESIGN_FROZEN | 5 | I04,I05 |
-| I650 | Observation-Time Injection | caller 提供 observed_at / as_of_date，不 hidden now | DESIGN_FROZEN | 4 | I05 |
+| I610 | Futures Position Mapping | native FuturePosition → BrokerPositionSnapshot | ACCEPTED | 5 | I05 |
+| I620 | Position Direction Mapping | native Buy → LONG、Sell → SHORT | ACCEPTED | 4 | I05 |
+| I630 | Position Quantity / Average Price Mapping | quantity / price → canonical quantity / Decimal average_price | ACCEPTED | 4 | I05 |
+| I640 | Position Contract Reverse Resolution | broker contract code → exact canonical listed contract | ACCEPTED | 5 | I04,I05 |
+| I650 | Observation-Time Injection | caller 提供 observed_at / as_of_date，不 hidden now | ACCEPTED | 4 | I05 |
 | I660 | Unknown Position Mapping Failure | unknown direction/code/ambiguous mapping explicit error | DESIGN_FROZEN | 5 | I05 |
 | I710 | API Session Boundary | Shioaji API instance / session adapter-owned | IMPLEMENTED | 3 | I02 |
 | I720 | Authentication Boundary | credentials/secrets 不進 canonical model / log | DESIGNED | 5 | I06 |
@@ -101,7 +101,7 @@ CURRENT：
 - submit / status / cancel 已存在。
 - deal → Fill、multi-fill、dedup、partial fill 已存在。
 - BrokerInstrumentReference native lookup 已有 foundation。
-- account / position canonical mapping 尚未完成。
+- GAP-ACCOUNT-001 已完成 account / position canonical mapping foundation；real network provider、broker paper verification 與 capability matrix 仍待後續。
 - `ShioajiBroker.submit_order()` 仍使用 order_id prefix 推定 New/Cover。
 
 TARGET：
