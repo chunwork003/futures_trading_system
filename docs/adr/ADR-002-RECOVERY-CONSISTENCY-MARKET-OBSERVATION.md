@@ -2,7 +2,7 @@
 
 ## 1. Status
 
-**DECISION CHECKPOINT 3 ACCEPTED — ADR REMAINS OPEN**
+**DECISION CHECKPOINT 4 ACCEPTED — ADR REMAINS OPEN**
 
 - Decision date：2026-09-25。
 - Runtime implementation baseline：`6b62239bca1d11543944f9f078e577e16010bcbf`。
@@ -11,8 +11,8 @@
 - Runtime result：TEST_PASS。
 - Architecture acceptance：HOLD。
 - 35 leaves / weight 151：IMPLEMENTED CANDIDATE，NOT ACCEPTED。
-- Accepted decisions through this checkpoint：R-01、R-02、R-03A/B/C/D、R-04A/B/C/D/E；R-03 is fully DECIDED，R-04A-E are DECIDED and R-04 remains IN_PROGRESS。
-- Still open：R-04F、R-04G、R-04H；R-12/R-13/R-14/K520 remain linked dependencies。
+- Accepted decisions through this checkpoint：R-01、R-02、R-03A/B/C/D、R-04A/B/C/D/E/F/G/H；R-03 and R-04 are fully DECIDED。
+- R-04 architecture is closed；R-12/R-13/R-14/K520 remain linked dependencies，and frozen broker capability gates remain implementation/production authorization requirements。
 - No further runtime execution is authorized by this ADR。
 
 ## 2. Why Acceptance Is On Hold
@@ -1074,21 +1074,138 @@ Existing ExecutionPersistenceService may become/delegate to a higher AccountAuth
 
 These gates do not reopen R-04E architecture；they remain implementation/production authorization gates。
 
-## 15. Open Decisions After Checkpoint 3
+## 15. R-04F/G/H — Final Broker Recovery Safety Decisions
 
-R-04F — remaining terminal/non-terminal recovery policy and operational remediation boundary。
+R-04 overall status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED / BROKER_CAPABILITY_GATES_REMAIN。
 
-R-04G — safe retry / resend / manual-clearance policy。
+R-04A through R-04H are architecture-decided。
 
-R-04H — final BrokerAccount READY / REVIEW / HALT composition。
+Remaining Shioaji capability verification does not reopen R-04 architecture；it remains an implementation/production authorization gate。
 
-R-12 — ReconciliationRun audit contract。
+### 15.1 R-04F — Terminal vs Non-Terminal Recovery Rules
 
-R-13 — Operator Authorization / Approval Runtime Contract。
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED / BROKER_CAPABILITY_GATES_REMAIN。
 
-R-14 / GAP-DATA-001 — market-data completeness / gap detection。
+Canonical non-terminal OrderStatus remains：PENDING / SUBMITTED / PARTIALLY_FILLED。
 
-K520 — incremental feature/state provenance horizon。
+Canonical terminal OrderStatus remains：FILLED / CANCELLED / REJECTED。
+
+Recovery classifications such as SUBMISSION_OUTCOME_UNRESOLVED、RECONSTRUCTION_INCOMPLETE and CAPABILITY_UNVERIFIED are not OrderStatus。
+
+Broker-observed terminal state is not sufficient for canonical terminal acceptance。
+
+Canonical terminal acceptance requires all economically material evidence for the transition to be reconstructable and atomically committable。
+
+FILLED requires complete identifiable canonical Fill evidence；aggregate broker deal_quantity / average values alone are insufficient。
+
+CANCELLED may contain prior or newly reconstructed fills and therefore permits 0 <= filled_quantity < quantity。
+
+Recovery never fabricates unsupported intermediate lifecycle history。
+
+PENDING -> PARTIALLY_FILLED and PENDING -> FILLED are legal evidence-backed recovery transitions。
+
+PARTIALLY_FILLED -> PARTIALLY_FILLED with newly accepted Fill evidence is a material same-status OrderEvent and advances BrokerAccount revision。
+
+Failed -> REJECTED is permitted only when verified broker semantics prove original-order failure with zero economic effect。
+
+PreSubmitted / Inactive / unsupported Failed semantics remain CAPABILITY_UNVERIFIED until pinned adapter verification。
+
+Once FILLED / CANCELLED / REJECTED is canonically accepted，terminal economics are sealed。
+
+Complete authoritative contradiction after terminal sealing is INTEGRITY_CONFLICT。
+
+Incomplete evidence is RECONSTRUCTION_INCOMPLETE；it must not produce fabricated canonical recovery。
+
+R-04F does not authorize broker-action retry or re-invocation。
+
+### 15.2 R-04G — Safe Retry / No-Resubmit
+
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED / BROKER_IDEMPOTENCY_CAPABILITY_NOT_AVAILABLE。
+
+No blind broker-action retry is allowed。
+
+Absence of broker evidence is not proof that an external side effect did not occur。
+
+No BrokerActionAttempt means broker invocation is impossible by frozen ordering and is classified RESUMABLE_FIRST_INVOCATION。
+
+An unresolved existing BrokerActionAttempt means the broker side effect may have occurred and automatic re-invocation is forbidden。
+
+Complete discovery + zero exact broker match does not override the unresolved-attempt rule。
+
+A durable NOT_DISPATCHED BrokerActionResolution may restore SideEffectSafetyGate eligibility only when a verified pre-transport boundary proves broker network invocation never began。
+
+Timeout、process crash、disconnect、connection reset after dispatch started、lost response、missing callback and zero list_trades match are OUTCOME_UNKNOWN，never NOT_DISPATCHED。
+
+An exact broker match forbids resubmission；the existing broker order is recovered instead。
+
+Incomplete or out-of-discovery-horizon evidence forbids automatic retry。
+
+broker_client_order_ref / custom_field correlation identity is not broker idempotency authority。
+
+Current Shioaji architecture has no verified server-side idempotent resubmission guarantee。
+
+Terminal canonical Order is never revived；a later desired submission requires a new OrderIntent and new canonical Order。
+
+SUBMIT and CANCEL use the same durable-attempt / no-blind-retry rule。
+
+Human or out-of-band evidence cannot directly open retry；production authority belongs to R-13 and must create auditable durable resolution evidence。
+
+SideEffectSafetyGate SAFE_TO_INVOKE is necessary but not sufficient；current intent/session/instrument/account/risk/business validity must also pass before broker invocation。
+
+R-04G does not decide final BrokerAccount READY / REVIEW / HALT。
+
+### 15.3 R-04H — BrokerAccount READY / REVIEW / HALT Integration
+
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+READY means every mandatory recovery/evidence/capability predicate required for safe normal automated execution is positively proven。
+
+REVIEW means no proven integrity corruption exists，but additional authorized human/out-of-band evidence or authority is required before release。
+
+HALT means an integrity、technical、capability or authority prerequisite prevents safe normal automated material broker action。
+
+UNKNOWN、DEGRADED and NO_ERROR_OBSERVED never imply READY。
+
+READY requires valid expected/account authority、valid exact checkpoint references、coherent recovery cut、complete required broker discovery/horizon、unambiguous exact correlation、complete canonical reconstruction、valid Fill/economic invariants、no integrity conflict、no unresolved BrokerActionAttempt requiring disposition、ExecutionContinuityGate READY、no unapplied material broker evidence and race-free final handoff。
+
+A correctly reconciled active non-terminal broker order does not by itself prevent READY。
+
+Out-of-horizon unresolved action requiring formal external evidence is REVIEW，subject to R-13 for production release。
+
+Integrity conflict、multiple exact broker matches、invalid expected-state authority or unavailable mandatory broker capabilities are HALT conditions。
+
+Precedence is HALT > REVIEW > READY。
+
+If no explicit READY proof exists and no recognized REVIEW disposition applies，the system fails closed。
+
+Minimum recovery isolation scope remains BrokerAccount。
+
+REVIEW/HALT blocks new normal material broker side effects but permits durable callback capture、read-only discovery、authoritative refresh、subscription repair、evidence persistence and deterministic reconciliation required to repair recovery。
+
+READY handoff must be race-free with callback ingress；changed AccountStateHead or new unapplied material evidence yields STALE_RECOVERY_EVALUATION and forces reevaluation。
+
+READY / REVIEW / HALT is operational readiness authority and does not by itself advance economic AccountStateHead revision。
+
+No R-04H state may bypass R-04G no-resubmit rules or R-13 production authorization requirements。
+
+### 15.4 R-04 Overall Closure
+
+R-04A：DECIDED。
+R-04B：DECIDED。
+R-04C：DECIDED。
+R-04D：DECIDED。
+R-04E：DECIDED。
+R-04F：DECIDED。
+R-04G：DECIDED。
+R-04H：DECIDED。
+
+R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+No runtime correction is authorized by Decision Checkpoint 4。
+
+Next architecture action is to map、bound and reweight the complete correction Work Package before runtime authorization。
+
+Linked R-12 / R-13 / R-14 / K520 dependencies and broker capability gates must be explicitly classified as implementation blocker、production authorization gate or later GAP dependency during correction freeze。
 
 ## 16. Runtime Correction Items Already Identified
 
@@ -1107,6 +1224,6 @@ These are not new design choices unless a later decision explicitly changes them
 
 Runtime commit remains a useful implementation baseline and is not reverted。
 
-However GAP-08EFGHI cannot move to ACCEPTED until R-04F/G/H and remaining mandatory correction dependencies are resolved、the full R-03/R-04 correction scope is explicitly frozen/weighted，and bounded correction runtime passes targeted/compatibility/full-regression verification。
+However GAP-08EFGHI cannot move to ACCEPTED until the post-R-03/R-04 expanded correction scope is explicitly mapped/frozen/reweighted，required linked dependencies and capability gates are classified，and bounded correction runtime passes targeted/compatibility/full-regression verification。
 
 No LIVE authorization is implied。

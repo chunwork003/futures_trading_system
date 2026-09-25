@@ -29,6 +29,24 @@
 
 ## Chronological Log
 
+### 2026-09-25 — GAP-08EFGHI Post-Runtime Architecture Decision Checkpoint 4
+
+- Checkpoint 3 baseline：`11ead24d4f09ead611243c19aab982f09756f172`。
+- Runtime candidate remains `6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Runtime verification remains 934 passed / 4 skipped / 1 warning。
+- Architecture acceptance remains HOLD。
+- R-04F accepted：terminal/non-terminal recovery contract；broker terminal observation is insufficient without complete atomic economic reconstruction；terminal economics sealed。
+- R-04G accepted：no blind retry；attempt absence permits first invocation；existing unresolved attempt blocks reinvocation；only verified durable NOT_DISPATCHED pre-transport resolution restores automatic side-effect-safe eligibility。
+- R-04H accepted：BrokerAccount READY / REVIEW / HALT aggregation；HALT > REVIEW > READY；positive READY proof；race-free final handoff。
+- R-04A-H now fully DECIDED。
+- R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- Broker capability gates remain implementation/production authorization requirements。
+- R-12/R-13/R-14/K520 remain linked dependencies/follow-ups requiring classification during correction freeze。
+- Expanded R-03/R-04 correction scope remains outside original 35 leaves / weight 151 and is not yet reweighted。
+- No runtime source modification and no correction runtime authorization in this checkpoint。
+- Next：map、bound、classify dependencies and lifecycle-reweight the bounded correction Work Package。
+
+
 ### 2026-09-25 — GAP-08EFGHI Post-Runtime Architecture Decision Checkpoint 3
 
 - Checkpoint 2 baseline：`79923d6a4398838e4a501f4e241a44380a2031e4`。

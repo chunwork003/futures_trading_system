@@ -49,57 +49,37 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：POST_RUNTIME_ARCHITECTURE_DECISION_REVIEW
+Current activity：BOUNDED_CORRECTION_WORK_PACKAGE_FREEZE_PREPARATION
 
 Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION
 
-Launch Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS
+Launch Gate：HOLD_FOR_BOUNDED_CORRECTION_FREEZE
 
-Accepted decision checkpoint：R-01 / R-02 / R-03A/B/C/D / R-04A/B/C/D/E；R-03 overall DECIDED，R-04 remains IN_PROGRESS。
+Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 
-Open mandatory decisions：R-04F / R-04G / R-04H。
+R-03 overall：DECIDED。
 
-Correction scope expansion from R-03：
+R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-- canonical MarketObservation revision/value-object contract。
-- MarketObservationRevision operational repository/evidence。
-- PostgreSQL operational adapter。
-- candidate/provenance conflict evidence。
-- durable-before-strategy delivery orchestration。
+R-04F：terminal/non-terminal recovery rules DECIDED。
 
-This is additional to the original 35 / 151 bundle and has not yet been reweighted。
+R-04G：safe retry/no-resubmit DECIDED；no verified Shioaji broker-idempotent re-invocation authority。
 
-R-14 / GAP-DATA-001 tracks market-data completeness/gap detection separately and does not reopen R-03 identity decisions。
+R-04H：BrokerAccount READY / REVIEW / HALT integration DECIDED。
 
-Correction scope expansion from R-04A-E：
+Original 35 leaves / weight 151 remains NOT ACCEPTED。
 
-- account-scoped broker execution discovery port。
-- durable broker_client_order_ref。
-- BrokerAction attempt/resolution/head authority evidence。
-- coherent discovery observation / continuity epoch。
-- durable broker callback inbox + serialized application。
-- durable account recovery fence/control。
-- stable AccountAuthorityCommit identity / committed receipt。
-- shared BrokerAccount authority-commit transaction primitive。
-- broker-discovery re-anchor into OrderEvent / Fill / expected snapshots。
+Post-R-03/R-04 correction expansion is not yet mapped/reweighted。
 
-This additional scope is outside the original 35 / 151 and has not yet been reweighted。
-
-Broker capability verification gates remain implementation/production gates and do not reopen R-04E architecture。
+Linked R-12/R-13/R-14/K520 and broker capability gates must be classified during correction freeze。
 
 Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Blueprint scope remains：35 leaves / weight 151。
+Next action：prepare the bounded correction Work Package map、scope boundary、dependency classification and lifecycle reweighting。
 
-The 35 / 151 runtime candidate must not be promoted to ACCEPTED until bounded correction + verification completes。
-
-K520 remains GAP-09-owned。
-
-Next action：decide R-04F / R-04G / R-04H，then freeze、map and reweight the bounded correction Work Package before any runtime authorization。
-
-No Codex runtime execution is authorized during this decision hold。
+Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 
 # Completed Work Package — GAP-BROKER-002
 

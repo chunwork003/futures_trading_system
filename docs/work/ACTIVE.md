@@ -16,74 +16,41 @@ Operational Persistence + Recovery
 
 RUNTIME_IMPLEMENTED_CANDIDATE
 
-Runtime commit：
+Runtime commit：`6b62239bca1d11543944f9f078e577e16010bcbf`
 
-`6b62239bca1d11543944f9f078e577e16010bcbf`
-
-Runtime verification：
-
-934 passed / 4 skipped / 1 warning。
+Runtime verification：934 passed / 4 skipped / 1 warning。
 
 Architecture Acceptance：HOLD。
+
+Decision Checkpoint 4：COMPLETE。
+
+R-03：DECIDED。
+
+R-04A-H：DECIDED。
+
+R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
 Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
 
 Launch Gate：
 
-`HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS`
+`HOLD_FOR_BOUNDED_CORRECTION_FREEZE`
 
-Decision checkpoint：R-01 / R-02 / R-03A/B/C/D / R-04A/B/C/D/E DECIDED；R-03 overall DECIDED，R-04 remains IN_PROGRESS。
+Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
-Remaining mandatory architecture decisions：R-04F / R-04G / R-04H。
+Post-R-03/R-04 correction expansion：RECORDED / NOT YET MAPPED OR WEIGHTED。
 
-Detailed authority：
+Remaining work before runtime authorization：
 
-`docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
+- map complete correction scope。
+- classify linked dependencies and capability gates。
+- freeze bounded correction Work Package。
+- reweight lifecycle scope。
+- review authorization。
 
-Do not rerun this Work Package。
+Do not rerun GAP-08EFGHI runtime candidate。
 
-Do not promote 35 leaves / weight 151 to ACCEPTED until bounded correction runtime and final acceptance。
-
-Architecture ancestor：
-
-`10fb882fded93b98b39f39258005dce7e232f898`
-
-Design freeze commit：
-
-`f463f82beb8426c36b91efbd03ad943918954b65`
-
-Post-R-03 correction scope expansion：
-
-- MarketObservationLogicalKey / ContentFingerprint / RevisionId。
-- shared D Domain canonicalizer / validation boundary。
-- versioned market observation acceptance policy。
-- operational MarketObservationRevision evidence repository。
-- PostgreSQL operational evidence adapter。
-- candidate/provenance conflict evidence。
-- durable-before-strategy delivery。
-- derived-observation provenance。
-
-This expansion was not part of the original 35 / 151。
-
-Do not begin implementation until R-04 is decided and a replacement correction Work Package explicitly maps、sizes and authorizes the expanded scope。
-
-
-Post-R-04A-E correction scope expansion：
-
-- BrokerOrderStateProvider。
-- broker_client_order_ref。
-- BrokerActionAttempt / BrokerActionResolution / BrokerActionHead。
-- BrokerDiscoveryObservation / ExecutionContinuityEpoch。
-- BrokerReportInbox / BrokerReportApplication。
-- AccountRecoveryControl。
-- AccountAuthorityCommitReceipt / mutation fingerprint。
-- shared AccountAuthorityCommitService / equivalent authority UoW。
-- recovery reconstruction / terminal-economic invariants。
-
-This expansion is also outside the original 35 / 151 and is not yet weighted。
-
-Do not begin correction implementation until R-04F/G/H are decided and the replacement Work Package explicitly maps、sizes and authorizes all R-01 through R-04 correction scope。
-
+Do not promote GAP-08 acceptance until correction runtime and final verification pass。
 
 ## 4. Recommended Model
 

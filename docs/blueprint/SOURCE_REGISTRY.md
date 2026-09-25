@@ -277,3 +277,18 @@ DuckDB PostgreSQL extension：
 | SRC-ASPNET-SIGNALR-001 | S1 | ASP.NET Core SignalR | `learn.microsoft.com` | `/aspnet/core/signalr/introduction` | project .NET major must be pinned before scaffold |
 | SRC-ASPNET-SECURITY-001 | S1 | ASP.NET Core Security | `learn.microsoft.com` | `/aspnet/core/security/` | project .NET major must be pinned before scaffold |
 | SRC-ASPNET-AUTHZ-001 | S1 | ASP.NET Core Authorization | `learn.microsoft.com` | `/aspnet/core/security/authorization/introduction` | project .NET major must be pinned before scaffold |
+
+## Recovery Decision Checkpoint 4 — Broker Capability Evidence
+
+Broker documentation/source evidence must distinguish：
+
+- correlation capability。
+- discovery horizon/completeness capability。
+- restart-stable broker order identity。
+- restart-stable broker deal/Fill identity。
+- callback/event tracking capability。
+- server-side idempotency capability。
+
+Absence of documented/verified server-side idempotency must never be inferred from correlation fields such as custom_field。
+
+Pinned broker capability verification is an implementation/production gate and does not reopen accepted R-04 architecture decisions。

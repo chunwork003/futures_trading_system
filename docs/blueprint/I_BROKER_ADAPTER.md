@@ -557,3 +557,21 @@ Revalidation required before future simulation/production evidence update：
 - GAP-ACCOUNT-001 IDs 與 ACTIVE 完全一致。
 - current unsafe New/Cover inference 有明確 future replacement。
 - official source requirements 已掛接。
+
+## Recovery Decision Checkpoint 4 — Broker Invocation Safety
+
+R-04A-H are architecture-decided；ADR-002 is authoritative。
+
+Broker adapter requirements：
+
+- correlation identity and broker idempotency capability are separate。
+- broker_client_order_ref/custom_field may be used as exact correlation only after pinned round-trip verification。
+- it must not be treated as server-side idempotency authority without explicit verified broker guarantee。
+- adapter may emit NOT_DISPATCHED only from a verified pre-transport boundary proving network invocation never began。
+- timeout、disconnect、lost response、process crash、missing callback and discovery absence are OUTCOME_UNKNOWN。
+- exact restart-stable BrokerDealIdentity / FillKey remains a production capability gate。
+- PreSubmitted / Inactive / relevant Failed mapping remains pinned capability verification。
+- discovery horizon bounds automated recovery guarantees。
+- read-only recovery/discovery capability must remain separate from legacy process-memory Trade cache semantics。
+
+Current Shioaji architecture therefore remains production default-deny for any unverified retry/idempotency assumption。

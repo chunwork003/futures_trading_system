@@ -514,3 +514,22 @@ H840 Safe Retry remains outside scope。
 - explicit economic intent 與 mechanical order 分離。
 - PaperBroker 與 SimulationBroker 責任不混淆。
 - current unsafe prefix inference 有唯一 replacement path。
+
+## Recovery Decision Checkpoint 4 — R-04F/G/H
+
+R-04A-H are architecture-decided；ADR-002 is authoritative。
+
+Execution/OMS correction direction：
+
+- broker-observed terminal does not itself authorize canonical terminal。
+- FILLED requires complete canonical Fill evidence。
+- CANCELLED permits prior/reconstructed fills with filled_quantity < quantity。
+- terminal economics are sealed after canonical terminal acceptance。
+- recovery classifications are not OrderStatus。
+- no blind SUBMIT/CANCEL retry。
+- unresolved BrokerActionAttempt blocks automatic re-invocation。
+- verified durable NOT_DISPATCHED is the only currently frozen automatic reinvocation exception after an attempt exists。
+- terminal Order is never revived；later business submission uses a new OrderIntent / Order。
+- BrokerAccount READY / REVIEW / HALT is operational readiness and does not itself advance economic AccountStateHead。
+
+No runtime correction is authorized by this checkpoint。

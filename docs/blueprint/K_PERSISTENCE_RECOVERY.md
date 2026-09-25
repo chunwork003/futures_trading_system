@@ -1136,3 +1136,21 @@ This is a sizing experiment，not a completion guarantee or quota target。
 - SOR / event / snapshot / provenance / recovery responsibility 分離。
 - PostgreSQL 與 DuckDB/Parquet authority 不混淆。
 - recovery flow 與 J startup readiness 對齊。
+
+## Recovery Decision Checkpoint 4 — Recovery Authority Closure
+
+R-04A-H are architecture-decided；ADR-002 is authoritative。
+
+Persistence/recovery correction direction：
+
+- BrokerActionAttempt / Resolution / Head are durable retry-safety authority。
+- existing unresolved attempt forbids blind external re-invocation。
+- AccountRecoveryControl owns recovery-session/final-handoff concurrency，separate from economic AccountStateHead。
+- callback/broker-report evidence must remain durably capturable while account is REVIEW/HALT。
+- recovery reconstruction、broker-action resolution and live execution share one BrokerAccount authority-commit primitive。
+- READY handoff must verify the evaluated AccountStateHead is still current and no unapplied material evidence arrived。
+- stale recovery evaluation causes abort/re-evaluation。
+- READY / REVIEW / HALT transitions do not themselves advance economic AccountStateHead。
+- production manual/out-of-band release depends on R-13 and remains default-deny until implemented。
+
+Expanded R-03/R-04 scope must be mapped and lifecycle-reweighted before correction runtime authorization。

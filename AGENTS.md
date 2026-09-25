@@ -1,3 +1,23 @@
+## CURRENT AUTHORITY — RECOVERY DECISION CHECKPOINT 4
+
+Decision baseline：`11ead24d4f09ead611243c19aab982f09756f172`。
+
+ADR-002 R-01、R-02、R-03A/B/C/D and R-04A/B/C/D/E/F/G/H are architecture-decided。
+
+R-03 overall：DECIDED。
+
+R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+Architecture acceptance remains HOLD；GAP-08EFGHI original 35 leaves / weight 151 remains IMPLEMENTED CANDIDATE / NOT ACCEPTED。
+
+Do not rerun runtime and do not mark GAP-08EFGHI ACCEPTED。
+
+Next action：map、bound and reweight the expanded correction Work Package，including R-03/R-04 correction scope and explicit classification of R-12/R-13/R-14/K520 + broker capability gates。
+
+Runtime Authorization：NOT_AUTHORIZED。
+
+This CURRENT AUTHORITY supersedes older R-04 OPEN wording elsewhere in historical sections。
+
 # futures_trading_system — Agent Guide
 
 ## 專案與導航

@@ -73,11 +73,9 @@ Current milestone：M6 — Persistence / Recovery / Provenance。
 
 GAP-08ABCD：COMPLETED / ACCEPTED。
 
-Current Work Package：
+Current Work Package：GAP-08EFGHI — Operational Persistence + Recovery。
 
-GAP-08EFGHI — Operational Persistence + Recovery。
-
-Blueprint：35 leaves / weight 151。
+Original blueprint runtime scope：35 leaves / weight 151。
 
 Runtime implementation：COMPLETED_CANDIDATE。
 
@@ -85,76 +83,53 @@ Runtime commit：`6b62239bca1d11543944f9f078e577e16010bcbf`。
 
 Runtime verification：934 passed / 4 skipped / 1 warning。
 
-User-observed 5HR usage：28%。
-
 Architecture acceptance：HOLD。
 
-Reason：post-runtime review identified recovery/execution correctness gaps and underspecified semantics。
+Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
 
-Decision checkpoint：
+Decision Checkpoint 4 baseline：
 
-- R-01 DECIDED / CORRECTION_REQUIRED。
-- R-02 DECIDED / CORRECTION_REQUIRED。
-- R-03A DECIDED / CORRECTION_REQUIRED。
-- R-03B DECIDED / CORRECTION_REQUIRED。
-- R-03C DECIDED / CORRECTION_REQUIRED。
-- R-03D DECIDED / CORRECTION_REQUIRED。
-- R-03 overall DECIDED。
-- R-04 overall IN_PROGRESS / mandatory dependency。
-- R-04A Broker Order Discovery：DECIDED / CORRECTION_REQUIRED。
-- R-04B Durable Broker Correlation：DECIDED / CORRECTION_REQUIRED / capability gate。
-- R-04C Discovery Classification / BrokerActionAttempt：DECIDED / CORRECTION_REQUIRED。
-- R-04D Discovery Health / Execution Continuity：DECIDED / CORRECTION_REQUIRED。
-- R-04E Broker Snapshot Reconstruction：DECIDED / CORRECTION_REQUIRED / capability gates remain。
-- R-04F / R-04G / R-04H：OPEN。
-- R-14 / GAP-DATA-001 OPEN / production market-data completeness follow-up。
+`11ead24d4f09ead611243c19aab982f09756f172`
 
-Correction scope expansion discovered by R-03：
+Architecture decisions：
 
-- storage-neutral MarketObservationRevision evidence repository。
-- PostgreSQL operational accepted-revision evidence adapter。
-- candidate/provenance persistence required for conflict/quarantine audit。
-- durable accepted observation before recovery-capable strategy delivery。
+- R-01：DECIDED / CORRECTION_REQUIRED。
+- R-02：DECIDED / CORRECTION_REQUIRED。
+- R-03A/B/C/D：DECIDED / CORRECTION_REQUIRED。
+- R-03 overall：DECIDED。
+- R-04A/B/C/D/E/F/G/H：DECIDED / CORRECTION_REQUIRED。
+- R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-This scope was not contained in the original 35 leaves / weight 151 runtime bundle。
+R-04 broker capability gates remain implementation/production authorization requirements and do not reopen architecture。
 
-It is not yet lifecycle-weighted and must be explicitly mapped/frozen before correction runtime authorization。
+Linked dependencies：
 
-Correction scope expansion discovered by R-04A-E：
+- R-12 ReconciliationRun audit contract。
+- R-13 Operator Authorization / Approval Runtime Contract。
+- R-14 / GAP-DATA-001 operational market-data completeness / gap detection。
+- K520 incremental feature/state provenance remains GAP-09-owned。
 
-- BrokerOrderStateProvider / account-scoped authoritative execution discovery。
-- immutable broker_client_order_ref persisted with sequence-0 PENDING。
+Expanded correction scope from R-03/R-04 is outside the original 35 / 151 implementation candidate and is not yet lifecycle-weighted。
+
+Correction freeze must explicitly map at least：
+
+- MarketObservation revision/value-object and operational evidence persistence。
+- broker_client_order_ref exact correlation contract。
+- BrokerOrderStateProvider restart discovery。
 - BrokerActionAttempt / BrokerActionResolution / BrokerActionHead。
-- BrokerDiscoveryObservation / coherent discovery-run evidence。
-- ExecutionContinuityEpoch。
-- durable BrokerReportInbox / BrokerReportApplication。
-- durable AccountRecoveryControl recovery fence / final handoff。
-- AccountAuthorityCommitReceipt contract and bundle-level idempotency。
-- shared AccountAuthorityCommitService or equivalent BrokerAccount authority-commit primitive。
-- recovery-sourced OrderEvent / Fill / expected-position atomic reconstruction。
-- terminal economic immutability / Fill-set economic authority。
+- BrokerDiscoveryObservation / ExecutionContinuityEpoch。
+- broker report durable inbox/application semantics。
+- restart-stable BrokerDealIdentity / Fill reconstruction capability。
+- AccountRecoveryControl / recovery cut / race-free handoff。
+- shared AccountAuthorityCommit primitive。
+- SideEffectSafetyGate。
+- BrokerAccount READY / REVIEW / HALT aggregation。
 
-This R-04 expansion is additional to both the original 35 / 151 bundle and the R-03 expansion。
+Launch Gate：HOLD_FOR_BOUNDED_CORRECTION_FREEZE。
 
-It is not yet lifecycle-weighted and does not authorize runtime implementation。
+35 / 151 remains IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
-Broker capability gates remain for exact Shioaji FillKey、client-ref round-trip、event tracking、PreSubmitted/Inactive/Failed semantics and quantity modification。
-
-Authoritative detailed record：
-
-`docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
-
-Runtime authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
-
-Launch Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS。
-
-35 / 151 must not be counted as ACCEPTED yet。
-
-K520：DEFERRED_TO_GAP_09。
-
-PG17 / PG18：PENDING_INTEGRATION_VERIFICATION。
-
-Official lifecycle metric remains the 47.92% architecture-freeze baseline until correction/acceptance rebase。
+Official lifecycle metric remains the 47.92% architecture-freeze baseline until correction scope is reweighted and final acceptance is rebased。
 
 Level 3B：NOT_ENABLED。
 

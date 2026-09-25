@@ -74,6 +74,32 @@ Detailed authoritative decision record：
 No runtime execution is authorized until remaining architecture decisions are frozen into a bounded correction Work Package。
 
 
+## 1D. Recovery Decision Checkpoint 4
+
+Checkpoint 3 baseline：`11ead24d4f09ead611243c19aab982f09756f172`。
+
+R-03 overall：DECIDED。
+
+R-04A-H：DECIDED。
+
+R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+F：broker terminal observation does not equal canonical terminal acceptance；terminal economics require complete reconstructable evidence and are sealed after acceptance。
+
+G：no blind retry；existing unresolved BrokerActionAttempt forbids re-invocation；only verified pre-transport durable NOT_DISPATCHED may restore side-effect-safe eligibility。
+
+H：BrokerAccount readiness uses READY / REVIEW / HALT with HALT > REVIEW > READY and explicit positive READY proof。
+
+Broker capability verification remains a production/runtime gate，not an open R-04 architecture decision。
+
+Architecture acceptance remains HOLD。
+
+Original 35 / 151 runtime candidate remains NOT ACCEPTED。
+
+Next：freeze/map/reweight the expanded correction Work Package and classify R-12/R-13/R-14/K520 + broker capability gates。
+
+Do not run correction runtime before explicit authorization。
+
 ## 2. Default Agent Reading
 
 Runtime Work Package 預設只讀：

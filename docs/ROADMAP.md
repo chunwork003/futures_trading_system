@@ -203,7 +203,7 @@ Accepted runtime commit：`7d7fdabcb99da59d3d23ccec62b11c6572ceea82`。
 
 # M6 — Persistence / Recovery / Provenance
 
-Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD
+Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_REQUIRED
 
 Accepted：
 
@@ -215,56 +215,28 @@ GAP-08EFGHI：
 - runtime commit：`6b62239bca1d11543944f9f078e577e16010bcbf`。
 - verification：934 passed / 4 skipped / 1 warning。
 - architecture acceptance：HOLD。
-- 35 leaves / weight 151：NOT ACCEPTED。
+- original 35 leaves / weight 151：NOT ACCEPTED。
 
-Post-runtime decision checkpoint：
+Post-runtime architecture decisions：
 
 - R-01 DECIDED。
 - R-02 DECIDED。
-- R-03A DECIDED。
-- R-03B DECIDED。
-- R-03C DECIDED。
-- R-03D DECIDED。
+- R-03A-D DECIDED。
 - R-03 overall DECIDED。
-- R-04 overall IN_PROGRESS。
-- R-04A DECIDED。
-- R-04B DECIDED。
-- R-04C DECIDED。
-- R-04D DECIDED。
-- R-04E DECIDED。
-- R-04F / R-04G / R-04H OPEN / mandatory dependency。
+- R-04A-H DECIDED。
+- R-04 overall DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-R-03 identified mandatory correction scope beyond the original 35 / 151：
+Expanded R-03/R-04 correction scope is not yet lifecycle-weighted。
 
-- operational immutable MarketObservationRevision evidence。
-- PostgreSQL operational observation adapter。
-- candidate/provenance conflict evidence。
-- durable-before-strategy delivery。
+Linked dependencies：R-12 / R-13 / R-14 / K520。
 
-Additional scope is not yet reweighted and does not authorize runtime。
+Broker capability gates remain implementation/production authorization requirements。
 
-R-14 / GAP-DATA-001 tracks market-data completeness/gap detection for later production safety。
-
-R-04A-E identified further mandatory correction scope beyond the original 35 / 151：
-
-- restart-safe broker execution discovery/correlation。
-- durable broker action attempts/resolutions。
-- discovery / execution-continuity fences。
-- durable broker-report inbox。
-- account recovery control。
-- stable authority-commit idempotency receipt。
-- shared atomic BrokerAccount authority commit。
-- recovery execution reconstruction and terminal-economic sealing。
-
-Additional R-04 scope is not yet reweighted and does not authorize runtime。
-
-Broker-specific capability verification remains required before production use。
-
-Runtime Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS。
+Runtime Gate：HOLD_FOR_BOUNDED_CORRECTION_FREEZE。
 
 Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
 
-K520：DEFERRED_TO_GAP_09。
+Next：map/freeze/reweight bounded correction Work Package before implementation。
 
 Official lifecycle remains 47.92% architecture-freeze baseline until correction/acceptance rebase。
 

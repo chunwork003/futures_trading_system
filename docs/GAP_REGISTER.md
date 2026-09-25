@@ -346,11 +346,11 @@ Capability evidence does not authorize LIVE。
 
 # GAP-08 Detail
 
-Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD。
+Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_REQUIRED。
 
 Accepted：
 
-GAP-08ABCD Persistence Foundation + Event Ledger。
+- GAP-08ABCD Persistence Foundation + Event Ledger。
 
 GAP-08EFGHI runtime candidate：
 
@@ -358,114 +358,41 @@ GAP-08EFGHI runtime candidate：
 
 Runtime verification：934 passed / 4 skipped / 1 warning。
 
-User-observed 5HR usage：28%。
+Original blueprint scope：35 leaves / weight 151。
 
-Blueprint scope：35 leaves / weight 151。
+Original runtime candidate remains IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
-Runtime code is retained，but 35 / 151 is NOT ACCEPTED。
+Architecture decision status：
 
-Post-runtime architecture review decision checkpoint：
-
-- R-01 expected-state initialization/read semantics：DECIDED / CORRECTION_REQUIRED。
-- R-02 account checkpoint/causal frontier：DECIDED / CORRECTION_REQUIRED。
-- R-03A market observation logical key：DECIDED / CORRECTION_REQUIRED。
-- R-03B market observation revision/content identity：DECIDED / CORRECTION_REQUIRED。
-- R-03C revision ID/value-object contract：DECIDED / CORRECTION_REQUIRED。
-- R-03D cross-environment/source authority：DECIDED / CORRECTION_REQUIRED。
+- R-01：DECIDED / CORRECTION_REQUIRED。
+- R-02：DECIDED / CORRECTION_REQUIRED。
+- R-03A/B/C/D：DECIDED / CORRECTION_REQUIRED。
 - R-03 overall：DECIDED。
-- R-04 overall：IN_PROGRESS / mandatory dependency。
-- R-04A broker order discovery authority：DECIDED / CORRECTION_REQUIRED。
-- R-04B durable broker correlation identity：DECIDED / CORRECTION_REQUIRED / capability gate。
-- R-04C discovery classification / BrokerActionAttempt：DECIDED / CORRECTION_REQUIRED。
-- R-04D discovery health / execution continuity：DECIDED / CORRECTION_REQUIRED。
-- R-04E canonical execution reconstruction：DECIDED / CORRECTION_REQUIRED / capability gates remain。
-- R-04F / R-04G / R-04H：OPEN。
-- R-14 / GAP-DATA-001 market-data completeness/gap detection：OPEN / future production safety dependency。
+- R-04A/B/C/D/E/F/G/H：DECIDED / CORRECTION_REQUIRED。
+- R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-Post-R-03 correction scope expansion：
+R-04 capability gates remain implementation/production authorization requirements。
 
-- MarketObservation logical/revision canonical contract。
-- deterministic mor1 revision identity / golden vectors。
-- storage-neutral MarketObservationRevision operational persistence。
-- PostgreSQL operational observation evidence adapter。
-- candidate/provenance conflict/quarantine evidence。
-- durable accepted observation before strategy delivery。
-- derived-observation provenance。
+Post-runtime correction expansion includes MarketObservation operational evidence、restart broker discovery/correlation、BrokerActionAttempt lifecycle、broker evidence continuity、canonical Fill reconstruction、recovery concurrency fencing、shared AccountAuthorityCommit and BrokerAccount readiness aggregation。
 
-This scope was not part of the original 35 leaves / weight 151 implementation candidate。
+This expanded scope is outside the original 35 / 151 candidate and must not be hidden inside the previous weight。
 
-No new lifecycle weight is claimed yet；the correction Work Package must map/reweight it before runtime authorization。
+Linked dependencies/follow-ups：
 
-Post-R-04A-E correction scope expansion：
-
-- BrokerOrderStateProvider / authoritative account-scoped order discovery。
-- broker_client_order_ref in durable sequence-0 PENDING authority boundary。
-- BrokerActionAttempt / BrokerActionResolution / BrokerActionHead。
-- BrokerDiscoveryObservation / DiscoveryCompleteness / ExecutionContinuityEpoch。
-- BrokerReportInboxEntry / BrokerReportApplication。
-- AccountRecoveryControl durable recovery fence。
-- AccountAuthorityCommitReceipt / stable mutation fingerprint。
-- AccountAuthorityCommitService or equivalent shared account-authority UoW。
-- recovery OrderEvent / Fill / Order projection / expected snapshot / checkpoint atomic commit。
-- terminal economic sealing and Fill-set economic authority。
-
-R-04A-E scope was not part of the original 35 leaves / weight 151 implementation candidate。
-
-No lifecycle weight is claimed yet。
-
-Production capability gates：
-
-- Shioaji client correlation round-trip verification。
-- exact restart-stable FillKey verification。
-- pinned event-id/tracking capability verification。
-- PreSubmitted / Inactive / relevant Failed status semantics。
-- quantity-modification recovery remains default-deny。
-
-R-13 remains mandatory for high-risk manual unresolved-action clearance/retry。
+- R-12 ReconciliationRun audit。
+- R-13 operator authorization/approval；production manual resolution default-deny until implemented。
+- R-14 / GAP-DATA-001 market-data completeness/gap detection。
+- K520 incremental feature/state provenance remains GAP-09-owned。
 
 Detailed authoritative record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Runtime Launch Gate：HOLD_FOR_POST_RUNTIME_ARCHITECTURE_DECISIONS。
+Runtime Launch Gate：HOLD_FOR_BOUNDED_CORRECTION_FREEZE。
 
 Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
 
-K520：DEFERRED_TO_GAP_09。
-
-PG17 / PG18：PENDING。
-
-Parent GAP cannot close until the correction Work Package is frozen、implemented、verified and accepted。
-
-# GAP-DATA-001 Detail
-
-Related decision：R-14 — Market Data Completeness / Gap Detection。
-
-Priority：P1。
-
-Handling：RECORD_AND_CONTINUE。
-
-Current blocker：No for the current R-03 identity decision/correction design；required before claiming production-live market-data completeness safety。
-
-Problem：
-
-A missing candidate observation is not equivalent to a quarantined candidate and is not evidence of a legitimate no-trade interval。
-
-The system must eventually distinguish at least：
-
-- legitimate no-trade interval。
-- non-trading/session/calendar interval。
-- source outage。
-- transport failure。
-- ingestion/data loss。
-
-Until session/calendar-aware completeness detection exists，continuous-interval features/strategies may not silently treat absence as a valid empty market interval。
-
-Blueprint relation：B250 / B720 / D340 / K520。
-
-R-03 remains DECIDED；this GAP is a separate follow-up。
-
----
+Parent GAP cannot close until expanded correction scope is frozen/reweighted、implemented、verified and finally accepted。
 
 # GAP-09 Detail
 
