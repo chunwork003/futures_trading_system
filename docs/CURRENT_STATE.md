@@ -91,9 +91,9 @@ Status：READY_FOR_EXECUTION。
 
 Design Freeze：COMPLETED。
 
-Runtime Launch Gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+Runtime Launch Gate：RELEASED_ARCHITECTURE_FREEZE。
 
-Runtime authorization：NOT_YET_AUTHORIZED。
+Runtime authorization：AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
 
 K520：DEFERRED_TO_GAP_09。
 
@@ -324,9 +324,9 @@ Status：READY_FOR_EXECUTION。
 
 Blueprint：35 leaves / weight 151。
 
-Runtime Gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+Runtime Gate：RELEASED_ARCHITECTURE_FREEZE。
 
-Runtime authorization：NOT_YET_AUTHORIZED。
+Runtime authorization：AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
 
 Execution Mode：LEVEL_3A_BOUNDED。
 

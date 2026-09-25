@@ -2,7 +2,7 @@
 
 ## 專案與導航
 
-台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。GAP-08ABCD 已完成/接受；EF-specific architecture review 已完成，EF + required OMS + GHI + necessary StrategyInstance/Account dependencies 合併為 GAP-08EFGHI Operational Persistence + Recovery。35 leaves / weight 151 已 design frozen；runtime gate 尚待 freeze commit verification。PostgreSQL 17/18 仍為 PENDING integration targets；K520 仍屬 GAP-09；Level 3B 仍 NOT_ENABLED。
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。GAP-08ABCD 已完成/接受；EF-specific architecture review 已完成，EF + required OMS + GHI + necessary StrategyInstance/Account dependencies 合併為 GAP-08EFGHI Operational Persistence + Recovery。35 leaves / weight 151 已 design frozen；runtime gate 已解除並授權一次 bounded Level 3A execution。PostgreSQL 17/18 仍為 PENDING integration targets；K520 仍屬 GAP-09；Level 3B 仍 NOT_ENABLED。
 
 Primary source of truth 與必讀順序：
 

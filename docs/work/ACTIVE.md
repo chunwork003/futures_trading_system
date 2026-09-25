@@ -18,15 +18,19 @@ READY_FOR_EXECUTION
 
 Design Freeze：COMPLETED。
 
-Runtime Authorization：NOT_YET_AUTHORIZED。
+Runtime Authorization：AUTHORIZED。
 
 Launch Gate：
 
-`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
+`RELEASED_ARCHITECTURE_FREEZE`
 
 Architecture ancestor：
 
 `10fb882fded93b98b39f39258005dce7e232f898`
+
+Design freeze commit：
+
+`f463f82beb8426c36b91efbd03ad943918954b65`
 
 ---
 
@@ -512,8 +516,8 @@ No whole-repo rescan。
 
 Current：
 
-    HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
+    RELEASED_ARCHITECTURE_FREEZE
 
 Runtime authorization：
 
-    NOT_YET_AUTHORIZED
+    AUTHORIZED

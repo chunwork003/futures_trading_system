@@ -370,9 +370,9 @@ Merged because EF/GHI conditional semantics were explicitly resolved before runt
 - StrategyStateSnapshot / codecs。
 - deterministic recovery order/readiness mapping。
 
-Runtime Launch Gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+Runtime Launch Gate：RELEASED_ARCHITECTURE_FREEZE。
 
-Runtime Authorization：NOT_YET_AUTHORIZED。
+Runtime Authorization：AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
 
 K520：DEFERRED_TO_GAP_09。
 

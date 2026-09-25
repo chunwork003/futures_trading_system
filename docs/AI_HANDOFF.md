@@ -699,9 +699,9 @@ Status：READY_FOR_EXECUTION。
 
 Design Freeze：COMPLETED。
 
-Runtime Gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+Runtime Gate：RELEASED_ARCHITECTURE_FREEZE。
 
-Runtime Authorization：NOT_YET_AUTHORIZED。
+Runtime Authorization：AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
 
 Recommended execution：GPT-5.6 Sol / 中度 / LEVEL_3A_BOUNDED。
 
