@@ -744,11 +744,11 @@ READY_FOR_EXECUTION。
 
 Runtime authorization：
 
-NOT_YET_AUTHORIZED。
+AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
 
 Runtime launch gate：
 
-`HOLD_FOR_WORK_PACKAGE_COMMIT`
+`RELEASED_WORK_PACKAGE_COMMIT`
 
 Recommended calibration：
 

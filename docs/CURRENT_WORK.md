@@ -71,11 +71,11 @@ COMPLETED for J710-J780
 
 Runtime Authorization：
 
-NOT_YET_AUTHORIZED
+AUTHORIZED_FOR_LEVEL_3A_RUNTIME
 
 Runtime Launch Gate：
 
-HOLD_FOR_WORK_PACKAGE_COMMIT
+RELEASED_WORK_PACKAGE_COMMIT
 
 Implements：
 
@@ -87,7 +87,7 @@ Dependency：
 
 Next required action：
 
-完整 GAP-RECON-001B ACTIVE 已建立；commit / push / verify 後 release runtime gate。
+GAP-RECON-001B runtime 已授權；執行 ACTIVE bounded Level 3A，完成後 STOP。
 
 # Completed Work Package — GAP-RECON-001A
 

@@ -30,11 +30,11 @@ COMPLETED for J710-J780。
 
 Runtime execution authorization：
 
-NOT_YET_AUTHORIZED。
+AUTHORIZED。
 
 Launch Gate：
 
-`HOLD_FOR_WORK_PACKAGE_COMMIT`
+`RELEASED_WORK_PACKAGE_COMMIT`
 
 Architecture freeze commit：
 
@@ -47,6 +47,10 @@ Architecture freeze commit：
 001A deterministic closure：
 
 `c4d799ed2fce3d09836aec41b5b91cb12ccc408f`
+
+001B Work Package preparation commit：
+
+`1772949978f18186d26460434130757f1670a0ea`
 
 ---
 
@@ -834,7 +838,7 @@ STOP + LEVEL 3。
 
 Current：
 
-    HOLD_FOR_WORK_PACKAGE_COMMIT
+    RELEASED_WORK_PACKAGE_COMMIT
 
 Release requires：
 
