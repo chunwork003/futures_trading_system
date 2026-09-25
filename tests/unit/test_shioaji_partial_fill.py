@@ -5,7 +5,7 @@ import shioaji as sj
 from backtest.execution_result import OrderSubmission
 from backtest.models import OrderStatus
 from backtest.shioaji_broker import ShioajiBroker
-from tests.unit.test_shioaji_broker import FakeAPI, make_order
+from tests.unit.test_shioaji_broker import FakeAPI, make_intent, make_order
 
 
 def test_shioaji_broker_submit_order_returns_partial_fill() -> None:
@@ -30,9 +30,8 @@ def test_shioaji_broker_submit_order_returns_partial_fill() -> None:
 
     broker = ShioajiBroker(api)
 
-    result = broker.submit_order(
-        make_order().model_copy(update={"quantity": 2})
-    )
+    order = make_order().model_copy(update={"quantity": 2})
+    result = broker.submit_order(order, intent=make_intent(order))
 
     assert isinstance(result, OrderSubmission)
     assert result.order.status == OrderStatus.PARTIALLY_FILLED

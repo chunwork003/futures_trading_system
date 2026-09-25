@@ -3,7 +3,7 @@ from types import SimpleNamespace
 import shioaji as sj
 
 from backtest.shioaji_broker import ShioajiBroker
-from tests.unit.test_shioaji_broker import FakeAPI, make_order
+from tests.unit.test_shioaji_broker import FakeAPI, make_intent, make_order
 
 
 def test_shioaji_get_fills_matches_deal_quantity() -> None:
@@ -25,7 +25,7 @@ def test_shioaji_get_fills_matches_deal_quantity() -> None:
     ]
 
     broker = ShioajiBroker(api)
-    submission = broker.submit_order(order)
+    submission = broker.submit_order(order, intent=make_intent(order))
 
     fills = submission.fills
 

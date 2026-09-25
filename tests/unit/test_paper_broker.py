@@ -4,6 +4,8 @@ import pytest
 
 from backtest.models import Direction, Order, OrderStatus, OrderType
 from backtest.paper_broker import PaperBroker
+from trading.account import PositionDirection
+from trading.execution import OrderIntent, PositionEffect
 
 
 def make_order(
@@ -36,6 +38,22 @@ def test_paper_broker_fills_pending_order() -> None:
     assert fill.requested_price == 20_000.0
     assert fill.price == 20_000.0
     assert fill.quantity == 1
+
+
+def test_paper_broker_accepts_optional_intent_without_changing_fill() -> None:
+    broker = PaperBroker()
+    intent = OrderIntent(
+        intent_id="INT-001",
+        correlation_id="CORR-001",
+        position_direction=PositionDirection.LONG,
+        position_effect=PositionEffect.OPEN,
+        quantity=1,
+    )
+
+    result = broker.submit_order(make_order(), intent=intent)
+
+    assert result.fills[0].price == 20_000.0
+    assert result.order.status == OrderStatus.FILLED
 
 
 def test_paper_broker_stores_filled_order() -> None:

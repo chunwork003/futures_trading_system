@@ -4,14 +4,15 @@ import shioaji as sj
 
 from backtest.models import OrderStatus
 from backtest.shioaji_broker import ShioajiBroker
-from tests.unit.test_shioaji_broker import FakeAPI, make_order
+from tests.unit.test_shioaji_broker import FakeAPI, make_intent, make_order
 
 
 def test_shioaji_get_order_syncs_fill_price_from_new_fill() -> None:
     api = FakeAPI(status=sj.OrderStatus.Submitted)
 
     broker = ShioajiBroker(api)
-    broker.submit_order(make_order())
+    order = make_order()
+    broker.submit_order(order, intent=make_intent(order))
 
     api.trade.status.status = sj.OrderStatus.Filled
     api.trade.status.deals = [

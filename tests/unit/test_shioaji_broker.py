@@ -7,6 +7,12 @@ import pytest
 from backtest.execution_result import OrderSubmission
 from backtest.models import Direction, Fill, Order, OrderStatus, OrderType
 from backtest.shioaji_broker import ShioajiBroker
+from trading.account import PositionDirection
+from trading.execution import (
+    OrderIntent,
+    PositionEffect,
+    PositionEffectValidationError,
+)
 
 
 class FakeAPI:
@@ -60,6 +66,21 @@ def make_order() -> Order:
     )
 
 
+def make_intent(
+    order: Order | None = None,
+    *,
+    effect: PositionEffect = PositionEffect.OPEN,
+) -> OrderIntent:
+    order = order or make_order()
+    return OrderIntent(
+        intent_id=f"INT-{order.order_id}",
+        correlation_id="CORR-001",
+        position_direction=PositionDirection(order.direction.value),
+        position_effect=effect,
+        quantity=order.quantity,
+    )
+
+
 def make_deal(
     price: float,
     quantity: int,
@@ -109,7 +130,8 @@ def test_submit_order_keeps_submitted_order_without_fill():
     api = FakeAPI(status=sj.OrderStatus.Submitted)
     broker = ShioajiBroker(api)
 
-    result = broker.submit_order(make_order())
+    order = make_order()
+    result = broker.submit_order(order, intent=make_intent(order))
 
     assert isinstance(result, OrderSubmission)
     assert result.order.order_id == "ENTRY-001"
@@ -157,10 +179,15 @@ def test_submit_order_marks_immediate_fills_as_delivered() -> None:
     broker = ShioajiBroker(api)
     order = make_order()
 
-    submission = broker.submit_order(order)
+    submission = broker.submit_order(order, intent=make_intent(order))
 
     assert len(submission.fills) == 2
 
     later_fills = broker.get_fills(order.order_id)
 
     assert later_fills == []
+
+
+def test_submit_order_requires_explicit_intent() -> None:
+    with pytest.raises(PositionEffectValidationError, match="requires explicit"):
+        ShioajiBroker(FakeAPI()).submit_order(make_order())

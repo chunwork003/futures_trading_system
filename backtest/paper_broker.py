@@ -3,6 +3,7 @@ from __future__ import annotations
 from backtest.broker import Broker
 from backtest.execution_result import OrderSubmission
 from backtest.models import Fill, Order, OrderStatus
+from trading.execution import OrderIntent
 
 
 class PaperBroker(Broker):
@@ -10,7 +11,12 @@ class PaperBroker(Broker):
         self.orders: dict[str, Order] = {}
         self._fills: dict[str, list[Fill]] = {}
 
-    def submit_order(self, order: Order) -> OrderSubmission:
+    def submit_order(
+        self,
+        order: Order,
+        *,
+        intent: OrderIntent | None = None,
+    ) -> OrderSubmission:
         if order.status != OrderStatus.PENDING:
             raise ValueError("Only PENDING orders can be submitted")
 

@@ -3,7 +3,7 @@ from types import SimpleNamespace
 import shioaji as sj
 
 from backtest.shioaji_broker import ShioajiBroker
-from tests.unit.test_shioaji_broker import FakeAPI, make_order
+from tests.unit.test_shioaji_broker import FakeAPI, make_intent, make_order
 
 
 def test_shioaji_broker_cancel_order_calls_shioaji() -> None:
@@ -19,7 +19,8 @@ def test_shioaji_broker_cancel_order_calls_shioaji() -> None:
 
     broker = ShioajiBroker(api)
 
-    broker.submit_order(make_order())
+    order = make_order()
+    broker.submit_order(order, intent=make_intent(order))
 
     trade = broker._trades["ENTRY-001"]
 

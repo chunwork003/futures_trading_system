@@ -4,7 +4,7 @@ import shioaji as sj
 
 from backtest.models import OrderStatus
 from backtest.shioaji_broker import ShioajiBroker
-from tests.unit.test_shioaji_broker import FakeAPI, make_order
+from tests.unit.test_shioaji_broker import FakeAPI, make_intent, make_order
 
 
 def test_shioaji_broker_get_order_updates_fill_price() -> None:
@@ -29,7 +29,8 @@ def test_shioaji_broker_get_order_updates_fill_price() -> None:
 
     broker = ShioajiBroker(api)
 
-    broker.submit_order(make_order())
+    order = make_order()
+    broker.submit_order(order, intent=make_intent(order))
 
     order = broker.get_order("ENTRY-001")
 

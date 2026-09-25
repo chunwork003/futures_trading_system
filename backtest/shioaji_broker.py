@@ -10,6 +10,7 @@ from backtest.models import Fill, Order
 from backtest.shioaji_contracts import resolve_future_contract
 from backtest.shioaji_fill import merge_fills, to_fills
 from backtest.shioaji_mapping import to_order_status, to_shioaji_order
+from trading.execution import OrderIntent, PositionEffectValidationError
 
 
 class ShioajiBroker(Broker):
@@ -20,22 +21,25 @@ class ShioajiBroker(Broker):
         self._trades: dict[str, Any] = {}
         self._delivered_fill_seqs: dict[str, set[str]] = {}
 
-    def submit_order(self, order: Order) -> OrderSubmission:
+    def submit_order(
+        self,
+        order: Order,
+        *,
+        intent: OrderIntent | None = None,
+    ) -> OrderSubmission:
+        if intent is None:
+            raise PositionEffectValidationError(
+                "ShioajiBroker requires explicit OrderIntent"
+            )
         contracts = self.api.Contracts
         contract = resolve_future_contract(
             contracts,
             order.contract or "",
         )
 
-        octype = (
-            sj.FuturesOCType.New
-            if order.order_id.startswith("ENTRY-")
-            else sj.FuturesOCType.Cover
-        )
-
         shioaji_order = to_shioaji_order(
             order,
-            octype,
+            intent,
         )
 
         trade = self.api.place_order(

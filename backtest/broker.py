@@ -4,11 +4,17 @@ from abc import ABC, abstractmethod
 
 from backtest.execution_result import OrderSubmission
 from backtest.models import Fill, Order
+from trading.execution import OrderIntent
 
 
 class Broker(ABC):
     @abstractmethod
-    def submit_order(self, order: Order) -> OrderSubmission:
+    def submit_order(
+        self,
+        order: Order,
+        *,
+        intent: OrderIntent | None = None,
+    ) -> OrderSubmission:
         """Submit an order and return its submission result."""
         raise NotImplementedError
 
