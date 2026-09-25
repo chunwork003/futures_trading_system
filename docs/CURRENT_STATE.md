@@ -81,25 +81,38 @@ GAP-BROKER-001：
 
 CLOSED / ACCEPTED。
 
-Accepted runtime commit：
+GAP-RECON-001：
 
-`b5d309cc91c6dbdf539c17a46662cdde46716224`
+IN_PROGRESS。
 
-Current mainline：
+Architecture / Design Freeze：
 
-GAP-RECON-001 Reconciliation Policy / Startup Readiness。
+COMPLETED for J610-J780。
 
-Current state：
+Runtime plan：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+- GAP-RECON-001A：Policy / Result / Case。
+- GAP-RECON-001B：Collection / Startup Readiness。
 
-Reason：
+Current runtime slice：
 
-Account observation foundation 與 explicit execution semantics 依賴已滿足；J600/J700 policy、case、collection matching 與 startup READY semantics 尚需 architecture / design freeze。
+GAP-RECON-001A。
+
+Status：
+
+READY_FOR_EXECUTION。
+
+Runtime Launch Gate：
+
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
 Runtime authorization：
 
 NOT_YET_AUTHORIZED。
+
+GAP-RECON-001B：
+
+BLOCKED_BY_001A_ACCEPTANCE。
 
 ## Existing Major Foundation
 
@@ -185,10 +198,10 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-40.31%。
+40.54%。
 
 Architecture Design Coverage：87.23%。
-Design Freeze Coverage：49.13%。
+Design Freeze Coverage：51.47%。
 Runtime Implementation：35.19%。
 Unit Verification：31.96%。
 Integration Verification：31.87%。
@@ -318,26 +331,28 @@ Status：
 
 COMPLETED / ACCEPTED。
 
-Runtime commit：
+Current Work Package：
 
-`b5d309cc91c6dbdf539c17a46662cdde46716224`
+GAP-RECON-001A Reconciliation Policy / Result / Case。
 
-Verification：
+Architecture Review：
 
-- targeted：49 passed。
-- compatibility：80 passed。
-- full regression：800 passed。
+COMPLETED。
 
-Next mainline candidate：
+Design Freeze：
 
-GAP-RECON-001 Reconciliation Policy / Startup Readiness。
+COMPLETED。
 
-Status：
+Work Package Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_EXECUTION。
+
+Runtime Launch Gate：
+
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 
 Runtime authorization：
 
 NOT_YET_AUTHORIZED。
 
-下一步先完成人工 architecture review / design freeze，再建立新的 ACTIVE Work Package。
+GAP-RECON-001B remains blocked until 001A runtime acceptance。

@@ -162,36 +162,37 @@ GAP-BROKER-001：
 
 CLOSED / ACCEPTED。
 
-Accepted runtime commit：
-
-`b5d309cc91c6dbdf539c17a46662cdde46716224`
-
-Completed execution semantics：
-
-- OrderIntent。
-- PositionEffect OPEN / REDUCE / CLOSE。
-- explicit Buy / Sell mapping。
-- explicit New / Cover mapping。
-- order-ID prefix inference removed。
-
 GAP-RECON-001：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+IN_PROGRESS。
 
-Next：
+Architecture / Design Freeze：
 
-- ReconciliationResult / case。
-- mismatch policy。
-- collection matching。
-- startup reconciliation。
-- readiness / halt / review state。
+J610-J780 COMPLETED。
+
+Runtime slice 001A：
+
+Policy / Result / Case。
+
+Status：
+
+READY_FOR_EXECUTION / runtime gate not yet released。
+
+Runtime slice 001B：
+
+Collection / Startup Readiness。
+
+Status：
+
+BLOCKED_BY_001A_ACCEPTANCE。
 
 Safety：
 
-- no silent overwrite。
-- no automatic corrective execution without explicit later authorization。
+- no silent repair。
+- no automatic corrective execution。
+- no persistence in reconciliation runtime slices。
 
-GAP-BROKER-002 remains after reconciliation foundation。
+M5 remains IN_PROGRESS until GAP-RECON-001B accepted。
 
 ---
 

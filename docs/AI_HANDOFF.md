@@ -638,10 +638,10 @@ Engineering leaves：
 
 Lifecycle-weighted completion：
 
-40.31%。
+40.54%。
 
 Architecture Design Coverage：87.23%。
-Design Freeze Coverage：49.13%。
+Design Freeze Coverage：51.47%。
 Runtime Implementation：35.19%。
 Unit Verification：31.96%。
 Integration Verification：31.87%。
@@ -691,33 +691,45 @@ Policy：
 - 維持 Level 3A。
 - 第 3 個穩定 runtime Work Package 完成後再評估 Level 3B。
 
-## 28. Next Mainline Candidate
+## 28. Current Active Candidate
 
-Last completed：
+Parent GAP：
 
-GAP-BROKER-001 Explicit OrderIntent / PositionEffect。
+GAP-RECON-001。
 
-Status：
+Architecture / Design Freeze：
 
-CLOSED / ACCEPTED。
+COMPLETED for J610-J780。
 
-Runtime commit：
+Current Work Package：
 
-`b5d309cc91c6dbdf539c17a46662cdde46716224`
-
-Next：
-
-GAP-RECON-001 Reconciliation Policy / Startup Readiness。
+GAP-RECON-001A Reconciliation Policy / Result / Case。
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+READY_FOR_EXECUTION。
 
 Runtime authorization：
 
 NOT_YET_AUTHORIZED。
 
-下一步先凍結 J600/J700 reconciliation policy / startup readiness semantics，再建立新的 ACTIVE Work Package。
+Runtime launch gate：
+
+`HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT`
+
+Recommended calibration：
+
+`GPT-5.6 Sol / 輕度`
+
+Implements：
+
+J610-J690。
+
+Next slice：
+
+GAP-RECON-001B J710-J780 remains BLOCKED_BY_001A_ACCEPTANCE。
+
+Parent GAP remains open until 001B acceptance。
 
 ## 29. Hard Stop
 

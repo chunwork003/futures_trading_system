@@ -2,7 +2,7 @@
 
 ## 專案與導航
 
-台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0 — Governance / Architecture Consolidation 已完成；目前主線為 M5 / GAP-RECON-001 Reconciliation / Startup Readiness architecture review。GAP-ACCOUNT-001 與 GAP-BROKER-001 已完成；人工集中架構決策與 deterministic documentation，Codex 依已核准 Work Package 執行 runtime implementation、tests、debugging 與 integration。
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。M0 — Governance / Architecture Consolidation 已完成；目前主線為 M5 / GAP-RECON-001A Reconciliation Policy / Result / Case。GAP-RECON-001 public semantics 已完成 design freeze，但 runtime launch gate 尚未解除；人工集中架構決策與 deterministic documentation，Codex 依已核准 Work Package 執行 runtime implementation、tests、debugging 與 integration。
 
 Primary source of truth 與必讀順序：
 

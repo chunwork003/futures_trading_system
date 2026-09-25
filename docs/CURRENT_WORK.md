@@ -31,44 +31,69 @@ Technical issues：
 
 ---
 
-# Next Mainline Candidate
+# Current Active Candidate
 
-ID：
+Parent GAP：
 
 GAP-RECON-001
 
+Work Package：
+
+GAP-RECON-001A
+
 Title：
 
-Reconciliation Policy / Startup Readiness
+Reconciliation Policy / Result / Case
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW
+READY_FOR_EXECUTION
 
 Priority：
 
 P1 MAINLINE
 
+Execution Mode：
+
+LEVEL_3A_BOUNDED
+
+Recommended Model：
+
+GPT-5.6 Sol
+
+Recommended Effort：
+
+輕度
+
+Architecture Review：
+
+COMPLETED
+
+Design Freeze：
+
+COMPLETED
+
 Runtime Authorization：
 
 NOT_YET_AUTHORIZED
 
-Dependencies：
+Runtime Launch Gate：
 
-- GAP-ACCOUNT-001：SATISFIED。
-- GAP-BROKER-001：SATISFIED。
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT
 
-Architecture work required before runtime：
+Implements：
 
-- ReconciliationResult。
-- ReconciliationCase。
-- STRICT_HALT / MANUAL_REVIEW operational semantics。
-- BROKER_AUTHORITATIVE / INTERNAL_AUTHORITATIVE boundaries。
-- UNKNOWN_EXTERNAL_STATE。
-- multi-position collection matching。
-- startup reconciliation。
-- readiness / HALT / REVIEW state。
-- no silent repair。
+- J610-J690。
+
+Does Not Implement：
+
+- J710-J780 startup readiness。
+- corrective execution。
+- persistence。
+
+Next slice：
+
+GAP-RECON-001B is BLOCKED_BY_001A_ACCEPTANCE。
 
 # Completed Work Package — GAP-BROKER-001
 
@@ -134,17 +159,18 @@ Corrective execution 仍未授權。
 
 Current order：
 
-1. GAP-RECON-001 architecture review / design freeze。
-2. prepare full ACTIVE Work Package。
-3. release runtime gate。
-4. bounded Level 3A runtime implementation。
-5. deterministic acceptance / closure。
-6. GAP-BROKER-002 capability matrix。
-7. GAP-08 persistence / recovery。
+1. commit / push GAP-RECON-001 architecture freeze + 001A Work Package。
+2. release GAP-RECON-001A runtime launch gate。
+3. execute GAP-RECON-001A bounded Level 3A runtime。
+4. deterministic 001A acceptance；parent GAP remains PARTIAL。
+5. prepare / execute GAP-RECON-001B。
+6. only after 001B acceptance close GAP-RECON-001。
+7. GAP-BROKER-002。
+8. GAP-08 persistence / recovery。
 
-Corrective reconciliation execution：
+Corrective action：
 
-即使 GAP-BROKER-001 已完成，也不得在 GAP-RECON-001 未明確授權的情況下自動 repair broker/internal state。
+001A / 001B 都不得 automatic broker repair、expected overwrite 或 corrective OrderIntent。
 
 # Mainline Queue
 
@@ -152,7 +178,7 @@ Corrective reconciliation execution：
 |---:|---|---|---|---|
 | 1 | GAP-ACCOUNT-001 | Broker Account / Position Sync foundation | CLOSED | GAP-07 |
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
-| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | READY_FOR_ARCHITECTURE_REVIEW | GAP-ACCOUNT-001 + GAP-BROKER-001 |
+| 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | IN_PROGRESS / 001A_READY_FOR_EXECUTION | GAP-ACCOUNT-001 + GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | PENDING | Broker mapping + execution semantics |
 | 5 | GAP-08 | Trading State Persistence & Recovery | BLOCKED | Reconciliation foundation |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |

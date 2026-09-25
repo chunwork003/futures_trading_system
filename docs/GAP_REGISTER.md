@@ -59,7 +59,7 @@ Mainline：
 | ID | Priority | Handling | Current Blocking | Scope | Status |
 |---|---|---|---|---|---|
 | GAP-ACCOUNT-001 | P1 | REVIEW_AT_CHECKPOINT | No | Broker Account / Position Sync | CLOSED |
-| GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | READY_FOR_ARCHITECTURE_REVIEW |
+| GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | IN_PROGRESS |
 | GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | No | Explicit OrderIntent / PositionEffect | CLOSED |
 | GAP-BROKER-002 | P2 | RECORD_AND_CONTINUE | No | Capability matrix / mapping semantics | PARTIAL |
 | GAP-08 | P1 | REVIEW_AT_CHECKPOINT | No | Trading State Persistence / Recovery | PENDING |
@@ -250,44 +250,58 @@ automatic corrective broker order。
 
 Status：
 
-READY_FOR_ARCHITECTURE_REVIEW。
+IN_PROGRESS。
 
-Dependencies：
+Architecture / Design Freeze：
 
-- Account foundation：SATISFIED。
-- Explicit execution semantics：SATISFIED。
+COMPLETED for J610-J780。
 
-Existing accepted foundation：
+Runtime decomposition：
 
-- pairwise expected / actual comparator。
-- MATCH。
-- INTERNAL_ONLY。
-- BROKER_ONLY。
-- CONTRACT_MISMATCH。
-- DIRECTION_MISMATCH。
-- QUANTITY_MISMATCH。
-- explicit non-comparable identity error。
+GAP-RECON-001A：
 
-Architecture review target：
+    Policy / Result / Case
 
-- ReconciliationResult。
-- ReconciliationCase。
+    J610 J620 J630 J640 J650 J660 J670 J680 J690
+
+Status：
+
+READY_FOR_EXECUTION。
+
+Runtime Launch Gate：
+
+HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
+
+GAP-RECON-001B：
+
+    Collection / Startup Readiness
+
+    J710 J720 J730 J740 J750 J760 J770 J780
+
+Status：
+
+BLOCKED_BY_001A_ACCEPTANCE。
+
+Frozen policies：
+
 - STRICT_HALT。
 - MANUAL_REVIEW。
-- BROKER_AUTHORITATIVE contract。
-- INTERNAL_AUTHORITATIVE contract。
-- UNKNOWN_EXTERNAL_STATE。
-- collection matching。
-- startup expected-state load。
-- startup broker observation。
-- startup reconciliation。
-- readiness decision。
-- HALT / REVIEW state。
-- no silent startup repair。
+- BROKER_AUTHORITATIVE。
+- INTERNAL_AUTHORITATIVE。
 
-No silent overwrite。
+Frozen safety：
 
-No automatic corrective order unless explicitly authorized by a later frozen Work Package。
+- no silent expected overwrite。
+- no automatic broker repair。
+- no automatic corrective OrderIntent。
+- no catch-all exception downgrade to UNKNOWN_EXTERNAL_STATE。
+- no persistence in GAP-RECON-001。
+
+Closure rule：
+
+001A acceptance alone does not close GAP-RECON-001。
+
+Parent GAP closes only after 001B acceptance。
 
 
 # GAP-08 Detail
