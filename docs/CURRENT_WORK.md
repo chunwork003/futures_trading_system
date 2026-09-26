@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：post-C25 CURRENT consistency verification，followed by a bounded VIBE V0 docs/workflow implementation task；no runtime leaf is authorized。
+Current execution action：create the bounded VIBE V0 docs/workflow implementation authorization package；no runtime leaf、Wave execution or VIBE materialization is currently authorized。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：POST_C25_GOVERNANCE_WORKFLOW_PREPARATION
+Current activity：VIBE_V0_DOCS_WORKFLOW_AUTHORIZATION_PLANNING
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -166,13 +166,19 @@ C02：
 
 NOT_AUTHORIZED。
 
+Post-C25 CURRENT consistency verification：
+
+COMPLETE。
+
 Next actual project action：
 
-POST-C25 CURRENT CONSISTENCY VERIFICATION。
+CREATE BOUNDED VIBE V0 DOCS/WORKFLOW IMPLEMENTATION AUTHORIZATION PACKAGE。
 
-Then：
+The next authorization remains docs/workflow-only。
 
-BOUNDED VIBE V0 DOCS/WORKFLOW IMPLEMENTATION TASK。
+VIBE/Wave materialization must wait for that bounded authorization。
+
+Runtime source modification remains NOT_AUTHORIZED。
 
 Pre-CODEX fixed sequence：
 

@@ -22,7 +22,7 @@ Runtime Authorization：NOT_AUTHORIZED。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current execution action：post-C25 CURRENT consistency verification，then bounded VIBE V0 docs/workflow implementation planning；no runtime leaf is authorized。
+Current execution action：create the bounded VIBE V0 docs/workflow implementation authorization package only；no runtime leaf、Wave execution or VIBE materialization is currently authorized。
 
 C25 is COMPLETE / VERIFIED and its bounded authorization is consumed。Migration 0004 exists but is NOT_EXECUTED；actual PostgreSQL、C02/C04/C05/C18/C21/V05/V07 and Wave execution remain NOT_AUTHORIZED。
 
@@ -56,7 +56,7 @@ This CURRENT AUTHORITY supersedes older R-04 OPEN wording elsewhere in historica
 
 目前唯一 canonical CURRENT governance projection 位於 `docs/CURRENT_STATE.md`。
 
-Original runtime candidate remains NOT ACCEPTED；latest completed correction runtime commit is 940f54c6d9b4ed7bf0e1d3c8627b49be3fdae495；Architecture Acceptance = HOLD；Runtime Authorization = BOUNDED_AUTHORIZED_C25_ONLY。
+Original runtime candidate remains NOT ACCEPTED；latest completed correction runtime commit is 940f54c6d9b4ed7bf0e1d3c8627b49be3fdae495；Architecture Acceptance = HOLD；Runtime Authorization = NOT_AUTHORIZED。
 
 R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map、Delta-to-Contract、materialized correction leaves、DAG 與 reweight 已記錄於 `docs/work/GAP08_CORRECTION_FREEZE.md`。
 

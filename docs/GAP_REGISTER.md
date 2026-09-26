@@ -534,9 +534,15 @@ Detailed authoritative record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Runtime Launch Gate：AUTHORIZED_FOR_C25_ONLY。
+Runtime Launch Gate：NOT_AUTHORIZED。
 
-Runtime Authorization：BOUNDED_AUTHORIZED_C25_ONLY。
+Runtime Authorization：NOT_AUTHORIZED。
+
+Post-C25 CURRENT consistency verification：COMPLETE。
+
+Next governance action：create a bounded VIBE V0 docs/workflow implementation authorization package。
+
+C02 remains the next runtime candidate only and is NOT_AUTHORIZED。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

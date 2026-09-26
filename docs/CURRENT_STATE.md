@@ -232,19 +232,85 @@ The existing 47.92% remains the recorded architecture-freeze lifecycle baseline�
 
 ### Current Planning / Execution Sequence
 
-1. C24 closure is recorded in `docs/work/GAP08_C24_CLOSURE.md`。
-2. Frozen P1 is COMPLETE：C01 -> C22 -> C11。
-3. Frozen P2 is C23 COMPLETE -> C24 COMPLETE -> C25 AUTHORIZED。
-4. Execute C25 only under `docs/work/GAP08_AUTHORIZATION_C25.md`。
-5. C25 enforces durable accepted revision before recovery-capable strategy delivery。
-6. C25 migrates recovery/audit references to exact MarketObservationRevisionId。
-7. C25 may create NEW migration 0004 but MUST NOT execute migrations。
-8. Actual PostgreSQL / V07 remain NOT_AUTHORIZED。
-9. C02、C05、C18、V05 and every other remaining leaf remain NOT_AUTHORIZED。
-10. Run targeted + compatibility + full regression。
-11. Commit / push / final report。
-12. STOP。
-A future authorization decision must identify at least：Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests and Stop Boundary。
+Post-C25 Planning Baseline：
+
+`eb8d4a3419d52fc4ee8e66641260baa96cfd7ec9`
+
+Post-C25 CURRENT consistency verification：
+
+COMPLETE。
+
+Frozen P1：
+
+    C01 COMPLETE
+        -> C22 COMPLETE
+        -> C11 COMPLETE
+
+P1 status：
+
+COMPLETE。
+
+Frozen P2：
+
+    C23 COMPLETE
+        -> C24 COMPLETE
+        -> C25 COMPLETE
+
+P2 status：
+
+COMPLETE。
+
+Correction-core progress：
+
+    27 / 113 complete / verified
+    86 remaining
+
+Current Runtime Authorization：
+
+NOT_AUTHORIZED。
+
+Current Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
+
+Next runtime candidate：
+
+C02 — BrokerAccount Revision Head + Exact Checkpoint。
+
+C02：
+
+NOT_AUTHORIZED。
+
+Next actual project action：
+
+CREATE BOUNDED VIBE V0 DOCS/WORKFLOW IMPLEMENTATION AUTHORIZATION PACKAGE。
+
+That package is documentation/workflow planning only and MUST NOT itself authorize：
+
+- C02 or any other runtime correction leaf。
+- Wave runtime execution。
+- production activation。
+- DB environment access。
+- migration execution。
+- broker network / paper broker / production broker I/O。
+
+After the bounded VIBE docs/workflow task is explicitly authorized：
+
+    materialize VIBE V0 core
+        + Wave W1-W10 accepted governance
+        + final amendments A1-A4
+        -> commit / push
+        -> establish post-VIBE Planning Baseline
+        -> build exact Wave-1 authorization package
+        -> verify execution coherence
+        -> explicit bounded Runtime Source Modification Authorization
+        -> CODEX START
+
+No step implicitly grants authority to the next step。
+
+A future runtime/source-modification authorization decision must identify at least：
+
+Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests、Git policy and Stop Boundary。
 
 A bare `AUTHORIZED` value is insufficient。
 
