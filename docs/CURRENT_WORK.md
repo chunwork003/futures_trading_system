@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：NONE；next planning action is bounded authorization review for C22。
+Current execution action：C22 — Canonical Time Evidence Correction only。
 
 ## Purpose
 
@@ -65,58 +65,58 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：C01_COMPLETE_AWAITING_NEXT_BOUNDED_AUTHORIZATION
+Current activity：C22_BOUNDED_RUNTIME_EXECUTION_AUTHORIZED
 
-Runtime Authorization：NOT_AUTHORIZED
+Runtime Authorization：BOUNDED_AUTHORIZED_C22_ONLY
 
-Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION
+Launch Gate：AUTHORIZED_FOR_C22_ONLY
 
 ## Latest Completed Correction Leaves
 
-V06 — Repository Persistence Baseline Verification：
-
-COMPLETE / PASS。
-
-Verification：
-
-14 passed。
-
-C01 — Expected State Authority Read Contract：
+V06 + C01：
 
 COMPLETE / VERIFIED。
 
-Runtime commit：
+Closure：
 
-`eb8e7bc8df4fc9b4fc6dfc9c62ce593a0b5f4ff9`
+`docs/work/GAP08_C01_CLOSURE.md`
 
-Verification：
+## Current Authorized Leaf Set
 
-- targeted：13 passed。
-- compatibility：58 passed。
-- full regression：944 passed / 4 skipped。
-- correction cycles：1。
+Authorization：
 
-Bounded rewrite：
+`docs/work/GAP08_AUTHORIZATION_C22.md`
 
-YES。
+Authorized：
 
-Executed / verified correction-core weight：
+- C22 — Canonical Time Evidence Correction。
 
-7 / 113。
+Allowed runtime：
 
-Remaining correction-core engineering weight：
+- `trading/execution.py`
+- `persistence/execution.py`
 
-106。
+Allowed tests：
 
-Current runtime authorization：
+- `tests/unit/test_operational_execution.py`
+- one new bounded C22 test file if needed
 
-NONE。
+Compatibility verification：
 
-Next candidate：
+- `tests/unit/test_event_ledger.py`
 
-C22 — Canonical Time Evidence Correction。
+Forbidden：
 
-C22 is NOT_AUTHORIZED。
+- migrations
+- actual PostgreSQL
+- broker/backtest
+- strategy/recovery expansion
+- C23+
+- all other correction leaves
+
+C22 completion：
+
+commit / push / report / STOP。
 
 Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 
@@ -149,7 +149,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：review and explicitly authorize C22 only if its bounded authorization envelope is accepted；no runtime work is currently authorized。
+Next action：execute C22 only；after commit/push/final report STOP。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 

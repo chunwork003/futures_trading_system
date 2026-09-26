@@ -6,7 +6,7 @@
 
 This ACTIVE file preserves Work Package context/history and does NOT independently grant Runtime Authorization。
 
-Runtime Authorization summary：NOT_AUTHORIZED。
+Runtime Authorization summary：BOUNDED_AUTHORIZED_C22_ONLY。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions、materialized leaves、DAG and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 are COMPLETE；no runtime correction leaf is currently authorized。
+V06 + C01 are COMPLETE；C22 is the only currently authorized runtime correction leaf。
 
 ## 1. Work Package ID
 
@@ -46,11 +46,11 @@ R-04A-H：DECIDED。
 
 R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-Runtime Authorization：NOT_AUTHORIZED。
+Runtime Authorization：BOUNDED_AUTHORIZED_C22_ONLY。
 
 Launch Gate：
 
-`HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION`
+`AUTHORIZED_FOR_C22_ONLY`
 
 Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
@@ -68,74 +68,71 @@ Expanded correction scope：ARCHITECTURALLY_CLOSED / MATERIALIZED / DEDUPLICATED
 
 ## COMPLETED BOUNDED WORK PACKAGE — GAP-08-CORR-01
 
-Authorization：
+V06 + C01：
 
-`docs/work/GAP08_AUTHORIZATION_V06_C01.md`
+COMPLETE / VERIFIED。
 
 Closure：
 
 `docs/work/GAP08_C01_CLOSURE.md`
 
-V06：
+## CURRENT AUTHORIZED BOUNDED WORK PACKAGE — GAP-08-CORR-02
 
-COMPLETE / PASS / 14 passed。
+Authorization：
 
-C01：
+`docs/work/GAP08_AUTHORIZATION_C22.md`
 
-COMPLETE / VERIFIED。
+Leaf：
 
-Runtime commit：
+C22 — Canonical Time Evidence Correction。
 
-`eb8e7bc8df4fc9b4fc6dfc9c62ce593a0b5f4ff9`
+Runtime scope：
 
-Verification：
+- `trading/execution.py`
+- `persistence/execution.py`
 
-- targeted：13 passed。
-- compatibility：58 passed。
-- full regression：944 passed / 4 skipped。
-- correction cycles：1。
+Test scope：
 
-Bounded rewrite：
+- `tests/unit/test_operational_execution.py`
+- optional new bounded C22 unit test
+- `tests/unit/test_event_ledger.py` compatibility verification
 
-YES — expected-state read path only。
+Required contract：
 
-No migration modified/executed。
+- OrderEvent received_at required。
+- occurred_at and received_at independently UTC-normalized。
+- mapping preserves both exactly。
+- no received_at=occurred_at fallback。
+- no now/utcnow fallback。
+- timestamp is not causal ordering authority。
+
+Forbidden：
+
+- migrations。
+- actual PostgreSQL。
+- broker/backtest。
+- strategy/recovery expansion。
+- other correction leaves。
+
+Stop：
+
+C22 commit -> push -> final report -> STOP。
+
+Current bounded execution：
+
+C22 only。
+
+All other C/V leaves remain NOT_AUTHORIZED。
+
+No migration execution。
 
 No actual PostgreSQL access。
 
 No broker I/O。
 
-STOP boundary：
+After C22：
 
-REACHED。
-
-Current runtime authorization：
-
-NONE。
-
-Next candidate：
-
-C22 — NOT_AUTHORIZED。
-
-Current bounded execution：
-
-NONE。
-
-V06 + C01 STOP boundary has been reached。
-
-No C02～C25、V01～V05 or V07 runtime/verification work is currently authorized。
-
-Next candidate：
-
-C22 — Canonical Time Evidence Correction。
-
-C22 requires a new explicit bounded authorization before modification。
-
-No migration execution is authorized。
-
-No actual PostgreSQL environment access is authorized。
-
-No broker I/O is authorized。
+commit / push / report / STOP。
 Do not rerun GAP-08EFGHI runtime candidate。
 
 Do not promote GAP-08 acceptance until correction runtime and final verification pass。

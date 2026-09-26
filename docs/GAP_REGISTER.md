@@ -346,7 +346,7 @@ Capability evidence does not authorize LIVE。
 
 # GAP-08 Detail
 
-Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_COMPLETE / NEXT_AUTHORIZATION_REQUIRED。
+Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_COMPLETE / C22_BOUNDED_AUTHORIZED。
 
 Accepted：
 
@@ -406,6 +406,30 @@ Next candidate：
 
 C22 — NOT_AUTHORIZED。
 
+Current bounded authorization：
+
+`docs/work/GAP08_AUTHORIZATION_C22.md`
+
+Authorized：
+
+C22 only。
+
+All other correction / verification leaves：
+
+NOT_AUTHORIZED。
+
+Migration execution：
+
+NOT_AUTHORIZED。
+
+Actual PostgreSQL access：
+
+NOT_AUTHORIZED。
+
+Broker I/O：
+
+NOT_AUTHORIZED。
+
 Reweight：
 
 - C01～C25 correction/implementation/enforcement：110。
@@ -443,9 +467,9 @@ Detailed authoritative record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Runtime Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION。
+Runtime Launch Gate：AUTHORIZED_FOR_C22_ONLY。
 
-Runtime Authorization：NOT_AUTHORIZED。
+Runtime Authorization：BOUNDED_AUTHORIZED_C22_ONLY。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

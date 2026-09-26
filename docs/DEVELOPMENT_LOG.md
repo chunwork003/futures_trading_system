@@ -29,6 +29,25 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 C22 Bounded Runtime Authorization
+
+- Parent baseline：`45381207d1ff4f2e8f02b42a3764e354c2074ac9`。
+- V06 + C01 remain COMPLETE / VERIFIED。
+- Authorized leaf：C22 only。
+- C22：Canonical Time Evidence Correction。
+- primary runtime scope：`trading/execution.py`、`persistence/execution.py`。
+- required semantic correction：remove `received_at=event.occurred_at` fallback。
+- canonical OrderEvent must carry explicit required occurred_at + received_at evidence。
+- both timestamps must normalize UTC independently。
+- no universal timestamp ordering invariant。
+- sequence/revision remains causal authority。
+- no datetime.now / datetime.utcnow fallback。
+- no migration modification/execution。
+- no actual PostgreSQL access。
+- no broker I/O。
+- all other leaves remain NOT_AUTHORIZED。
+- C22 completion boundary：commit / push / report / STOP。
+
 ### 2026-09-26 — GAP-08 V06 + C01 Runtime Closure
 
 - Authorization Baseline：`62d146108e132eb722a6c82c0be710d48327caf7`。
