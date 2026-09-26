@@ -6,7 +6,7 @@
 
 This document records planning/work state only and does NOT independently establish Runtime Authorization。
 
-Runtime Authorization summary：NOT_AUTHORIZED。
+Runtime Authorization summary：BOUNDED_AUTHORIZED_C25_ONLY。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：NONE；next planning action is bounded authorization review for C25。
+Current execution action：C25 — Durable-before-Strategy Delivery / Revision Ref Migration only。
 
 ## Purpose
 
@@ -65,9 +65,9 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：C24_COMPLETE_AWAITING_NEXT_BOUNDED_AUTHORIZATION
-Runtime Authorization：NOT_AUTHORIZED
-Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION
+Current activity：C25_BOUNDED_RUNTIME_EXECUTION_AUTHORIZED
+Runtime Authorization：BOUNDED_AUTHORIZED_C25_ONLY
+Launch Gate：AUTHORIZED_FOR_C25_ONLY
 ## Latest Completed Correction Leaves
 
 V06：
@@ -128,7 +128,7 @@ Correction-core progress：
 
 Runtime Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_C25_ONLY。
 
 Frozen P1：
 
@@ -148,33 +148,38 @@ Frozen P2：
         ->
     C24 COMPLETE
         ->
-    C25 NEXT
+    C25 AUTHORIZED
 
-Next candidate：
+Current leaf：
 
 C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
 
-C25：
+Authorization：
 
-NOT_AUTHORIZED。
+`docs/work/GAP08_AUTHORIZATION_C25.md`
 
-C02：
+Required：
 
-NOT_AUTHORIZED。
+- accepted revision durable before strategy delivery。
+- exact revision resolution。
+- StrategyStateSnapshot canonical revision reference。
+- ExecutionTriggerRef canonical revision reference。
+- legacy/canonical disagreement fail-closed。
+- no arbitrary legacy-ID backfill。
 
-V05：
+Migration creation：
 
-NOT_AUTHORIZED。
-
-V07：
-
-NOT_AUTHORIZED。
+AUTHORIZED_FOR_0004_ONLY。
 
 Migration execution：
 
 NOT_AUTHORIZED。
 
-Actual PostgreSQL：
+Actual PostgreSQL / V07：
+
+NOT_AUTHORIZED。
+
+C02 / C05 / C18 / V05：
 
 NOT_AUTHORIZED。
 
@@ -182,7 +187,7 @@ Broker / market-data I/O：
 
 NOT_AUTHORIZED。
 
-No runtime work may begin until a new explicit bounded authorization is committed。
+No other runtime leaf may begin。
 
 Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 
@@ -215,7 +220,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：review and explicitly authorize C25 only；no runtime work is currently authorized。
+Next action：execute C25 only；after commit/push/final report STOP。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 

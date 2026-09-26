@@ -31,8 +31,8 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 - Architecture Acceptance：HOLD。
 - Runtime Conformance：NOT ASSERTED。
 - Production Readiness：NOT ASSERTED。
-- Runtime Authorization：NOT_AUTHORIZED。
-- Runtime modification：NOT_AUTHORIZED。
+- Runtime Authorization：BOUNDED_AUTHORIZED_C25_ONLY。
+- Runtime modification：AUTHORIZED_FOR_C25_ONLY。
 - Broker I/O：NOT_AUTHORIZED。
 - DB migration execution：NOT_AUTHORIZED。
 - Level 3B：NOT_ENABLED。
@@ -118,37 +118,63 @@ NOT_AUTHORIZED。
 
 Runtime Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_C25_ONLY。
 
-No runtime leaf is currently authorized。
+Authorization：
 
-C25：
+`docs/work/GAP08_AUTHORIZATION_C25.md`
 
-NOT_AUTHORIZED。
+Authorized leaf：
 
-C02：
+C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
 
-NOT_AUTHORIZED。
+Authorized existing runtime：
 
-V05：
+- `trading/execution.py`
+- `persistence/market_observation.py`
+- `persistence/postgres/market_observation.py`
+- `persistence/strategy_state.py`
+- `persistence/postgres/strategy_state.py`
+- `persistence/recovery.py`
 
-NOT_AUTHORIZED。
+Authorized NEW runtime：
 
-V07：
+- `persistence/market_observation_delivery.py`
+- `persistence/postgres/migrations/0004_strategy_market_observation_revision_ref.sql`
 
-NOT_AUTHORIZED。
+Authorized existing tests：
+
+- `tests/unit/test_strategy_state_recovery.py`
+- `tests/unit/test_operational_execution.py`
+
+Authorized NEW tests：
+
+- `tests/unit/test_c25_market_observation_delivery.py`
+- `tests/unit/test_c25_revision_reference_migration.py`
+
+Migration creation：
+
+AUTHORIZED_FOR_0004_ONLY。
 
 Migration execution：
 
 NOT_AUTHORIZED。
 
-Actual PostgreSQL：
+Actual PostgreSQL / V07：
+
+NOT_AUTHORIZED。
+
+C02 / C05 / C18 / V05：
 
 NOT_AUTHORIZED。
 
 Broker / market-data I/O：
 
 NOT_AUTHORIZED。
+
+C25 completion boundary：
+
+commit / push / report / STOP。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -227,14 +253,17 @@ The existing 47.92% remains the recorded architecture-freeze lifecycle baseline�
 ### Current Planning / Execution Sequence
 
 1. C24 closure is recorded in `docs/work/GAP08_C24_CLOSURE.md`。
-2. Runtime Authorization is NOT_AUTHORIZED。
-3. Frozen P1 is COMPLETE：C01 -> C22 -> C11。
-4. Frozen P2 is C23 COMPLETE -> C24 COMPLETE -> C25 NEXT。
-5. Migration 0003 exists but has NOT been executed。
-6. Actual PostgreSQL / V07 remain NOT_EXECUTED / NOT_VERIFIED / NOT_AUTHORIZED。
-7. C25 is the next candidate only；it is NOT_AUTHORIZED。
-8. C02、V05 and every other remaining leaf remain NOT_AUTHORIZED。
-9. A new explicit bounded authorization is required before any runtime modification。
+2. Frozen P1 is COMPLETE：C01 -> C22 -> C11。
+3. Frozen P2 is C23 COMPLETE -> C24 COMPLETE -> C25 AUTHORIZED。
+4. Execute C25 only under `docs/work/GAP08_AUTHORIZATION_C25.md`。
+5. C25 enforces durable accepted revision before recovery-capable strategy delivery。
+6. C25 migrates recovery/audit references to exact MarketObservationRevisionId。
+7. C25 may create NEW migration 0004 but MUST NOT execute migrations。
+8. Actual PostgreSQL / V07 remain NOT_AUTHORIZED。
+9. C02、C05、C18、V05 and every other remaining leaf remain NOT_AUTHORIZED。
+10. Run targeted + compatibility + full regression。
+11. Commit / push / final report。
+12. STOP。
 A future authorization decision must identify at least：Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests and Stop Boundary。
 
 A bare `AUTHORIZED` value is insufficient。

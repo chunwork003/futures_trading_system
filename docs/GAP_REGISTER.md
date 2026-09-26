@@ -346,7 +346,7 @@ Capability evidence does not authorize LIVE。
 
 # GAP-08 Detail
 
-Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_C22_C11_C23_C24_COMPLETE / NEXT_AUTHORIZATION_REQUIRED。
+Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_C22_C11_C23_C24_COMPLETE / C25_BOUNDED_AUTHORIZED。
 
 Accepted：
 
@@ -435,7 +435,7 @@ C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
 
 C25：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_C25_ONLY。
 
 C02：
 
@@ -449,7 +449,11 @@ V07：
 
 NOT_AUTHORIZED。
 
-No correction / verification leaf is currently authorized。
+Only C25 is currently authorized；C02、C05、C18、V05、V07 and all other leaves remain NOT_AUTHORIZED。
+
+Migration creation：
+
+AUTHORIZED_FOR_0004_ONLY。
 
 Migration execution：
 
@@ -499,9 +503,9 @@ Detailed authoritative record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Runtime Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION。
+Runtime Launch Gate：AUTHORIZED_FOR_C25_ONLY。
 
-Runtime Authorization：NOT_AUTHORIZED。
+Runtime Authorization：BOUNDED_AUTHORIZED_C25_ONLY。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

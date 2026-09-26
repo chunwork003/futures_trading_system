@@ -29,6 +29,32 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 C25 Bounded Runtime Authorization
+
+- Parent / C24 Closure Baseline：`ce241cf01418c9d67a28bf112d0d906b45143c89`。
+- C24 remains COMPLETE / VERIFIED。
+- authorized leaf：C25 only。
+- C25：Durable-before-Strategy Delivery / Revision Ref Migration。
+- recovery-capable strategy delivery requires durable accepted MarketObservationRevision first。
+- strategy callback before successful UoW commit is forbidden。
+- exact accepted revision must be resolved by observation_revision_id。
+- `StrategyStateSnapshot.last_market_observation_revision_id` becomes canonical recovery authority。
+- `ExecutionTriggerRef.market_observation_revision_id` becomes canonical execution/audit observation authority。
+- arbitrary legacy `last_market_observation_id` may not remain recovery authority。
+- legacy compatibility may project canonical mor1 but may not become independent authority。
+- legacy/canonical mismatch must fail closed。
+- migration must not fabricate mor1 values from legacy BAR IDs。
+- NEW migration `0004_strategy_market_observation_revision_ref.sql` creation is authorized。
+- historical migrations 0001/0002/0003 remain immutable。
+- migration execution is NOT_AUTHORIZED。
+- actual PostgreSQL / V07 are NOT_AUTHORIZED。
+- C05 durable initial PENDING is NOT_AUTHORIZED。
+- C18 strategy readiness composition is NOT_AUTHORIZED。
+- R14 completeness is NOT implemented by C25。
+- K520 remains GAP-09-owned。
+- broker / market-data network I/O：NOT_AUTHORIZED。
+- completion boundary：commit / push / report / STOP。
+
 ### 2026-09-26 — GAP-08 C24 Runtime Closure
 
 - C24 Authorization Baseline：`2f1dc87d23965cb6954bc6ce9285ce63d3c5924a`。

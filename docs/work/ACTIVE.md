@@ -6,7 +6,7 @@
 
 This ACTIVE file preserves Work Package context/history and does NOT independently grant Runtime Authorization。
 
-Runtime Authorization summary：NOT_AUTHORIZED。
+Runtime Authorization summary：BOUNDED_AUTHORIZED_C25_ONLY。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions、materialized leaves、DAG and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 + C23 + C24 are COMPLETE；P1 is complete and no runtime leaf is currently authorized。
+V06 + C01 + C22 + C11 + C23 + C24 are COMPLETE；P1 is complete and C25 is the only currently authorized runtime leaf。
 
 ## 1. Work Package ID
 
@@ -46,11 +46,11 @@ R-04A-H：DECIDED。
 
 R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-Runtime Authorization：NOT_AUTHORIZED。
+Runtime Authorization：BOUNDED_AUTHORIZED_C25_ONLY。
 
 Launch Gate：
 
-`HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION`
+`AUTHORIZED_FOR_C25_ONLY`
 
 Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
@@ -265,17 +265,39 @@ STOP boundary：
 
 REACHED。
 
-## NEXT CANDIDATE — NOT AUTHORIZED
+## CURRENT AUTHORIZED BOUNDED WORK PACKAGE — GAP-08-CORR-06
 
-Frozen P2：
+Authorization：
 
-    C23 COMPLETE
-        ->
-    C24 COMPLETE
-        ->
-    C25 NEXT
+`docs/work/GAP08_AUTHORIZATION_C25.md`
 
-C25 — Durable-before-Strategy Delivery / Revision Ref Migration：
+Leaf：
+
+C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
+
+Dependency：
+
+C24 COMPLETE / VERIFIED。
+
+Required：
+
+- durable accepted MarketObservationRevision before recovery-capable strategy delivery。
+- exact revision-specific read/resolve。
+- StrategyStateSnapshot.last_market_observation_revision_id。
+- ExecutionTriggerRef.market_observation_revision_id。
+- arbitrary legacy ID no longer recovery authority。
+- legacy/canonical mismatch fail-closed。
+- bounded compatibility migration 0004。
+
+Authorized migration creation：
+
+`0004_strategy_market_observation_revision_ref.sql`
+
+Migration execution：
+
+NOT_AUTHORIZED。
+
+Actual PostgreSQL / V07：
 
 NOT_AUTHORIZED。
 
@@ -283,33 +305,29 @@ C02：
 
 NOT_AUTHORIZED。
 
+C05：
+
+NOT_AUTHORIZED。
+
+C18：
+
+NOT_AUTHORIZED。
+
 V05：
-
-NOT_AUTHORIZED。
-
-V07：
-
-NOT_AUTHORIZED。
-
-Current bounded execution：
-
-NONE。
-
-Runtime Authorization：
-
-NOT_AUTHORIZED。
-
-Migration execution：
-
-NOT_AUTHORIZED。
-
-Actual PostgreSQL：
 
 NOT_AUTHORIZED。
 
 Broker / market-data I/O：
 
 NOT_AUTHORIZED。
+
+Current bounded execution：
+
+C25 only。
+
+After C25：
+
+commit / push / report / STOP。
 Do not rerun GAP-08EFGHI runtime candidate。
 
 Do not promote GAP-08 acceptance until correction runtime and final verification pass。
