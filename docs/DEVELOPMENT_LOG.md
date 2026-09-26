@@ -29,6 +29,33 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 Wave-2 Execution Coherence Verification
+
+- planning baseline：`6a444f6a7ed2a586fe8b3f93632e87e25447cb96`。
+- created exact W2 package：`docs/work/GAP08_WAVE2_EXECUTION_PACKAGE.md`。
+- Wave ID：`GAP08-W2-EXECUTION-SAFETY`。
+- leaf set：C08 / C05 / C06。
+- weight：14。
+- dependency DAG：VERIFIED。
+- serialization：C08 -> C05 -> C06。
+- exact source/test/migration candidate scope：VERIFIED。
+- C08 canonical owner：`trading.execution.Order`。
+- C05 uses C04 AccountAuthorityCommit participant boundary for durable sequence-0 PENDING。
+- C06 establishes durable BrokerActionAttempt / Resolution / Head no-blind-retry seam。
+- Shioaji custom_field remains capability-gated；no production correlation claim。
+- proposed NEW migration：0006 only。
+- migrations 0001～0005：READ-ONLY。
+- migration execution：DENY。
+- actual PostgreSQL / V07：DENY。
+- broker network / paper / simulation / production I/O：DENY。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Runtime Source Modification Authorization：NOT_AUTHORIZED。
+- W2 execution：NOT_AUTHORIZED。
+- execution coherence：VERIFIED。
+- current accepted correction-core progress remains 46 / 113；67 remaining。
+- W2 weight 14 remains candidate / not credited。
+- next：separate explicit bounded W2 Runtime Source Modification Authorization decision。
+- CODEX runtime remains NOT_STARTED。
 ### 2026-09-26 — GAP-08 Wave-1 Final Closure
 
 - final W1 Runtime HEAD：`6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`。

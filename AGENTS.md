@@ -22,7 +22,7 @@ Runtime Authorization：NOT_AUTHORIZED。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current execution action：GAP08-W1 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。Next is W2 execution-package/coherence planning only；W2 source modification remains NOT_AUTHORIZED。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：GAP08-W1 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。W2 execution package/coherence is VERIFIED；next is an explicit bounded W2 source-modification authorization decision。W2 source modification remains NOT_AUTHORIZED until that separate authorization becomes effective。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 C25 is COMPLETE / VERIFIED and its bounded authorization is consumed。Migration 0004 exists but is NOT_EXECUTED；actual PostgreSQL、C05/C18/V05/V07、migration execution and runtime activation remain NOT_AUTHORIZED。C02/C04/C21/C03 source modification is bounded-authorized only under GAP08-W1。
 

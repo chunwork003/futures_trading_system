@@ -610,7 +610,7 @@ W2 weight：
 
 W2 execution coherence：
 
-NOT YET VERIFIED。
+VERIFIED。
 
 W2 source-modification authorization：
 
@@ -618,7 +618,7 @@ NOT_AUTHORIZED。
 
 Next governance action：
 
-build exact W2 execution package + verify W2 execution coherence。
+explicit bounded W2 Runtime Source Modification Authorization decision。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 
