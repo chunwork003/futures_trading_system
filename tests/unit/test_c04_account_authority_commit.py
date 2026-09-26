@@ -94,3 +94,14 @@ def test_same_commit_identity_with_different_semantics_is_explicit_conflict() ->
     )
     with pytest.raises(AccountAuthorityConflictError, match="conflicting"):
         AccountAuthorityCommitService(uow_factory=Uow, repository=lambda _:Repository(receipt=prior)).commit(mutation())
+
+
+def test_generic_commit_cannot_silently_initialize_revision_zero() -> None:
+    repo=Repository()
+    repo.head=AccountStateHead(
+        broker="SINOPAC", account_ref="A", current_revision=0, initialized=False
+    )
+    with pytest.raises(RuntimeError, match="explicit initialization"):
+        AccountAuthorityCommitService(
+            uow_factory=Uow, repository=lambda _:repo
+        ).commit(mutation(expected_head_revision=0))
