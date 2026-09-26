@@ -437,6 +437,19 @@ C25：
 
 BOUNDED_AUTHORIZED_C25_ONLY。
 
+C25 effective authorization：
+
+- `docs/work/GAP08_AUTHORIZATION_C25.md`
+- `docs/work/GAP08_AUTHORIZATION_C25_AMENDMENT_01.md`
+
+C25 Amendment 01 adds only：
+
+- `tests/unit/test_recovery_orchestration.py`
+
+Reason：
+
+historical recovery unit test still treats arbitrary `BAR-1` as READY authority；C25 requires exact mor1 revision authority。
+
 C02：
 
 NOT_AUTHORIZED。

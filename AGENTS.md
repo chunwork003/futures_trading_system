@@ -74,7 +74,7 @@ Historical bounded authorization source：`docs/work/GAP08_AUTHORIZATION_V06_C01
 
 Previous bounded execution closure：`docs/work/GAP08_C01_CLOSURE.md`。
 
-Latest bounded execution closure：`docs/work/GAP08_C24_CLOSURE.md`。Last consumed authorization：`docs/work/GAP08_AUTHORIZATION_C24.md`。Current bounded authorization：`docs/work/GAP08_AUTHORIZATION_C25.md`。
+Latest bounded execution closure：`docs/work/GAP08_C24_CLOSURE.md`。Last consumed authorization：`docs/work/GAP08_AUTHORIZATION_C24.md`。Current bounded authorization：`docs/work/GAP08_AUTHORIZATION_C25.md` + `docs/work/GAP08_AUTHORIZATION_C25_AMENDMENT_01.md`。
 4. `docs/GAP_REGISTER.md`：有序 GAP。
 5. `docs/AI_HANDOFF.md`：架構決策與交接。
 6. `docs/V1_SYSTEM_BLUEPRINT.md`：V1 工程施工圖 master index；正式 baseline 後由 ACTIVE 引用相關 Blueprint IDs。

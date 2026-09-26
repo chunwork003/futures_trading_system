@@ -124,6 +124,10 @@ Authorization：
 
 `docs/work/GAP08_AUTHORIZATION_C25.md`
 
+Scope amendment：
+
+`docs/work/GAP08_AUTHORIZATION_C25_AMENDMENT_01.md`
+
 Authorized leaf：
 
 C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
@@ -146,6 +150,7 @@ Authorized existing tests：
 
 - `tests/unit/test_strategy_state_recovery.py`
 - `tests/unit/test_operational_execution.py`
+- `tests/unit/test_recovery_orchestration.py`
 
 Authorized NEW tests：
 

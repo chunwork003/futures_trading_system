@@ -29,6 +29,24 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 C25 Authorization Scope Amendment 01
+
+- Base C25 Authorization Baseline：`40de893fe19f24567891733c14cd0c5e4c28532b`。
+- runtime execution had not begun。
+- precheck found `tests/unit/test_recovery_orchestration.py` outside original authorized test scope。
+- historical test still used arbitrary `BAR-1` as recovery authority。
+- frozen C25 requires exact `MarketObservationRevisionId` / mor1 authority。
+- arbitrary legacy observation IDs MUST NOT authorize READY。
+- Amendment 01 adds exactly one existing authorized test：`tests/unit/test_recovery_orchestration.py`。
+- C25 runtime file scope otherwise remains unchanged。
+- `tests/integration/test_operational_persistence.py` remains NOT_AUTHORIZED for modification。
+- migration creation remains AUTHORIZED_FOR_0004_ONLY。
+- migration execution remains NOT_AUTHORIZED。
+- actual PostgreSQL / V07 remain NOT_AUTHORIZED。
+- C02 / C05 / C18 / V05 remain NOT_AUTHORIZED。
+- broker / market-data I/O remains NOT_AUTHORIZED。
+- this amendment commit becomes the effective C25 runtime execution baseline。
+
 ### 2026-09-26 — GAP-08 C25 Bounded Runtime Authorization
 
 - Parent / C24 Closure Baseline：`ce241cf01418c9d67a28bf112d0d906b45143c89`。
