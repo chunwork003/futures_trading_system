@@ -29,6 +29,40 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 C22 Runtime Closure
+
+- C22 Authorization Baseline：`f63aaa3daa7d333e2027dcd1a61b7e4ac4f21d63`。
+- C22 Runtime Commit：`e242d188b0029863d6df1b29889327dce623bd98`。
+- C22 Canonical Time Evidence Correction：COMPLETE / VERIFIED。
+- canonical OrderEvent now requires explicit `occurred_at` + `received_at`。
+- both timestamps independently normalize to UTC。
+- OrderEvent -> TradingEvent preserves both timestamps exactly。
+- removed false `received_at=event.occurred_at` convenience fallback。
+- no `datetime.now()` / `datetime.utcnow()` fabrication。
+- timestamps remain evidence and do not replace sequence/revision/frontier causal authority。
+- targeted：21 passed。
+- event-ledger compatibility：13 passed。
+- full regression：955 passed / 4 skipped。
+- runtime correction cycles：0。
+- precheck tooling correction：1。
+- precheck issue：UTF-8 BOM caused AST scanner false block；scanner corrected to UTF-8-SIG before runtime modification。
+- migration modified：NO。
+- migration executed：NO。
+- actual PostgreSQL access：NO。
+- broker I/O：NO。
+- completed / verified correction-core weight：11 / 113。
+- remaining correction-core engineering weight：102。
+- global lifecycle metric remains 47.92% architecture-freeze baseline。
+- Architecture Acceptance remains HOLD。
+- complete GAP-08 Runtime Conformance remains NOT ASSERTED。
+- Production Readiness remains NOT ASSERTED。
+- C22 bounded runtime authorization is consumed / closed。
+- Runtime Authorization after closure：NOT_AUTHORIZED。
+- frozen DAG recheck：P1 C01 -> C22 -> C11。
+- next candidate：C11 Shioaji Status Mapping Correction。
+- C11 is NOT_AUTHORIZED。
+- C23 dependency is satisfied but remains queued behind C11。
+
 ### 2026-09-26 — GAP-08 C22 Bounded Runtime Authorization
 
 - Parent baseline：`45381207d1ff4f2e8f02b42a3764e354c2074ac9`。

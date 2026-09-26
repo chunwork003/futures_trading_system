@@ -31,67 +31,71 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 - Architecture Acceptance：HOLD。
 - Runtime Conformance：NOT ASSERTED。
 - Production Readiness：NOT ASSERTED。
-- Runtime Authorization：BOUNDED_AUTHORIZED_C22_ONLY。
-- Runtime modification：AUTHORIZED_FOR_C22_ONLY。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Runtime modification：NOT_AUTHORIZED。
 - Broker I/O：NOT_AUTHORIZED。
 - DB migration execution：NOT_AUTHORIZED。
 - Level 3B：NOT_ENABLED。
 
 ### Latest Completed Bounded Runtime Execution
 
-V06 + C01：
+Latest closure：
 
-COMPLETE / VERIFIED。
+`docs/work/GAP08_C22_CLOSURE.md`
 
-Closure：
+Completed / verified：
 
-`docs/work/GAP08_C01_CLOSURE.md`
+- V06 — Repository Persistence Baseline Verification。
+- C01 — Expected State Authority Read Contract。
+- C22 — Canonical Time Evidence Correction。
 
-Runtime commit：
+Latest runtime commit：
 
-`eb8e7bc8df4fc9b4fc6dfc9c62ce593a0b5f4ff9`
+`e242d188b0029863d6df1b29889327dce623bd98`
+
+C22 verification：
+
+- targeted：21 passed。
+- event-ledger compatibility：13 passed。
+- full regression：955 passed / 4 skipped。
+- runtime correction cycles：0。
+- precheck tooling correction：1。
 
 Completed / verified correction-core weight：
 
-7 / 113。
+11 / 113。
 
 Remaining correction-core engineering weight：
 
-106。
+102。
 
-### Current Bounded Runtime Authorization
-
-Authorization：
-
-`docs/work/GAP08_AUTHORIZATION_C22.md`
-
-Authorized Leaf Set：
-
-- C22 — Canonical Time Evidence Correction。
-
-Runtime modification：
-
-AUTHORIZED_FOR_C22_ONLY。
-
-Migration modification/execution：
+Runtime Authorization：
 
 NOT_AUTHORIZED。
 
-Actual PostgreSQL environment access：
+### Global DAG Recheck
 
-NOT_AUTHORIZED。
+Frozen P1 sequence：
 
-Broker I/O：
+    C01
+        -> C22
+        -> C11
 
-NOT_AUTHORIZED。
+C01：
 
-All other C/V leaves：
+COMPLETE。
 
-NOT_AUTHORIZED。
+C22：
 
-C22 completion boundary：
+COMPLETE。
 
-commit / push / final report / STOP。
+Next candidate：
+
+C11 — Shioaji Status Mapping Correction。
+
+C11 remains NOT_AUTHORIZED。
+
+C23 dependency on C22 is satisfied，but C23 remains queued behind P1 C11。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -163,18 +167,19 @@ Reweighted bounded correction core：
 - V07 actual PostgreSQL environment conformance：weight 4 conditional。
 - maximum mapped envelope when V07 is explicitly scoped：287。
 
-The Correction-Freeze checkpoint itself granted no runtime authority；the later bounded authorization is limited to V06 + C01 as recorded in `docs/work/GAP08_AUTHORIZATION_V06_C01.md`。
+The Correction-Freeze checkpoint itself granted no runtime authority；later bounded authorizations for V06+C01 and C22 were separately granted、executed and consumed。
 
 The existing 47.92% remains the recorded architecture-freeze lifecycle baseline；this docs-only planning checkpoint does not claim new acceptance percentage。
 
 ### Current Planning / Execution Sequence
 
-1. Use `docs/work/GAP08_AUTHORIZATION_C22.md` as the exact authorization envelope。
-2. Execute C22 only。
-3. Run targeted + event-ledger compatibility + full regression。
-4. Commit / push / final report。
-5. STOP。
-6. C11、C02 and every other leaf remain NOT_AUTHORIZED。
+1. C22 closure is recorded in `docs/work/GAP08_C22_CLOSURE.md`。
+2. Runtime Authorization is NOT_AUTHORIZED。
+3. Frozen P1 order recheck：C01 COMPLETE -> C22 COMPLETE -> C11 NEXT。
+4. C11 is the next candidate only；it is NOT_AUTHORIZED。
+5. C23 dependency is satisfied but remains queued behind P1 C11。
+6. A new explicit bounded authorization is required before runtime modification。
+7. C23、C02 and every other remaining leaf remain NOT_AUTHORIZED。
 A future authorization decision must identify at least：Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests and Stop Boundary。
 
 A bare `AUTHORIZED` value is insufficient。

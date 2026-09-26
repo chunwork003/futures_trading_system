@@ -10,11 +10,11 @@ Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C01_CLOSURE.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C22_CLOSURE.md`。
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：C22 — Canonical Time Evidence Correction only。
+Current execution action：NONE；next planning action is bounded authorization review for C11。
 
 ## Purpose
 
@@ -65,58 +65,77 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：C22_BOUNDED_RUNTIME_EXECUTION_AUTHORIZED
+Current activity：C22_COMPLETE_AWAITING_NEXT_BOUNDED_AUTHORIZATION
 
-Runtime Authorization：BOUNDED_AUTHORIZED_C22_ONLY
+Runtime Authorization：NOT_AUTHORIZED
 
-Launch Gate：AUTHORIZED_FOR_C22_ONLY
+Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION
 
 ## Latest Completed Correction Leaves
 
-V06 + C01：
+V06：
+
+COMPLETE / PASS。
+
+C01：
 
 COMPLETE / VERIFIED。
 
-Closure：
+C22：
 
-`docs/work/GAP08_C01_CLOSURE.md`
+COMPLETE / VERIFIED。
 
-## Current Authorized Leaf Set
+Latest closure：
 
-Authorization：
+`docs/work/GAP08_C22_CLOSURE.md`
 
-`docs/work/GAP08_AUTHORIZATION_C22.md`
+Latest correction runtime commit：
 
-Authorized：
+`e242d188b0029863d6df1b29889327dce623bd98`
 
-- C22 — Canonical Time Evidence Correction。
+C22 verification：
 
-Allowed runtime：
+- targeted：21 passed。
+- event-ledger compatibility：13 passed。
+- full regression：955 passed / 4 skipped。
+- runtime correction cycles：0。
 
-- `trading/execution.py`
-- `persistence/execution.py`
+Correction-core progress：
 
-Allowed tests：
+    11 / 113 complete / verified
+    102 remaining
 
-- `tests/unit/test_operational_execution.py`
-- one new bounded C22 test file if needed
+## Current Execution Gate
 
-Compatibility verification：
+Runtime Authorization：
 
-- `tests/unit/test_event_ledger.py`
+NOT_AUTHORIZED。
 
-Forbidden：
+Frozen P1 order：
 
-- migrations
-- actual PostgreSQL
-- broker/backtest
-- strategy/recovery expansion
-- C23+
-- all other correction leaves
+    C01 COMPLETE
+        ->
+    C22 COMPLETE
+        ->
+    C11 NEXT
 
-C22 completion：
+Next candidate：
 
-commit / push / report / STOP。
+C11 — Shioaji Status Mapping Correction。
+
+C11：
+
+NOT_AUTHORIZED。
+
+C23 dependency on C22：
+
+SATISFIED。
+
+C23 execution priority：
+
+QUEUED BEHIND P1 C11。
+
+No runtime work may begin until a new explicit bounded authorization is committed。
 
 Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 
@@ -149,7 +168,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：execute C22 only；after commit/push/final report STOP。
+Next action：review and explicitly authorize C11 only；no runtime work is currently authorized。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 
@@ -331,7 +350,7 @@ Sizing experiment：
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
 | 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | CLOSED / ACCEPTED | GAP-ACCOUNT-001 + GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | CLOSED / ACCEPTED | Broker mapping + execution semantics |
-| 5 | GAP-08 | Trading State Persistence & Recovery | IN_PROGRESS / C01_COMPLETE / HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION | GAP-08ABCD accepted |
+| 5 | GAP-08 | Trading State Persistence & Recovery | IN_PROGRESS / C01_C22_COMPLETE / HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION | GAP-08ABCD accepted |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |
 | 7 | GAP-09 | Incremental Feature / Market State | PENDING | Trading core stable |
 | 8 | GAP-SIM-001 | SimulationBroker / fault injection | PENDING | Execution port stable |
