@@ -22,9 +22,9 @@ Runtime Authorization：NOT_AUTHORIZED。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current execution action：GAP08-W1 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。W2 source candidate `ff57c216cf0b3a1d1c894442a4a14b8a210db7f4` is REVIEWER_HOLD；C06 RF01 is REQUIRED。Only the bounded RF01 correction in `docs/work/GAP08_WAVE2_AUTHORIZATION_AMENDMENT_01.md` is authorized。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：GAP08-W2 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED at `a9a8277afd4aeda5150d596b41597a179ad63570`。Next is exact P5 / provisional W3 execution-package and coherence planning for C07 -> C09 -> C10 only。No P5 runtime source modification is authorized。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
-C25 is COMPLETE / VERIFIED and its bounded authorization is consumed。Migration 0004 exists but is NOT_EXECUTED；actual PostgreSQL、C18/V05/V07、migration execution and runtime activation remain NOT_AUTHORIZED。W2 normal source execution has stopped；only C06 RF01 correction scope is currently bounded-authorized。
+W2 authorization + Amendment 01 are CONSUMED / CLOSED。Migration 0006 exists and was amended before execution；it remains NOT_EXECUTED。Actual PostgreSQL、V07、migration execution、broker I/O and runtime activation remain NOT_AUTHORIZED。
 
 Historical authority/checkpoint sections below are preserved for audit and are not current runtime authorization。
 
@@ -60,7 +60,7 @@ Original runtime candidate remains NOT ACCEPTED；latest completed correction ru
 
 R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map、Delta-to-Contract、materialized correction leaves、DAG 與 reweight 已記錄於 `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 + C23 + C24 + C25 + GAP08-W1 已完成並 accepted；correction-core progress = 46 / 113，remaining = 67。W2 remains candidate / not credited；reviewer RF01 is pending。Runtime Authorization 仍為 NOT_AUTHORIZED。
+V06 + C01 + C22 + C11 + C23 + C24 + C25 + GAP08-W1 + GAP08-W2 已完成並 accepted；correction-core progress = 60 / 113，remaining = 53。Next candidate is P5 C07 -> C09 -> C10 planning only。Runtime Authorization 仍為 NOT_AUTHORIZED。
 
 Primary source of truth 與必讀順序：
 
@@ -75,7 +75,7 @@ Historical bounded authorization source：`docs/work/GAP08_AUTHORIZATION_V06_C01
 
 Previous bounded execution closure：`docs/work/GAP08_C01_CLOSURE.md`。
 
-Latest bounded execution closure：`docs/work/GAP08_WAVE1_CLOSURE.md`。Current bounded source-modification authorization：`docs/work/GAP08_WAVE2_AUTHORIZATION_AMENDMENT_01.md`。W2 runtime candidate：`ff57c216cf0b3a1d1c894442a4a14b8a210db7f4`。Only reviewer RF01 is executable。
+Latest bounded execution closure：`docs/work/GAP08_WAVE2_CLOSURE.md`。Final W2 Runtime HEAD：`a9a8277afd4aeda5150d596b41597a179ad63570`。Current bounded source-modification authorization：NONE。W2 authorization + Amendment 01 are CONSUMED / CLOSED。
 4. `docs/GAP_REGISTER.md`：有序 GAP。
 5. `docs/AI_HANDOFF.md`：架構決策與交接。
 6. `docs/V1_SYSTEM_BLUEPRINT.md`：V1 工程施工圖 master index；正式 baseline 後由 ACTIVE 引用相關 Blueprint IDs。

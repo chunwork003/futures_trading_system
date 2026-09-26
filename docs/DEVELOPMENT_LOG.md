@@ -29,6 +29,31 @@
 
 ## Chronological Log
 
+### 2026-09-27 — GAP-08 Wave-2 Final Closure
+
+- Wave：`GAP08-W2-EXECUTION-SAFETY`。
+- final W2 Runtime HEAD：`a9a8277afd4aeda5150d596b41597a179ad63570`。
+- first-pass commits：C08 `9eb75535b99eef15f67fe437ee908c582c728491`；C05 `ab941c91b67a09b6649a4f89c44e4986062fc1d8`；C06 `ff57c216cf0b3a1d1c894442a4a14b8a210db7f4`。
+- reviewer correction RF01：`a9a8277afd4aeda5150d596b41597a179ad63570`。
+- RF01 PASS：only verified NOT_DISPATCHED restores same Order/action automatic invocation eligibility；SUCCEEDED/FAILED become resolved-but-blocked。
+- C08 / C05 / C06：COMPLETE / VERIFIED / ACCEPTED。
+- W2：COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
+- accepted W2 weight：14。
+- correction-core progress：60 / 113 complete / verified；53 remaining。
+- first-pass executor verification：C08 20 targeted / 1124 full；C05 46 targeted / 1129 full；C06 51 targeted / 1142 full；Wave 79 targeted / 1142 full。
+- RF01 executor verification：61 targeted；1149 passed / 4 skipped full regression；`git diff --check` PASS。
+- GitHub reviewer compare confirms RF01 exact one-commit/five-file authorized scope and `master == a9a8277...`。
+- migration 0006：CREATED / AMENDED BEFORE EXECUTION / NOT EXECUTED。
+- migrations 0001～0005：unchanged by RF01。
+- actual PostgreSQL / V07：NOT EXECUTED / NOT VERIFIED / NOT_AUTHORIZED。
+- broker network / paper / Shioaji simulation / production I/O：NO。
+- Runtime Source Modification Authorization：CONSUMED / CLOSED。
+- canonical Runtime Authorization：NOT_AUTHORIZED。
+- user-reported first-pass 5HR quota observation：41%；RF01：12%；observational only。
+- next dependency-coherent candidate：P5 Broker Recovery Evidence，C07 -> C09 -> C10，weight 15。
+- P5 / W3 execution coherence：NOT YET VERIFIED。
+- P5 / W3 source modification：NOT_AUTHORIZED。
+- next：build exact P5 / W3 execution package and verify execution coherence only；STOP before runtime authorization。
 ### 2026-09-27 — GAP-08 Wave-2 Reviewer Correction RF01 Authorization
 
 - reviewer input baseline：`ff57c216cf0b3a1d1c894442a4a14b8a210db7f4`。

@@ -612,29 +612,51 @@ W2 execution coherence：
 
 VERIFIED。
 
-W2 implementation candidate：
+W2 final Runtime HEAD：
 
-`ff57c216cf0b3a1d1c894442a4a14b8a210db7f4`
+`a9a8277afd4aeda5150d596b41597a179ad63570`
 
 W2 reviewer acceptance：
 
-HOLD / RF01_REQUIRED。
+COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
 
-W2 source-modification authorization：
+Closure：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W2_RF01。
+`docs/work/GAP08_WAVE2_CLOSURE.md`
 
-RF01 authorization：
+Accepted leaves：
 
-`docs/work/GAP08_WAVE2_AUTHORIZATION_AMENDMENT_01.md`
+C08 / C05 / C06。
 
-RF01：
+Accepted W2 weight：
 
-Only verified NOT_DISPATCHED may restore same Order/action invocation eligibility；SUCCEEDED/FAILED remain automatic-reinvoke blocked。
+14。
+
+W2 source-modification authorization + Amendment 01：
+
+CONSUMED / CLOSED。
+
+Accepted / verified correction-core progress：
+
+60 / 113。
+
+Remaining：
+
+53。
+
+Next dependency-coherent candidate：
+
+C07 -> C09 -> C10。
+
+Weight：15。
+
+Execution coherence：NOT YET VERIFIED。
+
+Runtime Source Modification Authorization：NOT_AUTHORIZED。
 
 Next governance action：
 
-CODEX RF01 correction only。
+build exact P5 / W3 execution package and verify execution coherence only。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

@@ -387,27 +387,35 @@ VERIFIED。
 
 W2 source-modification authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W2_RF01。
+CONSUMED / CLOSED。
 
-W2 runtime candidate：
+W2 final Runtime HEAD：
 
-`ff57c216cf0b3a1d1c894442a4a14b8a210db7f4`
+`a9a8277afd4aeda5150d596b41597a179ad63570`
 
 Reviewer status：
 
-HOLD / RF01_REQUIRED。
+COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
 
-RF01 authorization：
+Closure：
 
-`docs/work/GAP08_WAVE2_AUTHORIZATION_AMENDMENT_01.md`
+`docs/work/GAP08_WAVE2_CLOSURE.md`
+
+Accepted correction-core progress：
+
+60 / 113 complete / verified。
+
+Remaining：
+
+53。
 
 Next actual work：
 
-CODEX RF01 only；C08/C05 read-only。
+build exact P5 / W3 execution package for C07 -> C09 -> C10 and verify execution coherence only。
 
 STOP：
 
-after RF01 verification/push；return to reviewer，do not start W3 or governance closure。
+do not start C07 runtime before separate bounded authorization。
 
 ## 4. Recommended Model
 

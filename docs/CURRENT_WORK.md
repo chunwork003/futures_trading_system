@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W1 is CLOSED / ACCEPTED；W2 source candidate `ff57c216cf0b3a1d1c894442a4a14b8a210db7f4` is under reviewer HOLD due C06 RF01。Only RF01 correction is authorized by `docs/work/GAP08_WAVE2_AUTHORIZATION_AMENDMENT_01.md`。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：W2 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED at `a9a8277afd4aeda5150d596b41597a179ad63570`。Next is P5 / provisional W3 execution-package and coherence planning for C07 -> C09 -> C10 only；source modification remains NOT_AUTHORIZED。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：WAVE_2_REVIEWER_CORRECTION_RF01
+Current activity：P5_W3_EXECUTION_COHERENCE_PLANNING
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -149,7 +149,7 @@ VERIFIED。
 
 W2 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W2_RF01。
+CONSUMED / CLOSED。
 
 Migration execution：
 
@@ -163,23 +163,35 @@ Broker I/O / Production Activation：
 
 NOT_AUTHORIZED。
 
-W2 implementation candidate：
+W2 final Runtime HEAD：
 
-`ff57c216cf0b3a1d1c894442a4a14b8a210db7f4`
+`a9a8277afd4aeda5150d596b41597a179ad63570`
 
-Reviewer finding：
+W2：
 
-RF01 — SUCCEEDED/FAILED resolution must not restore same Order/action invocation eligibility。
+COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
 
-RF01 authorization：
+Closure：
 
-`docs/work/GAP08_WAVE2_AUTHORIZATION_AMENDMENT_01.md`
+`docs/work/GAP08_WAVE2_CLOSURE.md`
 
-Next actual project action：
+Accepted correction-core progress：
 
-CODEX RF01 correction only。
+60 / 113。
 
-C08/C05 remain read-only；canonical Runtime Authorization remains NOT_AUTHORIZED。
+Remaining：
+
+53。
+
+Next dependency-coherent candidate：
+
+C07 -> C09 -> C10。
+
+Weight：15。
+
+Execution coherence：NOT YET VERIFIED。
+
+Runtime Source Modification Authorization：NOT_AUTHORIZED。
 
 # Completed Work Package — GAP-BROKER-002
 
