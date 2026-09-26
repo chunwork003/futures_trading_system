@@ -364,11 +364,27 @@ Detailed workflow owner：
 
 `docs/CODEX_EXECUTION_WORKFLOW.md`
 
+Wave-1 execution package：
+
+`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
+
+Dependency DAG：
+
+VERIFIED。
+
+Execution Coherence：
+
+VERIFIED。
+
 Next actual work：
 
-build the exact Wave-1 authorization package and verify execution coherence only。
+create the separate explicit bounded Wave-1 Runtime Source Modification Authorization checkpoint only。
 
 Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
+
+Runtime Authorization：
 
 NOT_AUTHORIZED。
 

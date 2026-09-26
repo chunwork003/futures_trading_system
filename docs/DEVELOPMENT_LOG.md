@@ -29,6 +29,42 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 Wave-1 Execution Coherence Verification
+
+- input Post-VIBE Planning Baseline：`f34b6d4c0b4b52e5ce686baba9139cfc19745a1b`。
+- created exact W1 package：`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`。
+- Wave ID：`GAP08-W1-ACCOUNT-AUTHORITY`。
+- leaf set：C02 / C04 / C21 / C03。
+- weight：19。
+- dependency DAG：VERIFIED。
+- single-agent serialization：C02 -> C04 -> C21 -> C03。
+- C04 -> C21 is serialization only；not architecture dependency。
+- exact source/test/migration write scope：VERIFIED。
+- side-effect envelope：VERIFIED。
+- rewrite compatibility：VERIFIED。
+- protected-history compatibility：VERIFIED。
+- acceptance/test compatibility：VERIFIED。
+- human-decision barrier：VERIFIED；production-only unresolved capability remains default-deny。
+- C02 rewrite：ALLOWED。
+- C04 rewrite：PREFERRED。
+- C21 rewrite：EXTEND。
+- C03 rewrite：ALLOWED。
+- proposed NEW migration：0005 only。
+- migration execution：DENY。
+- actual PostgreSQL / V07：DENY。
+- broker network / paper / production I/O：DENY。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Runtime Source Modification Authorization：NOT_AUTHORIZED。
+- Wave execution：NOT_AUTHORIZED。
+- Git candidate policy：per-leaf commit / wave-end push / force-push DENY。
+- remote divergence：STOP / re-resolution。
+- semantic correction budget：maximum 2 scope-internal cycles per leaf。
+- tooling retry：non-semantic but finite；same-class recurrence requires root-cause reclassification / STOP。
+- context model：Wave Shared Context + Leaf Delta Context。
+- W2-W5 remain dependency-coherent candidate only；execution coherence not yet verified。
+- next checkpoint：P5 explicit bounded Wave-1 Runtime Source Modification Authorization。
+- CODEX runtime remains NOT_STARTED。
+
 ### 2026-09-26 — VIBE V0 / CODEX Workflow Materialization
 
 - P3 effective authorization baseline：`4e65d095cb285a5f7c3e310be1d9f676af4cd452`。

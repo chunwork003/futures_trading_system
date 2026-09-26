@@ -158,11 +158,23 @@ Detailed workflow owner：
 
 `docs/CODEX_EXECUTION_WORKFLOW.md`
 
-Next actual project action：
+Wave-1 execution package：
 
-build the exact Wave-1 authorization package and verify execution coherence。
+`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
 
-Runtime Source Modification Authorization：
+W1 Dependency DAG：
+
+VERIFIED。
+
+W1 Execution Coherence：
+
+VERIFIED。
+
+W1 Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
+
+Runtime Authorization：
 
 NOT_AUTHORIZED。
 
@@ -173,6 +185,10 @@ NOT_AUTHORIZED。
 CODEX Wave execution：
 
 NOT_AUTHORIZED。
+
+Next actual project action：
+
+create the separate explicit bounded Wave-1 Runtime Source Modification Authorization checkpoint。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -327,9 +343,24 @@ Runtime Source Modification Authorization：
 
 NOT_AUTHORIZED。
 
-Current Wave planning status：
+Wave-1 execution package：
 
-DEPENDENCY-COHERENT CANDIDATE WAVE PLAN。
+`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
+
+Wave ID：
+
+`GAP08-W1-ACCOUNT-AUTHORITY`
+
+Exact leaf set：
+
+    C02
+        -> C04
+        -> C21
+        -> C03
+
+Architecture note：
+
+C21 is an independent V06-dependent sibling before C03；the C04 -> C21 ordering is single-agent serialization only。
 
 Dependency DAG：
 
@@ -337,34 +368,47 @@ VERIFIED。
 
 Execution Coherence：
 
-NOT YET VERIFIED。
+VERIFIED。
 
-Execution Authorization：
+Verified dimensions：
 
-NOT_AUTHORIZED。
-
-Next actual project action：
-
-BUILD EXACT WAVE-1 AUTHORIZATION PACKAGE + VERIFY W1 EXECUTION COHERENCE。
-
-Required W1 authorization review：
-
-- exact leaves。
-- exact file/symbol read/write/protected scope。
+- exact file/symbol scope。
 - side-effect envelope。
-- rewrite policies。
-- protected history compatibility。
+- rewrite policy compatibility。
+- protected-history compatibility。
 - acceptance/test compatibility。
-- hidden human decision barriers。
+- human decision barriers。
 - correction/retry policy。
 - Git commit/push policy。
 - remote divergence guard。
 - reviewer/reauthorization barrier。
 - STOP conditions。
 
-Only after that separate checkpoint may an explicit bounded Runtime Source Modification Authorization be decided。
+Runtime Authorization：
 
-CODEX runtime execution remains NOT_AUTHORIZED。
+NOT_AUTHORIZED。
+
+Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
+
+Execution Authorization：
+
+NOT_AUTHORIZED。
+
+W2-W5：
+
+remain dependency-coherent candidates only；their execution coherence has NOT been verified。
+
+Next actual project action：
+
+P5 — CREATE EXPLICIT BOUNDED WAVE-1 RUNTIME SOURCE MODIFICATION AUTHORIZATION CHECKPOINT。
+
+Only that later explicit checkpoint may grant：
+
+`BOUNDED_AUTHORIZED_FOR_GAP08_W1`
+
+CODEX runtime execution remains NOT_AUTHORIZED until P5 succeeds。
 
 No step implicitly grants authority to the next step。
 

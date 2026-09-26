@@ -556,25 +556,37 @@ Detailed workflow owner：
 
 `docs/CODEX_EXECUTION_WORKFLOW.md`
 
-Candidate Wave status：
+Wave-1 execution package：
 
-DEPENDENCY-COHERENT CANDIDATE WAVE PLAN。
+`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
 
-Dependency DAG：
+Wave-1 status：
+
+EXECUTION_COHERENCE_VERIFIED / SOURCE_MODIFICATION_NOT_AUTHORIZED。
+
+Wave-1 dependency DAG：
 
 VERIFIED。
 
-Execution Coherence：
+Wave-1 execution coherence：
 
-TO BE VERIFIED DURING EXACT WAVE AUTHORIZATION。
+VERIFIED。
 
-Execution Authorization：
+Wave-1 execution authorization：
 
 NOT_AUTHORIZED。
 
+W2-W5 status：
+
+DEPENDENCY-COHERENT CANDIDATE ONLY。
+
+W2-W5 execution coherence：
+
+NOT YET VERIFIED。
+
 Next governance action：
 
-build exact Wave-1 authorization package + verify W1 execution coherence。
+P5 — create explicit bounded Wave-1 Runtime Source Modification Authorization checkpoint。
 
 Runtime Authorization：
 

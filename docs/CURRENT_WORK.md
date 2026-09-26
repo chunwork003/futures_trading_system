@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：build the exact Wave-1 authorization package and verify execution coherence；runtime source modification、C02 and Wave execution remain NOT_AUTHORIZED。
+Current execution action：create the explicit Wave-1 Runtime Source Modification Authorization checkpoint from the verified W1 execution package；C02 and Wave execution remain NOT_AUTHORIZED until that separate checkpoint succeeds。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：WAVE_1_AUTHORIZATION_PLANNING
+Current activity：WAVE_1_SOURCE_MODIFICATION_AUTHORIZATION_PLANNING
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -190,17 +190,25 @@ Work Package / Wave schema：
 
 `docs/work/WORK_PACKAGE_TEMPLATE.md`
 
-Current Wave candidate status：
+Wave-1 execution package：
 
-DEPENDENCY-COHERENT ONLY。
+`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
+
+Wave ID：
+
+`GAP08-W1-ACCOUNT-AUTHORITY`
+
+Authorized-leaf candidate set：
+
+C02 / C04 / C21 / C03。
+
+Dependency DAG：
+
+VERIFIED。
 
 Execution Coherence：
 
-TO BE VERIFIED DURING WAVE-1 AUTHORIZATION。
-
-Next actual project action：
-
-BUILD EXACT WAVE-1 AUTHORIZATION PACKAGE + VERIFY EXECUTION COHERENCE。
+VERIFIED。
 
 Runtime Authorization：
 
@@ -213,6 +221,10 @@ NOT_AUTHORIZED。
 C02 / Wave runtime execution：
 
 NOT_AUTHORIZED。
+
+Next actual project action：
+
+CREATE EXPLICIT BOUNDED WAVE-1 RUNTIME SOURCE MODIFICATION AUTHORIZATION CHECKPOINT。
 
 Pre-CODEX fixed sequence：
 

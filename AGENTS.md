@@ -22,7 +22,7 @@ Runtime Authorization：NOT_AUTHORIZED。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current execution action：build the exact Wave-1 authorization package and verify execution coherence；runtime source modification、C02 and Wave execution remain NOT_AUTHORIZED。
+Current execution action：create the explicit Wave-1 Runtime Source Modification Authorization checkpoint from `docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`；C02 and Wave execution remain NOT_AUTHORIZED until that separate checkpoint is committed。
 
 C25 is COMPLETE / VERIFIED and its bounded authorization is consumed。Migration 0004 exists but is NOT_EXECUTED；actual PostgreSQL、C02/C04/C05/C18/C21/V05/V07 and Wave execution remain NOT_AUTHORIZED。
 
