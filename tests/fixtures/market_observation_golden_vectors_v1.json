@@ -1,0 +1,259 @@
+{
+  "schema": "market-observation-golden-vectors-v1",
+  "identity_schema_version": 1,
+  "content_schema_version": 1,
+  "vectors": [
+    {
+      "name": "listed_contract_utc",
+      "identity": {
+        "instrument_id": 1,
+        "contract_id": 101,
+        "requires_contract_id": true,
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00+00:00"
+      },
+      "content": {
+        "open": "20000.00",
+        "high": "20050.0",
+        "low": "19980",
+        "close": "20030.000",
+        "volume": 1250,
+        "amount": "25037500.00",
+        "trade_count": 987,
+        "tick_count": null,
+        "trade_date": "2026-09-25",
+        "session_ref": "DAY"
+      },
+      "expected": {
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00.000000Z",
+        "content_fingerprint": "3d635a1455ace05c7c991dbed5bb143596cd1f44b91b841143c405af431e6e07",
+        "revision_id": "mor1_930ba1f65c583484d896878463cc82c02c22c5ecd4c4e8c09d81b1ce7d4a05e4"
+      }
+    },
+    {
+      "name": "equivalent_timezone_and_decimal",
+      "identity": {
+        "instrument_id": 1,
+        "contract_id": 101,
+        "requires_contract_id": true,
+        "timeframe": "60s",
+        "interval_start_at": "2026-09-25T09:00:00+08:00"
+      },
+      "content": {
+        "open": "20000",
+        "high": "20050.0000",
+        "low": "19980.0",
+        "close": "20030",
+        "volume": 1250,
+        "amount": "25037500.000",
+        "trade_count": 987,
+        "tick_count": null,
+        "trade_date": "2026-09-25",
+        "session_ref": "DAY"
+      },
+      "expected": {
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00.000000Z",
+        "content_fingerprint": "3d635a1455ace05c7c991dbed5bb143596cd1f44b91b841143c405af431e6e07",
+        "revision_id": "mor1_930ba1f65c583484d896878463cc82c02c22c5ecd4c4e8c09d81b1ce7d4a05e4"
+      }
+    },
+    {
+      "name": "decimal_trailing_zero_replay",
+      "identity": {
+        "instrument_id": 1,
+        "contract_id": 101,
+        "requires_contract_id": true,
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00+00:00"
+      },
+      "content": {
+        "open": "20000.000000",
+        "high": "20050.0",
+        "low": "19980",
+        "close": "20030.000000",
+        "volume": 1250,
+        "amount": "25037500.000000",
+        "trade_count": 987,
+        "tick_count": null,
+        "trade_date": "2026-09-25",
+        "session_ref": "DAY"
+      },
+      "expected": {
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00.000000Z",
+        "content_fingerprint": "3d635a1455ace05c7c991dbed5bb143596cd1f44b91b841143c405af431e6e07",
+        "revision_id": "mor1_930ba1f65c583484d896878463cc82c02c22c5ecd4c4e8c09d81b1ce7d4a05e4"
+      }
+    },
+    {
+      "name": "negative_zero_normalization",
+      "identity": {
+        "instrument_id": 1,
+        "contract_id": 102,
+        "requires_contract_id": true,
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:01:00+00:00"
+      },
+      "content": {
+        "open": "-0.000",
+        "high": "1.0",
+        "low": "-0",
+        "close": "0.0000",
+        "volume": 0,
+        "amount": "-0.00",
+        "trade_count": 0,
+        "tick_count": 0,
+        "trade_date": "2026-09-25",
+        "session_ref": "DAY"
+      },
+      "expected": {
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:01:00.000000Z",
+        "content_fingerprint": "0dc6c9ea8994daf174d8a208382072f7ae2816d405938ab4062f160a66f88314",
+        "revision_id": "mor1_39103bf477f9f59581aa433c11a734593452df9574bcfa4f1a5c40a17d776da3"
+      }
+    },
+    {
+      "name": "legitimate_null_contract",
+      "identity": {
+        "instrument_id": 2,
+        "contract_id": null,
+        "requires_contract_id": false,
+        "timeframe": "5m",
+        "interval_start_at": "2026-09-25T01:05:00+00:00"
+      },
+      "content": {
+        "open": "100.5",
+        "high": "101",
+        "low": "99.50",
+        "close": "100",
+        "volume": 50,
+        "amount": null,
+        "trade_count": null,
+        "tick_count": 25,
+        "trade_date": "2026-09-25",
+        "session_ref": null
+      },
+      "expected": {
+        "timeframe": "5m",
+        "interval_start_at": "2026-09-25T01:05:00.000000Z",
+        "content_fingerprint": "8d7d0b59796227c91db400d79918e798c87acc4696d43653c96c36a4179c8c2a",
+        "revision_id": "mor1_ddacf03aa5b2917a32985463d891c075e9d5c93cf5f4f2c1a4483807ddfbd717"
+      }
+    },
+    {
+      "name": "timeframe_60s_equivalent",
+      "identity": {
+        "instrument_id": 1,
+        "contract_id": 101,
+        "requires_contract_id": true,
+        "timeframe": "60s",
+        "interval_start_at": "2026-09-25T01:00:00+00:00"
+      },
+      "content": {
+        "open": "20000.00",
+        "high": "20050.0",
+        "low": "19980",
+        "close": "20030.000",
+        "volume": 1250,
+        "amount": "25037500.00",
+        "trade_count": 987,
+        "tick_count": null,
+        "trade_date": "2026-09-25",
+        "session_ref": "DAY"
+      },
+      "expected": {
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00.000000Z",
+        "content_fingerprint": "3d635a1455ace05c7c991dbed5bb143596cd1f44b91b841143c405af431e6e07",
+        "revision_id": "mor1_930ba1f65c583484d896878463cc82c02c22c5ecd4c4e8c09d81b1ce7d4a05e4"
+      }
+    },
+    {
+      "name": "market_data_change",
+      "identity": {
+        "instrument_id": 1,
+        "contract_id": 101,
+        "requires_contract_id": true,
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00+00:00"
+      },
+      "content": {
+        "open": "20000.00",
+        "high": "20050.0",
+        "low": "19980",
+        "close": "20031",
+        "volume": 1250,
+        "amount": "25037500.00",
+        "trade_count": 987,
+        "tick_count": null,
+        "trade_date": "2026-09-25",
+        "session_ref": "DAY"
+      },
+      "expected": {
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00.000000Z",
+        "content_fingerprint": "a132fb0491f46177561261bd82d140d548b3d5be21962fecaa34eab6e596810c",
+        "revision_id": "mor1_dd7da26f81319dcd67015f989bd6cd2171397e3aefada2bd4d55477cf548f53b"
+      }
+    },
+    {
+      "name": "classification_only_change",
+      "identity": {
+        "instrument_id": 1,
+        "contract_id": 101,
+        "requires_contract_id": true,
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00+00:00"
+      },
+      "content": {
+        "open": "20000.00",
+        "high": "20050.0",
+        "low": "19980",
+        "close": "20030.000",
+        "volume": 1250,
+        "amount": "25037500.00",
+        "trade_count": 987,
+        "tick_count": null,
+        "trade_date": "2026-09-25",
+        "session_ref": "NIGHT"
+      },
+      "expected": {
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00.000000Z",
+        "content_fingerprint": "7068d973f62689320658fb8ba499626fcbe77cfabef2bd0dd054110cf01206b9",
+        "revision_id": "mor1_23933dc6d45f86bcec2c0fa1588f6fb6a20de27e3e9b4d3dde3f296c987620d4"
+      }
+    },
+    {
+      "name": "same_content_replay",
+      "identity": {
+        "instrument_id": 1,
+        "contract_id": 101,
+        "requires_contract_id": true,
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00+00:00"
+      },
+      "content": {
+        "open": "20000.00",
+        "high": "20050.0",
+        "low": "19980",
+        "close": "20030.000",
+        "volume": 1250,
+        "amount": "25037500.00",
+        "trade_count": 987,
+        "tick_count": null,
+        "trade_date": "2026-09-25",
+        "session_ref": "DAY"
+      },
+      "expected": {
+        "timeframe": "1m",
+        "interval_start_at": "2026-09-25T01:00:00.000000Z",
+        "content_fingerprint": "3d635a1455ace05c7c991dbed5bb143596cd1f44b91b841143c405af431e6e07",
+        "revision_id": "mor1_930ba1f65c583484d896878463cc82c02c22c5ecd4c4e8c09d81b1ce7d4a05e4"
+      }
+    }
+  ]
+}
