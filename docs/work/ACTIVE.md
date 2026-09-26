@@ -6,7 +6,7 @@
 
 This ACTIVE file preserves Work Package context/history and does NOT independently grant Runtime Authorization。
 
-Runtime Authorization summary：NOT_AUTHORIZED。
+Runtime Authorization summary：BOUNDED_AUTHORIZED_C23_ONLY。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions、materialized leaves、DAG and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 are COMPLETE；P1 is complete and no runtime correction leaf is currently authorized。
+V06 + C01 + C22 + C11 are COMPLETE；P1 is complete and C23 is the only currently authorized runtime leaf。
 
 ## 1. Work Package ID
 
@@ -46,11 +46,11 @@ R-04A-H：DECIDED。
 
 R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-Runtime Authorization：NOT_AUTHORIZED。
+Runtime Authorization：BOUNDED_AUTHORIZED_C23_ONLY。
 
 Launch Gate：
 
-`HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION`
+`AUTHORIZED_FOR_C23_ONLY`
 
 Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
@@ -155,49 +155,64 @@ STOP boundary：
 
 REACHED。
 
-## NEXT CANDIDATE — NOT AUTHORIZED
+## CURRENT AUTHORIZED BOUNDED WORK PACKAGE — GAP-08-CORR-04
 
-P1：
+Authorization：
 
-COMPLETE。
+`docs/work/GAP08_AUTHORIZATION_C23.md`
 
-Frozen P2：
+Leaf：
 
-    C23
-        ->
-    C24
-        ->
-    C25
+C23 — Canonical MarketObservation Identity + Revision。
 
-C23 — Canonical MarketObservation Identity + Revision：
+Authorized runtime：
+
+- NEW `domain/market_observation.py`
+
+Authorized test：
+
+- NEW `tests/unit/test_market_observation_identity.py`
+- NEW `tests/fixtures/market_observation_golden_vectors_v1.json`
+
+Required：
+
+- MarketObservationLogicalKey。
+- MarketObservationContentFingerprint。
+- MarketObservationRevisionId。
+- deterministic `mor1_<64 lowercase sha256>`。
+- exact decimal semantics。
+- timezone-aware UTC identity。
+- canonical timeframe normalization。
+- explicit versioned byte framing。
+- fixed cross-language golden vectors。
+
+C24 persistence / acceptance：
 
 NOT_AUTHORIZED。
 
-C24：
+C25 recovery-reference migration：
 
-BLOCKED_ON_C23。
+NOT_AUTHORIZED。
 
-C25：
+Migration：
 
-BLOCKED_ON_C24。
+NOT_AUTHORIZED。
 
-V05：
+Actual PostgreSQL：
+
+NOT_AUTHORIZED。
+
+Broker / market-data I/O：
 
 NOT_AUTHORIZED。
 
 Current bounded execution：
 
-NONE。
+C23 only。
 
-Runtime Authorization：
+After C23：
 
-NOT_AUTHORIZED。
-
-No migration execution。
-
-No actual PostgreSQL access。
-
-No broker I/O。
+commit / push / report / STOP。
 Do not rerun GAP-08EFGHI runtime candidate。
 
 Do not promote GAP-08 acceptance until correction runtime and final verification pass。

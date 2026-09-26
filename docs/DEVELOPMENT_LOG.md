@@ -29,6 +29,32 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 C23 Bounded Runtime Authorization
+
+- Parent baseline：`a0d071d2aad7f157aebb8fce46f11c2c6b65acd2`。
+- P1 C01 -> C22 -> C11 remains COMPLETE。
+- authorized leaf：C23 only。
+- C23：Canonical MarketObservation Identity + Revision。
+- canonical ownership：D Domain。
+- runtime scope：NEW `domain/market_observation.py` only。
+- test scope：NEW `tests/unit/test_market_observation_identity.py` + language-neutral golden-vector JSON fixture。
+- required value objects：MarketObservationLogicalKey / MarketObservationContentFingerprint / MarketObservationRevisionId。
+- revision ID contract：`mor1_<64 lowercase SHA-256 hex>`。
+- generic JSON MUST NOT define identity。
+- raw float MUST NOT define fingerprint identity。
+- Decimal normalization、UTC fixed-microsecond Z form、canonical timeframe normalization are frozen。
+- listed-contract observations require resolved contract_id。
+- revision_seq is authority-local and MUST NOT enter mor1 identity。
+- C23 does NOT allocate/persist revision_seq。
+- C24 persistence/candidate/acceptance/conflict/quarantine is NOT_AUTHORIZED。
+- C25 StrategyStateSnapshot / execution reference migration is NOT_AUTHORIZED。
+- existing MarketBar / strategy-state modules are NOT_AUTHORIZED_FOR_MODIFICATION。
+- migration modification/execution：NOT_AUTHORIZED。
+- actual PostgreSQL：NOT_AUTHORIZED。
+- broker / market-data I/O：NOT_AUTHORIZED。
+- C02 / V05 / all other leaves：NOT_AUTHORIZED。
+- completion boundary：commit / push / report / STOP。
+
 ### 2026-09-26 — GAP-08 C11 Runtime Closure
 
 - C11 Authorization Baseline：`60df830518a82626ed819a3c8d78a6ac92d900f6`。

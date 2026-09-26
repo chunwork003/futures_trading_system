@@ -6,7 +6,7 @@
 
 This document records planning/work state only and does NOT independently establish Runtime Authorization。
 
-Runtime Authorization summary：NOT_AUTHORIZED。
+Runtime Authorization summary：BOUNDED_AUTHORIZED_C23_ONLY。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：NONE；next planning action is bounded authorization review for C23。
+Current execution action：C23 — Canonical MarketObservation Identity + Revision only。
 
 ## Purpose
 
@@ -65,11 +65,11 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：C11_COMPLETE_AWAITING_NEXT_BOUNDED_AUTHORIZATION
+Current activity：C23_BOUNDED_RUNTIME_EXECUTION_AUTHORIZED
 
-Runtime Authorization：NOT_AUTHORIZED
+Runtime Authorization：BOUNDED_AUTHORIZED_C23_ONLY
 
-Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION
+Launch Gate：AUTHORIZED_FOR_C23_ONLY
 
 ## Latest Completed Correction Leaves
 
@@ -117,7 +117,7 @@ Correction-core progress：
 
 Runtime Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_C23_ONLY。
 
 Frozen P1：
 
@@ -127,37 +127,47 @@ Frozen P1：
         ->
     C11 COMPLETE
 
-P1 status：
+P1：
 
 COMPLETE。
 
 Frozen P2：
 
-    C23
+    C23 AUTHORIZED
         ->
-    C24
+    C24 BLOCKED
         ->
-    C25
+    C25 BLOCKED
 
-Next candidate：
+Current leaf：
 
 C23 — Canonical MarketObservation Identity + Revision。
 
-C23：
+Authorization：
 
-NOT_AUTHORIZED。
+`docs/work/GAP08_AUTHORIZATION_C23.md`
+
+C23 scope：
+
+PURE D-DOMAIN IDENTITY / CANONICALIZATION ONLY。
 
 C24：
 
-BLOCKED_ON_C23。
+NOT_AUTHORIZED。
 
 C25：
 
-BLOCKED_ON_C24。
+NOT_AUTHORIZED。
 
-V05 remains NOT_AUTHORIZED。
+C02：
 
-No runtime work may begin until a new explicit bounded authorization is committed。
+NOT_AUTHORIZED。
+
+V05：
+
+NOT_AUTHORIZED。
+
+No migration / PostgreSQL / broker / market-data I/O is authorized。
 
 Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 
@@ -190,7 +200,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：review and explicitly authorize C23 only；no runtime work is currently authorized。
+Next action：execute C23 only；after commit/push/final report STOP。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 

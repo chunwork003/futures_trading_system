@@ -31,8 +31,8 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 - Architecture Acceptance：HOLD。
 - Runtime Conformance：NOT ASSERTED。
 - Production Readiness：NOT ASSERTED。
-- Runtime Authorization：NOT_AUTHORIZED。
-- Runtime modification：NOT_AUTHORIZED。
+- Runtime Authorization：BOUNDED_AUTHORIZED_C23_ONLY。
+- Runtime modification：AUTHORIZED_FOR_C23_ONLY。
 - Broker I/O：NOT_AUTHORIZED。
 - DB migration execution：NOT_AUTHORIZED。
 - Level 3B：NOT_ENABLED。
@@ -121,18 +121,53 @@ C25 remains blocked on C24。
 
 Runtime Authorization：
 
+BOUNDED_AUTHORIZED_C23_ONLY。
+
+Authorization：
+
+`docs/work/GAP08_AUTHORIZATION_C23.md`
+
+Authorized leaf：
+
+C23 — Canonical MarketObservation Identity + Revision。
+
+Runtime scope：
+
+- NEW `domain/market_observation.py`
+- NEW `tests/unit/test_market_observation_identity.py`
+- NEW `tests/fixtures/market_observation_golden_vectors_v1.json`
+
+C24：
+
 NOT_AUTHORIZED。
 
-No runtime leaf is currently authorized。
+C25：
 
-V05 remains NOT_AUTHORIZED。
+NOT_AUTHORIZED。
 
-Broker I/O remains NOT_AUTHORIZED。
+C02：
 
-Migration execution remains NOT_AUTHORIZED。
+NOT_AUTHORIZED。
 
-Actual PostgreSQL access remains NOT_AUTHORIZED。
+V05：
 
+NOT_AUTHORIZED。
+
+Migration：
+
+NOT_AUTHORIZED。
+
+Actual PostgreSQL：
+
+NOT_AUTHORIZED。
+
+Broker / market-data I/O：
+
+NOT_AUTHORIZED。
+
+C23 completion boundary：
+
+commit / push / report / STOP。
 ### POST-5E ACCEPTED PLANNING INPUTS
 
 The following post-5E items were ACCEPTED PLANNING INPUTS and are now materialized into the docs-only Correction-Freeze Work Package；they remain planning inputs and are NOT a new Architecture Decision Baseline。
@@ -210,13 +245,14 @@ The existing 47.92% remains the recorded architecture-freeze lifecycle baseline�
 ### Current Planning / Execution Sequence
 
 1. C11 closure is recorded in `docs/work/GAP08_C11_CLOSURE.md`。
-2. Runtime Authorization is NOT_AUTHORIZED。
-3. Frozen P1 is complete：C01 -> C22 -> C11。
-4. Frozen next phase is P2：C23 -> C24 -> C25。
-5. C23 is the next candidate only；it is NOT_AUTHORIZED。
-6. V05 remains NOT_EXECUTED / NOT_VERIFIED / NOT_AUTHORIZED。
-7. A new explicit bounded authorization is required before any runtime modification。
-8. C02 and every other remaining leaf remain NOT_AUTHORIZED。
+2. Frozen P1 is COMPLETE：C01 -> C22 -> C11。
+3. Frozen P2 is C23 -> C24 -> C25。
+4. Execute C23 only under `docs/work/GAP08_AUTHORIZATION_C23.md`。
+5. C23 is pure D-Domain identity/canonicalization；no persistence or consumer migration。
+6. Run targeted + compatibility + full regression。
+7. Commit / push / final report。
+8. STOP。
+9. C24、C25、C02、V05 and every other leaf remain NOT_AUTHORIZED。
 A future authorization decision must identify at least：Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests and Stop Boundary。
 
 A bare `AUTHORIZED` value is insufficient。
