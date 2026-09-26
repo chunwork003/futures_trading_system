@@ -166,6 +166,8 @@ class AccountAuthorityRepository(Protocol):
     """Caller-owned transaction 內的 account authority persistence port。"""
 
     def lock_head(self, broker: str, account_ref: str) -> AccountStateHead | None: ...
+    def lock_or_create_reserved_head(self, broker: str, account_ref: str) -> AccountStateHead: ...
+    def get_head(self, broker: str, account_ref: str) -> AccountStateHead | None: ...
     def advance_head(self, head: AccountStateHead, *, expected_revision: int) -> None: ...
     def append_checkpoint(self, checkpoint: AccountRecoveryCheckpoint) -> None: ...
     def get_checkpoint(self, broker: str, account_ref: str, account_revision: int) -> AccountRecoveryCheckpoint | None: ...
@@ -217,9 +219,31 @@ class AccountAuthorityCommitService:
                     raise AccountAuthorityConflictError(
                         "authority commit identity has conflicting canonical semantics"
                     )
+                checkpoint = repository.get_checkpoint(
+                    existing.broker,
+                    existing.account_ref,
+                    existing.committed_revision,
+                )
+                head = repository.get_head(existing.broker, existing.account_ref)
+                if checkpoint is None or head is None:
+                    raise AccountAuthorityIntegrityError(
+                        "duplicate authority receipt has incomplete durable closure"
+                    )
+                validate_authority_closure(
+                    head=head,
+                    checkpoint=checkpoint,
+                    receipt=existing,
+                )
                 return existing
 
-            head = repository.lock_head(mutation.broker, mutation.account_ref)
+            head = (
+                repository.lock_or_create_reserved_head(
+                    mutation.broker,
+                    mutation.account_ref,
+                )
+                if initialization
+                else repository.lock_head(mutation.broker, mutation.account_ref)
+            )
             if head is None:
                 raise AccountAuthorityIntegrityError("account authority head is missing")
             if head.current_revision != mutation.expected_head_revision:
@@ -505,8 +529,8 @@ def validate_authority_closure(
     }
     if len(scopes) != 1:
         raise AccountAuthorityIntegrityError("account authority scope mismatch")
-    if not head.initialized or head.current_revision != checkpoint.account_revision:
-        raise AccountAuthorityIntegrityError("checkpoint does not match account revision head")
+    if not head.initialized or head.current_revision < checkpoint.account_revision:
+        raise AccountAuthorityIntegrityError("account revision head is behind checkpoint")
     if receipt.committed_revision != checkpoint.account_revision:
         raise AccountAuthorityIntegrityError("receipt does not match checkpoint revision")
     if receipt.authority_commit_id != checkpoint.authority_commit_id:

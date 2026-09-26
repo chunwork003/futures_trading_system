@@ -30,6 +30,57 @@ class PostgresAccountAuthorityRepository:
             broker=row[0], account_ref=row[1], current_revision=row[2], initialized=row[3]
         )
 
+    def lock_or_create_reserved_head(
+        self,
+        broker: str,
+        account_ref: str,
+    ) -> AccountStateHead:
+        """在 caller-owned transaction 中 concurrency-safe bootstrap rev0，並鎖定 exact head。"""
+
+        normalized_broker = broker.upper()
+        with self._connection.cursor() as cursor:
+            cursor.execute(
+                "INSERT INTO trading.account_state_heads "
+                "(broker, account_ref, current_revision, initialized) "
+                "VALUES (%s,%s,0,FALSE) ON CONFLICT (broker, account_ref) DO NOTHING",
+                (normalized_broker, account_ref),
+            )
+            cursor.execute(
+                "SELECT broker, account_ref, current_revision, initialized "
+                "FROM trading.account_state_heads "
+                "WHERE broker=%s AND account_ref=%s FOR UPDATE",
+                (normalized_broker, account_ref),
+            )
+            row = cursor.fetchone()
+        if row is None:
+            raise AccountAuthorityConflictError(
+                "reserved account authority head bootstrap did not resolve"
+            )
+        return AccountStateHead(
+            broker=row[0],
+            account_ref=row[1],
+            current_revision=row[2],
+            initialized=row[3],
+        )
+
+    def get_head(self, broker: str, account_ref: str) -> AccountStateHead | None:
+        """讀取 durable head 以驗證 historical receipt closure；不鎖定、不推進 revision。"""
+
+        with self._connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT broker, account_ref, current_revision, initialized "
+                "FROM trading.account_state_heads "
+                "WHERE broker=%s AND account_ref=%s",
+                (broker.upper(), account_ref),
+            )
+            row = cursor.fetchone()
+        return None if row is None else AccountStateHead(
+            broker=row[0],
+            account_ref=row[1],
+            current_revision=row[2],
+            initialized=row[3],
+        )
+
     def advance_head(self, head: AccountStateHead, *, expected_revision: int) -> None:
         if head.current_revision != expected_revision + 1:
             raise AccountAuthorityConflictError("account revision must advance contiguously")

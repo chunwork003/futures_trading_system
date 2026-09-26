@@ -76,6 +76,19 @@ def test_postgres_head_lock_and_contiguous_advance_without_repository_commit() -
         repository.advance_head(head.model_copy(update={"current_revision": 3}), expected_revision=1)
 
 
+def test_postgres_initialization_bootstraps_and_locks_reserved_revision_zero_atomically() -> None:
+    connection = _Connection(rows=[("SINOPAC", "A", 0, False)])
+    repository = PostgresAccountAuthorityRepository(connection)
+
+    head = repository.lock_or_create_reserved_head("sinopac", "A")
+
+    assert head.current_revision == 0 and not head.initialized
+    assert "INSERT INTO trading.account_state_heads" in connection.calls[0][0]
+    assert "ON CONFLICT (broker, account_ref) DO NOTHING" in connection.calls[0][0]
+    assert "FOR UPDATE" in connection.calls[1][0]
+    assert connection.commits == 0
+
+
 def test_0005_has_exact_checkpoint_and_non_destructive_authority_schema() -> None:
     sql = Path("persistence/postgres/migrations/0005_account_authority.sql").read_text(encoding="utf-8")
     for table in ("account_state_heads", "account_recovery_checkpoints", "account_authority_commit_receipts"):

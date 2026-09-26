@@ -48,6 +48,19 @@ class AuthorityRepo:
         self.receipts={}; self.checkpoints=[]
     def get_receipt(self, key): return self.receipts.get(key)
     def lock_head(self, broker, account_ref): return self.head
+    def lock_or_create_reserved_head(self, broker, account_ref):
+        if self.head is None:
+            self.head=AccountStateHead(
+                broker=broker, account_ref=account_ref,
+                current_revision=0, initialized=False,
+            )
+        return self.head
+    def get_head(self, broker, account_ref): return self.head
+    def get_checkpoint(self, broker, account_ref, revision):
+        return next(
+            (item for item in self.checkpoints if item.account_revision == revision),
+            None,
+        )
     def append_checkpoint(self, value): self.checkpoints.append(value)
     def advance_head(self, value, *, expected_revision):
         if self.head.current_revision != expected_revision: raise AccountAuthorityConflictError("head conflict")
@@ -159,10 +172,14 @@ def test_broker_seed_requires_exact_nonempty_observation_reason_and_positions() 
 def test_flat_is_explicit_and_never_inferred_from_missing_or_failed_read() -> None:
     item,uow,repo,*_=service(authority_repo=AuthorityRepo())
     repo.head=None
-    with pytest.raises(AccountAuthorityIntegrityError, match="head is missing"):
-        item.initialize(request(), authorization_provider=AuthorizationProvider(auth()),
-                        currentness_provider=CurrentnessProvider(currentness()))
-    assert uow.rolled
+    receipt=item.initialize(
+        request(),
+        authorization_provider=AuthorizationProvider(auth()),
+        currentness_provider=CurrentnessProvider(currentness()),
+    )
+    assert receipt.committed_revision == 1
+    assert repo.head.initialized and repo.head.current_revision == 1
+    assert uow.committed
     for error in (ExpectedStateReadError("read"), ExpectedSnapshotIntegrityError("integrity")):
         failing_service, failing_uow, *_rest = service(
             observation_repo=AppendRepo(error=error)
