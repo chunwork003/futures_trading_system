@@ -1,5 +1,21 @@
 # Current Work
 
+## GOV-01 Current Work Projection Guard
+
+`docs/CURRENT_STATE.md` is the canonical CURRENT runtime/planning governance projection。
+
+This document records planning/work state only and does NOT independently establish Runtime Authorization。
+
+Runtime Authorization summary：NOT_AUTHORIZED。
+
+Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
+
+Current Planning Baseline：GOV-01 Governance Normalization commit。
+
+Post-5E accepted planning inputs remain pending the future Correction-Freeze Checkpoint。
+
+Current planning action：Frozen Contract Assertion Inventory -> Delta-to-Contract classification -> materialize required leaves only。
+
 ## Purpose
 
 本文件只保存：
@@ -49,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：POST_RUNTIME_ARCHITECTURE_DECISION_CLOSURE
+Current activity：CORRECTION_FREEZE_PLANNING
 
 Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION
 
@@ -69,15 +85,15 @@ R-04H：BrokerAccount READY / REVIEW / HALT integration DECIDED。
 
 Original 35 leaves / weight 151 remains NOT ACCEPTED。
 
-Post-R-03/R-04 correction expansion is not yet mapped/reweighted。
+Expanded correction scope is ARCHITECTURALLY_CLOSED for planning and NOT YET REWEIGHTED；post-5E planning inputs remain pending the Correction-Freeze Checkpoint。
 
-Linked R-12/R-13/R-14/K520 and broker capability gates must be classified during correction freeze。
+R-12/R-13/R-14 are checkpointed；K520 and BG-01～BG-07 are accepted post-5E planning inputs；their planning closure remains pending the Correction-Freeze Checkpoint。
 
 Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：K520 defer confirmation，then broker capability gate classification；after that complete the expanded correction-scope map、reweight the Work Package and make an explicit bounded runtime authorization decision。
+Next action：Frozen Contract Assertion Inventory，then Delta-to-Contract evidence classification / derived disposition，materialize only required leaves，deduplicate，build dependency DAG，reweight，perform Correction-Freeze Checkpoint，then make an explicit bounded Runtime Authorization decision。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 
@@ -259,7 +275,7 @@ Sizing experiment：
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
 | 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | CLOSED / ACCEPTED | GAP-ACCOUNT-001 + GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | CLOSED / ACCEPTED | Broker mapping + execution semantics |
-| 5 | GAP-08 | Trading State Persistence & Recovery | IN_PROGRESS / 08EFGHI_READY_FOR_EXECUTION | GAP-08ABCD accepted |
+| 5 | GAP-08 | Trading State Persistence & Recovery | IN_PROGRESS / HOLD_FOR_BOUNDED_CORRECTION_FREEZE | GAP-08ABCD accepted |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |
 | 7 | GAP-09 | Incremental Feature / Market State | PENDING | Trading core stable |
 | 8 | GAP-SIM-001 | SimulationBroker / fault injection | PENDING | Execution port stable |
@@ -337,7 +353,7 @@ Runtime Codex 完成後：
 
 至少 2–3 個 queue-driven runtime Work Package 穩定後，再評估 Level 3B。
 
-## Decision Checkpoint 5A Work Boundary
+## Historical Decision Checkpoint 5A Work Boundary
 
 Completed architecture work：
 
@@ -356,7 +372,7 @@ Next decision cluster：
 
 Do not start runtime correction from this checkpoint。
 
-## Decision Checkpoint 5B Work Boundary
+## Historical Decision Checkpoint 5B Work Boundary
 
 Completed architecture work：
 
@@ -374,7 +390,7 @@ R-09 remains the owner of exact StrategyInstance/config identity、policy-versio
 
 Do not begin runtime correction from this checkpoint。
 
-## Decision Checkpoint 5C Work Boundary
+## Historical Decision Checkpoint 5C Work Boundary
 
 Completed architecture work：
 
@@ -390,7 +406,7 @@ Next：
 
 Do not begin runtime correction from this checkpoint。
 
-## Decision Checkpoint 5D Work Boundary
+## Historical Decision Checkpoint 5D Work Boundary
 
 Completed architecture work：
 
@@ -406,7 +422,7 @@ Next：
 
 Do not begin runtime correction from this checkpoint。
 
-## Decision Checkpoint 5E Work Boundary
+## Historical Decision Checkpoint 5E Work Boundary — ARCHITECTURE RECORD
 
 Completed architecture/classification work：
 

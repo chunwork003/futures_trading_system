@@ -1,5 +1,116 @@
 # Current State
 
+## Canonical CURRENT Governance Projection — GOV-01
+
+**CURRENT GOVERNANCE PROJECTION — CANONICAL**
+
+This section is the single canonical CURRENT runtime/planning projection。
+
+Other governance/work documents may summarize or reference this state，but they do not independently establish runtime authorization。
+
+### Baseline Separation
+
+Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
+
+This remains the Decision Checkpoint 5E architecture baseline。
+
+Current Planning Baseline：the GOV-01 Governance Normalization commit that introduces this canonical projection。
+
+The exact GOV-01 commit hash is reported after commit/push and is the baseline for subsequent Assertion Inventory / Delta-to-Contract planning。
+
+Runtime Candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+
+Runtime candidate != authorized runtime baseline。
+
+Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization。
+
+### Current Governance State
+
+- Architecture Acceptance：HOLD。
+- Runtime Conformance：NOT ASSERTED。
+- Production Readiness：NOT ASSERTED。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Runtime modification：NOT_AUTHORIZED。
+- Broker I/O：NOT_AUTHORIZED。
+- DB migration execution：NOT_AUTHORIZED。
+- Level 3B：NOT_ENABLED。
+
+### POST-5E ACCEPTED PLANNING INPUTS
+
+The following are ACCEPTED PLANNING INPUTS and remain PENDING the future Correction-Freeze Checkpoint。
+
+They are NOT a new Architecture Decision Baseline and do NOT grant Runtime Authorization。
+
+K520：
+
+- DEFER CONFIRMED。
+- GAP-09 OWNED。
+- CONDITIONAL_PRODUCTION_DEPENDENCY。
+- GAP-08_FAIL_CLOSED_ENFORCEMENT_REQUIRED。
+- K520_NOT_APPLICABLE requires positive proof under the exact governing StrategyInstance recovery contract。
+
+BG-01～BG-07：
+
+- CLASSIFICATION CLOSED FOR CORRECTION-FREEZE PLANNING。
+- implementation work、capability verification and production-gate state remain distinct。
+- PAPER_VERIFIED != PRODUCTION_VERIFIED。
+
+Expanded Correction-Scope Map：
+
+- ARCHITECTURALLY CLOSED for correction-freeze planning。
+- no R-01～R-14 / K520 / BG-01～BG-07 reopen without concrete contradiction or new authoritative evidence。
+
+Delta-to-Contract：
+
+- FROZEN PLANNING RULE。
+- architecture scope size != runtime correction size。
+- KNOWN_CONFORMANT requires exact positive evidence against the exact Frozen Contract Assertion。
+- no defect found != KNOWN_CONFORMANT。
+- historical test pass != current frozen-contract conformance。
+- insufficient evidence defaults to UNKNOWN_CONFORMANCE。
+
+Planning materialization：
+
+    Frozen Contract Assertion Inventory
+        -> Evidence / Delta Classification
+        -> Derived Disposition
+        -> materialize only required
+           Engineering / Correction / Conformance / Verification leaves
+
+Disposition is planning metadata only；it is not an independent authority state。
+
+Production Gate is evidence-dependent status metadata and has no coding weight；evidence-producing verification work may have engineering weight。
+
+DB-CONF-01：
+
+- DB-CONF-01A = Repository Persistence Baseline Verification。
+- DB-CONF-01B = Actual Environment Conformance Verification。
+- unavailable actual DB != correction code cannot be written。
+- unknown actual DB => no environment-conformance claim and no blind migration。
+
+Correction-Freeze Decision Checkpoint：NOT YET COMPLETED。
+
+### Current Planning Sequence
+
+1. Frozen Contract Assertion Inventory。
+2. Delta-to-Contract Evidence Classification + Derived Disposition。
+3. Materialize only required work leaves。
+4. Deduplicate overlapping responsibility。
+5. Dependency DAG / execution order。
+6. Weight final materialized leaves。
+7. Recalculate Expanded GAP-08 Work Package。
+8. Docs-only Correction-Freeze Checkpoint。
+9. Explicit Bounded Runtime Authorization decision。
+10. Runtime correction only after explicit bounded authorization。
+
+A future authorization decision must identify at least：Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests and Stop Boundary。
+
+A bare `AUTHORIZED` value is insufficient。
+
+---
+
+All older runtime-launch/current-work snapshots below are historical evidence unless explicitly identified as part of this canonical CURRENT projection。
+
 ## Repository Baseline
 
 Repository：
@@ -67,7 +178,7 @@ Accepted runtime commit：
 
 Blueprint launch gate 已完成使命，不再阻塞 runtime。
 
-## Current Phase
+## Historical Phase Snapshot — SUPERSEDED BY GOV-01 CURRENT PROJECTION
 
 Current milestone：M6 — Persistence / Recovery / Provenance。
 
@@ -340,7 +451,7 @@ Persistence、Recovery、Live Safety 尚未完成。
 
 ---
 
-## Current Active Work
+## Historical Runtime Launch Snapshot — SUPERSEDED
 
 Work Package：
 
@@ -364,7 +475,7 @@ single bundle now crosses execution state machine、multi-table transaction、ac
 
 No runtime until freeze commit/push is verified。
 
-## Decision Checkpoint 5A State
+## Historical Decision Checkpoint 5A State — SUPERSEDED AS CURRENT PROJECTION
 
 Architecture Decision Status：
 
@@ -386,7 +497,7 @@ Architecture Acceptance：HOLD。
 
 Next architecture work：R-06 + R-07 Recovery Boundary Cluster。
 
-## Decision Checkpoint 5B State
+## Historical Decision Checkpoint 5B State — SUPERSEDED AS CURRENT PROJECTION
 
 Architecture Decision Status：
 
@@ -412,7 +523,7 @@ Architecture Acceptance：HOLD。
 
 Next architecture work：R-08 + R-09 identity/config authority cluster。
 
-## Decision Checkpoint 5C State
+## Historical Decision Checkpoint 5C State — SUPERSEDED AS CURRENT PROJECTION
 
 - R-08：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 - R-09：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
@@ -424,7 +535,7 @@ Next architecture work：R-08 + R-09 identity/config authority cluster。
 - Architecture Acceptance：HOLD。
 - Next：R-10 formal closure -> R-11 clock authority。
 
-## Decision Checkpoint 5D State
+## Historical Decision Checkpoint 5D State — SUPERSEDED AS CURRENT PROJECTION
 
 - R-10：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 - R-11：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
@@ -436,7 +547,7 @@ Next architecture work：R-08 + R-09 identity/config authority cluster。
 - Architecture Acceptance：HOLD。
 - Next：R-12 ReconciliationRun audit contract。
 
-## Decision Checkpoint 5E State
+## Historical Decision Checkpoint 5E State — ARCHITECTURE RECORD
 
 - R-12：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 - R-13：DECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED。

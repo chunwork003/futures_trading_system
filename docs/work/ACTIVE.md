@@ -1,5 +1,21 @@
 # ACTIVE WORK PACKAGE
 
+## GOV-01 Active Context Guard
+
+`docs/CURRENT_STATE.md` is the canonical CURRENT runtime/planning governance projection。
+
+This ACTIVE file preserves Work Package context/history and does NOT independently grant Runtime Authorization。
+
+Runtime Authorization summary：NOT_AUTHORIZED。
+
+Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
+
+Current Planning Baseline：GOV-01 Governance Normalization commit。
+
+Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions are accepted planning inputs pending the Correction-Freeze Checkpoint。
+
+No runtime Work Package is authorized。
+
 ## 1. Work Package ID
 
 GAP-08EFGHI
@@ -38,15 +54,18 @@ Launch Gate：
 
 Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
-Post-R-03/R-04 correction expansion：RECORDED / NOT YET MAPPED OR WEIGHTED。
+Expanded correction scope：ARCHITECTURALLY_CLOSED_FOR_PLANNING / NOT YET REWEIGHTED；post-5E planning inputs remain pending the Correction-Freeze Checkpoint。
 
-Remaining work before runtime authorization：
+Remaining planning work before any bounded runtime authorization：
 
-- map complete correction scope。
-- classify linked dependencies and capability gates。
-- freeze bounded correction Work Package。
-- reweight lifecycle scope。
-- review authorization。
+- build Frozen Contract Assertion Inventory。
+- classify each assertion through Delta-to-Contract evidence and derived disposition。
+- materialize only required Engineering / Correction / Conformance / Verification leaves。
+- deduplicate overlapping responsibility。
+- build dependency DAG / execution order。
+- reweight the expanded GAP-08 Work Package。
+- complete the docs-only Correction-Freeze Checkpoint。
+- make an explicit bounded Runtime Authorization decision。
 
 Do not rerun GAP-08EFGHI runtime candidate。
 
@@ -530,7 +549,11 @@ No whole-repo rescan。
 
 ---
 
-## 34. Runtime Launch Gate
+## 34. Historical Runtime Launch Gate — SUPERSEDED
+
+> SUPERSEDED：The authorization values in this historical launch section applied to the original runtime candidate execution only and do not grant current authority。
+>
+> Canonical CURRENT authority is `docs/CURRENT_STATE.md`，where Runtime Authorization = `NOT_AUTHORIZED`。
 
 Current：
 
@@ -540,7 +563,7 @@ Runtime authorization：
 
     AUTHORIZED
 
-## Decision Checkpoint 5A — Active Queue
+## Historical Decision Checkpoint 5A — Active Queue — SUPERSEDED
 
 Completed：
 
@@ -560,7 +583,7 @@ Do not re-open R-01 through R-05 without a concrete contradiction/new authoritat
 
 Do not begin bounded runtime correction until correction scope freeze/reweight and explicit authorization are complete。
 
-## Decision Checkpoint 5B — Active Queue
+## Historical Decision Checkpoint 5B — Active Queue — SUPERSEDED
 
 Completed：
 
@@ -581,7 +604,7 @@ Do not re-open R-06/R-07 without concrete contradiction or new authoritative evi
 
 Do not begin runtime correction until the correction package is frozen、reweighted and explicitly authorized。
 
-## Decision Checkpoint 5C — Active Queue
+## Historical Decision Checkpoint 5C — Active Queue — SUPERSEDED
 
 Completed：
 
@@ -599,7 +622,7 @@ Do not re-open R-08/R-09 without concrete contradiction or new authoritative evi
 
 Do not begin runtime correction until correction scope freeze/reweight and explicit authorization。
 
-## Decision Checkpoint 5D — Active Queue
+## Historical Decision Checkpoint 5D — Active Queue — SUPERSEDED
 
 Completed：
 
@@ -616,7 +639,7 @@ Do not re-open R-10/R-11 without concrete contradiction or new authoritative evi
 
 Do not begin runtime correction until correction scope freeze/reweight and explicit authorization。
 
-## Decision Checkpoint 5E — Active Queue
+## Historical Decision Checkpoint 5E — Active Queue — ARCHITECTURE RECORD
 
 Completed：
 - R-12 DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。

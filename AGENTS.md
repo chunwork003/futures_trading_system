@@ -1,4 +1,34 @@
-## CURRENT AUTHORITY — RECOVERY DECISION CHECKPOINT 4
+# GOV-01 CURRENT RE-ENTRY GUARD
+
+**CANONICAL CURRENT AUTHORITY：`docs/CURRENT_STATE.md`**
+
+This file is the agent re-entry guard and navigation surface。
+
+It does NOT independently establish Runtime Authorization。
+
+Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
+
+Current Planning Baseline：GOV-01 Governance Normalization commit containing the canonical CURRENT projection。
+
+Runtime Candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+
+Architecture Acceptance：HOLD。
+
+Runtime Conformance：NOT ASSERTED。
+
+Production Readiness：NOT ASSERTED。
+
+Runtime Authorization：NOT_AUTHORIZED。
+
+Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are accepted planning inputs pending the future Correction-Freeze Checkpoint；they are not a new Architecture Decision Baseline。
+
+Current planning action after GOV-01：Frozen Contract Assertion Inventory。
+
+Do not begin runtime correction、broker I/O or migration execution until a later explicit bounded Runtime Authorization decision。
+
+Historical authority/checkpoint sections below are preserved for audit and are not current runtime authorization。
+
+## HISTORICAL AUTHORITY RECORD — RECOVERY DECISION CHECKPOINT 4 — SUPERSEDED
 
 Decision baseline：`11ead24d4f09ead611243c19aab982f09756f172`。
 
@@ -22,12 +52,22 @@ This CURRENT AUTHORITY supersedes older R-04 OPEN wording elsewhere in historica
 
 ## 專案與導航
 
-台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。GAP-08ABCD 已完成/接受；GAP-08EFGHI 原始 35 leaves / weight 151 runtime 已於 `6b62239bca1d11543944f9f078e577e16010bcbf` 完成並通過 tests，但目前仍為 ARCHITECTURE_ACCEPTANCE_HOLD，禁止再次執行 runtime 或標記 ACCEPTED。ADR-002 已正式決定 R-01、R-02、R-03A/B/C/D 與 R-04A/B/C/D/E；R-03 整體 DECIDED，R-04 仍 IN_PROGRESS，尚餘 R-04F/G/H。R-03 與 R-04 已新增 operational recovery/evidence correction scope，明確位於原 35/151 之外，尚未重新計權/授權。R-14/GAP-DATA-001 記錄 market-data completeness/gap detection 後續需求。PostgreSQL 17/18 仍為 PENDING integration targets；K520 仍屬 GAP-09；Level 3B 仍 NOT_ENABLED。
+台灣期貨量化研究、回測與未來交易平台。primary branch 為 `master`。
+
+目前唯一 canonical CURRENT governance projection 位於 `docs/CURRENT_STATE.md`。
+
+Runtime candidate 6b62239bca1d11543944f9f078e577e16010bcbf 仍為 IMPLEMENTED CANDIDATE / NOT ACCEPTED；Architecture Acceptance = HOLD；Runtime Authorization = NOT_AUTHORIZED。
+
+R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map 與 Delta-to-Contract 為 post-5E accepted planning inputs，pending future Correction-Freeze Checkpoint。
+
+下一個 planning activity 是 Frozen Contract Assertion Inventory；禁止在 explicit bounded Runtime Authorization 前開始 runtime correction。
 
 Primary source of truth 與必讀順序：
 
-1. `AGENTS.md`：agent 導航與執行規則。
-2. `docs/CURRENT_STATE.md`：現況與基線。
+Primary source of truth 與必讀順序：
+
+1. `docs/CURRENT_STATE.md`：唯一 canonical CURRENT governance projection。
+2. `AGENTS.md`：agent re-entry guard、執行規則與 current-state pointer。
 3. `docs/CURRENT_WORK.md`：目前工作、阻塞、佇列。
 4. `docs/GAP_REGISTER.md`：有序 GAP。
 5. `docs/AI_HANDOFF.md`：架構決策與交接。
@@ -78,7 +118,7 @@ Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7
 
 方向變更必須遵守 `EXIT → confirm FLAT → re-evaluate → ENTER`；不得 silent direct reversal。
 
-## CURRENT AUTHORITY — DECISION CHECKPOINT 5A
+## HISTORICAL AUTHORITY RECORD — DECISION CHECKPOINT 5A — SUPERSEDED
 
 - Authoritative decision baseline before this checkpoint：`462a3d541cb6b0bccc9bb5e3e1a118cd1c2cf351`。
 - R-01：DECIDED / AMENDED。
@@ -94,7 +134,7 @@ Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7
 - Next：R-06 + R-07 Recovery Boundary Cluster。
 - Do not begin runtime correction until the expanded correction Work Package is later frozen、reweighted and explicitly authorized。
 
-## CURRENT AUTHORITY — DECISION CHECKPOINT 5B
+## HISTORICAL AUTHORITY RECORD — DECISION CHECKPOINT 5B — SUPERSEDED
 
 - Authoritative architecture baseline before this checkpoint：`c131d6bd04212d302259b0571bfef91084196f76`。
 - R-01：DECIDED / AMENDED。
@@ -115,7 +155,7 @@ Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7
 - Architecture Acceptance：HOLD。
 - Next：R-08 + R-09 identity/config authority cluster。
 
-## CURRENT AUTHORITY — DECISION CHECKPOINT 5C
+## HISTORICAL AUTHORITY RECORD — DECISION CHECKPOINT 5C — SUPERSEDED
 
 - Authoritative baseline before this checkpoint：`47822446fe1b5149780ddd537fd99b460882d66d`。
 - R-08：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
@@ -128,7 +168,7 @@ Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7
 - Architecture Acceptance：HOLD。
 - Next：R-10 formal closure，then R-11 clock authority。
 
-## CURRENT AUTHORITY — DECISION CHECKPOINT 5D
+## HISTORICAL AUTHORITY RECORD — DECISION CHECKPOINT 5D — SUPERSEDED
 
 - Authoritative baseline before this checkpoint：`d5ec87c00081b97340a59bb47521d65db46131c4`。
 - R-10：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
@@ -144,7 +184,7 @@ Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7
 - Architecture Acceptance：HOLD。
 - Next：R-12 ReconciliationRun audit contract。
 
-## CURRENT AUTHORITY — DECISION CHECKPOINT 5E
+## HISTORICAL AUTHORITY RECORD — DECISION CHECKPOINT 5E — ARCHITECTURE RECORD
 
 - Authoritative baseline before this checkpoint：`a68ca31d969dd691cae4fe01e904ef81239de453`。
 - Runtime candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
