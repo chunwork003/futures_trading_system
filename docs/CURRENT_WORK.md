@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W1 is CLOSED / ACCEPTED；W2 execution coherence is VERIFIED and bounded source modification is AUTHORIZED under `docs/work/GAP08_WAVE2_AUTHORIZATION.md`。Execute C08 -> C05 -> C06 only。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：W1 is CLOSED / ACCEPTED；W2 source candidate `ff57c216cf0b3a1d1c894442a4a14b8a210db7f4` is under reviewer HOLD due C06 RF01。Only RF01 correction is authorized by `docs/work/GAP08_WAVE2_AUTHORIZATION_AMENDMENT_01.md`。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：WAVE_2_BOUNDED_SOURCE_EXECUTION
+Current activity：WAVE_2_REVIEWER_CORRECTION_RF01
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -149,7 +149,7 @@ VERIFIED。
 
 W2 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W2。
+BOUNDED_AUTHORIZED_FOR_GAP08_W2_RF01。
 
 Migration execution：
 
@@ -163,15 +163,23 @@ Broker I/O / Production Activation：
 
 NOT_AUTHORIZED。
 
-W2 authorization：
+W2 implementation candidate：
 
-`docs/work/GAP08_WAVE2_AUTHORIZATION.md`
+`ff57c216cf0b3a1d1c894442a4a14b8a210db7f4`
+
+Reviewer finding：
+
+RF01 — SUCCEEDED/FAILED resolution must not restore same Order/action invocation eligibility。
+
+RF01 authorization：
+
+`docs/work/GAP08_WAVE2_AUTHORIZATION_AMENDMENT_01.md`
 
 Next actual project action：
 
-CODEX W2 BOUNDED SOURCE EXECUTION：C08 -> C05 -> C06。
+CODEX RF01 correction only。
 
-Only exact W2 source modification is authorized；canonical Runtime Authorization remains NOT_AUTHORIZED。
+C08/C05 remain read-only；canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 # Completed Work Package — GAP-BROKER-002
 

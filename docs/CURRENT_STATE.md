@@ -32,7 +32,7 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 - Runtime Conformance：NOT ASSERTED。
 - Production Readiness：NOT ASSERTED。
 - Runtime Authorization：NOT_AUTHORIZED。
-- Runtime Source Modification Authorization：BOUNDED_AUTHORIZED_FOR_GAP08_W2。
+- Runtime Source Modification Authorization：BOUNDED_AUTHORIZED_FOR_GAP08_W2_RF01。
 - Broker I/O：NOT_AUTHORIZED。
 - DB migration execution：NOT_AUTHORIZED。
 - Level 3B：NOT_ENABLED。
@@ -186,15 +186,23 @@ VERIFIED。
 
 W2 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W2。
+BOUNDED_AUTHORIZED_FOR_GAP08_W2_RF01。
 
-W2 authorization：
+W2 implementation candidate：
 
-`docs/work/GAP08_WAVE2_AUTHORIZATION.md`
+`ff57c216cf0b3a1d1c894442a4a14b8a210db7f4`
+
+W2 reviewer status：
+
+HOLD / RF01_REQUIRED。
+
+RF01 authorization：
+
+`docs/work/GAP08_WAVE2_AUTHORIZATION_AMENDMENT_01.md`
 
 Next actual project action：
 
-CODEX W2 bounded source execution：C08 -> C05 -> C06 only。
+CODEX W2 reviewer correction RF01 only。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -390,13 +398,13 @@ VERIFIED。
 
 W2 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W2。
+BOUNDED_AUTHORIZED_FOR_GAP08_W2_RF01。
 
 Next：
 
-W2 execution package/coherence VERIFIED -> W2 bounded source-modification authorization EFFECTIVE -> CODEX C08 -> C05 -> C06。
+W2 source execution completed candidate `ff57c216cf0b3a1d1c894442a4a14b8a210db7f4` -> reviewer RF01 REQUIRED -> bounded RF01 correction only。
 
-Automatic progression is authorized only inside C08 -> C05 -> C06 while leaf-local gates remain satisfied。
+C08/C05 are reviewer-pass for this finding；C06 acceptance remains HOLD until RF01 re-verification。
 
 No step implicitly grants authority to the next step。
 

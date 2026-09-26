@@ -387,19 +387,27 @@ VERIFIED。
 
 W2 source-modification authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W2。
+BOUNDED_AUTHORIZED_FOR_GAP08_W2_RF01。
 
-Authorization：
+W2 runtime candidate：
 
-`docs/work/GAP08_WAVE2_AUTHORIZATION.md`
+`ff57c216cf0b3a1d1c894442a4a14b8a210db7f4`
+
+Reviewer status：
+
+HOLD / RF01_REQUIRED。
+
+RF01 authorization：
+
+`docs/work/GAP08_WAVE2_AUTHORIZATION_AMENDMENT_01.md`
 
 Next actual work：
 
-CODEX execute C08 -> C05 -> C06 under exact W2 authorization。
+CODEX RF01 only；C08/C05 read-only。
 
 STOP：
 
-after W2 final verification/push；do not start W3 or governance closure。
+after RF01 verification/push；return to reviewer，do not start W3 or governance closure。
 
 ## 4. Recommended Model
 

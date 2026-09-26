@@ -29,6 +29,27 @@
 
 ## Chronological Log
 
+### 2026-09-27 — GAP-08 Wave-2 Reviewer Correction RF01 Authorization
+
+- reviewer input baseline：`ff57c216cf0b3a1d1c894442a4a14b8a210db7f4`。
+- original W2 execution commits：C08 `9eb75535b99eef15f67fe437ee908c582c728491`；C05 `ab941c91b67a09b6649a4f89c44e4986062fc1d8`；C06 `ff57c216cf0b3a1d1c894442a4a14b8a210db7f4`。
+- repository compare confirms exact W2 source scope and `master == ff57c216...` at reviewer inspection。
+- C08 reviewer finding：PASS for current review scope。
+- C05 reviewer finding：PASS for current review scope。
+- C06 reviewer acceptance：HOLD。
+- RF01 source：ADR-002 R-04G Safe Retry / No-Resubmit。
+- RF01 defect：candidate resolution path releases BrokerActionHead for `SUCCEEDED` / `FAILED` / `NOT_DISPATCHED` alike。
+- frozen rule：only durable verified `NOT_DISPATCHED` may restore SideEffectSafetyGate invocation eligibility。
+- required distinction：UNRESOLVED / RESOLVED_BLOCKED / VERIFIED_NOT_DISPATCHED_ELIGIBLE or equivalent durable semantics。
+- resolved SUCCEEDED/FAILED must no longer be classified unresolved，but must remain automatic-reinvoke blocked。
+- RF01 write scope：`persistence/broker_action.py`、`persistence/postgres/broker_action.py`、unexecuted `0006_broker_action_safety.sql`、`tests/unit/test_c06_broker_action_safety.py`、`tests/unit/test_operational_postgres.py` only。
+- C08/C05 files：READ-ONLY。
+- migration 0006 may be amended because it is NOT_EXECUTED；0001～0005 remain READ-ONLY。
+- migration execution / actual PostgreSQL / V07 / all broker I/O：DENY。
+- Runtime Source Modification Authorization：`BOUNDED_AUTHORIZED_FOR_GAP08_W2_RF01`。
+- canonical Runtime Authorization：`NOT_AUTHORIZED`。
+- accepted correction-core progress remains 46 / 113；W2 weight 14 remains NOT CREDITED。
+- after RF01 implementation/push：STOP and return to reviewer；no closure/W3。
 ### 2026-09-26 — GAP-08 Wave-2 Source Modification Authorization
 
 - authorization decision baseline：`97e7545765741c2e08a02fd4c754b6b5ec1195b4`。
