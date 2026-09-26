@@ -368,6 +368,10 @@ Wave-1 execution package：
 
 `docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
 
+Wave-1 source-modification authorization：
+
+`docs/work/GAP08_WAVE1_AUTHORIZATION.md`
+
 Dependency DAG：
 
 VERIFIED。
@@ -376,23 +380,39 @@ Execution Coherence：
 
 VERIFIED。
 
-Next actual work：
-
-create the separate explicit bounded Wave-1 Runtime Source Modification Authorization checkpoint only。
-
 Runtime Source Modification Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_FOR_GAP08_W1。
 
 Runtime Authorization：
 
 NOT_AUTHORIZED。
 
+Next actual work：
+
+CODEX execute C02 first，then C04 -> C21 -> C03 only under leaf-local completion gates。
+
 C02：
+
+AUTHORIZED_AS_FIRST_W1_ENGINEERING_LEAF。
+
+Wave source-modification execution：
+
+AUTHORIZED_FOR_GAP08_W1。
+
+Migration execution：
 
 NOT_AUTHORIZED。
 
-Wave execution：
+Actual PostgreSQL / V07：
+
+NOT_AUTHORIZED。
+
+Broker I/O：
+
+NOT_AUTHORIZED。
+
+Production Activation：
 
 NOT_AUTHORIZED。
 

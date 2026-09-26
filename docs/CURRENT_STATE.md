@@ -123,18 +123,50 @@ Runtime Authorization：
 
 NOT_AUTHORIZED。
 
-Last consumed bounded authorization：
+Runtime Source Modification Authorization：
 
-- `docs/work/GAP08_AUTHORIZATION_C25.md`
-- `docs/work/GAP08_AUTHORIZATION_C25_AMENDMENT_01.md`
+BOUNDED_AUTHORIZED_FOR_GAP08_W1。
 
-Latest closure：
+Authorization：
 
-`docs/work/GAP08_C25_CLOSURE.md`
+`docs/work/GAP08_WAVE1_AUTHORIZATION.md`
 
-No runtime correction / implementation / verification leaf is currently authorized。
+Execution package：
 
-Migration 0004 execution：
+`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
+
+Detailed workflow owner：
+
+`docs/CODEX_EXECUTION_WORKFLOW.md`
+
+Authorized engineering leaves：
+
+    C02
+        -> C04
+        -> C21
+        -> C03
+
+W1 Dependency DAG：
+
+VERIFIED。
+
+W1 Execution Coherence：
+
+VERIFIED。
+
+CODEX W1 Source-Modification Execution：
+
+AUTHORIZED。
+
+C02：
+
+AUTHORIZED_AS_FIRST_W1_ENGINEERING_LEAF。
+
+Migration creation：
+
+0005 ONLY。
+
+Migration execution：
 
 NOT_AUTHORIZED。
 
@@ -146,49 +178,23 @@ Broker / market-data I/O：
 
 NOT_AUTHORIZED。
 
-CODEX Wave execution：
+Production Activation：
 
 NOT_AUTHORIZED。
 
-VIBE V0 / Wave workflow materialization：
+Latest completed runtime correction closure：
 
-COMPLETE。
+`docs/work/GAP08_C25_CLOSURE.md`
 
-Detailed workflow owner：
+Correction-core accepted/verified progress remains：
 
-`docs/CODEX_EXECUTION_WORKFLOW.md`
+27 / 113。
 
-Wave-1 execution package：
-
-`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
-
-W1 Dependency DAG：
-
-VERIFIED。
-
-W1 Execution Coherence：
-
-VERIFIED。
-
-W1 Runtime Source Modification Authorization：
-
-NOT_AUTHORIZED。
-
-Runtime Authorization：
-
-NOT_AUTHORIZED。
-
-C02：
-
-NOT_AUTHORIZED。
-
-CODEX Wave execution：
-
-NOT_AUTHORIZED。
+Authorization itself grants no completion credit。
 
 Next actual project action：
 
-create the separate explicit bounded Wave-1 Runtime Source Modification Authorization checkpoint。
+CODEX START — execute GAP08-W1-ACCOUNT-AUTHORITY only under the exact bounded source-modification authorization。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -347,6 +353,10 @@ Wave-1 execution package：
 
 `docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
 
+Wave-1 source-modification authorization：
+
+`docs/work/GAP08_WAVE1_AUTHORIZATION.md`
+
 Wave ID：
 
 `GAP08-W1-ACCOUNT-AUTHORITY`
@@ -370,45 +380,39 @@ Execution Coherence：
 
 VERIFIED。
 
-Verified dimensions：
+Runtime Source Modification Authorization：
 
-- exact file/symbol scope。
-- side-effect envelope。
-- rewrite policy compatibility。
-- protected-history compatibility。
-- acceptance/test compatibility。
-- human decision barriers。
-- correction/retry policy。
-- Git commit/push policy。
-- remote divergence guard。
-- reviewer/reauthorization barrier。
-- STOP conditions。
+BOUNDED_AUTHORIZED_FOR_GAP08_W1。
 
 Runtime Authorization：
 
 NOT_AUTHORIZED。
 
-Runtime Source Modification Authorization：
+Production Activation：
 
 NOT_AUTHORIZED。
 
-Execution Authorization：
+CODEX engineering execution：
 
-NOT_AUTHORIZED。
+AUTHORIZED FOR W1 SOURCE MODIFICATION ONLY。
+
+First leaf：
+
+C02。
+
+Automatic progression：
+
+C02 -> C04 -> C21 -> C03 only while leaf-local completion gates remain satisfied。
 
 W2-W5：
 
-remain dependency-coherent candidates only；their execution coherence has NOT been verified。
+remain dependency-coherent candidates only；their execution coherence and source-modification authorization remain NOT_VERIFIED / NOT_AUTHORIZED。
 
 Next actual project action：
 
-P5 — CREATE EXPLICIT BOUNDED WAVE-1 RUNTIME SOURCE MODIFICATION AUTHORIZATION CHECKPOINT。
+CODEX START — execute W1 only。
 
-Only that later explicit checkpoint may grant：
-
-`BOUNDED_AUTHORIZED_FOR_GAP08_W1`
-
-CODEX runtime execution remains NOT_AUTHORIZED until P5 succeeds。
+No automatic transition to W2 is authorized。
 
 No step implicitly grants authority to the next step。
 

@@ -560,9 +560,13 @@ Wave-1 execution package：
 
 `docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
 
+Wave-1 source-modification authorization：
+
+`docs/work/GAP08_WAVE1_AUTHORIZATION.md`
+
 Wave-1 status：
 
-EXECUTION_COHERENCE_VERIFIED / SOURCE_MODIFICATION_NOT_AUTHORIZED。
+EXECUTION_COHERENCE_VERIFIED / SOURCE_MODIFICATION_AUTHORIZED。
 
 Wave-1 dependency DAG：
 
@@ -572,9 +576,17 @@ Wave-1 execution coherence：
 
 VERIFIED。
 
-Wave-1 execution authorization：
+Runtime Source Modification Authorization：
+
+BOUNDED_AUTHORIZED_FOR_GAP08_W1。
+
+Runtime Authorization：
 
 NOT_AUTHORIZED。
+
+C02：
+
+AUTHORIZED_AS_FIRST_W1_ENGINEERING_LEAF。
 
 W2-W5 status：
 
@@ -584,19 +596,13 @@ W2-W5 execution coherence：
 
 NOT YET VERIFIED。
 
+W2-W5 source-modification authorization：
+
+NOT_AUTHORIZED。
+
 Next governance action：
 
-P5 — create explicit bounded Wave-1 Runtime Source Modification Authorization checkpoint。
-
-Runtime Authorization：
-
-NOT_AUTHORIZED。
-
-Runtime Source Modification Authorization：
-
-NOT_AUTHORIZED。
-
-C02 remains the next runtime candidate only and is NOT_AUTHORIZED。
+CODEX execute W1 only；after Wave final verification/push，STOP for reviewer/governance closure。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

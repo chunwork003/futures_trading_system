@@ -29,6 +29,34 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 Wave-1 Source Modification Authorization
+
+- authorization decision baseline：`a6a90dc7cf47c0b7eeb9520be2e38db823ff579c`。
+- Wave ID：`GAP08-W1-ACCOUNT-AUTHORITY`。
+- execution package：`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`。
+- authorization：`docs/work/GAP08_WAVE1_AUTHORIZATION.md`。
+- authorized leaves：C02 / C04 / C21 / C03。
+- Runtime Source Modification Authorization：BOUNDED_AUTHORIZED_FOR_GAP08_W1。
+- canonical Runtime Authorization：NOT_AUTHORIZED。
+- production activation：NOT_AUTHORIZED。
+- source-modification execution：AUTHORIZED_FOR_GAP08_W1。
+- first executable leaf：C02。
+- automatic progression allowed only C02 -> C04 -> C21 -> C03 under leaf-local gates。
+- NEW migration creation：0005 only。
+- migration execution：DENY。
+- actual PostgreSQL / V07：DENY。
+- broker network / paper / production broker I/O：DENY。
+- credentials：DENY。
+- Git：per-leaf commit / wave-end push / force-push DENY。
+- semantic correction budget：maximum 2 scope-internal cycles per leaf。
+- tooling retry：non-semantic but finite。
+- remote divergence：STOP / re-resolution。
+- W2-W5 remain NOT_AUTHORIZED。
+- authorization grants no completion/acceptance weight by itself。
+- correction-core accepted/verified progress remains 27 / 113。
+- next：CODEX W1 execution。
+- W1 must STOP after final Wave verification/push；no automatic W2。
+
 ### 2026-09-26 — GAP-08 Wave-1 Execution Coherence Verification
 
 - input Post-VIBE Planning Baseline：`f34b6d4c0b4b52e5ce686baba9139cfc19745a1b`。

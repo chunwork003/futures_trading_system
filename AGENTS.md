@@ -22,9 +22,9 @@ Runtime Authorization：NOT_AUTHORIZED。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current execution action：create the explicit Wave-1 Runtime Source Modification Authorization checkpoint from `docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`；C02 and Wave execution remain NOT_AUTHORIZED until that separate checkpoint is committed。
+Current execution action：CODEX may execute only `GAP08-W1-ACCOUNT-AUTHORITY` under `docs/work/GAP08_WAVE1_AUTHORIZATION.md`；first leaf C02，then C04 -> C21 -> C03 under dependency gates。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
-C25 is COMPLETE / VERIFIED and its bounded authorization is consumed。Migration 0004 exists but is NOT_EXECUTED；actual PostgreSQL、C02/C04/C05/C18/C21/V05/V07 and Wave execution remain NOT_AUTHORIZED。
+C25 is COMPLETE / VERIFIED and its bounded authorization is consumed。Migration 0004 exists but is NOT_EXECUTED；actual PostgreSQL、C05/C18/V05/V07、migration execution and runtime activation remain NOT_AUTHORIZED。C02/C04/C21/C03 source modification is bounded-authorized only under GAP08-W1。
 
 Historical authority/checkpoint sections below are preserved for audit and are not current runtime authorization。
 
@@ -60,7 +60,7 @@ Original runtime candidate remains NOT ACCEPTED；latest completed correction ru
 
 R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map、Delta-to-Contract、materialized correction leaves、DAG 與 reweight 已記錄於 `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 + C23 + C24 + C25 已完成；frozen P1 COMPLETE，P2 COMPLETE。目前沒有 runtime leaf 取得授權；C02 只是 next runtime candidate。
+V06 + C01 + C22 + C11 + C23 + C24 + C25 已完成；frozen P1 COMPLETE，P2 COMPLETE。GAP08-W1 已取得 bounded source-modification authorization；C02 是第一個可執行 engineering leaf。Runtime Authorization 仍為 NOT_AUTHORIZED。
 
 Primary source of truth 與必讀順序：
 
@@ -75,7 +75,7 @@ Historical bounded authorization source：`docs/work/GAP08_AUTHORIZATION_V06_C01
 
 Previous bounded execution closure：`docs/work/GAP08_C01_CLOSURE.md`。
 
-Latest bounded execution closure：`docs/work/GAP08_C25_CLOSURE.md`。Last consumed authorization：`docs/work/GAP08_AUTHORIZATION_C25.md` + `docs/work/GAP08_AUTHORIZATION_C25_AMENDMENT_01.md`。Current bounded runtime authorization：NONE。
+Latest bounded execution closure：`docs/work/GAP08_C25_CLOSURE.md`。Last consumed runtime-leaf authorization：`docs/work/GAP08_AUTHORIZATION_C25.md` + `docs/work/GAP08_AUTHORIZATION_C25_AMENDMENT_01.md`。Current bounded source-modification authorization：`docs/work/GAP08_WAVE1_AUTHORIZATION.md`。
 4. `docs/GAP_REGISTER.md`：有序 GAP。
 5. `docs/AI_HANDOFF.md`：架構決策與交接。
 6. `docs/V1_SYSTEM_BLUEPRINT.md`：V1 工程施工圖 master index；正式 baseline 後由 ACTIVE 引用相關 Blueprint IDs。
