@@ -64,8 +64,6 @@ R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 clas
 
 Primary source of truth 與必讀順序：
 
-Primary source of truth 與必讀順序：
-
 1. `docs/CURRENT_STATE.md`：唯一 canonical CURRENT governance projection。
 2. `AGENTS.md`：agent re-entry guard、執行規則與 current-state pointer。
 3. `docs/CURRENT_WORK.md`：目前工作、阻塞、佇列。
