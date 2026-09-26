@@ -32,7 +32,7 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 - Runtime Conformance：NOT ASSERTED。
 - Production Readiness：NOT ASSERTED。
 - Runtime Authorization：NOT_AUTHORIZED。
-- Runtime modification：NOT_AUTHORIZED。
+- Runtime Source Modification Authorization：BOUNDED_AUTHORIZED_FOR_GAP08_W2。
 - Broker I/O：NOT_AUTHORIZED。
 - DB migration execution：NOT_AUTHORIZED。
 - Level 3B：NOT_ENABLED。
@@ -186,11 +186,15 @@ VERIFIED。
 
 W2 Runtime Source Modification Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_FOR_GAP08_W2。
+
+W2 authorization：
+
+`docs/work/GAP08_WAVE2_AUTHORIZATION.md`
 
 Next actual project action：
 
-explicit bounded W2 Runtime Source Modification Authorization decision only。
+CODEX W2 bounded source execution：C08 -> C05 -> C06 only。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -386,13 +390,13 @@ VERIFIED。
 
 W2 Runtime Source Modification Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_FOR_GAP08_W2。
 
 Next：
 
-W2 execution package/coherence VERIFIED -> separate explicit bounded W2 source-modification authorization decision。
+W2 execution package/coherence VERIFIED -> W2 bounded source-modification authorization EFFECTIVE -> CODEX C08 -> C05 -> C06。
 
-No automatic W2 execution is authorized。
+Automatic progression is authorized only inside C08 -> C05 -> C06 while leaf-local gates remain satisfied。
 
 No step implicitly grants authority to the next step。
 

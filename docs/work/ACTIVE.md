@@ -387,15 +387,19 @@ VERIFIED。
 
 W2 source-modification authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_FOR_GAP08_W2。
+
+Authorization：
+
+`docs/work/GAP08_WAVE2_AUTHORIZATION.md`
 
 Next actual work：
 
-prepare explicit bounded W2 source-modification authorization decision only。
+CODEX execute C08 -> C05 -> C06 under exact W2 authorization。
 
 STOP：
 
-do not start W2 runtime。
+after W2 final verification/push；do not start W3 or governance closure。
 
 ## 4. Recommended Model
 

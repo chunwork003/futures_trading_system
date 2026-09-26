@@ -614,11 +614,15 @@ VERIFIED。
 
 W2 source-modification authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_FOR_GAP08_W2。
+
+Authorization：
+
+`docs/work/GAP08_WAVE2_AUTHORIZATION.md`
 
 Next governance action：
 
-explicit bounded W2 Runtime Source Modification Authorization decision。
+CODEX W2 bounded source execution：C08 -> C05 -> C06。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

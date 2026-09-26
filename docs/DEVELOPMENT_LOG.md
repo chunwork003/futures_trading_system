@@ -29,6 +29,32 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 Wave-2 Source Modification Authorization
+
+- authorization decision baseline：`97e7545765741c2e08a02fd4c754b6b5ec1195b4`。
+- execution package：`docs/work/GAP08_WAVE2_EXECUTION_PACKAGE.md`。
+- authorization：`docs/work/GAP08_WAVE2_AUTHORIZATION.md`。
+- Wave ID：`GAP08-W2-EXECUTION-SAFETY`。
+- authorized leaves：C08 -> C05 -> C06。
+- weight：14 candidate；not yet accepted/credited。
+- Runtime Source Modification Authorization：`BOUNDED_AUTHORIZED_FOR_GAP08_W2`。
+- canonical Runtime Authorization：`NOT_AUTHORIZED`。
+- production activation：`NOT_AUTHORIZED`。
+- exact existing runtime write scope：`trading/execution.py`、`persistence/execution.py`、`persistence/postgres/execution.py`。
+- exact new runtime scope：`persistence/broker_action.py`、`persistence/postgres/broker_action.py`、`0006_broker_action_safety.sql`。
+- exact existing test write scope：`test_operational_execution.py`、`test_operational_postgres.py`。
+- exact new tests：C08/C05/C06 W2 unit tests only。
+- migration creation：0006 only。
+- migration execution：DENY。
+- actual PostgreSQL / V07：DENY。
+- broker network / paper / Shioaji simulation / production I/O：DENY。
+- credential material：DENY。
+- Git：per-leaf commit / wave-end push / force-push DENY。
+- semantic correction budget：maximum 2 per leaf。
+- first executable leaf：C08。
+- automatic progression only C08 -> C05 -> C06 under leaf-local gates。
+- W2 completion requires STOP before reviewer/governance closure；W3 is not authorized。
+- accepted correction-core progress remains 46 / 113 until reviewer closure。
 ### 2026-09-26 — GAP-08 Wave-2 Execution Coherence Verification
 
 - planning baseline：`6a444f6a7ed2a586fe8b3f93632e87e25447cb96`。
