@@ -163,3 +163,17 @@ MIGRATION：
 - authN / authZ / approval 分離。
 - Python orchestration 不等於 direct broker integration。
 - .NET/auth mechanism 在 runtime scaffold 前有 explicit human gate。
+
+## Recovery Decision Checkpoint 5E — Production Authorization Ownership
+
+N remains target application owner of production operator authentication、authorization、approval and high-risk command workflow。
+
+R-13 does not require GAP-08 to scaffold or implement the full ASP.NET authorization subsystem。
+
+The Python trading/recovery core must nevertheless enforce authorization-required semantics at its own authoritative protected-action boundary and default-deny when trusted production authority is unavailable。
+
+Caller-supplied `actor`、`confirmed_by`、reason strings or booleans are not substitutes for N-governed production authorization evidence。
+
+Future N authorization decisions must preserve exact protected resource/action scope and durable correlation without becoming broker-side idempotency authority。
+
+Full security mechanics such as provider、MFA、RBAC/claims details、approval count and UI remain separately implementation-gated。

@@ -77,7 +77,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：R-12 ReconciliationRun audit contract，then R-13 / R-14 boundary classification；bounded correction freeze remains later in the authoritative queue。
+Next action：K520 defer confirmation，then broker capability gate classification；after that complete the expanded correction-scope map、reweight the Work Package and make an explicit bounded runtime authorization decision。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 
@@ -405,3 +405,31 @@ Next：
     then R-13 / R-14 boundary classification
 
 Do not begin runtime correction from this checkpoint。
+
+## Decision Checkpoint 5E Work Boundary
+
+Completed architecture/classification work：
+
+- R-12 ReconciliationRun audit contract：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-13 Operator Authorization：DECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-14 Operational Market-Data Completeness：DECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY。
+
+Runtime work：NONE AUTHORIZED。
+
+Mandatory anti-misread：
+
+    R-13 production auth runtime not implemented != authorization requirement waived
+
+    R-14 full completeness detector deferred != completeness requirement waived
+
+Candidate runtime commit is not an authorized runtime baseline。
+
+Next authoritative sequence：
+
+    1. K520 defer confirmation
+    2. Broker capability gate classification
+    3. Complete expanded correction-scope map
+    4. Reweight expanded correction Work Package
+    5. Explicit bounded runtime authorization decision
+
+Do not begin runtime correction before step 5 explicitly authorizes a bounded Work Package。

@@ -435,3 +435,19 @@ Next architecture work：R-08 + R-09 identity/config authority cluster。
 - Runtime Authorization：NOT_AUTHORIZED。
 - Architecture Acceptance：HOLD。
 - Next：R-12 ReconciliationRun audit contract。
+
+## Decision Checkpoint 5E State
+
+- R-12：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-13：DECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-14：DECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY。
+- No R-12I / R-13I / R-14I。
+- Recovery decisions R-01 through R-14 are now closed/classified for the current correction-freeze preparation phase。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Candidate commit is not an authorized runtime baseline。
+- Runtime conformance：NOT ASSERTED。
+- Production readiness：NOT ASSERTED。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Architecture Acceptance：HOLD。
+- Correction Expansion：RECORDED / NOT YET REWEIGHTED。
+- Next：K520 defer confirmation，then broker capability gate classification。

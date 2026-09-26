@@ -936,3 +936,36 @@ Temporal authority：
 Runtime Authorization remains NOT_AUTHORIZED。
 
 Next：R-12 ReconciliationRun audit contract。
+
+## Decision Checkpoint 5E Handoff
+
+R-12 / R-13 / R-14 architecture and boundary classification are closed。
+
+R-12：
+- every readiness-relevant formal reconciliation，including MATCH，requires durable ReconciliationRun audit。
+- exact evaluated-world binding is immutable once established。
+- technical outcome、input qualification and domain result are distinct。
+- terminal Run outcome + required exact result evidence form one crash-consistent finalization boundary。
+- finalized Run is audit evidence，not final READY authority。
+
+R-13：
+- Python core does not own a parallel IAM system。
+- GAP-08 requires core authorization enforcement seam + default deny + durable protected-action attribution。
+- authorization identity is not command/attempt/idempotency identity。
+- authorization never bypasses R-04G。
+- full production authN/authZ/approval remains L/N/GAP-LIVE。
+
+R-14：
+- completeness = consumer-required canonical observation obligations positively proven。
+- source health/candidate count/recency alone are insufficient。
+- historical COMPLETE != current activation applicability。
+- unproven completeness blocks dependent Strategy/Cohort readiness，not automatically BrokerAccount execution。
+- GAP-08 implements the dependency seam/fail-closed behavior。
+- full detector remains GAP-DATA-001。
+
+R-13 production auth runtime not implemented != authorization requirement waived。
+R-14 full completeness detector deferred != completeness requirement waived。
+Runtime candidate != authorized runtime baseline。
+Runtime Authorization remains NOT_AUTHORIZED。
+
+Next：K520 defer confirmation -> broker capability gate classification。

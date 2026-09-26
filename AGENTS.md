@@ -143,3 +143,22 @@ Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7
 - Runtime Authorization：NOT_AUTHORIZED。
 - Architecture Acceptance：HOLD。
 - Next：R-12 ReconciliationRun audit contract。
+
+## CURRENT AUTHORITY — DECISION CHECKPOINT 5E
+
+- Authoritative baseline before this checkpoint：`a68ca31d969dd691cae4fe01e904ef81239de453`。
+- Runtime candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Runtime candidate != authorized runtime baseline。
+- R-12：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-13：DECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-14：DECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY。
+- No R-12I / R-13I / R-14I。
+- R-13 production auth runtime not implemented != authorization requirement waived。
+- R-14 full completeness detector deferred != completeness requirement waived。
+- R-13 core enforcement/default-deny seam belongs to GAP-08 correction；full production authN/authZ/approval remains L/N/GAP-LIVE。
+- R-14 completeness dependency/fail-closed readiness seam belongs to GAP-08 correction；full detector remains GAP-DATA-001。
+- GAP-DATA-001 remains Current Blocking = No for GAP-08 correction，but remains a later production dependency。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Architecture Acceptance：HOLD。
+- Recovery architecture free expansion stops absent concrete contradiction/new authoritative evidence。
+- Next：K520 defer confirmation -> broker capability gate classification -> correction-scope map -> reweight -> explicit bounded runtime authorization decision。

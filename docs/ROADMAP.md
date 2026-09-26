@@ -440,3 +440,26 @@ Immediate next：R-12 ReconciliationRun audit contract。
 Then：R-13 / R-14 boundary classification、K520 defer confirmation、broker capability classification、correction-scope freeze/reweight、explicit runtime authorization。
 
 Runtime Gate：NOT_AUTHORIZED。
+
+## Recovery Architecture Checkpoint 5E
+
+Closed/classified recovery decision sequence now covers R-01 through R-14。
+
+Checkpoint 5E closes：
+- R-12 ReconciliationRun audit contract。
+- R-13 operator authorization boundary classification。
+- R-14 market-data completeness boundary classification。
+
+Architecture closure does not imply runtime conformance or runtime authorization。
+
+Runtime candidate remains `6b62239bca1d11543944f9f078e577e16010bcbf` and remains NOT ACCEPTED。
+
+Next phase is classification/freeze preparation，not architecture free exploration：
+
+1. K520 defer confirmation。
+2. Broker capability gate classification。
+3. Complete correction-scope map。
+4. Reweight expanded Work Package。
+5. Explicit bounded runtime authorization decision。
+
+Runtime Gate：NOT_AUTHORIZED。

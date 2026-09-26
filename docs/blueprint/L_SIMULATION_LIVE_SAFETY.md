@@ -246,3 +246,21 @@ Production implementation 時若涉及 authentication/security framework，必�
 - market environment / execution environment 清楚分離。
 - authorization / guards / manual override / kill switch 各自責任清楚。
 - LIVE_AUTO 有 explicit default-deny gate。
+
+## Recovery Decision Checkpoint 5E — R-13 Authorization Classification
+
+R-13 does not create a parallel authorization domain。
+
+L remains semantic owner of trading/manual safety authorization requirements。
+
+GAP-08 bounded correction requires only the protected core enforcement seam、production default-deny、trusted production/non-production distinction and durable authorization attribution needed to prevent bypass。
+
+Full production LIVE/manual authorization runtime remains GAP-LIVE / L600-L700 scope and depends on N authentication/authorization/approval implementation。
+
+`REVIEW` is not automatically overrideable；only explicitly policy-supported human dispositions may consume R-13 authority。
+
+HALT cannot be bypassed by approval；the underlying mandatory predicate must actually be repaired/satisfied and reevaluated。
+
+Authorization is necessary where required but never sufficient for broker side effects。
+
+R-13 production auth runtime not implemented != authorization requirement waived。

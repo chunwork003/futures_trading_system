@@ -1139,3 +1139,28 @@ Runtime gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 - Architecture Acceptance remains HOLD。
 - Runtime Authorization remains NOT_AUTHORIZED。
 - Next：R-12 ReconciliationRun audit contract。
+
+### 2026-09-26 — Recovery Architecture Decision Checkpoint 5E
+
+- Baseline：`a68ca31d969dd691cae4fe01e904ef81239de453`。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- R-12：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-13：DECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-14：DECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY。
+- R-12 formal reconciliation including MATCH requires durable Run audit。
+- R-12 exact input binding is immutable once established。
+- R-12 terminal outcome + required exact result/provenance form one crash-consistent audit finalization boundary。
+- R-13 authorization identity is distinct from command、BrokerActionAttempt、AccountAuthorityCommit and broker idempotency identity。
+- R-13 GAP-08 scope is authoritative core enforcement/default-deny/durable attribution only；full production auth runtime remains L/N/GAP-LIVE。
+- R-14 completeness is consumer-scoped canonical observation coverage proof。
+- R-14 historical COMPLETE is distinct from current activation applicability。
+- R-14 unproven completeness blocks dependent Strategy/Cohort readiness but does not by itself HALT BrokerAccount execution。
+- R-14 GAP-08 scope is completeness dependency seam + fail-closed readiness；full detector remains GAP-DATA-001。
+- GAP-DATA-001 remains Current Blocking = No for current bounded correction and remains a later production dependency。
+- R-13 production auth runtime not implemented != authorization requirement waived。
+- R-14 full completeness detector deferred != completeness requirement waived。
+- Runtime candidate != authorized runtime baseline。
+- Runtime tests not rerun because checkpoint is docs-only。
+- Architecture Acceptance remains HOLD。
+- Runtime Authorization remains NOT_AUTHORIZED。
+- Next：K520 defer confirmation -> broker capability gate classification。

@@ -615,3 +615,25 @@ Runtime Authorization：NOT_AUTHORIZED。
 Do not re-open R-10/R-11 without concrete contradiction or new authoritative evidence。
 
 Do not begin runtime correction until correction scope freeze/reweight and explicit authorization。
+
+## Decision Checkpoint 5E — Active Queue
+
+Completed：
+- R-12 DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-13 DECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-14 DECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY。
+
+No runtime Work Package is authorized。
+
+Current architecture/governance task：
+    K520 defer confirmation
+    then Broker capability gate classification
+
+After classification：
+    correction-scope map
+    -> reweight
+    -> explicit bounded runtime authorization decision
+
+Do not re-open R-01 through R-14 without concrete contradiction or new authoritative evidence。
+Do not infer runtime authorization from candidate commit、architecture closure、classification completion or test history。
+Runtime Authorization：NOT_AUTHORIZED。

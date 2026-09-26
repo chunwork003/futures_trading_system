@@ -793,3 +793,25 @@ Reconciliation persistence recorded_at is explicit audit/recording metadata，no
 Case/run ordering authority must come from its explicit version/run identity rather than wall-clock sort。
 
 R-12 remains owner of the formal ReconciliationRun audit contract。
+
+## Recovery Decision Checkpoint 5E — ReconciliationRun Audit Contract
+
+Formal startup/recovery reconciliation now requires BrokerAccount-scoped ReconciliationRun audit semantics。
+
+Key invariants：
+
+- every readiness-relevant formal reconciliation，including MATCH，has durable Run audit。
+- durable run-attempt boundary exists before result-bearing evaluation。
+- run_id identifies one immutable formal evaluation attempt。
+- exact evaluated inputs are immutable once bound。
+- MATCH is valid only inside the exact declared evaluation scope；there is no global MATCH。
+- technical run outcome、input qualification and reconciliation domain result are distinct。
+- finalized Run history is immutable and distinct from ReconciliationCase lifecycle。
+- terminal outcome and required exact result/provenance set form one crash-consistent audit finalization boundary。
+- finalized Run is audit evidence，not AccountStateHead/economic/final READY authority。
+- historical Run validity does not imply current activation applicability。
+- R-04H retains final currentness/readiness authority。
+
+ReconciliationRun persistence alone must not advance AccountStateHead。
+
+R-12 runtime implementation remains correction scope；this checkpoint does not claim runtime conformance。

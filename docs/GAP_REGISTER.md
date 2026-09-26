@@ -503,3 +503,30 @@ No runtime implementation is authorized。
 - Correction expansion remains RECORDED / NOT YET REWEIGHTED。
 - Runtime Authorization remains NOT_AUTHORIZED。
 - Next：R-12，then R-13 / R-14 boundary classification。
+
+## Decision Checkpoint 5E — R-12 / R-13 / R-14 Closure
+
+- R-12：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-13：DECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-14：DECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY。
+- No R-12I / R-13I / R-14I。
+
+R-13 classification：
+- GAP-08 correction dependency：core authorization-required enforcement seam、production default deny、durable protected-action attribution、production/non-production authority distinction。
+- Production gate/deferred implementation：full N authN/authZ/approval + L/GAP-LIVE workflow。
+
+R-14 classification：
+- GAP-08 correction dependency：authoritative completeness-required seam + fail-closed dependent Strategy/Cohort readiness。
+- Deferred production dependency：GAP-DATA-001 full session/calendar-aware detector、coverage/failure monitoring、outage classification and production completeness operations。
+- GAP-DATA-001 Current Blocking remains No for GAP-08 bounded correction。
+- GAP-DATA-001 remains required before production dependent Strategy/Cohort TradingReady where completeness authority is mandatory。
+
+Mandatory anti-misread：
+    R-13 production auth runtime not implemented != authorization requirement waived
+    R-14 full completeness detector deferred != completeness requirement waived
+
+K520 remains GAP-09-owned。
+Correction expansion remains RECORDED / NOT YET REWEIGHTED。
+Runtime Authorization remains NOT_AUTHORIZED。
+
+Next：K520 defer confirmation -> broker capability gate classification -> correction scope map/reweight。

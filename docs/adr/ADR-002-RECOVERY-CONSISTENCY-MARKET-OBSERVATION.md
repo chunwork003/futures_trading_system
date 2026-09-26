@@ -2149,3 +2149,500 @@ Next：R-12 ReconciliationRun audit contract。
 Then：R-13 boundary classification -> R-14 boundary classification -> K520 defer confirmation -> broker capability gate classification -> correction scope freeze/reweight -> explicit runtime authorization。
 
 No runtime correction is authorized by this checkpoint。
+
+## Decision Checkpoint 5E — R-12 / R-13 / R-14 Closure and Boundary Classification
+
+**DECISION CHECKPOINT 5E ACCEPTED — ARCHITECTURE DECISIONS ONLY**
+
+- Baseline：`a68ca31d969dd691cae4fe01e904ef81239de453`。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Architecture Acceptance remains：HOLD。
+- Runtime Authorization remains：NOT_AUTHORIZED。
+- Runtime implementation：NONE。
+- Runtime tests：not rerun / docs-only checkpoint。
+- R-12：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-13：DECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-14：DECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY。
+- No R-12I / R-13I / R-14I added。
+
+Mandatory anti-misread assertions：
+
+    R-13 production auth runtime not implemented != authorization requirement waived
+
+    R-14 full completeness detector deferred != completeness requirement waived
+
+Runtime candidate commit != authorized runtime baseline。
+
+Closing R-12/R-13/R-14 does not authorize runtime correction。
+
+## R-12 — ReconciliationRun Audit Contract
+
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+### R-12A — BrokerAccount-Scoped Formal Run
+
+One formal ReconciliationRun belongs to exactly one BrokerAccount。
+
+`run_id` is one stable opaque audit identity for one formal reconciliation evaluation attempt。
+
+A shared incident may affect multiple BrokerAccounts，but it does not create cross-account ReconciliationRun authority。
+
+### R-12B — Durable Formal Run Boundary
+
+Every formal production startup/recovery reconciliation evaluation intended to participate in readiness requires durable ReconciliationRun audit evidence，including MATCH。
+
+The formal durable run-attempt boundary must exist before result-bearing reconciliation evaluation begins。
+
+A crash after that boundary must leave a detectable incomplete/non-finalized attempt；restart must not erase the attempt。
+
+The conceptual audit lifecycle distinguishes：
+
+1. RUN_BOUNDARY_ESTABLISHED。
+2. EVALUATED_INPUTS_BOUND。
+3. TERMINAL_AUDIT_OUTCOME。
+
+These are architectural lifecycle semantics only；no physical enum/table design is mandated。
+
+RUN_BOUNDARY_ESTABLISHED permanently identifies at least the BrokerAccount、declared evaluation scope、governing reconciliation policy identity and applicable recovery/session attempt context。
+
+It is not required to know the entire evaluated evidence set at that first durable boundary。
+
+### R-12C — Exact Evaluated World
+
+Every input claimed by a ReconciliationRun must resolve to immutable or explicitly versioned evidence representing the exact state actually evaluated。
+
+A mutable object identifier without the applicable version/revision/fingerprint is not an exact audit reference when mutable state is material。
+
+The evaluated-world binding includes，as applicable：
+
+- exact RecoveryCut/currentness input identity or witness。
+- exact expected-state authority reference / expected snapshot / account revision。
+- exact broker discovery/observation evidence set。
+- exact discovery completeness/qualification evidence required by policy。
+- exact reconciliation policy identity/version。
+- exact applicable behavior/implementation compatibility identity where required。
+- exact declared reconciliation evaluation scope。
+- exact reconciliation result set。
+
+Once the evaluated-input world is durably bound to the run_id，that binding is immutable。
+
+MATCH is always scoped to the exact declared reconciliation evaluation contract。
+
+There is no global or unqualified MATCH。
+
+### R-12D — Three Independent Outcome Axes
+
+A ReconciliationRun must distinguish：
+
+1. technical run/audit outcome。
+2. evaluation-input/evidence qualification。
+3. reconciliation domain result。
+
+These axes may not impersonate one another。
+
+Evaluation-input qualification asks whether the exact available evidence is sufficiently authoritative for the specific reconciliation conclusion being claimed。
+
+Incomplete discovery is not qualified evidence for MATCH。
+
+Verified evidence that external state is unavailable may，where the frozen reconciliation contract permits，be sufficient to produce a qualified UNKNOWN_EXTERNAL_STATE conclusion。
+
+Programming error、partial database read、unqualified evidence or accidental discovery omission must not be converted to MATCH or UNKNOWN_EXTERNAL_STATE。
+
+A technically completed run whose inputs are not qualified for the claimed readiness conclusion is not eligible as successful production readiness evidence。
+
+### R-12E — Run Lifecycle != Case Lifecycle
+
+ReconciliationRun is immutable historical audit of one formal evaluation attempt。
+
+ReconciliationCase is the longer-lived discrepancy/review/control lifecycle。
+
+MATCH Run may create zero ReconciliationCase。
+
+Mismatch may create or correlate to a case according to separately governed case lifecycle semantics。
+
+Case resolution never rewrites the historical Run result。
+
+Later Run-to-Case correlation may use append-only trace/link evidence rather than mutating a finalized Run。
+
+### R-12F — Audit Evidence, Not READY Authority
+
+ReconciliationRun is audit/readiness evidence where required。
+
+It is NOT：
+
+- AccountPosition authority。
+- Order authority。
+- Fill authority。
+- AccountStateHead authority。
+- final BrokerAccount READY authority。
+
+A MATCH Run does not itself grant READY。
+
+R-04H retains final currentness/readiness authority。
+
+### R-12G — Append-Only Identity / Crash-Consistent Finalization
+
+One run_id is permanently bound to one formal evaluation attempt。
+
+It must never be reused for a different BrokerAccount、evaluation scope、policy or already-bound evaluated input world。
+
+The same run may be technically resumed only against the same exact durably bound input world where deterministic resume is contractually valid。
+
+A new evaluated world requires a new ReconciliationRun。
+
+One run_id has at most one authoritative terminal audit outcome。
+
+Repeated identical terminal finalization may be treated idempotently。
+
+Conflicting terminal finalization is an audit integrity failure。
+
+An authoritative terminal outcome and every exact reconciliation result/provenance set required by that outcome form one crash-consistent audit finalization boundary。
+
+A valid finalized Run must never expose：
+
+    terminal COMPLETED
+    +
+    missing / partial / incompatible result evidence
+
+If required result evidence is durable but terminal finalization has not completed，the Run remains non-finalized and may only be resumed against the same exact bound inputs where allowed。
+
+A finalized Run is never repaired by substituting a different result set。
+
+Persisting or finalizing ReconciliationRun audit evidence alone does not advance AccountStateHead。
+
+### R-12H — Historical Validity != Current Activation Applicability
+
+No latest-run or wall-clock ordering rule may become activation authority。
+
+`SELECT latest_run -> MATCH -> READY` is forbidden。
+
+A finalized historical Run may remain historically valid while no longer proving the current activation world。
+
+ReconciliationRun is not a pre-existing member of the RecoveryCut that it evaluates。
+
+Conceptual flow：
+
+    exact evaluated RecoveryCut/evidence
+        -> ReconciliationRun durable audit closure
+        -> R-04H final-currentness/handoff evaluation
+
+When a finalized Run is used to support activation，R-04H exact-references the relevant Run/evidence and verifies that the evaluated world is still current。
+
+New relevant recovery evidence、changed required input world、changed recovery generation or stale AccountStateHead/currentness may invalidate activation applicability without rewriting the historical Run。
+
+A production startup/recovery reconciliation result required for activation is eligible for that use only after its formal ReconciliationRun audit outcome and exact evaluated-input binding are durably established。
+
+Failure to establish durable Run audit evidence does not prove the reconciliation conclusion false；it makes that evaluation ineligible as production activation evidence。
+
+## R-13 — Operator Authorization / Approval Boundary
+
+Status：DECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+### R-13A — Existing L/N Authority Binding
+
+R-13 binds existing L trading-safety authority requirements to N authentication/authorization/approval authority for protected recovery/manual operations。
+
+R-13 is not a parallel Python IAM domain and does not replace N authentication or L trading-safety policy。
+
+N remains owner of authenticated principal、authorization policy/application workflow and approval authority。
+
+L remains owner of trading/manual safety requirements and protected action scope。
+
+K/PostgreSQL remains the durable operational/audit storage direction。
+
+Python trading/recovery core consumes and enforces required authority evidence at the authoritative action boundary。
+
+### R-13B — Metadata Is Not Authorization Proof
+
+Free-form `confirmed_by`、`actor_ref`、`reason`、`resolution_note`、caller-supplied booleans or arbitrary strings are not production authorization proof。
+
+Production authorization evidence must durably resolve，as applicable，to：
+
+- authorization decision identity。
+- authenticated principal identity。
+- governing authorization policy/version。
+- exact action/resource scope。
+- decision/approval result。
+- required evidence provenance。
+- authorization-time semantics。
+- applicable command/correlation identity。
+
+Historically valid authorization does not automatically imply current usability under policies that support expiry、revocation、session invalidation or changed state。
+
+### R-13C — Exact Protected World Binding
+
+High-risk recovery/manual authorization binds the exact protected action/world that was authorized。
+
+Where mutable state is material to the decision，a mutable target identifier alone is insufficient。
+
+Authorization must bind immutable/versioned/fingerprinted semantic targets or equivalent exact evidence。
+
+Materially relevant world changes require authorization applicability to be revalidated or reacquired。
+
+Applicable context may include：
+
+- action kind。
+- BrokerAccount。
+- instrument/order/case/BrokerActionAttempt target。
+- exact target version/evidence/fingerprint。
+- recovery/evaluation generation。
+- exact disposition/evidence world。
+- governing policy identity。
+- durable command/idempotency context。
+
+This exact-world rule applies where material evidence/state is part of the recovery/manual authorization decision。
+
+It does not redefine the independent L610 general LIVE authorization scope contract。
+
+### R-13D — REVIEW Disposition / HALT Boundary
+
+`REVIEW` does not mean automatically overrideable。
+
+R-13 may authorize a REVIEW disposition only when the frozen governing policy explicitly defines a human-authorizable disposition for that condition。
+
+R-13 approval cannot bypass HALT。
+
+HALT may clear only after the underlying mandatory predicate is actually satisfied or repaired under the applicable authority contract and the system reevaluates state。
+
+Operator approval is not integrity repair、capability verification or missing-evidence fabrication。
+
+### R-13E — Authorization Is Necessary, Never Sufficient
+
+Authorization does not freeze business state and does not itself authorize broker invocation。
+
+Immediately before a protected economic/broker side effect，all current side-effect-safety、business-validity、account、session、instrument、risk and currentness prerequisites remain independently mandatory。
+
+The following identities are distinct：
+
+    AuthorizationDecision identity
+    != Command identity
+    != BrokerActionAttempt identity
+    != AccountAuthorityCommit identity
+    != broker-side idempotency identity
+
+A historically valid authorization never permits creation of an additional broker invocation merely because approval remains valid。
+
+Technical resume/retry may reuse authorization evidence only when it is still the same durable protected command/action world and the underlying R-04G/idempotency contract independently permits that retry。
+
+An unresolved SUBMIT/CANCEL attempt with unknown outcome remains subject to R-04G DO NOT RESUBMIT even when authorization exists。
+
+### R-13F — Durable Authorization Attribution
+
+A production high-risk authorization consumed by a durable protected workflow must itself be durably auditable before that workflow consumes it as authority。
+
+Before a protected durable authority transition or broker side-effect path crosses its protected action boundary，the exact authorization reference/evidence used must be durably attributable to that action/command context。
+
+For broker side effects，the conceptual ordering is：
+
+    authorization verified
+        -> protected durable command / BrokerActionAttempt references authority
+        -> side-effect/business/currentness gates
+        -> broker I/O
+
+Physical schema such as one `authorization_id` column or mutable `consumed=true` is not mandated。
+
+Generic consumed flags are not retry authority。
+
+Same authorization identity + same bound protected semantics may support idempotent technical resume where the underlying contract permits。
+
+Same authorization identity + materially different scope/evidence/command/disposition is AUTHORIZATION_INTEGRITY_CONFLICT。
+
+### R-13G — GAP-08 vs Production Authorization Boundary
+
+GAP-08 bounded correction MUST implement the authoritative core authorization-required enforcement seam for protected recovery/manual paths。
+
+The enforcement seam must exist at the core action/authority boundary，not only in UI/API/controller code。
+
+Protected production paths must not cross their authority/side-effect boundary using only caller-supplied strings、booleans or untrusted metadata。
+
+If required production authorization authority is unavailable，the protected production action is DEFAULT DENY。
+
+GAP-08 correction also requires durable attribution before protected authority/side-effect boundaries and explicit separation between trusted production authority and non-production test/sandbox authority。
+
+A fake/test authorization provider must not become production authority merely because it implements the same interface。
+
+Full production authentication、authorization、approval workflow、principal/session security、UI/API workflow and policy implementation remain L/N/GAP-LIVE production authorization work。
+
+R-13 production auth runtime not implemented != authorization requirement waived。
+
+### R-13H — Deferred Security/UI Mechanics
+
+R-13 does not freeze：
+
+- RBAC vs claims internals。
+- single vs multi-person approval。
+- MFA。
+- OIDC/JWT/cookie provider。
+- exact role names。
+- exact approval count。
+- exact authorization TTL。
+- cryptographic signature format。
+- UI interaction design。
+- physical authorization table layout。
+
+A governing policy may require stronger approval；if the runtime cannot satisfy the required policy，the action remains DEFAULT DENY。
+
+## R-14 — Operational Market-Data Completeness Boundary
+
+Status：DECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY。
+
+### R-14A — Consumer-Scoped Canonical Coverage
+
+Market-data completeness proves that the exact canonical observation obligations required by a consumer are satisfied。
+
+Completeness is not raw-source availability、candidate count、global market health or absence of detected errors。
+
+Completeness scope is consumer-specific and may include：
+
+- StrategyInstance / decision cohort。
+- required canonical observation stream(s)。
+- required horizon/frontier。
+- applicable session/calendar contract。
+- applicable completeness policy/version。
+
+One incomplete stream does not automatically invalidate unrelated consumers or unrelated BrokerAccounts。
+
+### R-14B — Expected Canonical Observation Obligations
+
+Expected coverage is expressed as exact canonical observation obligations/logical keys，not a naive wall-clock minute list。
+
+Those obligations derive from，as applicable：
+
+- authoritative session/calendar rules。
+- contract applicability/lifecycle。
+- timeframe/bar semantics。
+- applicable completeness policy/version。
+
+A 1m timeframe does not by itself prove that every wall-clock minute requires a canonical bar。
+
+Whether a legitimate no-trade minute requires a zero-volume observation or no observation is part of the applicable market-data contract and must not be guessed by the gap detector。
+
+### R-14C — Missing-State Semantics Remain Distinct
+
+At minimum，the architecture preserves distinction among：
+
+- accepted canonical observation。
+- pending candidate。
+- quarantined/rejected/ambiguous candidate。
+- authoritative legitimate no-observation/no-trade condition。
+- source outage。
+- transport failure。
+- ingestion/data loss。
+- unknown/unproven completeness。
+
+`no candidate received` never means authoritative no-trade by itself。
+
+### R-14D — Positive Canonical Coverage Proof
+
+For the required scope/horizon，each expected canonical observation obligation must be positively resolved by approved authoritative evidence。
+
+A completeness obligation may be satisfied by，for example：
+
+- an accepted canonical MarketObservation；or
+- authoritative no-observation/no-trade evidence where the applicable contract permits it。
+
+A pending、quarantined、rejected、ambiguous or otherwise non-canonical candidate does not silently satisfy a canonical completeness obligation。
+
+Raw source health/coverage is evidence used by completeness evaluation，not canonical completeness authority by itself。
+
+R-14 never fabricates a missing MarketObservation merely to close a coverage gap。
+
+### R-14E — Readiness Placement
+
+Unproven required completeness blocks dependent StrategyTradingReady / DecisionCohortTradingReady。
+
+It does not by itself corrupt or HALT BrokerAccount execution authority。
+
+BrokerAccountExecutionReady does not imply that all market-data-dependent strategy、risk、account-protection or recovery actions are eligible。
+
+Independent safety/risk/recovery actions remain governed by their own data/pricing/currentness prerequisites and must fail closed when their own required evidence is unavailable。
+
+R-14 COMPLETE is a necessary readiness prerequisite where applicable，not a sufficient condition for StrategyTradingReady。
+
+### R-14F — R-03 / K520 Boundary
+
+R-03 remains authority for identity/revision/acceptance of observations that exist。
+
+R-14 owns required canonical coverage completeness。
+
+K520 / GAP-09 remains owner of derived feature/state provenance and whether historical observation revision/correction is relevant to restored derived state。
+
+R-14 COMPLETE does not prove that historical correction is irrelevant to derived feature/state。
+
+R-14 does not reopen R-03 and does not pull K520 into GAP-08。
+
+### R-14G — Durable Exact Evidence + Currentness
+
+Readiness-relevant completeness evidence must be exact、durable、scope/version attributable and currentness-verifiable。
+
+Historical COMPLETE != current activation applicability。
+
+A completeness evaluation used for StrategyTradingReady must carry or reference sufficient deterministic currentness evidence for its evaluated data world。
+
+Before dependent strategy/cohort activation，the system must prove that no relevant change outside the evaluated completeness world has invalidated that proof。
+
+Relevant changes may include，as applicable：
+
+- newly accepted observations。
+- revision/correction of required observations。
+- newly arrived unresolved/quarantined candidates。
+- changed required horizon。
+- changed session/calendar authority。
+- changed completeness policy/version。
+
+Architecture does not require one physical high-water field per stream。
+
+A database snapshot witness、revision frontier、generation、candidate-arrival frontier or other deterministic mechanism may satisfy the currentness contract。
+
+Wall-clock recency alone is not proof that the evaluated data world is still current。
+
+Market-data completeness remains on the strategy/data recovery axis and is not forced into the BrokerAccount RecoveryCut。
+
+### R-14H — GAP-08 vs GAP-DATA-001 Classification
+
+GAP-08 bounded correction MUST implement：
+
+- an authoritative completeness-required dependency seam。
+- fail-closed dependent StrategyTradingReady / DecisionCohortTradingReady behavior。
+- explicit production vs test/sandbox completeness-authority distinction。
+
+If a StrategyInstance/cohort requires completeness proof and no approved production completeness authority can prove it，production StrategyTradingReady / DecisionCohortTradingReady must not be claimed。
+
+A fake/test completeness provider must not become production authority merely because it implements the same interface。
+
+GAP-DATA-001 retains the full production implementation of：
+
+- session/calendar-aware operational gap detection。
+- source coverage/failure monitoring。
+- outage/transport/ingestion-loss classification。
+- production completeness evidence persistence/operations。
+
+GAP-DATA-001 remains `Current Blocking = No` for GAP-08 bounded correction and architecture closure。
+
+That classification does NOT waive production completeness requirements。
+
+R-14 full completeness detector deferred != completeness requirement waived。
+
+GAP-DATA-001 remains a production-live dependency where dependent StrategyTradingReady requires operational completeness proof。
+
+## Post-Checkpoint-5E Authoritative Queue
+
+Recovery architecture free expansion stops here unless a concrete contradiction or new authoritative evidence appears。
+
+Next authoritative order：
+
+1. K520 defer confirmation。
+2. Broker capability gate classification。
+3. Complete expanded correction-scope map。
+4. Reweight expanded correction Work Package。
+5. Explicit bounded runtime authorization decision。
+
+Each later item must distinguish：
+
+- ARCHITECTURE DECIDED。
+- IMPLEMENTATION CORRECTION REQUIRED。
+- CAPABILITY VERIFICATION REQUIRED。
+- PRODUCTION GATE。
+- DEFERRED DEPENDENCY。
+
+Completing architecture/classification does not automatically authorize runtime execution。

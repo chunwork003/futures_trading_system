@@ -1266,3 +1266,33 @@ For temporal evidence：
 - recorded_at is not durable-commit/order authority unless a separately frozen persistence contract explicitly defines another semantic。
 
 Account revisions/checkpoints/receipts remain persistence/recovery authority；wall-clock timestamps are evidence only。
+
+## Recovery Decision Checkpoint 5E — Audit / Authorization / Completeness Persistence Boundaries
+
+R-12 persistence direction：
+
+- ReconciliationRun becomes required durable audit evidence for formal readiness-relevant reconciliation。
+- one Run belongs to exactly one BrokerAccount formal evaluation attempt。
+- run-attempt establishment、evaluated-input binding and terminal audit finalization are conceptual append-only lifecycle boundaries。
+- terminal finalization and required exact result/provenance evidence are crash-consistent。
+- conflicting finalization or changed bound input world is integrity failure/new Run，not mutation of the old Run。
+- Run audit persistence does not advance AccountStateHead merely because audit changed。
+
+R-13 persistence direction：
+
+- protected production recovery/manual action must resolve to durable authorization evidence。
+- the exact authority consumed must be durably attributable to the protected command/action before its protected authority/side-effect boundary。
+- authorization history is not represented by caller-supplied actor/reason strings alone。
+- authorization identity is distinct from command、BrokerActionAttempt、AccountAuthorityCommit and broker idempotency identity。
+- full production authN/authZ/approval implementation remains L/N/GAP-LIVE。
+
+R-14 persistence direction：
+
+- readiness-relevant completeness proof must be exact、durable、scope/version attributable and currentness-verifiable。
+- completeness evidence lives on the strategy/data recovery axis，not AccountStateHead economic authority。
+- GAP-08 requires the dependency seam/fail-closed behavior，not the full production gap detector。
+- full operational completeness detector/persistence remains GAP-DATA-001。
+
+K520 remains GAP-09-owned and is not pulled into GAP-08 by R-14。
+
+This checkpoint does not prescribe physical tables、foreign keys、high-water columns or event envelope shape beyond the frozen semantics。

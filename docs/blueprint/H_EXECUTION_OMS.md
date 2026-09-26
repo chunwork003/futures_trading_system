@@ -589,3 +589,24 @@ Canonical received_at is durably bound to immutable evidence identity and is pre
 Event sequence/account_revision remain ordering authority；wall-clock timestamps do not replace them。
 
 Order/projection created_at/updated_at semantics must be deterministic and documented；rebuild does not create fresh lifecycle history。
+
+## Recovery Decision Checkpoint 5E — Protected Action Authorization Boundary
+
+Protected production recovery/manual broker actions follow R-13。
+
+AuthorizationDecision identity is distinct from：
+
+- durable command identity。
+- BrokerActionAttempt identity。
+- AccountAuthorityCommit identity。
+- broker-side idempotency identity。
+
+Authorization never bypasses R-04G no-blind-retry rules。
+
+An unresolved broker action with unknown outcome remains DO NOT RESUBMIT even when historical authorization evidence exists。
+
+Before protected broker I/O，the protected durable command/attempt must be durably attributable to the exact authorization evidence used，and all side-effect/business/currentness gates must still pass。
+
+Core enforcement belongs at the authoritative action boundary；UI/controller checks alone are insufficient。
+
+Missing required production authorization authority is DEFAULT DENY。

@@ -108,3 +108,22 @@ R-09 coordinates lifecycle/governing-context transition safety；it does not abs
 | confirmed_at | confirmation-time boundary；authorization semantics remain R-13 | authority identity/permission itself |
 
 Explicit sequence/revision/frontier identities remain causal/order authority；timestamps remain temporal/audit evidence。
+
+## Decision Checkpoint 5E — Audit / Authorization / Completeness Authority Separation
+
+| State / Evidence | Authority | Must Not Be Confused With |
+|---|---|---|
+| ReconciliationRun | J/K formal reconciliation audit authority | final READY authority / ReconciliationCase lifecycle / AccountStateHead |
+| ReconciliationRun evaluated-input binding | exact immutable/versioned evaluated reconciliation world | mutable latest/current repository lookup |
+| AuthorizationDecision | N/L-governed protected-action authority evidence consumed by core boundary | command identity / BrokerActionAttempt / broker idempotency |
+| Authorization audit metadata | actor/reason/time/context audit fields | authorization proof by themselves |
+| Market completeness proof | consumer-scoped canonical observation coverage authority | raw source health / candidate count / recent timestamp |
+| Completeness currentness witness | deterministic applicability proof for evaluated data world | historical COMPLETE / wall-clock recency alone |
+
+ReconciliationRun audit does not advance economic AccountStateHead merely because a Run is recorded/finalized。
+
+Authorization does not itself create economic authority or broker side-effect safety。
+
+Market completeness belongs to the strategy/data readiness axis and does not automatically HALT BrokerAccount execution authority。
+
+Candidate runtime commit remains distinct from runtime authorization。

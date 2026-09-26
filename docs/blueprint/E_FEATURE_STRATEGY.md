@@ -221,3 +221,21 @@ V1 may constrain one StrategyInstance to one canonical instrument binding；this
 Material strategy state/output must retain exact applicable config + implementation provenance。
 
 Current runtime fields such as `strategy_version` / `config_version` remain implementation candidates only；this checkpoint does not claim runtime conformance to the final operational authority model。
+
+## Recovery Decision Checkpoint 5E — Market Completeness Readiness Dependency
+
+R-14 market-data completeness is a StrategyTradingReady / DecisionCohortTradingReady dependency where required by the StrategyInstance/cohort contract。
+
+StrategyRestoreValid does not imply completeness and does not imply StrategyTradingReady。
+
+If required canonical completeness cannot be positively proven by an approved authority，the dependent StrategyInstance/cohort remains NOT_READY。
+
+Market-data completeness failure does not by itself corrupt BrokerAccountExecutionReady。
+
+Independent account-protection/risk/recovery actions remain subject to their own market-data/pricing/currentness prerequisites。
+
+Historical COMPLETE does not automatically remain applicable for current activation。
+
+A readiness-relevant completeness proof requires deterministic currentness validation against relevant observation/candidate/session/calendar/policy changes。
+
+K520 remains GAP-09-owned；R-14 COMPLETE does not prove derived feature/state irrelevance to historical observation corrections。

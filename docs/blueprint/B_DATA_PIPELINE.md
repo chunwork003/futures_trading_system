@@ -137,3 +137,32 @@ This follow-up does not reopen R-03 identity decisions。
 - Parquet / DuckDB authority 清楚。
 - raw → validation → cleaning → aggregation → storage flow 無 ambiguity。
 - local data governance 與 provenance gap 可追蹤。
+
+## Recovery Decision Checkpoint 5E — R-14 Canonical Completeness Boundary
+
+Operational completeness is consumer-scoped canonical observation coverage，not raw-source health。
+
+Required completeness obligations are exact canonical observation obligations/logical keys generated from applicable：
+
+- session/calendar authority。
+- contract applicability。
+- timeframe/bar semantics。
+- completeness policy/version。
+
+Raw candidate/source presence does not by itself satisfy canonical completeness。
+
+Pending、quarantined、rejected、ambiguous or otherwise non-canonical candidate evidence does not silently satisfy an obligation。
+
+An authoritative no-observation/no-trade condition may satisfy an obligation only when permitted by the applicable market-data contract。
+
+`no candidate received != authoritative no-trade`。
+
+Historical B250 coverage validation remains distinct from production operational completeness authority。
+
+GAP-DATA-001 remains the owner of the full production detector、coverage/failure monitoring and outage/transport/ingestion-loss classification。
+
+GAP-DATA-001 remains `Current Blocking = No` for GAP-08 bounded correction。
+
+That does not waive completeness requirements for production strategy/cohort readiness。
+
+R-14 full completeness detector deferred != completeness requirement waived。
