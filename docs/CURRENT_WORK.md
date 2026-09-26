@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：CODEX execute GAP08-W1-ACCOUNT-AUTHORITY only under `docs/work/GAP08_WAVE1_AUTHORIZATION.md`；first leaf C02，then C04 -> C21 -> C03 under leaf-local gates。
+Current execution action：CODEX execute W1 reviewer correction RF01/RF02 only under `docs/work/GAP08_WAVE1_AUTHORIZATION_AMENDMENT_01.md`；W2 remains NOT_AUTHORIZED。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：WAVE_1_SOURCE_MODIFICATION_AUTHORIZED
+Current activity：WAVE_1_REVIEW_CORRECTION_AUTHORIZED
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -220,7 +220,7 @@ NOT_AUTHORIZED。
 
 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W1。
+BOUNDED_AUTHORIZED_FOR_GAP08_W1_REVIEW_CORRECTION_01。
 
 C02：
 
@@ -236,7 +236,7 @@ NOT_AUTHORIZED。
 
 Next actual project action：
 
-CODEX START — C02。
+CODEX reviewer correction RF01 + RF02 only；then STOP for reviewer closure。
 
 Pre-CODEX fixed sequence：
 

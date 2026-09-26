@@ -123,48 +123,48 @@ Runtime Authorization：
 
 NOT_AUTHORIZED。
 
+W1 first-pass Runtime HEAD：
+
+`29479837227310d6ff3287dee37171ab3286990c`
+
+W1 first-pass commits：
+
+- C02：`609891b195a3c74bc1450524ad280daad1050b24`
+- C04：`46889ff673dfae1ca43946eba2ec7c1299a46256`
+- C21：`25bc4efb55af92da70f52f5ff09a240cf3fb8bf2`
+- C03：`29479837227310d6ff3287dee37171ab3286990c`
+
+Reviewer status：
+
+REVIEW_CORRECTION_REQUIRED。
+
+Reviewer findings：
+
+- RF01 — reserved revision-0 PostgreSQL authority-head bootstrap missing。
+- RF02 — duplicate receipt replay does not resolve exact durable checkpoint closure。
+
+Correction authorization：
+
+`docs/work/GAP08_WAVE1_AUTHORIZATION_AMENDMENT_01.md`
+
 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W1。
+BOUNDED_AUTHORIZED_FOR_GAP08_W1_REVIEW_CORRECTION_01。
 
-Authorization：
+Authorized correction runtime files：
 
-`docs/work/GAP08_WAVE1_AUTHORIZATION.md`
+- `persistence/account_authority.py`
+- `persistence/postgres/account_authority.py`
 
-Execution package：
+Authorized correction tests：
 
-`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
+- `tests/unit/test_c02_account_authority.py`
+- `tests/unit/test_c04_account_authority_commit.py`
+- `tests/unit/test_c03_expected_state_initialization.py`
 
-Detailed workflow owner：
+Migration 0005：
 
-`docs/CODEX_EXECUTION_WORKFLOW.md`
-
-Authorized engineering leaves：
-
-    C02
-        -> C04
-        -> C21
-        -> C03
-
-W1 Dependency DAG：
-
-VERIFIED。
-
-W1 Execution Coherence：
-
-VERIFIED。
-
-CODEX W1 Source-Modification Execution：
-
-AUTHORIZED。
-
-C02：
-
-AUTHORIZED_AS_FIRST_W1_ENGINEERING_LEAF。
-
-Migration creation：
-
-0005 ONLY。
+CREATED / READ-ONLY / NOT_EXECUTED。
 
 Migration execution：
 
@@ -174,7 +174,7 @@ Actual PostgreSQL / V07：
 
 NOT_AUTHORIZED。
 
-Broker / market-data I/O：
+Broker I/O：
 
 NOT_AUTHORIZED。
 
@@ -182,19 +182,19 @@ Production Activation：
 
 NOT_AUTHORIZED。
 
-Latest completed runtime correction closure：
-
-`docs/work/GAP08_C25_CLOSURE.md`
-
-Correction-core accepted/verified progress remains：
+Correction-core accepted / verified progress remains：
 
 27 / 113。
 
-Authorization itself grants no completion credit。
+W1 candidate weight 19 is NOT credited until reviewer correction and closure。
+
+W2：
+
+NOT_AUTHORIZED。
 
 Next actual project action：
 
-CODEX START — execute GAP08-W1-ACCOUNT-AUTHORITY only under the exact bounded source-modification authorization。
+CODEX execute reviewer correction RF01 + RF02 only，then full regression / push / STOP。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -349,70 +349,49 @@ Runtime Source Modification Authorization：
 
 NOT_AUTHORIZED。
 
-Wave-1 execution package：
+Wave-1 first-pass runtime：
 
-`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
+COMPLETE AS IMPLEMENTED CANDIDATE / NOT YET ACCEPTED。
 
-Wave-1 source-modification authorization：
+First-pass Runtime HEAD：
 
-`docs/work/GAP08_WAVE1_AUTHORIZATION.md`
+`29479837227310d6ff3287dee37171ab3286990c`
 
-Wave ID：
+Reviewer result：
 
-`GAP08-W1-ACCOUNT-AUTHORITY`
+REVIEW_CORRECTION_REQUIRED。
 
-Exact leaf set：
+RF01：
 
-    C02
-        -> C04
-        -> C21
-        -> C03
+C02 PostgreSQL reserved revision-zero head bootstrap correction。
 
-Architecture note：
+RF02：
 
-C21 is an independent V06-dependent sibling before C03；the C04 -> C21 ordering is single-agent serialization only。
+C04 exact durable receipt/checkpoint replay validation correction。
 
-Dependency DAG：
+Correction authorization：
 
-VERIFIED。
-
-Execution Coherence：
-
-VERIFIED。
+`docs/work/GAP08_WAVE1_AUTHORIZATION_AMENDMENT_01.md`
 
 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W1。
+BOUNDED_AUTHORIZED_FOR_GAP08_W1_REVIEW_CORRECTION_01。
 
 Runtime Authorization：
 
 NOT_AUTHORIZED。
 
-Production Activation：
+W1 acceptance weight：
 
-NOT_AUTHORIZED。
-
-CODEX engineering execution：
-
-AUTHORIZED FOR W1 SOURCE MODIFICATION ONLY。
-
-First leaf：
-
-C02。
-
-Automatic progression：
-
-C02 -> C04 -> C21 -> C03 only while leaf-local completion gates remain satisfied。
+NOT CREDITED YET。
 
 W2-W5：
 
-remain dependency-coherent candidates only；their execution coherence and source-modification authorization remain NOT_VERIFIED / NOT_AUTHORIZED。
+remain NOT_AUTHORIZED。
 
-Next actual project action：
+Next：
 
-CODEX START — execute W1 only。
-
-No automatic transition to W2 is authorized。
+CODEX reviewer-correction pass -> reviewer final acceptance / closure。
 
 No step implicitly grants authority to the next step。
 

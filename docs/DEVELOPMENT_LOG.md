@@ -29,6 +29,31 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 Wave-1 Reviewer Finding / Correction Amendment 01
+
+- first-pass Runtime HEAD：`29479837227310d6ff3287dee37171ab3286990c`。
+- Git reviewer verification：4 commits / exact 8-file authorized cumulative scope / origin synchronized。
+- executor-reported final regression：1115 passed / 4 skipped。
+- reviewer status：REVIEW_CORRECTION_REQUIRED。
+- RF01：PostgreSQL reserved revision-zero AccountStateHead has no atomic creation/lock path；first durable initialization would otherwise fail on missing head。
+- RF02：exact duplicate AccountAuthorityCommit receipt returns before durable checkpoint closure is resolved。
+- RF01 primary leaf：C02；semantic correction cycle 1。
+- RF02 primary leaf：C04；semantic correction cycle 1。
+- C03 existing semantic correction cycles：1。
+- correction authorization：`docs/work/GAP08_WAVE1_AUTHORIZATION_AMENDMENT_01.md`。
+- correction runtime scope：`persistence/account_authority.py` + `persistence/postgres/account_authority.py` only。
+- correction test scope：C02/C04/C03 W1 tests only。
+- 0001～0005：READ-ONLY during correction；0005 remains NOT_EXECUTED。
+- actual PostgreSQL / V07：NOT_AUTHORIZED。
+- broker I/O：NOT_AUTHORIZED。
+- Runtime Authorization：NOT_AUTHORIZED。
+- W1 weight 19 remains candidate / not credited。
+- accepted correction-core progress remains 27 / 113。
+- W2：NOT_AUTHORIZED。
+- user-reported first-pass 5-hour quota consumption：33%，GPT-5.6 Sol light effort。
+- first-pass candidate throughput：約 0.576 weight / 1% quota；final accepted efficiency deferred until correction + closure。
+
+
 ### 2026-09-26 — GAP-08 Wave-1 Source Modification Authorization
 
 - authorization decision baseline：`a6a90dc7cf47c0b7eeb9520be2e38db823ff579c`。

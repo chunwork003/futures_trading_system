@@ -556,53 +556,47 @@ Detailed workflow owner：
 
 `docs/CODEX_EXECUTION_WORKFLOW.md`
 
-Wave-1 execution package：
+Wave-1 first-pass status：
 
-`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
+IMPLEMENTED_CANDIDATE / REVIEW_CORRECTION_REQUIRED。
 
-Wave-1 source-modification authorization：
+First-pass Runtime HEAD：
 
-`docs/work/GAP08_WAVE1_AUTHORIZATION.md`
+`29479837227310d6ff3287dee37171ab3286990c`
 
-Wave-1 status：
+Reviewer findings：
 
-EXECUTION_COHERENCE_VERIFIED / SOURCE_MODIFICATION_AUTHORIZED。
+RF01 — C02 PostgreSQL reserved revision-zero authority-head bootstrap missing。
 
-Wave-1 dependency DAG：
+RF02 — C04 duplicate receipt replay lacks exact durable checkpoint closure validation。
 
-VERIFIED。
+Correction authorization：
 
-Wave-1 execution coherence：
-
-VERIFIED。
+`docs/work/GAP08_WAVE1_AUTHORIZATION_AMENDMENT_01.md`
 
 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W1。
+BOUNDED_AUTHORIZED_FOR_GAP08_W1_REVIEW_CORRECTION_01。
 
 Runtime Authorization：
 
 NOT_AUTHORIZED。
 
-C02：
+Accepted / verified correction-core progress：
 
-AUTHORIZED_AS_FIRST_W1_ENGINEERING_LEAF。
+27 / 113。
 
-W2-W5 status：
+W1 weight 19：
 
-DEPENDENCY-COHERENT CANDIDATE ONLY。
+NOT YET CREDITED。
 
-W2-W5 execution coherence：
-
-NOT YET VERIFIED。
-
-W2-W5 source-modification authorization：
+W2-W5：
 
 NOT_AUTHORIZED。
 
 Next governance action：
 
-CODEX execute W1 only；after Wave final verification/push，STOP for reviewer/governance closure。
+complete W1 reviewer correction，then reviewer final closure。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

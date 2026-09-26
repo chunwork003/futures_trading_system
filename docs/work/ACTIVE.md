@@ -364,25 +364,26 @@ Detailed workflow owner：
 
 `docs/CODEX_EXECUTION_WORKFLOW.md`
 
-Wave-1 execution package：
+Wave-1 first-pass runtime：
 
-`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
+COMPLETE AS IMPLEMENTED CANDIDATE / REVIEW_CORRECTION_REQUIRED。
 
-Wave-1 source-modification authorization：
+First-pass Runtime HEAD：
 
-`docs/work/GAP08_WAVE1_AUTHORIZATION.md`
+`29479837227310d6ff3287dee37171ab3286990c`
 
-Dependency DAG：
+Reviewer findings：
 
-VERIFIED。
+- RF01 — PostgreSQL reserved rev0 head bootstrap missing。
+- RF02 — duplicate receipt replay lacks exact checkpoint closure validation。
 
-Execution Coherence：
+Correction authorization：
 
-VERIFIED。
+`docs/work/GAP08_WAVE1_AUTHORIZATION_AMENDMENT_01.md`
 
 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W1。
+BOUNDED_AUTHORIZED_FOR_GAP08_W1_REVIEW_CORRECTION_01。
 
 Runtime Authorization：
 
@@ -390,33 +391,19 @@ NOT_AUTHORIZED。
 
 Next actual work：
 
-CODEX execute C02 first，then C04 -> C21 -> C03 only under leaf-local completion gates。
+CODEX correct RF01 + RF02 only。
 
-C02：
+W1 accepted weight：
 
-AUTHORIZED_AS_FIRST_W1_ENGINEERING_LEAF。
+NOT CREDITED。
 
-Wave source-modification execution：
-
-AUTHORIZED_FOR_GAP08_W1。
-
-Migration execution：
+W2：
 
 NOT_AUTHORIZED。
 
-Actual PostgreSQL / V07：
+Migration execution / Actual PostgreSQL / Broker I/O / Production Activation：
 
 NOT_AUTHORIZED。
-
-Broker I/O：
-
-NOT_AUTHORIZED。
-
-Production Activation：
-
-NOT_AUTHORIZED。
-
-No C02 / C04 / C21 / C03 source modification may begin until a later explicit bounded Wave/source-modification authorization exists。
 
 ## 4. Recommended Model
 
