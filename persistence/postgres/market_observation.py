@@ -608,6 +608,34 @@ class PostgresMarketObservationAcceptanceRepository:
 
         return False
 
+    def get_revision(
+        self,
+        observation_revision_id: MarketObservationRevisionId,
+    ) -> MarketObservationRevision | None:
+        """Exact revision-specific read??? latest/logical-key/candidate fallback?"""
+
+        if not isinstance(
+            observation_revision_id,
+            MarketObservationRevisionId,
+        ):
+            raise TypeError(
+                "observation_revision_id must be "
+                "MarketObservationRevisionId"
+            )
+
+        try:
+            return self._load_revision(
+                observation_revision_id.value
+            )
+        except MarketObservationIdentityConflictError as exc:
+            if (
+                str(exc)
+                == "head references missing accepted revision"
+            ):
+                return None
+
+            raise
+
     def _load_revision(
         self,
         revision_id: str,

@@ -163,6 +163,13 @@ class MarketObservationAcceptanceRepository(Protocol):
     ) -> MarketObservationAcceptanceResult:
         ...
 
+    def get_revision(
+        self,
+        observation_revision_id: MarketObservationRevisionId,
+    ) -> MarketObservationRevision | None:
+        """? exact mor1 ?????? immutable ? revision?"""
+        ...
+
 
 __all__ = [
     "MarketObservationAcceptanceRepository",

@@ -10,7 +10,8 @@ from persistence.events import EventAppendResult, EventAppendStatus
 from persistence.execution import ExecutionPersistenceService, order_event_as_trading_event
 from trading.account import AccountPosition, PositionDirection
 from trading.execution import (
-    Fill, Order, OrderEvent, OrderStateTransitionError, OrderStatus, OrderType,
+    ExecutionTriggerRef, Fill, Order, OrderEvent, OrderIntent,
+    OrderStateTransitionError, OrderStatus, OrderType,
     PositionEffect, validate_order_event_transition,
 )
 
@@ -144,3 +145,72 @@ def test_material_fill_requires_complete_expected_snapshot() -> None:
             order=order(), expected_version=-1,
         )
     assert uow.rolled and not uow.committed
+
+
+MOR1_A = "mor1_" + ("a" * 64)
+
+
+def test_execution_trigger_ref_requires_exact_mor1():
+    trigger = ExecutionTriggerRef(
+        market_observation_revision_id=(
+            MOR1_A
+        )
+    )
+
+    assert (
+        trigger.market_observation_revision_id
+        == MOR1_A
+    )
+
+    with pytest.raises(
+        ValidationError,
+        match="mor1",
+    ):
+        ExecutionTriggerRef(
+            market_observation_revision_id=(
+                "BAR-1"
+            )
+        )
+
+
+def test_order_intent_trigger_reference_is_optional_and_exact():
+    plain = OrderIntent(
+        intent_id="INT-C25-1",
+        correlation_id="CORR-C25-1",
+        position_direction=(
+            PositionDirection.LONG
+        ),
+        position_effect=(
+            PositionEffect.OPEN
+        ),
+        quantity=1,
+    )
+
+    assert (
+        plain.execution_trigger_ref
+        is None
+    )
+
+    trigger = ExecutionTriggerRef(
+        market_observation_revision_id=(
+            MOR1_A
+        )
+    )
+
+    item = OrderIntent(
+        intent_id="INT-C25-2",
+        correlation_id="CORR-C25-2",
+        position_direction=(
+            PositionDirection.LONG
+        ),
+        position_effect=(
+            PositionEffect.OPEN
+        ),
+        quantity=1,
+        execution_trigger_ref=trigger,
+    )
+
+    assert (
+        item.execution_trigger_ref
+        == trigger
+    )

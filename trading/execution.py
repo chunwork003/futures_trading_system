@@ -6,6 +6,7 @@ from enum import Enum
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
+from domain.market_observation import MarketObservationRevisionId as ObservationRevisionId
 from persistence.contracts import normalize_aware_utc, normalize_stable_id, require_exact_decimal
 
 from trading.account import AccountPosition, PositionDirection
@@ -179,6 +180,53 @@ def validate_order_event_transition(previous: OrderEvent | None, current: OrderE
         )
 
 
+class ExecutionTriggerRef(BaseModel):
+    """Strategy execution ? exact MarketObservation revision provenance?"""
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+
+    market_observation_revision_id: str
+
+    @field_validator(
+        "market_observation_revision_id",
+        mode="before",
+    )
+    @classmethod
+    def _revision_id(
+        cls,
+        value: object,
+    ) -> str:
+        if isinstance(
+            value,
+            ObservationRevisionId,
+        ):
+            return value.value
+
+        if not isinstance(
+            value,
+            str,
+        ):
+            raise ValueError(
+                "market_observation_revision_id "
+                "must be a mor1 revision ID"
+            )
+
+        try:
+            return (
+                ObservationRevisionId(
+                    value.strip()
+                ).value
+            )
+        except ValueError as exc:
+            raise ValueError(
+                "market_observation_revision_id "
+                "must be a mor1 revision ID"
+            ) from exc
+
+
 class OrderIntent(BaseModel):
     """不可變且 broker-neutral 的下單意圖與最小 provenance。"""
 
@@ -192,6 +240,7 @@ class OrderIntent(BaseModel):
     quantity: int = Field(gt=0)
     target_position_ref: str | None = None
     risk_decision_ref: str | None = None
+    execution_trigger_ref: ExecutionTriggerRef | None = None
 
     @field_validator("intent_id", "correlation_id", mode="before")
     @classmethod
