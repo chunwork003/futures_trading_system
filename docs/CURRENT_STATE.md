@@ -31,8 +31,8 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 - Architecture Acceptance：HOLD。
 - Runtime Conformance：NOT ASSERTED。
 - Production Readiness：NOT ASSERTED。
-- Runtime Authorization：NOT_AUTHORIZED。
-- Runtime modification：NOT_AUTHORIZED。
+- Runtime Authorization：BOUNDED_AUTHORIZED_C11_ONLY。
+- Runtime modification：AUTHORIZED_FOR_C11_ONLY。
 - Broker I/O：NOT_AUTHORIZED。
 - DB migration execution：NOT_AUTHORIZED。
 - Level 3B：NOT_ENABLED。
@@ -93,9 +93,51 @@ Next candidate：
 
 C11 — Shioaji Status Mapping Correction。
 
-C11 remains NOT_AUTHORIZED。
+C11 is BOUNDED_AUTHORIZED_C11_ONLY。
 
-C23 dependency on C22 is satisfied，but C23 remains queued behind P1 C11。
+$1
+
+### Current Bounded Runtime Authorization
+
+Authorization：
+
+`docs/work/GAP08_AUTHORIZATION_C11.md`
+
+Authorized leaf：
+
+C11 — Shioaji Status Mapping Correction。
+
+Runtime modification：
+
+AUTHORIZED_FOR_C11_ONLY。
+
+Broker semantic verification：
+
+NOT_AUTHORIZED。
+
+V05：
+
+NOT_AUTHORIZED。
+
+Migration modification/execution：
+
+NOT_AUTHORIZED。
+
+Actual PostgreSQL：
+
+NOT_AUTHORIZED。
+
+Broker I/O：
+
+NOT_AUTHORIZED。
+
+All other C/V leaves：
+
+NOT_AUTHORIZED。
+
+C11 completion boundary：
+
+commit / push / report / STOP。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -173,13 +215,14 @@ The existing 47.92% remains the recorded architecture-freeze lifecycle baseline�
 
 ### Current Planning / Execution Sequence
 
-1. C22 closure is recorded in `docs/work/GAP08_C22_CLOSURE.md`。
-2. Runtime Authorization is NOT_AUTHORIZED。
-3. Frozen P1 order recheck：C01 COMPLETE -> C22 COMPLETE -> C11 NEXT。
-4. C11 is the next candidate only；it is NOT_AUTHORIZED。
-5. C23 dependency is satisfied but remains queued behind P1 C11。
-6. A new explicit bounded authorization is required before runtime modification。
-7. C23、C02 and every other remaining leaf remain NOT_AUTHORIZED。
+1. Use `docs/work/GAP08_AUTHORIZATION_C11.md` as the exact bounded authorization。
+2. Execute C11 only。
+3. Preserve fail-closed semantics for PreSubmitted / Inactive / Failed。
+4. Do NOT perform V05 broker-semantic verification。
+5. Run targeted + Shioaji compatibility + full regression。
+6. Commit / push / final report。
+7. STOP。
+8. C23、C02、V05 and every other leaf remain NOT_AUTHORIZED。
 A future authorization decision must identify at least：Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests and Stop Boundary。
 
 A bare `AUTHORIZED` value is insufficient。

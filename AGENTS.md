@@ -18,13 +18,13 @@ Runtime Conformance：NOT ASSERTED。
 
 Production Readiness：NOT ASSERTED。
 
-Runtime Authorization：NOT_AUTHORIZED。
+Runtime Authorization：BOUNDED_AUTHORIZED_C11_ONLY。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current execution action：NONE；next candidate is C11 and requires new explicit bounded authorization。
+Current execution action：C11 — Shioaji Status Mapping Correction only。
 
-No runtime leaf is currently authorized。Frozen P1 next candidate is C11；C23 is dependency-ready but remains queued behind C11。
+Only C11 is currently authorized。V05 remains NOT_AUTHORIZED；C23 remains queued until C11 closure。
 
 Historical authority/checkpoint sections below are preserved for audit and are not current runtime authorization。
 
@@ -56,11 +56,11 @@ This CURRENT AUTHORITY supersedes older R-04 OPEN wording elsewhere in historica
 
 目前唯一 canonical CURRENT governance projection 位於 `docs/CURRENT_STATE.md`。
 
-Original runtime candidate remains NOT ACCEPTED；latest completed correction runtime commit is e242d188b0029863d6df1b29889327dce623bd98；Architecture Acceptance = HOLD；Runtime Authorization = NOT_AUTHORIZED。
+Original runtime candidate remains NOT ACCEPTED；latest completed correction runtime commit is e242d188b0029863d6df1b29889327dce623bd98；Architecture Acceptance = HOLD；Runtime Authorization = BOUNDED_AUTHORIZED_C11_ONLY。
 
 R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map、Delta-to-Contract、materialized correction leaves、DAG 與 reweight 已記錄於 `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 已完成。依 frozen P1 DAG，下一候選為 C11；目前沒有 authorized runtime leaf，不得開始 C11/C23/C02。
+V06 + C01 + C22 已完成。依 frozen P1 DAG，目前只授權 C11；C11 完成 commit/push/report 後 STOP，不得自動開始 C23/C02/V05。
 
 Primary source of truth 與必讀順序：
 

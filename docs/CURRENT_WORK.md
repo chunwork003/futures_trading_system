@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：NONE；next planning action is bounded authorization review for C11。
+Current execution action：C11 — Shioaji Status Mapping Correction only。
 
 ## Purpose
 
@@ -65,11 +65,11 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：C22_COMPLETE_AWAITING_NEXT_BOUNDED_AUTHORIZATION
+Current activity：C11_BOUNDED_RUNTIME_EXECUTION_AUTHORIZED
 
-Runtime Authorization：NOT_AUTHORIZED
+Runtime Authorization：BOUNDED_AUTHORIZED_C11_ONLY
 
-Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION
+Launch Gate：AUTHORIZED_FOR_C11_ONLY
 
 ## Latest Completed Correction Leaves
 
@@ -125,7 +125,7 @@ C11 — Shioaji Status Mapping Correction。
 
 C11：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_C11_ONLY。
 
 C23 dependency on C22：
 
@@ -135,7 +135,7 @@ C23 execution priority：
 
 QUEUED BEHIND P1 C11。
 
-No runtime work may begin until a new explicit bounded authorization is committed。
+Only C11 runtime correction may begin under `docs/work/GAP08_AUTHORIZATION_C11.md`。
 
 Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 
@@ -168,7 +168,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：review and explicitly authorize C11 only；no runtime work is currently authorized。
+Next action：execute C11 only；after commit/push/final report STOP。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 

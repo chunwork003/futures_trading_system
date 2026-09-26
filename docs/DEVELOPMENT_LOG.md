@@ -29,6 +29,29 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 C11 Bounded Runtime Authorization
+
+- Parent baseline：`22ac4cb4c60dbe5fbb3b00d3758a2c7ad50e76d1`。
+- C22 remains COMPLETE / VERIFIED。
+- authorized leaf：C11 only。
+- C11：Shioaji Status Mapping Correction。
+- frozen correction：unverified broker statuses must remain non-authoritative。
+- PreSubmitted MUST NOT automatically map to canonical SUBMITTED。
+- Inactive MUST NOT automatically map to canonical REJECTED。
+- Failed MUST NOT map to REJECTED without verified zero-effect semantics。
+- otherwise-unmapped status MUST NOT silently fall back to PENDING。
+- preferred bounded enforcement：explicit typed capability-unverified failure。
+- V05 capability verification remains NOT_AUTHORIZED。
+- no capability-matrix upgrade。
+- runtime modification scope：`backtest/shioaji_mapping.py` only。
+- direct tests：`test_shioaji_mapping.py`、`test_shioaji_submitted_status.py`、optional bounded C11 test。
+- `backtest/shioaji_broker.py` modification is NOT_AUTHORIZED。
+- migration modification/execution：NOT_AUTHORIZED。
+- actual PostgreSQL：NOT_AUTHORIZED。
+- broker network/paper/production I/O：NOT_AUTHORIZED。
+- all other correction / verification leaves：NOT_AUTHORIZED。
+- completion boundary：commit / push / report / STOP。
+
 ### 2026-09-26 — GAP-08 C22 Runtime Closure
 
 - C22 Authorization Baseline：`f63aaa3daa7d333e2027dcd1a61b7e4ac4f21d63`。

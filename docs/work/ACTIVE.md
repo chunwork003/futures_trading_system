@@ -6,7 +6,7 @@
 
 This ACTIVE file preserves Work Package context/history and does NOT independently grant Runtime Authorization。
 
-Runtime Authorization summary：NOT_AUTHORIZED。
+Runtime Authorization summary：BOUNDED_AUTHORIZED_C11_ONLY。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions、materialized leaves、DAG and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 are COMPLETE；no runtime correction leaf is currently authorized。
+V06 + C01 + C22 are COMPLETE；C11 is the only currently authorized runtime correction leaf。
 
 ## 1. Work Package ID
 
@@ -46,11 +46,11 @@ R-04A-H：DECIDED。
 
 R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-Runtime Authorization：NOT_AUTHORIZED。
+Runtime Authorization：BOUNDED_AUTHORIZED_C11_ONLY。
 
 Launch Gate：
 
-`HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION`
+`AUTHORIZED_FOR_C11_ONLY`
 
 Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
@@ -111,53 +111,71 @@ STOP boundary：
 
 REACHED。
 
-## NEXT CANDIDATE — NOT AUTHORIZED
+## CURRENT AUTHORIZED BOUNDED WORK PACKAGE — GAP-08-CORR-03
 
-Frozen P1：
+Authorization：
 
-    C01 COMPLETE
-        ->
-    C22 COMPLETE
-        ->
-    C11 NEXT
+`docs/work/GAP08_AUTHORIZATION_C11.md`
 
-C11 — Shioaji Status Mapping Correction：
-
-NOT_AUTHORIZED。
-
-C23 dependency：
-
-SATISFIED by C22。
-
-C23 execution：
-
-QUEUED behind P1 C11。
-
-Current bounded execution：
-
-NONE。
-
-Runtime Authorization：
-
-NOT_AUTHORIZED。
-
-C22 STOP boundary：
-
-REACHED。
-
-Next candidate：
+Leaf：
 
 C11 — Shioaji Status Mapping Correction。
 
-C11 is NOT_AUTHORIZED。
+Runtime modification scope：
 
-C23 dependency is satisfied but remains queued behind C11。
+- `backtest/shioaji_mapping.py`
+
+Authorized direct tests：
+
+- `tests/unit/test_shioaji_mapping.py`
+- `tests/unit/test_shioaji_submitted_status.py`
+- optional `tests/unit/test_c11_shioaji_status_mapping.py`
+
+Required correction：
+
+- PreSubmitted remains capability-unverified / non-authoritative。
+- Inactive remains capability-unverified / non-authoritative。
+- Failed remains capability-unverified / non-authoritative。
+- unknown/unmapped broker status must fail closed。
+- no silent fallback to PENDING。
+
+V05：
+
+NOT_AUTHORIZED。
+
+Broker I/O：
+
+NOT_AUTHORIZED。
+
+Stop：
+
+C11 commit -> push -> final report -> STOP。
+
+Current bounded execution：
+
+C11 only。
+
+Runtime Authorization：
+
+BOUNDED_AUTHORIZED_C11_ONLY。
+
+V05：
+
+NOT_AUTHORIZED。
+
+C23：
+
+NOT_AUTHORIZED / queued until C11 closure。
 
 No migration execution。
 
 No actual PostgreSQL access。
 
 No broker I/O。
+
+After C11：
+
+commit / push / report / STOP。
 Do not rerun GAP-08EFGHI runtime candidate。
 
 Do not promote GAP-08 acceptance until correction runtime and final verification pass。
