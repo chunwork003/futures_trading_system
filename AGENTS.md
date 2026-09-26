@@ -114,3 +114,16 @@ Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7
 - Runtime Authorization：NOT_AUTHORIZED。
 - Architecture Acceptance：HOLD。
 - Next：R-08 + R-09 identity/config authority cluster。
+
+## CURRENT AUTHORITY — DECISION CHECKPOINT 5C
+
+- Authoritative baseline before this checkpoint：`47822446fe1b5149780ddd537fd99b460882d66d`。
+- R-08：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-09：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- StrategyInstance identity、instrument binding、config version、implementation revision and DecisionPolicyVersion are distinct authorities。
+- Legacy symbol is not canonical execution authority。
+- Governing-context transition supports PRE_TRANSITION / TRANSITION_IN_PROGRESS / POST_TRANSITION recovery classification。
+- TRANSITION_IN_PROGRESS never grants normal strategy/cohort trading readiness。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Architecture Acceptance：HOLD。
+- Next：R-10 formal closure，then R-11 clock authority。

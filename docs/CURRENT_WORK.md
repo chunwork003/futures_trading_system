@@ -49,7 +49,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：BOUNDED_CORRECTION_WORK_PACKAGE_FREEZE_PREPARATION
+Current activity：POST_RUNTIME_ARCHITECTURE_DECISION_CLOSURE
 
 Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION
 
@@ -77,7 +77,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：prepare the bounded correction Work Package map、scope boundary、dependency classification and lifecycle reweighting。
+Next action：R-10 formal closure，then R-11 occurred_at / received_at clock authority；bounded correction freeze remains later in the authoritative queue。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 
@@ -371,5 +371,21 @@ Next decision cluster：
     R-09 — strategy_instance_id / config_version / lifecycle authority
 
 R-09 remains the owner of exact StrategyInstance/config identity、policy-version transition and lifecycle/provisioning authority。
+
+Do not begin runtime correction from this checkpoint。
+
+## Decision Checkpoint 5C Work Boundary
+
+Completed architecture work：
+
+- R-08 StrategyInstance instrument vs symbol identity：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-09 StrategyInstance / config / implementation / lifecycle authority：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+Runtime work：NONE AUTHORIZED。
+
+Next：
+
+    R-10 — Initial explicit FLAT snapshot provenance formal closure
+    R-11 — occurred_at / received_at clock authority
 
 Do not begin runtime correction from this checkpoint。

@@ -75,3 +75,22 @@ Parquet：
 historical / feature dataset。
 
 三者不得 silent interchange authority。
+
+## Decision Checkpoint 5C — Strategy / Policy Authority Separation
+
+| State / Data | Authority | Must Not Be Confused With |
+|---|---|---|
+| StrategyDefinition / implementation revision | E Domain immutable strategy-definition authority | StrategyConfigVersion / deployment presence |
+| StrategyInstance lifecycle identity | E lifecycle/config authority under R-09 | instrument_id / strategy_id / config hash |
+| StrategyConfigVersion | E strategy-config authority | StrategyInstance identity / DecisionPolicyVersion |
+| StrategyInstance instrument binding | E lifecycle binding referencing D canonical instrument authority | StrategyInstance identity / executable ContractSpec |
+| DecisionPolicyVersion | G decision-policy authority | StrategyConfigVersion |
+| Governing-context transition | R-09 lifecycle transition contract coordinating referenced E/G/D authorities | restart / deployment / current config file |
+
+D Domain remains authority for instrument/contract identity semantics。
+
+E Domain remains authority for strategy definition、instance/config lifecycle semantics。
+
+G Domain remains authority for decision-policy semantics。
+
+R-09 coordinates lifecycle/governing-context transition safety；it does not absorb D/E/G semantic ownership。

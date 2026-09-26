@@ -1799,3 +1799,146 @@ Next：R-08 + R-09 identity/config authority cluster。
 Then：R-10 formal closure -> R-11 -> R-12 -> R-13 boundary classification -> R-14 boundary classification -> K520 defer confirmation -> broker capability gate classification -> correction-scope freeze/reweight -> explicit runtime authorization。
 
 No runtime correction is authorized by this checkpoint。
+
+## Decision Checkpoint 5C — R-08 / R-09 Identity and Config Authority
+
+**DECISION CHECKPOINT 5C ACCEPTED — ARCHITECTURE DECISIONS ONLY**
+
+- Baseline：`47822446fe1b5149780ddd537fd99b460882d66d`。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Architecture Acceptance remains：HOLD。
+- Runtime Authorization remains：NOT_AUTHORIZED。
+- R-08：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-09：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- No R-08E / R-09G added。
+
+This checkpoint records architecture decisions only and does not assert runtime conformance、production readiness or runtime-correction authorization。
+
+### R-08A — Canonical Strategy Instrument Binding
+
+`strategy_instance_id` is StrategyInstance lifecycle identity。
+
+`instrument_id` is canonical StrategyInstance instrument binding identity。
+
+`instrument_id` is not automatically executable ContractSpec identity；where InstrumentSpec and ContractSpec are distinct，execution uses separately validated canonical contract-selection/ContractSpec authority。
+
+V1 may constrain one StrategyInstance to one instrument binding without defining StrategyInstance identity as instrument identity。
+
+### R-08B — Symbol Authority
+
+`symbol` is non-authoritative presentation / alias / legacy compatibility input。
+
+Legacy symbol may not directly authorize broker execution。
+
+Canonical flow is alias/reference input -> approved canonical resolver -> canonical instrument/contract authority -> broker mapping。
+
+### R-08C — Consistency / Provenance
+
+When alias and canonical identity are both supplied，approved reference authority must prove consistency。
+
+Mismatch、ambiguity or unresolved mapping fails closed；there is no precedence fallback。
+
+Historical provisioning/migration resolution retains auditable reference-authority identity/version provenance。
+
+Recovery restores the durable canonical binding/provenance and does not silently re-resolve historical aliases using today's mapping。
+
+### R-08D — Rebinding / Migration
+
+Legacy symbol-only config may be authoritatively resolved once and bound to canonical identity。
+
+Later alias-table changes cannot silently remap an existing StrategyInstance。
+
+Changing canonical instrument binding requires explicit R-09 lifecycle/config transition。
+
+Whether that transition preserves strategy_instance_id or creates a new StrategyInstance requires positive lifecycle compatibility authority。
+
+### R-09A — StrategyInstance Identity
+
+`strategy_instance_id` is a stable opaque lifecycle identity。
+
+It remains stable across restart and explicitly authorized compatible lifecycle/config transitions。
+
+It is not guaranteed to remain stable across every possible configuration/implementation/instrument change。
+
+Restart or config loading never decides continuity implicitly。
+
+### R-09B — Instance vs Config Identity
+
+StrategyInstance identity is distinct from mutable configuration identity。
+
+`strategy_instance_id` must not be derived from mutable config content/hash。
+
+A config change neither automatically creates a new StrategyInstance nor automatically preserves the existing one；lifecycle compatibility authority decides。
+
+### R-09C — Config + Implementation Authority
+
+StrategyConfigVersion authority must support immutable exact version identity、immutable content and lifecycle ordering/predecessor semantics where required。
+
+Config content fingerprint may provide integrity identity but does not replace StrategyInstance identity or lifecycle ordering。
+
+Recovery must also resolve immutable exact governing StrategyDefinition / implementation revision authority。
+
+StrategyConfigVersion alone is insufficient to identify strategy behavior。
+
+State-schema compatibility and strategy-behavior compatibility are distinct。
+
+Normal recovery/activation requires durable strategy state to resolve to its exact governing implementation revision。
+
+A different implementation revision may consume prior state only through explicit compatibility/migration transition semantics。
+
+### R-09D — Immutable Config Version
+
+Committed config versions are immutable；configuration change creates a new version rather than in-place mutation。
+
+Material StrategyStateSnapshot / material strategy output / decision causal evidence retain exact applicable config + implementation provenance。
+
+### R-09E — Lifecycle Authority
+
+StrategyInstance lifecycle authority must positively establish，as applicable：
+
+- instance identity validity。
+- exact governing config / implementation context。
+- fresh / stateless / genesis eligibility。
+- whether prior durable state is expected。
+- recovery/activation eligibility at the lifecycle boundary。
+- authorized config/implementation/instrument/policy transitions。
+
+R-09 does not prescribe a full lifecycle enum。
+
+### R-09F — Governing Context Transition
+
+A lifecycle/config/definition/policy transition that changes governing StrategyInstance/cohort context must establish an explicit durable transition boundary。
+
+For every recoverable cut，transition state must be deterministically classifiable as exactly one conceptual state：
+
+- PRE_TRANSITION。
+- TRANSITION_IN_PROGRESS。
+- POST_TRANSITION。
+
+PRE_TRANSITION means prior governing context remains authoritative。
+
+TRANSITION_IN_PROGRESS means an authorized transition has durably begun/crossed its transition boundary，but the target governing context is not eligible for normal activation。
+
+POST_TRANSITION means target governing context plus all required compatible durable state have been successfully established。
+
+A planned/staged transition record alone does not necessarily leave PRE_TRANSITION；the durable transition/effective boundary determines classification。
+
+TRANSITION_IN_PROGRESS must preserve exact source/target/provenance and cannot become StrategyTradingReady or DecisionCohortTradingReady。
+
+Restart/deployment/current config presence is never transition authority。
+
+When several governing authorities must change together to preserve one decision contract，they must preserve one equivalent crash invariant。
+
+The system must never activate a mixed governing context containing incompatible pre/post authorities or durable state。
+
+Effective transition boundary must be durable and deterministically recoverable。
+
+PRE/POST do not automatically mean READY；normal R-06E、R-04H、risk/business/session activation prerequisites remain authoritative。
+
+### Decision Queue After Checkpoint 5C
+
+Next：R-10 formal closure，then R-11 occurred_at / received_at clock authority。
+
+Then：R-12 -> R-13 boundary classification -> R-14 boundary classification -> K520 defer confirmation -> broker capability gate classification -> correction scope freeze/reweight -> explicit runtime authorization。
+
+No runtime correction is authorized by this checkpoint。

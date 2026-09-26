@@ -580,3 +580,21 @@ Runtime Authorization：NOT_AUTHORIZED。
 Do not re-open R-06/R-07 without concrete contradiction or new authoritative evidence。
 
 Do not begin runtime correction until the correction package is frozen、reweighted and explicitly authorized。
+
+## Decision Checkpoint 5C — Active Queue
+
+Completed：
+
+- R-08 DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-09 DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+Current architecture task：
+
+    R-10 formal closure
+    then R-11 occurred_at / received_at clock authority
+
+Runtime Authorization：NOT_AUTHORIZED。
+
+Do not re-open R-08/R-09 without concrete contradiction or new authoritative evidence。
+
+Do not begin runtime correction until correction scope freeze/reweight and explicit authorization。

@@ -179,9 +179,13 @@ Rules：
 - config_json deterministic canonical JSON object。
 - config_fingerprint = SHA-256 of canonical config_json。
 - config fingerprint mismatch rejected。
-- StrategyDefinition.version must exactly match StrategyInstance.strategy_version during recovery。
+- Normal recovery/activation requires durable strategy state to resolve to the exact governing StrategyDefinition / implementation revision。
+- A different implementation revision may consume prior durable state only inside an explicitly authorized compatibility/migration transition；it may not silently activate from deployment presence alone。
+- `TRANSITION_IN_PROGRESS` is not StrategyTradingReady；completed POST_TRANSITION must establish durable state/provenance compatible with the new governing implementation revision。
 - config change does not silently mutate an existing persisted instance。
-- a materially changed configuration requires explicit new instance/config identity。
+- a material configuration change requires a new immutable config version plus an explicit lifecycle compatibility decision。
+- an authorized compatible transition may preserve strategy_instance_id；an incompatible/identity-breaking transition requires a new StrategyInstance。
+- restart/config loading never decides same-instance continuity implicitly。
 - symbol/display text is not canonical instrument identity。
 
 StrategyDefinition != StrategyInstance。
@@ -196,3 +200,24 @@ K520 incremental feature state remains excluded。
 - batch / incremental responsibility 清楚。
 - StrategyDefinition / StrategyInstance distinction 明確。
 - strategy / strategies migration 不造成 big-bang cleanup。
+
+## Decision Checkpoint 5C — Strategy Identity / Lifecycle Authority
+
+R-08 / R-09 are authoritative for deeper operational StrategyInstance identity/config recovery semantics。
+
+Key authority distinctions：
+
+- `strategy_instance_id` = stable opaque StrategyInstance lifecycle identity。
+- `instrument_id` = canonical StrategyInstance instrument binding。
+- canonical instrument binding is not executable ContractSpec identity unless the D Domain explicitly defines equivalence。
+- legacy/display `symbol` is non-authoritative compatibility input。
+- StrategyConfigVersion is not StrategyInstance identity。
+- StrategyConfigVersion is not sufficient to identify strategy behavior。
+- exact governing StrategyDefinition / implementation revision is separately required。
+- DecisionPolicyVersion remains distinct from StrategyConfigVersion。
+
+V1 may constrain one StrategyInstance to one canonical instrument binding；this is a V1 cardinality constraint，not an identity equivalence。
+
+Material strategy state/output must retain exact applicable config + implementation provenance。
+
+Current runtime fields such as `strategy_version` / `config_version` remain implementation candidates only；this checkpoint does not claim runtime conformance to the final operational authority model。

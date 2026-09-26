@@ -1205,3 +1205,43 @@ Any reconciliation state/evidence used as a material R-04H readiness prerequisit
 Audit/history-only case changes with no current readiness effect need not invalidate activation。
 
 Shared causes may affect multiple accounts，but do not create cross-account ReconciliationCase authority scope。
+
+## Decision Checkpoint 5C — Strategy Governing Context Transition
+
+Strategy recovery governing context may include，as applicable：
+
+- StrategyInstance identity。
+- exact StrategyDefinition / implementation revision。
+- exact StrategyConfigVersion。
+- canonical instrument binding。
+- exact DecisionPolicyVersion。
+- compatible durable strategy / decision-layer state。
+
+A governing-context lifecycle transition has three conceptual recoverable classifications：
+
+1. `PRE_TRANSITION` — prior governing context remains authoritative。
+2. `TRANSITION_IN_PROGRESS` — an authorized durable transition has crossed its transition boundary but the target context is not yet eligible for normal trading activation。
+3. `POST_TRANSITION` — new governing context and all required compatible durable state have been successfully established。
+
+These are architectural recovery classifications；no particular enum/table representation is prescribed。
+
+A merely planned/staged transition intent does not automatically mean TRANSITION_IN_PROGRESS；classification is determined by the durable transition/effective boundary。
+
+`TRANSITION_IN_PROGRESS` must：
+
+- retain exact transition provenance。
+- identify authoritative pre-transition context。
+- identify intended target context。
+- never select a side from current deployment presence。
+- never become StrategyTradingReady / DecisionCohortTradingReady。
+- be explicitly resumed、completed、rolled back where contractually allowed，or otherwise resolved under authorized lifecycle semantics。
+
+The system must never expose a successfully activated mixed governing context whose required authorities/state belong to incompatible sides of the transition。
+
+When several governing authorities must change together to preserve one decision contract，the transition must preserve one equivalent crash invariant。
+
+A single SQL transaction is not architecturally required，but best-effort/eventual dual-write is not equivalent。
+
+The transition effective boundary must be durable and deterministically recoverable。
+
+PRE_TRANSITION / POST_TRANSITION classification does not itself grant TradingReady；all normal R-06/R-04/risk/business readiness gates still apply。

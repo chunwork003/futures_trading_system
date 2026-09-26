@@ -483,3 +483,13 @@ Original 35 leaves / weight 151 remain IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 Correction expansion remains RECORDED / NOT YET REWEIGHTED。
 
 No runtime implementation is authorized。
+
+## Decision Checkpoint 5C — R-08 / R-09 Closure
+
+- R-08 StrategyInstance instrument vs symbol identity：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-09 strategy_instance_id / config_version / implementation revision / lifecycle authority：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- No R-08E / R-09G added。
+- Existing E/G Blueprint wording was reconciled to the final authority model。
+- Correction expansion remains RECORDED / NOT YET REWEIGHTED。
+- Runtime Authorization remains NOT_AUTHORIZED。
+- Next：R-10 formal closure，then R-11。

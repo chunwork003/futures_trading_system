@@ -1101,3 +1101,20 @@ Runtime gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 - Runtime Authorization remains NOT_AUTHORIZED。
 - Runtime tests not rerun because checkpoint is docs-only。
 - Next：R-08 + R-09 identity/config authority cluster。
+
+### 2026-09-26 — Recovery Architecture Decision Checkpoint 5C
+
+- Baseline：`47822446fe1b5149780ddd537fd99b460882d66d`。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- R-08：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-09：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- strategy_instance_id、instrument_id、ContractSpec identity、StrategyConfigVersion、implementation revision、DecisionPolicyVersion remain distinct authorities。
+- Legacy symbol is non-authoritative compatibility input。
+- E Blueprint exact implementation/config continuity wording reconciled with explicit lifecycle migration semantics。
+- G Blueprint legacy symbol identity wording reconciled to canonical instrument/contract authority。
+- Governing-context transition recovery classifications：PRE_TRANSITION / TRANSITION_IN_PROGRESS / POST_TRANSITION。
+- TRANSITION_IN_PROGRESS cannot gain normal StrategyTradingReady / DecisionCohortTradingReady。
+- Runtime tests not rerun because checkpoint is docs-only。
+- Architecture Acceptance remains HOLD。
+- Runtime Authorization remains NOT_AUTHORIZED。
+- Next：R-10 formal closure -> R-11 clock authority。

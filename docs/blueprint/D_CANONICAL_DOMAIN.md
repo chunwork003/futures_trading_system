@@ -236,3 +236,19 @@ MIGRATION：
 - CURRENT / TARGET / MIGRATION 清楚。
 - MarketBar remaining work 有 bounded target。
 - GAP-ACCOUNT-001 使用的 D630 已有 Blueprint identity。
+
+## Decision Checkpoint 5C — Strategy Instrument Binding Clarification
+
+R-08 does not change D Domain canonical ownership。
+
+- `instrument_id` is canonical instrument/product identity。
+- listed `contract_id` / ContractSpec identity remains distinct where applicable。
+- `symbol` may exist as canonical/display/reference data but is not StrategyInstance lifecycle identity or direct execution authority。
+- broker executable identity continues through canonical ContractSpec + BrokerInstrumentReference resolution。
+- StrategyInstance binding to an instrument does not itself select an executable futures contract/month。
+
+Legacy alias resolution used for provisioning/migration must retain auditable reference-authority provenance。
+
+Once an existing StrategyInstance has an authoritative canonical binding，restart restores that binding；it does not silently reinterpret the old alias using the current alias table。
+
+Changing a canonical StrategyInstance instrument binding is an explicit R-09 lifecycle/config transition。

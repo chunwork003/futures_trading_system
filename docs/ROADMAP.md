@@ -416,3 +416,15 @@ R-10 formal closure and R-11 clock authority follow after R-08/R-09。
 Correction runtime remains gated behind completion of remaining architecture decisions、correction scope freeze/reweight and explicit runtime authorization。
 
 Runtime Gate：NOT_AUTHORIZED。
+
+## Recovery Architecture Checkpoint 5C
+
+Closed through this checkpoint：R-01 through R-09。
+
+Checkpoint 5C closes R-08 / R-09 identity/config/lifecycle authority。
+
+Immediate next：R-10 formal closure，then R-11 clock authority。
+
+Runtime correction remains gated behind remaining decision closure、boundary classification、correction-scope freeze/reweight and explicit authorization。
+
+Runtime Gate：NOT_AUTHORIZED。

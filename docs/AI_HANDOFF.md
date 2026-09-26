@@ -889,3 +889,26 @@ R-07 key rules：
 Runtime Authorization remains NOT_AUTHORIZED。
 
 Next：R-08 + R-09 identity/config authority cluster。
+
+## Decision Checkpoint 5C Handoff
+
+R-08 / R-09 are DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+Do not conflate：
+
+- strategy_instance_id。
+- instrument_id。
+- executable ContractSpec identity。
+- StrategyConfigVersion。
+- StrategyDefinition / implementation revision。
+- DecisionPolicyVersion。
+
+Legacy symbol is compatibility only。
+
+Normal strategy activation cannot occur during TRANSITION_IN_PROGRESS。
+
+Restart/deployment presence never authorizes identity/config/policy transition。
+
+Runtime Authorization remains NOT_AUTHORIZED。
+
+Next：R-10 formal closure -> R-11 clock authority。

@@ -56,7 +56,7 @@ Target ownership：
 | G120 | Intent Identity / Provenance | intent 可追到 strategy / version / context | DESIGNED | 3 | G01,G08 |
 | G130 | Intent Direction / Quantity Semantics | logical direction / desired quantity 明確 | DESIGN_FROZEN | 3 | G01 |
 | G210 | StrategyVirtualPosition | 個別 strategy logical position | ACCEPTED | 4 | G01 |
-| G220 | Virtual Position Identity | strategy + symbol + contract + direction identity | ACCEPTED | 3 | G01 |
+| G220 | Virtual Position Identity | strategy instance + canonical instrument + listed contract + direction identity；legacy symbol is compatibility only | ACCEPTED | 3 | G01 |
 | G230 | Virtual Position Priority | strategy conflict resolution 可使用 explicit priority | ACCEPTED | 2 | G01,G02 |
 | G240 | Virtual / Physical Separation | StrategyPosition 不等於 account physical position | DESIGN_FROZEN | 4 | G01 |
 | G310 | Conflict Detection | 同一 account target scope 出現 opposite directions 時明確偵測 | ACCEPTED | 3 | G02 |
@@ -64,7 +64,7 @@ Target ownership：
 | G330 | Conflict Resolution Determinism | 相同 inputs / policy 產生相同 selected direction | ACCEPTED | 3 | G02 |
 | G340 | No-Policy Conflict Failure | conflict 無 policy 時明確失敗，不 silent net | ACCEPTED | 3 | G02 |
 | G410 | TargetAccountPosition | Multi-Strategy Decision 最終 expected physical target | ACCEPTED | 4 | G03 |
-| G420 | Target Identity | symbol / listed contract / direction / quantity | ACCEPTED | 3 | G03 |
+| G420 | Target Identity | canonical instrument / listed contract / direction / quantity；legacy symbol is compatibility only | ACCEPTED | 3 | G03 |
 | G430 | Target Aggregation | 同方向 strategy quantity 統合 | ACCEPTED | 3 | G03,G04 |
 | G440 | HOLD / ADD / REDUCE / EXIT / ENTER | current expected vs target 的決策動作 | ACCEPTED | 4 | G03,G05 |
 | G450 | Direction Change Decision Invariant | opposite target 必須先 EXIT，再等待 FLAT，再重新評估 | DESIGN_FROZEN | 5 | G05 |
@@ -185,3 +185,15 @@ MIGRATION：
 - strategy / target / expected account / broker actual boundaries 不混淆。
 - sizing / capital / risk 各自責任明確。
 - wait-for-flat rule 有唯一 decision invariant。
+
+## Decision Checkpoint 5C — Decision Policy Identity Authority
+
+DecisionPolicyVersion is an authority distinct from StrategyConfigVersion。
+
+Required strategy participation for a decision cohort must resolve from the exact authoritative governing DecisionPolicyVersion。
+
+A strategy config change does not automatically imply a DecisionPolicyVersion change；a cohort membership/policy change does not require strategy config content to change。
+
+R-09 lifecycle/governing-context transitions may coordinate a DecisionPolicyVersion transition，but G Domain remains semantic owner of decision policy。
+
+Legacy symbol fields in existing runtime models are compatibility representations only and do not supersede canonical instrument/contract identity。
