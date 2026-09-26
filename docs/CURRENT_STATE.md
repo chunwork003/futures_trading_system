@@ -16,7 +16,7 @@ This remains the Decision Checkpoint 5E architecture baseline。
 
 Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`（GOV-01）。
 
-Current Correction-Freeze Baseline：the docs-only Correction-Freeze Checkpoint commit that records `docs/work/GAP08_CORRECTION_FREEZE.md`。
+Current Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`。
 
 The exact Correction-Freeze commit hash is reported after commit/push and becomes the execution-planning baseline for any later bounded Runtime Authorization。
 
@@ -31,11 +31,50 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 - Architecture Acceptance：HOLD。
 - Runtime Conformance：NOT ASSERTED。
 - Production Readiness：NOT ASSERTED。
-- Runtime Authorization：NOT_AUTHORIZED。
-- Runtime modification：NOT_AUTHORIZED。
+- Runtime Authorization：BOUNDED_AUTHORIZED_V06_C01_ONLY。
+- Runtime modification：AUTHORIZED_FOR_C01_ONLY。
 - Broker I/O：NOT_AUTHORIZED。
 - DB migration execution：NOT_AUTHORIZED。
 - Level 3B：NOT_ENABLED。
+
+### Current Bounded Runtime Authorization
+
+Authorization decision：
+
+`docs/work/GAP08_AUTHORIZATION_V06_C01.md`
+
+Authorized Leaf Set：
+
+- V06 — Repository Persistence Baseline Verification。
+- C01 — Expected State Authority Read Contract。
+
+Mandatory order：
+
+    V06 PASS
+        ->
+    C01
+
+Runtime code modification：
+
+AUTHORIZED_FOR_C01_ONLY。
+
+Actual PostgreSQL environment access：
+
+NOT_AUTHORIZED。
+
+Migration execution：
+
+NOT_AUTHORIZED。
+
+Broker I/O：
+
+NOT_AUTHORIZED。
+
+All C02～C25 except C01、V01～V05 and V07 remain NOT_AUTHORIZED。
+
+Architecture Acceptance remains HOLD。
+
+Production Readiness remains NOT ASSERTED。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -107,18 +146,20 @@ Reweighted bounded correction core：
 - V07 actual PostgreSQL environment conformance：weight 4 conditional。
 - maximum mapped envelope when V07 is explicitly scoped：287。
 
-Runtime Authorization remains NOT_AUTHORIZED。
+The Correction-Freeze checkpoint itself granted no runtime authority；the later bounded authorization is limited to V06 + C01 as recorded in `docs/work/GAP08_AUTHORIZATION_V06_C01.md`。
 
 The existing 47.92% remains the recorded architecture-freeze lifecycle baseline；this docs-only planning checkpoint does not claim new acceptance percentage。
 
-### Current Planning Sequence
+### Current Planning / Execution Sequence
 
-1. Use `docs/work/GAP08_CORRECTION_FREEZE.md` as the frozen correction execution-planning source。
-2. Make an Explicit Bounded Runtime Authorization decision。
-3. Authorization must bind an exact leaf set and side-effect/environment envelope。
-4. Only authorized leaves may enter runtime modification。
-5. Capability verification may run only in explicitly authorized documentation/paper/production modes。
-6. Runtime correction acceptance requires targeted / integration / full-regression evidence and later docs closure。
+1. Use `docs/work/GAP08_AUTHORIZATION_V06_C01.md` as the exact authorization envelope。
+2. Verify V06 first。
+3. If V06 PASS，execute C01 only。
+4. Run mandatory positive + negative acceptance tests。
+5. Run full regression with actual PostgreSQL integration DSNs disabled。
+6. Commit / push C01 only。
+7. STOP after final report。
+8. C22、C11、C02 and all other leaves require a later explicit authorization decision。
 A future authorization decision must identify at least：Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests and Stop Boundary。
 
 A bare `AUTHORIZED` value is insufficient。

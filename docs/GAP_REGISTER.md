@@ -346,7 +346,7 @@ Capability evidence does not authorize LIVE。
 
 # GAP-08 Detail
 
-Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / BOUNDED_RUNTIME_AUTHORIZATION_REQUIRED。
+Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_BOUNDED_AUTHORIZED。
 
 Accepted：
 
@@ -365,6 +365,20 @@ Original runtime candidate remains IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 Correction-Freeze planning package：
 
 `docs/work/GAP08_CORRECTION_FREEZE.md`
+
+Current bounded authorization：
+
+`docs/work/GAP08_AUTHORIZATION_V06_C01.md`
+
+Authorized sequence：
+
+    V06
+        ->
+    C01
+
+All other correction leaves remain NOT_AUTHORIZED。
+
+Migration execution、actual PostgreSQL environment verification and broker I/O remain NOT_AUTHORIZED。
 
 Reweight：
 
@@ -403,7 +417,7 @@ Detailed authoritative record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Runtime Launch Gate：HOLD_FOR_EXPLICIT_BOUNDED_RUNTIME_AUTHORIZATION。
+Runtime Launch Gate：AUTHORIZED_FOR_V06_C01_ONLY。
 
 Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
 

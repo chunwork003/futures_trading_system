@@ -10,11 +10,11 @@ Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Current Correction-Freeze Baseline is the docs-only checkpoint commit containing `docs/work/GAP08_CORRECTION_FREEZE.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；bounded authorization：`docs/work/GAP08_AUTHORIZATION_V06_C01.md`。
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current planning action：Explicit Bounded Runtime Authorization decision against the frozen correction package。
+Current execution action：V06 verification -> if PASS -> C01 Expected State Authority Read Contract。
 
 ## Purpose
 
@@ -65,11 +65,35 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：BOUNDED_RUNTIME_AUTHORIZATION_DECISION
+Current activity：BOUNDED_RUNTIME_EXECUTION_AUTHORIZED
 
-Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION
+Runtime Authorization：BOUNDED_AUTHORIZED_V06_C01_ONLY
 
-Launch Gate：HOLD_FOR_EXPLICIT_BOUNDED_RUNTIME_AUTHORIZATION
+Launch Gate：AUTHORIZED_FOR_V06_C01_ONLY
+
+## Current Authorized Leaf Set
+
+Authorization source：
+
+`docs/work/GAP08_AUTHORIZATION_V06_C01.md`
+
+Authorized：
+
+- V06。
+- C01。
+
+Not authorized：
+
+- C02～C25 except C01。
+- V01～V05。
+- V07。
+- migration execution。
+- actual PostgreSQL environment access。
+- broker I/O。
+
+C01 bounded rewrite：
+
+PREFERRED where it simplifies the expected-state read path without expanding authority scope。
 
 Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 
@@ -102,7 +126,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：make an explicit Bounded Runtime Authorization decision against the Correction-Freeze Baseline；no runtime leaf is executable before that decision。
+Next action：execute V06 read-only repository verification；only on PASS execute C01；after C01 commit/push/final report STOP。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 

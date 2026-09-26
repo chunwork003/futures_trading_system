@@ -8,7 +8,7 @@ It does NOT independently establish Runtime Authorization。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`。Current Correction-Freeze Baseline is the docs-only checkpoint commit containing `docs/work/GAP08_CORRECTION_FREEZE.md`；future bounded Runtime Authorization must bind that checkpoint。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`。Current Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`。Current bounded authorization：`docs/work/GAP08_AUTHORIZATION_V06_C01.md`。
 
 Runtime Candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
 
@@ -18,13 +18,13 @@ Runtime Conformance：NOT ASSERTED。
 
 Production Readiness：NOT ASSERTED。
 
-Runtime Authorization：NOT_AUTHORIZED。
+Runtime Authorization：BOUNDED_AUTHORIZED_V06_C01_ONLY。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current planning action：Explicit Bounded Runtime Authorization review against `docs/work/GAP08_CORRECTION_FREEZE.md`。
+Current execution action：V06 verification；only after V06 PASS may C01 runtime correction execute。
 
-Do not begin runtime correction、broker I/O or migration execution until a later explicit bounded Runtime Authorization decision。
+Only V06 + C01 are currently authorized。C02～C25 except C01、V01～V05、V07、broker I/O and migration execution remain NOT_AUTHORIZED。
 
 Historical authority/checkpoint sections below are preserved for audit and are not current runtime authorization。
 
@@ -56,11 +56,11 @@ This CURRENT AUTHORITY supersedes older R-04 OPEN wording elsewhere in historica
 
 目前唯一 canonical CURRENT governance projection 位於 `docs/CURRENT_STATE.md`。
 
-Runtime candidate 6b62239bca1d11543944f9f078e577e16010bcbf 仍為 IMPLEMENTED CANDIDATE / NOT ACCEPTED；Architecture Acceptance = HOLD；Runtime Authorization = NOT_AUTHORIZED。
+Runtime candidate 6b62239bca1d11543944f9f078e577e16010bcbf 仍為 IMPLEMENTED CANDIDATE / NOT ACCEPTED；Architecture Acceptance = HOLD；Runtime Authorization = BOUNDED_AUTHORIZED_V06_C01_ONLY。
 
 R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map、Delta-to-Contract、materialized correction leaves、DAG 與 reweight 已記錄於 `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-下一個 planning activity 是 Explicit Bounded Runtime Authorization decision；在該 decision 明確授權 exact leaf set / side-effect envelope 前，禁止開始 runtime correction。
+目前 exact authorized leaf set 為 V06 + C01；V06 必須先 PASS，C01 完成 commit/push/report 後 STOP，不得自動開始下一 leaf。
 
 Primary source of truth 與必讀順序：
 
@@ -69,6 +69,8 @@ Primary source of truth 與必讀順序：
 3. `docs/CURRENT_WORK.md`：目前工作、阻塞、佇列。
 
 Correction-Freeze execution planning source：`docs/work/GAP08_CORRECTION_FREEZE.md`。
+
+Current bounded authorization source：`docs/work/GAP08_AUTHORIZATION_V06_C01.md`。
 4. `docs/GAP_REGISTER.md`：有序 GAP。
 5. `docs/AI_HANDOFF.md`：架構決策與交接。
 6. `docs/V1_SYSTEM_BLUEPRINT.md`：V1 工程施工圖 master index；正式 baseline 後由 ACTIVE 引用相關 Blueprint IDs。

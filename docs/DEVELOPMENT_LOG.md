@@ -29,6 +29,27 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 Bounded Runtime Authorization V06 + C01
+
+- Authorization parent baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`。
+- Architecture Decision Baseline remains：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Authorized leaf set：V06 + C01 only。
+- Mandatory order：V06 PASS -> C01。
+- V06：read-only repository persistence baseline verification。
+- C01：Expected State Authority Read Contract correction。
+- C01 bounded internal rewrite：AUTHORIZED / PREFERRED within exact expected-state read responsibility。
+- C02～C25 except C01：NOT_AUTHORIZED。
+- V01～V05：NOT_AUTHORIZED。
+- V07 actual PostgreSQL environment conformance：NOT_AUTHORIZED。
+- DB side effects：NOT_ALLOWED。
+- migration modification/execution：NOT_ALLOWED。
+- broker network/paper/production I/O：NOT_ALLOWED。
+- full regression must run with actual PostgreSQL integration DSNs disabled。
+- C01 completion boundary：commit / push / final report / STOP。
+- Architecture Acceptance remains HOLD。
+- Production Readiness remains NOT ASSERTED。
+
 ### 2026-09-26 — GAP-08 Correction-Freeze Planning Checkpoint
 
 - Repository pre-check baseline：`849bc6ea3f3ee0d1de969a5f23862bc60720c4fc`。
