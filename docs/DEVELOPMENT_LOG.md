@@ -29,6 +29,35 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 C25 Runtime Closure
+
+- C25 Effective Authorization Baseline：`8fc32d0cbd1ca4e8669da40cd4803a0a39108342`。
+- C25 Runtime Commit：`940f54c6d9b4ed7bf0e1d3c8627b49be3fdae495`。
+- C25 Durable-before-Strategy Delivery / Revision Ref Migration：COMPLETE / VERIFIED。
+- final C22 + C25 targeted：64 passed。
+- C23/C24 compatibility：112 passed。
+- full regression：1081 passed / 4 skipped。
+- runtime correction cycles：2。
+- `StrategyStateSnapshot.last_market_observation_revision_id` is canonical recovery authority。
+- `ExecutionTriggerRef.market_observation_revision_id` is canonical execution/audit provenance。
+- arbitrary legacy BAR IDs cannot authorize READY。
+- legacy/canonical disagreement fails closed。
+- NEW migration 0004 created；NOT EXECUTED。
+- migrations 0001/0002/0003 unchanged。
+- actual PostgreSQL / V07：NOT EXECUTED / NOT VERIFIED。
+- broker / market-data I/O：NO。
+- correction-core progress：27 / 113 complete / verified；86 remaining。
+- frozen P2：C23 COMPLETE -> C24 COMPLETE -> C25 COMPLETE。
+- P2：COMPLETE。
+- C02 is next runtime candidate only；NOT_AUTHORIZED。
+- Runtime Authorization after closure：NOT_AUTHORIZED。
+- GOV-01 already exists；this closure updates the existing GOV-01 canonical projections rather than recreating GOV-01。
+- VIBE V0 core / Wave governance theoretical review is closed。
+- final planning amendments to materialize later：preserve canonical Runtime Authorization semantics；Wave candidate status is dependency-coherent only；force-push default DENY / remote divergence STOP；tooling retry finite。
+- no Wave execution is authorized by this closure。
+- fixed pre-CODEX sequence：post-C25 Planning Baseline -> CURRENT verification -> bounded VIBE docs/workflow task -> post-VIBE baseline -> exact Wave authorization -> explicit bounded source-modification authorization -> CODEX START。
+
+
 ### 2026-09-26 — GAP-08 C25 Authorization Scope Amendment 01
 
 - Base C25 Authorization Baseline：`40de893fe19f24567891733c14cd0c5e4c28532b`。

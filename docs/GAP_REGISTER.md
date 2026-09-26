@@ -346,7 +346,7 @@ Capability evidence does not authorize LIVE。
 
 # GAP-08 Detail
 
-Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_C22_C11_C23_C24_COMPLETE / C25_BOUNDED_AUTHORIZED。
+Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_C22_C11_C23_C24_C25_COMPLETE / RUNTIME_NOT_AUTHORIZED。
 
 Accepted：
 
@@ -368,7 +368,7 @@ Correction-Freeze planning package：
 
 Latest bounded execution：
 
-`docs/work/GAP08_C24_CLOSURE.md`
+`docs/work/GAP08_C25_CLOSURE.md`
 
 Completed / verified leaves：
 
@@ -378,23 +378,24 @@ Completed / verified leaves：
 - C11 — COMPLETE / VERIFIED。
 - C23 — COMPLETE / VERIFIED。
 - C24 — COMPLETE / VERIFIED。
+- C25 — COMPLETE / VERIFIED。
 
 Latest runtime commit：
 
-`8944ecaf674b22cf1fe1df908d9125ce15538f0f`
+`940f54c6d9b4ed7bf0e1d3c8627b49be3fdae495`
 
-C24 verification：
+C25 final verification：
 
-- domain targeted：18 passed。
-- PostgreSQL contract：17 passed。
-- compatibility：83 passed。
-- full regression：1057 passed / 4 skipped。
-- runtime correction cycles：1。
+- C22 + C25 targeted：64 passed。
+- C23/C24 compatibility：112 passed。
+- full regression：1081 passed / 4 skipped。
+- runtime correction cycles：2。
 
 Migration：
 
-- NEW 0003 created。
+- NEW 0004 created。
 - NOT EXECUTED。
+- 0001/0002/0003 unchanged。
 
 Actual PostgreSQL / V07：
 
@@ -402,11 +403,11 @@ NOT EXECUTED / NOT VERIFIED。
 
 Executed / verified correction-core weight：
 
-23 / 113。
+27 / 113。
 
 Remaining correction-core engineering weight：
 
-90。
+86。
 
 Runtime Authorization：
 
@@ -427,15 +428,19 @@ P2：
 
     C23 COMPLETE
         -> C24 COMPLETE
-        -> C25 NEXT
+        -> C25 COMPLETE
 
-Next candidate：
+P2：
 
-C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
+COMPLETE。
+
+Next runtime candidate：
+
+C02 — BrokerAccount Revision Head + Exact Checkpoint。
 
 C25：
 
-BOUNDED_AUTHORIZED_C25_ONLY。
+COMPLETE / VERIFIED。
 
 C25 effective authorization：
 
@@ -462,11 +467,11 @@ V07：
 
 NOT_AUTHORIZED。
 
-Only C25 is currently authorized；C02、C05、C18、V05、V07 and all other leaves remain NOT_AUTHORIZED。
+No runtime leaf is currently authorized；C02 is the next runtime candidate only；C02、C04、C05、C18、C21、V05、V07 and all other remaining leaves remain NOT_AUTHORIZED。
 
-Migration creation：
+Migration 0004：
 
-AUTHORIZED_FOR_0004_ONLY。
+CREATED / NOT_EXECUTED。
 
 Migration execution：
 
@@ -479,6 +484,19 @@ NOT_AUTHORIZED。
 Broker / market-data I/O：
 
 NOT_AUTHORIZED。
+
+Post-C25 pre-CODEX governance sequence：
+
+    post-C25 Planning Baseline
+        -> CURRENT consistency verification
+        -> bounded VIBE docs/workflow task
+        -> post-VIBE Planning Baseline
+        -> exact Wave authorization
+        -> explicit bounded source-modification authorization
+        -> CODEX START
+
+Wave dependency plan is planning-only until the exact Wave execution envelope is authorized。
+
 Reweight：
 
 - C01～C25 correction/implementation/enforcement：110。

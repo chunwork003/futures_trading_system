@@ -6,15 +6,15 @@
 
 This ACTIVE file preserves Work Package context/history and does NOT independently grant Runtime Authorization。
 
-Runtime Authorization summary：BOUNDED_AUTHORIZED_C25_ONLY。
+Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C24_CLOSURE.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C25_CLOSURE.md`。
 
 Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions、materialized leaves、DAG and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 + C23 + C24 are COMPLETE；P1 is complete and C25 is the only currently authorized runtime leaf。
+V06 + C01 + C22 + C11 + C23 + C24 + C25 are COMPLETE；P1 and P2 are complete；no runtime leaf is currently authorized。
 
 ## 1. Work Package ID
 
@@ -46,11 +46,11 @@ R-04A-H：DECIDED。
 
 R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-Runtime Authorization：BOUNDED_AUTHORIZED_C25_ONLY。
+Runtime Authorization：NOT_AUTHORIZED。
 
 Launch Gate：
 
-`AUTHORIZED_FOR_C25_ONLY`
+`NOT_AUTHORIZED`
 
 Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
@@ -265,80 +265,94 @@ STOP boundary：
 
 REACHED。
 
-## CURRENT AUTHORIZED BOUNDED WORK PACKAGE — GAP-08-CORR-06
-
-Authorization：
-
-`docs/work/GAP08_AUTHORIZATION_C25.md`
-
-Scope amendment：
-
-`docs/work/GAP08_AUTHORIZATION_C25_AMENDMENT_01.md`
-
-Additional authorized existing test：
-
-`tests/unit/test_recovery_orchestration.py`
+## COMPLETED BOUNDED WORK PACKAGE — GAP-08-CORR-06
 
 Leaf：
 
 C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
 
-Dependency：
+Authorization：
 
-C24 COMPLETE / VERIFIED。
+- `docs/work/GAP08_AUTHORIZATION_C25.md`
+- `docs/work/GAP08_AUTHORIZATION_C25_AMENDMENT_01.md`
 
-Required：
+Runtime commit：
 
-- durable accepted MarketObservationRevision before recovery-capable strategy delivery。
-- exact revision-specific read/resolve。
-- StrategyStateSnapshot.last_market_observation_revision_id。
-- ExecutionTriggerRef.market_observation_revision_id。
-- arbitrary legacy ID no longer recovery authority。
-- legacy/canonical mismatch fail-closed。
-- bounded compatibility migration 0004。
+`940f54c6d9b4ed7bf0e1d3c8627b49be3fdae495`
 
-Authorized migration creation：
+Status：
 
-`0004_strategy_market_observation_revision_ref.sql`
+COMPLETE / VERIFIED。
+
+Verification：
+
+- C22 + C25 targeted：64 passed。
+- C23/C24 compatibility：112 passed。
+- full regression：1081 passed / 4 skipped。
+- runtime correction cycles：2。
+
+Implemented：
+
+- durable accepted MarketObservationRevision before strategy delivery。
+- exact revision-specific resolution。
+- StrategyStateSnapshot canonical revision reference。
+- ExecutionTriggerRef canonical revision reference。
+- arbitrary legacy observation ID cannot authorize READY。
+- legacy/canonical disagreement fail-closed。
+- NEW migration 0004 created。
 
 Migration execution：
 
-NOT_AUTHORIZED。
+NOT EXECUTED。
 
 Actual PostgreSQL / V07：
 
+NOT EXECUTED / NOT VERIFIED。
+
+Closure：
+
+`docs/work/GAP08_C25_CLOSURE.md`
+
+Correction-core progress：
+
+    27 / 113 complete / verified
+    86 remaining
+
+P2：
+
+COMPLETE。
+
+STOP boundary：
+
+REACHED。
+
+## POST-C25 CURRENT EXECUTION GATE
+
+Runtime Authorization：
+
 NOT_AUTHORIZED。
+
+Runtime source modification：
+
+NOT_AUTHORIZED。
+
+Next runtime candidate：
+
+C02 — BrokerAccount Revision Head + Exact Checkpoint。
 
 C02：
 
 NOT_AUTHORIZED。
 
-C05：
+Next actual work：
+
+post-C25 CURRENT consistency verification，then bounded VIBE V0 docs/workflow implementation planning。
+
+Wave execution：
 
 NOT_AUTHORIZED。
 
-C18：
-
-NOT_AUTHORIZED。
-
-V05：
-
-NOT_AUTHORIZED。
-
-Broker / market-data I/O：
-
-NOT_AUTHORIZED。
-
-Current bounded execution：
-
-C25 only。
-
-After C25：
-
-commit / push / report / STOP。
-Do not rerun GAP-08EFGHI runtime candidate。
-
-Do not promote GAP-08 acceptance until correction runtime and final verification pass。
+No C02 / C04 / C21 / C03 source modification may begin until a later explicit bounded Wave/source-modification authorization exists。
 
 ## 4. Recommended Model
 

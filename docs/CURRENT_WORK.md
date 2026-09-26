@@ -6,15 +6,15 @@
 
 This document records planning/work state only and does NOT independently establish Runtime Authorization。
 
-Runtime Authorization summary：BOUNDED_AUTHORIZED_C25_ONLY。
+Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C24_CLOSURE.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C25_CLOSURE.md`。
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：C25 — Durable-before-Strategy Delivery / Revision Ref Migration only。
+Current execution action：post-C25 CURRENT consistency verification，followed by a bounded VIBE V0 docs/workflow implementation task；no runtime leaf is authorized。
 
 ## Purpose
 
@@ -65,9 +65,9 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：C25_BOUNDED_RUNTIME_EXECUTION_AUTHORIZED
-Runtime Authorization：BOUNDED_AUTHORIZED_C25_ONLY
-Launch Gate：AUTHORIZED_FOR_C25_ONLY
+Current activity：POST_C25_GOVERNANCE_WORKFLOW_PREPARATION
+Runtime Authorization：NOT_AUTHORIZED
+Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
 
 V06：
@@ -94,26 +94,30 @@ C24：
 
 COMPLETE / VERIFIED。
 
+C25：
+
+COMPLETE / VERIFIED。
+
 Latest closure：
 
-`docs/work/GAP08_C24_CLOSURE.md`
+`docs/work/GAP08_C25_CLOSURE.md`
 
 Latest correction runtime commit：
 
-`8944ecaf674b22cf1fe1df908d9125ce15538f0f`
+`940f54c6d9b4ed7bf0e1d3c8627b49be3fdae495`
 
-C24 verification：
+C25 final verification：
 
-- domain targeted：18 passed。
-- PostgreSQL contract：17 passed。
-- compatibility：83 passed。
-- full regression：1057 passed / 4 skipped。
-- runtime correction cycles：1。
+- C22 + C25 targeted：64 passed。
+- C23/C24 compatibility：112 passed。
+- full regression：1081 passed / 4 skipped。
+- runtime correction cycles：2。
 
 Migration：
 
-- NEW 0003 created。
+- NEW 0004 created。
 - NOT EXECUTED。
+- 0001/0002/0003 unchanged。
 
 Actual PostgreSQL / V07：
 
@@ -121,14 +125,14 @@ NOT EXECUTED / NOT VERIFIED。
 
 Correction-core progress：
 
-    23 / 113 complete / verified
-    90 remaining
+    27 / 113 complete / verified
+    86 remaining
 
 ## Current Execution Gate
 
 Runtime Authorization：
 
-BOUNDED_AUTHORIZED_C25_ONLY。
+NOT_AUTHORIZED。
 
 Frozen P1：
 
@@ -148,36 +152,47 @@ Frozen P2：
         ->
     C24 COMPLETE
         ->
-    C25 AUTHORIZED
+    C25 COMPLETE
 
-Current leaf：
+P2：
 
-C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
+COMPLETE。
 
-Authorization：
+Next runtime candidate：
 
-`docs/work/GAP08_AUTHORIZATION_C25.md`
+C02 — BrokerAccount Revision Head + Exact Checkpoint。
 
-Scope amendment：
+C02：
 
-`docs/work/GAP08_AUTHORIZATION_C25_AMENDMENT_01.md`
+NOT_AUTHORIZED。
 
-Additional authorized existing test：
+Next actual project action：
 
-`tests/unit/test_recovery_orchestration.py`
+POST-C25 CURRENT CONSISTENCY VERIFICATION。
 
-Required：
+Then：
 
-- accepted revision durable before strategy delivery。
-- exact revision resolution。
-- StrategyStateSnapshot canonical revision reference。
-- ExecutionTriggerRef canonical revision reference。
-- legacy/canonical disagreement fail-closed。
-- no arbitrary legacy-ID backfill。
+BOUNDED VIBE V0 DOCS/WORKFLOW IMPLEMENTATION TASK。
 
-Migration creation：
+Pre-CODEX fixed sequence：
 
-AUTHORIZED_FOR_0004_ONLY。
+    post-C25 baseline
+        ->
+    CURRENT consistency verification
+        ->
+    bounded VIBE docs/workflow task
+        ->
+    VIBE/Wave materialization
+        ->
+    post-VIBE baseline
+        ->
+    exact Wave-1 authorization
+        ->
+    explicit source-modification authorization
+        ->
+    CODEX START
+
+No Wave execution is currently authorized。
 
 Migration execution：
 
@@ -187,15 +202,9 @@ Actual PostgreSQL / V07：
 
 NOT_AUTHORIZED。
 
-C02 / C05 / C18 / V05：
-
-NOT_AUTHORIZED。
-
 Broker / market-data I/O：
 
 NOT_AUTHORIZED。
-
-No other runtime leaf may begin。
 
 Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 

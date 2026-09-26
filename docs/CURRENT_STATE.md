@@ -31,8 +31,8 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 - Architecture Acceptance：HOLD。
 - Runtime Conformance：NOT ASSERTED。
 - Production Readiness：NOT ASSERTED。
-- Runtime Authorization：BOUNDED_AUTHORIZED_C25_ONLY。
-- Runtime modification：AUTHORIZED_FOR_C25_ONLY。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Runtime modification：NOT_AUTHORIZED。
 - Broker I/O：NOT_AUTHORIZED。
 - DB migration execution：NOT_AUTHORIZED。
 - Level 3B：NOT_ENABLED。
@@ -41,7 +41,7 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 
 Latest closure：
 
-`docs/work/GAP08_C24_CLOSURE.md`
+`docs/work/GAP08_C25_CLOSURE.md`
 
 Completed / verified：
 
@@ -51,38 +51,37 @@ Completed / verified：
 - C11 — Shioaji Status Mapping Correction。
 - C23 — Canonical MarketObservation Identity + Revision。
 - C24 — Operational MarketObservation Evidence / Acceptance。
+- C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
 
 Latest runtime commit：
 
-`8944ecaf674b22cf1fe1df908d9125ce15538f0f`
+`940f54c6d9b4ed7bf0e1d3c8627b49be3fdae495`
 
-C24 verification：
+C25 final verification：
 
-- domain targeted：18 passed。
-- PostgreSQL contract：17 passed。
-- compatibility：83 passed。
-- full regression：1057 passed / 4 skipped。
-- runtime correction cycles：1。
+- C22 + C25 targeted：64 passed。
+- C23/C24 compatibility：112 passed。
+- full regression：1081 passed / 4 skipped。
+- runtime correction cycles：2。
 
-C24 boundaries：
+C25 boundaries：
 
-- acceptance policy / immutable evidence / revision_seq authority implemented。
-- NEW migration 0003 created。
-- migration execution NOT EXECUTED。
+- durable accepted revision precedes recovery-capable strategy delivery。
+- exact mor1 revision reference is canonical strategy recovery/execution provenance。
+- legacy arbitrary BAR IDs cannot authorize READY。
+- NEW migration 0004 created。
+- migrations 0001/0002/0003 unchanged。
+- migration 0004 NOT EXECUTED。
 - actual PostgreSQL / V07 NOT VERIFIED。
-- C25 strategy delivery / recovery-reference migration NOT EXECUTED。
+- broker / market-data I/O NOT EXECUTED。
 
 Completed / verified correction-core weight：
 
-23 / 113。
+27 / 113。
 
 Remaining correction-core engineering weight：
 
-90。
-
-Runtime Authorization：
-
-NOT_AUTHORIZED。
+86。
 
 ### Global DAG Recheck
 
@@ -104,13 +103,17 @@ P2 — Market Evidence Authority：
         ->
     C24 COMPLETE
         ->
-    C25 NEXT
+    C25 COMPLETE
 
-Next candidate：
+P2 status：
 
-C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
+COMPLETE。
 
-C25：
+Next runtime candidate：
+
+C02 — BrokerAccount Revision Head + Exact Checkpoint。
+
+C02：
 
 NOT_AUTHORIZED。
 
@@ -118,50 +121,20 @@ NOT_AUTHORIZED。
 
 Runtime Authorization：
 
-BOUNDED_AUTHORIZED_C25_ONLY。
+NOT_AUTHORIZED。
 
-Authorization：
+Last consumed bounded authorization：
 
-`docs/work/GAP08_AUTHORIZATION_C25.md`
+- `docs/work/GAP08_AUTHORIZATION_C25.md`
+- `docs/work/GAP08_AUTHORIZATION_C25_AMENDMENT_01.md`
 
-Scope amendment：
+Latest closure：
 
-`docs/work/GAP08_AUTHORIZATION_C25_AMENDMENT_01.md`
+`docs/work/GAP08_C25_CLOSURE.md`
 
-Authorized leaf：
+No runtime correction / implementation / verification leaf is currently authorized。
 
-C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
-
-Authorized existing runtime：
-
-- `trading/execution.py`
-- `persistence/market_observation.py`
-- `persistence/postgres/market_observation.py`
-- `persistence/strategy_state.py`
-- `persistence/postgres/strategy_state.py`
-- `persistence/recovery.py`
-
-Authorized NEW runtime：
-
-- `persistence/market_observation_delivery.py`
-- `persistence/postgres/migrations/0004_strategy_market_observation_revision_ref.sql`
-
-Authorized existing tests：
-
-- `tests/unit/test_strategy_state_recovery.py`
-- `tests/unit/test_operational_execution.py`
-- `tests/unit/test_recovery_orchestration.py`
-
-Authorized NEW tests：
-
-- `tests/unit/test_c25_market_observation_delivery.py`
-- `tests/unit/test_c25_revision_reference_migration.py`
-
-Migration creation：
-
-AUTHORIZED_FOR_0004_ONLY。
-
-Migration execution：
+Migration 0004 execution：
 
 NOT_AUTHORIZED。
 
@@ -169,17 +142,19 @@ Actual PostgreSQL / V07：
 
 NOT_AUTHORIZED。
 
-C02 / C05 / C18 / V05：
-
-NOT_AUTHORIZED。
-
 Broker / market-data I/O：
 
 NOT_AUTHORIZED。
 
-C25 completion boundary：
+CODEX Wave execution：
 
-commit / push / report / STOP。
+NOT_AUTHORIZED。
+
+Next actual project action：
+
+1. establish and verify the post-C25 Planning Baseline / CURRENT consistency。
+2. create a bounded VIBE V0 docs/workflow implementation task。
+3. materialize the already-closed VIBE/Wave governance rules only under that explicit docs-only authorization。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
