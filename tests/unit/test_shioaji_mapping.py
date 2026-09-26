@@ -5,6 +5,7 @@ import pytest
 
 from backtest.models import Direction, Order, OrderStatus, OrderType
 from backtest.shioaji_mapping import (
+    UnverifiedBrokerOrderStatusError,
     to_order_status,
     to_shioaji_action,
     to_shioaji_octype,
@@ -55,15 +56,45 @@ def make_intent(
     )
 
 
-def test_order_status_mapping():
+def test_order_status_mapping_for_authoritative_statuses() -> None:
     assert to_order_status(sj.OrderStatus.Filled) == OrderStatus.FILLED
     assert to_order_status(sj.OrderStatus.Cancelled) == OrderStatus.CANCELLED
-    assert to_order_status(sj.OrderStatus.Inactive) == OrderStatus.REJECTED
-    assert to_order_status(sj.OrderStatus.Failed) == OrderStatus.REJECTED
     assert to_order_status(sj.OrderStatus.PartFilled) == OrderStatus.PARTIALLY_FILLED
     assert to_order_status(sj.OrderStatus.PendingSubmit) == OrderStatus.SUBMITTED
-    assert to_order_status(sj.OrderStatus.PreSubmitted) == OrderStatus.SUBMITTED
     assert to_order_status(sj.OrderStatus.Submitted) == OrderStatus.SUBMITTED
+
+
+@pytest.mark.parametrize(
+    "status",
+    [
+        sj.OrderStatus.PreSubmitted,
+        sj.OrderStatus.Inactive,
+        sj.OrderStatus.Failed,
+    ],
+)
+def test_unverified_order_statuses_fail_closed(
+    status: sj.OrderStatus,
+) -> None:
+    with pytest.raises(
+        UnverifiedBrokerOrderStatusError
+    ) as exc_info:
+        to_order_status(status)
+
+    assert exc_info.value.status is status
+    assert repr(status) in str(exc_info.value)
+    assert "capability-unverified" in str(exc_info.value)
+
+
+def test_unknown_order_status_fails_closed_without_pending_fallback() -> None:
+    unknown_status = object()
+
+    with pytest.raises(
+        UnverifiedBrokerOrderStatusError
+    ) as exc_info:
+        to_order_status(unknown_status)  # type: ignore[arg-type]
+
+    assert exc_info.value.status is unknown_status
+    assert repr(unknown_status) in str(exc_info.value)
 
 
 @pytest.mark.parametrize(

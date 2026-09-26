@@ -11,7 +11,20 @@ from trading.execution import (
 )
 
 
+class UnverifiedBrokerOrderStatusError(RuntimeError):
+    """Shioaji 狀態尚未具備建立 canonical OrderStatus 的已驗證語意。"""
+
+    def __init__(self, status: object) -> None:
+        self.status = status
+        super().__init__(
+            "Shioaji order status is capability-unverified/non-authoritative: "
+            f"{status!r}"
+        )
+
+
 def to_order_status(status: sj.OrderStatus) -> OrderStatus:
+    """只映射已核准的 broker 狀態；未知或未驗證語意一律 fail closed。"""
+
     if status == sj.OrderStatus.Filled:
         return OrderStatus.FILLED
 
@@ -22,19 +35,12 @@ def to_order_status(status: sj.OrderStatus) -> OrderStatus:
         return OrderStatus.CANCELLED
 
     if status in {
-        sj.OrderStatus.Inactive,
-        sj.OrderStatus.Failed,
-    }:
-        return OrderStatus.REJECTED
-
-    if status in {
         sj.OrderStatus.PendingSubmit,
-        sj.OrderStatus.PreSubmitted,
         sj.OrderStatus.Submitted,
     }:
         return OrderStatus.SUBMITTED
 
-    return OrderStatus.PENDING
+    raise UnverifiedBrokerOrderStatusError(status)
 
 
 def to_shioaji_action(
