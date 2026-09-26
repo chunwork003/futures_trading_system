@@ -544,13 +544,37 @@ Bounded VIBE V0 docs/workflow authorization：
 
 `docs/work/VIBE_V0_WORKFLOW_AUTHORIZATION.md`
 
-Docs / Workflow Modification Authorization：
+Authorization status：
 
-BOUNDED_AUTHORIZED_VIBE_V0_DOCS_ONLY。
+CONSUMED / CLOSED。
+
+VIBE V0 / Wave workflow materialization：
+
+COMPLETE。
+
+Detailed workflow owner：
+
+`docs/CODEX_EXECUTION_WORKFLOW.md`
+
+Candidate Wave status：
+
+DEPENDENCY-COHERENT CANDIDATE WAVE PLAN。
+
+Dependency DAG：
+
+VERIFIED。
+
+Execution Coherence：
+
+TO BE VERIFIED DURING EXACT WAVE AUTHORIZATION。
+
+Execution Authorization：
+
+NOT_AUTHORIZED。
 
 Next governance action：
 
-materialize VIBE V0 core + Wave W1-W10 governance + final A1-A4 amendments only。
+build exact Wave-1 authorization package + verify W1 execution coherence。
 
 Runtime Authorization：
 

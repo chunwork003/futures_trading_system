@@ -29,6 +29,39 @@
 
 ## Chronological Log
 
+### 2026-09-26 — VIBE V0 / CODEX Workflow Materialization
+
+- P3 effective authorization baseline：`4e65d095cb285a5f7c3e310be1d9f676af4cd452`。
+- authorization：`docs/work/VIBE_V0_WORKFLOW_AUTHORIZATION.md`。
+- authorization type：DOCS / WORKFLOW ONLY。
+- VIBE V0 core：MATERIALIZED。
+- Wave W1-W10 governance：MATERIALIZED。
+- final amendments A1-A4：MATERIALIZED。
+- NEW detailed workflow owner：`docs/CODEX_EXECUTION_WORKFLOW.md`。
+- `AGENTS.md` remains concise routing / re-entry surface。
+- `docs/work/WORK_PACKAGE_TEMPLATE.md` remains Work Package / Wave authorization schema owner and now includes Wave/source-modification fields。
+- `docs/DEVELOPMENT.md` remains supplemental / read-only。
+- canonical `Runtime Authorization` semantics preserved。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Runtime Source Modification Authorization：NOT_AUTHORIZED。
+- Task Context Packet：transient / derived / revision-bound / non-authoritative。
+- context model：Wave Shared Context + Leaf Delta Context。
+- default executor：single CODEX agent。
+- no RAG / Vector DB / packet generator / workflow DB / multi-agent orchestrator introduced。
+- failure classes：TOOLING RETRY / IMPLEMENTATION CORRECTION / EXTERNAL-ENVIRONMENT / AUTHORITY-REVISION CONTRADICTION。
+- tooling retry：non-semantic；finite by reclassification / STOP。
+- bounded rewrite：smallest coherent contract-satisfying delta；not minimum LOC。
+- force-push：DENY by default。
+- unexpected remote divergence：STOP / re-resolution。
+- current W1-W5 status：DEPENDENCY-COHERENT CANDIDATE only。
+- dependency DAG：VERIFIED。
+- execution coherence：NOT YET VERIFIED。
+- Wave execution authorization：NOT_AUTHORIZED。
+- C02：NOT_AUTHORIZED。
+- correction-core progress unchanged：27 / 113；86 remaining。
+- next checkpoint：build exact Wave-1 authorization package and verify execution coherence。
+- P3 executor must STOP after commit / push。
+
 ### 2026-09-26 — VIBE V0 Docs/Workflow Materialization Authorization
 
 - authorization input baseline：`2c035e998e0242ee9697037978eb642e58fce83b`。

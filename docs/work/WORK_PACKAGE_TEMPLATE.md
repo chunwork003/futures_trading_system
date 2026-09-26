@@ -403,3 +403,243 @@ Level 3A：
 runtime executor 不更新下一個 ACTIVE，不開始下一個 mainline。
 
 不得自動開始下一個 mainline。
+---
+
+## 24. Wave / Autonomous Execution Extension
+
+若此次不是 single leaf，而是 authorized Wave，必填。
+
+### 24A. Wave Identity
+
+    Wave ID:
+        <WAVE_ID>
+
+    Wave Planning Baseline:
+        <EXACT_SHA>
+
+    Dependency Status:
+        <VERIFIED / NOT_VERIFIED>
+
+    Execution Coherence:
+        <VERIFIED / NOT_VERIFIED>
+
+不得把 dependency coherence 寫成完整 execution coherence。
+
+---
+
+## 25. Authorized Leaves
+
+明確列出 exact leaves：
+
+    Authorized Leaves:
+        - <LEAF_1>
+        - <LEAF_2>
+
+禁止：
+
+- dynamic leaf insertion。
+- silent scope expansion。
+- unauthorized next-leaf execution。
+
+---
+
+## 26. Authorization Separation
+
+必填：
+
+    Runtime Source Modification Authorization:
+        <NOT_AUTHORIZED / BOUNDED_AUTHORIZED_FOR_WAVE_ID>
+
+    Runtime Authorization:
+        <CANONICAL CURRENT VALUE>
+
+    Production Activation:
+        <ALLOW / DENY>
+
+核心：
+
+    source modification authorization
+    !=
+    runtime activation / operation authorization
+
+不得因 Wave 重新定義 canonical `Runtime Authorization`。
+
+---
+
+## 27. Side-Effect Envelope
+
+至少列：
+
+    Source Modification:
+    Test Execution:
+    DB Environment Access:
+    Migration Creation:
+    Migration Execution:
+    Broker Network:
+    Paper Broker I/O:
+    Production Broker I/O:
+    Credential Material:
+    Production Activation:
+
+未明列 ALLOW：
+
+預設 DENY。
+
+---
+
+## 28. Context / Scope Contract
+
+必填：
+
+    Shared Authority Context:
+        <pointers>
+
+    Read Scope:
+        <files / symbols / bounded areas>
+
+    Write Scope:
+        <exact files / symbols>
+
+    Protected Scope:
+        <exact files / areas>
+
+    Task Context Packet:
+        transient / derived / revision-bound / non-authoritative
+
+Wave 使用：
+
+    Wave Shared Context
+    +
+    Leaf Delta Context
+
+Write scope 不得自行 evidence-expand。
+
+需要擴大 write scope：
+
+STOP / reauthorization。
+
+---
+
+## 29. Rewrite Policy
+
+每 leaf 或 surface 指定：
+
+    PREFERRED
+    ALLOWED
+    EXTEND
+    SMALL_FIX
+    NEW_PRIMITIVE
+
+`patch small`：
+
+smallest coherent delta satisfying contract。
+
+不是：
+
+minimum LOC at all costs。
+
+Rewrite permission 不授權 architecture redesign。
+
+---
+
+## 30. Test / Correction / Retry Policy
+
+明確列：
+
+    Targeted Tests:
+    Compatibility Tests:
+    Integration Tests:
+    Full Regression:
+
+    Semantic Correction Budget:
+        <VALUE / repository current rule>
+
+Failures 分類：
+
+    TOOLING RETRY
+    IMPLEMENTATION CORRECTION
+    EXTERNAL / ENVIRONMENT FAILURE
+    AUTHORITY / REVISION CONTRADICTION
+
+Tooling retry：
+
+不計 semantic correction budget。
+
+但不得 unbounded retry。
+
+同類 tooling failure 重複：
+
+root-cause inspection -> reclassify / STOP。
+
+---
+
+## 31. Wave Git Policy
+
+必填：
+
+    git_commit:
+        <ALLOW / DENY>
+        <per_leaf / wave_end / explicit>
+
+    git_push:
+        <ALLOW / DENY>
+        <per_leaf / wave_end / explicit>
+
+    force_push:
+        DENY by default
+
+若 remote divergence / non-fast-forward：
+
+STOP。
+
+禁止自動 force-push、未知 remote rebase、unrelated merge。
+
+---
+
+## 32. Reviewer / Reauthorization Barrier
+
+自動前進僅限：
+
+- remaining leaves pre-authorized。
+- canonical authority unchanged。
+- next dependency valid。
+- side-effect envelope unchanged。
+- tests PASS。
+- semantic correction budget within limit。
+- no new architecture/business decision。
+
+以下立即 STOP：
+
+- authority change。
+- write scope expansion。
+- side-effect expansion。
+- new leaf required。
+- migration/broker action not authorized。
+- security/credential boundary change。
+- correction budget exceeded。
+- remote divergence。
+- architecture/business ambiguity。
+
+---
+
+## 33. Wave Completion Evidence
+
+至少：
+
+1. Planning Baseline。
+2. initial / final HEAD。
+3. executed leaves。
+4. per-leaf commits。
+5. files read。
+6. files changed。
+7. tests。
+8. tooling retries。
+9. semantic corrections。
+10. external failures。
+11. reviewer barriers。
+12. Git push / ancestry result。
+13. accepted engineering weight candidate。
+14. CODEX/model consumption if available。
+15. accepted weight per 1% consumption if available。
+16. elapsed time。
+17. final STOP / next authorization state。

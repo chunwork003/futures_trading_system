@@ -150,11 +150,29 @@ CODEX Wave execution：
 
 NOT_AUTHORIZED。
 
+VIBE V0 / Wave workflow materialization：
+
+COMPLETE。
+
+Detailed workflow owner：
+
+`docs/CODEX_EXECUTION_WORKFLOW.md`
+
 Next actual project action：
 
-1. establish and verify the post-C25 Planning Baseline / CURRENT consistency。
-2. create a bounded VIBE V0 docs/workflow implementation task。
-3. materialize the already-closed VIBE/Wave governance rules only under that explicit docs-only authorization。
+build the exact Wave-1 authorization package and verify execution coherence。
+
+Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
+
+C02：
+
+NOT_AUTHORIZED。
+
+CODEX Wave execution：
+
+NOT_AUTHORIZED。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -281,13 +299,25 @@ C02：
 
 NOT_AUTHORIZED。
 
-Bounded VIBE V0 docs/workflow authorization：
+VIBE V0 / Wave workflow materialization：
+
+COMPLETE。
+
+Materialization authorization：
 
 `docs/work/VIBE_V0_WORKFLOW_AUTHORIZATION.md`
 
+Materialized workflow owner：
+
+`docs/CODEX_EXECUTION_WORKFLOW.md`
+
+Work Package / Wave authorization schema：
+
+`docs/work/WORK_PACKAGE_TEMPLATE.md`
+
 Docs / Workflow Modification Authorization：
 
-BOUNDED_AUTHORIZED_VIBE_V0_DOCS_ONLY。
+CONSUMED / CLOSED。
 
 Runtime Authorization：
 
@@ -297,34 +327,44 @@ Runtime Source Modification Authorization：
 
 NOT_AUTHORIZED。
 
+Current Wave planning status：
+
+DEPENDENCY-COHERENT CANDIDATE WAVE PLAN。
+
+Dependency DAG：
+
+VERIFIED。
+
+Execution Coherence：
+
+NOT YET VERIFIED。
+
+Execution Authorization：
+
+NOT_AUTHORIZED。
+
 Next actual project action：
 
-MATERIALIZE VIBE V0 CORE + WAVE W1-W10 GOVERNANCE + FINAL A1-A4 AMENDMENTS UNDER THE EXACT DOCS-ONLY AUTHORIZATION。
+BUILD EXACT WAVE-1 AUTHORIZATION PACKAGE + VERIFY W1 EXECUTION COHERENCE。
 
-P3 MUST：
+Required W1 authorization review：
 
-    materialize repository-native CODEX workflow
-        -> commit / push
-        -> establish post-VIBE Planning Baseline
-        -> STOP
+- exact leaves。
+- exact file/symbol read/write/protected scope。
+- side-effect envelope。
+- rewrite policies。
+- protected history compatibility。
+- acceptance/test compatibility。
+- hidden human decision barriers。
+- correction/retry policy。
+- Git commit/push policy。
+- remote divergence guard。
+- reviewer/reauthorization barrier。
+- STOP conditions。
 
-P3 MUST NOT：
+Only after that separate checkpoint may an explicit bounded Runtime Source Modification Authorization be decided。
 
-- implement C02 or any other runtime correction leaf。
-- authorize or execute Wave runtime source changes。
-- activate runtime。
-- access DB environment。
-- execute migration。
-- perform broker network / paper broker / production broker I/O。
-
-Only after successful P3 closure：
-
-    establish post-VIBE Planning Baseline
-        -> verify canonical CURRENT projection
-        -> build exact Wave-1 authorization package
-        -> verify execution coherence
-        -> explicit bounded Runtime Source Modification Authorization
-        -> CODEX START
+CODEX runtime execution remains NOT_AUTHORIZED。
 
 No step implicitly grants authority to the next step。
 

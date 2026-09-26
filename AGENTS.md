@@ -22,7 +22,7 @@ Runtime Authorization：NOT_AUTHORIZED。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current execution action：materialize the bounded VIBE V0 docs/workflow package only under `docs/work/VIBE_V0_WORKFLOW_AUTHORIZATION.md`；runtime source modification、C02 and Wave execution remain NOT_AUTHORIZED。
+Current execution action：build the exact Wave-1 authorization package and verify execution coherence；runtime source modification、C02 and Wave execution remain NOT_AUTHORIZED。
 
 C25 is COMPLETE / VERIFIED and its bounded authorization is consumed。Migration 0004 exists but is NOT_EXECUTED；actual PostgreSQL、C02/C04/C05/C18/C21/V05/V07 and Wave execution remain NOT_AUTHORIZED。
 
@@ -67,6 +67,7 @@ Primary source of truth 與必讀順序：
 1. `docs/CURRENT_STATE.md`：唯一 canonical CURRENT governance projection。
 2. `AGENTS.md`：agent re-entry guard、執行規則與 current-state pointer。
 3. `docs/CURRENT_WORK.md`：目前工作、阻塞、佇列。
+4. `docs/CODEX_EXECUTION_WORKFLOW.md`：CODEX/VIBE detailed execution workflow owner。
 
 Correction-Freeze execution planning source：`docs/work/GAP08_CORRECTION_FREEZE.md`。
 
