@@ -68,12 +68,18 @@ class _ExecutionModel(BaseModel):
 
 
 class Order(_ExecutionModel):
-    """Canonical derived order projection；historical authority remains OrderEvent/Fill。"""
+    """Canonical derived order projection；historical authority remains OrderEvent/Fill。
+
+    ``broker_client_order_ref`` 是 canonical Order 的 broker-bound correlation
+    identity，與 broker 回傳的 ``broker_order_id`` 不同。建立 durable
+    sequence-0 PENDING 後必須非空且不得替換。
+    """
 
     order_id: str
     intent_id: str
     correlation_id: str
     causation_id: str | None = None
+    broker_client_order_ref: str | None = None
     broker_order_id: str | None = None
     instrument_id: int = Field(gt=0)
     contract_id: int | None = Field(default=None, gt=0)
@@ -89,6 +95,13 @@ class Order(_ExecutionModel):
     version: int = Field(default=0, ge=0)
     created_at: datetime
     updated_at: datetime
+
+    @field_validator("broker_client_order_ref", mode="before")
+    @classmethod
+    def _client_ref(cls, value: object) -> object:
+        if value is None:
+            return None
+        return normalize_stable_id(value) if isinstance(value, str) else value
 
     @field_validator("created_at", "updated_at")
     @classmethod

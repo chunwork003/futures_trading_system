@@ -29,6 +29,7 @@ def event(sequence=0, previous=None, status=OrderStatus.PENDING, **updates):
 
 def order(**updates):
     values = dict(order_id="ORD-1", intent_id="INT-1", correlation_id="CORR-1",
+                  broker_client_order_ref="CLIENT-ORD-1",
                   instrument_id=1, contract_id=101, direction=PositionDirection.LONG,
                   position_effect=PositionEffect.OPEN, order_type=OrderType.MARKET,
                   quantity=2, status=OrderStatus.PENDING, created_at=NOW, updated_at=NOW)

@@ -78,6 +78,10 @@ class ExecutionPersistenceService:
                 or order.version != event.sequence
             ):
                 raise PersistenceContractError("order projection does not match OrderEvent")
+            if event.sequence == 0 and order.broker_client_order_ref is None:
+                raise PersistenceContractError(
+                    "durable sequence-0 PENDING requires broker_client_order_ref"
+                )
             expected_causation = order.intent_id if previous_event is None else previous_event.event_id
             if event.causation_id != expected_causation:
                 raise PersistenceContractError("OrderEvent causation chain is invalid")

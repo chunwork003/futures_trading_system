@@ -8,7 +8,7 @@ from trading.execution import Fill, Order
 
 
 class PostgresOrderRepository:
-    """Derived order projection adapter；optimistic version mismatch 明確失敗且不 commit。"""
+    """Derived order projection adapter；保留 immutable client ref 與 optimistic version。"""
 
     def __init__(self, connection: Any) -> None: self._connection = connection
 
@@ -22,14 +22,22 @@ class PostgresOrderRepository:
         payload = json.loads(order.model_dump_json())
         with self._connection.cursor() as cursor:
             if expected_version == -1:
+                if order.version != 0 or order.broker_client_order_ref is None:
+                    raise OrderProjectionConflictError(
+                        "initial durable order requires sequence-0 broker client ref"
+                    )
                 cursor.execute(
-                    "INSERT INTO trading.orders (order_id, intent_id, correlation_id, broker_order_id, instrument_id, contract_id, status, version, projection_json) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING RETURNING order_id",
-                    (order.order_id, order.intent_id, order.correlation_id, order.broker_order_id, order.instrument_id, order.contract_id, order.status.value, order.version, json.dumps(payload)),
+                    "INSERT INTO trading.orders (order_id, intent_id, correlation_id, broker_client_order_ref, broker_order_id, instrument_id, contract_id, status, version, projection_json) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING RETURNING order_id",
+                    (order.order_id, order.intent_id, order.correlation_id, order.broker_client_order_ref, order.broker_order_id, order.instrument_id, order.contract_id, order.status.value, order.version, json.dumps(payload)),
                 )
             else:
+                if order.broker_client_order_ref is None:
+                    raise OrderProjectionConflictError(
+                        "durable order projection requires broker client ref"
+                    )
                 cursor.execute(
-                    "UPDATE trading.orders SET broker_order_id=%s, status=%s, version=%s, projection_json=%s WHERE order_id=%s AND version=%s RETURNING order_id",
-                    (order.broker_order_id, order.status.value, order.version, json.dumps(payload), order.order_id, expected_version),
+                    "UPDATE trading.orders SET broker_order_id=%s, status=%s, version=%s, projection_json=%s WHERE order_id=%s AND version=%s AND broker_client_order_ref=%s RETURNING order_id",
+                    (order.broker_order_id, order.status.value, order.version, json.dumps(payload), order.order_id, expected_version, order.broker_client_order_ref),
                 )
             if cursor.fetchone() is None:
                 raise OrderProjectionConflictError(order.order_id)
