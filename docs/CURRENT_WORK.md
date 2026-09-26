@@ -77,7 +77,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：R-10 formal closure，then R-11 occurred_at / received_at clock authority；bounded correction freeze remains later in the authoritative queue。
+Next action：R-12 ReconciliationRun audit contract，then R-13 / R-14 boundary classification；bounded correction freeze remains later in the authoritative queue。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 
@@ -387,5 +387,21 @@ Next：
 
     R-10 — Initial explicit FLAT snapshot provenance formal closure
     R-11 — occurred_at / received_at clock authority
+
+Do not begin runtime correction from this checkpoint。
+
+## Decision Checkpoint 5D Work Boundary
+
+Completed architecture work：
+
+- R-10 Initial explicit expected-state provenance：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-11 operational clock/timestamp authority：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+Runtime work：NONE AUTHORIZED。
+
+Next：
+
+    R-12 — ReconciliationRun audit contract
+    then R-13 / R-14 boundary classification
 
 Do not begin runtime correction from this checkpoint。

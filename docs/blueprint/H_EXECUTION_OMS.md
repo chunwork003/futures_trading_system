@@ -573,3 +573,19 @@ Generic startup catch-up may reconstruct deterministic strategy state and derive
 Account protection / risk-controlled / authorized recovery action paths remain separate from normal strategy cohort authority。
 
 If Decision Layer owns durable decision-relevant state，that state requires its own recoverable authority frontier before cohort activation。
+
+## Recovery Decision Checkpoint 5D — Execution Time Authority
+
+OrderEvent / Fill time semantics follow R-11。
+
+Canonical event occurrence time represents the fact encoded by that canonical record；it is not automatically broker historical transition time。
+
+BROKER_DISCOVERY recovery re-anchor must not fabricate guessed historical broker timestamps。
+
+Source occurrence time that is unknown/unverified remains explicit rather than being silently replaced by received_at or local-now。
+
+Canonical received_at is durably bound to immutable evidence identity and is preserved across retry/replay/rebuild。
+
+Event sequence/account_revision remain ordering authority；wall-clock timestamps do not replace them。
+
+Order/projection created_at/updated_at semantics must be deterministic and documented；rebuild does not create fresh lifecycle history。

@@ -94,3 +94,17 @@ E Domain remains authority for strategy definition、instance/config lifecycle s
 G Domain remains authority for decision-policy semantics。
 
 R-09 coordinates lifecycle/governing-context transition safety；it does not absorb D/E/G semantic ownership。
+
+## Decision Checkpoint 5D — Temporal Authority Separation
+
+| Time Concept | Semantic Authority | Must Not Be Confused With |
+|---|---|---|
+| occurred_at | represented fact-specific source/local occurrence authority | received_at / ordering sequence |
+| received_at | first successful durable canonical ingress for immutable evidence identity | source occurrence time / replay time |
+| observed_at | external observation boundary | historical state-change time / linearizable broker snapshot |
+| recorded_at | explicitly defined local record/persistence boundary | database commit proof / causal order |
+| captured_at | derived strategy/state capture boundary | source market occurrence time |
+| effective_at | represented domain-effective state boundary | recorded_at / commit time |
+| confirmed_at | confirmation-time boundary；authorization semantics remain R-13 | authority identity/permission itself |
+
+Explicit sequence/revision/frontier identities remain causal/order authority；timestamps remain temporal/audit evidence。

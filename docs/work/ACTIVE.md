@@ -598,3 +598,20 @@ Runtime Authorization：NOT_AUTHORIZED。
 Do not re-open R-08/R-09 without concrete contradiction or new authoritative evidence。
 
 Do not begin runtime correction until correction scope freeze/reweight and explicit authorization。
+
+## Decision Checkpoint 5D — Active Queue
+
+Completed：
+
+- R-10 DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-11 DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+Current architecture task：
+
+    R-12 ReconciliationRun audit contract
+
+Runtime Authorization：NOT_AUTHORIZED。
+
+Do not re-open R-10/R-11 without concrete contradiction or new authoritative evidence。
+
+Do not begin runtime correction until correction scope freeze/reweight and explicit authorization。

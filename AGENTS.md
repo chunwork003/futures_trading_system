@@ -127,3 +127,19 @@ Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7
 - Runtime Authorization：NOT_AUTHORIZED。
 - Architecture Acceptance：HOLD。
 - Next：R-10 formal closure，then R-11 clock authority。
+
+## CURRENT AUTHORITY — DECISION CHECKPOINT 5D
+
+- Authoritative baseline before this checkpoint：`d5ec87c00081b97340a59bb47521d65db46131c4`。
+- R-10：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-11：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- Initial canonical expected snapshot must resolve through EXPECTED_STATE_INITIALIZED and one complete revision-1 provenance closure。
+- EXPLICIT_FLAT never derives from missing state / empty broker observation / reconciliation MATCH。
+- BROKER_SEED is initialization-time position genesis and requires complete approved material provenance。
+- occurred_at / received_at / observed_at / recorded_at / captured_at / effective_at are distinct semantics。
+- received_at is fixed by first successful durable canonical acceptance of immutable evidence identity。
+- Unknown/unverified broker occurrence time is never silently fabricated。
+- Timestamps never replace sequence/revision/frontier causal authority。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Architecture Acceptance：HOLD。
+- Next：R-12 ReconciliationRun audit contract。

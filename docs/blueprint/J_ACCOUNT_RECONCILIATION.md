@@ -779,3 +779,17 @@ Expected position snapshots and broker actual observations use separate reposito
 - ACTIVE J IDs 完全存在。
 - expected / actual / policy / execution authority 不混淆。
 - startup readiness 與 pairwise comparison 明確分階段。
+
+## Recovery Decision Checkpoint 5D — Reconciliation Time Semantics
+
+Reconciliation compares authority/evidence state；timestamps do not become reconciliation truth authority。
+
+Broker observed_at represents the observation boundary and not the historical time at which the broker position changed。
+
+A coherent discovery/reconciliation run does not imply that multiple broker API reads formed one server-side linearizable snapshot。
+
+Reconciliation persistence recorded_at is explicit audit/recording metadata，not AccountStateHead ordering and not proof of database commit time。
+
+Case/run ordering authority must come from its explicit version/run identity rather than wall-clock sort。
+
+R-12 remains owner of the formal ReconciliationRun audit contract。

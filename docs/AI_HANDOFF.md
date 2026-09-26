@@ -912,3 +912,27 @@ Restart/deployment presence never authorizes identity/config/policy transition�
 Runtime Authorization remains NOT_AUTHORIZED。
 
 Next：R-10 formal closure -> R-11 clock authority。
+
+## Decision Checkpoint 5D Handoff
+
+R-10 / R-11 are DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+Initialization provenance：
+
+- EXPECTED_STATE_INITIALIZED is the authority/provenance aggregation boundary。
+- revision 1 has exactly one canonical initialization snapshot。
+- FLAT requires explicit initialization。
+- BROKER_SEED requires complete approved provenance and fabricates no execution history。
+
+Temporal authority：
+
+- occurred_at is represented-fact specific。
+- received_at is immutable first successful durable canonical-ingress time for immutable evidence identity。
+- unknown/unverified source occurrence time remains explicit。
+- observed_at is not broker-side linearizable snapshot proof。
+- recorded_at is not commit/order authority。
+- timestamps never replace sequence/revision/frontier causality。
+
+Runtime Authorization remains NOT_AUTHORIZED。
+
+Next：R-12 ReconciliationRun audit contract。

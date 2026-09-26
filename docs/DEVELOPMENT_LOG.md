@@ -1118,3 +1118,24 @@ Runtime gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 - Architecture Acceptance remains HOLD。
 - Runtime Authorization remains NOT_AUTHORIZED。
 - Next：R-10 formal closure -> R-11 clock authority。
+
+### 2026-09-26 — Recovery Architecture Decision Checkpoint 5D
+
+- Baseline：`d5ec87c00081b97340a59bb47521d65db46131c4`。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- R-10：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-11：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- Initialization event is the expected-state provenance aggregation boundary。
+- Revision 1 requires exactly one canonical initialization snapshot。
+- BROKER_SEED is initialization-time position genesis with complete broker/reference authority provenance and no fabricated execution history。
+- operational timestamps now have distinct record-specific semantics。
+- received_at is bound at first successful durable canonical acceptance of immutable evidence identity。
+- unknown/unverified broker occurrence time may not be fabricated from local timestamps。
+- canonical timestamp fields require known timezone semantics and UTC representation。
+- observed_at is not proof of broker-side linearizable snapshot。
+- recorded_at is not durable commit/order authority。
+- timestamps never replace sequence/revision/frontier causality。
+- Runtime tests not rerun because checkpoint is docs-only。
+- Architecture Acceptance remains HOLD。
+- Runtime Authorization remains NOT_AUTHORIZED。
+- Next：R-12 ReconciliationRun audit contract。

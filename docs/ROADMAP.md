@@ -428,3 +428,15 @@ Immediate next：R-10 formal closure，then R-11 clock authority。
 Runtime correction remains gated behind remaining decision closure、boundary classification、correction-scope freeze/reweight and explicit authorization。
 
 Runtime Gate：NOT_AUTHORIZED。
+
+## Recovery Architecture Checkpoint 5D
+
+Closed through this checkpoint：R-01 through R-11。
+
+Checkpoint 5D closes R-10 initialization provenance and R-11 operational clock/timestamp authority。
+
+Immediate next：R-12 ReconciliationRun audit contract。
+
+Then：R-13 / R-14 boundary classification、K520 defer confirmation、broker capability classification、correction-scope freeze/reweight、explicit runtime authorization。
+
+Runtime Gate：NOT_AUTHORIZED。

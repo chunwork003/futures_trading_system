@@ -95,7 +95,9 @@ Validation：
 
 - mode=FLAT iff seeded_positions=()。
 - mode=BROKER_SEED requires non-empty seeded_positions。
-- BROKER_SEED seeded_positions must exactly match a fresh persisted broker observation。
+- BROKER_SEED broker-authoritative current/economic facts must resolve to fresh persisted broker evidence。
+- Economically material canonical instrument/reference interpretation may resolve through its separately approved authoritative reference source/version。
+- Complete canonical seed provenance is required；no economically material value may be guessed or fabricated。
 - BROKER_SEED reason is mandatory and nonblank。
 - FLAT reason may be optional。
 - confirmed_by is mandatory/nonblank and must not be silently supplied by trading core/system default。
@@ -116,9 +118,13 @@ Broker actual query failure must be a typed failure and must not be converted to
 
 Both FLAT and BROKER_SEED production initialization depend on R-04 proving unresolved/non-terminal broker execution has been checked。
 
-BROKER_SEED additionally depends on R-13 operator authorization/approval runtime contract。
+All production EXPECTED_STATE_INITIALIZED transitions require R-13-authorized initialization authority。
 
-Until R-13 exists，BROKER_SEED production/live use is default-deny；paper/sandbox verification only。
+FLAT and BROKER_SEED production initialization remain default-deny until that authority exists。
+
+BROKER_SEED may additionally require a stronger R-13 authorization policy。
+
+Paper/sandbox workflow verification does not imply production authorization。
 
 R-13 maps to existing L610/L710/L750 and N310/N410/N430/N440/N450/N460 architecture；it is not a parallel authorization domain。
 
@@ -1294,7 +1300,7 @@ Final activation still requires the existing R-04H race-safe recovery/currentnes
 
 #### A3 / A3b — BROKER_SEED as account-position genesis
 
-`BROKER_SEED` is an explicit one-time account-position genesis authority。
+`BROKER_SEED` is an explicit initialization-time account-position genesis authority。
 
 It does not fabricate historical Order、OrderEvent or Fill evidence and does not claim historical execution attribution。
 
@@ -1940,5 +1946,206 @@ PRE/POST do not automatically mean READY；normal R-06E、R-04H、risk/business/
 Next：R-10 formal closure，then R-11 occurred_at / received_at clock authority。
 
 Then：R-12 -> R-13 boundary classification -> R-14 boundary classification -> K520 defer confirmation -> broker capability gate classification -> correction scope freeze/reweight -> explicit runtime authorization。
+
+No runtime correction is authorized by this checkpoint。
+
+## Decision Checkpoint 5D — R-10 / R-11 Provenance and Clock Authority
+
+**DECISION CHECKPOINT 5D ACCEPTED — ARCHITECTURE DECISIONS ONLY**
+
+- Baseline：`d5ec87c00081b97340a59bb47521d65db46131c4`。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Architecture Acceptance remains：HOLD。
+- Runtime Authorization remains：NOT_AUTHORIZED。
+- R-10：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-11：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- No R-10E / R-11I added。
+
+This checkpoint records architecture decisions only。
+
+It does NOT assert runtime conformance、broker capability completion、production readiness or authorization to begin runtime correction。
+
+### R-10A — Initialization Event as Provenance Aggregation Boundary
+
+The first canonical AccountPositionSnapshot produced by successful initialization references，through `source_event_id`，the exact canonical `EXPECTED_STATE_INITIALIZED` TradingEvent that established expected-state authority。
+
+`EXPECTED_STATE_INITIALIZED` is the initialization authority transition and provenance aggregation boundary。
+
+It must durably resolve the exact upstream evidence/authority references required by the selected initialization mode。
+
+The first snapshot must not directly use BrokerPositionObservation、ReconciliationCase/result、fabricated OrderEvent/Fill or arbitrary audit evidence as expected-state authority。
+
+BrokerPositionObservation remains external-state evidence rather than expected-state authority。
+
+### R-10B — Unique Revision-1 Initialization Result
+
+Successful initialization authority revision 1 forms one exact internally resolvable provenance closure。
+
+It establishes exactly one canonical initialization AccountPositionSnapshot for that authority revision。
+
+The closure must deterministically prove：
+
+- initialization event belongs to the same BrokerAccount。
+- initialization event type/mode is valid。
+- first snapshot belongs to the same BrokerAccount。
+- snapshot.source_event_id resolves to the exact EXPECTED_STATE_INITIALIZED event。
+- AccountRecoveryCheckpoint(1).expected_snapshot_id resolves to that exact canonical snapshot。
+- AccountStateHead identifies authority revision 1。
+- AccountAuthorityCommit / receipt resolves consistently to that same successful authority commit。
+
+An additional conflicting canonical initialization snapshot for revision 1 is an integrity failure。
+
+Architecture requires durable resolvability and semantic validation but does not prescribe SQL foreign-key layout。
+
+### R-10C — Explicit FLAT Provenance
+
+`EXPLICIT_FLAT` exists only through successful `EXPECTED_STATE_INITIALIZED(mode=FLAT)` authority transition。
+
+The first canonical snapshot explicitly contains an empty position collection and retains provenance to that initialization event。
+
+Therefore：
+
+- missing snapshot != FLAT。
+- empty broker observation != expected FLAT。
+- reconciliation MATCH != initialization。
+
+Broker evidence proves the observed external condition；the initialization authority transition establishes Expected=FLAT。
+
+Later broker divergence does not rewrite historical initialization provenance；normal reconciliation/recovery handles divergence。
+
+### R-10D — BROKER_SEED Provenance
+
+`BROKER_SEED` is an explicit initialization-time account-position genesis authority，not historical execution reconstruction。
+
+The first canonical seeded snapshot must：
+
+- reference EXPECTED_STATE_INITIALIZED(mode=BROKER_SEED)。
+- preserve exact broker observation provenance for broker-authoritative current/economic facts。
+- preserve auditable reference-authority provenance for economically material canonical interpretation。
+- contain one complete canonical seeded expected position。
+- contain no fabricated historical Order / OrderEvent / Fill。
+
+Every economically material fact required for the seeded snapshot must be traceable to an approved authoritative source。
+
+If complete provenance cannot be established without guessing，initialization is invalid。
+
+R-10 does not determine clock-source semantics；those belong to R-11。
+
+R-10 does not determine operator authorization semantics；those remain R-13。
+
+## R-11 — Operational Clock / Timestamp Authority
+
+Status：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+
+### R-11A — Distinct Record-Specific Time Semantics
+
+`occurred_at` is the occurrence time of the fact represented by that specific canonical record。
+
+Its semantic authority is record-type/source specific。
+
+Examples：
+
+- LOCAL_OMS OrderEvent：local authority-transition occurrence time。
+- BROKER_CALLBACK Fill/Event：verified broker/source occurrence time when that time authority is known and accepted。
+- BROKER_DISCOVERY OrderEvent：canonical re-anchor/material-fact establishment time when historical broker transition time is unknown；it must not claim that broker historically transitioned at that time。
+- BrokerPositionObservation.observed_at：external observation boundary，not historical position-change occurrence time。
+
+`observed_at` also does not imply a broker-side linearizable snapshot point。
+
+### R-11B — Semantic Owner / Explicit Time Authority
+
+The component owning a semantic time boundary owns assignment or acceptance of that timestamp semantics。
+
+Source-originated time is validated source-time evidence；it is not replaced by a local Clock merely because the application ingests it。
+
+Locally originated semantic boundaries use an explicit local Clock/time authority。
+
+Persistence repositories do not invent domain/source timestamps。
+
+### R-11C — Durable Canonical Ingress Time
+
+`received_at` is the immutable first canonical-ingress timestamp durably bound to the immutable evidence identity at its first successful durable acceptance。
+
+Once durably accepted，retry、replay、canonicalization、projection rebuild and restart preserve that canonical received_at。
+
+A process-memory/socket arrival timestamp that was never durably bound must not be reconstructed or guessed after crash。
+
+Later duplicate/corroborating arrivals may retain diagnostic transport timing but do not replace canonical received_at。
+
+Concurrent duplicate arrivals for the same immutable evidence identity must not create competing canonical received_at values；the first successful durable acceptance fixes the canonical value。
+
+Different immutable evidence identities never share received_at merely because their economic content appears similar。
+
+### R-11D — Unknown / Unverified Source Occurrence Time
+
+For source-originated facts，source occurrence-time semantics distinguish at least：KNOWN_AND_ACCEPTED、UNKNOWN、and UNVERIFIED/UNTRUSTED。
+
+UNKNOWN or UNVERIFIED source occurrence time must remain explicit and must not be silently promoted to canonical source occurrence time。
+
+`received_at`、`observed_at` or local current time must not silently populate source `occurred_at` while provenance disappears。
+
+Physical representation is not frozen；nullable fields、typed TimeEvidence or equivalent designs are permitted if they preserve the same semantics。
+
+Existence of a broker timestamp field alone does not prove authority；semantics、timezone、precision and adapter/capability interpretation must be verified。
+
+### R-11E — Timestamp Equality / Timezone / Skew
+
+Timestamp equality may occur legitimately but does not imply semantic equivalence。
+
+No universal cross-clock invariant such as occurred_at <= received_at <= recorded_at is frozen。
+
+Clock skew、late/reordered delivery、historical import and heterogeneous source clocks prohibit using that inequality as causality authority。
+
+Every accepted canonical timestamp field must have known timezone semantics and use the canonical UTC representation。
+
+A raw source timestamp whose timezone/semantics are unknown remains non-canonical evidence and must not populate the canonical occurrence field。
+
+### R-11F — Time Is Not Causal Authority
+
+Timestamps are temporal/audit evidence and never replace explicit domain ordering/causal authority。
+
+Examples：
+
+- OrderEvent ordering -> sequence。
+- BrokerAccount material authority ordering -> account_revision。
+- MarketObservation version authority -> logical key + immutable revision identity / revision semantics。
+- Strategy recovery causality -> exact snapshot/frontier/causal references。
+- Broker actions -> Attempt / Head / Resolution authority。
+
+`ORDER BY occurred_at` or arrival time must never substitute for these authorities。
+
+### R-11G — Projection / Persistence Timestamp Semantics
+
+Every projection/persistence timestamp must have one documented semantic derivation。
+
+Projection rebuild may alter purely physical persistence metadata only when that metadata is explicitly defined as such。
+
+Rebuild must never rewrite historical/domain timestamp semantics by injecting fresh wall-clock time。
+
+`created_at`、`updated_at`、`effective_at`、`captured_at` and `recorded_at` are not interchangeable aliases。
+
+Projection timestamps are not independent lifecycle authority。
+
+### R-11H — Explicit Per-Boundary Clock Authority
+
+No repository or database default may silently invent domain/source timestamps。
+
+Each timestamp semantic has an explicit clock/time authority。
+
+For V1，locally owned semantic timestamps should normally use an explicit injectable application Clock and be persisted as supplied values。
+
+A database clock may be used only where a persistence-port contract explicitly defines that database clock as authority for that specific persistence timestamp。
+
+No hidden DEFAULT now() may acquire domain meaning。
+
+`recorded_at` represents its explicitly defined local recording boundary；it does not by itself prove database commit/durability and is never causal/order authority。
+
+Durability remains proven by successful transactional authority commit、revision/checkpoint and applicable durable receipt semantics。
+
+### Decision Queue After Checkpoint 5D
+
+Next：R-12 ReconciliationRun audit contract。
+
+Then：R-13 boundary classification -> R-14 boundary classification -> K520 defer confirmation -> broker capability gate classification -> correction scope freeze/reweight -> explicit runtime authorization。
 
 No runtime correction is authorized by this checkpoint。

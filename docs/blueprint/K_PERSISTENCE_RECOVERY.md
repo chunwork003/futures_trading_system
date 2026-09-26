@@ -1245,3 +1245,24 @@ A single SQL transaction is not architecturally required，but best-effort/event
 The transition effective boundary must be durable and deterministically recoverable。
 
 PRE_TRANSITION / POST_TRANSITION classification does not itself grant TradingReady；all normal R-06/R-04/risk/business readiness gates still apply。
+
+## Recovery Decision Checkpoint 5D — Initialization Provenance / Time Evidence
+
+Initialization revision 1 must resolve one unique canonical initialization AccountPositionSnapshot。
+
+That snapshot references the exact EXPECTED_STATE_INITIALIZED event；the initialization event/authority commit resolves required upstream broker/reference/authorization provenance。
+
+Conflicting additional canonical initialization snapshot at revision 1 is integrity failure。
+
+BROKER_SEED is initialization-time position genesis，not fabricated historical execution。
+
+For temporal evidence：
+
+- received_at is immutable once first successfully durably bound to immutable evidence identity。
+- retries/replays/rebuilds do not rewrite canonical received_at。
+- unknown/unverified source occurrence time remains explicit。
+- repositories do not silently invent domain timestamps。
+- canonical timestamp values require known timezone semantics and canonical UTC representation。
+- recorded_at is not durable-commit/order authority unless a separately frozen persistence contract explicitly defines another semantic。
+
+Account revisions/checkpoints/receipts remain persistence/recovery authority；wall-clock timestamps are evidence only。

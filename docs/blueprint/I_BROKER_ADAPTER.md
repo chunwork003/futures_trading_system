@@ -593,3 +593,17 @@ Incomplete broker discovery cannot prove absence of unmanaged external execution
 Final REVIEW/HALT disposition remains R-04H。
 
 Existing broker capability verification gates remain unchanged。
+
+## Recovery Decision Checkpoint 5D — Broker Time Evidence
+
+Broker-provided timestamp existence does not itself prove verified occurrence-time authority。
+
+Adapter/capability verification must establish applicable semantics、timezone、precision and mapping before broker time can populate canonical source occurrence time。
+
+Unknown/unverified broker occurrence time must not silently become received_at、observed_at or local current time。
+
+Broker callback/discovery ingress may preserve separate local received/observation timing without claiming broker historical occurrence semantics。
+
+BrokerPositionObservation.observed_at is an observation boundary and does not prove a broker-side linearizable snapshot。
+
+Broker capability gates remain required where pinned adapter semantics are not yet verified。

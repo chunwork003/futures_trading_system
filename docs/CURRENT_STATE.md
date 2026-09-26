@@ -423,3 +423,15 @@ Next architecture work：R-08 + R-09 identity/config authority cluster。
 - Runtime Authorization：NOT_AUTHORIZED。
 - Architecture Acceptance：HOLD。
 - Next：R-10 formal closure -> R-11 clock authority。
+
+## Decision Checkpoint 5D State
+
+- R-10：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-11：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-01 through R-11 architecture decisions are closed；R-12 and later linked boundaries remain。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Runtime conformance：NOT ASSERTED。
+- Production readiness：NOT ASSERTED。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Architecture Acceptance：HOLD。
+- Next：R-12 ReconciliationRun audit contract。

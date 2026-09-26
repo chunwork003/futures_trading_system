@@ -493,3 +493,13 @@ No runtime implementation is authorized。
 - Correction expansion remains RECORDED / NOT YET REWEIGHTED。
 - Runtime Authorization remains NOT_AUTHORIZED。
 - Next：R-10 formal closure，then R-11。
+
+## Decision Checkpoint 5D — R-10 / R-11 Closure
+
+- R-10 initial expected-state provenance：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-11 operational clock/timestamp authority：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- No R-10E / R-11I added。
+- Superseded R-01 initialization wording in ADR-002 reconciled。
+- Correction expansion remains RECORDED / NOT YET REWEIGHTED。
+- Runtime Authorization remains NOT_AUTHORIZED。
+- Next：R-12，then R-13 / R-14 boundary classification。
