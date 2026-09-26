@@ -559,3 +559,24 @@ Current architecture task：
 Do not re-open R-01 through R-05 without a concrete contradiction/new authoritative evidence。
 
 Do not begin bounded runtime correction until correction scope freeze/reweight and explicit authorization are complete。
+
+## Decision Checkpoint 5B — Active Queue
+
+Completed：
+
+- R-06 DECIDED。
+- R-07 DECIDED。
+
+Current architecture task：
+
+    R-08 + R-09 identity/config authority cluster
+
+R-08：StrategyInstance instrument vs symbol identity。
+
+R-09：strategy_instance_id / config_version / lifecycle authority。
+
+Runtime Authorization：NOT_AUTHORIZED。
+
+Do not re-open R-06/R-07 without concrete contradiction or new authoritative evidence。
+
+Do not begin runtime correction until the correction package is frozen、reweighted and explicitly authorized。

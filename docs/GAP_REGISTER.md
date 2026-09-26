@@ -464,3 +464,22 @@ Post-R-03/R-04/R-05 correction expansion remains RECORDED / NOT YET REWEIGHTED�
 Next decision work：R-06 + R-07。
 
 No runtime correction is authorized。
+
+## Decision Checkpoint 5B — R-06 / R-07 Closure
+
+- R-06 Multi-strategy recovery boundary：DECIDED。
+- R-07 ReconciliationCase BrokerAccount scope：DECIDED。
+- R-08 StrategyInstance instrument vs symbol identity：OPEN / NEXT。
+- R-09 strategy_instance_id / config_version / lifecycle authority：OPEN / NEXT。
+
+R-06 intentionally depends on R-09 for exact StrategyInstance/config/policy-version identity and authorized migration authority。
+
+R-07 does not replace R-12 ReconciliationRun audit contract or R-13 manual authorization contract。
+
+Architecture Acceptance remains HOLD。
+
+Original 35 leaves / weight 151 remain IMPLEMENTED CANDIDATE / NOT ACCEPTED。
+
+Correction expansion remains RECORDED / NOT YET REWEIGHTED。
+
+No runtime implementation is authorized。

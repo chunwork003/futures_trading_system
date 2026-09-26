@@ -1180,3 +1180,28 @@ Full historical archive replay is not required。
 `BASELINE_NOT_ESTABLISHED` requires positive durable lifecycle/initialization proof；missing authority rows alone are insufficient。
 
 All records claimed as one RecoveryCut must satisfy the verified persistence-consistency-domain requirement。
+
+## Recovery Decision Checkpoint 5B — Strategy / Reconciliation Recovery Frontiers
+
+Strategy recovery persistence semantics：
+
+- minimum logical unit = StrategyInstance。
+- one StrategyInstance may require one or multiple exact MarketObservation frontiers。
+- algorithmic statelessness does not waive required durable consumption/causal/material-output frontier evidence。
+- fresh/stateless/genesis eligibility requires positive StrategyInstance lifecycle/config authority。
+- absence of StrategyStateSnapshot alone is insufficient。
+
+Exact StrategyInstance/config/policy identity and migration authority remain R-09。
+
+Reconciliation persistence semantics：
+
+- one ReconciliationCase has exactly one primary BrokerAccount recovery scope。
+- case lifecycle is discrepancy/control/audit authority，not AccountStateHead economic authority。
+- case open/update/close alone does not advance AccountStateHead。
+- economic mutation follows AccountAuthorityCommit。
+
+Any reconciliation state/evidence used as a material R-04H readiness prerequisite is recovery-critical non-revision-advancing evidence and must be represented in the complete RecoveryCut/currentness proof。
+
+Audit/history-only case changes with no current readiness effect need not invalidate activation。
+
+Shared causes may affect multiple accounts，but do not create cross-account ReconciliationCase authority scope。

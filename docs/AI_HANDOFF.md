@@ -860,3 +860,32 @@ Important R-05 semantics：
 This checkpoint is docs-only and does not authorize correction runtime。
 
 Next：R-06 + R-07 Recovery Boundary Cluster。
+
+## Decision Checkpoint 5B Handoff
+
+Authoritative recovery architecture now closes R-01 through R-07。
+
+R-06 key rules：
+
+- StrategyInstance is the minimum logical strategy recovery unit。
+- one StrategyInstance may require multiple exact MarketObservation frontiers。
+- stateless algorithm does not waive recovery/causal frontier evidence。
+- missing snapshot never implies fresh start。
+- required decision membership comes from exact authoritative decision/config policy version。
+- restart may not silently substitute latest/current policy version。
+- explicit authorized policy migration remains possible and belongs to R-09 lifecycle authority。
+- ExecutionReady != StrategyRestoreValid != StrategyTradingReady != DecisionCohortTradingReady。
+- generic startup catch-up carries no normal material-action authority。
+
+R-07 key rules：
+
+- each ReconciliationCase has one primary BrokerAccount scope。
+- V1 does not isolate normal execution below BrokerAccount。
+- unresolved case existence alone does not determine readiness。
+- readiness basis remains validated underlying evidence/severity/policy。
+- readiness-affecting reconciliation state participates in complete RecoveryCut currentness。
+- case lifecycle is not economic authority。
+
+Runtime Authorization remains NOT_AUTHORIZED。
+
+Next：R-08 + R-09 identity/config authority cluster。

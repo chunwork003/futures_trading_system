@@ -399,3 +399,20 @@ Runtime correction remains gated behind later：
 decision completion → correction scope freeze → reweight → explicit runtime authorization。
 
 Runtime Gate：NOT_AUTHORIZED。
+
+## Recovery Architecture Checkpoint 5B
+
+Closed through this checkpoint：R-01 through R-07。
+
+Checkpoint 5B closes：
+
+- R-06 Multi-strategy recovery boundary。
+- R-07 ReconciliationCase BrokerAccount isolation/query boundary。
+
+Immediate next architecture work：R-08 + R-09 identity/config authority cluster。
+
+R-10 formal closure and R-11 clock authority follow after R-08/R-09。
+
+Correction runtime remains gated behind completion of remaining architecture decisions、correction scope freeze/reweight and explicit runtime authorization。
+
+Runtime Gate：NOT_AUTHORIZED。

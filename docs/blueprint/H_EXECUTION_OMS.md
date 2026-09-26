@@ -550,3 +550,26 @@ Normal execution remains blocked until R-04H final handoff validates：
 `UNMANAGED_EXTERNAL_EXECUTION` blocks automatic initialization/READY where material；it is not automatically imported、cancelled or converted into fabricated canonical history。
 
 Recovery material broker side effects remain governed by R-04G and R-13。
+
+## Recovery Decision Checkpoint 5B — Multi-Strategy Readiness Boundary
+
+Strategy recovery is StrategyInstance-scoped，but normal account-level material decisions are decision-cohort gated。
+
+Required StrategyInstance membership must come from the exact authoritative governing decision/config policy version。
+
+A required unavailable strategy may not be silently removed、substituted or made optional during restart。
+
+Execution readiness layers are distinct：
+
+- BrokerAccountExecutionReady。
+- StrategyRestoreValid。
+- StrategyTradingReady。
+- DecisionCohortTradingReady。
+
+A normal strategy-originated material action requires the applicable cohort to be TradingReady。
+
+Generic startup catch-up may reconstruct deterministic strategy state and derive historical signals internally，but those historical outputs have no normal broker-bound material-action authority before readiness。
+
+Account protection / risk-controlled / authorized recovery action paths remain separate from normal strategy cohort authority。
+
+If Decision Layer owns durable decision-relevant state，that state requires its own recoverable authority frontier before cohort activation。

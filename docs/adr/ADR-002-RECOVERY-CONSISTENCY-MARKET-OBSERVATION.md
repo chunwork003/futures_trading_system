@@ -1561,3 +1561,241 @@ Next：R-06 + R-07 Recovery Boundary Cluster。
 Then continue in authoritative queue order：R-08 → R-09 → R-10 formal closure → R-11 → R-12 → R-13 boundary → R-14 boundary → K520 defer confirmation → broker capability gate classification → correction scope freeze/reweight → later runtime authorization。
 
 No correction runtime is authorized by this checkpoint。
+
+## Decision Checkpoint 5B — R-06 / R-07 Recovery Boundary Cluster
+
+**DECISION CHECKPOINT 5B ACCEPTED — ARCHITECTURE DECISIONS ONLY**
+
+- Baseline：`c131d6bd04212d302259b0571bfef91084196f76`。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Architecture Acceptance remains：HOLD。
+- Runtime Authorization remains：NOT_AUTHORIZED。
+- R-06：DECIDED。
+- R-07：DECIDED。
+- R-09 remains OPEN and owns StrategyInstance/config identity and lifecycle authority。
+- Next architecture cluster：R-08 + R-09 identity/config authority。
+
+This checkpoint records architecture decisions only。
+
+It does NOT assert：
+
+- runtime conformance。
+- production readiness。
+- broker capability completion。
+- authorization to begin runtime correction。
+
+## R-06 — Multi-Strategy Recovery Boundary
+
+Status：DECIDED。
+
+### R-06A — StrategyInstance Recovery Unit
+
+Minimum logical strategy recovery unit = `StrategyInstance`。
+
+It is NOT：
+
+- strategy class。
+- globally shared strategy_id。
+- BrokerAccount-wide strategy state。
+- one global strategy watermark。
+
+StrategyInstance identity/config lifecycle authority is not defined by R-06；it remains R-09 responsibility。
+
+### R-06B — Per-Instance Recovery Frontier
+
+A StrategyRecoveryFrontier contains，as applicable：
+
+- exact durable StrategyStateSnapshot or positively authorized no-state mode。
+- one or more exact required MarketObservation frontier(s)。
+- state-schema compatibility evidence。
+- required causal/consumption/material-output backlinks。
+
+A StrategyInstance may consume one or multiple recoverable observation streams。
+
+A scalar observation frontier is valid only when that StrategyInstance contract has exactly one recoverable observation stream。
+
+No global strategy watermark is permitted。
+
+Algorithmic statelessness does NOT mean recovery statelessness。
+
+An explicitly stateless StrategyInstance may omit internal durable strategy-state payload only when that mode is positively authorized。
+
+Stateless mode does not waive durable observation、consumption、causal or material-output frontier evidence required for safe recovery。
+
+For a material-output-capable StrategyInstance：
+
+    no StrategyStateSnapshot payload
+
+must never imply：
+
+    no recovery frontier required
+
+A legitimately never-consumed StrategyInstance may have a genesis/empty recovery frontier only when lifecycle authority positively proves that state。
+
+R-06B proves which exact evidence formed restored strategy state；R-03 remains authority for whether corrected/superseded market evidence permits activation。
+
+### R-06C — Fresh / Stateless / Genesis Eligibility
+
+Absence of StrategyStateSnapshot alone never authorizes fresh start。
+
+Fresh initialization、first activation、stateless mode or genesis/never-consumed state must be positively proven by StrategyInstance lifecycle/config authority。
+
+Otherwise：
+
+    StrategyInstance = NOT_READY
+
+Silent fresh start is forbidden。
+
+R-09 remains responsible for：
+
+- strategy_instance_id authority。
+- config_version authority。
+- lifecycle/provisioning authority。
+- allowed schema/config migration authority。
+
+### R-06D — Required Decision Participation / Policy Continuity
+
+A StrategyInstance recovery failure is initially StrategyInstance-scoped。
+
+However，a decision cohort may produce new normal material account actions only when every StrategyInstance declared required by the applicable authoritative decision/config policy version is recovery/trading-ready。
+
+Required participation may not be inferred from：
+
+- currently loaded runtime instances。
+- whichever instances restored successfully。
+- latest config by default。
+- current deployment presence alone。
+
+A required unavailable StrategyInstance may never be silently：
+
+- removed。
+- substituted。
+- downgraded to optional。
+
+Recovery must deterministically resolve the exact authoritative decision/config policy version governing the restored cohort。
+
+Restart must not silently replace the recovered governing version with the latest/currently deployed version。
+
+Policy-version continuity does NOT prohibit explicit version transition。
+
+An explicit Vn -> Vn+1 transition is allowed only through an authorized lifecycle/config transition with its own compatibility/migration semantics。
+
+Restart、deployment presence or recovery failure alone is never sufficient authority for policy substitution。
+
+Exact version identity、transition authority and config lifecycle remain R-09。
+
+Independent decision cohorts may continue independently only when their membership and independence are themselves authoritatively defined and the required account-exposure / decision-routing / risk independence is proven。
+
+Absent such proof，contributors sharing the same account final-position decision authority are treated as one coupled decision boundary。
+
+If the Multi-Strategy Decision Layer owns durable decision-relevant state，that state must itself have a recoverable authority frontier before the corresponding cohort can become READY。
+
+R-06 does not require the Decision Layer to own durable state；a pure/reconstructible Decision Layer needs no additional recovery authority。
+
+### R-06E — Readiness Composition / Catch-Up Isolation
+
+The following states are distinct：
+
+- BrokerAccountExecutionReady。
+- StrategyRestoreValid。
+- StrategyTradingReady。
+- DecisionCohortTradingReady。
+
+A successful strategy snapshot restore does not by itself grant StrategyTradingReady。
+
+A strategy may still require replay/catch-up、market-correction evaluation、schema compatibility or config compatibility evaluation。
+
+Generic startup recovery replay/catch-up may evaluate historical observations and may internally derive signals when required for deterministic state reconstruction。
+
+Before StrategyTradingReady and DecisionCohortTradingReady，such historical outputs：
+
+- cannot create a new broker-bound OrderIntent。
+- cannot create a normal PENDING execution boundary。
+- cannot invoke normal broker side effects。
+- cannot become a current tradable decision merely because historical evaluation emitted a signal。
+
+After catch-up，new normal material action requires current evaluation under：
+
+- current restored strategy state。
+- authoritative governing decision policy。
+- BrokerAccount execution readiness。
+- current risk/business/session prerequisites。
+
+The narrow R-02 causal replay contract remains separate：if R-02 positively proves that the exact observation -> strategy -> decision UoW never crossed its durable execution boundary and is eligible for replay，that replay follows R-02 semantics。
+
+R-02 exact causal replay is not generic startup catch-up。
+
+Normal strategy decision paths remain subject to decision-cohort readiness。
+
+Account-protection、risk-controlled or operator-authorized recovery actions remain governed by their own frozen authority paths。
+
+A strategy cannot bypass cohort readiness merely by labelling one of its own outputs as REDUCE or safety action。
+
+## R-07 — ReconciliationCase BrokerAccount Scope
+
+Status：DECIDED。
+
+### R-07A — Primary Recovery Ownership
+
+Each ReconciliationCase has exactly one primary BrokerAccount recovery scope。
+
+A case may reference instrument、contract、order、position、strategy and evidence for diagnosis/audit，but those references do not change primary BrokerAccount ownership。
+
+A shared incident may affect multiple BrokerAccounts，but recovery-case authority scope does not cross BrokerAccount boundaries。
+
+Architecture does not require a SharedIncident persistence model at this checkpoint。
+
+### R-07B — V1 Isolation Floor
+
+V1 execution/recovery isolation floor = BrokerAccount。
+
+V1 does not permit instrument-level normal execution isolation inside one BrokerAccount merely because one affected instrument can be identified。
+
+Instrument-level isolation may only be introduced by a later explicit architecture decision with proven independence across account exposure、margin/risk、pending execution and routing authority。
+
+### R-07C — Account-Scoped Readiness Evaluation
+
+Repository/readiness evaluation of reconciliation impact must be BrokerAccount-scoped。
+
+Global unresolved-case existence may never directly block unrelated BrokerAccounts。
+
+The existence of an open/unresolved ReconciliationCase does NOT by itself determine READY / REVIEW / HALT。
+
+R-04H readiness remains based on validated underlying reconciliation evidence、severity、unresolved economic/recovery impact and applicable policy。
+
+`case.open == true` is not itself economic/readiness truth authority。
+
+ReconciliationCase remains a durable discrepancy/control/audit representation。
+
+Any reconciliation state/evidence that is a material prerequisite for R-04H readiness is recovery-critical non-revision-advancing evidence。
+
+Such readiness-affecting state must be covered by the evaluated complete RecoveryCut/currentness witness。
+
+Pure audit/history-only case changes that cannot affect current readiness do not need to invalidate activation evaluation。
+
+### R-07D — Case Authority Boundary
+
+ReconciliationCase is discrepancy/problem/control/audit lifecycle authority。
+
+It is NOT：
+
+- expected-position authority。
+- Order authority。
+- Fill authority。
+- AccountStateHead economic authority。
+
+Opening、updating、closing a case or attaching audit evidence does not by itself advance AccountStateHead or rewrite expected position。
+
+If reconciliation resolution requires economic mutation，it must flow through the frozen AccountAuthorityCommit path。
+
+Manual authority/override remains R-13 responsibility。
+
+Formal run-level ReconciliationRun audit remains R-12 responsibility。
+
+### Decision Queue After Checkpoint 5B
+
+Next：R-08 + R-09 identity/config authority cluster。
+
+Then：R-10 formal closure -> R-11 -> R-12 -> R-13 boundary classification -> R-14 boundary classification -> K520 defer confirmation -> broker capability gate classification -> correction-scope freeze/reweight -> explicit runtime authorization。
+
+No runtime correction is authorized by this checkpoint。

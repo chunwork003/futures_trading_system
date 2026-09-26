@@ -385,3 +385,29 @@ Runtime Authorization：NOT_AUTHORIZED。
 Architecture Acceptance：HOLD。
 
 Next architecture work：R-06 + R-07 Recovery Boundary Cluster。
+
+## Decision Checkpoint 5B State
+
+Architecture Decision Status：
+
+- R-01：DECIDED / AMENDED。
+- R-02：DECIDED / AMENDED。
+- R-03：DECIDED / UNCHANGED。
+- R-04：DECIDED / AMENDED。
+- R-05：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-06：DECIDED。
+- R-07：DECIDED。
+
+R-06 freezes StrategyInstance-scoped recovery、multi-frontier recovery evidence、positive fresh/stateless authority、exact governing policy continuity、decision-cohort readiness and startup catch-up isolation。
+
+R-07 freezes BrokerAccount-scoped ReconciliationCase ownership、V1 BrokerAccount isolation floor、account-scoped readiness evaluation and non-economic case authority。
+
+Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+
+Runtime conformance is NOT asserted。
+
+Runtime Authorization：NOT_AUTHORIZED。
+
+Architecture Acceptance：HOLD。
+
+Next architecture work：R-08 + R-09 identity/config authority cluster。

@@ -1077,3 +1077,27 @@ Runtime gate：HOLD_FOR_ARCHITECTURE_FREEZE_COMMIT。
 - Runtime Authorization remains NOT_AUTHORIZED。
 - Runtime tests not rerun because this checkpoint is docs-only。
 - Next：R-06 + R-07 Recovery Boundary Cluster。
+
+### 2026-09-26 — Recovery Architecture Decision Checkpoint 5B
+
+- Baseline：`c131d6bd04212d302259b0571bfef91084196f76`。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- R-06 Multi-strategy recovery boundary：DECIDED。
+- R-07 ReconciliationCase BrokerAccount scope：DECIDED。
+- StrategyInstance is the minimum logical strategy recovery unit。
+- Strategy recovery supports one-or-more exact MarketObservation frontiers。
+- Algorithmic statelessness does not waive required recovery/causal frontier evidence。
+- Fresh/stateless/genesis eligibility requires positive lifecycle authority；missing snapshot alone is insufficient。
+- Required decision participation is resolved from exact authoritative policy/config version；silent restart-time policy substitution is forbidden。
+- Explicit authorized version migration remains possible and is deferred to R-09 identity/lifecycle authority。
+- ExecutionReady / StrategyRestoreValid / StrategyTradingReady / DecisionCohortTradingReady are distinct。
+- Generic startup catch-up has no normal material-action authority。
+- ReconciliationCase primary scope = one BrokerAccount。
+- V1 no instrument-level execution isolation inside one BrokerAccount。
+- Unresolved case existence alone does not determine readiness。
+- Readiness-affecting reconciliation evidence participates in RecoveryCut currentness。
+- Case lifecycle remains non-economic；economic mutation uses AccountAuthorityCommit。
+- Architecture Acceptance remains HOLD。
+- Runtime Authorization remains NOT_AUTHORIZED。
+- Runtime tests not rerun because checkpoint is docs-only。
+- Next：R-08 + R-09 identity/config authority cluster。

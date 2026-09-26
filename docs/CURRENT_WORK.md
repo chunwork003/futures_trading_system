@@ -355,3 +355,21 @@ Next decision cluster：
     R-07 — ReconciliationCase / BrokerAccount recovery scope formal closure
 
 Do not start runtime correction from this checkpoint。
+
+## Decision Checkpoint 5B Work Boundary
+
+Completed architecture work：
+
+- R-06 Multi-strategy recovery boundary：DECIDED。
+- R-07 ReconciliationCase BrokerAccount scope：DECIDED。
+
+Runtime work：NONE AUTHORIZED。
+
+Next decision cluster：
+
+    R-08 — StrategyInstance instrument vs symbol identity
+    R-09 — strategy_instance_id / config_version / lifecycle authority
+
+R-09 remains the owner of exact StrategyInstance/config identity、policy-version transition and lifecycle/provisioning authority。
+
+Do not begin runtime correction from this checkpoint。

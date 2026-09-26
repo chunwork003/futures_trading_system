@@ -93,3 +93,24 @@ Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7
 - Architecture Acceptance：HOLD。
 - Next：R-06 + R-07 Recovery Boundary Cluster。
 - Do not begin runtime correction until the expanded correction Work Package is later frozen、reweighted and explicitly authorized。
+
+## CURRENT AUTHORITY — DECISION CHECKPOINT 5B
+
+- Authoritative architecture baseline before this checkpoint：`c131d6bd04212d302259b0571bfef91084196f76`。
+- R-01：DECIDED / AMENDED。
+- R-02：DECIDED / AMENDED。
+- R-03：DECIDED / UNCHANGED。
+- R-04：DECIDED / AMENDED。
+- R-05：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-06：DECIDED。
+- R-07：DECIDED。
+- Strategy recovery unit = StrategyInstance；no global strategy watermark。
+- Required strategy participation comes from exact authoritative policy/config version；runtime presence is not authority。
+- ExecutionReady、StrategyRestoreValid、StrategyTradingReady and DecisionCohortTradingReady are distinct。
+- ReconciliationCase primary scope = exactly one BrokerAccount。
+- Open/unresolved ReconciliationCase alone is not readiness authority。
+- Readiness-affecting reconciliation evidence participates in complete RecoveryCut currentness。
+- R-09 remains OPEN and owns StrategyInstance/config lifecycle identity authority。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Architecture Acceptance：HOLD。
+- Next：R-08 + R-09 identity/config authority cluster。
