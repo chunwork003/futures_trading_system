@@ -13,6 +13,7 @@ from persistence.broker_action import (
     BrokerActionConflictError,
     BrokerActionHead,
     BrokerActionKind,
+    BrokerActionReinvocationDeniedError,
     BrokerActionResolution,
     BrokerActionResolutionKind,
     BrokerActionSafetyService,
@@ -76,14 +77,21 @@ class ActionRepo:
             broker=attempt.broker, account_ref=attempt.account_ref,
             order_id=attempt.order_id, action=attempt.action, version=version,
             unresolved_attempt_id=attempt.attempt_id,
+            automatic_invocation_eligible=False,
         )
     def append_resolution(self, resolution): self.resolutions[resolution.resolution_id] = resolution
-    def release_head(self, attempt, *, expected_version):
+    def resolve_head(self, attempt, *, resolution_kind, expected_version):
         key = self.key(attempt); current = self.heads[key]
         if current.version != expected_version or current.unresolved_attempt_id != attempt.attempt_id:
             raise BrokerActionConflictError("release conflict")
         self.heads[key] = current.model_copy(
-            update={"version": current.version + 1, "unresolved_attempt_id": None}
+            update={
+                "version": current.version + 1,
+                "unresolved_attempt_id": None,
+                "automatic_invocation_eligible": (
+                    resolution_kind is BrokerActionResolutionKind.NOT_DISPATCHED
+                ),
+            }
         )
 
 
@@ -154,25 +162,29 @@ def test_attempt_commit_failure_means_zero_broker_invocation() -> None:
     assert calls == [] and uows[-1].rolled
 
 
-def test_unresolved_attempt_blocks_automatic_second_invocation_and_duplicate_retry() -> None:
+@pytest.mark.parametrize("action", list(BrokerActionKind))
+def test_unresolved_attempt_blocks_automatic_second_invocation_and_duplicate_retry(action) -> None:
     service, _, _, _ = build(); calls = []
-    first = attempt()
+    first = attempt(action)
     service.commit_attempt_then_invoke(
-        mutation=mutation(1, "FIRST"), attempt=first,
+        mutation=mutation(1, f"{action.value}-FIRST"), attempt=first,
         invoke=lambda value: calls.append(value.attempt_id),
     )
     with pytest.raises(UnresolvedBrokerActionError):
         service.commit_attempt_then_invoke(
-            mutation=mutation(2, "SECOND"),
-            attempt=attempt(attempt_id="ATTEMPT-SUBMIT-2", command_id="COMMAND-SUBMIT-2"),
+            mutation=mutation(2, f"{action.value}-SECOND"),
+            attempt=attempt(
+                action, attempt_id=f"ATTEMPT-{action.value}-2",
+                command_id=f"COMMAND-{action.value}-2",
+            ),
             invoke=lambda value: calls.append(value.attempt_id),
         )
     with pytest.raises(UnresolvedBrokerActionError):
         service.commit_attempt_then_invoke(
-            mutation=mutation(1, "FIRST"), attempt=first,
+            mutation=mutation(1, f"{action.value}-FIRST"), attempt=first,
             invoke=lambda value: calls.append(value.attempt_id),
         )
-    assert calls == ["ATTEMPT-SUBMIT-1"]
+    assert calls == [f"ATTEMPT-{action.value}-1"]
 
 
 @pytest.mark.parametrize("evidence", ["zero exact broker matches", "timeout", "connection lost", "response lost"])
@@ -225,6 +237,42 @@ def test_only_durable_proven_not_dispatched_resolution_releases_head() -> None:
         invoke=lambda _: "invoked",
     )
     assert authority.head.current_revision == 4
+
+
+@pytest.mark.parametrize("action", list(BrokerActionKind))
+@pytest.mark.parametrize(
+    "resolved_kind",
+    [BrokerActionResolutionKind.SUCCEEDED, BrokerActionResolutionKind.FAILED],
+)
+def test_material_resolution_clears_unresolved_but_denies_same_action_reinvocation(
+    action, resolved_kind
+) -> None:
+    service, _, _, actions = build(); item = attempt(action)
+    service.commit_attempt_then_invoke(
+        mutation=mutation(1, f"{action.value}-ATTEMPT"),
+        attempt=item,
+        invoke=lambda _: "dispatched",
+    )
+    service.commit_resolution(
+        mutation=mutation(2, f"{action.value}-{resolved_kind.value}"),
+        attempt=item,
+        resolution=resolution(item, kind=resolved_kind),
+    )
+    head = actions.heads[actions.key(item)]
+    assert head.unresolved_attempt_id is None
+    assert head.automatic_invocation_eligible is False
+    calls = []
+    with pytest.raises(BrokerActionReinvocationDeniedError):
+        service.commit_attempt_then_invoke(
+            mutation=mutation(3, f"{action.value}-SECOND"),
+            attempt=attempt(
+                action,
+                attempt_id=f"ATTEMPT-{action.value}-2",
+                command_id=f"COMMAND-{action.value}-2",
+            ),
+            invoke=lambda value: calls.append(value),
+        )
+    assert calls == []
 
 
 def test_not_dispatched_cannot_be_claimed_without_positive_proof() -> None:

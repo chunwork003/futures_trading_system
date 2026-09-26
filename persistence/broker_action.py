@@ -54,6 +54,10 @@ class UnresolvedBrokerActionError(BrokerActionSafetyError):
     """存在 unresolved attempt；禁止 automatic resubmit/recancel。"""
 
 
+class BrokerActionReinvocationDeniedError(BrokerActionSafetyError):
+    """Material outcome 已 resolved，但相同 Order/action 不可自動再次呼叫。"""
+
+
 class BrokerActionResolutionError(BrokerActionSafetyError):
     """Resolution 與 durable attempt/head 或 positive proof 不一致。"""
 
@@ -144,7 +148,7 @@ class BrokerActionResolution(BaseModel):
 
 
 class BrokerActionHead(BaseModel):
-    """每個 account/order/action scope 的 durable concurrency projection。"""
+    """每個 account/order/action scope 的 durable concurrency 與 retry eligibility projection。"""
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -154,6 +158,7 @@ class BrokerActionHead(BaseModel):
     action: BrokerActionKind
     version: int = Field(ge=0)
     unresolved_attempt_id: str | None = None
+    automatic_invocation_eligible: bool = False
 
     @field_validator("account_ref", "order_id", "unresolved_attempt_id", mode="before")
     @classmethod
@@ -164,6 +169,12 @@ class BrokerActionHead(BaseModel):
     @classmethod
     def _broker(cls, value: object) -> object:
         return normalize_stable_id(value).upper() if isinstance(value, str) else value
+
+    @model_validator(mode="after")
+    def _eligibility_invariant(self) -> "BrokerActionHead":
+        if self.unresolved_attempt_id is not None and self.automatic_invocation_eligible:
+            raise ValueError("unresolved attempt cannot be eligible for automatic invocation")
+        return self
 
 
 class BrokerInvocationResult(BaseModel):
@@ -201,8 +212,12 @@ class BrokerActionRepository(Protocol):
     ) -> BrokerActionHead | None: ...
     def reserve_head(self, attempt: BrokerActionAttempt, *, expected_version: int) -> None: ...
     def append_resolution(self, resolution: BrokerActionResolution) -> None: ...
-    def release_head(
-        self, attempt: BrokerActionAttempt, *, expected_version: int
+    def resolve_head(
+        self,
+        attempt: BrokerActionAttempt,
+        *,
+        resolution_kind: BrokerActionResolutionKind,
+        expected_version: int,
     ) -> None: ...
 
 
@@ -222,6 +237,10 @@ class BrokerActionAttemptParticipant:
         if head is not None and head.unresolved_attempt_id is not None:
             raise UnresolvedBrokerActionError(
                 f"unresolved {self._attempt.action.value} attempt blocks invocation"
+            )
+        if head is not None and not head.automatic_invocation_eligible:
+            raise BrokerActionReinvocationDeniedError(
+                f"resolved {self._attempt.action.value} outcome does not permit re-invocation"
             )
         expected_version = -1 if head is None else head.version
         self._repository.append_attempt(self._attempt)
@@ -252,7 +271,11 @@ class BrokerActionResolutionParticipant:
         if head is None or head.unresolved_attempt_id != self._attempt.attempt_id:
             raise BrokerActionResolutionError("attempt is not the unresolved action head")
         self._repository.append_resolution(self._resolution)
-        self._repository.release_head(self._attempt, expected_version=head.version)
+        self._repository.resolve_head(
+            self._attempt,
+            resolution_kind=self._resolution.kind,
+            expected_version=head.version,
+        )
 
 
 T = TypeVar("T")
@@ -319,7 +342,8 @@ class BrokerActionSafetyService:
 __all__ = [
     "BrokerActionAttempt", "BrokerActionConflictError", "BrokerActionHead",
     "BrokerActionKind", "BrokerActionRepository", "BrokerActionResolution",
-    "BrokerActionResolutionError", "BrokerActionResolutionKind",
+    "BrokerActionReinvocationDeniedError", "BrokerActionResolutionError",
+    "BrokerActionResolutionKind",
     "BrokerActionSafetyError", "BrokerActionSafetyService", "BrokerDispatchOutcome",
     "BrokerInvocationResult", "UnresolvedBrokerActionError",
 ]

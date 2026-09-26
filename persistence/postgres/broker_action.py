@@ -9,6 +9,7 @@ from persistence.broker_action import (
     BrokerActionHead,
     BrokerActionKind,
     BrokerActionResolution,
+    BrokerActionResolutionKind,
 )
 
 
@@ -58,7 +59,8 @@ class PostgresBrokerActionRepository:
     ) -> BrokerActionHead | None:
         with self._connection.cursor() as cursor:
             cursor.execute(
-                "SELECT broker, account_ref, order_id, action, version, unresolved_attempt_id "
+                "SELECT broker, account_ref, order_id, action, version, unresolved_attempt_id, "
+                "automatic_invocation_eligible "
                 "FROM trading.broker_action_heads "
                 "WHERE broker=%s AND account_ref=%s AND order_id=%s AND action=%s",
                 (broker, account_ref, order_id, action.value),
@@ -69,6 +71,7 @@ class PostgresBrokerActionRepository:
         return BrokerActionHead(
             broker=row[0], account_ref=row[1], order_id=row[2], action=row[3],
             version=row[4], unresolved_attempt_id=row[5],
+            automatic_invocation_eligible=row[6],
         )
 
     def reserve_head(self, attempt: BrokerActionAttempt, *, expected_version: int) -> None:
@@ -76,8 +79,10 @@ class PostgresBrokerActionRepository:
             if expected_version == -1:
                 cursor.execute(
                     "INSERT INTO trading.broker_action_heads "
-                    "(broker, account_ref, order_id, action, version, unresolved_attempt_id) "
-                    "VALUES (%s,%s,%s,%s,1,%s) ON CONFLICT DO NOTHING RETURNING version",
+                    "(broker, account_ref, order_id, action, version, unresolved_attempt_id, "
+                    "automatic_invocation_eligible) "
+                    "VALUES (%s,%s,%s,%s,1,%s,FALSE) "
+                    "ON CONFLICT DO NOTHING RETURNING version",
                     (
                         attempt.broker, attempt.account_ref, attempt.order_id,
                         attempt.action.value, attempt.attempt_id,
@@ -86,9 +91,11 @@ class PostgresBrokerActionRepository:
             else:
                 cursor.execute(
                     "UPDATE trading.broker_action_heads "
-                    "SET version=version+1, unresolved_attempt_id=%s "
+                    "SET version=version+1, unresolved_attempt_id=%s, "
+                    "automatic_invocation_eligible=FALSE "
                     "WHERE broker=%s AND account_ref=%s AND order_id=%s AND action=%s "
-                    "AND version=%s AND unresolved_attempt_id IS NULL RETURNING version",
+                    "AND version=%s AND unresolved_attempt_id IS NULL "
+                    "AND automatic_invocation_eligible=TRUE RETURNING version",
                     (
                         attempt.attempt_id, attempt.broker, attempt.account_ref,
                         attempt.order_id, attempt.action.value, expected_version,
@@ -114,20 +121,28 @@ class PostgresBrokerActionRepository:
             if cursor.fetchone() is None:
                 raise BrokerActionConflictError("broker action resolution identity conflict")
 
-    def release_head(self, attempt: BrokerActionAttempt, *, expected_version: int) -> None:
+    def resolve_head(
+        self,
+        attempt: BrokerActionAttempt,
+        *,
+        resolution_kind: BrokerActionResolutionKind,
+        expected_version: int,
+    ) -> None:
+        eligible = resolution_kind is BrokerActionResolutionKind.NOT_DISPATCHED
         with self._connection.cursor() as cursor:
             cursor.execute(
                 "UPDATE trading.broker_action_heads "
-                "SET version=version+1, unresolved_attempt_id=NULL "
+                "SET version=version+1, unresolved_attempt_id=NULL, "
+                "automatic_invocation_eligible=%s "
                 "WHERE broker=%s AND account_ref=%s AND order_id=%s AND action=%s "
                 "AND version=%s AND unresolved_attempt_id=%s RETURNING version",
                 (
-                    attempt.broker, attempt.account_ref, attempt.order_id,
+                    eligible, attempt.broker, attempt.account_ref, attempt.order_id,
                     attempt.action.value, expected_version, attempt.attempt_id,
                 ),
             )
             if cursor.fetchone() is None:
-                raise BrokerActionConflictError("broker action head release conflict")
+                raise BrokerActionConflictError("broker action head resolution conflict")
 
 
 __all__ = ["PostgresBrokerActionRepository"]

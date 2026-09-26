@@ -33,6 +33,8 @@ CREATE TABLE trading.broker_action_heads (
     action TEXT NOT NULL CHECK (action IN ('SUBMIT', 'CANCEL')),
     version BIGINT NOT NULL CHECK (version >= 1),
     unresolved_attempt_id TEXT REFERENCES trading.broker_action_attempts(attempt_id),
+    automatic_invocation_eligible BOOLEAN NOT NULL DEFAULT FALSE,
+    CHECK (unresolved_attempt_id IS NULL OR automatic_invocation_eligible = FALSE),
     PRIMARY KEY (broker, account_ref, order_id, action)
 );
 
@@ -50,3 +52,5 @@ COMMENT ON TABLE trading.broker_action_heads IS
     '每個 BrokerAccount、Order、action scope 至多一個 unresolved attempt 的 concurrency projection。';
 COMMENT ON COLUMN trading.broker_action_heads.unresolved_attempt_id IS
     '目前阻止 automatic resubmit 或 recancel 的 unresolved attempt identity。';
+COMMENT ON COLUMN trading.broker_action_heads.automatic_invocation_eligible IS
+    '僅 verified NOT_DISPATCHED durable resolution 可設為 true；SUCCEEDED 或 FAILED resolution 必須維持 false。';
