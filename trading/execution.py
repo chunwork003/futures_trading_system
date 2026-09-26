@@ -140,10 +140,11 @@ class OrderEvent(_ExecutionModel):
     previous_status: OrderStatus | None
     status: OrderStatus
     occurred_at: datetime
+    received_at: datetime
     broker_order_id: str | None = None
     payload_json: dict[str, object] = Field(default_factory=dict)
 
-    @field_validator("occurred_at")
+    @field_validator("occurred_at", "received_at")
     @classmethod
     def _utc(cls, value: datetime) -> datetime: return normalize_aware_utc(value)
 

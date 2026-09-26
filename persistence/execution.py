@@ -31,7 +31,7 @@ def order_event_as_trading_event(event: OrderEvent) -> TradingEvent:
     return TradingEvent(
         event_id=event.event_id, event_type="ORDER_STATUS_CHANGED", source="OMS",
         entity_type="ORDER", entity_id=event.order_id, occurred_at=event.occurred_at,
-        received_at=event.occurred_at, sequence=event.sequence, event_version=1,
+        received_at=event.received_at, sequence=event.sequence, event_version=1,
         idempotency_scope=f"ORDER_EVENT:{event.order_id}",
         idempotency_key=event.idempotency_key, correlation_id=event.correlation_id,
         causation_id=event.causation_id,

@@ -21,7 +21,8 @@ def event(sequence=0, previous=None, status=OrderStatus.PENDING, **updates):
     values = dict(event_id=f"EV-{sequence}", order_id="ORD-1", correlation_id="CORR-1",
                   causation_id="INT-1" if sequence == 0 else f"EV-{sequence-1}",
                   idempotency_key=f"KEY-{sequence}", sequence=sequence,
-                  previous_status=previous, status=status, occurred_at=NOW)
+                  previous_status=previous, status=status, occurred_at=NOW,
+                  received_at=NOW)
     values.update(updates); return OrderEvent(**values)
 
 
