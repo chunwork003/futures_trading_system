@@ -10,7 +10,7 @@ Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C25_CLOSURE.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_WAVE1_CLOSURE.md`。
 
 Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions、materialized leaves、DAG and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
@@ -326,84 +326,76 @@ STOP boundary：
 
 REACHED。
 
-## POST-C25 CURRENT EXECUTION GATE
+## COMPLETED BOUNDED WAVE — GAP08-W1-ACCOUNT-AUTHORITY
+
+Status：
+
+COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
+
+Accepted leaves：
+
+    C02
+        -> C04
+        -> C21
+        -> C03
+
+Final Runtime HEAD：
+
+`6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`
+
+Closure：
+
+`docs/work/GAP08_WAVE1_CLOSURE.md`
+
+Reviewer correction：
+
+- RF01 PASS。
+- RF02 PASS。
+- targeted：39 passed。
+- full regression：1119 passed / 4 skipped。
+
+Migration 0005：
+
+CREATED / NOT EXECUTED。
+
+Correction-core progress：
+
+    46 / 113 complete / verified
+    67 remaining
 
 Runtime Authorization：
 
 NOT_AUTHORIZED。
 
-Runtime source modification：
-
-NOT_AUTHORIZED。
-
-Next runtime candidate：
-
-C02 — BrokerAccount Revision Head + Exact Checkpoint。
-
-C02：
-
-NOT_AUTHORIZED。
-
-Post-C25 CURRENT consistency verification：
-
-COMPLETE。
-
-Bounded VIBE V0 docs/workflow authorization：
-
-`docs/work/VIBE_V0_WORKFLOW_AUTHORIZATION.md`
-
-Authorization status：
+W1 source-modification authorization：
 
 CONSUMED / CLOSED。
 
-VIBE V0 / Wave workflow materialization：
+Next dependency-coherent Wave candidate：
 
-COMPLETE。
+    C08
+        -> C05
+        -> C06
 
-Detailed workflow owner：
+W2 weight：
 
-`docs/CODEX_EXECUTION_WORKFLOW.md`
+14。
 
-Wave-1 first-pass runtime：
+W2 execution coherence：
 
-COMPLETE AS IMPLEMENTED CANDIDATE / REVIEW_CORRECTION_REQUIRED。
+NOT YET VERIFIED。
 
-First-pass Runtime HEAD：
-
-`29479837227310d6ff3287dee37171ab3286990c`
-
-Reviewer findings：
-
-- RF01 — PostgreSQL reserved rev0 head bootstrap missing。
-- RF02 — duplicate receipt replay lacks exact checkpoint closure validation。
-
-Correction authorization：
-
-`docs/work/GAP08_WAVE1_AUTHORIZATION_AMENDMENT_01.md`
-
-Runtime Source Modification Authorization：
-
-BOUNDED_AUTHORIZED_FOR_GAP08_W1_REVIEW_CORRECTION_01。
-
-Runtime Authorization：
+W2 source-modification authorization：
 
 NOT_AUTHORIZED。
 
 Next actual work：
 
-CODEX correct RF01 + RF02 only。
+build W2 execution package and verify execution coherence only。
 
-W1 accepted weight：
+STOP：
 
-NOT CREDITED。
-
-W2：
-
-NOT_AUTHORIZED。
-
-Migration execution / Actual PostgreSQL / Broker I/O / Production Activation：
-
-NOT_AUTHORIZED。
+do not start W2 runtime。
 
 ## 4. Recommended Model
 

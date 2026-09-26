@@ -29,6 +29,34 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 Wave-1 Final Closure
+
+- final W1 Runtime HEAD：`6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`。
+- Wave：`GAP08-W1-ACCOUNT-AUTHORITY`。
+- accepted leaves：C02 / C04 / C21 / C03。
+- accepted weight：19。
+- reviewer RF01：PASS。
+- reviewer RF02：PASS。
+- correction targeted：39 passed。
+- correction full regression：1119 passed / 4 skipped。
+- correction commit：`6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`。
+- migrations 0001～0005 unchanged during reviewer correction。
+- 0005：CREATED / NOT_EXECUTED。
+- actual PostgreSQL / V07：NOT_EXECUTED / NOT_VERIFIED。
+- broker I/O：NO。
+- Runtime Authorization：NOT_AUTHORIZED。
+- W1 source-modification authorization：CONSUMED / CLOSED。
+- correction-core progress：46 / 113 complete / verified；67 remaining。
+- user-reported first-pass 5-hour quota observation：33%。
+- user-reported reviewer-correction quota observation：10%。
+- when directly comparable/non-reset，conditional cumulative observation = 43%；accepted-weight throughput ≈ 0.442 weight / 1% quota。
+- exact earlier single-leaf quota percentages are not recorded；no fabricated comparison is claimed。
+- W2 candidate：C08 -> C05 -> C06；weight 14。
+- W2 execution coherence：NOT YET VERIFIED。
+- W2 source-modification authorization：NOT_AUTHORIZED。
+- next：build exact W2 execution package and verify execution coherence。
+
+
 ### 2026-09-26 — GAP-08 Wave-1 Reviewer Finding / Correction Amendment 01
 
 - first-pass Runtime HEAD：`29479837227310d6ff3287dee37171ab3286990c`。

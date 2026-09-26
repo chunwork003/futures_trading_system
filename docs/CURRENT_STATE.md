@@ -123,56 +123,44 @@ Runtime Authorization：
 
 NOT_AUTHORIZED。
 
-W1 first-pass Runtime HEAD：
+Latest completed bounded execution：
 
-`29479837227310d6ff3287dee37171ab3286990c`
+`docs/work/GAP08_WAVE1_CLOSURE.md`
 
-W1 first-pass commits：
+Final W1 Runtime HEAD：
 
-- C02：`609891b195a3c74bc1450524ad280daad1050b24`
-- C04：`46889ff673dfae1ca43946eba2ec7c1299a46256`
-- C21：`25bc4efb55af92da70f52f5ff09a240cf3fb8bf2`
-- C03：`29479837227310d6ff3287dee37171ab3286990c`
+`6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`
 
-Reviewer status：
+GAP08-W1 status：
 
-REVIEW_CORRECTION_REQUIRED。
+COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
 
-Reviewer findings：
+Accepted W1 leaves：
 
-- RF01 — reserved revision-0 PostgreSQL authority-head bootstrap missing。
-- RF02 — duplicate receipt replay does not resolve exact durable checkpoint closure。
+- C02 — COMPLETE / VERIFIED / ACCEPTED。
+- C04 — COMPLETE / VERIFIED / ACCEPTED。
+- C21 — COMPLETE / VERIFIED / ACCEPTED。
+- C03 — COMPLETE / VERIFIED / ACCEPTED。
 
-Correction authorization：
+W1 source-modification authorization：
 
-`docs/work/GAP08_WAVE1_AUTHORIZATION_AMENDMENT_01.md`
+CONSUMED / CLOSED。
 
-Runtime Source Modification Authorization：
+Correction-core progress：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W1_REVIEW_CORRECTION_01。
+46 / 113 complete / verified。
 
-Authorized correction runtime files：
+Remaining：
 
-- `persistence/account_authority.py`
-- `persistence/postgres/account_authority.py`
-
-Authorized correction tests：
-
-- `tests/unit/test_c02_account_authority.py`
-- `tests/unit/test_c04_account_authority_commit.py`
-- `tests/unit/test_c03_expected_state_initialization.py`
+67。
 
 Migration 0005：
 
-CREATED / READ-ONLY / NOT_EXECUTED。
-
-Migration execution：
-
-NOT_AUTHORIZED。
+CREATED / NOT EXECUTED。
 
 Actual PostgreSQL / V07：
 
-NOT_AUTHORIZED。
+NOT_EXECUTED / NOT_VERIFIED / NOT_AUTHORIZED。
 
 Broker I/O：
 
@@ -182,19 +170,27 @@ Production Activation：
 
 NOT_AUTHORIZED。
 
-Correction-core accepted / verified progress remains：
+Next Wave candidate：
 
-27 / 113。
+    C08
+        -> C05
+        -> C06
 
-W1 candidate weight 19 is NOT credited until reviewer correction and closure。
+W2 weight：
 
-W2：
+14。
+
+W2 execution coherence：
+
+NOT YET VERIFIED。
+
+W2 Runtime Source Modification Authorization：
 
 NOT_AUTHORIZED。
 
 Next actual project action：
 
-CODEX execute reviewer correction RF01 + RF02 only，then full regression / push / STOP。
+build exact W2 execution package + verify W2 execution coherence only。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -349,49 +345,54 @@ Runtime Source Modification Authorization：
 
 NOT_AUTHORIZED。
 
-Wave-1 first-pass runtime：
+Wave-1 final result：
 
-COMPLETE AS IMPLEMENTED CANDIDATE / NOT YET ACCEPTED。
+COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
 
-First-pass Runtime HEAD：
+Final Runtime HEAD：
 
-`29479837227310d6ff3287dee37171ab3286990c`
+`6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`
 
-Reviewer result：
+Closure：
 
-REVIEW_CORRECTION_REQUIRED。
+`docs/work/GAP08_WAVE1_CLOSURE.md`
 
-RF01：
+Correction-core progress：
 
-C02 PostgreSQL reserved revision-zero head bootstrap correction。
+    46 / 113 complete / verified
+    67 remaining
 
-RF02：
+W1 Runtime Source Modification Authorization：
 
-C04 exact durable receipt/checkpoint replay validation correction。
-
-Correction authorization：
-
-`docs/work/GAP08_WAVE1_AUTHORIZATION_AMENDMENT_01.md`
-
-Runtime Source Modification Authorization：
-
-BOUNDED_AUTHORIZED_FOR_GAP08_W1_REVIEW_CORRECTION_01。
+CONSUMED / CLOSED。
 
 Runtime Authorization：
 
 NOT_AUTHORIZED。
 
-W1 acceptance weight：
+Next dependency-coherent candidate：
 
-NOT CREDITED YET。
+    C08
+        -> C05
+        -> C06
 
-W2-W5：
+W2 weight：
 
-remain NOT_AUTHORIZED。
+14。
+
+W2 Execution Coherence：
+
+NOT YET VERIFIED。
+
+W2 Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
 
 Next：
 
-CODEX reviewer-correction pass -> reviewer final acceptance / closure。
+build W2 execution package -> verify execution coherence -> separate explicit source-modification authorization decision。
+
+No automatic W2 execution is authorized。
 
 No step implicitly grants authority to the next step。
 

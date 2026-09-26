@@ -10,11 +10,11 @@ Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C25_CLOSURE.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_WAVE1_CLOSURE.md`。
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：CODEX execute W1 reviewer correction RF01/RF02 only under `docs/work/GAP08_WAVE1_AUTHORIZATION_AMENDMENT_01.md`；W2 remains NOT_AUTHORIZED。
+Current execution action：W1 is CLOSED / ACCEPTED；build exact W2 execution package and verify execution coherence only。W2 runtime source modification remains NOT_AUTHORIZED。
 
 ## Purpose
 
@@ -65,59 +65,50 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：WAVE_1_REVIEW_CORRECTION_AUTHORIZED
+Current activity：WAVE_2_EXECUTION_COHERENCE_PLANNING
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
 
-V06：
+Previously completed / verified：
 
-COMPLETE / PASS。
+- V06。
+- C01。
+- C22。
+- C11。
+- C23。
+- C24。
+- C25。
 
-C01：
+GAP08-W1：
 
-COMPLETE / VERIFIED。
+COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
 
-C22：
+Accepted W1 leaves：
 
-COMPLETE / VERIFIED。
+- C02。
+- C04。
+- C21。
+- C03。
 
-C11：
+Closure：
 
-COMPLETE / VERIFIED。
+`docs/work/GAP08_WAVE1_CLOSURE.md`
 
-C23：
+Final W1 Runtime HEAD：
 
-COMPLETE / VERIFIED。
+`6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`
 
-C24：
+Reviewer-correction verification：
 
-COMPLETE / VERIFIED。
+- targeted：39 passed。
+- full regression：1119 passed / 4 skipped。
+- RF01：PASS。
+- RF02：PASS。
 
-C25：
+Migration 0005：
 
-COMPLETE / VERIFIED。
-
-Latest closure：
-
-`docs/work/GAP08_C25_CLOSURE.md`
-
-Latest correction runtime commit：
-
-`940f54c6d9b4ed7bf0e1d3c8627b49be3fdae495`
-
-C25 final verification：
-
-- C22 + C25 targeted：64 passed。
-- C23/C24 compatibility：112 passed。
-- full regression：1081 passed / 4 skipped。
-- runtime correction cycles：2。
-
-Migration：
-
-- NEW 0004 created。
-- NOT EXECUTED。
-- 0001/0002/0003 unchanged。
+CREATED / NOT EXECUTED。
 
 Actual PostgreSQL / V07：
 
@@ -125,8 +116,8 @@ NOT EXECUTED / NOT VERIFIED。
 
 Correction-core progress：
 
-    27 / 113 complete / verified
-    86 remaining
+    46 / 113 complete / verified
+    67 remaining
 
 ## Current Execution Gate
 
@@ -134,129 +125,31 @@ Runtime Authorization：
 
 NOT_AUTHORIZED。
 
-Frozen P1：
+W1：
 
-    C01 COMPLETE
-        ->
-    C22 COMPLETE
-        ->
-    C11 COMPLETE
+COMPLETE / VERIFIED / ACCEPTED / CLOSED。
 
-P1：
+W1 source-modification authorization：
 
-COMPLETE。
+CONSUMED / CLOSED。
 
-Frozen P2：
+Next Wave candidate：
 
-    C23 COMPLETE
-        ->
-    C24 COMPLETE
-        ->
-    C25 COMPLETE
+    C08
+        -> C05
+        -> C06
 
-P2：
+W2 weight：
 
-COMPLETE。
+14。
 
-Next runtime candidate：
+W2 Execution Coherence：
 
-C02 — BrokerAccount Revision Head + Exact Checkpoint。
+NOT YET VERIFIED。
 
-C02：
+W2 Runtime Source Modification Authorization：
 
 NOT_AUTHORIZED。
-
-Post-C25 CURRENT consistency verification：
-
-COMPLETE。
-
-Bounded VIBE V0 docs/workflow authorization：
-
-COMPLETE / CONSUMED。
-
-Authorization source：
-
-`docs/work/VIBE_V0_WORKFLOW_AUTHORIZATION.md`
-
-VIBE V0 / Wave governance materialization：
-
-COMPLETE。
-
-Detailed workflow owner：
-
-`docs/CODEX_EXECUTION_WORKFLOW.md`
-
-Work Package / Wave schema：
-
-`docs/work/WORK_PACKAGE_TEMPLATE.md`
-
-Wave-1 execution package：
-
-`docs/work/GAP08_WAVE1_EXECUTION_PACKAGE.md`
-
-Wave-1 source-modification authorization：
-
-`docs/work/GAP08_WAVE1_AUTHORIZATION.md`
-
-Wave ID：
-
-`GAP08-W1-ACCOUNT-AUTHORITY`
-
-Authorized engineering leaf set：
-
-C02 / C04 / C21 / C03。
-
-Dependency DAG：
-
-VERIFIED。
-
-Execution Coherence：
-
-VERIFIED。
-
-Runtime Authorization：
-
-NOT_AUTHORIZED。
-
-Runtime Source Modification Authorization：
-
-BOUNDED_AUTHORIZED_FOR_GAP08_W1_REVIEW_CORRECTION_01。
-
-C02：
-
-AUTHORIZED_AS_FIRST_W1_ENGINEERING_LEAF。
-
-CODEX W1 source execution：
-
-AUTHORIZED。
-
-Migration execution / Actual PostgreSQL / Broker I/O / Production Activation：
-
-NOT_AUTHORIZED。
-
-Next actual project action：
-
-CODEX reviewer correction RF01 + RF02 only；then STOP for reviewer closure。
-
-Pre-CODEX fixed sequence：
-
-    post-C25 baseline
-        ->
-    CURRENT consistency verification
-        ->
-    bounded VIBE docs/workflow task
-        ->
-    VIBE/Wave materialization
-        ->
-    post-VIBE baseline
-        ->
-    exact Wave-1 authorization
-        ->
-    explicit source-modification authorization
-        ->
-    CODEX START
-
-No Wave execution is currently authorized。
 
 Migration execution：
 
@@ -266,44 +159,15 @@ Actual PostgreSQL / V07：
 
 NOT_AUTHORIZED。
 
-Broker / market-data I/O：
+Broker I/O / Production Activation：
 
 NOT_AUTHORIZED。
 
-Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
+Next actual project action：
 
-R-03 overall：DECIDED。
+BUILD EXACT W2 EXECUTION PACKAGE + VERIFY EXECUTION COHERENCE ONLY。
 
-R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
-
-R-04F：terminal/non-terminal recovery rules DECIDED。
-
-R-04G：safe retry/no-resubmit DECIDED；no verified Shioaji broker-idempotent re-invocation authority。
-
-R-04H：BrokerAccount READY / REVIEW / HALT integration DECIDED。
-
-Original 35 leaves / weight 151 remains NOT ACCEPTED。
-
-Correction-Freeze reweight：
-
-- C01～C25 correction/implementation/enforcement：weight 110。
-- V06 repository persistence verification：weight 3。
-- bounded correction core：weight 113。
-- original 151 + bounded correction core 113 = 264。
-- V01～V05 broker capability verification：weight 19 separate。
-- V07 actual PostgreSQL environment conformance：weight 4 conditional。
-
-Expanded correction scope is ARCHITECTURALLY_CLOSED / MATERIALIZED / DEDUPLICATED / REWEIGHTED；Correction-Freeze planning checkpoint is COMPLETE。
-
-R-12/R-13/R-14 are checkpointed；K520 and BG-01～BG-07 planning classifications are frozen into `docs/work/GAP08_CORRECTION_FREEZE.md`。
-
-Detailed decision record：
-
-`docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
-
-Next action：execute C25 only；after commit/push/final report STOP。
-
-Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
+No W2 runtime modification is authorized。
 
 # Completed Work Package — GAP-BROKER-002
 

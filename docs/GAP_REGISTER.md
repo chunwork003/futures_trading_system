@@ -368,7 +368,7 @@ Correction-Freeze planning package：
 
 Latest bounded execution：
 
-`docs/work/GAP08_C25_CLOSURE.md`
+`docs/work/GAP08_WAVE1_CLOSURE.md`
 
 Completed / verified leaves：
 
@@ -382,7 +382,7 @@ Completed / verified leaves：
 
 Latest runtime commit：
 
-`940f54c6d9b4ed7bf0e1d3c8627b49be3fdae495`
+`6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`
 
 C25 final verification：
 
@@ -403,11 +403,11 @@ NOT EXECUTED / NOT VERIFIED。
 
 Executed / verified correction-core weight：
 
-27 / 113。
+46 / 113。
 
 Remaining correction-core engineering weight：
 
-86。
+67。
 
 Runtime Authorization：
 
@@ -556,27 +556,29 @@ Detailed workflow owner：
 
 `docs/CODEX_EXECUTION_WORKFLOW.md`
 
-Wave-1 first-pass status：
+Wave-1 final status：
 
-IMPLEMENTED_CANDIDATE / REVIEW_CORRECTION_REQUIRED。
+COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
 
-First-pass Runtime HEAD：
+Final Runtime HEAD：
 
-`29479837227310d6ff3287dee37171ab3286990c`
+`6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`
 
-Reviewer findings：
+Closure：
 
-RF01 — C02 PostgreSQL reserved revision-zero authority-head bootstrap missing。
+`docs/work/GAP08_WAVE1_CLOSURE.md`
 
-RF02 — C04 duplicate receipt replay lacks exact durable checkpoint closure validation。
+Accepted leaves：
 
-Correction authorization：
+C02 / C04 / C21 / C03。
 
-`docs/work/GAP08_WAVE1_AUTHORIZATION_AMENDMENT_01.md`
+Accepted W1 weight：
+
+19。
 
 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W1_REVIEW_CORRECTION_01。
+CONSUMED / CLOSED。
 
 Runtime Authorization：
 
@@ -584,19 +586,39 @@ NOT_AUTHORIZED。
 
 Accepted / verified correction-core progress：
 
-27 / 113。
+46 / 113。
 
-W1 weight 19：
+Remaining：
 
-NOT YET CREDITED。
+67。
 
-W2-W5：
+Migration 0005：
+
+CREATED / NOT EXECUTED。
+
+Actual PostgreSQL / V07：
+
+NOT_EXECUTED / NOT_VERIFIED / NOT_AUTHORIZED。
+
+W2 candidate：
+
+C08 -> C05 -> C06。
+
+W2 weight：
+
+14。
+
+W2 execution coherence：
+
+NOT YET VERIFIED。
+
+W2 source-modification authorization：
 
 NOT_AUTHORIZED。
 
 Next governance action：
 
-complete W1 reviewer correction，then reviewer final closure。
+build exact W2 execution package + verify W2 execution coherence。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 
