@@ -8,7 +8,7 @@ It does NOT independently establish Runtime Authorization。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`。Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`。Latest completed bounded execution：`docs/work/GAP08_C23_CLOSURE.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`。Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`。Latest completed bounded execution：`docs/work/GAP08_C24_CLOSURE.md`。
 
 Runtime Candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
 
@@ -18,13 +18,13 @@ Runtime Conformance：NOT ASSERTED。
 
 Production Readiness：NOT ASSERTED。
 
-Runtime Authorization：BOUNDED_AUTHORIZED_C24_ONLY。
+Runtime Authorization：NOT_AUTHORIZED。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current execution action：C24 — Operational MarketObservation Evidence / Acceptance only。
+Current execution action：NONE；C24 is complete and next candidate is C25。
 
-Only C24 is currently authorized。NEW migration 0003 creation is allowed；migration execution、actual PostgreSQL、C25/C02/V05/V07 remain NOT_AUTHORIZED。
+No runtime leaf is currently authorized。C25 is next candidate；migration execution、actual PostgreSQL、C02/V05/V07 remain NOT_AUTHORIZED。
 
 Historical authority/checkpoint sections below are preserved for audit and are not current runtime authorization。
 
@@ -56,11 +56,11 @@ This CURRENT AUTHORITY supersedes older R-04 OPEN wording elsewhere in historica
 
 目前唯一 canonical CURRENT governance projection 位於 `docs/CURRENT_STATE.md`。
 
-Original runtime candidate remains NOT ACCEPTED；latest completed correction runtime commit is 4750d243ba050935220ffa7319ca7ab3b336f393；Architecture Acceptance = HOLD；Runtime Authorization = BOUNDED_AUTHORIZED_C24_ONLY。
+Original runtime candidate remains NOT ACCEPTED；latest completed correction runtime commit is 8944ecaf674b22cf1fe1df908d9125ce15538f0f；Architecture Acceptance = HOLD；Runtime Authorization = NOT_AUTHORIZED。
 
 R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map、Delta-to-Contract、materialized correction leaves、DAG 與 reweight 已記錄於 `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 + C23 已完成；frozen P1 COMPLETE，P2/C23 COMPLETE。目前只授權 C24 operational evidence/acceptance；C25/C02/V05/V07 不得開始。
+V06 + C01 + C22 + C11 + C23 + C24 已完成；frozen P1 COMPLETE，P2/C23/C24 COMPLETE。下一候選為 C25；目前沒有 authorized runtime leaf。
 
 Primary source of truth 與必讀順序：
 
@@ -74,7 +74,7 @@ Historical bounded authorization source：`docs/work/GAP08_AUTHORIZATION_V06_C01
 
 Previous bounded execution closure：`docs/work/GAP08_C01_CLOSURE.md`。
 
-Latest bounded execution closure：`docs/work/GAP08_C23_CLOSURE.md`。Last consumed authorization：`docs/work/GAP08_AUTHORIZATION_C23.md`。Current bounded authorization：`docs/work/GAP08_AUTHORIZATION_C24.md`。
+Latest bounded execution closure：`docs/work/GAP08_C24_CLOSURE.md`。Last consumed authorization：`docs/work/GAP08_AUTHORIZATION_C24.md`。
 4. `docs/GAP_REGISTER.md`：有序 GAP。
 5. `docs/AI_HANDOFF.md`：架構決策與交接。
 6. `docs/V1_SYSTEM_BLUEPRINT.md`：V1 工程施工圖 master index；正式 baseline 後由 ACTIVE 引用相關 Blueprint IDs。

@@ -6,15 +6,15 @@
 
 This ACTIVE file preserves Work Package context/history and does NOT independently grant Runtime Authorization。
 
-Runtime Authorization summary：BOUNDED_AUTHORIZED_C24_ONLY。
+Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C23_CLOSURE.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C24_CLOSURE.md`。
 
 Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions、materialized leaves、DAG and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 + C23 are COMPLETE；P1 is complete and C24 is the only currently authorized runtime leaf。
+V06 + C01 + C22 + C11 + C23 + C24 are COMPLETE；P1 is complete and no runtime leaf is currently authorized。
 
 ## 1. Work Package ID
 
@@ -46,11 +46,11 @@ R-04A-H：DECIDED。
 
 R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-Runtime Authorization：BOUNDED_AUTHORIZED_C24_ONLY。
+Runtime Authorization：NOT_AUTHORIZED。
 
 Launch Gate：
 
-`AUTHORIZED_FOR_C24_ONLY`
+`HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION`
 
 Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
@@ -206,48 +206,98 @@ STOP boundary：
 
 REACHED。
 
-## CURRENT AUTHORIZED BOUNDED WORK PACKAGE — GAP-08-CORR-05
+## COMPLETED BOUNDED WORK PACKAGE — GAP-08-CORR-05
+
+C24：
+
+COMPLETE / VERIFIED。
 
 Authorization：
 
 `docs/work/GAP08_AUTHORIZATION_C24.md`
 
-Leaf：
+Closure：
 
-C24 — Operational MarketObservation Evidence / Acceptance。
+`docs/work/GAP08_C24_CLOSURE.md`
 
-Dependency：
+Runtime commit：
 
-C23 COMPLETE / VERIFIED。
+`8944ecaf674b22cf1fe1df908d9125ce15538f0f`
 
-Authorized NEW runtime：
+Verification：
 
-- `domain/market_observation_acceptance.py`
-- `persistence/market_observation.py`
-- `persistence/postgres/market_observation.py`
-- `persistence/postgres/migrations/0003_market_observation_evidence.sql`
+- domain targeted：18 passed。
+- PostgreSQL contract：17 passed。
+- compatibility：83 passed。
+- full regression：1057 passed / 4 skipped。
+- runtime correction cycles：1。
 
-Authorized NEW tests：
+Implemented：
 
-- `tests/unit/test_market_observation_acceptance.py`
-- `tests/unit/test_market_observation_postgres.py`
+- versioned MarketObservationAcceptancePolicy。
+- immutable candidate/provenance evidence。
+- immutable accepted revision evidence。
+- candidate decision history。
+- corroboration links。
+- contiguous per-key revision_seq authority。
+- conflict/quarantine head projection。
+- database atomic uniqueness contract。
+- NEW PostgreSQL migration 0003。
 
-Required：
+Migration execution：
 
-- versioned acceptance policy。
-- candidate/provenance evidence separate from accepted revision。
-- same-content corroboration without new revision。
-- explicit formal-correction acceptance。
-- conflict/quarantine evidence。
-- contiguous per-key revision_seq。
-- database atomic uniqueness。
-- typed identity conflict。
-- caller-owned Postgres UoW。
-- no repository commit/rollback。
+NOT EXECUTED。
 
-Migration creation：
+Actual PostgreSQL / V07：
 
-AUTHORIZED_FOR_0003_ONLY。
+NOT EXECUTED / NOT VERIFIED。
+
+C25：
+
+NOT EXECUTED。
+
+Correction-core progress：
+
+    23 / 113 complete / verified
+    90 remaining
+
+STOP boundary：
+
+REACHED。
+
+## NEXT CANDIDATE — NOT AUTHORIZED
+
+Frozen P2：
+
+    C23 COMPLETE
+        ->
+    C24 COMPLETE
+        ->
+    C25 NEXT
+
+C25 — Durable-before-Strategy Delivery / Revision Ref Migration：
+
+NOT_AUTHORIZED。
+
+C02：
+
+NOT_AUTHORIZED。
+
+V05：
+
+NOT_AUTHORIZED。
+
+V07：
+
+NOT_AUTHORIZED。
+
+Current bounded execution：
+
+NONE。
+
+Runtime Authorization：
+
+NOT_AUTHORIZED。
 
 Migration execution：
 
@@ -257,29 +307,9 @@ Actual PostgreSQL：
 
 NOT_AUTHORIZED。
 
-C25：
-
-NOT_AUTHORIZED。
-
-C02：
-
-NOT_AUTHORIZED。
-
-V05 / V07：
-
-NOT_AUTHORIZED。
-
 Broker / market-data I/O：
 
 NOT_AUTHORIZED。
-
-Current bounded execution：
-
-C24 only。
-
-After C24：
-
-commit / push / report / STOP。
 Do not rerun GAP-08EFGHI runtime candidate。
 
 Do not promote GAP-08 acceptance until correction runtime and final verification pass。

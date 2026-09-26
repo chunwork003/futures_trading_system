@@ -6,15 +6,15 @@
 
 This document records planning/work state only and does NOT independently establish Runtime Authorization。
 
-Runtime Authorization summary：BOUNDED_AUTHORIZED_C24_ONLY。
+Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C23_CLOSURE.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C24_CLOSURE.md`。
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：C24 — Operational MarketObservation Evidence / Acceptance only。
+Current execution action：NONE；next planning action is bounded authorization review for C25。
 
 ## Purpose
 
@@ -65,9 +65,9 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：C24_BOUNDED_RUNTIME_EXECUTION_AUTHORIZED
-Runtime Authorization：BOUNDED_AUTHORIZED_C24_ONLY
-Launch Gate：AUTHORIZED_FOR_C24_ONLY
+Current activity：C24_COMPLETE_AWAITING_NEXT_BOUNDED_AUTHORIZATION
+Runtime Authorization：NOT_AUTHORIZED
+Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION
 ## Latest Completed Correction Leaves
 
 V06：
@@ -90,31 +90,45 @@ C23：
 
 COMPLETE / VERIFIED。
 
+C24：
+
+COMPLETE / VERIFIED。
+
 Latest closure：
 
-`docs/work/GAP08_C23_CLOSURE.md`
+`docs/work/GAP08_C24_CLOSURE.md`
 
 Latest correction runtime commit：
 
-`4750d243ba050935220ffa7319ca7ab3b336f393`
+`8944ecaf674b22cf1fe1df908d9125ce15538f0f`
 
-C23 verification：
+C24 verification：
 
-- targeted：63 passed。
-- compatibility：15 passed。
-- full regression：1022 passed / 4 skipped。
-- runtime correction cycles：0。
+- domain targeted：18 passed。
+- PostgreSQL contract：17 passed。
+- compatibility：83 passed。
+- full regression：1057 passed / 4 skipped。
+- runtime correction cycles：1。
+
+Migration：
+
+- NEW 0003 created。
+- NOT EXECUTED。
+
+Actual PostgreSQL / V07：
+
+NOT EXECUTED / NOT VERIFIED。
 
 Correction-core progress：
 
-    18 / 113 complete / verified
-    95 remaining
+    23 / 113 complete / verified
+    90 remaining
 
 ## Current Execution Gate
 
 Runtime Authorization：
 
-BOUNDED_AUTHORIZED_C24_ONLY。
+NOT_AUTHORIZED。
 
 Frozen P1：
 
@@ -132,33 +146,13 @@ Frozen P2：
 
     C23 COMPLETE
         ->
-    C24 AUTHORIZED
+    C24 COMPLETE
         ->
-    C25 BLOCKED
+    C25 NEXT
 
-Current leaf：
+Next candidate：
 
-C24 — Operational MarketObservation Evidence / Acceptance。
-
-Authorization：
-
-`docs/work/GAP08_AUTHORIZATION_C24.md`
-
-Migration creation：
-
-AUTHORIZED_FOR_0003_ONLY。
-
-Authorized migration change：
-
-NEW `0003_market_observation_evidence.sql` only。
-
-Migration execution：
-
-NOT_AUTHORIZED。
-
-Actual PostgreSQL：
-
-NOT_AUTHORIZED。
+C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
 
 C25：
 
@@ -168,7 +162,19 @@ C02：
 
 NOT_AUTHORIZED。
 
-V05 / V07：
+V05：
+
+NOT_AUTHORIZED。
+
+V07：
+
+NOT_AUTHORIZED。
+
+Migration execution：
+
+NOT_AUTHORIZED。
+
+Actual PostgreSQL：
 
 NOT_AUTHORIZED。
 
@@ -176,7 +182,7 @@ Broker / market-data I/O：
 
 NOT_AUTHORIZED。
 
-No other runtime leaf may begin。
+No runtime work may begin until a new explicit bounded authorization is committed。
 
 Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 
@@ -209,7 +215,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：execute C24 only；after commit/push/final report STOP。
+Next action：review and explicitly authorize C25 only；no runtime work is currently authorized。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 
@@ -391,7 +397,7 @@ Sizing experiment：
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
 | 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | CLOSED / ACCEPTED | GAP-ACCOUNT-001 + GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | CLOSED / ACCEPTED | Broker mapping + execution semantics |
-| 5 | GAP-08 | Trading State Persistence & Recovery | IN_PROGRESS / C01_C22_C11_C23_COMPLETE / HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION | GAP-08ABCD accepted |
+| 5 | GAP-08 | Trading State Persistence & Recovery | IN_PROGRESS / C01_C22_C11_C23_C24_COMPLETE / HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION | GAP-08ABCD accepted |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |
 | 7 | GAP-09 | Incremental Feature / Market State | PENDING | Trading core stable |
 | 8 | GAP-SIM-001 | SimulationBroker / fault injection | PENDING | Execution port stable |

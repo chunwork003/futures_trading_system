@@ -29,6 +29,54 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 C24 Runtime Closure
+
+- C24 Authorization Baseline：`2f1dc87d23965cb6954bc6ce9285ce63d3c5924a`。
+- C24 Runtime Commit：`8944ecaf674b22cf1fe1df908d9125ce15538f0f`。
+- C24 Operational MarketObservation Evidence / Acceptance：COMPLETE / VERIFIED。
+- versioned MarketObservationAcceptancePolicy implemented。
+- immutable candidate/provenance evidence implemented。
+- immutable accepted revision evidence implemented。
+- same-content corroboration does not create a new accepted revision。
+- provenance-only changes do not advance revision_seq。
+- different-content correction requires explicit policy authority + formal correction proof。
+- insufficient/conflicting evidence enters quarantine。
+- authority-local contiguous per-key revision_seq implemented。
+- database-enforced uniqueness contract implemented。
+- logical-key head uses exact `FOR UPDATE` lock semantics。
+- repository does not commit/rollback；caller-owned UoW retained。
+- typed identity/candidate/policy/decision conflict semantics implemented。
+- NEW migration `0003_market_observation_evidence.sql` created。
+- historical migrations 0001/0002 unchanged。
+- important 0003 TABLE/COLUMN semantics include Traditional Chinese comments。
+- domain targeted：18 passed。
+- PostgreSQL contract：17 passed。
+- compatibility：83 passed。
+- full regression：1057 passed / 4 skipped。
+- runtime correction cycles：1。
+- correction cycle 1：Decimal test import + Traditional Chinese 修訂/隔離 migration semantics。
+- migration execution：NOT EXECUTED。
+- actual PostgreSQL 17/18：NOT EXECUTED / NOT VERIFIED。
+- V07：NOT EXECUTED / NOT VERIFIED / NOT_AUTHORIZED。
+- C25：NOT EXECUTED。
+- StrategyStateSnapshot modified：NO。
+- strategy delivery modified：NO。
+- R14 completeness semantics：NOT ABSORBED。
+- K520：NOT ABSORBED / remains GAP-09-owned。
+- broker / market-data I/O：NO。
+- completed / verified correction-core weight：23 / 113。
+- remaining correction-core engineering weight：90。
+- global lifecycle metric remains 47.92% architecture-freeze baseline。
+- Architecture Acceptance remains HOLD。
+- complete GAP-08 Runtime Conformance remains NOT ASSERTED。
+- Production Readiness remains NOT ASSERTED。
+- C24 bounded runtime authorization is consumed / closed。
+- Runtime Authorization after closure：NOT_AUTHORIZED。
+- frozen P2：C23 COMPLETE -> C24 COMPLETE -> C25 NEXT。
+- next candidate：C25 Durable-before-Strategy Delivery / Revision Ref Migration。
+- C25 is NOT_AUTHORIZED。
+- C02/V05/V07 remain NOT_AUTHORIZED。
+
 ### 2026-09-26 — GAP-08 C24 Bounded Runtime Authorization
 
 - Parent baseline：`1116a5d722dd7d4b1c1eac7a6956ae927ac100f5`。
