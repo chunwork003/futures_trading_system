@@ -10,9 +10,9 @@ Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Current Planning Baseline：GOV-01 Governance Normalization commit。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Current Correction-Freeze Baseline is the docs-only checkpoint commit containing `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions are accepted planning inputs pending the Correction-Freeze Checkpoint。
+Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions、materialized leaves、DAG and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
 No runtime Work Package is authorized。
 
@@ -50,23 +50,30 @@ Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
 
 Launch Gate：
 
-`HOLD_FOR_BOUNDED_CORRECTION_FREEZE`
+`HOLD_FOR_EXPLICIT_BOUNDED_RUNTIME_AUTHORIZATION`
 
 Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
-Expanded correction scope：ARCHITECTURALLY_CLOSED_FOR_PLANNING / NOT YET REWEIGHTED；post-5E planning inputs remain pending the Correction-Freeze Checkpoint。
+Correction-Freeze bounded correction core：
+
+C01～C25 weight 110 + V06 weight 3 = weight 113。
+
+Original candidate + bounded correction core = weight 264。
+
+V01～V05 broker capability verification = weight 19 separate。
+
+V07 actual PostgreSQL environment conformance = weight 4 conditional。
+
+Expanded correction scope：ARCHITECTURALLY_CLOSED / MATERIALIZED / DEDUPLICATED / REWEIGHTED / CORRECTION_FREEZE_COMPLETE。
 
 Remaining planning work before any bounded runtime authorization：
 
-- build Frozen Contract Assertion Inventory。
-- classify each assertion through Delta-to-Contract evidence and derived disposition。
-- materialize only required Engineering / Correction / Conformance / Verification leaves。
-- deduplicate overlapping responsibility。
-- build dependency DAG / execution order。
-- reweight the expanded GAP-08 Work Package。
-- complete the docs-only Correction-Freeze Checkpoint。
-- make an explicit bounded Runtime Authorization decision。
+- make an explicit Bounded Runtime Authorization decision against `docs/work/GAP08_CORRECTION_FREEZE.md`。
+- bind exact Authorized Leaf Set。
+- bind DB / broker / environment / migration / capability-verification permissions。
+- bind Required Tests and Stop Boundary。
 
+No runtime correction is currently authorized。
 Do not rerun GAP-08EFGHI runtime candidate。
 
 Do not promote GAP-08 acceptance until correction runtime and final verification pass。
@@ -106,7 +113,7 @@ K410 K420 K430 K440 K450
 K510 K530 K540
 K710 K720 K730 K740 K750 K760 K770
 
-35 leaves / weight 151（original runtime scope only；post-R-03 correction expansion is not yet weighted）。
+35 leaves / weight 151（original runtime candidate only；expanded correction delta is frozen separately in `docs/work/GAP08_CORRECTION_FREEZE.md`）。
 
 Touches：E530 E540 / existing H/J/K accepted contracts。
 

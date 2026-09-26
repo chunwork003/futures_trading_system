@@ -14,9 +14,11 @@ Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
 This remains the Decision Checkpoint 5E architecture baseline。
 
-Current Planning Baseline：the GOV-01 Governance Normalization commit that introduces this canonical projection。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`（GOV-01）。
 
-The exact GOV-01 commit hash is reported after commit/push and is the baseline for subsequent Assertion Inventory / Delta-to-Contract planning。
+Current Correction-Freeze Baseline：the docs-only Correction-Freeze Checkpoint commit that records `docs/work/GAP08_CORRECTION_FREEZE.md`。
+
+The exact Correction-Freeze commit hash is reported after commit/push and becomes the execution-planning baseline for any later bounded Runtime Authorization。
 
 Runtime Candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
 
@@ -37,7 +39,7 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
-The following are ACCEPTED PLANNING INPUTS and remain PENDING the future Correction-Freeze Checkpoint。
+The following post-5E items were ACCEPTED PLANNING INPUTS and are now materialized into the docs-only Correction-Freeze Work Package；they remain planning inputs and are NOT a new Architecture Decision Baseline。
 
 They are NOT a new Architecture Decision Baseline and do NOT grant Runtime Authorization。
 
@@ -88,21 +90,35 @@ DB-CONF-01：
 - unavailable actual DB != correction code cannot be written。
 - unknown actual DB => no environment-conformance claim and no blind migration。
 
-Correction-Freeze Decision Checkpoint：NOT YET COMPLETED。
+Correction-Freeze Decision Checkpoint：COMPLETE / DOCS-ONLY。
+
+Authoritative execution-planning detail：
+
+`docs/work/GAP08_CORRECTION_FREEZE.md`
+
+Reweighted bounded correction core：
+
+- C01～C25：weight 110。
+- V06 repository persistence verification：weight 3。
+- bounded correction core：weight 113。
+- original candidate 151 + bounded correction core 113 = 264。
+- separate V01～V05 broker capability verification：weight 19。
+- mapped envelope excluding actual DB environment verification：283。
+- V07 actual PostgreSQL environment conformance：weight 4 conditional。
+- maximum mapped envelope when V07 is explicitly scoped：287。
+
+Runtime Authorization remains NOT_AUTHORIZED。
+
+The existing 47.92% remains the recorded architecture-freeze lifecycle baseline；this docs-only planning checkpoint does not claim new acceptance percentage。
 
 ### Current Planning Sequence
 
-1. Frozen Contract Assertion Inventory。
-2. Delta-to-Contract Evidence Classification + Derived Disposition。
-3. Materialize only required work leaves。
-4. Deduplicate overlapping responsibility。
-5. Dependency DAG / execution order。
-6. Weight final materialized leaves。
-7. Recalculate Expanded GAP-08 Work Package。
-8. Docs-only Correction-Freeze Checkpoint。
-9. Explicit Bounded Runtime Authorization decision。
-10. Runtime correction only after explicit bounded authorization。
-
+1. Use `docs/work/GAP08_CORRECTION_FREEZE.md` as the frozen correction execution-planning source。
+2. Make an Explicit Bounded Runtime Authorization decision。
+3. Authorization must bind an exact leaf set and side-effect/environment envelope。
+4. Only authorized leaves may enter runtime modification。
+5. Capability verification may run only in explicitly authorized documentation/paper/production modes。
+6. Runtime correction acceptance requires targeted / integration / full-regression evidence and later docs closure。
 A future authorization decision must identify at least：Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests and Stop Boundary。
 
 A bare `AUTHORIZED` value is insufficient。

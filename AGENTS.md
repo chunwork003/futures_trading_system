@@ -8,7 +8,7 @@ It does NOT independently establish Runtime Authorization。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Current Planning Baseline：GOV-01 Governance Normalization commit containing the canonical CURRENT projection。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`。Current Correction-Freeze Baseline is the docs-only checkpoint commit containing `docs/work/GAP08_CORRECTION_FREEZE.md`；future bounded Runtime Authorization must bind that checkpoint。
 
 Runtime Candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
 
@@ -20,9 +20,9 @@ Production Readiness：NOT ASSERTED。
 
 Runtime Authorization：NOT_AUTHORIZED。
 
-Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are accepted planning inputs pending the future Correction-Freeze Checkpoint；they are not a new Architecture Decision Baseline。
+Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current planning action after GOV-01：Frozen Contract Assertion Inventory。
+Current planning action：Explicit Bounded Runtime Authorization review against `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
 Do not begin runtime correction、broker I/O or migration execution until a later explicit bounded Runtime Authorization decision。
 
@@ -58,15 +58,17 @@ This CURRENT AUTHORITY supersedes older R-04 OPEN wording elsewhere in historica
 
 Runtime candidate 6b62239bca1d11543944f9f078e577e16010bcbf 仍為 IMPLEMENTED CANDIDATE / NOT ACCEPTED；Architecture Acceptance = HOLD；Runtime Authorization = NOT_AUTHORIZED。
 
-R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map 與 Delta-to-Contract 為 post-5E accepted planning inputs，pending future Correction-Freeze Checkpoint。
+R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map、Delta-to-Contract、materialized correction leaves、DAG 與 reweight 已記錄於 `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-下一個 planning activity 是 Frozen Contract Assertion Inventory；禁止在 explicit bounded Runtime Authorization 前開始 runtime correction。
+下一個 planning activity 是 Explicit Bounded Runtime Authorization decision；在該 decision 明確授權 exact leaf set / side-effect envelope 前，禁止開始 runtime correction。
 
 Primary source of truth 與必讀順序：
 
 1. `docs/CURRENT_STATE.md`：唯一 canonical CURRENT governance projection。
 2. `AGENTS.md`：agent re-entry guard、執行規則與 current-state pointer。
 3. `docs/CURRENT_WORK.md`：目前工作、阻塞、佇列。
+
+Correction-Freeze execution planning source：`docs/work/GAP08_CORRECTION_FREEZE.md`。
 4. `docs/GAP_REGISTER.md`：有序 GAP。
 5. `docs/AI_HANDOFF.md`：架構決策與交接。
 6. `docs/V1_SYSTEM_BLUEPRINT.md`：V1 工程施工圖 master index；正式 baseline 後由 ACTIVE 引用相關 Blueprint IDs。

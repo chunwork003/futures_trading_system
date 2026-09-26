@@ -346,7 +346,7 @@ Capability evidence does not authorize LIVE。
 
 # GAP-08 Detail
 
-Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_REQUIRED。
+Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / BOUNDED_RUNTIME_AUTHORIZATION_REQUIRED。
 
 Accepted：
 
@@ -362,6 +362,21 @@ Original blueprint scope：35 leaves / weight 151。
 
 Original runtime candidate remains IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
+Correction-Freeze planning package：
+
+`docs/work/GAP08_CORRECTION_FREEZE.md`
+
+Reweight：
+
+- C01～C25 correction/implementation/enforcement：110。
+- V06 repository persistence verification：3。
+- bounded correction core：113。
+- original candidate 151 + bounded correction core 113 = 264。
+- V01～V05 broker capability verification：19 separate。
+- full mapped envelope excluding environment-specific V07：283。
+- V07 actual PostgreSQL environment conformance：4 conditional。
+- maximum mapped envelope when V07 is explicitly scoped：287。
+
 Architecture decision status：
 
 - R-01：DECIDED / CORRECTION_REQUIRED。
@@ -375,7 +390,7 @@ R-04 capability gates remain implementation/production authorization requirement
 
 Post-runtime correction expansion includes MarketObservation operational evidence、restart broker discovery/correlation、BrokerActionAttempt lifecycle、broker evidence continuity、canonical Fill reconstruction、recovery concurrency fencing、shared AccountAuthorityCommit and BrokerAccount readiness aggregation。
 
-This expanded scope is outside the original 35 / 151 candidate and must not be hidden inside the previous weight。
+This expanded scope remains outside the original 35 / 151 candidate and is now separately materialized、deduplicated and reweighted；it is not hidden inside the previous weight。
 
 Linked dependencies/follow-ups：
 
@@ -388,11 +403,11 @@ Detailed authoritative record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Runtime Launch Gate：HOLD_FOR_BOUNDED_CORRECTION_FREEZE。
+Runtime Launch Gate：HOLD_FOR_EXPLICIT_BOUNDED_RUNTIME_AUTHORIZATION。
 
 Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
 
-Parent GAP cannot close until expanded correction scope is frozen/reweighted、implemented、verified and finally accepted。
+Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 
 # GAP-09 Detail
 

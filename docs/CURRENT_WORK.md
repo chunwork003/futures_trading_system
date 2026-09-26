@@ -10,11 +10,11 @@ Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Current Planning Baseline：GOV-01 Governance Normalization commit。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Current Correction-Freeze Baseline is the docs-only checkpoint commit containing `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Post-5E accepted planning inputs remain pending the future Correction-Freeze Checkpoint。
+Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current planning action：Frozen Contract Assertion Inventory -> Delta-to-Contract classification -> materialize required leaves only。
+Current planning action：Explicit Bounded Runtime Authorization decision against the frozen correction package。
 
 ## Purpose
 
@@ -65,11 +65,11 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：CORRECTION_FREEZE_PLANNING
+Current activity：BOUNDED_RUNTIME_AUTHORIZATION_DECISION
 
 Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION
 
-Launch Gate：HOLD_FOR_BOUNDED_CORRECTION_FREEZE
+Launch Gate：HOLD_FOR_EXPLICIT_BOUNDED_RUNTIME_AUTHORIZATION
 
 Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 
@@ -85,15 +85,24 @@ R-04H：BrokerAccount READY / REVIEW / HALT integration DECIDED。
 
 Original 35 leaves / weight 151 remains NOT ACCEPTED。
 
-Expanded correction scope is ARCHITECTURALLY_CLOSED for planning and NOT YET REWEIGHTED；post-5E planning inputs remain pending the Correction-Freeze Checkpoint。
+Correction-Freeze reweight：
 
-R-12/R-13/R-14 are checkpointed；K520 and BG-01～BG-07 are accepted post-5E planning inputs；their planning closure remains pending the Correction-Freeze Checkpoint。
+- C01～C25 correction/implementation/enforcement：weight 110。
+- V06 repository persistence verification：weight 3。
+- bounded correction core：weight 113。
+- original 151 + bounded correction core 113 = 264。
+- V01～V05 broker capability verification：weight 19 separate。
+- V07 actual PostgreSQL environment conformance：weight 4 conditional。
+
+Expanded correction scope is ARCHITECTURALLY_CLOSED / MATERIALIZED / DEDUPLICATED / REWEIGHTED；Correction-Freeze planning checkpoint is COMPLETE。
+
+R-12/R-13/R-14 are checkpointed；K520 and BG-01～BG-07 planning classifications are frozen into `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
 Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：Frozen Contract Assertion Inventory，then Delta-to-Contract evidence classification / derived disposition，materialize only required leaves，deduplicate，build dependency DAG，reweight，perform Correction-Freeze Checkpoint，then make an explicit bounded Runtime Authorization decision。
+Next action：make an explicit Bounded Runtime Authorization decision against the Correction-Freeze Baseline；no runtime leaf is executable before that decision。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 

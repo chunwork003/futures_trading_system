@@ -29,6 +29,38 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 Correction-Freeze Planning Checkpoint
+
+- Repository pre-check baseline：`849bc6ea3f3ee0d1de969a5f23862bc60720c4fc`。
+- Architecture Decision Baseline remains：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
+- GOV-01 Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`。
+- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+- Runtime verification retained：934 passed / 4 skipped / 1 warning。
+- Frozen Contract Assertion Inventory：COMPLETE。
+- Delta-to-Contract evidence classification：COMPLETE FOR CURRENT PLANNING。
+- Required correction/implementation/enforcement materialization：C01～C25。
+- R-03 omission found during review was corrected by adding C23～C25 before dependency freeze。
+- Deduplicated dependency DAG：COMPLETE。
+- Bounded internal rewrite rule frozen：small internal rewrite is allowed/preferred when it reduces duplicated authority/workaround complexity without changing frozen public semantics。
+- C01～C25 weight：110。
+- V06 repository persistence verification weight：3。
+- bounded correction core weight：113。
+- original candidate 151 + bounded correction core 113 = 264。
+- V01～V05 broker capability verification weight：19 separate。
+- mapped envelope excluding environment-specific V07：283。
+- V07 actual PostgreSQL environment conformance：weight 4 conditional。
+- maximum mapped envelope with V07 explicitly scoped：287。
+- Production Gate remains evidence/status metadata with coding weight 0。
+- full K520、full R14 detector、full L/N auth platform、server-side idempotent retry、quantity modify recovery、full LIVE stack remain deferred according to frozen ownership。
+- `0001` / `0002` migration history must not be rewritten；new correction schema uses `0003+`。
+- Existing 47.92% lifecycle metric remains the recorded architecture-freeze baseline；no new acceptance percentage is claimed by this docs-only checkpoint。
+- No runtime source modified。
+- No runtime tests rerun。
+- No migration executed。
+- No broker I/O performed。
+- Runtime Authorization remains NOT_AUTHORIZED。
+- Next：Explicit Bounded Runtime Authorization decision against `docs/work/GAP08_CORRECTION_FREEZE.md`。
+
 ### 2026-09-25 — GAP-08EFGHI Post-Runtime Architecture Decision Checkpoint 4
 
 - Checkpoint 3 baseline：`11ead24d4f09ead611243c19aab982f09756f172`。
