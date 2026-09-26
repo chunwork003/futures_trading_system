@@ -346,7 +346,7 @@ Capability evidence does not authorize LIVE。
 
 # GAP-08 Detail
 
-Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_BOUNDED_AUTHORIZED。
+Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_COMPLETE / NEXT_AUTHORIZATION_REQUIRED。
 
 Accepted：
 
@@ -366,19 +366,45 @@ Correction-Freeze planning package：
 
 `docs/work/GAP08_CORRECTION_FREEZE.md`
 
-Current bounded authorization：
+Latest bounded execution：
 
-`docs/work/GAP08_AUTHORIZATION_V06_C01.md`
+`docs/work/GAP08_C01_CLOSURE.md`
 
-Authorized sequence：
+V06：
 
-    V06
-        ->
-    C01
+COMPLETE / PASS。
 
-All other correction leaves remain NOT_AUTHORIZED。
+C01：
 
-Migration execution、actual PostgreSQL environment verification and broker I/O remain NOT_AUTHORIZED。
+COMPLETE / VERIFIED。
+
+Runtime commit：
+
+`eb8e7bc8df4fc9b4fc6dfc9c62ce593a0b5f4ff9`
+
+Verification：
+
+- V06：14 passed。
+- C01 targeted：13 passed。
+- compatibility：58 passed。
+- full regression：944 passed / 4 skipped。
+- correction cycles：1。
+
+Executed / verified correction-core weight：
+
+7 / 113。
+
+Remaining correction-core engineering weight：
+
+106。
+
+Current runtime authorization：
+
+NOT_AUTHORIZED。
+
+Next candidate：
+
+C22 — NOT_AUTHORIZED。
 
 Reweight：
 
@@ -417,9 +443,9 @@ Detailed authoritative record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Runtime Launch Gate：AUTHORIZED_FOR_V06_C01_ONLY。
+Runtime Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION。
 
-Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
+Runtime Authorization：NOT_AUTHORIZED。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

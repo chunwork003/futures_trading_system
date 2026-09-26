@@ -10,11 +10,11 @@ Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；bounded authorization：`docs/work/GAP08_AUTHORIZATION_V06_C01.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C01_CLOSURE.md`。
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：V06 verification -> if PASS -> C01 Expected State Authority Read Contract。
+Current execution action：NONE；next planning action is bounded authorization review for C22。
 
 ## Purpose
 
@@ -65,35 +65,58 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：BOUNDED_RUNTIME_EXECUTION_AUTHORIZED
+Current activity：C01_COMPLETE_AWAITING_NEXT_BOUNDED_AUTHORIZATION
 
-Runtime Authorization：BOUNDED_AUTHORIZED_V06_C01_ONLY
+Runtime Authorization：NOT_AUTHORIZED
 
-Launch Gate：AUTHORIZED_FOR_V06_C01_ONLY
+Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION
 
-## Current Authorized Leaf Set
+## Latest Completed Correction Leaves
 
-Authorization source：
+V06 — Repository Persistence Baseline Verification：
 
-`docs/work/GAP08_AUTHORIZATION_V06_C01.md`
+COMPLETE / PASS。
 
-Authorized：
+Verification：
 
-- V06。
-- C01。
+14 passed。
 
-Not authorized：
+C01 — Expected State Authority Read Contract：
 
-- C02～C25 except C01。
-- V01～V05。
-- V07。
-- migration execution。
-- actual PostgreSQL environment access。
-- broker I/O。
+COMPLETE / VERIFIED。
 
-C01 bounded rewrite：
+Runtime commit：
 
-PREFERRED where it simplifies the expected-state read path without expanding authority scope。
+`eb8e7bc8df4fc9b4fc6dfc9c62ce593a0b5f4ff9`
+
+Verification：
+
+- targeted：13 passed。
+- compatibility：58 passed。
+- full regression：944 passed / 4 skipped。
+- correction cycles：1。
+
+Bounded rewrite：
+
+YES。
+
+Executed / verified correction-core weight：
+
+7 / 113。
+
+Remaining correction-core engineering weight：
+
+106。
+
+Current runtime authorization：
+
+NONE。
+
+Next candidate：
+
+C22 — Canonical Time Evidence Correction。
+
+C22 is NOT_AUTHORIZED。
 
 Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 
@@ -126,7 +149,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：execute V06 read-only repository verification；only on PASS execute C01；after C01 commit/push/final report STOP。
+Next action：review and explicitly authorize C22 only if its bounded authorization envelope is accepted；no runtime work is currently authorized。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 
@@ -308,7 +331,7 @@ Sizing experiment：
 | 2 | GAP-BROKER-001 | Explicit OrderIntent / PositionEffect | CLOSED | GAP-ACCOUNT-001 |
 | 3 | GAP-RECON-001 | Reconciliation policy + startup readiness | CLOSED / ACCEPTED | GAP-ACCOUNT-001 + GAP-BROKER-001 |
 | 4 | GAP-BROKER-002 | Broker capability matrix | CLOSED / ACCEPTED | Broker mapping + execution semantics |
-| 5 | GAP-08 | Trading State Persistence & Recovery | IN_PROGRESS / HOLD_FOR_BOUNDED_CORRECTION_FREEZE | GAP-08ABCD accepted |
+| 5 | GAP-08 | Trading State Persistence & Recovery | IN_PROGRESS / C01_COMPLETE / HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION | GAP-08ABCD accepted |
 | 6 | GAP-PERSIST-001 | Decision / Risk Provenance | BLOCKED | GAP-08 persistence foundation |
 | 7 | GAP-09 | Incremental Feature / Market State | PENDING | Trading core stable |
 | 8 | GAP-SIM-001 | SimulationBroker / fault injection | PENDING | Execution port stable |

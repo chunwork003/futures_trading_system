@@ -31,50 +31,52 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 - Architecture Acceptance：HOLD。
 - Runtime Conformance：NOT ASSERTED。
 - Production Readiness：NOT ASSERTED。
-- Runtime Authorization：BOUNDED_AUTHORIZED_V06_C01_ONLY。
-- Runtime modification：AUTHORIZED_FOR_C01_ONLY。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Runtime modification：NOT_AUTHORIZED。
 - Broker I/O：NOT_AUTHORIZED。
 - DB migration execution：NOT_AUTHORIZED。
 - Level 3B：NOT_ENABLED。
 
-### Current Bounded Runtime Authorization
+### Latest Bounded Runtime Execution Result
 
-Authorization decision：
+Authorization record：
 
 `docs/work/GAP08_AUTHORIZATION_V06_C01.md`
 
-Authorized Leaf Set：
+Execution closure：
 
-- V06 — Repository Persistence Baseline Verification。
-- C01 — Expected State Authority Read Contract。
+`docs/work/GAP08_C01_CLOSURE.md`
 
-Mandatory order：
+V06：
 
-    V06 PASS
-        ->
-    C01
+- COMPLETE / PASS。
+- 14 passed。
 
-Runtime code modification：
+C01：
 
-AUTHORIZED_FOR_C01_ONLY。
+- COMPLETE / VERIFIED。
+- runtime commit：`eb8e7bc8df4fc9b4fc6dfc9c62ce593a0b5f4ff9`。
+- targeted：13 passed。
+- compatibility：58 passed。
+- full regression：944 passed / 4 skipped。
+- correction cycles：1。
+- bounded rewrite：YES。
 
-Actual PostgreSQL environment access：
+Completed / verified correction-core weight：
 
-NOT_AUTHORIZED。
+7 / 113。
 
-Migration execution：
+Remaining correction-core engineering weight：
 
-NOT_AUTHORIZED。
+106。
 
-Broker I/O：
+No additional runtime leaf is authorized。
 
-NOT_AUTHORIZED。
+Next candidate：
 
-All C02～C25 except C01、V01～V05 and V07 remain NOT_AUTHORIZED。
+C22 — Canonical Time Evidence Correction。
 
-Architecture Acceptance remains HOLD。
-
-Production Readiness remains NOT ASSERTED。
+C22 remains NOT_AUTHORIZED until a new explicit bounded authorization checkpoint。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -152,14 +154,12 @@ The existing 47.92% remains the recorded architecture-freeze lifecycle baseline�
 
 ### Current Planning / Execution Sequence
 
-1. Use `docs/work/GAP08_AUTHORIZATION_V06_C01.md` as the exact authorization envelope。
-2. Verify V06 first。
-3. If V06 PASS，execute C01 only。
-4. Run mandatory positive + negative acceptance tests。
-5. Run full regression with actual PostgreSQL integration DSNs disabled。
-6. Commit / push C01 only。
-7. STOP after final report。
-8. C22、C11、C02 and all other leaves require a later explicit authorization decision。
+1. V06 + C01 closure is recorded in `docs/work/GAP08_C01_CLOSURE.md`。
+2. No runtime leaf is currently authorized。
+3. Next candidate leaf is C22 — Canonical Time Evidence Correction。
+4. Review and create a new explicit bounded authorization envelope before C22。
+5. C11、C02 and all other leaves remain NOT_AUTHORIZED。
+6. No migration execution、actual PostgreSQL access or broker I/O is authorized。
 A future authorization decision must identify at least：Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests and Stop Boundary。
 
 A bare `AUTHORIZED` value is insufficient。

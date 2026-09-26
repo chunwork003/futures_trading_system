@@ -6,15 +6,15 @@
 
 This ACTIVE file preserves Work Package context/history and does NOT independently grant Runtime Authorization。
 
-Runtime Authorization summary：BOUNDED_AUTHORIZED_V06_C01_ONLY。
+Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；current bounded authorization：`docs/work/GAP08_AUTHORIZATION_V06_C01.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C01_CLOSURE.md`。
 
 Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions、materialized leaves、DAG and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Only V06 + C01 are authorized；all other correction leaves remain NOT_AUTHORIZED。
+V06 + C01 are COMPLETE；no runtime correction leaf is currently authorized。
 
 ## 1. Work Package ID
 
@@ -46,11 +46,11 @@ R-04A-H：DECIDED。
 
 R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-Runtime Authorization：BOUNDED_AUTHORIZED_V06_C01_ONLY。
+Runtime Authorization：NOT_AUTHORIZED。
 
 Launch Gate：
 
-`AUTHORIZED_FOR_V06_C01_ONLY`
+`HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION`
 
 Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
@@ -66,157 +66,76 @@ V07 actual PostgreSQL environment conformance = weight 4 conditional。
 
 Expanded correction scope：ARCHITECTURALLY_CLOSED / MATERIALIZED / DEDUPLICATED / REWEIGHTED / CORRECTION_FREEZE_COMPLETE。
 
-## CURRENT AUTHORIZED BOUNDED WORK PACKAGE — GAP-08-CORR-01
+## COMPLETED BOUNDED WORK PACKAGE — GAP-08-CORR-01
 
-### Authorized Leaves
-
-    V06
-        Repository Persistence Baseline Verification
-
-    C01
-        Expected State Authority Read Contract
-
-Mandatory order：
-
-    V06 PASS
-        ->
-    C01
-
-### Authorization Source
+Authorization：
 
 `docs/work/GAP08_AUTHORIZATION_V06_C01.md`
 
-### Runtime Modification Scope
+Closure：
 
-AUTHORIZED：
+`docs/work/GAP08_C01_CLOSURE.md`
 
-- `persistence/account.py`
-- `persistence/postgres/account.py`
+V06：
 
-Conditional export-only：
+COMPLETE / PASS / 14 passed。
 
-- `persistence/__init__.py`
-- `persistence/postgres/__init__.py`
+C01：
 
-Tests：
+COMPLETE / VERIFIED。
 
-- `tests/unit/test_operational_postgres.py`
-- one new bounded expected-state authority unit-test file if useful
+Runtime commit：
 
-### Forbidden
+`eb8e7bc8df4fc9b4fc6dfc9c62ce593a0b5f4ff9`
 
-- `persistence/recovery.py`
-- migrations
-- trading reconciliation changes
-- broker/backtest changes
-- strategy changes
-- `data/`
-- actual PostgreSQL access
-- broker I/O
+Verification：
 
-### V06 Gate
+- targeted：13 passed。
+- compatibility：58 passed。
+- full regression：944 passed / 4 skipped。
+- correction cycles：1。
 
-Run first：
+Bounded rewrite：
 
-    .\.venv\Scripts\python.exe -m pytest tests\unit\test_postgres_foundation.py tests\unit\test_operational_postgres.py -q
+YES — expected-state read path only。
 
-If V06 fails because the persistence foundation contradicts the frozen contract：
+No migration modified/executed。
 
-STOP。
+No actual PostgreSQL access。
 
-### C01 Required Semantics
+No broker I/O。
 
-Must distinguish：
+STOP boundary：
 
-    NOT_INITIALIZED
-    EXPLICIT_FLAT
-    EXPECTED_POSITIONS
+REACHED。
 
-Persisted explicit empty snapshot：
+Current runtime authorization：
 
-    EXPLICIT_FLAT
+NONE。
 
-Persisted non-empty snapshot：
+Next candidate：
 
-    EXPECTED_POSITIONS
-
-Missing snapshot without positive lifecycle authority：
-
-    explicit typed failure
-    NOT ()
-
-Legacy `load_positions()` may return `()` only for positively explicit FLAT。
-
-C01 must not implement C02/C03/C12 responsibilities。
-
-### Bounded Rewrite
-
-C01 internal expected-state read rewrite：
-
-PREFERRED。
-
-Do not preserve an incorrect abstraction merely for minimal diff size。
-
-Do preserve unaffected external compatibility surfaces where possible。
-
-### Test Boundary
-
-Actual PostgreSQL integration DSNs must be disabled：
-
-    POSTGRES17_TEST_DSN
-    POSTGRES18_TEST_DSN
-
-Targeted：
-
-    .\.venv\Scripts\python.exe -m pytest tests\unit\test_operational_postgres.py -q
-
-Compatibility if touched：
-
-    .\.venv\Scripts\python.exe -m pytest tests\unit\test_reconciliation.py -q
-
-Full：
-
-    .\.venv\Scripts\python.exe -m pytest -q
-
-### Stop Boundary
-
-After C01：
-
-    commit
-    push
-    final report
-    STOP
-
-Do not start：
-
-    C22
-    C11
-    C02
-    or any other leaf
-
-without a new explicit authorization。
-
----
-
-All broader GAP-08EFGHI content below is historical candidate/context material only。
-
-It does NOT authorize additional runtime scope。
+C22 — NOT_AUTHORIZED。
 
 Current bounded execution：
 
-- V06 repository persistence verification。
-- V06 must PASS before runtime modification。
-- C01 expected-state authority read correction only。
-- C01 bounded internal rewrite is permitted/preferred inside its exact responsibility boundary。
-- C01 completion must commit/push/report and STOP。
+NONE。
 
-No C02～C25 except C01 is currently authorized。
+V06 + C01 STOP boundary has been reached。
 
-No broker capability verification is authorized。
+No C02～C25、V01～V05 or V07 runtime/verification work is currently authorized。
 
-No actual PostgreSQL environment verification is authorized。
+Next candidate：
+
+C22 — Canonical Time Evidence Correction。
+
+C22 requires a new explicit bounded authorization before modification。
 
 No migration execution is authorized。
+
+No actual PostgreSQL environment access is authorized。
+
+No broker I/O is authorized。
 Do not rerun GAP-08EFGHI runtime candidate。
 
 Do not promote GAP-08 acceptance until correction runtime and final verification pass。
