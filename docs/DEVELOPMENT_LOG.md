@@ -29,6 +29,46 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 C11 Runtime Closure
+
+- C11 Authorization Baseline：`60df830518a82626ed819a3c8d78a6ac92d900f6`。
+- C11 Runtime Commit：`a2a54fa74152d720d42e39b211c1b80991496fa1`。
+- C11 Shioaji Status Mapping Correction：COMPLETE / VERIFIED。
+- retained：Filled -> FILLED。
+- retained：PartFilled -> PARTIALLY_FILLED。
+- retained：Cancelled -> CANCELLED。
+- retained：PendingSubmit -> SUBMITTED。
+- retained：Submitted -> SUBMITTED。
+- PreSubmitted now fails closed with typed capability-unverified error。
+- Inactive now fails closed with typed capability-unverified error。
+- Failed now fails closed with typed capability-unverified error。
+- unknown/unmapped status no longer silently falls back to PENDING。
+- V05：NOT EXECUTED / NOT VERIFIED。
+- local precheck observed Shioaji package 1.7.5；this does not establish broker-semantic verification。
+- capability matrix modified：NO。
+- ShioajiBroker modified：NO。
+- targeted：23 passed。
+- Shioaji compatibility：47 passed。
+- full regression：959 passed / 4 skipped。
+- runtime correction cycles：0。
+- migration modified/executed：NO / NO。
+- actual PostgreSQL access：NO。
+- broker I/O：NO。
+- completed / verified correction-core weight：13 / 113。
+- remaining correction-core engineering weight：100。
+- global lifecycle metric remains 47.92% architecture-freeze baseline。
+- Architecture Acceptance remains HOLD。
+- complete GAP-08 Runtime Conformance remains NOT ASSERTED。
+- Production Readiness remains NOT ASSERTED。
+- C11 bounded runtime authorization is consumed / closed。
+- Runtime Authorization after closure：NOT_AUTHORIZED。
+- frozen P1 C01 -> C22 -> C11 is COMPLETE。
+- next frozen phase：P2 C23 -> C24 -> C25。
+- next candidate：C23 Canonical MarketObservation Identity + Revision。
+- C23 is NOT_AUTHORIZED。
+- V05 remains NOT_AUTHORIZED。
+- docs-only closure also repairs a malformed literal `$1` in canonical CURRENT_STATE introduced by an earlier regex replacement；runtime impact NONE。
+
 ### 2026-09-26 — GAP-08 C11 Bounded Runtime Authorization
 
 - Parent baseline：`22ac4cb4c60dbe5fbb3b00d3758a2c7ad50e76d1`。

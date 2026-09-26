@@ -346,7 +346,7 @@ Capability evidence does not authorize LIVE。
 
 # GAP-08 Detail
 
-Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_C22_COMPLETE / C11_BOUNDED_AUTHORIZED。
+Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_C22_C11_COMPLETE / NEXT_AUTHORIZATION_REQUIRED。
 
 Accepted：
 
@@ -368,33 +368,41 @@ Correction-Freeze planning package：
 
 Latest bounded execution：
 
-`docs/work/GAP08_C22_CLOSURE.md`
+`docs/work/GAP08_C11_CLOSURE.md`
 
 Completed / verified leaves：
 
 - V06 — COMPLETE / PASS。
 - C01 — COMPLETE / VERIFIED。
 - C22 — COMPLETE / VERIFIED。
+- C11 — COMPLETE / VERIFIED。
 
 Latest runtime commit：
 
-`e242d188b0029863d6df1b29889327dce623bd98`
+`a2a54fa74152d720d42e39b211c1b80991496fa1`
 
-C22 verification：
+C11 verification：
 
-- targeted：21 passed。
-- event-ledger compatibility：13 passed。
-- full regression：955 passed / 4 skipped。
+- targeted：23 passed。
+- Shioaji compatibility：47 passed。
+- full regression：959 passed / 4 skipped。
 - runtime correction cycles：0。
-- precheck tooling correction：1。
+
+V05：
+
+NOT EXECUTED / NOT VERIFIED。
+
+Installed Shioaji observation：
+
+1.7.5 enum surface observed locally；no broker-semantic verification claim。
 
 Executed / verified correction-core weight：
 
-11 / 113。
+13 / 113。
 
 Remaining correction-core engineering weight：
 
-102。
+100。
 
 Runtime Authorization：
 
@@ -405,23 +413,40 @@ Frozen DAG recheck：
     P1
         C01 COMPLETE
         -> C22 COMPLETE
-        -> C11 NEXT
+        -> C11 COMPLETE
+
+P1：
+
+COMPLETE。
+
+Next frozen phase：
+
+    P2
+        C23
+        -> C24
+        -> C25
 
 Next candidate：
 
-C11 — Shioaji Status Mapping Correction。
+C23 — Canonical MarketObservation Identity + Revision。
 
-C11：
+C23：
 
-BOUNDED_AUTHORIZED_C11_ONLY。
+NOT_AUTHORIZED。
 
-C23 dependency on C22：
+C24：
 
-SATISFIED。
+BLOCKED_ON_C23。
 
-C23 remains queued behind P1 C11。
+C25：
 
-No other correction / verification leaf is authorized；V05 remains NOT_AUTHORIZED。
+BLOCKED_ON_C24。
+
+V05：
+
+NOT_AUTHORIZED。
+
+No correction / verification leaf is currently authorized。
 
 Migration execution：
 
@@ -471,9 +496,9 @@ Detailed authoritative record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Runtime Launch Gate：AUTHORIZED_FOR_C11_ONLY。
+Runtime Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION。
 
-Runtime Authorization：BOUNDED_AUTHORIZED_C11_ONLY。
+Runtime Authorization：NOT_AUTHORIZED。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 
