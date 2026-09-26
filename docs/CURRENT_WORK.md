@@ -6,7 +6,7 @@
 
 This document records planning/work state only and does NOT independently establish Runtime Authorization。
 
-Runtime Authorization summary：NOT_AUTHORIZED。
+Runtime Authorization summary：BOUNDED_AUTHORIZED_C24_ONLY。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：NONE；next planning action is bounded authorization review for C24。
+Current execution action：C24 — Operational MarketObservation Evidence / Acceptance only。
 
 ## Purpose
 
@@ -65,12 +65,9 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：C23_COMPLETE_AWAITING_NEXT_BOUNDED_AUTHORIZATION
-
-Runtime Authorization：NOT_AUTHORIZED
-
-Launch Gate：HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION
-
+Current activity：C24_BOUNDED_RUNTIME_EXECUTION_AUTHORIZED
+Runtime Authorization：BOUNDED_AUTHORIZED_C24_ONLY
+Launch Gate：AUTHORIZED_FOR_C24_ONLY
 ## Latest Completed Correction Leaves
 
 V06：
@@ -117,7 +114,7 @@ Correction-core progress：
 
 Runtime Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_C24_ONLY。
 
 Frozen P1：
 
@@ -135,31 +132,51 @@ Frozen P2：
 
     C23 COMPLETE
         ->
-    C24 NEXT
+    C24 AUTHORIZED
         ->
     C25 BLOCKED
 
-Next candidate：
+Current leaf：
 
 C24 — Operational MarketObservation Evidence / Acceptance。
 
-C24：
+Authorization：
+
+`docs/work/GAP08_AUTHORIZATION_C24.md`
+
+Migration creation：
+
+AUTHORIZED_FOR_0003_ONLY。
+
+Authorized migration change：
+
+NEW `0003_market_observation_evidence.sql` only。
+
+Migration execution：
+
+NOT_AUTHORIZED。
+
+Actual PostgreSQL：
 
 NOT_AUTHORIZED。
 
 C25：
 
-BLOCKED_ON_C24。
+NOT_AUTHORIZED。
 
 C02：
 
 NOT_AUTHORIZED。
 
-V05：
+V05 / V07：
 
 NOT_AUTHORIZED。
 
-No runtime work may begin until a new explicit bounded authorization is committed。
+Broker / market-data I/O：
+
+NOT_AUTHORIZED。
+
+No other runtime leaf may begin。
 
 Decision Checkpoint 4：R-01 / R-02 / R-03A-D / R-04A-H architecture DECIDED。
 
@@ -192,7 +209,7 @@ Detailed decision record：
 
 `docs/adr/ADR-002-RECOVERY-CONSISTENCY-MARKET-OBSERVATION.md`
 
-Next action：review and explicitly authorize C24 only；no runtime work is currently authorized。
+Next action：execute C24 only；after commit/push/final report STOP。
 
 Do not start Codex/runtime correction before that freeze is reviewed and explicitly authorized。
 

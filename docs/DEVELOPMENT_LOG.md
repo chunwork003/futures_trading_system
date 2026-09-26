@@ -29,6 +29,37 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 C24 Bounded Runtime Authorization
+
+- Parent baseline：`1116a5d722dd7d4b1c1eac7a6956ae927ac100f5`。
+- C23 remains COMPLETE / VERIFIED。
+- authorized leaf：C24 only。
+- C24：Operational MarketObservation Evidence / Acceptance。
+- candidate/provenance evidence must remain separate from accepted revision evidence。
+- versioned MarketObservationAcceptancePolicy is required。
+- routing PRIMARY does not imply truth authority。
+- Source Registry tier does not imply price truth precedence。
+- same-content candidates corroborate existing accepted revision and do not advance revision_seq。
+- different content is never accepted merely because it arrived later。
+- automatic correction requires explicit policy authority + formal correction evidence + exact head precondition。
+- insufficient correction/conflict proof enters quarantine。
+- per-logical-key revision_seq is authority-local and contiguous。
+- database atomic uniqueness is required。
+- SELECT-if-missing -> INSERT is forbidden as uniqueness authority。
+- exact duplicate vs identity conflict must be explicitly classified。
+- historical 0001/0002 migrations remain immutable。
+- NEW migration `0003_market_observation_evidence.sql` creation is authorized。
+- migration execution is NOT_AUTHORIZED。
+- actual PostgreSQL / V07 are NOT_AUTHORIZED。
+- C25 strategy delivery/recovery-reference migration is NOT_AUTHORIZED。
+- R14 completeness/gap detection is not implemented by C24。
+- K520 remains GAP-09-owned。
+- production manual quarantine release/force acceptance remains DEFAULT DENY。
+- runtime scope is bounded to new C24 domain/persistence/PostgreSQL/migration modules and new direct tests。
+- broker / market-data network I/O：NOT_AUTHORIZED。
+- all other correction / verification leaves：NOT_AUTHORIZED。
+- completion boundary：commit / push / report / STOP。
+
 ### 2026-09-26 — GAP-08 C23 Runtime Closure
 
 - C23 Authorization Baseline：`4800d97d37195571c23e0d51e69454fdb68043d5`。

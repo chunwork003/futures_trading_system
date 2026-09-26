@@ -6,7 +6,7 @@
 
 This ACTIVE file preserves Work Package context/history and does NOT independently grant Runtime Authorization。
 
-Runtime Authorization summary：NOT_AUTHORIZED。
+Runtime Authorization summary：BOUNDED_AUTHORIZED_C24_ONLY。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions、materialized leaves、DAG and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 + C23 are COMPLETE；P1 is complete and no runtime leaf is currently authorized。
+V06 + C01 + C22 + C11 + C23 are COMPLETE；P1 is complete and C24 is the only currently authorized runtime leaf。
 
 ## 1. Work Package ID
 
@@ -46,11 +46,11 @@ R-04A-H：DECIDED。
 
 R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-Runtime Authorization：NOT_AUTHORIZED。
+Runtime Authorization：BOUNDED_AUTHORIZED_C24_ONLY。
 
 Launch Gate：
 
-`HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION`
+`AUTHORIZED_FOR_C24_ONLY`
 
 Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
@@ -206,45 +206,80 @@ STOP boundary：
 
 REACHED。
 
-## NEXT CANDIDATE — NOT AUTHORIZED
+## CURRENT AUTHORIZED BOUNDED WORK PACKAGE — GAP-08-CORR-05
 
-Frozen P2：
+Authorization：
 
-    C23 COMPLETE
-        ->
-    C24 NEXT
-        ->
-    C25 BLOCKED
+`docs/work/GAP08_AUTHORIZATION_C24.md`
 
-C24 — Operational MarketObservation Evidence / Acceptance：
+Leaf：
+
+C24 — Operational MarketObservation Evidence / Acceptance。
+
+Dependency：
+
+C23 COMPLETE / VERIFIED。
+
+Authorized NEW runtime：
+
+- `domain/market_observation_acceptance.py`
+- `persistence/market_observation.py`
+- `persistence/postgres/market_observation.py`
+- `persistence/postgres/migrations/0003_market_observation_evidence.sql`
+
+Authorized NEW tests：
+
+- `tests/unit/test_market_observation_acceptance.py`
+- `tests/unit/test_market_observation_postgres.py`
+
+Required：
+
+- versioned acceptance policy。
+- candidate/provenance evidence separate from accepted revision。
+- same-content corroboration without new revision。
+- explicit formal-correction acceptance。
+- conflict/quarantine evidence。
+- contiguous per-key revision_seq。
+- database atomic uniqueness。
+- typed identity conflict。
+- caller-owned Postgres UoW。
+- no repository commit/rollback。
+
+Migration creation：
+
+AUTHORIZED_FOR_0003_ONLY。
+
+Migration execution：
+
+NOT_AUTHORIZED。
+
+Actual PostgreSQL：
 
 NOT_AUTHORIZED。
 
 C25：
 
-BLOCKED_ON_C24。
+NOT_AUTHORIZED。
 
 C02：
 
 NOT_AUTHORIZED。
 
-V05：
+V05 / V07：
+
+NOT_AUTHORIZED。
+
+Broker / market-data I/O：
 
 NOT_AUTHORIZED。
 
 Current bounded execution：
 
-NONE。
+C24 only。
 
-Runtime Authorization：
+After C24：
 
-NOT_AUTHORIZED。
-
-No migration execution。
-
-No actual PostgreSQL access。
-
-No broker / market-data I/O。
+commit / push / report / STOP。
 Do not rerun GAP-08EFGHI runtime candidate。
 
 Do not promote GAP-08 acceptance until correction runtime and final verification pass。
