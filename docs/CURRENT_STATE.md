@@ -281,26 +281,46 @@ C02：
 
 NOT_AUTHORIZED。
 
+Bounded VIBE V0 docs/workflow authorization：
+
+`docs/work/VIBE_V0_WORKFLOW_AUTHORIZATION.md`
+
+Docs / Workflow Modification Authorization：
+
+BOUNDED_AUTHORIZED_VIBE_V0_DOCS_ONLY。
+
+Runtime Authorization：
+
+NOT_AUTHORIZED。
+
+Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
+
 Next actual project action：
 
-CREATE BOUNDED VIBE V0 DOCS/WORKFLOW IMPLEMENTATION AUTHORIZATION PACKAGE。
+MATERIALIZE VIBE V0 CORE + WAVE W1-W10 GOVERNANCE + FINAL A1-A4 AMENDMENTS UNDER THE EXACT DOCS-ONLY AUTHORIZATION。
 
-That package is documentation/workflow planning only and MUST NOT itself authorize：
+P3 MUST：
 
-- C02 or any other runtime correction leaf。
-- Wave runtime execution。
-- production activation。
-- DB environment access。
-- migration execution。
-- broker network / paper broker / production broker I/O。
-
-After the bounded VIBE docs/workflow task is explicitly authorized：
-
-    materialize VIBE V0 core
-        + Wave W1-W10 accepted governance
-        + final amendments A1-A4
+    materialize repository-native CODEX workflow
         -> commit / push
         -> establish post-VIBE Planning Baseline
+        -> STOP
+
+P3 MUST NOT：
+
+- implement C02 or any other runtime correction leaf。
+- authorize or execute Wave runtime source changes。
+- activate runtime。
+- access DB environment。
+- execute migration。
+- perform broker network / paper broker / production broker I/O。
+
+Only after successful P3 closure：
+
+    establish post-VIBE Planning Baseline
+        -> verify canonical CURRENT projection
         -> build exact Wave-1 authorization package
         -> verify execution coherence
         -> explicit bounded Runtime Source Modification Authorization

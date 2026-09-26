@@ -29,6 +29,28 @@
 
 ## Chronological Log
 
+### 2026-09-26 — VIBE V0 Docs/Workflow Materialization Authorization
+
+- authorization input baseline：`2c035e998e0242ee9697037978eb642e58fce83b`。
+- P1 post-C25 CURRENT consistency：COMPLETE。
+- created bounded docs/workflow authorization：`docs/work/VIBE_V0_WORKFLOW_AUTHORIZATION.md`。
+- authorization state：BOUNDED_AUTHORIZED_VIBE_V0_DOCS_ONLY。
+- runtime `Runtime Authorization` canonical semantics remain unchanged。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Runtime Source Modification Authorization：NOT_AUTHORIZED。
+- P3 may materialize VIBE V0 core + Wave W1-W10 governance + final A1-A4 amendments only。
+- workflow ownership frozen for P3：`AGENTS.md` short routing；NEW `docs/CODEX_EXECUTION_WORKFLOW.md` detailed owner；`docs/work/WORK_PACKAGE_TEMPLATE.md` authorization schema owner。
+- `docs/DEVELOPMENT.md` remains supplemental / read-only。
+- current Wave W1-W5 status：DEPENDENCY-COHERENT CANDIDATE only；execution coherence remains to be verified later。
+- force-push default：DENY。
+- unexpected remote divergence：STOP / re-resolution。
+- tooling retry does not consume semantic correction budget but is finite by classification。
+- Task Context Packet remains transient、derived、revision-bound、non-authoritative。
+- no RAG、Vector DB、packet generator or multi-agent orchestrator is authorized。
+- C02 remains NOT_AUTHORIZED。
+- Wave runtime execution remains NOT_AUTHORIZED。
+- P3 must STOP after post-VIBE docs/workflow commit/push；Wave-1 authorization is a later checkpoint。
+
 ### 2026-09-26 — Post-C25 CURRENT Consistency Verification
 
 - post-C25 Planning Baseline：`eb8d4a3419d52fc4ee8e66641260baa96cfd7ec9`。

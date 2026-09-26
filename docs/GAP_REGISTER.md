@@ -540,7 +540,25 @@ Runtime Authorization：NOT_AUTHORIZED。
 
 Post-C25 CURRENT consistency verification：COMPLETE。
 
-Next governance action：create a bounded VIBE V0 docs/workflow implementation authorization package。
+Bounded VIBE V0 docs/workflow authorization：
+
+`docs/work/VIBE_V0_WORKFLOW_AUTHORIZATION.md`
+
+Docs / Workflow Modification Authorization：
+
+BOUNDED_AUTHORIZED_VIBE_V0_DOCS_ONLY。
+
+Next governance action：
+
+materialize VIBE V0 core + Wave W1-W10 governance + final A1-A4 amendments only。
+
+Runtime Authorization：
+
+NOT_AUTHORIZED。
+
+Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
 
 C02 remains the next runtime candidate only and is NOT_AUTHORIZED。
 

@@ -348,9 +348,25 @@ Post-C25 CURRENT consistency verification：
 
 COMPLETE。
 
+Bounded VIBE V0 docs/workflow authorization：
+
+`docs/work/VIBE_V0_WORKFLOW_AUTHORIZATION.md`
+
+Docs / Workflow Modification Authorization：
+
+BOUNDED_AUTHORIZED_VIBE_V0_DOCS_ONLY。
+
 Next actual work：
 
-create the bounded VIBE V0 docs/workflow implementation authorization package only。
+materialize VIBE V0 core + Wave W1-W10 governance + final A1-A4 amendments only。
+
+Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
+
+C02：
+
+NOT_AUTHORIZED。
 
 Wave execution：
 
