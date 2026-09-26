@@ -29,6 +29,50 @@
 
 ## Chronological Log
 
+### 2026-09-26 — GAP-08 C23 Runtime Closure
+
+- C23 Authorization Baseline：`4800d97d37195571c23e0d51e69454fdb68043d5`。
+- C23 Runtime Commit：`4750d243ba050935220ffa7319ca7ab3b336f393`。
+- C23 Canonical MarketObservation Identity + Revision：COMPLETE / VERIFIED。
+- introduced MarketObservationLogicalKey。
+- introduced MarketObservationContentFingerprint。
+- introduced MarketObservationRevisionId。
+- revision-specific identity：`mor1_<64 lowercase SHA-256 hex>`。
+- explicit versioned content/revision byte framing implemented。
+- generic JSON does not define identity。
+- raw float identity input rejected。
+- NaN / Infinity rejected。
+- negative zero normalized。
+- timezone-aware UTC normalization with fixed six-microsecond Z lexical form verified。
+- `1m == 60s` verified。
+- `24h != 1d` preserved。
+- listed-contract observations require canonical contract_id。
+- fixed language-neutral golden vectors added。
+- targeted：63 passed。
+- compatibility：15 passed。
+- full regression：1022 passed / 4 skipped。
+- runtime correction cycles：0。
+- existing MarketBar modified：NO。
+- StrategyStateSnapshot modified：NO。
+- persistence runtime modified：NO。
+- C24：NOT EXECUTED。
+- C25：NOT EXECUTED。
+- migration modified/executed：NO / NO。
+- actual PostgreSQL access：NO。
+- broker / market-data I/O：NO。
+- completed / verified correction-core weight：18 / 113。
+- remaining correction-core engineering weight：95。
+- global lifecycle metric remains 47.92% architecture-freeze baseline。
+- Architecture Acceptance remains HOLD。
+- complete GAP-08 Runtime Conformance remains NOT ASSERTED。
+- Production Readiness remains NOT ASSERTED。
+- C23 bounded runtime authorization is consumed / closed。
+- Runtime Authorization after closure：NOT_AUTHORIZED。
+- frozen P2：C23 COMPLETE -> C24 NEXT -> C25。
+- next candidate：C24 Operational MarketObservation Evidence / Acceptance。
+- C24 is NOT_AUTHORIZED。
+- C25/C02/V05 remain NOT_AUTHORIZED。
+
 ### 2026-09-26 — GAP-08 C23 Bounded Runtime Authorization
 
 - Parent baseline：`a0d071d2aad7f157aebb8fce46f11c2c6b65acd2`。

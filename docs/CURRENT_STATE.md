@@ -31,8 +31,8 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 - Architecture Acceptance：HOLD。
 - Runtime Conformance：NOT ASSERTED。
 - Production Readiness：NOT ASSERTED。
-- Runtime Authorization：BOUNDED_AUTHORIZED_C23_ONLY。
-- Runtime modification：AUTHORIZED_FOR_C23_ONLY。
+- Runtime Authorization：NOT_AUTHORIZED。
+- Runtime modification：NOT_AUTHORIZED。
 - Broker I/O：NOT_AUTHORIZED。
 - DB migration execution：NOT_AUTHORIZED。
 - Level 3B：NOT_ENABLED。
@@ -41,7 +41,7 @@ Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization
 
 Latest closure：
 
-`docs/work/GAP08_C11_CLOSURE.md`
+`docs/work/GAP08_C23_CLOSURE.md`
 
 Completed / verified：
 
@@ -49,33 +49,33 @@ Completed / verified：
 - C01 — Expected State Authority Read Contract。
 - C22 — Canonical Time Evidence Correction。
 - C11 — Shioaji Status Mapping Correction。
+- C23 — Canonical MarketObservation Identity + Revision。
 
 Latest runtime commit：
 
-`a2a54fa74152d720d42e39b211c1b80991496fa1`
+`4750d243ba050935220ffa7319ca7ab3b336f393`
 
-C11 verification：
+C23 verification：
 
-- targeted：23 passed。
-- Shioaji compatibility：47 passed。
-- full regression：959 passed / 4 skipped。
+- targeted：63 passed。
+- compatibility：15 passed。
+- full regression：1022 passed / 4 skipped。
 - runtime correction cycles：0。
 
-V05：
+C23 boundaries：
 
-NOT EXECUTED / NOT VERIFIED。
-
-Local SDK observation：
-
-Shioaji 1.7.5 enum surface observed only；no broker-semantic verification claim。
+- pure D-Domain canonical identity complete。
+- C24 persistence / acceptance NOT EXECUTED。
+- C25 recovery-reference migration NOT EXECUTED。
+- existing MarketBar / StrategyStateSnapshot unchanged。
 
 Completed / verified correction-core weight：
 
-13 / 113。
+18 / 113。
 
 Remaining correction-core engineering weight：
 
-100。
+95。
 
 Runtime Authorization：
 
@@ -95,25 +95,21 @@ P1 status：
 
 COMPLETE。
 
-Next frozen phase：
+P2 — Market Evidence Authority：
 
-P2 — Market Evidence Authority。
-
-P2 sequence：
-
-    C23
-        -> C24
-        -> C25
+    C23 COMPLETE
+        ->
+    C24 NEXT
+        ->
+    C25 BLOCKED
 
 Next candidate：
 
-C23 — Canonical MarketObservation Identity + Revision。
+C24 — Operational MarketObservation Evidence / Acceptance。
 
-C23：
+C24：
 
 NOT_AUTHORIZED。
-
-C24 remains blocked on C23。
 
 C25 remains blocked on C24。
 
@@ -121,21 +117,9 @@ C25 remains blocked on C24。
 
 Runtime Authorization：
 
-BOUNDED_AUTHORIZED_C23_ONLY。
+NOT_AUTHORIZED。
 
-Authorization：
-
-`docs/work/GAP08_AUTHORIZATION_C23.md`
-
-Authorized leaf：
-
-C23 — Canonical MarketObservation Identity + Revision。
-
-Runtime scope：
-
-- NEW `domain/market_observation.py`
-- NEW `tests/unit/test_market_observation_identity.py`
-- NEW `tests/fixtures/market_observation_golden_vectors_v1.json`
+No runtime leaf is currently authorized。
 
 C24：
 
@@ -153,7 +137,7 @@ V05：
 
 NOT_AUTHORIZED。
 
-Migration：
+Migration execution：
 
 NOT_AUTHORIZED。
 
@@ -165,9 +149,6 @@ Broker / market-data I/O：
 
 NOT_AUTHORIZED。
 
-C23 completion boundary：
-
-commit / push / report / STOP。
 ### POST-5E ACCEPTED PLANNING INPUTS
 
 The following post-5E items were ACCEPTED PLANNING INPUTS and are now materialized into the docs-only Correction-Freeze Work Package；they remain planning inputs and are NOT a new Architecture Decision Baseline。
@@ -244,15 +225,14 @@ The existing 47.92% remains the recorded architecture-freeze lifecycle baseline�
 
 ### Current Planning / Execution Sequence
 
-1. C11 closure is recorded in `docs/work/GAP08_C11_CLOSURE.md`。
-2. Frozen P1 is COMPLETE：C01 -> C22 -> C11。
-3. Frozen P2 is C23 -> C24 -> C25。
-4. Execute C23 only under `docs/work/GAP08_AUTHORIZATION_C23.md`。
-5. C23 is pure D-Domain identity/canonicalization；no persistence or consumer migration。
-6. Run targeted + compatibility + full regression。
-7. Commit / push / final report。
-8. STOP。
-9. C24、C25、C02、V05 and every other leaf remain NOT_AUTHORIZED。
+1. C23 closure is recorded in `docs/work/GAP08_C23_CLOSURE.md`。
+2. Runtime Authorization is NOT_AUTHORIZED。
+3. Frozen P1 is COMPLETE：C01 -> C22 -> C11。
+4. Frozen P2 is C23 COMPLETE -> C24 NEXT -> C25。
+5. C24 is the next candidate only；it is NOT_AUTHORIZED。
+6. C25 remains blocked on C24。
+7. C02、V05 and every other remaining leaf remain NOT_AUTHORIZED。
+8. A new explicit bounded authorization is required before any runtime modification。
 A future authorization decision must identify at least：Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests and Stop Boundary。
 
 A bare `AUTHORIZED` value is insufficient。

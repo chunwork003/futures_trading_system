@@ -6,15 +6,15 @@
 
 This ACTIVE file preserves Work Package context/history and does NOT independently grant Runtime Authorization。
 
-Runtime Authorization summary：BOUNDED_AUTHORIZED_C23_ONLY。
+Runtime Authorization summary：NOT_AUTHORIZED。
 
 Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C11_CLOSURE.md`。
+Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`；latest bounded execution closure：`docs/work/GAP08_C23_CLOSURE.md`。
 
 Post-5E K520 / BG / scope-map / Delta-to-Contract conclusions、materialized leaves、DAG and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 are COMPLETE；P1 is complete and C23 is the only currently authorized runtime leaf。
+V06 + C01 + C22 + C11 + C23 are COMPLETE；P1 is complete and no runtime leaf is currently authorized。
 
 ## 1. Work Package ID
 
@@ -46,11 +46,11 @@ R-04A-H：DECIDED。
 
 R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
-Runtime Authorization：BOUNDED_AUTHORIZED_C23_ONLY。
+Runtime Authorization：NOT_AUTHORIZED。
 
 Launch Gate：
 
-`AUTHORIZED_FOR_C23_ONLY`
+`HOLD_FOR_NEXT_BOUNDED_AUTHORIZATION`
 
 Original 35 leaves / weight 151：IMPLEMENTED CANDIDATE / NOT ACCEPTED。
 
@@ -155,64 +155,96 @@ STOP boundary：
 
 REACHED。
 
-## CURRENT AUTHORIZED BOUNDED WORK PACKAGE — GAP-08-CORR-04
+## COMPLETED BOUNDED WORK PACKAGE — GAP-08-CORR-04
+
+C23：
+
+COMPLETE / VERIFIED。
 
 Authorization：
 
 `docs/work/GAP08_AUTHORIZATION_C23.md`
 
-Leaf：
+Closure：
 
-C23 — Canonical MarketObservation Identity + Revision。
+`docs/work/GAP08_C23_CLOSURE.md`
 
-Authorized runtime：
+Runtime commit：
 
-- NEW `domain/market_observation.py`
+`4750d243ba050935220ffa7319ca7ab3b336f393`
 
-Authorized test：
+Verification：
 
-- NEW `tests/unit/test_market_observation_identity.py`
-- NEW `tests/fixtures/market_observation_golden_vectors_v1.json`
+- targeted：63 passed。
+- compatibility：15 passed。
+- full regression：1022 passed / 4 skipped。
+- runtime correction cycles：0。
 
-Required：
+Implemented：
 
 - MarketObservationLogicalKey。
 - MarketObservationContentFingerprint。
 - MarketObservationRevisionId。
-- deterministic `mor1_<64 lowercase sha256>`。
-- exact decimal semantics。
-- timezone-aware UTC identity。
-- canonical timeframe normalization。
 - explicit versioned byte framing。
 - fixed cross-language golden vectors。
+- exact Decimal/time/timeframe identity semantics。
 
-C24 persistence / acceptance：
+C24：
+
+NOT EXECUTED。
+
+C25：
+
+NOT EXECUTED。
+
+Correction-core progress：
+
+    18 / 113 complete / verified
+    95 remaining
+
+STOP boundary：
+
+REACHED。
+
+## NEXT CANDIDATE — NOT AUTHORIZED
+
+Frozen P2：
+
+    C23 COMPLETE
+        ->
+    C24 NEXT
+        ->
+    C25 BLOCKED
+
+C24 — Operational MarketObservation Evidence / Acceptance：
 
 NOT_AUTHORIZED。
 
-C25 recovery-reference migration：
+C25：
+
+BLOCKED_ON_C24。
+
+C02：
 
 NOT_AUTHORIZED。
 
-Migration：
-
-NOT_AUTHORIZED。
-
-Actual PostgreSQL：
-
-NOT_AUTHORIZED。
-
-Broker / market-data I/O：
+V05：
 
 NOT_AUTHORIZED。
 
 Current bounded execution：
 
-C23 only。
+NONE。
 
-After C23：
+Runtime Authorization：
 
-commit / push / report / STOP。
+NOT_AUTHORIZED。
+
+No migration execution。
+
+No actual PostgreSQL access。
+
+No broker / market-data I/O。
 Do not rerun GAP-08EFGHI runtime candidate。
 
 Do not promote GAP-08 acceptance until correction runtime and final verification pass。
