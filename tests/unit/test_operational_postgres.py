@@ -12,6 +12,8 @@ from persistence.broker_action import (
     BrokerActionResolutionKind,
 )
 from persistence.postgres.broker_action import PostgresBrokerActionRepository
+from persistence.broker_recovery import AccountRecoveryControl
+from persistence.postgres.broker_recovery import PostgresBrokerRecoveryRepository
 from trading.account import BrokerAccount
 
 
@@ -199,3 +201,52 @@ def test_broker_action_migration_encodes_durable_eligibility_without_manual_over
     assert "unresolved_attempt_id IS NULL OR automatic_invocation_eligible = FALSE" in sql
     assert "NOT_DISPATCHED" in sql
     assert "manual_override" not in sql.lower()
+
+
+def test_broker_recovery_migration_separates_inbox_control_and_continuity() -> None:
+    sql = Path(
+        "persistence/postgres/migrations/0007_broker_recovery_evidence.sql"
+    ).read_text(encoding="utf-8")
+    for table in (
+        "broker_report_inbox",
+        "broker_report_applications",
+        "account_recovery_controls",
+        "execution_continuity_epochs",
+        "broker_sequence_gaps",
+    ):
+        assert f"CREATE TABLE trading.{table}" in sql
+        assert f"COMMENT ON TABLE trading.{table}" in sql
+    assert "TIMESTAMPTZ" in sql
+    assert "JSONB" in sql
+    assert "account_state_heads" not in sql
+
+
+def test_broker_recovery_handoff_is_one_conditional_write_without_commit() -> None:
+    connection = _ReturningConnection()
+    repository = PostgresBrokerRecoveryRepository(connection)
+    control = AccountRecoveryControl(
+        broker="SINOPAC",
+        account_ref="A",
+        generation=4,
+        recovery_cut_revision=8,
+        ingress_version=12,
+        active=False,
+        recorded_at=__import__("datetime").datetime(
+            2026, 9, 27, tzinfo=__import__("datetime").timezone.utc
+        ),
+    )
+
+    repository.finalize_handoff(
+        control,
+        expected_generation=4,
+        expected_ingress_version=12,
+    )
+
+    sql, params = connection.last
+    assert "generation=%s" in sql
+    assert "recovery_cut_revision=%s" in sql
+    assert "ingress_version=%s" in sql
+    assert "active=TRUE" in sql
+    assert "NOT EXISTS" in sql
+    assert params[1:] == ("SINOPAC", "A", 4, 8, 12)
+    assert connection.commits == 0
