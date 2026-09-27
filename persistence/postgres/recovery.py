@@ -8,6 +8,7 @@ from persistence.account_authority import (
     AccountStateHead,
 )
 from persistence.recovery import (
+    AccountReadinessEvaluation,
     ExecutionRestoreResult,
     ExecutionRestoreStatus,
     RecoveryCut,
@@ -92,4 +93,41 @@ class PostgresExecutionStateLoader:
         )
 
 
-__all__=["PostgresExecutionStateLoader"]
+class StaleAccountReadinessError(RuntimeError):
+    """Evaluation cut 與 final local currentness 不同；caller 必須重新評估，不得 silent activate。"""
+
+
+class PostgresAccountReadinessGate:
+    """在 caller-owned local transaction 重驗 exact revision/frontier；不執行 broker I/O 或 economic mutation。"""
+
+    def __init__(self,connection: Any) -> None: self._connection=connection
+
+    def revalidate(self,evaluation: AccountReadinessEvaluation) -> None:
+        with self._connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT current_revision FROM trading.account_state_heads WHERE broker=%s AND account_ref=%s FOR SHARE",
+                (evaluation.account.broker,evaluation.account.account_ref),
+            )
+            head=cursor.fetchone()
+            cursor.execute(
+                "SELECT generation,ingress_version FROM trading.account_recovery_controls WHERE broker=%s AND account_ref=%s FOR SHARE",
+                (evaluation.account.broker,evaluation.account.account_ref),
+            )
+            control=cursor.fetchone()
+            cursor.execute(
+                "SELECT COUNT(*),(SELECT COUNT(*) FROM trading.broker_report_applications a JOIN trading.broker_report_inbox i ON i.ingress_id=a.ingress_id WHERE i.broker=%s AND i.account_ref=%s) FROM trading.broker_report_inbox i WHERE i.broker=%s AND i.account_ref=%s",
+                (evaluation.account.broker,evaluation.account.account_ref,evaluation.account.broker,evaluation.account.account_ref),
+            )
+            counts=cursor.fetchone()
+            cursor.execute(
+                "SELECT unresolved_attempt_id FROM trading.broker_action_heads WHERE broker=%s AND account_ref=%s AND unresolved_attempt_id IS NOT NULL ORDER BY unresolved_attempt_id",
+                (evaluation.account.broker,evaluation.account.account_ref),
+            )
+            unresolved=tuple(row[0] for row in cursor.fetchall())
+        actual_control=(None,None) if control is None else tuple(control)
+        expected_control=(evaluation.recovery_generation,evaluation.recovery_ingress_version)
+        if head is None or head[0] != evaluation.account_revision or actual_control != expected_control or tuple(counts) != (evaluation.inbox_count,evaluation.application_count) or unresolved != evaluation.unresolved_broker_action_ids:
+            raise StaleAccountReadinessError("account recovery cut/currentness changed; reevaluation required")
+
+
+__all__=["PostgresAccountReadinessGate","PostgresExecutionStateLoader","StaleAccountReadinessError"]

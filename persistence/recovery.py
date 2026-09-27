@@ -23,6 +23,9 @@ from persistence.account_authority import (
 
 from persistence.reconciliation import (
     ReconciliationCaseRepository,
+    ReconciliationInputQualification,
+    ReconciliationRunOutcome,
+    ReconciliationRunTechnicalOutcome,
     blocking_case_state,
 )
 from persistence.strategy_state import (
@@ -48,6 +51,7 @@ from trading.reconciliation import (
     ReconciliationPolicy,
     StartupReadinessState,
     reconcile_startup,
+    ReconciliationStatus,
 )
 
 
@@ -114,6 +118,73 @@ class ExecutionRestoreResult(BaseModel):
         if (self.status is ExecutionRestoreStatus.VALID) != (self.cut is not None):
             raise ValueError("only VALID restore result may contain a RecoveryCut")
         return self
+
+
+class AccountReadinessEvidence(BaseModel):
+    """C15 純 local readiness inputs；每個 mandatory predicate 必須有正向證據，UNKNOWN 不得升級 READY。"""
+
+    model_config=ConfigDict(extra="forbid",frozen=True)
+
+    restore_result: ExecutionRestoreResult
+    formal_run_outcome: ReconciliationRunOutcome | None
+    discovery_complete: bool
+    exact_correlation_integrity: bool
+    continuity_current: bool
+    pending_material_inbox: bool
+    reconstruction_complete: bool
+    reconstruction_conflict: bool
+    mandatory_capabilities_available: bool
+    out_of_horizon_unresolved_action: bool = False
+
+
+class AccountReadinessEvaluation(BaseModel):
+    """BrokerAccount READY/REVIEW/HALT evaluation；保存 exact cut witness 供 final local revalidation。"""
+
+    model_config=ConfigDict(extra="forbid",frozen=True)
+
+    state: RecoveryReadinessState
+    reasons: tuple[str,...]
+    account: BrokerAccount
+    account_revision: int = Field(ge=0)
+    recovery_generation: int | None = Field(default=None,ge=1)
+    recovery_ingress_version: int | None = Field(default=None,ge=0)
+    inbox_count: int = Field(ge=0)
+    application_count: int = Field(ge=0)
+    unresolved_broker_action_ids: tuple[str,...]
+
+
+def evaluate_account_readiness(*,account: BrokerAccount,evidence: AccountReadinessEvidence) -> AccountReadinessEvaluation:
+    """依 HALT > REVIEW > READY 聚合 frozen predicates；不 repair、不呼叫 broker、不授權交易。"""
+
+    restore=evidence.restore_result
+    if restore.status is not ExecutionRestoreStatus.VALID or restore.cut is None:
+        return AccountReadinessEvaluation(state=RecoveryReadinessState.HALT,reasons=("coherent recovery cut is not valid",),account=account,account_revision=0,inbox_count=0,application_count=0,unresolved_broker_action_ids=())
+    cut=restore.cut
+    common=dict(account=account,account_revision=cut.head.current_revision,recovery_generation=cut.recovery_generation,recovery_ingress_version=cut.recovery_ingress_version,inbox_count=cut.inbox_count,application_count=cut.application_count,unresolved_broker_action_ids=cut.unresolved_broker_action_ids)
+    halt=[]
+    if not evidence.mandatory_capabilities_available: halt.append("mandatory capability unavailable")
+    if not evidence.exact_correlation_integrity: halt.append("broker correlation integrity conflict")
+    if evidence.reconstruction_conflict: halt.append("canonical reconstruction integrity conflict")
+    outcome=evidence.formal_run_outcome
+    if outcome is None: halt.append("eligible formal reconciliation run is missing")
+    elif outcome.technical_outcome is ReconciliationRunTechnicalOutcome.FAILED: halt.append("formal reconciliation run failed")
+    if halt:
+        return AccountReadinessEvaluation(state=RecoveryReadinessState.HALT,reasons=tuple(halt),**common)
+    review=[]
+    if not evidence.discovery_complete: review.append("broker discovery is incomplete")
+    if not evidence.continuity_current: review.append("execution continuity is not current")
+    if evidence.pending_material_inbox: review.append("material broker inbox evidence is pending")
+    if not evidence.reconstruction_complete: review.append("canonical reconstruction is incomplete")
+    if cut.unresolved_broker_action_ids: review.append("broker action disposition is unresolved")
+    if evidence.out_of_horizon_unresolved_action: review.append("broker action requires external disposition evidence")
+    if outcome is not None and (
+        outcome.input_qualification is not ReconciliationInputQualification.QUALIFIED
+        or outcome.technical_outcome is not ReconciliationRunTechnicalOutcome.COMPLETED
+        or any(result.status is not ReconciliationStatus.MATCH for result in outcome.results)
+    ): review.append("formal reconciliation is not a qualified MATCH")
+    if review:
+        return AccountReadinessEvaluation(state=RecoveryReadinessState.REVIEW,reasons=tuple(review),**common)
+    return AccountReadinessEvaluation(state=RecoveryReadinessState.READY,reasons=(),**common)
 
 
 class RecoveryResult(
@@ -259,9 +330,9 @@ def recover_runtime(
 ) -> RecoveryResult:
     """Frozen ordering?exact canonical mor1 ?? restore strategy?"""
 
-    execution_loader.load(
-        account
-    )
+    restore_result=execution_loader.load(account)
+    if not isinstance(restore_result,ExecutionRestoreResult) or restore_result.status is not ExecutionRestoreStatus.VALID:
+        return RecoveryResult(state=RecoveryReadinessState.HALT,reasons=("legacy recovery lacks a valid coherent RecoveryCut",))
 
     account_result = (
         reconcile_startup(
@@ -305,7 +376,7 @@ def recover_runtime(
         )
 
     case_state = blocking_case_state(
-        case_repository.unresolved()
+        case_repository.unresolved(account)
     )
 
     if (
@@ -488,9 +559,8 @@ def recover_runtime(
         )
 
     return RecoveryResult(
-        state=(
-            RecoveryReadinessState.READY
-        ),
+        state=RecoveryReadinessState.REVIEW,
+        reasons=("legacy recovery lacks eligible formal reconciliation/currentness evidence",),
         restored_strategies=tuple(
             restored
         ),

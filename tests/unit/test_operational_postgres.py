@@ -390,3 +390,13 @@ def test_local_recovery_migration_has_formal_run_boundary_and_atomic_terminal_au
     assert "REFERENCES trading.reconciliation_runs(run_id)" in sql
     assert "technical_outcome" in sql and "input_qualification" in sql
     assert "COMMENT ON TABLE trading.reconciliation_run_outcomes" in sql
+
+
+def test_postgres_account_readiness_gate_revalidates_revision_and_nonrevision_witness() -> None:
+    from persistence.postgres.recovery import PostgresAccountReadinessGate
+    source=__import__("inspect").getsource(PostgresAccountReadinessGate.revalidate)
+    assert "account_state_heads" in source
+    assert "account_recovery_controls" in source
+    assert "broker_report_inbox" in source
+    assert "broker_action_heads" in source
+    assert "advance_head" not in source

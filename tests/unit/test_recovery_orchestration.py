@@ -3,10 +3,15 @@ from datetime import datetime, timezone
 
 import pytest
 
+from persistence.account_authority import AccountAuthorityCommitReceipt, AccountRecoveryCheckpoint, AccountStateHead
+
 from persistence.reconciliation import (
     ReconciliationCaseVersion,
 )
 from persistence.recovery import (
+    ExecutionRestoreResult,
+    ExecutionRestoreStatus,
+    RecoveryCut,
     RecoveryReadinessState,
     recover_runtime,
 )
@@ -58,6 +63,10 @@ class ExecutionLoader:
         self.trace.append(
             "execution"
         )
+        head=AccountStateHead(broker=account.broker,account_ref=account.account_ref,current_revision=1,initialized=True)
+        checkpoint=AccountRecoveryCheckpoint(broker=account.broker,account_ref=account.account_ref,account_revision=1,expected_snapshot_id="S1",authority_commit_id="AC1",recorded_at=NOW)
+        receipt=AccountAuthorityCommitReceipt(authority_commit_id="AC1",mutation_fingerprint="FP",broker=account.broker,account_ref=account.account_ref,committed_revision=1,expected_snapshot_id="S1",recorded_at=NOW)
+        return ExecutionRestoreResult(status=ExecutionRestoreStatus.VALID,cut=RecoveryCut(account=account,head=head,checkpoint=checkpoint,receipt=receipt,inbox_count=0,application_count=0),evidence=("test coherent cut",))
 
 
 class ExpectedLoader:
@@ -107,7 +116,7 @@ class Cases:
     ):
         self.values = values
 
-    def unresolved(self):
+    def unresolved(self, account):
         return self.values
 
 
@@ -296,12 +305,12 @@ def recover(
     )
 
 
-def test_successful_reconciliation_restores_strategy_and_is_ready():
+def test_legacy_recovery_restores_strategy_but_cannot_claim_account_ready():
     result, trace = recover()
 
     assert (
         result.state
-        is RecoveryReadinessState.READY
+        is RecoveryReadinessState.REVIEW
     )
 
     assert isinstance(
@@ -598,7 +607,7 @@ def test_valid_mor1_legacy_parameter_is_bounded_compatibility():
 
     assert (
         result.state
-        is RecoveryReadinessState.READY
+        is RecoveryReadinessState.REVIEW
     )
 
 
