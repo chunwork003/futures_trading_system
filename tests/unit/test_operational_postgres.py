@@ -380,3 +380,13 @@ def test_local_recovery_migration_scopes_reconciliation_cases_without_backfill()
 def test_postgres_recovery_loader_establishes_read_only_repeatable_snapshot() -> None:
     from persistence.postgres.recovery import PostgresExecutionStateLoader
     assert "REPEATABLE READ READ ONLY" in __import__("inspect").getsource(PostgresExecutionStateLoader.load)
+
+
+def test_local_recovery_migration_has_formal_run_boundary_and_atomic_terminal_audit() -> None:
+    sql=Path("persistence/postgres/migrations/0008_local_recovery_reconciliation.sql").read_text(encoding="utf-8")
+    assert "CREATE TABLE trading.reconciliation_runs" in sql
+    assert "CREATE TABLE trading.reconciliation_run_outcomes" in sql
+    assert "run_id TEXT PRIMARY KEY" in sql
+    assert "REFERENCES trading.reconciliation_runs(run_id)" in sql
+    assert "technical_outcome" in sql and "input_qualification" in sql
+    assert "COMMENT ON TABLE trading.reconciliation_run_outcomes" in sql

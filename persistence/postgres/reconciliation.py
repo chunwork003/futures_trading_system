@@ -2,7 +2,11 @@ from __future__ import annotations
 
 from typing import Any
 
-from persistence.reconciliation import ReconciliationCaseVersion
+from persistence.reconciliation import (
+    ReconciliationCaseVersion,
+    ReconciliationRunBoundary,
+    ReconciliationRunOutcome,
+)
 from trading.account import BrokerAccount
 from trading.reconciliation import ReconciliationCaseError
 
@@ -37,3 +41,45 @@ class PostgresReconciliationCaseRepository:
             for row in rows
         )
         return tuple(item for item in items if item.reconciliation_case.state.value != "RESOLVED")
+
+
+class PostgresReconciliationRunRepository:
+    """PostgreSQL append-only formal run audit；boundary 與 terminal outcome 均由 caller transaction 控制。"""
+
+    def __init__(self,connection: Any) -> None: self._connection=connection
+
+    def establish(self,boundary: ReconciliationRunBoundary) -> None:
+        with self._connection.cursor() as cursor:
+            cursor.execute(
+                "INSERT INTO trading.reconciliation_runs (run_id,broker,account_ref,established_at,boundary_json) VALUES (%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING RETURNING run_id",
+                (boundary.run_id,boundary.account.broker,boundary.account.account_ref,boundary.established_at,boundary.model_dump_json()),
+            )
+            if cursor.fetchone() is not None: return
+            cursor.execute("SELECT boundary_json FROM trading.reconciliation_runs WHERE run_id=%s",(boundary.run_id,))
+            row=cursor.fetchone()
+            existing=None if row is None else ReconciliationRunBoundary.model_validate_json(row[0]) if isinstance(row[0],str) else ReconciliationRunBoundary.model_validate(row[0])
+            if existing != boundary: raise ReconciliationCaseError("reconciliation run boundary identity conflict")
+
+    def finalize(self,outcome: ReconciliationRunOutcome) -> None:
+        with self._connection.cursor() as cursor:
+            cursor.execute("SELECT boundary_json FROM trading.reconciliation_runs WHERE run_id=%s FOR UPDATE",(outcome.run_id,))
+            if cursor.fetchone() is None: raise ReconciliationCaseError("reconciliation run boundary is missing")
+            cursor.execute(
+                "INSERT INTO trading.reconciliation_run_outcomes (run_id,finalized_at,technical_outcome,input_qualification,outcome_json) VALUES (%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING RETURNING run_id",
+                (outcome.run_id,outcome.finalized_at,outcome.technical_outcome.value,outcome.input_qualification.value,outcome.model_dump_json()),
+            )
+            if cursor.fetchone() is not None: return
+            cursor.execute("SELECT outcome_json FROM trading.reconciliation_run_outcomes WHERE run_id=%s",(outcome.run_id,))
+            row=cursor.fetchone()
+            existing=None if row is None else ReconciliationRunOutcome.model_validate_json(row[0]) if isinstance(row[0],str) else ReconciliationRunOutcome.model_validate(row[0])
+            if existing != outcome: raise ReconciliationCaseError("reconciliation run terminal outcome conflict")
+
+    def get_boundary(self,run_id: str):
+        with self._connection.cursor() as cursor:
+            cursor.execute("SELECT boundary_json FROM trading.reconciliation_runs WHERE run_id=%s",(run_id,)); row=cursor.fetchone()
+        return None if row is None else ReconciliationRunBoundary.model_validate_json(row[0]) if isinstance(row[0],str) else ReconciliationRunBoundary.model_validate(row[0])
+
+    def get_outcome(self,run_id: str):
+        with self._connection.cursor() as cursor:
+            cursor.execute("SELECT outcome_json FROM trading.reconciliation_run_outcomes WHERE run_id=%s",(run_id,)); row=cursor.fetchone()
+        return None if row is None else ReconciliationRunOutcome.model_validate_json(row[0]) if isinstance(row[0],str) else ReconciliationRunOutcome.model_validate(row[0])
