@@ -8,6 +8,7 @@ from persistence.account_authority import (
     AccountRecoveryCheckpoint,
     AccountStateHead,
 )
+import persistence.postgres.recovery as postgres_recovery
 from persistence.postgres.recovery import PostgresExecutionStateLoader
 from persistence.recovery import ExecutionRestoreResult, ExecutionRestoreStatus, RecoveryCut
 from trading.account import BrokerAccount
@@ -42,6 +43,11 @@ def _valid_rows():
         (head.broker,head.account_ref,head.current_revision,head.initialized,checkpoint.model_dump(mode="json"),receipt.model_dump(mode="json"),True),
         (4,9,True),
         [("IN-1",4,"PF",True,1,"APPLIED",5)],
+        [],
+        [],
+        [],
+        [],
+        [],
         [],
         [("ATTEMPT-1",)],
     ]
@@ -93,6 +99,31 @@ def test_a07_exact_nonrevision_witness_changes_fingerprint_even_when_counts_matc
     first=RecoveryCut(**common,broker_report_witness=("IN-1:1:APPLIED",))
     second=RecoveryCut(**common,broker_report_witness=("IN-2:1:APPLIED",))
     assert first.witness_fingerprint != second.witness_fingerprint
+
+
+def test_rf02_same_fill_or_event_count_with_different_material_changes_witness() -> None:
+    head,checkpoint,receipt=_closure()
+    common=dict(account=ACCOUNT,head=head,checkpoint=checkpoint,receipt=receipt,recovery_generation=4,recovery_ingress_version=9,inbox_count=0,application_count=0,current_nonterminal_order_anchors=("ORDER",),unresolved_broker_action_ids=())
+    first=RecoveryCut(**common,fill_event_validation_anchors=("EVENT:E1:1:CAUSE-A", "FILL:F1:1:100"))
+    fill_changed=RecoveryCut(**common,fill_event_validation_anchors=("EVENT:E1:1:CAUSE-A", "FILL:F1:2:100"))
+    event_changed=RecoveryCut(**common,fill_event_validation_anchors=("EVENT:E2:1:CAUSE-B", "FILL:F1:1:100"))
+    assert len(first.fill_event_validation_anchors) == len(fill_changed.fill_event_validation_anchors)
+    assert first.witness_fingerprint != fill_changed.witness_fingerprint
+    assert first.witness_fingerprint != event_changed.witness_fingerprint
+
+
+def test_rf02_programming_typeerror_and_db_errors_propagate(monkeypatch) -> None:
+    def programming_error(*args,**kwargs):
+        raise TypeError("programming defect")
+    monkeypatch.setattr(postgres_recovery,"_read_report_witness",programming_error)
+    with pytest.raises(TypeError,match="programming defect"):
+        PostgresExecutionStateLoader(Connection(_valid_rows())).load(ACCOUNT)
+
+    class OperationalConnection(Connection):
+        def cursor(self):
+            raise RuntimeError("database unavailable")
+    with pytest.raises(RuntimeError,match="database unavailable"):
+        PostgresExecutionStateLoader(OperationalConnection([])).load(ACCOUNT)
 
 
 def test_missing_head_is_restore_failure_not_baseline_absence() -> None:

@@ -379,7 +379,10 @@ def test_local_recovery_migration_scopes_reconciliation_cases_without_backfill()
 
 def test_postgres_recovery_loader_establishes_read_only_repeatable_snapshot() -> None:
     from persistence.postgres.recovery import PostgresExecutionStateLoader
-    assert "REPEATABLE READ READ ONLY" in __import__("inspect").getsource(PostgresExecutionStateLoader.load)
+    source=__import__("inspect").getsource(PostgresExecutionStateLoader.load)
+    assert "REPEATABLE READ READ ONLY" in source
+    assert "except ValidationError" in source
+    assert "TypeError" not in source and "IndexError" not in source
 
 
 def test_local_recovery_migration_has_formal_run_boundary_and_atomic_terminal_audit() -> None:
@@ -393,7 +396,7 @@ def test_local_recovery_migration_has_formal_run_boundary_and_atomic_terminal_au
 
 
 def test_postgres_account_readiness_gate_revalidates_revision_and_nonrevision_witness() -> None:
-    from persistence.postgres.recovery import PostgresAccountReadinessGate, _read_order_witness, _read_report_witness, _read_unresolved_actions
+    from persistence.postgres.recovery import PostgresAccountReadinessGate, _read_currentness_witness, _read_order_witness, _read_report_witness, _read_unresolved_actions
     source=__import__("inspect").getsource(PostgresAccountReadinessGate.revalidate)
     report_source=__import__("inspect").getsource(_read_report_witness)
     order_source=__import__("inspect").getsource(_read_order_witness)
@@ -404,5 +407,12 @@ def test_postgres_account_readiness_gate_revalidates_revision_and_nonrevision_wi
     assert "broker_action_heads h JOIN trading.orders" in order_source
     assert "h.broker=%s AND h.account_ref=%s" in order_source
     assert "projection_json->>'broker'" not in order_source
+    for material in ("fill_id","quantity","price","occurred_at","event_id","sequence","causation_id","payload_json"):
+        assert material in order_source
+    assert "h.broker=%s AND h.account_ref=%s" in order_source
+    currentness_source=__import__("inspect").getsource(_read_currentness_witness)
+    assert "execution_continuity_epochs" in currentness_source
+    assert "broker_sequence_gaps" in currentness_source
+    assert "reconciliation_case_history" in currentness_source
     assert "broker_action_heads" in __import__("inspect").getsource(_read_unresolved_actions)
     assert "advance_head" not in source

@@ -8,12 +8,17 @@ from persistence.postgres.recovery import PostgresAccountReadinessGate, StaleAcc
 from persistence.reconciliation import ReconciliationInputQualification, ReconciliationRunBoundary, ReconciliationRunOutcome, ReconciliationRunTechnicalOutcome
 from persistence.recovery import (
     AccountReadinessEvidence,
+    CapabilityReadinessEvidence,
     ExecutionRestoreResult,
     ExecutionRestoreStatus,
     RecoveryCut,
     RecoveryReadinessState,
+    ReconciliationCompletenessEvidence,
+    ReconstructionReadinessEvidence,
     evaluate_account_readiness,
 )
+from persistence.broker_recovery import ExecutionContinuityEpoch
+from trading.broker_recovery import BrokerDiscoveryIntegrity, BrokerDiscoveryResult, DiscoveryCompleteness, ExactMatchCardinality
 from trading.account import BrokerAccount
 from trading.reconciliation import ReconciliationPolicy, ReconciliationResult, ReconciliationStatus
 
@@ -21,13 +26,15 @@ NOW=datetime(2026,9,27,tzinfo=timezone.utc)
 ACCOUNT=BrokerAccount(broker="SINOPAC",account_ref="A")
 REPORT_ROW=("IN-1",4,"PF",True,1,"APPLIED",5)
 REPORT_WITNESS=json.dumps(REPORT_ROW,separators=(",",":"))
+CONTINUITY_ROW=("EPOCH-1","SINOPAC","A",4,True,False,NOW,{"evidence":["current"]})
+CONTINUITY_WITNESS=json.dumps(CONTINUITY_ROW,separators=(",",":"),default=str)
 
 
 def restore(*,unresolved=()):
     head=AccountStateHead(broker="SINOPAC",account_ref="A",current_revision=3,initialized=True)
     checkpoint=AccountRecoveryCheckpoint(broker="SINOPAC",account_ref="A",account_revision=3,expected_snapshot_id="S3",authority_commit_id="AC3",recorded_at=NOW)
     receipt=AccountAuthorityCommitReceipt(authority_commit_id="AC3",mutation_fingerprint="FP",broker="SINOPAC",account_ref="A",committed_revision=3,expected_snapshot_id="S3",recorded_at=NOW)
-    cut=RecoveryCut(account=ACCOUNT,head=head,checkpoint=checkpoint,receipt=receipt,recovery_generation=4,recovery_ingress_version=9,inbox_count=1,application_count=5,broker_report_witness=(REPORT_WITNESS,),current_nonterminal_order_anchors=(),unresolved_broker_action_ids=unresolved)
+    cut=RecoveryCut(account=ACCOUNT,head=head,checkpoint=checkpoint,receipt=receipt,recovery_generation=4,recovery_ingress_version=9,inbox_count=1,application_count=5,broker_report_witness=(REPORT_WITNESS,),current_nonterminal_order_anchors=(),continuity_epoch_witness=(CONTINUITY_WITNESS,),unresolved_broker_action_ids=unresolved)
     return ExecutionRestoreResult(status=ExecutionRestoreStatus.VALID,cut=cut,evidence=("coherent cut",))
 
 
@@ -44,7 +51,14 @@ def run_boundary(*,account=ACCOUNT,run_id="RUN",cut=None,policy=ReconciliationPo
 
 def evidence(**updates):
     restored=updates.get("restore_result",restore())
-    values=dict(restore_result=restored,formal_run_boundary=run_boundary(cut=restored.cut) if restored.cut is not None else None,formal_run_outcome=run_outcome(),result_completeness_evidence=("complete broker and expected position collections",),discovery_complete=True,exact_correlation_integrity=True,continuity_current=True,pending_material_inbox=False,reconstruction_complete=True,reconstruction_conflict=False,mandatory_capabilities_available=True,out_of_horizon_unresolved_action=False)
+    cut=restored.cut
+    boundary=run_boundary(cut=cut) if cut is not None else None
+    discovery=BrokerDiscoveryResult(discovery_run_id="DISC-1",account=ACCOUNT,required_scope="ORDERS",horizon_start=NOW,horizon_end=NOW,refreshed_at=NOW,completeness=DiscoveryCompleteness.COMPLETE,exact_matches=(),cardinality=ExactMatchCardinality.ZERO,integrity=BrokerDiscoveryIntegrity.CONSISTENT,evidence=("complete scope",)) if cut is not None else None
+    continuity=ExecutionContinuityEpoch(epoch_id="EPOCH-1",broker=ACCOUNT.broker,account_ref=ACCOUNT.account_ref,generation=4,trusted_current=True,historical_degradation=False,anchored_at=NOW,evidence=("current",)) if cut is not None else None
+    completeness=ReconciliationCompletenessEvidence(evidence_id="COMPLETE-1",account=ACCOUNT,run_id="RUN",recovery_cut_fingerprint=cut.witness_fingerprint,expected_complete=True,actual_complete=True) if cut is not None else None
+    reconstruction=ReconstructionReadinessEvidence(evidence_id="RECON-1",account=ACCOUNT,recovery_cut_fingerprint=cut.witness_fingerprint,discovery_run_id="DISC-1",complete=True,conflict=False) if cut is not None else None
+    capability=CapabilityReadinessEvidence(evidence_id="CAP-1",account=ACCOUNT,recovery_cut_fingerprint=cut.witness_fingerprint,source_refs=("BROKER-CAPABILITY-MATRIX",),available=True) if cut is not None else None
+    values=dict(restore_result=restored,formal_run_boundary=boundary,formal_run_outcome=run_outcome(),discovery_result=discovery,continuity_epoch=continuity,result_completeness=completeness,reconstruction_evidence=reconstruction,capability_evidence=capability,discovery_complete=True,exact_correlation_integrity=True,continuity_current=True,pending_material_inbox=False,reconstruction_complete=True,reconstruction_conflict=False,mandatory_capabilities_available=True,out_of_horizon_unresolved_action=False)
     values.update(updates); return AccountReadinessEvidence(**values)
 
 
@@ -87,7 +101,23 @@ def test_a03_historical_match_from_stale_cut_cannot_ready() -> None:
 
 def test_a04_empty_results_require_positive_completeness_evidence() -> None:
     empty=run_outcome().model_copy(update={"results":()})
-    assert evaluate_account_readiness(account=ACCOUNT,evidence=evidence(formal_run_outcome=empty,result_completeness_evidence=())).state is not RecoveryReadinessState.READY
+    assert evaluate_account_readiness(account=ACCOUNT,evidence=evidence(formal_run_outcome=empty,result_completeness=None)).state is not RecoveryReadinessState.READY
+
+
+def test_rf02_positive_booleans_or_arbitrary_strings_cannot_authorize_ready() -> None:
+    item=evidence(discovery_result=None,continuity_epoch=None,result_completeness=None,reconstruction_evidence=None,capability_evidence=None)
+    assert evaluate_account_readiness(account=ACCOUNT,evidence=item).state is not RecoveryReadinessState.READY
+
+
+def test_rf02_typed_evidence_must_bind_account_run_generation_and_cut() -> None:
+    base=evidence()
+    other=BrokerAccount(broker="SINOPAC",account_ref="B")
+    wrong_discovery=base.discovery_result.model_copy(update={"account":other})
+    wrong_continuity=base.continuity_epoch.model_copy(update={"generation":5})
+    wrong_reconstruction=base.reconstruction_evidence.model_copy(update={"recovery_cut_fingerprint":"OTHER"})
+    wrong_capability=base.capability_evidence.model_copy(update={"account":other})
+    for updates in ({"discovery_result":wrong_discovery},{"continuity_epoch":wrong_continuity},{"reconstruction_evidence":wrong_reconstruction},{"capability_evidence":wrong_capability}):
+        assert evaluate_account_readiness(account=ACCOUNT,evidence=evidence(**updates)).state is not RecoveryReadinessState.READY
 
 
 @pytest.mark.parametrize("updates",[
@@ -125,7 +155,9 @@ def test_invalid_cut_halts_without_position_or_strategy_shortcut() -> None:
 
 def test_final_local_revalidation_accepts_exact_witness_without_mutation() -> None:
     evaluation=evaluate_account_readiness(account=ACCOUNT,evidence=evidence())
-    connection=Connection([(3,),(4,9,True),[REPORT_ROW],[],[]])
+    boundary=evidence().formal_run_boundary
+    outcome=evidence().formal_run_outcome
+    connection=Connection([(3,),(4,9,True),[REPORT_ROW],[],[],[],[CONTINUITY_ROW],[],[],[],(boundary.model_dump(mode="json"),outcome.model_dump(mode="json"))])
     PostgresAccountReadinessGate(connection).revalidate(evaluation)
     assert connection.commits == connection.rollbacks == 0
     assert any("FOR SHARE" in sql for sql,_ in connection.statements)
@@ -134,11 +166,12 @@ def test_final_local_revalidation_accepts_exact_witness_without_mutation() -> No
 def test_changed_revision_or_non_revision_witness_requires_reevaluation() -> None:
     evaluation=evaluate_account_readiness(account=ACCOUNT,evidence=evidence())
     for rows in (
-        [(4,),(4,9,True),[REPORT_ROW],[],[]],
-        [(3,),(4,10,True),[REPORT_ROW],[],[]],
-        [(3,),(4,9,True),[("IN-2",4,"PF",True,1,"APPLIED",5)],[],[]],
-        [(3,),(4,9,True),[REPORT_ROW],[("ORDER-1",2,"SUBMITTED",{},0,1)],[]],
-        [(3,),(4,9,True),[REPORT_ROW],[],[("ATTEMPT",)]],
+        [(4,),(4,9,True),[REPORT_ROW],[],[],[],[CONTINUITY_ROW],[],[],[],None],
+        [(3,),(4,10,True),[REPORT_ROW],[],[],[],[CONTINUITY_ROW],[],[],[],None],
+        [(3,),(4,9,True),[("IN-2",4,"PF",True,1,"APPLIED",5)],[],[],[],[CONTINUITY_ROW],[],[],[],None],
+        [(3,),(4,9,True),[REPORT_ROW],[("ORDER-1",2,"SUBMITTED",{})],[],[],[CONTINUITY_ROW],[],[],[],None],
+        [(3,),(4,9,True),[REPORT_ROW],[],[],[],[("EPOCH-2","SINOPAC","A",4,True,False,NOW,{})],[],[],[],None],
+        [(3,),(4,9,True),[REPORT_ROW],[],[],[],[CONTINUITY_ROW],[],[],[("ATTEMPT",)],None],
     ):
         with pytest.raises(StaleAccountReadinessError,match="reevaluation"):
             PostgresAccountReadinessGate(Connection(rows)).revalidate(evaluation)

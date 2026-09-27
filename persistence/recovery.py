@@ -13,6 +13,7 @@ from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
+    field_validator,
     model_validator,
 )
 
@@ -31,6 +32,8 @@ from persistence.reconciliation import (
     ReconciliationRunTechnicalOutcome,
     blocking_case_state,
 )
+from persistence.broker_recovery import ExecutionContinuityEpoch
+from persistence.contracts import normalize_stable_id
 from persistence.strategy_state import (
     LegacyMarketObservationReferenceError,
     StrategyInstanceRepository,
@@ -48,6 +51,7 @@ from trading.account import (
     BrokerAccount,
     BrokerPositionProvider,
 )
+from trading.broker_recovery import BrokerDiscoveryIntegrity, BrokerDiscoveryResult, DiscoveryCompleteness
 from trading.reconciliation import (
     ExpectedPositionLoader,
     ReconciliationCaseState,
@@ -91,6 +95,9 @@ class RecoveryCut(BaseModel):
     broker_report_witness: tuple[str, ...] = ()
     current_nonterminal_order_anchors: tuple[str, ...] = ()
     fill_event_validation_anchors: tuple[str, ...] = ()
+    continuity_epoch_witness: tuple[str, ...] = ()
+    sequence_gap_witness: tuple[str, ...] = ()
+    reconciliation_currentness_witness: tuple[str, ...] = ()
     unresolved_broker_action_ids: tuple[str, ...] = ()
 
     @model_validator(mode="after")
@@ -111,6 +118,9 @@ class RecoveryCut(BaseModel):
             "broker_report_witness",
             "current_nonterminal_order_anchors",
             "fill_event_validation_anchors",
+            "continuity_epoch_witness",
+            "sequence_gap_witness",
+            "reconciliation_currentness_witness",
             "unresolved_broker_action_ids",
         ):
             values=getattr(self,name)
@@ -145,6 +155,64 @@ class ExecutionRestoreResult(BaseModel):
         return self
 
 
+class ReconciliationCompletenessEvidence(BaseModel):
+    """空集合 MATCH 的 typed completeness 證據；綁定 exact run、account 與 RecoveryCut。"""
+    model_config=ConfigDict(extra="forbid",frozen=True)
+    evidence_id: str
+    account: BrokerAccount
+    run_id: str
+    recovery_cut_fingerprint: str
+    expected_complete: bool
+    actual_complete: bool
+
+    @field_validator("evidence_id","run_id","recovery_cut_fingerprint",mode="before")
+    @classmethod
+    def _ids(cls,value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value,str) else value
+
+
+class ReconstructionReadinessEvidence(BaseModel):
+    """C10 reconstruction 結果的 immutable provenance；不以 convenience boolean 取代 authority。"""
+    model_config=ConfigDict(extra="forbid",frozen=True)
+    evidence_id: str
+    account: BrokerAccount
+    recovery_cut_fingerprint: str
+    discovery_run_id: str
+    complete: bool
+    conflict: bool
+
+    @field_validator("evidence_id","recovery_cut_fingerprint","discovery_run_id",mode="before")
+    @classmethod
+    def _ids(cls,value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value,str) else value
+
+
+class CapabilityReadinessEvidence(BaseModel):
+    """READY 所需 broker capability 的正向 provenance refs；不授權 LIVE 或 broker action。"""
+    model_config=ConfigDict(extra="forbid",frozen=True)
+    evidence_id: str
+    account: BrokerAccount
+    recovery_cut_fingerprint: str
+    source_refs: tuple[str,...]
+    available: bool
+
+    @field_validator("evidence_id","recovery_cut_fingerprint",mode="before")
+    @classmethod
+    def _ids(cls,value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value,str) else value
+
+    @field_validator("source_refs",mode="before")
+    @classmethod
+    def _refs(cls,value: object) -> object:
+        return tuple(normalize_stable_id(item) for item in value) if isinstance(value,(tuple,list)) else value
+
+    @model_validator(mode="after")
+    def _positive_source(self) -> "CapabilityReadinessEvidence":
+        if self.available and not self.source_refs:
+            raise ValueError("available capability evidence requires source refs")
+        return self
+
+
 class AccountReadinessEvidence(BaseModel):
     """C15 純 local readiness inputs；每個 mandatory predicate 必須有正向證據，UNKNOWN 不得升級 READY。"""
 
@@ -153,8 +221,12 @@ class AccountReadinessEvidence(BaseModel):
     restore_result: ExecutionRestoreResult
     formal_run_boundary: ReconciliationRunBoundary | None
     formal_run_outcome: ReconciliationRunOutcome | None
+    discovery_result: BrokerDiscoveryResult | None = None
+    continuity_epoch: ExecutionContinuityEpoch | None = None
+    result_completeness: ReconciliationCompletenessEvidence | None = None
+    reconstruction_evidence: ReconstructionReadinessEvidence | None = None
+    capability_evidence: CapabilityReadinessEvidence | None = None
     required_policy: ReconciliationPolicy = ReconciliationPolicy.STRICT_HALT
-    result_completeness_evidence: tuple[str, ...] = ()
     discovery_complete: bool
     exact_correlation_integrity: bool
     continuity_current: bool
@@ -163,15 +235,6 @@ class AccountReadinessEvidence(BaseModel):
     reconstruction_conflict: bool
     mandatory_capabilities_available: bool
     out_of_horizon_unresolved_action: bool = False
-
-    @model_validator(mode="after")
-    def _normalize_completeness_evidence(self) -> "AccountReadinessEvidence":
-        normalized=tuple(value.strip() for value in self.result_completeness_evidence)
-        if any(not value for value in normalized):
-            raise ValueError("result completeness evidence must be nonblank")
-        object.__setattr__(self,"result_completeness_evidence",normalized)
-        return self
-
 
 class AccountReadinessEvaluation(BaseModel):
     """BrokerAccount READY/REVIEW/HALT evaluation；保存 exact cut witness 供 final local revalidation。"""
@@ -190,6 +253,11 @@ class AccountReadinessEvaluation(BaseModel):
     broker_report_witness: tuple[str,...]
     current_nonterminal_order_anchors: tuple[str,...]
     fill_event_validation_anchors: tuple[str,...]
+    continuity_epoch_witness: tuple[str,...]
+    sequence_gap_witness: tuple[str,...]
+    reconciliation_currentness_witness: tuple[str,...]
+    formal_run_id: str | None = None
+    formal_run_witness: tuple[str,...] = ()
     unresolved_broker_action_ids: tuple[str,...]
 
 
@@ -198,16 +266,17 @@ def evaluate_account_readiness(*,account: BrokerAccount,evidence: AccountReadine
 
     restore=evidence.restore_result
     if restore.status is not ExecutionRestoreStatus.VALID or restore.cut is None:
-        return AccountReadinessEvaluation(state=RecoveryReadinessState.HALT,reasons=("coherent recovery cut is not valid",),account=account,account_revision=0,inbox_count=0,application_count=0,recovery_cut_fingerprint="INVALID",broker_report_witness=(),current_nonterminal_order_anchors=(),fill_event_validation_anchors=(),unresolved_broker_action_ids=())
+        return AccountReadinessEvaluation(state=RecoveryReadinessState.HALT,reasons=("coherent recovery cut is not valid",),account=account,account_revision=0,inbox_count=0,application_count=0,recovery_cut_fingerprint="INVALID",broker_report_witness=(),current_nonterminal_order_anchors=(),fill_event_validation_anchors=(),continuity_epoch_witness=(),sequence_gap_witness=(),reconciliation_currentness_witness=(),unresolved_broker_action_ids=())
     cut=restore.cut
-    common=dict(account=account,account_revision=cut.head.current_revision,recovery_generation=cut.recovery_generation,recovery_ingress_version=cut.recovery_ingress_version,inbox_count=cut.inbox_count,application_count=cut.application_count,recovery_cut_fingerprint=cut.witness_fingerprint,broker_report_witness=cut.broker_report_witness,current_nonterminal_order_anchors=cut.current_nonterminal_order_anchors,fill_event_validation_anchors=cut.fill_event_validation_anchors,unresolved_broker_action_ids=cut.unresolved_broker_action_ids)
+    boundary=evidence.formal_run_boundary
+    outcome=evidence.formal_run_outcome
+    formal_witness=tuple(json.dumps(item.model_dump(mode="json"),ensure_ascii=False,sort_keys=True,separators=(",",":")) for item in (boundary,outcome) if item is not None)
+    common=dict(account=account,account_revision=cut.head.current_revision,recovery_generation=cut.recovery_generation,recovery_ingress_version=cut.recovery_ingress_version,inbox_count=cut.inbox_count,application_count=cut.application_count,recovery_cut_fingerprint=cut.witness_fingerprint,broker_report_witness=cut.broker_report_witness,current_nonterminal_order_anchors=cut.current_nonterminal_order_anchors,fill_event_validation_anchors=cut.fill_event_validation_anchors,continuity_epoch_witness=cut.continuity_epoch_witness,sequence_gap_witness=cut.sequence_gap_witness,reconciliation_currentness_witness=cut.reconciliation_currentness_witness,formal_run_id=None if boundary is None else boundary.run_id,formal_run_witness=formal_witness,unresolved_broker_action_ids=cut.unresolved_broker_action_ids)
     halt=[]
     if cut.account != account: halt.append("requested BrokerAccount does not match recovery cut")
     if not evidence.mandatory_capabilities_available: halt.append("mandatory capability unavailable")
     if not evidence.exact_correlation_integrity: halt.append("broker correlation integrity conflict")
     if evidence.reconstruction_conflict: halt.append("canonical reconstruction integrity conflict")
-    outcome=evidence.formal_run_outcome
-    boundary=evidence.formal_run_boundary
     if boundary is None: halt.append("eligible formal reconciliation run boundary is missing")
     elif (
         boundary.account != account
@@ -228,14 +297,29 @@ def evaluate_account_readiness(*,account: BrokerAccount,evidence: AccountReadine
     if halt:
         return AccountReadinessEvaluation(state=RecoveryReadinessState.HALT,reasons=tuple(halt),**common)
     review=[]
+    discovery=evidence.discovery_result
+    if (discovery is None or boundary is None or discovery.account != account or discovery.discovery_run_id != boundary.discovery_run_id or discovery.completeness is not DiscoveryCompleteness.COMPLETE or discovery.integrity is not BrokerDiscoveryIntegrity.CONSISTENT):
+        review.append("typed broker discovery evidence is incomplete or mismatched")
+    continuity=evidence.continuity_epoch
+    if (continuity is None or continuity.broker != account.broker or continuity.account_ref != account.account_ref or continuity.generation != cut.recovery_generation or not continuity.trusted_current or not any(continuity.epoch_id in anchor for anchor in cut.continuity_epoch_witness)):
+        review.append("typed execution continuity evidence is not current")
     if not evidence.discovery_complete: review.append("broker discovery is incomplete")
     if not evidence.continuity_current: review.append("execution continuity is not current")
     if evidence.pending_material_inbox: review.append("material broker inbox evidence is pending")
+    if any(any(status in anchor for status in ('"DEFERRED"','"CONFLICT"')) for anchor in cut.broker_report_witness):
+        review.append("current broker report disposition is unresolved")
     if not evidence.reconstruction_complete: review.append("canonical reconstruction is incomplete")
     if cut.unresolved_broker_action_ids: review.append("broker action disposition is unresolved")
     if evidence.out_of_horizon_unresolved_action: review.append("broker action requires external disposition evidence")
-    if outcome is not None and not outcome.results and not evidence.result_completeness_evidence:
-        review.append("empty reconciliation result lacks positive completeness evidence")
+    completeness=evidence.result_completeness
+    if outcome is not None and not outcome.results and (completeness is None or completeness.account != account or completeness.run_id != outcome.run_id or completeness.recovery_cut_fingerprint != cut.witness_fingerprint or not completeness.expected_complete or not completeness.actual_complete):
+        review.append("empty reconciliation result lacks bound completeness evidence")
+    reconstruction=evidence.reconstruction_evidence
+    if (reconstruction is None or reconstruction.account != account or reconstruction.recovery_cut_fingerprint != cut.witness_fingerprint or boundary is None or reconstruction.discovery_run_id != boundary.discovery_run_id or not reconstruction.complete or reconstruction.conflict):
+        review.append("reconstruction evidence is incomplete or mismatched")
+    capability=evidence.capability_evidence
+    if (capability is None or capability.account != account or capability.recovery_cut_fingerprint != cut.witness_fingerprint or not capability.available or not capability.source_refs):
+        review.append("mandatory capability evidence is unavailable or mismatched")
     if outcome is not None and (
         outcome.input_qualification is not ReconciliationInputQualification.QUALIFIED
         or outcome.technical_outcome is not ReconciliationRunTechnicalOutcome.COMPLETED
