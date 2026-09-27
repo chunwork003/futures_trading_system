@@ -4,8 +4,8 @@
 
 **CURRENT GOVERNANCE PROJECTION — CANONICAL**
 
-This is the single current authority projection.
-If any cached handoff, AGENTS history, CURRENT_WORK, ACTIVE or older closure conflicts: this section wins and authority must be re-resolved.
+This is the single current authority projection。
+If any cached handoff、AGENTS history、CURRENT_WORK、ACTIVE or older closure conflicts：this section wins and authority must be re-resolved。
 
 ### CURRENT_AUTHORITY_SNAPSHOT
 
@@ -26,33 +26,36 @@ latest_accepted_wave = W3
 latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
 
 current_wave = W4
-current_runtime_candidate = 060dfdc2ac4539fa31b95c26c0a0bd0b3dcb7021
-reviewer_state = HOLD_RF01_REQUIRED
+current_runtime_candidate = efd74325c4a4d31c63e8e4790689c00388eadaf3
+reviewer_state = HOLD_RF02_REQUIRED
 w4_weight = 18_NOT_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
-C12 = RF01_REQUIRED
+C12 = RF02_REQUIRED
 C14 = PASS_FROZEN_READ_ONLY
-C15 = RF01_REQUIRED
+C15 = RF02_REQUIRED
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4_RF01_C12_C15_ONLY
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4_RF02_C12_C15_ONLY
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 ```
 
-Pointers:
-- W3 closure: `docs/work/GAP08_WAVE3_CLOSURE.md`
-- W4 execution package: `docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`
-- W4 original auth: `docs/work/GAP08_WAVE4_AUTHORIZATION.md`
-- W4 RF01: `docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_01.md`
-- workflow: `docs/CODEX_EXECUTION_WORKFLOW.md`
+Pointers：
 
-Current action:
-execute one bounded C12+C15 RF01 correction in the exact six-file scope, then STOP for reviewer.
+- W3 closure：`docs/work/GAP08_WAVE3_CLOSURE.md`
+- W4 execution package：`docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`
+- W4 original auth：`docs/work/GAP08_WAVE4_AUTHORIZATION.md`
+- W4 RF01：`docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_01.md`
+- W4 RF02：`docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_02.md`
+- workflow：`docs/CODEX_EXECUTION_WORKFLOW.md`
 
-Do not close W4, credit weight 18, begin P7, execute migration, access actual PostgreSQL/V07 or perform broker I/O.
+Current action：
+
+execute one final bounded C12+C15 RF02 correction in the exact six-file scope，then STOP for independent reviewer。
+
+Do not close W4、credit weight 18、begin P7、execute migration、access actual PostgreSQL/V07 or perform broker I/O。
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS
