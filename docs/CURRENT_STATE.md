@@ -208,7 +208,7 @@ Remaining：
 
 53。
 
-P5 / W3 candidate：
+P5 / W3：
 
 `C07 -> C09 -> C10`
 
@@ -216,51 +216,49 @@ W3 weight：
 
 15。
 
-W3 execution coherence：
+W3 final Runtime HEAD：
 
-VERIFIED。
+`8085697e7211b4cd43df8e4574c3eef25cba604a`
+
+W3 status：
+
+`COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED`
+
+Closure：
+
+`docs/work/GAP08_WAVE3_CLOSURE.md`
 
 W3 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF02_C09_ONLY。
+`CONSUMED / CLOSED`
 
-W3 execution package：
+Accepted correction-core progress：
 
-`docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
+75 / 113。
 
-W3 source-modification authorization：
+Remaining：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF02_C09_ONLY。
+38。
 
-Original authorization：
+Next frozen package：
 
-`docs/work/GAP08_WAVE3_AUTHORIZATION.md`
+`P6 / provisional W4：C13 -> C12 -> C14 -> C15`
 
-RF01 authorization：
+P6 weight：
 
-`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md`
+18。
 
-RF02 authorization：
+P6 execution coherence：
 
-`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_02.md`
+`NOT_YET_VERIFIED`
 
-RF01 baseline：
+P6 Runtime Source Modification Authorization：
 
-`45b9e55e5e5889dfdf5626341d2afa721ff0c0ca`
-
-Reviewer status：
-
-HOLD / RF02_REQUIRED。
-
-C07：PASS / READ-ONLY。
-
-C09：RF02 REQUIRED。
-
-C10：RF01 WIP FROZEN / NO ADDITIONAL SEMANTIC CHANGE。
+`NOT_AUTHORIZED`
 
 Next actual project action：
 
-CODEX W3 RF02 C09-only correction，preserving existing seven-file RF01 WIP。
+materialize exact P6 / provisional W4 execution package + coherence only；STOP before source-modification authorization。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 

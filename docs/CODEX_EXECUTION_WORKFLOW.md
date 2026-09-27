@@ -673,6 +673,56 @@ Wave 結束至少回報：
 
 ---
 
+## 22.1 Feedback-to-Optimization Loop
+
+Execution / reviewer feedback不得只記錄。
+
+只要 feedback 揭露可重複的成本、錯誤型態或 context 浪費，checkpoint 必須判斷是否能轉成至少一項 system improvement：
+
+- workflow rule。
+- reusable template。
+- preflight / scope / hash guard。
+- test gate。
+- retry classification。
+- context compression rule。
+- reviewer read strategy。
+- authorization delta pattern。
+
+預設效率策略：
+
+    delta-first
+    -> reference-first
+    -> PASS/frozen scope guard
+    -> changed-symbol / high-risk-function review
+    -> bounded tests
+    -> evidence-only report
+
+已經由 immutable repository authority 固定的 contract：
+
+優先引用 pointer / commit / section，不重複複製全文。
+
+已 Reviewer PASS 且未受新 diff 影響的 surface：
+
+預設 freeze；只做 hash、scope、dependency 或 regression guard。
+
+Reviewer 深讀：
+
+先以 commit manifest、scope、tests、hash evidence 過濾，再只讀高風險 changed functions；不得把 full-file/full-doc reread 當預設安全策略。
+
+Tooling failure：
+
+優先修 tooling root cause，不把 shell/template/path/line-ending 類問題升級成 semantic correction。
+
+每次 optimization 必須保持：
+
+- architecture 不變。
+- authority 不變。
+- safety / fail-closed 不變。
+- required regression 不變。
+- auditability 不降低。
+
+效率提升的目標是減少重複 context / tool work，不是減少必要 correctness evidence。
+
 ## 23. Single-Agent Default
 
 預設：

@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W3 RF01 stopped without commit/push after final review found one additional C09 semantic correction。Exact seven-file RF01 WIP remains local and unstaged。RF02 authorizes C09-only continuation while C10 WIP is byte-frozen。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：W3 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED at `8085697e7211b4cd43df8e4574c3eef25cba604a`。Accepted correction-core progress = 75 / 113，remaining 38。Next is P6 / provisional W4 execution-package + coherence planning only；source modification remains NOT_AUTHORIZED。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：WAVE_3_REVIEWER_CORRECTION_RF02_C09_ONLY
+Current activity：P6_W4_EXECUTION_PACKAGE_COHERENCE_PLANNING
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -192,43 +192,50 @@ W3 weight：
 
 15。
 
-W3 Execution Coherence：
+W3：
 
-VERIFIED。
+COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
 
-W3 Runtime Source Modification Authorization：
+Final Runtime HEAD：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF02_C09_ONLY。
+`8085697e7211b4cd43df8e4574c3eef25cba604a`
 
-Execution package：
+Closure：
 
-`docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
+`docs/work/GAP08_WAVE3_CLOSURE.md`
 
-Original authorization：
+Accepted correction-core progress：
 
-`docs/work/GAP08_WAVE3_AUTHORIZATION.md`
-
-RF01 amendment：
-
-`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md`
-
-RF02 amendment：
-
-`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_02.md`
-
-Reviewer status：HOLD / RF02_REQUIRED。
-
-C07 PASS / READ-ONLY；C09 RF02 only；C10 RF01 WIP byte-frozen。
-
-Next actual project action：
-
-continue exact local seven-file WIP and apply one C09 RF02 semantic correction only。
-
-No migration execution、actual PostgreSQL or broker I/O is authorized。
+75 / 113。
 
 Remaining：
 
-53。
+38。
+
+Next frozen package：
+
+    C13
+        -> C12
+        -> C14
+        -> C15
+
+P6 / provisional W4 weight：
+
+18。
+
+Execution coherence：
+
+NOT_YET_VERIFIED。
+
+Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
+
+Next actual project action：
+
+materialize exact P6 / provisional W4 execution package + coherence only；STOP before source-modification authorization。
+
+No migration execution、actual PostgreSQL or broker I/O is authorized。
 
 Next dependency-coherent candidate：
 

@@ -417,47 +417,57 @@ W3 weight：
 
 15。
 
-W3 execution coherence：
+W3：
 
-VERIFIED。
+COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
 
-W3 source-modification authorization：
+Accepted leaves：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF02_C09_ONLY。
+`C07 -> C09 -> C10`
 
-Execution package：
+Accepted weight：
 
-`docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
+15。
 
-Original authorization：
+Final Runtime HEAD：
 
-`docs/work/GAP08_WAVE3_AUTHORIZATION.md`
+`8085697e7211b4cd43df8e4574c3eef25cba604a`
 
-RF01 amendment：
+Closure：
 
-`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md`
+`docs/work/GAP08_WAVE3_CLOSURE.md`
 
-RF02 amendment：
+Accepted correction-core progress：
 
-`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_02.md`
+75 / 113。
 
-Reviewer status：
+Remaining：
 
-HOLD / RF02_REQUIRED。
+38。
 
-C07：PASS / READ-ONLY。
+Next frozen package：
 
-C09：RF02 only。
+`P6 / provisional W4：C13 -> C12 -> C14 -> C15`
 
-C10：RF01 WIP byte-frozen / no additional semantic change。
+Candidate weight：
+
+18。
+
+Execution coherence：
+
+NOT_YET_VERIFIED。
+
+Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
 
 Next actual work：
 
-continue existing seven-file unstaged WIP；apply one C09 RF02 semantic correction；rerun required gates；commit combined RF01+RF02 runtime only if all PASS。
+materialize exact P6 / provisional W4 execution package + coherence only。
 
 STOP：
 
-after correction push；return to reviewer，do not close W3 or start another Wave。
+before P6 source-modification authorization；do not begin C13 runtime。
 
 ## 4. Recommended Model
 

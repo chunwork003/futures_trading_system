@@ -29,6 +29,21 @@
 
 ## Chronological Log
 
+### 2026-09-27 — GAP-08 Wave-3 Reviewer Closure
+
+- final Runtime HEAD：`8085697e7211b4cd43df8e4574c3eef25cba604a`。
+- leaves：C07 -> C09 -> C10。
+- reviewer：COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
+- accepted weight：15。
+- accepted correction-core：75 / 113；38 remaining。
+- C09 final：durable ingress frontier、inactive same-generation post-handoff capture、ingress-row serialized application sequence、latest-sequence disposition handoff PASS。
+- C10 final：zero-Fill lifecycle、status-only recovery、DealIdentity account/material integrity、terminal sealing、shared AccountAuthorityCommit PASS。
+- final tests：C09 targeted 59；C10 frozen 54；W3 targeted 152；full regression 1202 passed / 4 skipped；diff/scope/hash guards PASS。
+- migration 0007：CREATED / AMENDED BEFORE EXECUTION / NOT_EXECUTED。
+- 0001～0006 unchanged；actual PostgreSQL / V07 / broker I/O / V01～V05 = NO。
+- CODEX 5HR observations：48% -> 23% -> 14%；not a quota。
+- workflow optimization institutionalized in `docs/CODEX_EXECUTION_WORKFLOW.md`：delta-first、reference-first、PASS-freeze、feedback-to-process-change。
+- next：P6 / provisional W4 C13 -> C12 -> C14 -> C15 execution-package/coherence planning only；source modification NOT_AUTHORIZED。
 ### 2026-09-27 — GAP-08 Wave-3 Reviewer Correction RF02 Authorization
 
 - RF01 authorization baseline：`45b9e55e5e5889dfdf5626341d2afa721ff0c0ca`。
