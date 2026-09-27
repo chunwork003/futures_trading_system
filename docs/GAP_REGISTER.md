@@ -674,15 +674,23 @@ Next dependency-coherent frozen package：
 
 C13 -> C12 -> C14 -> C15。
 
-P6 / provisional W4 weight：18。
+P6 / W4 weight：18。
 
-Execution coherence：NOT_YET_VERIFIED。
+Execution package：
 
-Runtime Source Modification Authorization：NOT_AUTHORIZED。
+`docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`
+
+Execution coherence：
+
+VERIFIED。
+
+Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
 
 Next governance action：
 
-materialize exact P6 / provisional W4 execution package + coherence only；STOP before source-modification authorization。
+separate explicit W4 source-modification authorization decision；STOP before C13 runtime。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

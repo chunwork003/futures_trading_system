@@ -447,15 +447,19 @@ Remaining：
 
 Next frozen package：
 
-`P6 / provisional W4：C13 -> C12 -> C14 -> C15`
+`P6 / W4：C13 -> C12 -> C14 -> C15`
 
 Candidate weight：
 
 18。
 
+Execution package：
+
+`docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`
+
 Execution coherence：
 
-NOT_YET_VERIFIED。
+VERIFIED。
 
 Runtime Source Modification Authorization：
 
@@ -463,11 +467,11 @@ NOT_AUTHORIZED。
 
 Next actual work：
 
-materialize exact P6 / provisional W4 execution package + coherence only。
+separate explicit W4 source-modification authorization decision。
 
 STOP：
 
-before P6 source-modification authorization；do not begin C13 runtime。
+before C13 runtime；do not infer source authority from coherence verification。
 
 ## 4. Recommended Model
 

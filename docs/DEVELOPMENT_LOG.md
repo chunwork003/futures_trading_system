@@ -29,6 +29,30 @@
 
 ## Chronological Log
 
+### 2026-09-27 — GAP-08 Wave-4 / P6 Execution Coherence Verification
+
+- parent baseline：W3 closure `4a340eb966ed9930a506a5c1d1a10941f3a18c06`。
+- package：P6 Local Recovery / Reconciliation。
+- leaf order：C13 -> C12 -> C14 -> C15。
+- candidate weight：18 / NOT CREDITED。
+- accepted correction-core remains 75 / 113；38 remaining。
+- execution package：`docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`。
+- execution coherence：VERIFIED。
+- C13 concrete correction：current ReconciliationCase/repository unresolved gate lacks exact BrokerAccount scope。
+- C12 concrete correction：current ExecutionStateLoader has no explicit restore result/coherent RecoveryCut；independent read flow cannot claim one durable cut。
+- C14 concrete implementation：formal durable ReconciliationRun audit is absent。
+- C15 concrete correction：legacy startup path may derive READY from position reconciliation + strategy restore without complete R-04H account readiness proof。
+- proposed existing runtime scope：trading/persistence reconciliation family + `persistence/recovery.py`。
+- proposed new runtime：`persistence/postgres/recovery.py`。
+- proposed migration：`0008_local_recovery_reconciliation.sql`；source only，execution DENY。
+- proposed new tests：C13/C12/C14/C15 dedicated unit tests。
+- W1/W2/W3 accepted authority modules remain READ-ONLY。
+- PostgresUnitOfWork remains READ-ONLY；if coherent snapshot requires changing it，STOP / REAUTHORIZATION。
+- migration 0001～0007 READ-ONLY。
+- actual PostgreSQL / V07 / broker I/O / V01～V05：DENY。
+- efficiency method：reference frozen ADR sections instead of copying full contract；future handoff = shared package pointer + leaf delta。
+- Runtime Source Modification Authorization：NOT_AUTHORIZED。
+- next：separate explicit W4 source-modification authorization decision；STOP before C13 runtime。
 ### 2026-09-27 — GAP-08 Wave-3 Reviewer Closure
 
 - final Runtime HEAD：`8085697e7211b4cd43df8e4574c3eef25cba604a`。

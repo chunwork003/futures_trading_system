@@ -22,7 +22,7 @@ Runtime Authorization：NOT_AUTHORIZED。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current execution action：GAP08-W3 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED at `8085697e7211b4cd43df8e4574c3eef25cba604a`。Accepted correction-core progress = 75 / 113，remaining = 38。Next is P6 / provisional W4 `C13 -> C12 -> C14 -> C15` execution-package/coherence planning only；source modification remains NOT_AUTHORIZED。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：GAP08-W3 is CLOSED。P6 / W4 `C13 -> C12 -> C14 -> C15` execution package/coherence is VERIFIED by `docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`；source modification remains NOT_AUTHORIZED pending a separate explicit decision。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 W2 authorization + Amendment 01 are CONSUMED / CLOSED。Migration 0006 exists and was amended before execution；it remains NOT_EXECUTED。Actual PostgreSQL、V07、migration execution、broker I/O and runtime activation remain NOT_AUTHORIZED。
 
@@ -60,7 +60,7 @@ Original runtime candidate remains NOT ACCEPTED；latest completed correction ru
 
 R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map、Delta-to-Contract、materialized correction leaves、DAG 與 reweight 已記錄於 `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 + C23 + C24 + C25 + GAP08-W1 + GAP08-W2 + GAP08-W3 已完成並 accepted；correction-core progress = 75 / 113，remaining = 38。P6 / provisional W4 C13 -> C12 -> C14 -> C15 尚未完成 execution coherence，且 source modification NOT_AUTHORIZED。Runtime Authorization 仍為 NOT_AUTHORIZED。
+V06 + C01 + C22 + C11 + C23 + C24 + C25 + GAP08-W1 + GAP08-W2 + GAP08-W3 已完成並 accepted；correction-core progress = 75 / 113，remaining = 38。P6 / W4 C13 -> C12 -> C14 -> C15 execution coherence = VERIFIED；source modification = NOT_AUTHORIZED。Runtime Authorization 仍為 NOT_AUTHORIZED。
 
 Primary source of truth 與必讀順序：
 

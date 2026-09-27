@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W3 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED at `8085697e7211b4cd43df8e4574c3eef25cba604a`。Accepted correction-core progress = 75 / 113，remaining 38。Next is P6 / provisional W4 execution-package + coherence planning only；source modification remains NOT_AUTHORIZED。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：W3 is CLOSED。P6 / W4 `C13 -> C12 -> C14 -> C15` execution package/coherence is VERIFIED in `docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`。Source modification remains NOT_AUTHORIZED pending a separate explicit authorization decision。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：P6_W4_EXECUTION_PACKAGE_COHERENCE_PLANNING
+Current activity：P6_W4_AWAIT_SOURCE_MODIFICATION_AUTHORIZATION
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -219,13 +219,17 @@ Next frozen package：
         -> C14
         -> C15
 
-P6 / provisional W4 weight：
+P6 / W4 weight：
 
 18。
 
+Execution package：
+
+`docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`
+
 Execution coherence：
 
-NOT_YET_VERIFIED。
+VERIFIED。
 
 Runtime Source Modification Authorization：
 
@@ -233,7 +237,7 @@ NOT_AUTHORIZED。
 
 Next actual project action：
 
-materialize exact P6 / provisional W4 execution package + coherence only；STOP before source-modification authorization。
+separate explicit W4 source-modification authorization decision；STOP before C13 runtime。
 
 No migration execution、actual PostgreSQL or broker I/O is authorized。
 

@@ -242,23 +242,27 @@ Remaining：
 
 Next frozen package：
 
-`P6 / provisional W4：C13 -> C12 -> C14 -> C15`
+`P6 / W4：C13 -> C12 -> C14 -> C15`
 
 P6 weight：
 
 18。
 
-P6 execution coherence：
+W4 execution package：
 
-`NOT_YET_VERIFIED`
+`docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`
 
-P6 Runtime Source Modification Authorization：
+P6 / W4 execution coherence：
+
+`VERIFIED`
+
+P6 / W4 Runtime Source Modification Authorization：
 
 `NOT_AUTHORIZED`
 
 Next actual project action：
 
-materialize exact P6 / provisional W4 execution package + coherence only；STOP before source-modification authorization。
+separate explicit W4 source-modification authorization decision；STOP before C13 runtime。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
