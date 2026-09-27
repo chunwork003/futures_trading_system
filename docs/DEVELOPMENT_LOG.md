@@ -29,6 +29,26 @@
 
 ## Chronological Log
 
+### 2026-09-27 — GAP-08 Wave-4 Runtime Source Modification Authorization
+
+- planning baseline：`a936a4827b53609bcd15383d62bcc515d26140b6`。
+- package：P6 / W4 C13 -> C12 -> C14 -> C15。
+- execution coherence：VERIFIED。
+- source modification：BOUNDED_AUTHORIZED_FOR_GAP08_W4。
+- exact Wave source/test/migration-source scope is frozen in `docs/work/GAP08_WAVE4_AUTHORIZATION.md`。
+- W1/W2/W3 accepted authority modules remain READ-ONLY。
+- migration 0008 source may be created/amended；execution DENY。
+- migrations 0001～0007 READ-ONLY。
+- actual PostgreSQL / V07 / broker I/O / V01～V05 / production activation：DENY。
+- execution optimization：one Wave authorization replaces per-leaf human reauthorization；leaf-local objective gates preserve correctness。
+- semantic correction optimization：up to 2 scope-internal semantic correction cycles pre-authorized per leaf；third cycle requires STOP / reauthorization。
+- Git：per-leaf commit，no intermediate push，single wave-end push after all gates PASS。
+- context：Wave Shared Context + Leaf Delta Context；no repeated full ADR/governance restatement。
+- stale W3 next-candidate projection in CURRENT_WORK is removed as part of current-authority hygiene。
+- candidate weight remains 18 / NOT CREDITED until reviewer closure。
+- accepted correction-core remains 75 / 113；38 remaining。
+- canonical Runtime Authorization remains NOT_AUTHORIZED。
+- next：materialize CODEX W4 delta handoff from the exact authorization commit。
 ### 2026-09-27 — GAP-08 Wave-4 / P6 Execution Coherence Verification
 
 - parent baseline：W3 closure `4a340eb966ed9930a506a5c1d1a10941f3a18c06`。

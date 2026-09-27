@@ -686,11 +686,15 @@ VERIFIED。
 
 Runtime Source Modification Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_FOR_GAP08_W4。
+
+Authorization：
+
+`docs/work/GAP08_WAVE4_AUTHORIZATION.md`
 
 Next governance action：
 
-separate explicit W4 source-modification authorization decision；STOP before C13 runtime。
+CODEX bounded W4 execution C13 -> C12 -> C14 -> C15；leaf-local gates/commits，wave-end push，then reviewer。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

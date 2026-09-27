@@ -463,15 +463,19 @@ VERIFIED。
 
 Runtime Source Modification Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_FOR_GAP08_W4。
+
+Authorization：
+
+`docs/work/GAP08_WAVE4_AUTHORIZATION.md`
 
 Next actual work：
 
-separate explicit W4 source-modification authorization decision。
+CODEX bounded execution C13 -> C12 -> C14 -> C15；automatic progression only after objective leaf gate PASS。
 
 STOP：
 
-before C13 runtime；do not infer source authority from coherence verification。
+on scope/authority expansion、third semantic correction for a leaf、protected-file need、side-effect expansion or remote divergence；otherwise STOP after wave-end push for reviewer。
 
 ## 4. Recommended Model
 

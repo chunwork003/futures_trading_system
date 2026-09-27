@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W3 is CLOSED。P6 / W4 `C13 -> C12 -> C14 -> C15` execution package/coherence is VERIFIED in `docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`。Source modification remains NOT_AUTHORIZED pending a separate explicit authorization decision。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：W3 is CLOSED。P6 / W4 `C13 -> C12 -> C14 -> C15` execution coherence is VERIFIED and bounded source modification is authorized by `docs/work/GAP08_WAVE4_AUTHORIZATION.md`。Execute the Wave with per-leaf gates/commits and one wave-end push；Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：P6_W4_AWAIT_SOURCE_MODIFICATION_AUTHORIZATION
+Current activity：P6_W4_BOUNDED_RUNTIME_EXECUTION
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -233,23 +233,18 @@ VERIFIED。
 
 Runtime Source Modification Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_FOR_GAP08_W4。
+
+Authorization：
+
+`docs/work/GAP08_WAVE4_AUTHORIZATION.md`
 
 Next actual project action：
 
-separate explicit W4 source-modification authorization decision；STOP before C13 runtime。
+CODEX executes C13 -> C12 -> C14 -> C15 with leaf-local targeted + full regression gates，per-leaf commits，wave-end push only。
 
 No migration execution、actual PostgreSQL or broker I/O is authorized。
 
-Next dependency-coherent candidate：
-
-C07 -> C09 -> C10。
-
-Weight：15。
-
-Execution coherence：NOT YET VERIFIED。
-
-Runtime Source Modification Authorization：NOT_AUTHORIZED。
 
 # Completed Work Package — GAP-BROKER-002
 

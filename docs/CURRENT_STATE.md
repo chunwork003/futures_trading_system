@@ -258,11 +258,19 @@ P6 / W4 execution coherence：
 
 P6 / W4 Runtime Source Modification Authorization：
 
-`NOT_AUTHORIZED`
+`BOUNDED_AUTHORIZED_FOR_GAP08_W4`
+
+Authorization：
+
+`docs/work/GAP08_WAVE4_AUTHORIZATION.md`
+
+Execution baseline：
+
+the authorization commit produced from planning baseline `a936a4827b53609bcd15383d62bcc515d26140b6`。
 
 Next actual project action：
 
-separate explicit W4 source-modification authorization decision；STOP before C13 runtime。
+CODEX bounded W4 execution `C13 -> C12 -> C14 -> C15` with automatic leaf progression only after each leaf gate PASS。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
