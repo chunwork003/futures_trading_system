@@ -10,6 +10,15 @@ from typing import (
 from pydantic import (
     BaseModel,
     ConfigDict,
+    Field,
+    model_validator,
+)
+
+from persistence.account_authority import (
+    AccountAuthorityCommitReceipt,
+    AccountRecoveryCheckpoint,
+    AccountStateHead,
+    validate_authority_closure,
 )
 
 from persistence.reconciliation import (
@@ -51,6 +60,62 @@ class RecoveryReadinessState(
     REVIEW = "REVIEW"
 
 
+class ExecutionRestoreStatus(str, Enum):
+    """C12 local restore outcome；VALID 只代表 coherent local cut，不代表 READY。"""
+
+    VALID = "VALID"
+    BASELINE_NOT_ESTABLISHED = "BASELINE_NOT_ESTABLISHED"
+    RESTORE_FAILURE = "RESTORE_FAILURE"
+
+
+class RecoveryCut(BaseModel):
+    """BrokerAccount-local immutable cut；封裝經濟 revision 與非 revision currentness witness。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    account: BrokerAccount
+    head: AccountStateHead
+    checkpoint: AccountRecoveryCheckpoint
+    receipt: AccountAuthorityCommitReceipt
+    recovery_generation: int | None = Field(default=None, ge=1)
+    recovery_ingress_version: int | None = Field(default=None, ge=0)
+    inbox_count: int = Field(ge=0)
+    application_count: int = Field(ge=0)
+    unresolved_broker_action_ids: tuple[str, ...] = ()
+
+    @model_validator(mode="after")
+    def _closure(self) -> "RecoveryCut":
+        scope=(self.account.broker,self.account.account_ref)
+        if scope != (self.head.broker,self.head.account_ref):
+            raise ValueError("recovery cut account scope mismatch")
+        validate_authority_closure(
+            head=self.head,
+            checkpoint=self.checkpoint,
+            receipt=self.receipt,
+        )
+        if (self.recovery_generation is None) != (self.recovery_ingress_version is None):
+            raise ValueError("recovery control witness must be complete")
+        return self
+
+
+class ExecutionRestoreResult(BaseModel):
+    """ExecutionStateLoader 的明確 immutable 結果；partial diagnostics 不得冒充 VALID。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    status: ExecutionRestoreStatus
+    cut: RecoveryCut | None = None
+    evidence: tuple[str, ...]
+
+    @model_validator(mode="after")
+    def _status_contract(self) -> "ExecutionRestoreResult":
+        if not self.evidence:
+            raise ValueError("restore result requires positive evidence")
+        if (self.status is ExecutionRestoreStatus.VALID) != (self.cut is not None):
+            raise ValueError("only VALID restore result may contain a RecoveryCut")
+        return self
+
+
 class RecoveryResult(
     BaseModel
 ):
@@ -80,7 +145,7 @@ class ExecutionStateLoader(
     def load(
         self,
         account: BrokerAccount,
-    ) -> None:
+    ) -> ExecutionRestoreResult:
         ...
 
 

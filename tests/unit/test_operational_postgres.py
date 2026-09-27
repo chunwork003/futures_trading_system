@@ -375,3 +375,8 @@ def test_local_recovery_migration_scopes_reconciliation_cases_without_backfill()
     assert "reconciliation_case_account_latest_idx" in sql
     assert "UPDATE trading.reconciliation_case_history" not in sql
     assert "COMMENT ON COLUMN trading.reconciliation_case_history.broker" in sql
+
+
+def test_postgres_recovery_loader_establishes_read_only_repeatable_snapshot() -> None:
+    from persistence.postgres.recovery import PostgresExecutionStateLoader
+    assert "REPEATABLE READ READ ONLY" in __import__("inspect").getsource(PostgresExecutionStateLoader.load)
