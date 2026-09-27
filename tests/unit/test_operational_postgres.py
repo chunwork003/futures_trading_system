@@ -365,3 +365,13 @@ def test_postgres_handoff_uses_exact_generation_latest_sequence_not_timestamp() 
     assert "a.generation=i.generation" in sql
     assert "newer.application_sequence>a.application_sequence" in sql
     assert "recorded_at>" not in sql
+
+
+def test_local_recovery_migration_scopes_reconciliation_cases_without_backfill() -> None:
+    sql=Path("persistence/postgres/migrations/0008_local_recovery_reconciliation.sql").read_text(encoding="utf-8")
+    assert "ADD COLUMN broker TEXT" in sql
+    assert "ADD COLUMN account_ref TEXT" in sql
+    assert "enforce_reconciliation_case_scope" in sql
+    assert "reconciliation_case_account_latest_idx" in sql
+    assert "UPDATE trading.reconciliation_case_history" not in sql
+    assert "COMMENT ON COLUMN trading.reconciliation_case_history.broker" in sql

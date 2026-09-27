@@ -3,10 +3,11 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Protocol, runtime_checkable
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from persistence.contracts import normalize_aware_utc, normalize_stable_id
 from trading.reconciliation import ReconciliationCase, ReconciliationCaseState
+from trading.account import BrokerAccount
 
 
 class ReconciliationCaseVersion(BaseModel):
@@ -29,12 +30,18 @@ class ReconciliationCaseVersion(BaseModel):
     @classmethod
     def _utc(cls, value: datetime) -> datetime: return normalize_aware_utc(value)
 
+    @model_validator(mode="after")
+    def _identity_matches_case(self) -> "ReconciliationCaseVersion":
+        if self.case_id != self.reconciliation_case.case_id:
+            raise ValueError("case_id must match reconciliation_case.case_id")
+        return self
+
 
 @runtime_checkable
 class ReconciliationCaseRepository(Protocol):
     def append(self, version: ReconciliationCaseVersion) -> None: ...
     def latest(self, case_id: str) -> ReconciliationCaseVersion | None: ...
-    def unresolved(self) -> tuple[ReconciliationCaseVersion, ...]: ...
+    def unresolved(self, account: BrokerAccount) -> tuple[ReconciliationCaseVersion, ...]: ...
 
 
 def blocking_case_state(versions: tuple[ReconciliationCaseVersion, ...]) -> ReconciliationCaseState | None:

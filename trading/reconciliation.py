@@ -97,11 +97,12 @@ class ReconciliationCaseError(ValueError):
 
 
 class ReconciliationCase(BaseModel):
-    """不可變的 mismatch case；不含 persistence、broker action 或 hidden time。"""
+    """不可變且只屬於一個 BrokerAccount 的 mismatch case；不是經濟狀態 authority。"""
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     case_id: str
+    account: BrokerAccount
     result: ReconciliationResult
     policy: ReconciliationPolicy
     state: ReconciliationCaseState
@@ -144,11 +145,22 @@ def create_reconciliation_case(
     case_id: str,
     result: ReconciliationResult,
     policy: ReconciliationPolicy,
+    account: BrokerAccount | None = None,
 ) -> ReconciliationCase:
-    """依 policy 建立純 mismatch case；MATCH 不產生 case。"""
+    """依 policy 建立 account-scoped mismatch case；legacy pair 只可由唯一 position scope 推導。"""
 
     if result.status == ReconciliationStatus.MATCH:
         raise ReconciliationCaseError("MATCH result cannot create a case")
+    if account is None:
+        position = result.expected or result.actual
+        if position is None:
+            raise ReconciliationCaseError(
+                "account is required when reconciliation result has no position scope"
+            )
+        account = BrokerAccount(
+            broker=position.broker,
+            account_ref=position.account_ref,
+        )
     state = (
         ReconciliationCaseState.HALT
         if policy == ReconciliationPolicy.STRICT_HALT
@@ -156,6 +168,7 @@ def create_reconciliation_case(
     )
     return ReconciliationCase(
         case_id=case_id,
+        account=account,
         result=result,
         policy=policy,
         state=state,
@@ -176,6 +189,7 @@ def resolve_reconciliation_case(
         raise ReconciliationCaseError("resolution_note must not be blank")
     return ReconciliationCase(
         case_id=case.case_id,
+        account=case.account,
         result=case.result,
         policy=case.policy,
         state=ReconciliationCaseState.RESOLVED,

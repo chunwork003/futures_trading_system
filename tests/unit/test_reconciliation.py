@@ -300,6 +300,7 @@ def test_unknown_external_state_uses_same_policy_mapping(
         case_id="CASE-UNKNOWN",
         result=_unknown_result(),
         policy=policy,
+        account=_account(),
     )
 
     assert case.state == state
@@ -349,6 +350,7 @@ def test_invalid_case_resolution_is_explicit() -> None:
 def test_case_state_and_resolution_note_invariants() -> None:
     common = {
         "case_id": "CASE-001",
+        "account": _account(),
         "result": _mismatch_result(),
         "policy": ReconciliationPolicy.MANUAL_REVIEW,
     }
@@ -387,6 +389,7 @@ def test_reconciliation_models_are_immutable_extra_forbid_and_non_corrective() -
     with pytest.raises(ValidationError, match="unexpected"):
         ReconciliationCase(
             case_id="CASE-001",
+            account=_account(),
             result=result,
             policy=ReconciliationPolicy.MANUAL_REVIEW,
             state=ReconciliationCaseState.REVIEW_REQUIRED,

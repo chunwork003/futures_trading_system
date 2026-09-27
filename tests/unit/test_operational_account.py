@@ -6,7 +6,7 @@ from pydantic import ValidationError
 
 from persistence.account import AccountPositionSnapshot, BrokerPositionObservation, project_expected_position
 from persistence.reconciliation import ReconciliationCaseVersion, blocking_case_state
-from trading.account import AccountPosition, AccountSnapshot, BrokerPositionSnapshot, PositionDirection
+from trading.account import AccountPosition, AccountSnapshot, BrokerAccount, BrokerPositionSnapshot, PositionDirection
 from trading.execution import Fill, OrderIntent, PositionEffect, PositionEffectValidationError
 from trading.reconciliation import ReconciliationCaseState, ReconciliationPolicy, create_reconciliation_case, compare_positions, resolve_reconciliation_case
 
@@ -54,7 +54,7 @@ def test_account_snapshot_exact_money_utc_and_observation_required() -> None:
 
 def test_reconciliation_case_history_is_append_only_versioned_and_non_corrective() -> None:
     result=compare_positions(position(),None)
-    case=create_reconciliation_case(case_id="CASE",result=result,policy=ReconciliationPolicy.STRICT_HALT)
+    case=create_reconciliation_case(case_id="CASE",result=result,policy=ReconciliationPolicy.STRICT_HALT,account=BrokerAccount(broker="SINOPAC",account_ref="A"))
     v1=ReconciliationCaseVersion(case_id="CASE",version=1,recorded_at=NOW,reconciliation_case=case)
     resolved=resolve_reconciliation_case(case,resolution_note="reviewed")
     v2=ReconciliationCaseVersion(case_id="CASE",version=2,recorded_at=NOW,reconciliation_case=resolved,actor_ref="OPS")
