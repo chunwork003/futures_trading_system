@@ -26,16 +26,16 @@ latest_accepted_wave = W3
 latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
 
 current_wave = W4
-current_runtime_candidate = efd74325c4a4d31c63e8e4790689c00388eadaf3
-reviewer_state = HOLD_RF02_REQUIRED
+current_runtime_candidate = 8f410ec2c76493c4db2b904be11974c42c09cae0
+reviewer_state = HOLD_RESCOPE_C15_AND_REPLAN_W4
 w4_weight = 18_NOT_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
-C12 = RF02_REQUIRED
+C12 = RF02_CHANGES_RETAINED_NOT_ACCEPTED
 C14 = PASS_FROZEN_READ_ONLY
-C15 = RF02_REQUIRED
+C15 = RESCOPE_REQUIRED
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4_RF02_C12_C15_ONLY
+runtime_source_modification_authorization = NOT_AUTHORIZED
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -49,13 +49,16 @@ Pointers：
 - W4 original auth：`docs/work/GAP08_WAVE4_AUTHORIZATION.md`
 - W4 RF01：`docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_01.md`
 - W4 RF02：`docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_02.md`
+- W4 architect decision / replan boundary：`docs/work/GAP08_WAVE4_ARCHITECT_DECISION_REPLAN.md`
 - workflow：`docs/CODEX_EXECUTION_WORKFLOW.md`
 
 Current action：
 
-execute one final bounded C12+C15 RF02 correction in the exact six-file scope，then STOP for independent reviewer。
+produce and independently review a planning-only W4 replan for continuity authority、trusted evidence resolution、C13 semantics reuse、minimum recovery closure and final-handoff fencing。
 
-Do not close W4、credit weight 18、begin P7、execute migration、access actual PostgreSQL/V07 or perform broker I/O。
+No executor coding is authorized。
+
+Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS
