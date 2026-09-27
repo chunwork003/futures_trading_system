@@ -222,7 +222,7 @@ VERIFIED。
 
 W3 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3。
+BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF01。
 
 W3 execution package：
 
@@ -230,15 +230,33 @@ W3 execution package：
 
 W3 source-modification authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3。
+BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF01。
 
-Authorization：
+Original authorization：
 
 `docs/work/GAP08_WAVE3_AUTHORIZATION.md`
 
+Reviewer correction authorization：
+
+`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md`
+
+First-pass W3 Runtime Candidate：
+
+`b270932dfa04f17528c0dc0ff74aab2b95094ab8`
+
+Reviewer status：
+
+HOLD / RF01_REQUIRED。
+
+C07：PASS / READ-ONLY。
+
+C09：HOLD / RF01_REQUIRED。
+
+C10：HOLD / RF01_REQUIRED。
+
 Next actual project action：
 
-CODEX W3 bounded source execution：C07 -> C09 -> C10 only。
+CODEX W3 reviewer correction RF01 only。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 

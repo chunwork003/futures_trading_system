@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W2 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。P5 / W3 execution coherence is VERIFIED and bounded source modification is AUTHORIZED by `docs/work/GAP08_WAVE3_AUTHORIZATION.md`。Execute C07 -> C09 -> C10 only。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：W3 first-pass runtime candidate `b270932dfa04f17528c0dc0ff74aab2b95094ab8` is under reviewer HOLD。C07 passes；C09/C10 require RF01。Only the exact correction scope in `docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md` is authorized。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：WAVE_3_BOUNDED_SOURCE_EXECUTION
+Current activity：WAVE_3_REVIEWER_CORRECTION_RF01
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -198,19 +198,31 @@ VERIFIED。
 
 W3 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3。
+BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF01。
 
 Execution package：
 
 `docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
 
-Authorization：
+Original authorization：
 
 `docs/work/GAP08_WAVE3_AUTHORIZATION.md`
 
+Reviewer amendment：
+
+`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md`
+
+First-pass candidate：
+
+`b270932dfa04f17528c0dc0ff74aab2b95094ab8`
+
+Reviewer status：HOLD / RF01_REQUIRED。
+
+C07 PASS / READ-ONLY；C09 + C10 RF01 only。
+
 Next actual project action：
 
-CODEX W3 bounded source execution：C07 -> C09 -> C10。
+CODEX W3 reviewer correction RF01 only。
 
 No migration execution、actual PostgreSQL or broker I/O is authorized。
 

@@ -29,6 +29,33 @@
 
 ## Chronological Log
 
+### 2026-09-27 — GAP-08 Wave-3 Reviewer Correction RF01 Authorization
+
+- reviewer input / first-pass W3 Runtime Candidate：`b270932dfa04f17528c0dc0ff74aab2b95094ab8`。
+- first-pass commits：C07 `ff86f8a2452269f0a80810015ac6e9bdf7c3b1af`；C09 `26fa593286b08d0428fa705aaf387e7c1cf1fcd1`；C10 `b270932dfa04f17528c0dc0ff74aab2b95094ab8`。
+- GitHub reviewer compare：authorization baseline -> candidate exactly 3 commits / 11 authorized repo files；`master == b270932...`。
+- C07：REVIEWER PASS / READ-ONLY。
+- C09：HOLD / RF01 REQUIRED。
+- C10：HOLD / RF01 REQUIRED。
+- RF01-A：PostgreSQL inbox capture does not advance/serialize durable `ingress_version` although fake repository does；final handoff race fence therefore not DB-proven。
+- RF01-B：handoff SQL accepts any APPLIED/DUPLICATE/CORROBORATED row and does not prove same-generation authoritative latest disposition；wrong-generation or superseded success can incorrectly unblock。
+- RF01-C：C10 reconstruction maps zero Fill quantity to PARTIALLY_FILLED；status-only test therefore does not prove frozen material-evidence semantics。
+- RF01-D：BrokerDealIdentity is not bound to AccountAuthorityCommit broker/account scope；same-deal local comparison omits full canonical material-content integrity。
+- RF01 exact runtime/migration scope：`trading/broker_recovery.py`、`persistence/broker_recovery.py`、`persistence/postgres/broker_recovery.py`、unexecuted `0007_broker_recovery_evidence.sql`。
+- RF01 writable tests：`test_c09_broker_recovery_fence.py`、`test_c10_broker_reconstruction.py`、`test_operational_postgres.py`。
+- no new files。
+- `trading/execution.py`、execution persistence adapters、C07 files and all other runtime remain READ-ONLY。
+- 0007 may be amended because it remains NOT_EXECUTED；0001～0006 READ-ONLY；no 0008。
+- C09 first-pass semantic correction count = 1；RF01 grants one final cycle。
+- C10 first-pass semantic correction count = 1；RF01 grants one final cycle。
+- first-pass user-reported 5HR quota observation：48%；observational only。
+- W3 reviewer status：HOLD / RF01_REQUIRED。
+- W3 weight 15：NOT CREDITED。
+- correction-core accepted progress remains 60 / 113；53 remaining。
+- Runtime Source Modification Authorization：`BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF01`。
+- canonical Runtime Authorization：NOT_AUTHORIZED。
+- migration execution / actual PostgreSQL / V07 / broker I/O / V01～V05：DENY。
+- next：CODEX W3 reviewer correction RF01 only；STOP after correction push and return to reviewer。
 ### 2026-09-27 — GAP-08 Wave-3 Source-Modification Authorization
 
 - authorization decision baseline：`09fcfa771ddf3991d52974028b3cc465e9f13f5a`。

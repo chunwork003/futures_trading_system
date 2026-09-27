@@ -423,23 +423,39 @@ VERIFIED。
 
 W3 source-modification authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3。
+BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF01。
 
 Execution package：
 
 `docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
 
-Authorization：
+Original authorization：
 
 `docs/work/GAP08_WAVE3_AUTHORIZATION.md`
 
+Reviewer amendment：
+
+`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md`
+
+First-pass candidate：
+
+`b270932dfa04f17528c0dc0ff74aab2b95094ab8`
+
+Reviewer status：
+
+HOLD / RF01_REQUIRED。
+
+C07：PASS / READ-ONLY。
+
+C09 + C10：RF01 only。
+
 Next actual work：
 
-CODEX execute C07 -> C09 -> C10 under exact bounded W3 authorization。
+CODEX W3 reviewer correction RF01。
 
 STOP：
 
-after W3 final verification/push；do not start another Wave or governance closure。
+after RF01 final verification/push；return to reviewer，do not close W3 or start another Wave。
 
 ## 4. Recommended Model
 
