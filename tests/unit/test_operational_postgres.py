@@ -12,7 +12,14 @@ from persistence.broker_action import (
     BrokerActionResolutionKind,
 )
 from persistence.postgres.broker_action import PostgresBrokerActionRepository
-from persistence.broker_recovery import AccountRecoveryControl
+from persistence.broker_recovery import (
+    AccountRecoveryControl,
+    BrokerReportApplication,
+    BrokerReportApplicationStatus,
+    BrokerReportConflictError,
+    BrokerReportInboxEntry,
+    RecoveryFenceConflictError,
+)
 from persistence.postgres.broker_recovery import PostgresBrokerRecoveryRepository
 from trading.account import BrokerAccount
 
@@ -219,6 +226,10 @@ def test_broker_recovery_migration_separates_inbox_control_and_continuity() -> N
     assert "TIMESTAMPTZ" in sql
     assert "JSONB" in sql
     assert "account_state_heads" not in sql
+    assert "recovery_active_at_capture BOOLEAN NOT NULL" in sql
+    assert "application_sequence BIGINT NOT NULL" in sql
+    assert "UNIQUE (ingress_id, generation, application_sequence)" in sql
+    assert "FOREIGN KEY (ingress_id, generation)" in sql
 
 
 def test_broker_recovery_handoff_is_one_conditional_write_without_commit() -> None:
@@ -250,3 +261,107 @@ def test_broker_recovery_handoff_is_one_conditional_write_without_commit() -> No
     assert "NOT EXISTS" in sql
     assert params[1:] == ("SINOPAC", "A", 4, 8, 12)
     assert connection.commits == 0
+
+
+class _QueueConnection(_Connection):
+    def __init__(self, rows):
+        super().__init__(); self.rows=list(rows); self.statements=[]
+    def cursor(self):
+        connection=self
+        class Cursor(_Cursor):
+            def execute(self, sql, params=None):
+                connection.last=(sql,params); connection.statements.append((sql,params))
+            def fetchone(self):
+                return connection.rows.pop(0)
+        return Cursor(self)
+
+
+def _recovery_entry():
+    return BrokerReportInboxEntry(
+        ingress_id="IN-1",broker="SINOPAC",account_ref="A",generation=4,
+        received_at=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc),
+        report_type="ORDER",payload_fingerprint="FP-1",payload_json={"status":"Submitted"},
+    )
+
+
+def test_postgres_new_ingress_locks_control_and_atomically_advances_frontier_once() -> None:
+    connection=_QueueConnection([(4,12,True),("IN-1",),(13,)])
+    repository=PostgresBrokerRecoveryRepository(connection)
+    repository.append_inbox(_recovery_entry())
+    sqls=[sql for sql,_ in connection.statements]
+    assert "FOR UPDATE" in sqls[0]
+    assert "recovery_active_at_capture" in sqls[1]
+    assert "ingress_version=ingress_version+1" in sqls[2]
+    assert "active=TRUE" in sqls[2]
+    assert connection.commits == 0
+
+
+def test_postgres_duplicate_ingress_does_not_advance_frontier() -> None:
+    entry=_recovery_entry()
+    connection=_QueueConnection([(4,12,True),None,(entry.model_dump(mode="json"),)])
+    repository=PostgresBrokerRecoveryRepository(connection)
+    repository.append_inbox(entry)
+    assert not any("ingress_version=ingress_version+1" in sql for sql,_ in connection.statements)
+    assert connection.commits == 0
+
+
+def test_postgres_inactive_control_accepts_only_same_generation_without_frontier_advance() -> None:
+    entry=_recovery_entry()
+    connection=_QueueConnection([(4,12,False),("IN-1",)])
+    repository=PostgresBrokerRecoveryRepository(connection)
+    repository.append_inbox(entry)
+    assert not any("ingress_version=ingress_version+1" in sql for sql,_ in connection.statements)
+    wrong=_QueueConnection([(5,12,False)])
+    with pytest.raises(RecoveryFenceConflictError,match="stale"):
+        PostgresBrokerRecoveryRepository(wrong).append_inbox(entry)
+    assert not any("broker_report_inbox" in sql and "INSERT" in sql for sql,_ in wrong.statements)
+
+
+def test_postgres_application_identity_is_idempotent_and_sequence_is_durable() -> None:
+    application=BrokerReportApplication(
+        application_id="APP-1",ingress_id="IN-1",generation=4,
+        application_sequence=2,status=BrokerReportApplicationStatus.APPLIED,
+        recorded_at=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc),
+        evidence=("exact current disposition",),
+    )
+    connection=_QueueConnection([(4,),None,(1,)])
+    PostgresBrokerRecoveryRepository(connection).append_application(application)
+    assert "broker_report_inbox" in connection.statements[0][0]
+    assert "FOR UPDATE" in connection.statements[0][0]
+    assert "MAX(application_sequence)" in connection.statements[2][0]
+    assert "application_json" in connection.statements[3][0]
+    assert connection.commits == 0
+
+
+def test_postgres_application_duplicate_and_sequence_conflicts_fail_closed() -> None:
+    application=BrokerReportApplication(
+        application_id="APP-1",ingress_id="IN-1",generation=4,
+        application_sequence=1,status=BrokerReportApplicationStatus.APPLIED,
+        recorded_at=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc),
+        evidence=("exact current disposition",),
+    )
+    duplicate=_QueueConnection([(4,),(application.model_dump(mode="json"),)])
+    PostgresBrokerRecoveryRepository(duplicate).append_application(application)
+    assert len(duplicate.statements)==2 and duplicate.commits==0
+
+    gap=_QueueConnection([(4,),None,(1,)])
+    with pytest.raises(BrokerReportConflictError,match="contiguous"):
+        PostgresBrokerRecoveryRepository(gap).append_application(
+            application.model_copy(update={"application_id":"APP-3","application_sequence":3})
+        )
+    assert not any("INSERT INTO trading.broker_report_applications" in sql for sql,_ in gap.statements)
+
+
+def test_postgres_handoff_uses_exact_generation_latest_sequence_not_timestamp() -> None:
+    connection=_ReturningConnection()
+    repository=PostgresBrokerRecoveryRepository(connection)
+    control=AccountRecoveryControl(
+        broker="SINOPAC",account_ref="A",generation=4,recovery_cut_revision=8,
+        ingress_version=12,active=False,
+        recorded_at=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc),
+    )
+    repository.finalize_handoff(control,expected_generation=4,expected_ingress_version=12)
+    sql,_=connection.last
+    assert "a.generation=i.generation" in sql
+    assert "newer.application_sequence>a.application_sequence" in sql
+    assert "recorded_at>" not in sql

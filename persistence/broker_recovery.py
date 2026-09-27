@@ -11,7 +11,12 @@ from persistence.account import AccountPositionSnapshot
 from persistence.account_authority import AccountAuthorityCommit, AccountAuthorityCommitReceipt, AccountAuthorityCommitService, AccountAuthorityParticipant
 from persistence.execution import ExecutionPersistenceService, FillRepository
 from trading.account import BrokerAccount
-from trading.broker_recovery import BrokerDealEvidence, reconstruct_broker_order
+from trading.broker_recovery import (
+    BrokerDealEvidence,
+    BrokerDealSetCompleteness,
+    BrokerLifecycleEvidence,
+    reconstruct_broker_order,
+)
 from trading.execution import Order, OrderEvent, OrderEventProvenance
 
 
@@ -67,11 +72,12 @@ class BrokerReportInboxEntry(BaseModel):
 
 
 class BrokerReportApplication(BaseModel):
-    """Append-only report application history；DEFERRED 保存 post-cut evidence，不直接越過 fence。"""
+    """Append-only application history；repository 以連續 sequence 序列化 current disposition，時間不是 authority。"""
     model_config = ConfigDict(extra="forbid", frozen=True)
     application_id: str
     ingress_id: str
     generation: int = Field(ge=1)
+    application_sequence: int = Field(ge=1)
     status: BrokerReportApplicationStatus
     recorded_at: datetime
     evidence: tuple[str, ...]
@@ -180,7 +186,7 @@ class SequenceGap(BaseModel):
 
 @runtime_checkable
 class BrokerRecoveryRepository(Protocol):
-    """Caller-owned UoW 的 recovery evidence/control port；不得成為 economic account authority。"""
+    """Caller-owned UoW 的 recovery evidence/control port；ingress 與 handoff 共用 durable fence。"""
     def append_inbox(self, entry: BrokerReportInboxEntry) -> BrokerReportIngressStatus: ...
     def append_application(self, application: BrokerReportApplication) -> None: ...
     def append_sequence_gap(self, gap: SequenceGap) -> None: ...
@@ -247,6 +253,8 @@ class BrokerRecoveryExecutionService:
         order: Order,
         expected_version: int,
         evidence: tuple[BrokerDealEvidence, ...],
+        deal_set_completeness: BrokerDealSetCompleteness,
+        lifecycle_evidence: BrokerLifecycleEvidence | None,
         expected_snapshot: AccountPositionSnapshot | None,
         prior_expected_snapshot_id: str,
         additional_participants: Callable[[UnitOfWork], tuple[AccountAuthorityParticipant, ...]] | None = None,
@@ -260,7 +268,13 @@ class BrokerRecoveryExecutionService:
                 evidence=evidence,
                 event_id=event.event_id,
                 correlation_id=event.correlation_id,
+                authority_broker=mutation.broker,
+                authority_account_ref=mutation.account_ref,
+                deal_set_completeness=deal_set_completeness,
+                lifecycle_evidence=lifecycle_evidence,
             )
+            if not plan.material_change:
+                raise PersistenceContractError("recovery evidence produces no material lifecycle or Fill change")
             if event.provenance not in {
                 OrderEventProvenance.BROKER_CALLBACK,
                 OrderEventProvenance.BROKER_DISCOVERY,

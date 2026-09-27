@@ -167,6 +167,40 @@ class BrokerRecoveryIntegrityError(RuntimeError):
     """Broker recovery evidence 不完整、衝突或超出 sealed terminal 時 fail closed。"""
 
 
+class BrokerReconstructionIncompleteError(BrokerRecoveryIntegrityError):
+    """Evidence 尚不足以接受 terminal/lifecycle authority；不得 fabricated progress。"""
+
+
+class BrokerDealSetCompleteness(str, Enum):
+    """Broker deal collection 是否明確聲稱涵蓋完整 required DealSet。"""
+
+    COMPLETE = "COMPLETE"
+    INCOMPLETE = "INCOMPLETE"
+
+
+class BrokerLifecycleEvidence(BaseModel):
+    """Broker-neutral lifecycle evidence；verified 不代表任何具體 broker production 能力。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+    target_status: OrderStatus
+    verified: bool
+    original_order_failure: bool = False
+    evidence: tuple[str, ...]
+
+    @field_validator("evidence", mode="before")
+    @classmethod
+    def _evidence(cls, value: object) -> object:
+        return tuple(normalize_stable_id(v) for v in value) if isinstance(value, (tuple, list)) else value
+
+    @model_validator(mode="after")
+    def _contract(self) -> "BrokerLifecycleEvidence":
+        if not self.evidence:
+            raise ValueError("broker lifecycle evidence is required")
+        if self.original_order_failure and self.target_status is not OrderStatus.REJECTED:
+            raise ValueError("original_order_failure only applies to REJECTED")
+        return self
+
+
 class BrokerDealIdentity(BaseModel):
     """Broker-neutral exact deal identity；禁止以 timestamp/price/quantity heuristic 代替。"""
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -229,6 +263,7 @@ class BrokerReconstructionPlan(BaseModel):
     accepted_fills: tuple[Fill, ...]
     filled_quantity: int
     average_fill_price: Decimal | None
+    material_change: bool
 
 
 def reconstruct_broker_order(
@@ -238,8 +273,26 @@ def reconstruct_broker_order(
     evidence: tuple[BrokerDealEvidence, ...],
     event_id: str,
     correlation_id: str,
+    authority_broker: str,
+    authority_account_ref: str,
+    deal_set_completeness: BrokerDealSetCompleteness,
+    lifecycle_evidence: BrokerLifecycleEvidence | None = None,
 ) -> BrokerReconstructionPlan:
     """從 exact deal evidence 建立 plan；不執行 broker I/O、不寫 authority。"""
+    authority_broker = normalize_stable_id(authority_broker).upper()
+    authority_account_ref = normalize_stable_id(authority_account_ref)
+    for item in evidence:
+        if (
+            item.identity.broker != authority_broker
+            or item.identity.account_ref != authority_account_ref
+        ):
+            raise BrokerRecoveryIntegrityError("broker deal account scope conflicts with authority mutation")
+    evidence_ids = {item.identity.deal_id for item in evidence}
+    local_identified = tuple(fill for fill in local_fills if fill.broker_deal_id is not None)
+    local_ids = {fill.broker_deal_id for fill in local_identified}
+    if deal_set_completeness is BrokerDealSetCompleteness.COMPLETE:
+        if len(local_identified) != len(local_fills) or not local_ids.issubset(evidence_ids):
+            raise BrokerRecoveryIntegrityError("complete broker DealSet is a proper subset of LocalFillSet")
     if order.status in {OrderStatus.FILLED, OrderStatus.CANCELLED, OrderStatus.REJECTED}:
         by_deal = {fill.broker_deal_id: fill for fill in local_fills if fill.broker_deal_id}
         for item in evidence:
@@ -248,6 +301,7 @@ def reconstruct_broker_order(
                 existing is None
                 or existing.quantity != item.quantity
                 or existing.price != item.price
+                or existing.occurred_at != item.occurred_at
             ):
                 raise BrokerRecoveryIntegrityError("terminal order economics are sealed")
         return BrokerReconstructionPlan(
@@ -255,6 +309,7 @@ def reconstruct_broker_order(
             accepted_fills=(),
             filled_quantity=order.filled_quantity,
             average_fill_price=order.average_fill_price,
+            material_change=False,
         )
     by_deal = {fill.broker_deal_id: fill for fill in local_fills if fill.broker_deal_id}
     if len(by_deal) != len([fill for fill in local_fills if fill.broker_deal_id]):
@@ -281,7 +336,12 @@ def reconstruct_broker_order(
             broker_deal_id=deal_id,
         )
         if existing is not None:
-            if existing.quantity != candidate.quantity or existing.price != candidate.price:
+            if (
+                existing.order_id != candidate.order_id
+                or existing.quantity != candidate.quantity
+                or existing.price != candidate.price
+                or existing.occurred_at != candidate.occurred_at
+            ):
                 raise BrokerRecoveryIntegrityError("broker deal conflicts with canonical Fill")
             continue
         if deal_id not in {fill.broker_deal_id for fill in accepted}:
@@ -291,13 +351,50 @@ def reconstruct_broker_order(
     if quantity > order.quantity:
         raise BrokerRecoveryIntegrityError("canonical Fill quantity exceeds order quantity")
     average = None if quantity == 0 else sum(fill.price * fill.quantity for fill in complete) / Decimal(quantity)
-    status = OrderStatus.FILLED if quantity == order.quantity else OrderStatus.PARTIALLY_FILLED
+    if lifecycle_evidence is not None and not lifecycle_evidence.verified:
+        raise BrokerReconstructionIncompleteError("broker lifecycle evidence is not verified")
+    if quantity == order.quantity:
+        if deal_set_completeness is not BrokerDealSetCompleteness.COMPLETE:
+            raise BrokerReconstructionIncompleteError("FILLED requires a complete identifiable broker DealSet")
+        status = OrderStatus.FILLED
+    elif quantity > 0:
+        status = OrderStatus.PARTIALLY_FILLED
+    else:
+        status = order.status
+
+    if lifecycle_evidence is not None:
+        target = lifecycle_evidence.target_status
+        if target is OrderStatus.REJECTED:
+            if not lifecycle_evidence.original_order_failure or quantity != 0:
+                raise BrokerRecoveryIntegrityError("REJECTED requires verified zero-economic original-order failure")
+            if deal_set_completeness is not BrokerDealSetCompleteness.COMPLETE:
+                raise BrokerReconstructionIncompleteError("REJECTED requires complete zero-economic evidence")
+            status = target
+        elif target is OrderStatus.CANCELLED:
+            if quantity >= order.quantity:
+                raise BrokerRecoveryIntegrityError("CANCELLED requires filled quantity below order quantity")
+            if deal_set_completeness is not BrokerDealSetCompleteness.COMPLETE:
+                raise BrokerReconstructionIncompleteError("CANCELLED requires complete economic evidence")
+            status = target
+        elif target is OrderStatus.SUBMITTED:
+            if quantity != 0:
+                raise BrokerRecoveryIntegrityError("SUBMITTED lifecycle evidence conflicts with Fill economics")
+            status = target
+        elif target not in {status, OrderStatus.PENDING}:
+            raise BrokerRecoveryIntegrityError("broker lifecycle evidence conflicts with Fill-derived status")
+
+    material_change = status is not order.status or bool(accepted)
+    if status is OrderStatus.PARTIALLY_FILLED and not (0 < quantity < order.quantity):
+        raise BrokerRecoveryIntegrityError("PARTIALLY_FILLED requires partial canonical Fill economics")
+    if status is OrderStatus.PARTIALLY_FILLED and order.status is OrderStatus.PARTIALLY_FILLED and not accepted:
+        material_change = False
     return BrokerReconstructionPlan(
         status=status,
         accepted_fills=tuple(accepted),
         filled_quantity=quantity,
         average_fill_price=average,
+        material_change=material_change,
     )
 
 
-__all__ = ["BrokerDealEvidence", "BrokerDealIdentity", "BrokerDiscoveryError", "BrokerDiscoveryIntegrity", "BrokerDiscoveryRequest", "BrokerDiscoveryResult", "BrokerDiscoveryScopeError", "BrokerOrderDiscoveryProvider", "BrokerOrderObservation", "BrokerReconstructionPlan", "BrokerRecoveryIntegrityError", "DiscoveryCompleteness", "ExactMatchCardinality", "classify_broker_discovery", "reconstruct_broker_order"]
+__all__ = ["BrokerDealEvidence", "BrokerDealIdentity", "BrokerDealSetCompleteness", "BrokerDiscoveryError", "BrokerDiscoveryIntegrity", "BrokerDiscoveryRequest", "BrokerDiscoveryResult", "BrokerDiscoveryScopeError", "BrokerLifecycleEvidence", "BrokerOrderDiscoveryProvider", "BrokerOrderObservation", "BrokerReconstructionIncompleteError", "BrokerReconstructionPlan", "BrokerRecoveryIntegrityError", "DiscoveryCompleteness", "ExactMatchCardinality", "classify_broker_discovery", "reconstruct_broker_order"]

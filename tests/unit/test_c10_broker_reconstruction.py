@@ -10,8 +10,11 @@ from trading.account import PositionDirection
 from trading.broker_recovery import (
     BrokerDealEvidence,
     BrokerDealIdentity,
+    BrokerDealSetCompleteness,
+    BrokerLifecycleEvidence,
+    BrokerReconstructionIncompleteError,
     BrokerRecoveryIntegrityError,
-    reconstruct_broker_order,
+    reconstruct_broker_order as _reconstruct_broker_order,
 )
 from trading.execution import (
     Fill,
@@ -25,6 +28,23 @@ from trading.execution import (
 )
 
 NOW = datetime(2026, 9, 27, tzinfo=timezone.utc)
+
+
+def reconstruct_broker_order(**kwargs):
+    kwargs.setdefault("authority_broker", "SINOPAC")
+    kwargs.setdefault("authority_account_ref", "A")
+    kwargs.setdefault("deal_set_completeness", BrokerDealSetCompleteness.INCOMPLETE)
+    kwargs.setdefault("lifecycle_evidence", None)
+    return _reconstruct_broker_order(**kwargs)
+
+
+def lifecycle(status, *, verified=True, failure=False):
+    return BrokerLifecycleEvidence(
+        target_status=status,
+        verified=verified,
+        original_order_failure=failure,
+        evidence=("fake broker-neutral verified lifecycle evidence",),
+    )
 
 
 def order(**updates):
@@ -94,8 +114,9 @@ def test_complete_fill_set_drives_exact_weighted_economics():
     plan = reconstruct_broker_order(
         order=order(status=OrderStatus.PARTIALLY_FILLED, filled_quantity=1,
                     average_fill_price=Decimal("100")),
-        local_fills=(local,), evidence=(deal("D1", price=Decimal("102")),),
+        local_fills=(local,), evidence=(deal("D0"), deal("D1", price=Decimal("102"))),
         event_id="EVENT-2", correlation_id="CORR-1",
+        deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,
     )
     assert plan.status is OrderStatus.FILLED
     assert plan.filled_quantity == 2
@@ -120,6 +141,11 @@ def test_duplicate_deal_is_corroborating_but_conflict_fails_closed():
             order=order(), local_fills=(local,),
             evidence=(deal(price=Decimal("101")),), event_id="EVENT-2",
             correlation_id="CORR-1",
+        )
+    with pytest.raises(BrokerRecoveryIntegrityError, match="conflicts"):
+        reconstruct_broker_order(
+            order=order(), local_fills=(local,), evidence=(deal(quantity=2),),
+            event_id="EVENT-2", correlation_id="CORR-1",
         )
 
 
@@ -155,6 +181,114 @@ def test_terminal_exact_duplicate_is_corroborating_without_enrichment():
         correlation_id="CORR-1",
     )
     assert plan.accepted_fills == ()
+
+
+def test_zero_fill_never_yields_partial_and_no_change_is_not_material():
+    plan = reconstruct_broker_order(
+        order=order(), local_fills=(), evidence=(), event_id="EVENT-1",
+        correlation_id="CORR-1",
+    )
+    assert plan.status is OrderStatus.PENDING
+    assert plan.filled_quantity == 0 and plan.average_fill_price is None
+    assert not plan.material_change
+
+
+def test_filled_and_terminal_statuses_require_complete_verified_evidence():
+    with pytest.raises(BrokerReconstructionIncompleteError, match="FILLED"):
+        reconstruct_broker_order(
+            order=order(quantity=1), local_fills=(), evidence=(deal(),),
+            event_id="EVENT-1", correlation_id="CORR-1",
+        )
+    with pytest.raises(BrokerReconstructionIncompleteError, match="CANCELLED"):
+        reconstruct_broker_order(
+            order=order(), local_fills=(), evidence=(), event_id="EVENT-1",
+            correlation_id="CORR-1", lifecycle_evidence=lifecycle(OrderStatus.CANCELLED),
+        )
+
+
+def test_cancelled_and_rejected_use_explicit_verified_lifecycle_semantics():
+    cancelled = reconstruct_broker_order(
+        order=order(), local_fills=(), evidence=(), event_id="EVENT-1",
+        correlation_id="CORR-1", deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,
+        lifecycle_evidence=lifecycle(OrderStatus.CANCELLED),
+    )
+    assert cancelled.status is OrderStatus.CANCELLED and cancelled.material_change
+    rejected = reconstruct_broker_order(
+        order=order(), local_fills=(), evidence=(), event_id="EVENT-1",
+        correlation_id="CORR-1", deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,
+        lifecycle_evidence=lifecycle(OrderStatus.REJECTED, failure=True),
+    )
+    assert rejected.status is OrderStatus.REJECTED and rejected.filled_quantity == 0
+    with pytest.raises(BrokerRecoveryIntegrityError, match="zero-economic"):
+        reconstruct_broker_order(
+            order=order(), local_fills=(), evidence=(), event_id="EVENT-1",
+            correlation_id="CORR-1", deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,
+            lifecycle_evidence=lifecycle(OrderStatus.REJECTED),
+        )
+
+
+def test_cancelled_with_partial_fill_preserves_exact_economics():
+    cancelled = reconstruct_broker_order(
+        order=order(), local_fills=(), evidence=(deal(),), event_id="EVENT-1",
+        correlation_id="CORR-1", deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,
+        lifecycle_evidence=lifecycle(OrderStatus.CANCELLED),
+    )
+    assert cancelled.status is OrderStatus.CANCELLED
+    assert cancelled.filled_quantity == 1
+    assert cancelled.average_fill_price == Decimal("100")
+
+
+def test_same_partial_status_requires_new_fill_for_material_change():
+    local = Fill(
+        fill_id="F0", order_id="ORDER-1", event_id="EVENT-1",
+        correlation_id="CORR-1", causation_id="EVENT-1", quantity=1,
+        price=Decimal("100"), occurred_at=NOW, broker_deal_id="D0",
+    )
+    unchanged = reconstruct_broker_order(
+        order=order(quantity=3,status=OrderStatus.PARTIALLY_FILLED,filled_quantity=1,average_fill_price=Decimal("100")),
+        local_fills=(local,), evidence=(deal("D0"),), event_id="EVENT-2",
+        correlation_id="CORR-1",
+    )
+    assert unchanged.status is OrderStatus.PARTIALLY_FILLED and not unchanged.material_change
+    changed = reconstruct_broker_order(
+        order=order(quantity=3,status=OrderStatus.PARTIALLY_FILLED,filled_quantity=1,average_fill_price=Decimal("100")),
+        local_fills=(local,), evidence=(deal("D1",price=Decimal("102")),),
+        event_id="EVENT-2", correlation_id="CORR-1",
+    )
+    assert changed.status is OrderStatus.PARTIALLY_FILLED and changed.material_change
+
+
+def test_unverified_status_does_not_promote_submitted():
+    with pytest.raises(BrokerReconstructionIncompleteError, match="not verified"):
+        reconstruct_broker_order(
+            order=order(), local_fills=(), evidence=(), event_id="EVENT-1",
+            correlation_id="CORR-1", lifecycle_evidence=lifecycle(OrderStatus.SUBMITTED, verified=False),
+        )
+
+
+def test_deal_scope_occurrence_and_complete_set_integrity_fail_closed():
+    with pytest.raises(BrokerRecoveryIntegrityError, match="account scope"):
+        reconstruct_broker_order(
+            order=order(), local_fills=(),
+            evidence=(deal(identity=BrokerDealIdentity(broker="OTHER",account_ref="A",deal_id="D1")),),
+            event_id="EVENT-1", correlation_id="CORR-1",
+        )
+    local = Fill(
+        fill_id="F1", order_id="ORDER-1", event_id="EVENT-1",
+        correlation_id="CORR-1", causation_id="EVENT-1", quantity=1,
+        price=Decimal("100"), occurred_at=NOW, broker_deal_id="D1",
+    )
+    with pytest.raises(BrokerRecoveryIntegrityError, match="conflicts"):
+        reconstruct_broker_order(
+            order=order(), local_fills=(local,),
+            evidence=(deal(occurred_at=NOW.replace(day=26)),), event_id="EVENT-2",
+            correlation_id="CORR-1",
+        )
+    with pytest.raises(BrokerRecoveryIntegrityError, match="proper subset"):
+        reconstruct_broker_order(
+            order=order(), local_fills=(local,), evidence=(), event_id="EVENT-2",
+            correlation_id="CORR-1", deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,
+        )
 
 
 class FillRepo:
@@ -207,6 +341,8 @@ def test_recovery_material_and_action_resolution_share_authority_boundary():
         order=order(status=OrderStatus.PARTIALLY_FILLED, filled_quantity=1,
                     average_fill_price=Decimal("100"), version=1),
         expected_version=0, evidence=(deal(),), expected_snapshot=snapshot,
+        deal_set_completeness=BrokerDealSetCompleteness.INCOMPLETE,
+        lifecycle_evidence=None,
         prior_expected_snapshot_id="SNAP-1",
         additional_participants=lambda _: (Participant(calls, "action-resolution"),),
     )
@@ -224,9 +360,48 @@ def test_status_only_carries_forward_exact_snapshot_and_no_broker_io_surface():
         service.commit(
             mutation=mutation("DIFFERENT"),
             previous_event=event(0, None, OrderStatus.PENDING, causation_id="INT-1"),
-            event=event(1, OrderStatus.PENDING, OrderStatus.PARTIALLY_FILLED),
-            order=order(status=OrderStatus.PARTIALLY_FILLED, version=1),
-            expected_version=0, evidence=(), expected_snapshot=None,
+            event=event(1, OrderStatus.PENDING, OrderStatus.CANCELLED),
+            order=order(status=OrderStatus.CANCELLED, version=1),
+            expected_version=0, evidence=(),
+            deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,
+            lifecycle_evidence=lifecycle(OrderStatus.CANCELLED), expected_snapshot=None,
             prior_expected_snapshot_id="SNAP-1",
         )
     assert not hasattr(service, "broker") and not hasattr(service, "submit")
+
+
+def test_valid_cancel_status_only_carries_prior_snapshot_without_fill():
+    authority=AuthorityService(); execution=ExecutionService([])
+    service=BrokerRecoveryExecutionService(
+        authority_service=authority,execution_service=execution,
+        fill_repository=lambda _:FillRepo(),
+    )
+    assert service.commit(
+        mutation=mutation("SNAP-1"),
+        previous_event=event(0,None,OrderStatus.PENDING,causation_id="INT-1"),
+        event=event(1,OrderStatus.PENDING,OrderStatus.CANCELLED),
+        order=order(status=OrderStatus.CANCELLED,version=1),expected_version=0,
+        evidence=(),deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,
+        lifecycle_evidence=lifecycle(OrderStatus.CANCELLED),expected_snapshot=None,
+        prior_expected_snapshot_id="SNAP-1",
+    ) == "receipt"
+    assert execution.kwargs["fills"] == () and execution.kwargs["expected_snapshot"] is None
+
+
+def test_service_rejects_no_material_change_before_authority_commit():
+    authority = AuthorityService()
+    service = BrokerRecoveryExecutionService(
+        authority_service=authority, execution_service=ExecutionService([]),
+        fill_repository=lambda _: FillRepo(),
+    )
+    with pytest.raises(ValueError, match="no material"):
+        service.commit(
+            mutation=mutation("SNAP-1"),
+            previous_event=event(0,None,OrderStatus.PENDING,causation_id="INT-1"),
+            event=event(1,OrderStatus.PENDING,OrderStatus.PENDING),
+            order=order(version=1), expected_version=0, evidence=(),
+            deal_set_completeness=BrokerDealSetCompleteness.INCOMPLETE,
+            lifecycle_evidence=None, expected_snapshot=None,
+            prior_expected_snapshot_id="SNAP-1",
+        )
+    assert authority.calls == []

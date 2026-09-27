@@ -19,20 +19,69 @@ class PostgresBrokerRecoveryRepository(BrokerRecoveryRepository):
     def append_inbox(self, entry: BrokerReportInboxEntry) -> BrokerReportIngressStatus:
         payload = json.loads(entry.model_dump_json())
         with self._connection.cursor() as cursor:
-            cursor.execute("INSERT INTO trading.broker_report_inbox (ingress_id,broker,account_ref,generation,received_at,report_type,payload_fingerprint,report_json) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING RETURNING ingress_id", (entry.ingress_id, entry.broker, entry.account_ref, entry.generation, entry.received_at, entry.report_type, entry.payload_fingerprint, json.dumps(payload)))
-            if cursor.fetchone() is not None:
-                return BrokerReportIngressStatus.APPENDED
-            cursor.execute("SELECT report_json FROM trading.broker_report_inbox WHERE ingress_id=%s", (entry.ingress_id,))
-            row = cursor.fetchone()
-        if row is None or BrokerReportInboxEntry.model_validate(row[0]) != entry:
-            raise BrokerReportConflictError("broker report ingress identity conflict")
-        return BrokerReportIngressStatus.DUPLICATE
+            cursor.execute(
+                "SELECT generation,ingress_version,active FROM trading.account_recovery_controls WHERE broker=%s AND account_ref=%s FOR UPDATE",
+                (entry.broker, entry.account_ref),
+            )
+            control = cursor.fetchone()
+            if control is None:
+                raise RecoveryFenceConflictError("recovery control is missing")
+            generation, ingress_version, active = control
+            if generation != entry.generation:
+                raise RecoveryFenceConflictError("broker report generation is stale")
+            cursor.execute(
+                "INSERT INTO trading.broker_report_inbox (ingress_id,broker,account_ref,generation,recovery_active_at_capture,received_at,report_type,payload_fingerprint,report_json) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING RETURNING ingress_id",
+                (entry.ingress_id, entry.broker, entry.account_ref, entry.generation, active, entry.received_at, entry.report_type, entry.payload_fingerprint, json.dumps(payload)),
+            )
+            inserted = cursor.fetchone() is not None
+            if not inserted:
+                cursor.execute(
+                    "SELECT report_json FROM trading.broker_report_inbox WHERE ingress_id=%s",
+                    (entry.ingress_id,),
+                )
+                row = cursor.fetchone()
+                if row is None or BrokerReportInboxEntry.model_validate(row[0]) != entry:
+                    raise BrokerReportConflictError("broker report ingress identity conflict")
+                return BrokerReportIngressStatus.DUPLICATE
+            if active:
+                cursor.execute(
+                    "UPDATE trading.account_recovery_controls SET ingress_version=ingress_version+1 WHERE broker=%s AND account_ref=%s AND generation=%s AND ingress_version=%s AND active=TRUE RETURNING ingress_version",
+                    (entry.broker, entry.account_ref, entry.generation, ingress_version),
+                )
+                if cursor.fetchone() is None:
+                    raise RecoveryFenceConflictError("concurrent broker ingress frontier conflict")
+            return BrokerReportIngressStatus.APPENDED
 
     def append_application(self, application: BrokerReportApplication) -> None:
+        payload = json.loads(application.model_dump_json())
         with self._connection.cursor() as cursor:
-            cursor.execute("INSERT INTO trading.broker_report_applications (application_id,ingress_id,generation,status,recorded_at,evidence_json) VALUES (%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING RETURNING application_id", (application.application_id, application.ingress_id, application.generation, application.status.value, application.recorded_at, json.dumps(application.evidence)))
-            if cursor.fetchone() is None:
-                raise BrokerReportConflictError("broker report application identity conflict")
+            cursor.execute(
+                "SELECT generation FROM trading.broker_report_inbox WHERE ingress_id=%s FOR UPDATE",
+                (application.ingress_id,),
+            )
+            ingress = cursor.fetchone()
+            if ingress is None or ingress[0] != application.generation:
+                raise BrokerReportConflictError("broker report application ingress generation mismatch")
+            cursor.execute(
+                "SELECT application_json FROM trading.broker_report_applications WHERE application_id=%s",
+                (application.application_id,),
+            )
+            row = cursor.fetchone()
+            if row is not None:
+                if BrokerReportApplication.model_validate(row[0]) != application:
+                    raise BrokerReportConflictError("broker report application identity conflict")
+                return
+            cursor.execute(
+                "SELECT COALESCE(MAX(application_sequence),0) FROM trading.broker_report_applications WHERE ingress_id=%s AND generation=%s",
+                (application.ingress_id, application.generation),
+            )
+            latest = cursor.fetchone()
+            if latest is None or application.application_sequence != latest[0] + 1:
+                raise BrokerReportConflictError("broker report application sequence must be contiguous")
+            cursor.execute(
+                "INSERT INTO trading.broker_report_applications (application_id,ingress_id,generation,application_sequence,status,recorded_at,evidence_json,application_json) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)",
+                (application.application_id, application.ingress_id, application.generation, application.application_sequence, application.status.value, application.recorded_at, json.dumps(application.evidence), json.dumps(payload)),
+            )
 
     def append_sequence_gap(self, gap: SequenceGap) -> None:
         with self._connection.cursor() as cursor:
@@ -57,7 +106,7 @@ class PostgresBrokerRecoveryRepository(BrokerRecoveryRepository):
 
     def finalize_handoff(self, control: AccountRecoveryControl, *, expected_generation: int, expected_ingress_version: int) -> None:
         with self._connection.cursor() as cursor:
-            cursor.execute("UPDATE trading.account_recovery_controls c SET active=FALSE,recorded_at=%s WHERE c.broker=%s AND c.account_ref=%s AND c.generation=%s AND c.recovery_cut_revision=%s AND c.ingress_version=%s AND c.active=TRUE AND NOT EXISTS (SELECT 1 FROM trading.broker_report_inbox i WHERE i.broker=c.broker AND i.account_ref=c.account_ref AND i.generation=c.generation AND NOT EXISTS (SELECT 1 FROM trading.broker_report_applications a WHERE a.ingress_id=i.ingress_id AND a.status IN ('APPLIED','DUPLICATE','CORROBORATED'))) RETURNING generation", (control.recorded_at, control.broker, control.account_ref, expected_generation, control.recovery_cut_revision, expected_ingress_version))
+            cursor.execute("UPDATE trading.account_recovery_controls c SET active=FALSE,recorded_at=%s WHERE c.broker=%s AND c.account_ref=%s AND c.generation=%s AND c.recovery_cut_revision=%s AND c.ingress_version=%s AND c.active=TRUE AND NOT EXISTS (SELECT 1 FROM trading.broker_report_inbox i WHERE i.broker=c.broker AND i.account_ref=c.account_ref AND i.generation=c.generation AND i.recovery_active_at_capture=TRUE AND NOT EXISTS (SELECT 1 FROM trading.broker_report_applications a WHERE a.ingress_id=i.ingress_id AND a.generation=i.generation AND a.status IN ('APPLIED','DUPLICATE','CORROBORATED') AND NOT EXISTS (SELECT 1 FROM trading.broker_report_applications newer WHERE newer.ingress_id=a.ingress_id AND newer.generation=a.generation AND newer.application_sequence>a.application_sequence))) RETURNING generation", (control.recorded_at, control.broker, control.account_ref, expected_generation, control.recovery_cut_revision, expected_ingress_version))
             if cursor.fetchone() is None: raise RecoveryFenceConflictError("stale fence or pending report blocks handoff")
 
 
