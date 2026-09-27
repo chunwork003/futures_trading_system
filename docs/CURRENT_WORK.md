@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W2 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED at `a9a8277afd4aeda5150d596b41597a179ad63570`。Next is P5 / provisional W3 execution-package and coherence planning for C07 -> C09 -> C10 only；source modification remains NOT_AUTHORIZED。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：W2 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。P5 / W3 execution package is materialized and execution coherence is VERIFIED for C07 -> C09 -> C10。W3 source modification remains NOT_AUTHORIZED pending a separate explicit bounded authorization。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：P5_W3_EXECUTION_COHERENCE_PLANNING
+Current activity：WAVE_3_EXECUTION_COHERENCE_VERIFIED
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -178,6 +178,37 @@ Closure：
 Accepted correction-core progress：
 
 60 / 113。
+Remaining：
+
+53。
+
+P5 / W3：
+
+    C07
+        -> C09
+        -> C10
+
+W3 weight：
+
+15。
+
+W3 Execution Coherence：
+
+VERIFIED。
+
+W3 Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
+
+Execution package：
+
+`docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
+
+Next actual project action：
+
+EXPLICIT BOUNDED W3 RUNTIME SOURCE MODIFICATION AUTHORIZATION DECISION ONLY。
+
+No C07 runtime modification is authorized。
 
 Remaining：
 

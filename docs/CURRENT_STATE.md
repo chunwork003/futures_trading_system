@@ -208,9 +208,29 @@ Remaining：
 
 53。
 
+P5 / W3 candidate：
+
+`C07 -> C09 -> C10`
+
+W3 weight：
+
+15。
+
+W3 execution coherence：
+
+VERIFIED。
+
+W3 Runtime Source Modification Authorization：
+
+NOT_AUTHORIZED。
+
+W3 execution package：
+
+`docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
+
 Next actual project action：
 
-build exact P5 / W3 execution package for C07 -> C09 -> C10 and verify execution coherence only。
+explicit bounded W3 Runtime Source Modification Authorization decision only。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -412,7 +432,7 @@ Next：
 
 W2 final Runtime HEAD `a9a8277afd4aeda5150d596b41597a179ad63570` -> RF01 PASS -> W2 COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
 
-Next dependency-coherent candidate is P5 Broker Recovery Evidence：C07 -> C09 -> C10；execution coherence NOT YET VERIFIED；source modification NOT_AUTHORIZED。
+P5 / W3 Broker Recovery Evidence：C07 -> C09 -> C10；execution coherence VERIFIED；source modification NOT_AUTHORIZED。Next is separate explicit bounded W3 source-modification authorization decision。
 
 No step implicitly grants authority to the next step。
 

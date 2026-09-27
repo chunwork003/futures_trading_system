@@ -29,6 +29,35 @@
 
 ## Chronological Log
 
+### 2026-09-27 — GAP-08 Wave-3 Execution Coherence Verification
+
+- planning parent：`38dadf8399946cd96b96655fd2dbc21334d0ecbb`。
+- Wave：`GAP08-W3-BROKER-RECOVERY-EVIDENCE`。
+- leaf sequence：C07 -> C09 -> C10。
+- weight：15 candidate / not credited。
+- execution package：`docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`。
+- dependency coherence：VERIFIED。
+- C07 owner direction：new broker-neutral discovery/recovery domain contract；no Shioaji network implementation。
+- C09 owner direction：new durable broker-recovery inbox/fence/continuity persistence + PostgreSQL adapter。
+- C10 owner direction：new broker-neutral reconstruction + minimal canonical execution compatibility + shared AccountAuthorityCommit composition。
+- proposed existing runtime write scope：`trading/execution.py`、`persistence/execution.py`、`persistence/postgres/execution.py` only。
+- proposed new runtime：`trading/broker_recovery.py`、`persistence/broker_recovery.py`、`persistence/postgres/broker_recovery.py`、`0007_broker_recovery_evidence.sql`。
+- proposed new tests：C07/C09/C10 unit tests；existing compatibility tests limited to operational execution/postgres。
+- `persistence/recovery.py` remains READ-ONLY because C12 later owns coherent RecoveryCut / ExecutionStateLoader。
+- reconciliation modules remain READ-ONLY because C13/C14/C15 remain later leaves。
+- W1/W2 account/broker-action authority modules remain READ-ONLY and are consumed, not rewritten。
+- all Shioaji/Sinopac adapters remain READ-ONLY。
+- V01/V02/V03/V04/V05 remain separate broker capability gates / production default-deny。
+- migration 0007 creation is only a future candidate；migration execution = DENY。
+- actual PostgreSQL / V07 = DENY。
+- broker network / paper / simulation / production I/O = DENY。
+- accepted correction-core progress remains 60 / 113；53 remaining。
+- W3 Runtime Source Modification Authorization：NOT_AUTHORIZED。
+- canonical Runtime Authorization：NOT_AUTHORIZED。
+- precheck attempt 1：TOOLING RETRY caused by strict Unicode punctuation marker；semantic correction 0。
+- precheck v2：PASS。
+- next：separate explicit bounded W3 Runtime Source Modification Authorization decision。
+- STOP before C07 runtime / CODEX runtime handoff。
 ### 2026-09-27 — GAP-08 Wave-2 Final Closure
 
 - Wave：`GAP08-W2-EXECUTION-SAFETY`。

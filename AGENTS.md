@@ -22,7 +22,7 @@ Runtime Authorization：NOT_AUTHORIZED。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current execution action：GAP08-W2 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED at `a9a8277afd4aeda5150d596b41597a179ad63570`。Next is exact P5 / provisional W3 execution-package and coherence planning for C07 -> C09 -> C10 only。No P5 runtime source modification is authorized。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：GAP08-W2 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。P5 / W3 execution package/coherence is VERIFIED for C07 -> C09 -> C10；next is a separate explicit bounded W3 source-modification authorization decision。W3 source modification remains NOT_AUTHORIZED。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 W2 authorization + Amendment 01 are CONSUMED / CLOSED。Migration 0006 exists and was amended before execution；it remains NOT_EXECUTED。Actual PostgreSQL、V07、migration execution、broker I/O and runtime activation remain NOT_AUTHORIZED。
 
@@ -60,7 +60,7 @@ Original runtime candidate remains NOT ACCEPTED；latest completed correction ru
 
 R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map、Delta-to-Contract、materialized correction leaves、DAG 與 reweight 已記錄於 `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 + C23 + C24 + C25 + GAP08-W1 + GAP08-W2 已完成並 accepted；correction-core progress = 60 / 113，remaining = 53。Next candidate is P5 C07 -> C09 -> C10 planning only。Runtime Authorization 仍為 NOT_AUTHORIZED。
+V06 + C01 + C22 + C11 + C23 + C24 + C25 + GAP08-W1 + GAP08-W2 已完成並 accepted；correction-core progress = 60 / 113，remaining = 53。P5/W3 C07 -> C09 -> C10 execution coherence = VERIFIED；source modification = NOT_AUTHORIZED。Runtime Authorization 仍為 NOT_AUTHORIZED。
 
 Primary source of truth 與必讀順序：
 

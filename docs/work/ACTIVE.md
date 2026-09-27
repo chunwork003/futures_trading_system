@@ -409,13 +409,33 @@ Remaining：
 
 53。
 
+P5 / W3 candidate：
+
+`C07 -> C09 -> C10`
+
+W3 weight：
+
+15。
+
+W3 execution coherence：
+
+VERIFIED。
+
+W3 source-modification authorization：
+
+NOT_AUTHORIZED。
+
+Execution package：
+
+`docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
+
 Next actual work：
 
-build exact P5 / W3 execution package for C07 -> C09 -> C10 and verify execution coherence only。
+prepare separate explicit bounded W3 source-modification authorization decision only。
 
 STOP：
 
-do not start C07 runtime before separate bounded authorization。
+do not start C07 runtime。
 
 ## 4. Recommended Model
 

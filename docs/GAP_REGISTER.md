@@ -650,13 +650,17 @@ C07 -> C09 -> C10。
 
 Weight：15。
 
-Execution coherence：NOT YET VERIFIED。
+Execution coherence：VERIFIED。
+
+Execution package：
+
+`docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
 
 Runtime Source Modification Authorization：NOT_AUTHORIZED。
 
 Next governance action：
 
-build exact P5 / W3 execution package and verify execution coherence only。
+separate explicit bounded W3 Runtime Source Modification Authorization decision。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 
