@@ -656,27 +656,27 @@ Execution package：
 
 `docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
 
-Runtime Source Modification Authorization：BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF01。
+Runtime Source Modification Authorization：BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF02_C09_ONLY。
 
 Original authorization：
 
 `docs/work/GAP08_WAVE3_AUTHORIZATION.md`
 
-Reviewer correction authorization：
+RF01 authorization：
 
 `docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md`
 
-First-pass W3 Runtime Candidate：
+RF02 authorization：
 
-`b270932dfa04f17528c0dc0ff74aab2b95094ab8`
+`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_02.md`
 
-Reviewer status：HOLD / RF01_REQUIRED。
+Reviewer status：HOLD / RF02_REQUIRED。
 
 C07：PASS / READ-ONLY。
 
-C09：RF01 REQUIRED。
+C09：RF02 REQUIRED。
 
-C10：RF01 REQUIRED。
+C10：RF01 WIP FROZEN / NO ADDITIONAL SEMANTIC CHANGE。
 
 W3 weight：15 / NOT CREDITED。
 
@@ -684,7 +684,7 @@ Accepted / verified correction-core progress remains 60 / 113；53 remaining。
 
 Next governance action：
 
-CODEX W3 reviewer correction RF01 only。
+continue exact seven-file RF01 WIP and execute one C09 RF02 semantic correction only。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

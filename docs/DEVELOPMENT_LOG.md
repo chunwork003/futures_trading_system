@@ -29,6 +29,28 @@
 
 ## Chronological Log
 
+### 2026-09-27 — GAP-08 Wave-3 Reviewer Correction RF02 Authorization
+
+- RF01 authorization baseline：`45b9e55e5e5889dfdf5626341d2afa721ff0c0ca`。
+- RF01 result：BLOCKED / REAUTHORIZATION REQUIRED；no commit / no push。
+- exact seven-file RF01 WIP remains local and unstaged。
+- RF01 tests before STOP：C09 targeted 56 passed；C10 targeted 115 passed；full RF01 targeted 149 passed；full regression 1199 passed / 4 skipped。
+- RF01 user-reported 5HR quota observation：23%；observational only。
+- C09 blocker 1：inactive control must reject wrong generation while same-generation post-handoff ingress remains durably capturable without reopening recovery or masquerading as active frontier。
+- C09 blocker 2：application sequence append must serialize on the same durable ingress authority；MAX(sequence)+unique constraint alone is insufficient concurrency authority。
+- RF02 authorizes exactly one additional C09 semantic correction cycle。
+- RF02 C09 write scope：`persistence/broker_recovery.py`、`persistence/postgres/broker_recovery.py`、unexecuted `0007_broker_recovery_evidence.sql`、`test_c09_broker_recovery_fence.py`、`test_operational_postgres.py`。
+- C10 RF01 WIP is byte-frozen under SHA-256 evidence recorded in `docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_02.md`。
+- C07 remains PASS / READ-ONLY。
+- no reset/reconstruction of existing RF01 WIP is authorized。
+- migration 0007 remains NOT_EXECUTED；0001～0006 READ-ONLY；no 0008。
+- actual PostgreSQL / V07 / broker I/O / V01～V05：DENY。
+- W3 status：HOLD / RF02_REQUIRED。
+- W3 weight 15：NOT CREDITED。
+- accepted correction-core remains 60 / 113；53 remaining。
+- Runtime Source Modification Authorization：`BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF02_C09_ONLY`。
+- canonical Runtime Authorization：NOT_AUTHORIZED。
+- next：commit/push this docs-only RF02 authorization while preserving exact seven-file WIP，then CODEX resumes C09 only。
 ### 2026-09-27 — GAP-08 Wave-3 Reviewer Correction RF01 Authorization
 
 - reviewer input / first-pass W3 Runtime Candidate：`b270932dfa04f17528c0dc0ff74aab2b95094ab8`。

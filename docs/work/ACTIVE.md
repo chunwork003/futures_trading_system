@@ -423,7 +423,7 @@ VERIFIED。
 
 W3 source-modification authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF01。
+BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF02_C09_ONLY。
 
 Execution package：
 
@@ -433,29 +433,31 @@ Original authorization：
 
 `docs/work/GAP08_WAVE3_AUTHORIZATION.md`
 
-Reviewer amendment：
+RF01 amendment：
 
 `docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md`
 
-First-pass candidate：
+RF02 amendment：
 
-`b270932dfa04f17528c0dc0ff74aab2b95094ab8`
+`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_02.md`
 
 Reviewer status：
 
-HOLD / RF01_REQUIRED。
+HOLD / RF02_REQUIRED。
 
 C07：PASS / READ-ONLY。
 
-C09 + C10：RF01 only。
+C09：RF02 only。
+
+C10：RF01 WIP byte-frozen / no additional semantic change。
 
 Next actual work：
 
-CODEX W3 reviewer correction RF01。
+continue existing seven-file unstaged WIP；apply one C09 RF02 semantic correction；rerun required gates；commit combined RF01+RF02 runtime only if all PASS。
 
 STOP：
 
-after RF01 final verification/push；return to reviewer，do not close W3 or start another Wave。
+after correction push；return to reviewer，do not close W3 or start another Wave。
 
 ## 4. Recommended Model
 

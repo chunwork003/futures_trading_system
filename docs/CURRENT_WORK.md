@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W3 first-pass runtime candidate `b270932dfa04f17528c0dc0ff74aab2b95094ab8` is under reviewer HOLD。C07 passes；C09/C10 require RF01。Only the exact correction scope in `docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md` is authorized。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：W3 RF01 stopped without commit/push after final review found one additional C09 semantic correction。Exact seven-file RF01 WIP remains local and unstaged。RF02 authorizes C09-only continuation while C10 WIP is byte-frozen。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：WAVE_3_REVIEWER_CORRECTION_RF01
+Current activity：WAVE_3_REVIEWER_CORRECTION_RF02_C09_ONLY
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -198,7 +198,7 @@ VERIFIED。
 
 W3 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF01。
+BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF02_C09_ONLY。
 
 Execution package：
 
@@ -208,21 +208,21 @@ Original authorization：
 
 `docs/work/GAP08_WAVE3_AUTHORIZATION.md`
 
-Reviewer amendment：
+RF01 amendment：
 
 `docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md`
 
-First-pass candidate：
+RF02 amendment：
 
-`b270932dfa04f17528c0dc0ff74aab2b95094ab8`
+`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_02.md`
 
-Reviewer status：HOLD / RF01_REQUIRED。
+Reviewer status：HOLD / RF02_REQUIRED。
 
-C07 PASS / READ-ONLY；C09 + C10 RF01 only。
+C07 PASS / READ-ONLY；C09 RF02 only；C10 RF01 WIP byte-frozen。
 
 Next actual project action：
 
-CODEX W3 reviewer correction RF01 only。
+continue exact local seven-file WIP and apply one C09 RF02 semantic correction only。
 
 No migration execution、actual PostgreSQL or broker I/O is authorized。
 

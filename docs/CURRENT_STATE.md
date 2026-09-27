@@ -222,7 +222,7 @@ VERIFIED。
 
 W3 Runtime Source Modification Authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF01。
+BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF02_C09_ONLY。
 
 W3 execution package：
 
@@ -230,33 +230,37 @@ W3 execution package：
 
 W3 source-modification authorization：
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF01。
+BOUNDED_AUTHORIZED_FOR_GAP08_W3_RF02_C09_ONLY。
 
 Original authorization：
 
 `docs/work/GAP08_WAVE3_AUTHORIZATION.md`
 
-Reviewer correction authorization：
+RF01 authorization：
 
 `docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_01.md`
 
-First-pass W3 Runtime Candidate：
+RF02 authorization：
 
-`b270932dfa04f17528c0dc0ff74aab2b95094ab8`
+`docs/work/GAP08_WAVE3_AUTHORIZATION_AMENDMENT_02.md`
+
+RF01 baseline：
+
+`45b9e55e5e5889dfdf5626341d2afa721ff0c0ca`
 
 Reviewer status：
 
-HOLD / RF01_REQUIRED。
+HOLD / RF02_REQUIRED。
 
 C07：PASS / READ-ONLY。
 
-C09：HOLD / RF01_REQUIRED。
+C09：RF02 REQUIRED。
 
-C10：HOLD / RF01_REQUIRED。
+C10：RF01 WIP FROZEN / NO ADDITIONAL SEMANTIC CHANGE。
 
 Next actual project action：
 
-CODEX W3 reviewer correction RF01 only。
+CODEX W3 RF02 C09-only correction，preserving existing seven-file RF01 WIP。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
