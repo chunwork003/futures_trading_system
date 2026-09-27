@@ -393,10 +393,16 @@ def test_local_recovery_migration_has_formal_run_boundary_and_atomic_terminal_au
 
 
 def test_postgres_account_readiness_gate_revalidates_revision_and_nonrevision_witness() -> None:
-    from persistence.postgres.recovery import PostgresAccountReadinessGate
+    from persistence.postgres.recovery import PostgresAccountReadinessGate, _read_order_witness, _read_report_witness, _read_unresolved_actions
     source=__import__("inspect").getsource(PostgresAccountReadinessGate.revalidate)
+    report_source=__import__("inspect").getsource(_read_report_witness)
+    order_source=__import__("inspect").getsource(_read_order_witness)
     assert "account_state_heads" in source
     assert "account_recovery_controls" in source
-    assert "broker_report_inbox" in source
-    assert "broker_action_heads" in source
+    assert "broker_report_inbox" in report_source
+    assert "application_sequence DESC" in report_source
+    assert "broker_action_heads h JOIN trading.orders" in order_source
+    assert "h.broker=%s AND h.account_ref=%s" in order_source
+    assert "projection_json->>'broker'" not in order_source
+    assert "broker_action_heads" in __import__("inspect").getsource(_read_unresolved_actions)
     assert "advance_head" not in source

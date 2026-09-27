@@ -1,6 +1,8 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
 from enum import Enum
 from typing import (
     Protocol,
@@ -24,6 +26,7 @@ from persistence.account_authority import (
 from persistence.reconciliation import (
     ReconciliationCaseRepository,
     ReconciliationInputQualification,
+    ReconciliationRunBoundary,
     ReconciliationRunOutcome,
     ReconciliationRunTechnicalOutcome,
     blocking_case_state,
@@ -85,6 +88,9 @@ class RecoveryCut(BaseModel):
     recovery_ingress_version: int | None = Field(default=None, ge=0)
     inbox_count: int = Field(ge=0)
     application_count: int = Field(ge=0)
+    broker_report_witness: tuple[str, ...] = ()
+    current_nonterminal_order_anchors: tuple[str, ...] = ()
+    fill_event_validation_anchors: tuple[str, ...] = ()
     unresolved_broker_action_ids: tuple[str, ...] = ()
 
     @model_validator(mode="after")
@@ -97,9 +103,28 @@ class RecoveryCut(BaseModel):
             checkpoint=self.checkpoint,
             receipt=self.receipt,
         )
+        if self.head.current_revision != self.checkpoint.account_revision:
+            raise ValueError("RecoveryCut requires exact head revision closure")
         if (self.recovery_generation is None) != (self.recovery_ingress_version is None):
             raise ValueError("recovery control witness must be complete")
+        for name in (
+            "broker_report_witness",
+            "current_nonterminal_order_anchors",
+            "fill_event_validation_anchors",
+            "unresolved_broker_action_ids",
+        ):
+            values=getattr(self,name)
+            normalized=tuple(value.strip() for value in values)
+            if any(not value for value in normalized) or normalized != tuple(sorted(set(normalized))):
+                raise ValueError(f"{name} must contain sorted unique nonblank values")
         return self
+
+    @property
+    def witness_fingerprint(self) -> str:
+        """把 exact revision 與非 revision witness 固定成可重驗的 deterministic fingerprint。"""
+
+        canonical=json.dumps(self.model_dump(mode="json"),ensure_ascii=False,sort_keys=True,separators=(",",":"))
+        return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
 class ExecutionRestoreResult(BaseModel):
@@ -126,7 +151,10 @@ class AccountReadinessEvidence(BaseModel):
     model_config=ConfigDict(extra="forbid",frozen=True)
 
     restore_result: ExecutionRestoreResult
+    formal_run_boundary: ReconciliationRunBoundary | None
     formal_run_outcome: ReconciliationRunOutcome | None
+    required_policy: ReconciliationPolicy = ReconciliationPolicy.STRICT_HALT
+    result_completeness_evidence: tuple[str, ...] = ()
     discovery_complete: bool
     exact_correlation_integrity: bool
     continuity_current: bool
@@ -135,6 +163,14 @@ class AccountReadinessEvidence(BaseModel):
     reconstruction_conflict: bool
     mandatory_capabilities_available: bool
     out_of_horizon_unresolved_action: bool = False
+
+    @model_validator(mode="after")
+    def _normalize_completeness_evidence(self) -> "AccountReadinessEvidence":
+        normalized=tuple(value.strip() for value in self.result_completeness_evidence)
+        if any(not value for value in normalized):
+            raise ValueError("result completeness evidence must be nonblank")
+        object.__setattr__(self,"result_completeness_evidence",normalized)
+        return self
 
 
 class AccountReadinessEvaluation(BaseModel):
@@ -150,6 +186,10 @@ class AccountReadinessEvaluation(BaseModel):
     recovery_ingress_version: int | None = Field(default=None,ge=0)
     inbox_count: int = Field(ge=0)
     application_count: int = Field(ge=0)
+    recovery_cut_fingerprint: str
+    broker_report_witness: tuple[str,...]
+    current_nonterminal_order_anchors: tuple[str,...]
+    fill_event_validation_anchors: tuple[str,...]
     unresolved_broker_action_ids: tuple[str,...]
 
 
@@ -158,15 +198,32 @@ def evaluate_account_readiness(*,account: BrokerAccount,evidence: AccountReadine
 
     restore=evidence.restore_result
     if restore.status is not ExecutionRestoreStatus.VALID or restore.cut is None:
-        return AccountReadinessEvaluation(state=RecoveryReadinessState.HALT,reasons=("coherent recovery cut is not valid",),account=account,account_revision=0,inbox_count=0,application_count=0,unresolved_broker_action_ids=())
+        return AccountReadinessEvaluation(state=RecoveryReadinessState.HALT,reasons=("coherent recovery cut is not valid",),account=account,account_revision=0,inbox_count=0,application_count=0,recovery_cut_fingerprint="INVALID",broker_report_witness=(),current_nonterminal_order_anchors=(),fill_event_validation_anchors=(),unresolved_broker_action_ids=())
     cut=restore.cut
-    common=dict(account=account,account_revision=cut.head.current_revision,recovery_generation=cut.recovery_generation,recovery_ingress_version=cut.recovery_ingress_version,inbox_count=cut.inbox_count,application_count=cut.application_count,unresolved_broker_action_ids=cut.unresolved_broker_action_ids)
+    common=dict(account=account,account_revision=cut.head.current_revision,recovery_generation=cut.recovery_generation,recovery_ingress_version=cut.recovery_ingress_version,inbox_count=cut.inbox_count,application_count=cut.application_count,recovery_cut_fingerprint=cut.witness_fingerprint,broker_report_witness=cut.broker_report_witness,current_nonterminal_order_anchors=cut.current_nonterminal_order_anchors,fill_event_validation_anchors=cut.fill_event_validation_anchors,unresolved_broker_action_ids=cut.unresolved_broker_action_ids)
     halt=[]
+    if cut.account != account: halt.append("requested BrokerAccount does not match recovery cut")
     if not evidence.mandatory_capabilities_available: halt.append("mandatory capability unavailable")
     if not evidence.exact_correlation_integrity: halt.append("broker correlation integrity conflict")
     if evidence.reconstruction_conflict: halt.append("canonical reconstruction integrity conflict")
     outcome=evidence.formal_run_outcome
+    boundary=evidence.formal_run_boundary
+    if boundary is None: halt.append("eligible formal reconciliation run boundary is missing")
+    elif (
+        boundary.account != account
+        or boundary.account != cut.account
+        or boundary.policy is not evidence.required_policy
+        or boundary.recovery_cut_fingerprint != cut.witness_fingerprint
+        or boundary.account_revision != cut.head.current_revision
+        or boundary.expected_snapshot_id != cut.checkpoint.expected_snapshot_id
+        or boundary.authority_commit_id != cut.checkpoint.authority_commit_id
+        or boundary.recovery_generation != cut.recovery_generation
+        or boundary.recovery_ingress_version != cut.recovery_ingress_version
+        or boundary.discovery_run_id is None
+        or boundary.observation_id is None
+    ): halt.append("formal reconciliation run boundary does not bind the current recovery cut")
     if outcome is None: halt.append("eligible formal reconciliation run is missing")
+    elif boundary is not None and outcome.run_id != boundary.run_id: halt.append("formal reconciliation outcome does not bind the established run")
     elif outcome.technical_outcome is ReconciliationRunTechnicalOutcome.FAILED: halt.append("formal reconciliation run failed")
     if halt:
         return AccountReadinessEvaluation(state=RecoveryReadinessState.HALT,reasons=tuple(halt),**common)
@@ -177,6 +234,8 @@ def evaluate_account_readiness(*,account: BrokerAccount,evidence: AccountReadine
     if not evidence.reconstruction_complete: review.append("canonical reconstruction is incomplete")
     if cut.unresolved_broker_action_ids: review.append("broker action disposition is unresolved")
     if evidence.out_of_horizon_unresolved_action: review.append("broker action requires external disposition evidence")
+    if outcome is not None and not outcome.results and not evidence.result_completeness_evidence:
+        review.append("empty reconciliation result lacks positive completeness evidence")
     if outcome is not None and (
         outcome.input_qualification is not ReconciliationInputQualification.QUALIFIED
         or outcome.technical_outcome is not ReconciliationRunTechnicalOutcome.COMPLETED

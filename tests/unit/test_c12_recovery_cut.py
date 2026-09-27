@@ -40,8 +40,9 @@ def _valid_rows():
     head,checkpoint,receipt=_closure()
     return [
         (head.broker,head.account_ref,head.current_revision,head.initialized,checkpoint.model_dump(mode="json"),receipt.model_dump(mode="json"),True),
-        (4,9),
-        (5,5),
+        (4,9,True),
+        [("IN-1",4,"PF",True,1,"APPLIED",5)],
+        [],
         [("ATTEMPT-1",)],
     ]
 
@@ -62,6 +63,13 @@ def test_recovery_cut_validates_exact_authority_closure_and_non_revision_witness
         cut.model_copy(update={"recovery_ingress_version":None}).model_validate(cut.model_copy(update={"recovery_ingress_version":None}).model_dump())
 
 
+def test_a05_head_checkpoint_and_receipt_must_be_same_exact_revision() -> None:
+    head,checkpoint,receipt=_closure()
+    ahead=head.model_copy(update={"current_revision":4})
+    with pytest.raises(ValidationError,match="exact head revision"):
+        RecoveryCut(account=ACCOUNT,head=ahead,checkpoint=checkpoint,receipt=receipt,recovery_generation=4,recovery_ingress_version=9,inbox_count=5,application_count=5,broker_report_witness=("IN-1:1:APPLIED",),current_nonterminal_order_anchors=(),unresolved_broker_action_ids=())
+
+
 def test_postgres_loader_uses_one_repeatable_read_boundary_and_returns_valid_cut() -> None:
     connection=Connection(_valid_rows())
     result=PostgresExecutionStateLoader(connection).load(ACCOUNT)
@@ -69,6 +77,22 @@ def test_postgres_loader_uses_one_repeatable_read_boundary_and_returns_valid_cut
     assert result.cut is not None and result.cut.unresolved_broker_action_ids == ("ATTEMPT-1",)
     assert connection.statements[0][0] == "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY"
     assert connection.commits == connection.rollbacks == 0
+
+
+def test_a06_malformed_checkpoint_returns_structured_restore_failure() -> None:
+    head,_,receipt=_closure()
+    rows=[(head.broker,head.account_ref,head.current_revision,head.initialized,{"broken":True},receipt.model_dump(mode="json"),True)]
+    result=PostgresExecutionStateLoader(Connection(rows)).load(ACCOUNT)
+    assert result.status is ExecutionRestoreStatus.RESTORE_FAILURE
+    assert result.cut is None
+
+
+def test_a07_exact_nonrevision_witness_changes_fingerprint_even_when_counts_match() -> None:
+    head,checkpoint,receipt=_closure()
+    common=dict(account=ACCOUNT,head=head,checkpoint=checkpoint,receipt=receipt,recovery_generation=4,recovery_ingress_version=9,inbox_count=1,application_count=1,current_nonterminal_order_anchors=("ORDER-1:2:SUBMITTED",),unresolved_broker_action_ids=())
+    first=RecoveryCut(**common,broker_report_witness=("IN-1:1:APPLIED",))
+    second=RecoveryCut(**common,broker_report_witness=("IN-2:1:APPLIED",))
+    assert first.witness_fingerprint != second.witness_fingerprint
 
 
 def test_missing_head_is_restore_failure_not_baseline_absence() -> None:
