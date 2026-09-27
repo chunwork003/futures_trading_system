@@ -29,6 +29,17 @@
 
 ## Chronological Log
 
+### 2026-09-27 — GAP-08 Wave-4 Reviewer RF01 / V0 Efficiency Alignment
+
+- runtime candidate：`060dfdc2ac4539fa31b95c26c0a0bd0b3dcb7021`。
+- reviewer：HOLD / RF01_REQUIRED；C13/C14 frozen，C12/C15 correction only。
+- W4 weight 18 remains NOT CREDITED；accepted correction-core remains 75/113。
+- user-observed W4 5HR consumption：40%。
+- observed waste：five full regressions + reparse-point visualization copy/patch/copy churn。
+- architect/V0 alignment：transient revision-bound Task Context Packet；pointer > duplicated prose；no RAG/index/orchestrator platform。
+- system changes：canonical CURRENT compressed；AGENTS made static router；controlled patch-staging fallback；blast-radius regression checkpoints。
+- Runtime Authorization remains NOT_AUTHORIZED。
+- next：derive transient RF01 Task Context Packet from exact authorization commit，then execute C12+C15 only。
 ### 2026-09-27 — GAP-08 Wave-4 Runtime Source Modification Authorization
 
 - planning baseline：`a936a4827b53609bcd15383d62bcc515d26140b6`。

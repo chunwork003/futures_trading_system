@@ -684,17 +684,22 @@ Execution coherence：
 
 VERIFIED。
 
+Runtime candidate：
+`060dfdc2ac4539fa31b95c26c0a0bd0b3dcb7021`
+
+Reviewer：HOLD / RF01_REQUIRED。
+
+C13 / C14：PASS / FROZEN / READ_ONLY。
+C12 / C15：RF01 REQUIRED。
+
 Runtime Source Modification Authorization：
+BOUNDED_AUTHORIZED_FOR_GAP08_W4_RF01_C12_C15_ONLY。
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W4。
-
-Authorization：
-
-`docs/work/GAP08_WAVE4_AUTHORIZATION.md`
+RF01：
+`docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_01.md`
 
 Next governance action：
-
-CODEX bounded W4 execution C13 -> C12 -> C14 -> C15；leaf-local gates/commits，wave-end push，then reviewer。
+one bounded C12+C15 RF01 correction commit + reviewer return；W4 weight remains NOT CREDITED。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

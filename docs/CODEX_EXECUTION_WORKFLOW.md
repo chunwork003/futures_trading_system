@@ -723,6 +723,36 @@ Tooling failure：
 
 效率提升的目標是減少重複 context / tool work，不是減少必要 correctness evidence。
 
+## 22.2 Controlled Patch Staging
+
+If workspace/reparse-point integration makes direct patch unreliable:
+
+- detect once during preflight;
+- if direct patch works, use repository files directly;
+- otherwise use exactly one controlled patch-staging root for the execution;
+- mirror only authorized writable files with relative paths;
+- patch there continuously;
+- batch-sync changed files once per leaf/correction checkpoint;
+- immediately validate hash/diff/write scope;
+- staging artifacts never enter Git.
+
+Do not create a new ad-hoc visualization copy per file.
+
+---
+
+## 22.3 Regression Checkpoint Policy
+
+Wave-final full regression is mandatory.
+
+Intermediate full regression is explicitly selected by Work Package/Authorization according to blast radius, not mechanically repeated after every low-risk leaf.
+
+Immediate full regression remains appropriate for shared core/public contract, persistence schema/migration, authority/safety boundary, cross-leaf shared owner, or relevant targeted/integration failure.
+
+Low-blast-radius leaves may use targeted + compatibility/integration + diff/scope guard when authorization explicitly allows it.
+
+This never removes an authorization-required full regression or the mandatory Wave-final full regression.
+
+---
 ## 23. Single-Agent Default
 
 預設：

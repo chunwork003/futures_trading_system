@@ -461,21 +461,24 @@ Execution coherence：
 
 VERIFIED。
 
+Runtime candidate：
+`060dfdc2ac4539fa31b95c26c0a0bd0b3dcb7021`
+
+Reviewer：HOLD / RF01_REQUIRED。
+
+C13 / C14：PASS / FROZEN / READ_ONLY。
+C12 / C15：RF01 REQUIRED。
+
 Runtime Source Modification Authorization：
+BOUNDED_AUTHORIZED_FOR_GAP08_W4_RF01_C12_C15_ONLY。
 
-BOUNDED_AUTHORIZED_FOR_GAP08_W4。
-
-Authorization：
-
-`docs/work/GAP08_WAVE4_AUTHORIZATION.md`
+RF01：
+`docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_01.md`
 
 Next actual work：
+one bounded C12+C15 correction in the exact RF01 six-file scope。
 
-CODEX bounded execution C13 -> C12 -> C14 -> C15；automatic progression only after objective leaf gate PASS。
-
-STOP：
-
-on scope/authority expansion、third semantic correction for a leaf、protected-file need、side-effect expansion or remote divergence；otherwise STOP after wave-end push for reviewer。
+STOP after correction push for reviewer；do not close W4 or begin P7。
 
 ## 4. Recommended Model
 

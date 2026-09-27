@@ -4,274 +4,57 @@
 
 **CURRENT GOVERNANCE PROJECTION — CANONICAL**
 
-This section is the single canonical CURRENT runtime/planning projection。
-
-Other governance/work documents may summarize or reference this state，but they do not independently establish runtime authorization。
-
-### Baseline Separation
-
-Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
-
-This remains the Decision Checkpoint 5E architecture baseline。
-
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`（GOV-01）。
-
-Current Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`。
-
-The exact Correction-Freeze commit hash is reported after commit/push and becomes the execution-planning baseline for any later bounded Runtime Authorization。
-
-Runtime Candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
-
-Runtime candidate != authorized runtime baseline。
-
-Planning acceptance != Architecture Decision Checkpoint != Runtime Authorization。
-
-### Current Governance State
-
-- Architecture Acceptance：HOLD。
-- Runtime Conformance：NOT ASSERTED。
-- Production Readiness：NOT ASSERTED。
-- Runtime Authorization：NOT_AUTHORIZED。
-- Runtime Source Modification Authorization：NOT_AUTHORIZED。
-- Broker I/O：NOT_AUTHORIZED。
-- DB migration execution：NOT_AUTHORIZED。
-- Level 3B：NOT_ENABLED。
-
-### Latest Completed Bounded Runtime Execution
-
-Latest closure：
-
-`docs/work/GAP08_C25_CLOSURE.md`
-
-Completed / verified：
-
-- V06 — Repository Persistence Baseline Verification。
-- C01 — Expected State Authority Read Contract。
-- C22 — Canonical Time Evidence Correction。
-- C11 — Shioaji Status Mapping Correction。
-- C23 — Canonical MarketObservation Identity + Revision。
-- C24 — Operational MarketObservation Evidence / Acceptance。
-- C25 — Durable-before-Strategy Delivery / Revision Ref Migration。
-
-Latest runtime commit：
-
-`940f54c6d9b4ed7bf0e1d3c8627b49be3fdae495`
-
-C25 final verification：
-
-- C22 + C25 targeted：64 passed。
-- C23/C24 compatibility：112 passed。
-- full regression：1081 passed / 4 skipped。
-- runtime correction cycles：2。
-
-C25 boundaries：
-
-- durable accepted revision precedes recovery-capable strategy delivery。
-- exact mor1 revision reference is canonical strategy recovery/execution provenance。
-- legacy arbitrary BAR IDs cannot authorize READY。
-- NEW migration 0004 created。
-- migrations 0001/0002/0003 unchanged。
-- migration 0004 NOT EXECUTED。
-- actual PostgreSQL / V07 NOT VERIFIED。
-- broker / market-data I/O NOT EXECUTED。
-
-Completed / verified correction-core weight：
-
-27 / 113。
-
-Remaining correction-core engineering weight：
-
-86。
-
-### Global DAG Recheck
-
-P1 — Small Known Corrections：
-
-    C01 COMPLETE
-        ->
-    C22 COMPLETE
-        ->
-    C11 COMPLETE
-
-P1 status：
-
-COMPLETE。
-
-P2 — Market Evidence Authority：
-
-    C23 COMPLETE
-        ->
-    C24 COMPLETE
-        ->
-    C25 COMPLETE
-
-P2 status：
-
-COMPLETE。
-
-Next runtime candidate：
-
-C02 — BrokerAccount Revision Head + Exact Checkpoint。
-
-C02：
-
-NOT_AUTHORIZED。
-
-### Current Runtime Authorization
-
-Runtime Authorization：
-
-NOT_AUTHORIZED。
-
-Latest completed bounded execution：
-
-`docs/work/GAP08_WAVE1_CLOSURE.md`
-
-Final W1 Runtime HEAD：
-
-`6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`
-
-GAP08-W1 status：
-
-COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
-
-Accepted W1 leaves：
-
-- C02 — COMPLETE / VERIFIED / ACCEPTED。
-- C04 — COMPLETE / VERIFIED / ACCEPTED。
-- C21 — COMPLETE / VERIFIED / ACCEPTED。
-- C03 — COMPLETE / VERIFIED / ACCEPTED。
-
-W1 source-modification authorization：
-
-CONSUMED / CLOSED。
-
-Correction-core progress：
-
-46 / 113 complete / verified。
-
-Remaining：
-
-67。
-
-Migration 0005：
-
-CREATED / NOT EXECUTED。
-
-Actual PostgreSQL / V07：
-
-NOT_EXECUTED / NOT_VERIFIED / NOT_AUTHORIZED。
-
-Broker I/O：
-
-NOT_AUTHORIZED。
-
-Production Activation：
-
-NOT_AUTHORIZED。
-
-Next Wave candidate：
-
-    C08
-        -> C05
-        -> C06
-
-W2 weight：
-
-14。
-
-W2 execution coherence：
-
-VERIFIED。
-
-W2 Runtime Source Modification Authorization：
-
-CONSUMED / CLOSED。
-
-W2 final Runtime HEAD：
-
-`a9a8277afd4aeda5150d596b41597a179ad63570`
-
-W2 status：
-
-COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
-
-Closure：
-
-`docs/work/GAP08_WAVE2_CLOSURE.md`
-
-Correction-core progress：
-
-60 / 113 complete / verified。
-
-Remaining：
-
-53。
-
-P5 / W3：
-
-`C07 -> C09 -> C10`
-
-W3 weight：
-
-15。
-
-W3 final Runtime HEAD：
-
-`8085697e7211b4cd43df8e4574c3eef25cba604a`
-
-W3 status：
-
-`COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED`
-
-Closure：
-
-`docs/work/GAP08_WAVE3_CLOSURE.md`
-
-W3 Runtime Source Modification Authorization：
-
-`CONSUMED / CLOSED`
-
-Accepted correction-core progress：
-
-75 / 113。
-
-Remaining：
-
-38。
-
-Next frozen package：
-
-`P6 / W4：C13 -> C12 -> C14 -> C15`
-
-P6 weight：
-
-18。
-
-W4 execution package：
-
-`docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`
-
-P6 / W4 execution coherence：
-
-`VERIFIED`
-
-P6 / W4 Runtime Source Modification Authorization：
-
-`BOUNDED_AUTHORIZED_FOR_GAP08_W4`
-
-Authorization：
-
-`docs/work/GAP08_WAVE4_AUTHORIZATION.md`
-
-Execution baseline：
-
-the authorization commit produced from planning baseline `a936a4827b53609bcd15383d62bcc515d26140b6`。
-
-Next actual project action：
-
-CODEX bounded W4 execution `C13 -> C12 -> C14 -> C15` with automatic leaf progression only after each leaf gate PASS。
-
+This is the single current authority projection.
+If any cached handoff, AGENTS history, CURRENT_WORK, ACTIVE or older closure conflicts: this section wins and authority must be re-resolved.
+
+### CURRENT_AUTHORITY_SNAPSHOT
+
+```text
+architecture_decision_baseline = 22ceaa729ab6e9da9c00ae52e09ae7116be5a743
+governance_planning_baseline = f45742d9d16165f87f145f0d2bdc8d530772e5ee
+correction_freeze_baseline = 93fb846a9c9cd61eea44427a86a542fc95f9ac28
+
+architecture_acceptance = HOLD
+runtime_conformance = NOT_ASSERTED
+production_readiness = NOT_ASSERTED
+canonical_runtime_authorization = NOT_AUTHORIZED
+
+accepted_correction_core = 75/113
+remaining_correction_core = 38
+
+latest_accepted_wave = W3
+latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
+
+current_wave = W4
+current_runtime_candidate = 060dfdc2ac4539fa31b95c26c0a0bd0b3dcb7021
+reviewer_state = HOLD_RF01_REQUIRED
+w4_weight = 18_NOT_CREDITED
+
+C13 = PASS_FROZEN_READ_ONLY
+C12 = RF01_REQUIRED
+C14 = PASS_FROZEN_READ_ONLY
+C15 = RF01_REQUIRED
+
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4_RF01_C12_C15_ONLY
+migration_0008 = CREATED_NOT_EXECUTED
+actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
+broker_io = NOT_AUTHORIZED
+production_activation = NOT_AUTHORIZED
+```
+
+Pointers:
+- W3 closure: `docs/work/GAP08_WAVE3_CLOSURE.md`
+- W4 execution package: `docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`
+- W4 original auth: `docs/work/GAP08_WAVE4_AUTHORIZATION.md`
+- W4 RF01: `docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_01.md`
+- workflow: `docs/CODEX_EXECUTION_WORKFLOW.md`
+
+Current action:
+execute one bounded C12+C15 RF01 correction in the exact six-file scope, then STOP for reviewer.
+
+Do not close W4, credit weight 18, begin P7, execute migration, access actual PostgreSQL/V07 or perform broker I/O.
+
+---
 ### POST-5E ACCEPTED PLANNING INPUTS
 
 The following post-5E items were ACCEPTED PLANNING INPUTS and are now materialized into the docs-only Correction-Freeze Work Package；they remain planning inputs and are NOT a new Architecture Decision Baseline。

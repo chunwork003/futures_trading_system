@@ -22,7 +22,7 @@ Runtime Authorization：NOT_AUTHORIZED。
 
 Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
 
-Current execution action：GAP08-W3 is CLOSED。P6 / W4 `C13 -> C12 -> C14 -> C15` coherence is VERIFIED；bounded source modification is authorized by `docs/work/GAP08_WAVE4_AUTHORIZATION.md`。Leaf-local gates + per-leaf commits + wave-end push only。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution state is deliberately not duplicated here。Always resolve `docs/CURRENT_STATE.md` at the current Git HEAD；if cached/handoff/historical text conflicts，the canonical CURRENT projection wins and authority must be re-resolved。
 
 W2 authorization + Amendment 01 are CONSUMED / CLOSED。Migration 0006 exists and was amended before execution；it remains NOT_EXECUTED。Actual PostgreSQL、V07、migration execution、broker I/O and runtime activation remain NOT_AUTHORIZED。
 
