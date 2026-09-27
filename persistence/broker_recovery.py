@@ -6,8 +6,13 @@ from typing import Callable, Protocol, runtime_checkable
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
-from persistence.contracts import PersistenceConflictError, UnitOfWork, normalize_aware_utc, normalize_stable_id
+from persistence.contracts import PersistenceConflictError, PersistenceContractError, UnitOfWork, normalize_aware_utc, normalize_stable_id
+from persistence.account import AccountPositionSnapshot
+from persistence.account_authority import AccountAuthorityCommit, AccountAuthorityCommitReceipt, AccountAuthorityCommitService, AccountAuthorityParticipant
+from persistence.execution import ExecutionPersistenceService, FillRepository
 from trading.account import BrokerAccount
+from trading.broker_recovery import BrokerDealEvidence, reconstruct_broker_order
+from trading.execution import Order, OrderEvent, OrderEventProvenance
 
 
 class BrokerReportIngressStatus(str, Enum):
@@ -215,4 +220,80 @@ class BrokerRecoveryEvidenceService:
             return completed
 
 
-__all__ = ["AccountRecoveryControl", "BrokerRecoveryEvidenceService", "BrokerRecoveryRepository", "BrokerReportApplication", "BrokerReportApplicationStatus", "BrokerReportConflictError", "BrokerReportInboxEntry", "BrokerReportIngressStatus", "ExecutionContinuityEpoch", "RecoveryFenceConflictError", "SequenceGap"]
+class BrokerRecoveryExecutionService:
+    """以唯一 AccountAuthorityCommit 原子接受 recovery execution material。
+
+    上游只能提供已驗證 broker-neutral deal evidence；本 service 先讀完整
+    canonical Fill set，再將 OrderEvent、Fill、projection、expected snapshot 與
+    可選 BrokerAction resolution participants 放入同一 UoW。它不呼叫 broker。
+    """
+    def __init__(
+        self,
+        *,
+        authority_service: AccountAuthorityCommitService,
+        execution_service: ExecutionPersistenceService,
+        fill_repository: Callable[[UnitOfWork], FillRepository],
+    ) -> None:
+        self._authority_service = authority_service
+        self._execution_service = execution_service
+        self._fill_repository = fill_repository
+
+    def commit(
+        self,
+        *,
+        mutation: AccountAuthorityCommit,
+        previous_event: OrderEvent,
+        event: OrderEvent,
+        order: Order,
+        expected_version: int,
+        evidence: tuple[BrokerDealEvidence, ...],
+        expected_snapshot: AccountPositionSnapshot | None,
+        prior_expected_snapshot_id: str,
+        additional_participants: Callable[[UnitOfWork], tuple[AccountAuthorityParticipant, ...]] | None = None,
+    ) -> AccountAuthorityCommitReceipt:
+        def participants(uow: UnitOfWork) -> tuple[AccountAuthorityParticipant, ...]:
+            repository = self._fill_repository(uow)
+            local_fills = repository.list_by_order(order.order_id)
+            plan = reconstruct_broker_order(
+                order=order.model_copy(update={"status": previous_event.status}),
+                local_fills=local_fills,
+                evidence=evidence,
+                event_id=event.event_id,
+                correlation_id=event.correlation_id,
+            )
+            if event.provenance not in {
+                OrderEventProvenance.BROKER_CALLBACK,
+                OrderEventProvenance.BROKER_DISCOVERY,
+            }:
+                raise PersistenceContractError("broker recovery event requires broker provenance")
+            if event.status is not plan.status:
+                raise PersistenceContractError("OrderEvent status does not match reconstructed Fill set")
+            if (
+                order.status is not plan.status
+                or order.filled_quantity != plan.filled_quantity
+                or order.average_fill_price != plan.average_fill_price
+            ):
+                raise PersistenceContractError("Order projection economics do not match canonical Fill set")
+            if plan.accepted_fills:
+                if expected_snapshot is None:
+                    raise PersistenceContractError("position-changing recovery requires complete expected snapshot")
+                if mutation.expected_snapshot_id != expected_snapshot.snapshot_id:
+                    raise PersistenceContractError("authority checkpoint must reference recovery snapshot")
+            elif mutation.expected_snapshot_id != prior_expected_snapshot_id:
+                raise PersistenceContractError("status-only recovery must carry forward expected snapshot")
+            execution = self._execution_service.participant(
+                uow=uow,
+                event=event,
+                previous_event=previous_event,
+                fills=plan.accepted_fills,
+                order=order,
+                expected_version=expected_version,
+                expected_snapshot=expected_snapshot,
+            )
+            extras = () if additional_participants is None else additional_participants(uow)
+            return (execution,) + extras
+
+        return self._authority_service.commit(mutation, participant_factory=participants)
+
+
+__all__ = ["AccountRecoveryControl", "BrokerRecoveryEvidenceService", "BrokerRecoveryExecutionService", "BrokerRecoveryRepository", "BrokerReportApplication", "BrokerReportApplicationStatus", "BrokerReportConflictError", "BrokerReportInboxEntry", "BrokerReportIngressStatus", "ExecutionContinuityEpoch", "RecoveryFenceConflictError", "SequenceGap"]

@@ -35,13 +35,27 @@ class OrderStatus(str, Enum):
     REJECTED = "REJECTED"
 
 
+class OrderEventProvenance(str, Enum):
+    """Canonical order evidence 的來源；來源不等同 lifecycle authority。"""
+
+    LOCAL_OMS = "LOCAL_OMS"
+    BROKER_CALLBACK = "BROKER_CALLBACK"
+    BROKER_DISCOVERY = "BROKER_DISCOVERY"
+
+
 TERMINAL_ORDER_STATUSES = frozenset(
     {OrderStatus.FILLED, OrderStatus.CANCELLED, OrderStatus.REJECTED}
 )
 
 LEGAL_ORDER_TRANSITIONS = {
     OrderStatus.PENDING: frozenset(
-        {OrderStatus.SUBMITTED, OrderStatus.CANCELLED, OrderStatus.REJECTED}
+        {
+            OrderStatus.SUBMITTED,
+            OrderStatus.PARTIALLY_FILLED,
+            OrderStatus.FILLED,
+            OrderStatus.CANCELLED,
+            OrderStatus.REJECTED,
+        }
     ),
     OrderStatus.SUBMITTED: frozenset(
         {OrderStatus.PARTIALLY_FILLED, OrderStatus.FILLED, OrderStatus.CANCELLED, OrderStatus.REJECTED}
@@ -156,6 +170,7 @@ class OrderEvent(_ExecutionModel):
     occurred_at: datetime
     received_at: datetime
     broker_order_id: str | None = None
+    provenance: OrderEventProvenance = OrderEventProvenance.LOCAL_OMS
     payload_json: dict[str, object] = Field(default_factory=dict)
 
     @field_validator("occurred_at", "received_at")

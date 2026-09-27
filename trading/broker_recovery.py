@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from decimal import Decimal
 from enum import Enum
 from typing import Protocol, runtime_checkable
 
@@ -8,6 +9,7 @@ from pydantic import BaseModel, ConfigDict, field_validator, model_validator
 
 from persistence.contracts import normalize_aware_utc, normalize_stable_id
 from trading.account import BrokerAccount
+from trading.execution import Fill, Order, OrderStatus
 
 
 class DiscoveryCompleteness(str, Enum):
@@ -161,4 +163,141 @@ def classify_broker_discovery(*, request: BrokerDiscoveryRequest, observations: 
     return BrokerDiscoveryResult(discovery_run_id=request.discovery_run_id, account=request.account, required_scope=request.required_scope, horizon_start=request.horizon_start, horizon_end=request.horizon_end, refreshed_at=refreshed_at, completeness=completeness, exact_matches=matches, cardinality=cardinality, integrity=integrity, evidence=evidence)
 
 
-__all__ = ["BrokerDiscoveryError", "BrokerDiscoveryIntegrity", "BrokerDiscoveryRequest", "BrokerDiscoveryResult", "BrokerDiscoveryScopeError", "BrokerOrderDiscoveryProvider", "BrokerOrderObservation", "DiscoveryCompleteness", "ExactMatchCardinality", "classify_broker_discovery"]
+class BrokerRecoveryIntegrityError(RuntimeError):
+    """Broker recovery evidence 不完整、衝突或超出 sealed terminal 時 fail closed。"""
+
+
+class BrokerDealIdentity(BaseModel):
+    """Broker-neutral exact deal identity；禁止以 timestamp/price/quantity heuristic 代替。"""
+    model_config = ConfigDict(extra="forbid", frozen=True)
+    broker: str
+    account_ref: str
+    deal_id: str
+
+    @field_validator("broker", mode="before")
+    @classmethod
+    def _broker(cls, value: object) -> object:
+        return normalize_stable_id(value).upper() if isinstance(value, str) else value
+
+    @field_validator("account_ref", "deal_id", mode="before")
+    @classmethod
+    def _ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+
+class BrokerDealEvidence(BaseModel):
+    """已驗證 exact identity 的 broker deal evidence；aggregate 僅可作驗證資料。"""
+    model_config = ConfigDict(extra="forbid", frozen=True)
+    identity: BrokerDealIdentity
+    order_id: str
+    broker_client_order_ref: str
+    quantity: int
+    price: Decimal
+    occurred_at: datetime
+    identity_verified: bool
+
+    @field_validator("order_id", "broker_client_order_ref", mode="before")
+    @classmethod
+    def _ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @field_validator("price", mode="before")
+    @classmethod
+    def _price(cls, value: object) -> Decimal:
+        if not isinstance(value, Decimal) or not value.is_finite():
+            raise ValueError("broker deal price must be a finite Decimal")
+        return value
+
+    @field_validator("occurred_at")
+    @classmethod
+    def _occurred_at(cls, value: datetime) -> datetime:
+        return normalize_aware_utc(value)
+
+    @model_validator(mode="after")
+    def _material(self) -> "BrokerDealEvidence":
+        if self.quantity <= 0:
+            raise ValueError("broker deal quantity must be positive")
+        if not self.identity_verified:
+            raise BrokerRecoveryIntegrityError("broker deal identity is not verified")
+        return self
+
+
+class BrokerReconstructionPlan(BaseModel):
+    """Pure reconstruction result；下游僅能以 complete canonical Fill set 投影 economics。"""
+    model_config = ConfigDict(extra="forbid", frozen=True)
+    status: OrderStatus
+    accepted_fills: tuple[Fill, ...]
+    filled_quantity: int
+    average_fill_price: Decimal | None
+
+
+def reconstruct_broker_order(
+    *,
+    order: Order,
+    local_fills: tuple[Fill, ...],
+    evidence: tuple[BrokerDealEvidence, ...],
+    event_id: str,
+    correlation_id: str,
+) -> BrokerReconstructionPlan:
+    """從 exact deal evidence 建立 plan；不執行 broker I/O、不寫 authority。"""
+    if order.status in {OrderStatus.FILLED, OrderStatus.CANCELLED, OrderStatus.REJECTED}:
+        by_deal = {fill.broker_deal_id: fill for fill in local_fills if fill.broker_deal_id}
+        for item in evidence:
+            existing = by_deal.get(item.identity.deal_id)
+            if (
+                existing is None
+                or existing.quantity != item.quantity
+                or existing.price != item.price
+            ):
+                raise BrokerRecoveryIntegrityError("terminal order economics are sealed")
+        return BrokerReconstructionPlan(
+            status=order.status,
+            accepted_fills=(),
+            filled_quantity=order.filled_quantity,
+            average_fill_price=order.average_fill_price,
+        )
+    by_deal = {fill.broker_deal_id: fill for fill in local_fills if fill.broker_deal_id}
+    if len(by_deal) != len([fill for fill in local_fills if fill.broker_deal_id]):
+        raise BrokerRecoveryIntegrityError("canonical Fill set has duplicate deal identity")
+    accepted: list[Fill] = []
+    seen: dict[str, BrokerDealEvidence] = {}
+    for item in evidence:
+        if item.order_id != order.order_id or item.broker_client_order_ref != order.broker_client_order_ref:
+            raise BrokerRecoveryIntegrityError("broker deal does not match canonical order identity")
+        deal_id = item.identity.deal_id
+        if deal_id in seen and seen[deal_id] != item:
+            raise BrokerRecoveryIntegrityError("broker deal identity has conflicting content")
+        seen[deal_id] = item
+        existing = by_deal.get(deal_id)
+        candidate = Fill(
+            fill_id=f"BROKER-DEAL:{item.identity.broker}:{item.identity.account_ref}:{deal_id}",
+            order_id=order.order_id,
+            event_id=event_id,
+            correlation_id=correlation_id,
+            causation_id=event_id,
+            quantity=item.quantity,
+            price=item.price,
+            occurred_at=item.occurred_at,
+            broker_deal_id=deal_id,
+        )
+        if existing is not None:
+            if existing.quantity != candidate.quantity or existing.price != candidate.price:
+                raise BrokerRecoveryIntegrityError("broker deal conflicts with canonical Fill")
+            continue
+        if deal_id not in {fill.broker_deal_id for fill in accepted}:
+            accepted.append(candidate)
+    complete = local_fills + tuple(accepted)
+    quantity = sum(fill.quantity for fill in complete)
+    if quantity > order.quantity:
+        raise BrokerRecoveryIntegrityError("canonical Fill quantity exceeds order quantity")
+    average = None if quantity == 0 else sum(fill.price * fill.quantity for fill in complete) / Decimal(quantity)
+    status = OrderStatus.FILLED if quantity == order.quantity else OrderStatus.PARTIALLY_FILLED
+    return BrokerReconstructionPlan(
+        status=status,
+        accepted_fills=tuple(accepted),
+        filled_quantity=quantity,
+        average_fill_price=average,
+    )
+
+
+__all__ = ["BrokerDealEvidence", "BrokerDealIdentity", "BrokerDiscoveryError", "BrokerDiscoveryIntegrity", "BrokerDiscoveryRequest", "BrokerDiscoveryResult", "BrokerDiscoveryScopeError", "BrokerOrderDiscoveryProvider", "BrokerOrderObservation", "BrokerReconstructionPlan", "BrokerRecoveryIntegrityError", "DiscoveryCompleteness", "ExactMatchCardinality", "classify_broker_discovery", "reconstruct_broker_order"]

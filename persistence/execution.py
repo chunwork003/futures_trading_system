@@ -33,6 +33,7 @@ class OrderRepository(Protocol):
 class FillRepository(Protocol):
     def append(self, fill: Fill) -> bool: ...
     def get(self, fill_id: str) -> Fill | None: ...
+    def list_by_order(self, order_id: str) -> tuple[Fill, ...]: ...
 
 
 def order_event_as_trading_event(event: OrderEvent) -> TradingEvent:
@@ -48,6 +49,7 @@ def order_event_as_trading_event(event: OrderEvent) -> TradingEvent:
         payload_json={
             "previous_status": None if event.previous_status is None else event.previous_status.value,
             "status": event.status.value, "broker_order_id": event.broker_order_id,
+            "provenance": event.provenance.value,
             "payload": event.payload_json,
         },
     )

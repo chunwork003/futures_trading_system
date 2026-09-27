@@ -54,6 +54,16 @@ class PostgresFillRepository:
             row = cursor.fetchone()
         return None if row is None else Fill.model_validate(row[0])
 
+    def list_by_order(self, order_id: str) -> tuple[Fill, ...]:
+        """讀取完整 canonical Fill set；broker aggregate 不可取代此集合。"""
+        with self._connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT fill_json FROM trading.fills WHERE order_id = %s ORDER BY fill_id",
+                (order_id,),
+            )
+            rows = cursor.fetchall()
+        return tuple(Fill.model_validate(row[0]) for row in rows)
+
     def append(self, fill: Fill) -> bool:
         existing = self.get(fill.fill_id)
         if existing is not None: return existing == fill
