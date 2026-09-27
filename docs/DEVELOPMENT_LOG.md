@@ -29,6 +29,36 @@
 
 ## Chronological Log
 
+### 2026-09-27 — GAP-08 Wave-3 Source-Modification Authorization
+
+- authorization decision baseline：`09fcfa771ddf3991d52974028b3cc465e9f13f5a`。
+- Wave：`GAP08-W3-BROKER-RECOVERY-EVIDENCE`。
+- authorized leaves：C07 -> C09 -> C10。
+- candidate weight：15 / NOT CREDITED until reviewer closure。
+- execution package：`docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`。
+- Runtime Source Modification Authorization：`BOUNDED_AUTHORIZED_FOR_GAP08_W3`。
+- canonical Runtime Authorization：`NOT_AUTHORIZED`。
+- production activation：`NOT_AUTHORIZED`。
+- existing runtime write scope：`trading/execution.py`、`persistence/execution.py`、`persistence/postgres/execution.py`。
+- new runtime scope：`trading/broker_recovery.py`、`persistence/broker_recovery.py`、`persistence/postgres/broker_recovery.py`、`0007_broker_recovery_evidence.sql`。
+- existing writable tests：`test_operational_execution.py`、`test_operational_postgres.py`。
+- new tests：`test_c07_broker_discovery.py`、`test_c09_broker_recovery_fence.py`、`test_c10_broker_reconstruction.py`。
+- C11 read-only regression evidence resolved to `test_shioaji_mapping.py` + `test_shioaji_submitted_status.py`；the planning placeholder is not a file to create。
+- `persistence/recovery.py` and reconciliation modules remain READ-ONLY。
+- W1/W2 account-authority / broker-action modules remain READ-ONLY。
+- account projection modules remain READ-ONLY。
+- all Shioaji/Sinopac adapters and capability registry remain READ-ONLY。
+- migration 0001～0006：READ-ONLY。
+- migration 0007 source creation/amendment：ALLOW；execution：DENY。
+- actual PostgreSQL / V07：DENY。
+- broker network / paper / Shioaji simulation / production I/O：DENY。
+- V01～V05 capability verification：DENY / separate future authorization。
+- automatic progression only C07 -> C09 -> C10 under leaf-local targeted/full/diff/scope/commit gates。
+- per-leaf commits：ALLOW；push：wave-end only。
+- semantic correction budget：maximum 2 scope-internal cycles per leaf。
+- accepted correction-core progress remains 60 / 113；53 remaining。
+- authorization becomes effective only after this docs-only authorization commit is pushed；that commit becomes exact W3 Execution Baseline。
+- after C10 final verification/push：STOP and return to reviewer；no closure / next Wave。
 ### 2026-09-27 — GAP-08 Wave-3 Execution Coherence Verification
 
 - planning parent：`38dadf8399946cd96b96655fd2dbc21334d0ecbb`。

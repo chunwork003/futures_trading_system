@@ -222,15 +222,23 @@ VERIFIED。
 
 W3 Runtime Source Modification Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_FOR_GAP08_W3。
 
 W3 execution package：
 
 `docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
 
+W3 source-modification authorization：
+
+BOUNDED_AUTHORIZED_FOR_GAP08_W3。
+
+Authorization：
+
+`docs/work/GAP08_WAVE3_AUTHORIZATION.md`
+
 Next actual project action：
 
-explicit bounded W3 Runtime Source Modification Authorization decision only。
+CODEX W3 bounded source execution：C07 -> C09 -> C10 only。
 
 ### POST-5E ACCEPTED PLANNING INPUTS
 
@@ -432,7 +440,7 @@ Next：
 
 W2 final Runtime HEAD `a9a8277afd4aeda5150d596b41597a179ad63570` -> RF01 PASS -> W2 COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
 
-P5 / W3 Broker Recovery Evidence：C07 -> C09 -> C10；execution coherence VERIFIED；source modification NOT_AUTHORIZED。Next is separate explicit bounded W3 source-modification authorization decision。
+P5 / W3 Broker Recovery Evidence：C07 -> C09 -> C10；execution coherence VERIFIED；bounded source modification AUTHORIZED by `docs/work/GAP08_WAVE3_AUTHORIZATION.md`。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 No step implicitly grants authority to the next step。
 

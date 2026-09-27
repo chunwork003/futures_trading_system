@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W2 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。P5 / W3 execution package is materialized and execution coherence is VERIFIED for C07 -> C09 -> C10。W3 source modification remains NOT_AUTHORIZED pending a separate explicit bounded authorization。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：W2 is COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。P5 / W3 execution coherence is VERIFIED and bounded source modification is AUTHORIZED by `docs/work/GAP08_WAVE3_AUTHORIZATION.md`。Execute C07 -> C09 -> C10 only。Canonical Runtime Authorization remains NOT_AUTHORIZED。
 
 ## Purpose
 
@@ -65,7 +65,7 @@ Runtime tests：PASS — 934 passed / 4 skipped / 1 warning
 
 Architecture acceptance：HOLD
 
-Current activity：WAVE_3_EXECUTION_COHERENCE_VERIFIED
+Current activity：WAVE_3_BOUNDED_SOURCE_EXECUTION
 Runtime Authorization：NOT_AUTHORIZED
 Launch Gate：NOT_AUTHORIZED
 ## Latest Completed Correction Leaves
@@ -198,17 +198,21 @@ VERIFIED。
 
 W3 Runtime Source Modification Authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_FOR_GAP08_W3。
 
 Execution package：
 
 `docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
 
+Authorization：
+
+`docs/work/GAP08_WAVE3_AUTHORIZATION.md`
+
 Next actual project action：
 
-EXPLICIT BOUNDED W3 RUNTIME SOURCE MODIFICATION AUTHORIZATION DECISION ONLY。
+CODEX W3 bounded source execution：C07 -> C09 -> C10。
 
-No C07 runtime modification is authorized。
+No migration execution、actual PostgreSQL or broker I/O is authorized。
 
 Remaining：
 

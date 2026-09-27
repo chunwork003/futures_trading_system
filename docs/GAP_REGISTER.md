@@ -656,11 +656,15 @@ Execution package：
 
 `docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
 
-Runtime Source Modification Authorization：NOT_AUTHORIZED。
+Runtime Source Modification Authorization：BOUNDED_AUTHORIZED_FOR_GAP08_W3。
+
+Authorization：
+
+`docs/work/GAP08_WAVE3_AUTHORIZATION.md`
 
 Next governance action：
 
-separate explicit bounded W3 Runtime Source Modification Authorization decision。
+CODEX bounded W3 source execution：C07 -> C09 -> C10 only。
 
 Parent GAP cannot close until the frozen correction package is explicitly authorized、implemented、verified and finally accepted；production capability gates remain evidence-dependent。
 

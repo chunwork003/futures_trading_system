@@ -423,19 +423,23 @@ VERIFIED。
 
 W3 source-modification authorization：
 
-NOT_AUTHORIZED。
+BOUNDED_AUTHORIZED_FOR_GAP08_W3。
 
 Execution package：
 
 `docs/work/GAP08_WAVE3_EXECUTION_PACKAGE.md`
 
+Authorization：
+
+`docs/work/GAP08_WAVE3_AUTHORIZATION.md`
+
 Next actual work：
 
-prepare separate explicit bounded W3 source-modification authorization decision only。
+CODEX execute C07 -> C09 -> C10 under exact bounded W3 authorization。
 
 STOP：
 
-do not start C07 runtime。
+after W3 final verification/push；do not start another Wave or governance closure。
 
 ## 4. Recommended Model
 
