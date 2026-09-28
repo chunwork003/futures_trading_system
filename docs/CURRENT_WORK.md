@@ -14,26 +14,26 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W4R-C2B runtime candidate `515bbcca04b7afa69737b713f71f8267bc182ffb` is HOLD / RF01_REQUIRED；execute only GAP08-W4R-C2B-RF01。Internal accepted package weight remains 9/18；official accepted correction core remains 75/113。
+Current execution action：W4R-C ACCEPTED/FROZEN；GAP08-W4R-D1A READY_FOR_EXECUTION。Internal accepted package weight = 13/18；official accepted correction core remains 75/113。
 
 <!-- MACHINE_QUEUE_CURRENT_START -->
-WORK_PACKAGE_ID = GAP08-W4R-C2B-RF01
+WORK_PACKAGE_ID = GAP08-W4R-D1A
 STATUS = READY_FOR_EXECUTION
 PRIORITY = P1_MAINLINE
-PLANNING_BASELINE = 515bbcca04b7afa69737b713f71f8267bc182ffb
-AUTHORIZATION = docs/work/GAP08_W4R_C2B_AUTHORIZATION_AMENDMENT_01.md
-RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_C2B_RF01_ONLY
+PLANNING_BASELINE = 2eebf518cc88401466752e8c4e36a79e8dd47a38
+AUTHORIZATION = docs/work/GAP08_W4R_D1A_AUTHORIZATION.md
+RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_D1A_ONLY
 SIDE_EFFECT_CLASS = SOURCE_TEST_ONLY
-DEPENDENCIES = W4R_A_ACCEPTED_FROZEN;W4R_B_ACCEPTED_FROZEN;W4R_C1_ACCEPTED_FROZEN;W4R_C2A_ACCEPTED_FROZEN;W4R_C2B_RUNTIME_CANDIDATE;W4R_C2B_REVIEW_RF01
-WRITE_SCOPE = persistence/recovery.py;tests/unit/test_c15_account_recovery_readiness.py
-TEST_GATE = W4R_C2B_RF01_TARGETED_COMPAT_FULL
+DEPENDENCIES = W4R_A_ACCEPTED_FROZEN;W4R_B_ACCEPTED_FROZEN;W4R_C_ACCEPTED_FROZEN
+WRITE_SCOPE = persistence/readiness_fence.py;persistence/postgres/readiness_fence.py;persistence/account_authority.py;persistence/postgres/account_authority.py;persistence/postgres/account.py;tests/unit/test_c04_account_authority_commit.py;tests/unit/test_operational_postgres.py
+TEST_GATE = W4R_D1A_TARGETED_COMPAT_FULL
 GIT_POLICY = ONE_COMMIT_ONE_PUSH_NO_FORCE
 REVIEW_BARRIER = MANDATORY_AFTER_PACKAGE
-COMMIT_MESSAGE = fix(recovery): seal W4R-C2B event identity linkage
-CORRECTION_BUDGET = 1
+COMMIT_MESSAGE = feat(recovery): fence W4R-D1A account authority writers
+CORRECTION_BUDGET = REVIEWER_BOUNDED
 TOOLING_MODE = CONTROLLED_STAGING_ROOT_FIRST
 EFFICIENCY_METRICS = CHANGED_FILES;DIFF_SIZE;SEMANTIC_CORRECTIONS;TOOLING_RETRIES;5HR
-NEXT_QUEUE = STOP_FOR_W4R_C2B_REVIEW
+NEXT_QUEUE = GAP08-W4R-D1B
 <!-- MACHINE_QUEUE_CURRENT_END -->
 
 ## Purpose
