@@ -13,6 +13,7 @@ from persistence.account import (
     ExpectedStateReadError,
 )
 from trading.account import AccountSnapshot, BrokerAccount
+from persistence.postgres.readiness_fence import PostgresRecoveryReadinessFenceRepository
 
 
 class PostgresExpectedPositionSnapshotRepository:
@@ -213,11 +214,15 @@ class PostgresExpectedPositionSnapshotRepository:
 class PostgresBrokerPositionObservationRepository:
     def __init__(self, connection: Any) -> None:
         self._connection = connection
+        self._readiness_fence = PostgresRecoveryReadinessFenceRepository(connection)
 
     def append(
         self,
         observation: BrokerPositionObservation,
     ) -> None:
+        token = self._readiness_fence.lock_active(
+            BrokerAccount(broker=observation.broker, account_ref=observation.account_ref)
+        )
         with self._connection.cursor() as cursor:
             cursor.execute(
                 """
@@ -267,6 +272,8 @@ class PostgresBrokerPositionObservationRepository:
                         position.average_price,
                     ),
                 )
+        if token is not None:
+            self._readiness_fence.advance_locked(token)
 
     def get_exact(self, *, observation_id: str, broker: str, account_ref: str) -> BrokerPositionObservation | None:
         """讀取指定 observation；missing/wrong scope 均不得形成 positive authority。"""

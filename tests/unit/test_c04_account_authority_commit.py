@@ -11,6 +11,8 @@ from persistence.account_authority import (
     AccountRecoveryCheckpoint,
     AccountStateHead,
 )
+from persistence.readiness_fence import RecoveryReadinessFenceToken
+from trading.account import BrokerAccount
 
 
 NOW = datetime(2026, 9, 26, 2, tzinfo=timezone.utc)
@@ -57,6 +59,10 @@ class Repository:
     def _call(self, name):
         self.calls.append(name)
         if self.fail == name: raise RuntimeError(name)
+    def lock_active_readiness_fence(self, account):
+        return None
+    def advance_locked_readiness_fence(self, token):
+        raise AssertionError("inactive fence must not advance")
 
 
 class Participant:
@@ -64,6 +70,22 @@ class Participant:
     def apply(self):
         self.calls.append(self.name)
         if self.fail: raise RuntimeError(self.name)
+
+
+class FenceRepository:
+    def __init__(self,calls,token=None,fail_advance=False):
+        self.calls=calls; self.token=token; self.fail_advance=fail_advance
+    def lock_active(self,account):
+        self.calls.append("lock_fence")
+        return self.token
+    def advance_locked(self,token):
+        self.calls.append("advance_fence")
+        if self.fail_advance: raise RuntimeError("advance_fence")
+        return token.model_copy(update={"captured_readiness_revision":token.captured_readiness_revision+1})
+
+
+def _fence_token():
+    return RecoveryReadinessFenceToken(account=BrokerAccount(broker="SINOPAC",account_ref="A"),recovery_generation=4,recovery_cut_revision=1,captured_readiness_revision=7)
 
 
 def mutation(**updates):
@@ -177,3 +199,34 @@ def test_duplicate_receipt_rejects_head_behind_historical_revision() -> None:
         AccountAuthorityCommitService(
             uow_factory=Uow, repository=lambda _:repo
         ).commit(mutation())
+
+
+def test_d1a_new_material_commit_locks_before_head_and_advances_once() -> None:
+    uow=Uow(); repo=Repository(); fence=FenceRepository(repo.calls,_fence_token())
+    repo.lock_active_readiness_fence=fence.lock_active
+    repo.advance_locked_readiness_fence=fence.advance_locked
+    result=AccountAuthorityCommitService(uow_factory=lambda:uow,repository=lambda _:repo).commit(mutation())
+    assert result.committed_revision == 2
+    assert repo.calls == ["get_receipt","lock_fence","lock_head","checkpoint","head","receipt","advance_fence"]
+    assert uow.committed and not uow.rolled
+
+
+def test_d1a_duplicate_and_conflicting_receipts_never_lock_or_advance_fence() -> None:
+    prior=AccountAuthorityCommitReceipt(authority_commit_id="COMMIT-2",mutation_fingerprint="FP-2",broker="SINOPAC",account_ref="A",committed_revision=2,expected_snapshot_id="SNAP-2",recorded_at=NOW)
+    for fingerprint,raises in (("FP-2",False),("OTHER",True)):
+        repo=Repository(receipt=prior.model_copy(update={"mutation_fingerprint":fingerprint})); calls=[]
+        fence=FenceRepository(calls,_fence_token()); repo.lock_active_readiness_fence=fence.lock_active; repo.advance_locked_readiness_fence=fence.advance_locked
+        service=AccountAuthorityCommitService(uow_factory=Uow,repository=lambda _:repo)
+        if raises:
+            with pytest.raises(AccountAuthorityConflictError): service.commit(mutation())
+        else: service.commit(mutation())
+        assert calls == []
+
+
+def test_d1a_participant_failure_never_advances_fence_or_commits() -> None:
+    uow=Uow(); repo=Repository(); calls=[]; fence=FenceRepository(calls,_fence_token())
+    repo.lock_active_readiness_fence=fence.lock_active; repo.advance_locked_readiness_fence=fence.advance_locked
+    with pytest.raises(RuntimeError,match="material"):
+        AccountAuthorityCommitService(uow_factory=lambda:uow,repository=lambda _:repo).commit(mutation(),participants=(Participant("material",calls,fail=True),))
+    assert calls == ["lock_fence","material"]
+    assert uow.rolled and not uow.committed

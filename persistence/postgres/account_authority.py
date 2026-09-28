@@ -9,6 +9,9 @@ from persistence.account_authority import (
     AccountRecoveryCheckpoint,
     AccountStateHead,
 )
+from persistence.postgres.readiness_fence import PostgresRecoveryReadinessFenceRepository
+from persistence.readiness_fence import RecoveryReadinessFenceToken
+from trading.account import BrokerAccount
 
 
 class PostgresAccountAuthorityRepository:
@@ -16,6 +19,13 @@ class PostgresAccountAuthorityRepository:
 
     def __init__(self, connection: Any) -> None:
         self._connection = connection
+        self._readiness_fence = PostgresRecoveryReadinessFenceRepository(connection)
+
+    def lock_active_readiness_fence(self, account: BrokerAccount) -> RecoveryReadinessFenceToken | None:
+        return self._readiness_fence.lock_active(account)
+
+    def advance_locked_readiness_fence(self, token: RecoveryReadinessFenceToken) -> RecoveryReadinessFenceToken:
+        return self._readiness_fence.advance_locked(token)
 
     def lock_head(self, broker: str, account_ref: str) -> AccountStateHead | None:
         with self._connection.cursor() as cursor:

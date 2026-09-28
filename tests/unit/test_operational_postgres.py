@@ -11,6 +11,8 @@ from persistence.postgres.account import (
     PostgresBrokerPositionObservationRepository,
     PostgresExpectedPositionSnapshotRepository,
 )
+from persistence.postgres.readiness_fence import PostgresRecoveryReadinessFenceRepository
+from persistence.readiness_fence import RecoveryReadinessFenceConflictError
 from persistence.broker_action import (
     BrokerActionAttempt,
     BrokerActionKind,
@@ -635,3 +637,45 @@ def test_postgres_account_readiness_gate_revalidates_revision_and_nonrevision_wi
     assert "reconciliation_case_history" in currentness_source
     assert "broker_action_heads" in __import__("inspect").getsource(_read_unresolved_actions)
     assert "advance_head" not in source
+
+
+def test_d1a_postgres_fence_locks_exact_active_control_and_advances_only_readiness() -> None:
+    connection=_QueueConnection([("SINOPAC","A",4,8,12,True),(13,)])
+    repository=PostgresRecoveryReadinessFenceRepository(connection)
+    token=repository.lock_active(BrokerAccount(broker="SINOPAC",account_ref="A"))
+    assert token is not None and token.captured_readiness_revision == 12
+    advanced=repository.advance_locked(token)
+    sqls=[sql for sql,_ in connection.statements]
+    assert "FOR UPDATE" in sqls[0] and "account_recovery_controls" in sqls[0]
+    assert "readiness_revision=readiness_revision+1" in sqls[1]
+    assert "ingress_version" not in sqls[1]
+    assert advanced.captured_readiness_revision == 13
+    assert connection.commits == 0
+
+
+@pytest.mark.parametrize("row",[None,("SINOPAC","A",4,8,12,False)])
+def test_d1a_postgres_fence_missing_or_inactive_has_no_advance(row) -> None:
+    connection=_QueueConnection([row]); repository=PostgresRecoveryReadinessFenceRepository(connection)
+    assert repository.lock_active(BrokerAccount(broker="SINOPAC",account_ref="A")) is None
+    assert len(connection.statements) == 1
+    assert not any(sql.lstrip().startswith("UPDATE") for sql,_ in connection.statements)
+
+
+def test_d1a_postgres_fence_cas_conflict_fails_closed() -> None:
+    connection=_QueueConnection([("SINOPAC","A",4,8,12,True),None])
+    repository=PostgresRecoveryReadinessFenceRepository(connection)
+    token=repository.lock_active(BrokerAccount(broker="SINOPAC",account_ref="A"))
+    with pytest.raises(RecoveryReadinessFenceConflictError): repository.advance_locked(token)
+    assert connection.commits == 0
+
+
+def test_d1a_broker_observation_uses_one_outer_fence_without_commit() -> None:
+    now=__import__("datetime").datetime(2026,9,28,tzinfo=__import__("datetime").timezone.utc)
+    observation=BrokerPositionObservation(observation_id="OBS-D1A",broker="SINOPAC",account_ref="A",observed_at=now,recorded_at=now,positions=())
+    connection=_QueueConnection([("SINOPAC","A",4,8,12,True),(13,)])
+    PostgresBrokerPositionObservationRepository(connection).append(observation)
+    sqls=[sql for sql,_ in connection.statements]
+    assert "FOR UPDATE" in sqls[0]
+    assert "broker_position_observations" in sqls[1]
+    assert "readiness_revision=readiness_revision+1" in sqls[-1]
+    assert connection.commits == 0

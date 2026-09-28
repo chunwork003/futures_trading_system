@@ -20,6 +20,8 @@ from persistence.account import (
 )
 from persistence.events import EventAppendStatus, EventLedgerRepository, TradingEvent
 from trading.account import AccountPosition
+from trading.account import BrokerAccount
+from persistence.readiness_fence import RecoveryReadinessFenceToken
 from trading.authorization import (
     AuthorizationEnvironment,
     ProtectedActionAuthorization,
@@ -173,6 +175,8 @@ class AccountAuthorityRepository(Protocol):
     def get_checkpoint(self, broker: str, account_ref: str, account_revision: int) -> AccountRecoveryCheckpoint | None: ...
     def append_receipt(self, receipt: AccountAuthorityCommitReceipt) -> None: ...
     def get_receipt(self, authority_commit_id: str) -> AccountAuthorityCommitReceipt | None: ...
+    def lock_active_readiness_fence(self, account: BrokerAccount) -> RecoveryReadinessFenceToken | None: ...
+    def advance_locked_readiness_fence(self, token: RecoveryReadinessFenceToken) -> RecoveryReadinessFenceToken: ...
 
 
 @runtime_checkable
@@ -236,6 +240,13 @@ class AccountAuthorityCommitService:
                 )
                 return existing
 
+            fence_token = None
+            lock_fence = getattr(repository, "lock_active_readiness_fence", None)
+            if lock_fence is not None:
+                fence_token = lock_fence(
+                    BrokerAccount(broker=mutation.broker, account_ref=mutation.account_ref)
+                )
+
             head = (
                 repository.lock_or_create_reserved_head(
                     mutation.broker,
@@ -288,6 +299,8 @@ class AccountAuthorityCommitService:
             repository.advance_head(next_head, expected_revision=mutation.expected_head_revision)
             repository.append_receipt(receipt)
             validate_authority_closure(head=next_head, checkpoint=checkpoint, receipt=receipt)
+            if fence_token is not None:
+                repository.advance_locked_readiness_fence(fence_token)
             uow.commit()
             return receipt
 
