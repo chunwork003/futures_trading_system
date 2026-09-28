@@ -51,10 +51,12 @@ Pointers：
 - W4 RF02：`docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_02.md`
 - W4 architect decision / replan boundary：`docs/work/GAP08_WAVE4_ARCHITECT_DECISION_REPLAN.md`
 - workflow：`docs/CODEX_EXECUTION_WORKFLOW.md`
+- AI operating model / architect audit registry / automation maturity：`docs/AI_AUTOMATION_OPERATING_MODEL.md`
+- W4 VIBE replan candidate：`docs/work/GAP08_WAVE4_REPLAN_V2.md`
 
 Current action：
 
-produce and independently review a planning-only W4 replan for continuity authority、trusted evidence resolution、C13 semantics reuse、minimum recovery closure and final-handoff fencing。
+freeze the VIBE-produced W4 Replan V2 into bounded W4R packages；normalize queue/ACTIVE for machine preflight；then authorize W4R-A only。
 
 No executor coding is authorized。
 

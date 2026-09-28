@@ -14,7 +14,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W4 runtime candidate `060dfdc2ac4539fa31b95c26c0a0bd0b3dcb7021` is HOLD / RF01_REQUIRED。C13/C14 frozen；C12/C15-only correction is authorized by `docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_01.md`。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+Current execution action：W4 runtime candidate `8f410ec2c76493c4db2b904be11974c42c09cae0` is HOLD / RESCOPE_C15_AND_REPLAN_W4。Architect decision baseline `b1cde840e63353ed629108b43074fa5394d092c4`；VIBE replan candidate `docs/work/GAP08_WAVE4_REPLAN_V2.md`。Runtime Source Modification Authorization = NOT_AUTHORIZED；next is governance freeze + machine-readable queue/ACTIVE normalization + W4R-A-only bounded authorization。
 
 ## Purpose
 

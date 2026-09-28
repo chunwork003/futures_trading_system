@@ -959,3 +959,29 @@ C02。
 C02：
 
 NOT_AUTHORIZED。
+
+---
+
+## 30. AI Role / Architect Escalation / Scheduling Owner
+
+Detailed AI role model、Architect GPT-6 audit-source registry、continuous optimization loop and CODEX scheduling maturity：
+
+`docs/AI_AUTOMATION_OPERATING_MODEL.md`
+
+Fixed operating rule：
+
+- VIBE / Architecture Coordinator owns routine replan、task contract、review and workflow optimization。
+- CODEX owns bounded execution only。
+- Architect GPT-6 is escalation-only for cross-architecture ambiguity / contradiction。
+- repository-native Level 3A automation must fail closed on CURRENT / ACTIVE / authorization mismatch。
+- Level 3B queue-driven execution is not enabled until stable Level 3A evidence exists。
+
+Current W4 VIBE replan candidate：
+
+`docs/work/GAP08_WAVE4_REPLAN_V2.md`
+
+Scheduler V0：
+
+`scripts/codex_level3a_scheduler_v0.ps1`
+
+This section does not grant Runtime Authorization。
