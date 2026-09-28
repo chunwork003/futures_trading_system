@@ -14,7 +14,23 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W4 runtime candidate `8f410ec2c76493c4db2b904be11974c42c09cae0` is HOLD / RESCOPE_C15_AND_REPLAN_W4。Architect decision baseline `b1cde840e63353ed629108b43074fa5394d092c4`；VIBE replan candidate `docs/work/GAP08_WAVE4_REPLAN_V2.md`。Runtime Source Modification Authorization = NOT_AUTHORIZED；next is governance freeze + machine-readable queue/ACTIVE normalization + W4R-A-only bounded authorization。
+Current execution action：W4R-A READY_FOR_EXECUTION under `docs/work/GAP08_W4R_A_AUTHORIZATION.md`。W4 remains HOLD；official accepted correction core remains 75/113 and W4 weight 18 remains NOT_CREDITED until final W4 reviewer acceptance。Runtime Source Modification Authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_ONLY。
+
+<!-- MACHINE_QUEUE_CURRENT_START -->
+WORK_PACKAGE_ID = GAP08-W4R-A
+STATUS = READY_FOR_EXECUTION
+PRIORITY = P1_MAINLINE
+PLANNING_BASELINE = 150053fcf638e347ffe0067a6f4a71d5baa31b9b
+AUTHORIZATION = docs/work/GAP08_W4R_A_AUTHORIZATION.md
+RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_ONLY
+SIDE_EFFECT_CLASS = SOURCE_TEST_MIGRATION_SOURCE_ONLY
+DEPENDENCIES = W3_ACCEPTED;W4_ARCHITECT_DECISION;W4_REPLAN_V2_FROZEN
+WRITE_SCOPE = persistence/broker_recovery.py;persistence/postgres/broker_recovery.py;persistence/postgres/migrations/0009_trusted_readiness_authority.sql;tests/unit/test_c09_broker_recovery_fence.py;tests/unit/test_operational_postgres.py
+TEST_GATE = W4R_A_TARGETED_COMPAT_FULL
+GIT_POLICY = ONE_COMMIT_ONE_PUSH_NO_FORCE
+REVIEW_BARRIER = MANDATORY_AFTER_PACKAGE
+NEXT_QUEUE = GAP08-W4R-B;GAP08-W4R-C
+<!-- MACHINE_QUEUE_CURRENT_END -->
 
 ## Purpose
 

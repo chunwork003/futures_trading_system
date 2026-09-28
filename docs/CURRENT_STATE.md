@@ -35,7 +35,7 @@ C12 = RF02_CHANGES_RETAINED_NOT_ACCEPTED
 C14 = PASS_FROZEN_READ_ONLY
 C15 = RESCOPE_REQUIRED
 
-runtime_source_modification_authorization = NOT_AUTHORIZED
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_ONLY
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -53,12 +53,15 @@ Pointers：
 - workflow：`docs/CODEX_EXECUTION_WORKFLOW.md`
 - AI operating model / architect audit registry / automation maturity：`docs/AI_AUTOMATION_OPERATING_MODEL.md`
 - W4 VIBE replan candidate：`docs/work/GAP08_WAVE4_REPLAN_V2.md`
+- W4R package freeze：`docs/work/GAP08_W4R_PACKAGE_FREEZE.md`
+- W4R-A authorization：`docs/work/GAP08_W4R_A_AUTHORIZATION.md`
+- Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action：
 
-freeze the VIBE-produced W4 Replan V2 into bounded W4R packages；normalize queue/ACTIVE for machine preflight；then authorize W4R-A only。
+execute exactly one bounded W4R-A package；after one runtime commit/push STOP for independent reviewer。
 
-No executor coding is authorized。
+Executor coding is authorized for W4R-A only；W4R-B/C/D remain NOT_AUTHORIZED。
 
 Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 

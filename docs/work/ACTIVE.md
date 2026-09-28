@@ -2,6 +2,22 @@
 
 ## GOV-01 Active Context Guard
 
+<!-- MACHINE_ACTIVE_START -->
+WORK_PACKAGE_ID = GAP08-W4R-A
+STATUS = READY_FOR_EXECUTION
+PRIORITY = P1_MAINLINE
+PLANNING_BASELINE = 150053fcf638e347ffe0067a6f4a71d5baa31b9b
+AUTHORIZATION = docs/work/GAP08_W4R_A_AUTHORIZATION.md
+RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_ONLY
+SIDE_EFFECT_CLASS = SOURCE_TEST_MIGRATION_SOURCE_ONLY
+DEPENDENCIES = W3_ACCEPTED;W4_ARCHITECT_DECISION;W4_REPLAN_V2_FROZEN
+WRITE_SCOPE = persistence/broker_recovery.py;persistence/postgres/broker_recovery.py;persistence/postgres/migrations/0009_trusted_readiness_authority.sql;tests/unit/test_c09_broker_recovery_fence.py;tests/unit/test_operational_postgres.py
+TEST_GATE = W4R_A_TARGETED_COMPAT_FULL
+GIT_POLICY = ONE_COMMIT_ONE_PUSH_NO_FORCE
+REVIEW_BARRIER = MANDATORY_AFTER_PACKAGE
+<!-- MACHINE_ACTIVE_END -->
+
+
 `docs/CURRENT_STATE.md` is the canonical CURRENT runtime/planning governance projection。
 
 This ACTIVE file preserves Work Package context/history and does NOT independently grant Runtime Authorization。
