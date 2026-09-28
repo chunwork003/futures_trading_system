@@ -27,7 +27,7 @@ latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
 
 current_wave = W4
 current_runtime_candidate = 34960db79b9d2732d23af260dfeb1131c368d9e1
-reviewer_state = HOLD_W4R_D1A_RF01_REQUIRED
+reviewer_state = W4R_D1A_RF01_RESUME_READY
 w4_weight = 18_NOT_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
@@ -38,9 +38,9 @@ C15 = RESCOPE_REQUIRED
 W4R_A = ACCEPTED_FROZEN_READ_ONLY
 W4R_B = ACCEPTED_FROZEN_READ_ONLY
 W4R_C = ACCEPTED_FROZEN_READ_ONLY
-W4R_D = D1A_RF01_READY
+W4R_D = D1A_RF01_RESUME_READY
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_D1A_RF01_ONLY
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_D1A_RF01_RESUME_ONLY
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -90,15 +90,17 @@ Pointers：
 - W4R-D1A authorization：`docs/work/GAP08_W4R_D1A_AUTHORIZATION.md`
 - W4R-D1A independent review：`docs/work/GAP08_W4R_D1A_REVIEW_RF01.md`
 - W4R-D1A RF01 authorization：`docs/work/GAP08_W4R_D1A_AUTHORIZATION_AMENDMENT_01.md`
+- W4R-D1A RF01 blocker note：`docs/work/GAP08_W4R_D1A_RF01_BLOCKER_01.md`
+- W4R-D1A RF01 resume authorization：`docs/work/GAP08_W4R_D1A_AUTHORIZATION_AMENDMENT_02.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action：
 
-execute exactly one bounded W4R-D1A RF01 mandatory-fence correction；after one correction commit/push STOP for independent reviewer。
+resume exactly one bounded W4R-D1A RF01 mandatory-fence correction with the compatibility fake scope amendment；after one correction commit/push STOP for independent reviewer。
 
-W4R-A/B/C are accepted/frozen；W4R-D1A is reviewer-HOLD。Executor coding is authorized for W4R-D1A RF01 only；W4R-D1B/D2/D3 remain NOT_AUTHORIZED。
+W4R-A/B/C are accepted/frozen；W4R-D1A RF01 is blocked only by a compatibility fake contract drift。Executor coding is authorized for the W4R-D1A RF01 resume only；W4R-D1B/D2/D3 remain NOT_AUTHORIZED。
 
 Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 
