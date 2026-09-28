@@ -298,6 +298,9 @@ class RecoveryClosureResolver:
             raise RecoveryClosureIntegrityError("duplicate ORDER event identity")
         if len({item.sequence for item in envelopes}) != len(envelopes):
             raise RecoveryClosureIntegrityError("duplicate ORDER event sequence")
+        identities={(item.idempotency_scope,item.idempotency_key) for item in envelopes}
+        if len(identities) != len(envelopes):
+            raise RecoveryClosureIntegrityError("duplicate ORDER event idempotency identity")
         envelopes=tuple(sorted(envelopes,key=lambda item:item.sequence))
         if tuple(item.sequence for item in envelopes) != tuple(range(order.version+1)):
             raise RecoveryClosureIntegrityError("ORDER event sequence is incomplete or exceeds projection version")
@@ -307,6 +310,9 @@ class RecoveryClosureResolver:
             if envelope.entity_id != order_id:
                 raise RecoveryClosureIntegrityError("ORDER event envelope entity mismatch")
             event=self._decode_event(envelope)
+            expected_causation=order.intent_id if previous is None else previous.event_id
+            if event.causation_id != expected_causation:
+                raise RecoveryClosureIntegrityError("ORDER event causation linkage mismatch")
             try:
                 validate_order_event_transition(previous,event)
             except ValueError as exc:

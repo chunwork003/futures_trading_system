@@ -540,3 +540,27 @@ def test_c2b_missing_or_mismatched_exact_order_and_caller_injection_fail() -> No
     with pytest.raises(RecoveryClosureIntegrityError,match="identity"): resolver.resolve(root_set=_closure_root_set())
     resolver,_=_closure_resolver()
     with pytest.raises(TypeError): resolver.resolve(root_set=_closure_root_set(),order_ids=("OTHER",),closure_fingerprint="FORGED")
+
+
+def test_c2b_rf01_duplicate_event_idempotency_identity_fails_closed() -> None:
+    events=(
+        _closure_event(),
+        _closure_event(1,OrderStatus.PENDING,OrderStatus.SUBMITTED,idempotency_key="KEY-0"),
+    )
+    order=_order(status=OrderStatus.SUBMITTED).model_copy(update={"version":1})
+    resolver,_=_closure_resolver(order=order,events=events)
+    with pytest.raises(RecoveryClosureIntegrityError,match="idempotency"):
+        resolver.resolve(root_set=_closure_root_set())
+
+
+@pytest.mark.parametrize("events,order",[
+    ((_closure_event(causation_id="OTHER"),),_order()),
+    (
+        (_closure_event(),_closure_event(1,OrderStatus.PENDING,OrderStatus.SUBMITTED,causation_id="OTHER")),
+        _order(status=OrderStatus.SUBMITTED).model_copy(update={"version":1}),
+    ),
+])
+def test_c2b_rf01_event_causation_chain_fails_closed(events,order) -> None:
+    resolver,_=_closure_resolver(order=order,events=events)
+    with pytest.raises(RecoveryClosureIntegrityError,match="causation"):
+        resolver.resolve(root_set=_closure_root_set())
