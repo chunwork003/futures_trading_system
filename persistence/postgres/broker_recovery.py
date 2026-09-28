@@ -10,6 +10,7 @@ from persistence.broker_recovery import (
     ContinuityAuthorityConflictError, ContinuityTransitionReceipt,
     ExecutionContinuityEpoch, ExecutionContinuityHead,
     RecoveryEvidenceAppendStatus, RecoveryFenceConflictError, SequenceGap,
+    TrustedRecoveryEvidenceIntegrityError,
 )
 from trading.account import BrokerAccount
 
@@ -95,6 +96,28 @@ class PostgresBrokerRecoveryRepository(BrokerRecoveryRepository):
     def append_reconstruction_receipt(self, receipt: BrokerReconstructionReceipt) -> RecoveryEvidenceAppendStatus:
         payload = receipt.model_dump(mode="json")
         return self._append_trusted_receipt(table="broker_reconstruction_receipts", identity_column="reconstruction_receipt_id", identity=receipt.reconstruction_receipt_id, broker=receipt.account.broker, account_ref=receipt.account.account_ref, generation=receipt.generation, recorded_at=receipt.recorded_at, payload=payload)
+
+    def _get_exact_receipt(self, *, table: str, identity_column: str, identity: str, account: BrokerAccount, model: type[BrokerDiscoveryReceipt] | type[BrokerReconstructionReceipt]):
+        with self._connection.cursor() as cursor:
+            cursor.execute(f"SELECT receipt_json FROM trading.{table} WHERE {identity_column}=%s AND broker=%s AND account_ref=%s",(identity,account.broker,account.account_ref))
+            row=cursor.fetchone()
+        if row is None: return None
+        try:
+            receipt=model.model_validate_json(row[0]) if isinstance(row[0],str) else model.model_validate(row[0])
+        except Exception as exc:
+            raise TrustedRecoveryEvidenceIntegrityError("trusted recovery receipt failed canonical decode") from exc
+        actual_identity=receipt.discovery_run_id if isinstance(receipt,BrokerDiscoveryReceipt) else receipt.reconstruction_receipt_id
+        if actual_identity != identity:
+            raise TrustedRecoveryEvidenceIntegrityError("trusted recovery receipt exact identity mismatch")
+        if receipt.account != account:
+            raise TrustedRecoveryEvidenceIntegrityError("trusted recovery receipt exact account scope mismatch")
+        return receipt
+
+    def get_discovery_receipt(self, *, discovery_run_id: str, account: BrokerAccount) -> BrokerDiscoveryReceipt | None:
+        return self._get_exact_receipt(table="broker_discovery_receipts",identity_column="discovery_run_id",identity=discovery_run_id,account=account,model=BrokerDiscoveryReceipt)
+
+    def get_reconstruction_receipt(self, *, reconstruction_receipt_id: str, account: BrokerAccount) -> BrokerReconstructionReceipt | None:
+        return self._get_exact_receipt(table="broker_reconstruction_receipts",identity_column="reconstruction_receipt_id",identity=reconstruction_receipt_id,account=account,model=BrokerReconstructionReceipt)
 
     def append_application(self, application: BrokerReportApplication) -> None:
         payload = json.loads(application.model_dump_json())

@@ -27,6 +27,7 @@ from persistence.broker_recovery import (
     BrokerReportInboxEntry,
     RecoveryFenceConflictError,
     RecoveryEvidenceAppendStatus,
+    TrustedRecoveryEvidenceIntegrityError,
 )
 from persistence.postgres.broker_recovery import PostgresBrokerRecoveryRepository
 from trading.account import BrokerAccount
@@ -156,6 +157,24 @@ def test_exact_snapshot_and_observation_reads_are_identity_and_account_scoped() 
         observation_id="OBS-1", broker="SINOPAC", account_ref="A"
     ) is None
     assert "observation_id=%s AND broker=%s AND account_ref=%s" in connection.last[0]
+
+
+def test_exact_recovery_receipt_reads_use_id_and_account_scope() -> None:
+    connection=_Connection(); repository=PostgresBrokerRecoveryRepository(connection)
+    assert repository.get_discovery_receipt(discovery_run_id="DISC-1",account=BrokerAccount(broker="SINOPAC",account_ref="A")) is None
+    assert "discovery_run_id=%s AND broker=%s AND account_ref=%s" in connection.last[0]
+    assert repository.get_reconstruction_receipt(reconstruction_receipt_id="RECON-1",account=BrokerAccount(broker="SINOPAC",account_ref="A")) is None
+    assert "reconstruction_receipt_id=%s AND broker=%s AND account_ref=%s" in connection.last[0]
+
+
+def test_exact_recovery_receipt_reads_reject_decoded_identity_or_account_mismatch() -> None:
+    account=BrokerAccount(broker="SINOPAC",account_ref="A")
+    wrong_scope=_discovery_receipt().model_copy(update={"account":BrokerAccount(broker="SINOPAC",account_ref="B")})
+    with pytest.raises(TrustedRecoveryEvidenceIntegrityError,match="canonical decode|account scope"):
+        PostgresBrokerRecoveryRepository(_QueueConnection([(wrong_scope.model_dump(mode="json"),)])).get_discovery_receipt(discovery_run_id="DISCOVERY-1",account=account)
+    wrong_id=_reconstruction_receipt().model_copy(update={"reconstruction_receipt_id":"OTHER"})
+    with pytest.raises(TrustedRecoveryEvidenceIntegrityError,match="identity"):
+        PostgresBrokerRecoveryRepository(_QueueConnection([(wrong_id.model_dump(mode="json"),)])).get_reconstruction_receipt(reconstruction_receipt_id="RECON-1",account=account)
 
 
 def test_w4r_b1_migration_adds_positive_receipts_without_backfill() -> None:

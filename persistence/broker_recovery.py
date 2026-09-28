@@ -51,6 +51,10 @@ class ContinuityAuthorityConflictError(PersistenceConflictError):
     """Continuity head、transition identity 或 readiness CAS 不一致時 fail closed。"""
 
 
+class TrustedRecoveryEvidenceIntegrityError(PersistenceContractError):
+    """Exact durable recovery receipt 解碼後 identity、scope 或 canonical material 不一致。"""
+
+
 class RecoveryEvidenceAppendStatus(str, Enum):
     """Trusted positive recovery receipt 的 append 結果。"""
     APPENDED = "APPENDED"
@@ -416,6 +420,8 @@ class BrokerRecoveryRepository(Protocol):
     def finalize_handoff(self, control: AccountRecoveryControl, *, expected_generation: int, expected_ingress_version: int, expected_readiness_revision: int) -> None: ...
     def append_discovery_receipt(self, receipt: BrokerDiscoveryReceipt) -> RecoveryEvidenceAppendStatus: ...
     def append_reconstruction_receipt(self, receipt: BrokerReconstructionReceipt) -> RecoveryEvidenceAppendStatus: ...
+    def get_discovery_receipt(self, *, discovery_run_id: str, account: BrokerAccount) -> BrokerDiscoveryReceipt | None: ...
+    def get_reconstruction_receipt(self, *, reconstruction_receipt_id: str, account: BrokerAccount) -> BrokerReconstructionReceipt | None: ...
 
 
 class BrokerRecoveryEvidenceService:

@@ -9,11 +9,13 @@ from adapters.capabilities import (
     BrokerCapabilityMatrix,
     BrokerCapabilitySupport,
     BrokerCapabilityUnavailableError,
+    BrokerCapabilityRegistrySnapshot,
     BrokerVerificationMode,
+    StaticBrokerCapabilityProvider,
     get_broker_capability,
     require_broker_capability,
 )
-from adapters.sinopac.capabilities import SINOPAC_CAPABILITY_MATRIX
+from adapters.sinopac.capabilities import SINOPAC_CAPABILITY_MATRIX, SINOPAC_CAPABILITY_REGISTRY_SNAPSHOT
 
 
 def evidence(
@@ -200,3 +202,21 @@ def test_capability_contract_has_no_broker_action_surface() -> None:
     forbidden = {"login", "logout", "activate_ca", "submit_order", "cancel_order"}
     assert forbidden.isdisjoint(dir(BrokerCapabilityMatrix))
     assert forbidden.isdisjoint(dir(BrokerCapabilityEvidence))
+
+
+def test_registry_snapshot_derives_fingerprint_and_binds_broker() -> None:
+    snapshot=BrokerCapabilityRegistrySnapshot(registry_id="REG-1",contract_version="V1",broker="SINOPAC",matrix=SINOPAC_CAPABILITY_MATRIX)
+    assert snapshot.matrix_fingerprint == BrokerCapabilityRegistrySnapshot.fingerprint(SINOPAC_CAPABILITY_MATRIX)
+    with pytest.raises(ValidationError,match="fingerprint"):
+        BrokerCapabilityRegistrySnapshot(registry_id="REG-1",contract_version="V1",broker="SINOPAC",matrix=SINOPAC_CAPABILITY_MATRIX,matrix_fingerprint="BAD")
+    with pytest.raises(ValidationError,match="broker"):
+        BrokerCapabilityRegistrySnapshot(registry_id="REG-1",contract_version="V1",broker="OTHER",matrix=SINOPAC_CAPABILITY_MATRIX)
+
+
+def test_static_provider_is_exact_and_sinopac_registry_is_documentation_only() -> None:
+    provider=StaticBrokerCapabilityProvider((SINOPAC_CAPABILITY_REGISTRY_SNAPSHOT,))
+    assert provider.get_snapshot(" sinopac ") is SINOPAC_CAPABILITY_REGISTRY_SNAPSHOT
+    assert provider.get_snapshot("OTHER") is None
+    assert all(entry.verification_modes == (BrokerVerificationMode.DOCUMENTATION,) for entry in SINOPAC_CAPABILITY_REGISTRY_SNAPSHOT.matrix.entries)
+    with pytest.raises(BrokerCapabilityUnavailableError):
+        require_broker_capability(SINOPAC_CAPABILITY_REGISTRY_SNAPSHOT.matrix,BrokerCapability.ACCOUNT_QUERY,required_mode=BrokerVerificationMode.PRODUCTION)

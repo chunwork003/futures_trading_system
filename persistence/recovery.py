@@ -16,6 +16,12 @@ from pydantic import (
     field_validator,
     model_validator,
 )
+from adapters.capabilities import (
+    BrokerCapability, BrokerCapabilityEvidence, BrokerCapabilityProvider,
+    BrokerCapabilityRegistrySnapshot, BrokerCapabilityUnavailableError,
+    BrokerVerificationMode, require_broker_capability,
+)
+from persistence.account import BrokerPositionObservationRepository, ExpectedPositionSnapshotRepository
 
 from persistence.account_authority import (
     AccountAuthorityCommitReceipt,
@@ -32,7 +38,7 @@ from persistence.reconciliation import (
     ReconciliationRunTechnicalOutcome,
     blocking_case_state,
 )
-from persistence.broker_recovery import ExecutionContinuityEpoch
+from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt, BrokerRecoveryRepository, ExecutionContinuityEpoch
 from persistence.contracts import normalize_stable_id
 from persistence.strategy_state import (
     LegacyMarketObservationReferenceError,
@@ -69,6 +75,76 @@ class RecoveryReadinessState(
     READY = "READY"
     HALT = "HALT"
     REVIEW = "REVIEW"
+
+
+class TrustedRecoveryEvidenceError(RuntimeError):
+    """B2 exact evidence 缺失、stale 或 capability 不足時的 fail-closed resolver 錯誤。"""
+
+
+class TrustedRecoveryEvidenceCore(BaseModel):
+    """B2 resolver 產生的 immutable core；保留 exact provenance，但不表示 C15 READY 或 handoff。"""
+    model_config=ConfigDict(extra="forbid",frozen=True)
+    account: BrokerAccount
+    recovery_generation: int = Field(ge=1)
+    recovery_cut_fingerprint: str
+    discovery_receipt_id: str
+    discovery_result_fingerprint: str
+    reconstruction_receipt_ids: tuple[str,...]
+    reconstruction_output_fingerprints: tuple[str,...]
+    expected_snapshot_id: str
+    broker_observation_id: str
+    capability_registry_id: str
+    capability_contract_version: str
+    capability_matrix_fingerprint: str
+    required_verification_mode: BrokerVerificationMode
+    capability_evidence: tuple[BrokerCapabilityEvidence,...]
+    capability_source_ids: tuple[str,...]
+
+
+class TrustedRecoveryEvidenceResolver:
+    """以 exact IDs 重讀 B1/account/capability 證據；不評估 READY、不 finalize、無 broker I/O。"""
+    def __init__(self, *, broker_recovery_repository: BrokerRecoveryRepository, expected_snapshot_repository: ExpectedPositionSnapshotRepository, broker_observation_repository: BrokerPositionObservationRepository, capability_provider: BrokerCapabilityProvider) -> None:
+        self._recovery=broker_recovery_repository
+        self._expected=expected_snapshot_repository
+        self._actual=broker_observation_repository
+        self._capabilities=capability_provider
+
+    def resolve(self, *, account: BrokerAccount, recovery_generation: int, recovery_cut_fingerprint: str, discovery_run_id: str, reconstruction_receipt_ids: tuple[str,...], expected_snapshot_id: str, broker_observation_id: str, required_capabilities: tuple[BrokerCapability,...], required_verification_mode: BrokerVerificationMode) -> TrustedRecoveryEvidenceCore:
+        try:
+            discovery=self._recovery.get_discovery_receipt(discovery_run_id=discovery_run_id,account=account)
+            if discovery is None: raise TrustedRecoveryEvidenceError("exact discovery receipt is missing")
+            discovery=BrokerDiscoveryReceipt.model_validate(discovery.model_dump(mode="json"))
+            if discovery.account != account or discovery.generation != recovery_generation or discovery.discovery_run_id != discovery_run_id:
+                raise TrustedRecoveryEvidenceError("discovery receipt scope or generation mismatch")
+            reconstructions=[]
+            for receipt_id in reconstruction_receipt_ids:
+                receipt=self._recovery.get_reconstruction_receipt(reconstruction_receipt_id=receipt_id,account=account)
+                if receipt is None: raise TrustedRecoveryEvidenceError("required positive reconstruction receipt is missing")
+                receipt=BrokerReconstructionReceipt.model_validate(receipt.model_dump(mode="json"))
+                if receipt.account != account or receipt.generation != recovery_generation:
+                    raise TrustedRecoveryEvidenceError("reconstruction receipt scope or generation mismatch")
+                if receipt.recovery_cut_fingerprint != recovery_cut_fingerprint:
+                    raise TrustedRecoveryEvidenceError("reconstruction receipt recovery cut mismatch")
+                if receipt.discovery_run_id != discovery_run_id:
+                    raise TrustedRecoveryEvidenceError("reconstruction receipt discovery mismatch")
+                reconstructions.append(receipt)
+            expected=self._expected.get_exact(snapshot_id=expected_snapshot_id,broker=account.broker,account_ref=account.account_ref)
+            if expected is None or expected.snapshot_id != expected_snapshot_id or (expected.broker,expected.account_ref)!=(account.broker,account.account_ref):
+                raise TrustedRecoveryEvidenceError("exact expected snapshot is missing or mismatched")
+            actual=self._actual.get_exact(observation_id=broker_observation_id,broker=account.broker,account_ref=account.account_ref)
+            if actual is None or actual.observation_id != broker_observation_id or (actual.broker,actual.account_ref)!=(account.broker,account.account_ref):
+                raise TrustedRecoveryEvidenceError("exact broker observation is missing or mismatched")
+            registry=self._capabilities.get_snapshot(account.broker)
+            if registry is None: raise TrustedRecoveryEvidenceError("trusted capability registry is missing")
+            registry=BrokerCapabilityRegistrySnapshot.model_validate(registry.model_dump(mode="json"))
+            if registry.broker != account.broker: raise TrustedRecoveryEvidenceError("capability registry broker mismatch")
+            order={capability:index for index,capability in enumerate(BrokerCapability)}
+            required=tuple(sorted(set(required_capabilities),key=order.__getitem__))
+            evidence=tuple(require_broker_capability(registry.matrix,item,required_mode=required_verification_mode) for item in required)
+        except BrokerCapabilityUnavailableError as exc:
+            raise TrustedRecoveryEvidenceError(str(exc)) from exc
+        source_ids=tuple(sorted({source for item in evidence for source in item.source_ids}))
+        return TrustedRecoveryEvidenceCore(account=account,recovery_generation=recovery_generation,recovery_cut_fingerprint=normalize_stable_id(recovery_cut_fingerprint),discovery_receipt_id=discovery.discovery_run_id,discovery_result_fingerprint=discovery.result_fingerprint,reconstruction_receipt_ids=tuple(item.reconstruction_receipt_id for item in reconstructions),reconstruction_output_fingerprints=tuple(item.output_fingerprint for item in reconstructions),expected_snapshot_id=expected.snapshot_id,broker_observation_id=actual.observation_id,capability_registry_id=registry.registry_id,capability_contract_version=registry.contract_version,capability_matrix_fingerprint=registry.matrix_fingerprint,required_verification_mode=required_verification_mode,capability_evidence=evidence,capability_source_ids=source_ids)
 
 
 class ExecutionRestoreStatus(str, Enum):

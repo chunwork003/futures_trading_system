@@ -15,9 +15,17 @@ from persistence.recovery import (
     RecoveryReadinessState,
     ReconciliationCompletenessEvidence,
     ReconstructionReadinessEvidence,
+    TrustedRecoveryEvidenceError,
+    TrustedRecoveryEvidenceResolver,
     evaluate_account_readiness,
 )
 from persistence.broker_recovery import ExecutionContinuityEpoch
+from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt
+from persistence.account import AccountPositionSnapshot, BrokerPositionObservation
+from adapters.capabilities import BrokerCapability, BrokerVerificationMode, StaticBrokerCapabilityProvider
+from adapters.sinopac.capabilities import SINOPAC_CAPABILITY_REGISTRY_SNAPSHOT
+from trading.broker_recovery import BrokerDealSetCompleteness, BrokerReconstructionPlan
+from trading.execution import OrderStatus
 from trading.broker_recovery import BrokerDiscoveryIntegrity, BrokerDiscoveryResult, DiscoveryCompleteness, ExactMatchCardinality
 from trading.account import BrokerAccount
 from trading.reconciliation import ReconciliationPolicy, ReconciliationResult, ReconciliationStatus
@@ -180,3 +188,45 @@ def test_changed_revision_or_non_revision_witness_requires_reevaluation() -> Non
 def test_readiness_gate_has_no_broker_or_economic_mutation_surface() -> None:
     for name in ("submit","cancel","list_positions","advance_head","repair"):
         assert not hasattr(PostgresAccountReadinessGate,name)
+
+
+def _trusted_resolver_fixture():
+    discovery_result=BrokerDiscoveryResult(discovery_run_id="DISC-1",account=ACCOUNT,required_scope="ORDERS",horizon_start=NOW,horizon_end=NOW,refreshed_at=NOW,completeness=DiscoveryCompleteness.COMPLETE,exact_matches=(),cardinality=ExactMatchCardinality.ZERO,integrity=BrokerDiscoveryIntegrity.CONSISTENT,evidence=("complete",))
+    discovery=BrokerDiscoveryReceipt(discovery_run_id="DISC-1",account=ACCOUNT,generation=4,result=discovery_result,producer_id="RECOVERY",contract_version="V1",recorded_at=NOW)
+    plan=BrokerReconstructionPlan(status=OrderStatus.PENDING,accepted_fills=(),filled_quantity=0,average_fill_price=None,material_change=False)
+    reconstruction=BrokerReconstructionReceipt(reconstruction_receipt_id="RECON-1",account=ACCOUNT,generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISC-1",order_id="ORDER-1",broker_deals=(),local_fill_ids=(),lifecycle_evidence=None,plan=plan,deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,producer_id="RECOVERY",contract_version="V1",recorded_at=NOW)
+    expected=AccountPositionSnapshot(snapshot_id="SNAP-1",broker="SINOPAC",account_ref="A",effective_at=NOW,recorded_at=NOW,source_event_id="EVENT",positions=())
+    actual=BrokerPositionObservation(observation_id="OBS-1",broker="SINOPAC",account_ref="A",observed_at=NOW,recorded_at=NOW,positions=())
+    class RecoveryRepo:
+        def get_discovery_receipt(self,*,discovery_run_id,account): return discovery if discovery_run_id=="DISC-1" else None
+        def get_reconstruction_receipt(self,*,reconstruction_receipt_id,account): return reconstruction if reconstruction_receipt_id=="RECON-1" else None
+    class ExactRepo:
+        def __init__(self,item,key): self.item,self.key=item,key
+        def get_exact(self,**kwargs): return self.item if self.key in kwargs.values() else None
+    resolver=TrustedRecoveryEvidenceResolver(broker_recovery_repository=RecoveryRepo(),expected_snapshot_repository=ExactRepo(expected,"SNAP-1"),broker_observation_repository=ExactRepo(actual,"OBS-1"),capability_provider=StaticBrokerCapabilityProvider((SINOPAC_CAPABILITY_REGISTRY_SNAPSHOT,)))
+    return resolver,discovery,reconstruction
+
+
+def test_trusted_resolver_re_reads_exact_authority_without_making_ready() -> None:
+    resolver,_,_= _trusted_resolver_fixture()
+    core=resolver.resolve(account=ACCOUNT,recovery_generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),expected_snapshot_id="SNAP-1",broker_observation_id="OBS-1",required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),required_verification_mode=BrokerVerificationMode.DOCUMENTATION)
+    assert core.discovery_receipt_id == "DISC-1"
+    assert core.reconstruction_receipt_ids == ("RECON-1",)
+    assert core.capability_source_ids == ("SRC-SINOPAC-LOGIN-001",)
+    assert not hasattr(core,"ready") and not hasattr(core,"finalize")
+
+
+@pytest.mark.parametrize("updates",[
+    {"recovery_generation":5},
+    {"recovery_cut_fingerprint":"OTHER"},
+    {"discovery_run_id":"MISSING"},
+    {"reconstruction_receipt_ids":("MISSING",)},
+    {"expected_snapshot_id":"MISSING"},
+    {"broker_observation_id":"MISSING"},
+    {"required_verification_mode":BrokerVerificationMode.PRODUCTION},
+])
+def test_trusted_resolver_fails_closed_on_missing_stale_or_unverified_material(updates) -> None:
+    resolver,_,_= _trusted_resolver_fixture()
+    values=dict(account=ACCOUNT,recovery_generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),expected_snapshot_id="SNAP-1",broker_observation_id="OBS-1",required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),required_verification_mode=BrokerVerificationMode.DOCUMENTATION)
+    values.update(updates)
+    with pytest.raises(TrustedRecoveryEvidenceError): resolver.resolve(**values)

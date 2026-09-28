@@ -5,6 +5,7 @@ from adapters.capabilities import (
     BrokerCapabilityEvidence,
     BrokerCapabilityMatrix,
     BrokerCapabilitySupport,
+    BrokerCapabilityRegistrySnapshot,
     BrokerVerificationMode,
 )
 
@@ -65,4 +66,12 @@ SINOPAC_CAPABILITY_MATRIX = BrokerCapabilityMatrix(
             **_COMMON,
         ),
     ),
+)
+
+
+SINOPAC_CAPABILITY_REGISTRY_SNAPSHOT = BrokerCapabilityRegistrySnapshot(
+    registry_id="SINOPAC-CAPABILITY-REGISTRY-2026-09-25",
+    contract_version="BROKER-CAPABILITY-V1",
+    broker="SINOPAC",
+    matrix=SINOPAC_CAPABILITY_MATRIX,
 )

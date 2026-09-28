@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import hashlib
+import json
 from datetime import date
 from enum import Enum
+from typing import Protocol, runtime_checkable
 
 from pydantic import BaseModel, ConfigDict, field_validator, model_validator
 
@@ -122,6 +125,62 @@ class BrokerCapabilityMatrix(BaseModel):
             capability: index for index, capability in enumerate(BrokerCapability)
         }
         return tuple(sorted(value, key=lambda entry: order[entry.capability]))
+
+
+class BrokerCapabilityRegistrySnapshot(BaseModel):
+    """Immutable broker capability registry 版本；僅保存可驗證證據，不授權執行或 LIVE。"""
+    model_config = ConfigDict(frozen=True, extra="forbid")
+    registry_id: str
+    contract_version: str
+    broker: str
+    matrix: BrokerCapabilityMatrix
+    matrix_fingerprint: str = ""
+
+    @field_validator("registry_id", "contract_version")
+    @classmethod
+    def _text(cls, value: str) -> str:
+        normalized=value.strip()
+        if not normalized: raise ValueError("registry identity/version must be non-blank")
+        return normalized
+
+    @field_validator("broker")
+    @classmethod
+    def _broker(cls,value: str) -> str:
+        normalized=value.strip().upper()
+        if not normalized: raise ValueError("broker must be non-blank")
+        return normalized
+
+    @model_validator(mode="after")
+    def _bind(self) -> "BrokerCapabilityRegistrySnapshot":
+        if self.broker != self.matrix.broker:
+            raise ValueError("registry broker must match matrix broker")
+        derived=self.fingerprint(self.matrix)
+        if "matrix_fingerprint" in self.model_fields_set and self.matrix_fingerprint != derived:
+            raise ValueError("matrix fingerprint disagrees with canonical matrix")
+        object.__setattr__(self,"matrix_fingerprint",derived)
+        return self
+
+    @staticmethod
+    def fingerprint(matrix: BrokerCapabilityMatrix) -> str:
+        canonical=json.dumps(matrix.model_dump(mode="json"),ensure_ascii=False,sort_keys=True,separators=(",",":"))
+        return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+
+@runtime_checkable
+class BrokerCapabilityProvider(Protocol):
+    """依 broker exact identity 提供 immutable registry snapshot 的唯讀 port。"""
+    def get_snapshot(self, broker: str) -> BrokerCapabilityRegistrySnapshot | None: ...
+
+
+class StaticBrokerCapabilityProvider:
+    """以已核准 immutable snapshots 建立 deterministic provider；不查網路、不升級驗證模式。"""
+    def __init__(self,snapshots: tuple[BrokerCapabilityRegistrySnapshot,...]) -> None:
+        by_broker={item.broker:item for item in snapshots}
+        if len(by_broker)!=len(snapshots): raise ValueError("duplicate broker capability registry")
+        self._snapshots=by_broker
+
+    def get_snapshot(self,broker: str) -> BrokerCapabilityRegistrySnapshot | None:
+        return self._snapshots.get(broker.strip().upper())
 
 
 class BrokerCapabilityUnavailableError(RuntimeError):
