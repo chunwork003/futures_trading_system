@@ -251,6 +251,7 @@ def test_broker_recovery_handoff_is_one_conditional_write_without_commit() -> No
         control,
         expected_generation=4,
         expected_ingress_version=12,
+        expected_readiness_revision=0,
     )
 
     sql, params = connection.last
@@ -259,7 +260,7 @@ def test_broker_recovery_handoff_is_one_conditional_write_without_commit() -> No
     assert "ingress_version=%s" in sql
     assert "active=TRUE" in sql
     assert "NOT EXISTS" in sql
-    assert params[1:] == ("SINOPAC", "A", 4, 8, 12)
+    assert params[1:] == ("SINOPAC", "A", 4, 8, 12, 0)
     assert connection.commits == 0
 
 
@@ -285,33 +286,36 @@ def _recovery_entry():
 
 
 def test_postgres_new_ingress_locks_control_and_atomically_advances_frontier_once() -> None:
-    connection=_QueueConnection([(4,12,True),("IN-1",),(13,)])
+    connection=_QueueConnection([(4,12,20,True),("IN-1",),(13,21)])
     repository=PostgresBrokerRecoveryRepository(connection)
     repository.append_inbox(_recovery_entry())
     sqls=[sql for sql,_ in connection.statements]
     assert "FOR UPDATE" in sqls[0]
     assert "recovery_active_at_capture" in sqls[1]
     assert "ingress_version=ingress_version+1" in sqls[2]
+    assert "readiness_revision=readiness_revision+1" in sqls[2]
     assert "active=TRUE" in sqls[2]
     assert connection.commits == 0
 
 
 def test_postgres_duplicate_ingress_does_not_advance_frontier() -> None:
     entry=_recovery_entry()
-    connection=_QueueConnection([(4,12,True),None,(entry.model_dump(mode="json"),)])
+    connection=_QueueConnection([(4,12,20,True),None,(entry.model_dump(mode="json"),)])
     repository=PostgresBrokerRecoveryRepository(connection)
     repository.append_inbox(entry)
     assert not any("ingress_version=ingress_version+1" in sql for sql,_ in connection.statements)
+    assert not any("readiness_revision=readiness_revision+1" in sql for sql,_ in connection.statements)
     assert connection.commits == 0
 
 
 def test_postgres_inactive_control_accepts_only_same_generation_without_frontier_advance() -> None:
     entry=_recovery_entry()
-    connection=_QueueConnection([(4,12,False),("IN-1",)])
+    connection=_QueueConnection([(4,12,20,False),("IN-1",)])
     repository=PostgresBrokerRecoveryRepository(connection)
     repository.append_inbox(entry)
     assert not any("ingress_version=ingress_version+1" in sql for sql,_ in connection.statements)
-    wrong=_QueueConnection([(5,12,False)])
+    assert not any("readiness_revision=readiness_revision+1" in sql for sql,_ in connection.statements)
+    wrong=_QueueConnection([(5,12,20,False)])
     with pytest.raises(RecoveryFenceConflictError,match="stale"):
         PostgresBrokerRecoveryRepository(wrong).append_inbox(entry)
     assert not any("broker_report_inbox" in sql and "INSERT" in sql for sql,_ in wrong.statements)
@@ -324,12 +328,13 @@ def test_postgres_application_identity_is_idempotent_and_sequence_is_durable() -
         recorded_at=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc),
         evidence=("exact current disposition",),
     )
-    connection=_QueueConnection([(4,),None,(1,)])
+    connection=_QueueConnection([("SINOPAC","A",4),None,(1,),(20,True),(21,)])
     PostgresBrokerRecoveryRepository(connection).append_application(application)
     assert "broker_report_inbox" in connection.statements[0][0]
     assert "FOR UPDATE" in connection.statements[0][0]
     assert "MAX(application_sequence)" in connection.statements[2][0]
-    assert "application_json" in connection.statements[3][0]
+    assert "FOR UPDATE" in connection.statements[3][0]
+    assert "application_json" in connection.statements[4][0]
     assert connection.commits == 0
 
 
@@ -340,11 +345,11 @@ def test_postgres_application_duplicate_and_sequence_conflicts_fail_closed() -> 
         recorded_at=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc),
         evidence=("exact current disposition",),
     )
-    duplicate=_QueueConnection([(4,),(application.model_dump(mode="json"),)])
+    duplicate=_QueueConnection([("SINOPAC","A",4),(application.model_dump(mode="json"),)])
     PostgresBrokerRecoveryRepository(duplicate).append_application(application)
     assert len(duplicate.statements)==2 and duplicate.commits==0
 
-    gap=_QueueConnection([(4,),None,(1,)])
+    gap=_QueueConnection([("SINOPAC","A",4),None,(1,)])
     with pytest.raises(BrokerReportConflictError,match="contiguous"):
         PostgresBrokerRecoveryRepository(gap).append_application(
             application.model_copy(update={"application_id":"APP-3","application_sequence":3})
@@ -360,11 +365,42 @@ def test_postgres_handoff_uses_exact_generation_latest_sequence_not_timestamp() 
         ingress_version=12,active=False,
         recorded_at=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc),
     )
-    repository.finalize_handoff(control,expected_generation=4,expected_ingress_version=12)
+    repository.finalize_handoff(control,expected_generation=4,expected_ingress_version=12,expected_readiness_revision=0)
     sql,_=connection.last
     assert "a.generation=i.generation" in sql
     assert "newer.application_sequence>a.application_sequence" in sql
     assert "recorded_at>" not in sql
+
+
+def test_trusted_readiness_migration_has_explicit_head_receipts_without_epoch_backfill() -> None:
+    sql=Path("persistence/postgres/migrations/0009_trusted_readiness_authority.sql").read_text(encoding="utf-8")
+    assert "ADD COLUMN readiness_revision BIGINT" in sql
+    assert "CREATE TABLE trading.execution_continuity_heads" in sql
+    assert "CREATE TABLE trading.continuity_transition_receipts" in sql
+    assert "current_epoch_id" in sql and "head_revision" in sql
+    assert "previous_readiness_revision" in sql
+    assert "COMMENT ON TABLE trading.execution_continuity_heads" in sql
+    assert "COMMENT ON TABLE trading.continuity_transition_receipts" in sql
+    assert "INSERT INTO trading.execution_continuity_heads" not in sql
+    assert "UPDATE trading.execution_continuity_epochs" not in sql
+
+
+def test_postgres_continuity_transition_uses_head_and_readiness_cas_without_commit() -> None:
+    from persistence.broker_recovery import ContinuityTransitionReceipt, ExecutionContinuityHead
+    epoch=__import__("persistence.broker_recovery",fromlist=["ExecutionContinuityEpoch"]).ExecutionContinuityEpoch(
+        epoch_id="EPOCH-10",broker="SINOPAC",account_ref="A",generation=4,
+        trusted_current=False,historical_degradation=True,anchored_at=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc),evidence=("explicit",),
+    )
+    head=ExecutionContinuityHead(broker="SINOPAC",account_ref="A",generation=4,current_epoch_id="EPOCH-10",head_revision=3,readiness_revision=21,recorded_at=epoch.anchored_at)
+    receipt=ContinuityTransitionReceipt(transition_id="TR-3",broker="SINOPAC",account_ref="A",generation=4,previous_epoch_id="EPOCH-2",current_epoch_id="EPOCH-10",previous_head_revision=2,head_revision=3,previous_readiness_revision=20,readiness_revision=21,recorded_at=epoch.anchored_at,evidence=("explicit",))
+    connection=_QueueConnection([(4,20,True),(2,"EPOCH-2"),("EPOCH-10",),("TR-3",),(3,),(21,)])
+    PostgresBrokerRecoveryRepository(connection).transition_continuity_head(epoch=epoch,head=head,receipt=receipt,expected_head_revision=2,expected_readiness_revision=20)
+    sqls=[sql for sql,_ in connection.statements]
+    assert "FOR UPDATE" in sqls[0]
+    assert any("execution_continuity_heads" in sql and "head_revision=%s" in sql for sql in sqls)
+    assert any("continuity_transition_receipts" in sql for sql in sqls)
+    assert any("readiness_revision=readiness_revision+1" in sql for sql in sqls)
+    assert connection.commits == 0
 
 
 def test_local_recovery_migration_scopes_reconciliation_cases_without_backfill() -> None:

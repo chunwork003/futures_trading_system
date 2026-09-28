@@ -7,7 +7,8 @@ from persistence.broker_recovery import (
     AccountRecoveryControl, BrokerRecoveryEvidenceService, BrokerReportApplication,
     BrokerReportApplicationStatus, BrokerReportConflictError, BrokerReportInboxEntry,
     BrokerReportIngressStatus, ExecutionContinuityEpoch, RecoveryFenceConflictError,
-    SequenceGap,
+    ContinuityAuthorityConflictError, ContinuityTransitionReceipt,
+    ExecutionContinuityHead, SequenceGap,
 )
 from trading.account import BrokerAccount
 
@@ -26,7 +27,7 @@ class Uow:
 
 
 class Repo:
-    def __init__(self): self.inbox={}; self.apps=[]; self.gaps=[]; self.epochs=[]; self.control=None; self.ingress_version=0
+    def __init__(self): self.inbox={}; self.apps=[]; self.gaps=[]; self.epochs=[]; self.control=None; self.ingress_version=0; self.head=None; self.transitions={}
     def append_inbox(self, item):
         existing=self.inbox.get(item.ingress_id)
         if existing is not None:
@@ -38,7 +39,7 @@ class Repo:
         self.inbox[item.ingress_id]=item
         if self.control.active:
             self.ingress_version += 1
-            self.control=self.control.model_copy(update={"ingress_version":self.ingress_version})
+            self.control=self.control.model_copy(update={"ingress_version":self.ingress_version,"readiness_revision":self.control.readiness_revision+1})
         return BrokerReportIngressStatus.APPENDED
     def append_application(self, item):
         for existing in self.apps:
@@ -51,12 +52,29 @@ class Repo:
         if item.application_sequence != prior + 1:
             raise BrokerReportConflictError("application sequence must be contiguous")
         self.apps.append(item)
-    def append_sequence_gap(self, item): self.gaps.append(item)
+        if self.control is not None and self.control.active:
+            self.control=self.control.model_copy(update={"readiness_revision":self.control.readiness_revision+1})
+    def append_sequence_gap(self, item):
+        self.gaps.append(item)
+        if self.control is not None and self.control.active:
+            self.control=self.control.model_copy(update={"readiness_revision":self.control.readiness_revision+1})
     def append_continuity_epoch(self, item): self.epochs.append(item)
+    def transition_continuity_head(self, *, epoch, head, receipt, expected_head_revision, expected_readiness_revision):
+        existing=self.transitions.get(receipt.transition_id)
+        if existing is not None:
+            if existing != receipt: raise ContinuityAuthorityConflictError("continuity transition identity conflict")
+            return
+        actual=0 if self.head is None else self.head.head_revision
+        if actual != expected_head_revision or self.control is None or not self.control.active or self.control.readiness_revision != expected_readiness_revision:
+            raise ContinuityAuthorityConflictError("continuity authority CAS conflict")
+        if (epoch.broker,epoch.account_ref,epoch.generation)!=(head.broker,head.account_ref,head.generation):
+            raise ContinuityAuthorityConflictError("continuity scope conflict")
+        self.epochs.append(epoch); self.head=head; self.transitions[receipt.transition_id]=receipt
+        self.control=self.control.model_copy(update={"readiness_revision":self.control.readiness_revision+1})
     def get_control(self, account): return self.control
     def begin_recovery(self, control, *, expected_generation): self.control=control
-    def finalize_handoff(self, control, *, expected_generation, expected_ingress_version):
-        if not self.control.active or self.control.generation != expected_generation or self.control.ingress_version != expected_ingress_version:
+    def finalize_handoff(self, control, *, expected_generation, expected_ingress_version, expected_readiness_revision):
+        if not self.control.active or self.control.generation != expected_generation or self.control.ingress_version != expected_ingress_version or self.control.readiness_revision != expected_readiness_revision:
             raise RecoveryFenceConflictError("stale fence")
         latest={}
         for item in self.apps:
@@ -91,6 +109,7 @@ def test_inbox_is_immutable_and_exact_duplicate_is_idempotent() -> None:
     assert svc.capture(item) is BrokerReportIngressStatus.DUPLICATE
     assert len(repo.inbox)==1 and all(u.committed for u in uows)
     assert repo.control.ingress_version == 1
+    assert repo.control.readiness_revision == 1
     with pytest.raises(ValidationError): item.payload_fingerprint="OTHER"
 
 
@@ -202,6 +221,46 @@ def test_continuity_reanchor_retains_historical_gap_and_pending_blocks_trust() -
     epoch=ExecutionContinuityEpoch(epoch_id="EPOCH-2",broker="SINOPAC",account_ref="A",generation=2,trusted_current=True,historical_degradation=True,anchored_at=NOW,evidence=("verified re-anchor",))
     repo.append_continuity_epoch(epoch)
     assert repo.gaps == [gap] and repo.epochs[0].historical_degradation
+
+
+def test_continuity_head_is_exact_authority_not_lexical_or_historical_trust() -> None:
+    repo=Repo()
+    repo.control=AccountRecoveryControl(broker="SINOPAC",account_ref="A",generation=10,recovery_cut_revision=7,ingress_version=0,readiness_revision=0,active=True,recorded_at=NOW)
+    old=ExecutionContinuityEpoch(epoch_id="EPOCH-1",broker="SINOPAC",account_ref="A",generation=10,trusted_current=True,historical_degradation=False,anchored_at=NOW,evidence=("old trust",))
+    current=ExecutionContinuityEpoch(epoch_id="EPOCH-10",broker="SINOPAC",account_ref="A",generation=10,trusted_current=False,historical_degradation=True,anchored_at=NOW,evidence=("current untrusted",))
+    repo.epochs.append(old)
+    head=ExecutionContinuityHead(broker="SINOPAC",account_ref="A",generation=10,current_epoch_id="EPOCH-10",head_revision=1,readiness_revision=1,recorded_at=NOW)
+    receipt=ContinuityTransitionReceipt(transition_id="TR-1",broker="SINOPAC",account_ref="A",generation=10,previous_epoch_id=None,current_epoch_id="EPOCH-10",previous_head_revision=0,head_revision=1,previous_readiness_revision=0,readiness_revision=1,recorded_at=NOW,evidence=("explicit re-anchor",))
+    repo.transition_continuity_head(epoch=current,head=head,receipt=receipt,expected_head_revision=0,expected_readiness_revision=0)
+    assert repo.head.current_epoch_id == "EPOCH-10"
+    assert repo.epochs[0].trusted_current is True
+    assert repo.epochs[1].trusted_current is False
+
+
+def test_continuity_transition_cas_and_duplicate_identity_fail_closed() -> None:
+    repo=Repo()
+    repo.control=AccountRecoveryControl(broker="SINOPAC",account_ref="A",generation=1,recovery_cut_revision=7,ingress_version=0,readiness_revision=0,active=True,recorded_at=NOW)
+    epoch=ExecutionContinuityEpoch(epoch_id="EPOCH-2",broker="SINOPAC",account_ref="A",generation=1,trusted_current=True,historical_degradation=True,anchored_at=NOW,evidence=("re-anchor",))
+    head=ExecutionContinuityHead(broker="SINOPAC",account_ref="A",generation=1,current_epoch_id="EPOCH-2",head_revision=1,readiness_revision=1,recorded_at=NOW)
+    receipt=ContinuityTransitionReceipt(transition_id="TR-1",broker="SINOPAC",account_ref="A",generation=1,previous_epoch_id=None,current_epoch_id="EPOCH-2",previous_head_revision=0,head_revision=1,previous_readiness_revision=0,readiness_revision=1,recorded_at=NOW,evidence=("re-anchor",))
+    with pytest.raises(ContinuityAuthorityConflictError,match="CAS"):
+        repo.transition_continuity_head(epoch=epoch,head=head,receipt=receipt,expected_head_revision=9,expected_readiness_revision=0)
+    repo.transition_continuity_head(epoch=epoch,head=head,receipt=receipt,expected_head_revision=0,expected_readiness_revision=0)
+    with pytest.raises(ContinuityAuthorityConflictError,match="identity"):
+        repo.transition_continuity_head(epoch=epoch,head=head,receipt=receipt.model_copy(update={"evidence":("different",)}),expected_head_revision=1,expected_readiness_revision=1)
+
+
+def test_readiness_frontier_is_independent_and_inactive_writes_do_not_advance() -> None:
+    repo=Repo()
+    repo.control=AccountRecoveryControl(broker="SINOPAC",account_ref="A",generation=1,recovery_cut_revision=7,ingress_version=0,readiness_revision=4,active=True,recorded_at=NOW)
+    svc,_=service(repo)
+    svc.capture(entry())
+    assert (repo.control.ingress_version,repo.control.readiness_revision)==(1,5)
+    svc.capture(entry())
+    assert (repo.control.ingress_version,repo.control.readiness_revision)==(1,5)
+    repo.control=repo.control.model_copy(update={"active":False})
+    svc.capture(entry(ingress_id="IN-2"))
+    assert (repo.control.ingress_version,repo.control.readiness_revision)==(1,5)
 
 
 def test_models_are_broker_neutral_and_service_has_no_broker_or_account_authority_side_effect() -> None:

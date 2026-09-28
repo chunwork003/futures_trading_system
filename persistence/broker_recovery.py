@@ -43,6 +43,10 @@ class RecoveryFenceConflictError(PersistenceConflictError):
     """Recovery generation、cut 或 ingress frontier stale 時拒絕 handoff。"""
 
 
+class ContinuityAuthorityConflictError(PersistenceConflictError):
+    """Continuity head、transition identity 或 readiness CAS 不一致時 fail closed。"""
+
+
 class BrokerReportInboxEntry(BaseModel):
     """Broker-neutral durable ingress evidence；capture 本身不推進 AccountStateHead。"""
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -112,6 +116,7 @@ class AccountRecoveryControl(BaseModel):
     generation: int = Field(ge=1)
     recovery_cut_revision: int = Field(ge=0)
     ingress_version: int = Field(ge=0)
+    readiness_revision: int = Field(default=0, ge=0)
     active: bool
     recorded_at: datetime
 
@@ -159,6 +164,80 @@ class ExecutionContinuityEpoch(BaseModel):
         return normalize_aware_utc(value)
 
 
+class ExecutionContinuityHead(BaseModel):
+    """BrokerAccount 唯一 current continuity selector；epoch 自身旗標不具 current authority。"""
+    model_config = ConfigDict(extra="forbid", frozen=True)
+    broker: str
+    account_ref: str
+    generation: int = Field(ge=1)
+    current_epoch_id: str
+    head_revision: int = Field(ge=1)
+    readiness_revision: int = Field(ge=1)
+    recorded_at: datetime
+
+    @field_validator("account_ref", "current_epoch_id", mode="before")
+    @classmethod
+    def _ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @field_validator("broker", mode="before")
+    @classmethod
+    def _broker(cls, value: object) -> object:
+        return normalize_stable_id(value).upper() if isinstance(value, str) else value
+
+    @field_validator("recorded_at")
+    @classmethod
+    def _time(cls, value: datetime) -> datetime:
+        return normalize_aware_utc(value)
+
+
+class ContinuityTransitionReceipt(BaseModel):
+    """Append-only continuity transition 證據；revision 鏈而非時間決定 currentness。"""
+    model_config = ConfigDict(extra="forbid", frozen=True)
+    transition_id: str
+    broker: str
+    account_ref: str
+    generation: int = Field(ge=1)
+    previous_epoch_id: str | None
+    current_epoch_id: str
+    previous_head_revision: int = Field(ge=0)
+    head_revision: int = Field(ge=1)
+    previous_readiness_revision: int = Field(ge=0)
+    readiness_revision: int = Field(ge=1)
+    recorded_at: datetime
+    evidence: tuple[str, ...]
+
+    @field_validator("transition_id", "account_ref", "previous_epoch_id", "current_epoch_id", mode="before")
+    @classmethod
+    def _ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @field_validator("broker", mode="before")
+    @classmethod
+    def _broker(cls, value: object) -> object:
+        return normalize_stable_id(value).upper() if isinstance(value, str) else value
+
+    @field_validator("recorded_at")
+    @classmethod
+    def _time(cls, value: datetime) -> datetime:
+        return normalize_aware_utc(value)
+
+    @field_validator("evidence", mode="before")
+    @classmethod
+    def _evidence(cls, value: object) -> object:
+        return tuple(normalize_stable_id(v) for v in value) if isinstance(value, (tuple, list)) else value
+
+    @model_validator(mode="after")
+    def _chain(self) -> "ContinuityTransitionReceipt":
+        if self.head_revision != self.previous_head_revision + 1:
+            raise ValueError("continuity head revision must be contiguous")
+        if self.readiness_revision != self.previous_readiness_revision + 1:
+            raise ValueError("readiness revision must be contiguous")
+        if not self.evidence:
+            raise ValueError("continuity transition requires evidence")
+        return self
+
+
 class SequenceGap(BaseModel):
     """Append-only historical stream degradation；re-anchor 不得刪除或改寫。"""
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -191,9 +270,10 @@ class BrokerRecoveryRepository(Protocol):
     def append_application(self, application: BrokerReportApplication) -> None: ...
     def append_sequence_gap(self, gap: SequenceGap) -> None: ...
     def append_continuity_epoch(self, epoch: ExecutionContinuityEpoch) -> None: ...
+    def transition_continuity_head(self, *, epoch: ExecutionContinuityEpoch, head: ExecutionContinuityHead, receipt: ContinuityTransitionReceipt, expected_head_revision: int, expected_readiness_revision: int) -> None: ...
     def get_control(self, account: BrokerAccount) -> AccountRecoveryControl | None: ...
     def begin_recovery(self, control: AccountRecoveryControl, *, expected_generation: int) -> None: ...
-    def finalize_handoff(self, control: AccountRecoveryControl, *, expected_generation: int, expected_ingress_version: int) -> None: ...
+    def finalize_handoff(self, control: AccountRecoveryControl, *, expected_generation: int, expected_ingress_version: int, expected_readiness_revision: int) -> None: ...
 
 
 class BrokerRecoveryEvidenceService:
@@ -212,6 +292,12 @@ class BrokerRecoveryEvidenceService:
             self._repository(uow).append_application(application)
             uow.commit()
 
+    def transition_continuity(self, *, epoch: ExecutionContinuityEpoch, head: ExecutionContinuityHead, receipt: ContinuityTransitionReceipt, expected_head_revision: int, expected_readiness_revision: int) -> None:
+        """在 caller-owned transaction 以 head/readiness 雙 CAS 切換唯一 current epoch。"""
+        with self._uow_factory() as uow:
+            self._repository(uow).transition_continuity_head(epoch=epoch, head=head, receipt=receipt, expected_head_revision=expected_head_revision, expected_readiness_revision=expected_readiness_revision)
+            uow.commit()
+
     def finalize(self, *, account: BrokerAccount, generation: int, recovery_cut_revision: int, ingress_version: int, recorded_at: datetime) -> AccountRecoveryControl:
         with self._uow_factory() as uow:
             repository = self._repository(uow)
@@ -221,7 +307,7 @@ class BrokerRecoveryEvidenceService:
             if current.generation != generation or current.recovery_cut_revision != recovery_cut_revision:
                 raise RecoveryFenceConflictError("stale recovery generation or cut")
             completed = current.model_copy(update={"active": False, "recorded_at": normalize_aware_utc(recorded_at)})
-            repository.finalize_handoff(completed, expected_generation=generation, expected_ingress_version=ingress_version)
+            repository.finalize_handoff(completed, expected_generation=generation, expected_ingress_version=ingress_version, expected_readiness_revision=current.readiness_revision)
             uow.commit()
             return completed
 
