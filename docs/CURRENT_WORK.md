@@ -14,26 +14,26 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W4R-A/B ACCEPTED/FROZEN（9/18 internal accepted）；GAP08-W4R-C1 READY_FOR_EXECUTION。Official accepted correction core remains 75/113；W4 weight 18 remains NOT_CREDITED。
+Current execution action：W4R-A/B ACCEPTED；W4R-C1 ACCEPTED/FROZEN；GAP08-W4R-C2A READY_FOR_EXECUTION。Internal accepted package weight remains 9/18 until C2 closes；official accepted correction core remains 75/113。
 
 <!-- MACHINE_QUEUE_CURRENT_START -->
-WORK_PACKAGE_ID = GAP08-W4R-C1
+WORK_PACKAGE_ID = GAP08-W4R-C2A
 STATUS = READY_FOR_EXECUTION
 PRIORITY = P1_MAINLINE
-PLANNING_BASELINE = 1f5db799360691744a741c461e13eaebedded046
-AUTHORIZATION = docs/work/GAP08_W4R_C1_AUTHORIZATION.md
-RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_C1_ONLY
+PLANNING_BASELINE = d41a0f2a3f760e7c70e60f395cc6aec5c41d046e
+AUTHORIZATION = docs/work/GAP08_W4R_C2A_AUTHORIZATION.md
+RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_C2A_ONLY
 SIDE_EFFECT_CLASS = SOURCE_TEST_ONLY
-DEPENDENCIES = W4R_A_ACCEPTED_FROZEN;W4R_B_ACCEPTED_FROZEN
-WRITE_SCOPE = persistence/reconciliation.py;persistence/recovery.py;tests/unit/test_c13_reconciliation_case_scope.py;tests/unit/test_c15_account_recovery_readiness.py
-TEST_GATE = W4R_C1_TARGETED_COMPAT_FULL
+DEPENDENCIES = W4R_A_ACCEPTED_FROZEN;W4R_B_ACCEPTED_FROZEN;W4R_C1_ACCEPTED_FROZEN
+WRITE_SCOPE = persistence/broker_action.py;persistence/postgres/broker_action.py;persistence/recovery.py;tests/unit/test_c06_broker_action_safety.py;tests/unit/test_c15_account_recovery_readiness.py;tests/unit/test_operational_postgres.py
+TEST_GATE = W4R_C2A_TARGETED_COMPAT_FULL
 GIT_POLICY = ONE_COMMIT_ONE_PUSH_NO_FORCE
 REVIEW_BARRIER = MANDATORY_AFTER_PACKAGE
-COMMIT_MESSAGE = feat(recovery): bind W4R-C1 reconciliation blocker authority
+COMMIT_MESSAGE = feat(recovery): bind W4R-C2A recovery root authority
 CORRECTION_BUDGET = REVIEWER_BOUNDED
 TOOLING_MODE = CONTROLLED_STAGING_ROOT_FIRST
 EFFICIENCY_METRICS = CHANGED_FILES;DIFF_SIZE;SEMANTIC_CORRECTIONS;TOOLING_RETRIES;5HR
-NEXT_QUEUE = GAP08-W4R-C2
+NEXT_QUEUE = GAP08-W4R-C2B
 <!-- MACHINE_QUEUE_CURRENT_END -->
 
 ## Purpose
