@@ -171,11 +171,12 @@ class ExecutionContinuityHead(BaseModel):
     account_ref: str
     generation: int = Field(ge=1)
     current_epoch_id: str
+    transition_receipt_id: str
     head_revision: int = Field(ge=1)
     readiness_revision: int = Field(ge=1)
     recorded_at: datetime
 
-    @field_validator("account_ref", "current_epoch_id", mode="before")
+    @field_validator("account_ref", "current_epoch_id", "transition_receipt_id", mode="before")
     @classmethod
     def _ids(cls, value: object) -> object:
         return normalize_stable_id(value) if isinstance(value, str) else value
@@ -204,10 +205,25 @@ class ContinuityTransitionReceipt(BaseModel):
     head_revision: int = Field(ge=1)
     previous_readiness_revision: int = Field(ge=0)
     readiness_revision: int = Field(ge=1)
+    recovery_cut_fingerprint: str
+    anchor_fingerprint: str
+    ingress_version: int = Field(ge=0)
+    account_revision: int = Field(ge=0)
+    expected_snapshot_id: str
+    authority_commit_id: str
+    gap_set_fingerprint: str
+    producer_id: str
+    contract_version: str
+    evidence_id: str
     recorded_at: datetime
     evidence: tuple[str, ...]
 
-    @field_validator("transition_id", "account_ref", "previous_epoch_id", "current_epoch_id", mode="before")
+    @field_validator(
+        "transition_id", "account_ref", "previous_epoch_id", "current_epoch_id",
+        "recovery_cut_fingerprint", "anchor_fingerprint", "expected_snapshot_id",
+        "authority_commit_id", "gap_set_fingerprint", "producer_id",
+        "contract_version", "evidence_id", mode="before",
+    )
     @classmethod
     def _ids(cls, value: object) -> object:
         return normalize_stable_id(value) if isinstance(value, str) else value
