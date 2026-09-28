@@ -2,10 +2,11 @@ from datetime import datetime, timezone
 from decimal import Decimal
 
 import pytest
+from pydantic import ValidationError
 
 from persistence.account import AccountPositionSnapshot
 from persistence.account_authority import AccountAuthorityCommit
-from persistence.broker_recovery import BrokerRecoveryExecutionService
+from persistence.broker_recovery import BrokerReconstructionReceipt, BrokerRecoveryExecutionService
 from trading.account import PositionDirection
 from trading.broker_recovery import (
     BrokerDealEvidence,
@@ -67,6 +68,22 @@ def deal(deal_id="D1", quantity=1, price=Decimal("100"), **updates):
     )
     values.update(updates)
     return BrokerDealEvidence(**values)
+
+
+def test_positive_reconstruction_receipt_requires_complete_deal_set() -> None:
+    account = __import__("trading.account", fromlist=["BrokerAccount"]).BrokerAccount(broker="SINOPAC", account_ref="A")
+    values = dict(
+        reconstruction_receipt_id="RECON-1", account=account, generation=3,
+        recovery_cut_fingerprint="CUT-FP", discovery_run_id="DISCOVERY-1",
+        order_id="ORDER-1", input_coverage_fingerprint="INPUT-FP",
+        accepted_fill_ids=("FILL-1",), output_fingerprint="OUTPUT-FP",
+        authority_commit_id="COMMIT-1", producer_id="RECOVERY",
+        contract_version="W4R-B1-V1", recorded_at=NOW,
+    )
+    with pytest.raises(ValidationError, match="COMPLETE"):
+        BrokerReconstructionReceipt(deal_set_completeness=BrokerDealSetCompleteness.INCOMPLETE, **values)
+    receipt = BrokerReconstructionReceipt(deal_set_completeness=BrokerDealSetCompleteness.COMPLETE, **values)
+    assert receipt.accepted_fill_ids == ("FILL-1",)
 
 
 def event(sequence, previous, status, **updates):

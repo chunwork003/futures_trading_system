@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 from datetime import datetime
 from enum import Enum
 from typing import Callable, Protocol, runtime_checkable
@@ -12,6 +14,7 @@ from persistence.account_authority import AccountAuthorityCommit, AccountAuthori
 from persistence.execution import ExecutionPersistenceService, FillRepository
 from trading.account import BrokerAccount
 from trading.broker_recovery import (
+    BrokerDiscoveryResult,
     BrokerDealEvidence,
     BrokerDealSetCompleteness,
     BrokerLifecycleEvidence,
@@ -45,6 +48,98 @@ class RecoveryFenceConflictError(PersistenceConflictError):
 
 class ContinuityAuthorityConflictError(PersistenceConflictError):
     """Continuity head、transition identity 或 readiness CAS 不一致時 fail closed。"""
+
+
+class RecoveryEvidenceAppendStatus(str, Enum):
+    """Trusted positive recovery receipt 的 append 結果。"""
+    APPENDED = "APPENDED"
+    DUPLICATE = "DUPLICATE"
+
+
+def _canonical_fingerprint(value: BaseModel) -> str:
+    encoded = json.dumps(value.model_dump(mode="json"), sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
+
+
+class BrokerDiscoveryReceipt(BaseModel):
+    """將 canonical discovery result 綁定 active recovery generation 的 durable 正向證據。"""
+    model_config = ConfigDict(extra="forbid", frozen=True)
+    discovery_run_id: str
+    account: BrokerAccount
+    generation: int = Field(ge=1)
+    result: BrokerDiscoveryResult
+    result_fingerprint: str = ""
+    producer_id: str
+    contract_version: str
+    recorded_at: datetime
+
+    @field_validator("discovery_run_id", "producer_id", "contract_version", mode="before")
+    @classmethod
+    def _ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @field_validator("recorded_at")
+    @classmethod
+    def _time(cls, value: datetime) -> datetime:
+        return normalize_aware_utc(value)
+
+    @model_validator(mode="after")
+    def _bind(self) -> "BrokerDiscoveryReceipt":
+        if self.discovery_run_id != self.result.discovery_run_id:
+            raise ValueError("discovery_run_id must match canonical result")
+        if self.account != self.result.account:
+            raise ValueError("discovery receipt account scope mismatch")
+        derived = self.fingerprint(self.result)
+        if self.result_fingerprint and self.result_fingerprint != derived:
+            raise ValueError("discovery result fingerprint mismatch")
+        object.__setattr__(self, "result_fingerprint", derived)
+        return self
+
+    @staticmethod
+    def fingerprint(result: BrokerDiscoveryResult) -> str:
+        return _canonical_fingerprint(result)
+
+
+class BrokerReconstructionReceipt(BaseModel):
+    """只記錄 COMPLETE deal world 的正向 reconstruction authority；缺少 receipt 即無 authority。"""
+    model_config = ConfigDict(extra="forbid", frozen=True)
+    reconstruction_receipt_id: str
+    account: BrokerAccount
+    generation: int = Field(ge=1)
+    recovery_cut_fingerprint: str
+    discovery_run_id: str
+    order_id: str
+    input_coverage_fingerprint: str
+    accepted_fill_ids: tuple[str, ...]
+    output_fingerprint: str
+    deal_set_completeness: BrokerDealSetCompleteness
+    authority_commit_id: str | None = None
+    producer_id: str
+    contract_version: str
+    recorded_at: datetime
+
+    @field_validator("reconstruction_receipt_id", "recovery_cut_fingerprint", "discovery_run_id", "order_id", "input_coverage_fingerprint", "output_fingerprint", "authority_commit_id", "producer_id", "contract_version", mode="before")
+    @classmethod
+    def _ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @field_validator("accepted_fill_ids", mode="before")
+    @classmethod
+    def _fills(cls, value: object) -> object:
+        return tuple(normalize_stable_id(v) for v in value) if isinstance(value, (tuple, list)) else value
+
+    @field_validator("recorded_at")
+    @classmethod
+    def _time(cls, value: datetime) -> datetime:
+        return normalize_aware_utc(value)
+
+    @model_validator(mode="after")
+    def _positive(self) -> "BrokerReconstructionReceipt":
+        if self.deal_set_completeness is not BrokerDealSetCompleteness.COMPLETE:
+            raise ValueError("positive reconstruction receipt requires COMPLETE DealSet")
+        if len(set(self.accepted_fill_ids)) != len(self.accepted_fill_ids):
+            raise ValueError("accepted Fill IDs must be unique")
+        return self
 
 
 class BrokerReportInboxEntry(BaseModel):
@@ -291,6 +386,8 @@ class BrokerRecoveryRepository(Protocol):
     def get_control(self, account: BrokerAccount) -> AccountRecoveryControl | None: ...
     def begin_recovery(self, control: AccountRecoveryControl, *, expected_generation: int) -> None: ...
     def finalize_handoff(self, control: AccountRecoveryControl, *, expected_generation: int, expected_ingress_version: int, expected_readiness_revision: int) -> None: ...
+    def append_discovery_receipt(self, receipt: BrokerDiscoveryReceipt) -> RecoveryEvidenceAppendStatus: ...
+    def append_reconstruction_receipt(self, receipt: BrokerReconstructionReceipt) -> RecoveryEvidenceAppendStatus: ...
 
 
 class BrokerRecoveryEvidenceService:

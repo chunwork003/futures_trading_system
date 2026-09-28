@@ -152,6 +152,10 @@ class PostgresExpectedPositionSnapshotRepository:
             (broker, account_ref, at),
         )
 
+    def get_exact(self, *, snapshot_id: str, broker: str, account_ref: str) -> AccountPositionSnapshot | None:
+        """只依 durable identity 與帳戶範圍讀取；不得退回 latest/as-of。"""
+        return self._one("snapshot_id=%s AND broker=%s AND account_ref=%s", (snapshot_id, broker, account_ref))
+
     def read_expected_state(
         self,
         account: BrokerAccount,
@@ -255,6 +259,19 @@ class PostgresBrokerPositionObservationRepository:
                         position.average_price,
                     ),
                 )
+
+    def get_exact(self, *, observation_id: str, broker: str, account_ref: str) -> BrokerPositionObservation | None:
+        """讀取指定 observation；missing/wrong scope 均不得形成 positive authority。"""
+        with self._connection.cursor() as cursor:
+            cursor.execute("SELECT observation_json FROM trading.broker_position_observations WHERE observation_id=%s AND broker=%s AND account_ref=%s", (observation_id, broker, account_ref))
+            row = cursor.fetchone()
+        if row is None:
+            return None
+        try:
+            payload = row[0]
+            return BrokerPositionObservation.model_validate_json(payload) if isinstance(payload, str) else BrokerPositionObservation.model_validate(payload)
+        except Exception as exc:
+            raise ExpectedSnapshotIntegrityError("broker-position observation failed canonical decode") from exc
 
 
 class PostgresAccountSnapshotRepository:

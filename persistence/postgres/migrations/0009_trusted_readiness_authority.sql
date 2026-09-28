@@ -81,3 +81,43 @@ COMMENT ON COLUMN trading.continuity_transition_receipts.previous_readiness_revi
     'transition 接受前的 exact account readiness fence。';
 COMMENT ON COLUMN trading.continuity_transition_receipts.recovery_cut_revision IS
     '在 account recovery control 鎖下驗證的本地 recovery cut revision；不得由其他 fingerprint 推論。';
+
+-- W4R-B1：延伸 trusted recovery evidence receipts；不執行歷史回填。
+CREATE TABLE trading.broker_discovery_receipts (
+    discovery_run_id TEXT PRIMARY KEY,
+    broker TEXT NOT NULL,
+    account_ref TEXT NOT NULL,
+    generation BIGINT NOT NULL CHECK (generation >= 1),
+    recorded_at TIMESTAMPTZ NOT NULL,
+    receipt_json JSONB NOT NULL,
+    result_fingerprint TEXT GENERATED ALWAYS AS (receipt_json ->> 'result_fingerprint') STORED,
+    CHECK (length(btrim(result_fingerprint)) > 0)
+);
+COMMENT ON TABLE trading.broker_discovery_receipts IS 'Broker discovery canonical result 的不可變正向證據；不代表 runtime authorization。';
+COMMENT ON COLUMN trading.broker_discovery_receipts.discovery_run_id IS 'Discovery receipt 唯一 identity；禁止 latest fallback。';
+COMMENT ON COLUMN trading.broker_discovery_receipts.generation IS '必須匹配寫入當下 active account recovery generation。';
+COMMENT ON COLUMN trading.broker_discovery_receipts.result_fingerprint IS '由完整 canonical BrokerDiscoveryResult 決定性衍生的 SHA-256。';
+COMMENT ON COLUMN trading.broker_discovery_receipts.receipt_json IS '完整 immutable canonical receipt，供 duplicate material equality 驗證。';
+
+CREATE TABLE trading.broker_reconstruction_receipts (
+    reconstruction_receipt_id TEXT PRIMARY KEY,
+    broker TEXT NOT NULL,
+    account_ref TEXT NOT NULL,
+    generation BIGINT NOT NULL CHECK (generation >= 1),
+    recorded_at TIMESTAMPTZ NOT NULL,
+    receipt_json JSONB NOT NULL,
+    recovery_cut_fingerprint TEXT GENERATED ALWAYS AS (receipt_json ->> 'recovery_cut_fingerprint') STORED,
+    discovery_run_id TEXT GENERATED ALWAYS AS (receipt_json ->> 'discovery_run_id') STORED,
+    order_id TEXT GENERATED ALWAYS AS (receipt_json ->> 'order_id') STORED,
+    input_coverage_fingerprint TEXT GENERATED ALWAYS AS (receipt_json ->> 'input_coverage_fingerprint') STORED,
+    output_fingerprint TEXT GENERATED ALWAYS AS (receipt_json ->> 'output_fingerprint') STORED,
+    deal_set_completeness TEXT GENERATED ALWAYS AS (receipt_json ->> 'deal_set_completeness') STORED,
+    CHECK (deal_set_completeness = 'COMPLETE'),
+    CHECK (length(btrim(output_fingerprint)) > 0)
+);
+COMMENT ON TABLE trading.broker_reconstruction_receipts IS '完整 DealSet reconstruction 的不可變正向證據；缺少資料列即無正向 authority。';
+COMMENT ON COLUMN trading.broker_reconstruction_receipts.reconstruction_receipt_id IS 'Reconstruction receipt 唯一 identity。';
+COMMENT ON COLUMN trading.broker_reconstruction_receipts.generation IS '必須匹配 active account recovery generation。';
+COMMENT ON COLUMN trading.broker_reconstruction_receipts.input_coverage_fingerprint IS '重建輸入 coverage 的決定性 fingerprint。';
+COMMENT ON COLUMN trading.broker_reconstruction_receipts.output_fingerprint IS '重建 lifecycle/economics 輸出的決定性 fingerprint。';
+COMMENT ON COLUMN trading.broker_reconstruction_receipts.receipt_json IS '包含 exact accepted Fill IDs 與完整 immutable canonical receipt。';

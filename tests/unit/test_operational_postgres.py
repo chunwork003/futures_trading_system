@@ -4,6 +4,7 @@ import pytest
 
 from persistence.account import ExpectedStateBaselineNotEstablishedError
 from persistence.postgres.account import (
+    PostgresBrokerPositionObservationRepository,
     PostgresExpectedPositionSnapshotRepository,
 )
 from persistence.broker_action import (
@@ -14,14 +15,18 @@ from persistence.broker_action import (
 from persistence.postgres.broker_action import PostgresBrokerActionRepository
 from persistence.broker_recovery import (
     AccountRecoveryControl,
+    BrokerDiscoveryReceipt,
+    BrokerReconstructionReceipt,
     BrokerReportApplication,
     BrokerReportApplicationStatus,
     BrokerReportConflictError,
     BrokerReportInboxEntry,
     RecoveryFenceConflictError,
+    RecoveryEvidenceAppendStatus,
 )
 from persistence.postgres.broker_recovery import PostgresBrokerRecoveryRepository
 from trading.account import BrokerAccount
+from trading.broker_recovery import BrokerDealSetCompleteness, BrokerDiscoveryIntegrity, BrokerDiscoveryResult, DiscoveryCompleteness, ExactMatchCardinality
 
 
 def test_operational_migration_has_separate_tables_and_required_types_comments() -> None:
@@ -134,6 +139,28 @@ def test_expected_repository_latest_as_of_order_and_loader_compatibility() -> No
 
     assert "effective_at<=%s" in connection.last[0]
     assert connection.commits == 0
+
+
+def test_exact_snapshot_and_observation_reads_are_identity_and_account_scoped() -> None:
+    connection = _Connection()
+    assert PostgresExpectedPositionSnapshotRepository(connection).get_exact(
+        snapshot_id="SNAP-1", broker="SINOPAC", account_ref="A"
+    ) is None
+    assert "snapshot_id=%s AND broker=%s AND account_ref=%s" in connection.last[0]
+    assert PostgresBrokerPositionObservationRepository(connection).get_exact(
+        observation_id="OBS-1", broker="SINOPAC", account_ref="A"
+    ) is None
+    assert "observation_id=%s AND broker=%s AND account_ref=%s" in connection.last[0]
+
+
+def test_w4r_b1_migration_adds_positive_receipts_without_backfill() -> None:
+    sql = Path("persistence/postgres/migrations/0009_trusted_readiness_authority.sql").read_text(encoding="utf-8")
+    for table in ("broker_discovery_receipts", "broker_reconstruction_receipts"):
+        assert f"CREATE TABLE trading.{table}" in sql
+        assert f"COMMENT ON TABLE trading.{table}" in sql
+    assert "result_fingerprint" in sql and "output_fingerprint" in sql
+    assert "deal_set_completeness" in sql and "COMPLETE" in sql
+    assert "INSERT INTO" not in sql
 
 
 class _ReturningCursor(_Cursor):
@@ -283,6 +310,48 @@ def _recovery_entry():
         received_at=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc),
         report_type="ORDER",payload_fingerprint="FP-1",payload_json={"status":"Submitted"},
     )
+
+
+def _discovery_receipt():
+    now=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc)
+    account=BrokerAccount(broker="SINOPAC",account_ref="A")
+    result=BrokerDiscoveryResult(discovery_run_id="DISCOVERY-1",account=account,required_scope="ALL",horizon_start=now,horizon_end=now,refreshed_at=now,completeness=DiscoveryCompleteness.COMPLETE,exact_matches=(),cardinality=ExactMatchCardinality.ZERO,integrity=BrokerDiscoveryIntegrity.CONSISTENT,evidence=("complete",))
+    return BrokerDiscoveryReceipt(discovery_run_id="DISCOVERY-1",account=account,generation=4,result=result,producer_id="RECOVERY",contract_version="W4R-B1-V1",recorded_at=now)
+
+
+def _reconstruction_receipt(**updates):
+    now=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc)
+    values=dict(reconstruction_receipt_id="RECON-1",account=BrokerAccount(broker="SINOPAC",account_ref="A"),generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISCOVERY-1",order_id="ORDER-1",input_coverage_fingerprint="INPUT",accepted_fill_ids=("FILL-1",),output_fingerprint="OUTPUT",deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,authority_commit_id="COMMIT-1",producer_id="RECOVERY",contract_version="W4R-B1-V1",recorded_at=now)
+    values.update(updates); return BrokerReconstructionReceipt(**values)
+
+
+def test_postgres_trusted_receipt_append_locks_active_generation_and_advances_once() -> None:
+    receipt=_discovery_receipt()
+    connection=_QueueConnection([(4,20,True),(receipt.discovery_run_id,),(21,)])
+    status=PostgresBrokerRecoveryRepository(connection).append_discovery_receipt(receipt)
+    assert status is RecoveryEvidenceAppendStatus.APPENDED
+    sqls=[sql for sql,_ in connection.statements]
+    assert "FOR UPDATE" in sqls[0] and "active=TRUE" in sqls[-1]
+    assert "readiness_revision=readiness_revision+1" in sqls[-1]
+    assert connection.commits == 0
+
+
+def test_postgres_trusted_receipt_duplicate_is_idempotent_without_readiness_advance() -> None:
+    receipt=_reconstruction_receipt()
+    connection=_QueueConnection([(4,20,True),None,(receipt.model_dump(mode="json"),)])
+    status=PostgresBrokerRecoveryRepository(connection).append_reconstruction_receipt(receipt)
+    assert status is RecoveryEvidenceAppendStatus.DUPLICATE
+    assert not any("readiness_revision=readiness_revision+1" in sql for sql,_ in connection.statements)
+
+
+def test_postgres_trusted_receipt_conflict_or_inactive_generation_fails_closed() -> None:
+    receipt=_discovery_receipt()
+    conflict=_QueueConnection([(4,20,True),None,({"different":True},)])
+    with pytest.raises(BrokerReportConflictError):
+        PostgresBrokerRecoveryRepository(conflict).append_discovery_receipt(receipt)
+    inactive=_QueueConnection([(4,20,False)])
+    with pytest.raises(RecoveryFenceConflictError,match="active generation"):
+        PostgresBrokerRecoveryRepository(inactive).append_discovery_receipt(receipt)
 
 
 def test_postgres_new_ingress_locks_control_and_atomically_advances_frontier_once() -> None:

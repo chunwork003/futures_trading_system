@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 import pytest
 from pydantic import ValidationError
 
+from persistence.broker_recovery import BrokerDiscoveryReceipt
 from trading.account import BrokerAccount
 from trading.broker_recovery import (
     BrokerDiscoveryError, BrokerDiscoveryIntegrity, BrokerDiscoveryRequest,
@@ -95,3 +96,18 @@ def test_query_failure_is_typed_and_account_scoped() -> None:
 def test_client_reference_is_correlation_not_idempotency_or_capability_claim() -> None:
     dumped = observation().model_dump()
     assert "idempotency" not in dumped and "shioaji" not in repr(dumped).lower()
+
+
+def test_discovery_receipt_derives_fingerprint_and_binds_exact_result() -> None:
+    result = classify((observation(),))
+    receipt = BrokerDiscoveryReceipt(
+        discovery_run_id=result.discovery_run_id, account=ACCOUNT, generation=3,
+        result=result, producer_id="RECOVERY", contract_version="W4R-B1-V1",
+        recorded_at=NOW,
+    )
+    assert receipt.result_fingerprint == BrokerDiscoveryReceipt.fingerprint(result)
+    with pytest.raises(ValidationError, match="discovery_run_id"):
+        BrokerDiscoveryReceipt(
+            discovery_run_id="OTHER", account=ACCOUNT, generation=3, result=result,
+            producer_id="RECOVERY", contract_version="W4R-B1-V1", recorded_at=NOW,
+        )

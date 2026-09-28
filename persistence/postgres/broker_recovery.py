@@ -4,11 +4,12 @@ import json
 from typing import Any
 
 from persistence.broker_recovery import (
-    AccountRecoveryControl, BrokerRecoveryRepository, BrokerReportApplication,
+    AccountRecoveryControl, BrokerDiscoveryReceipt, BrokerReconstructionReceipt,
+    BrokerRecoveryRepository, BrokerReportApplication,
     BrokerReportConflictError, BrokerReportInboxEntry, BrokerReportIngressStatus,
     ContinuityAuthorityConflictError, ContinuityTransitionReceipt,
     ExecutionContinuityEpoch, ExecutionContinuityHead,
-    RecoveryFenceConflictError, SequenceGap,
+    RecoveryEvidenceAppendStatus, RecoveryFenceConflictError, SequenceGap,
 )
 from trading.account import BrokerAccount
 
@@ -53,6 +54,37 @@ class PostgresBrokerRecoveryRepository(BrokerRecoveryRepository):
                 if cursor.fetchone() is None:
                     raise RecoveryFenceConflictError("concurrent broker ingress frontier conflict")
             return BrokerReportIngressStatus.APPENDED
+
+    def _append_trusted_receipt(self, *, table: str, identity_column: str, identity: str, broker: str, account_ref: str, generation: int, recorded_at: object, payload: dict[str, object]) -> RecoveryEvidenceAppendStatus:
+        """以 recovery-control row lock 序列化 receipt 與 readiness CAS；transaction 仍由 caller 擁有。"""
+        with self._connection.cursor() as cursor:
+            cursor.execute("SELECT generation,readiness_revision,active FROM trading.account_recovery_controls WHERE broker=%s AND account_ref=%s FOR UPDATE", (broker, account_ref))
+            control = cursor.fetchone()
+            if control is None or control[0] != generation or not control[2]:
+                raise RecoveryFenceConflictError("trusted recovery receipt requires matching active generation")
+            cursor.execute(
+                f"INSERT INTO trading.{table} ({identity_column},broker,account_ref,generation,recorded_at,receipt_json) VALUES (%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING RETURNING {identity_column}",
+                (identity, broker, account_ref, generation, recorded_at, json.dumps(payload)),
+            )
+            if cursor.fetchone() is None:
+                cursor.execute(f"SELECT receipt_json FROM trading.{table} WHERE {identity_column}=%s", (identity,))
+                row = cursor.fetchone()
+                if row is None or row[0] != payload:
+                    raise BrokerReportConflictError("trusted recovery receipt identity conflict")
+                return RecoveryEvidenceAppendStatus.DUPLICATE
+            cursor.execute("UPDATE trading.account_recovery_controls SET readiness_revision=readiness_revision+1 WHERE broker=%s AND account_ref=%s AND generation=%s AND readiness_revision=%s AND active=TRUE RETURNING readiness_revision", (broker, account_ref, generation, control[1]))
+            advanced = cursor.fetchone()
+            if advanced is None or advanced[0] != control[1] + 1:
+                raise RecoveryFenceConflictError("trusted recovery readiness CAS conflict")
+            return RecoveryEvidenceAppendStatus.APPENDED
+
+    def append_discovery_receipt(self, receipt: BrokerDiscoveryReceipt) -> RecoveryEvidenceAppendStatus:
+        payload = receipt.model_dump(mode="json")
+        return self._append_trusted_receipt(table="broker_discovery_receipts", identity_column="discovery_run_id", identity=receipt.discovery_run_id, broker=receipt.account.broker, account_ref=receipt.account.account_ref, generation=receipt.generation, recorded_at=receipt.recorded_at, payload=payload)
+
+    def append_reconstruction_receipt(self, receipt: BrokerReconstructionReceipt) -> RecoveryEvidenceAppendStatus:
+        payload = receipt.model_dump(mode="json")
+        return self._append_trusted_receipt(table="broker_reconstruction_receipts", identity_column="reconstruction_receipt_id", identity=receipt.reconstruction_receipt_id, broker=receipt.account.broker, account_ref=receipt.account.account_ref, generation=receipt.generation, recorded_at=receipt.recorded_at, payload=payload)
 
     def append_application(self, application: BrokerReportApplication) -> None:
         payload = json.loads(application.model_dump_json())

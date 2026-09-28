@@ -248,10 +248,14 @@ class ExpectedPositionSnapshotRepository(Protocol):
         at: datetime,
     ) -> AccountPositionSnapshot | None: ...
 
+    def get_exact(self, *, snapshot_id: str, broker: str, account_ref: str) -> AccountPositionSnapshot | None: ...
+
 
 @runtime_checkable
 class BrokerPositionObservationRepository(Protocol):
     def append(self, observation: BrokerPositionObservation) -> None: ...
+
+    def get_exact(self, *, observation_id: str, broker: str, account_ref: str) -> BrokerPositionObservation | None: ...
 
 
 def project_expected_position(
