@@ -26,8 +26,8 @@ latest_accepted_wave = W3
 latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
 
 current_wave = W4
-current_runtime_candidate = ea1a371f3408ef881703907384e518471abedeb4
-reviewer_state = HOLD_W4R_A_RF02_REQUIRED
+current_runtime_candidate = 3e87fa28c93c0c0298f7dd065688c23d69cf9d80
+reviewer_state = W4R_A_ACCEPTED_W4_HOLD_W4R_B1_READY
 w4_weight = 18_NOT_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
@@ -35,7 +35,12 @@ C12 = RF02_CHANGES_RETAINED_NOT_ACCEPTED
 C14 = PASS_FROZEN_READ_ONLY
 C15 = RESCOPE_REQUIRED
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_RF02_ONLY
+W4R_A = ACCEPTED_FROZEN_READ_ONLY
+W4R_B = B1_READY_FOR_EXECUTION
+W4R_C = NOT_AUTHORIZED
+W4R_D = NOT_AUTHORIZED
+
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_B1_ONLY
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -59,14 +64,17 @@ Pointers：
 - W4R-A RF01 authorization：`docs/work/GAP08_W4R_A_AUTHORIZATION_AMENDMENT_01.md`
 - W4R-A RF02 review：`docs/work/GAP08_W4R_A_REVIEW_RF02.md`
 - W4R-A RF02 authorization：`docs/work/GAP08_W4R_A_AUTHORIZATION_AMENDMENT_02.md`
+- W4R-A closure：`docs/work/GAP08_W4R_A_CLOSURE.md`
+- W4R-B execution plan：`docs/work/GAP08_W4R_B_EXECUTION_PLAN.md`
+- W4R-B1 authorization：`docs/work/GAP08_W4R_B1_AUTHORIZATION.md`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action：
 
-execute exactly one bounded W4R-A RF02 final correction；after one correction commit/push STOP for independent reviewer。
+execute exactly one bounded W4R-B1 durable evidence authority leaf；after one runtime commit/push STOP for independent reviewer。
 
-Executor coding is authorized for W4R-A RF02 only；W4R-A remains unaccepted and W4R-B/C/D remain NOT_AUTHORIZED。
+W4R-A is accepted/frozen；executor coding is authorized for W4R-B1 only。W4R-B2/C/D remain NOT_AUTHORIZED。
 
 Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 

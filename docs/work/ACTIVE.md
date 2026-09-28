@@ -3,20 +3,20 @@
 ## GOV-01 Active Context Guard
 
 <!-- MACHINE_ACTIVE_START -->
-WORK_PACKAGE_ID = GAP08-W4R-A-RF02
+WORK_PACKAGE_ID = GAP08-W4R-B1
 STATUS = READY_FOR_EXECUTION
 PRIORITY = P1_MAINLINE
-PLANNING_BASELINE = ea1a371f3408ef881703907384e518471abedeb4
-AUTHORIZATION = docs/work/GAP08_W4R_A_AUTHORIZATION_AMENDMENT_02.md
-RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_RF02_ONLY
+PLANNING_BASELINE = 3e87fa28c93c0c0298f7dd065688c23d69cf9d80
+AUTHORIZATION = docs/work/GAP08_W4R_B1_AUTHORIZATION.md
+RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_B1_ONLY
 SIDE_EFFECT_CLASS = SOURCE_TEST_MIGRATION_SOURCE_ONLY
-DEPENDENCIES = W4R_A_RF01_RUNTIME_CANDIDATE;W4R_A_REVIEW_RF02
-WRITE_SCOPE = persistence/broker_recovery.py;persistence/postgres/broker_recovery.py;persistence/postgres/migrations/0009_trusted_readiness_authority.sql;tests/unit/test_c09_broker_recovery_fence.py;tests/unit/test_operational_postgres.py
-TEST_GATE = W4R_A_RF02_TARGETED_COMPAT_FULL
+DEPENDENCIES = W4R_A_ACCEPTED_FROZEN
+WRITE_SCOPE = persistence/account.py;persistence/postgres/account.py;persistence/broker_recovery.py;persistence/postgres/broker_recovery.py;persistence/postgres/migrations/0009_trusted_readiness_authority.sql;tests/unit/test_c07_broker_discovery.py;tests/unit/test_c10_broker_reconstruction.py;tests/unit/test_operational_postgres.py
+TEST_GATE = W4R_B1_TARGETED_COMPAT_FULL
 GIT_POLICY = ONE_COMMIT_ONE_PUSH_NO_FORCE
 REVIEW_BARRIER = MANDATORY_AFTER_PACKAGE
-COMMIT_MESSAGE = fix(recovery): seal W4R-A continuity integrity
-CORRECTION_BUDGET = FINAL_RF02_NO_AUTO_RF03
+COMMIT_MESSAGE = feat(recovery): persist W4R-B1 trusted recovery evidence
+CORRECTION_BUDGET = REVIEWER_BOUNDED
 <!-- MACHINE_ACTIVE_END -->
 
 
