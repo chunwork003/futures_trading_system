@@ -26,8 +26,8 @@ latest_accepted_wave = W3
 latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
 
 current_wave = W4
-current_runtime_candidate = 8f410ec2c76493c4db2b904be11974c42c09cae0
-reviewer_state = HOLD_RESCOPE_C15_AND_REPLAN_W4
+current_runtime_candidate = 6628d5e1bb7fe12eae8323de11be5f3db46fcb97
+reviewer_state = HOLD_W4R_A_RF01_REQUIRED
 w4_weight = 18_NOT_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
@@ -35,7 +35,7 @@ C12 = RF02_CHANGES_RETAINED_NOT_ACCEPTED
 C14 = PASS_FROZEN_READ_ONLY
 C15 = RESCOPE_REQUIRED
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_ONLY
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_RF01_ONLY
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -55,13 +55,16 @@ Pointers：
 - W4 VIBE replan candidate：`docs/work/GAP08_WAVE4_REPLAN_V2.md`
 - W4R package freeze：`docs/work/GAP08_W4R_PACKAGE_FREEZE.md`
 - W4R-A authorization：`docs/work/GAP08_W4R_A_AUTHORIZATION.md`
+- W4R-A independent review：`docs/work/GAP08_W4R_A_REVIEW_RF01.md`
+- W4R-A RF01 authorization：`docs/work/GAP08_W4R_A_AUTHORIZATION_AMENDMENT_01.md`
+- Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action：
 
-execute exactly one bounded W4R-A package；after one runtime commit/push STOP for independent reviewer。
+execute exactly one bounded W4R-A RF01 correction；after one correction commit/push STOP for independent reviewer。
 
-Executor coding is authorized for W4R-A only；W4R-B/C/D remain NOT_AUTHORIZED。
+Executor coding is authorized for W4R-A RF01 only；W4R-A remains unaccepted and W4R-B/C/D remain NOT_AUTHORIZED。
 
 Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 

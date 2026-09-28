@@ -14,21 +14,23 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W4R-A READY_FOR_EXECUTION under `docs/work/GAP08_W4R_A_AUTHORIZATION.md`。W4 remains HOLD；official accepted correction core remains 75/113 and W4 weight 18 remains NOT_CREDITED until final W4 reviewer acceptance。Runtime Source Modification Authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_ONLY。
+Current execution action：W4R-A runtime candidate `6628d5e1bb7fe12eae8323de11be5f3db46fcb97` is HOLD / RF01_REQUIRED；execute only GAP08-W4R-A-RF01。Official accepted correction core remains 75/113；W4 weight 18 remains NOT_CREDITED。
 
 <!-- MACHINE_QUEUE_CURRENT_START -->
-WORK_PACKAGE_ID = GAP08-W4R-A
+WORK_PACKAGE_ID = GAP08-W4R-A-RF01
 STATUS = READY_FOR_EXECUTION
 PRIORITY = P1_MAINLINE
-PLANNING_BASELINE = 150053fcf638e347ffe0067a6f4a71d5baa31b9b
-AUTHORIZATION = docs/work/GAP08_W4R_A_AUTHORIZATION.md
-RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_ONLY
+PLANNING_BASELINE = 6628d5e1bb7fe12eae8323de11be5f3db46fcb97
+AUTHORIZATION = docs/work/GAP08_W4R_A_AUTHORIZATION_AMENDMENT_01.md
+RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_RF01_ONLY
 SIDE_EFFECT_CLASS = SOURCE_TEST_MIGRATION_SOURCE_ONLY
-DEPENDENCIES = W3_ACCEPTED;W4_ARCHITECT_DECISION;W4_REPLAN_V2_FROZEN
+DEPENDENCIES = W4R_A_RUNTIME_CANDIDATE;W4R_A_REVIEW_RF01
 WRITE_SCOPE = persistence/broker_recovery.py;persistence/postgres/broker_recovery.py;persistence/postgres/migrations/0009_trusted_readiness_authority.sql;tests/unit/test_c09_broker_recovery_fence.py;tests/unit/test_operational_postgres.py
-TEST_GATE = W4R_A_TARGETED_COMPAT_FULL
+TEST_GATE = W4R_A_RF01_TARGETED_COMPAT_FULL
 GIT_POLICY = ONE_COMMIT_ONE_PUSH_NO_FORCE
 REVIEW_BARRIER = MANDATORY_AFTER_PACKAGE
+COMMIT_MESSAGE = fix(recovery): complete W4R-A continuity authority
+CORRECTION_BUDGET = 1
 NEXT_QUEUE = GAP08-W4R-B;GAP08-W4R-C
 <!-- MACHINE_QUEUE_CURRENT_END -->
 
