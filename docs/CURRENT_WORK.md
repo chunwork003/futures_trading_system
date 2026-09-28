@@ -14,24 +14,24 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W4R-A runtime candidate `6628d5e1bb7fe12eae8323de11be5f3db46fcb97` is HOLD / RF01_REQUIRED；execute only GAP08-W4R-A-RF01。Official accepted correction core remains 75/113；W4 weight 18 remains NOT_CREDITED。
+Current execution action：W4R-A RF01 runtime candidate `ea1a371f3408ef881703907384e518471abedeb4` is HOLD / RF02_REQUIRED；execute only GAP08-W4R-A-RF02。Official accepted correction core remains 75/113；W4 weight 18 remains NOT_CREDITED。
 
 <!-- MACHINE_QUEUE_CURRENT_START -->
-WORK_PACKAGE_ID = GAP08-W4R-A-RF01
+WORK_PACKAGE_ID = GAP08-W4R-A-RF02
 STATUS = READY_FOR_EXECUTION
 PRIORITY = P1_MAINLINE
-PLANNING_BASELINE = 6628d5e1bb7fe12eae8323de11be5f3db46fcb97
-AUTHORIZATION = docs/work/GAP08_W4R_A_AUTHORIZATION_AMENDMENT_01.md
-RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_RF01_ONLY
+PLANNING_BASELINE = ea1a371f3408ef881703907384e518471abedeb4
+AUTHORIZATION = docs/work/GAP08_W4R_A_AUTHORIZATION_AMENDMENT_02.md
+RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_A_RF02_ONLY
 SIDE_EFFECT_CLASS = SOURCE_TEST_MIGRATION_SOURCE_ONLY
-DEPENDENCIES = W4R_A_RUNTIME_CANDIDATE;W4R_A_REVIEW_RF01
+DEPENDENCIES = W4R_A_RF01_RUNTIME_CANDIDATE;W4R_A_REVIEW_RF02
 WRITE_SCOPE = persistence/broker_recovery.py;persistence/postgres/broker_recovery.py;persistence/postgres/migrations/0009_trusted_readiness_authority.sql;tests/unit/test_c09_broker_recovery_fence.py;tests/unit/test_operational_postgres.py
-TEST_GATE = W4R_A_RF01_TARGETED_COMPAT_FULL
+TEST_GATE = W4R_A_RF02_TARGETED_COMPAT_FULL
 GIT_POLICY = ONE_COMMIT_ONE_PUSH_NO_FORCE
 REVIEW_BARRIER = MANDATORY_AFTER_PACKAGE
-COMMIT_MESSAGE = fix(recovery): complete W4R-A continuity authority
-CORRECTION_BUDGET = 1
-NEXT_QUEUE = GAP08-W4R-B;GAP08-W4R-C
+COMMIT_MESSAGE = fix(recovery): seal W4R-A continuity integrity
+CORRECTION_BUDGET = FINAL_RF02_NO_AUTO_RF03
+NEXT_QUEUE = STOP_FOR_W4R_A_REVIEW
 <!-- MACHINE_QUEUE_CURRENT_END -->
 
 ## Purpose
