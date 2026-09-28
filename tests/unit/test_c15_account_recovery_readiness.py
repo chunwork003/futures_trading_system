@@ -406,3 +406,37 @@ def test_c2a_root_set_is_deterministic_and_caller_cannot_inject_roots() -> None:
     right=resolver.resolve(trusted_core=core,material_report_entries=(_report({"order_id":"A"},ingress_id="A"),_report({"order_id":"Z"},ingress_id="Z")))
     assert left == right
     with pytest.raises(TypeError): resolver.resolve(trusted_core=core,material_report_entries=(),order_ids=("FORGED",),root_set_fingerprint="FORGED")
+
+
+def test_rf01_head_exact_read_rejects_mismatched_embedded_order_id() -> None:
+    head=BrokerActionHead(broker="SINOPAC",account_ref="A",order_id="REQUESTED",action=BrokerActionKind.SUBMIT,version=1)
+    resolver,core=_root_resolver(heads=(head,),orders={"REQUESTED":_order("OTHER")})
+    with pytest.raises(RecoveryRootIntegrityError,match="identity"):
+        resolver.resolve(trusted_core=core,material_report_entries=())
+
+
+@pytest.mark.parametrize("snapshot",[
+    AccountPositionSnapshot(snapshot_id="OTHER",broker="SINOPAC",account_ref="A",effective_at=NOW,recorded_at=NOW,source_event_id="EVENT",positions=()),
+    AccountPositionSnapshot(snapshot_id="SNAP-1",broker="SINOPAC",account_ref="B",effective_at=NOW,recorded_at=NOW,source_event_id="EVENT",positions=()),
+])
+def test_rf01_expected_snapshot_exact_read_rejects_identity_or_account_mismatch(snapshot) -> None:
+    class Expected:
+        def get_exact(self,**kwargs): return snapshot
+    resolver,core=_root_resolver(expected=Expected())
+    with pytest.raises(RecoveryRootIntegrityError,match="snapshot identity"):
+        resolver.resolve(trusted_core=core,material_report_entries=())
+
+
+def test_rf01_source_event_exact_read_rejects_mismatched_embedded_event_id() -> None:
+    event=TradingEvent(event_id="OTHER",event_type="ORDER",source="OMS",entity_type="ORDER",entity_id="ORDER-1",occurred_at=NOW,received_at=NOW,sequence=0,event_version=1,idempotency_scope="S",idempotency_key="K",payload_json={})
+    resolver,core=_root_resolver(event=event)
+    with pytest.raises(RecoveryRootIntegrityError,match="event identity"):
+        resolver.resolve(trusted_core=core,material_report_entries=())
+
+
+def test_rf01_matching_exact_reads_preserve_deterministic_output_and_no_authority_surface() -> None:
+    resolver,core=_root_resolver()
+    left=resolver.resolve(trusted_core=core,material_report_entries=())
+    right=resolver.resolve(trusted_core=core,material_report_entries=())
+    assert left == right
+    assert not hasattr(left,"ready") and not hasattr(left,"finalize") and not hasattr(left,"handoff")

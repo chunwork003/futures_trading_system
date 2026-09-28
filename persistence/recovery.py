@@ -189,6 +189,7 @@ class RecoveryRootResolver:
             if (head.broker,head.account_ref)!=(account.broker,account.account_ref): raise RecoveryRootIntegrityError("broker action head account mismatch")
             order=self._orders.get(head.order_id)
             if order is None: raise RecoveryRootIntegrityError("broker action head references missing Order")
+            if order.order_id!=head.order_id: raise RecoveryRootIntegrityError("broker action Order identity mismatch")
             if order.status not in TERMINAL_ORDER_STATUSES: add(order.order_id,RecoveryRootSource.BROKER_ACTION_NONTERMINAL)
             if head.unresolved_attempt_id is not None: add(order.order_id,RecoveryRootSource.BROKER_ACTION_UNRESOLVED)
         if len(trusted_core.reconstruction_receipt_ids)!=len(trusted_core.reconstruction_receipt_fingerprints): raise RecoveryRootIntegrityError("reconstruction receipt binding length mismatch")
@@ -200,8 +201,10 @@ class RecoveryRootResolver:
             add(receipt.order_id,RecoveryRootSource.RECONSTRUCTION_RECEIPT)
         snapshot=self._expected.get_exact(snapshot_id=trusted_core.expected_snapshot_id,broker=account.broker,account_ref=account.account_ref)
         if snapshot is None: raise RecoveryRootIntegrityError("expected snapshot is missing")
+        if snapshot.snapshot_id!=trusted_core.expected_snapshot_id or (snapshot.broker,snapshot.account_ref)!=(account.broker,account.account_ref): raise RecoveryRootIntegrityError("expected snapshot identity or account mismatch")
         event=self._events.get(snapshot.source_event_id)
         if event is None: raise RecoveryRootIntegrityError("expected snapshot source event is missing")
+        if event.event_id!=snapshot.source_event_id: raise RecoveryRootIntegrityError("expected snapshot source event identity mismatch")
         if event.entity_type!="ORDER": raise RecoveryRootIntegrityError("expected snapshot source event is not ORDER")
         add(event.entity_id,RecoveryRootSource.EXPECTED_SNAPSHOT_SOURCE_EVENT)
         ambiguous=[]
