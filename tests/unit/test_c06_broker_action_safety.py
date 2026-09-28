@@ -64,6 +64,8 @@ class ActionRepo:
         self.attempts[attempt.attempt_id] = attempt
     def get_head(self, broker, account_ref, order_id, action):
         return self.heads.get((broker, account_ref, order_id, action))
+    def list_heads(self, account):
+        return tuple(sorted((item for item in self.heads.values() if (item.broker,item.account_ref)==(account.broker,account.account_ref)),key=lambda item:(item.order_id,item.action.value)))
     def reserve_head(self, attempt, *, expected_version):
         key = self.key(attempt); current = self.heads.get(key)
         if current is None:
@@ -120,6 +122,14 @@ def resolution(item, kind=BrokerActionResolutionKind.NOT_DISPATCHED, **updates):
         pre_transport_proof="TRANSPORT-GATE-1" if kind is BrokerActionResolutionKind.NOT_DISPATCHED else None,
     )
     values.update(updates); return BrokerActionResolution(**values)
+
+
+def test_c2a_in_memory_head_listing_is_exact_account_scoped_and_deterministic() -> None:
+    repo=ActionRepo()
+    for item in (attempt(order_id="B"),attempt(order_id="A",action=BrokerActionKind.CANCEL),attempt(order_id="OTHER",account_ref="B")):
+        repo.reserve_head(item,expected_version=-1)
+    account=__import__("trading.account",fromlist=["BrokerAccount"]).BrokerAccount(broker="SINOPAC",account_ref="A")
+    assert tuple((item.order_id,item.action) for item in repo.list_heads(account)) == (("A",BrokerActionKind.CANCEL),("B",BrokerActionKind.SUBMIT))
 
 
 def build(*, fail_attempt=False):

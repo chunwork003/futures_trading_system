@@ -22,6 +22,7 @@ from adapters.capabilities import (
     BrokerVerificationMode, require_broker_capability,
 )
 from persistence.account import BrokerPositionObservationRepository, ExpectedPositionSnapshotRepository
+from persistence.broker_action import BrokerActionRepository
 
 from persistence.account_authority import (
     AccountAuthorityCommitReceipt,
@@ -39,8 +40,10 @@ from persistence.reconciliation import (
     blocking_case_state,
     reconciliation_blocker_semantic_fingerprint,
 )
-from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt, BrokerRecoveryRepository, ExecutionContinuityEpoch
+from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt, BrokerRecoveryRepository, BrokerReportInboxEntry, ExecutionContinuityEpoch
 from persistence.contracts import normalize_stable_id
+from persistence.events import EventLedgerRepository
+from persistence.execution import OrderRepository
 from persistence.strategy_state import (
     LegacyMarketObservationReferenceError,
     StrategyInstanceRepository,
@@ -67,6 +70,7 @@ from trading.reconciliation import (
     reconcile_startup,
     ReconciliationStatus,
 )
+from trading.execution import TERMINAL_ORDER_STATUSES
 
 
 class RecoveryReadinessState(
@@ -110,6 +114,106 @@ class TrustedReconciliationBlockerResolver:
             unresolved_case_ids=tuple(item.case_id for item in versions),
             semantic_fingerprint=reconciliation_blocker_semantic_fingerprint(versions),
         )
+
+
+class RecoveryRootSource(str,Enum):
+    """C2A minimum recovery root 的 exact durable source category。"""
+    BROKER_ACTION_NONTERMINAL="BROKER_ACTION_NONTERMINAL"
+    BROKER_ACTION_UNRESOLVED="BROKER_ACTION_UNRESOLVED"
+    RECONSTRUCTION_RECEIPT="RECONSTRUCTION_RECEIPT"
+    EXPECTED_SNAPSHOT_SOURCE_EVENT="EXPECTED_SNAPSHOT_SOURCE_EVENT"
+    BROKER_REPORT_EXACT_ORDER="BROKER_REPORT_EXACT_ORDER"
+
+
+class RecoveryOrderRoot(BaseModel):
+    """單一 Order root 及其全部 deterministic provenance categories。"""
+    model_config=ConfigDict(extra="forbid",frozen=True)
+    order_id: str
+    sources: tuple[RecoveryRootSource,...]
+
+    @field_validator("order_id",mode="before")
+    @classmethod
+    def _order_id(cls,value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value,str) else value
+
+    @model_validator(mode="after")
+    def _sources(self) -> "RecoveryOrderRoot":
+        order={item:index for index,item in enumerate(RecoveryRootSource)}
+        normalized=tuple(sorted(set(self.sources),key=order.__getitem__))
+        if not normalized: raise ValueError("recovery order root requires source")
+        object.__setattr__(self,"sources",normalized)
+        return self
+
+
+class RecoveryRootSetEvidence(BaseModel):
+    """Resolver-produced immutable minimum root set；不代表 READY、finalize 或 handoff。"""
+    model_config=ConfigDict(extra="forbid",frozen=True)
+    account: BrokerAccount
+    recovery_generation: int = Field(ge=1)
+    roots: tuple[RecoveryOrderRoot,...]
+    order_ids: tuple[str,...]
+    ambiguous_report_ingress_ids: tuple[str,...]
+    root_set_fingerprint: str = ""
+
+    @model_validator(mode="after")
+    def _canonical(self) -> "RecoveryRootSetEvidence":
+        roots=tuple(sorted(self.roots,key=lambda item:item.order_id))
+        if len({item.order_id for item in roots}) != len(roots): raise ValueError("duplicate recovery root")
+        order_ids=tuple(item.order_id for item in roots)
+        ambiguous=tuple(sorted(set(self.ambiguous_report_ingress_ids)))
+        material={"account":self.account.model_dump(mode="json"),"recovery_generation":self.recovery_generation,"roots":[item.model_dump(mode="json") for item in roots],"ambiguous_report_ingress_ids":list(ambiguous)}
+        encoded=json.dumps(material,sort_keys=True,separators=(",",":"),ensure_ascii=False)
+        fingerprint=hashlib.sha256(encoded.encode("utf-8")).hexdigest()
+        object.__setattr__(self,"roots",roots); object.__setattr__(self,"order_ids",order_ids)
+        object.__setattr__(self,"ambiguous_report_ingress_ids",ambiguous); object.__setattr__(self,"root_set_fingerprint",fingerprint)
+        return self
+
+
+class RecoveryRootIntegrityError(RuntimeError):
+    """Minimum root evidence 缺失、跨 account/world 或 identity 不一致時 fail closed。"""
+
+
+class RecoveryRootResolver:
+    """由 exact durable owners 組合 minimum roots；不掃描全域 history，也不授予 READY。"""
+    def __init__(self,*,broker_action_repository: BrokerActionRepository,order_repository: OrderRepository,broker_recovery_repository: BrokerRecoveryRepository,expected_snapshot_repository: ExpectedPositionSnapshotRepository,event_ledger_repository: EventLedgerRepository) -> None:
+        self._actions=broker_action_repository; self._orders=order_repository
+        self._recovery=broker_recovery_repository; self._expected=expected_snapshot_repository
+        self._events=event_ledger_repository
+
+    def resolve(self,*,trusted_core: TrustedRecoveryEvidenceCore,material_report_entries: tuple[BrokerReportInboxEntry,...]) -> RecoveryRootSetEvidence:
+        account=trusted_core.account; generation=trusted_core.recovery_generation
+        sources: dict[str,set[RecoveryRootSource]]={}
+        def add(order_id: str,source: RecoveryRootSource) -> None:
+            sources.setdefault(normalize_stable_id(order_id),set()).add(source)
+        for head in self._actions.list_heads(account):
+            if (head.broker,head.account_ref)!=(account.broker,account.account_ref): raise RecoveryRootIntegrityError("broker action head account mismatch")
+            order=self._orders.get(head.order_id)
+            if order is None: raise RecoveryRootIntegrityError("broker action head references missing Order")
+            if order.status not in TERMINAL_ORDER_STATUSES: add(order.order_id,RecoveryRootSource.BROKER_ACTION_NONTERMINAL)
+            if head.unresolved_attempt_id is not None: add(order.order_id,RecoveryRootSource.BROKER_ACTION_UNRESOLVED)
+        if len(trusted_core.reconstruction_receipt_ids)!=len(trusted_core.reconstruction_receipt_fingerprints): raise RecoveryRootIntegrityError("reconstruction receipt binding length mismatch")
+        for receipt_id,fingerprint in zip(trusted_core.reconstruction_receipt_ids,trusted_core.reconstruction_receipt_fingerprints,strict=True):
+            receipt=self._recovery.get_reconstruction_receipt(reconstruction_receipt_id=receipt_id,account=account)
+            if receipt is None: raise RecoveryRootIntegrityError("reconstruction receipt is missing")
+            receipt=BrokerReconstructionReceipt.model_validate(receipt.model_dump(mode="json"))
+            if receipt.reconstruction_receipt_id!=receipt_id or receipt.account!=account or receipt.generation!=generation or receipt.full_receipt_fingerprint!=fingerprint: raise RecoveryRootIntegrityError("reconstruction receipt binding mismatch")
+            add(receipt.order_id,RecoveryRootSource.RECONSTRUCTION_RECEIPT)
+        snapshot=self._expected.get_exact(snapshot_id=trusted_core.expected_snapshot_id,broker=account.broker,account_ref=account.account_ref)
+        if snapshot is None: raise RecoveryRootIntegrityError("expected snapshot is missing")
+        event=self._events.get(snapshot.source_event_id)
+        if event is None: raise RecoveryRootIntegrityError("expected snapshot source event is missing")
+        if event.entity_type!="ORDER": raise RecoveryRootIntegrityError("expected snapshot source event is not ORDER")
+        add(event.entity_id,RecoveryRootSource.EXPECTED_SNAPSHOT_SOURCE_EVENT)
+        ambiguous=[]
+        for entry in material_report_entries:
+            if (entry.broker,entry.account_ref,entry.generation)!=(account.broker,account.account_ref,generation): raise RecoveryRootIntegrityError("material report world mismatch")
+            if "order_id" not in entry.payload_json: ambiguous.append(entry.ingress_id); continue
+            order_id=entry.payload_json["order_id"]
+            if not isinstance(order_id,str): raise RecoveryRootIntegrityError("material report order_id is malformed")
+            try: add(order_id,RecoveryRootSource.BROKER_REPORT_EXACT_ORDER)
+            except ValueError as exc: raise RecoveryRootIntegrityError("material report order_id is malformed") from exc
+        roots=tuple(RecoveryOrderRoot(order_id=order_id,sources=tuple(categories)) for order_id,categories in sources.items())
+        return RecoveryRootSetEvidence(account=account,recovery_generation=generation,roots=roots,order_ids=(),ambiguous_report_ingress_ids=tuple(ambiguous))
 
 
 class TrustedRecoveryEvidenceCore(BaseModel):

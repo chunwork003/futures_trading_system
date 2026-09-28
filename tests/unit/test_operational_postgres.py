@@ -251,6 +251,18 @@ def test_broker_action_postgres_conditional_writes_encode_retry_eligibility() ->
     assert connection.commits == 0
 
 
+def test_c2a_broker_action_head_listing_is_exact_account_scoped_without_commit() -> None:
+    rows=[("SINOPAC","A","ORDER-1","SUBMIT",2,None,False),("SINOPAC","A","ORDER-2","CANCEL",3,"ATTEMPT",False)]
+    connection=_QueueConnection([rows])
+    heads=PostgresBrokerActionRepository(connection).list_heads(BrokerAccount(broker="SINOPAC",account_ref="A"))
+    sql,params=connection.statements[0]
+    assert "WHERE broker=%s AND account_ref=%s" in sql
+    assert "ORDER BY order_id, action" in sql
+    assert params == ("SINOPAC","A")
+    assert tuple(item.order_id for item in heads) == ("ORDER-1","ORDER-2")
+    assert connection.commits == 0
+
+
 def test_broker_action_migration_encodes_durable_eligibility_without_manual_override() -> None:
     sql = Path(
         "persistence/postgres/migrations/0006_broker_action_safety.sql"
@@ -324,6 +336,8 @@ class _QueueConnection(_Connection):
             def execute(self, sql, params=None):
                 connection.last=(sql,params); connection.statements.append((sql,params))
             def fetchone(self):
+                return connection.rows.pop(0)
+            def fetchall(self):
                 return connection.rows.pop(0)
         return Cursor(self)
 

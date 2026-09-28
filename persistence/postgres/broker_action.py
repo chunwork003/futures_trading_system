@@ -11,6 +11,7 @@ from persistence.broker_action import (
     BrokerActionResolution,
     BrokerActionResolutionKind,
 )
+from trading.account import BrokerAccount
 
 
 class PostgresBrokerActionRepository:
@@ -73,6 +74,18 @@ class PostgresBrokerActionRepository:
             version=row[4], unresolved_attempt_id=row[5],
             automatic_invocation_eligible=row[6],
         )
+
+    def list_heads(self, account: BrokerAccount) -> tuple[BrokerActionHead, ...]:
+        """只讀取指定 BrokerAccount 的 durable action heads，禁止 global Order 掃描。"""
+        with self._connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT broker, account_ref, order_id, action, version, unresolved_attempt_id, "
+                "automatic_invocation_eligible FROM trading.broker_action_heads "
+                "WHERE broker=%s AND account_ref=%s ORDER BY order_id, action",
+                (account.broker, account.account_ref),
+            )
+            rows=cursor.fetchall()
+        return tuple(BrokerActionHead(broker=row[0],account_ref=row[1],order_id=row[2],action=row[3],version=row[4],unresolved_attempt_id=row[5],automatic_invocation_eligible=row[6]) for row in rows)
 
     def reserve_head(self, attempt: BrokerActionAttempt, *, expected_version: int) -> None:
         with self._connection.cursor() as cursor:

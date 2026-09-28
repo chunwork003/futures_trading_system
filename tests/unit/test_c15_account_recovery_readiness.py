@@ -19,16 +19,22 @@ from persistence.recovery import (
     TrustedRecoveryEvidenceError,
     TrustedRecoveryEvidenceResolver,
     TrustedReconciliationBlockerResolver,
+    RecoveryRootIntegrityError,
+    RecoveryRootResolver,
+    RecoveryRootSource,
     evaluate_account_readiness,
 )
 from persistence.broker_recovery import ExecutionContinuityEpoch
 from persistence.reconciliation import ReconciliationCaseVersion
-from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt
+from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt, BrokerReportInboxEntry
+from persistence.broker_action import BrokerActionHead, BrokerActionKind
+from persistence.events import TradingEvent
 from persistence.account import AccountPositionSnapshot, BrokerPositionObservation
 from adapters.capabilities import BrokerCapability, BrokerVerificationMode, StaticBrokerCapabilityProvider
 from adapters.sinopac.capabilities import SINOPAC_CAPABILITY_REGISTRY_SNAPSHOT
 from trading.broker_recovery import BrokerDealSetCompleteness, BrokerReconstructionPlan
-from trading.execution import Fill, OrderStatus
+from trading.execution import Fill, Order, OrderStatus, OrderType, PositionEffect
+from trading.account import PositionDirection
 from trading.broker_recovery import BrokerDiscoveryIntegrity, BrokerDiscoveryResult, DiscoveryCompleteness, ExactMatchCardinality
 from trading.account import BrokerAccount
 from trading.reconciliation import ReconciliationPolicy, ReconciliationResult, ReconciliationStatus
@@ -328,3 +334,75 @@ def test_c1_resolver_output_is_deterministic_and_caller_cannot_bypass_resolution
     assert left.unresolved_case_ids == ("A","B")
     with pytest.raises(TypeError):
         TrustedReconciliationBlockerResolver(_CaseRepo(())).resolve(account=ACCOUNT,blocking=True,semantic_fingerprint="FORGED")
+
+
+def _order(order_id="ORDER-1",status=OrderStatus.PENDING):
+    return Order(order_id=order_id,intent_id="INTENT",correlation_id="CORR",broker_client_order_ref="CLIENT",instrument_id=1,contract_id=2,direction=PositionDirection.LONG,position_effect=PositionEffect.OPEN,order_type=OrderType.MARKET,quantity=1,status=status,created_at=NOW,updated_at=NOW)
+
+
+def _root_resolver(*,heads=(),orders=None,event=None,recovery=None,expected=None):
+    trusted,_,_= _trusted_resolver_fixture()
+    core=trusted.resolve(account=ACCOUNT,recovery_generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),expected_snapshot_id="SNAP-1",broker_observation_id="OBS-1",required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),required_verification_mode=BrokerVerificationMode.DOCUMENTATION)
+    event=event or TradingEvent(event_id="EVENT",event_type="ORDER",source="OMS",entity_type="ORDER",entity_id="ORDER-1",occurred_at=NOW,received_at=NOW,sequence=0,event_version=1,idempotency_scope="S",idempotency_key="K",payload_json={})
+    class Actions:
+        def list_heads(self,account): return tuple(heads)
+    class Orders:
+        def get(self,order_id): return (orders or {}).get(order_id)
+    class Events:
+        def get(self,event_id): return event if event_id=="EVENT" else None
+    resolver=RecoveryRootResolver(broker_action_repository=Actions(),order_repository=Orders(),broker_recovery_repository=recovery or trusted._recovery,expected_snapshot_repository=expected or trusted._expected,event_ledger_repository=Events())
+    return resolver,core
+
+
+def _report(payload,*,account=ACCOUNT,generation=4,ingress_id="IN-1"):
+    return BrokerReportInboxEntry(ingress_id=ingress_id,broker=account.broker,account_ref=account.account_ref,generation=generation,received_at=NOW,report_type="ORDER",payload_fingerprint="PF",payload_json=payload)
+
+
+def test_c2a_root_sources_dedupe_and_preserve_all_categories() -> None:
+    head=BrokerActionHead(broker="SINOPAC",account_ref="A",order_id="ORDER-1",action=BrokerActionKind.SUBMIT,version=1,unresolved_attempt_id="ATTEMPT")
+    resolver,core=_root_resolver(heads=(head,),orders={"ORDER-1":_order()})
+    result=resolver.resolve(trusted_core=core,material_report_entries=(_report({"order_id":"ORDER-1"}),_report({},ingress_id="AMBIG")))
+    assert result.order_ids == ("ORDER-1",)
+    assert set(result.roots[0].sources) == set(RecoveryRootSource)
+    assert result.ambiguous_report_ingress_ids == ("AMBIG",)
+    assert not hasattr(result,"ready") and not hasattr(result,"finalize")
+
+
+def test_c2a_terminal_resolved_head_is_not_root_but_unresolved_is_root() -> None:
+    resolved=BrokerActionHead(broker="SINOPAC",account_ref="A",order_id="TERMINAL",action=BrokerActionKind.SUBMIT,version=2)
+    unresolved=resolved.model_copy(update={"order_id":"UNRESOLVED","unresolved_attempt_id":"ATTEMPT"})
+    resolver,core=_root_resolver(heads=(resolved,unresolved),orders={"TERMINAL":_order("TERMINAL",OrderStatus.FILLED),"UNRESOLVED":_order("UNRESOLVED",OrderStatus.FILLED)})
+    result=resolver.resolve(trusted_core=core,material_report_entries=())
+    assert "TERMINAL" not in result.order_ids and "UNRESOLVED" in result.order_ids
+
+
+def test_c2a_missing_head_order_and_reconstruction_binding_fail_closed() -> None:
+    head=BrokerActionHead(broker="SINOPAC",account_ref="A",order_id="MISSING",action=BrokerActionKind.SUBMIT,version=1)
+    resolver,core=_root_resolver(heads=(head,))
+    with pytest.raises(RecoveryRootIntegrityError,match="missing Order"): resolver.resolve(trusted_core=core,material_report_entries=())
+    resolver,core=_root_resolver()
+    with pytest.raises(RecoveryRootIntegrityError,match="binding"): resolver.resolve(trusted_core=core.model_copy(update={"reconstruction_receipt_fingerprints":("BAD",)}),material_report_entries=())
+    class MissingRecovery:
+        def get_reconstruction_receipt(self,**kwargs): return None
+    resolver,core=_root_resolver(recovery=MissingRecovery())
+    with pytest.raises(RecoveryRootIntegrityError,match="missing"): resolver.resolve(trusted_core=core,material_report_entries=())
+
+
+def test_c2a_snapshot_event_and_report_integrity_fail_closed() -> None:
+    resolver,core=_root_resolver(event=TradingEvent(event_id="EVENT",event_type="X",source="OMS",entity_type="ACCOUNT",entity_id="ORDER-1",occurred_at=NOW,received_at=NOW,sequence=0,event_version=1,idempotency_scope="S",idempotency_key="K",payload_json={}))
+    with pytest.raises(RecoveryRootIntegrityError,match="not ORDER"): resolver.resolve(trusted_core=core,material_report_entries=())
+    class MissingExpected:
+        def get_exact(self,**kwargs): return None
+    resolver,core=_root_resolver(expected=MissingExpected())
+    with pytest.raises(RecoveryRootIntegrityError,match="snapshot"): resolver.resolve(trusted_core=core,material_report_entries=())
+    resolver,core=_root_resolver()
+    for entry in (_report({"order_id":1}),_report({"order_id":"  "}),_report({"order_id":"ORDER"},generation=5)):
+        with pytest.raises(RecoveryRootIntegrityError): resolver.resolve(trusted_core=core,material_report_entries=(entry,))
+
+
+def test_c2a_root_set_is_deterministic_and_caller_cannot_inject_roots() -> None:
+    resolver,core=_root_resolver()
+    left=resolver.resolve(trusted_core=core,material_report_entries=(_report({"order_id":"Z"},ingress_id="Z"),_report({"order_id":"A"},ingress_id="A")))
+    right=resolver.resolve(trusted_core=core,material_report_entries=(_report({"order_id":"A"},ingress_id="A"),_report({"order_id":"Z"},ingress_id="Z")))
+    assert left == right
+    with pytest.raises(TypeError): resolver.resolve(trusted_core=core,material_report_entries=(),order_ids=("FORGED",),root_set_fingerprint="FORGED")

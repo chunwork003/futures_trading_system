@@ -17,6 +17,7 @@ from persistence.contracts import (
     normalize_aware_utc,
     normalize_stable_id,
 )
+from trading.account import BrokerAccount
 
 
 class BrokerActionKind(str, Enum):
@@ -210,6 +211,7 @@ class BrokerActionRepository(Protocol):
     def get_head(
         self, broker: str, account_ref: str, order_id: str, action: BrokerActionKind
     ) -> BrokerActionHead | None: ...
+    def list_heads(self, account: BrokerAccount) -> tuple[BrokerActionHead, ...]: ...
     def reserve_head(self, attempt: BrokerActionAttempt, *, expected_version: int) -> None: ...
     def append_resolution(self, resolution: BrokerActionResolution) -> None: ...
     def resolve_head(
