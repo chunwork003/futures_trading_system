@@ -43,7 +43,7 @@ from persistence.reconciliation import (
 from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt, BrokerRecoveryRepository, BrokerReportInboxEntry, ExecutionContinuityEpoch
 from persistence.contracts import normalize_stable_id
 from persistence.events import EventLedgerRepository
-from persistence.execution import OrderRepository
+from persistence.execution import FillRepository, OrderRepository
 from persistence.strategy_state import (
     LegacyMarketObservationReferenceError,
     StrategyInstanceRepository,
@@ -70,7 +70,13 @@ from trading.reconciliation import (
     reconcile_startup,
     ReconciliationStatus,
 )
-from trading.execution import TERMINAL_ORDER_STATUSES
+from trading.execution import (
+    TERMINAL_ORDER_STATUSES,
+    Fill,
+    Order,
+    OrderEvent,
+    validate_order_event_transition,
+)
 
 
 class RecoveryReadinessState(
@@ -217,6 +223,154 @@ class RecoveryRootResolver:
             except ValueError as exc: raise RecoveryRootIntegrityError("material report order_id is malformed") from exc
         roots=tuple(RecoveryOrderRoot(order_id=order_id,sources=tuple(categories)) for order_id,categories in sources.items())
         return RecoveryRootSetEvidence(account=account,recovery_generation=generation,roots=roots,order_ids=(),ambiguous_report_ingress_ids=tuple(ambiguous))
+
+
+class RecoveryRootClosureEvidence(BaseModel):
+    """單一 recovery root 的完整 Order/Event/Fill closure；只證明本機證據完整性。"""
+
+    model_config=ConfigDict(extra="forbid",frozen=True)
+    order_id: str
+    order_fingerprint: str
+    event_ids: tuple[str,...]
+    fill_ids: tuple[str,...]
+    closure_fingerprint: str
+
+
+class RecoveryClosureEvidence(BaseModel):
+    """C2B immutable exact closure；供後續 gate 使用，但不授予 READY 或 handoff。"""
+
+    model_config=ConfigDict(extra="forbid",frozen=True)
+    account: BrokerAccount
+    recovery_generation: int = Field(ge=1)
+    root_set_fingerprint: str
+    roots: tuple[RecoveryRootClosureEvidence,...]
+    order_ids: tuple[str,...]
+    ambiguous_report_ingress_ids: tuple[str,...]
+    closure_fingerprint: str
+
+
+class RecoveryClosureIntegrityError(RuntimeError):
+    """Order/Event/Fill exact closure 缺失、矛盾或 lifecycle 非法時的 fail-closed 錯誤。"""
+
+
+def _canonical_fingerprint(value: object) -> str:
+    encoded=json.dumps(value,sort_keys=True,separators=(",",":"),ensure_ascii=False,allow_nan=False)
+    return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
+
+
+class RecoveryClosureResolver:
+    """以既有 exact read ports 重建每個 C2A root；不掃描全域 history、不修改經濟權威。"""
+
+    def __init__(self,*,order_repository: OrderRepository,fill_repository: FillRepository,event_ledger_repository: EventLedgerRepository) -> None:
+        self._orders=order_repository
+        self._fills=fill_repository
+        self._events=event_ledger_repository
+
+    @staticmethod
+    def _decode_event(envelope) -> OrderEvent:
+        if (envelope.event_type,envelope.source,envelope.entity_type)!=("ORDER_STATUS_CHANGED","OMS","ORDER"):
+            raise RecoveryClosureIntegrityError("ORDER event envelope mismatch")
+        if envelope.idempotency_scope != f"ORDER_EVENT:{envelope.entity_id}":
+            raise RecoveryClosureIntegrityError("ORDER event idempotency scope mismatch")
+        payload=envelope.payload_json
+        try:
+            return OrderEvent(
+                event_id=envelope.event_id,order_id=envelope.entity_id,
+                correlation_id=envelope.correlation_id,causation_id=envelope.causation_id,
+                idempotency_key=envelope.idempotency_key,sequence=envelope.sequence,
+                previous_status=payload["previous_status"],status=payload["status"],
+                occurred_at=envelope.occurred_at,received_at=envelope.received_at,
+                broker_order_id=payload["broker_order_id"],provenance=payload["provenance"],
+                payload_json=payload["payload"],
+            )
+        except (KeyError,TypeError,ValueError) as exc:
+            raise RecoveryClosureIntegrityError("malformed canonical ORDER event payload") from exc
+
+    def _resolve_root(self,order_id: str) -> RecoveryRootClosureEvidence:
+        order=self._orders.get(order_id)
+        if order is None:
+            raise RecoveryClosureIntegrityError("root Order is missing")
+        if order.order_id != order_id:
+            raise RecoveryClosureIntegrityError("root Order identity mismatch")
+
+        envelopes=tuple(self._events.list_after("OMS","ORDER",order_id,-1,order.version+2))
+        if len({item.event_id for item in envelopes}) != len(envelopes):
+            raise RecoveryClosureIntegrityError("duplicate ORDER event identity")
+        if len({item.sequence for item in envelopes}) != len(envelopes):
+            raise RecoveryClosureIntegrityError("duplicate ORDER event sequence")
+        envelopes=tuple(sorted(envelopes,key=lambda item:item.sequence))
+        if tuple(item.sequence for item in envelopes) != tuple(range(order.version+1)):
+            raise RecoveryClosureIntegrityError("ORDER event sequence is incomplete or exceeds projection version")
+        events=[]
+        previous=None
+        for envelope in envelopes:
+            if envelope.entity_id != order_id:
+                raise RecoveryClosureIntegrityError("ORDER event envelope entity mismatch")
+            event=self._decode_event(envelope)
+            try:
+                validate_order_event_transition(previous,event)
+            except ValueError as exc:
+                raise RecoveryClosureIntegrityError("illegal ORDER lifecycle transition") from exc
+            events.append(event); previous=event
+        if previous is None:
+            raise RecoveryClosureIntegrityError("ORDER event sequence is missing")
+        if (previous.sequence,previous.status,previous.correlation_id,previous.order_id)!=(order.version,order.status,order.correlation_id,order_id):
+            raise RecoveryClosureIntegrityError("final ORDER event does not match projection")
+
+        fills=tuple(self._fills.list_by_order(order_id))
+        if len({item.fill_id for item in fills}) != len(fills):
+            raise RecoveryClosureIntegrityError("duplicate Fill identity")
+        fills=tuple(sorted(fills,key=lambda item:item.fill_id))
+        event_ids={item.event_id for item in events}
+        for fill in fills:
+            if fill.order_id != order_id:
+                raise RecoveryClosureIntegrityError("Fill order identity mismatch")
+            if fill.event_id not in event_ids:
+                raise RecoveryClosureIntegrityError("Fill event is outside exact ORDER sequence")
+            if fill.correlation_id != order.correlation_id:
+                raise RecoveryClosureIntegrityError("Fill correlation mismatch")
+            if fill.causation_id != fill.event_id:
+                raise RecoveryClosureIntegrityError("Fill causation mismatch")
+        quantity=sum((item.quantity for item in fills),0)
+        if order.filled_quantity != quantity:
+            raise RecoveryClosureIntegrityError("Order and Fill economic quantity mismatch")
+        if not fills:
+            if order.average_fill_price is not None:
+                raise RecoveryClosureIntegrityError("zero Fill economic closure requires no average price")
+        else:
+            average=sum((item.price*item.quantity for item in fills),start=0)/quantity
+            if order.average_fill_price is None or order.average_fill_price != average:
+                raise RecoveryClosureIntegrityError("Order average fill price mismatch")
+
+        order_material=order.model_dump(mode="json")
+        event_material=[item.model_dump(mode="json") for item in envelopes]
+        fill_material=[item.model_dump(mode="json") for item in fills]
+        closure_material={"order":order_material,"events":event_material,"fills":fill_material}
+        return RecoveryRootClosureEvidence(
+            order_id=order_id,order_fingerprint=_canonical_fingerprint(order_material),
+            event_ids=tuple(item.event_id for item in envelopes),fill_ids=tuple(item.fill_id for item in fills),
+            closure_fingerprint=_canonical_fingerprint(closure_material),
+        )
+
+    def resolve(self,*,root_set: RecoveryRootSetEvidence) -> RecoveryClosureEvidence:
+        """解析 immutable C2A root set；caller 無法另行注入 root 或 fingerprint。"""
+        canonical=RecoveryRootSetEvidence.model_validate(root_set.model_dump(mode="json"))
+        if canonical != root_set or canonical.order_ids != tuple(item.order_id for item in canonical.roots):
+            raise RecoveryClosureIntegrityError("non-canonical recovery root set")
+        closures=tuple(self._resolve_root(item.order_id) for item in canonical.roots)
+        material={
+            "account":canonical.account.model_dump(mode="json"),
+            "recovery_generation":canonical.recovery_generation,
+            "root_set_fingerprint":canonical.root_set_fingerprint,
+            "roots":[item.model_dump(mode="json") for item in closures],
+            "ambiguous_report_ingress_ids":list(canonical.ambiguous_report_ingress_ids),
+        }
+        return RecoveryClosureEvidence(
+            account=canonical.account,recovery_generation=canonical.recovery_generation,
+            root_set_fingerprint=canonical.root_set_fingerprint,roots=closures,
+            order_ids=canonical.order_ids,ambiguous_report_ingress_ids=canonical.ambiguous_report_ingress_ids,
+            closure_fingerprint=_canonical_fingerprint(material),
+        )
 
 
 class TrustedRecoveryEvidenceCore(BaseModel):

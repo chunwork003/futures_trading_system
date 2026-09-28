@@ -20,8 +20,13 @@ from persistence.recovery import (
     TrustedRecoveryEvidenceResolver,
     TrustedReconciliationBlockerResolver,
     RecoveryRootIntegrityError,
+    RecoveryOrderRoot,
     RecoveryRootResolver,
+    RecoveryRootSetEvidence,
     RecoveryRootSource,
+    RecoveryClosureEvidence,
+    RecoveryClosureIntegrityError,
+    RecoveryClosureResolver,
     evaluate_account_readiness,
 )
 from persistence.broker_recovery import ExecutionContinuityEpoch
@@ -29,11 +34,12 @@ from persistence.reconciliation import ReconciliationCaseVersion
 from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt, BrokerReportInboxEntry
 from persistence.broker_action import BrokerActionHead, BrokerActionKind
 from persistence.events import TradingEvent
+from persistence.execution import order_event_as_trading_event
 from persistence.account import AccountPositionSnapshot, BrokerPositionObservation
 from adapters.capabilities import BrokerCapability, BrokerVerificationMode, StaticBrokerCapabilityProvider
 from adapters.sinopac.capabilities import SINOPAC_CAPABILITY_REGISTRY_SNAPSHOT
 from trading.broker_recovery import BrokerDealSetCompleteness, BrokerReconstructionPlan
-from trading.execution import Fill, Order, OrderStatus, OrderType, PositionEffect
+from trading.execution import Fill, Order, OrderEvent, OrderStatus, OrderType, PositionEffect
 from trading.account import PositionDirection
 from trading.broker_recovery import BrokerDiscoveryIntegrity, BrokerDiscoveryResult, DiscoveryCompleteness, ExactMatchCardinality
 from trading.account import BrokerAccount
@@ -440,3 +446,97 @@ def test_rf01_matching_exact_reads_preserve_deterministic_output_and_no_authorit
     right=resolver.resolve(trusted_core=core,material_report_entries=())
     assert left == right
     assert not hasattr(left,"ready") and not hasattr(left,"finalize") and not hasattr(left,"handoff")
+
+
+def _closure_event(sequence=0, previous=None, status=OrderStatus.PENDING, **updates):
+    values=dict(event_id=f"EV-{sequence}",order_id="ORDER-1",correlation_id="CORR",causation_id="INTENT" if sequence==0 else f"EV-{sequence-1}",idempotency_key=f"KEY-{sequence}",sequence=sequence,previous_status=previous,status=status,occurred_at=NOW,received_at=NOW)
+    values.update(updates)
+    return order_event_as_trading_event(OrderEvent(**values))
+
+
+def _closure_root_set(*, ambiguous=("AMBIG-1",)):
+    return RecoveryRootSetEvidence(account=ACCOUNT,recovery_generation=4,roots=(RecoveryOrderRoot(order_id="ORDER-1",sources=(RecoveryRootSource.RECONSTRUCTION_RECEIPT,)),),order_ids=(),ambiguous_report_ingress_ids=ambiguous)
+
+
+class _ClosureOrders:
+    def __init__(self,item): self.item=item; self.calls=[]
+    def get(self,order_id): self.calls.append(order_id); return self.item
+
+
+class _ClosureFills:
+    def __init__(self,items=()): self.items=tuple(items); self.calls=[]
+    def list_by_order(self,order_id): self.calls.append(order_id); return self.items
+
+
+class _ClosureEvents:
+    def __init__(self,items): self.items=tuple(items); self.calls=[]
+    def list_after(self,*args): self.calls.append(args); return self.items
+
+
+def _closure_resolver(*,order=None,fills=(),events=None):
+    order=order or _order()
+    events=events if events is not None else (_closure_event(),)
+    repositories=(_ClosureOrders(order),_ClosureFills(fills),_ClosureEvents(events))
+    return RecoveryClosureResolver(order_repository=repositories[0],fill_repository=repositories[1],event_ledger_repository=repositories[2]),repositories
+
+
+def test_c2b_exact_zero_fill_closure_is_deterministic_and_bounded() -> None:
+    resolver,repositories=_closure_resolver()
+    left=resolver.resolve(root_set=_closure_root_set())
+    right=resolver.resolve(root_set=_closure_root_set())
+    assert isinstance(left,RecoveryClosureEvidence) and left == right
+    assert left.order_ids == ("ORDER-1",)
+    assert left.ambiguous_report_ingress_ids == ("AMBIG-1",)
+    assert repositories[0].calls == ["ORDER-1","ORDER-1"]
+    assert repositories[1].calls == ["ORDER-1","ORDER-1"]
+    assert repositories[2].calls == [("OMS","ORDER","ORDER-1",-1,2)]*2
+    assert not hasattr(left,"ready") and not hasattr(left,"finalize") and not hasattr(left,"handoff")
+
+
+@pytest.mark.parametrize("events,match",[
+    ((),"sequence"),
+    ((_closure_event(1,OrderStatus.PENDING,OrderStatus.SUBMITTED),),"sequence"),
+    ((_closure_event(),_closure_event()),"duplicate"),
+    ((_closure_event(),_closure_event(2,OrderStatus.PENDING,OrderStatus.SUBMITTED)),"sequence"),
+    ((TradingEvent(**{**_closure_event().model_dump(),"source":"OTHER"}),),"envelope"),
+    ((TradingEvent(**{**_closure_event().model_dump(),"idempotency_scope":"OTHER"}),),"scope"),
+    ((TradingEvent(**{**_closure_event().model_dump(),"payload_json":{"status":"PENDING"}}),),"payload"),
+])
+def test_c2b_invalid_event_closure_fails_closed(events,match) -> None:
+    resolver,_=_closure_resolver(events=events)
+    with pytest.raises(RecoveryClosureIntegrityError,match=match): resolver.resolve(root_set=_closure_root_set())
+
+
+def test_c2b_full_fill_closure_validates_economics_and_material_fingerprint() -> None:
+    events=(_closure_event(),_closure_event(1,OrderStatus.PENDING,OrderStatus.FILLED))
+    first=Fill(fill_id="F1",order_id="ORDER-1",event_id="EV-1",correlation_id="CORR",causation_id="EV-1",quantity=1,price=Decimal("100"),occurred_at=NOW)
+    second=Fill(fill_id="F2",order_id="ORDER-1",event_id="EV-1",correlation_id="CORR",causation_id="EV-1",quantity=1,price=Decimal("102"),occurred_at=NOW)
+    order=_order(status=OrderStatus.FILLED).model_copy(update={"quantity":2,"filled_quantity":2,"average_fill_price":Decimal("101"),"version":1})
+    left,_=_closure_resolver(order=order,fills=(second,first),events=events)
+    right,_=_closure_resolver(order=order,fills=(first,second),events=events)
+    assert left.resolve(root_set=_closure_root_set()) == right.resolve(root_set=_closure_root_set())
+    changed=second.model_copy(update={"price":Decimal("104")})
+    invalid,_=_closure_resolver(order=order,fills=(first,changed),events=events)
+    with pytest.raises(RecoveryClosureIntegrityError,match="average"): invalid.resolve(root_set=_closure_root_set())
+
+
+@pytest.mark.parametrize("fills,order_update,match",[
+    ((Fill(fill_id="F1",order_id="OTHER",event_id="EV-1",correlation_id="CORR",causation_id="EV-1",quantity=1,price=Decimal("100"),occurred_at=NOW),),{},"order"),
+    ((Fill(fill_id="F1",order_id="ORDER-1",event_id="OTHER",correlation_id="CORR",causation_id="OTHER",quantity=1,price=Decimal("100"),occurred_at=NOW),),{},"event"),
+    ((Fill(fill_id="F1",order_id="ORDER-1",event_id="EV-0",correlation_id="OTHER",causation_id="EV-0",quantity=1,price=Decimal("100"),occurred_at=NOW),),{},"correlation"),
+    ((),{"filled_quantity":1,"average_fill_price":Decimal("100")},"economic"),
+])
+def test_c2b_fill_and_projection_integrity_fail_closed(fills,order_update,match) -> None:
+    order=_order().model_copy(update=order_update)
+    resolver,_=_closure_resolver(order=order,fills=fills)
+    with pytest.raises(RecoveryClosureIntegrityError,match=match): resolver.resolve(root_set=_closure_root_set())
+
+
+def test_c2b_missing_or_mismatched_exact_order_and_caller_injection_fail() -> None:
+    resolver,_=_closure_resolver(order=None)
+    resolver._orders.item=None
+    with pytest.raises(RecoveryClosureIntegrityError,match="missing"): resolver.resolve(root_set=_closure_root_set())
+    resolver,_=_closure_resolver(order=_order("OTHER"))
+    with pytest.raises(RecoveryClosureIntegrityError,match="identity"): resolver.resolve(root_set=_closure_root_set())
+    resolver,_=_closure_resolver()
+    with pytest.raises(TypeError): resolver.resolve(root_set=_closure_root_set(),order_ids=("OTHER",),closure_fingerprint="FORGED")
