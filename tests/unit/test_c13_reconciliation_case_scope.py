@@ -3,12 +3,17 @@ from datetime import datetime, timezone
 import pytest
 from pydantic import ValidationError
 
-from persistence.reconciliation import ReconciliationCaseVersion
+from persistence.reconciliation import (
+    ReconciliationCaseVersion,
+    reconciliation_blocker_semantic_fingerprint,
+)
 from persistence.postgres.reconciliation import PostgresReconciliationCaseRepository
 from trading.account import AccountPosition, BrokerAccount, PositionDirection
 from trading.reconciliation import (
     ReconciliationCaseError,
+    ReconciliationCaseState,
     ReconciliationPolicy,
+    ReconciliationStatus,
     compare_positions,
     create_reconciliation_case,
     resolve_reconciliation_case,
@@ -93,3 +98,20 @@ def test_case_is_control_evidence_without_economic_or_broker_actions() -> None:
     case=_case()
     for name in ("submit","cancel","repair","advance_account_head"):
         assert not hasattr(case,name)
+
+
+def test_c1_semantic_fingerprint_excludes_audit_wrapper_metadata() -> None:
+    original=ReconciliationCaseVersion(case_id="CASE-1",version=1,recorded_at=NOW,reconciliation_case=_case(),actor_ref="A",evidence=("first",))
+    audit_only=original.model_copy(update={"version":2,"recorded_at":datetime(2026,9,28,tzinfo=timezone.utc),"actor_ref":"B","evidence":("second",)})
+    assert reconciliation_blocker_semantic_fingerprint((original,)) == reconciliation_blocker_semantic_fingerprint((audit_only,))
+
+
+def test_c1_semantic_fingerprint_changes_with_readiness_material() -> None:
+    original=ReconciliationCaseVersion(case_id="CASE-1",version=1,recorded_at=NOW,reconciliation_case=_case())
+    changed_result=original.model_copy(update={"reconciliation_case":_case().model_copy(update={"result":_case().result.model_copy(update={"status":ReconciliationStatus.QUANTITY_MISMATCH})})})
+    changed_policy=original.model_copy(update={"reconciliation_case":_case().model_copy(update={"policy":ReconciliationPolicy.MANUAL_REVIEW})})
+    changed_state=original.model_copy(update={"reconciliation_case":_case().model_copy(update={"state":ReconciliationCaseState.REVIEW_REQUIRED})})
+    baseline=reconciliation_blocker_semantic_fingerprint((original,))
+    assert reconciliation_blocker_semantic_fingerprint((changed_result,)) != baseline
+    assert reconciliation_blocker_semantic_fingerprint((changed_policy,)) != baseline
+    assert reconciliation_blocker_semantic_fingerprint((changed_state,)) != baseline

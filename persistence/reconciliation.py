@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 from datetime import datetime
 from enum import Enum
 from typing import Protocol, runtime_checkable
@@ -56,6 +58,28 @@ def blocking_case_state(versions: tuple[ReconciliationCaseVersion, ...]) -> Reco
     if ReconciliationCaseState.HALT in states: return ReconciliationCaseState.HALT
     if ReconciliationCaseState.REVIEW_REQUIRED in states: return ReconciliationCaseState.REVIEW_REQUIRED
     return None
+
+
+def reconciliation_blocker_semantic_fingerprint(
+    versions: tuple[ReconciliationCaseVersion, ...],
+) -> str:
+    """封存 C13 readiness semantics；排除 version、時間與 actor 等 audit wrapper。"""
+
+    ordered=tuple(sorted(versions,key=lambda item:item.case_id))
+    if len({item.case_id for item in ordered}) != len(ordered):
+        raise ReconciliationCaseError("duplicate unresolved reconciliation case ID")
+    material=[
+        {
+            "case_id":item.case_id,
+            "account":item.reconciliation_case.account.model_dump(mode="json"),
+            "result":item.reconciliation_case.result.model_dump(mode="json"),
+            "policy":item.reconciliation_case.policy.value,
+            "state":item.reconciliation_case.state.value,
+        }
+        for item in ordered
+    ]
+    encoded=json.dumps(material,sort_keys=True,separators=(",",":"),ensure_ascii=False)
+    return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
 
 
 class ReconciliationRunTechnicalOutcome(str, Enum):

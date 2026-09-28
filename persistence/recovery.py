@@ -37,6 +37,7 @@ from persistence.reconciliation import (
     ReconciliationRunOutcome,
     ReconciliationRunTechnicalOutcome,
     blocking_case_state,
+    reconciliation_blocker_semantic_fingerprint,
 )
 from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt, BrokerRecoveryRepository, ExecutionContinuityEpoch
 from persistence.contracts import normalize_stable_id
@@ -79,6 +80,36 @@ class RecoveryReadinessState(
 
 class TrustedRecoveryEvidenceError(RuntimeError):
     """B2 exact evidence 缺失、stale 或 capability 不足時的 fail-closed resolver 錯誤。"""
+
+
+class TrustedReconciliationBlockerEvidence(BaseModel):
+    """C13 repository 語意的 immutable witness；供後續 gate 重驗，不授予 READY。"""
+
+    model_config=ConfigDict(extra="forbid",frozen=True)
+    account: BrokerAccount
+    blocking_state: ReconciliationCaseState | None
+    unresolved_case_ids: tuple[str,...]
+    semantic_fingerprint: str
+
+
+class TrustedReconciliationBlockerResolver:
+    """直接委派 C13 unresolved/blocking owner；不複製 SQL、也不執行 handoff。"""
+
+    def __init__(self, repository: ReconciliationCaseRepository) -> None:
+        self._repository=repository
+
+    def resolve(self, *, account: BrokerAccount) -> TrustedReconciliationBlockerEvidence:
+        versions=tuple(sorted(self._repository.unresolved(account),key=lambda item:item.case_id))
+        if any(item.reconciliation_case.account != account for item in versions):
+            raise TrustedRecoveryEvidenceError("unresolved reconciliation case account mismatch")
+        if any(item.reconciliation_case.state is ReconciliationCaseState.RESOLVED for item in versions):
+            raise TrustedRecoveryEvidenceError("resolved reconciliation case returned as unresolved")
+        return TrustedReconciliationBlockerEvidence(
+            account=account,
+            blocking_state=blocking_case_state(versions),
+            unresolved_case_ids=tuple(item.case_id for item in versions),
+            semantic_fingerprint=reconciliation_blocker_semantic_fingerprint(versions),
+        )
 
 
 class TrustedRecoveryEvidenceCore(BaseModel):

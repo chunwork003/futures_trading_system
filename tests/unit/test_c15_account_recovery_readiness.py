@@ -18,9 +18,11 @@ from persistence.recovery import (
     ReconstructionReadinessEvidence,
     TrustedRecoveryEvidenceError,
     TrustedRecoveryEvidenceResolver,
+    TrustedReconciliationBlockerResolver,
     evaluate_account_readiness,
 )
 from persistence.broker_recovery import ExecutionContinuityEpoch
+from persistence.reconciliation import ReconciliationCaseVersion
 from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt
 from persistence.account import AccountPositionSnapshot, BrokerPositionObservation
 from adapters.capabilities import BrokerCapability, BrokerVerificationMode, StaticBrokerCapabilityProvider
@@ -30,6 +32,7 @@ from trading.execution import Fill, OrderStatus
 from trading.broker_recovery import BrokerDiscoveryIntegrity, BrokerDiscoveryResult, DiscoveryCompleteness, ExactMatchCardinality
 from trading.account import BrokerAccount
 from trading.reconciliation import ReconciliationPolicy, ReconciliationResult, ReconciliationStatus
+from trading.reconciliation import create_reconciliation_case, resolve_reconciliation_case, ReconciliationCaseState, ReconciliationCaseError
 
 NOW=datetime(2026,9,27,tzinfo=timezone.utc)
 ACCOUNT=BrokerAccount(broker="SINOPAC",account_ref="A")
@@ -275,3 +278,53 @@ def test_trusted_resolver_fails_closed_on_missing_stale_or_unverified_material(u
     values=dict(account=ACCOUNT,recovery_generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),expected_snapshot_id="SNAP-1",broker_observation_id="OBS-1",required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),required_verification_mode=BrokerVerificationMode.DOCUMENTATION)
     values.update(updates)
     with pytest.raises(TrustedRecoveryEvidenceError): resolver.resolve(**values)
+
+
+def _case_version(case_id: str, policy: ReconciliationPolicy, *, account=ACCOUNT, version=1):
+    result=ReconciliationResult(status=ReconciliationStatus.INTERNAL_ONLY,expected=None,actual=None)
+    case=create_reconciliation_case(case_id=case_id,account=account,result=result,policy=policy)
+    return ReconciliationCaseVersion(case_id=case_id,version=version,recorded_at=NOW,reconciliation_case=case)
+
+
+class _CaseRepo:
+    def __init__(self, versions=(), error=None): self.versions,self.error,self.accounts=versions,error,[]
+    def unresolved(self, account):
+        self.accounts.append(account)
+        if self.error is not None: raise self.error
+        return tuple(item for item in self.versions if item.reconciliation_case.account == account and item.reconciliation_case.state is not ReconciliationCaseState.RESOLVED)
+
+
+@pytest.mark.parametrize(("versions","state"),[
+    ((_case_version("HALT",ReconciliationPolicy.STRICT_HALT),),ReconciliationCaseState.HALT),
+    ((_case_version("REVIEW",ReconciliationPolicy.MANUAL_REVIEW),),ReconciliationCaseState.REVIEW_REQUIRED),
+    ((_case_version("REVIEW",ReconciliationPolicy.MANUAL_REVIEW),_case_version("HALT",ReconciliationPolicy.STRICT_HALT)),ReconciliationCaseState.HALT),
+    ((),None),
+])
+def test_c1_resolver_reuses_c13_blocking_precedence(versions,state) -> None:
+    repo=_CaseRepo(versions)
+    result=TrustedReconciliationBlockerResolver(repo).resolve(account=ACCOUNT)
+    assert result.blocking_state is state
+    assert result.unresolved_case_ids == tuple(sorted(item.case_id for item in versions))
+    assert repo.accounts == [ACCOUNT]
+    assert not hasattr(result,"ready") and not hasattr(result,"finalize")
+
+
+def test_c1_resolver_is_account_scoped_and_propagates_legacy_failure() -> None:
+    other=BrokerAccount(broker="SINOPAC",account_ref="B")
+    repo=_CaseRepo((_case_version("OTHER",ReconciliationPolicy.STRICT_HALT,account=other),))
+    result=TrustedReconciliationBlockerResolver(repo).resolve(account=ACCOUNT)
+    assert result.blocking_state is None and result.unresolved_case_ids == ()
+    error=ReconciliationCaseError("legacy NULL scope")
+    with pytest.raises(ReconciliationCaseError,match="legacy"):
+        TrustedReconciliationBlockerResolver(_CaseRepo(error=error)).resolve(account=ACCOUNT)
+
+
+def test_c1_resolver_output_is_deterministic_and_caller_cannot_bypass_resolution() -> None:
+    first=_case_version("B",ReconciliationPolicy.MANUAL_REVIEW)
+    second=_case_version("A",ReconciliationPolicy.STRICT_HALT)
+    left=TrustedReconciliationBlockerResolver(_CaseRepo((first,second))).resolve(account=ACCOUNT)
+    right=TrustedReconciliationBlockerResolver(_CaseRepo((second,first))).resolve(account=ACCOUNT)
+    assert left == right
+    assert left.unresolved_case_ids == ("A","B")
+    with pytest.raises(TypeError):
+        TrustedReconciliationBlockerResolver(_CaseRepo(())).resolve(account=ACCOUNT,blocking=True,semantic_fingerprint="FORGED")
