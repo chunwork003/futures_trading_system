@@ -23,6 +23,10 @@ class ExpectedSnapshotIntegrityError(ExpectedStateReadError):
     """Persisted expected snapshot 無法通過 canonical decode / scope / integrity 驗證。"""
 
 
+class BrokerObservationIntegrityError(ExpectedStateReadError):
+    """Persisted broker observation 無法通過 canonical decode、identity 或 account scope 驗證。"""
+
+
 class ExpectedStateKind(str, Enum):
     """Expected-state authority 的明確 domain classification。"""
 

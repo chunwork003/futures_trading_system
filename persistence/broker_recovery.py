@@ -18,6 +18,7 @@ from trading.broker_recovery import (
     BrokerDealEvidence,
     BrokerDealSetCompleteness,
     BrokerLifecycleEvidence,
+    BrokerReconstructionPlan,
     reconstruct_broker_order,
 )
 from trading.execution import Order, OrderEvent, OrderEventProvenance
@@ -56,8 +57,9 @@ class RecoveryEvidenceAppendStatus(str, Enum):
     DUPLICATE = "DUPLICATE"
 
 
-def _canonical_fingerprint(value: BaseModel) -> str:
-    encoded = json.dumps(value.model_dump(mode="json"), sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+def _canonical_fingerprint(value: BaseModel | dict[str, object]) -> str:
+    material = value.model_dump(mode="json") if isinstance(value, BaseModel) else value
+    encoded = json.dumps(material, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
     return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
 
 
@@ -109,9 +111,13 @@ class BrokerReconstructionReceipt(BaseModel):
     recovery_cut_fingerprint: str
     discovery_run_id: str
     order_id: str
-    input_coverage_fingerprint: str
-    accepted_fill_ids: tuple[str, ...]
-    output_fingerprint: str
+    broker_deals: tuple[BrokerDealEvidence, ...]
+    local_fill_ids: tuple[str, ...]
+    lifecycle_evidence: BrokerLifecycleEvidence | None
+    plan: BrokerReconstructionPlan
+    input_coverage_fingerprint: str = ""
+    accepted_fill_ids: tuple[str, ...] = ()
+    output_fingerprint: str = ""
     deal_set_completeness: BrokerDealSetCompleteness
     authority_commit_id: str | None = None
     producer_id: str
@@ -123,7 +129,7 @@ class BrokerReconstructionReceipt(BaseModel):
     def _ids(cls, value: object) -> object:
         return normalize_stable_id(value) if isinstance(value, str) else value
 
-    @field_validator("accepted_fill_ids", mode="before")
+    @field_validator("local_fill_ids", "accepted_fill_ids", mode="before")
     @classmethod
     def _fills(cls, value: object) -> object:
         return tuple(normalize_stable_id(v) for v in value) if isinstance(value, (tuple, list)) else value
@@ -137,8 +143,30 @@ class BrokerReconstructionReceipt(BaseModel):
     def _positive(self) -> "BrokerReconstructionReceipt":
         if self.deal_set_completeness is not BrokerDealSetCompleteness.COMPLETE:
             raise ValueError("positive reconstruction receipt requires COMPLETE DealSet")
-        if len(set(self.accepted_fill_ids)) != len(self.accepted_fill_ids):
-            raise ValueError("accepted Fill IDs must be unique")
+        broker_deals = tuple(sorted(self.broker_deals, key=lambda item: (item.identity.broker, item.identity.account_ref, item.identity.deal_id)))
+        local_fill_ids = tuple(sorted(set(self.local_fill_ids)))
+        accepted_fill_ids = tuple(sorted({fill.fill_id for fill in self.plan.accepted_fills}))
+        input_material = {
+            "broker_deals": [item.model_dump(mode="json") for item in broker_deals],
+            "local_fill_ids": list(local_fill_ids),
+            "lifecycle_evidence": None if self.lifecycle_evidence is None else self.lifecycle_evidence.model_dump(mode="json"),
+            "deal_set_completeness": self.deal_set_completeness.value,
+            "order_id": self.order_id,
+            "discovery_run_id": self.discovery_run_id,
+        }
+        input_fingerprint = _canonical_fingerprint(input_material)
+        output_fingerprint = _canonical_fingerprint(self.plan)
+        if "input_coverage_fingerprint" in self.model_fields_set and self.input_coverage_fingerprint != input_fingerprint:
+            raise ValueError("input_coverage_fingerprint disagrees with canonical material")
+        if "accepted_fill_ids" in self.model_fields_set and self.accepted_fill_ids != accepted_fill_ids:
+            raise ValueError("accepted_fill_ids disagree with canonical plan")
+        if "output_fingerprint" in self.model_fields_set and self.output_fingerprint != output_fingerprint:
+            raise ValueError("output_fingerprint disagrees with canonical plan")
+        object.__setattr__(self, "broker_deals", broker_deals)
+        object.__setattr__(self, "local_fill_ids", local_fill_ids)
+        object.__setattr__(self, "accepted_fill_ids", accepted_fill_ids)
+        object.__setattr__(self, "input_coverage_fingerprint", input_fingerprint)
+        object.__setattr__(self, "output_fingerprint", output_fingerprint)
         return self
 
 

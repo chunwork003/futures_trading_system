@@ -5,6 +5,7 @@ from typing import Any
 
 from persistence.account import (
     AccountPositionSnapshot,
+    BrokerObservationIntegrityError,
     BrokerPositionObservation,
     ExpectedSnapshotIntegrityError,
     ExpectedStateBaselineNotEstablishedError,
@@ -154,7 +155,14 @@ class PostgresExpectedPositionSnapshotRepository:
 
     def get_exact(self, *, snapshot_id: str, broker: str, account_ref: str) -> AccountPositionSnapshot | None:
         """只依 durable identity 與帳戶範圍讀取；不得退回 latest/as-of。"""
-        return self._one("snapshot_id=%s AND broker=%s AND account_ref=%s", (snapshot_id, broker, account_ref))
+        snapshot = self._one("snapshot_id=%s AND broker=%s AND account_ref=%s", (snapshot_id, broker, account_ref))
+        if snapshot is None:
+            return None
+        if snapshot.snapshot_id != snapshot_id:
+            raise ExpectedSnapshotIntegrityError("expected-state snapshot exact identity mismatch")
+        if snapshot.broker != broker or snapshot.account_ref != account_ref:
+            raise ExpectedSnapshotIntegrityError("expected-state snapshot exact account scope mismatch")
+        return snapshot
 
     def read_expected_state(
         self,
@@ -269,9 +277,14 @@ class PostgresBrokerPositionObservationRepository:
             return None
         try:
             payload = row[0]
-            return BrokerPositionObservation.model_validate_json(payload) if isinstance(payload, str) else BrokerPositionObservation.model_validate(payload)
+            observation = BrokerPositionObservation.model_validate_json(payload) if isinstance(payload, str) else BrokerPositionObservation.model_validate(payload)
         except Exception as exc:
-            raise ExpectedSnapshotIntegrityError("broker-position observation failed canonical decode") from exc
+            raise BrokerObservationIntegrityError("broker-position observation failed canonical decode") from exc
+        if observation.observation_id != observation_id:
+            raise BrokerObservationIntegrityError("broker-position observation exact identity mismatch")
+        if observation.broker != broker or observation.account_ref != account_ref:
+            raise BrokerObservationIntegrityError("broker-position observation exact account scope mismatch")
+        return observation
 
 
 class PostgresAccountSnapshotRepository:

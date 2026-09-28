@@ -2,7 +2,11 @@ from pathlib import Path
 
 import pytest
 
-from persistence.account import ExpectedStateBaselineNotEstablishedError
+from persistence.account import (
+    AccountPositionSnapshot, BrokerObservationIntegrityError,
+    BrokerPositionObservation, ExpectedSnapshotIntegrityError,
+    ExpectedStateBaselineNotEstablishedError,
+)
 from persistence.postgres.account import (
     PostgresBrokerPositionObservationRepository,
     PostgresExpectedPositionSnapshotRepository,
@@ -26,7 +30,8 @@ from persistence.broker_recovery import (
 )
 from persistence.postgres.broker_recovery import PostgresBrokerRecoveryRepository
 from trading.account import BrokerAccount
-from trading.broker_recovery import BrokerDealSetCompleteness, BrokerDiscoveryIntegrity, BrokerDiscoveryResult, DiscoveryCompleteness, ExactMatchCardinality
+from trading.broker_recovery import BrokerDealSetCompleteness, BrokerDiscoveryIntegrity, BrokerDiscoveryResult, BrokerReconstructionPlan, DiscoveryCompleteness, ExactMatchCardinality
+from trading.execution import OrderStatus
 
 
 def test_operational_migration_has_separate_tables_and_required_types_comments() -> None:
@@ -321,24 +326,26 @@ def _discovery_receipt():
 
 def _reconstruction_receipt(**updates):
     now=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc)
-    values=dict(reconstruction_receipt_id="RECON-1",account=BrokerAccount(broker="SINOPAC",account_ref="A"),generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISCOVERY-1",order_id="ORDER-1",input_coverage_fingerprint="INPUT",accepted_fill_ids=("FILL-1",),output_fingerprint="OUTPUT",deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,authority_commit_id="COMMIT-1",producer_id="RECOVERY",contract_version="W4R-B1-V1",recorded_at=now)
+    plan=BrokerReconstructionPlan(status=OrderStatus.PENDING,accepted_fills=(),filled_quantity=0,average_fill_price=None,material_change=False)
+    values=dict(reconstruction_receipt_id="RECON-1",account=BrokerAccount(broker="SINOPAC",account_ref="A"),generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISCOVERY-1",order_id="ORDER-1",broker_deals=(),local_fill_ids=(),lifecycle_evidence=None,plan=plan,deal_set_completeness=BrokerDealSetCompleteness.COMPLETE,authority_commit_id="COMMIT-1",producer_id="RECOVERY",contract_version="W4R-B1-V1",recorded_at=now)
     values.update(updates); return BrokerReconstructionReceipt(**values)
 
 
 def test_postgres_trusted_receipt_append_locks_active_generation_and_advances_once() -> None:
     receipt=_discovery_receipt()
-    connection=_QueueConnection([(4,20,True),(receipt.discovery_run_id,),(21,)])
+    connection=_QueueConnection([None,(4,20,True),None,(receipt.discovery_run_id,),(21,)])
     status=PostgresBrokerRecoveryRepository(connection).append_discovery_receipt(receipt)
     assert status is RecoveryEvidenceAppendStatus.APPENDED
     sqls=[sql for sql,_ in connection.statements]
-    assert "FOR UPDATE" in sqls[0] and "active=TRUE" in sqls[-1]
+    assert any("account_recovery_controls" in sql and "FOR UPDATE" in sql for sql in sqls)
+    assert "active=TRUE" in sqls[-1]
     assert "readiness_revision=readiness_revision+1" in sqls[-1]
     assert connection.commits == 0
 
 
 def test_postgres_trusted_receipt_duplicate_is_idempotent_without_readiness_advance() -> None:
     receipt=_reconstruction_receipt()
-    connection=_QueueConnection([(4,20,True),None,(receipt.model_dump(mode="json"),)])
+    connection=_QueueConnection([(receipt.model_dump(mode="json"),)])
     status=PostgresBrokerRecoveryRepository(connection).append_reconstruction_receipt(receipt)
     assert status is RecoveryEvidenceAppendStatus.DUPLICATE
     assert not any("readiness_revision=readiness_revision+1" in sql for sql,_ in connection.statements)
@@ -346,12 +353,38 @@ def test_postgres_trusted_receipt_duplicate_is_idempotent_without_readiness_adva
 
 def test_postgres_trusted_receipt_conflict_or_inactive_generation_fails_closed() -> None:
     receipt=_discovery_receipt()
-    conflict=_QueueConnection([(4,20,True),None,({"different":True},)])
+    conflict=_QueueConnection([({"different":True},)])
     with pytest.raises(BrokerReportConflictError):
         PostgresBrokerRecoveryRepository(conflict).append_discovery_receipt(receipt)
-    inactive=_QueueConnection([(4,20,False)])
+    inactive=_QueueConnection([None,(4,20,False)])
     with pytest.raises(RecoveryFenceConflictError,match="active generation"):
         PostgresBrokerRecoveryRepository(inactive).append_discovery_receipt(receipt)
+
+
+def test_historical_and_concurrent_exact_receipt_replay_bypasses_current_generation() -> None:
+    receipt=_discovery_receipt()
+    historical=_QueueConnection([(receipt.model_dump(mode="json"),)])
+    assert PostgresBrokerRecoveryRepository(historical).append_discovery_receipt(receipt) is RecoveryEvidenceAppendStatus.DUPLICATE
+    assert len(historical.statements) == 1
+    concurrent=_QueueConnection([None,(4,20,True),(receipt.model_dump(mode="json"),)])
+    assert PostgresBrokerRecoveryRepository(concurrent).append_discovery_receipt(receipt) is RecoveryEvidenceAppendStatus.DUPLICATE
+    assert not any("readiness_revision=readiness_revision+1" in sql for sql,_ in concurrent.statements)
+
+
+def test_exact_reads_reject_decoded_identity_and_account_mismatch() -> None:
+    now=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc)
+    expected=AccountPositionSnapshot(snapshot_id="OTHER",broker="SINOPAC",account_ref="A",effective_at=now,recorded_at=now,source_event_id="EVENT",positions=())
+    with pytest.raises(ExpectedSnapshotIntegrityError,match="identity"):
+        PostgresExpectedPositionSnapshotRepository(_QueueConnection([(expected.model_dump(mode="json"),)])).get_exact(snapshot_id="SNAP-1",broker="SINOPAC",account_ref="A")
+    wrong_expected=expected.model_copy(update={"snapshot_id":"SNAP-1","account_ref":"B"})
+    with pytest.raises(ExpectedSnapshotIntegrityError,match="scope"):
+        PostgresExpectedPositionSnapshotRepository(_QueueConnection([(wrong_expected.model_dump(mode="json"),)])).get_exact(snapshot_id="SNAP-1",broker="SINOPAC",account_ref="A")
+    actual=BrokerPositionObservation(observation_id="OTHER",broker="SINOPAC",account_ref="A",observed_at=now,recorded_at=now,positions=())
+    with pytest.raises(BrokerObservationIntegrityError,match="identity"):
+        PostgresBrokerPositionObservationRepository(_QueueConnection([(actual.model_dump(mode="json"),)])).get_exact(observation_id="OBS-1",broker="SINOPAC",account_ref="A")
+    wrong_actual=actual.model_copy(update={"observation_id":"OBS-1","account_ref":"B"})
+    with pytest.raises(BrokerObservationIntegrityError,match="scope"):
+        PostgresBrokerPositionObservationRepository(_QueueConnection([(wrong_actual.model_dump(mode="json"),)])).get_exact(observation_id="OBS-1",broker="SINOPAC",account_ref="A")
 
 
 def test_postgres_new_ingress_locks_control_and_atomically_advances_frontier_once() -> None:

@@ -13,6 +13,7 @@ from trading.broker_recovery import (
     BrokerDealIdentity,
     BrokerDealSetCompleteness,
     BrokerLifecycleEvidence,
+    BrokerReconstructionPlan,
     BrokerReconstructionIncompleteError,
     BrokerRecoveryIntegrityError,
     reconstruct_broker_order as _reconstruct_broker_order,
@@ -70,20 +71,29 @@ def deal(deal_id="D1", quantity=1, price=Decimal("100"), **updates):
     return BrokerDealEvidence(**values)
 
 
-def test_positive_reconstruction_receipt_requires_complete_deal_set() -> None:
+def test_reconstruction_receipt_derives_complete_canonical_material() -> None:
     account = __import__("trading.account", fromlist=["BrokerAccount"]).BrokerAccount(broker="SINOPAC", account_ref="A")
+    plan = BrokerReconstructionPlan(status=OrderStatus.PENDING, accepted_fills=(), filled_quantity=0, average_fill_price=None, material_change=False)
     values = dict(
         reconstruction_receipt_id="RECON-1", account=account, generation=3,
         recovery_cut_fingerprint="CUT-FP", discovery_run_id="DISCOVERY-1",
-        order_id="ORDER-1", input_coverage_fingerprint="INPUT-FP",
-        accepted_fill_ids=("FILL-1",), output_fingerprint="OUTPUT-FP",
+        order_id="ORDER-1", broker_deals=(deal("D2"), deal("D1")),
+        local_fill_ids=("FILL-2", "FILL-1"), lifecycle_evidence=None, plan=plan,
         authority_commit_id="COMMIT-1", producer_id="RECOVERY",
         contract_version="W4R-B1-V1", recorded_at=NOW,
     )
     with pytest.raises(ValidationError, match="COMPLETE"):
         BrokerReconstructionReceipt(deal_set_completeness=BrokerDealSetCompleteness.INCOMPLETE, **values)
     receipt = BrokerReconstructionReceipt(deal_set_completeness=BrokerDealSetCompleteness.COMPLETE, **values)
-    assert receipt.accepted_fill_ids == ("FILL-1",)
+    assert receipt.local_fill_ids == ("FILL-1", "FILL-2")
+    assert tuple(item.identity.deal_id for item in receipt.broker_deals) == ("D1", "D2")
+    assert receipt.accepted_fill_ids == ()
+    reordered = BrokerReconstructionReceipt(deal_set_completeness=BrokerDealSetCompleteness.COMPLETE, **{**values, "broker_deals": tuple(reversed(values["broker_deals"])), "local_fill_ids": tuple(reversed(values["local_fill_ids"]))})
+    assert reordered.input_coverage_fingerprint == receipt.input_coverage_fingerprint
+    assert reordered.output_fingerprint == receipt.output_fingerprint
+    for field, bad in (("input_coverage_fingerprint", "BAD"), ("accepted_fill_ids", ("FAKE",)), ("output_fingerprint", "BAD")):
+        with pytest.raises(ValidationError, match=field):
+            BrokerReconstructionReceipt(deal_set_completeness=BrokerDealSetCompleteness.COMPLETE, **{**values, field: bad})
 
 
 def event(sequence, previous, status, **updates):
