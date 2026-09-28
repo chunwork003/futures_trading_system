@@ -207,6 +207,7 @@ class ContinuityTransitionReceipt(BaseModel):
     readiness_revision: int = Field(ge=1)
     recovery_cut_fingerprint: str
     anchor_fingerprint: str
+    recovery_cut_revision: int = Field(ge=0)
     ingress_version: int = Field(ge=0)
     account_revision: int = Field(ge=0)
     expected_snapshot_id: str

@@ -127,22 +127,32 @@ class PostgresBrokerRecoveryRepository(BrokerRecoveryRepository):
             raise ContinuityAuthorityConflictError("continuity head revision coherence conflict")
         if head.readiness_revision != expected_readiness_revision + 1 or receipt.previous_readiness_revision != expected_readiness_revision or receipt.readiness_revision != head.readiness_revision:
             raise ContinuityAuthorityConflictError("continuity readiness revision coherence conflict")
+        if head.recorded_at != receipt.recorded_at:
+            raise ContinuityAuthorityConflictError("continuity recorded_at coherence conflict")
         with self._connection.cursor() as cursor:
             cursor.execute("SELECT receipt_json FROM trading.continuity_transition_receipts WHERE transition_id=%s", (receipt.transition_id,))
             existing=cursor.fetchone()
             if existing is not None:
                 if ContinuityTransitionReceipt.model_validate(existing[0]) != receipt:
                     raise ContinuityAuthorityConflictError("continuity transition identity conflict")
+                cursor.execute("SELECT jsonb_build_object('epoch_id',epoch_id,'broker',broker,'account_ref',account_ref,'generation',generation,'trusted_current',trusted_current,'historical_degradation',historical_degradation,'anchored_at',anchored_at,'evidence',evidence_json) FROM trading.execution_continuity_epochs WHERE epoch_id=%s", (epoch.epoch_id,))
+                durable_epoch=cursor.fetchone()
+                if durable_epoch is None or ExecutionContinuityEpoch.model_validate(durable_epoch[0]) != epoch:
+                    raise ContinuityAuthorityConflictError("continuity epoch material conflict")
                 return
-            cursor.execute("SELECT generation,readiness_revision,active FROM trading.account_recovery_controls WHERE broker=%s AND account_ref=%s FOR UPDATE", (head.broker, head.account_ref))
+            cursor.execute("SELECT generation,recovery_cut_revision,ingress_version,readiness_revision,active FROM trading.account_recovery_controls WHERE broker=%s AND account_ref=%s FOR UPDATE", (head.broker, head.account_ref))
             control = cursor.fetchone()
             cursor.execute("SELECT receipt_json FROM trading.continuity_transition_receipts WHERE transition_id=%s", (receipt.transition_id,))
             concurrent_existing=cursor.fetchone()
             if concurrent_existing is not None:
                 if ContinuityTransitionReceipt.model_validate(concurrent_existing[0]) != receipt:
                     raise ContinuityAuthorityConflictError("continuity transition identity conflict")
+                cursor.execute("SELECT jsonb_build_object('epoch_id',epoch_id,'broker',broker,'account_ref',account_ref,'generation',generation,'trusted_current',trusted_current,'historical_degradation',historical_degradation,'anchored_at',anchored_at,'evidence',evidence_json) FROM trading.execution_continuity_epochs WHERE epoch_id=%s", (epoch.epoch_id,))
+                durable_epoch=cursor.fetchone()
+                if durable_epoch is None or ExecutionContinuityEpoch.model_validate(durable_epoch[0]) != epoch:
+                    raise ContinuityAuthorityConflictError("continuity epoch material conflict")
                 return
-            if control != (head.generation, expected_readiness_revision, True):
+            if control != (head.generation,receipt.recovery_cut_revision,receipt.ingress_version,expected_readiness_revision,True):
                 raise ContinuityAuthorityConflictError("continuity readiness CAS conflict")
             cursor.execute("SELECT head_revision,current_epoch_id FROM trading.execution_continuity_heads WHERE broker=%s AND account_ref=%s FOR UPDATE", (head.broker, head.account_ref))
             current = cursor.fetchone()
@@ -152,8 +162,11 @@ class PostgresBrokerRecoveryRepository(BrokerRecoveryRepository):
                 raise ContinuityAuthorityConflictError("continuity head CAS conflict")
             cursor.execute("INSERT INTO trading.execution_continuity_epochs (epoch_id,broker,account_ref,generation,trusted_current,historical_degradation,anchored_at,evidence_json) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING RETURNING epoch_id", (epoch.epoch_id, epoch.broker, epoch.account_ref, epoch.generation, epoch.trusted_current, epoch.historical_degradation, epoch.anchored_at, json.dumps(epoch.evidence)))
             if cursor.fetchone() is None:
-                raise ContinuityAuthorityConflictError("continuity epoch identity conflict")
-            cursor.execute("INSERT INTO trading.continuity_transition_receipts (transition_id,broker,account_ref,generation,previous_epoch_id,current_epoch_id,previous_head_revision,head_revision,previous_readiness_revision,readiness_revision,recovery_cut_fingerprint,anchor_fingerprint,ingress_version,account_revision,expected_snapshot_id,authority_commit_id,gap_set_fingerprint,producer_id,contract_version,evidence_id,recorded_at,evidence_json,receipt_json) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING RETURNING transition_id", (receipt.transition_id,receipt.broker,receipt.account_ref,receipt.generation,receipt.previous_epoch_id,receipt.current_epoch_id,receipt.previous_head_revision,receipt.head_revision,receipt.previous_readiness_revision,receipt.readiness_revision,receipt.recovery_cut_fingerprint,receipt.anchor_fingerprint,receipt.ingress_version,receipt.account_revision,receipt.expected_snapshot_id,receipt.authority_commit_id,receipt.gap_set_fingerprint,receipt.producer_id,receipt.contract_version,receipt.evidence_id,receipt.recorded_at,json.dumps(receipt.evidence),json.dumps(payload)))
+                cursor.execute("SELECT jsonb_build_object('epoch_id',epoch_id,'broker',broker,'account_ref',account_ref,'generation',generation,'trusted_current',trusted_current,'historical_degradation',historical_degradation,'anchored_at',anchored_at,'evidence',evidence_json) FROM trading.execution_continuity_epochs WHERE epoch_id=%s", (epoch.epoch_id,))
+                durable_epoch=cursor.fetchone()
+                if durable_epoch is None or ExecutionContinuityEpoch.model_validate(durable_epoch[0]) != epoch:
+                    raise ContinuityAuthorityConflictError("continuity epoch material conflict")
+            cursor.execute("INSERT INTO trading.continuity_transition_receipts (transition_id,broker,account_ref,generation,previous_epoch_id,current_epoch_id,previous_head_revision,head_revision,previous_readiness_revision,readiness_revision,recovery_cut_fingerprint,anchor_fingerprint,recovery_cut_revision,ingress_version,account_revision,expected_snapshot_id,authority_commit_id,gap_set_fingerprint,producer_id,contract_version,evidence_id,recorded_at,evidence_json,receipt_json) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING RETURNING transition_id", (receipt.transition_id,receipt.broker,receipt.account_ref,receipt.generation,receipt.previous_epoch_id,receipt.current_epoch_id,receipt.previous_head_revision,receipt.head_revision,receipt.previous_readiness_revision,receipt.readiness_revision,receipt.recovery_cut_fingerprint,receipt.anchor_fingerprint,receipt.recovery_cut_revision,receipt.ingress_version,receipt.account_revision,receipt.expected_snapshot_id,receipt.authority_commit_id,receipt.gap_set_fingerprint,receipt.producer_id,receipt.contract_version,receipt.evidence_id,receipt.recorded_at,json.dumps(receipt.evidence),json.dumps(payload)))
             if cursor.fetchone() is None:
                 cursor.execute("SELECT receipt_json FROM trading.continuity_transition_receipts WHERE transition_id=%s", (receipt.transition_id,))
                 row=cursor.fetchone()

@@ -381,7 +381,7 @@ def test_trusted_readiness_migration_has_explicit_head_receipts_without_epoch_ba
     assert "previous_readiness_revision" in sql
     assert "transition_receipt_id" in sql
     assert "FOREIGN KEY (broker, account_ref, generation, current_epoch_id)" in sql
-    assert "FOREIGN KEY (transition_receipt_id, broker, account_ref, generation, current_epoch_id)" in sql
+    assert "FOREIGN KEY (transition_receipt_id, broker, account_ref, generation, current_epoch_id, head_revision, readiness_revision)" in sql
     for field in ("recovery_cut_fingerprint","anchor_fingerprint","ingress_version","account_revision","expected_snapshot_id","authority_commit_id","gap_set_fingerprint","producer_id","contract_version","evidence_id"):
         assert field in sql
     assert "COMMENT ON TABLE trading.execution_continuity_heads" in sql
@@ -397,8 +397,8 @@ def test_postgres_continuity_transition_uses_head_and_readiness_cas_without_comm
         trusted_current=False,historical_degradation=True,anchored_at=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc),evidence=("explicit",),
     )
     head=ExecutionContinuityHead(broker="SINOPAC",account_ref="A",generation=4,current_epoch_id="EPOCH-10",transition_receipt_id="TR-3",head_revision=3,readiness_revision=21,recorded_at=epoch.anchored_at)
-    receipt=ContinuityTransitionReceipt(transition_id="TR-3",broker="SINOPAC",account_ref="A",generation=4,previous_epoch_id="EPOCH-2",current_epoch_id="EPOCH-10",previous_head_revision=2,head_revision=3,previous_readiness_revision=20,readiness_revision=21,recovery_cut_fingerprint="CUT-FP",anchor_fingerprint="ANCHOR-FP",ingress_version=12,account_revision=8,expected_snapshot_id="SNAP-8",authority_commit_id="COMMIT-8",gap_set_fingerprint="GAPS-FP",producer_id="RECOVERY",contract_version="W4R-A-V1",evidence_id="EVIDENCE-3",recorded_at=epoch.anchored_at,evidence=("explicit",))
-    connection=_QueueConnection([None,(4,20,True),None,(2,"EPOCH-2"),("EPOCH-10",),("TR-3",),(3,),(21,)])
+    receipt=ContinuityTransitionReceipt(transition_id="TR-3",broker="SINOPAC",account_ref="A",generation=4,previous_epoch_id="EPOCH-2",current_epoch_id="EPOCH-10",previous_head_revision=2,head_revision=3,previous_readiness_revision=20,readiness_revision=21,recovery_cut_fingerprint="CUT-FP",anchor_fingerprint="ANCHOR-FP",recovery_cut_revision=8,ingress_version=12,account_revision=8,expected_snapshot_id="SNAP-8",authority_commit_id="COMMIT-8",gap_set_fingerprint="GAPS-FP",producer_id="RECOVERY",contract_version="W4R-A-V1",evidence_id="EVIDENCE-3",recorded_at=epoch.anchored_at,evidence=("explicit",))
+    connection=_QueueConnection([None,(4,8,12,20,True),None,(2,"EPOCH-2"),("EPOCH-10",),("TR-3",),(3,),(21,)])
     PostgresBrokerRecoveryRepository(connection).transition_continuity_head(epoch=epoch,head=head,receipt=receipt,expected_head_revision=2,expected_readiness_revision=20)
     sqls=[sql for sql,_ in connection.statements]
     assert any("account_recovery_controls" in sql and "FOR UPDATE" in sql for sql in sqls)
@@ -411,13 +411,34 @@ def test_postgres_continuity_transition_uses_head_and_readiness_cas_without_comm
 def test_postgres_exact_historical_transition_replay_returns_before_cas() -> None:
     from persistence.broker_recovery import ContinuityTransitionReceipt, ExecutionContinuityEpoch, ExecutionContinuityHead
     now=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc)
-    receipt=ContinuityTransitionReceipt(transition_id="TR-1",broker="SINOPAC",account_ref="A",generation=4,previous_epoch_id=None,current_epoch_id="EPOCH-1",previous_head_revision=0,head_revision=1,previous_readiness_revision=0,readiness_revision=1,recovery_cut_fingerprint="CUT",anchor_fingerprint="ANCHOR",ingress_version=0,account_revision=8,expected_snapshot_id="SNAP",authority_commit_id="COMMIT",gap_set_fingerprint="GAPS",producer_id="RECOVERY",contract_version="V1",evidence_id="EV-1",recorded_at=now,evidence=("exact",))
+    receipt=ContinuityTransitionReceipt(transition_id="TR-1",broker="SINOPAC",account_ref="A",generation=4,previous_epoch_id=None,current_epoch_id="EPOCH-1",previous_head_revision=0,head_revision=1,previous_readiness_revision=0,readiness_revision=1,recovery_cut_fingerprint="CUT",anchor_fingerprint="ANCHOR",recovery_cut_revision=8,ingress_version=0,account_revision=8,expected_snapshot_id="SNAP",authority_commit_id="COMMIT",gap_set_fingerprint="GAPS",producer_id="RECOVERY",contract_version="V1",evidence_id="EV-1",recorded_at=now,evidence=("exact",))
     epoch=ExecutionContinuityEpoch(epoch_id="EPOCH-1",broker="SINOPAC",account_ref="A",generation=4,trusted_current=True,historical_degradation=False,anchored_at=now,evidence=("exact",))
     head=ExecutionContinuityHead(broker="SINOPAC",account_ref="A",generation=4,current_epoch_id="EPOCH-1",transition_receipt_id="TR-1",head_revision=1,readiness_revision=1,recorded_at=now)
-    connection=_QueueConnection([(receipt.model_dump(mode="json"),)])
+    connection=_QueueConnection([(receipt.model_dump(mode="json"),),(epoch.model_dump(mode="json"),)])
     PostgresBrokerRecoveryRepository(connection).transition_continuity_head(epoch=epoch,head=head,receipt=receipt,expected_head_revision=0,expected_readiness_revision=0)
-    assert len(connection.statements)==1
+    assert len(connection.statements)==2
     assert "continuity_transition_receipts" in connection.statements[0][0]
+    assert "execution_continuity_epochs" in connection.statements[1][0]
+    assert connection.commits == 0
+
+    for durable in (
+        epoch.model_copy(update={"trusted_current":False}),
+        epoch.model_copy(update={"evidence":("different",)}),
+    ):
+        conflict=_QueueConnection([(receipt.model_dump(mode="json"),),(durable.model_dump(mode="json"),)])
+        with pytest.raises(__import__("persistence.broker_recovery",fromlist=["ContinuityAuthorityConflictError"]).ContinuityAuthorityConflictError,match="epoch"):
+            PostgresBrokerRecoveryRepository(conflict).transition_continuity_head(epoch=epoch,head=head,receipt=receipt,expected_head_revision=0,expected_readiness_revision=0)
+
+
+def test_postgres_existing_exact_epoch_is_reused_for_new_transition() -> None:
+    from persistence.broker_recovery import ContinuityTransitionReceipt, ExecutionContinuityEpoch, ExecutionContinuityHead
+    now=__import__("datetime").datetime(2026,9,27,tzinfo=__import__("datetime").timezone.utc)
+    epoch=ExecutionContinuityEpoch(epoch_id="EPOCH-2",broker="SINOPAC",account_ref="A",generation=4,trusted_current=True,historical_degradation=False,anchored_at=now,evidence=("exact",))
+    head=ExecutionContinuityHead(broker="SINOPAC",account_ref="A",generation=4,current_epoch_id="EPOCH-2",transition_receipt_id="TR-2",head_revision=2,readiness_revision=2,recorded_at=now)
+    receipt=ContinuityTransitionReceipt(transition_id="TR-2",broker="SINOPAC",account_ref="A",generation=4,previous_epoch_id="EPOCH-1",current_epoch_id="EPOCH-2",previous_head_revision=1,head_revision=2,previous_readiness_revision=1,readiness_revision=2,recovery_cut_fingerprint="CUT",anchor_fingerprint="ANCHOR",recovery_cut_revision=8,ingress_version=12,account_revision=8,expected_snapshot_id="SNAP",authority_commit_id="COMMIT",gap_set_fingerprint="GAPS",producer_id="RECOVERY",contract_version="V1",evidence_id="EV-2",recorded_at=now,evidence=("exact",))
+    connection=_QueueConnection([None,(4,8,12,1,True),None,(1,"EPOCH-1"),None,(epoch.model_dump(mode="json"),),("TR-2",),(2,),(2,)])
+    PostgresBrokerRecoveryRepository(connection).transition_continuity_head(epoch=epoch,head=head,receipt=receipt,expected_head_revision=1,expected_readiness_revision=1)
+    assert any("SELECT" in sql and "execution_continuity_epochs" in sql for sql,_ in connection.statements)
     assert connection.commits == 0
 
 

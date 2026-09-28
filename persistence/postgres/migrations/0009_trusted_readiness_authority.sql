@@ -45,6 +45,7 @@ CREATE TABLE trading.continuity_transition_receipts (
     readiness_revision BIGINT NOT NULL CHECK (readiness_revision = previous_readiness_revision + 1),
     recovery_cut_fingerprint TEXT NOT NULL,
     anchor_fingerprint TEXT NOT NULL,
+    recovery_cut_revision BIGINT NOT NULL CHECK (recovery_cut_revision >= 0),
     ingress_version BIGINT NOT NULL CHECK (ingress_version >= 0),
     account_revision BIGINT NOT NULL CHECK (account_revision >= 0),
     expected_snapshot_id TEXT NOT NULL,
@@ -57,7 +58,7 @@ CREATE TABLE trading.continuity_transition_receipts (
     evidence_json JSONB NOT NULL CHECK (jsonb_typeof(evidence_json) = 'array'),
     receipt_json JSONB NOT NULL CHECK (jsonb_typeof(receipt_json) = 'object'),
     UNIQUE (broker, account_ref, head_revision),
-    UNIQUE (transition_id, broker, account_ref, generation, current_epoch_id),
+    UNIQUE (transition_id, broker, account_ref, generation, current_epoch_id, head_revision, readiness_revision),
     FOREIGN KEY (broker, account_ref, generation, current_epoch_id)
         REFERENCES trading.execution_continuity_epochs (broker, account_ref, generation, epoch_id),
     FOREIGN KEY (broker, account_ref, generation, previous_epoch_id)
@@ -66,9 +67,9 @@ CREATE TABLE trading.continuity_transition_receipts (
 
 ALTER TABLE trading.execution_continuity_heads
     ADD CONSTRAINT execution_continuity_heads_receipt_scope_fk
-    FOREIGN KEY (transition_receipt_id, broker, account_ref, generation, current_epoch_id)
+    FOREIGN KEY (transition_receipt_id, broker, account_ref, generation, current_epoch_id, head_revision, readiness_revision)
     REFERENCES trading.continuity_transition_receipts
-        (transition_id, broker, account_ref, generation, current_epoch_id);
+        (transition_id, broker, account_ref, generation, current_epoch_id, head_revision, readiness_revision);
 
 COMMENT ON TABLE trading.continuity_transition_receipts IS
     'Append-only continuity current-head transition 證據；revision 鏈是 causal ordering authority。';
@@ -78,3 +79,5 @@ COMMENT ON COLUMN trading.continuity_transition_receipts.previous_head_revision 
     'transition 接受前的 exact continuity head revision。';
 COMMENT ON COLUMN trading.continuity_transition_receipts.previous_readiness_revision IS
     'transition 接受前的 exact account readiness fence。';
+COMMENT ON COLUMN trading.continuity_transition_receipts.recovery_cut_revision IS
+    '在 account recovery control 鎖下驗證的本地 recovery cut revision；不得由其他 fingerprint 推論。';

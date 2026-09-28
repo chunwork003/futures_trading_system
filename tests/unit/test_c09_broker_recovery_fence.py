@@ -61,18 +61,23 @@ class Repo:
     def append_continuity_epoch(self, item): self.epochs.append(item)
     def transition_continuity_head(self, *, epoch, head, receipt, expected_head_revision, expected_readiness_revision):
         scope=(epoch.broker,epoch.account_ref,epoch.generation)
-        if scope != (head.broker,head.account_ref,head.generation) or scope != (receipt.broker,receipt.account_ref,receipt.generation) or epoch.epoch_id != head.current_epoch_id or epoch.epoch_id != receipt.current_epoch_id or head.transition_receipt_id != receipt.transition_id or head.head_revision != receipt.head_revision or head.readiness_revision != receipt.readiness_revision or receipt.previous_head_revision != expected_head_revision or receipt.previous_readiness_revision != expected_readiness_revision:
+        if scope != (head.broker,head.account_ref,head.generation) or scope != (receipt.broker,receipt.account_ref,receipt.generation) or epoch.epoch_id != head.current_epoch_id or epoch.epoch_id != receipt.current_epoch_id or head.transition_receipt_id != receipt.transition_id or head.head_revision != receipt.head_revision or head.readiness_revision != receipt.readiness_revision or receipt.previous_head_revision != expected_head_revision or receipt.previous_readiness_revision != expected_readiness_revision or head.recorded_at != receipt.recorded_at:
             raise ContinuityAuthorityConflictError("continuity coherence conflict")
         existing=self.transitions.get(receipt.transition_id)
         if existing is not None:
             if existing != receipt: raise ContinuityAuthorityConflictError("continuity transition identity conflict")
+            durable=next((item for item in self.epochs if item.epoch_id == receipt.current_epoch_id),None)
+            if durable != epoch: raise ContinuityAuthorityConflictError("continuity epoch material conflict")
             return
         actual=0 if self.head is None else self.head.head_revision
-        if actual != expected_head_revision or self.control is None or not self.control.active or self.control.readiness_revision != expected_readiness_revision:
+        if actual != expected_head_revision or self.control is None or not self.control.active or self.control.readiness_revision != expected_readiness_revision or self.control.recovery_cut_revision != receipt.recovery_cut_revision or self.control.ingress_version != receipt.ingress_version:
             raise ContinuityAuthorityConflictError("continuity authority CAS conflict")
         if (epoch.broker,epoch.account_ref,epoch.generation)!=(head.broker,head.account_ref,head.generation):
             raise ContinuityAuthorityConflictError("continuity scope conflict")
-        self.epochs.append(epoch); self.head=head; self.transitions[receipt.transition_id]=receipt
+        durable=next((item for item in self.epochs if item.epoch_id == epoch.epoch_id),None)
+        if durable is not None and durable != epoch: raise ContinuityAuthorityConflictError("continuity epoch material conflict")
+        if durable is None: self.epochs.append(epoch)
+        self.head=head; self.transitions[receipt.transition_id]=receipt
         self.control=self.control.model_copy(update={"readiness_revision":self.control.readiness_revision+1})
     def get_control(self, account): return self.control
     def begin_recovery(self, control, *, expected_generation):
@@ -108,6 +113,7 @@ def transition_receipt(**updates):
         previous_epoch_id=None,current_epoch_id="EPOCH-2",previous_head_revision=0,
         head_revision=1,previous_readiness_revision=0,readiness_revision=1,
         recovery_cut_fingerprint="CUT-FP",anchor_fingerprint="ANCHOR-FP",
+        recovery_cut_revision=7,
         ingress_version=0,account_revision=7,expected_snapshot_id="SNAP-7",
         authority_commit_id="COMMIT-7",gap_set_fingerprint="GAPS-FP",
         producer_id="RECOVERY",contract_version="W4R-A-V1",evidence_id="EVIDENCE-1",
@@ -308,6 +314,21 @@ def test_begin_recovery_requires_fresh_zero_readiness_revision() -> None:
     control=AccountRecoveryControl(broker="SINOPAC",account_ref="A",generation=2,recovery_cut_revision=8,ingress_version=0,readiness_revision=1,active=True,recorded_at=NOW)
     with pytest.raises(RecoveryFenceConflictError,match="zero"):
         repo.begin_recovery(control,expected_generation=1)
+
+
+def test_transition_requires_control_provenance_and_deterministic_recorded_at() -> None:
+    repo=Repo(); repo.control=AccountRecoveryControl(broker="SINOPAC",account_ref="A",generation=1,recovery_cut_revision=7,ingress_version=0,readiness_revision=0,active=True,recorded_at=NOW)
+    epoch=ExecutionContinuityEpoch(epoch_id="EPOCH-2",broker="SINOPAC",account_ref="A",generation=1,trusted_current=True,historical_degradation=False,anchored_at=NOW,evidence=("first",))
+    receipt=transition_receipt()
+    head=ExecutionContinuityHead(broker="SINOPAC",account_ref="A",generation=1,current_epoch_id="EPOCH-2",transition_receipt_id="TR-1",head_revision=1,readiness_revision=1,recorded_at=NOW)
+    for changed in (
+        receipt.model_copy(update={"ingress_version":1}),
+        receipt.model_copy(update={"recovery_cut_revision":8}),
+    ):
+        with pytest.raises(ContinuityAuthorityConflictError):
+            repo.transition_continuity_head(epoch=epoch,head=head,receipt=changed,expected_head_revision=0,expected_readiness_revision=0)
+    with pytest.raises(ContinuityAuthorityConflictError):
+        repo.transition_continuity_head(epoch=epoch,head=head.model_copy(update={"recorded_at":NOW.replace(hour=7)}),receipt=receipt,expected_head_revision=0,expected_readiness_revision=0)
 
 
 def test_readiness_frontier_is_independent_and_inactive_writes_do_not_advance() -> None:
