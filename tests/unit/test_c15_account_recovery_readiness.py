@@ -1,4 +1,5 @@
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+from decimal import Decimal
 import json
 
 import pytest
@@ -25,7 +26,7 @@ from persistence.account import AccountPositionSnapshot, BrokerPositionObservati
 from adapters.capabilities import BrokerCapability, BrokerVerificationMode, StaticBrokerCapabilityProvider
 from adapters.sinopac.capabilities import SINOPAC_CAPABILITY_REGISTRY_SNAPSHOT
 from trading.broker_recovery import BrokerDealSetCompleteness, BrokerReconstructionPlan
-from trading.execution import OrderStatus
+from trading.execution import Fill, OrderStatus
 from trading.broker_recovery import BrokerDiscoveryIntegrity, BrokerDiscoveryResult, DiscoveryCompleteness, ExactMatchCardinality
 from trading.account import BrokerAccount
 from trading.reconciliation import ReconciliationPolicy, ReconciliationResult, ReconciliationStatus
@@ -208,12 +209,56 @@ def _trusted_resolver_fixture():
 
 
 def test_trusted_resolver_re_reads_exact_authority_without_making_ready() -> None:
-    resolver,_,_= _trusted_resolver_fixture()
+    resolver,discovery,reconstruction= _trusted_resolver_fixture()
     core=resolver.resolve(account=ACCOUNT,recovery_generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),expected_snapshot_id="SNAP-1",broker_observation_id="OBS-1",required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),required_verification_mode=BrokerVerificationMode.DOCUMENTATION)
     assert core.discovery_receipt_id == "DISC-1"
+    assert core.discovery_receipt_fingerprint == discovery.full_receipt_fingerprint
     assert core.reconstruction_receipt_ids == ("RECON-1",)
+    assert core.reconstruction_receipt_fingerprints == (reconstruction.full_receipt_fingerprint,)
     assert core.capability_source_ids == ("SRC-SINOPAC-LOGIN-001",)
     assert not hasattr(core,"ready") and not hasattr(core,"finalize")
+
+
+def test_rf01_full_receipt_fingerprints_bind_all_provenance_and_round_trip() -> None:
+    _,discovery,reconstruction=_trusted_resolver_fixture()
+    assert BrokerDiscoveryReceipt.model_validate(discovery.model_dump(mode="json")).full_receipt_fingerprint == discovery.full_receipt_fingerprint
+    assert BrokerReconstructionReceipt.model_validate(reconstruction.model_dump(mode="json")).full_receipt_fingerprint == reconstruction.full_receipt_fingerprint
+
+    changed_discovery=BrokerDiscoveryReceipt(**{**discovery.model_dump(exclude={"full_receipt_fingerprint"}),"producer_id":"OTHER"})
+    changed_discovery_contract=BrokerDiscoveryReceipt(**{**discovery.model_dump(exclude={"full_receipt_fingerprint"}),"contract_version":"V2"})
+    assert changed_discovery.full_receipt_fingerprint != discovery.full_receipt_fingerprint
+    assert changed_discovery_contract.full_receipt_fingerprint != discovery.full_receipt_fingerprint
+
+    changed_input=BrokerReconstructionReceipt(**{**reconstruction.model_dump(exclude={"full_receipt_fingerprint","input_coverage_fingerprint","accepted_fill_ids","output_fingerprint"}),"local_fill_ids":("OTHER-FILL",)})
+    changed_producer=BrokerReconstructionReceipt(**{**reconstruction.model_dump(exclude={"full_receipt_fingerprint"}),"producer_id":"OTHER"})
+    changed_contract=BrokerReconstructionReceipt(**{**reconstruction.model_dump(exclude={"full_receipt_fingerprint"}),"contract_version":"V2"})
+    assert changed_input.output_fingerprint == reconstruction.output_fingerprint
+    assert changed_input.full_receipt_fingerprint != reconstruction.full_receipt_fingerprint
+    assert changed_producer.full_receipt_fingerprint != reconstruction.full_receipt_fingerprint
+    assert changed_contract.full_receipt_fingerprint != reconstruction.full_receipt_fingerprint
+    supplied=BrokerReconstructionReceipt(**{**reconstruction.model_dump(),"full_receipt_fingerprint":"CALLER-VALUE"})
+    assert supplied.full_receipt_fingerprint == reconstruction.full_receipt_fingerprint
+
+
+def test_rf01_reconstruction_full_fingerprint_binds_accepted_fill_set() -> None:
+    _,_,reconstruction=_trusted_resolver_fixture()
+    fill=Fill(fill_id="FILL-1",order_id="ORDER-1",event_id="EVENT-1",broker_trade_id="TRADE-1",broker_deal_id="DEAL-1",quantity=1,price=Decimal("100"),occurred_at=NOW,correlation_id="CORR-1",causation_id="EVENT-1")
+    changed_plan=BrokerReconstructionPlan(status=OrderStatus.PARTIALLY_FILLED,accepted_fills=(fill,),filled_quantity=1,average_fill_price=Decimal("100"),material_change=True)
+    changed=BrokerReconstructionReceipt(**{**reconstruction.model_dump(exclude={"full_receipt_fingerprint","input_coverage_fingerprint","accepted_fill_ids","output_fingerprint"}),"plan":changed_plan})
+    assert changed.full_receipt_fingerprint != reconstruction.full_receipt_fingerprint
+
+
+def test_rf01_resolver_sorts_receipt_ids_and_rejects_duplicates() -> None:
+    resolver,_,reconstruction=_trusted_resolver_fixture()
+    second=BrokerReconstructionReceipt(**{**reconstruction.model_dump(exclude={"full_receipt_fingerprint"}),"reconstruction_receipt_id":"RECON-2","recorded_at":NOW+timedelta(seconds=1)})
+    original_get=resolver._recovery.get_reconstruction_receipt
+    resolver._recovery.get_reconstruction_receipt=lambda *,reconstruction_receipt_id,account: second if reconstruction_receipt_id=="RECON-2" else original_get(reconstruction_receipt_id=reconstruction_receipt_id,account=account)
+    values=dict(account=ACCOUNT,recovery_generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISC-1",expected_snapshot_id="SNAP-1",broker_observation_id="OBS-1",required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),required_verification_mode=BrokerVerificationMode.DOCUMENTATION)
+    core=resolver.resolve(reconstruction_receipt_ids=("RECON-2","RECON-1"),**values)
+    assert core.reconstruction_receipt_ids == ("RECON-1","RECON-2")
+    assert core.reconstruction_receipt_fingerprints == (reconstruction.full_receipt_fingerprint,second.full_receipt_fingerprint)
+    with pytest.raises(TrustedRecoveryEvidenceError,match="duplicate"):
+        resolver.resolve(reconstruction_receipt_ids=("RECON-1","RECON-1"),**values)
 
 
 @pytest.mark.parametrize("updates",[

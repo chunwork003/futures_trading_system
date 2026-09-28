@@ -89,8 +89,10 @@ class TrustedRecoveryEvidenceCore(BaseModel):
     recovery_cut_fingerprint: str
     discovery_receipt_id: str
     discovery_result_fingerprint: str
+    discovery_receipt_fingerprint: str
     reconstruction_receipt_ids: tuple[str,...]
     reconstruction_output_fingerprints: tuple[str,...]
+    reconstruction_receipt_fingerprints: tuple[str,...]
     expected_snapshot_id: str
     broker_observation_id: str
     capability_registry_id: str
@@ -116,8 +118,12 @@ class TrustedRecoveryEvidenceResolver:
             discovery=BrokerDiscoveryReceipt.model_validate(discovery.model_dump(mode="json"))
             if discovery.account != account or discovery.generation != recovery_generation or discovery.discovery_run_id != discovery_run_id:
                 raise TrustedRecoveryEvidenceError("discovery receipt scope or generation mismatch")
+            normalized_receipt_ids=tuple(normalize_stable_id(item) for item in reconstruction_receipt_ids)
+            if len(set(normalized_receipt_ids)) != len(normalized_receipt_ids):
+                raise TrustedRecoveryEvidenceError("duplicate reconstruction receipt ID")
+            normalized_receipt_ids=tuple(sorted(normalized_receipt_ids))
             reconstructions=[]
-            for receipt_id in reconstruction_receipt_ids:
+            for receipt_id in normalized_receipt_ids:
                 receipt=self._recovery.get_reconstruction_receipt(reconstruction_receipt_id=receipt_id,account=account)
                 if receipt is None: raise TrustedRecoveryEvidenceError("required positive reconstruction receipt is missing")
                 receipt=BrokerReconstructionReceipt.model_validate(receipt.model_dump(mode="json"))
@@ -144,7 +150,7 @@ class TrustedRecoveryEvidenceResolver:
         except BrokerCapabilityUnavailableError as exc:
             raise TrustedRecoveryEvidenceError(str(exc)) from exc
         source_ids=tuple(sorted({source for item in evidence for source in item.source_ids}))
-        return TrustedRecoveryEvidenceCore(account=account,recovery_generation=recovery_generation,recovery_cut_fingerprint=normalize_stable_id(recovery_cut_fingerprint),discovery_receipt_id=discovery.discovery_run_id,discovery_result_fingerprint=discovery.result_fingerprint,reconstruction_receipt_ids=tuple(item.reconstruction_receipt_id for item in reconstructions),reconstruction_output_fingerprints=tuple(item.output_fingerprint for item in reconstructions),expected_snapshot_id=expected.snapshot_id,broker_observation_id=actual.observation_id,capability_registry_id=registry.registry_id,capability_contract_version=registry.contract_version,capability_matrix_fingerprint=registry.matrix_fingerprint,required_verification_mode=required_verification_mode,capability_evidence=evidence,capability_source_ids=source_ids)
+        return TrustedRecoveryEvidenceCore(account=account,recovery_generation=recovery_generation,recovery_cut_fingerprint=normalize_stable_id(recovery_cut_fingerprint),discovery_receipt_id=discovery.discovery_run_id,discovery_result_fingerprint=discovery.result_fingerprint,discovery_receipt_fingerprint=discovery.full_receipt_fingerprint,reconstruction_receipt_ids=tuple(item.reconstruction_receipt_id for item in reconstructions),reconstruction_output_fingerprints=tuple(item.output_fingerprint for item in reconstructions),reconstruction_receipt_fingerprints=tuple(item.full_receipt_fingerprint for item in reconstructions),expected_snapshot_id=expected.snapshot_id,broker_observation_id=actual.observation_id,capability_registry_id=registry.registry_id,capability_contract_version=registry.contract_version,capability_matrix_fingerprint=registry.matrix_fingerprint,required_verification_mode=required_verification_mode,capability_evidence=evidence,capability_source_ids=source_ids)
 
 
 class ExecutionRestoreStatus(str, Enum):

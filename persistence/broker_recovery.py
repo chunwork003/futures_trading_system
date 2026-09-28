@@ -68,18 +68,19 @@ def _canonical_fingerprint(value: BaseModel | dict[str, object]) -> str:
 
 
 class BrokerDiscoveryReceipt(BaseModel):
-    """將 canonical discovery result 綁定 active recovery generation 的 durable 正向證據。"""
+    """將 discovery 結果及 producer/version provenance 封存為完整 durable receipt。"""
     model_config = ConfigDict(extra="forbid", frozen=True)
     discovery_run_id: str
     account: BrokerAccount
     generation: int = Field(ge=1)
     result: BrokerDiscoveryResult
     result_fingerprint: str = ""
+    full_receipt_fingerprint: str = ""
     producer_id: str
     contract_version: str
     recorded_at: datetime
 
-    @field_validator("discovery_run_id", "producer_id", "contract_version", mode="before")
+    @field_validator("discovery_run_id", "producer_id", "contract_version", "full_receipt_fingerprint", mode="before")
     @classmethod
     def _ids(cls, value: object) -> object:
         return normalize_stable_id(value) if isinstance(value, str) else value
@@ -99,6 +100,11 @@ class BrokerDiscoveryReceipt(BaseModel):
         if self.result_fingerprint and self.result_fingerprint != derived:
             raise ValueError("discovery result fingerprint mismatch")
         object.__setattr__(self, "result_fingerprint", derived)
+        receipt_fingerprint = _canonical_fingerprint(
+            self.model_dump(mode="json", exclude={"full_receipt_fingerprint"})
+        )
+        # Caller 提供的值不是 authority；每次 decode 都由完整 canonical material 重建。
+        object.__setattr__(self, "full_receipt_fingerprint", receipt_fingerprint)
         return self
 
     @staticmethod
@@ -122,13 +128,14 @@ class BrokerReconstructionReceipt(BaseModel):
     input_coverage_fingerprint: str = ""
     accepted_fill_ids: tuple[str, ...] = ()
     output_fingerprint: str = ""
+    full_receipt_fingerprint: str = ""
     deal_set_completeness: BrokerDealSetCompleteness
     authority_commit_id: str | None = None
     producer_id: str
     contract_version: str
     recorded_at: datetime
 
-    @field_validator("reconstruction_receipt_id", "recovery_cut_fingerprint", "discovery_run_id", "order_id", "input_coverage_fingerprint", "output_fingerprint", "authority_commit_id", "producer_id", "contract_version", mode="before")
+    @field_validator("reconstruction_receipt_id", "recovery_cut_fingerprint", "discovery_run_id", "order_id", "input_coverage_fingerprint", "output_fingerprint", "full_receipt_fingerprint", "authority_commit_id", "producer_id", "contract_version", mode="before")
     @classmethod
     def _ids(cls, value: object) -> object:
         return normalize_stable_id(value) if isinstance(value, str) else value
@@ -171,6 +178,11 @@ class BrokerReconstructionReceipt(BaseModel):
         object.__setattr__(self, "accepted_fill_ids", accepted_fill_ids)
         object.__setattr__(self, "input_coverage_fingerprint", input_fingerprint)
         object.__setattr__(self, "output_fingerprint", output_fingerprint)
+        receipt_fingerprint = _canonical_fingerprint(
+            self.model_dump(mode="json", exclude={"full_receipt_fingerprint"})
+        )
+        # Caller 提供的值不是 authority；每次 decode 都由完整 canonical material 重建。
+        object.__setattr__(self, "full_receipt_fingerprint", receipt_fingerprint)
         return self
 
 
