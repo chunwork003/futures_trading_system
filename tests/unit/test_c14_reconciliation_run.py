@@ -65,19 +65,23 @@ def test_technical_input_and_domain_axes_are_separate() -> None:
 
 
 def test_run_boundary_is_durable_before_terminal_and_crash_is_detectable() -> None:
-    connection=Connection([("RUN-1",)])
+    connection=Connection([("SINOPAC","A",4,3,0,True),("RUN-1",),(1,)])
     repo=PostgresReconciliationRunRepository(connection); repo.establish(boundary())
-    assert "INSERT INTO trading.reconciliation_runs" in connection.statements[0][0]
+    assert "account_recovery_controls" in connection.statements[0][0]
+    assert "INSERT INTO trading.reconciliation_runs" in connection.statements[1][0]
     assert not any("reconciliation_run_outcomes" in sql for sql,_ in connection.statements)
     assert connection.commits == connection.rollbacks == 0
 
 
 def test_terminal_finalize_locks_boundary_and_identical_retry_is_idempotent() -> None:
     item=outcome()
-    first=Connection([("boundary",),("RUN-1",)])
+    encoded=boundary().model_dump(mode="json")
+    first=Connection([(encoded,),("SINOPAC","A",4,3,0,True),(encoded,),("RUN-1",),(1,)])
     PostgresReconciliationRunRepository(first).finalize(item)
-    assert "FOR UPDATE" in first.statements[0][0]
-    retry=Connection([("boundary",),None,(item.model_dump(mode="json"),)])
+    assert "FOR UPDATE" not in first.statements[0][0]
+    assert "account_recovery_controls" in first.statements[1][0]
+    assert "FOR UPDATE" in first.statements[2][0]
+    retry=Connection([(encoded,),None,(encoded,),None,(item.model_dump(mode="json"),)])
     PostgresReconciliationRunRepository(retry).finalize(item)
     assert retry.commits == retry.rollbacks == 0
 
@@ -85,7 +89,8 @@ def test_terminal_finalize_locks_boundary_and_identical_retry_is_idempotent() ->
 def test_conflicting_terminal_retry_fails_closed() -> None:
     different=outcome(evidence=("different",))
     existing=outcome().model_dump(mode="json")
-    connection=Connection([("boundary",),None,(existing,)])
+    encoded=boundary().model_dump(mode="json")
+    connection=Connection([(encoded,),None,(encoded,),None,(existing,)])
     with pytest.raises(ReconciliationCaseError,match="conflict"):
         PostgresReconciliationRunRepository(connection).finalize(different)
 
@@ -93,3 +98,38 @@ def test_conflicting_terminal_retry_fails_closed() -> None:
 def test_run_audit_has_no_account_head_or_readiness_authority() -> None:
     for name in ("advance_head","ready","submit","repair"):
         assert not hasattr(PostgresReconciliationRunRepository,name)
+
+
+def test_d1b_boundary_duplicate_does_not_advance_readiness() -> None:
+    item=boundary(); encoded=item.model_dump(mode="json")
+    connection=Connection([("SINOPAC","A",4,3,5,True),None,(encoded,)])
+    PostgresReconciliationRunRepository(connection).establish(item)
+    assert not any("readiness_revision=readiness_revision+1" in sql for sql,_ in connection.statements)
+
+
+def test_d1b_finalize_rejects_boundary_change_before_outcome_insert() -> None:
+    original=boundary(); changed=original.model_copy(update={"account":BrokerAccount(broker="SINOPAC",account_ref="B")})
+    connection=Connection([(original.model_dump(mode="json"),),("SINOPAC","A",4,3,0,True),(changed.model_dump(mode="json"),)])
+    with pytest.raises(ReconciliationCaseError,match="boundary"):
+        PostgresReconciliationRunRepository(connection).finalize(outcome())
+    assert not any("reconciliation_run_outcomes" in sql for sql,_ in connection.statements)
+
+
+def test_d1b_boundary_conflict_and_inactive_control_never_advance() -> None:
+    item=boundary(); different=item.model_copy(update={"recovery_cut_fingerprint":"OTHER"})
+    conflict=Connection([("SINOPAC","A",4,3,5,True),None,(different.model_dump(mode="json"),)])
+    with pytest.raises(ReconciliationCaseError,match="identity conflict"):
+        PostgresReconciliationRunRepository(conflict).establish(item)
+    assert not any("readiness_revision=readiness_revision+1" in sql for sql,_ in conflict.statements)
+    inactive=Connection([None,("RUN-1",)])
+    PostgresReconciliationRunRepository(inactive).establish(item)
+    assert not any("readiness_revision=readiness_revision+1" in sql for sql,_ in inactive.statements)
+
+
+def test_d1b_finalize_missing_boundary_fails_before_fence_or_outcome() -> None:
+    connection=Connection([None])
+    with pytest.raises(ReconciliationCaseError,match="boundary is missing"):
+        PostgresReconciliationRunRepository(connection).finalize(outcome())
+    assert len(connection.statements) == 1
+    assert "FOR UPDATE" not in connection.statements[0][0]
+    assert not any("account_recovery_controls" in sql or "reconciliation_run_outcomes" in sql for sql,_ in connection.statements)

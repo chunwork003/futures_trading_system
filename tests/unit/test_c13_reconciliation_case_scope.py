@@ -76,11 +76,51 @@ def test_version_identity_matches_embedded_case() -> None:
 
 
 def test_postgres_append_rejects_cross_account_scope_drift_without_commit() -> None:
-    connection=_Connection([("SINOPAC","B")])
+    connection=_Connection([("SINOPAC","A",4,3,0,True),("SINOPAC","B",None)])
     version=ReconciliationCaseVersion(case_id="CASE-1",version=2,recorded_at=NOW,reconciliation_case=_case())
     with pytest.raises(ReconciliationCaseError,match="scope"):
         PostgresReconciliationCaseRepository(connection).append(version)
     assert connection.commits == connection.rollbacks == 0
+
+
+def test_d1b_case_append_locks_fence_before_material_and_advances_new_blocker() -> None:
+    connection=_Connection([("SINOPAC","A",4,3,0,True),None,(1,)])
+    version=ReconciliationCaseVersion(case_id="CASE-1",version=1,recorded_at=NOW,reconciliation_case=_case())
+    PostgresReconciliationCaseRepository(connection).append(version)
+    sqls=[sql for sql,_ in connection.statements]
+    assert "account_recovery_controls" in sqls[0] and "FOR UPDATE" in sqls[0]
+    assert "reconciliation_case_history" in sqls[1] and "FOR UPDATE" in sqls[1]
+    assert sqls[2].startswith("INSERT INTO trading.reconciliation_case_history")
+    assert "readiness_revision=readiness_revision+1" in sqls[3]
+    assert not any("ingress_version" in sql for sql in sqls)
+    assert connection.commits == connection.rollbacks == 0
+
+
+def test_d1b_case_audit_only_version_does_not_advance_readiness() -> None:
+    original=ReconciliationCaseVersion(case_id="CASE-1",version=1,recorded_at=NOW,reconciliation_case=_case(),actor_ref="A")
+    audit_only=original.model_copy(update={"version":2,"actor_ref":"B","evidence":("audit",)})
+    connection=_Connection([("SINOPAC","A",4,3,7,True),("SINOPAC","A",original.model_dump(mode="json"))])
+    PostgresReconciliationCaseRepository(connection).append(audit_only)
+    assert not any("readiness_revision=readiness_revision+1" in sql for sql,_ in connection.statements)
+
+
+def test_d1b_case_resolution_advances_readiness_once() -> None:
+    original=ReconciliationCaseVersion(case_id="CASE-1",version=1,recorded_at=NOW,reconciliation_case=_case())
+    resolved=ReconciliationCaseVersion(case_id="CASE-1",version=2,recorded_at=NOW,reconciliation_case=resolve_reconciliation_case(_case(),resolution_note="reviewed"))
+    connection=_Connection([("SINOPAC","A",4,3,2,True),("SINOPAC","A",original.model_dump(mode="json")),(3,)])
+    PostgresReconciliationCaseRepository(connection).append(resolved)
+    assert sum("readiness_revision=readiness_revision+1" in sql for sql,_ in connection.statements) == 1
+
+
+def test_d1b_case_material_transition_advances_but_inactive_control_does_not() -> None:
+    original=ReconciliationCaseVersion(case_id="CASE-1",version=1,recorded_at=NOW,reconciliation_case=_case())
+    changed=original.model_copy(update={"version":2,"reconciliation_case":_case().model_copy(update={"policy":ReconciliationPolicy.MANUAL_REVIEW})})
+    active=_Connection([("SINOPAC","A",4,3,8,True),("SINOPAC","A",original.model_dump(mode="json")),(9,)])
+    PostgresReconciliationCaseRepository(active).append(changed)
+    assert sum("readiness_revision=readiness_revision+1" in sql for sql,_ in active.statements) == 1
+    inactive=_Connection([None,("SINOPAC","A",original.model_dump(mode="json"))])
+    PostgresReconciliationCaseRepository(inactive).append(changed)
+    assert not any("readiness_revision=readiness_revision+1" in sql for sql,_ in inactive.statements)
 
 
 def test_unresolved_query_is_exact_account_scoped_and_legacy_ambiguity_fails() -> None:
