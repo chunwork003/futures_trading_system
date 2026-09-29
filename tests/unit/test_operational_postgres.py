@@ -617,6 +617,28 @@ def test_postgres_recovery_loader_establishes_read_only_repeatable_snapshot() ->
     assert ".commit(" not in resolver and ".rollback(" not in resolver
 
 
+def test_d2_report_witness_is_scoped_to_selected_recovery_generation() -> None:
+    from persistence.postgres import recovery as postgres_recovery
+    inspect=__import__("inspect")
+    generation_helper=inspect.getsource(postgres_recovery._read_generation_report_witness)
+    legacy_helper=inspect.getsource(postgres_recovery._read_report_witness)
+    resolver=inspect.getsource(postgres_recovery.PostgresTrustedReadinessEvidenceResolver.resolve)
+    assert "DISTINCT ON (ingress_id,generation)" in generation_helper
+    assert "application_sequence DESC" in generation_helper
+    assert "l.ingress_id=i.ingress_id AND l.generation=i.generation" in generation_helper
+    assert "i.broker=%s AND i.account_ref=%s AND i.generation=%s" in generation_helper
+    assert "(account.broker,account.account_ref,recovery_generation)" in generation_helper
+    assert "i.generation=%s" not in legacy_helper
+    assert "_read_generation_report_witness(cursor,account,generation)" in resolver
+    assert "report_witness,_,_=_read_report_witness(cursor,account)" not in resolver
+    forbidden_sql=("SET TRANSACTION","FOR UPDATE","UPDATE ","INSERT ","DELETE ")
+    assert all(token not in generation_helper.upper() for token in forbidden_sql)
+    assert all(token not in resolver.upper() for token in forbidden_sql)
+    assert ".commit(" not in resolver and ".rollback(" not in resolver
+    for name in ("evaluate","finalize","handoff","activate"):
+        assert f"def {name}" not in resolver
+
+
 def test_local_recovery_migration_has_formal_run_boundary_and_atomic_terminal_audit() -> None:
     sql=Path("persistence/postgres/migrations/0008_local_recovery_reconciliation.sql").read_text(encoding="utf-8")
     assert "CREATE TABLE trading.reconciliation_runs" in sql

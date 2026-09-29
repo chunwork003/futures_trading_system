@@ -39,6 +39,21 @@ def _read_report_witness(cursor: Any,account: BrokerAccount) -> tuple[tuple[str,
     return tuple(_canonical_anchor(tuple(row)) for row in rows),len(rows),sum(int(row[6]) for row in rows)
 
 
+def _read_generation_report_witness(cursor: Any,account: BrokerAccount,recovery_generation: int) -> tuple[tuple[str,...],int,int]:
+    """讀取選定 recovery generation 的 canonical report witness；不以歷史 generation 污染同一 recovery world。"""
+    cursor.execute(
+        "WITH latest AS (SELECT DISTINCT ON (ingress_id,generation) ingress_id,generation,application_sequence,status FROM trading.broker_report_applications ORDER BY ingress_id,generation,application_sequence DESC), "
+        "totals AS (SELECT ingress_id,generation,COUNT(*) AS application_count FROM trading.broker_report_applications GROUP BY ingress_id,generation) "
+        "SELECT i.ingress_id,i.generation,i.payload_fingerprint,i.recovery_active_at_capture,l.application_sequence,l.status,COALESCE(t.application_count,0) "
+        "FROM trading.broker_report_inbox i LEFT JOIN latest l ON l.ingress_id=i.ingress_id AND l.generation=i.generation "
+        "LEFT JOIN totals t ON t.ingress_id=i.ingress_id AND t.generation=i.generation "
+        "WHERE i.broker=%s AND i.account_ref=%s AND i.generation=%s ORDER BY i.ingress_id",
+        (account.broker,account.account_ref,recovery_generation),
+    )
+    rows=tuple(cursor.fetchall())
+    return tuple(_canonical_anchor(tuple(row)) for row in rows),len(rows),sum(int(row[6]) for row in rows)
+
+
 def _read_order_witness(cursor: Any,account: BrokerAccount) -> tuple[tuple[str,...],tuple[str,...]]:
     # BrokerActionHead 是既有的 durable BrokerAccount→Order scope authority；禁止信任 projection JSON 或 global scan。
     cursor.execute(
@@ -223,7 +238,7 @@ class PostgresTrustedReadinessEvidenceResolver:
             cursor.execute("SELECT jsonb_build_object('gap_id',gap_id,'broker',broker,'account_ref',account_ref,'detected_at',detected_at,'evidence',evidence) FROM trading.broker_sequence_gaps WHERE broker=%s AND account_ref=%s ORDER BY gap_id",(account.broker,account.account_ref)); gaps=tuple(SequenceGap.model_validate(row[0]) for row in cursor.fetchall())
             cursor.execute("SELECT report_json FROM trading.broker_report_inbox WHERE broker=%s AND account_ref=%s AND generation=%s ORDER BY ingress_id",(account.broker,account.account_ref,generation)); reports=tuple(BrokerReportInboxEntry.model_validate(row[0]) for row in cursor.fetchall())
         with self._connection.cursor() as cursor:
-            report_witness,_,_=_read_report_witness(cursor,account)
+            report_witness,_,_=_read_generation_report_witness(cursor,account,generation)
         core=self._trusted.resolve(account=account,recovery_generation=generation,recovery_cut_fingerprint=cut.witness_fingerprint,discovery_run_id=discovery_run_id,reconstruction_receipt_ids=reconstruction_receipt_ids,expected_snapshot_id=cut.checkpoint.expected_snapshot_id,broker_observation_id=broker_observation_id,required_capabilities=required_capabilities,required_verification_mode=required_verification_mode)
         blocker=TrustedReconciliationBlockerResolver(PostgresReconciliationCaseRepository(self._connection)).resolve(account=account)
         run_repository=PostgresReconciliationRunRepository(self._connection)
