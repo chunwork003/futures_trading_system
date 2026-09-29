@@ -27,7 +27,7 @@ latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
 
 current_wave = W4
 current_runtime_candidate = 26c1d7028c1c3451e46da3fe1f346d966feb42b5
-reviewer_state = W4R_D2_HOLD_RF01_READY
+reviewer_state = W4R_D2_HOLD_RF02_READY
 w4_weight = 18_NOT_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
@@ -38,9 +38,9 @@ C15 = RESCOPE_REQUIRED
 W4R_A = ACCEPTED_FROZEN_READ_ONLY
 W4R_B = ACCEPTED_FROZEN_READ_ONLY
 W4R_C = ACCEPTED_FROZEN_READ_ONLY
-W4R_D = D1A_D1B_ACCEPTED_D2_HOLD_RF01_READY
+W4R_D = D1A_D1B_ACCEPTED_D2_HOLD_RF02_READY
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_D2_RF01_ONLY
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_D2_RF02_ONLY
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -102,15 +102,17 @@ Pointers：
 - W4R-D2 authorization amendment 01：`docs/work/GAP08_W4R_D2_AUTHORIZATION_AMENDMENT_01.md`
 - W4R-D2 independent review RF01：`docs/work/GAP08_W4R_D2_REVIEW_RF01.md`
 - W4R-D2 RF01 authorization：`docs/work/GAP08_W4R_D2_AUTHORIZATION_AMENDMENT_02.md`
+- W4R-D2 independent review RF02：`docs/work/GAP08_W4R_D2_REVIEW_RF02.md`
+- W4R-D2 RF02 authorization：`docs/work/GAP08_W4R_D2_AUTHORIZATION_AMENDMENT_03.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action：
 
-execute exactly one bounded W4R-D2 RF01 correction for transaction composability and continuity-gap same-world binding；after one correction commit/push STOP for independent reviewer。
+execute exactly one bounded W4R-D2 RF02 correction for generation-scoped broker-report witness；after one correction commit/push STOP for independent reviewer。
 
-W4R-A/B/C and W4R-D1A/D1B are accepted/frozen。W4R-D2 is HOLD only for RF01 transaction-composability and continuity-gap binding corrections。Executor coding is authorized for W4R-D2 RF01 only；W4R-D3 remains NOT_AUTHORIZED。
+W4R-A/B/C and W4R-D1A/D1B are accepted/frozen。W4R-D2 RF01 material is retained；D2 remains HOLD only for RF02 generation-scoped broker-report witness correction。Executor coding is authorized for W4R-D2 RF02 only；W4R-D3 remains NOT_AUTHORIZED。
 
 Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 
