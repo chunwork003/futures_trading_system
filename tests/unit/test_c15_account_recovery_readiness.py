@@ -18,6 +18,8 @@ from persistence.recovery import (
     ReconstructionReadinessEvidence,
     TrustedRecoveryEvidenceError,
     TrustedRecoveryEvidenceResolver,
+    TrustedReadinessEvidenceBundle,
+    TrustedReconciliationBlockerEvidence,
     TrustedReconciliationBlockerResolver,
     RecoveryRootIntegrityError,
     RecoveryOrderRoot,
@@ -29,7 +31,7 @@ from persistence.recovery import (
     RecoveryClosureResolver,
     evaluate_account_readiness,
 )
-from persistence.broker_recovery import ExecutionContinuityEpoch
+from persistence.broker_recovery import ContinuityTransitionReceipt, ExecutionContinuityEpoch, ExecutionContinuityHead, SequenceGap
 from persistence.reconciliation import ReconciliationCaseVersion
 from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt, BrokerReportInboxEntry
 from persistence.broker_action import BrokerActionHead, BrokerActionKind
@@ -564,3 +566,40 @@ def test_c2b_rf01_event_causation_chain_fails_closed(events,order) -> None:
     resolver,_=_closure_resolver(order=order,events=events)
     with pytest.raises(RecoveryClosureIntegrityError,match="causation"):
         resolver.resolve(root_set=_closure_root_set())
+
+
+def _trusted_bundle(**updates):
+    cut=restore().cut; assert cut is not None
+    trusted,_,_=_trusted_resolver_fixture()
+    core=trusted.resolve(account=ACCOUNT,recovery_generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),expected_snapshot_id="SNAP-1",broker_observation_id="OBS-1",required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),required_verification_mode=BrokerVerificationMode.DOCUMENTATION).model_copy(update={"recovery_cut_fingerprint":cut.witness_fingerprint,"expected_snapshot_id":cut.checkpoint.expected_snapshot_id})
+    root=RecoveryRootSetEvidence(account=ACCOUNT,recovery_generation=4,roots=(),order_ids=(),ambiguous_report_ingress_ids=())
+    closure=RecoveryClosureEvidence(account=ACCOUNT,recovery_generation=4,root_set_fingerprint=root.root_set_fingerprint,roots=(),order_ids=(),ambiguous_report_ingress_ids=(),closure_fingerprint="CLOSURE")
+    head=ExecutionContinuityHead(broker="SINOPAC",account_ref="A",generation=4,current_epoch_id="EPOCH-1",transition_receipt_id="TRANS-1",head_revision=1,readiness_revision=1,recorded_at=NOW)
+    epoch=ExecutionContinuityEpoch(epoch_id="EPOCH-1",broker="SINOPAC",account_ref="A",generation=4,trusted_current=True,historical_degradation=False,anchored_at=NOW,evidence=("exact",))
+    transition=ContinuityTransitionReceipt(transition_id="TRANS-1",broker="SINOPAC",account_ref="A",generation=4,previous_epoch_id=None,current_epoch_id="EPOCH-1",previous_head_revision=0,head_revision=1,previous_readiness_revision=0,readiness_revision=1,recovery_cut_fingerprint=cut.witness_fingerprint,anchor_fingerprint="ANCHOR",recovery_cut_revision=3,ingress_version=9,account_revision=3,expected_snapshot_id="S3",authority_commit_id="AC3",gap_set_fingerprint="GAPS",producer_id="RECOVERY",contract_version="V1",evidence_id="EV-1",recorded_at=NOW,evidence=("exact",))
+    blocker=TrustedReconciliationBlockerEvidence(account=ACCOUNT,blocking_state=None,unresolved_case_ids=(),semantic_fingerprint="BLOCKERS")
+    values=dict(account=ACCOUNT,recovery_generation=4,recovery_cut_revision=3,ingress_version=9,readiness_revision=2,recovery_cut_fingerprint=cut.witness_fingerprint,head=cut.head,checkpoint=cut.checkpoint,receipt=cut.receipt,continuity_head=head,continuity_epoch=epoch,continuity_transition=transition,sequence_gaps=(),broker_report_witness=cut.broker_report_witness,broker_action_heads=(),reconciliation_blocker=blocker,trusted_core=core,formal_run_boundary=run_boundary(cut=cut),formal_run_outcome=run_outcome(),root_set=root,closure=closure)
+    values.update(updates); return TrustedReadinessEvidenceBundle(**values)
+
+
+def test_d2_bundle_is_immutable_canonical_and_has_no_authority_surface() -> None:
+    item=_trusted_bundle(bundle_fingerprint="FORGED",gap_semantic_fingerprint="FORGED")
+    assert item.bundle_fingerprint != "FORGED" and item.gap_semantic_fingerprint != "FORGED"
+    with pytest.raises(Exception): item.ingress_version=10
+    for name in ("ready","finalize","handoff","activate","submit","cancel"):
+        assert not hasattr(item,name)
+
+
+@pytest.mark.parametrize("updates",[
+    {"recovery_generation":5},
+    {"recovery_cut_fingerprint":"OTHER"},
+    {"formal_run_outcome":run_outcome().model_copy(update={"run_id":"OTHER"})},
+    {"reconciliation_blocker":TrustedReconciliationBlockerEvidence(account=BrokerAccount(broker="SINOPAC",account_ref="B"),blocking_state=None,unresolved_case_ids=(),semantic_fingerprint="X")},
+])
+def test_d2_bundle_rejects_cross_world_evidence(updates) -> None:
+    with pytest.raises(TrustedRecoveryEvidenceError): _trusted_bundle(**updates)
+
+
+def test_d2_gap_material_changes_canonical_bundle_fingerprint() -> None:
+    gap=SequenceGap(gap_id="GAP-1",broker="SINOPAC",account_ref="A",detected_at=NOW,evidence="missing sequence")
+    assert _trusted_bundle(sequence_gaps=(gap,)).bundle_fingerprint != _trusted_bundle().bundle_fingerprint

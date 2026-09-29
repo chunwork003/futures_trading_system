@@ -22,7 +22,7 @@ from adapters.capabilities import (
     BrokerVerificationMode, require_broker_capability,
 )
 from persistence.account import BrokerPositionObservationRepository, ExpectedPositionSnapshotRepository
-from persistence.broker_action import BrokerActionRepository
+from persistence.broker_action import BrokerActionHead, BrokerActionRepository
 
 from persistence.account_authority import (
     AccountAuthorityCommitReceipt,
@@ -40,7 +40,11 @@ from persistence.reconciliation import (
     blocking_case_state,
     reconciliation_blocker_semantic_fingerprint,
 )
-from persistence.broker_recovery import BrokerDiscoveryReceipt, BrokerReconstructionReceipt, BrokerRecoveryRepository, BrokerReportInboxEntry, ExecutionContinuityEpoch
+from persistence.broker_recovery import (
+    BrokerDiscoveryReceipt, BrokerReconstructionReceipt, BrokerRecoveryRepository,
+    BrokerReportInboxEntry, ContinuityTransitionReceipt,
+    ExecutionContinuityEpoch, ExecutionContinuityHead, SequenceGap,
+)
 from persistence.contracts import normalize_stable_id
 from persistence.events import EventLedgerRepository
 from persistence.execution import FillRepository, OrderRepository
@@ -449,6 +453,69 @@ class TrustedRecoveryEvidenceResolver:
             raise TrustedRecoveryEvidenceError(str(exc)) from exc
         source_ids=tuple(sorted({source for item in evidence for source in item.source_ids}))
         return TrustedRecoveryEvidenceCore(account=account,recovery_generation=recovery_generation,recovery_cut_fingerprint=normalize_stable_id(recovery_cut_fingerprint),discovery_receipt_id=discovery.discovery_run_id,discovery_result_fingerprint=discovery.result_fingerprint,discovery_receipt_fingerprint=discovery.full_receipt_fingerprint,reconstruction_receipt_ids=tuple(item.reconstruction_receipt_id for item in reconstructions),reconstruction_output_fingerprints=tuple(item.output_fingerprint for item in reconstructions),reconstruction_receipt_fingerprints=tuple(item.full_receipt_fingerprint for item in reconstructions),expected_snapshot_id=expected.snapshot_id,broker_observation_id=actual.observation_id,capability_registry_id=registry.registry_id,capability_contract_version=registry.contract_version,capability_matrix_fingerprint=registry.matrix_fingerprint,required_verification_mode=required_verification_mode,capability_evidence=evidence,capability_source_ids=source_ids)
+
+
+class TrustedReadinessEvidenceBundle(BaseModel):
+    """同一 BrokerAccount recovery world 的 immutable trusted evidence；不授予 READY 或 handoff。"""
+    model_config=ConfigDict(extra="forbid",frozen=True)
+    account: BrokerAccount
+    recovery_generation: int = Field(ge=1)
+    recovery_cut_revision: int = Field(ge=1)
+    ingress_version: int = Field(ge=0)
+    readiness_revision: int = Field(ge=0)
+    recovery_cut_fingerprint: str
+    head: AccountStateHead
+    checkpoint: AccountRecoveryCheckpoint
+    receipt: AccountAuthorityCommitReceipt
+    continuity_head: ExecutionContinuityHead
+    continuity_epoch: ExecutionContinuityEpoch
+    continuity_transition: ContinuityTransitionReceipt
+    sequence_gaps: tuple[SequenceGap,...]
+    gap_semantic_fingerprint: str = ""
+    broker_report_witness: tuple[str,...]
+    broker_action_heads: tuple[BrokerActionHead,...]
+    reconciliation_blocker: TrustedReconciliationBlockerEvidence
+    trusted_core: TrustedRecoveryEvidenceCore
+    formal_run_boundary: ReconciliationRunBoundary
+    formal_run_outcome: ReconciliationRunOutcome
+    root_set: RecoveryRootSetEvidence
+    closure: RecoveryClosureEvidence
+    bundle_fingerprint: str = ""
+
+    @model_validator(mode="after")
+    def _same_world(self) -> "TrustedReadinessEvidenceBundle":
+        account=self.account; scope=(account.broker,account.account_ref)
+        try: validate_authority_closure(head=self.head,checkpoint=self.checkpoint,receipt=self.receipt)
+        except Exception as exc: raise TrustedRecoveryEvidenceError("bundle account authority closure mismatch") from exc
+        if scope!=(self.head.broker,self.head.account_ref) or self.recovery_cut_revision!=self.head.current_revision:
+            raise TrustedRecoveryEvidenceError("bundle account authority world mismatch")
+        if self.checkpoint.expected_snapshot_id!=self.trusted_core.expected_snapshot_id or self.receipt.authority_commit_id!=self.checkpoint.authority_commit_id:
+            raise TrustedRecoveryEvidenceError("bundle expected snapshot or receipt mismatch")
+        if self.trusted_core.account!=account or self.trusted_core.recovery_generation!=self.recovery_generation or self.trusted_core.recovery_cut_fingerprint!=self.recovery_cut_fingerprint:
+            raise TrustedRecoveryEvidenceError("bundle trusted core world mismatch")
+        if self.reconciliation_blocker.account!=account:
+            raise TrustedRecoveryEvidenceError("bundle reconciliation blocker account mismatch")
+        if self.root_set.account!=account or self.root_set.recovery_generation!=self.recovery_generation:
+            raise TrustedRecoveryEvidenceError("bundle root set world mismatch")
+        if self.closure.account!=account or self.closure.recovery_generation!=self.recovery_generation or self.closure.root_set_fingerprint!=self.root_set.root_set_fingerprint:
+            raise TrustedRecoveryEvidenceError("bundle root closure mismatch")
+        boundary=self.formal_run_boundary
+        if (boundary.account!=account or boundary.account_revision!=self.head.current_revision or boundary.expected_snapshot_id!=self.checkpoint.expected_snapshot_id or boundary.authority_commit_id!=self.checkpoint.authority_commit_id or boundary.recovery_generation!=self.recovery_generation or boundary.recovery_ingress_version!=self.ingress_version or boundary.recovery_cut_fingerprint!=self.recovery_cut_fingerprint or self.formal_run_outcome.run_id!=boundary.run_id):
+            raise TrustedRecoveryEvidenceError("bundle formal run world mismatch")
+        transition=self.continuity_transition
+        if ((self.continuity_head.broker,self.continuity_head.account_ref,self.continuity_head.generation)!=(*scope,self.recovery_generation) or (self.continuity_epoch.broker,self.continuity_epoch.account_ref,self.continuity_epoch.generation)!=(*scope,self.recovery_generation) or self.continuity_epoch.epoch_id!=self.continuity_head.current_epoch_id or transition.transition_id!=self.continuity_head.transition_receipt_id or transition.current_epoch_id!=self.continuity_head.current_epoch_id or transition.head_revision!=self.continuity_head.head_revision or transition.readiness_revision!=self.continuity_head.readiness_revision or (transition.broker,transition.account_ref,transition.generation)!=(*scope,self.recovery_generation) or transition.recovery_cut_fingerprint!=self.recovery_cut_fingerprint or transition.recovery_cut_revision!=self.recovery_cut_revision or transition.ingress_version!=self.ingress_version or transition.account_revision!=self.head.current_revision or transition.expected_snapshot_id!=self.checkpoint.expected_snapshot_id or transition.authority_commit_id!=self.checkpoint.authority_commit_id):
+            raise TrustedRecoveryEvidenceError("bundle continuity linkage mismatch")
+        gaps=tuple(sorted(self.sequence_gaps,key=lambda item:item.gap_id))
+        if len({item.gap_id for item in gaps})!=len(gaps) or any((item.broker,item.account_ref)!=scope for item in gaps):
+            raise TrustedRecoveryEvidenceError("bundle sequence gap scope or identity mismatch")
+        actions=tuple(sorted(self.broker_action_heads,key=lambda item:(item.order_id,item.action.value)))
+        if any((item.broker,item.account_ref)!=scope for item in actions): raise TrustedRecoveryEvidenceError("bundle broker action account mismatch")
+        gap_fingerprint=_canonical_fingerprint([item.model_dump(mode="json") for item in gaps])
+        object.__setattr__(self,"sequence_gaps",gaps); object.__setattr__(self,"broker_action_heads",actions)
+        object.__setattr__(self,"gap_semantic_fingerprint",gap_fingerprint)
+        material=self.model_dump(mode="json",exclude={"bundle_fingerprint"})
+        object.__setattr__(self,"bundle_fingerprint",_canonical_fingerprint(material))
+        return self
 
 
 class ExecutionRestoreStatus(str, Enum):

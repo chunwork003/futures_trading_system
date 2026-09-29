@@ -6,7 +6,17 @@ from typing import Any
 from pydantic import ValidationError
 
 from persistence.account_authority import AccountAuthorityCommitReceipt, AccountRecoveryCheckpoint, AccountStateHead
-from persistence.recovery import AccountReadinessEvaluation, ExecutionRestoreResult, ExecutionRestoreStatus, RecoveryCut
+from persistence.broker_action import BrokerActionHead
+from persistence.broker_recovery import BrokerReportInboxEntry, ContinuityTransitionReceipt, ExecutionContinuityEpoch, ExecutionContinuityHead, SequenceGap
+from persistence.postgres.broker_action import PostgresBrokerActionRepository
+from persistence.postgres.reconciliation import PostgresReconciliationCaseRepository, PostgresReconciliationRunRepository
+from persistence.recovery import (
+    AccountReadinessEvaluation, ExecutionRestoreResult, ExecutionRestoreStatus,
+    RecoveryClosureResolver, RecoveryCut, RecoveryRootResolver,
+    TrustedReadinessEvidenceBundle, TrustedReconciliationBlockerResolver,
+    TrustedRecoveryEvidenceError, TrustedRecoveryEvidenceResolver,
+)
+from adapters.capabilities import BrokerCapability, BrokerVerificationMode
 from trading.account import BrokerAccount
 
 
@@ -176,4 +186,47 @@ class PostgresAccountReadinessGate:
             raise StaleAccountReadinessError("account recovery cut/currentness changed; reevaluation required")
 
 
-__all__=["PostgresAccountReadinessGate","PostgresExecutionStateLoader","StaleAccountReadinessError"]
+class PostgresTrustedReadinessEvidenceResolver:
+    """重讀 exact durable owners 並組成同一 recovery world；只讀、不 commit、不授予 READY。"""
+
+    def __init__(self, connection: Any, *, trusted_core_resolver: TrustedRecoveryEvidenceResolver, root_resolver: RecoveryRootResolver, closure_resolver: RecoveryClosureResolver) -> None:
+        self._connection=connection
+        self._trusted=trusted_core_resolver
+        self._roots=root_resolver
+        self._closure=closure_resolver
+
+    @staticmethod
+    def _decode(model, row: Any, *, missing: str):
+        if row is None: raise TrustedRecoveryEvidenceError(missing)
+        try: return model.model_validate_json(row[0]) if isinstance(row[0],str) else model.model_validate(row[0])
+        except Exception as exc: raise TrustedRecoveryEvidenceError(f"{missing}: canonical decode failed") from exc
+
+    def resolve(self, *, account: BrokerAccount, discovery_run_id: str, reconstruction_receipt_ids: tuple[str,...], broker_observation_id: str, formal_run_id: str, required_capabilities: tuple[BrokerCapability,...], required_verification_mode: BrokerVerificationMode) -> TrustedReadinessEvidenceBundle:
+        restore=PostgresExecutionStateLoader(self._connection).load(account)
+        if restore.status is not ExecutionRestoreStatus.VALID or restore.cut is None:
+            raise TrustedRecoveryEvidenceError("coherent account recovery cut is missing")
+        cut=restore.cut
+        with self._connection.cursor() as cursor:
+            cursor.execute("SELECT generation,recovery_cut_revision,ingress_version,readiness_revision,active FROM trading.account_recovery_controls WHERE broker=%s AND account_ref=%s",(account.broker,account.account_ref)); control=cursor.fetchone()
+            if control is None or not control[4]: raise TrustedRecoveryEvidenceError("active recovery control is missing")
+            generation,cut_revision,ingress_version,readiness_revision,_=control
+            if (generation,cut_revision,ingress_version)!=(cut.recovery_generation,cut.head.current_revision,cut.recovery_ingress_version): raise TrustedRecoveryEvidenceError("active recovery control world mismatch")
+            cursor.execute("SELECT jsonb_build_object('broker',broker,'account_ref',account_ref,'generation',generation,'current_epoch_id',current_epoch_id,'transition_receipt_id',transition_receipt_id,'head_revision',head_revision,'readiness_revision',readiness_revision,'recorded_at',recorded_at) FROM trading.execution_continuity_heads WHERE broker=%s AND account_ref=%s",(account.broker,account.account_ref)); continuity_head=self._decode(ExecutionContinuityHead,cursor.fetchone(),missing="current continuity head is missing")
+            cursor.execute("SELECT jsonb_build_object('epoch_id',epoch_id,'broker',broker,'account_ref',account_ref,'generation',generation,'trusted_current',trusted_current,'historical_degradation',historical_degradation,'anchored_at',anchored_at,'evidence',evidence_json) FROM trading.execution_continuity_epochs WHERE epoch_id=%s",(continuity_head.current_epoch_id,)); epoch=self._decode(ExecutionContinuityEpoch,cursor.fetchone(),missing="head-selected continuity epoch is missing")
+            cursor.execute("SELECT receipt_json FROM trading.continuity_transition_receipts WHERE transition_id=%s",(continuity_head.transition_receipt_id,)); transition=self._decode(ContinuityTransitionReceipt,cursor.fetchone(),missing="head-selected continuity transition is missing")
+            cursor.execute("SELECT jsonb_build_object('gap_id',gap_id,'broker',broker,'account_ref',account_ref,'detected_at',detected_at,'evidence',evidence) FROM trading.broker_sequence_gaps WHERE broker=%s AND account_ref=%s ORDER BY gap_id",(account.broker,account.account_ref)); gaps=tuple(SequenceGap.model_validate(row[0]) for row in cursor.fetchall())
+            cursor.execute("SELECT report_json FROM trading.broker_report_inbox WHERE broker=%s AND account_ref=%s AND generation=%s ORDER BY ingress_id",(account.broker,account.account_ref,generation)); reports=tuple(BrokerReportInboxEntry.model_validate(row[0]) for row in cursor.fetchall())
+        with self._connection.cursor() as cursor:
+            report_witness,_,_=_read_report_witness(cursor,account)
+        core=self._trusted.resolve(account=account,recovery_generation=generation,recovery_cut_fingerprint=cut.witness_fingerprint,discovery_run_id=discovery_run_id,reconstruction_receipt_ids=reconstruction_receipt_ids,expected_snapshot_id=cut.checkpoint.expected_snapshot_id,broker_observation_id=broker_observation_id,required_capabilities=required_capabilities,required_verification_mode=required_verification_mode)
+        blocker=TrustedReconciliationBlockerResolver(PostgresReconciliationCaseRepository(self._connection)).resolve(account=account)
+        run_repository=PostgresReconciliationRunRepository(self._connection)
+        boundary=run_repository.get_boundary(formal_run_id); outcome=run_repository.get_outcome(formal_run_id)
+        if boundary is None or outcome is None: raise TrustedRecoveryEvidenceError("exact formal reconciliation run is incomplete")
+        root_set=self._roots.resolve(trusted_core=core,material_report_entries=reports)
+        closure=self._closure.resolve(root_set=root_set)
+        actions=PostgresBrokerActionRepository(self._connection).list_heads(account)
+        return TrustedReadinessEvidenceBundle(account=account,recovery_generation=generation,recovery_cut_revision=cut_revision,ingress_version=ingress_version,readiness_revision=readiness_revision,recovery_cut_fingerprint=cut.witness_fingerprint,head=cut.head,checkpoint=cut.checkpoint,receipt=cut.receipt,continuity_head=continuity_head,continuity_epoch=epoch,continuity_transition=transition,sequence_gaps=gaps,broker_report_witness=report_witness,broker_action_heads=actions,reconciliation_blocker=blocker,trusted_core=core,formal_run_boundary=boundary,formal_run_outcome=outcome,root_set=root_set,closure=closure)
+
+
+__all__=["PostgresAccountReadinessGate","PostgresExecutionStateLoader","PostgresTrustedReadinessEvidenceResolver","StaleAccountReadinessError"]
