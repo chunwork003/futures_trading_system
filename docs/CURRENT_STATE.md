@@ -26,8 +26,8 @@ latest_accepted_wave = W3
 latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
 
 current_wave = W4
-current_runtime_candidate = af794f5895c41925cfe007da7e1f522fcd189920
-reviewer_state = W4R_D1A_ACCEPTED_W4_HOLD_W4R_D1B_READY
+current_runtime_candidate = ef3400a0cbabc52b45cb2e4f5e69bae0711b64ba
+reviewer_state = W4R_D1B_ACCEPTED_W4_HOLD_W4R_D2_READY
 w4_weight = 18_NOT_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
@@ -38,9 +38,9 @@ C15 = RESCOPE_REQUIRED
 W4R_A = ACCEPTED_FROZEN_READ_ONLY
 W4R_B = ACCEPTED_FROZEN_READ_ONLY
 W4R_C = ACCEPTED_FROZEN_READ_ONLY
-W4R_D = D1A_ACCEPTED_D1B_READY
+W4R_D = D1A_D1B_ACCEPTED_D2_READY
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_D1B_ONLY
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_D2_ONLY
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -96,15 +96,17 @@ Pointers：
 - W4R-D1A RF01 Resume-2 authorization：`docs/work/GAP08_W4R_D1A_AUTHORIZATION_AMENDMENT_03.md`
 - W4R-D1A closure：`docs/work/GAP08_W4R_D1A_CLOSURE.md`
 - W4R-D1B authorization：`docs/work/GAP08_W4R_D1B_AUTHORIZATION.md`
+- W4R-D1B closure：`docs/work/GAP08_W4R_D1B_CLOSURE.md`
+- W4R-D2 authorization：`docs/work/GAP08_W4R_D2_AUTHORIZATION.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action：
 
-execute exactly one bounded W4R-D1B reconciliation-writer readiness-fence leaf；after one runtime commit/push STOP for independent reviewer。
+execute exactly one bounded W4R-D2 TrustedReadinessEvidenceBundle resolver leaf；after one runtime commit/push STOP for independent reviewer。
 
-W4R-A/B/C and W4R-D1A are accepted/frozen。Executor coding is authorized for W4R-D1B only；W4R-D2/D3 remain NOT_AUTHORIZED。
+W4R-A/B/C and W4R-D1A/D1B are accepted/frozen。Executor coding is authorized for W4R-D2 only；W4R-D3 remains NOT_AUTHORIZED。
 
 Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 
