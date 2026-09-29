@@ -1,18 +1,20 @@
 from __future__ import annotations
 
 import json
-from typing import Any
+from typing import Any, Callable
 
 from pydantic import ValidationError
 
 from persistence.account_authority import AccountAuthorityCommitReceipt, AccountRecoveryCheckpoint, AccountStateHead
 from persistence.broker_action import BrokerActionHead
-from persistence.broker_recovery import BrokerReportInboxEntry, ContinuityTransitionReceipt, ExecutionContinuityEpoch, ExecutionContinuityHead, SequenceGap
+from persistence.broker_recovery import AccountRecoveryControl, BrokerReportInboxEntry, ContinuityTransitionReceipt, ExecutionContinuityEpoch, ExecutionContinuityHead, RecoveryFenceConflictError, SequenceGap
 from persistence.postgres.broker_action import PostgresBrokerActionRepository
+from persistence.postgres.broker_recovery import PostgresBrokerRecoveryRepository
 from persistence.postgres.reconciliation import PostgresReconciliationCaseRepository, PostgresReconciliationRunRepository
 from persistence.recovery import (
     AccountReadinessEvaluation, ExecutionRestoreResult, ExecutionRestoreStatus,
     RecoveryClosureResolver, RecoveryCut, RecoveryRootResolver,
+    RecoveryReadinessState, TrustedReadinessEvaluation, evaluate_trusted_readiness,
     TrustedReadinessEvidenceBundle, TrustedReconciliationBlockerResolver,
     TrustedRecoveryEvidenceError, TrustedRecoveryEvidenceResolver,
 )
@@ -250,4 +252,51 @@ class PostgresTrustedReadinessEvidenceResolver:
         return TrustedReadinessEvidenceBundle(account=account,recovery_generation=generation,recovery_cut_revision=cut_revision,ingress_version=ingress_version,readiness_revision=readiness_revision,recovery_cut_fingerprint=cut.witness_fingerprint,head=cut.head,checkpoint=cut.checkpoint,receipt=cut.receipt,continuity_head=continuity_head,continuity_epoch=epoch,continuity_transition=transition,sequence_gaps=gaps,broker_report_witness=report_witness,broker_action_heads=actions,reconciliation_blocker=blocker,trusted_core=core,formal_run_boundary=boundary,formal_run_outcome=outcome,root_set=root_set,closure=closure)
 
 
-__all__=["PostgresAccountReadinessGate","PostgresExecutionStateLoader","PostgresTrustedReadinessEvidenceResolver","StaleAccountReadinessError"]
+def _lock_active_recovery_control(connection: Any,account: BrokerAccount) -> AccountRecoveryControl:
+    """鎖定單一 BrokerAccount active control；不 commit、rollback 或建立第二套 authority。"""
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT broker,account_ref,generation,recovery_cut_revision,ingress_version,readiness_revision,active,recorded_at FROM trading.account_recovery_controls WHERE broker=%s AND account_ref=%s FOR UPDATE",(account.broker,account.account_ref))
+        row=cursor.fetchone()
+    if row is None:
+        raise RecoveryFenceConflictError("active account recovery control is missing")
+    control=AccountRecoveryControl(broker=row[0],account_ref=row[1],generation=row[2],recovery_cut_revision=row[3],ingress_version=row[4],readiness_revision=row[5],active=row[6],recorded_at=row[7])
+    if not control.active:
+        raise RecoveryFenceConflictError("account recovery control is inactive")
+    return control
+
+
+class PostgresTrustedReadinessFinalizer:
+    """在 caller-owned PostgreSQL UoW 內鎖定、重讀、評估並條件式 handoff；不執行 broker I/O。"""
+    def __init__(self,*,uow_factory: Callable[[],Any],resolver_factory: Callable[[Any],PostgresTrustedReadinessEvidenceResolver],required_capabilities: tuple[BrokerCapability,...],required_verification_mode: BrokerVerificationMode,repository_factory: Callable[[Any],Any]=PostgresBrokerRecoveryRepository) -> None:
+        self._uow_factory=uow_factory; self._resolver_factory=resolver_factory
+        order={item:index for index,item in enumerate(BrokerCapability)}
+        self._required_capabilities=tuple(sorted(set(required_capabilities),key=order.__getitem__))
+        self._required_verification_mode=required_verification_mode
+        self._repository_factory=repository_factory
+
+    def finalize(self,*,account: BrokerAccount,discovery_run_id: str,reconstruction_receipt_ids: tuple[str,...],broker_observation_id: str,formal_run_id: str,recorded_at: Any) -> TrustedReadinessEvaluation:
+        with self._uow_factory() as uow:
+            connection=uow.connection
+            captured=_lock_active_recovery_control(connection,account)
+            resolver=self._resolver_factory(connection)
+            bundle=resolver.resolve(account=account,discovery_run_id=discovery_run_id,reconstruction_receipt_ids=reconstruction_receipt_ids,broker_observation_id=broker_observation_id,formal_run_id=formal_run_id,required_capabilities=self._required_capabilities,required_verification_mode=self._required_verification_mode)
+            if (bundle.recovery_generation,bundle.recovery_cut_revision,bundle.ingress_version,bundle.readiness_revision)!=(captured.generation,captured.recovery_cut_revision,captured.ingress_version,captured.readiness_revision):
+                raise RecoveryFenceConflictError("trusted readiness bundle does not match locked recovery control")
+            repository=self._repository_factory(connection)
+            discovery=repository.get_discovery_receipt(discovery_run_id=discovery_run_id,account=account)
+            if discovery is None:
+                raise TrustedRecoveryEvidenceError("exact discovery receipt is missing")
+            evaluation=evaluate_trusted_readiness(bundle=bundle,discovery_receipt=discovery,required_capabilities=self._required_capabilities,required_verification_mode=self._required_verification_mode)
+            if evaluation.state is not RecoveryReadinessState.READY:
+                uow.rollback()
+                return evaluation
+            current=_lock_active_recovery_control(connection,account)
+            if current!=captured:
+                raise RecoveryFenceConflictError("locked recovery control changed before handoff")
+            completed=captured.model_copy(update={"active":False,"recorded_at":recorded_at})
+            repository.finalize_handoff(completed,expected_generation=captured.generation,expected_ingress_version=captured.ingress_version,expected_readiness_revision=captured.readiness_revision)
+            uow.commit()
+            return evaluation
+
+
+__all__=["PostgresAccountReadinessGate","PostgresExecutionStateLoader","PostgresTrustedReadinessEvidenceResolver","PostgresTrustedReadinessFinalizer","StaleAccountReadinessError"]

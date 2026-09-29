@@ -6,7 +6,7 @@ import json
 import pytest
 
 from persistence.account_authority import AccountAuthorityCommitReceipt, AccountRecoveryCheckpoint, AccountStateHead
-from persistence.postgres.recovery import PostgresAccountReadinessGate, StaleAccountReadinessError
+from persistence.postgres.recovery import PostgresAccountReadinessGate, PostgresTrustedReadinessFinalizer, StaleAccountReadinessError
 from persistence.reconciliation import ReconciliationInputQualification, ReconciliationRunBoundary, ReconciliationRunOutcome, ReconciliationRunTechnicalOutcome
 from persistence.recovery import (
     AccountReadinessEvidence,
@@ -20,6 +20,7 @@ from persistence.recovery import (
     TrustedRecoveryEvidenceError,
     TrustedRecoveryEvidenceResolver,
     TrustedReadinessEvidenceBundle,
+    TrustedReadinessEvaluation,
     TrustedReconciliationBlockerEvidence,
     TrustedReconciliationBlockerResolver,
     RecoveryRootIntegrityError,
@@ -31,6 +32,7 @@ from persistence.recovery import (
     RecoveryClosureIntegrityError,
     RecoveryClosureResolver,
     evaluate_account_readiness,
+    evaluate_trusted_readiness,
 )
 from persistence.broker_recovery import ContinuityTransitionReceipt, ExecutionContinuityEpoch, ExecutionContinuityHead, SequenceGap
 from persistence.reconciliation import ReconciliationCaseVersion
@@ -633,3 +635,153 @@ def test_d2_caller_gap_fingerprint_cannot_bypass_transition_mismatch() -> None:
     gap=SequenceGap(gap_id="GAP-1",broker="SINOPAC",account_ref="A",detected_at=NOW,evidence="missing sequence")
     with pytest.raises(TrustedRecoveryEvidenceError,match="gap-set fingerprint"):
         _trusted_bundle(sequence_gaps=(gap,),transition_gap_fingerprint="STALE",gap_semantic_fingerprint="STALE")
+
+
+def _trusted_discovery(**updates):
+    _,receipt,_=_trusted_resolver_fixture()
+    values=receipt.model_dump(exclude={"full_receipt_fingerprint","result_fingerprint"})
+    if "account" in updates:
+        values["result"]=receipt.result.model_copy(update={"account":updates["account"]})
+    values.update(updates)
+    return BrokerDiscoveryReceipt(**values)
+
+
+def _evaluate(bundle=None,discovery=None):
+    return evaluate_trusted_readiness(
+        bundle=bundle or _trusted_bundle(),
+        discovery_receipt=discovery or _trusted_discovery(),
+        required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),
+        required_verification_mode=BrokerVerificationMode.DOCUMENTATION,
+    )
+
+
+def test_d3_fully_trusted_world_is_ready_and_evaluation_is_immutable() -> None:
+    bundle=_trusted_bundle()
+    result=_evaluate(bundle)
+    assert result.state is RecoveryReadinessState.READY
+    assert result.account == bundle.account
+    assert result.bundle_fingerprint == bundle.bundle_fingerprint
+    assert (result.recovery_generation,result.recovery_cut_revision,result.ingress_version,result.readiness_revision)==(4,3,9,2)
+    with pytest.raises(Exception): result.state=RecoveryReadinessState.HALT
+    with pytest.raises(Exception): TrustedReadinessEvaluation(**{**result.model_dump(),"ready":True})
+
+
+def test_d3_trusted_evaluator_rejects_convenience_authority_inputs() -> None:
+    with pytest.raises(TypeError):
+        evaluate_trusted_readiness(bundle=_trusted_bundle(),discovery_receipt=_trusted_discovery(),required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),required_verification_mode=BrokerVerificationMode.DOCUMENTATION,ready=True)
+
+
+@pytest.mark.parametrize("discovery",[
+    _trusted_discovery(account=BrokerAccount(broker="SINOPAC",account_ref="B")),
+    _trusted_discovery(generation=5),
+])
+def test_d3_forged_or_cross_world_discovery_fails_closed(discovery) -> None:
+    with pytest.raises(TrustedRecoveryEvidenceError): _evaluate(discovery=discovery)
+
+
+def test_d3_incomplete_discovery_and_untrusted_continuity_review() -> None:
+    receipt=_trusted_discovery()
+    incomplete=receipt.result.model_copy(update={"completeness":DiscoveryCompleteness.INCOMPLETE,"refreshed_at":None})
+    incomplete_receipt=BrokerDiscoveryReceipt(**{**receipt.model_dump(exclude={"full_receipt_fingerprint","result_fingerprint","result"}),"result":incomplete})
+    core=_trusted_bundle().trusted_core.model_copy(update={"discovery_result_fingerprint":incomplete_receipt.result_fingerprint,"discovery_receipt_fingerprint":incomplete_receipt.full_receipt_fingerprint})
+    assert _evaluate(_trusted_bundle(trusted_core=core),incomplete_receipt).state is RecoveryReadinessState.REVIEW
+    epoch=_trusted_bundle().continuity_epoch.model_copy(update={"trusted_current":False})
+    assert _evaluate(_trusted_bundle(continuity_epoch=epoch)).state is RecoveryReadinessState.REVIEW
+
+
+def test_d3_historical_gap_with_trusted_reanchor_does_not_block() -> None:
+    gap=SequenceGap(gap_id="GAP-OLD",broker="SINOPAC",account_ref="A",detected_at=NOW,evidence="historical")
+    assert _evaluate(_trusted_bundle(sequence_gaps=(gap,))).state is RecoveryReadinessState.READY
+
+
+def test_d3_report_and_action_gates_are_fail_closed() -> None:
+    malformed=_trusted_bundle(broker_report_witness=("not-json",))
+    with pytest.raises(TrustedRecoveryEvidenceError,match="report witness"): _evaluate(malformed)
+    pending=json.dumps(("IN",4,"FP",True,None,None,0),separators=(",",":"))
+    assert _evaluate(_trusted_bundle(broker_report_witness=(pending,))).state is RecoveryReadinessState.REVIEW
+    resolved=json.dumps(("IN",4,"FP",True,1,"APPLIED",1),separators=(",",":"))
+    assert _evaluate(_trusted_bundle(broker_report_witness=(resolved,))).state is RecoveryReadinessState.READY
+    action=BrokerActionHead(broker="SINOPAC",account_ref="A",order_id="ORDER",action=BrokerActionKind.SUBMIT,version=1,unresolved_attempt_id="ATTEMPT")
+    assert _evaluate(_trusted_bundle(broker_action_heads=(action,))).state is RecoveryReadinessState.REVIEW
+
+
+@pytest.mark.parametrize(("blocking_state","expected"),[(ReconciliationCaseState.HALT,RecoveryReadinessState.HALT),(ReconciliationCaseState.REVIEW_REQUIRED,RecoveryReadinessState.REVIEW)])
+def test_d3_reconciliation_blocker_precedence(blocking_state,expected) -> None:
+    blocker=TrustedReconciliationBlockerEvidence(account=ACCOUNT,blocking_state=blocking_state,unresolved_case_ids=("CASE",),semantic_fingerprint="BLOCK")
+    assert _evaluate(_trusted_bundle(reconciliation_blocker=blocker)).state is expected
+
+
+def test_d3_formal_and_ambiguous_root_gates() -> None:
+    failed=ReconciliationRunOutcome(run_id="RUN",technical_outcome=ReconciliationRunTechnicalOutcome.FAILED,input_qualification=ReconciliationInputQualification.UNQUALIFIED,results=(),finalized_at=NOW,evidence=("failed",))
+    assert _evaluate(_trusted_bundle(formal_run_outcome=failed)).state is RecoveryReadinessState.HALT
+    root=_trusted_bundle().root_set.model_copy(update={"ambiguous_report_ingress_ids":("IN",)})
+    root=RecoveryRootSetEvidence.model_validate(root.model_dump())
+    closure=RecoveryClosureEvidence(account=ACCOUNT,recovery_generation=4,root_set_fingerprint=root.root_set_fingerprint,roots=(),order_ids=(),ambiguous_report_ingress_ids=("IN",),closure_fingerprint="C")
+    assert _evaluate(_trusted_bundle(root_set=root,closure=closure)).state is RecoveryReadinessState.REVIEW
+
+
+class _D3Connection:
+    def __init__(self,rows): self.rows=list(rows); self.statements=[]
+    def cursor(self):
+        owner=self
+        class Cursor:
+            def __enter__(self): return self
+            def __exit__(self,*args): return False
+            def execute(self,sql,params=None): owner.statements.append((sql,params))
+            def fetchone(self): return owner.rows.pop(0)
+        return Cursor()
+
+
+class _D3Uow:
+    def __init__(self,connection): self.connection=connection; self.commits=0; self.rollbacks=0
+    def __enter__(self): return self
+    def __exit__(self,*args): return False
+    def commit(self): self.commits+=1
+    def rollback(self): self.rollbacks+=1
+
+
+class _D3Resolver:
+    def __init__(self,bundle): self.bundle=bundle; self.calls=[]
+    def resolve(self,**kwargs): self.calls.append(kwargs); return self.bundle
+
+
+class _D3Repository:
+    def __init__(self,discovery): self.discovery=discovery; self.handoffs=[]
+    def get_discovery_receipt(self,**kwargs): return self.discovery
+    def finalize_handoff(self,control,**kwargs): self.handoffs.append((control,kwargs))
+
+
+def _d3_finalizer(bundle,rows):
+    connection=_D3Connection(rows); uow=_D3Uow(connection); resolver=_D3Resolver(bundle); repository=_D3Repository(_trusted_discovery())
+    finalizer=PostgresTrustedReadinessFinalizer(uow_factory=lambda:uow,resolver_factory=lambda actual:resolver,repository_factory=lambda actual:repository,required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),required_verification_mode=BrokerVerificationMode.DOCUMENTATION)
+    return finalizer,connection,uow,resolver,repository
+
+
+def _control_row(): return ("SINOPAC","A",4,3,9,2,True,NOW)
+
+
+def test_d3_nonready_rolls_back_without_handoff() -> None:
+    epoch=_trusted_bundle().continuity_epoch.model_copy(update={"trusted_current":False})
+    finalizer,connection,uow,resolver,repository=_d3_finalizer(_trusted_bundle(continuity_epoch=epoch),[_control_row()])
+    result=finalizer.finalize(account=ACCOUNT,discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),broker_observation_id="OBS-1",formal_run_id="RUN",recorded_at=NOW)
+    assert result.state is RecoveryReadinessState.REVIEW
+    assert uow.rollbacks==1 and uow.commits==0 and repository.handoffs==[]
+    assert "FOR UPDATE" in connection.statements[0][0] and len(resolver.calls)==1
+
+
+def test_d3_ready_rechecks_control_handoffs_and_commits_once() -> None:
+    finalizer,connection,uow,resolver,repository=_d3_finalizer(_trusted_bundle(),[_control_row(),_control_row()])
+    result=finalizer.finalize(account=ACCOUNT,discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),broker_observation_id="OBS-1",formal_run_id="RUN",recorded_at=NOW)
+    assert result.state is RecoveryReadinessState.READY
+    assert len([sql for sql,_ in connection.statements if "FOR UPDATE" in sql])==2
+    assert uow.commits==1 and uow.rollbacks==0 and len(repository.handoffs)==1
+    completed,kwargs=repository.handoffs[0]
+    assert not completed.active
+    assert kwargs=={"expected_generation":4,"expected_ingress_version":9,"expected_readiness_revision":2}
+
+
+def test_d3_missing_control_fails_before_resolver() -> None:
+    finalizer,_,uow,resolver,repository=_d3_finalizer(_trusted_bundle(),[None])
+    with pytest.raises(Exception,match="control is missing"):
+        finalizer.finalize(account=ACCOUNT,discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),broker_observation_id="OBS-1",formal_run_id="RUN",recorded_at=NOW)
+    assert resolver.calls==[] and repository.handoffs==[] and uow.commits==0

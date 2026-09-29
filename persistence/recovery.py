@@ -520,6 +520,81 @@ class TrustedReadinessEvidenceBundle(BaseModel):
         return self
 
 
+class TrustedReadinessEvaluation(BaseModel):
+    """由 resolver-backed 同一世界證據投影的 immutable C15 結果；本身不具有 handoff 權限。"""
+    model_config=ConfigDict(extra="forbid",frozen=True)
+    state: RecoveryReadinessState
+    reasons: tuple[str,...]
+    account: BrokerAccount
+    bundle_fingerprint: str
+    recovery_generation: int = Field(ge=1)
+    recovery_cut_revision: int = Field(ge=1)
+    ingress_version: int = Field(ge=0)
+    readiness_revision: int = Field(ge=0)
+    formal_run_id: str
+
+    @field_validator("reasons",mode="before")
+    @classmethod
+    def _reasons(cls,value: object) -> object:
+        return tuple(normalize_stable_id(item) for item in value) if isinstance(value,(tuple,list)) else value
+
+    @field_validator("bundle_fingerprint","formal_run_id",mode="before")
+    @classmethod
+    def _ids(cls,value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value,str) else value
+
+
+def evaluate_trusted_readiness(*,bundle: TrustedReadinessEvidenceBundle,discovery_receipt: BrokerDiscoveryReceipt,required_capabilities: tuple[BrokerCapability,...],required_verification_mode: BrokerVerificationMode) -> TrustedReadinessEvaluation:
+    """僅以 D2 exact evidence 評估 C15；不接受 caller booleans、不寫入、也不執行 broker 操作。"""
+    try:
+        discovery=BrokerDiscoveryReceipt.model_validate(discovery_receipt.model_dump(mode="json"))
+    except Exception as exc:
+        raise TrustedRecoveryEvidenceError("canonical discovery receipt decode failed") from exc
+    core=bundle.trusted_core
+    if (discovery.account!=bundle.account or discovery.generation!=bundle.recovery_generation or discovery.discovery_run_id!=core.discovery_receipt_id or discovery.result_fingerprint!=core.discovery_result_fingerprint or discovery.full_receipt_fingerprint!=core.discovery_receipt_fingerprint):
+        raise TrustedRecoveryEvidenceError("discovery receipt does not match trusted bundle")
+    order={item:index for index,item in enumerate(BrokerCapability)}
+    required=tuple(sorted(set(required_capabilities),key=order.__getitem__))
+    evidence_capabilities=tuple(item.capability for item in core.capability_evidence)
+    if core.required_verification_mode is not required_verification_mode or evidence_capabilities!=required:
+        raise TrustedRecoveryEvidenceError("trusted capability evidence does not match configured requirements")
+    if any(required_verification_mode not in item.verification_modes or not item.source_ids for item in core.capability_evidence):
+        raise TrustedRecoveryEvidenceError("trusted capability evidence lacks required provenance")
+    if not (len(core.reconstruction_receipt_ids)==len(core.reconstruction_output_fingerprints)==len(core.reconstruction_receipt_fingerprints)):
+        raise TrustedRecoveryEvidenceError("trusted reconstruction receipt arrays are incoherent")
+
+    halt=[]; review=[]
+    result=discovery.result
+    if result.completeness is not DiscoveryCompleteness.COMPLETE or result.integrity is not BrokerDiscoveryIntegrity.CONSISTENT:
+        review.append("broker discovery is incomplete or ambiguous")
+    if not bundle.continuity_epoch.trusted_current:
+        review.append("head-selected continuity epoch is not trusted current")
+    terminal={"APPLIED","DUPLICATE","CORROBORATED"}
+    for anchor in bundle.broker_report_witness:
+        try:
+            row=json.loads(anchor)
+        except (TypeError,ValueError,json.JSONDecodeError) as exc:
+            raise TrustedRecoveryEvidenceError("broker report witness is malformed") from exc
+        if not isinstance(row,list) or len(row)!=7 or row[1]!=bundle.recovery_generation:
+            raise TrustedRecoveryEvidenceError("broker report witness scope or generation mismatch")
+        if row[3] is True and row[5] not in terminal:
+            review.append("current-generation broker report remains unresolved")
+    if any(item.unresolved_attempt_id is not None for item in bundle.broker_action_heads):
+        review.append("broker action attempt remains unresolved")
+    blocker=bundle.reconciliation_blocker.blocking_state
+    if blocker is ReconciliationCaseState.HALT: halt.append("reconciliation case requires HALT")
+    elif blocker is ReconciliationCaseState.REVIEW_REQUIRED: review.append("reconciliation case requires review")
+    outcome=bundle.formal_run_outcome
+    if outcome.technical_outcome is ReconciliationRunTechnicalOutcome.FAILED:
+        halt.append("formal reconciliation failed")
+    elif (outcome.technical_outcome is not ReconciliationRunTechnicalOutcome.COMPLETED or outcome.input_qualification is not ReconciliationInputQualification.QUALIFIED or any(item.status is not ReconciliationStatus.MATCH for item in outcome.results)):
+        review.append("formal reconciliation is not qualified all-MATCH")
+    if bundle.root_set.ambiguous_report_ingress_ids:
+        review.append("recovery root report evidence is ambiguous")
+    state=RecoveryReadinessState.HALT if halt else RecoveryReadinessState.REVIEW if review else RecoveryReadinessState.READY
+    return TrustedReadinessEvaluation(state=state,reasons=tuple(halt+review),account=bundle.account,bundle_fingerprint=bundle.bundle_fingerprint,recovery_generation=bundle.recovery_generation,recovery_cut_revision=bundle.recovery_cut_revision,ingress_version=bundle.ingress_version,readiness_revision=bundle.readiness_revision,formal_run_id=bundle.formal_run_boundary.run_id)
+
+
 class ExecutionRestoreStatus(str, Enum):
     """C12 local restore outcome；VALID 只代表 coherent local cut，不代表 READY。"""
 

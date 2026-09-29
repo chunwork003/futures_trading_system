@@ -639,6 +639,24 @@ def test_d2_report_witness_is_scoped_to_selected_recovery_generation() -> None:
         assert f"def {name}" not in resolver
 
 
+def test_d3_finalizer_source_orders_lock_resolve_evaluate_handoff_commit() -> None:
+    from persistence.postgres import recovery as postgres_recovery
+    inspect=__import__("inspect")
+    lock=inspect.getsource(postgres_recovery._lock_active_recovery_control)
+    finalizer=inspect.getsource(postgres_recovery.PostgresTrustedReadinessFinalizer.finalize)
+    assert "FOR UPDATE" in lock and "account_recovery_controls" in lock
+    assert ".commit(" not in lock and ".rollback(" not in lock
+    positions=[finalizer.index(token) for token in ("_lock_active_recovery_control","_resolver_factory","get_discovery_receipt","evaluate_trusted_readiness","finalize_handoff","uow.commit")]
+    assert positions == sorted(positions)
+    assert "uow.rollback()" in finalizer
+    assert "expected_generation=captured.generation" in finalizer
+    assert "expected_ingress_version=captured.ingress_version" in finalizer
+    assert "expected_readiness_revision=captured.readiness_revision" in finalizer
+    assert "required_capabilities" not in inspect.signature(postgres_recovery.PostgresTrustedReadinessFinalizer.finalize).parameters
+    for denied in ("broker.","submit(","cancel(","migration"):
+        assert denied not in finalizer.lower()
+
+
 def test_local_recovery_migration_has_formal_run_boundary_and_atomic_terminal_audit() -> None:
     sql=Path("persistence/postgres/migrations/0008_local_recovery_reconciliation.sql").read_text(encoding="utf-8")
     assert "CREATE TABLE trading.reconciliation_runs" in sql
