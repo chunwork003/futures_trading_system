@@ -511,6 +511,8 @@ class TrustedReadinessEvidenceBundle(BaseModel):
         actions=tuple(sorted(self.broker_action_heads,key=lambda item:(item.order_id,item.action.value)))
         if any((item.broker,item.account_ref)!=scope for item in actions): raise TrustedRecoveryEvidenceError("bundle broker action account mismatch")
         gap_fingerprint=_canonical_fingerprint([item.model_dump(mode="json") for item in gaps])
+        if gap_fingerprint!=transition.gap_set_fingerprint:
+            raise TrustedRecoveryEvidenceError("bundle continuity gap-set fingerprint mismatch")
         object.__setattr__(self,"sequence_gaps",gaps); object.__setattr__(self,"broker_action_heads",actions)
         object.__setattr__(self,"gap_semantic_fingerprint",gap_fingerprint)
         material=self.model_dump(mode="json",exclude={"bundle_fingerprint"})

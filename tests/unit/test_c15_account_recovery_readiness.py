@@ -1,5 +1,6 @@
 from datetime import datetime, timezone, timedelta
 from decimal import Decimal
+import hashlib
 import json
 
 import pytest
@@ -569,6 +570,13 @@ def test_c2b_rf01_event_causation_chain_fails_closed(events,order) -> None:
 
 
 def _trusted_bundle(**updates):
+    gaps=tuple(updates.pop("sequence_gaps",()))
+    transition_gap_fingerprint=updates.pop("transition_gap_fingerprint",None)
+    canonical_gaps=tuple(sorted(gaps,key=lambda item:item.gap_id))
+    derived_gap_fingerprint=hashlib.sha256(json.dumps(
+        [item.model_dump(mode="json") for item in canonical_gaps],
+        sort_keys=True,separators=(",",":"),ensure_ascii=False,allow_nan=False,
+    ).encode("utf-8")).hexdigest()
     cut=restore().cut; assert cut is not None
     trusted,_,_=_trusted_resolver_fixture()
     core=trusted.resolve(account=ACCOUNT,recovery_generation=4,recovery_cut_fingerprint="CUT",discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),expected_snapshot_id="SNAP-1",broker_observation_id="OBS-1",required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),required_verification_mode=BrokerVerificationMode.DOCUMENTATION).model_copy(update={"recovery_cut_fingerprint":cut.witness_fingerprint,"expected_snapshot_id":cut.checkpoint.expected_snapshot_id})
@@ -576,9 +584,9 @@ def _trusted_bundle(**updates):
     closure=RecoveryClosureEvidence(account=ACCOUNT,recovery_generation=4,root_set_fingerprint=root.root_set_fingerprint,roots=(),order_ids=(),ambiguous_report_ingress_ids=(),closure_fingerprint="CLOSURE")
     head=ExecutionContinuityHead(broker="SINOPAC",account_ref="A",generation=4,current_epoch_id="EPOCH-1",transition_receipt_id="TRANS-1",head_revision=1,readiness_revision=1,recorded_at=NOW)
     epoch=ExecutionContinuityEpoch(epoch_id="EPOCH-1",broker="SINOPAC",account_ref="A",generation=4,trusted_current=True,historical_degradation=False,anchored_at=NOW,evidence=("exact",))
-    transition=ContinuityTransitionReceipt(transition_id="TRANS-1",broker="SINOPAC",account_ref="A",generation=4,previous_epoch_id=None,current_epoch_id="EPOCH-1",previous_head_revision=0,head_revision=1,previous_readiness_revision=0,readiness_revision=1,recovery_cut_fingerprint=cut.witness_fingerprint,anchor_fingerprint="ANCHOR",recovery_cut_revision=3,ingress_version=9,account_revision=3,expected_snapshot_id="S3",authority_commit_id="AC3",gap_set_fingerprint="GAPS",producer_id="RECOVERY",contract_version="V1",evidence_id="EV-1",recorded_at=NOW,evidence=("exact",))
+    transition=ContinuityTransitionReceipt(transition_id="TRANS-1",broker="SINOPAC",account_ref="A",generation=4,previous_epoch_id=None,current_epoch_id="EPOCH-1",previous_head_revision=0,head_revision=1,previous_readiness_revision=0,readiness_revision=1,recovery_cut_fingerprint=cut.witness_fingerprint,anchor_fingerprint="ANCHOR",recovery_cut_revision=3,ingress_version=9,account_revision=3,expected_snapshot_id="S3",authority_commit_id="AC3",gap_set_fingerprint=transition_gap_fingerprint or derived_gap_fingerprint,producer_id="RECOVERY",contract_version="V1",evidence_id="EV-1",recorded_at=NOW,evidence=("exact",))
     blocker=TrustedReconciliationBlockerEvidence(account=ACCOUNT,blocking_state=None,unresolved_case_ids=(),semantic_fingerprint="BLOCKERS")
-    values=dict(account=ACCOUNT,recovery_generation=4,recovery_cut_revision=3,ingress_version=9,readiness_revision=2,recovery_cut_fingerprint=cut.witness_fingerprint,head=cut.head,checkpoint=cut.checkpoint,receipt=cut.receipt,continuity_head=head,continuity_epoch=epoch,continuity_transition=transition,sequence_gaps=(),broker_report_witness=cut.broker_report_witness,broker_action_heads=(),reconciliation_blocker=blocker,trusted_core=core,formal_run_boundary=run_boundary(cut=cut),formal_run_outcome=run_outcome(),root_set=root,closure=closure)
+    values=dict(account=ACCOUNT,recovery_generation=4,recovery_cut_revision=3,ingress_version=9,readiness_revision=2,recovery_cut_fingerprint=cut.witness_fingerprint,head=cut.head,checkpoint=cut.checkpoint,receipt=cut.receipt,continuity_head=head,continuity_epoch=epoch,continuity_transition=transition,sequence_gaps=gaps,broker_report_witness=cut.broker_report_witness,broker_action_heads=(),reconciliation_blocker=blocker,trusted_core=core,formal_run_boundary=run_boundary(cut=cut),formal_run_outcome=run_outcome(),root_set=root,closure=closure)
     values.update(updates); return TrustedReadinessEvidenceBundle(**values)
 
 
@@ -603,3 +611,25 @@ def test_d2_bundle_rejects_cross_world_evidence(updates) -> None:
 def test_d2_gap_material_changes_canonical_bundle_fingerprint() -> None:
     gap=SequenceGap(gap_id="GAP-1",broker="SINOPAC",account_ref="A",detected_at=NOW,evidence="missing sequence")
     assert _trusted_bundle(sequence_gaps=(gap,)).bundle_fingerprint != _trusted_bundle().bundle_fingerprint
+
+
+def test_d2_gap_set_matches_transition_and_is_order_deterministic() -> None:
+    gap_2=SequenceGap(gap_id="GAP-2",broker="SINOPAC",account_ref="A",detected_at=NOW,evidence="second")
+    gap_1=SequenceGap(gap_id="GAP-1",broker="SINOPAC",account_ref="A",detected_at=NOW,evidence="first")
+    left=_trusted_bundle(sequence_gaps=(gap_2,gap_1))
+    right=_trusted_bundle(sequence_gaps=(gap_1,gap_2))
+    assert left.sequence_gaps == (gap_1,gap_2)
+    assert left.gap_semantic_fingerprint == left.continuity_transition.gap_set_fingerprint
+    assert left.bundle_fingerprint == right.bundle_fingerprint
+
+
+def test_d2_stale_transition_gap_set_fingerprint_fails_closed() -> None:
+    gap=SequenceGap(gap_id="GAP-1",broker="SINOPAC",account_ref="A",detected_at=NOW,evidence="missing sequence")
+    with pytest.raises(TrustedRecoveryEvidenceError,match="gap-set fingerprint"):
+        _trusted_bundle(sequence_gaps=(gap,),transition_gap_fingerprint="STALE")
+
+
+def test_d2_caller_gap_fingerprint_cannot_bypass_transition_mismatch() -> None:
+    gap=SequenceGap(gap_id="GAP-1",broker="SINOPAC",account_ref="A",detected_at=NOW,evidence="missing sequence")
+    with pytest.raises(TrustedRecoveryEvidenceError,match="gap-set fingerprint"):
+        _trusted_bundle(sequence_gaps=(gap,),transition_gap_fingerprint="STALE",gap_semantic_fingerprint="STALE")

@@ -119,8 +119,14 @@ class PostgresExecutionStateLoader:
     def __init__(self,connection: Any) -> None: self._connection=connection
 
     def load(self,account: BrokerAccount) -> ExecutionRestoreResult:
+        """為獨立 restore 建立 read-only repeatable snapshot，再委派既有交易內讀取。"""
         with self._connection.cursor() as cursor:
             cursor.execute("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY")
+        return self._load_current_transaction(account)
+
+    def _load_current_transaction(self,account: BrokerAccount) -> ExecutionRestoreResult:
+        """使用 caller 目前交易讀取 coherent cut；不改交易模式、不鎖定或 finalize。"""
+        with self._connection.cursor() as cursor:
             cursor.execute(
                 "SELECT h.broker,h.account_ref,h.current_revision,h.initialized,c.checkpoint_json,r.receipt_json,"
                     "EXISTS (SELECT 1 FROM trading.expected_position_snapshots s WHERE s.snapshot_id=c.expected_snapshot_id) "
@@ -202,7 +208,7 @@ class PostgresTrustedReadinessEvidenceResolver:
         except Exception as exc: raise TrustedRecoveryEvidenceError(f"{missing}: canonical decode failed") from exc
 
     def resolve(self, *, account: BrokerAccount, discovery_run_id: str, reconstruction_receipt_ids: tuple[str,...], broker_observation_id: str, formal_run_id: str, required_capabilities: tuple[BrokerCapability,...], required_verification_mode: BrokerVerificationMode) -> TrustedReadinessEvidenceBundle:
-        restore=PostgresExecutionStateLoader(self._connection).load(account)
+        restore=PostgresExecutionStateLoader(self._connection)._load_current_transaction(account)
         if restore.status is not ExecutionRestoreStatus.VALID or restore.cut is None:
             raise TrustedRecoveryEvidenceError("coherent account recovery cut is missing")
         cut=restore.cut

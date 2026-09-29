@@ -599,11 +599,22 @@ def test_local_recovery_migration_scopes_reconciliation_cases_without_backfill()
 
 
 def test_postgres_recovery_loader_establishes_read_only_repeatable_snapshot() -> None:
-    from persistence.postgres.recovery import PostgresExecutionStateLoader
-    source=__import__("inspect").getsource(PostgresExecutionStateLoader.load)
-    assert "REPEATABLE READ READ ONLY" in source
-    assert "except ValidationError" in source
-    assert "TypeError" not in source and "IndexError" not in source
+    from persistence.postgres import recovery as postgres_recovery
+    inspect=__import__("inspect")
+    standalone=inspect.getsource(postgres_recovery.PostgresExecutionStateLoader.load)
+    helper=inspect.getsource(postgres_recovery.PostgresExecutionStateLoader._load_current_transaction)
+    resolver=inspect.getsource(postgres_recovery.PostgresTrustedReadinessEvidenceResolver.resolve)
+    assert "REPEATABLE READ READ ONLY" in standalone
+    assert "_load_current_transaction" in standalone
+    assert "except ValidationError" in helper
+    assert "TypeError" not in helper and "IndexError" not in helper
+    assert ".load(" not in resolver
+    assert "_load_current_transaction" in resolver
+    forbidden_sql=("SET TRANSACTION","FOR UPDATE","UPDATE ","INSERT ","DELETE ")
+    assert all(token not in helper.upper() for token in forbidden_sql)
+    assert all(token not in resolver.upper() for token in forbidden_sql)
+    assert ".commit(" not in helper and ".rollback(" not in helper
+    assert ".commit(" not in resolver and ".rollback(" not in resolver
 
 
 def test_local_recovery_migration_has_formal_run_boundary_and_atomic_terminal_audit() -> None:
