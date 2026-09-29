@@ -14,23 +14,23 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action：W4R-D1A RF01 compatibility fake blocker confirmed；resume only GAP08-W4R-D1A-RF01-RESUME using the saved blocked patch。Internal accepted package weight remains 13/18；official accepted correction core remains 75/113。
+Current execution action：W4R-D1A RF01 full-regression blocker confirmed in C03/C05 compatibility fakes；resume only GAP08-W4R-D1A-RF01-RESUME2 using the saved three-file WIP patch。Internal accepted package weight remains 13/18；official accepted correction core remains 75/113。
 
 <!-- MACHINE_QUEUE_CURRENT_START -->
-WORK_PACKAGE_ID = GAP08-W4R-D1A-RF01-RESUME
+WORK_PACKAGE_ID = GAP08-W4R-D1A-RF01-RESUME2
 STATUS = READY_FOR_EXECUTION
 PRIORITY = P1_MAINLINE
-PLANNING_BASELINE = a9f8f6763f0619a9440a4f1e0a48a0f703412b35
-AUTHORIZATION = docs/work/GAP08_W4R_D1A_AUTHORIZATION_AMENDMENT_02.md
-RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_D1A_RF01_RESUME_ONLY
+PLANNING_BASELINE = 0c2ae2fffb6de09662aba22cd9f8ee2db25b3eff
+AUTHORIZATION = docs/work/GAP08_W4R_D1A_AUTHORIZATION_AMENDMENT_03.md
+RUNTIME_SOURCE_AUTH = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_D1A_RF01_RESUME2_ONLY
 SIDE_EFFECT_CLASS = SOURCE_TEST_ONLY
-DEPENDENCIES = W4R_A_ACCEPTED_FROZEN;W4R_B_ACCEPTED_FROZEN;W4R_C_ACCEPTED_FROZEN;W4R_D1A_RUNTIME_CANDIDATE;W4R_D1A_RF01_BLOCKED_COMPAT_FAKE
-WRITE_SCOPE = persistence/account_authority.py;tests/unit/test_c04_account_authority_commit.py;tests/unit/test_c06_broker_action_safety.py
-TEST_GATE = W4R_D1A_RF01_RESUME_TARGETED_COMPAT_FULL
+DEPENDENCIES = W4R_A_ACCEPTED_FROZEN;W4R_B_ACCEPTED_FROZEN;W4R_C_ACCEPTED_FROZEN;W4R_D1A_RUNTIME_CANDIDATE;W4R_D1A_RF01_RESUME_FULL_REGRESSION_BLOCKER
+WRITE_SCOPE = persistence/account_authority.py;tests/unit/test_c04_account_authority_commit.py;tests/unit/test_c06_broker_action_safety.py;tests/unit/test_c03_expected_state_initialization.py;tests/unit/test_c05_durable_pending_submission.py
+TEST_GATE = W4R_D1A_RF01_RESUME2_FOCUSED_COMPAT_FULL
 GIT_POLICY = ONE_COMMIT_ONE_PUSH_NO_FORCE
 REVIEW_BARRIER = MANDATORY_AFTER_PACKAGE
 COMMIT_MESSAGE = fix(recovery): require W4R-D1A readiness fence contract
-CORRECTION_BUDGET = RESUME_BLOCKER_ONLY
+CORRECTION_BUDGET = FULL_REGRESSION_FAKE_DRIFT_ONLY
 TOOLING_MODE = CONTROLLED_STAGING_ROOT_FIRST
 EFFICIENCY_METRICS = CHANGED_FILES;DIFF_SIZE;SEMANTIC_CORRECTIONS;TOOLING_RETRIES;5HR
 NEXT_QUEUE = STOP_FOR_W4R_D1A_REVIEW
