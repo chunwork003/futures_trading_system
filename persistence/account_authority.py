@@ -240,12 +240,9 @@ class AccountAuthorityCommitService:
                 )
                 return existing
 
-            fence_token = None
-            lock_fence = getattr(repository, "lock_active_readiness_fence", None)
-            if lock_fence is not None:
-                fence_token = lock_fence(
-                    BrokerAccount(broker=mutation.broker, account_ref=mutation.account_ref)
-                )
+            fence_token = repository.lock_active_readiness_fence(
+                BrokerAccount(broker=mutation.broker, account_ref=mutation.account_ref)
+            )
 
             head = (
                 repository.lock_or_create_reserved_head(

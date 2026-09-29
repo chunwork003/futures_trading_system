@@ -40,6 +40,9 @@ class AuthorityRepo:
     def append_checkpoint(self, value): self.checkpoint = value
     def advance_head(self, value, *, expected_revision): self.head = value
     def append_receipt(self, value): self.receipt = value
+    def lock_active_readiness_fence(self, account): return None
+    def advance_locked_readiness_fence(self, token):
+        raise AssertionError("no active readiness fence may be advanced")
 
 
 class Repo:

@@ -66,6 +66,9 @@ class AuthorityRepo:
         if self.head.current_revision != expected_revision: raise AccountAuthorityConflictError("head conflict")
         self.head=value
     def append_receipt(self, value): self.receipts[value.authority_commit_id]=value
+    def lock_active_readiness_fence(self, account): return None
+    def advance_locked_readiness_fence(self, token):
+        raise AssertionError("no active readiness fence may be advanced")
 
 
 class AppendRepo:

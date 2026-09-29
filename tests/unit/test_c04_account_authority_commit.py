@@ -230,3 +230,39 @@ def test_d1a_participant_failure_never_advances_fence_or_commits() -> None:
         AccountAuthorityCommitService(uow_factory=lambda:uow,repository=lambda _:repo).commit(mutation(),participants=(Participant("material",calls,fail=True),))
     assert calls == ["lock_fence","material"]
     assert uow.rolled and not uow.committed
+
+
+def test_d1a_rf01_missing_fence_contract_fails_before_head_or_material() -> None:
+    inner=Repository(); calls=[]
+    class LegacyRepository:
+        def get_receipt(self,value): return inner.get_receipt(value)
+        def lock_head(self,*args): calls.append("lock_head"); return inner.lock_head(*args)
+        def append_checkpoint(self,value): inner.append_checkpoint(value)
+        def advance_head(self,value,*,expected_revision): inner.advance_head(value,expected_revision=expected_revision)
+        def append_receipt(self,value): inner.append_receipt(value)
+    uow=Uow()
+    with pytest.raises(AttributeError,match="lock_active_readiness_fence"):
+        AccountAuthorityCommitService(uow_factory=lambda:uow,repository=lambda _:LegacyRepository()).commit(
+            mutation(),participants=(Participant("material",calls),)
+        )
+    assert calls == []
+    assert uow.rolled and not uow.committed
+
+
+def test_d1a_rf01_explicit_no_active_fence_allows_ordinary_commit() -> None:
+    uow=Uow(); repo=Repository()
+    result=AccountAuthorityCommitService(uow_factory=lambda:uow,repository=lambda _:repo).commit(mutation())
+    assert result.committed_revision == 2 and uow.committed
+
+
+def test_d1a_rf01_fence_advance_failure_rolls_back_complete_unit() -> None:
+    uow=Uow(); repo=Repository(); calls=[]; fence=FenceRepository(calls,_fence_token(),fail_advance=True)
+    repo.lock_active_readiness_fence=fence.lock_active
+    repo.advance_locked_readiness_fence=fence.advance_locked
+    with pytest.raises(RuntimeError,match="advance_fence"):
+        AccountAuthorityCommitService(uow_factory=lambda:uow,repository=lambda _:repo).commit(
+            mutation(),participants=(Participant("material",calls),)
+        )
+    assert calls == ["lock_fence","material","advance_fence"]
+    assert repo.calls == ["get_receipt","lock_head","checkpoint","head","receipt"]
+    assert uow.rolled and not uow.committed
