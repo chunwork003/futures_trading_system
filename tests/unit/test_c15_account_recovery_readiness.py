@@ -666,6 +666,18 @@ def test_d3_fully_trusted_world_is_ready_and_evaluation_is_immutable() -> None:
     with pytest.raises(Exception): TrustedReadinessEvaluation(**{**result.model_dump(),"ready":True})
 
 
+@pytest.mark.parametrize(("updates","match"),[
+    ({"discovery_run_id":"OTHER"},"formal reconciliation boundary"),
+    ({"observation_id":"OTHER"},"formal reconciliation boundary"),
+    ({"discovery_run_id":None},"formal reconciliation boundary"),
+    ({"observation_id":None},"formal reconciliation boundary"),
+])
+def test_d3_c14_boundary_must_bind_exact_b2_discovery_and_observation(updates,match) -> None:
+    boundary=_trusted_bundle().formal_run_boundary.model_copy(update=updates)
+    with pytest.raises(TrustedRecoveryEvidenceError,match=match):
+        _evaluate(_trusted_bundle(formal_run_boundary=boundary))
+
+
 def test_d3_trusted_evaluator_rejects_convenience_authority_inputs() -> None:
     with pytest.raises(TypeError):
         evaluate_trusted_readiness(bundle=_trusted_bundle(),discovery_receipt=_trusted_discovery(),required_capabilities=(BrokerCapability.ACCOUNT_QUERY,),required_verification_mode=BrokerVerificationMode.DOCUMENTATION,ready=True)
@@ -735,7 +747,9 @@ class _D3Connection:
 class _D3Uow:
     def __init__(self,connection): self.connection=connection; self.commits=0; self.rollbacks=0
     def __enter__(self): return self
-    def __exit__(self,*args): return False
+    def __exit__(self,exc_type,*args):
+        if exc_type is not None and self.commits==0 and self.rollbacks==0: self.rollbacks+=1
+        return False
     def commit(self): self.commits+=1
     def rollback(self): self.rollbacks+=1
 
@@ -785,3 +799,28 @@ def test_d3_missing_control_fails_before_resolver() -> None:
     with pytest.raises(Exception,match="control is missing"):
         finalizer.finalize(account=ACCOUNT,discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),broker_observation_id="OBS-1",formal_run_id="RUN",recorded_at=NOW)
     assert resolver.calls==[] and repository.handoffs==[] and uow.commits==0
+
+
+@pytest.mark.parametrize("recorded_at",[NOW.replace(tzinfo=None),"not-a-time"])
+def test_d3_invalid_final_recorded_at_fails_before_handoff(recorded_at) -> None:
+    finalizer,_,uow,_,repository=_d3_finalizer(_trusted_bundle(),[_control_row(),_control_row()])
+    with pytest.raises(Exception):
+        finalizer.finalize(account=ACCOUNT,discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),broker_observation_id="OBS-1",formal_run_id="RUN",recorded_at=recorded_at)
+    assert repository.handoffs==[] and uow.commits==0 and uow.rollbacks==1
+
+
+def test_d3_final_recorded_at_is_canonically_normalized_to_utc() -> None:
+    offset_time=NOW.astimezone(timezone(timedelta(hours=8)))
+    finalizer,_,uow,_,repository=_d3_finalizer(_trusted_bundle(),[_control_row(),_control_row()])
+    finalizer.finalize(account=ACCOUNT,discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),broker_observation_id="OBS-1",formal_run_id="RUN",recorded_at=offset_time)
+    completed,_=repository.handoffs[0]
+    assert completed.recorded_at == NOW and completed.recorded_at.tzinfo is timezone.utc
+    assert uow.commits==1
+
+
+def test_d3_control_drift_fails_closed_without_handoff_or_commit() -> None:
+    drift=("SINOPAC","A",4,3,10,2,True,NOW)
+    finalizer,_,uow,_,repository=_d3_finalizer(_trusted_bundle(),[_control_row(),drift])
+    with pytest.raises(Exception,match="changed"):
+        finalizer.finalize(account=ACCOUNT,discovery_run_id="DISC-1",reconstruction_receipt_ids=("RECON-1",),broker_observation_id="OBS-1",formal_run_id="RUN",recorded_at=NOW)
+    assert repository.handoffs==[] and uow.commits==0 and uow.rollbacks==1

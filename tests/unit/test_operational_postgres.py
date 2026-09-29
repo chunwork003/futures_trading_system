@@ -652,6 +652,8 @@ def test_d3_finalizer_source_orders_lock_resolve_evaluate_handoff_commit() -> No
     assert "expected_generation=captured.generation" in finalizer
     assert "expected_ingress_version=captured.ingress_version" in finalizer
     assert "expected_readiness_revision=captured.readiness_revision" in finalizer
+    assert "AccountRecoveryControl(" in finalizer
+    assert "model_copy" not in finalizer
     assert "required_capabilities" not in inspect.signature(postgres_recovery.PostgresTrustedReadinessFinalizer.finalize).parameters
     for denied in ("broker.","submit(","cancel(","migration"):
         assert denied not in finalizer.lower()

@@ -553,6 +553,16 @@ def evaluate_trusted_readiness(*,bundle: TrustedReadinessEvidenceBundle,discover
     core=bundle.trusted_core
     if (discovery.account!=bundle.account or discovery.generation!=bundle.recovery_generation or discovery.discovery_run_id!=core.discovery_receipt_id or discovery.result_fingerprint!=core.discovery_result_fingerprint or discovery.full_receipt_fingerprint!=core.discovery_receipt_fingerprint):
         raise TrustedRecoveryEvidenceError("discovery receipt does not match trusted bundle")
+    boundary=bundle.formal_run_boundary
+    if (
+        boundary.discovery_run_id is None
+        or boundary.observation_id is None
+        or boundary.discovery_run_id!=core.discovery_receipt_id
+        or boundary.observation_id!=core.broker_observation_id
+    ):
+        raise TrustedRecoveryEvidenceError(
+            "formal reconciliation boundary discovery or observation identity mismatch"
+        )
     order={item:index for index,item in enumerate(BrokerCapability)}
     required=tuple(sorted(set(required_capabilities),key=order.__getitem__))
     evidence_capabilities=tuple(item.capability for item in core.capability_evidence)

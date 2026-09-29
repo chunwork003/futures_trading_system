@@ -293,7 +293,16 @@ class PostgresTrustedReadinessFinalizer:
             current=_lock_active_recovery_control(connection,account)
             if current!=captured:
                 raise RecoveryFenceConflictError("locked recovery control changed before handoff")
-            completed=captured.model_copy(update={"active":False,"recorded_at":recorded_at})
+            completed=AccountRecoveryControl(
+                broker=captured.broker,
+                account_ref=captured.account_ref,
+                generation=captured.generation,
+                recovery_cut_revision=captured.recovery_cut_revision,
+                ingress_version=captured.ingress_version,
+                readiness_revision=captured.readiness_revision,
+                active=False,
+                recorded_at=recorded_at,
+            )
             repository.finalize_handoff(completed,expected_generation=captured.generation,expected_ingress_version=captured.ingress_version,expected_readiness_revision=captured.readiness_revision)
             uow.commit()
             return evaluation
