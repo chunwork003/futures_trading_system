@@ -40,7 +40,7 @@ W4R_B = ACCEPTED_FROZEN_READ_ONLY
 W4R_C = ACCEPTED_FROZEN_READ_ONLY
 W4R_D = D1A_D1B_D2_D3_ACCEPTED_INTERNAL_COMPLETE
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_W4R_PG_RF02_STRATEGY_JSONB_ONLY
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_W4R_PG_RF02_JSONB_AND_FK_FIXTURE_ONLY
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -115,15 +115,17 @@ Pointers：
 - W4R PostgreSQL gate RF01 authorization：`docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_01.md`
 - W4R PostgreSQL gate RF02 review：`docs/work/GAP08_W4R_PG_CONCURRENCY_REVIEW_RF02.md`
 - W4R PostgreSQL gate RF02 authorization：`docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_02.md`
+- W4R PostgreSQL gate RF02A FK fixture review：`docs/work/GAP08_W4R_PG_CONCURRENCY_REVIEW_RF02A.md`
+- W4R PostgreSQL gate RF02A authorization：`docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_03.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action：
 
-execute W4R PostgreSQL RF02 manually：retain PG17 concurrency PASS evidence and retained RF01 fixture；correct strategy PostgreSQL JSONB serialization plus canonical strategy-state test reference；run unit + PG17 concurrency + compatibility + full regression；one commit/push then STOP。
+resume W4R PostgreSQL RF02 manually：retain JSONB unit PASS and PG17 concurrency PASS evidence；repair only the canonical MarketObservation durable-revision integration fixture；rerun compatibility + one full regression；one source/test commit/push then STOP。
 
-W4R-A/B/C/D are internally accepted/frozen；W4R-D is 18/18 internal complete。PG17 concurrency evidence remains PASS；RF01 fixture is retained；RF02 is authorized only for strategy PostgreSQL JSONB adapter conformance and the canonical strategy-state integration fixture。W4 closure、official W4 credit、V07 conformance and P7 remain NOT_AUTHORIZED。
+W4R-A/B/C/D are internally accepted/frozen；W4R-D is 18/18 internal complete。RF02 JSONB unit evidence and PG17 concurrency evidence remain PASS；RF02A is authorized only to complete the canonical durable MarketObservation revision fixture while retaining the existing JSONB correction candidate。W4 closure、official W4 credit、V07 conformance、P7 and RF03 remain NOT_AUTHORIZED。
 
 Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 
