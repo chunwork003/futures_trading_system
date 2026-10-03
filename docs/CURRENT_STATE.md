@@ -27,7 +27,7 @@ latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
 
 current_wave = W4
 current_runtime_candidate = 38198142b5d57141c38582508a31d292e4bf246c
-reviewer_state = W4R_PG17_CONCURRENCY_PASS_RF01_READY
+reviewer_state = W4R_PG17_CONCURRENCY_PASS_RF02_READY
 w4_weight = 18_NOT_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
@@ -40,7 +40,7 @@ W4R_B = ACCEPTED_FROZEN_READ_ONLY
 W4R_C = ACCEPTED_FROZEN_READ_ONLY
 W4R_D = D1A_D1B_D2_D3_ACCEPTED_INTERNAL_COMPLETE
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_W4R_PG_RF01_TEST_FIXTURE_ONLY
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_W4R_PG_RF02_STRATEGY_JSONB_ONLY
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -111,15 +111,19 @@ Pointers：
 - W4R-D3 closure：`docs/work/GAP08_W4R_D3_CLOSURE.md`
 - W4R PostgreSQL integration/concurrency gate authorization：`docs/work/GAP08_W4R_POSTGRES_CONCURRENCY_GATE_AUTHORIZATION.md`
 - W4R PostgreSQL harness ENV_BLOCKED closure：`docs/work/GAP08_W4R_PG_CONCURRENCY_ENV_BLOCKED_CLOSURE.md`
+- W4R PostgreSQL gate RF01 review：`docs/work/GAP08_W4R_PG_CONCURRENCY_REVIEW_RF01.md`
+- W4R PostgreSQL gate RF01 authorization：`docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_01.md`
+- W4R PostgreSQL gate RF02 review：`docs/work/GAP08_W4R_PG_CONCURRENCY_REVIEW_RF02.md`
+- W4R PostgreSQL gate RF02 authorization：`docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_02.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action：
 
-execute W4R PostgreSQL RF01 manually：retain PG17 concurrency PASS evidence；correct only stale operational persistence integration fixture broker_client_order_ref；rerun targeted + compatibility + full regression；one commit/push then STOP。
+execute W4R PostgreSQL RF02 manually：retain PG17 concurrency PASS evidence and retained RF01 fixture；correct strategy PostgreSQL JSONB serialization plus canonical strategy-state test reference；run unit + PG17 concurrency + compatibility + full regression；one commit/push then STOP。
 
-W4R-A/B/C/D are internally accepted/frozen；W4R-D is 18/18 internal complete。Real PG17 concurrency scenarios PASS and evidence is retained；one stale integration fixture requires RF01 test-only correction。W4 closure、official W4 credit、V07 conformance and P7 remain NOT_AUTHORIZED。
+W4R-A/B/C/D are internally accepted/frozen；W4R-D is 18/18 internal complete。PG17 concurrency evidence remains PASS；RF01 fixture is retained；RF02 is authorized only for strategy PostgreSQL JSONB adapter conformance and the canonical strategy-state integration fixture。W4 closure、official W4 credit、V07 conformance and P7 remain NOT_AUTHORIZED。
 
 Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 
