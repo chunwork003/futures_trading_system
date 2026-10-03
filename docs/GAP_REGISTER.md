@@ -62,7 +62,7 @@ Mainline：
 | GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | CLOSED |
 | GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | No | Explicit OrderIntent / PositionEffect | CLOSED |
 | GAP-BROKER-002 | P2 | REVIEW_AT_CHECKPOINT | No | Capability matrix / mapping semantics | CLOSED |
-| GAP-08 | P1 | REVIEW_AT_CHECKPOINT | Yes — acceptance | Trading State Persistence / Recovery | IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD |
+| GAP-08 | P1 | REVIEW_AT_CHECKPOINT | Yes — acceptance | Trading State Persistence / Recovery | IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_CORE_93_OF_113_ACCEPTED / P7_SPEC_FROZEN / P7_RUNTIME_NOT_AUTHORIZED |
 | GAP-PERSIST-001 | P1 | RECORD_AND_CONTINUE | No | Decision / Risk Provenance | OPEN |
 | GAP-09 | P1 | REVIEW_AT_CHECKPOINT | No | Incremental Feature / Market State | PENDING |
 | GAP-DATA-001 | P1 | RECORD_AND_CONTINUE | No; Production Live blocker later | Operational market-data completeness / gap detection | OPEN |
@@ -345,6 +345,82 @@ Capability evidence does not authorize LIVE。
 
 
 # GAP-08 Detail
+
+## CURRENT GAP-08 GOVERNANCE PROJECTION
+
+```text
+GAP-08 = IN_PROGRESS
+ARCHITECTURE_ACCEPTANCE = HOLD
+CORRECTION_CORE = 93 / 113 ACCEPTED
+REMAINING = 20 / 113
+
+W4 = CLOSED / REVIEWER_ACCEPTED
+W4_OFFICIAL_WEIGHT = 18 / CREDITED
+
+P7_SPECIFICATION = ARCH-P7-SPEC-01 / FROZEN
+P7_SPECIFICATION_REVIEW = PASS
+P7_RUNTIME_SOURCE_AUTHORIZATION = NOT_AUTHORIZED
+P7_RUNTIME_EXECUTION = NOT_AUTHORIZED
+
+CURRENT_RUNTIME_CANDIDATE = NONE
+```
+
+Remaining correction scope:
+
+| Leaf | Weight |
+|---|---:|
+| C16 | 5 |
+| C17 | 4 |
+| C19 | 3 |
+| C20 | 3 |
+| C18 | 5 |
+| **TOTAL** | **20** |
+
+Execution sequence:
+
+```text
+C16 -> C17 -> C19 -> C20 -> C18
+```
+
+Execution sequence is NOT the dependency DAG.
+
+Exact entry dependencies:
+
+```text
+C16 <- V06
+C17 <- C16
+C19 <- C16
+C20 <- C23
+C18 <- accepted W4R-D rescope of original C15 + C16 + C17 + C19 + C20 + C25
+```
+
+C18 original C15 dependency:
+
+`SATISFIED_BY_ACCEPTED_W4R_D_RESCOPE`
+
+P8 / V01-V05:
+
+`SEPARATE_BROKER_CAPABILITY_VERIFICATION`
+
+P9 / V07:
+
+`SEPARATE_ACTUAL_POSTGRESQL_ENVIRONMENT_CONFORMANCE`
+
+PostgreSQL evidence boundary:
+
+```text
+PG17 W4 TEST gate = VERIFIED IN CONFIGURED TEST ENVIRONMENT
+PG18 = NOT_VERIFIED / SKIPPED
+V07 = NOT_EXECUTED / NOT_VERIFIED
+```
+
+Next governance candidate:
+
+`C16_BOUNDED_AUTHORIZATION_DECISION`
+
+This is NOT authorized runtime work.
+
+## HISTORICAL / SUPERSEDED GAP-08 EXECUTION RECORD — NO CURRENT AUTHORITY
 
 Status：IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_FREEZE_COMPLETE / V06_C01_C22_C11_C23_C24_C25_COMPLETE / RUNTIME_NOT_AUTHORIZED。
 

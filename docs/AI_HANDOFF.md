@@ -1,6 +1,58 @@
 # AI Handoff
 
-## 1. Repository Baseline
+## CURRENT HANDOFF GUARD
+
+```text
+Branch = master
+
+W4 = CLOSED / REVIEWER_ACCEPTED
+W4_OFFICIAL_WEIGHT = 18 / CREDITED
+
+accepted_correction_core = 93 / 113
+remaining_correction_core = 20 / 113
+
+CURRENT_RUNTIME_CANDIDATE = NONE
+
+P7 = C16 -> C17 -> C19 -> C20 -> C18
+P7_WEIGHT = 20
+
+P7_ARCHITECTURE_READY = YES
+P7_SPECIFICATION_REVIEW = PASS
+ARCH-P7-SPEC-01 = FROZEN
+
+P7_RUNTIME_SOURCE_AUTHORIZATION = NOT_AUTHORIZED
+P7_RUNTIME_EXECUTION = NOT_AUTHORIZED
+C16_AUTHORIZED = NO
+
+C18 original C15 dependency =
+SATISFIED_BY_ACCEPTED_W4R_D_RESCOPE
+
+P8 = SEPARATE_BROKER_CAPABILITY_VERIFICATION
+P9/V07 = SEPARATE_POSTGRES_ENVIRONMENT_CONFORMANCE
+
+PG17 W4 TEST gate = VERIFIED IN CONFIGURED TEST ENVIRONMENT
+PG18 = NOT_VERIFIED / SKIPPED
+V07 = NOT_EXECUTED / NOT_VERIFIED
+
+Runtime Conformance = NOT_ASSERTED
+Production Readiness = NOT_ASSERTED
+Broker I/O = NOT_AUTHORIZED
+Production Activation = NOT_AUTHORIZED
+```
+
+Current package:
+
+`GOV-SYNC-W4-PREP7 / DOCS_ONLY_GOVERNANCE_SYNCHRONIZATION`
+
+Next after independent confirmation:
+
+`SEPARATE C16 BOUNDED AUTHORIZATION DECISION`
+
+The next governance candidate is NOT authorized runtime work.
+
+## HISTORICAL / SUPPLEMENTAL HANDOFF CONTENT — NO CURRENT RUNTIME AUTHORITY
+
+### 1. Repository Baseline
 
 Repository：
 
@@ -26,7 +78,7 @@ Known local untracked：
 
 ---
 
-## 1A. GAP-08EFGHI Post-Runtime Decision Checkpoint
+### 1A. GAP-08EFGHI Post-Runtime Decision Checkpoint
 
 Runtime candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
 
@@ -74,7 +126,7 @@ Detailed authoritative decision record：
 No runtime execution is authorized until remaining architecture decisions are frozen into a bounded correction Work Package。
 
 
-## 1D. Recovery Decision Checkpoint 4
+### 1D. Recovery Decision Checkpoint 4
 
 Checkpoint 3 baseline：`11ead24d4f09ead611243c19aab982f09756f172`。
 
@@ -100,7 +152,7 @@ Next：freeze/map/reweight the expanded correction Work Package and classify R-1
 
 Do not run correction runtime before explicit authorization。
 
-## 2. Default Agent Reading
+### 2. Default Agent Reading
 
 Runtime Work Package 預設只讀：
 
@@ -123,7 +175,7 @@ ACTIVE 明確要求時，再讀：
 
 ---
 
-## 3. Product Architecture
+### 3. Product Architecture
 
 Python：
 
@@ -157,7 +209,7 @@ Architecture 必須 broker-neutral，且不得阻塞未來 equity、ETF、其他
 
 ---
 
-## 4. Authoritative Trading Flow
+### 4. Authoritative Trading Flow
 
     Market Data
     → Feature / Market State
@@ -176,7 +228,7 @@ Architecture 必須 broker-neutral，且不得阻塞未來 equity、ETF、其他
 
 ---
 
-## 5. Position Identity Invariant
+### 5. Position Identity Invariant
 
 固定：
 
@@ -205,7 +257,7 @@ Broker actual state 不得 silent overwrite internal expected state。
 
 ---
 
-## 6. Direction Change
+### 6. Direction Change
 
 固定：
 
@@ -218,7 +270,7 @@ Broker actual state 不得 silent overwrite internal expected state。
 
 ---
 
-## 7. Strategy Architecture
+### 7. Strategy Architecture
 
 固定：
 
@@ -238,7 +290,7 @@ Configuration change 預設於 safe boundary 生效。
 
 ---
 
-## 8. Multi-Strategy Decision
+### 8. Multi-Strategy Decision
 
 Strategies 維護 independent logical positions。
 
@@ -256,7 +308,7 @@ Strategy 不直接決定 broker physical position。
 
 ---
 
-## 9. Account Architecture
+### 9. Account Architecture
 
 固定：
 
@@ -279,7 +331,7 @@ V1：
 
 ---
 
-## 10. Trading Modes
+### 10. Trading Modes
 
 - BACKTEST。
 - SIMULATED。
@@ -295,7 +347,7 @@ default disabled。
 
 ---
 
-## 11. Canonical Instrument / Contract
+### 11. Canonical Instrument / Contract
 
 Canonical futures symbols：
 
@@ -320,7 +372,7 @@ adapter-owned。
 
 ---
 
-## 12. GAP-07 Result
+### 12. GAP-07 Result
 
 GAP-07：
 
@@ -351,7 +403,7 @@ Effective-date resolution 必須明確提供 as_of_date。
 
 ---
 
-## 13. Time / Session
+### 13. Time / Session
 
 Canonical interval：
 
@@ -377,7 +429,7 @@ Asia/Taipei。
 
 ---
 
-## 14. Broker Boundary
+### 14. Broker Boundary
 
 Canonical identity 不等同 broker code。
 
@@ -393,7 +445,7 @@ Core 不得保存 `sj.*` object。
 
 ---
 
-## 15. Broker Execution Semantics
+### 15. Broker Execution Semantics
 
 GAP-BROKER-001：
 
@@ -429,7 +481,7 @@ Reversal remains：
     -> re-evaluate
     -> OPEN opposite
 
-## 16. Account Sync Foundation
+### 16. Account Sync Foundation
 
 GAP-ACCOUNT-001：
 
@@ -459,7 +511,7 @@ Next prerequisite：
 
 GAP-BROKER-001 explicit OrderIntent / PositionEffect。
 
-## 17. Reconciliation
+### 17. Reconciliation
 
 Target inputs：
 
@@ -492,7 +544,7 @@ STRICT_HALT / MANUAL_REVIEW。
 
 ---
 
-## 18. Persistence Direction
+### 18. Persistence Direction
 
 Future operational SOR：
 
@@ -531,7 +583,7 @@ Recovery 不得只依賴 TradeRecord。
 
 ---
 
-## 19. Decision Provenance
+### 19. Decision Provenance
 
 Material action：
 
@@ -576,7 +628,7 @@ DecisionContext 可包含：
 
 ---
 
-## 20. Recovery Direction
+### 20. Recovery Direction
 
     load persisted state
     → query broker actual
@@ -593,7 +645,7 @@ Mismatch：
 
 ---
 
-## 21. Numeric Boundary
+### 21. Numeric Boundary
 
 Operational trading / persistence：
 
@@ -613,7 +665,7 @@ Broker actual margin：
 
 ---
 
-## 22. Simulation Boundary
+### 22. Simulation Boundary
 
 PaperBroker：
 
@@ -636,7 +688,7 @@ Target：
 
 ---
 
-## 23. Python / ASP.NET Boundary
+### 23. Python / ASP.NET Boundary
 
 V1 default：
 
@@ -662,7 +714,7 @@ V1 不導入 Kafka/RabbitMQ。
 
 ---
 
-## 24. UI Boundary
+### 24. UI Boundary
 
 React：
 
@@ -676,7 +728,7 @@ React：
 
 ---
 
-## 25. LIVE Safety
+### 25. LIVE Safety
 
 LIVE_AUTO 前至少：
 
@@ -700,7 +752,7 @@ LIVE_AUTO NOT AUTHORIZED。
 
 ---
 
-## 26. Current Progress
+### 26. Current Progress
 
 Total V1 capability blocks：92。
 
@@ -725,7 +777,7 @@ Readiness：
 - Production Live：BLOCKED。
 - LIVE_AUTO：NOT_AUTHORIZED。
 
-## 27. Automation Efficiency
+### 27. Automation Efficiency
 
 Formal Level 3A runtime samples：
 
@@ -761,7 +813,7 @@ Sizing observation：
 - larger bundle increased wall/tool work but remained low-correction。
 - future bundle size must be chosen by accepted work/resource and semantic safety，not fixed quota target。
 
-## 28. Current Active Candidate
+### 28. Current Active Candidate
 
 Current Work Package：
 
@@ -785,7 +837,7 @@ K520 remains GAP-09。
 
 Level 3B：NOT_ENABLED。
 
-## 29. Hard Stop
+### 29. Hard Stop
 
 立即停止受影響工作：
 
@@ -800,7 +852,7 @@ Level 3B：NOT_ENABLED。
 
 ---
 
-## 29A. Blueprint Governance
+### 29A. Blueprint Governance
 
 V1 Engineering Blueprint：
 
@@ -837,7 +889,7 @@ Runtime Codex 只讀 ACTIVE 指定的 Blueprint 與 source documents，不得 wh
 
 Broker / exchange / live-money semantics 優先使用 `docs/blueprint/SOURCE_REGISTRY.md` 的官方來源；不足時 HARD_BLOCK / REVIEW，不得猜測。
 
-## Decision Checkpoint 5A Handoff
+### Decision Checkpoint 5A Handoff
 
 Authoritative recovery architecture status after this checkpoint：
 
@@ -861,7 +913,7 @@ This checkpoint is docs-only and does not authorize correction runtime。
 
 Next：R-06 + R-07 Recovery Boundary Cluster。
 
-## Decision Checkpoint 5B Handoff
+### Decision Checkpoint 5B Handoff
 
 Authoritative recovery architecture now closes R-01 through R-07。
 
@@ -890,7 +942,7 @@ Runtime Authorization remains NOT_AUTHORIZED。
 
 Next：R-08 + R-09 identity/config authority cluster。
 
-## Decision Checkpoint 5C Handoff
+### Decision Checkpoint 5C Handoff
 
 R-08 / R-09 are DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
@@ -913,7 +965,7 @@ Runtime Authorization remains NOT_AUTHORIZED。
 
 Next：R-10 formal closure -> R-11 clock authority。
 
-## Decision Checkpoint 5D Handoff
+### Decision Checkpoint 5D Handoff
 
 R-10 / R-11 are DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
 
@@ -937,7 +989,7 @@ Runtime Authorization remains NOT_AUTHORIZED。
 
 Next：R-12 ReconciliationRun audit contract。
 
-## Decision Checkpoint 5E Handoff
+### Decision Checkpoint 5E Handoff
 
 R-12 / R-13 / R-14 architecture and boundary classification are closed。
 

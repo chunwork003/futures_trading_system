@@ -10,6 +10,8 @@ If any cached handoff、AGENTS history、CURRENT_WORK、ACTIVE or older closure 
 ### CURRENT_AUTHORITY_SNAPSHOT
 
 ```text
+branch = master
+
 architecture_decision_baseline = 22ceaa729ab6e9da9c00ae52e09ae7116be5a743
 governance_planning_baseline = f45742d9d16165f87f145f0d2bdc8d530772e5ee
 correction_freeze_baseline = 93fb846a9c9cd61eea44427a86a542fc95f9ac28
@@ -30,19 +32,31 @@ current_runtime_candidate = NONE
 reviewer_state = W4_FINAL_ACCEPTED_CLOSED
 w4_weight = 18_CREDITED
 
-C13 = PASS_FROZEN_READ_ONLY
-C12 = RF02_CHANGES_RETAINED_NOT_ACCEPTED
-C14 = PASS_FROZEN_READ_ONLY
-C15 = RESCOPE_REQUIRED
-
 W4R_A = ACCEPTED_FROZEN_READ_ONLY
 W4R_B = ACCEPTED_FROZEN_READ_ONLY
 W4R_C = ACCEPTED_FROZEN_READ_ONLY
 W4R_D = ACCEPTED_FROZEN_READ_ONLY
 
-runtime_source_modification_authorization = NOT_AUTHORIZED
-migration_0008 = CREATED_NOT_EXECUTED
+original_c15 = HISTORICAL_RESCOPE_SUPERSEDED_BY_ACCEPTED_W4R_D
+c18_original_c15_dependency = SATISFIED_BY_ACCEPTED_W4R_D_RESCOPE
+
+p7_sequence = C16>C17>C19>C20>C18
+p7_weight = 20
+p7_architecture_ready = YES
+p7_specification_review = PASS
+p7_specification = ARCH-P7-SPEC-01_FROZEN
+p7_runtime_source_authorization = NOT_AUTHORIZED
+p7_runtime_execution = NOT_AUTHORIZED
+c16_authorized = NO
+
+p8 = SEPARATE_BROKER_CAPABILITY_VERIFICATION
+p9_v07 = SEPARATE_POSTGRES_ENVIRONMENT_CONFORMANCE
+
+pg17_w4_test_gate = VERIFIED_IN_CONFIGURED_TEST_ENVIRONMENT
+pg18 = NOT_VERIFIED_SKIPPED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
+
+runtime_source_modification_authorization = NOT_AUTHORIZED
 broker_io = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 ```
@@ -119,29 +133,27 @@ Pointers：
 - W4R PostgreSQL gate RF02A authorization：`docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_03.md`
 - W4R PostgreSQL final closure: `docs/work/GAP08_W4R_PG_CONCURRENCY_CLOSURE.md`
 - W4 final closure: `docs/work/GAP08_WAVE4_CLOSURE.md`
+- GOV-SYNC W4/PRE-P7 record: `docs/work/GOV_SYNC_W4_PREP7.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action:
 
-W4 is `CLOSED / REVIEWER_ACCEPTED`.
+`GOV-SYNC-W4-PREP7` is the current docs-only governance synchronization package.
 
-Official W4 weight is `18 / CREDITED`.
+P7 architecture/specification is READY / REVIEW PASS / FROZEN, but P7 runtime source
+authorization and P7 runtime execution remain `NOT_AUTHORIZED`.
 
-Accepted correction core is `93 / 113`; remaining correction core is `20 / 113`.
+After docs synchronization:
 
-PostgreSQL 17 isolated integration/concurrency is verified only within the configured
-test-environment boundary.
+`STOPPED_AWAITING_SEPARATE_C16_AUTHORIZATION_DECISION`
 
-V07 remains `NOT_EXECUTED / NOT_VERIFIED`.
+Next governance candidate:
 
-Runtime conformance and production readiness remain `NOT_ASSERTED`.
+`C16_BOUNDED_AUTHORIZATION_DECISION`
 
-Runtime source authorization, P7, RF03, broker I/O, and production activation remain
-`NOT_AUTHORIZED`.
-
-STOP awaiting separate explicit authorization.
+This is NOT authorized runtime work.
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS

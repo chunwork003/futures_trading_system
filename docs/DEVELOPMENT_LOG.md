@@ -19,7 +19,7 @@
 
 ### Milestone and Progress
 
-- Current milestone：Broker Account / Position Sync + Reconciliation（next mainline；尚未開始）。
+- Current milestone：Post-W4 / Pre-P7 governance synchronization；next after independent confirmation：separate C16 bounded authorization decision。
 - Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07（A0/A/B/C/D/E/F/E2/E3）。
 - Pending：broker sync/reconciliation、persistence/recovery、incremental state。
 - Overall V1：40–50%。以 Work Package weight 與 acceptance criteria 評估；不可使用 LOC 或 file count。
@@ -28,6 +28,33 @@
 - 此為 dynamic estimate，不是 deadline；每個 checkpoint / milestone 後重新估算。發現 architecture blocker 或新增 scope 時可上調；已有功能比預期成熟時可下調。
 
 ## Chronological Log
+
+### 2026-10-03 — GOV-SYNC-W4-PREP7 Governance Synchronization
+
+- W4：CLOSED / REVIEWER_ACCEPTED。
+- Official W4 weight：18 / CREDITED。
+- accepted correction-core：93 / 113。
+- remaining correction-core：20 / 113。
+- P7 architecture ready：YES。
+- P7 specification：`ARCH-P7-SPEC-01 / FROZEN`。
+- P7 specification review：PASS。
+- P7 sequence：C16 -> C17 -> C19 -> C20 -> C18。
+- P7 runtime source authorization：NOT_AUTHORIZED。
+- P7 runtime execution：NOT_AUTHORIZED。
+- C16 authorized：NO。
+- C18 original C15 dependency：SATISFIED_BY_ACCEPTED_W4R_D_RESCOPE。
+- P8：SEPARATE_BROKER_CAPABILITY_VERIFICATION。
+- P9 / V07：SEPARATE_ACTUAL_POSTGRESQL_ENVIRONMENT_CONFORMANCE。
+- PG17 W4 TEST gate：VERIFIED IN CONFIGURED TEST ENVIRONMENT。
+- PG18：NOT_VERIFIED / SKIPPED。
+- V07：NOT_EXECUTED / NOT_VERIFIED。
+- package：GOV-SYNC-W4-PREP7 / DOCS ONLY。
+- runtime source changed：NO。
+- tests changed/executed：NO。
+- migration changed/executed：NO。
+- PostgreSQL accessed：NO。
+- broker I/O：NO。
+- next：RETURN_TO_ARCHITECT for separate C16 bounded authorization decision。
 
 ### 2026-09-27 — GAP-08 Wave-4 Reviewer RF01 / V0 Efficiency Alignment
 

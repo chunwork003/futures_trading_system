@@ -87,7 +87,7 @@ Metric basis：
 
 Capability status：
 
-    COMPLETE 12 / PARTIAL 51 / NOT_STARTED 29
+    COMPLETE 12 / PARTIAL 55 / NOT_STARTED 25
 
 Readiness：
 
@@ -256,15 +256,26 @@ Readiness：
 
 # K — Persistence / Recovery
 
+Current PostgreSQL evidence boundary:
+
+```text
+PG17 W4 TEST gate = VERIFIED IN CONFIGURED TEST ENVIRONMENT
+PG18 = NOT_VERIFIED / SKIPPED
+V07 actual PostgreSQL environment conformance = NOT_EXECUTED / NOT_VERIFIED
+```
+
+The PG17 W4 test gate MUST NOT be interpreted as V07 or production PostgreSQL
+environment conformance.
+
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
-| K01 | PostgreSQL operational SOR | PARTIAL | Foundation accepted；PG17/18 integration remains PENDING |
-| K02 | Order/OrderEvent/Fill persistence | NOT_STARTED | GAP-08 |
-| K03 | Position/account snapshots | NOT_STARTED | GAP-08 |
+| K01 | PostgreSQL operational SOR | PARTIAL | Foundation accepted；PG17 W4 TEST gate VERIFIED；PG18 NOT_VERIFIED / SKIPPED；V07 actual environment NOT_EXECUTED / NOT_VERIFIED |
+| K02 | Order/OrderEvent/Fill persistence | PARTIAL | Accepted W1-W4 persistence foundation exists；remaining P7/production capability acceptance pending |
+| K03 | Position/account snapshots | PARTIAL | Accepted account authority/snapshot persistence foundation exists；full capability acceptance pending |
 | K04 | Decision/Risk provenance persistence | NOT_STARTED | GAP-PERSIST-001 |
 | K05 | Trading event ledger/idempotency | PARTIAL | Event ledger accepted；execution OrderEvent persistence remains GAP-08EF |
-| K06 | Strategy state snapshot | NOT_STARTED | Recovery |
-| K07 | Restart recovery + broker reconciliation | NOT_STARTED | GAP-08 |
+| K06 | Strategy state snapshot | PARTIAL | Accepted durable strategy-state/revision-reference foundation exists；P7 readiness integration pending |
+| K07 | Restart recovery + broker reconciliation | PARTIAL | Accepted W4R recovery/reconciliation foundation exists；remaining P7 strategy/cohort readiness work pending |
 
 ---
 

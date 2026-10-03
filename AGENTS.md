@@ -1,32 +1,63 @@
 # GOV-01 CURRENT RE-ENTRY GUARD
 
-**CANONICAL CURRENT AUTHORITY：`docs/CURRENT_STATE.md`**
+**CANONICAL CURRENT AUTHORITY: `docs/CURRENT_STATE.md`**
 
-This file is the agent re-entry guard and navigation surface。
+This file is the agent re-entry guard and navigation surface.
+It does NOT independently establish Runtime Authorization.
 
-It does NOT independently establish Runtime Authorization。
+```text
+branch = master
 
-Architecture Decision Baseline：`22ceaa729ab6e9da9c00ae52e09ae7116be5a743`。
+W4 = CLOSED / REVIEWER_ACCEPTED
+W4_OFFICIAL_WEIGHT = 18 / CREDITED
 
-Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`。Correction-Freeze Baseline：`93fb846a9c9cd61eea44427a86a542fc95f9ac28`。Latest completed bounded execution：`docs/work/GAP08_C25_CLOSURE.md`。
+accepted_correction_core = 93 / 113
+remaining_correction_core = 20 / 113
 
-Runtime Candidate：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+current_wave = NONE
+current_runtime_candidate = NONE
 
-Architecture Acceptance：HOLD。
+P7_SEQUENCE = C16 -> C17 -> C19 -> C20 -> C18
+P7_WEIGHT = 20
+P7_ARCHITECTURE_READY = YES
+P7_SPECIFICATION_REVIEW = PASS
+P7_SPECIFICATION = ARCH-P7-SPEC-01 / FROZEN
 
-Runtime Conformance：NOT ASSERTED。
+P7_RUNTIME_SOURCE_AUTHORIZATION = NOT_AUTHORIZED
+P7_RUNTIME_EXECUTION = NOT_AUTHORIZED
+C16_AUTHORIZED = NO
 
-Production Readiness：NOT ASSERTED。
+C18_ORIGINAL_C15_DEPENDENCY =
+SATISFIED_BY_ACCEPTED_W4R_D_RESCOPE
 
-Runtime Authorization：NOT_AUTHORIZED。
+P8 = SEPARATE_BROKER_CAPABILITY_VERIFICATION
+P9_V07 = SEPARATE_POSTGRES_ENVIRONMENT_CONFORMANCE
 
-Post-5E K520 / BG-01～BG-07 / Expanded Correction-Scope Map / Delta-to-Contract conclusions are recorded in the Correction-Freeze planning package；they remain planning inputs and are not a new Architecture Decision Baseline。
+PG17_W4_TEST_GATE = VERIFIED_IN_CONFIGURED_TEST_ENVIRONMENT
+PG18 = NOT_VERIFIED / SKIPPED
+V07 = NOT_EXECUTED / NOT_VERIFIED
 
-Current execution state is deliberately not duplicated here。Always resolve `docs/CURRENT_STATE.md` at the current Git HEAD；if cached/handoff/historical text conflicts，the canonical CURRENT projection wins and authority must be re-resolved。
+RUNTIME_CONFORMANCE = NOT_ASSERTED
+PRODUCTION_READINESS = NOT_ASSERTED
+BROKER_IO = NOT_AUTHORIZED
+PRODUCTION_ACTIVATION = NOT_AUTHORIZED
+```
 
-W2 authorization + Amendment 01 are CONSUMED / CLOSED。Migration 0006 exists and was amended before execution；it remains NOT_EXECUTED。Actual PostgreSQL、V07、migration execution、broker I/O and runtime activation remain NOT_AUTHORIZED。
+Current package:
 
-Historical authority/checkpoint sections below are preserved for audit and are not current runtime authorization。
+```text
+WORK_PACKAGE_ID = GOV-SYNC-W4-PREP7
+TYPE = DOCS_ONLY_GOVERNANCE_SYNCHRONIZATION
+RUNTIME_SOURCE_AUTHORIZATION = NONE
+RUNTIME_EXECUTION = NONE
+```
+
+After this docs sync the repository MUST STOP and return to the Architect for a
+separate C16 bounded authorization decision. A next governance candidate is not
+authorized runtime work.
+
+Historical authority/checkpoint sections below are retained for audit only and have
+NO CURRENT RUNTIME AUTHORITY.
 
 ## HISTORICAL AUTHORITY RECORD — RECOVERY DECISION CHECKPOINT 4 — SUPERSEDED
 
@@ -56,11 +87,11 @@ This CURRENT AUTHORITY supersedes older R-04 OPEN wording elsewhere in historica
 
 目前唯一 canonical CURRENT governance projection 位於 `docs/CURRENT_STATE.md`。
 
-Original runtime candidate remains NOT ACCEPTED；latest completed correction runtime commit is 6b9db14ff0e6f104f59e418aae2aa8f99f3a2119；Architecture Acceptance = HOLD；Runtime Authorization = NOT_AUTHORIZED。
+Current governance: W4 is CLOSED / REVIEWER_ACCEPTED；accepted correction-core = 93 / 113；remaining = 20；current runtime candidate = NONE；Architecture Acceptance = HOLD；Runtime Authorization = NOT_AUTHORIZED。
 
 R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map、Delta-to-Contract、materialized correction leaves、DAG 與 reweight 已記錄於 `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 + C23 + C24 + C25 + GAP08-W1 + GAP08-W2 + GAP08-W3 已完成並 accepted；correction-core progress = 75 / 113，remaining = 38。P6 / W4 C13 -> C12 -> C14 -> C15 execution coherence = VERIFIED；source modification = BOUNDED_AUTHORIZED_FOR_GAP08_W4。Runtime Authorization 仍為 NOT_AUTHORIZED。
+V06 + C01 + C22 + C11 + C23 + C24 + C25 + GAP08-W1 + GAP08-W2 + GAP08-W3 + W4 已完成並 accepted；correction-core progress = 93 / 113，remaining = 20。P7 specification `C16 -> C17 -> C19 -> C20 -> C18` 已 review PASS / FROZEN，但 P7 runtime source authorization 與 execution 仍為 NOT_AUTHORIZED。
 
 Primary source of truth 與必讀順序：
 
@@ -75,7 +106,7 @@ Historical bounded authorization source：`docs/work/GAP08_AUTHORIZATION_V06_C01
 
 Previous bounded execution closure：`docs/work/GAP08_C01_CLOSURE.md`。
 
-Latest bounded execution closure：`docs/work/GAP08_WAVE2_CLOSURE.md`。Final W2 Runtime HEAD：`a9a8277afd4aeda5150d596b41597a179ad63570`。Current bounded source-modification authorization：NONE。W2 authorization + Amendment 01 are CONSUMED / CLOSED。
+Latest accepted Wave closure：`docs/work/GAP08_WAVE4_CLOSURE.md`。Final accepted W4 runtime HEAD：`0484681eea7cf3777a41a9c8f1965dea395921ea`。Current bounded source-modification authorization：NONE。P7 runtime remains NOT_AUTHORIZED。
 4. `docs/GAP_REGISTER.md`：有序 GAP。
 5. `docs/AI_HANDOFF.md`：架構決策與交接。
 6. `docs/V1_SYSTEM_BLUEPRINT.md`：V1 工程施工圖 master index；正式 baseline 後由 ACTIVE 引用相關 Blueprint IDs。
