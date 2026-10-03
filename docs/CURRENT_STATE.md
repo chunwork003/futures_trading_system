@@ -19,16 +19,16 @@ runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
 canonical_runtime_authorization = NOT_AUTHORIZED
 
-accepted_correction_core = 75/113
-remaining_correction_core = 38
+accepted_correction_core = 93/113
+remaining_correction_core = 20
 
-latest_accepted_wave = W3
-latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
+latest_accepted_wave = W4
+latest_accepted_runtime_head = 0484681eea7cf3777a41a9c8f1965dea395921ea
 
-current_wave = W4
-current_runtime_candidate = 38198142b5d57141c38582508a31d292e4bf246c
-reviewer_state = W4R_PG17_CONCURRENCY_PASS_RF02_READY
-w4_weight = 18_NOT_CREDITED
+current_wave = NONE
+current_runtime_candidate = NONE
+reviewer_state = W4_FINAL_ACCEPTED_CLOSED
+w4_weight = 18_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
 C12 = RF02_CHANGES_RETAINED_NOT_ACCEPTED
@@ -38,9 +38,9 @@ C15 = RESCOPE_REQUIRED
 W4R_A = ACCEPTED_FROZEN_READ_ONLY
 W4R_B = ACCEPTED_FROZEN_READ_ONLY
 W4R_C = ACCEPTED_FROZEN_READ_ONLY
-W4R_D = D1A_D1B_D2_D3_ACCEPTED_INTERNAL_COMPLETE
+W4R_D = ACCEPTED_FROZEN_READ_ONLY
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_W4R_PG_RF02_JSONB_AND_FK_FIXTURE_ONLY
+runtime_source_modification_authorization = NOT_AUTHORIZED
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -117,17 +117,31 @@ Pointers：
 - W4R PostgreSQL gate RF02 authorization：`docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_02.md`
 - W4R PostgreSQL gate RF02A FK fixture review：`docs/work/GAP08_W4R_PG_CONCURRENCY_REVIEW_RF02A.md`
 - W4R PostgreSQL gate RF02A authorization：`docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_03.md`
+- W4R PostgreSQL final closure: `docs/work/GAP08_W4R_PG_CONCURRENCY_CLOSURE.md`
+- W4 final closure: `docs/work/GAP08_WAVE4_CLOSURE.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
-Current action：
+Current action:
 
-resume W4R PostgreSQL RF02 manually：retain JSONB unit PASS and PG17 concurrency PASS evidence；repair only the canonical MarketObservation durable-revision integration fixture；rerun compatibility + one full regression；one source/test commit/push then STOP。
+W4 is `CLOSED / REVIEWER_ACCEPTED`.
 
-W4R-A/B/C/D are internally accepted/frozen；W4R-D is 18/18 internal complete。RF02 JSONB unit evidence and PG17 concurrency evidence remain PASS；RF02A is authorized only to complete the canonical durable MarketObservation revision fixture while retaining the existing JSONB correction candidate。W4 closure、official W4 credit、V07 conformance、P7 and RF03 remain NOT_AUTHORIZED。
+Official W4 weight is `18 / CREDITED`.
 
-Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
+Accepted correction core is `93 / 113`; remaining correction core is `20 / 113`.
+
+PostgreSQL 17 isolated integration/concurrency is verified only within the configured
+test-environment boundary.
+
+V07 remains `NOT_EXECUTED / NOT_VERIFIED`.
+
+Runtime conformance and production readiness remain `NOT_ASSERTED`.
+
+Runtime source authorization, P7, RF03, broker I/O, and production activation remain
+`NOT_AUTHORIZED`.
+
+STOP awaiting separate explicit authorization.
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS
