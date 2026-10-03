@@ -27,7 +27,7 @@ latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
 
 current_wave = W4
 current_runtime_candidate = 38198142b5d57141c38582508a31d292e4bf246c
-reviewer_state = W4R_PG_HARNESS_ACCEPTED_ENV_BLOCKED
+reviewer_state = W4R_PG17_CONCURRENCY_PASS_RF01_READY
 w4_weight = 18_NOT_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
@@ -40,7 +40,7 @@ W4R_B = ACCEPTED_FROZEN_READ_ONLY
 W4R_C = ACCEPTED_FROZEN_READ_ONLY
 W4R_D = D1A_D1B_D2_D3_ACCEPTED_INTERNAL_COMPLETE
 
-runtime_source_modification_authorization = NOT_AUTHORIZED
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_W4R_PG_RF01_TEST_FIXTURE_ONLY
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -117,9 +117,9 @@ Pointers：
 
 Current action：
 
-WAIT_FOR_TEST_DSN；accepted PostgreSQL concurrency harness is ready but no PG17/PG18 TEST_DSN is configured。When an explicit TEST_DSN becomes available, run the accepted integration harness directly；no source modification or Codex dispatch is authorized。
+execute W4R PostgreSQL RF01 manually：retain PG17 concurrency PASS evidence；correct only stale operational persistence integration fixture broker_client_order_ref；rerun targeted + compatibility + full regression；one commit/push then STOP。
 
-W4R-A/B/C/D are internally accepted/frozen；W4R-D is 18/18 internal complete。PostgreSQL concurrency harness is ACCEPTED but the gate is ENV_BLOCKED / NOT_VERIFIED because no TEST_DSN executed。Runtime source modification is NOT_AUTHORIZED；W4 closure、official W4 credit、V07 conformance and P7 remain NOT_AUTHORIZED。
+W4R-A/B/C/D are internally accepted/frozen；W4R-D is 18/18 internal complete。Real PG17 concurrency scenarios PASS and evidence is retained；one stale integration fixture requires RF01 test-only correction。W4 closure、official W4 credit、V07 conformance and P7 remain NOT_AUTHORIZED。
 
 Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 
