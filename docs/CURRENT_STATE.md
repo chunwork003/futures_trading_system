@@ -27,7 +27,7 @@ latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
 
 current_wave = W4
 current_runtime_candidate = 38198142b5d57141c38582508a31d292e4bf246c
-reviewer_state = W4R_D3_ACCEPTED_W4_HOLD_PG_CONCURRENCY_READY
+reviewer_state = W4R_PG_HARNESS_ACCEPTED_ENV_BLOCKED
 w4_weight = 18_NOT_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
@@ -40,7 +40,7 @@ W4R_B = ACCEPTED_FROZEN_READ_ONLY
 W4R_C = ACCEPTED_FROZEN_READ_ONLY
 W4R_D = D1A_D1B_D2_D3_ACCEPTED_INTERNAL_COMPLETE
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_W4R_POSTGRES_CONCURRENCY_GATE_ONLY
+runtime_source_modification_authorization = NOT_AUTHORIZED
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -110,15 +110,16 @@ Pointers：
 - W4R-D3 RF01 authorization：`docs/work/GAP08_W4R_D3_AUTHORIZATION_AMENDMENT_01.md`
 - W4R-D3 closure：`docs/work/GAP08_W4R_D3_CLOSURE.md`
 - W4R PostgreSQL integration/concurrency gate authorization：`docs/work/GAP08_W4R_POSTGRES_CONCURRENCY_GATE_AUTHORIZATION.md`
+- W4R PostgreSQL harness ENV_BLOCKED closure：`docs/work/GAP08_W4R_PG_CONCURRENCY_ENV_BLOCKED_CLOSURE.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action：
 
-execute exactly one isolated PostgreSQL integration/concurrency verification gate for the accepted W4R shared recovery fence and atomic handoff；test-source only；after one harness commit/push STOP for independent reviewer。
+WAIT_FOR_TEST_DSN；accepted PostgreSQL concurrency harness is ready but no PG17/PG18 TEST_DSN is configured。When an explicit TEST_DSN becomes available, run the accepted integration harness directly；no source modification or Codex dispatch is authorized。
 
-W4R-A/B/C/D are internally accepted/frozen；W4R-D is 18/18 internal complete。Executor is authorized only for the isolated PostgreSQL TEST_DSN integration/concurrency gate；W4 closure、official W4 credit、V07 conformance and P7 remain NOT_AUTHORIZED。
+W4R-A/B/C/D are internally accepted/frozen；W4R-D is 18/18 internal complete。PostgreSQL concurrency harness is ACCEPTED but the gate is ENV_BLOCKED / NOT_VERIFIED because no TEST_DSN executed。Runtime source modification is NOT_AUTHORIZED；W4 closure、official W4 credit、V07 conformance and P7 remain NOT_AUTHORIZED。
 
 Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 
