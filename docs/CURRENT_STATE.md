@@ -26,8 +26,8 @@ latest_accepted_wave = W3
 latest_accepted_runtime_head = 8085697e7211b4cd43df8e4574c3eef25cba604a
 
 current_wave = W4
-current_runtime_candidate = f0116524fb7254f912255023d2b80bf702a40f11
-reviewer_state = W4R_D3_HOLD_RF01_READY
+current_runtime_candidate = 38198142b5d57141c38582508a31d292e4bf246c
+reviewer_state = W4R_D3_ACCEPTED_W4_HOLD_PG_CONCURRENCY_READY
 w4_weight = 18_NOT_CREDITED
 
 C13 = PASS_FROZEN_READ_ONLY
@@ -38,9 +38,9 @@ C15 = RESCOPE_REQUIRED
 W4R_A = ACCEPTED_FROZEN_READ_ONLY
 W4R_B = ACCEPTED_FROZEN_READ_ONLY
 W4R_C = ACCEPTED_FROZEN_READ_ONLY
-W4R_D = D1A_D1B_D2_ACCEPTED_D3_HOLD_RF01_READY
+W4R_D = D1A_D1B_D2_D3_ACCEPTED_INTERNAL_COMPLETE
 
-runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_W4R_D3_RF01_ONLY
+runtime_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_W4R_POSTGRES_CONCURRENCY_GATE_ONLY
 migration_0008 = CREATED_NOT_EXECUTED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 broker_io = NOT_AUTHORIZED
@@ -108,15 +108,17 @@ Pointers：
 - W4R-D3 authorization：`docs/work/GAP08_W4R_D3_AUTHORIZATION.md`
 - W4R-D3 independent review RF01：`docs/work/GAP08_W4R_D3_REVIEW_RF01.md`
 - W4R-D3 RF01 authorization：`docs/work/GAP08_W4R_D3_AUTHORIZATION_AMENDMENT_01.md`
+- W4R-D3 closure：`docs/work/GAP08_W4R_D3_CLOSURE.md`
+- W4R PostgreSQL integration/concurrency gate authorization：`docs/work/GAP08_W4R_POSTGRES_CONCURRENCY_GATE_AUTHORIZATION.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action：
 
-execute exactly one bounded W4R-D3 RF01 correction for C14/B2 discovery-observation linkage and canonical final recorded_at；after one correction commit/push STOP for independent reviewer。
+execute exactly one isolated PostgreSQL integration/concurrency verification gate for the accepted W4R shared recovery fence and atomic handoff；test-source only；after one harness commit/push STOP for independent reviewer。
 
-W4R-A/B/C and W4R-D1A/D1B/D2 are accepted/frozen。W4R-D3 runtime candidate is retained but HOLD for RF01 only。Executor coding is authorized for W4R-D3 RF01 only；isolated PostgreSQL integration/concurrency verification and W4 closure remain NOT_AUTHORIZED。
+W4R-A/B/C/D are internally accepted/frozen；W4R-D is 18/18 internal complete。Executor is authorized only for the isolated PostgreSQL TEST_DSN integration/concurrency gate；W4 closure、official W4 credit、V07 conformance and P7 remain NOT_AUTHORIZED。
 
 Do not close W4、credit weight 18、begin P7、modify/execute migration、access actual PostgreSQL/V07、run A08 or perform broker I/O。
 
