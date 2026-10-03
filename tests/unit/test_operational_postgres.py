@@ -732,3 +732,59 @@ def test_d1a_broker_observation_uses_one_outer_fence_without_commit() -> None:
     assert "broker_position_observations" in sqls[1]
     assert "readiness_revision=readiness_revision+1" in sqls[-1]
     assert connection.commits == 0
+def test_strategy_postgres_jsonb_parameters_are_serialized_strings() -> None:
+    """Strategy PostgreSQL JSONB 參數必須先序列化，不得把 raw dict 直接交給 Psycopg。"""
+    import json
+    from datetime import datetime, timezone
+
+    from persistence.postgres.strategy_state import (
+        PostgresStrategyInstanceRepository,
+        PostgresStrategyStateRepository,
+    )
+    from persistence.strategy_state import StrategyStateSnapshot
+    from strategy.instance import StrategyInstance, config_fingerprint
+
+    config = {"symbol": "TX", "timeframe": "1m"}
+    instance = StrategyInstance(
+        strategy_instance_id="PG-JSONB-SI",
+        strategy_id="EMA_CROSS",
+        strategy_version="1.0.0",
+        config_version="C1",
+        config_fingerprint=config_fingerprint(config),
+        instrument_id=1,
+        timeframe="1m",
+        config_json=config,
+    )
+    connection = _Connection()
+    PostgresStrategyInstanceRepository(connection).append(instance)
+    _, params = connection.last
+    assert isinstance(params[7], str)
+    assert json.loads(params[7]) == instance.config_json
+    assert isinstance(params[8], str)
+    assert connection.commits == 0
+
+    snapshot = StrategyStateSnapshot(
+        snapshot_id="PG-JSONB-SS",
+        strategy_instance_id=instance.strategy_instance_id,
+        strategy_id=instance.strategy_id,
+        strategy_version=instance.strategy_version,
+        config_version=instance.config_version,
+        config_fingerprint=instance.config_fingerprint,
+        instrument_id=instance.instrument_id,
+        timeframe=instance.timeframe,
+        state_schema_version=1,
+        last_market_observation_revision_id="mor1_" + ("a" * 64),
+        captured_at=datetime(2026, 10, 3, tzinfo=timezone.utc),
+        state_json={
+            "schema_version": 1,
+            "previous_ema20": None,
+            "previous_ema60": None,
+        },
+    )
+    state_connection = _Connection()
+    PostgresStrategyStateRepository(state_connection).append(snapshot)
+    _, state_params = state_connection.last
+    assert isinstance(state_params[12], str)
+    assert json.loads(state_params[12]) == snapshot.state_json
+    assert isinstance(state_params[13], str)
+    assert state_connection.commits == 0

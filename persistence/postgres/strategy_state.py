@@ -56,7 +56,7 @@ class PostgresStrategyInstanceRepository:
                     instance.config_fingerprint,
                     instance.instrument_id,
                     instance.timeframe,
-                    instance.config_json,
+                    json.dumps(instance.config_json, sort_keys=True, separators=(",", ":"), ensure_ascii=False),
                     instance.model_dump_json(),
                 ),
             )
@@ -164,7 +164,7 @@ class PostgresStrategyStateRepository:
                     snapshot.state_schema_version,
                     canonical,
                     canonical,
-                    snapshot.state_json,
+                    json.dumps(snapshot.state_json, sort_keys=True, separators=(",", ":"), ensure_ascii=False),
                     snapshot.model_dump_json(),
                 ),
             )
