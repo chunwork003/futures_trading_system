@@ -45,9 +45,14 @@ p7_weight = 20
 p7_architecture_ready = YES
 p7_specification_review = PASS
 p7_specification = ARCH-P7-SPEC-01_FROZEN
-p7_runtime_source_authorization = NOT_AUTHORIZED
+p7_full_authorization = NOT_AUTHORIZED
 p7_runtime_execution = NOT_AUTHORIZED
-c16_authorized = NO
+c16_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_P7_C16_ONLY
+c16_authorized = YES_SOURCE_MODIFICATION_ONLY
+c17 = NOT_AUTHORIZED
+c19 = NOT_AUTHORIZED
+c20 = NOT_AUTHORIZED
+c18 = NOT_AUTHORIZED
 
 p8 = SEPARATE_BROKER_CAPABILITY_VERIFICATION
 p9_v07 = SEPARATE_POSTGRES_ENVIRONMENT_CONFORMANCE
@@ -134,26 +139,32 @@ Pointers：
 - W4R PostgreSQL final closure: `docs/work/GAP08_W4R_PG_CONCURRENCY_CLOSURE.md`
 - W4 final closure: `docs/work/GAP08_WAVE4_CLOSURE.md`
 - GOV-SYNC W4/PRE-P7 record: `docs/work/GOV_SYNC_W4_PREP7.md`
+- P7 C16 authorization: `docs/work/GAP08_P7_C16_AUTHORIZATION.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action:
 
-`GOV-SYNC-W4-PREP7` is the current docs-only governance synchronization package.
+`AUTH-P7-C16-01` authorizes bounded runtime source modification for `C16 ONLY`.
 
-P7 architecture/specification is READY / REVIEW PASS / FROZEN, but P7 runtime source
-authorization and P7 runtime execution remain `NOT_AUTHORIZED`.
+```text
+C16_SOURCE_MODIFICATION_AUTHORIZATION =
+BOUNDED_AUTHORIZED_FOR_GAP08_P7_C16_ONLY
 
-After docs synchronization:
+FULL_P7_RUNTIME_AUTHORIZATION = NOT_AUTHORIZED
+CANONICAL_RUNTIME_AUTHORIZATION = NOT_AUTHORIZED
 
-`STOPPED_AWAITING_SEPARATE_C16_AUTHORIZATION_DECISION`
+C17 = NOT_AUTHORIZED
+C19 = NOT_AUTHORIZED
+C20 = NOT_AUTHORIZED
+C18 = NOT_AUTHORIZED
+```
 
-Next governance candidate:
+The exact pushed authorization commit becomes the C16 execution baseline.
 
-`C16_BOUNDED_AUTHORIZATION_DECISION`
-
-This is NOT authorized runtime work.
+C16 implementation completion is candidate-only and requires independent semantic review.
+Accepted correction core remains `93 / 113` until that review passes.
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS

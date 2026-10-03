@@ -19,7 +19,7 @@
 
 ### Milestone and Progress
 
-- Current milestone：Post-W4 / Pre-P7 governance synchronization；next after independent confirmation：separate C16 bounded authorization decision。
+- Current milestone：P7 C16 bounded execution authorization；C16 ONLY source modification authorized after authorization commit push；independent semantic review required before credit。
 - Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07（A0/A/B/C/D/E/F/E2/E3）。
 - Pending：broker sync/reconciliation、persistence/recovery、incremental state。
 - Overall V1：40–50%。以 Work Package weight 與 acceptance criteria 評估；不可使用 LOC 或 file count。
@@ -28,6 +28,26 @@
 - 此為 dynamic estimate，不是 deadline；每個 checkpoint / milestone 後重新估算。發現 architecture blocker 或新增 scope 時可上調；已有功能比預期成熟時可下調。
 
 ## Chronological Log
+
+### 2026-10-03 — GAP-08 P7 C16 Bounded Authorization
+
+- decision：`AUTH-P7-C16-01 / AUTHORIZE`。
+- authorization baseline：`5682033fde26dff8a317dce11da227dc7b1b59e8`。
+- authorized leaf：C16 ONLY。
+- C16：Strategy Governing Identity + Canonical Binding。
+- C16 weight：5 candidate / NOT CREDITED。
+- C16 source modification authorization：
+  `BOUNDED_AUTHORIZED_FOR_GAP08_P7_C16_ONLY`。
+- full P7 runtime authorization：NOT_AUTHORIZED。
+- canonical runtime authorization：NOT_AUTHORIZED。
+- C17 / C19 / C20 / C18：NOT_AUTHORIZED。
+- migration source modification：DENY。
+- migration execution：DENY。
+- actual PostgreSQL / V07 / PG17 / PG18 integration：OUT OF SCOPE / DENY。
+- broker I/O / Shioaji I/O / V01-V05：DENY。
+- accepted correction-core remains 93 / 113 until independent C16 semantic review PASS。
+- authorization is effective only after the docs-only authorization commit is pushed。
+- next after authorization materialization：execute C16 only from the exact authorization HEAD。
 
 ### 2026-10-03 — GOV-SYNC-W4-PREP7 Governance Synchronization
 
