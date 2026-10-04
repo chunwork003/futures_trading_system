@@ -16,22 +16,20 @@ architecture_decision_baseline = 22ceaa729ab6e9da9c00ae52e09ae7116be5a743
 governance_planning_baseline = f45742d9d16165f87f145f0d2bdc8d530772e5ee
 correction_freeze_baseline = 93fb846a9c9cd61eea44427a86a542fc95f9ac28
 
-architecture_acceptance = HOLD
+architecture_acceptance = HOLD_PENDING_FINAL_GAP08_CLOSURE_REVIEW
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
 canonical_runtime_authorization = NOT_AUTHORIZED
 
-accepted_correction_core = 98/113
-remaining_correction_core = 15
+accepted_correction_core = 113/113
+remaining_correction_core = 0
+latest_accepted_wave = P7_REMAINDER
+latest_accepted_runtime_head = e4e238ccc3edb753c86e89368efe0645d6337f58
+current_wave = NONE
+current_runtime_candidate = NONE
+reviewer_state = P7_REMAINDER_ACCEPTED_PENDING_FINAL_GAP08_CLOSURE_REVIEW
 
-latest_accepted_wave = W4
-latest_accepted_runtime_head = cb5f43cb9ed97ad80b1d7811799412a507e62dde
-
-current_wave = P7_RF01_AMENDMENT_01
-current_runtime_candidate = 3c36e87efe94ab6fedcc0389c9eb37ac4d5df1f5
-reviewer_state = P7_REMAINDER_RF01_REQUIRED
 w4_weight = 18_CREDITED
-
 W4R_A = ACCEPTED_FROZEN_READ_ONLY
 W4R_B = ACCEPTED_FROZEN_READ_ONLY
 W4R_C = ACCEPTED_FROZEN_READ_ONLY
@@ -49,36 +47,32 @@ p7_full_authorization = NOT_AUTHORIZED
 p7_runtime_execution = NOT_AUTHORIZED
 c16 = ACCEPTED_FROZEN_READ_ONLY
 c16_weight = 5_CREDITED
-c16_accepted_runtime_head = cb5f43cb9ed97ad80b1d7811799412a507e62dde
-c16_source_modification_authorization = CONSUMED_CLOSED
-p7_remainder_decision = AUTH-P7-REMAINDER-01_AUTHORIZE
-p7_remainder_spec = ARCH-P7-REMAINDER-01_FROZEN
-p7_remainder_pre_auth_review = PASS
-p7_remainder_architecture_contradiction = NONE
-p7_remainder_wave = C17>C19>C20>C18
-c17 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
-c19 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
-c20 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
-c18 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
-p7_remainder_review = RF01_REQUIRED
-p7_rf01_amendment = AUTH-P7-REMAINDER-01-AMENDMENT-01_AUTHORIZE
-p7_rf01_pattern = IMMUTABLE_DESCRIPTOR_PLUS_APPEND_ONLY_PHASE_EVIDENCE
-p7_rf01_transition_resolution = POSITIVE_NO_ACTIVE_TRANSITION_AUTHORITY
-p7_rf01_cohort_authority = AUTHORITATIVE_PROVIDER_RESOLVER_LOOKUP
-p7_rf01_runtime_baseline = 3c36e87efe94ab6fedcc0389c9eb37ac4d5df1f5
-p7_rf01_effectivity = AFTER_DOCS_AMENDMENT_COMMIT_PUSH
-p7_rf01_execution_baseline = PENDING_DOCS_AMENDMENT_PUSH
+c17 = ACCEPTED_FROZEN_READ_ONLY
+c17_weight = 4_CREDITED
+c19 = ACCEPTED_FROZEN_READ_ONLY
+c19_weight = 3_CREDITED
+c20 = ACCEPTED_FROZEN_READ_ONLY
+c20_weight = 3_CREDITED
+c18 = ACCEPTED_FROZEN_READ_ONLY
+c18_weight = 5_CREDITED
+p7_remainder_review = PASS
+p7_remainder_weight = 15_CREDITED
+p7_remainder_decision = CONSUMED_CLOSED
+p7_rf01_amendment = CONSUMED_CLOSED
+p7_runtime_source_modification = CLOSED
+p7_final_accepted_runtime_head = e4e238ccc3edb753c86e89368efe0645d6337f58
 
+gap08 = IN_PROGRESS_CORRECTION_CORE_113_OF_113_ACCEPTED_FINAL_CLOSURE_REVIEW_PENDING
 p8 = SEPARATE_BROKER_CAPABILITY_VERIFICATION
-p9_v07 = SEPARATE_POSTGRES_ENVIRONMENT_CONFORMANCE
-
+p9_v07 = SEPARATE_ACTUAL_POSTGRESQL_ENVIRONMENT_CONFORMANCE
 pg17_w4_test_gate = VERIFIED_IN_CONFIGURED_TEST_ENVIRONMENT
 pg18 = NOT_VERIFIED_SKIPPED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
-
-runtime_source_modification_authorization = P7_RF01_BOUNDED_NOT_EFFECTIVE_UNTIL_AMENDMENT_COMMIT_PUSH
+runtime_source_modification_authorization = NOT_AUTHORIZED
 broker_io = NOT_AUTHORIZED
+migration_execution = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
+next_mainline_gap = NOT_AUTHORIZED
 ```
 
 Pointers：
@@ -157,39 +151,36 @@ Pointers：
 - P7 C16 closure: `docs/work/GAP08_P7_C16_CLOSURE.md`
 - P7 remainder authorization: `docs/work/GAP08_P7_REMAINDER_AUTHORIZATION.md`
 - P7 C16 authorization: `docs/work/GAP08_P7_C16_AUTHORIZATION.md`
+- P7 remainder acceptance closure：`docs/work/GAP08_P7_REMAINDER_CLOSURE.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action:
 
-`AUTH-P7-REMAINDER-01` authorizes the bounded P7 remainder wave:
+P7 remainder is independently ACCEPTED.
 
 ```text
-C17 -> C19 -> C20 -> C18
-
-C17 = 4
-C19 = 3
-C20 = 3
-C18 = 5
-TOTAL = 15
+C17 = ACCEPTED / FROZEN / READ_ONLY / 4 CREDITED
+C19 = ACCEPTED / FROZEN / READ_ONLY / 3 CREDITED
+C20 = ACCEPTED / FROZEN / READ_ONLY / 3 CREDITED
+C18 = ACCEPTED / FROZEN / READ_ONLY / 5 CREDITED
+P7_REMAINDER_WEIGHT = 15 / CREDITED
+ACCEPTED_CORRECTION_CORE = 113 / 113
+REMAINING_CORRECTION_CORE = 0
 ```
 
-Current accepted correction core remains:
+P7 runtime source modification authority is CLOSED.
 
-`98 / 113`
+`113 / 113 ACCEPTED` does NOT close GAP-08.
 
-Runtime/source modification is not effective until the docs-only authorization
-commit is pushed to `master`.
+The only next checkpoint is:
 
-After push, the exact authorization commit becomes:
+`FINAL GAP-08 INDEPENDENT CLOSURE REVIEW`
 
-`P7_REMAINDER_EXECUTION_BASELINE`
-
-Then execution may begin at C17 only.
-
-P7 full authorization, canonical runtime authorization, broker I/O, migration
-execution and actual PostgreSQL remain denied/not-authorized.
+Canonical runtime authorization, broker I/O, migration execution, actual PostgreSQL
+environment conformance, Production Readiness and next-mainline execution remain
+not authorized / not asserted.
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS

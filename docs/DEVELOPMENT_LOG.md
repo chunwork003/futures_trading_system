@@ -19,7 +19,7 @@
 
 ### Milestone and Progress
 
-- Current milestone：P7 remainder semantic review returned `RF01_REQUIRED`；`AUTH-P7-REMAINDER-01-AMENDMENT-01` authorizes bounded RF01 correction after docs-only amendment push；correction-core remains 98/113。
+- Current milestone：P7 remainder semantic re-review after RF01 = `PASS`；C17/C19/C20/C18 are ACCEPTED / FROZEN / READ_ONLY；correction-core = 113/113；next = FINAL GAP-08 INDEPENDENT CLOSURE REVIEW。
 - Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07（A0/A/B/C/D/E/F/E2/E3）。
 - Pending：broker sync/reconciliation、persistence/recovery、incremental state。
 - Overall V1：40–50%。以 Work Package weight 與 acceptance criteria 評估；不可使用 LOC 或 file count。
@@ -28,6 +28,25 @@
 - 此為 dynamic estimate，不是 deadline；每個 checkpoint / milestone 後重新估算。發現 architecture blocker 或新增 scope 時可上調；已有功能比預期成熟時可下調。
 
 ## Chronological Log
+
+### 2026-10-04 — GAP-08 P7 Remainder Independent Acceptance Materialization
+
+- Independent P7 remainder semantic re-review after RF01：PASS。
+- final accepted runtime HEAD：`e4e238ccc3edb753c86e89368efe0645d6337f58`。
+- RF01-01 / RF01-02 / RF01-03 / transition resolution currentness：PASS。
+- prior P7 semantics preserved：YES；C16 changed：NO；out-of-scope runtime change：NONE。
+- C17：ACCEPTED / FROZEN / READ_ONLY / 4 CREDITED。
+- C19：ACCEPTED / FROZEN / READ_ONLY / 3 CREDITED。
+- C20：ACCEPTED / FROZEN / READ_ONLY / 3 CREDITED。
+- C18：ACCEPTED / FROZEN / READ_ONLY / 5 CREDITED。
+- P7 remainder：15 / CREDITED；accepted correction-core：113 / 113；remaining：0。
+- authorization + Amendment-01：CONSUMED / CLOSED；P7 runtime source modification：CLOSED。
+- reviewed evidence：C17 88、C19 17、C20 24、C18 21、P7 integration 162、full regression 1489 passed / 8 skipped。
+- migration 0010 executed / actual PostgreSQL / Broker-Shioaji I/O：NO。
+- GAP-08 remains IN_PROGRESS；Architecture Acceptance = HOLD_PENDING_FINAL_GAP08_CLOSURE_REVIEW。
+- Runtime Conformance / Production Readiness：NOT_ASSERTED；next mainline GAP：NOT_AUTHORIZED。
+- next：FINAL GAP-08 INDEPENDENT CLOSURE REVIEW。
+- Estimated remaining hours：GAP-08 governance closure < 1 engineering hour；V1 estimate unchanged pending parent closure。
 
 ### 2026-10-04 — GAP-08 P7 Remainder RF01 Amendment-01
 

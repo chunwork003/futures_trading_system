@@ -270,12 +270,12 @@ environment conformance.
 | ID | Capability | Status | Remaining |
 |---|---|---|---|
 | K01 | PostgreSQL operational SOR | PARTIAL | Foundation accepted；PG17 W4 TEST gate VERIFIED；PG18 NOT_VERIFIED / SKIPPED；V07 actual environment NOT_EXECUTED / NOT_VERIFIED |
-| K02 | Order/OrderEvent/Fill persistence | PARTIAL | Accepted W1-W4 persistence foundation exists；remaining P7/production capability acceptance pending |
+| K02 | Order/OrderEvent/Fill persistence | PARTIAL | Accepted W1-W4 persistence foundation exists；P7 recovery acceptance is complete；remaining work is production/full capability work only |
 | K03 | Position/account snapshots | PARTIAL | Accepted account authority/snapshot persistence foundation exists；full capability acceptance pending |
 | K04 | Decision/Risk provenance persistence | NOT_STARTED | GAP-PERSIST-001 |
 | K05 | Trading event ledger/idempotency | PARTIAL | Event ledger accepted；execution OrderEvent persistence remains GAP-08EF |
-| K06 | Strategy state snapshot | PARTIAL | Accepted durable strategy-state/revision-reference foundation exists；P7 readiness integration pending |
-| K07 | Restart recovery + broker reconciliation | PARTIAL | Accepted W4R recovery/reconciliation foundation exists；remaining P7 strategy/cohort readiness work pending |
+| K06 | Strategy state snapshot | PARTIAL | Accepted durable strategy-state/revision-reference foundation + P7 strategy recovery/readiness authority exist；production/runtime conformance remains separate |
+| K07 | Restart recovery + broker reconciliation | PARTIAL | Accepted W4R recovery/reconciliation + P7 strategy/cohort recovery authority exist；production/live/environment conformance remains separate |
 
 ---
 
