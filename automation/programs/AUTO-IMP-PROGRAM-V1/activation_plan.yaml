@@ -1,0 +1,34 @@
+schema_version: automation.activation_plan.v1
+program_id: AUTO-IMP-PROGRAM-V1
+status: COMPILED_CANDIDATE_NOT_AUTHORIZED
+sequence:
+  - phase: P1_SCHEMA_VALIDATOR_SHADOW
+    packages: [AUTO-IMP-001, AUTO-IMP-002, AUTO-IMP-003, AUTO-IMP-004, AUTO-IMP-005]
+  - phase: P2_HISTORICAL_REPLAY
+    packages: [AUTO-IMP-006]
+  - phase: P3_DUAL_PREFLIGHT
+    packages: [AUTO-IMP-007, AUTO-IMP-008]
+  - phase: P4_CANONICAL_PYTHON_PREFLIGHT_SHADOW
+    packages: [AUTO-IMP-009]
+  - phase: P5_RESULT_INTAKE_MIGRATION
+    status: DEFERRED
+  - phase: P6_CONTROLLED_3A2
+    status: DEFERRED
+  - phase: P7_STABILITY_COHORT
+    status: DEFERRED
+  - phase: P8_LEVEL_3B
+    status: DEFERRED
+  - phase: P9_LEVEL_3C
+    status: DEFERRED
+  - phase: P10_LEVEL_4_SHADOW
+    status: DEFERRED
+  - phase: P11_LEVEL_4_CONTROLLED
+    status: DEFERRED
+  - phase: P12_LEVEL_5_OBSERVE
+    status: DEFERRED
+  - phase: P13_LEVEL_5_CONTROLLED
+    status: DEFERRED
+rollback:
+  every_phase_has_rollback: true
+  legacy_scheduler_preserved_until_canonical_acceptance: true
+  legacy_result_intake_preserved_until_canonical_acceptance: true

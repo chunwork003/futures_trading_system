@@ -1,0 +1,34 @@
+schema_version: automation.test_plan.v1
+program_id: AUTO-IMP-PROGRAM-V1
+status: COMPILED_CANDIDATE_NOT_AUTHORIZED
+principles:
+  counterexample_first: true
+  frozen_contracts_are_not_weakened: true
+  historical_replay_required: true
+  wave_final_regression_required: true
+required_negative_assertions:
+  - CE-01
+  - CE-02
+  - CE-03
+  - CE-06
+  - CE-14
+  - CE-17
+  - CE-21
+  - REENTRY-001
+  - REENTRY-002
+  - REENTRY-003
+  - REENTRY-004
+  - TEL-001
+  - TEL-002
+  - TEL-003
+test_layers:
+  - UNIT_CONTRACT
+  - NEGATIVE_ASSERTION
+  - HISTORICAL_REPLAY
+  - LEGACY_DUAL_RUN
+  - CLI_SHADOW
+  - WAVE_FINAL_REGRESSION
+forbidden_shortcuts:
+  - MODIFY_TEST_TO_HIDE_FROZEN_CONTRACT_FAILURE
+  - SKIP_REPLAY_AFTER_AUTHORITY_CHANGE
+  - ACCEPT_RESULT_READY_AS_ACCEPTED

@@ -1,0 +1,186 @@
+schema_version: automation.implementation_program.v1
+program_id: AUTO-IMP-PROGRAM-V1
+program_revision: "1"
+status: COMPILED_CANDIDATE_NOT_AUTHORIZED
+compiled_from_freeze_head: "52921ae3f205ef2eec4306e84ff92d4cd9cdeab3"
+frozen_master_manifest_sha256: "d6b2c5b4e8ff95a337c4c9982ed03a64e1cf4ea4c03f250857e98d37e3df6cfa"
+master_architecture_version: "1.1"
+
+authority:
+  implementation_authorized: false
+  codex_execution_authorized: false
+  runtime_authorization: NOT_AUTHORIZED
+  next_mainline_gap_authorized: false
+  review_required_before_wave_authorization: true
+  next_route: AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW
+
+implementation_strategy:
+  pattern: STRANGLER_DUAL_RUN
+  legacy_scripts_are_reference_fixtures: true
+  rewrite_existing_scheduler_first: false
+  shadow_before_controlled_dispatch: true
+  automated_codex_requires_measurable_execution_channel: true
+  one_runtime_writer: true
+
+near_horizon_exact_packages:
+  - id: AUTO-IMP-001
+    wave: W1_FOUNDATION_SHADOW
+    status: PLANNED_NOT_AUTHORIZED
+    depends_on: []
+    risk: LOW
+    forecast_p50_tokens: 18000
+    forecast_p75_tokens: 26000
+    forecast_p90_tokens: 36000
+    forecast_source: CONSERVATIVE_STATIC_BOUND
+    quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+  - id: AUTO-IMP-002
+    wave: W1_FOUNDATION_SHADOW
+    status: PLANNED_NOT_AUTHORIZED
+    depends_on:
+      - AUTO-IMP-001
+    risk: MEDIUM
+    forecast_p50_tokens: 22000
+    forecast_p75_tokens: 32000
+    forecast_p90_tokens: 44000
+    forecast_source: CONSERVATIVE_STATIC_BOUND
+    quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+  - id: AUTO-IMP-003
+    wave: W1_FOUNDATION_SHADOW
+    status: PLANNED_NOT_AUTHORIZED
+    depends_on:
+      - AUTO-IMP-001
+    risk: HIGH
+    forecast_p50_tokens: 26000
+    forecast_p75_tokens: 38000
+    forecast_p90_tokens: 52000
+    forecast_source: CONSERVATIVE_STATIC_BOUND
+    quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+  - id: AUTO-IMP-004
+    wave: W1_FOUNDATION_SHADOW
+    status: PLANNED_NOT_AUTHORIZED
+    depends_on:
+      - AUTO-IMP-001
+    risk: HIGH
+    forecast_p50_tokens: 24000
+    forecast_p75_tokens: 36000
+    forecast_p90_tokens: 50000
+    forecast_source: CONSERVATIVE_STATIC_BOUND
+    quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+  - id: AUTO-IMP-005
+    wave: W1_FOUNDATION_SHADOW
+    status: PLANNED_NOT_AUTHORIZED
+    depends_on:
+      - AUTO-IMP-002
+      - AUTO-IMP-003
+      - AUTO-IMP-004
+    risk: MEDIUM
+    forecast_p50_tokens: 16000
+    forecast_p75_tokens: 24000
+    forecast_p90_tokens: 34000
+    forecast_source: CONSERVATIVE_STATIC_BOUND
+    quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+  - id: AUTO-IMP-006
+    wave: W2_REPLAY_AND_DUAL_RUN
+    status: PLANNED_NOT_AUTHORIZED
+    depends_on:
+      - AUTO-IMP-005
+    risk: MEDIUM
+    forecast_p50_tokens: 30000
+    forecast_p75_tokens: 44000
+    forecast_p90_tokens: 60000
+    forecast_source: CONSERVATIVE_STATIC_BOUND
+    quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+  - id: AUTO-IMP-007
+    wave: W2_REPLAY_AND_DUAL_RUN
+    status: PLANNED_NOT_AUTHORIZED
+    depends_on:
+      - AUTO-IMP-002
+      - AUTO-IMP-003
+      - AUTO-IMP-004
+      - AUTO-IMP-006
+    risk: HIGH
+    forecast_p50_tokens: 28000
+    forecast_p75_tokens: 42000
+    forecast_p90_tokens: 58000
+    forecast_source: CONSERVATIVE_STATIC_BOUND
+    quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+  - id: AUTO-IMP-008
+    wave: W2_REPLAY_AND_DUAL_RUN
+    status: PLANNED_NOT_AUTHORIZED
+    depends_on:
+      - AUTO-IMP-001
+      - AUTO-IMP-003
+    risk: HIGH
+    forecast_p50_tokens: 28000
+    forecast_p75_tokens: 42000
+    forecast_p90_tokens: 58000
+    forecast_source: CONSERVATIVE_STATIC_BOUND
+    quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+  - id: AUTO-IMP-009
+    wave: W3_CANONICAL_SHADOW_PREFLIGHT
+    status: PLANNED_NOT_AUTHORIZED
+    depends_on:
+      - AUTO-IMP-007
+      - AUTO-IMP-008
+    risk: HIGH
+    forecast_p50_tokens: 22000
+    forecast_p75_tokens: 34000
+    forecast_p90_tokens: 48000
+    forecast_source: CONSERVATIVE_STATIC_BOUND
+    quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+
+dag:
+  - AUTO-IMP-001 -> AUTO-IMP-002
+  - AUTO-IMP-001 -> AUTO-IMP-003
+  - AUTO-IMP-001 -> AUTO-IMP-004
+  - AUTO-IMP-002 + AUTO-IMP-003 + AUTO-IMP-004 -> AUTO-IMP-005
+  - AUTO-IMP-005 -> AUTO-IMP-006
+  - AUTO-IMP-002 + AUTO-IMP-003 + AUTO-IMP-004 + AUTO-IMP-006 -> AUTO-IMP-007
+  - AUTO-IMP-001 + AUTO-IMP-003 -> AUTO-IMP-008
+  - AUTO-IMP-007 + AUTO-IMP-008 -> AUTO-IMP-009
+
+waves:
+  W1_FOUNDATION_SHADOW:
+    packages: [AUTO-IMP-001, AUTO-IMP-002, AUTO-IMP-003, AUTO-IMP-004, AUTO-IMP-005]
+    activation_effect: NONE
+    reviewer_barrier: WAVE_FINAL
+  W2_REPLAY_AND_DUAL_RUN:
+    packages: [AUTO-IMP-006, AUTO-IMP-007, AUTO-IMP-008]
+    activation_effect: NONE
+    reviewer_barrier: WAVE_FINAL
+  W3_CANONICAL_SHADOW_PREFLIGHT:
+    packages: [AUTO-IMP-009]
+    activation_effect: SHADOW_ONLY
+    reviewer_barrier: REQUIRED
+
+deferred_milestones:
+  - id: M10_RESULT_INTAKE_CANONICAL_MIGRATION
+    prerequisite: AUTO-IMP-009_ACCEPTED
+  - id: M11_CONTROLLED_LEVEL_3A_2_SINGLE_USE_DISPATCH
+    prerequisite: TELEMETRY_CHANNEL_QUALIFIED_AND_EXPLICIT_AUTHORIZATION
+  - id: M12_STABILITY_COHORT_2_TO_3_PACKAGES
+    prerequisite: M11_ACCEPTED
+  - id: M13_LEVEL_3B_QUEUE_DRIVEN
+    prerequisite: STABILITY_CRITERIA_ACCEPTED
+  - id: M14_LEVEL_3C_PREAUTHORIZED_WAVE
+    prerequisite: LEVEL_3B_ACCEPTED
+  - id: M15_LEVEL_4_SHADOW
+    prerequisite: LEVEL_3C_ACCEPTED
+  - id: M16_LEVEL_4_CONTROLLED
+    prerequisite: LEVEL_4_SHADOW_ACCEPTED
+  - id: M17_LEVEL_5_OBSERVE_ANALYZE
+    prerequisite: LEVEL_4_CONTROLLED_ACCEPTED
+  - id: M18_LEVEL_5_CONTROLLED_IMPROVEMENT
+    prerequisite: LEVEL_5_GOVERNANCE_AUTHORIZATION
+
+hard_stops:
+  - ARCHITECTURE_OR_BUSINESS_AMBIGUITY
+  - AUTHORIZATION_DRIFT
+  - SCOPE_EXPANSION
+  - SIDE_EFFECT_EXPANSION
+  - TELEMETRY_AMBIGUOUS_BINDING
+  - QUOTA_POLICY_DRIFT
+  - UNEXPECTED_REMOTE_DIVERGENCE
+  - MORE_THAN_ONE_RUNTIME_WRITER
+  - AUTO_3_UNATTENDED_PATH
+  - RUNTIME_OR_BROKER_OR_MIGRATION_OR_LIVE_SIDE_EFFECT

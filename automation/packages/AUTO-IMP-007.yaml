@@ -1,0 +1,69 @@
+schema_version: automation.work_package_plan.v1
+work_package_id: AUTO-IMP-007
+work_package_revision: "1"
+status: PLANNED_NOT_AUTHORIZED
+program_id: AUTO-IMP-PROGRAM-V1
+planning_baseline_sha: "52921ae3f205ef2eec4306e84ff92d4cd9cdeab3"
+wave: W2_REPLAY_AND_DUAL_RUN
+title: "Legacy Scheduler V2 Dual-Preflight Comparator"
+risk: HIGH
+
+depends_on:
+  - AUTO-IMP-002
+  - AUTO-IMP-003
+  - AUTO-IMP-004
+  - AUTO-IMP-006
+
+purpose: |
+  Run the new resolver in shadow beside codex_level3a_scheduler_v2.ps1 and compare decisions; never invoke CODEX.
+
+authorization:
+  source_modification: NOT_AUTHORIZED
+  codex_execution: NOT_AUTHORIZED
+  runtime_operation: NOT_AUTHORIZED
+  production_activation: DENIED
+
+side_effect_envelope:
+  source_modification: ALLOW_ONLY_AFTER_EXPLICIT_PACKAGE_AUTHORIZATION
+  test_execution: ALLOW_ONLY_AFTER_EXPLICIT_PACKAGE_AUTHORIZATION
+  db_environment_access: DENY
+  migration_creation: DENY
+  migration_execution: DENY
+  broker_network: DENY
+  paper_broker_io: DENY
+  production_broker_io: DENY
+  credential_material: DENY
+  production_activation: DENY
+
+planned_write_scope:
+  - "automation/engine/dual_preflight.py"
+  - "scripts/automation_shadow_preflight.py"
+  - "tests/automation/test_dual_preflight.py"
+
+protected_scope:
+  - "scripts/codex_level3a_scheduler_v0.ps1"
+  - "scripts/codex_level3a_scheduler_v1.ps1"
+  - "scripts/codex_level3a_scheduler_v2.ps1"
+
+acceptance_tests:
+  - "legacy fixture parity"
+  - "new fail-closed cases"
+  - "no CODEX invocation"
+
+cost_forecast:
+  p50_tokens: 28000
+  p75_tokens: 42000
+  p90_tokens: 58000
+  source: CONSERVATIVE_STATIC_BOUND
+  quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+
+telemetry:
+  machine_readable_execution_usage_required_for_automated_codex: true
+  ambiguous_binding_action: STOP_TELEMETRY_AMBIGUOUS_BINDING
+
+git_policy:
+  force_push: DENY
+  commit: DEFINED_AT_AUTHORIZATION
+  push: DEFINED_AT_AUTHORIZATION
+
+review_barrier: REQUIRED_BEFORE_ACCEPTANCE

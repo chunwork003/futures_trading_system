@@ -1,0 +1,18 @@
+schema_version: automation.replay_plan.v1
+program_id: AUTO-IMP-PROGRAM-V1
+status: COMPILED_CANDIDATE_NOT_AUTHORIZED
+source_domain: GAP08
+mode: READ_ONLY_FIXTURE_REPLAY
+required_cases:
+  - AUTHORIZATION_INITIAL
+  - AUTHORIZATION_AMENDMENT
+  - REVIEW_FIX_REQUIRED
+  - REVIEW_PASS
+  - QUOTA_OR_ENVIRONMENT_WAIT
+  - INTERRUPTED_OR_RESTARTED_EXECUTION
+  - CLOSURE_MATERIALIZATION
+  - HISTORICAL_AUTHORIZATION_SUPERSEDED
+acceptance:
+  semantic_match_required: 100_percent
+  current_executability_must_not_be_inferred_from_history: true
+  reviewer_pass_must_not_equal_governance_materialization: true

@@ -21,6 +21,11 @@ architecture_acceptance = ACCEPTED_FOR_GAP08_SCOPE
 development_automation_master_version = 1.1
 development_automation_master_status = FROZEN
 development_automation_freeze_source_review_head = 0eb899794a8af4d4e0ad2f3e0b3be709c93bed3e
+development_automation_program_id = AUTO-IMP-PROGRAM-V1
+development_automation_program_revision = 1
+development_automation_program_status = COMPILED_CANDIDATE_NOT_AUTHORIZED
+development_automation_program_source_freeze_head = 52921ae3f205ef2eec4306e84ff92d4cd9cdeab3
+development_automation_program_review = PENDING
 development_automation_targeted_rf_review = PASS
 development_automation_manifest_hash_integrity_review = PASS
 development_automation_auto_rf01 = CLOSED
@@ -31,7 +36,7 @@ development_automation_level_3b = NOT_ENABLED
 development_automation_level_3c = NOT_ENABLED
 development_automation_level_4 = NOT_ENABLED
 development_automation_level_5 = NOT_ENABLED
-development_automation_next_route = AUTOMATION_IMPLEMENTATION_PROGRAM_COMPILATION
+development_automation_next_route = AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW
 
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
@@ -79,7 +84,7 @@ migration_execution = NOT_AUTHORIZED
 live = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 next_mainline_gap = NOT_AUTHORIZED
-next = AUTOMATION_IMPLEMENTATION_PROGRAM_COMPILATION
+next = AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW
 ```
 
 Pointers：
@@ -187,7 +192,7 @@ No next mainline GAP is authorized.
 
 Next governance checkpoint:
 
-`AUTOMATION_IMPLEMENTATION_PROGRAM_COMPILATION`
+`AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW`
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS

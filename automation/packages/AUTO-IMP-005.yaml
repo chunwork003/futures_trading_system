@@ -1,0 +1,67 @@
+schema_version: automation.work_package_plan.v1
+work_package_id: AUTO-IMP-005
+work_package_revision: "1"
+status: PLANNED_NOT_AUTHORIZED
+program_id: AUTO-IMP-PROGRAM-V1
+planning_baseline_sha: "52921ae3f205ef2eec4306e84ff92d4cd9cdeab3"
+wave: W1_FOUNDATION_SHADOW
+title: "Negative Assertion Harness"
+risk: MEDIUM
+
+depends_on:
+  - AUTO-IMP-002
+  - AUTO-IMP-003
+  - AUTO-IMP-004
+
+purpose: |
+  Build an executable test harness for frozen negative assertions and re-entry counterexamples; no production side effects.
+
+authorization:
+  source_modification: NOT_AUTHORIZED
+  codex_execution: NOT_AUTHORIZED
+  runtime_operation: NOT_AUTHORIZED
+  production_activation: DENIED
+
+side_effect_envelope:
+  source_modification: ALLOW_ONLY_AFTER_EXPLICIT_PACKAGE_AUTHORIZATION
+  test_execution: ALLOW_ONLY_AFTER_EXPLICIT_PACKAGE_AUTHORIZATION
+  db_environment_access: DENY
+  migration_creation: DENY
+  migration_execution: DENY
+  broker_network: DENY
+  paper_broker_io: DENY
+  production_broker_io: DENY
+  credential_material: DENY
+  production_activation: DENY
+
+planned_write_scope:
+  - "automation/engine/assertions.py"
+  - "tests/automation/test_negative_assertions.py"
+
+protected_scope:
+  - "product runtime source outside explicitly authorized automation surfaces"
+  - "migrations/"
+  - "broker/live/production side-effect code"
+
+acceptance_tests:
+  - "CE-01/02/03/06/14/17/21"
+  - "REENTRY-001..004"
+  - "TEL-001..003 contract-only"
+
+cost_forecast:
+  p50_tokens: 16000
+  p75_tokens: 24000
+  p90_tokens: 34000
+  source: CONSERVATIVE_STATIC_BOUND
+  quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+
+telemetry:
+  machine_readable_execution_usage_required_for_automated_codex: true
+  ambiguous_binding_action: STOP_TELEMETRY_AMBIGUOUS_BINDING
+
+git_policy:
+  force_push: DENY
+  commit: DEFINED_AT_AUTHORIZATION
+  push: DEFINED_AT_AUTHORIZATION
+
+review_barrier: REQUIRED_BEFORE_ACCEPTANCE

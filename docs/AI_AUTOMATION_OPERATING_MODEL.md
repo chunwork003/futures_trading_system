@@ -308,4 +308,18 @@ NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_PROGRAM_COMPILATION
 ```
 
 Freeze is governance materialization only. It does not grant Runtime Authorization, broker I/O, migration execution, LIVE, production activation, next-mainline-GAP authority, or unattended CODEX execution.
+
+### Compiled Implementation Program
+
+```text
+PROGRAM_ID = AUTO-IMP-PROGRAM-V1
+SOURCE_FREEZE_HEAD = 52921ae3f205ef2eec4306e84ff92d4cd9cdeab3
+PROGRAM_STATUS = COMPILED_CANDIDATE_NOT_AUTHORIZED
+IMPLEMENTATION_AUTHORIZATION = NOT_AUTHORIZED
+CODEX_EXECUTION = NOT_AUTHORIZED
+NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW
+```
+
+The compiler materializes a strangler / dual-run implementation program. Near-horizon packages are exact, but all remain PLANNED_NOT_AUTHORIZED. Existing PowerShell scheduler/result-intake scripts remain reference/regression fixtures until explicit acceptance of canonical replacements. Automated CODEX dispatch remains denied until a measurable execution channel, exact authorization lifecycle, quota admission, single-writer reservation and telemetry binding are implemented and accepted.
+
 <!-- AUTOMATION_MASTER_V1_1_END -->

@@ -1,0 +1,34 @@
+schema_version: automation.telemetry_plan.v1
+program_id: AUTO-IMP-PROGRAM-V1
+status: COMPILED_CANDIDATE_NOT_AUTHORIZED
+execution_identity:
+  required_chain:
+    - ExecutionID
+    - SessionID
+    - ThreadID
+    - TurnID
+    - ResponseID
+    - TokenUsage
+automated_codex_dispatch:
+  allowed_without_machine_readable_usage: false
+  ambiguous_binding: STOP_TELEMETRY_AMBIGUOUS_BINDING
+  manual_token_count_as_primary_evidence: false
+bootstrap_cohort:
+  minimum_executions: 10
+  preferred_executions: 20
+  alternative_minimum_waves: 3
+metrics:
+  - p50_tokens
+  - p75_tokens
+  - p90_tokens
+  - elapsed_time
+  - retry_count
+  - semantic_correction_count
+  - human_intervention_count
+  - tests
+  - scope_violations
+  - stale_context_incidents
+  - accepted_engineering_weight
+optimization_authority:
+  metrics_may_recommend: true
+  metrics_may_activate_policy: false

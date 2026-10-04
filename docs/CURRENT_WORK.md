@@ -1,5 +1,15 @@
 # Current Work
 
+## Automation Implementation Program v1 — COMPILED CANDIDATE / NOT AUTHORIZED
+
+- Program ID: `AUTO-IMP-PROGRAM-V1`
+- Source Freeze HEAD: `52921ae3f205ef2eec4306e84ff92d4cd9cdeab3`
+- Near-horizon exact packages: `AUTO-IMP-001` through `AUTO-IMP-009`
+- Implementation authorization: `NOT_AUTHORIZED`
+- CODEX execution: `NOT_AUTHORIZED`
+- Current implementation package: `NONE`
+- Next route: `AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW`
+
 ## Development Automation Master v1.1 — FROZEN
 
 - Freeze source review HEAD: `0eb899794a8af4d4e0ad2f3e0b3be709c93bed3e`
@@ -10,7 +20,7 @@
 - Level 3B / 3C / 4 / 5: `NOT_ENABLED`
 - Runtime Authorization: `NOT_AUTHORIZED`
 - Next mainline GAP: `NOT_AUTHORIZED`
-- Next automation route: `AUTOMATION_IMPLEMENTATION_PROGRAM_COMPILATION`
+- Next automation route: `AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW`
 
 ## GAP-08 Closed / Accepted — No Runtime Package Active
 
@@ -27,7 +37,7 @@
 - Architecture acceptance: `ACCEPTED_FOR_GAP08_SCOPE`
 - Runtime work package: `NONE`
 - Next mainline GAP: `NOT_AUTHORIZED`
-- Next: `AUTOMATION_IMPLEMENTATION_PROGRAM_COMPILATION`
+- Next: `AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW`
 
 ## GOV-01 Current Work Projection Guard
 
@@ -72,7 +82,7 @@ AUTOMATION_LEVEL_3C = NOT_ENABLED
 AUTOMATION_LEVEL_4 = NOT_ENABLED
 AUTOMATION_LEVEL_5 = NOT_ENABLED
 NEXT_MAINLINE_GAP = NOT_AUTHORIZED
-NEXT = AUTOMATION_IMPLEMENTATION_PROGRAM_COMPILATION
+NEXT = AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW
 <!-- MACHINE_QUEUE_CURRENT_END -->
 
 ## Purpose
@@ -142,7 +152,7 @@ Next mainline GAP：
 
 Next governance checkpoint：
 
-`AUTOMATION_IMPLEMENTATION_PROGRAM_COMPILATION`
+`AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW`
 
 The historical GAP-08EFGHI candidate and prior correction leaves below are retained for audit/context only and carry no current runtime authority.
 

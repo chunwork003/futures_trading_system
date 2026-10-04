@@ -1,0 +1,68 @@
+schema_version: automation.work_package_plan.v1
+work_package_id: AUTO-IMP-009
+work_package_revision: "1"
+status: PLANNED_NOT_AUTHORIZED
+program_id: AUTO-IMP-PROGRAM-V1
+planning_baseline_sha: "52921ae3f205ef2eec4306e84ff92d4cd9cdeab3"
+wave: W3_CANONICAL_SHADOW_PREFLIGHT
+title: "Canonical Shadow Preflight CLI"
+risk: HIGH
+
+depends_on:
+  - AUTO-IMP-007
+  - AUTO-IMP-008
+
+purpose: |
+  Expose the canonical Python preflight as a read-only shadow CLI producing machine-readable DISPATCHABLE/NOT_DISPATCHABLE evidence; dispatcher remains disabled.
+
+authorization:
+  source_modification: NOT_AUTHORIZED
+  codex_execution: NOT_AUTHORIZED
+  runtime_operation: NOT_AUTHORIZED
+  production_activation: DENIED
+
+side_effect_envelope:
+  source_modification: ALLOW_ONLY_AFTER_EXPLICIT_PACKAGE_AUTHORIZATION
+  test_execution: ALLOW_ONLY_AFTER_EXPLICIT_PACKAGE_AUTHORIZATION
+  db_environment_access: DENY
+  migration_creation: DENY
+  migration_execution: DENY
+  broker_network: DENY
+  paper_broker_io: DENY
+  production_broker_io: DENY
+  credential_material: DENY
+  production_activation: DENY
+
+planned_write_scope:
+  - "scripts/automation_preflight.py"
+  - "tests/automation/test_preflight_cli.py"
+  - "automation/schemas/preflight_result.v1.schema.json"
+
+protected_scope:
+  - "product runtime source outside explicitly authorized automation surfaces"
+  - "migrations/"
+  - "broker/live/production side-effect code"
+
+acceptance_tests:
+  - "read-only side-effect envelope"
+  - "one-writer invariant"
+  - "no auto dispatch"
+  - "machine-readable result"
+
+cost_forecast:
+  p50_tokens: 22000
+  p75_tokens: 34000
+  p90_tokens: 48000
+  source: CONSERVATIVE_STATIC_BOUND
+  quota_fit: REQUIRES_FRESH_RUNTIME_SNAPSHOT
+
+telemetry:
+  machine_readable_execution_usage_required_for_automated_codex: true
+  ambiguous_binding_action: STOP_TELEMETRY_AMBIGUOUS_BINDING
+
+git_policy:
+  force_push: DENY
+  commit: DEFINED_AT_AUTHORIZATION
+  push: DEFINED_AT_AUTHORIZATION
+
+review_barrier: REQUIRED_BEFORE_ACCEPTANCE
