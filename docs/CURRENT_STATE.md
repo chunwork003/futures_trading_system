@@ -16,35 +16,26 @@ architecture_decision_baseline = 22ceaa729ab6e9da9c00ae52e09ae7116be5a743
 governance_planning_baseline = f45742d9d16165f87f145f0d2bdc8d530772e5ee
 correction_freeze_baseline = 93fb846a9c9cd61eea44427a86a542fc95f9ac28
 
-architecture_acceptance = HOLD_PENDING_FINAL_GAP08_CLOSURE_REVIEW
+architecture_acceptance = ACCEPTED_FOR_GAP08_SCOPE
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
 canonical_runtime_authorization = NOT_AUTHORIZED
 
 accepted_correction_core = 113/113
 remaining_correction_core = 0
-latest_accepted_wave = P7_REMAINDER
+latest_accepted_wave = GAP08_PARENT_CLOSURE
 latest_accepted_runtime_head = e4e238ccc3edb753c86e89368efe0645d6337f58
 current_wave = NONE
 current_runtime_candidate = NONE
-reviewer_state = P7_REMAINDER_ACCEPTED_PENDING_FINAL_GAP08_CLOSURE_REVIEW
+reviewer_state = GAP08_FINAL_CLOSURE_APPROVED_MATERIALIZED
 
-w4_weight = 18_CREDITED
-W4R_A = ACCEPTED_FROZEN_READ_ONLY
-W4R_B = ACCEPTED_FROZEN_READ_ONLY
-W4R_C = ACCEPTED_FROZEN_READ_ONLY
-W4R_D = ACCEPTED_FROZEN_READ_ONLY
+gap08 = CLOSED_ACCEPTED
+gap08_parent_closure = APPROVED_MATERIALIZED
+gap08_correction_core = 113_OF_113_ACCEPTED
+gap08_remaining_correction_core = 0
+gap08_runtime_accepted_head = e4e238ccc3edb753c86e89368efe0645d6337f58
+gap08_runtime_source_modification = CLOSED
 
-original_c15 = HISTORICAL_RESCOPE_SUPERSEDED_BY_ACCEPTED_W4R_D
-c18_original_c15_dependency = SATISFIED_BY_ACCEPTED_W4R_D_RESCOPE
-
-p7_sequence = C16>C17>C19>C20>C18
-p7_weight = 20
-p7_architecture_ready = YES
-p7_specification_review = PASS
-p7_specification = ARCH-P7-SPEC-01_FROZEN
-p7_full_authorization = NOT_AUTHORIZED
-p7_runtime_execution = NOT_AUTHORIZED
 c16 = ACCEPTED_FROZEN_READ_ONLY
 c16_weight = 5_CREDITED
 c17 = ACCEPTED_FROZEN_READ_ONLY
@@ -55,6 +46,7 @@ c20 = ACCEPTED_FROZEN_READ_ONLY
 c20_weight = 3_CREDITED
 c18 = ACCEPTED_FROZEN_READ_ONLY
 c18_weight = 5_CREDITED
+
 p7_remainder_review = PASS
 p7_remainder_weight = 15_CREDITED
 p7_remainder_decision = CONSUMED_CLOSED
@@ -62,17 +54,16 @@ p7_rf01_amendment = CONSUMED_CLOSED
 p7_runtime_source_modification = CLOSED
 p7_final_accepted_runtime_head = e4e238ccc3edb753c86e89368efe0645d6337f58
 
-gap08 = IN_PROGRESS_CORRECTION_CORE_113_OF_113_ACCEPTED_FINAL_CLOSURE_REVIEW_PENDING
 p8 = SEPARATE_BROKER_CAPABILITY_VERIFICATION
 p9_v07 = SEPARATE_ACTUAL_POSTGRESQL_ENVIRONMENT_CONFORMANCE
-pg17_w4_test_gate = VERIFIED_IN_CONFIGURED_TEST_ENVIRONMENT
-pg18 = NOT_VERIFIED_SKIPPED
 actual_postgresql_v07 = NOT_EXECUTED_NOT_VERIFIED
 runtime_source_modification_authorization = NOT_AUTHORIZED
 broker_io = NOT_AUTHORIZED
 migration_execution = NOT_AUTHORIZED
+live = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 next_mainline_gap = NOT_AUTHORIZED
+next = POST_GAP08_QUEUE_AND_AUTOMATION_ACTIVATION_DECISION
 ```
 
 Pointers：
@@ -152,35 +143,35 @@ Pointers：
 - P7 remainder authorization: `docs/work/GAP08_P7_REMAINDER_AUTHORIZATION.md`
 - P7 C16 authorization: `docs/work/GAP08_P7_C16_AUTHORIZATION.md`
 - P7 remainder acceptance closure：`docs/work/GAP08_P7_REMAINDER_CLOSURE.md`
+- GAP-08 final closure：`docs/work/GAP08_FINAL_CLOSURE.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
 - Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action:
 
-P7 remainder is independently ACCEPTED.
+GAP-08 architecture/correction parent scope is formally CLOSED / ACCEPTED.
 
 ```text
-C17 = ACCEPTED / FROZEN / READ_ONLY / 4 CREDITED
-C19 = ACCEPTED / FROZEN / READ_ONLY / 3 CREDITED
-C20 = ACCEPTED / FROZEN / READ_ONLY / 3 CREDITED
-C18 = ACCEPTED / FROZEN / READ_ONLY / 5 CREDITED
-P7_REMAINDER_WEIGHT = 15 / CREDITED
-ACCEPTED_CORRECTION_CORE = 113 / 113
-REMAINING_CORRECTION_CORE = 0
+GAP08 = CLOSED_ACCEPTED
+GAP08_PARENT_CLOSURE = APPROVED_MATERIALIZED
+GAP08_CORRECTION_CORE = 113 / 113 ACCEPTED
+GAP08_REMAINING_CORRECTION_CORE = 0
+GAP08_RUNTIME_ACCEPTED_HEAD = e4e238ccc3edb753c86e89368efe0645d6337f58
+ARCHITECTURE_ACCEPTANCE = ACCEPTED_FOR_GAP08_SCOPE
 ```
 
-P7 runtime source modification authority is CLOSED.
+There is no active GAP-08 runtime package and no remaining GAP-08 source-modification authority.
 
-`113 / 113 ACCEPTED` does NOT close GAP-08.
+Runtime Conformance, Production Readiness, canonical runtime authorization,
+Broker/Shioaji I/O, migration execution, actual PostgreSQL V07 and LIVE remain
+not asserted / not authorized / not verified as applicable.
 
-The only next checkpoint is:
+No next mainline GAP is authorized.
 
-`FINAL GAP-08 INDEPENDENT CLOSURE REVIEW`
+Next governance checkpoint:
 
-Canonical runtime authorization, broker I/O, migration execution, actual PostgreSQL
-environment conformance, Production Readiness and next-mainline execution remain
-not authorized / not asserted.
+`POST_GAP08_QUEUE_AND_AUTOMATION_ACTIVATION_DECISION`
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS

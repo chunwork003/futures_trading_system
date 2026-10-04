@@ -273,7 +273,7 @@ environment conformance.
 | K02 | Order/OrderEvent/Fill persistence | PARTIAL | Accepted W1-W4 persistence foundation exists；P7 recovery acceptance is complete；remaining work is production/full capability work only |
 | K03 | Position/account snapshots | PARTIAL | Accepted account authority/snapshot persistence foundation exists；full capability acceptance pending |
 | K04 | Decision/Risk provenance persistence | NOT_STARTED | GAP-PERSIST-001 |
-| K05 | Trading event ledger/idempotency | PARTIAL | Event ledger accepted；execution OrderEvent persistence remains GAP-08EF |
+| K05 | Trading event ledger/idempotency | PARTIAL | Accepted event-ledger / execution persistence foundation exists；remaining full production capability requires separate future work |
 | K06 | Strategy state snapshot | PARTIAL | Accepted durable strategy-state/revision-reference foundation + P7 strategy recovery/readiness authority exist；production/runtime conformance remains separate |
 | K07 | Restart recovery + broker reconciliation | PARTIAL | Accepted W4R recovery/reconciliation + P7 strategy/cohort recovery authority exist；production/live/environment conformance remains separate |
 
@@ -347,12 +347,13 @@ environment conformance.
 
 # 6. Production Live Blockers
 
+GAP-08 architecture/correction scope is `CLOSED_ACCEPTED` and is no longer an unresolved Production Live blocker；production/runtime/environment gates remain separate。
+
 Production live 前至少：
 
 - GAP-BROKER-001。
 - GAP-ACCOUNT-001。
 - Reconciliation。
-- GAP-08。
 - material provenance。
 - GAP-07-TIME-001。
 - GAP-07-SESSION-EXPIRY。

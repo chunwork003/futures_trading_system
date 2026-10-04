@@ -19,7 +19,7 @@
 
 ### Milestone and Progress
 
-- Current milestone：P7 remainder semantic re-review after RF01 = `PASS`；C17/C19/C20/C18 are ACCEPTED / FROZEN / READ_ONLY；correction-core = 113/113；next = FINAL GAP-08 INDEPENDENT CLOSURE REVIEW。
+- Current milestone：FINAL GAP-08 INDEPENDENT CLOSURE REVIEW = `PASS`；GAP-08 = CLOSED_ACCEPTED；Architecture Acceptance = ACCEPTED_FOR_GAP08_SCOPE；Runtime Conformance / Production Readiness remain NOT_ASSERTED；next = POST_GAP08_QUEUE_AND_AUTOMATION_ACTIVATION_DECISION。
 - Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07（A0/A/B/C/D/E/F/E2/E3）。
 - Pending：broker sync/reconciliation、persistence/recovery、incremental state。
 - Overall V1：40–50%。以 Work Package weight 與 acceptance criteria 評估；不可使用 LOC 或 file count。
@@ -28,6 +28,27 @@
 - 此為 dynamic estimate，不是 deadline；每個 checkpoint / milestone 後重新估算。發現 architecture blocker 或新增 scope 時可上調；已有功能比預期成熟時可下調。
 
 ## Chronological Log
+
+### 2026-10-04 — GAP-08 Final Parent Closure
+
+- FINAL GAP-08 INDEPENDENT CLOSURE REVIEW：PASS。
+- GAP08_PARENT_CLOSURE：APPROVED / MATERIALIZED。
+- GAP-08：CLOSED_ACCEPTED。
+- correction-core：113 / 113 ACCEPTED；remaining：0。
+- final accepted runtime HEAD：`e4e238ccc3edb753c86e89368efe0645d6337f58`。
+- P7 acceptance materialization HEAD：`9ab851121857a4e7c0c7c370f3dadd8c14f2defc`。
+- C16/C17/C19/C20/C18：ACCEPTED / FROZEN / READ_ONLY。
+- P7 and GAP-08 runtime source modification：CLOSED。
+- Architecture Acceptance：ACCEPTED_FOR_GAP08_SCOPE。
+- Runtime Conformance / Production Readiness：NOT_ASSERTED。
+- Canonical Runtime Authorization / Broker I/O / Migration Execution / LIVE：NOT_AUTHORIZED。
+- Actual PostgreSQL V07：NOT_EXECUTED_NOT_VERIFIED。
+- P8 and P9/V07 remain separate。
+- original 35/151 candidate remains HISTORICAL_IMPLEMENTED_CANDIDATE / NOT_ACCEPTED / NO_CURRENT_AUTHORITY。
+- no runtime/test/migration source changed in final closure materialization。
+- next mainline GAP：NOT_AUTHORIZED。
+- next：POST_GAP08_QUEUE_AND_AUTOMATION_ACTIVATION_DECISION。
+- Estimated remaining hours：GAP-08 = 0；next V1 estimate deferred to post-GAP08 queue decision。
 
 ### 2026-10-04 — GAP-08 P7 Remainder Independent Acceptance Materialization
 
