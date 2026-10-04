@@ -1,0 +1,17 @@
+schema_version: automation.handoff.v1
+handoff_id: HANDOFF-AUTO-QUOTA-V1_1-TO-IMP001-ELIGIBILITY
+from_run: RUN-AUTO-QUOTA-V1_1-MATERIALIZATION-01
+status: COMPLETE
+work_package_id: AUTO-IMP-001
+authorization_id: AUTH-AUTO-IMP-001-01
+authorization_state: AUTHORIZED
+active_quota_policy_version: "1.1"
+execution_eligibility: NOT_RESOLVED_FRESH_RECHECK_REQUIRED
+next_owner: Automation_Control_Plane
+next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
+exact_next_action: Start a fresh AUTO-IMP-001 execution-eligibility attempt. Obtain new provider-labeled five-hour and weekly allowance evidence within the current attempt, then resolve all remaining authority, telemetry, writer-lock and durable single-use reservation gates before any CODEX invocation.
+must_not_start:
+  - CODEX before fresh eligibility and durable reservation
+  - AUTO-IMP-002 or later
+  - Skill Adapter implementation
+  - Runtime/Broker/Migration/LIVE/Production actions

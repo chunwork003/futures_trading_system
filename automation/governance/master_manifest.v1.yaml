@@ -37,18 +37,21 @@ quota_policy_compatibility_rf:
   rf_id: AUTO-IMP-001-QRF01
   issue: PROVIDER_QUOTA_UNIT_MISMATCH
   candidate_path: automation/policies/quota_admission_policy.v1_1_candidate.yaml
-  sha256: "17c7ceecc58fa550b43c8a990313227399883c999b1f204f8fe182ece6bbca78"
+  candidate_sha256: "17c7ceecc58fa550b43c8a990313227399883c999b1f204f8fe182ece6bbca78"
   candidate_version: "1.1-candidate"
-  candidate_status: REVIEW_FIX_APPLIED_PENDING_RE_REVIEW
-  active: false
-  active_policy_version: "1.0"
+  candidate_status: ACCEPTED_SOURCE_EVIDENCE
+  candidate_active: false
+  independent_re_review: PASS
+  accepted_review_head_sha: "54a316cf816b8f1bb57da5b778d2a7e43ce92748"
+  materialization_status: MATERIALIZED
+  active_policy_path: automation/policies/quota_admission_policy.v1_1.yaml
+  active_policy_sha256: "b689b0ec69ab2e62b4e40be5a3d1cacfb509e339082cdf692ba2283811f29503"
+  active_policy_version: "1.1"
+  previous_policy_path: automation/policies/quota_admission_policy.v1.yaml
+  previous_policy_sha256: "744239e70e9e78170487956cd4554f05610cf29fe700e600f5046cad583ff4bd"
   auto_imp_001_authorization_state: AUTHORIZED
-  execution_eligibility: BLOCKED_POLICY_REVIEW
-  review_fix_items:
-    - RESERVE_ARITHMETIC
-    - APPLICABLE_WINDOW_FAIL_CLOSED
-    - RESERVATION_BOUND_FRESHNESS
-  next_route: AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW
+  execution_eligibility: NOT_RESOLVED_FRESH_RECHECK_REQUIRED
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
 
 freeze:
   state: FROZEN
@@ -75,12 +78,12 @@ canonical_current_state:
 governance_document:
   path: docs/AI_AUTOMATION_OPERATING_MODEL.md
   version: "1.1"
-  sha256: "6d8f6f5c3c29b800b72ae0ffb97291db465f95f4458966cb37f8be7123841ad7"
+  sha256: "1f440d27e2947096762be2addcc91f3bc04e3003468d06821be99499a6fe235b"
 
 agent_reentry:
   path: AGENTS.md
   protocol_version: "1.0"
-  sha256: "39425506bd38c2b407d4cd0b044d1c56f97e53f33c8d435eb09a46d59300a1bb"
+  sha256: "8fd2931f6ffd1931a88beed471f014219fca6f9b756e68506c0fdcba7aeb8fcf"
 
 policies:
   authorization_lifecycle:
@@ -88,8 +91,13 @@ policies:
     version: "1.0"
     sha256: "4b1da305701766104fd0f4dd36c47696de599fabb69526a8e58615a26063b93f"
   quota_admission:
+    path: automation/policies/quota_admission_policy.v1_1.yaml
+    version: "1.1"
+    sha256: "b689b0ec69ab2e62b4e40be5a3d1cacfb509e339082cdf692ba2283811f29503"
+  quota_admission_v1_0_history:
     path: automation/policies/quota_admission_policy.v1.yaml
     version: "1.0"
+    status: FROZEN_SUPERSEDED_READ_ONLY
     sha256: "744239e70e9e78170487956cd4554f05610cf29fe700e600f5046cad583ff4bd"
   development_state_machine:
     path: automation/policies/development_state_machine.v1.yaml
@@ -116,6 +124,8 @@ activation:
   auto_imp_001_authorization_candidate_compiled: true
   auto_imp_001_authorization_effective: true
   auto_imp_001_execution_eligibility_resolved: false
+  quota_qrf01_accepted_materialized: true
+  quota_policy_v1_1_active: true
   implementation_started: false
   level_3b_enabled: false
   level_3c_enabled: false

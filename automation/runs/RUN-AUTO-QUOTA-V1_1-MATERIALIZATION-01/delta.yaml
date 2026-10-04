@@ -1,0 +1,16 @@
+schema_version: automation.delta.v1
+run_id: RUN-AUTO-QUOTA-V1_1-MATERIALIZATION-01
+materialized:
+  - QRF01 independent re-review PASS evidence
+  - canonical active QuotaAdmissionPolicy v1.1
+  - manifest policy pointer to v1.1
+preserved:
+  - v1.0 bytes unchanged as frozen historical policy
+  - reviewed v1.1 candidate bytes unchanged as source evidence
+  - AUTO-IMP-001 authorization remains AUTHORIZED
+  - CODEX remains NOT_STARTED
+remaining:
+  - fresh reservation-bound provider quota evidence
+  - fresh execution eligibility
+  - single-writer and durable single-use reservation
+next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY

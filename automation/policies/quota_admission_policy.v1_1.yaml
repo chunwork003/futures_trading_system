@@ -1,0 +1,234 @@
+schema_version: automation.quota_admission_policy.v1_1
+policy_id: QUOTA-ADMISSION
+policy_version: "1.1"
+status: FROZEN
+active: true
+
+materialization:
+  rf_id: AUTO-IMP-001-QRF01
+  source_review_head_sha: "54a316cf816b8f1bb57da5b778d2a7e43ce92748"
+  independent_re_review: PASS
+  source_candidate_path: automation/policies/quota_admission_policy.v1_1_candidate.yaml
+  source_candidate_sha256: "17c7ceecc58fa550b43c8a990313227399883c999b1f204f8fe182ece6bbca78"
+  previous_policy_path: automation/policies/quota_admission_policy.v1.yaml
+  previous_policy_version: "1.0"
+  previous_policy_sha256: "744239e70e9e78170487956cd4554f05610cf29fe700e600f5046cad583ff4bd"
+  previous_policy_bytes_modified: false
+  semantic_change_scope: PROVIDER_NATIVE_QUOTA_COMPATIBILITY_ONLY
+
+authority:
+  canonical_owner: Automation_Governance_Authority
+  scheduler_role: APPLY_ONLY
+  optimizer_role: PROPOSE_ONLY
+  metrics_role: EVIDENCE_ONLY
+
+admission:
+  default_percentile: P90
+  check_windows:
+    - FIVE_HOUR
+    - WEEKLY
+  require_control_plane_reserve: true
+  require_recovery_reserve: true
+  compatible_absolute_unit_safe_budget_formula: REMAINING_MINUS_CONTROL_PLANE_RESERVE_MINUS_RECOVERY_RESERVE
+  chatgpt_plan_percentage_fallback_formula: REMAINING_PERCENT_MUST_BE_GTE_80_NO_SECOND_SUBTRACTION
+  compare_incompatible_units: DENIED
+  p50_only_admission: DENIED
+  stale_quota_snapshot: REFRESH_REQUIRED
+
+forecast:
+  required: true
+  fallback_order:
+    - EXACT_COHORT_EMPIRICAL
+    - PARENT_COHORT_EMPIRICAL
+    - AUTOMATION_CLASS_EMPIRICAL
+    - GLOBAL_EMPIRICAL
+    - CONSERVATIVE_STATIC_BOUND
+  no_forecast: DENIED
+  low_confidence_action: INCREASE_RESERVE
+
+source_separation:
+  chatgpt_plan_included_allowance:
+    authority_surface:
+      - CHATGPT_SETTINGS_USAGE
+      - CODEX_USAGE_STATUS_WHEN_AVAILABLE
+    unit: PERCENT_REMAINING
+    api_usage_dashboard_substitute: DENIED
+    api_token_usage_substitute: DENIED
+  openai_api:
+    authority_surface:
+      - API_RESPONSE_USAGE
+      - API_USAGE_DASHBOARD
+    unit:
+      - TOKENS
+      - API_COST
+    separate_from_chatgpt_plan_allowance: true
+  purchased_chatgpt_credits:
+    authority_surface:
+      - CHATGPT_SETTINGS_USAGE
+      - CODEX_USAGE_AND_BILLING
+    unit: PROVIDER_CREDITS
+    api_credits_equivalent: false
+
+forecast_semantics:
+  p50_p75_p90_tokens:
+    retained: true
+    role:
+      - TASK_COMPLEXITY_FORECAST
+      - TOKEN_TELEMETRY_BASELINE_WHEN_TOKEN_MEASUREMENT_EXISTS
+    may_be_compared_to_percent_allowance: false
+  provider_native_admission_required_when_units_differ: true
+
+chatgpt_plan_normalized_fallback:
+  status: ACTIVE_BOOTSTRAP_CONSERVATIVE
+  applies_only_when:
+    package_risk:
+      - LOW
+    executor_profile:
+      - CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
+    automatic_dispatch: DENIED
+    automatic_next_package_progression: DENIED
+    product_runtime_source_modification: DENY
+    migration_execution: DENY
+    broker_network: DENY
+    live: DENY
+    production_activation: DENY
+    max_p90_planning_tokens: 40000
+  evidence:
+    require_provider_labeled_remaining_percentage: true
+    require_reset_metadata_when_shown: true
+    freshness_binding: CURRENT_EXECUTION_ELIGIBILITY_ATTEMPT_AND_RESERVATION
+    capture_required_within_current_eligibility_attempt: true
+    capture_must_precede_single_use_reservation: true
+    max_age_minutes_at_reservation: 10
+    ttl_alone_is_sufficient: false
+    screenshot_or_human_transcription_allowed_during_bootstrap: true
+    machine_readable_preferred: true
+    ambiguous_used_vs_remaining_label: DENY
+    missing_evidence_for_applicable_window: RECHECK_REQUIRED
+    unknown_window_applicability: RECHECK_REQUIRED
+    invalidation_events:
+      - INTERVENING_WORK_OR_CODEX_USAGE
+      - PROVIDER_RESET_OR_WINDOW_ROLLOVER
+      - ACCOUNT_OR_WORKSPACE_CHANGE
+      - PURCHASED_CREDIT_STATE_CHANGE
+      - MODEL_OR_EXECUTOR_PROFILE_CHANGE
+      - PROVIDER_LIMIT_POLICY_CHANGE
+      - AMBIGUOUS_OR_CONFLICTING_EVIDENCE
+  window_applicability:
+    allowed_states:
+      - APPLICABLE
+      - NOT_APPLICABLE_WITH_POSITIVE_PROOF
+      - UNKNOWN
+    not_displayed_is_not_not_applicable: true
+    not_applicable_requires_positive_evidence: true
+    applicable_without_fresh_evidence: RECHECK_REQUIRED
+    unknown: RECHECK_REQUIRED
+  windows:
+    five_hour:
+      minimum_remaining_percent_when_applicable: 80
+    weekly:
+      minimum_remaining_percent_when_applicable: 80
+  reserves:
+    mode: EMBEDDED_IN_MINIMUM_REMAINING_FLOOR
+    minimum_remaining_floor_percent: 80
+    control_plane_reserve: INCLUDED_IN_FLOOR
+    recovery_reserve: INCLUDED_IN_FLOOR
+    additional_reserve_subtraction: DENIED
+    arithmetic_rule: REMAINING_PERCENT_MUST_BE_GTE_80_NO_SECOND_SUBTRACTION
+    note: INTERNAL_GOVERNANCE_SAFETY_MARGIN_NOT_OPENAI_DEFINED
+  reset_semantics:
+    reset_timestamp_is_availability_proof: false
+    reset_is_recheck_trigger_only: true
+  normalized_admission:
+    all_applicable_windows_must_pass: true
+    unknown_applicability_is_not_pass: true
+    positive_not_applicable_proof_required: true
+    provider_block_or_limit_message: DENY
+    percentage_thresholds_are_internal_governance_not_token_conversion: true
+    reserve_floor_double_counting: DENIED
+    outcome_if_pass: NORMALIZED_PROVIDER_QUOTA_READY
+    outcome_if_fail: QUOTA_WAIT_OR_RECHECK_REQUIRED
+  post_execution_calibration:
+    capture_before_after_remaining_percentage: true
+    accepted_runs_before_threshold_review: 3
+    if_single_package_consumes_more_than_percent_of_any_window: 20
+    action: PAUSE_NORMALIZED_FALLBACK_AND_REVIEW
+    thresholds_may_not_self_modify: true
+
+wait:
+  reset_timestamp_semantics: RECHECK_TRIGGER_ONLY
+  reset_timestamp_is_proof_of_reset: false
+  direct_transition_to_execution: DENIED
+  required_transition:
+    - QUOTA_WAIT
+    - RE_RESOLVING
+    - ELIGIBILITY_RESOLVING
+    - QUOTA_EVALUATION
+    - PRE_DISPATCH
+    - EXECUTING
+  fresh_reresolution_required:
+    - head_origin
+    - working_tree
+    - architecture_revision_hash
+    - governance_state
+    - authorization_state_revision
+    - work_package_revision
+    - planning_baseline
+    - dependency_state
+    - priority_blocker_state
+    - side_effect_envelope
+    - quota_policy_revision_hash
+    - fresh_quota_snapshot
+    - forecast_validity
+    - runtime_writer_lock
+    - execution_reservation_ownership
+    - telemetry_qualification
+    - review_barrier
+
+alternate_package:
+  dependency_must_be_satisfied: true
+  authorization_must_be_current: true
+  authority_must_be_consistent: true
+  side_effect_policy_must_pass: true
+  telemetry_must_be_qualified: true
+  quota_fit_cannot_override_dependency: true
+
+executor_profile:
+  silent_model_downgrade: DENIED
+  profile_switch_requires_preauthorization: true
+  profile_switch_requires_fresh_forecast: true
+
+api_channel:
+  admission:
+    use_provider_native_token_cost_and_rate_limit_evidence: true
+    compare_only_compatible_units: true
+    chatgpt_plan_percentage_not_reused: true
+  telemetry:
+    use_actual_input_output_cached_reasoning_usage_when_exposed: true
+
+optimization:
+  direct_policy_mutation_by_metrics: DENIED
+  required_path:
+    - TELEMETRY
+    - OPTIMIZATION_CANDIDATE
+    - AUTOMATION_GOVERNANCE_REVIEW
+    - POLICY_REVISION
+    - MATERIALIZATION
+
+hard_invariants:
+  - AUTHORIZED_IS_NOT_EXECUTABLE
+  - PERCENT_REMAINING_IS_NOT_TOKENS
+  - API_USAGE_IS_NOT_CHATGPT_PLAN_ALLOWANCE
+  - RESET_TIME_IS_NOT_AVAILABILITY_PROOF
+  - ALL_APPLICABLE_PROVIDER_WINDOWS_MUST_PASS
+  - UI_ABSENCE_IS_NOT_WINDOW_NON_APPLICABILITY
+  - NOT_APPLICABLE_REQUIRES_POSITIVE_PROOF
+  - UNKNOWN_WINDOW_APPLICABILITY_IS_NOT_ELIGIBLE
+  - MINIMUM_REMAINING_80_IS_THE_SINGLE_RESERVE_FLOOR
+  - NO_SECOND_RESERVE_SUBTRACTION
+  - TEN_MINUTE_TTL_ALONE_DOES_NOT_ESTABLISH_FRESHNESS
+  - FRESH_EVIDENCE_IS_BOUND_TO_CURRENT_ELIGIBILITY_AND_RESERVATION
+  - NO_SILENT_MODEL_DOWNGRADE
+  - NO_AUTOMATIC_THRESHOLD_MUTATION
+  - NO_RUNTIME_BROKER_MIGRATION_LIVE_PRODUCTION_AUTHORITY
+  - FRESH_RECHECK_REQUIRED_AT_SINGLE_USE_RESERVATION

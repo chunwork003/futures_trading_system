@@ -35,11 +35,13 @@ development_automation_current_authorization_revision = 1
 development_automation_current_authorization_state = AUTHORIZED
 development_automation_current_authorization_candidate = AUTHORIZED_EFFECTIVE
 development_automation_auto_imp_001_source_modification = BOUNDED_AUTHORIZED
-development_automation_execution_eligibility = BLOCKED_POLICY_REVIEW
+development_automation_execution_eligibility = NOT_RESOLVED_FRESH_RECHECK_REQUIRED
 development_automation_quota_rf_id = AUTO-IMP-001-QRF01
-development_automation_quota_rf_status = REVIEW_FIX_APPLIED_PENDING_RE_REVIEW
+development_automation_quota_rf_status = ACCEPTED_MATERIALIZED
+development_automation_quota_rf_re_review = PASS
 development_automation_quota_rf_review_fix = RESERVE_ARITHMETIC_APPLICABLE_WINDOW_FRESHNESS
-development_automation_quota_policy_active_version = 1.0
+development_automation_quota_policy_active_version = 1.1
+development_automation_quota_policy_active_path = automation/policies/quota_admission_policy.v1_1.yaml
 development_automation_quota_policy_candidate_version = 1.1-candidate
 development_automation_quota_provider_evidence = NORMALIZED_PERCENT_REMAINING
 development_automation_quota_token_conversion = DENIED
@@ -55,7 +57,7 @@ development_automation_level_3b = NOT_ENABLED
 development_automation_level_3c = NOT_ENABLED
 development_automation_level_4 = NOT_ENABLED
 development_automation_level_5 = NOT_ENABLED
-development_automation_next_route = AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW
+development_automation_next_route = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
 
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
@@ -103,7 +105,7 @@ migration_execution = NOT_AUTHORIZED
 live = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 next_mainline_gap = NOT_AUTHORIZED
-next = AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW
+next = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
 ```
 
 Pointers：
@@ -211,7 +213,7 @@ No next mainline GAP is authorized.
 
 Next governance checkpoint:
 
-`AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW`
+`AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY`
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS

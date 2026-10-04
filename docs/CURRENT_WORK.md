@@ -9,13 +9,14 @@
 - Current package: `AUTO-IMP-001`
 - Current authorization candidate: `AUTH-AUTO-IMP-001-01` revision `1`
 - Authorization state: `AUTHORIZED`
-- Execution eligibility: `BLOCKED_POLICY_REVIEW`
-- Quota RF: `AUTO-IMP-001-QRF01` / `REVIEW_FIX_APPLIED_PENDING_RE_REVIEW`
+- Execution eligibility: `NOT_RESOLVED_FRESH_RECHECK_REQUIRED`
+- Quota RF: `AUTO-IMP-001-QRF01` / `ACCEPTED_MATERIALIZED`
+- Active quota policy: `1.1`
 - Skill integration: `DEFERRED_PLANNING_ONLY` until foundation stability
 - Automatic dispatch: `DENIED`
 - Automatic next-package progression: `DENIED`
 - Current implementation package: `NONE`
-- Next route: `AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW`
+- Next route: `AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY`
 
 ## Development Automation Master v1.1 — FROZEN
 
@@ -27,7 +28,7 @@
 - Level 3B / 3C / 4 / 5: `NOT_ENABLED`
 - Runtime Authorization: `NOT_AUTHORIZED`
 - Next mainline GAP: `NOT_AUTHORIZED`
-- Next automation route: `AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW`
+- Next automation route: `AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY`
 
 ## GAP-08 Closed / Accepted — No Runtime Package Active
 
@@ -44,7 +45,7 @@
 - Architecture acceptance: `ACCEPTED_FOR_GAP08_SCOPE`
 - Runtime work package: `NONE`
 - Next mainline GAP: `NOT_AUTHORIZED`
-- Next: `AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW`
+- Next: `AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY`
 
 ## GOV-01 Current Work Projection Guard
 
@@ -60,7 +61,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action: GAP-08 is CLOSED_ACCEPTED; no runtime work is active. No next mainline GAP is authorized. Development Automation Master v1.1 is FROZEN; next automation route is AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW.
+Current execution action: GAP-08 is CLOSED_ACCEPTED; no runtime work is active. No next mainline GAP is authorized. Development Automation Master v1.1 is FROZEN; next automation route is AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY.
 
 <!-- MACHINE_QUEUE_CURRENT_START -->
 CURRENT_PARENT_GAP = NONE
@@ -95,11 +96,13 @@ AUTOMATION_CURRENT_PACKAGE = AUTO-IMP-001
 AUTOMATION_CURRENT_AUTHORIZATION = AUTH-AUTO-IMP-001-01
 AUTOMATION_CURRENT_AUTHORIZATION_STATE = AUTHORIZED
 AUTOMATION_AUTHORIZED_PACKAGE = AUTO-IMP-001
-AUTOMATION_EXECUTION_ELIGIBILITY = BLOCKED_POLICY_REVIEW
+AUTOMATION_EXECUTION_ELIGIBILITY = NOT_RESOLVED_FRESH_RECHECK_REQUIRED
 AUTOMATION_QUOTA_RF = AUTO-IMP-001-QRF01
-AUTOMATION_QUOTA_POLICY_CANDIDATE = 1.1-candidate
+AUTOMATION_QUOTA_RF_STATUS = ACCEPTED_MATERIALIZED
+AUTOMATION_QUOTA_POLICY_ACTIVE = 1.1
+AUTOMATION_QUOTA_POLICY_CANDIDATE = 1.1-candidate:ACCEPTED_SOURCE_EVIDENCE
 AUTOMATION_SKILL_INTEGRATION = DEFERRED_PLANNING_ONLY
-NEXT = AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW
+NEXT = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
 <!-- MACHINE_QUEUE_CURRENT_END -->
 
 ## Purpose
@@ -169,7 +172,7 @@ Next mainline GAP：
 
 Next governance checkpoint：
 
-`AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW`
+`AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY`
 
 The historical GAP-08EFGHI candidate and prior correction leaves below are retained for audit/context only and carry no current runtime authority.
 

@@ -391,11 +391,11 @@ Future Skills are execution playbooks below the Automation Control Plane, not au
 ```text
 RF_ID = AUTO-IMP-001-QRF01
 ISSUE = PROVIDER_QUOTA_UNIT_MISMATCH
-ACTIVE_QUOTA_POLICY = 1.0 FROZEN
-CANDIDATE_QUOTA_POLICY = 1.1-candidate / REVIEW_FIX_APPLIED_PENDING_RE_REVIEW / INACTIVE
+ACTIVE_QUOTA_POLICY = 1.1 FROZEN
+CANDIDATE_QUOTA_POLICY = 1.1-candidate / ACCEPTED_SOURCE_EVIDENCE / INACTIVE
 AUTO-IMP-001_AUTHORIZATION = AUTHORIZED
-EXECUTION_ELIGIBILITY = BLOCKED_POLICY_REVIEW
-NEXT_ROUTE = AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW
+EXECUTION_ELIGIBILITY = NOT_RESOLVED_FRESH_RECHECK_REQUIRED
+NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
 ```
 
 OpenAI's ChatGPT Work/Codex plan allowance is provider-native usage allowance and does not define a fixed token equivalence. API token usage and API billing are separate evidence channels. Therefore the control plane must not convert plan percentage remaining into tokens.
@@ -418,5 +418,21 @@ AUTO_IMP_001_EXECUTABLE = false
 ```
 
 The normalized fallback now uses one 80% remaining floor with no second reserve subtraction; resolves window applicability explicitly and fail-closed; and binds freshness to the current eligibility/reservation attempt, with 10 minutes only as an outer TTL.
+
+
+### QuotaAdmissionPolicy v1.1 Materialization
+
+```text
+QRF01_RE_REVIEW = PASS
+SOURCE_REVIEW_HEAD = 54a316cf816b8f1bb57da5b778d2a7e43ce92748
+ACTIVE_QUOTA_POLICY = 1.1 FROZEN
+PREVIOUS_QUOTA_POLICY = 1.0 FROZEN_SUPERSEDED_READ_ONLY
+AUTO_IMP_001_AUTHORIZATION = AUTHORIZED
+EXECUTION_ELIGIBILITY = NOT_RESOLVED_FRESH_RECHECK_REQUIRED
+CODEX_EXECUTION = NOT_STARTED
+NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
+```
+
+The reviewed v1.1 provider-native quota semantics are now materialized as the canonical active policy. The original v1.0 bytes and the reviewed v1.1 candidate remain immutable historical/source evidence. Policy activation does not itself make AUTO-IMP-001 executable; a new reservation-bound quota snapshot and full single-use eligibility/reservation sequence are still required.
 
 <!-- AUTOMATION_MASTER_V1_1_END -->

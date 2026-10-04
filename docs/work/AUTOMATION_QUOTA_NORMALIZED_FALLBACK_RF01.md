@@ -3,8 +3,8 @@
 ```text
 RF_ID = AUTO-IMP-001-QRF01
 BASELINE = addf17379223cf4807e7b773f6034134ff7478e9
-STATUS = REVIEW_FIX_APPLIED_PENDING_RE_REVIEW
-ACTIVE_POLICY = QuotaAdmissionPolicyV1 v1.0 FROZEN
+STATUS = ACCEPTED_MATERIALIZED
+ACTIVE_POLICY = QuotaAdmissionPolicy v1.1 FROZEN
 CANDIDATE_POLICY = v1.1-candidate / NOT ACTIVE
 AUTO-IMP-001 = AUTHORIZED / NOT EXECUTABLE
 ```
@@ -93,7 +93,7 @@ The observed `100% / 98%` would satisfy the proposed percentage thresholds if it
 Next route:
 
 ```text
-AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW
+AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
 ```
 
 ## Independent Review Fix Applied
@@ -137,5 +137,27 @@ The candidate remains inactive. Active QuotaAdmissionPolicyV1 v1.0 remains froze
 Next route:
 
 ```text
-AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW
+AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
+```
+
+
+## Independent Re-review PASS and Policy Materialization
+
+```text
+RE_REVIEW = PASS
+REVIEW_HEAD = 54a316cf816b8f1bb57da5b778d2a7e43ce92748
+AUTO-IMP-001-QRF01 = ACCEPTED_MATERIALIZED
+ACTIVE_POLICY = 1.1 FROZEN
+PREVIOUS_POLICY = 1.0 FROZEN_SUPERSEDED_READ_ONLY
+AUTO-IMP-001 = AUTHORIZED
+EXECUTION_ELIGIBILITY = NOT_RESOLVED_FRESH_RECHECK_REQUIRED
+CODEX = NOT_STARTED
+```
+
+The historical quota screenshot remains non-reusable. The next execution-eligibility attempt must capture new reservation-bound provider quota evidence.
+
+Next route:
+
+```text
+AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
 ```
