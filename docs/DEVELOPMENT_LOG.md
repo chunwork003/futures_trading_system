@@ -19,7 +19,7 @@
 
 ### Milestone and Progress
 
-- Current milestone：P7 remainder architecture frozen and authorized as `C17 -> C19 -> C20 -> C18`；correction-core remains 98/113；runtime/source effectivity begins only after the docs-only authorization commit is pushed。
+- Current milestone：P7 remainder semantic review returned `RF01_REQUIRED`；`AUTH-P7-REMAINDER-01-AMENDMENT-01` authorizes bounded RF01 correction after docs-only amendment push；correction-core remains 98/113。
 - Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07（A0/A/B/C/D/E/F/E2/E3）。
 - Pending：broker sync/reconciliation、persistence/recovery、incremental state。
 - Overall V1：40–50%。以 Work Package weight 與 acceptance criteria 評估；不可使用 LOC 或 file count。
@@ -28,6 +28,23 @@
 - 此為 dynamic estimate，不是 deadline；每個 checkpoint / milestone 後重新估算。發現 architecture blocker 或新增 scope 時可上調；已有功能比預期成熟時可下調。
 
 ## Chronological Log
+
+### 2026-10-04 — GAP-08 P7 Remainder RF01 Amendment-01
+
+- decision：`AUTH-P7-REMAINDER-01-AMENDMENT-01 / AUTHORIZE`。
+- runtime baseline：`3c36e87efe94ab6fedcc0389c9eb37ac4d5df1f5`。
+- review：`RF01_REQUIRED`。
+- architecture contradiction / architect decision / new ADR：NO。
+- RF01-01：Pattern A — immutable transition descriptor + append-only phase/boundary evidence。
+- transition resolution：positive current `NO_ACTIVE_TRANSITION` authority + CAS current head。
+- RF01-02：C19/C20 exact governing-world receipts consumed by C18。
+- RF01-03：authoritative provider/resolver cohort lookup。
+- accepted correction-core remains：98 / 113。
+- P7 remainder weight：NOT_CREDITED。
+- runtime correction becomes effective only after this exact docs-only amendment commit is pushed。
+- exact pushed SHA becomes `P7_RF01_EXECUTION_BASELINE`。
+- migration execution / actual PostgreSQL / Broker-Shioaji I/O：DENIED。
+- next：bounded RF01 runtime correction from exact amendment HEAD。
 
 ### 2026-10-04 — GAP-08 P7 Remainder Architecture Authorization
 

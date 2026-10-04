@@ -11,7 +11,7 @@ W4_OFFICIAL_WEIGHT = 18 / CREDITED
 accepted_correction_core = 98 / 113
 remaining_correction_core = 15 / 113
 
-CURRENT_RUNTIME_CANDIDATE = NONE
+CURRENT_RUNTIME_CANDIDATE = 3c36e87efe94ab6fedcc0389c9eb37ac4d5df1f5
 
 P7 = C16 -> C17 -> C19 -> C20 -> C18
 P7_WEIGHT = 20
@@ -33,6 +33,13 @@ C17 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
 C19 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
 C20 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
 C18 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
+P7_REMAINDER_REVIEW = RF01_REQUIRED
+P7_RF01_AMENDMENT = AUTH-P7-REMAINDER-01-AMENDMENT-01 / AUTHORIZE
+P7_RF01_PATTERN = IMMUTABLE_DESCRIPTOR_PLUS_APPEND_ONLY_PHASE_EVIDENCE
+P7_RF01_TRANSITION_RESOLUTION = POSITIVE_NO_ACTIVE_TRANSITION_AUTHORITY
+P7_RF01_COHORT_AUTHORITY = AUTHORITATIVE_PROVIDER_RESOLVER_LOOKUP
+P7_RF01_RUNTIME_BASELINE = 3c36e87efe94ab6fedcc0389c9eb37ac4d5df1f5
+P7_RF01_EFFECTIVITY = AFTER_DOCS_AMENDMENT_COMMIT_PUSH
 
 C18 original C15 dependency =
 SATISFIED_BY_ACCEPTED_W4R_D_RESCOPE
@@ -69,6 +76,27 @@ Accepted correction core:
 Remaining correction core:
 
 `15 / 113`
+
+Independent P7 remainder semantic review returned:
+
+`RF01_REQUIRED`
+
+Architecture Owner has issued:
+
+`AUTH-P7-REMAINDER-01-AMENDMENT-01 / AUTHORIZE`
+
+Frozen RF01 contract:
+
+```text
+RF01-01 = Pattern A / immutable descriptor + append-only phase evidence
+transition resolution = positive NO_ACTIVE_TRANSITION authority
+RF01-02 = exact C19/C20 governing-world receipts consumed by C18
+RF01-03 = authoritative DecisionCohort provider/resolver lookup
+```
+
+Runtime RF01 correction becomes effective only after the exact docs-only
+amendment commit is pushed. That exact SHA becomes
+`P7_RF01_EXECUTION_BASELINE`.
 
 Architecture Room has now issued:
 
