@@ -1,0 +1,19 @@
+schema_version: automation.handoff.v1
+handoff_id: HANDOFF-AUTO-IMP-001-AUTHORIZED-TO-ELIGIBILITY
+from_run: RUN-AUTO-IMP-001-AUTH-DECISION-01
+status: COMPLETE
+work_package_id: AUTO-IMP-001
+authorization_id: AUTH-AUTO-IMP-001-01
+authorization_revision: "1"
+authorization_state: AUTHORIZED
+execution_eligibility: NOT_RESOLVED
+skill_integration: DEFERRED_PLANNING_ONLY
+next_owner: Automation_Control_Plane
+next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
+exact_next_action: Perform fresh execution eligibility checks including HEAD/origin, working tree, exact package binding, Program semantic-core drift, dependency state, fresh 5-hour and weekly quota snapshot with reserves, telemetry requirements, and one-writer safety. Do not invoke CODEX unless eligibility becomes explicitly PASS.
+must_not_start:
+  - automatic CODEX dispatch
+  - AUTO-IMP-002 or later
+  - Skill Adapter implementation
+  - Runtime Authorization
+  - broker/migration/LIVE/production actions

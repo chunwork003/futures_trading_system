@@ -355,4 +355,34 @@ NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_AUTHORIZATION_DECISION
 
 The W1 wave candidate was not transitioned to AUTHORIZED because its Program hash no longer matched the current Program artifact after review materialization and it did not expose the frozen package-level exact-binding field set. The replacement candidate binds one work package exactly and keeps automatic progression denied.
 
+
+### AUTO-IMP-001 Explicit Authorization Decision
+
+```text
+AUTHORIZATION_ID = AUTH-AUTO-IMP-001-01
+WORK_PACKAGE_ID = AUTO-IMP-001
+DECISION = APPROVE
+AUTHORIZATION_STATE = AUTHORIZED
+EXECUTOR_PROFILE = CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
+AUTOMATIC_DISPATCH = DENIED
+AUTOMATIC_NEXT_PACKAGE_PROGRESSION = DENIED
+EXECUTION_ELIGIBILITY = NOT_RESOLVED
+NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
+```
+
+Authorization uses package-level exact binding as canonical execution authority. The Program full-file hash is planning provenance only because the trailing `authorization_compilation` routing section changes as governance progresses; authorization validates the immutable Program semantic core plus exact package binding instead of recursively binding mutable routing metadata.
+
+`AUTHORIZED != EXECUTABLE`.
+
+### Deferred Skill Integration
+
+```text
+STATUS = DEFERRED_PLANNING_ONLY
+CANDIDATE = AUTO-IMP-SKILL-001
+TARGET = AUTOMATION_SKILL_ADAPTER_LAYER
+ACTIVATE_ONLY_AFTER = FOUNDATION_STABILITY
+```
+
+Future Skills are execution playbooks below the Automation Control Plane, not authority owners. Canonical governance remains in repository policies/state. Skills may read authority and execute permitted workflows, but MUST NOT grant authorization, mutate quota/authorization policy, infer Runtime Authorization, expand write scope, or auto-advance packages.
+
 <!-- AUTOMATION_MASTER_V1_1_END -->

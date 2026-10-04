@@ -15,18 +15,18 @@ compiled_program:
   implementation_authorized: false
   codex_execution_authorized: false
   program_review: PASS
-  next_route: AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_COMPILATION
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
 
 compiled_authorization_candidate:
   authorization_id: AUTH-AUTO-IMP-001-01
   authorization_revision: "1"
   path: automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml
-  sha256: "010c0f85226f7fb56b076abdd9f529b92292fa924956c9de1f5424017312224e"
+  sha256: "2318c3b5c5222238034008830334f9bf3bf3b9001a452944b89b0a9b191b08d3"
   work_package_id: AUTO-IMP-001
-  authorization_state: NOT_AUTHORIZED
-  document_status: COMPILED_CANDIDATE_PENDING_DECISION
+  authorization_state: AUTHORIZED
+  document_status: AUTHORIZED_EFFECTIVE
   planning_baseline_sha: "e96876de83da3282fb2a5a63b76b9d73c14937ad"
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_AUTHORIZATION_DECISION
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
 
 superseded_authorization_candidates:
   - authorization_id: AUTH-AUTO-IMP-W1-01
@@ -58,12 +58,12 @@ canonical_current_state:
 governance_document:
   path: docs/AI_AUTOMATION_OPERATING_MODEL.md
   version: "1.1"
-  sha256: "62bbf3644048f0fd697231c4f6b84aa7af39899ad0e8248d101b9734c341bdbe"
+  sha256: "6f26fa6edcf350be989797b425b7757b490f9e6bbaa5c511fb4b094cb26362ed"
 
 agent_reentry:
   path: AGENTS.md
   protocol_version: "1.0"
-  sha256: "c2db889b94564b1cc771d1d4cd768d24d68010fd56b8e3b3e72445aa7c3cb1d1"
+  sha256: "065c2f39db81c926fb6fba3ff40b0445eda7e79f4beed4ad827cf7109f7b65b7"
 
 policies:
   authorization_lifecycle:
@@ -97,7 +97,8 @@ activation:
   w1_authorization_candidate_compiled: true
   w1_wave_candidate_superseded: true
   auto_imp_001_authorization_candidate_compiled: true
-  auto_imp_001_authorization_effective: false
+  auto_imp_001_authorization_effective: true
+  auto_imp_001_execution_eligibility_resolved: false
   implementation_started: false
   level_3b_enabled: false
   level_3c_enabled: false

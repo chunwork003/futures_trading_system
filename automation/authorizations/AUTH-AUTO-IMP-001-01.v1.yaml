@@ -1,9 +1,19 @@
 schema_version: automation.authorization.v1
 authorization_id: AUTH-AUTO-IMP-001-01
 authorization_revision: "1"
-document_status: COMPILED_CANDIDATE_PENDING_DECISION
-authorization_state: NOT_AUTHORIZED
+document_status: AUTHORIZED_EFFECTIVE
+authorization_state: AUTHORIZED
 source_candidate_head_sha: "e96876de83da3282fb2a5a63b76b9d73c14937ad"
+
+decision_evidence:
+  decision: APPROVE
+  authority: HUMAN_GOVERNANCE_OWNER
+  decision_scope: EXACT_BOUND_AUTO_IMP_001_ONLY
+  decision_materialization_baseline_sha: "026d69161a1ac6c6972cf7b870893c446faffc7d"
+  authorization_interpretation: PACKAGE_EXACT_BINDING_CONTROLS
+  program_full_hash_role: NON_AUTHORITY_ROUTING_PROVENANCE
+  runtime_authorization_effect: NONE
+  broker_migration_live_production_effect: NONE
 
 exact_binding:
   work_package_id: AUTO-IMP-001
@@ -22,7 +32,14 @@ exact_binding:
 program_binding:
   program_id: AUTO-IMP-PROGRAM-V1
   program_revision: "1"
-  program_sha256: "e90cb4a872cd7a4d0529fc9fd56d14360bcd94a531217ffa2c43fc8d67a238ed"
+  planning_baseline_sha: "e96876de83da3282fb2a5a63b76b9d73c14937ad"
+  planning_program_sha256: "e90cb4a872cd7a4d0529fc9fd56d14360bcd94a531217ffa2c43fc8d67a238ed"
+  binding_role: PLANNING_PROVENANCE
+  current_full_program_hash_is_execution_authority: false
+  semantic_core_extraction: BYTES_BEFORE_AUTHORIZATION_COMPILATION_SECTION
+  semantic_core_sha256: "33be9243c7010ce1e9b349f99bd28cad177a25733514528f5bb255f7047d8bf7"
+  permitted_post_planning_drift:
+    - AUTHORIZATION_COMPILATION_ROUTING_METADATA_ONLY
 
 package_binding:
   package_sha256: "d005d7f4090375966b5d0c1284339cd89b6622d6c3415b2f4bf1b7e7d3027606"
@@ -71,6 +88,7 @@ telemetry_gate:
   ambiguous_binding: STOP_TELEMETRY_AMBIGUOUS_BINDING
 
 decision:
-  required: true
+  required: false
   authority_owner: Automation_Governance_Authority
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_AUTHORIZATION_DECISION
+  status: APPROVED_MATERIALIZED
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
