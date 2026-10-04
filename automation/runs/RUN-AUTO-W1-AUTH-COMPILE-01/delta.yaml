@@ -1,0 +1,19 @@
+schema_version: automation.delta.v1
+run_id: RUN-AUTO-W1-AUTH-COMPILE-01
+accepted:
+  - AUTO-IMP-PROGRAM-V1 independent program review PASS
+  - program accepted for implementation planning
+added:
+  - exact W1 authorization candidate AUTH-AUTO-IMP-W1-01 revision 1
+  - RF01 exact binding and scope digest
+  - manual-trigger-only executor profile
+  - W1 quota/telemetry/test/review gates
+unchanged:
+  - authorization state remains NOT_AUTHORIZED
+  - implementation remains NOT_STARTED
+  - CODEX execution remains NOT_AUTHORIZED
+  - Runtime Authorization remains NOT_AUTHORIZED
+  - Level 3B/3C/4/5 remain NOT_ENABLED
+  - next mainline GAP remains NOT_AUTHORIZED
+remaining:
+  - explicit AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION

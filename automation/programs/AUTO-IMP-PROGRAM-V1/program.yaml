@@ -1,7 +1,7 @@
 schema_version: automation.implementation_program.v1
 program_id: AUTO-IMP-PROGRAM-V1
 program_revision: "1"
-status: COMPILED_CANDIDATE_NOT_AUTHORIZED
+status: ACCEPTED_FOR_IMPLEMENTATION_PLANNING
 compiled_from_freeze_head: "52921ae3f205ef2eec4306e84ff92d4cd9cdeab3"
 frozen_master_manifest_sha256: "d6b2c5b4e8ff95a337c4c9982ed03a64e1cf4ea4c03f250857e98d37e3df6cfa"
 master_architecture_version: "1.1"
@@ -11,8 +11,9 @@ authority:
   codex_execution_authorized: false
   runtime_authorization: NOT_AUTHORIZED
   next_mainline_gap_authorized: false
+  program_review: PASS
   review_required_before_wave_authorization: true
-  next_route: AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW
+  next_route: AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_COMPILATION
 
 implementation_strategy:
   pattern: STRANGLER_DUAL_RUN
@@ -184,3 +185,11 @@ hard_stops:
   - MORE_THAN_ONE_RUNTIME_WRITER
   - AUTO_3_UNATTENDED_PATH
   - RUNTIME_OR_BROKER_OR_MIGRATION_OR_LIVE_SIDE_EFFECT
+
+authorization_compilation:
+  wave_id: W1_FOUNDATION_SHADOW
+  authorization_id: AUTH-AUTO-IMP-W1-01
+  authorization_revision: "1"
+  authorization_state: NOT_AUTHORIZED
+  candidate_path: automation/authorizations/AUTH-AUTO-IMP-W1-01.v1.yaml
+  next_route: AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION

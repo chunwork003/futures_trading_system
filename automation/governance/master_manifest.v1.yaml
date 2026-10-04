@@ -9,12 +9,24 @@ compiled_program:
   program_id: AUTO-IMP-PROGRAM-V1
   program_revision: "1"
   path: automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml
-  sha256: "63e34a7069961ea26c9009daeffd944a0eeb62945addc7234a67ef7eab0eb51c"
+  sha256: "e90cb4a872cd7a4d0529fc9fd56d14360bcd94a531217ffa2c43fc8d67a238ed"
   source_freeze_head_sha: "52921ae3f205ef2eec4306e84ff92d4cd9cdeab3"
-  status: COMPILED_CANDIDATE_NOT_AUTHORIZED
+  status: ACCEPTED_FOR_IMPLEMENTATION_PLANNING
   implementation_authorized: false
   codex_execution_authorized: false
-  next_route: AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW
+  program_review: PASS
+  next_route: AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_COMPILATION
+
+compiled_authorization_candidate:
+  authorization_id: AUTH-AUTO-IMP-W1-01
+  authorization_revision: "1"
+  path: automation/authorizations/AUTH-AUTO-IMP-W1-01.v1.yaml
+  sha256: "4af00c718392319eb57531feb5a686a2ef792e2cd4d820aff2f5dec70da4f2aa"
+  wave_id: W1_FOUNDATION_SHADOW
+  authorization_state: NOT_AUTHORIZED
+  document_status: COMPILED_CANDIDATE_PENDING_DECISION
+  source_review_head_sha: "4b78a84db3ed4b7277adc84548e37147bae2ef7f"
+  next_route: AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION
 
 freeze:
   state: FROZEN
@@ -41,12 +53,12 @@ canonical_current_state:
 governance_document:
   path: docs/AI_AUTOMATION_OPERATING_MODEL.md
   version: "1.1"
-  sha256: "b352fdb08b846f491a8ce38f87a4f6d222c62857692b7e060ec1869c93c7889a"
+  sha256: "875f6422be63bb5ab5790245c9ba924102951094cd85e8fb7d23c2c8609fcd57"
 
 agent_reentry:
   path: AGENTS.md
   protocol_version: "1.0"
-  sha256: "cfd123fb0889fcd94020253bd4e70c4be350948834cc6cf339dbb9f5e7618ab7"
+  sha256: "86638b3170c11544338c0c91ede6d11cb89862a97fef81495560afbdc1a4ce5b"
 
 policies:
   authorization_lifecycle:
@@ -75,7 +87,10 @@ activation:
   master_frozen: true
   implementation_program_compilation_next: false
   implementation_program_compiled: true
-  implementation_program_review_required: true
+  implementation_program_review_required: false
+  implementation_program_review_passed: true
+  w1_authorization_candidate_compiled: true
+  w1_authorization_effective: false
   implementation_started: false
   level_3b_enabled: false
   level_3c_enabled: false

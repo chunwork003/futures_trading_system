@@ -1,0 +1,138 @@
+schema_version: automation.authorization.v1
+authorization_id: AUTH-AUTO-IMP-W1-01
+authorization_revision: "1"
+document_status: COMPILED_CANDIDATE_PENDING_DECISION
+authorization_state: NOT_AUTHORIZED
+source_review_head_sha: "4b78a84db3ed4b7277adc84548e37147bae2ef7f"
+
+binding:
+  master_architecture_id: DEVELOPMENT-AUTOMATION-MASTER
+  master_architecture_version: "1.1"
+  master_manifest_sha256: "9154d43c47ecbdb0f578e7953a2a87bf9e45c7c44c688158d52cc15a9ad3f660"
+  program_id: AUTO-IMP-PROGRAM-V1
+  program_revision: "1"
+  program_sha256: "63e34a7069961ea26c9009daeffd944a0eeb62945addc7234a67ef7eab0eb51c"
+  wave_id: W1_FOUNDATION_SHADOW
+  scope_digest_sha256: "eed6d4ab428588bcd97be8579068af47de2d355eb4664d7c59f3fdfca60c8398"
+  scope_digest_algorithm: SHA-256
+  scope_digest_canonicalization: JSON_SORTED_KEYS_UTF8_COMPACT
+
+packages:
+  - id: AUTO-IMP-001
+    revision: "1"
+    sha256: "d005d7f4090375966b5d0c1284339cd89b6622d6c3415b2f4bf1b7e7d3027606"
+    risk: LOW
+    p90_tokens: 36000
+    planned_write_scope:
+      - "automation/engine/contracts.py"
+      - "automation/engine/yaml_io.py"
+      - "tests/automation/test_contracts.py"
+  - id: AUTO-IMP-002
+    revision: "1"
+    sha256: "1024e75db5229fc0554f137897b0aa041c6b7c9856e6a61e9bcf82573587bce1"
+    risk: MEDIUM
+    p90_tokens: 44000
+    planned_write_scope:
+      - "automation/engine/manifest.py"
+      - "automation/engine/reentry.py"
+      - "tests/automation/test_manifest.py"
+      - "tests/automation/test_reentry.py"
+  - id: AUTO-IMP-003
+    revision: "1"
+    sha256: "b24e1b1e8abe934707d3bc64f91e8b6e53dc348cd719dc6fe1332ab42c8939fe"
+    risk: HIGH
+    p90_tokens: 52000
+    planned_write_scope:
+      - "automation/engine/authorization.py"
+      - "automation/engine/state_machine.py"
+      - "tests/automation/test_authorization.py"
+      - "tests/automation/test_state_machine.py"
+  - id: AUTO-IMP-004
+    revision: "1"
+    sha256: "5567c4dde90c873d384802f0b4125f7c7fcebc56215b5bbf78e173b4d9dc0e6d"
+    risk: HIGH
+    p90_tokens: 50000
+    planned_write_scope:
+      - "automation/engine/quota.py"
+      - "automation/engine/forecast.py"
+      - "tests/automation/test_quota.py"
+      - "tests/automation/test_forecast.py"
+  - id: AUTO-IMP-005
+    revision: "1"
+    sha256: "94d8f0fcc7fb1f56579de5d9e4746388da1fd18e08a598cbb4a3033d5e2d388e"
+    risk: MEDIUM
+    p90_tokens: 34000
+    planned_write_scope:
+      - "automation/engine/assertions.py"
+      - "tests/automation/test_negative_assertions.py"
+
+execution_policy:
+  allowed_executor_profile: CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
+  automatic_dispatch: DENIED
+  automatic_next_package_progression: DENIED
+  one_runtime_writer_required: true
+  fresh_reentry_before_each_package: true
+  fresh_authority_resolution_before_each_package: true
+  fresh_quota_resolution_before_each_package: true
+  package_dependency_recheck_before_each_package: true
+
+side_effect_envelope:
+  automation_source_modification: ALLOW_ONLY_AFTER_AUTHORIZATION_STATE_AUTHORIZED
+  automation_test_execution: ALLOW_ONLY_AFTER_AUTHORIZATION_STATE_AUTHORIZED
+  product_runtime_source_modification: DENY
+  db_environment_access: DENY
+  migration_creation: DENY
+  migration_execution: DENY
+  broker_network: DENY
+  paper_broker_io: DENY
+  production_broker_io: DENY
+  credential_material: DENY
+  runtime_operation: DENY
+  live: DENY
+  production_activation: DENY
+  next_mainline_gap_activation: DENY
+
+correction_policy:
+  semantic_correction_budget_per_bounded_issue: 2
+  tooling_retry_is_semantic_correction: false
+  repeated_tooling_failure_requires_root_cause_or_stop: true
+
+git_policy:
+  commit: ALLOW_PER_PACKAGE_ONLY_AFTER_AUTHORIZED
+  push: ALLOW_WAVE_END_ONLY_AFTER_AUTHORIZED
+  force_push: DENY
+  remote_divergence: STOP_AND_RERESOLVE
+
+review_barrier:
+  package_local_completion_is_final_acceptance: false
+  wave_final_independent_review_required: true
+  program_review_pass_is_authorization: false
+
+test_policy:
+  counterexample_first: true
+  package_targeted_tests_required: true
+  package_scope_and_diff_check_required: true
+  wave_negative_assertion_suite_required: true
+  wave_final_full_regression_required: true
+
+quota_admission:
+  policy: QuotaAdmissionPolicyV1
+  default_percentile: P90
+  current_fit: NOT_EVALUATED_NO_FRESH_QUOTA_SNAPSHOT
+  cumulative_planning_p90_tokens: 216000
+  five_hour_fit_required_at_execution_eligibility: true
+  weekly_fit_required_at_execution_eligibility: true
+  reserve_subtraction_required: true
+  reset_timestamp_is_availability_proof: false
+  model_downgrade_to_fit: DENY_UNLESS_PREAUTHORIZED_PROFILE
+
+telemetry_gate:
+  automated_codex_requires_measurable_execution_channel: true
+  manual_triggered_executor_may_run_only_when_package_authorized: true
+  ambiguous_binding_action: STOP_TELEMETRY_AMBIGUOUS_BINDING
+  execution_identity_required_when_execution_begins: true
+
+decision:
+  required: true
+  authority_owner: Automation_Governance_Authority
+  next_route: AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION

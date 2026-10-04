@@ -1,0 +1,23 @@
+schema_version: automation.handoff.v1
+handoff_id: HANDOFF-AUTO-W1-AUTH-CANDIDATE-TO-DECISION
+from_run: RUN-AUTO-W1-AUTH-COMPILE-01
+status: COMPLETE
+program_id: AUTO-IMP-PROGRAM-V1
+wave_id: W1_FOUNDATION_SHADOW
+authorization_id: AUTH-AUTO-IMP-W1-01
+authorization_revision: "1"
+authorization_state: NOT_AUTHORIZED
+next_owner: Automation_Governance_Authority
+next_route: AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION
+exact_next_action: Decide whether to transition the exact-bound W1 authorization candidate from NOT_AUTHORIZED to AUTHORIZED; do not execute any package before that decision is materialized.
+must_not_repeat:
+  - Master v1.1 architecture review
+  - AUTO-RF01/AUTO-RF02 review
+  - manifest hash integrity review
+  - full Program review
+must_not_start:
+  - AUTO-IMP-001 implementation
+  - any CODEX execution
+  - automatic W1 progression
+  - Level 3B/3C/4/5 activation
+  - next trading mainline GAP

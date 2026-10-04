@@ -1,14 +1,16 @@
 # Current Work
 
-## Automation Implementation Program v1 — COMPILED CANDIDATE / NOT AUTHORIZED
+## Automation Implementation Program v1 — ACCEPTED FOR IMPLEMENTATION PLANNING
 
+- Program review: `PASS`
 - Program ID: `AUTO-IMP-PROGRAM-V1`
-- Source Freeze HEAD: `52921ae3f205ef2eec4306e84ff92d4cd9cdeab3`
-- Near-horizon exact packages: `AUTO-IMP-001` through `AUTO-IMP-009`
-- Implementation authorization: `NOT_AUTHORIZED`
-- CODEX execution: `NOT_AUTHORIZED`
+- W1 candidate: `W1_FOUNDATION_SHADOW`
+- Authorization candidate: `AUTH-AUTO-IMP-W1-01` revision `1`
+- Authorization state: `NOT_AUTHORIZED`
+- Automatic dispatch: `DENIED`
+- Automatic next-package progression: `DENIED`
 - Current implementation package: `NONE`
-- Next route: `AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW`
+- Next route: `AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION`
 
 ## Development Automation Master v1.1 — FROZEN
 
@@ -20,7 +22,7 @@
 - Level 3B / 3C / 4 / 5: `NOT_ENABLED`
 - Runtime Authorization: `NOT_AUTHORIZED`
 - Next mainline GAP: `NOT_AUTHORIZED`
-- Next automation route: `AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW`
+- Next automation route: `AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION`
 
 ## GAP-08 Closed / Accepted — No Runtime Package Active
 
@@ -37,7 +39,7 @@
 - Architecture acceptance: `ACCEPTED_FOR_GAP08_SCOPE`
 - Runtime work package: `NONE`
 - Next mainline GAP: `NOT_AUTHORIZED`
-- Next: `AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW`
+- Next: `AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION`
 
 ## GOV-01 Current Work Projection Guard
 
@@ -82,7 +84,9 @@ AUTOMATION_LEVEL_3C = NOT_ENABLED
 AUTOMATION_LEVEL_4 = NOT_ENABLED
 AUTOMATION_LEVEL_5 = NOT_ENABLED
 NEXT_MAINLINE_GAP = NOT_AUTHORIZED
-NEXT = AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW
+AUTOMATION_W1_AUTHORIZATION = AUTH-AUTO-IMP-W1-01
+AUTOMATION_W1_AUTHORIZATION_STATE = NOT_AUTHORIZED
+NEXT = AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION
 <!-- MACHINE_QUEUE_CURRENT_END -->
 
 ## Purpose
@@ -152,7 +156,7 @@ Next mainline GAP：
 
 Next governance checkpoint：
 
-`AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW`
+`AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION`
 
 The historical GAP-08EFGHI candidate and prior correction leaves below are retained for audit/context only and carry no current runtime authority.
 

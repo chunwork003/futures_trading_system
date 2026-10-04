@@ -322,4 +322,22 @@ NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_PROGRAM_REVIEW
 
 The compiler materializes a strangler / dual-run implementation program. Near-horizon packages are exact, but all remain PLANNED_NOT_AUTHORIZED. Existing PowerShell scheduler/result-intake scripts remain reference/regression fixtures until explicit acceptance of canonical replacements. Automated CODEX dispatch remains denied until a measurable execution channel, exact authorization lifecycle, quota admission, single-writer reservation and telemetry binding are implemented and accepted.
 
+
+### Implementation Program Review / W1 Authorization Compilation
+
+```text
+PROGRAM_REVIEW = PASS
+PROGRAM_ID = AUTO-IMP-PROGRAM-V1
+PROGRAM_STATUS = ACCEPTED_FOR_IMPLEMENTATION_PLANNING
+W1 = W1_FOUNDATION_SHADOW
+AUTHORIZATION_ID = AUTH-AUTO-IMP-W1-01
+AUTHORIZATION_REVISION = 1
+AUTHORIZATION_STATE = NOT_AUTHORIZED
+AUTOMATIC_DISPATCH = DENIED
+AUTOMATIC_NEXT_PACKAGE_PROGRESSION = DENIED
+NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION
+```
+
+Program acceptance does not authorize any implementation package. The W1 authorization artifact is a compiled governance candidate only. Any effective transition to AUTHORIZED requires an explicit Automation Governance Authority decision against the exact revision/hash/scope binding and does not grant Runtime Authorization, broker I/O, migration execution, LIVE, production activation, Level 3B/3C/4/5 activation or next-mainline-GAP authority.
+
 <!-- AUTOMATION_MASTER_V1_1_END -->
