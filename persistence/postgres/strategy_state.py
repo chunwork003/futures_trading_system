@@ -13,6 +13,7 @@ from persistence.strategy_state import (
 )
 from strategy.instance import (
     StrategyInstance,
+    canonical_config_json,
 )
 
 
@@ -72,6 +73,14 @@ class PostgresStrategyInstanceRepository:
             cursor.execute(
                 """
                 SELECT
+                    strategy_instance_id,
+                    strategy_id,
+                    strategy_version,
+                    config_version,
+                    config_fingerprint,
+                    instrument_id,
+                    timeframe,
+                    config_json,
                     instance_json
                 FROM trading.strategy_instances
                 WHERE strategy_instance_id=%s
@@ -85,23 +94,58 @@ class PostgresStrategyInstanceRepository:
         if row is None:
             return None
 
-        if isinstance(
-            row[0],
-            str,
-        ):
-            return (
-                StrategyInstance
-                .model_validate_json(
-                    row[0]
-                )
+        payload = row[8]
+        if isinstance(payload, str):
+            instance = StrategyInstance.model_validate_json(payload)
+        elif isinstance(payload, Mapping):
+            instance = StrategyInstance.model_validate(payload)
+        else:
+            raise ValueError(
+                "instance_json must contain structured StrategyInstance authority"
             )
 
-        return (
-            StrategyInstance
-            .model_validate(
-                row[0]
-            )
+        config_payload = row[7]
+        if isinstance(config_payload, str):
+            try:
+                config_payload = json.loads(config_payload)
+            except json.JSONDecodeError as exc:
+                raise ValueError(
+                    "structured config_json is not valid JSON authority"
+                ) from exc
+
+        structured_config = canonical_config_json(config_payload)
+        structured = (
+            row[0],
+            row[1],
+            row[2],
+            row[3],
+            row[4],
+            row[5],
+            row[6],
+            structured_config,
         )
+        canonical = (
+            instance.strategy_instance_id,
+            instance.strategy_id,
+            instance.strategy_version,
+            instance.config_version,
+            instance.config_fingerprint,
+            instance.instrument_id,
+            instance.timeframe,
+            instance.config_json,
+        )
+
+        if instance.strategy_instance_id != strategy_instance_id:
+            raise ValueError(
+                "persisted StrategyInstance identity conflicts with requested identity"
+            )
+        if structured != canonical:
+            raise ValueError(
+                "persisted StrategyInstance structured authority conflicts "
+                "with canonical instance_json"
+            )
+
+        return instance
 
 
 class PostgresStrategyStateRepository:

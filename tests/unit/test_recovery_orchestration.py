@@ -19,6 +19,7 @@ from persistence.strategy_state import (
     StrategyStateSnapshot,
 )
 from strategy.instance import (
+    CanonicalInstrumentBindingProvenance,
     StrategyInstance,
     config_fingerprint,
 )
@@ -181,6 +182,14 @@ def setup(
         instrument_id=1,
         timeframe="1m",
         config_json=config,
+        instrument_binding_provenance=(
+            CanonicalInstrumentBindingProvenance(
+                instrument_id=1,
+                authority_id="CANONICAL-INSTRUMENT-PROVISIONING",
+                authority_version="V1",
+                reference_id="BIND-SI",
+            )
+        ),
     )
 
     snapshot = (
@@ -232,6 +241,7 @@ def recover(
     snapshot_revision=MOR1_A,
     required_revision=MOR1_A,
     legacy_required=None,
+    instance_transform=None,
 ):
     trace = []
 
@@ -242,6 +252,9 @@ def recover(
     ) = setup(
         snapshot_revision
     )
+
+    if instance_transform is not None:
+        item = instance_transform(item)
 
     snapshot_value = (
         snapshot
@@ -632,3 +645,67 @@ def test_canonical_revision_mismatch_halts():
         result.state
         is RecoveryReadinessState.HALT
     )
+
+
+def test_c16_missing_binding_provenance_halts_before_snapshot_restore():
+    result, trace = recover(
+        instance_transform=lambda item: item.model_copy(
+            update={"instrument_binding_provenance": None}
+        )
+    )
+
+    assert result.state is RecoveryReadinessState.HALT
+    assert "durable canonical instrument binding provenance" in result.reasons[0]
+    assert "state" not in trace
+
+
+def test_c16_implementation_revision_mismatch_halts_before_snapshot_restore():
+    result, trace = recover(
+        instance_transform=lambda item: item.model_copy(
+            update={"strategy_version": "2.0.0"}
+        )
+    )
+
+    assert result.state is RecoveryReadinessState.HALT
+    assert "implementation revision mismatch" in result.reasons[0]
+    assert "state" not in trace
+
+
+def test_c16_same_config_version_changed_config_fails_against_durable_snapshot():
+    def mutate(item):
+        changed = {
+            "symbol": "MTX",
+            "timeframe": "1m",
+        }
+        return item.model_copy(
+            update={
+                "config_json": changed,
+                "config_fingerprint": config_fingerprint(changed),
+            }
+        )
+
+    result, trace = recover(instance_transform=mutate)
+
+    assert result.state is RecoveryReadinessState.HALT
+    assert "identity/config/scope/revision mismatch" in result.reasons[0]
+    assert "state" in trace
+
+
+def test_c16_binding_provenance_does_not_use_current_alias_to_remap_history():
+    def alias_drift(item):
+        changed = {
+            "symbol": "TODAYS-ALIAS",
+            "timeframe": "1m",
+        }
+        return item.model_copy(
+            update={
+                "config_version": "C2",
+                "config_json": changed,
+                "config_fingerprint": config_fingerprint(changed),
+            }
+        )
+
+    result, _ = recover(instance_transform=alias_drift)
+
+    assert result.state is RecoveryReadinessState.HALT
+    assert "identity/config/scope/revision mismatch" in result.reasons[0]

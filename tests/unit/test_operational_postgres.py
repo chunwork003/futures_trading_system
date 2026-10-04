@@ -788,3 +788,144 @@ def test_strategy_postgres_jsonb_parameters_are_serialized_strings() -> None:
     assert json.loads(state_params[12]) == snapshot.state_json
     assert isinstance(state_params[13], str)
     assert state_connection.commits == 0
+
+def test_c16_strategy_instance_postgres_get_reconstructs_exact_governing_authority() -> None:
+    import json
+
+    from persistence.postgres.strategy_state import PostgresStrategyInstanceRepository
+    from strategy.instance import (
+        CanonicalInstrumentBindingProvenance,
+        StrategyInstance,
+        config_fingerprint,
+    )
+
+    config = {"symbol": "TX", "timeframe": "1m"}
+    item = StrategyInstance(
+        strategy_instance_id="SI-C16",
+        strategy_id="EMA_CROSS",
+        strategy_version="1.0.0",
+        config_version="CFG-1",
+        config_fingerprint=config_fingerprint(config),
+        instrument_id=101,
+        timeframe="1m",
+        config_json=config,
+        instrument_binding_provenance=CanonicalInstrumentBindingProvenance(
+            instrument_id=101,
+            authority_id="CANONICAL-INSTRUMENT-PROVISIONING",
+            authority_version="V1",
+            reference_id="BIND-C16",
+        ),
+    )
+    row = (
+        item.strategy_instance_id,
+        item.strategy_id,
+        item.strategy_version,
+        item.config_version,
+        item.config_fingerprint,
+        item.instrument_id,
+        item.timeframe,
+        json.dumps(item.config_json, sort_keys=True, separators=(",", ":")),
+        item.model_dump_json(),
+    )
+    connection = _QueueConnection([row])
+
+    restored = PostgresStrategyInstanceRepository(connection).get(
+        item.strategy_instance_id
+    )
+
+    assert restored == item
+    assert restored.instrument_binding_provenance == item.instrument_binding_provenance
+    sql, params = connection.statements[0]
+    assert "config_json" in sql and "instance_json" in sql
+    assert params == (item.strategy_instance_id,)
+    assert connection.commits == 0
+
+
+def test_c16_strategy_instance_postgres_structured_payload_conflict_fails_closed() -> None:
+    import json
+
+    from persistence.postgres.strategy_state import PostgresStrategyInstanceRepository
+    from strategy.instance import (
+        CanonicalInstrumentBindingProvenance,
+        StrategyInstance,
+        config_fingerprint,
+    )
+
+    config = {"symbol": "TX", "timeframe": "1m"}
+    item = StrategyInstance(
+        strategy_instance_id="SI-C16-CONFLICT",
+        strategy_id="EMA_CROSS",
+        strategy_version="1.0.0",
+        config_version="CFG-1",
+        config_fingerprint=config_fingerprint(config),
+        instrument_id=101,
+        timeframe="1m",
+        config_json=config,
+        instrument_binding_provenance=CanonicalInstrumentBindingProvenance(
+            instrument_id=101,
+            authority_id="CANONICAL-INSTRUMENT-PROVISIONING",
+            authority_version="V1",
+            reference_id="BIND-C16-CONFLICT",
+        ),
+    )
+    conflicting_row = (
+        item.strategy_instance_id,
+        item.strategy_id,
+        item.strategy_version,
+        item.config_version,
+        item.config_fingerprint,
+        202,
+        item.timeframe,
+        json.dumps(item.config_json, sort_keys=True, separators=(",", ":")),
+        item.model_dump_json(),
+    )
+
+    with pytest.raises(ValueError, match="structured authority conflicts"):
+        PostgresStrategyInstanceRepository(
+            _QueueConnection([conflicting_row])
+        ).get(item.strategy_instance_id)
+
+
+def test_c16_strategy_instance_postgres_requested_identity_conflict_fails_closed() -> None:
+    import json
+
+    from persistence.postgres.strategy_state import PostgresStrategyInstanceRepository
+    from strategy.instance import (
+        CanonicalInstrumentBindingProvenance,
+        StrategyInstance,
+        config_fingerprint,
+    )
+
+    config = {"symbol": "TX", "timeframe": "1m"}
+    item = StrategyInstance(
+        strategy_instance_id="SI-ACTUAL",
+        strategy_id="EMA_CROSS",
+        strategy_version="1.0.0",
+        config_version="CFG-1",
+        config_fingerprint=config_fingerprint(config),
+        instrument_id=101,
+        timeframe="1m",
+        config_json=config,
+        instrument_binding_provenance=CanonicalInstrumentBindingProvenance(
+            instrument_id=101,
+            authority_id="CANONICAL-INSTRUMENT-PROVISIONING",
+            authority_version="V1",
+            reference_id="BIND-C16-ID",
+        ),
+    )
+    row = (
+        item.strategy_instance_id,
+        item.strategy_id,
+        item.strategy_version,
+        item.config_version,
+        item.config_fingerprint,
+        item.instrument_id,
+        item.timeframe,
+        json.dumps(item.config_json, sort_keys=True, separators=(",", ":")),
+        item.model_dump_json(),
+    )
+
+    with pytest.raises(ValueError, match="requested identity"):
+        PostgresStrategyInstanceRepository(
+            _QueueConnection([row])
+        ).get("SI-REQUESTED")

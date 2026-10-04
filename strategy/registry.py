@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any, Callable
@@ -56,6 +56,33 @@ class StrategyRegistry:
     ) -> Any:
         definition = self.get(strategy_id)
         return definition.factory(**kwargs)
+
+    def validate_governing_instance(
+        self,
+        instance: "StrategyInstance",
+    ) -> StrategyDefinition:
+        """Validate C16 governing definition/revision/binding without runtime creation."""
+
+        from strategy.instance import StrategyInstance
+
+        if not isinstance(instance, StrategyInstance):
+            raise TypeError("instance must be StrategyInstance")
+
+        definition = self.get(instance.strategy_id)
+        if definition.version != instance.implementation_revision:
+            raise ValueError("governing implementation revision mismatch")
+
+        provenance = instance.instrument_binding_provenance
+        if provenance is None:
+            raise ValueError(
+                "durable canonical instrument binding provenance is required"
+            )
+        if provenance.instrument_id != instance.instrument_id:
+            raise ValueError(
+                "canonical instrument binding provenance conflicts with StrategyInstance"
+            )
+
+        return definition
 
     def create_instance(self, instance: "StrategyInstance") -> Any:
         """依 immutable StrategyInstance 建立 runtime，拒絕 version/config/scope drift。"""

@@ -22,6 +22,31 @@ def config_fingerprint(value: dict[str, object]) -> str:
     return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
 
 
+class CanonicalInstrumentBindingProvenance(BaseModel):
+    """C16 durable canonical-instrument binding authority witness.
+
+    Broker-neutral historical provisioning evidence only; this is not an alias
+    resolver and does not confer executable ContractSpec authority.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    instrument_id: int = Field(gt=0)
+    authority_id: str
+    authority_version: str
+    reference_id: str
+
+    @field_validator(
+        "authority_id",
+        "authority_version",
+        "reference_id",
+        mode="before",
+    )
+    @classmethod
+    def _ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+
 class StrategyInstance(BaseModel):
     """Immutable strategy/config/scope identity；material config change 必須建立新 identity/version。"""
 
@@ -35,6 +60,7 @@ class StrategyInstance(BaseModel):
     instrument_id: int = Field(gt=0)
     timeframe: str
     config_json: dict[str, object]
+    instrument_binding_provenance: CanonicalInstrumentBindingProvenance | None = None
 
     @field_validator("strategy_instance_id", "strategy_id", "strategy_version", "config_version", "timeframe", mode="before")
     @classmethod
@@ -46,7 +72,18 @@ class StrategyInstance(BaseModel):
     def _config(cls, value: object) -> dict[str, object]: return canonical_config_json(value)
 
     @model_validator(mode="after")
-    def _fingerprint(self) -> "StrategyInstance":
+    def _governing_integrity(self) -> "StrategyInstance":
         if self.config_fingerprint != config_fingerprint(self.config_json):
             raise ValueError("config_fingerprint does not match canonical config_json")
+        provenance = self.instrument_binding_provenance
+        if provenance is not None and provenance.instrument_id != self.instrument_id:
+            raise ValueError(
+                "instrument binding provenance conflicts with canonical instrument_id"
+            )
         return self
+
+    @property
+    def implementation_revision(self) -> str:
+        """Exact governing implementation revision, distinct from config identity."""
+
+        return self.strategy_version

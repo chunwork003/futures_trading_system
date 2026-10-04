@@ -1118,11 +1118,40 @@ def recover_runtime(
     for (
         instance_id
     ) in strategy_instance_ids:
-        instance = (
-            instance_repository.get(
-                instance_id
+        try:
+            instance = (
+                instance_repository.get(
+                    instance_id
+                )
             )
-        )
+        except (
+            TypeError,
+            ValueError,
+        ) as exc:
+            return RecoveryResult(
+                state=RecoveryReadinessState.HALT,
+                reasons=(str(exc),),
+            )
+
+        if instance is None:
+            return RecoveryResult(
+                state=RecoveryReadinessState.HALT,
+                reasons=("required strategy instance/snapshot missing",),
+            )
+
+        try:
+            registry.validate_governing_instance(
+                instance
+            )
+        except (
+            KeyError,
+            TypeError,
+            ValueError,
+        ) as exc:
+            return RecoveryResult(
+                state=RecoveryReadinessState.HALT,
+                reasons=(str(exc),),
+            )
 
         try:
             snapshot = (
