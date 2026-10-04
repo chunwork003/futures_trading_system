@@ -1,0 +1,84 @@
+schema_version: automation.quota_admission_policy.v1
+policy_id: QUOTA-ADMISSION
+policy_version: "1.0"
+status: CANDIDATE_FOR_TARGETED_RE_REVIEW
+
+authority:
+  canonical_owner: Automation_Governance_Authority
+  scheduler_role: APPLY_ONLY
+  optimizer_role: PROPOSE_ONLY
+  metrics_role: EVIDENCE_ONLY
+
+admission:
+  default_percentile: P90
+  check_windows:
+    - FIVE_HOUR
+    - WEEKLY
+  require_control_plane_reserve: true
+  require_recovery_reserve: true
+  safe_budget_formula: REMAINING_MINUS_CONTROL_PLANE_RESERVE_MINUS_RECOVERY_RESERVE
+  p50_only_admission: DENIED
+  stale_quota_snapshot: REFRESH_REQUIRED
+
+forecast:
+  required: true
+  fallback_order:
+    - EXACT_COHORT_EMPIRICAL
+    - PARENT_COHORT_EMPIRICAL
+    - AUTOMATION_CLASS_EMPIRICAL
+    - GLOBAL_EMPIRICAL
+    - CONSERVATIVE_STATIC_BOUND
+  no_forecast: DENIED
+  low_confidence_action: INCREASE_RESERVE
+
+wait:
+  reset_timestamp_semantics: RECHECK_TRIGGER_ONLY
+  reset_timestamp_is_proof_of_reset: false
+  direct_transition_to_execution: DENIED
+  required_transition:
+    - QUOTA_WAIT
+    - RE_RESOLVING
+    - ELIGIBILITY_RESOLVING
+    - QUOTA_EVALUATION
+    - PRE_DISPATCH
+    - EXECUTING
+  fresh_reresolution_required:
+    - head_origin
+    - working_tree
+    - architecture_revision_hash
+    - governance_state
+    - authorization_state_revision
+    - work_package_revision
+    - planning_baseline
+    - dependency_state
+    - priority_blocker_state
+    - side_effect_envelope
+    - quota_policy_revision_hash
+    - fresh_quota_snapshot
+    - forecast_validity
+    - runtime_writer_lock
+    - execution_reservation_ownership
+    - telemetry_qualification
+    - review_barrier
+
+alternate_package:
+  dependency_must_be_satisfied: true
+  authorization_must_be_current: true
+  authority_must_be_consistent: true
+  side_effect_policy_must_pass: true
+  telemetry_must_be_qualified: true
+  quota_fit_cannot_override_dependency: true
+
+executor_profile:
+  silent_model_downgrade: DENIED
+  profile_switch_requires_preauthorization: true
+  profile_switch_requires_fresh_forecast: true
+
+optimization:
+  direct_policy_mutation_by_metrics: DENIED
+  required_path:
+    - TELEMETRY
+    - OPTIMIZATION_CANDIDATE
+    - AUTOMATION_GOVERNANCE_REVIEW
+    - POLICY_REVISION
+    - MATERIALIZATION

@@ -1,0 +1,50 @@
+schema_version: automation.master_manifest.v1
+manifest_id: DEVELOPMENT-AUTOMATION-MASTER
+manifest_version: "1.0"
+master_architecture_version: "1.1"
+status: CANDIDATE_FOR_TARGETED_RE_REVIEW
+materialization_baseline_sha: "4e4235fc3a1dbaaf32bdd756f776fcf881d22d7f"
+
+canonical_current_state:
+  path: docs/CURRENT_STATE.md
+
+governance_document:
+  path: docs/AI_AUTOMATION_OPERATING_MODEL.md
+  version: "1.1"
+  sha256: "130cffbcd55c7f44f605a282daa8806490d564d73be5a2302f8d005af35a9fa2"
+
+agent_reentry:
+  path: AGENTS.md
+  protocol_version: "1.0"
+  sha256: "9e45dd375f8ab05d321bab0460bf72653b0586a69b1e894e4f086e391790f436"
+
+policies:
+  authorization_lifecycle:
+    path: automation/policies/authorization_lifecycle.v1.yaml
+    version: "1.0"
+    sha256: "313f9b028bcd9e574a34d5264f45ec87274c7edf1370f12cc93a4da95f815932"
+  quota_admission:
+    path: automation/policies/quota_admission_policy.v1.yaml
+    version: "1.0"
+    sha256: "0702563478b1f7fe49ba4c0e84c30ef6f17ae9a3d0c6839d48ebfad6f3ef8068"
+  development_state_machine:
+    path: automation/policies/development_state_machine.v1.yaml
+    version: "1.0"
+    sha256: "254010ebb2bf4e2e263ed76360c2a4267ae14fc3c13228a2b64eb44dd7748ef8"
+  development_entry:
+    path: automation/policies/development_entry_protocol.v1.yaml
+    version: "1.0"
+    sha256: "1e9a21cef9b9afbfb7b6692268dacc6b66f96abd887d9ee4c6a61df7efa1edfd"
+
+negative_assertions:
+  path: automation/specs/negative_assertions.v1.yaml
+  version: "1.0"
+  sha256: "40e000ee0efa83794c54b930e2184dc496059cefc7fbb1426a27fe6953c7cddb"
+
+activation:
+  implementation_started: false
+  level_3b_enabled: false
+  level_3c_enabled: false
+  level_4_autonomy_enabled: false
+  level_5_continuous_development_enabled: false
+  next_mainline_gap_authorized: false

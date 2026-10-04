@@ -274,3 +274,28 @@ Quality > Deadline。7 天是 Dynamic Sprint 目標，不是硬截止。超過 7
 - Architecture Acceptance：HOLD。
 - Recovery architecture free expansion stops absent concrete contradiction/new authoritative evidence。
 - Next：K520 defer confirmation -> broker capability gate classification -> correction-scope map -> reweight -> explicit bounded runtime authorization decision。
+
+<!-- AUTOMATION_UNIFIED_REENTRY_V1_BEGIN -->
+## Development Automation Unified Re-Entry V1
+
+所有 GPT / WORK / CODEX / Reviewer 在正式工作前，必須先重新取得 repository authority：
+
+1. `docs/CURRENT_STATE.md`
+2. `automation/governance/master_manifest.v1.yaml`
+3. manifest 指向的 machine policies
+4. `docs/CURRENT_WORK.md`
+5. 最新 open handoff / delta / pending result / pending review / STOP
+
+固定規則：
+
+- Git/repository authority 優先於 chat、memory、Library copy。
+- 每次正式 run 必須記錄 exact `master` HEAD SHA。
+- 使用者只說「繼續 / 繼續執行 / resume」或表示不確定目前進度時，先 unified re-entry，不要求使用者重述 repo/handoff 已有答案。
+- 若 re-entry 得到唯一、明確、已授權、低風險且所有 gate PASS 的 next route，可依 route 自動繼續。
+- 若有 architecture/business decision、authorization 缺口、高風險 side effect、multiple valid choices 或 unresolved authority，轉為 discussion/approval，不猜測施工。
+- 若使用者只詢問狀況，完成 re-entry 後只回報 current state / delta / blockers / next route，不啟動 execution。
+- timer、quota reset、Reviewer PASS 都只能觸發 re-entry，不可直接啟動 CODEX。
+- next run 必須先讀最新 handoff / delta；完成 stage 無 revision/authority invalidation 時不得重做。
+- `AGENTS.md` 只負責 re-entry/navigation，不授權 runtime。
+- `docs/CURRENT_STATE.md` 仍是唯一 canonical CURRENT governance projection。
+<!-- AUTOMATION_UNIFIED_REENTRY_V1_END -->

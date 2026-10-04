@@ -1,0 +1,72 @@
+schema_version: automation.authorization_lifecycle.v1
+policy_id: AUTHORIZATION-LIFECYCLE
+policy_version: "1.0"
+status: CANDIDATE_FOR_TARGETED_RE_REVIEW
+
+authority:
+  governance_owner: exact_versioned_authorization_governance_artifact
+  effective_lifecycle_owner: AuthorizationLifecycleV1
+  projections_are_not_authority:
+    - docs/CURRENT_WORK.md
+    - docs/work/ACTIVE.md
+    - QueueRecord
+    - AuthorityResolution
+    - ExecutionBinding
+    - ExecutionResult
+    - scheduler_cache
+
+states:
+  - NOT_AUTHORIZED
+  - AUTHORIZED
+  - RESERVED
+  - CONSUMED
+  - SUPERSEDED
+  - REVOKED
+
+exact_binding:
+  required:
+    - authorization_id
+    - authorization_revision
+    - work_package_id
+    - work_package_revision
+    - architecture_id
+    - architecture_revision
+    - architecture_bundle_hash
+    - planning_baseline_sha
+    - scope_digest
+    - side_effect_class
+    - governance_effect
+    - allowed_executor_profile
+    - implementation_correction_budget
+    - review_barrier
+
+single_use_dispatch:
+  order:
+    - FRESH_AUTHORITY_RESOLUTION
+    - FRESH_ELIGIBILITY_EVALUATION
+    - ACQUIRE_GLOBAL_RUNTIME_WRITER_LOCK
+    - ALLOCATE_EXECUTION_ID
+    - DURABLY_CREATE_EXECUTION_RESERVATION
+    - STATE_TO_RESERVED
+    - RECHECK_LOCK_HEAD_AND_BINDING
+    - MARK_DISPATCH_COMMITTED
+    - STATE_TO_CONSUMED
+    - INVOKE_EXECUTOR
+  invariant: EXECUTOR_MUST_NOT_START_BEFORE_DURABLE_SINGLE_USE_BINDING
+
+restart_semantics:
+  crash_before_reservation: AUTHORIZED_REQUIRES_FRESH_PREFLIGHT
+  crash_after_reserved_before_dispatch_commit: RECONCILIATION_REQUIRED
+  crash_after_consumed: NO_REDISPATCH
+  ambiguous_reservation: STOP_AUTHORIZATION_RECONCILIATION
+  stale_lock: RECONCILIATION_REQUIRED
+  stale_reservation: RECONCILIATION_REQUIRED
+  silent_stale_lock_deletion: DENIED
+
+fail_closed:
+  historical_authorization_is_not_current_authority: true
+  consumed_replay: DENIED
+  superseded_replay: DENIED
+  revoked_replay: DENIED
+  projection_conflict: CANONICAL_LIFECYCLE_WINS
+  ambiguous_current_state: STOP_AUTHORITY_AMBIGUOUS

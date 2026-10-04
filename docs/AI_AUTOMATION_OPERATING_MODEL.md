@@ -1,4 +1,4 @@
-﻿# AI / CODEX Automation Operating Model
+# AI / CODEX Automation Operating Model
 
 ## 1. Purpose
 本文件固定本專案的 AI 角色分工、架構升級原則、GPT-6 審計資料使用方式，以及朝 CODEX 自動排程化演進的目標。
@@ -231,3 +231,63 @@ GPT-6 已完成 AD-01～AD-04 決策。
 - 不需要再把 routine decomposition 丟回 GPT-6。
 - CODEX 在 bounded authorization materialize 前仍 NOT_AUTHORIZED。
 - automation tooling 不得繞過 CURRENT/ACTIVE authorization gate。
+
+<!-- AUTOMATION_MASTER_V1_1_BEGIN -->
+## Development Automation Master Architecture v1.1 — RF01/RF02 Governance Materialization
+
+### Status
+
+```text
+MASTER_ARCHITECTURE_VERSION = 1.1
+STATUS = CANDIDATE_FOR_TARGETED_RE_REVIEW
+IMPLEMENTATION = NOT_STARTED
+LEVEL_3B = NOT_ENABLED
+LEVEL_3C = NOT_ENABLED
+LEVEL_4_AUTONOMY = NOT_ENABLED
+LEVEL_5_CONTINUOUS_DEVELOPMENT = NOT_ENABLED
+NEXT_MAINLINE_GAP = NOT_AUTHORIZED
+```
+
+本節 materialize Automation Master v1.1 的治理修正與 unified re-entry 規則，不授權 runtime、migration execution、PostgreSQL、Broker/Shioaji、LIVE 或下一 trading mainline GAP。
+
+### Canonical machine policies
+
+- `automation/policies/authorization_lifecycle.v1.yaml`：single-use authorization lifecycle、exact revision/hash/baseline/scope binding、restart/reconciliation fail-closed。
+- `automation/policies/quota_admission_policy.v1.yaml`：versioned quota/admission governance、P90、5H+weekly、reserve、post-WAIT fresh re-resolution。
+- `automation/policies/development_state_machine.v1.yaml`：authorization/execution/quota/review 分軸；不存在 `QUOTA_WAIT -> EXECUTING`。
+- `automation/policies/development_entry_protocol.v1.yaml`：所有 Agent 共用 bootstrap/routing；continue/resume/status-uncertain 先 rehydrate，再決定自動續做、討論、WAIT 或 status-only。
+- `automation/specs/negative_assertions.v1.yaml`：CE-01/02/03/06/14/17/21 與 re-entry negative assertions。
+
+### Hard invariants
+
+```text
+READY != AUTHORIZED
+AUTHORIZED != EXECUTABLE
+Historical authorization != current executability
+Queue/ACTIVE != authorization authority
+Metrics may recommend policy but may not become policy
+Quota WAIT invalidates previous dispatch eligibility
+No timer/quota reset/reviewer event directly invokes CODEX
+Memory/chat/Library are navigation context only when repository authority is available
+```
+
+### Persistence model
+
+```text
+Git repository = canonical persistent governance / normalized evidence
+Local checkout = synchronized execution workspace
+.automation/ = local transient locks/raw/session-cache/tmp
+automation/runs/ = normalized durable run/checkpoint/delta/handoff/telemetry artifacts
+```
+
+### Activation
+
+```text
+TARGETED_RF_RE_REVIEW_PASS
+-> MASTER_V1_1_FREEZE_ELIGIBLE
+-> Automation Implementation Program compilation
+
+NOT
+-> immediate Level 3B/3C/4/5 activation
+```
+<!-- AUTOMATION_MASTER_V1_1_END -->

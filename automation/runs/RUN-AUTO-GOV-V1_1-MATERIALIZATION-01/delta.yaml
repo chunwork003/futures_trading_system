@@ -1,0 +1,12 @@
+schema_version: automation.delta.v1
+run_id: RUN-AUTO-GOV-V1_1-MATERIALIZATION-01
+fixed:
+  - authorization replay/restart ambiguity
+  - quota policy ownership ambiguity
+  - QUOTA_WAIT direct-resume ambiguity
+  - cross-agent re-entry/rework ambiguity
+  - continue/resume intent ambiguity
+remaining:
+  - independent targeted RF01/RF02 re-review
+  - master v1.1 freeze if PASS
+  - automation implementation program compilation only after freeze

@@ -1,0 +1,90 @@
+schema_version: automation.development_entry_protocol.v1
+policy_id: DEVELOPMENT-ENTRY
+policy_version: "1.0"
+status: CANDIDATE_FOR_TARGETED_RE_REVIEW
+
+entry_surface:
+  human_and_agent_navigation: AGENTS.md
+  machine_manifest: automation/governance/master_manifest.v1.yaml
+  canonical_current_state: docs/CURRENT_STATE.md
+
+bootstrap:
+  required_order:
+    - RESOLVE_REPOSITORY
+    - RESOLVE_BRANCH_MASTER
+    - FETCH_OR_READ_ORIGIN_MASTER
+    - RECORD_EXACT_HEAD_SHA
+    - READ_AGENTS
+    - READ_CURRENT_STATE
+    - READ_MASTER_MANIFEST
+    - VERIFY_MANIFEST_HASHES
+    - RESOLVE_REFERENCED_POLICIES
+    - READ_CURRENT_WORK
+    - READ_OPEN_HANDOFF
+    - INSPECT_PENDING_RESULT_REVIEW_STOP
+    - DETERMINE_ROUTE
+    - BUILD_BOUNDED_CONTEXT
+
+routing_priority:
+  - SAFETY_GOVERNANCE
+  - PENDING_REVIEW
+  - GOVERNANCE_MATERIALIZATION
+  - REVIEW_FIX
+  - ARCHITECTURE_WORK
+  - PROGRAM_COMPILATION
+  - WORK_PACKAGE_COMPILATION
+  - MAINTENANCE
+  - OPTIMIZATION_ANALYSIS
+  - CODEX_EXECUTION
+  - WAIT
+  - STOP_NO_AUTHORIZED_WORK
+
+user_intent_reentry:
+  triggers:
+    - CONTINUE
+    - CONTINUE_EXECUTION
+    - STATUS_UNCERTAIN
+    - CURRENT_PROGRESS_UNKNOWN
+    - RESUME
+  rule: ALWAYS_REHYDRATE_BEFORE_DECIDING
+  behavior:
+    deterministic_safe_authorized_next_action: AUTO_CONTINUE_WITHOUT_REASKING
+    unresolved_architecture_or_business_choice: DISCUSSION_REQUIRED
+    missing_or_invalid_authorization: AUTHORIZATION_REQUIRED
+    high_risk_or_protected_side_effect: DISCUSSION_OR_EXPLICIT_APPROVAL_REQUIRED
+    waiting_external_condition: WAIT_WITH_REENTRY_CONDITION
+    status_only_request: REPORT_CURRENT_STATE_WITHOUT_EXECUTION
+  no_repeat_question_when_repository_has_answer: true
+  no_guess_from_chat_memory: true
+
+required_run_identity:
+  - run_id
+  - actor
+  - route
+  - work_item_id
+  - work_item_revision
+  - source_head_sha
+  - master_architecture_version
+  - master_architecture_hash
+  - applicable_policy_versions
+
+deduplication:
+  key:
+    - work_item_id
+    - work_item_revision
+    - stage
+    - source_authority_hash
+  repeat_without_invalidation: DENIED
+
+authority_rules:
+  memory_is_current_authority: false
+  chat_is_current_authority: false
+  library_copy_is_current_authority: false
+  git_repository_is_engineering_truth: true
+  current_state_changes_only_after_review_and_governance_materialization: true
+
+scheduled_events:
+  may_directly_start_codex: false
+  quota_reset_may_directly_resume_codex: false
+  review_pass_may_directly_open_next_runtime_work: false
+  every_event_reenters_through_bootstrap: true
