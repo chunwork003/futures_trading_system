@@ -995,3 +995,207 @@ def test_c16_rf01_postgres_append_preserves_exact_strategy_instance_authority_js
         assert persisted[field] == expected[field]
 
     assert connection.commits == 0
+
+
+def _c17_postgres_transition_authority():
+    from strategy.instance import (
+        CanonicalInstrumentBindingProvenance,
+        config_fingerprint,
+    )
+    from strategy.recovery import (
+        StrategyAuthorityRef,
+        StrategyGoverningContext,
+        StrategyGoverningTransitionAuthority,
+        StrategyStateSchemaReference,
+    )
+
+    source_config = {"symbol": "TX", "timeframe": "1m"}
+    target_config = {
+        "symbol": "TX",
+        "timeframe": "1m",
+        "mode": "target",
+    }
+    provenance = CanonicalInstrumentBindingProvenance(
+        instrument_id=101,
+        authority_id="CANONICAL-INSTRUMENT-PROVISIONING",
+        authority_version="V1",
+        reference_id="BIND-C17-PG",
+    )
+    source = StrategyGoverningContext(
+        strategy_instance_id="SI-C17-PG",
+        strategy_id="EMA_CROSS",
+        config_authority=StrategyAuthorityRef(
+            authority_id="STRATEGY-CONFIG",
+            authority_version="C1",
+        ),
+        config_version="C1",
+        config_fingerprint=config_fingerprint(source_config),
+        implementation_revision="1.0.0",
+        instrument_id=101,
+        instrument_binding_provenance=provenance,
+        timeframe="1m",
+        decision_policy_version="DP-1",
+        state_schema_reference=StrategyStateSchemaReference(
+            strategy_id="EMA_CROSS",
+            schema_version=1,
+        ),
+    )
+    target = StrategyGoverningContext(
+        strategy_instance_id="SI-C17-PG",
+        strategy_id="EMA_CROSS",
+        config_authority=StrategyAuthorityRef(
+            authority_id="STRATEGY-CONFIG",
+            authority_version="C2",
+        ),
+        config_version="C2",
+        config_fingerprint=config_fingerprint(target_config),
+        implementation_revision="1.0.0",
+        instrument_id=101,
+        instrument_binding_provenance=provenance,
+        timeframe="1m",
+        decision_policy_version="DP-2",
+        state_schema_reference=StrategyStateSchemaReference(
+            strategy_id="EMA_CROSS",
+            schema_version=2,
+        ),
+    )
+    return StrategyGoverningTransitionAuthority(
+        transition_id="TR-C17-PG",
+        strategy_instance_id="SI-C17-PG",
+        source_context=source,
+        target_context=target,
+        compatibility_authority=StrategyAuthorityRef(
+            authority_id="STRATEGY-COMPATIBILITY",
+            authority_version="V1",
+        ),
+        migration_authority=StrategyAuthorityRef(
+            authority_id="STATE-MIGRATION",
+            authority_version="V1",
+        ),
+        transition_policy=StrategyAuthorityRef(
+            authority_id="GOVERNING-TRANSITION",
+            authority_version="V1",
+        ),
+        begin_effective_boundary_ref="BEGIN-PG",
+    )
+
+
+def test_c17_migration_is_append_only_head_pointer_contract_without_backfill() -> None:
+    sql = Path(
+        "persistence/postgres/migrations/"
+        "0010_strategy_governing_transition_authority.sql"
+    ).read_text(encoding="utf-8")
+
+    for table in (
+        "strategy_governing_transition_authorities",
+        "strategy_governing_transition_heads",
+    ):
+        assert f"CREATE TABLE trading.{table}" in sql
+        assert f"COMMENT ON TABLE trading.{table}" in sql
+
+    assert "transition_json JSONB" in sql
+    assert "head_revision BIGINT" in sql
+    assert "CURRENT_TIMESTAMP" in sql
+    assert "INSERT INTO" not in sql
+    assert "UPDATE " not in sql
+    assert "DELETE FROM" not in sql
+    assert "backfill" not in sql.lower()
+
+
+def test_c17_postgres_append_persists_exact_immutable_transition_authority_json() -> None:
+    import json
+
+    from persistence.postgres.strategy_recovery import (
+        PostgresStrategyGoverningTransitionRepository,
+    )
+
+    authority = _c17_postgres_transition_authority()
+    connection = _Connection()
+
+    PostgresStrategyGoverningTransitionRepository(
+        connection
+    ).append(authority)
+
+    sql, params = connection.last
+    assert "INSERT INTO trading.strategy_governing_transition_authorities" in sql
+    assert isinstance(params[-1], str)
+    assert json.loads(params[-1]) == authority.model_dump(mode="json")
+    assert params[0] == authority.transition_id
+    assert params[1] == authority.strategy_instance_id
+    assert connection.commits == 0
+
+
+def test_c17_postgres_head_uses_exact_cas_pointer_without_latest_ordering() -> None:
+    from persistence.postgres.strategy_recovery import (
+        PostgresStrategyGoverningTransitionRepository,
+    )
+
+    authority = _c17_postgres_transition_authority()
+    connection = _QueueConnection(
+        [
+            (authority.strategy_instance_id,),
+            None,
+            (1,),
+        ]
+    )
+    repository = PostgresStrategyGoverningTransitionRepository(
+        connection
+    )
+
+    revision = repository.advance_head(
+        strategy_instance_id=authority.strategy_instance_id,
+        transition_id=authority.transition_id,
+        expected_head_revision=0,
+    )
+
+    assert revision == 1
+    sqls = [sql for sql, _ in connection.statements]
+    assert "FOR UPDATE" in sqls[1]
+    assert "head_revision" in sqls[2]
+    assert not any("ORDER BY" in sql.upper() for sql in sqls)
+    assert connection.commits == 0
+
+
+def test_c17_postgres_current_reconstructs_exact_head_authority_and_conflict_fails_closed() -> None:
+    from persistence.postgres.strategy_recovery import (
+        PostgresStrategyGoverningTransitionRepository,
+    )
+    from persistence.strategy_recovery import (
+        StrategyTransitionPersistenceIntegrityError,
+    )
+
+    authority = _c17_postgres_transition_authority()
+    row = (
+        authority.transition_id,
+        3,
+        authority.strategy_instance_id,
+        authority.source_context.config_version,
+        authority.source_context.config_fingerprint,
+        authority.source_context.implementation_revision,
+        authority.source_context.instrument_id,
+        authority.target_context.config_version,
+        authority.target_context.config_fingerprint,
+        authority.target_context.implementation_revision,
+        authority.target_context.instrument_id,
+        authority.transition_policy.authority_id,
+        authority.transition_policy.authority_version,
+        authority.model_dump(mode="json"),
+    )
+
+    repository = PostgresStrategyGoverningTransitionRepository(
+        _QueueConnection([row])
+    )
+    restored = repository.current(
+        authority.strategy_instance_id
+    )
+    assert restored == authority
+
+    conflicting = list(row)
+    conflicting[7] = "WRONG-TARGET-CONFIG"
+    with pytest.raises(
+        StrategyTransitionPersistenceIntegrityError,
+        match="structured authority",
+    ):
+        PostgresStrategyGoverningTransitionRepository(
+            _QueueConnection([tuple(conflicting)])
+        ).current(authority.strategy_instance_id)

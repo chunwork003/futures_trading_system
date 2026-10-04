@@ -371,3 +371,111 @@ def test_legacy_canonical_disagreement_fails_closed():
         StrategyStateSnapshot(
             **values
         )
+
+
+def test_c17_state_schema_and_source_context_are_exact_recovery_authority() -> None:
+    from strategy.instance import (
+        CanonicalInstrumentBindingProvenance,
+    )
+    from strategy.recovery import (
+        StrategyAuthorityRef,
+        StrategyDurableStateReference,
+        StrategyGoverningContext,
+        StrategyGoverningTransitionAuthority,
+        StrategyGoverningTransitionIntegrityError,
+        StrategyStateSchemaReference,
+        evaluate_governing_transition,
+    )
+
+    base = instance()
+    item = base.model_copy(
+        update={
+            "instrument_binding_provenance": (
+                CanonicalInstrumentBindingProvenance(
+                    instrument_id=1,
+                    authority_id="CANONICAL-INSTRUMENT-PROVISIONING",
+                    authority_version="V1",
+                    reference_id="BIND-C17-STATE",
+                )
+            )
+        }
+    )
+    snapshot = make_snapshot(item)
+
+    source = StrategyGoverningContext(
+        strategy_instance_id=item.strategy_instance_id,
+        strategy_id=item.strategy_id,
+        config_authority=StrategyAuthorityRef(
+            authority_id="STRATEGY-CONFIG",
+            authority_version="C1",
+        ),
+        config_version=item.config_version,
+        config_fingerprint=item.config_fingerprint,
+        implementation_revision=item.strategy_version,
+        instrument_id=item.instrument_id,
+        instrument_binding_provenance=(
+            item.instrument_binding_provenance
+        ),
+        timeframe=item.timeframe,
+        decision_policy_version="DP-1",
+        state_schema_reference=StrategyStateSchemaReference(
+            strategy_id=item.strategy_id,
+            schema_version=snapshot.state_schema_version,
+        ),
+    )
+    target = source.model_copy(
+        update={"decision_policy_version": "DP-2"}
+    )
+    authority = StrategyGoverningTransitionAuthority(
+        transition_id="TR-C17-STATE",
+        strategy_instance_id=item.strategy_instance_id,
+        source_context=source,
+        target_context=target,
+        compatibility_authority=StrategyAuthorityRef(
+            authority_id="STRATEGY-COMPATIBILITY",
+            authority_version="V1",
+        ),
+        transition_policy=StrategyAuthorityRef(
+            authority_id="GOVERNING-TRANSITION",
+            authority_version="V1",
+        ),
+    )
+    durable = StrategyDurableStateReference(
+        snapshot_id=snapshot.snapshot_id,
+        strategy_instance_id=snapshot.strategy_instance_id,
+        strategy_id=snapshot.strategy_id,
+        config_version=snapshot.config_version,
+        config_fingerprint=snapshot.config_fingerprint,
+        implementation_revision=snapshot.strategy_version,
+        instrument_id=snapshot.instrument_id,
+        timeframe=snapshot.timeframe,
+        state_schema_reference=StrategyStateSchemaReference(
+            strategy_id=snapshot.strategy_id,
+            schema_version=snapshot.state_schema_version,
+        ),
+    )
+
+    assert evaluate_governing_transition(
+        authority=authority,
+        source_instance=item,
+        durable_state=durable,
+    ).value == "PRE_TRANSITION"
+
+    with pytest.raises(
+        StrategyGoverningTransitionIntegrityError,
+        match="PRE_TRANSITION durable state",
+    ):
+        evaluate_governing_transition(
+            authority=authority,
+            source_instance=item,
+            durable_state=durable.model_copy(
+                update={
+                    "state_schema_reference": (
+                        StrategyStateSchemaReference(
+                            strategy_id=snapshot.strategy_id,
+                            schema_version=2,
+                        )
+                    )
+                }
+            ),
+        )

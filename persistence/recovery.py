@@ -55,6 +55,15 @@ from persistence.strategy_state import (
     StrategyStateRepository,
     normalize_market_observation_revision_id,
 )
+from persistence.strategy_recovery import (
+    StrategyGoverningTransitionRepository,
+)
+from strategy.recovery import (
+    StrategyDurableStateReference,
+    StrategyGoverningTransitionState,
+    StrategyStateSchemaReference,
+    evaluate_governing_transition,
+)
 from strategy.registry import (
     StrategyRegistry,
 )
@@ -996,6 +1005,10 @@ def recover_runtime(
         StrategyStateRepository
     ),
     registry: StrategyRegistry,
+    transition_repository: (
+        StrategyGoverningTransitionRepository
+        | None
+    ) = None,
     required_market_observation_revision_id: (
         str
         | None
@@ -1186,6 +1199,84 @@ def recover_runtime(
                     "instance/snapshot missing",
                 ),
             )
+
+        if transition_repository is not None:
+            try:
+                transition = (
+                    transition_repository.current(
+                        instance_id
+                    )
+                )
+                if transition is not None:
+                    durable_state = (
+                        StrategyDurableStateReference(
+                            snapshot_id=snapshot.snapshot_id,
+                            strategy_instance_id=(
+                                snapshot.strategy_instance_id
+                            ),
+                            strategy_id=snapshot.strategy_id,
+                            config_version=snapshot.config_version,
+                            config_fingerprint=(
+                                snapshot.config_fingerprint
+                            ),
+                            implementation_revision=(
+                                snapshot.strategy_version
+                            ),
+                            instrument_id=snapshot.instrument_id,
+                            timeframe=snapshot.timeframe,
+                            state_schema_reference=(
+                                StrategyStateSchemaReference(
+                                    strategy_id=(
+                                        snapshot.strategy_id
+                                    ),
+                                    schema_version=(
+                                        snapshot.state_schema_version
+                                    ),
+                                )
+                            ),
+                        )
+                    )
+                    transition_state = (
+                        evaluate_governing_transition(
+                            authority=transition,
+                            source_instance=instance,
+                            durable_state=durable_state,
+                        )
+                    )
+
+                    if (
+                        transition_state
+                        is StrategyGoverningTransitionState
+                        .TRANSITION_IN_PROGRESS
+                    ):
+                        return RecoveryResult(
+                            state=RecoveryReadinessState.REVIEW,
+                            reasons=(
+                                "strategy governing transition "
+                                "is in progress",
+                            ),
+                        )
+
+                    if (
+                        transition_state
+                        is StrategyGoverningTransitionState
+                        .POST_TRANSITION
+                    ):
+                        return RecoveryResult(
+                            state=RecoveryReadinessState.REVIEW,
+                            reasons=(
+                                "post-transition governing context "
+                                "requires later readiness composition",
+                            ),
+                        )
+            except (
+                TypeError,
+                ValueError,
+            ) as exc:
+                return RecoveryResult(
+                    state=RecoveryReadinessState.HALT,
+                    reasons=(str(exc),),
+                )
 
         if (
             snapshot.strategy_instance_id
