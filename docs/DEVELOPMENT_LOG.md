@@ -19,7 +19,7 @@
 
 ### Milestone and Progress
 
-- Current milestone：P7 C16 bounded execution authorization；C16 ONLY source modification authorized after authorization commit push；independent semantic review required before credit。
+- Current milestone：P7 C16 accepted/frozen/read-only；correction-core 98/113；next checkpoint is separate C17 bounded authorization decision。
 - Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07（A0/A/B/C/D/E/F/E2/E3）。
 - Pending：broker sync/reconciliation、persistence/recovery、incremental state。
 - Overall V1：40–50%。以 Work Package weight 與 acceptance criteria 評估；不可使用 LOC 或 file count。
@@ -28,6 +28,33 @@
 - 此為 dynamic estimate，不是 deadline；每個 checkpoint / milestone 後重新估算。發現 architecture blocker 或新增 scope 時可上調；已有功能比預期成熟時可下調。
 
 ## Chronological Log
+
+### 2026-10-04 — GAP-08 P7 C16 Independent Acceptance Closure
+
+- original C16 runtime HEAD：
+  `6db1e6fb46df2ccfebc116fcbf5f087ef8458091`。
+- RF01 runtime HEAD：
+  `cb5f43cb9ed97ad80b1d7811799412a507e62dde`。
+- independent semantic review：PASS。
+- RF01-01 config consumption integrity：PASS。
+- RF01-02 PostgreSQL append authority proof：PASS。
+- Gate A：9 passed。
+- Gate B：13 passed。
+- Gate C：22 passed。
+- Gate D：44 passed。
+- full regression：1402 passed / 8 skipped。
+- C16：ACCEPTED / FROZEN / READ_ONLY。
+- C16 weight：5 / CREDITED。
+- accepted correction-core：98 / 113。
+- remaining correction-core：15 / 113。
+- RF02：NOT_REQUIRED。
+- architecture contradiction：NONE。
+- architect decision required：NO。
+- C17 / C19 / C20 / C18：NOT_AUTHORIZED。
+- migration changed/executed：NO。
+- actual PostgreSQL accessed：NO。
+- broker I/O：NO。
+- next：separate C17 bounded authorization decision。
 
 ### 2026-10-03 — GAP-08 P7 C16 Bounded Authorization
 

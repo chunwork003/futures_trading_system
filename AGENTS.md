@@ -11,8 +11,8 @@ branch = master
 W4 = CLOSED / REVIEWER_ACCEPTED
 W4_OFFICIAL_WEIGHT = 18 / CREDITED
 
-accepted_correction_core = 93 / 113
-remaining_correction_core = 20 / 113
+accepted_correction_core = 98 / 113
+remaining_correction_core = 15 / 113
 
 current_wave = NONE
 current_runtime_candidate = NONE
@@ -25,8 +25,10 @@ P7_SPECIFICATION = ARCH-P7-SPEC-01 / FROZEN
 
 P7_FULL_AUTHORIZATION = NOT_AUTHORIZED
 P7_RUNTIME_EXECUTION = NOT_AUTHORIZED
-C16_SOURCE_MODIFICATION_AUTHORIZATION = BOUNDED_AUTHORIZED_FOR_GAP08_P7_C16_ONLY
-C16_AUTHORIZED = YES_SOURCE_MODIFICATION_ONLY
+C16 = ACCEPTED / FROZEN / READ_ONLY
+C16_WEIGHT = 5 / CREDITED
+C16_ACCEPTED_RUNTIME_HEAD = cb5f43cb9ed97ad80b1d7811799412a507e62dde
+C16_SOURCE_MODIFICATION_AUTHORIZATION = CONSUMED / CLOSED
 C17 = NOT_AUTHORIZED
 C19 = NOT_AUTHORIZED
 C20 = NOT_AUTHORIZED
@@ -51,21 +53,23 @@ PRODUCTION_ACTIVATION = NOT_AUTHORIZED
 Current package:
 
 ```text
-DECISION_ID = AUTH-P7-C16-01
-WORK_PACKAGE_ID = GAP08-P7-C16
-AUTHORIZED_LEAF = C16_ONLY
-C16_WEIGHT = 5
-C16_SOURCE_MODIFICATION_AUTHORIZATION = BOUNDED_AUTHORIZED_FOR_GAP08_P7_C16_ONLY
+WORK_PACKAGE_ID = GAP08-P7-C16-CLOSURE
+INDEPENDENT_C16_SEMANTIC_REVIEW = PASS
+C16 = ACCEPTED / FROZEN / READ_ONLY
+C16_WEIGHT = 5 / CREDITED
+ACCEPTED_CORRECTION_CORE = 98 / 113
+REMAINING_CORRECTION_CORE = 15 / 113
+C16_ACCEPTED_RUNTIME_HEAD = cb5f43cb9ed97ad80b1d7811799412a507e62dde
+C17 = NOT_AUTHORIZED
 FULL_P7_RUNTIME_AUTHORIZATION = NOT_AUTHORIZED
 CANONICAL_RUNTIME_AUTHORIZATION = NOT_AUTHORIZED
 BROKER_IO = NOT_AUTHORIZED
 PRODUCTION_ACTIVATION = NOT_AUTHORIZED
 ```
 
-This bounded authorization becomes effective only after the docs-only authorization
-commit is pushed. The exact authorization commit is the C16 execution baseline.
-Completion of C16 does not authorize C17 and does not credit the C16 weight before
-independent semantic review.
+C16 is closed and read-only. This acceptance does not authorize C17 or any other
+remaining P7 leaf. The next legal governance checkpoint is a separate C17 bounded
+authorization decision.
 
 Historical authority/checkpoint sections below are retained for audit only and have
 NO CURRENT RUNTIME AUTHORITY.
@@ -98,11 +102,11 @@ This CURRENT AUTHORITY supersedes older R-04 OPEN wording elsewhere in historica
 
 目前唯一 canonical CURRENT governance projection 位於 `docs/CURRENT_STATE.md`。
 
-Current governance: W4 is CLOSED / REVIEWER_ACCEPTED；accepted correction-core = 93 / 113；remaining = 20；current runtime candidate = NONE；Architecture Acceptance = HOLD；Runtime Authorization = NOT_AUTHORIZED。
+Current governance: W4 is CLOSED / REVIEWER_ACCEPTED；C16 is ACCEPTED / FROZEN / READ_ONLY；accepted correction-core = 98 / 113；remaining = 15；current runtime candidate = NONE；Architecture Acceptance = HOLD；Runtime Authorization = NOT_AUTHORIZED。
 
 R-01～R-14 已 closed/classified；K520 defer confirmation、BG-01～BG-07 classification、Expanded Correction-Scope Map、Delta-to-Contract、materialized correction leaves、DAG 與 reweight 已記錄於 `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-V06 + C01 + C22 + C11 + C23 + C24 + C25 + GAP08-W1 + GAP08-W2 + GAP08-W3 + W4 已完成並 accepted；correction-core progress = 93 / 113，remaining = 20。P7 specification `C16 -> C17 -> C19 -> C20 -> C18` 已 review PASS / FROZEN，但 P7 runtime source authorization 與 execution 仍為 NOT_AUTHORIZED。
+V06 + C01 + C22 + C11 + C23 + C24 + C25 + GAP08-W1 + GAP08-W2 + GAP08-W3 + W4 + C16 已完成並 accepted；correction-core progress = 98 / 113，remaining = 15。P7 specification remains frozen；C17 / C19 / C20 / C18 runtime remain NOT_AUTHORIZED。
 
 Primary source of truth 與必讀順序：
 

@@ -21,15 +21,15 @@ runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
 canonical_runtime_authorization = NOT_AUTHORIZED
 
-accepted_correction_core = 93/113
-remaining_correction_core = 20
+accepted_correction_core = 98/113
+remaining_correction_core = 15
 
 latest_accepted_wave = W4
-latest_accepted_runtime_head = 0484681eea7cf3777a41a9c8f1965dea395921ea
+latest_accepted_runtime_head = cb5f43cb9ed97ad80b1d7811799412a507e62dde
 
 current_wave = NONE
 current_runtime_candidate = NONE
-reviewer_state = W4_FINAL_ACCEPTED_CLOSED
+reviewer_state = C16_FINAL_ACCEPTED_CLOSED
 w4_weight = 18_CREDITED
 
 W4R_A = ACCEPTED_FROZEN_READ_ONLY
@@ -47,8 +47,10 @@ p7_specification_review = PASS
 p7_specification = ARCH-P7-SPEC-01_FROZEN
 p7_full_authorization = NOT_AUTHORIZED
 p7_runtime_execution = NOT_AUTHORIZED
-c16_source_modification_authorization = BOUNDED_AUTHORIZED_FOR_GAP08_P7_C16_ONLY
-c16_authorized = YES_SOURCE_MODIFICATION_ONLY
+c16 = ACCEPTED_FROZEN_READ_ONLY
+c16_weight = 5_CREDITED
+c16_accepted_runtime_head = cb5f43cb9ed97ad80b1d7811799412a507e62dde
+c16_source_modification_authorization = CONSUMED_CLOSED
 c17 = NOT_AUTHORIZED
 c19 = NOT_AUTHORIZED
 c20 = NOT_AUTHORIZED
@@ -139,6 +141,7 @@ Pointers：
 - W4R PostgreSQL final closure: `docs/work/GAP08_W4R_PG_CONCURRENCY_CLOSURE.md`
 - W4 final closure: `docs/work/GAP08_WAVE4_CLOSURE.md`
 - GOV-SYNC W4/PRE-P7 record: `docs/work/GOV_SYNC_W4_PREP7.md`
+- P7 C16 closure: `docs/work/GAP08_P7_C16_CLOSURE.md`
 - P7 C16 authorization: `docs/work/GAP08_P7_C16_AUTHORIZATION.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
@@ -146,25 +149,25 @@ Pointers：
 
 Current action:
 
-`AUTH-P7-C16-01` authorizes bounded runtime source modification for `C16 ONLY`.
+`GAP08-P7-C16-CLOSURE` materializes the independent reviewer PASS.
 
 ```text
-C16_SOURCE_MODIFICATION_AUTHORIZATION =
-BOUNDED_AUTHORIZED_FOR_GAP08_P7_C16_ONLY
-
-FULL_P7_RUNTIME_AUTHORIZATION = NOT_AUTHORIZED
-CANONICAL_RUNTIME_AUTHORIZATION = NOT_AUTHORIZED
-
+C16 = ACCEPTED / FROZEN / READ_ONLY
+C16_WEIGHT = 5 / CREDITED
+ACCEPTED_CORRECTION_CORE = 98 / 113
+REMAINING_CORRECTION_CORE = 15 / 113
 C17 = NOT_AUTHORIZED
-C19 = NOT_AUTHORIZED
-C20 = NOT_AUTHORIZED
-C18 = NOT_AUTHORIZED
 ```
 
-The exact pushed authorization commit becomes the C16 execution baseline.
+After this docs-only closure commit:
 
-C16 implementation completion is candidate-only and requires independent semantic review.
-Accepted correction core remains `93 / 113` until that review passes.
+`STOPPED_AWAITING_SEPARATE_C17_AUTHORIZATION_DECISION`
+
+Next governance candidate:
+
+`C17_BOUNDED_AUTHORIZATION_DECISION`
+
+This is NOT authorized runtime work.
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS

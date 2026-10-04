@@ -62,7 +62,7 @@ Mainline：
 | GAP-RECON-001 | P1 | REVIEW_AT_CHECKPOINT | No | Reconciliation / startup readiness | CLOSED |
 | GAP-BROKER-001 | P1 | REVIEW_AT_CHECKPOINT | No | Explicit OrderIntent / PositionEffect | CLOSED |
 | GAP-BROKER-002 | P2 | REVIEW_AT_CHECKPOINT | No | Capability matrix / mapping semantics | CLOSED |
-| GAP-08 | P1 | REVIEW_AT_CHECKPOINT | Yes — acceptance | Trading State Persistence / Recovery | IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_CORE_93_OF_113_ACCEPTED / P7_SPEC_FROZEN / P7_RUNTIME_NOT_AUTHORIZED |
+| GAP-08 | P1 | REVIEW_AT_CHECKPOINT | Yes — acceptance | Trading State Persistence / Recovery | IN_PROGRESS / ARCHITECTURE_ACCEPTANCE_HOLD / CORRECTION_CORE_98_OF_113_ACCEPTED / P7_SPEC_FROZEN / P7_RUNTIME_NOT_AUTHORIZED |
 | GAP-PERSIST-001 | P1 | RECORD_AND_CONTINUE | No | Decision / Risk Provenance | OPEN |
 | GAP-09 | P1 | REVIEW_AT_CHECKPOINT | No | Incremental Feature / Market State | PENDING |
 | GAP-DATA-001 | P1 | RECORD_AND_CONTINUE | No; Production Live blocker later | Operational market-data completeness / gap detection | OPEN |
@@ -351,8 +351,8 @@ Capability evidence does not authorize LIVE。
 ```text
 GAP-08 = IN_PROGRESS
 ARCHITECTURE_ACCEPTANCE = HOLD
-CORRECTION_CORE = 93 / 113 ACCEPTED
-REMAINING = 20 / 113
+CORRECTION_CORE = 98 / 113 ACCEPTED
+REMAINING = 15 / 113
 
 W4 = CLOSED / REVIEWER_ACCEPTED
 W4_OFFICIAL_WEIGHT = 18 / CREDITED
@@ -361,7 +361,10 @@ P7_SPECIFICATION = ARCH-P7-SPEC-01 / FROZEN
 P7_SPECIFICATION_REVIEW = PASS
 P7_FULL_AUTHORIZATION = NOT_AUTHORIZED
 P7_RUNTIME_EXECUTION = NOT_AUTHORIZED
-C16_SOURCE_MODIFICATION_AUTHORIZATION = BOUNDED_AUTHORIZED_FOR_GAP08_P7_C16_ONLY
+C16 = ACCEPTED / FROZEN / READ_ONLY
+C16_WEIGHT = 5 / CREDITED
+C16_ACCEPTED_RUNTIME_HEAD = cb5f43cb9ed97ad80b1d7811799412a507e62dde
+C16_SOURCE_MODIFICATION_AUTHORIZATION = CONSUMED / CLOSED
 C17 = NOT_AUTHORIZED
 C19 = NOT_AUTHORIZED
 C20 = NOT_AUTHORIZED
@@ -374,12 +377,18 @@ Remaining correction scope:
 
 | Leaf | Weight |
 |---|---:|
-| C16 | 5 |
 | C17 | 4 |
 | C19 | 3 |
 | C20 | 3 |
 | C18 | 5 |
-| **TOTAL** | **20** |
+| **TOTAL** | **15** |
+
+Accepted P7 leaf:
+
+```text
+C16 = ACCEPTED / FROZEN / READ_ONLY
+C16_WEIGHT = 5 / CREDITED
+```
 
 Execution sequence:
 
@@ -419,16 +428,21 @@ PG18 = NOT_VERIFIED / SKIPPED
 V07 = NOT_EXECUTED / NOT_VERIFIED
 ```
 
-Current bounded execution authorization:
+Current C16 closure:
 
-`AUTH-P7-C16-01 / C16 ONLY`
+`INDEPENDENT_C16_SEMANTIC_REVIEW = PASS`
 
-C16 source modification:
+C16 source modification authorization is:
 
-`BOUNDED_AUTHORIZED_FOR_GAP08_P7_C16_ONLY`
+`CONSUMED / CLOSED`
 
-This does not authorize full P7, does not authorize C17/C19/C20/C18, and does not
-credit the C16 weight before independent semantic review.
+C16 is accepted/frozen/read-only. No C17/C19/C20/C18 runtime work is authorized.
+
+Next governance candidate:
+
+`C17_BOUNDED_AUTHORIZATION_DECISION`
+
+This is not authorized runtime work.
 
 ## HISTORICAL / SUPERSEDED GAP-08 EXECUTION RECORD — NO CURRENT AUTHORITY
 
