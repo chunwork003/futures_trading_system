@@ -5,18 +5,26 @@ master_architecture_version: "1.1"
 status: CANDIDATE_FOR_TARGETED_RE_REVIEW
 materialization_baseline_sha: "4e4235fc3a1dbaaf32bdd756f776fcf881d22d7f"
 
+hash_integrity:
+  algorithm: SHA-256
+  canonical_input: git_blob_bytes
+  verification_scope: exact_review_commit
+  worktree_bytes_are_authoritative: false
+  line_ending_normalization: none
+
+
 canonical_current_state:
   path: docs/CURRENT_STATE.md
 
 governance_document:
   path: docs/AI_AUTOMATION_OPERATING_MODEL.md
   version: "1.1"
-  sha256: "130cffbcd55c7f44f605a282daa8806490d564d73be5a2302f8d005af35a9fa2"
+  sha256: "cb9fa49837748570663cc7cb823f00580c7d4f98252c66cc463fa1b96340b6bc"
 
 agent_reentry:
   path: AGENTS.md
   protocol_version: "1.0"
-  sha256: "9e45dd375f8ab05d321bab0460bf72653b0586a69b1e894e4f086e391790f436"
+  sha256: "50980735f4a9a82bbe04af6bd9c23870fd37768f5321875142f54f4e5faea312"
 
 policies:
   authorization_lifecycle:
