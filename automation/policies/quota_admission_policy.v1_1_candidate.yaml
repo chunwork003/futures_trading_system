@@ -1,10 +1,19 @@
 schema_version: automation.quota_admission_policy.v1_1_candidate
 policy_id: QUOTA-ADMISSION
 policy_version: "1.1-candidate"
-status: REVIEW_REQUIRED
+status: REVIEW_FIX_APPLIED_PENDING_RE_REVIEW
 rf_id: AUTO-IMP-001-QRF01
 supersedes_if_accepted: "1.0"
 active: false
+
+review_fix:
+  source_verdict: REVIEW_FIX_REQUIRED
+  architecture_escalation_required: false
+  master_architecture_contradiction: false
+  bounded_items:
+    - RESERVE_ARITHMETIC
+    - APPLICABLE_WINDOW_FAIL_CLOSED
+    - RESERVATION_BOUND_FRESHNESS
 
 problem_statement:
   issue: PROVIDER_QUOTA_UNIT_MISMATCH
@@ -63,30 +72,56 @@ chatgpt_plan_normalized_fallback:
   evidence:
     require_provider_labeled_remaining_percentage: true
     require_reset_metadata_when_shown: true
+    freshness_binding: CURRENT_EXECUTION_ELIGIBILITY_ATTEMPT_AND_RESERVATION
+    capture_required_within_current_eligibility_attempt: true
+    capture_must_precede_single_use_reservation: true
     max_age_minutes_at_reservation: 10
+    ttl_alone_is_sufficient: false
     screenshot_or_human_transcription_allowed_during_bootstrap: true
     machine_readable_preferred: true
     ambiguous_used_vs_remaining_label: DENY
-    missing_required_window: DENY
+    missing_evidence_for_applicable_window: RECHECK_REQUIRED
+    unknown_window_applicability: RECHECK_REQUIRED
+    invalidation_events:
+      - INTERVENING_WORK_OR_CODEX_USAGE
+      - PROVIDER_RESET_OR_WINDOW_ROLLOVER
+      - ACCOUNT_OR_WORKSPACE_CHANGE
+      - PURCHASED_CREDIT_STATE_CHANGE
+      - MODEL_OR_EXECUTOR_PROFILE_CHANGE
+      - PROVIDER_LIMIT_POLICY_CHANGE
+      - AMBIGUOUS_OR_CONFLICTING_EVIDENCE
+  window_applicability:
+    allowed_states:
+      - APPLICABLE
+      - NOT_APPLICABLE_WITH_POSITIVE_PROOF
+      - UNKNOWN
+    not_displayed_is_not_not_applicable: true
+    not_applicable_requires_positive_evidence: true
+    applicable_without_fresh_evidence: RECHECK_REQUIRED
+    unknown: RECHECK_REQUIRED
   windows:
     five_hour:
-      required_when_provider_displays_window: true
-      minimum_remaining_percent: 80
+      minimum_remaining_percent_when_applicable: 80
     weekly:
-      required_when_provider_displays_window: true
-      minimum_remaining_percent: 80
+      minimum_remaining_percent_when_applicable: 80
   reserves:
-    control_plane_reserve_percent: 10
-    recovery_reserve_percent: 10
-    reserve_units: PROVIDER_PERCENTAGE_POINTS
-    note: INTERNAL_GOVERNANCE_RESERVE_NOT_OPENAI_DEFINED
+    mode: EMBEDDED_IN_MINIMUM_REMAINING_FLOOR
+    minimum_remaining_floor_percent: 80
+    control_plane_reserve: INCLUDED_IN_FLOOR
+    recovery_reserve: INCLUDED_IN_FLOOR
+    additional_reserve_subtraction: DENIED
+    arithmetic_rule: REMAINING_PERCENT_MUST_BE_GTE_80_NO_SECOND_SUBTRACTION
+    note: INTERNAL_GOVERNANCE_SAFETY_MARGIN_NOT_OPENAI_DEFINED
   reset_semantics:
     reset_timestamp_is_availability_proof: false
     reset_is_recheck_trigger_only: true
   admission:
-    all_required_windows_must_pass: true
+    all_applicable_windows_must_pass: true
+    unknown_applicability_is_not_pass: true
+    positive_not_applicable_proof_required: true
     provider_block_or_limit_message: DENY
     percentage_thresholds_are_internal_governance_not_token_conversion: true
+    reserve_floor_double_counting: DENIED
     outcome_if_pass: NORMALIZED_PROVIDER_QUOTA_READY
     outcome_if_fail: QUOTA_WAIT_OR_RECHECK_REQUIRED
   post_execution_calibration:
@@ -109,7 +144,14 @@ hard_invariants:
   - PERCENT_REMAINING_IS_NOT_TOKENS
   - API_USAGE_IS_NOT_CHATGPT_PLAN_ALLOWANCE
   - RESET_TIME_IS_NOT_AVAILABILITY_PROOF
-  - BOTH_PROVIDER_WINDOWS_MUST_PASS_WHEN_BOTH_APPLY
+  - ALL_APPLICABLE_PROVIDER_WINDOWS_MUST_PASS
+  - UI_ABSENCE_IS_NOT_WINDOW_NON_APPLICABILITY
+  - NOT_APPLICABLE_REQUIRES_POSITIVE_PROOF
+  - UNKNOWN_WINDOW_APPLICABILITY_IS_NOT_ELIGIBLE
+  - MINIMUM_REMAINING_80_IS_THE_SINGLE_RESERVE_FLOOR
+  - NO_SECOND_RESERVE_SUBTRACTION
+  - TEN_MINUTE_TTL_ALONE_DOES_NOT_ESTABLISH_FRESHNESS
+  - FRESH_EVIDENCE_IS_BOUND_TO_CURRENT_ELIGIBILITY_AND_RESERVATION
   - NO_SILENT_MODEL_DOWNGRADE
   - NO_AUTOMATIC_THRESHOLD_MUTATION
   - NO_RUNTIME_BROKER_MIGRATION_LIVE_PRODUCTION_AUTHORITY

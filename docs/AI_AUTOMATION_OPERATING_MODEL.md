@@ -392,14 +392,31 @@ Future Skills are execution playbooks below the Automation Control Plane, not au
 RF_ID = AUTO-IMP-001-QRF01
 ISSUE = PROVIDER_QUOTA_UNIT_MISMATCH
 ACTIVE_QUOTA_POLICY = 1.0 FROZEN
-CANDIDATE_QUOTA_POLICY = 1.1-candidate / REVIEW_REQUIRED / INACTIVE
+CANDIDATE_QUOTA_POLICY = 1.1-candidate / REVIEW_FIX_APPLIED_PENDING_RE_REVIEW / INACTIVE
 AUTO-IMP-001_AUTHORIZATION = AUTHORIZED
 EXECUTION_ELIGIBILITY = BLOCKED_POLICY_REVIEW
-NEXT_ROUTE = AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_REVIEW
+NEXT_ROUTE = AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW
 ```
 
 OpenAI's ChatGPT Work/Codex plan allowance is provider-native usage allowance and does not define a fixed token equivalence. API token usage and API billing are separate evidence channels. Therefore the control plane must not convert plan percentage remaining into tokens.
 
 The candidate preserves P50/P75/P90 token forecasts as task-complexity and telemetry forecasts, while adding a conservative provider-percentage bootstrap path for LOW-risk, manual-trigger-only, no-external-side-effect packages. The proposed percentage thresholds are internal governance values and require independent review before activation.
+
+
+### QRF01 Bounded Review Fix
+
+```text
+REVIEW_RESULT = REVIEW_FIX_REQUIRED
+MASTER_ARCHITECTURE_CONTRADICTION = NO
+ARCHITECTURE_ESCALATION = NO
+FIX_01 = RESERVE_ARITHMETIC_SINGLE_80_PERCENT_FLOOR
+FIX_02 = APPLICABLE_WINDOW_POSITIVE_FAIL_CLOSED
+FIX_03 = RESERVATION_BOUND_FRESHNESS
+CANDIDATE_ACTIVE = false
+AUTO_IMP_001_AUTHORIZATION = AUTHORIZED
+AUTO_IMP_001_EXECUTABLE = false
+```
+
+The normalized fallback now uses one 80% remaining floor with no second reserve subtraction; resolves window applicability explicitly and fail-closed; and binds freshness to the current eligibility/reservation attempt, with 10 minutes only as an outer TTL.
 
 <!-- AUTOMATION_MASTER_V1_1_END -->

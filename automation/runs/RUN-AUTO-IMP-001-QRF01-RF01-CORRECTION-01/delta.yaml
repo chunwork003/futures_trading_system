@@ -1,0 +1,14 @@
+schema_version: automation.delta.v1
+run_id: RUN-AUTO-IMP-001-QRF01-RF01-CORRECTION-01
+fixed:
+  - reserve arithmetic now has one 80 percent floor and no second subtraction
+  - window applicability is explicit and fail-closed
+  - freshness is bound to current eligibility/reservation; TTL alone is insufficient
+unchanged:
+  - active quota policy v1.0 remains FROZEN
+  - v1.1 candidate remains inactive
+  - AUTO-IMP-001 remains AUTHORIZED
+  - execution remains blocked pending re-review
+  - CODEX not started
+remaining:
+  - AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW

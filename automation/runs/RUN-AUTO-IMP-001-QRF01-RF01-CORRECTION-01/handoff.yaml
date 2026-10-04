@@ -1,0 +1,17 @@
+schema_version: automation.handoff.v1
+handoff_id: HANDOFF-AUTO-IMP-001-QRF01-RF01-TO-RE-REVIEW
+from_run: RUN-AUTO-IMP-001-QRF01-RF01-CORRECTION-01
+status: COMPLETE
+rf_id: AUTO-IMP-001-QRF01
+candidate_status: REVIEW_FIX_APPLIED_PENDING_RE_REVIEW
+candidate_active: false
+authorization_state: AUTHORIZED
+execution_eligibility: BLOCKED_POLICY_REVIEW
+next_owner: Independent_Automation_Reviewer
+next_route: AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW
+exact_next_action: Re-review only the three bounded corrected semantics: reserve arithmetic, applicable-window fail-closed, and reservation-bound freshness. Confirm all previously passing QRF01 invariants remain unchanged.
+must_not_start:
+  - quota policy activation
+  - CODEX execution
+  - AUTO-IMP-002 or later
+  - Runtime/Broker/Migration/LIVE/Production actions

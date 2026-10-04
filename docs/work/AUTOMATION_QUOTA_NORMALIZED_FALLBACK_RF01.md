@@ -3,7 +3,7 @@
 ```text
 RF_ID = AUTO-IMP-001-QRF01
 BASELINE = addf17379223cf4807e7b773f6034134ff7478e9
-STATUS = REVIEW_REQUIRED
+STATUS = REVIEW_FIX_APPLIED_PENDING_RE_REVIEW
 ACTIVE_POLICY = QuotaAdmissionPolicyV1 v1.0 FROZEN
 CANDIDATE_POLICY = v1.1-candidate / NOT ACTIVE
 AUTO-IMP-001 = AUTHORIZED / NOT EXECUTABLE
@@ -93,5 +93,49 @@ The observed `100% / 98%` would satisfy the proposed percentage thresholds if it
 Next route:
 
 ```text
-AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_REVIEW
+AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW
+```
+
+## Independent Review Fix Applied
+
+Independent narrow review returned `REVIEW_FIX_REQUIRED` with no Master Architecture contradiction and no architecture escalation.
+
+Bounded corrections:
+
+### RF01-01 Reserve arithmetic
+
+`80%` is the only normalized admission floor.
+
+```text
+remaining_percent >= 80
+```
+
+Control-plane and recovery reserve intent are embedded in that floor. No additional `10 + 10` subtraction is permitted. This removes double-counting ambiguity.
+
+### RF01-02 Applicable-window fail-closed
+
+Each provider window must resolve to one of:
+
+```text
+APPLICABLE
+NOT_APPLICABLE_WITH_POSITIVE_PROOF
+UNKNOWN
+```
+
+UI absence does not prove non-applicability. `APPLICABLE` without fresh evidence and `UNKNOWN` both produce `RECHECK_REQUIRED`.
+
+### RF01-03 Reservation-bound freshness
+
+Quota evidence must be captured during the current execution-eligibility attempt and before the single-use reservation. The 10-minute value is only a hard TTL; TTL alone is not sufficient.
+
+Evidence is invalidated by intervening Work/Codex usage, provider reset/window rollover, account/workspace changes, purchased-credit changes, model/executor-profile changes, provider limit-policy changes, or ambiguous/conflicting evidence.
+
+## Re-review disposition
+
+The candidate remains inactive. Active QuotaAdmissionPolicyV1 v1.0 remains frozen. AUTO-IMP-001 remains `AUTHORIZED` but `NOT_EXECUTABLE`.
+
+Next route:
+
+```text
+AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_RE_REVIEW
 ```
