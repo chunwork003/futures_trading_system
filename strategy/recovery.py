@@ -330,7 +330,173 @@ def evaluate_governing_transition(
     return state
 
 
+
+class K520ApplicabilityClassification(str, Enum):
+    """C19 K520 applicability seam；不代表 K520 recovery 已完成。"""
+
+    NOT_APPLICABLE_PROVEN = "NOT_APPLICABLE_PROVEN"
+    REQUIRED = "REQUIRED"
+    UNKNOWN = "UNKNOWN"
+
+
+class K520ApplicabilityEvidence(BaseModel):
+    """C19 broker-neutral positive applicability evidence。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    evidence_id: str
+    strategy_instance_id: str
+    strategy_id: str
+    config_version: str
+    config_fingerprint: str
+    implementation_revision: str
+    instrument_id: int = Field(gt=0)
+    instrument_binding_provenance: CanonicalInstrumentBindingProvenance
+    timeframe: str
+
+    feature_dependency_contract: StrategyAuthorityRef | None = None
+    classification_claim: K520ApplicabilityClassification = (
+        K520ApplicabilityClassification.UNKNOWN
+    )
+
+    required_replay_horizon: int | None = Field(default=None, ge=0)
+    available_replay_horizon: int | None = Field(default=None, ge=0)
+
+    governing_observation_frontier_revision_id: str | None = None
+    evaluated_observation_frontier_revision_id: str | None = None
+    current_observation_frontier_revision_id: str | None = None
+
+    causal_frontier_ref: str | None = None
+    currentness_evidence_ref: str | None = None
+    proof_authority: StrategyAuthorityRef | None = None
+
+    @field_validator(
+        "evidence_id",
+        "strategy_instance_id",
+        "strategy_id",
+        "config_version",
+        "config_fingerprint",
+        "implementation_revision",
+        "timeframe",
+        mode="before",
+    )
+    @classmethod
+    def _stable_ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @field_validator(
+        "causal_frontier_ref",
+        "currentness_evidence_ref",
+        mode="before",
+    )
+    @classmethod
+    def _optional_ids(cls, value: object) -> object:
+        if value is None:
+            return None
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @field_validator(
+        "governing_observation_frontier_revision_id",
+        "evaluated_observation_frontier_revision_id",
+        "current_observation_frontier_revision_id",
+        mode="before",
+    )
+    @classmethod
+    def _mor1_refs(cls, value: object) -> object:
+        if value is None:
+            return None
+
+        from domain.market_observation import MarketObservationRevisionId
+
+        if isinstance(value, MarketObservationRevisionId):
+            return value.value
+
+        if not isinstance(value, str):
+            raise ValueError(
+                "K520 observation frontier must use mor1 revision identity"
+            )
+
+        normalized = normalize_stable_id(value)
+
+        try:
+            return MarketObservationRevisionId(normalized).value
+        except ValueError as exc:
+            raise ValueError(
+                "K520 observation frontier must use mor1 revision identity"
+            ) from exc
+
+    @model_validator(mode="after")
+    def _binding_integrity(self) -> "K520ApplicabilityEvidence":
+        if (
+            self.instrument_binding_provenance.instrument_id
+            != self.instrument_id
+        ):
+            raise ValueError(
+                "K520 applicability instrument provenance conflicts "
+                "with canonical instrument_id"
+            )
+        return self
+
+
+def evaluate_k520_applicability(
+    *,
+    instance: StrategyInstance,
+    evidence: K520ApplicabilityEvidence,
+) -> K520ApplicabilityClassification:
+    """依 exact C16 recovery world 評估 C19；任何未證明條件皆 UNKNOWN。"""
+
+    provenance = instance.instrument_binding_provenance
+
+    if provenance is None:
+        return K520ApplicabilityClassification.UNKNOWN
+
+    exact_governing_binding = (
+        evidence.strategy_instance_id == instance.strategy_instance_id
+        and evidence.strategy_id == instance.strategy_id
+        and evidence.config_version == instance.config_version
+        and evidence.config_fingerprint == instance.config_fingerprint
+        and evidence.implementation_revision == instance.implementation_revision
+        and evidence.instrument_id == instance.instrument_id
+        and evidence.instrument_binding_provenance == provenance
+        and evidence.timeframe == instance.timeframe
+    )
+
+    if not exact_governing_binding:
+        return K520ApplicabilityClassification.UNKNOWN
+
+    if evidence.classification_claim is K520ApplicabilityClassification.UNKNOWN:
+        return K520ApplicabilityClassification.UNKNOWN
+
+    if (
+        evidence.feature_dependency_contract is None
+        or evidence.proof_authority is None
+        or evidence.required_replay_horizon is None
+        or evidence.available_replay_horizon is None
+        or evidence.causal_frontier_ref is None
+        or evidence.currentness_evidence_ref is None
+        or evidence.governing_observation_frontier_revision_id is None
+        or evidence.evaluated_observation_frontier_revision_id is None
+        or evidence.current_observation_frontier_revision_id is None
+    ):
+        return K520ApplicabilityClassification.UNKNOWN
+
+    if evidence.available_replay_horizon < evidence.required_replay_horizon:
+        return K520ApplicabilityClassification.UNKNOWN
+
+    frontier = evidence.governing_observation_frontier_revision_id
+
+    if (
+        evidence.evaluated_observation_frontier_revision_id != frontier
+        or evidence.current_observation_frontier_revision_id != frontier
+    ):
+        return K520ApplicabilityClassification.UNKNOWN
+
+    return evidence.classification_claim
+
+
 __all__ = [
+    "K520ApplicabilityClassification",
+    "K520ApplicabilityEvidence",
     "StrategyAuthorityRef",
     "StrategyDurableStateReference",
     "StrategyGoverningContext",
@@ -339,4 +505,5 @@ __all__ = [
     "StrategyGoverningTransitionState",
     "StrategyStateSchemaReference",
     "evaluate_governing_transition",
+    "evaluate_k520_applicability",
 ]
