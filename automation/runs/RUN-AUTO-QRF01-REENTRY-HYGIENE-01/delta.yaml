@@ -1,0 +1,15 @@
+schema_version: automation.delta.v1
+run_id: RUN-AUTO-QRF01-REENTRY-HYGIENE-01
+fixed:
+  - stale CURRENT_STATE prose next checkpoint
+  - stale CURRENT_WORK prose next route
+  - stale AGENTS prose next route
+unchanged:
+  - canonical machine route
+  - AUTO-IMP-001 authorization
+  - active QuotaAdmissionPolicyV1 v1.0
+  - inactive QRF01 v1.1 candidate
+  - execution eligibility BLOCKED_POLICY_REVIEW
+  - CODEX not started
+remaining:
+  - AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_REVIEW

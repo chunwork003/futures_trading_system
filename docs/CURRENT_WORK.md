@@ -60,7 +60,7 @@ Governance Planning Baseline：`f45742d9d16165f87f145f0d2bdc8d530772e5ee`；Corr
 
 Post-5E accepted planning inputs、materialized leaves、DAG、bounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`。
 
-Current execution action: GAP-08 is CLOSED_ACCEPTED; no runtime work is active. No next mainline GAP is authorized. Development Automation Master v1.1 is FROZEN; next automation route is AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY.
+Current execution action: GAP-08 is CLOSED_ACCEPTED; no runtime work is active. No next mainline GAP is authorized. Development Automation Master v1.1 is FROZEN; next automation route is AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_REVIEW.
 
 <!-- MACHINE_QUEUE_CURRENT_START -->
 CURRENT_PARENT_GAP = NONE

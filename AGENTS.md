@@ -127,7 +127,7 @@ NEXT = AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_REVIEW
 GAP-08 parent closure is APPROVED / MATERIALIZED.
 C16/C17/C19/C20/C18 remain ACCEPTED / FROZEN / READ_ONLY.
 P7 and GAP-08 runtime source modification are CLOSED.
-No next mainline GAP is authorized. Development Automation Master v1.1 is FROZEN; next automation route is AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY.
+No next mainline GAP is authorized. Development Automation Master v1.1 is FROZEN; next automation route is AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_REVIEW.
 
 Historical authority/checkpoint sections below are retained for audit only and have
 NO CURRENT RUNTIME AUTHORITY.

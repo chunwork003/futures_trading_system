@@ -1,0 +1,11 @@
+schema_version: automation.handoff.v1
+handoff_id: HANDOFF-AUTO-QRF01-HYGIENE-TO-REVIEW
+from_run: RUN-AUTO-QRF01-REENTRY-HYGIENE-01
+status: COMPLETE
+next_owner: Independent_Automation_Reviewer
+next_route: AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_REVIEW
+exact_next_action: Perform narrow QRF01 quota-policy compatibility review only. Do not activate the candidate policy or execute CODEX.
+must_not_start:
+  - CODEX execution
+  - quota policy activation
+  - AUTO-IMP-002 or later
