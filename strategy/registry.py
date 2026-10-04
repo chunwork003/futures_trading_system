@@ -63,10 +63,29 @@ class StrategyRegistry:
     ) -> StrategyDefinition:
         """Validate C16 governing definition/revision/binding without runtime creation."""
 
-        from strategy.instance import StrategyInstance
+        from strategy.instance import (
+            StrategyInstance,
+            canonical_config_json,
+            config_fingerprint,
+        )
 
         if not isinstance(instance, StrategyInstance):
             raise TypeError("instance must be StrategyInstance")
+
+        # C16 RF01：governing authority 在 consumption 時重新驗證
+        # canonical config content 與 persisted fingerprint，不能只相信
+        # 此物件過去曾經 construction-valid。
+        canonical_config = canonical_config_json(
+            instance.config_json
+        )
+        if (
+            config_fingerprint(canonical_config)
+            != instance.config_fingerprint
+        ):
+            raise ValueError(
+                "governing config fingerprint does not match "
+                "canonical config content"
+            )
 
         definition = self.get(instance.strategy_id)
         if definition.version != instance.implementation_revision:

@@ -158,3 +158,25 @@ def test_binding_provenance_is_immutable_auditable_material() -> None:
 
     with pytest.raises(ValidationError):
         provenance.instrument_id = 999
+
+
+def test_governing_validation_rechecks_config_content_fingerprint_at_consumption() -> None:
+    original = instance()
+    corrupted = original.model_copy(
+        update={
+            "config_json": {
+                "symbol": "MTX",
+                "timeframe": "1m",
+            }
+        }
+    )
+
+    assert corrupted.strategy_instance_id == original.strategy_instance_id
+    assert corrupted.config_version == original.config_version
+    assert corrupted.config_fingerprint == original.config_fingerprint
+
+    with pytest.raises(
+        ValueError,
+        match="governing config fingerprint",
+    ):
+        registry().validate_governing_instance(corrupted)

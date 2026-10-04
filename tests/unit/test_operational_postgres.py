@@ -929,3 +929,69 @@ def test_c16_strategy_instance_postgres_requested_identity_conflict_fails_closed
         PostgresStrategyInstanceRepository(
             _QueueConnection([row])
         ).get("SI-REQUESTED")
+
+
+def test_c16_rf01_postgres_append_preserves_exact_strategy_instance_authority_json() -> None:
+    import json
+
+    from persistence.postgres.strategy_state import (
+        PostgresStrategyInstanceRepository,
+    )
+    from strategy.instance import (
+        CanonicalInstrumentBindingProvenance,
+        StrategyInstance,
+        config_fingerprint,
+    )
+
+    config = {
+        "symbol": "TX",
+        "timeframe": "1m",
+        "nested": {
+            "threshold": 3,
+            "enabled": True,
+        },
+    }
+    item = StrategyInstance(
+        strategy_instance_id="SI-C16-RF01-APPEND",
+        strategy_id="EMA_CROSS",
+        strategy_version="1.0.0",
+        config_version="CFG-C16-RF01",
+        config_fingerprint=config_fingerprint(config),
+        instrument_id=101,
+        timeframe="1m",
+        config_json=config,
+        instrument_binding_provenance=(
+            CanonicalInstrumentBindingProvenance(
+                instrument_id=101,
+                authority_id="CANONICAL-INSTRUMENT-PROVISIONING",
+                authority_version="V1",
+                reference_id="BIND-C16-RF01-APPEND",
+            )
+        ),
+    )
+
+    connection = _Connection()
+    PostgresStrategyInstanceRepository(connection).append(item)
+
+    _, params = connection.last
+    assert len(params) == 9
+    assert isinstance(params[8], str)
+
+    persisted = json.loads(params[8])
+    expected = item.model_dump(mode="json")
+    assert persisted == expected
+
+    for field in (
+        "strategy_instance_id",
+        "strategy_id",
+        "strategy_version",
+        "config_version",
+        "config_fingerprint",
+        "instrument_id",
+        "timeframe",
+        "config_json",
+        "instrument_binding_provenance",
+    ):
+        assert persisted[field] == expected[field]
+
+    assert connection.commits == 0

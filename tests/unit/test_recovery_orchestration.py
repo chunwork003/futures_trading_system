@@ -709,3 +709,28 @@ def test_c16_binding_provenance_does_not_use_current_alias_to_remap_history():
 
     assert result.state is RecoveryReadinessState.HALT
     assert "identity/config/scope/revision mismatch" in result.reasons[0]
+
+
+def test_c16_rf01_corrupted_config_content_halts_before_strategy_restore() -> None:
+    def corrupt_config(item):
+        return item.model_copy(
+            update={
+                "config_json": {
+                    "symbol": "MTX",
+                    "timeframe": "1m",
+                }
+            }
+        )
+
+    result, trace = recover(
+        instance_transform=corrupt_config
+    )
+
+    assert result.state is RecoveryReadinessState.HALT
+    assert "governing config fingerprint" in result.reasons[0]
+    assert trace == [
+        "execution",
+        "expected",
+        "broker",
+        "instance",
+    ]
