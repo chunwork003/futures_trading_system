@@ -1,0 +1,121 @@
+schema_version: automation.quota_admission_policy.v1_1_candidate
+policy_id: QUOTA-ADMISSION
+policy_version: "1.1-candidate"
+status: REVIEW_REQUIRED
+rf_id: AUTO-IMP-001-QRF01
+supersedes_if_accepted: "1.0"
+active: false
+
+problem_statement:
+  issue: PROVIDER_QUOTA_UNIT_MISMATCH
+  current_planning_forecast_unit: TOKENS
+  current_chatgpt_plan_allowance_unit: PERCENT_REMAINING
+  direct_percent_to_token_conversion: DENIED
+  reason: PROVIDER_DOES_NOT_DEFINE_FIXED_EQUIVALENCE
+
+source_separation:
+  chatgpt_plan_included_allowance:
+    authority_surface:
+      - CHATGPT_SETTINGS_USAGE
+      - CODEX_USAGE_STATUS_WHEN_AVAILABLE
+    unit: PERCENT_REMAINING
+    api_usage_dashboard_substitute: DENIED
+    api_token_usage_substitute: DENIED
+  openai_api:
+    authority_surface:
+      - API_RESPONSE_USAGE
+      - API_USAGE_DASHBOARD
+    unit:
+      - TOKENS
+      - API_COST
+    separate_from_chatgpt_plan_allowance: true
+  purchased_chatgpt_credits:
+    authority_surface:
+      - CHATGPT_SETTINGS_USAGE
+      - CODEX_USAGE_AND_BILLING
+    unit: PROVIDER_CREDITS
+    api_credits_equivalent: false
+
+forecast_semantics:
+  p50_p75_p90_tokens:
+    retained: true
+    role:
+      - TASK_COMPLEXITY_FORECAST
+      - TOKEN_TELEMETRY_BASELINE_WHEN_TOKEN_MEASUREMENT_EXISTS
+    may_be_compared_to_percent_allowance: false
+  provider_native_admission_required_when_units_differ: true
+
+chatgpt_plan_normalized_fallback:
+  status: PROPOSED_BOOTSTRAP_CONSERVATIVE
+  applies_only_when:
+    package_risk:
+      - LOW
+    executor_profile:
+      - CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
+    automatic_dispatch: DENIED
+    automatic_next_package_progression: DENIED
+    product_runtime_source_modification: DENY
+    migration_execution: DENY
+    broker_network: DENY
+    live: DENY
+    production_activation: DENY
+    max_p90_planning_tokens: 40000
+  evidence:
+    require_provider_labeled_remaining_percentage: true
+    require_reset_metadata_when_shown: true
+    max_age_minutes_at_reservation: 10
+    screenshot_or_human_transcription_allowed_during_bootstrap: true
+    machine_readable_preferred: true
+    ambiguous_used_vs_remaining_label: DENY
+    missing_required_window: DENY
+  windows:
+    five_hour:
+      required_when_provider_displays_window: true
+      minimum_remaining_percent: 80
+    weekly:
+      required_when_provider_displays_window: true
+      minimum_remaining_percent: 80
+  reserves:
+    control_plane_reserve_percent: 10
+    recovery_reserve_percent: 10
+    reserve_units: PROVIDER_PERCENTAGE_POINTS
+    note: INTERNAL_GOVERNANCE_RESERVE_NOT_OPENAI_DEFINED
+  reset_semantics:
+    reset_timestamp_is_availability_proof: false
+    reset_is_recheck_trigger_only: true
+  admission:
+    all_required_windows_must_pass: true
+    provider_block_or_limit_message: DENY
+    percentage_thresholds_are_internal_governance_not_token_conversion: true
+    outcome_if_pass: NORMALIZED_PROVIDER_QUOTA_READY
+    outcome_if_fail: QUOTA_WAIT_OR_RECHECK_REQUIRED
+  post_execution_calibration:
+    capture_before_after_remaining_percentage: true
+    accepted_runs_before_threshold_review: 3
+    if_single_package_consumes_more_than_percent_of_any_window: 20
+    action: PAUSE_NORMALIZED_FALLBACK_AND_REVIEW
+    thresholds_may_not_self_modify: true
+
+api_channel:
+  admission:
+    use_provider_native_token_cost_and_rate_limit_evidence: true
+    compare_only_compatible_units: true
+    chatgpt_plan_percentage_not_reused: true
+  telemetry:
+    use_actual_input_output_cached_reasoning_usage_when_exposed: true
+
+hard_invariants:
+  - AUTHORIZED_IS_NOT_EXECUTABLE
+  - PERCENT_REMAINING_IS_NOT_TOKENS
+  - API_USAGE_IS_NOT_CHATGPT_PLAN_ALLOWANCE
+  - RESET_TIME_IS_NOT_AVAILABILITY_PROOF
+  - BOTH_PROVIDER_WINDOWS_MUST_PASS_WHEN_BOTH_APPLY
+  - NO_SILENT_MODEL_DOWNGRADE
+  - NO_AUTOMATIC_THRESHOLD_MUTATION
+  - NO_RUNTIME_BROKER_MIGRATION_LIVE_PRODUCTION_AUTHORITY
+  - FRESH_RECHECK_REQUIRED_AT_SINGLE_USE_RESERVATION
+
+activation:
+  reviewer_pass_required: true
+  governance_materialization_required_after_reviewer_pass: true
+  candidate_itself_changes_active_policy: false

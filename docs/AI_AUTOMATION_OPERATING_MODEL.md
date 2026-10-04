@@ -385,4 +385,21 @@ ACTIVATE_ONLY_AFTER = FOUNDATION_STABILITY
 
 Future Skills are execution playbooks below the Automation Control Plane, not authority owners. Canonical governance remains in repository policies/state. Skills may read authority and execute permitted workflows, but MUST NOT grant authorization, mutate quota/authorization policy, infer Runtime Authorization, expand write scope, or auto-advance packages.
 
+
+### Provider-Native Quota Compatibility RF
+
+```text
+RF_ID = AUTO-IMP-001-QRF01
+ISSUE = PROVIDER_QUOTA_UNIT_MISMATCH
+ACTIVE_QUOTA_POLICY = 1.0 FROZEN
+CANDIDATE_QUOTA_POLICY = 1.1-candidate / REVIEW_REQUIRED / INACTIVE
+AUTO-IMP-001_AUTHORIZATION = AUTHORIZED
+EXECUTION_ELIGIBILITY = BLOCKED_POLICY_REVIEW
+NEXT_ROUTE = AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_REVIEW
+```
+
+OpenAI's ChatGPT Work/Codex plan allowance is provider-native usage allowance and does not define a fixed token equivalence. API token usage and API billing are separate evidence channels. Therefore the control plane must not convert plan percentage remaining into tokens.
+
+The candidate preserves P50/P75/P90 token forecasts as task-complexity and telemetry forecasts, while adding a conservative provider-percentage bootstrap path for LOW-risk, manual-trigger-only, no-external-side-effect packages. The proposed percentage thresholds are internal governance values and require independent review before activation.
+
 <!-- AUTOMATION_MASTER_V1_1_END -->

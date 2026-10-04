@@ -1,0 +1,19 @@
+schema_version: automation.handoff.v1
+handoff_id: HANDOFF-AUTO-IMP-001-QRF01-TO-REVIEW
+from_run: RUN-AUTO-IMP-001-QRF01-COMPILE-01
+status: COMPLETE
+rf_id: AUTO-IMP-001-QRF01
+authorization_state: AUTHORIZED
+execution_eligibility: BLOCKED_POLICY_REVIEW
+active_policy_version: "1.0"
+candidate_policy_version: "1.1-candidate"
+candidate_active: false
+next_owner: Independent_Automation_Reviewer
+next_route: AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_REVIEW
+exact_next_action: Review provider-native quota source separation, no percent-to-token conversion, proposed conservative percentage fallback, freshness/reserve/calibration rules, and confirm that AUTO-IMP-001 remains non-executable until accepted policy materialization and a new fresh quota snapshot.
+must_not_start:
+  - CODEX execution
+  - automatic dispatch
+  - AUTO-IMP-002 or later
+  - Skill Adapter implementation
+  - broker/migration/LIVE/production actions

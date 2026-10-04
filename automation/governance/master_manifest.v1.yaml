@@ -33,6 +33,19 @@ superseded_authorization_candidates:
     authorization_revision: "1"
     disposition: SUPERSEDED_CANDIDATE_NON_AUTHORITY
 
+quota_policy_compatibility_rf:
+  rf_id: AUTO-IMP-001-QRF01
+  issue: PROVIDER_QUOTA_UNIT_MISMATCH
+  candidate_path: automation/policies/quota_admission_policy.v1_1_candidate.yaml
+  sha256: "b503d67baafb57a37ab3d388d4e80e6e375ef806906736e71c074932ae52f3bf"
+  candidate_version: "1.1-candidate"
+  candidate_status: REVIEW_REQUIRED
+  active: false
+  active_policy_version: "1.0"
+  auto_imp_001_authorization_state: AUTHORIZED
+  execution_eligibility: BLOCKED_POLICY_REVIEW
+  next_route: AUTOMATION_QUOTA_NORMALIZED_FALLBACK_RF_REVIEW
+
 freeze:
   state: FROZEN
   source_review_head_sha: "0eb899794a8af4d4e0ad2f3e0b3be709c93bed3e"
@@ -58,12 +71,12 @@ canonical_current_state:
 governance_document:
   path: docs/AI_AUTOMATION_OPERATING_MODEL.md
   version: "1.1"
-  sha256: "6f26fa6edcf350be989797b425b7757b490f9e6bbaa5c511fb4b094cb26362ed"
+  sha256: "9aa0a6c470d2f41955f1697f41ee819e5dfe16c9884723439bead6a744b10b7e"
 
 agent_reentry:
   path: AGENTS.md
   protocol_version: "1.0"
-  sha256: "065c2f39db81c926fb6fba3ff40b0445eda7e79f4beed4ad827cf7109f7b65b7"
+  sha256: "28e95a7faf9f1cdb45eb2a67f1734f5045e1fde459584a75de98978de2d18380"
 
 policies:
   authorization_lifecycle:
