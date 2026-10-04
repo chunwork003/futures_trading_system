@@ -494,7 +494,184 @@ def evaluate_k520_applicability(
     return evidence.classification_claim
 
 
+
+class CompletenessRequirementClassification(str, Enum):
+    """C20 completeness-required authority classification。"""
+
+    NOT_REQUIRED_PROVEN = "NOT_REQUIRED_PROVEN"
+    REQUIRED = "REQUIRED"
+    UNKNOWN = "UNKNOWN"
+
+
+class CompletenessAuthorityClass(str, Enum):
+    """C20 authority class；不同 environment 不得互相升格。"""
+
+    TEST = "TEST"
+    SANDBOX = "SANDBOX"
+    PRODUCTION = "PRODUCTION"
+
+
+class CompletenessReadiness(str, Enum):
+    """C20 只輸出 completeness gate readiness，不代表 StrategyTradingReady。"""
+
+    READY = "READY"
+    NOT_READY = "NOT_READY"
+
+
+class CompletenessRequirementAuthority(BaseModel):
+    """C20 requirement authority；與 completeness evidence authority 嚴格分離。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    requirement_id: str
+    consumer_ref: str
+    scope_ref: str
+    stream_ref: str
+    horizon_ref: str
+    policy_authority: StrategyAuthorityRef
+    authority_class: CompletenessAuthorityClass
+    classification: CompletenessRequirementClassification
+
+    @field_validator(
+        "requirement_id",
+        "consumer_ref",
+        "scope_ref",
+        "stream_ref",
+        "horizon_ref",
+        mode="before",
+    )
+    @classmethod
+    def _stable_ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+
+class CompletenessEvidenceAuthority(BaseModel):
+    """C20 approved completeness evidence；不實作 detector/service。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    evidence_id: str
+    consumer_ref: str
+    scope_ref: str
+    stream_ref: str
+    horizon_ref: str
+    policy_authority: StrategyAuthorityRef
+    authority_class: CompletenessAuthorityClass
+    evaluated_world_ref: str
+    current_world_ref: str
+    evaluated_frontier_revision_id: str
+    current_frontier_revision_id: str
+    currentness_evidence_ref: str
+    evidence_authority: StrategyAuthorityRef
+    complete: bool
+
+    @field_validator(
+        "evidence_id",
+        "consumer_ref",
+        "scope_ref",
+        "stream_ref",
+        "horizon_ref",
+        "evaluated_world_ref",
+        "current_world_ref",
+        "currentness_evidence_ref",
+        mode="before",
+    )
+    @classmethod
+    def _stable_ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @field_validator(
+        "evaluated_frontier_revision_id",
+        "current_frontier_revision_id",
+        mode="before",
+    )
+    @classmethod
+    def _mor1_refs(cls, value: object) -> str:
+        from domain.market_observation import MarketObservationRevisionId
+
+        if isinstance(value, MarketObservationRevisionId):
+            return value.value
+
+        if not isinstance(value, str):
+            raise ValueError(
+                "completeness frontier must use mor1 revision identity"
+            )
+
+        normalized = normalize_stable_id(value)
+
+        try:
+            return MarketObservationRevisionId(normalized).value
+        except ValueError as exc:
+            raise ValueError(
+                "completeness frontier must use mor1 revision identity"
+            ) from exc
+
+
+def evaluate_completeness_readiness(
+    *,
+    requirement: CompletenessRequirementAuthority | None,
+    evidence: CompletenessEvidenceAuthority | None,
+    runtime_authority_class: CompletenessAuthorityClass,
+) -> CompletenessReadiness:
+    """C20 fail-closed seam；只驗證 approved authority，不執行 completeness detector。"""
+
+    if requirement is None:
+        return CompletenessReadiness.NOT_READY
+
+    if requirement.authority_class is not runtime_authority_class:
+        return CompletenessReadiness.NOT_READY
+
+    if (
+        requirement.classification
+        is CompletenessRequirementClassification.UNKNOWN
+    ):
+        return CompletenessReadiness.NOT_READY
+
+    if (
+        requirement.classification
+        is CompletenessRequirementClassification.NOT_REQUIRED_PROVEN
+    ):
+        return CompletenessReadiness.READY
+
+    if evidence is None:
+        return CompletenessReadiness.NOT_READY
+
+    if evidence.authority_class is not runtime_authority_class:
+        return CompletenessReadiness.NOT_READY
+
+    exact_requirement_binding = (
+        evidence.consumer_ref == requirement.consumer_ref
+        and evidence.scope_ref == requirement.scope_ref
+        and evidence.stream_ref == requirement.stream_ref
+        and evidence.horizon_ref == requirement.horizon_ref
+        and evidence.policy_authority == requirement.policy_authority
+        and evidence.authority_class == requirement.authority_class
+    )
+
+    if not exact_requirement_binding:
+        return CompletenessReadiness.NOT_READY
+
+    if not evidence.complete:
+        return CompletenessReadiness.NOT_READY
+
+    if evidence.evaluated_world_ref != evidence.current_world_ref:
+        return CompletenessReadiness.NOT_READY
+
+    if (
+        evidence.evaluated_frontier_revision_id
+        != evidence.current_frontier_revision_id
+    ):
+        return CompletenessReadiness.NOT_READY
+
+    return CompletenessReadiness.READY
+
+
 __all__ = [
+    "CompletenessAuthorityClass",
+    "CompletenessEvidenceAuthority",
+    "CompletenessReadiness",
+    "CompletenessRequirementAuthority",
+    "CompletenessRequirementClassification",
     "K520ApplicabilityClassification",
     "K520ApplicabilityEvidence",
     "StrategyAuthorityRef",
@@ -504,6 +681,7 @@ __all__ = [
     "StrategyGoverningTransitionIntegrityError",
     "StrategyGoverningTransitionState",
     "StrategyStateSchemaReference",
+    "evaluate_completeness_readiness",
     "evaluate_governing_transition",
     "evaluate_k520_applicability",
 ]
