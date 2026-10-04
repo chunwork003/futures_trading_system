@@ -51,10 +51,15 @@ c16 = ACCEPTED_FROZEN_READ_ONLY
 c16_weight = 5_CREDITED
 c16_accepted_runtime_head = cb5f43cb9ed97ad80b1d7811799412a507e62dde
 c16_source_modification_authorization = CONSUMED_CLOSED
-c17 = NOT_AUTHORIZED
-c19 = NOT_AUTHORIZED
-c20 = NOT_AUTHORIZED
-c18 = NOT_AUTHORIZED
+p7_remainder_decision = AUTH-P7-REMAINDER-01_AUTHORIZE
+p7_remainder_spec = ARCH-P7-REMAINDER-01_FROZEN
+p7_remainder_pre_auth_review = PASS
+p7_remainder_architecture_contradiction = NONE
+p7_remainder_wave = C17>C19>C20>C18
+c17 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
+c19 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
+c20 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
+c18 = BOUNDED_SOURCE_MODIFICATION_AUTHORIZED_AFTER_THIS_AUTH_COMMIT_PUSH
 
 p8 = SEPARATE_BROKER_CAPABILITY_VERIFICATION
 p9_v07 = SEPARATE_POSTGRES_ENVIRONMENT_CONFORMANCE
@@ -142,6 +147,7 @@ Pointers：
 - W4 final closure: `docs/work/GAP08_WAVE4_CLOSURE.md`
 - GOV-SYNC W4/PRE-P7 record: `docs/work/GOV_SYNC_W4_PREP7.md`
 - P7 C16 closure: `docs/work/GAP08_P7_C16_CLOSURE.md`
+- P7 remainder authorization: `docs/work/GAP08_P7_REMAINDER_AUTHORIZATION.md`
 - P7 C16 authorization: `docs/work/GAP08_P7_C16_AUTHORIZATION.md`
 - Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
 - Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
@@ -149,25 +155,33 @@ Pointers：
 
 Current action:
 
-`GAP08-P7-C16-CLOSURE` materializes the independent reviewer PASS.
+`AUTH-P7-REMAINDER-01` authorizes the bounded P7 remainder wave:
 
 ```text
-C16 = ACCEPTED / FROZEN / READ_ONLY
-C16_WEIGHT = 5 / CREDITED
-ACCEPTED_CORRECTION_CORE = 98 / 113
-REMAINING_CORRECTION_CORE = 15 / 113
-C17 = NOT_AUTHORIZED
+C17 -> C19 -> C20 -> C18
+
+C17 = 4
+C19 = 3
+C20 = 3
+C18 = 5
+TOTAL = 15
 ```
 
-After this docs-only closure commit:
+Current accepted correction core remains:
 
-`STOPPED_AWAITING_SEPARATE_C17_AUTHORIZATION_DECISION`
+`98 / 113`
 
-Next governance candidate:
+Runtime/source modification is not effective until the docs-only authorization
+commit is pushed to `master`.
 
-`C17_BOUNDED_AUTHORIZATION_DECISION`
+After push, the exact authorization commit becomes:
 
-This is NOT authorized runtime work.
+`P7_REMAINDER_EXECUTION_BASELINE`
+
+Then execution may begin at C17 only.
+
+P7 full authorization, canonical runtime authorization, broker I/O, migration
+execution and actual PostgreSQL remain denied/not-authorized.
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS

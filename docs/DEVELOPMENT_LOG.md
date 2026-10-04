@@ -19,7 +19,7 @@
 
 ### Milestone and Progress
 
-- Current milestone：P7 C16 accepted/frozen/read-only；correction-core 98/113；next checkpoint is separate C17 bounded authorization decision。
+- Current milestone：P7 remainder architecture frozen and authorized as `C17 -> C19 -> C20 -> C18`；correction-core remains 98/113；runtime/source effectivity begins only after the docs-only authorization commit is pushed。
 - Completed：GAP-03 Execution Lifecycle、G-5 Multi-Strategy Decision Architecture、GAP-06 Position Sizing / Capital Allocation、M0-B、GAP-07（A0/A/B/C/D/E/F/E2/E3）。
 - Pending：broker sync/reconciliation、persistence/recovery、incremental state。
 - Overall V1：40–50%。以 Work Package weight 與 acceptance criteria 評估；不可使用 LOC 或 file count。
@@ -28,6 +28,28 @@
 - 此為 dynamic estimate，不是 deadline；每個 checkpoint / milestone 後重新估算。發現 architecture blocker 或新增 scope 時可上調；已有功能比預期成熟時可下調。
 
 ## Chronological Log
+
+### 2026-10-04 — GAP-08 P7 Remainder Architecture Authorization
+
+- decision：`AUTH-P7-REMAINDER-01 / AUTHORIZE`。
+- architecture spec：`ARCH-P7-REMAINDER-01 / FROZEN`。
+- pre-authorization diff review：PASS。
+- architecture contradiction：NONE。
+- authorization baseline：`6fdbad779749ac61f52ccde32fe3f3ffef591fd4`。
+- authorized bounded wave：`C17 -> C19 -> C20 -> C18`。
+- weights：C17=4、C19=3、C20=3、C18=5，total=15。
+- accepted correction-core remains：98 / 113。
+- remaining correction-core：15 / 113。
+- C16 remains：ACCEPTED / FROZEN / READ_ONLY。
+- runtime/source modification becomes effective only after this docs-only authorization commit is pushed。
+- exact pushed authorization HEAD becomes `P7_REMAINDER_EXECUTION_BASELINE`。
+- full P7 runtime authorization：NOT_AUTHORIZED。
+- canonical runtime authorization：NOT_AUTHORIZED。
+- migration execution：DENIED。
+- actual PostgreSQL：DENIED。
+- broker/Shioaji I/O：DENIED。
+- P8 / P9 / V07：OUT_OF_SCOPE。
+- next after materialization：C17 execution from the exact authorization HEAD。
 
 ### 2026-10-04 — GAP-08 P7 C16 Independent Acceptance Closure
 
