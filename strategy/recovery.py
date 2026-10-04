@@ -666,7 +666,460 @@ def evaluate_completeness_readiness(
     return CompletenessReadiness.READY
 
 
+
+class DecisionPolicyAuthorityClass(str, Enum):
+    """C18 DecisionPolicy authority environment；不得跨環境升格。"""
+
+    TEST = "TEST"
+    SANDBOX = "SANDBOX"
+    PRODUCTION = "PRODUCTION"
+
+
+class BrokerAccountExecutionReadyInput(BaseModel):
+    """C18 只消費既有 W4/C15 readiness；不重新實作 account readiness。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    authority_ref: str
+    ready: bool
+
+    @field_validator("authority_ref", mode="before")
+    @classmethod
+    def _authority_ref(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+
+class StrategyRestoreValidEvidence(BaseModel):
+    """Strategy restore validity 的 exact governing-context consumer evidence。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    evidence_id: str
+    strategy_instance_id: str
+    governing_context: StrategyGoverningContext
+    restore_authority_ref: str
+    valid: bool
+
+    @field_validator(
+        "evidence_id",
+        "strategy_instance_id",
+        "restore_authority_ref",
+        mode="before",
+    )
+    @classmethod
+    def _stable_ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @model_validator(mode="after")
+    def _context_identity(self) -> "StrategyRestoreValidEvidence":
+        if (
+            self.governing_context.strategy_instance_id
+            != self.strategy_instance_id
+        ):
+            raise ValueError(
+                "restore evidence conflicts with StrategyInstance identity"
+            )
+        return self
+
+
+class K520RecoveryEvidenceRef(BaseModel):
+    """C18 僅消費 approved K520/GAP-09 evidence reference；不實作 K520。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    evidence_ref: str
+    strategy_instance_id: str
+    config_version: str
+    config_fingerprint: str
+    implementation_revision: str
+    instrument_id: int = Field(gt=0)
+    timeframe: str
+    authority: StrategyAuthorityRef
+    ready: bool
+
+    @field_validator(
+        "evidence_ref",
+        "strategy_instance_id",
+        "config_version",
+        "config_fingerprint",
+        "implementation_revision",
+        "timeframe",
+        mode="before",
+    )
+    @classmethod
+    def _stable_ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+
+class StrategyTradingReadinessEvaluation(BaseModel):
+    """四層 readiness 中的 StrategyRestoreValid / StrategyTradingReady projection。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    strategy_instance_id: str
+    broker_account_execution_ready: bool
+    strategy_restore_valid: bool
+    strategy_trading_ready: bool
+    decision_policy_version: str | None = None
+    reasons: tuple[str, ...] = ()
+
+    @field_validator(
+        "strategy_instance_id",
+        mode="before",
+    )
+    @classmethod
+    def _strategy_instance_id(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @field_validator("decision_policy_version", mode="before")
+    @classmethod
+    def _policy_version(cls, value: object) -> object:
+        if value is None:
+            return None
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+
+class DecisionPolicyAuthorityRef(BaseModel):
+    """G / Decision Domain owned policy 的 consumer-facing exact authority ref。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    policy_id: str
+    policy_version: str
+    authority: StrategyAuthorityRef
+    authority_class: DecisionPolicyAuthorityClass
+
+    @field_validator(
+        "policy_id",
+        "policy_version",
+        mode="before",
+    )
+    @classmethod
+    def _stable_ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+
+class RequiredCohortMembershipEvidence(BaseModel):
+    """C18 只消費 authoritative required-membership evidence，不定義 policy business semantics。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    evidence_id: str
+    cohort_id: str
+    policy: DecisionPolicyAuthorityRef
+    required_strategy_instance_ids: tuple[str, ...]
+    currentness_evidence_ref: str
+
+    @field_validator(
+        "evidence_id",
+        "cohort_id",
+        "currentness_evidence_ref",
+        mode="before",
+    )
+    @classmethod
+    def _stable_ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @field_validator(
+        "required_strategy_instance_ids",
+        mode="before",
+    )
+    @classmethod
+    def _required_ids(cls, value: object) -> object:
+        if isinstance(value, (tuple, list)):
+            return tuple(
+                normalize_stable_id(item)
+                for item in value
+            )
+        return value
+
+    @model_validator(mode="after")
+    def _unique_required_members(self) -> "RequiredCohortMembershipEvidence":
+        if (
+            len(set(self.required_strategy_instance_ids))
+            != len(self.required_strategy_instance_ids)
+        ):
+            raise ValueError(
+                "required cohort membership contains duplicate StrategyInstance identity"
+            )
+        return self
+
+
+class DecisionCohortTradingReadinessEvaluation(BaseModel):
+    """C18 authoritative cohort composition result；不是 DecisionPolicy semantic owner。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    cohort_id: str | None = None
+    decision_policy_version: str | None = None
+    decision_cohort_trading_ready: bool
+    required_strategy_instance_ids: tuple[str, ...] = ()
+    missing_strategy_instance_ids: tuple[str, ...] = ()
+    not_ready_strategy_instance_ids: tuple[str, ...] = ()
+    reasons: tuple[str, ...] = ()
+
+    @field_validator(
+        "cohort_id",
+        "decision_policy_version",
+        mode="before",
+    )
+    @classmethod
+    def _optional_ids(cls, value: object) -> object:
+        if value is None:
+            return None
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+
+class StartupCatchUpOutputKind(str, Enum):
+    """Generic startup catch-up 可能產生的 output 類型；不含 R-02 exact causal replay。"""
+
+    HISTORICAL_SIGNAL = "HISTORICAL_SIGNAL"
+    NORMAL_BROKER_BOUND_ORDER_INTENT = "NORMAL_BROKER_BOUND_ORDER_INTENT"
+    NORMAL_MATERIAL_PENDING = "NORMAL_MATERIAL_PENDING"
+    NORMAL_BROKER_SIDE_EFFECT = "NORMAL_BROKER_SIDE_EFFECT"
+    CURRENT_TRADABLE_DECISION = "CURRENT_TRADABLE_DECISION"
+
+
+class StartupCatchUpIsolationEvaluation(BaseModel):
+    """Generic catch-up 永遠位於 recovery isolation；不得直接授權正常 material action。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    output_kind: StartupCatchUpOutputKind
+    recovery_isolated: bool
+    normal_material_action_allowed: bool
+    historical_signal_promotable: bool
+    reason: str
+
+
+def _context_matches_restore(
+    *,
+    context: StrategyGoverningContext,
+    restore: StrategyRestoreValidEvidence,
+) -> bool:
+    return restore.governing_context == context
+
+
+def _k520_evidence_matches_context(
+    *,
+    evidence: K520RecoveryEvidenceRef,
+    context: StrategyGoverningContext,
+) -> bool:
+    return (
+        evidence.strategy_instance_id == context.strategy_instance_id
+        and evidence.config_version == context.config_version
+        and evidence.config_fingerprint == context.config_fingerprint
+        and evidence.implementation_revision == context.implementation_revision
+        and evidence.instrument_id == context.instrument_id
+        and evidence.timeframe == context.timeframe
+    )
+
+
+def evaluate_strategy_trading_readiness(
+    *,
+    instance: StrategyInstance,
+    broker_account: BrokerAccountExecutionReadyInput,
+    restore: StrategyRestoreValidEvidence,
+    transition_state: StrategyGoverningTransitionState | None,
+    transition_authority: StrategyGoverningTransitionAuthority | None,
+    k520_applicability: K520ApplicabilityClassification,
+    k520_evidence: K520RecoveryEvidenceRef | None,
+    completeness_readiness: CompletenessReadiness,
+) -> StrategyTradingReadinessEvaluation:
+    """C18 Strategy readiness composition；BrokerAccount readiness 僅作為 input。"""
+
+    reasons: list[str] = []
+
+    if not broker_account.ready:
+        reasons.append("BrokerAccountExecutionReady is false")
+
+    if not restore.valid:
+        reasons.append("StrategyRestoreValid is false")
+
+    context = restore.governing_context
+
+    if transition_state is None:
+        if not _source_matches_instance(context, instance):
+            reasons.append(
+                "restore governing context is stale or mismatched against C16 authority"
+            )
+    else:
+        if transition_authority is None:
+            reasons.append(
+                "governing transition classification lacks exact transition authority"
+            )
+        elif transition_state is StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS:
+            reasons.append(
+                "governing transition is in progress"
+            )
+        elif transition_state is StrategyGoverningTransitionState.PRE_TRANSITION:
+            if (
+                transition_authority.state
+                is not StrategyGoverningTransitionState.PRE_TRANSITION
+                or not _source_matches_instance(
+                    transition_authority.source_context,
+                    instance,
+                )
+                or not _context_matches_restore(
+                    context=transition_authority.source_context,
+                    restore=restore,
+                )
+            ):
+                reasons.append(
+                    "PRE_TRANSITION readiness does not bind exact source governing context"
+                )
+        elif transition_state is StrategyGoverningTransitionState.POST_TRANSITION:
+            if (
+                transition_authority.state
+                is not StrategyGoverningTransitionState.POST_TRANSITION
+                or not _context_matches_restore(
+                    context=transition_authority.target_context,
+                    restore=restore,
+                )
+            ):
+                reasons.append(
+                    "POST_TRANSITION readiness does not bind exact target governing context"
+                )
+
+    if k520_applicability is K520ApplicabilityClassification.UNKNOWN:
+        reasons.append("K520 applicability is unknown")
+    elif k520_applicability is K520ApplicabilityClassification.REQUIRED:
+        if (
+            k520_evidence is None
+            or not k520_evidence.ready
+            or not _k520_evidence_matches_context(
+                evidence=k520_evidence,
+                context=context,
+            )
+        ):
+            reasons.append(
+                "required K520 recovery evidence is missing, not ready, or mismatched"
+            )
+
+    if completeness_readiness is not CompletenessReadiness.READY:
+        reasons.append("completeness dependency is not ready")
+
+    ready = not reasons
+
+    return StrategyTradingReadinessEvaluation(
+        strategy_instance_id=instance.strategy_instance_id,
+        broker_account_execution_ready=broker_account.ready,
+        strategy_restore_valid=restore.valid,
+        strategy_trading_ready=ready,
+        decision_policy_version=context.decision_policy_version,
+        reasons=tuple(reasons),
+    )
+
+
+def evaluate_decision_cohort_trading_readiness(
+    *,
+    membership: RequiredCohortMembershipEvidence | None,
+    strategy_readiness: tuple[StrategyTradingReadinessEvaluation, ...],
+    runtime_authority_class: DecisionPolicyAuthorityClass,
+) -> DecisionCohortTradingReadinessEvaluation:
+    """C18 cohort readiness 只依 authoritative membership；caller list 不成為 authority。"""
+
+    if membership is None:
+        return DecisionCohortTradingReadinessEvaluation(
+            decision_cohort_trading_ready=False,
+            reasons=(
+                "authoritative governing DecisionPolicyVersion cohort evidence is missing",
+            ),
+        )
+
+    if membership.policy.authority_class is not runtime_authority_class:
+        return DecisionCohortTradingReadinessEvaluation(
+            cohort_id=membership.cohort_id,
+            decision_policy_version=membership.policy.policy_version,
+            decision_cohort_trading_ready=False,
+            required_strategy_instance_ids=(
+                membership.required_strategy_instance_ids
+            ),
+            reasons=(
+                "DecisionPolicy authority class does not match runtime environment",
+            ),
+        )
+
+    by_id: dict[str, StrategyTradingReadinessEvaluation] = {}
+
+    for item in strategy_readiness:
+        if item.strategy_instance_id in by_id:
+            raise ValueError(
+                "duplicate StrategyInstance readiness cannot define cohort membership"
+            )
+        by_id[item.strategy_instance_id] = item
+
+    required = membership.required_strategy_instance_ids
+    missing = tuple(
+        item
+        for item in required
+        if item not in by_id
+    )
+    not_ready = tuple(
+        item
+        for item in required
+        if (
+            item in by_id
+            and (
+                not by_id[item].strategy_trading_ready
+                or by_id[item].decision_policy_version
+                != membership.policy.policy_version
+            )
+        )
+    )
+
+    reasons: list[str] = []
+
+    if missing:
+        reasons.append(
+            "required cohort StrategyInstance membership is missing"
+        )
+
+    if not_ready:
+        reasons.append(
+            "required cohort StrategyInstance is not ready under governing DecisionPolicyVersion"
+        )
+
+    return DecisionCohortTradingReadinessEvaluation(
+        cohort_id=membership.cohort_id,
+        decision_policy_version=membership.policy.policy_version,
+        decision_cohort_trading_ready=not missing and not not_ready,
+        required_strategy_instance_ids=required,
+        missing_strategy_instance_ids=missing,
+        not_ready_strategy_instance_ids=not_ready,
+        reasons=tuple(reasons),
+    )
+
+
+def evaluate_generic_startup_catch_up_output(
+    *,
+    output_kind: StartupCatchUpOutputKind,
+    action_label: str | None = None,
+) -> StartupCatchUpIsolationEvaluation:
+    """Generic startup catch-up 不是 normal/current evaluation；所有 material outputs 保持隔離。"""
+
+    if action_label is not None:
+        normalize_stable_id(action_label)
+
+    return StartupCatchUpIsolationEvaluation(
+        output_kind=output_kind,
+        recovery_isolated=True,
+        normal_material_action_allowed=False,
+        historical_signal_promotable=False,
+        reason=(
+            "generic startup catch-up output remains recovery-isolated; "
+            "normal material action requires a later current evaluation "
+            "after StrategyTradingReady and DecisionCohortTradingReady"
+        ),
+    )
+
+
 __all__ = [
+    "BrokerAccountExecutionReadyInput",
+    "CompletenessAuthorityClass",
+    "DecisionCohortTradingReadinessEvaluation",
+    "DecisionPolicyAuthorityClass",
+    "DecisionPolicyAuthorityRef",
     "CompletenessAuthorityClass",
     "CompletenessEvidenceAuthority",
     "CompletenessReadiness",
@@ -674,14 +1127,23 @@ __all__ = [
     "CompletenessRequirementClassification",
     "K520ApplicabilityClassification",
     "K520ApplicabilityEvidence",
+    "K520RecoveryEvidenceRef",
+    "RequiredCohortMembershipEvidence",
+    "StartupCatchUpIsolationEvaluation",
+    "StartupCatchUpOutputKind",
     "StrategyAuthorityRef",
     "StrategyDurableStateReference",
     "StrategyGoverningContext",
     "StrategyGoverningTransitionAuthority",
     "StrategyGoverningTransitionIntegrityError",
     "StrategyGoverningTransitionState",
+    "StrategyRestoreValidEvidence",
     "StrategyStateSchemaReference",
+    "StrategyTradingReadinessEvaluation",
     "evaluate_completeness_readiness",
+    "evaluate_decision_cohort_trading_readiness",
+    "evaluate_generic_startup_catch_up_output",
     "evaluate_governing_transition",
     "evaluate_k520_applicability",
+    "evaluate_strategy_trading_readiness",
 ]

@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from typing import Protocol, runtime_checkable
 
-from strategy.recovery import StrategyGoverningTransitionAuthority
+from strategy.recovery import (
+    RequiredCohortMembershipEvidence,
+    StrategyGoverningTransitionAuthority,
+)
 
 
 class StrategyTransitionPersistenceIntegrityError(ValueError):
@@ -39,7 +42,21 @@ class StrategyGoverningTransitionRepository(Protocol):
         ...
 
 
+
+@runtime_checkable
+class DecisionCohortAuthorityProvider(Protocol):
+    """G / Decision Domain authority 的 C18 consumer-facing provider seam。"""
+
+    def resolve_required_membership(
+        self,
+        *,
+        cohort_id: str,
+        policy_version: str,
+    ) -> RequiredCohortMembershipEvidence | None:
+        ...
+
 __all__ = [
+    "DecisionCohortAuthorityProvider",
     "StrategyGoverningTransitionRepository",
     "StrategyTransitionHeadConflictError",
     "StrategyTransitionPersistenceIntegrityError",
