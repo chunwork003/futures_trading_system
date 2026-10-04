@@ -1,0 +1,13 @@
+schema_version: automation.delta.v1
+run_id: RUN-AUTO-IMP-001-AUTH-REBIND-01
+fixed:
+  - current Program hash binding
+  - package-level AuthorizationLifecycleV1 exact binding
+  - authorization candidate ambiguity
+unchanged:
+  - authorization remains NOT_AUTHORIZED
+  - implementation remains NOT_STARTED
+  - CODEX execution remains NOT_AUTHORIZED
+  - Runtime Authorization remains NOT_AUTHORIZED
+remaining:
+  - explicit AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_AUTHORIZATION_DECISION

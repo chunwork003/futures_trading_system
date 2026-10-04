@@ -188,8 +188,15 @@ hard_stops:
 
 authorization_compilation:
   wave_id: W1_FOUNDATION_SHADOW
-  authorization_id: AUTH-AUTO-IMP-W1-01
-  authorization_revision: "1"
-  authorization_state: NOT_AUTHORIZED
-  candidate_path: automation/authorizations/AUTH-AUTO-IMP-W1-01.v1.yaml
-  next_route: AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION
+  historical_wave_candidate:
+    authorization_id: AUTH-AUTO-IMP-W1-01
+    authorization_revision: "1"
+    disposition: SUPERSEDED_CANDIDATE_NON_AUTHORITY
+  current_package_candidate:
+    work_package_id: AUTO-IMP-001
+    authorization_id: AUTH-AUTO-IMP-001-01
+    authorization_revision: "1"
+    authorization_state: NOT_AUTHORIZED
+    candidate_path: automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml
+  automatic_next_package_progression: DENIED
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_AUTHORIZATION_DECISION

@@ -340,4 +340,19 @@ NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION
 
 Program acceptance does not authorize any implementation package. The W1 authorization artifact is a compiled governance candidate only. Any effective transition to AUTHORIZED requires an explicit Automation Governance Authority decision against the exact revision/hash/scope binding and does not grant Runtime Authorization, broker I/O, migration execution, LIVE, production activation, Level 3B/3C/4/5 activation or next-mainline-GAP authority.
 
+
+### W1 Authorization Candidate RF01 Rebind
+
+```text
+OLD_W1_WAVE_CANDIDATE = AUTH-AUTO-IMP-W1-01
+OLD_DISPOSITION = SUPERSEDED_CANDIDATE_NON_AUTHORITY
+CURRENT_PACKAGE = AUTO-IMP-001
+CURRENT_AUTHORIZATION_CANDIDATE = AUTH-AUTO-IMP-001-01
+CURRENT_AUTHORIZATION_STATE = NOT_AUTHORIZED
+PLANNING_BASELINE = e96876de83da3282fb2a5a63b76b9d73c14937ad
+NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_AUTHORIZATION_DECISION
+```
+
+The W1 wave candidate was not transitioned to AUTHORIZED because its Program hash no longer matched the current Program artifact after review materialization and it did not expose the frozen package-level exact-binding field set. The replacement candidate binds one work package exactly and keeps automatic progression denied.
+
 <!-- AUTOMATION_MASTER_V1_1_END -->

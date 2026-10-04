@@ -9,7 +9,7 @@ compiled_program:
   program_id: AUTO-IMP-PROGRAM-V1
   program_revision: "1"
   path: automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml
-  sha256: "e90cb4a872cd7a4d0529fc9fd56d14360bcd94a531217ffa2c43fc8d67a238ed"
+  sha256: "f23d52fd22febf4a6c93b07e6e7e21a49cdafffa8068c983257324953ba4bd7f"
   source_freeze_head_sha: "52921ae3f205ef2eec4306e84ff92d4cd9cdeab3"
   status: ACCEPTED_FOR_IMPLEMENTATION_PLANNING
   implementation_authorized: false
@@ -18,15 +18,20 @@ compiled_program:
   next_route: AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_COMPILATION
 
 compiled_authorization_candidate:
-  authorization_id: AUTH-AUTO-IMP-W1-01
+  authorization_id: AUTH-AUTO-IMP-001-01
   authorization_revision: "1"
-  path: automation/authorizations/AUTH-AUTO-IMP-W1-01.v1.yaml
-  sha256: "4af00c718392319eb57531feb5a686a2ef792e2cd4d820aff2f5dec70da4f2aa"
-  wave_id: W1_FOUNDATION_SHADOW
+  path: automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml
+  sha256: "010c0f85226f7fb56b076abdd9f529b92292fa924956c9de1f5424017312224e"
+  work_package_id: AUTO-IMP-001
   authorization_state: NOT_AUTHORIZED
   document_status: COMPILED_CANDIDATE_PENDING_DECISION
-  source_review_head_sha: "4b78a84db3ed4b7277adc84548e37147bae2ef7f"
-  next_route: AUTOMATION_IMPLEMENTATION_W1_AUTHORIZATION_DECISION
+  planning_baseline_sha: "e96876de83da3282fb2a5a63b76b9d73c14937ad"
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_AUTHORIZATION_DECISION
+
+superseded_authorization_candidates:
+  - authorization_id: AUTH-AUTO-IMP-W1-01
+    authorization_revision: "1"
+    disposition: SUPERSEDED_CANDIDATE_NON_AUTHORITY
 
 freeze:
   state: FROZEN
@@ -53,12 +58,12 @@ canonical_current_state:
 governance_document:
   path: docs/AI_AUTOMATION_OPERATING_MODEL.md
   version: "1.1"
-  sha256: "875f6422be63bb5ab5790245c9ba924102951094cd85e8fb7d23c2c8609fcd57"
+  sha256: "62bbf3644048f0fd697231c4f6b84aa7af39899ad0e8248d101b9734c341bdbe"
 
 agent_reentry:
   path: AGENTS.md
   protocol_version: "1.0"
-  sha256: "86638b3170c11544338c0c91ede6d11cb89862a97fef81495560afbdc1a4ce5b"
+  sha256: "c2db889b94564b1cc771d1d4cd768d24d68010fd56b8e3b3e72445aa7c3cb1d1"
 
 policies:
   authorization_lifecycle:
@@ -90,7 +95,9 @@ activation:
   implementation_program_review_required: false
   implementation_program_review_passed: true
   w1_authorization_candidate_compiled: true
-  w1_authorization_effective: false
+  w1_wave_candidate_superseded: true
+  auto_imp_001_authorization_candidate_compiled: true
+  auto_imp_001_authorization_effective: false
   implementation_started: false
   level_3b_enabled: false
   level_3c_enabled: false

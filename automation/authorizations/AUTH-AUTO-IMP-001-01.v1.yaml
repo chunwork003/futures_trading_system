@@ -1,0 +1,76 @@
+schema_version: automation.authorization.v1
+authorization_id: AUTH-AUTO-IMP-001-01
+authorization_revision: "1"
+document_status: COMPILED_CANDIDATE_PENDING_DECISION
+authorization_state: NOT_AUTHORIZED
+source_candidate_head_sha: "e96876de83da3282fb2a5a63b76b9d73c14937ad"
+
+exact_binding:
+  work_package_id: AUTO-IMP-001
+  work_package_revision: "1"
+  architecture_id: DEVELOPMENT-AUTOMATION-MASTER
+  architecture_revision: "1.1"
+  architecture_bundle_hash: "d6b2c5b4e8ff95a337c4c9982ed03a64e1cf4ea4c03f250857e98d37e3df6cfa"
+  planning_baseline_sha: "e96876de83da3282fb2a5a63b76b9d73c14937ad"
+  scope_digest: "a2d7fc7736c9fe44d1ab6b02d5c793668c62d68c40b3c397187cd5c390fcd0f8"
+  side_effect_class: AUTOMATION_TOOLING_SOURCE_MODIFICATION_ONLY
+  governance_effect: BOUNDED_AUTOMATION_IMPLEMENTATION_SOURCE_MODIFICATION_ONLY
+  allowed_executor_profile: CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
+  implementation_correction_budget: 2
+  review_barrier: PACKAGE_COMPLETION_EVIDENCE_THEN_W1_WAVE_FINAL_INDEPENDENT_REVIEW
+
+program_binding:
+  program_id: AUTO-IMP-PROGRAM-V1
+  program_revision: "1"
+  program_sha256: "e90cb4a872cd7a4d0529fc9fd56d14360bcd94a531217ffa2c43fc8d67a238ed"
+
+package_binding:
+  package_sha256: "d005d7f4090375966b5d0c1284339cd89b6622d6c3415b2f4bf1b7e7d3027606"
+  p90_tokens: 36000
+  planned_write_scope:
+    - "automation/engine/contracts.py"
+    - "automation/engine/yaml_io.py"
+    - "tests/automation/test_contracts.py"
+
+execution_policy:
+  manual_trigger_only: true
+  automatic_dispatch: DENIED
+  automatic_next_package_progression: DENIED
+  one_runtime_writer_required: true
+  fresh_reentry_before_execution: true
+  fresh_authority_resolution_before_execution: true
+  fresh_quota_resolution_before_execution: true
+
+side_effect_envelope:
+  automation_source_modification: ALLOW_ONLY_AFTER_AUTHORIZED
+  automation_test_execution: ALLOW_ONLY_AFTER_AUTHORIZED
+  product_runtime_source_modification: DENY
+  db_environment_access: DENY
+  migration_creation: DENY
+  migration_execution: DENY
+  broker_network: DENY
+  paper_broker_io: DENY
+  production_broker_io: DENY
+  credential_material: DENY
+  runtime_operation: DENY
+  live: DENY
+  production_activation: DENY
+  next_mainline_gap_activation: DENY
+
+quota_gate:
+  policy: QuotaAdmissionPolicyV1
+  default_percentile: P90
+  fit: NOT_EVALUATED_NO_FRESH_QUOTA_SNAPSHOT
+  five_hour_fit_required: true
+  weekly_fit_required: true
+  reserve_subtraction_required: true
+  reset_timestamp_is_proof: false
+
+telemetry_gate:
+  automated_dispatch_without_measurable_channel: DENY
+  ambiguous_binding: STOP_TELEMETRY_AMBIGUOUS_BINDING
+
+decision:
+  required: true
+  authority_owner: Automation_Governance_Authority
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_AUTHORIZATION_DECISION
