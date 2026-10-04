@@ -255,3 +255,75 @@ def test_non_authoritative_shortcuts_cannot_enter_c20_contract(
                 forbidden: True,
             }
         )
+
+
+def _rf01_context():
+    from strategy.instance import CanonicalInstrumentBindingProvenance
+    from strategy.recovery import StrategyGoverningContext, StrategyStateSchemaReference
+
+    return StrategyGoverningContext(
+        strategy_instance_id="SI-C20",
+        strategy_id="EMA_CROSS",
+        config_authority=StrategyAuthorityRef(
+            authority_id="STRATEGY-CONFIG",
+            authority_version="C1",
+        ),
+        config_version="C1",
+        config_fingerprint="f" * 64,
+        implementation_revision="1.0.0",
+        instrument_id=101,
+        instrument_binding_provenance=CanonicalInstrumentBindingProvenance(
+            instrument_id=101,
+            authority_id="CANONICAL-INSTRUMENT-PROVISIONING",
+            authority_version="V1",
+            reference_id="BIND-C20",
+        ),
+        timeframe="1m",
+        decision_policy_version="DP-1",
+        state_schema_reference=StrategyStateSchemaReference(
+            strategy_id="EMA_CROSS",
+            schema_version=1,
+        ),
+    )
+
+
+def test_rf01_c20_receipt_preserves_environment_and_current_world() -> None:
+    from strategy.recovery import evaluate_completeness_readiness_receipt
+
+    receipt = evaluate_completeness_readiness_receipt(
+        governing_context=_rf01_context(),
+        requirement=requirement(),
+        evidence=evidence(),
+        runtime_authority_class=CompletenessAuthorityClass.PRODUCTION,
+    )
+    assert receipt.readiness is CompletenessReadiness.READY
+    assert receipt.evidence.evaluated_world_ref == receipt.evidence.current_world_ref
+
+    test_receipt = evaluate_completeness_readiness_receipt(
+        governing_context=_rf01_context(),
+        requirement=requirement(authority_class=CompletenessAuthorityClass.TEST),
+        evidence=evidence(authority_class=CompletenessAuthorityClass.TEST),
+        runtime_authority_class=CompletenessAuthorityClass.TEST,
+    )
+    assert test_receipt.readiness is CompletenessReadiness.READY
+    assert test_receipt.runtime_authority_class is CompletenessAuthorityClass.TEST
+
+
+def test_rf01_c20_receipt_wrong_consumer_or_stale_world_is_not_ready() -> None:
+    from strategy.recovery import evaluate_completeness_readiness_receipt
+
+    wrong = evaluate_completeness_readiness_receipt(
+        governing_context=_rf01_context(),
+        requirement=requirement(),
+        evidence=evidence(consumer_ref="STRATEGY-INSTANCE:OTHER"),
+        runtime_authority_class=CompletenessAuthorityClass.PRODUCTION,
+    )
+    assert wrong.readiness is CompletenessReadiness.NOT_READY
+
+    stale = evaluate_completeness_readiness_receipt(
+        governing_context=_rf01_context(),
+        requirement=requirement(),
+        evidence=evidence(current_world_ref="WORLD:NEWER"),
+        runtime_authority_class=CompletenessAuthorityClass.PRODUCTION,
+    )
+    assert stale.readiness is CompletenessReadiness.NOT_READY

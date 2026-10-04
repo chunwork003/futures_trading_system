@@ -183,3 +183,77 @@ def test_non_mor1_frontier_is_rejected_as_noncanonical_authority() -> None:
         evidence(
             governing_observation_frontier_revision_id="BAR-1",
         )
+
+
+def test_rf01_c19_receipt_is_exact_bound_to_effective_governing_context() -> None:
+    from strategy.recovery import (
+        StrategyGoverningContext,
+        StrategyStateSchemaReference,
+        evaluate_k520_applicability_receipt,
+    )
+
+    item = instance()
+    context = StrategyGoverningContext(
+        strategy_instance_id=item.strategy_instance_id,
+        strategy_id=item.strategy_id,
+        config_authority=StrategyAuthorityRef(
+            authority_id="STRATEGY-CONFIG",
+            authority_version="C1",
+        ),
+        config_version=item.config_version,
+        config_fingerprint=item.config_fingerprint,
+        implementation_revision=item.implementation_revision,
+        instrument_id=item.instrument_id,
+        instrument_binding_provenance=item.instrument_binding_provenance,
+        timeframe=item.timeframe,
+        decision_policy_version="DP-1",
+        state_schema_reference=StrategyStateSchemaReference(
+            strategy_id=item.strategy_id,
+            schema_version=1,
+        ),
+    )
+    receipt = evaluate_k520_applicability_receipt(
+        governing_context=context,
+        evidence=evidence(),
+    )
+    assert (
+        receipt.classification
+        is K520ApplicabilityClassification.NOT_APPLICABLE_PROVEN
+    )
+    assert receipt.governing_context == context
+
+
+def test_rf01_post_target_context_rejects_source_world_evidence() -> None:
+    from strategy.recovery import (
+        StrategyGoverningContext,
+        StrategyStateSchemaReference,
+        evaluate_k520_applicability_receipt,
+    )
+
+    item = instance()
+    target = StrategyGoverningContext(
+        strategy_instance_id=item.strategy_instance_id,
+        strategy_id=item.strategy_id,
+        config_authority=StrategyAuthorityRef(
+            authority_id="STRATEGY-CONFIG",
+            authority_version="C2",
+        ),
+        config_version="C2",
+        config_fingerprint=config_fingerprint(
+            {"symbol": "TX", "timeframe": "1m", "mode": "target"}
+        ),
+        implementation_revision=item.implementation_revision,
+        instrument_id=item.instrument_id,
+        instrument_binding_provenance=item.instrument_binding_provenance,
+        timeframe=item.timeframe,
+        decision_policy_version="DP-2",
+        state_schema_reference=StrategyStateSchemaReference(
+            strategy_id=item.strategy_id,
+            schema_version=2,
+        ),
+    )
+    receipt = evaluate_k520_applicability_receipt(
+        governing_context=target,
+        evidence=evidence(),
+    )
+    assert receipt.classification is K520ApplicabilityClassification.UNKNOWN

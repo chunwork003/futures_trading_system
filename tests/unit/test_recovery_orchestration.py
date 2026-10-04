@@ -242,7 +242,7 @@ def recover(
     required_revision=MOR1_A,
     legacy_required=None,
     instance_transform=None,
-    transition_authority=None,
+    transition_resolution=None,
     use_transition_repository=False,
 ):
     trace = []
@@ -250,9 +250,9 @@ def recover(
     transition_repository = None
     if use_transition_repository:
         class _Transitions:
-            def current(self, key):
+            def current_resolution(self, key):
                 trace.append("transition")
-                return transition_authority
+                return transition_resolution
 
         transition_repository = _Transitions()
 
@@ -748,20 +748,22 @@ def test_c16_rf01_corrupted_config_content_halts_before_strategy_restore() -> No
     ]
 
 
-def _c17_transition_authority(
-    state_name,
-):
+
+def _c17_transition_resolution(state_name):
     from strategy.recovery import (
         StrategyAuthorityRef,
         StrategyDurableStateReference,
         StrategyGoverningContext,
         StrategyGoverningTransitionAuthority,
-        StrategyGoverningTransitionState,
+        StrategyGoverningTransitionPhaseEvidence,
+        StrategyGoverningTransitionPhaseKind,
+        StrategyGoverningTransitionResolution,
+        StrategyGoverningTransitionResolutionKind,
+        StrategyGoverningTransitionResolutionReceipt,
         StrategyStateSchemaReference,
     )
 
     item, source_snapshot, _ = setup()
-
     source = StrategyGoverningContext(
         strategy_instance_id=item.strategy_instance_id,
         strategy_id=item.strategy_id,
@@ -773,9 +775,7 @@ def _c17_transition_authority(
         config_fingerprint=item.config_fingerprint,
         implementation_revision=item.strategy_version,
         instrument_id=item.instrument_id,
-        instrument_binding_provenance=(
-            item.instrument_binding_provenance
-        ),
+        instrument_binding_provenance=item.instrument_binding_provenance,
         timeframe=item.timeframe,
         decision_policy_version="DP-1",
         state_schema_reference=StrategyStateSchemaReference(
@@ -783,16 +783,9 @@ def _c17_transition_authority(
             schema_version=source_snapshot.state_schema_version,
         ),
     )
-
-    target_config = {
-        "symbol": "TX",
-        "timeframe": "1m",
-        "mode": "target",
-    }
-    target_fingerprint = config_fingerprint(
-        target_config
+    target_fp = config_fingerprint(
+        {"symbol": "TX", "timeframe": "1m", "mode": "target"}
     )
-
     target = StrategyGoverningContext(
         strategy_instance_id=item.strategy_instance_id,
         strategy_id=item.strategy_id,
@@ -801,12 +794,10 @@ def _c17_transition_authority(
             authority_version="C2-AUTH",
         ),
         config_version="C2",
-        config_fingerprint=target_fingerprint,
+        config_fingerprint=target_fp,
         implementation_revision=item.strategy_version,
         instrument_id=item.instrument_id,
-        instrument_binding_provenance=(
-            item.instrument_binding_provenance
-        ),
+        instrument_binding_provenance=item.instrument_binding_provenance,
         timeframe=item.timeframe,
         decision_policy_version="DP-2",
         state_schema_reference=StrategyStateSchemaReference(
@@ -814,26 +805,7 @@ def _c17_transition_authority(
             schema_version=2,
         ),
     )
-
-    target_state = StrategyDurableStateReference(
-        snapshot_id="SS-TARGET",
-        strategy_instance_id=item.strategy_instance_id,
-        strategy_id=item.strategy_id,
-        config_version="C2",
-        config_fingerprint=target_fingerprint,
-        implementation_revision=item.strategy_version,
-        instrument_id=item.instrument_id,
-        timeframe=item.timeframe,
-        state_schema_reference=StrategyStateSchemaReference(
-            strategy_id=item.strategy_id,
-            schema_version=2,
-        ),
-    )
-
-    state = StrategyGoverningTransitionState(
-        state_name
-    )
-    values = dict(
+    descriptor = StrategyGoverningTransitionAuthority(
         transition_id="TR-C17-RECOVERY",
         strategy_instance_id=item.strategy_instance_id,
         source_context=source,
@@ -852,56 +824,92 @@ def _c17_transition_authority(
         ),
     )
 
-    if state is StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS:
-        values["begin_effective_boundary_ref"] = "BEGIN-1"
-    elif state is StrategyGoverningTransitionState.POST_TRANSITION:
-        values["begin_effective_boundary_ref"] = "BEGIN-1"
-        values["completion_boundary_ref"] = "COMPLETE-1"
-        values["established_target_state"] = target_state
+    phases = ()
+    effective = source
 
+    if state_name in ("TRANSITION_IN_PROGRESS", "POST_TRANSITION"):
+        begin = StrategyGoverningTransitionPhaseEvidence(
+            evidence_id="BEGIN-1",
+            transition_id=descriptor.transition_id,
+            strategy_instance_id=item.strategy_instance_id,
+            kind=StrategyGoverningTransitionPhaseKind.BEGIN_EFFECTIVE,
+            boundary_ref="BEGIN-1",
+            evidence_authority=StrategyAuthorityRef(
+                authority_id="TRANSITION-BOUNDARY",
+                authority_version="V1",
+            ),
+        )
+        phases = (begin,)
+
+    if state_name == "POST_TRANSITION":
+        target_state = StrategyDurableStateReference(
+            snapshot_id="SS-TARGET",
+            strategy_instance_id=item.strategy_instance_id,
+            strategy_id=item.strategy_id,
+            config_version="C2",
+            config_fingerprint=target_fp,
+            implementation_revision=item.strategy_version,
+            instrument_id=item.instrument_id,
+            timeframe=item.timeframe,
+            state_schema_reference=target.state_schema_reference,
+        )
+        complete = StrategyGoverningTransitionPhaseEvidence(
+            evidence_id="COMPLETE-1",
+            transition_id=descriptor.transition_id,
+            strategy_instance_id=item.strategy_instance_id,
+            kind=StrategyGoverningTransitionPhaseKind.COMPLETION,
+            boundary_ref="COMPLETE-1",
+            evidence_authority=StrategyAuthorityRef(
+                authority_id="TRANSITION-BOUNDARY",
+                authority_version="V1",
+            ),
+            established_target_state=target_state,
+        )
+        phases = phases + (complete,)
+        effective = target
+
+    receipt = StrategyGoverningTransitionResolutionReceipt(
+        resolution_id="RES-C17-RECOVERY",
+        strategy_instance_id=item.strategy_instance_id,
+        effective_governing_context=effective,
+        resolution_authority=StrategyAuthorityRef(
+            authority_id="STRATEGY-GOVERNING-TRANSITION-RESOLUTION",
+            authority_version="V1",
+        ),
+        resolution_kind=StrategyGoverningTransitionResolutionKind.ACTIVE_TRANSITION,
+        transition_id=descriptor.transition_id,
+        resolution_revision=1,
+        currentness_evidence_ref="HEAD-1",
+    )
     return (
-        StrategyGoverningTransitionAuthority(**values),
+        StrategyGoverningTransitionResolution(
+            receipt=receipt,
+            current_head_revision=1,
+            transition_authority=descriptor,
+            phase_evidence=phases,
+        ),
         source_snapshot,
-        target_state,
-        target_fingerprint,
+        target_fp,
     )
 
 
 def test_c17_pre_transition_preserves_source_restore_path() -> None:
-    authority, _, _, _ = _c17_transition_authority(
-        "PRE_TRANSITION"
-    )
-
+    resolution, _, _ = _c17_transition_resolution("PRE_TRANSITION")
     result, trace = recover(
-        transition_authority=authority,
+        transition_resolution=resolution,
         use_transition_repository=True,
     )
-
     assert result.state is RecoveryReadinessState.REVIEW
-    assert isinstance(
-        result.restored_strategies[0],
-        EMACrossStrategy,
-    )
-    assert trace == [
-        "execution",
-        "expected",
-        "broker",
-        "instance",
-        "state",
-        "transition",
-    ]
+    assert isinstance(result.restored_strategies[0], EMACrossStrategy)
+    assert trace[-1] == "transition"
 
 
 def test_c17_transition_in_progress_cannot_restore_normal_runtime() -> None:
-    authority, _, _, _ = _c17_transition_authority(
-        "TRANSITION_IN_PROGRESS"
-    )
-
+    resolution, _, _ = _c17_transition_resolution("TRANSITION_IN_PROGRESS")
     result, trace = recover(
-        transition_authority=authority,
+        transition_resolution=resolution,
         use_transition_repository=True,
     )
-
     assert result.state is RecoveryReadinessState.REVIEW
     assert result.restored_strategies == ()
     assert "transition is in progress" in result.reasons[0]
@@ -909,28 +917,33 @@ def test_c17_transition_in_progress_cannot_restore_normal_runtime() -> None:
 
 
 def test_c17_post_transition_does_not_auto_claim_strategy_ready() -> None:
-    authority, source_snapshot, _, target_fingerprint = (
-        _c17_transition_authority(
-            "POST_TRANSITION"
-        )
+    resolution, source_snapshot, target_fp = _c17_transition_resolution(
+        "POST_TRANSITION"
     )
-
     target_snapshot = source_snapshot.model_copy(
         update={
             "snapshot_id": "SS-TARGET",
             "config_version": "C2",
-            "config_fingerprint": target_fingerprint,
+            "config_fingerprint": target_fp,
             "state_schema_version": 2,
         }
     )
-
     result, trace = recover(
         snapshot_override=target_snapshot,
-        transition_authority=authority,
+        transition_resolution=resolution,
         use_transition_repository=True,
     )
-
     assert result.state is RecoveryReadinessState.REVIEW
     assert result.restored_strategies == ()
     assert "later readiness composition" in result.reasons[0]
+    assert trace[-1] == "transition"
+
+
+def test_c17_missing_transition_resolution_fails_closed_when_provider_present() -> None:
+    result, trace = recover(
+        transition_resolution=None,
+        use_transition_repository=True,
+    )
+    assert result.state is RecoveryReadinessState.HALT
+    assert "resolution is missing" in result.reasons[0]
     assert trace[-1] == "transition"

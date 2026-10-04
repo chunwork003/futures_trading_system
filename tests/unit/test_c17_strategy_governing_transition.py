@@ -14,8 +14,14 @@ from strategy.recovery import (
     StrategyGoverningContext,
     StrategyGoverningTransitionAuthority,
     StrategyGoverningTransitionIntegrityError,
+    StrategyGoverningTransitionPhaseEvidence,
+    StrategyGoverningTransitionPhaseKind,
+    StrategyGoverningTransitionResolution,
+    StrategyGoverningTransitionResolutionKind,
+    StrategyGoverningTransitionResolutionReceipt,
     StrategyGoverningTransitionState,
     StrategyStateSchemaReference,
+    classify_governing_transition,
     evaluate_governing_transition,
 )
 
@@ -44,99 +50,38 @@ def source_instance() -> StrategyInstance:
     )
 
 
-def context(
-    *,
-    config_version: str,
-    config_fingerprint_value: str,
-    policy_version: str,
-    schema_version: int,
-) -> StrategyGoverningContext:
+def context(version: str, fingerprint: str, policy: str, schema: int):
     return StrategyGoverningContext(
         strategy_instance_id="SI-C17",
         strategy_id="EMA_CROSS",
         config_authority=StrategyAuthorityRef(
             authority_id="STRATEGY-CONFIG",
-            authority_version=config_version,
+            authority_version=version,
         ),
-        config_version=config_version,
-        config_fingerprint=config_fingerprint_value,
+        config_version=version,
+        config_fingerprint=fingerprint,
         implementation_revision="1.0.0",
         instrument_id=101,
         instrument_binding_provenance=binding(),
         timeframe="1m",
-        decision_policy_version=policy_version,
+        decision_policy_version=policy,
         state_schema_reference=StrategyStateSchemaReference(
             strategy_id="EMA_CROSS",
-            schema_version=schema_version,
+            schema_version=schema,
         ),
     )
 
 
-def state_ref(
-    *,
-    snapshot_id: str,
-    config_version: str,
-    config_fingerprint_value: str,
-    schema_version: int,
-) -> StrategyDurableStateReference:
-    return StrategyDurableStateReference(
-        snapshot_id=snapshot_id,
-        strategy_instance_id="SI-C17",
-        strategy_id="EMA_CROSS",
-        config_version=config_version,
-        config_fingerprint=config_fingerprint_value,
-        implementation_revision="1.0.0",
-        instrument_id=101,
-        timeframe="1m",
-        state_schema_reference=StrategyStateSchemaReference(
-            strategy_id="EMA_CROSS",
-            schema_version=schema_version,
-        ),
+def descriptor():
+    item = source_instance()
+    target_fp = config_fingerprint(
+        {"symbol": "TX", "timeframe": "1m", "mode": "target"}
     )
-
-
-def authority(
-    state: StrategyGoverningTransitionState,
-    *,
-    established_during_progress: bool = False,
-) -> tuple[
-    StrategyGoverningTransitionAuthority,
-    StrategyDurableStateReference,
-    StrategyDurableStateReference,
-]:
-    instance = source_instance()
-    source = context(
-        config_version="C1",
-        config_fingerprint_value=instance.config_fingerprint,
-        policy_version="DP-1",
-        schema_version=1,
-    )
-    target_config = {"symbol": "TX", "timeframe": "1m", "mode": "target"}
-    target_fingerprint = config_fingerprint(target_config)
-    target = context(
-        config_version="C2",
-        config_fingerprint_value=target_fingerprint,
-        policy_version="DP-2",
-        schema_version=2,
-    )
-    source_state = state_ref(
-        snapshot_id="SS-SOURCE",
-        config_version="C1",
-        config_fingerprint_value=instance.config_fingerprint,
-        schema_version=1,
-    )
-    target_state = state_ref(
-        snapshot_id="SS-TARGET",
-        config_version="C2",
-        config_fingerprint_value=target_fingerprint,
-        schema_version=2,
-    )
-
-    values = dict(
+    return StrategyGoverningTransitionAuthority(
         transition_id="TR-C17",
-        strategy_instance_id="SI-C17",
-        source_context=source,
-        target_context=target,
+        strategy_instance_id=item.strategy_instance_id,
+        source_context=context("C1", item.config_fingerprint, "DP-1", 1),
+        target_context=context("C2", target_fp, "DP-2", 2),
         compatibility_authority=StrategyAuthorityRef(
             authority_id="STRATEGY-COMPATIBILITY",
             authority_version="V1",
@@ -151,147 +96,186 @@ def authority(
         ),
     )
 
-    if state is StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS:
-        values["begin_effective_boundary_ref"] = "BOUNDARY-BEGIN-1"
-        if established_during_progress:
-            values["established_target_state"] = target_state
-    elif state is StrategyGoverningTransitionState.POST_TRANSITION:
-        values["begin_effective_boundary_ref"] = "BOUNDARY-BEGIN-1"
-        values["completion_boundary_ref"] = "BOUNDARY-COMPLETE-1"
-        values["established_target_state"] = target_state
 
-    return (
-        StrategyGoverningTransitionAuthority(**values),
-        source_state,
-        target_state,
+def state(ctx: StrategyGoverningContext, snapshot_id: str):
+    return StrategyDurableStateReference(
+        snapshot_id=snapshot_id,
+        strategy_instance_id=ctx.strategy_instance_id,
+        strategy_id=ctx.strategy_id,
+        config_version=ctx.config_version,
+        config_fingerprint=ctx.config_fingerprint,
+        implementation_revision=ctx.implementation_revision,
+        instrument_id=ctx.instrument_id,
+        timeframe=ctx.timeframe,
+        state_schema_reference=ctx.state_schema_reference,
     )
 
 
-def test_c17_has_exactly_three_conceptual_states() -> None:
-    assert tuple(
-        item.value for item in StrategyGoverningTransitionState
-    ) == (
+def begin(item=None, *, evidence_id="EV-BEGIN", boundary="BEGIN-1"):
+    item = item or descriptor()
+    return StrategyGoverningTransitionPhaseEvidence(
+        evidence_id=evidence_id,
+        transition_id=item.transition_id,
+        strategy_instance_id=item.strategy_instance_id,
+        kind=StrategyGoverningTransitionPhaseKind.BEGIN_EFFECTIVE,
+        boundary_ref=boundary,
+        evidence_authority=StrategyAuthorityRef(
+            authority_id="TRANSITION-BOUNDARY",
+            authority_version="V1",
+        ),
+    )
+
+
+def completion(item=None, *, evidence_id="EV-COMPLETE", boundary="COMPLETE-1"):
+    item = item or descriptor()
+    return StrategyGoverningTransitionPhaseEvidence(
+        evidence_id=evidence_id,
+        transition_id=item.transition_id,
+        strategy_instance_id=item.strategy_instance_id,
+        kind=StrategyGoverningTransitionPhaseKind.COMPLETION,
+        boundary_ref=boundary,
+        evidence_authority=StrategyAuthorityRef(
+            authority_id="TRANSITION-BOUNDARY",
+            authority_version="V1",
+        ),
+        established_target_state=state(item.target_context, "SS-TARGET"),
+    )
+
+
+def receipt(item, kind, revision=1, *, effective=None):
+    return StrategyGoverningTransitionResolutionReceipt(
+        resolution_id=f"RES-{revision}",
+        strategy_instance_id=item.strategy_instance_id,
+        effective_governing_context=effective or item.source_context,
+        resolution_authority=StrategyAuthorityRef(
+            authority_id="STRATEGY-GOVERNING-TRANSITION-RESOLUTION",
+            authority_version="V1",
+        ),
+        resolution_kind=kind,
+        transition_id=(
+            item.transition_id
+            if kind is StrategyGoverningTransitionResolutionKind.ACTIVE_TRANSITION
+            else None
+        ),
+        resolution_revision=revision,
+        currentness_evidence_ref=f"HEAD-{revision}",
+    )
+
+
+def test_c17_has_exactly_three_states_and_descriptor_has_no_phase_material():
+    assert tuple(x.value for x in StrategyGoverningTransitionState) == (
         "PRE_TRANSITION",
         "TRANSITION_IN_PROGRESS",
         "POST_TRANSITION",
     )
+    for field in (
+        "begin_effective_boundary_ref",
+        "completion_boundary_ref",
+        "established_target_state",
+    ):
+        assert field not in StrategyGoverningTransitionAuthority.model_fields
 
 
-def test_pre_transition_uses_source_context_and_durable_state() -> None:
-    item, source_state, _ = authority(
-        StrategyGoverningTransitionState.PRE_TRANSITION
+def test_ce01_same_transition_identity_progresses_pre_in_progress_post():
+    item = descriptor()
+    assert classify_governing_transition(
+        authority=item
+    ) is StrategyGoverningTransitionState.PRE_TRANSITION
+    assert classify_governing_transition(
+        authority=item,
+        phase_evidence=(begin(item),),
+    ) is StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS
+    assert classify_governing_transition(
+        authority=item,
+        phase_evidence=(begin(item), completion(item)),
+    ) is StrategyGoverningTransitionState.POST_TRANSITION
+    assert item.transition_id == "TR-C17"
+
+
+def test_ce02_descriptor_is_immutable_and_conflicting_identity_material_is_distinct():
+    item = descriptor()
+    with pytest.raises(ValidationError):
+        item.transition_id = "OTHER"
+    changed = item.model_copy(
+        update={"target_context": item.source_context}
     )
+    assert changed != item
 
-    assert item.state is StrategyGoverningTransitionState.PRE_TRANSITION
-    assert (
-        evaluate_governing_transition(
+
+def test_ce03_conflicting_second_begin_fails_closed():
+    item = descriptor()
+    with pytest.raises(
+        StrategyGoverningTransitionIntegrityError,
+        match="conflicting BEGIN",
+    ):
+        classify_governing_transition(
             authority=item,
-            source_instance=source_instance(),
-            durable_state=source_state,
+            phase_evidence=(
+                begin(item),
+                begin(item, evidence_id="EV-BEGIN-2", boundary="BEGIN-OTHER"),
+            ),
         )
-        is StrategyGoverningTransitionState.PRE_TRANSITION
-    )
 
 
-def test_in_progress_is_classified_only_from_durable_boundary() -> None:
-    item, source_state, _ = authority(
-        StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS
-    )
-
-    assert (
-        evaluate_governing_transition(
+def test_ce04_completion_without_begin_fails_closed():
+    item = descriptor()
+    with pytest.raises(
+        StrategyGoverningTransitionIntegrityError,
+        match="without BEGIN",
+    ):
+        classify_governing_transition(
             authority=item,
-            source_instance=source_instance(),
-            durable_state=source_state,
+            phase_evidence=(completion(item),),
         )
-        is StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS
-    )
 
 
-def test_in_progress_may_have_staged_target_state_but_is_not_post_transition() -> None:
-    item, _, target_state = authority(
-        StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS,
-        established_during_progress=True,
-    )
-
-    assert (
-        evaluate_governing_transition(
+def test_ce05_conflicting_second_completion_fails_closed():
+    item = descriptor()
+    with pytest.raises(
+        StrategyGoverningTransitionIntegrityError,
+        match="conflicting COMPLETION",
+    ):
+        classify_governing_transition(
             authority=item,
-            source_instance=source_instance(),
-            durable_state=target_state,
+            phase_evidence=(
+                begin(item),
+                completion(item),
+                completion(
+                    item,
+                    evidence_id="EV-COMPLETE-2",
+                    boundary="COMPLETE-OTHER",
+                ),
+            ),
         )
-        is StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS
-    )
 
 
-def test_post_transition_requires_exact_target_compatible_durable_state() -> None:
-    item, _, target_state = authority(
-        StrategyGoverningTransitionState.POST_TRANSITION
-    )
-
-    assert (
-        evaluate_governing_transition(
-            authority=item,
-            source_instance=source_instance(),
-            durable_state=target_state,
-        )
-        is StrategyGoverningTransitionState.POST_TRANSITION
-    )
-
-    wrong = target_state.model_copy(
-        update={"snapshot_id": "OTHER"}
-    )
+def test_post_requires_exact_target_durable_state():
+    item = descriptor()
+    target = state(item.target_context, "SS-TARGET")
+    assert evaluate_governing_transition(
+        authority=item,
+        source_instance=source_instance(),
+        durable_state=target,
+        phase_evidence=(begin(item), completion(item)),
+    ) is StrategyGoverningTransitionState.POST_TRANSITION
 
     with pytest.raises(
         StrategyGoverningTransitionIntegrityError,
-        match="target-compatible durable state",
+        match="target-compatible",
     ):
         evaluate_governing_transition(
             authority=item,
             source_instance=source_instance(),
-            durable_state=wrong,
+            durable_state=target.model_copy(update={"snapshot_id": "OTHER"}),
+            phase_evidence=(begin(item), completion(item)),
         )
 
 
-def test_mixed_completion_without_begin_or_target_state_fails_closed() -> None:
-    pre, _, _ = authority(
-        StrategyGoverningTransitionState.PRE_TRANSITION
-    )
-
-    with pytest.raises(ValidationError):
-        StrategyGoverningTransitionAuthority(
-            **{
-                **pre.model_dump(),
-                "completion_boundary_ref": "COMPLETE-WITHOUT-BEGIN",
-            }
-        )
-
-
-def test_established_target_state_must_match_target_context() -> None:
-    item, _, target_state = authority(
-        StrategyGoverningTransitionState.POST_TRANSITION
-    )
-
-    with pytest.raises(ValidationError, match="target durable state"):
-        StrategyGoverningTransitionAuthority(
-            **{
-                **item.model_dump(),
-                "established_target_state": target_state.model_copy(
-                    update={"config_version": "WRONG"}
-                ),
-            }
-        )
-
-
-def test_source_context_must_match_frozen_c16_authority() -> None:
-    item, source_state, _ = authority(
-        StrategyGoverningTransitionState.PRE_TRANSITION
-    )
-
+def test_source_context_must_match_frozen_c16_authority():
+    item = descriptor()
     changed = source_instance().model_copy(
         update={"strategy_version": "2.0.0"}
     )
-
     with pytest.raises(
         StrategyGoverningTransitionIntegrityError,
         match="C16 authority",
@@ -299,17 +283,58 @@ def test_source_context_must_match_frozen_c16_authority() -> None:
         evaluate_governing_transition(
             authority=item,
             source_instance=changed,
-            durable_state=source_state,
+            durable_state=state(item.source_context, "SS-SOURCE"),
         )
 
 
-def test_restart_current_deployment_or_wall_clock_are_not_classification_inputs() -> None:
-    item, _, _ = authority(
-        StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS
+def test_ce11_positive_no_active_transition_is_not_fourth_state():
+    item = descriptor()
+    no_active = receipt(
+        item,
+        StrategyGoverningTransitionResolutionKind.NO_ACTIVE_TRANSITION,
     )
+    resolved = StrategyGoverningTransitionResolution(
+        receipt=no_active,
+        current_head_revision=1,
+    )
+    assert resolved.transition_state is None
+    assert len(tuple(StrategyGoverningTransitionState)) == 3
 
-    fields = type(item).model_fields
-    assert "current_deployment" not in fields
-    assert "latest_config" not in fields
-    assert "restart_state" not in fields
-    assert "wall_clock" not in fields
+
+def test_ce12_stale_no_active_receipt_fails_closed():
+    item = descriptor()
+    no_active = receipt(
+        item,
+        StrategyGoverningTransitionResolutionKind.NO_ACTIVE_TRANSITION,
+    )
+    with pytest.raises(ValidationError, match="stale"):
+        StrategyGoverningTransitionResolution(
+            receipt=no_active,
+            current_head_revision=2,
+        )
+
+
+def test_active_resolution_effective_context_must_match_derived_phase():
+    item = descriptor()
+    active = receipt(
+        item,
+        StrategyGoverningTransitionResolutionKind.ACTIVE_TRANSITION,
+    )
+    resolved = StrategyGoverningTransitionResolution(
+        receipt=active,
+        current_head_revision=1,
+        transition_authority=item,
+    )
+    assert resolved.transition_state is StrategyGoverningTransitionState.PRE_TRANSITION
+
+    wrong = receipt(
+        item,
+        StrategyGoverningTransitionResolutionKind.ACTIVE_TRANSITION,
+        effective=item.target_context,
+    )
+    with pytest.raises(ValidationError, match="effective governing context"):
+        StrategyGoverningTransitionResolution(
+            receipt=wrong,
+            current_head_revision=1,
+            transition_authority=item,
+        )

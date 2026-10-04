@@ -176,7 +176,7 @@ def _source_matches_instance(
 
 
 class StrategyGoverningTransitionAuthority(BaseModel):
-    """C17 durable transition authority；classification 僅由 durable boundaries 決定。"""
+    """C17 immutable transition descriptor；phase progression 不得改寫 descriptor。"""
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -187,32 +187,14 @@ class StrategyGoverningTransitionAuthority(BaseModel):
     compatibility_authority: StrategyAuthorityRef
     migration_authority: StrategyAuthorityRef | None = None
     transition_policy: StrategyAuthorityRef
-    begin_effective_boundary_ref: str | None = None
-    completion_boundary_ref: str | None = None
-    established_target_state: StrategyDurableStateReference | None = None
 
-    @field_validator(
-        "transition_id",
-        "strategy_instance_id",
-        mode="before",
-    )
+    @field_validator("transition_id", "strategy_instance_id", mode="before")
     @classmethod
     def _ids(cls, value: object) -> object:
         return normalize_stable_id(value) if isinstance(value, str) else value
 
-    @field_validator(
-        "begin_effective_boundary_ref",
-        "completion_boundary_ref",
-        mode="before",
-    )
-    @classmethod
-    def _optional_ids(cls, value: object) -> object:
-        if value is None:
-            return None
-        return normalize_stable_id(value) if isinstance(value, str) else value
-
     @model_validator(mode="after")
-    def _transition_integrity(self) -> "StrategyGoverningTransitionAuthority":
+    def _descriptor_integrity(self) -> "StrategyGoverningTransitionAuthority":
         if (
             self.source_context.strategy_instance_id != self.strategy_instance_id
             or self.target_context.strategy_instance_id != self.strategy_instance_id
@@ -220,43 +202,113 @@ class StrategyGoverningTransitionAuthority(BaseModel):
             raise ValueError(
                 "transition source/target context conflicts with StrategyInstance identity"
             )
-
         if self.source_context == self.target_context:
-            raise ValueError(
-                "governing transition must change source/target context"
-            )
-
-        established = self.established_target_state
-        if established is not None and not _state_matches_context(
-            established,
-            self.target_context,
-        ):
-            raise ValueError(
-                "established target durable state conflicts with target governing context"
-            )
-
-        if self.begin_effective_boundary_ref is None:
-            if self.completion_boundary_ref is not None or established is not None:
-                raise ValueError(
-                    "transition evidence exists before durable begin/effective boundary"
-                )
-        elif (
-            self.completion_boundary_ref is not None
-            and established is None
-        ):
-            raise ValueError(
-                "completed transition requires exact target-compatible durable state"
-            )
-
+            raise ValueError("governing transition must change source/target context")
         return self
 
-    @property
-    def state(self) -> StrategyGoverningTransitionState:
-        if self.begin_effective_boundary_ref is None:
-            return StrategyGoverningTransitionState.PRE_TRANSITION
-        if self.completion_boundary_ref is None:
-            return StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS
+
+class StrategyGoverningTransitionPhaseKind(str, Enum):
+    """Pattern A append-only transition phase evidence kinds。"""
+
+    BEGIN_EFFECTIVE = "BEGIN_EFFECTIVE"
+    COMPLETION = "COMPLETION"
+
+
+class StrategyGoverningTransitionPhaseEvidence(BaseModel):
+    """同一 transition_id 下 immutable append-only phase/boundary evidence。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    evidence_id: str
+    transition_id: str
+    strategy_instance_id: str
+    kind: StrategyGoverningTransitionPhaseKind
+    boundary_ref: str
+    evidence_authority: StrategyAuthorityRef
+    established_target_state: StrategyDurableStateReference | None = None
+
+    @field_validator(
+        "evidence_id",
+        "transition_id",
+        "strategy_instance_id",
+        "boundary_ref",
+        mode="before",
+    )
+    @classmethod
+    def _ids(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @model_validator(mode="after")
+    def _phase_shape(self) -> "StrategyGoverningTransitionPhaseEvidence":
+        if (
+            self.kind is StrategyGoverningTransitionPhaseKind.BEGIN_EFFECTIVE
+            and self.established_target_state is not None
+        ):
+            raise ValueError("BEGIN_EFFECTIVE cannot establish target durable state")
+        if (
+            self.kind is StrategyGoverningTransitionPhaseKind.COMPLETION
+            and self.established_target_state is None
+        ):
+            raise ValueError("COMPLETION requires exact established target durable state")
+        return self
+
+
+def classify_governing_transition(
+    *,
+    authority: StrategyGoverningTransitionAuthority,
+    phase_evidence: tuple[StrategyGoverningTransitionPhaseEvidence, ...] = (),
+) -> StrategyGoverningTransitionState:
+    """只由 immutable descriptor + append-only phase evidence 分類三態。"""
+
+    begin: StrategyGoverningTransitionPhaseEvidence | None = None
+    completion: StrategyGoverningTransitionPhaseEvidence | None = None
+
+    for item in phase_evidence:
+        if (
+            item.transition_id != authority.transition_id
+            or item.strategy_instance_id != authority.strategy_instance_id
+        ):
+            raise StrategyGoverningTransitionIntegrityError(
+                "phase evidence conflicts with transition identity"
+            )
+
+        if item.kind is StrategyGoverningTransitionPhaseKind.BEGIN_EFFECTIVE:
+            if begin is not None:
+                if begin != item:
+                    raise StrategyGoverningTransitionIntegrityError(
+                        "conflicting BEGIN_EFFECTIVE evidence"
+                    )
+                continue
+            begin = item
+        else:
+            if completion is not None:
+                if completion != item:
+                    raise StrategyGoverningTransitionIntegrityError(
+                        "conflicting COMPLETION evidence"
+                    )
+                continue
+            completion = item
+
+    if completion is not None and begin is None:
+        raise StrategyGoverningTransitionIntegrityError(
+            "COMPLETION evidence exists without BEGIN_EFFECTIVE"
+        )
+
+    if completion is not None:
+        established = completion.established_target_state
+        if (
+            established is None
+            or not _state_matches_context(established, authority.target_context)
+        ):
+            raise StrategyGoverningTransitionIntegrityError(
+                "COMPLETION target durable state conflicts with target governing context"
+            )
         return StrategyGoverningTransitionState.POST_TRANSITION
+
+    if begin is not None:
+        return StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS
+
+    return StrategyGoverningTransitionState.PRE_TRANSITION
 
 
 def evaluate_governing_transition(
@@ -264,72 +316,194 @@ def evaluate_governing_transition(
     authority: StrategyGoverningTransitionAuthority,
     source_instance: StrategyInstance,
     durable_state: StrategyDurableStateReference,
+    phase_evidence: tuple[StrategyGoverningTransitionPhaseEvidence, ...] = (),
 ) -> StrategyGoverningTransitionState:
-    """重啟時以 exact durable authority 分類 C17；不授予 StrategyTradingReady。"""
+    """驗證 exact C16 source authority 與 durable state；不授予 trading readiness。"""
 
     if authority.strategy_instance_id != source_instance.strategy_instance_id:
         raise StrategyGoverningTransitionIntegrityError(
             "transition authority conflicts with requested StrategyInstance"
         )
 
-    if not _source_matches_instance(
-        authority.source_context,
-        source_instance,
-    ):
+    if not _source_matches_instance(authority.source_context, source_instance):
         raise StrategyGoverningTransitionIntegrityError(
             "transition source governing context conflicts with C16 authority"
         )
 
-    state = authority.state
+    state = classify_governing_transition(
+        authority=authority,
+        phase_evidence=phase_evidence,
+    )
 
     if state is StrategyGoverningTransitionState.PRE_TRANSITION:
-        if not _state_matches_context(
-            durable_state,
-            authority.source_context,
-        ):
+        if not _state_matches_context(durable_state, authority.source_context):
             raise StrategyGoverningTransitionIntegrityError(
                 "PRE_TRANSITION durable state does not match source governing context"
             )
         return state
 
     if state is StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS:
-        if _state_matches_context(
-            durable_state,
-            authority.source_context,
-        ):
-            return state
-
-        established = authority.established_target_state
         if (
-            established is not None
-            and durable_state == established
-            and _state_matches_context(
-                durable_state,
-                authority.target_context,
-            )
+            not _state_matches_context(durable_state, authority.source_context)
+            and not _state_matches_context(durable_state, authority.target_context)
         ):
-            return state
+            raise StrategyGoverningTransitionIntegrityError(
+                "TRANSITION_IN_PROGRESS durable state matches neither governing context"
+            )
+        return state
 
-        raise StrategyGoverningTransitionIntegrityError(
-            "TRANSITION_IN_PROGRESS exposes mixed incompatible governing state"
-        )
-
-    established = authority.established_target_state
+    completion = next(
+        item
+        for item in phase_evidence
+        if item.kind is StrategyGoverningTransitionPhaseKind.COMPLETION
+    )
+    established = completion.established_target_state
     if (
         established is None
         or durable_state != established
-        or not _state_matches_context(
-            durable_state,
-            authority.target_context,
-        )
+        or not _state_matches_context(durable_state, authority.target_context)
     ):
         raise StrategyGoverningTransitionIntegrityError(
             "POST_TRANSITION target-compatible durable state is missing or mismatched"
         )
-
     return state
 
 
+class StrategyGoverningTransitionResolutionKind(str, Enum):
+    """Current transition resolver 的 immutable resolution kinds。"""
+
+    ACTIVE_TRANSITION = "ACTIVE_TRANSITION"
+    NO_ACTIVE_TRANSITION = "NO_ACTIVE_TRANSITION"
+
+
+class StrategyGoverningTransitionResolutionReceipt(BaseModel):
+    """Resolver-produced immutable receipt；NO_ACTIVE 不是第四個 C17 state。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    resolution_id: str
+    strategy_instance_id: str
+    effective_governing_context: StrategyGoverningContext
+    resolution_authority: StrategyAuthorityRef
+    resolution_kind: StrategyGoverningTransitionResolutionKind
+    transition_id: str | None = None
+    resolution_revision: int = Field(ge=1)
+    currentness_evidence_ref: str
+
+    @field_validator(
+        "resolution_id",
+        "strategy_instance_id",
+        "transition_id",
+        "currentness_evidence_ref",
+        mode="before",
+    )
+    @classmethod
+    def _ids(cls, value: object) -> object:
+        if value is None:
+            return None
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @model_validator(mode="after")
+    def _resolution_integrity(
+        self,
+    ) -> "StrategyGoverningTransitionResolutionReceipt":
+        if (
+            self.effective_governing_context.strategy_instance_id
+            != self.strategy_instance_id
+        ):
+            raise ValueError(
+                "transition resolution governing context conflicts with StrategyInstance"
+            )
+
+        expected = StrategyAuthorityRef(
+            authority_id="STRATEGY-GOVERNING-TRANSITION-RESOLUTION",
+            authority_version="V1",
+        )
+        if self.resolution_authority != expected:
+            raise ValueError(
+                "transition resolution authority identity/version mismatch"
+            )
+
+        active = (
+            self.resolution_kind
+            is StrategyGoverningTransitionResolutionKind.ACTIVE_TRANSITION
+        )
+        if active != (self.transition_id is not None):
+            raise ValueError(
+                "ACTIVE_TRANSITION requires transition_id and NO_ACTIVE_TRANSITION forbids it"
+            )
+        return self
+
+
+class StrategyGoverningTransitionResolution(BaseModel):
+    """Current CAS-head selected transition resolution + derived active phase。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    receipt: StrategyGoverningTransitionResolutionReceipt
+    current_head_revision: int = Field(ge=1)
+    transition_authority: StrategyGoverningTransitionAuthority | None = None
+    phase_evidence: tuple[StrategyGoverningTransitionPhaseEvidence, ...] = ()
+
+    @model_validator(mode="after")
+    def _current_resolution(
+        self,
+    ) -> "StrategyGoverningTransitionResolution":
+        if self.receipt.resolution_revision != self.current_head_revision:
+            raise ValueError(
+                "transition resolution receipt is stale against current CAS head"
+            )
+
+        if (
+            self.receipt.resolution_kind
+            is StrategyGoverningTransitionResolutionKind.NO_ACTIVE_TRANSITION
+        ):
+            if self.transition_authority is not None or self.phase_evidence:
+                raise ValueError(
+                    "NO_ACTIVE_TRANSITION cannot carry active transition material"
+                )
+            return self
+
+        authority = self.transition_authority
+        if authority is None:
+            raise ValueError(
+                "ACTIVE_TRANSITION requires exact transition descriptor"
+            )
+        if (
+            authority.transition_id != self.receipt.transition_id
+            or authority.strategy_instance_id != self.receipt.strategy_instance_id
+        ):
+            raise ValueError(
+                "transition resolution does not bind exact active transition"
+            )
+
+        state = classify_governing_transition(
+            authority=authority,
+            phase_evidence=self.phase_evidence,
+        )
+        expected_context = (
+            authority.target_context
+            if state is StrategyGoverningTransitionState.POST_TRANSITION
+            else authority.source_context
+        )
+        if self.receipt.effective_governing_context != expected_context:
+            raise ValueError(
+                "transition resolution effective governing context mismatch"
+            )
+        return self
+
+    @property
+    def transition_state(self) -> StrategyGoverningTransitionState | None:
+        if (
+            self.receipt.resolution_kind
+            is StrategyGoverningTransitionResolutionKind.NO_ACTIVE_TRANSITION
+        ):
+            return None
+        assert self.transition_authority is not None
+        return classify_governing_transition(
+            authority=self.transition_authority,
+            phase_evidence=self.phase_evidence,
+        )
 
 class K520ApplicabilityClassification(str, Enum):
     """C19 K520 applicability seam；不代表 K520 recovery 已完成。"""
@@ -353,19 +527,15 @@ class K520ApplicabilityEvidence(BaseModel):
     instrument_id: int = Field(gt=0)
     instrument_binding_provenance: CanonicalInstrumentBindingProvenance
     timeframe: str
-
     feature_dependency_contract: StrategyAuthorityRef | None = None
     classification_claim: K520ApplicabilityClassification = (
         K520ApplicabilityClassification.UNKNOWN
     )
-
     required_replay_horizon: int | None = Field(default=None, ge=0)
     available_replay_horizon: int | None = Field(default=None, ge=0)
-
     governing_observation_frontier_revision_id: str | None = None
     evaluated_observation_frontier_revision_id: str | None = None
     current_observation_frontier_revision_id: str | None = None
-
     causal_frontier_ref: str | None = None
     currentness_evidence_ref: str | None = None
     proof_authority: StrategyAuthorityRef | None = None
@@ -410,14 +580,12 @@ class K520ApplicabilityEvidence(BaseModel):
 
         if isinstance(value, MarketObservationRevisionId):
             return value.value
-
         if not isinstance(value, str):
             raise ValueError(
                 "K520 observation frontier must use mor1 revision identity"
             )
 
         normalized = normalize_stable_id(value)
-
         try:
             return MarketObservationRevisionId(normalized).value
         except ValueError as exc:
@@ -432,36 +600,38 @@ class K520ApplicabilityEvidence(BaseModel):
             != self.instrument_id
         ):
             raise ValueError(
-                "K520 applicability instrument provenance conflicts "
-                "with canonical instrument_id"
+                "K520 applicability instrument provenance conflicts with canonical instrument_id"
             )
         return self
 
 
-def evaluate_k520_applicability(
+def _k520_evidence_matches_context(
     *,
-    instance: StrategyInstance,
     evidence: K520ApplicabilityEvidence,
-) -> K520ApplicabilityClassification:
-    """依 exact C16 recovery world 評估 C19；任何未證明條件皆 UNKNOWN。"""
-
-    provenance = instance.instrument_binding_provenance
-
-    if provenance is None:
-        return K520ApplicabilityClassification.UNKNOWN
-
-    exact_governing_binding = (
-        evidence.strategy_instance_id == instance.strategy_instance_id
-        and evidence.strategy_id == instance.strategy_id
-        and evidence.config_version == instance.config_version
-        and evidence.config_fingerprint == instance.config_fingerprint
-        and evidence.implementation_revision == instance.implementation_revision
-        and evidence.instrument_id == instance.instrument_id
-        and evidence.instrument_binding_provenance == provenance
-        and evidence.timeframe == instance.timeframe
+    context: StrategyGoverningContext,
+) -> bool:
+    return (
+        evidence.strategy_instance_id == context.strategy_instance_id
+        and evidence.strategy_id == context.strategy_id
+        and evidence.config_version == context.config_version
+        and evidence.config_fingerprint == context.config_fingerprint
+        and evidence.implementation_revision == context.implementation_revision
+        and evidence.instrument_id == context.instrument_id
+        and evidence.instrument_binding_provenance
+        == context.instrument_binding_provenance
+        and evidence.timeframe == context.timeframe
     )
 
-    if not exact_governing_binding:
+
+def _evaluate_k520_evidence_for_context(
+    *,
+    context: StrategyGoverningContext,
+    evidence: K520ApplicabilityEvidence,
+) -> K520ApplicabilityClassification:
+    if not _k520_evidence_matches_context(
+        evidence=evidence,
+        context=context,
+    ):
         return K520ApplicabilityClassification.UNKNOWN
 
     if evidence.classification_claim is K520ApplicabilityClassification.UNKNOWN:
@@ -484,7 +654,6 @@ def evaluate_k520_applicability(
         return K520ApplicabilityClassification.UNKNOWN
 
     frontier = evidence.governing_observation_frontier_revision_id
-
     if (
         evidence.evaluated_observation_frontier_revision_id != frontier
         or evidence.current_observation_frontier_revision_id != frontier
@@ -494,6 +663,101 @@ def evaluate_k520_applicability(
     return evidence.classification_claim
 
 
+class K520ApplicabilityReceipt(BaseModel):
+    """C19 trusted evaluated result；保留 exact governing world 與 proof material。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    receipt_id: str
+    classification: K520ApplicabilityClassification
+    governing_context: StrategyGoverningContext
+    evidence: K520ApplicabilityEvidence
+
+    @field_validator("receipt_id", mode="before")
+    @classmethod
+    def _receipt_id(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @model_validator(mode="after")
+    def _receipt_integrity(self) -> "K520ApplicabilityReceipt":
+        evaluated = _evaluate_k520_evidence_for_context(
+            context=self.governing_context,
+            evidence=self.evidence,
+        )
+        if self.classification is not evaluated:
+            raise ValueError(
+                "K520 receipt classification does not match exact governing-world evaluation"
+            )
+        return self
+
+
+def evaluate_k520_applicability_receipt(
+    *,
+    governing_context: StrategyGoverningContext,
+    evidence: K520ApplicabilityEvidence,
+) -> K520ApplicabilityReceipt:
+    """C19 trusted path：針對 C17 effective governing context 產生 receipt。"""
+
+    return K520ApplicabilityReceipt(
+        receipt_id=evidence.evidence_id,
+        classification=_evaluate_k520_evidence_for_context(
+            context=governing_context,
+            evidence=evidence,
+        ),
+        governing_context=governing_context,
+        evidence=evidence,
+    )
+
+
+def evaluate_k520_applicability(
+    *,
+    instance: StrategyInstance,
+    evidence: K520ApplicabilityEvidence,
+) -> K520ApplicabilityClassification:
+    """Compatibility projection；C18 trusted path 不得以裸 enum 取代 receipt。"""
+
+    provenance = instance.instrument_binding_provenance
+    if provenance is None:
+        return K520ApplicabilityClassification.UNKNOWN
+
+    exact_governing_binding = (
+        evidence.strategy_instance_id == instance.strategy_instance_id
+        and evidence.strategy_id == instance.strategy_id
+        and evidence.config_version == instance.config_version
+        and evidence.config_fingerprint == instance.config_fingerprint
+        and evidence.implementation_revision == instance.implementation_revision
+        and evidence.instrument_id == instance.instrument_id
+        and evidence.instrument_binding_provenance == provenance
+        and evidence.timeframe == instance.timeframe
+    )
+    if not exact_governing_binding:
+        return K520ApplicabilityClassification.UNKNOWN
+
+    # 使用同一完整 proof 規則保留既有 API。
+    context = StrategyGoverningContext(
+        strategy_instance_id=instance.strategy_instance_id,
+        strategy_id=instance.strategy_id,
+        config_authority=StrategyAuthorityRef(
+            authority_id="LEGACY-C16-COMPATIBILITY",
+            authority_version=instance.config_version,
+        ),
+        config_version=instance.config_version,
+        config_fingerprint=instance.config_fingerprint,
+        implementation_revision=instance.implementation_revision,
+        instrument_id=instance.instrument_id,
+        instrument_binding_provenance=provenance,
+        timeframe=instance.timeframe,
+        state_schema_reference=StrategyStateSchemaReference(
+            strategy_id=instance.strategy_id,
+            schema_version=1,
+        ),
+    )
+    # config_authority/schema are not part of K520 evidence binding; other exact
+    # governing fields are re-used by the common evaluator.
+    return _evaluate_k520_evidence_for_context(
+        context=context,
+        evidence=evidence,
+    )
 
 class CompletenessRequirementClassification(str, Enum):
     """C20 completeness-required authority classification。"""
@@ -512,7 +776,7 @@ class CompletenessAuthorityClass(str, Enum):
 
 
 class CompletenessReadiness(str, Enum):
-    """C20 只輸出 completeness gate readiness，不代表 StrategyTradingReady。"""
+    """C20 completeness gate readiness；不代表 StrategyTradingReady。"""
 
     READY = "READY"
     NOT_READY = "NOT_READY"
@@ -546,7 +810,7 @@ class CompletenessRequirementAuthority(BaseModel):
 
 
 class CompletenessEvidenceAuthority(BaseModel):
-    """C20 approved completeness evidence；不實作 detector/service。"""
+    """C20 approved completeness/currentness evidence；不實作 detector/service。"""
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -591,14 +855,11 @@ class CompletenessEvidenceAuthority(BaseModel):
 
         if isinstance(value, MarketObservationRevisionId):
             return value.value
-
         if not isinstance(value, str):
             raise ValueError(
                 "completeness frontier must use mor1 revision identity"
             )
-
         normalized = normalize_stable_id(value)
-
         try:
             return MarketObservationRevisionId(normalized).value
         except ValueError as exc:
@@ -613,29 +874,24 @@ def evaluate_completeness_readiness(
     evidence: CompletenessEvidenceAuthority | None,
     runtime_authority_class: CompletenessAuthorityClass,
 ) -> CompletenessReadiness:
-    """C20 fail-closed seam；只驗證 approved authority，不執行 completeness detector。"""
+    """Compatibility projection；trusted C18 path consumes receipt。"""
 
     if requirement is None:
         return CompletenessReadiness.NOT_READY
-
     if requirement.authority_class is not runtime_authority_class:
         return CompletenessReadiness.NOT_READY
-
     if (
         requirement.classification
         is CompletenessRequirementClassification.UNKNOWN
     ):
         return CompletenessReadiness.NOT_READY
-
     if (
         requirement.classification
         is CompletenessRequirementClassification.NOT_REQUIRED_PROVEN
     ):
         return CompletenessReadiness.READY
-
     if evidence is None:
         return CompletenessReadiness.NOT_READY
-
     if evidence.authority_class is not runtime_authority_class:
         return CompletenessReadiness.NOT_READY
 
@@ -647,25 +903,120 @@ def evaluate_completeness_readiness(
         and evidence.policy_authority == requirement.policy_authority
         and evidence.authority_class == requirement.authority_class
     )
-
     if not exact_requirement_binding:
         return CompletenessReadiness.NOT_READY
-
     if not evidence.complete:
         return CompletenessReadiness.NOT_READY
-
     if evidence.evaluated_world_ref != evidence.current_world_ref:
         return CompletenessReadiness.NOT_READY
-
     if (
         evidence.evaluated_frontier_revision_id
         != evidence.current_frontier_revision_id
     ):
         return CompletenessReadiness.NOT_READY
-
     return CompletenessReadiness.READY
 
 
+def _trusted_completeness_readiness(
+    *,
+    requirement: CompletenessRequirementAuthority | None,
+    evidence: CompletenessEvidenceAuthority | None,
+    runtime_authority_class: CompletenessAuthorityClass,
+) -> CompletenessReadiness:
+    """Strategy readiness receipt 必須有 exact current-world evidence。"""
+
+    if requirement is None or evidence is None:
+        return CompletenessReadiness.NOT_READY
+    if (
+        requirement.authority_class is not runtime_authority_class
+        or evidence.authority_class is not runtime_authority_class
+    ):
+        return CompletenessReadiness.NOT_READY
+    if (
+        requirement.classification
+        is CompletenessRequirementClassification.UNKNOWN
+    ):
+        return CompletenessReadiness.NOT_READY
+    if not (
+        evidence.consumer_ref == requirement.consumer_ref
+        and evidence.scope_ref == requirement.scope_ref
+        and evidence.stream_ref == requirement.stream_ref
+        and evidence.horizon_ref == requirement.horizon_ref
+        and evidence.policy_authority == requirement.policy_authority
+        and evidence.authority_class == requirement.authority_class
+    ):
+        return CompletenessReadiness.NOT_READY
+    if not evidence.complete:
+        return CompletenessReadiness.NOT_READY
+    if evidence.evaluated_world_ref != evidence.current_world_ref:
+        return CompletenessReadiness.NOT_READY
+    if (
+        evidence.evaluated_frontier_revision_id
+        != evidence.current_frontier_revision_id
+    ):
+        return CompletenessReadiness.NOT_READY
+    return CompletenessReadiness.READY
+
+
+class CompletenessReadinessReceipt(BaseModel):
+    """C20 trusted evaluated result；保留 requirement/evidence/current world。"""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    receipt_id: str
+    readiness: CompletenessReadiness
+    governing_context: StrategyGoverningContext
+    runtime_authority_class: CompletenessAuthorityClass
+    requirement: CompletenessRequirementAuthority | None
+    evidence: CompletenessEvidenceAuthority | None
+
+    @field_validator("receipt_id", mode="before")
+    @classmethod
+    def _receipt_id(cls, value: object) -> object:
+        return normalize_stable_id(value) if isinstance(value, str) else value
+
+    @model_validator(mode="after")
+    def _receipt_integrity(self) -> "CompletenessReadinessReceipt":
+        expected = _trusted_completeness_readiness(
+            requirement=self.requirement,
+            evidence=self.evidence,
+            runtime_authority_class=self.runtime_authority_class,
+        )
+        if self.readiness is not expected:
+            raise ValueError(
+                "completeness receipt readiness does not match exact authority/current-world evaluation"
+            )
+        return self
+
+
+def evaluate_completeness_readiness_receipt(
+    *,
+    governing_context: StrategyGoverningContext,
+    requirement: CompletenessRequirementAuthority | None,
+    evidence: CompletenessEvidenceAuthority | None,
+    runtime_authority_class: CompletenessAuthorityClass,
+) -> CompletenessReadinessReceipt:
+    """C20 trusted receipt；保留 consumer/scope/policy/environment/world。"""
+
+    receipt_id = (
+        evidence.evidence_id
+        if evidence is not None
+        else requirement.requirement_id
+        if requirement is not None
+        else "C20-MISSING-AUTHORITY"
+    )
+    return CompletenessReadinessReceipt(
+        receipt_id=receipt_id,
+        readiness=_trusted_completeness_readiness(
+            requirement=requirement,
+            evidence=evidence,
+            runtime_authority_class=runtime_authority_class,
+        ),
+        governing_context=governing_context,
+        runtime_authority_class=runtime_authority_class,
+        requirement=requirement,
+        evidence=evidence,
+    )
 
 class DecisionPolicyAuthorityClass(str, Enum):
     """C18 DecisionPolicy authority environment；不得跨環境升格。"""
@@ -712,10 +1063,7 @@ class StrategyRestoreValidEvidence(BaseModel):
 
     @model_validator(mode="after")
     def _context_identity(self) -> "StrategyRestoreValidEvidence":
-        if (
-            self.governing_context.strategy_instance_id
-            != self.strategy_instance_id
-        ):
+        if self.governing_context.strategy_instance_id != self.strategy_instance_id:
             raise ValueError(
                 "restore evidence conflicts with StrategyInstance identity"
             )
@@ -729,10 +1077,12 @@ class K520RecoveryEvidenceRef(BaseModel):
 
     evidence_ref: str
     strategy_instance_id: str
+    strategy_id: str
     config_version: str
     config_fingerprint: str
     implementation_revision: str
     instrument_id: int = Field(gt=0)
+    instrument_binding_provenance: CanonicalInstrumentBindingProvenance
     timeframe: str
     authority: StrategyAuthorityRef
     ready: bool
@@ -740,6 +1090,7 @@ class K520RecoveryEvidenceRef(BaseModel):
     @field_validator(
         "evidence_ref",
         "strategy_instance_id",
+        "strategy_id",
         "config_version",
         "config_fingerprint",
         "implementation_revision",
@@ -763,10 +1114,7 @@ class StrategyTradingReadinessEvaluation(BaseModel):
     decision_policy_version: str | None = None
     reasons: tuple[str, ...] = ()
 
-    @field_validator(
-        "strategy_instance_id",
-        mode="before",
-    )
+    @field_validator("strategy_instance_id", mode="before")
     @classmethod
     def _strategy_instance_id(cls, value: object) -> object:
         return normalize_stable_id(value) if isinstance(value, str) else value
@@ -789,18 +1137,14 @@ class DecisionPolicyAuthorityRef(BaseModel):
     authority: StrategyAuthorityRef
     authority_class: DecisionPolicyAuthorityClass
 
-    @field_validator(
-        "policy_id",
-        "policy_version",
-        mode="before",
-    )
+    @field_validator("policy_id", "policy_version", mode="before")
     @classmethod
     def _stable_ids(cls, value: object) -> object:
         return normalize_stable_id(value) if isinstance(value, str) else value
 
 
 class RequiredCohortMembershipEvidence(BaseModel):
-    """C18 只消費 authoritative required-membership evidence，不定義 policy business semantics。"""
+    """Provider-resolved membership；caller object 本身不是 production trust boundary。"""
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -808,29 +1152,30 @@ class RequiredCohortMembershipEvidence(BaseModel):
     cohort_id: str
     policy: DecisionPolicyAuthorityRef
     required_strategy_instance_ids: tuple[str, ...]
-    currentness_evidence_ref: str
+    membership_authority: StrategyAuthorityRef
+    evaluated_policy_currentness_ref: str
+    current_policy_currentness_ref: str
+    evaluated_membership_currentness_ref: str
+    current_membership_currentness_ref: str
 
     @field_validator(
         "evidence_id",
         "cohort_id",
-        "currentness_evidence_ref",
+        "evaluated_policy_currentness_ref",
+        "current_policy_currentness_ref",
+        "evaluated_membership_currentness_ref",
+        "current_membership_currentness_ref",
         mode="before",
     )
     @classmethod
     def _stable_ids(cls, value: object) -> object:
         return normalize_stable_id(value) if isinstance(value, str) else value
 
-    @field_validator(
-        "required_strategy_instance_ids",
-        mode="before",
-    )
+    @field_validator("required_strategy_instance_ids", mode="before")
     @classmethod
     def _required_ids(cls, value: object) -> object:
         if isinstance(value, (tuple, list)):
-            return tuple(
-                normalize_stable_id(item)
-                for item in value
-            )
+            return tuple(normalize_stable_id(item) for item in value)
         return value
 
     @model_validator(mode="after")
@@ -843,6 +1188,15 @@ class RequiredCohortMembershipEvidence(BaseModel):
                 "required cohort membership contains duplicate StrategyInstance identity"
             )
         return self
+
+    @property
+    def current(self) -> bool:
+        return (
+            self.evaluated_policy_currentness_ref
+            == self.current_policy_currentness_ref
+            and self.evaluated_membership_currentness_ref
+            == self.current_membership_currentness_ref
+        )
 
 
 class DecisionCohortTradingReadinessEvaluation(BaseModel):
@@ -858,17 +1212,12 @@ class DecisionCohortTradingReadinessEvaluation(BaseModel):
     not_ready_strategy_instance_ids: tuple[str, ...] = ()
     reasons: tuple[str, ...] = ()
 
-    @field_validator(
-        "cohort_id",
-        "decision_policy_version",
-        mode="before",
-    )
+    @field_validator("cohort_id", "decision_policy_version", mode="before")
     @classmethod
     def _optional_ids(cls, value: object) -> object:
         if value is None:
             return None
         return normalize_stable_id(value) if isinstance(value, str) else value
-
 
 class StartupCatchUpOutputKind(str, Enum):
     """Generic startup catch-up 可能產生的 output 類型；不含 R-02 exact causal replay。"""
@@ -900,17 +1249,20 @@ def _context_matches_restore(
     return restore.governing_context == context
 
 
-def _k520_evidence_matches_context(
+def _k520_recovery_evidence_matches_context(
     *,
     evidence: K520RecoveryEvidenceRef,
     context: StrategyGoverningContext,
 ) -> bool:
     return (
         evidence.strategy_instance_id == context.strategy_instance_id
+        and evidence.strategy_id == context.strategy_id
         and evidence.config_version == context.config_version
         and evidence.config_fingerprint == context.config_fingerprint
         and evidence.implementation_revision == context.implementation_revision
         and evidence.instrument_id == context.instrument_id
+        and evidence.instrument_binding_provenance
+        == context.instrument_binding_provenance
         and evidence.timeframe == context.timeframe
     )
 
@@ -920,13 +1272,13 @@ def evaluate_strategy_trading_readiness(
     instance: StrategyInstance,
     broker_account: BrokerAccountExecutionReadyInput,
     restore: StrategyRestoreValidEvidence,
-    transition_state: StrategyGoverningTransitionState | None,
-    transition_authority: StrategyGoverningTransitionAuthority | None,
-    k520_applicability: K520ApplicabilityClassification,
+    transition_resolution: StrategyGoverningTransitionResolution | None,
+    k520_receipt: K520ApplicabilityReceipt | None,
     k520_evidence: K520RecoveryEvidenceRef | None,
-    completeness_readiness: CompletenessReadiness,
+    completeness_receipt: CompletenessReadinessReceipt | None,
+    runtime_completeness_authority_class: CompletenessAuthorityClass,
 ) -> StrategyTradingReadinessEvaluation:
-    """C18 Strategy readiness composition；BrokerAccount readiness 僅作為 input。"""
+    """C18 trusted strategy readiness；缺少 exact resolver/receipt 一律 fail closed。"""
 
     reasons: list[str] = []
 
@@ -936,68 +1288,149 @@ def evaluate_strategy_trading_readiness(
     if not restore.valid:
         reasons.append("StrategyRestoreValid is false")
 
-    context = restore.governing_context
+    effective_context = restore.governing_context
 
-    if transition_state is None:
-        if not _source_matches_instance(context, instance):
-            reasons.append(
-                "restore governing context is stale or mismatched against C16 authority"
-            )
+    if transition_resolution is None:
+        reasons.append(
+            "governing transition resolution authority is missing or unresolved"
+        )
     else:
-        if transition_authority is None:
-            reasons.append(
-                "governing transition classification lacks exact transition authority"
-            )
-        elif transition_state is StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS:
-            reasons.append(
-                "governing transition is in progress"
-            )
-        elif transition_state is StrategyGoverningTransitionState.PRE_TRANSITION:
-            if (
-                transition_authority.state
-                is not StrategyGoverningTransitionState.PRE_TRANSITION
-                or not _source_matches_instance(
-                    transition_authority.source_context,
-                    instance,
-                )
-                or not _context_matches_restore(
-                    context=transition_authority.source_context,
-                    restore=restore,
-                )
-            ):
-                reasons.append(
-                    "PRE_TRANSITION readiness does not bind exact source governing context"
-                )
-        elif transition_state is StrategyGoverningTransitionState.POST_TRANSITION:
-            if (
-                transition_authority.state
-                is not StrategyGoverningTransitionState.POST_TRANSITION
-                or not _context_matches_restore(
-                    context=transition_authority.target_context,
-                    restore=restore,
-                )
-            ):
-                reasons.append(
-                    "POST_TRANSITION readiness does not bind exact target governing context"
-                )
+        receipt = transition_resolution.receipt
+        effective_context = receipt.effective_governing_context
 
-    if k520_applicability is K520ApplicabilityClassification.UNKNOWN:
+        if receipt.strategy_instance_id != instance.strategy_instance_id:
+            reasons.append(
+                "transition resolution StrategyInstance identity mismatch"
+            )
+
+        if (
+            receipt.resolution_kind
+            is StrategyGoverningTransitionResolutionKind.ACTIVE_TRANSITION
+        ):
+            authority = transition_resolution.transition_authority
+            if authority is None:
+                reasons.append("active transition descriptor is missing")
+            else:
+                if not _source_matches_instance(
+                    authority.source_context,
+                    instance,
+                ):
+                    reasons.append(
+                        "active transition source context conflicts with C16 authority"
+                    )
+
+                state = transition_resolution.transition_state
+                if (
+                    state
+                    is StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS
+                ):
+                    reasons.append("governing transition is in progress")
+                elif (
+                    state is StrategyGoverningTransitionState.PRE_TRANSITION
+                    and effective_context != authority.source_context
+                ):
+                    reasons.append(
+                        "PRE_TRANSITION resolution does not bind exact source context"
+                    )
+                elif (
+                    state is StrategyGoverningTransitionState.POST_TRANSITION
+                    and effective_context != authority.target_context
+                ):
+                    reasons.append(
+                        "POST_TRANSITION resolution does not bind exact target context"
+                    )
+
+    if not _context_matches_restore(
+        context=effective_context,
+        restore=restore,
+    ):
+        reasons.append(
+            "restore evidence does not bind exact effective governing context"
+        )
+
+    if k520_receipt is None:
+        reasons.append("C19 governing-world receipt is missing")
+    elif k520_receipt.governing_context != effective_context:
+        reasons.append(
+            "C19 receipt does not bind exact effective governing context"
+        )
+    elif (
+        k520_receipt.classification
+        is K520ApplicabilityClassification.UNKNOWN
+    ):
         reasons.append("K520 applicability is unknown")
-    elif k520_applicability is K520ApplicabilityClassification.REQUIRED:
+    elif (
+        k520_receipt.classification
+        is K520ApplicabilityClassification.REQUIRED
+    ):
         if (
             k520_evidence is None
             or not k520_evidence.ready
-            or not _k520_evidence_matches_context(
+            or not _k520_recovery_evidence_matches_context(
                 evidence=k520_evidence,
-                context=context,
+                context=effective_context,
             )
         ):
             reasons.append(
                 "required K520 recovery evidence is missing, not ready, or mismatched"
             )
 
-    if completeness_readiness is not CompletenessReadiness.READY:
-        reasons.append("completeness dependency is not ready")
+    if completeness_receipt is None:
+        reasons.append("C20 governing-world readiness receipt is missing")
+    else:
+        requirement = completeness_receipt.requirement
+        evidence = completeness_receipt.evidence
+        expected_consumer = (
+            f"STRATEGY-INSTANCE:{effective_context.strategy_instance_id}"
+        )
+        expected_scope = (
+            f"INSTRUMENT:{effective_context.instrument_id}"
+            f"/TIMEFRAME:{effective_context.timeframe}"
+        )
+
+        if completeness_receipt.governing_context != effective_context:
+            reasons.append(
+                "C20 receipt does not bind exact effective governing context"
+            )
+        if (
+            completeness_receipt.runtime_authority_class
+            is not runtime_completeness_authority_class
+        ):
+            reasons.append(
+                "C20 receipt authority class does not match runtime environment"
+            )
+        if completeness_receipt.readiness is not CompletenessReadiness.READY:
+            reasons.append("completeness dependency is not ready")
+        if requirement is None or evidence is None:
+            reasons.append(
+                "C20 receipt lacks exact requirement/current-world authority"
+            )
+        else:
+            if (
+                requirement.consumer_ref != expected_consumer
+                or requirement.scope_ref != expected_scope
+                or evidence.consumer_ref != expected_consumer
+                or evidence.scope_ref != expected_scope
+            ):
+                reasons.append(
+                    "C20 receipt consumer/scope does not match current Strategy"
+                )
+            if (
+                evidence.stream_ref != requirement.stream_ref
+                or evidence.horizon_ref != requirement.horizon_ref
+                or evidence.policy_authority != requirement.policy_authority
+            ):
+                reasons.append(
+                    "C20 receipt stream/horizon/policy authority mismatch"
+                )
+            if (
+                evidence.evaluated_world_ref != evidence.current_world_ref
+                or evidence.evaluated_frontier_revision_id
+                != evidence.current_frontier_revision_id
+            ):
+                reasons.append(
+                    "C20 receipt world/frontier currentness mismatch"
+                )
 
     ready = not reasons
 
@@ -1006,7 +1439,7 @@ def evaluate_strategy_trading_readiness(
         broker_account_execution_ready=broker_account.ready,
         strategy_restore_valid=restore.valid,
         strategy_trading_ready=ready,
-        decision_policy_version=context.decision_policy_version,
+        decision_policy_version=effective_context.decision_policy_version,
         reasons=tuple(reasons),
     )
 
@@ -1017,7 +1450,7 @@ def evaluate_decision_cohort_trading_readiness(
     strategy_readiness: tuple[StrategyTradingReadinessEvaluation, ...],
     runtime_authority_class: DecisionPolicyAuthorityClass,
 ) -> DecisionCohortTradingReadinessEvaluation:
-    """C18 cohort readiness 只依 authoritative membership；caller list 不成為 authority。"""
+    """Pure composition primitive；production trust boundary must resolve membership itself。"""
 
     if membership is None:
         return DecisionCohortTradingReadinessEvaluation(
@@ -1032,16 +1465,22 @@ def evaluate_decision_cohort_trading_readiness(
             cohort_id=membership.cohort_id,
             decision_policy_version=membership.policy.policy_version,
             decision_cohort_trading_ready=False,
-            required_strategy_instance_ids=(
-                membership.required_strategy_instance_ids
-            ),
+            required_strategy_instance_ids=membership.required_strategy_instance_ids,
             reasons=(
                 "DecisionPolicy authority class does not match runtime environment",
             ),
         )
 
-    by_id: dict[str, StrategyTradingReadinessEvaluation] = {}
+    if not membership.current:
+        return DecisionCohortTradingReadinessEvaluation(
+            cohort_id=membership.cohort_id,
+            decision_policy_version=membership.policy.policy_version,
+            decision_cohort_trading_ready=False,
+            required_strategy_instance_ids=membership.required_strategy_instance_ids,
+            reasons=("DecisionPolicy/cohort membership authority is stale",),
+        )
 
+    by_id: dict[str, StrategyTradingReadinessEvaluation] = {}
     for item in strategy_readiness:
         if item.strategy_instance_id in by_id:
             raise ValueError(
@@ -1050,11 +1489,7 @@ def evaluate_decision_cohort_trading_readiness(
         by_id[item.strategy_instance_id] = item
 
     required = membership.required_strategy_instance_ids
-    missing = tuple(
-        item
-        for item in required
-        if item not in by_id
-    )
+    missing = tuple(item for item in required if item not in by_id)
     not_ready = tuple(
         item
         for item in required
@@ -1069,12 +1504,10 @@ def evaluate_decision_cohort_trading_readiness(
     )
 
     reasons: list[str] = []
-
     if missing:
         reasons.append(
             "required cohort StrategyInstance membership is missing"
         )
-
     if not_ready:
         reasons.append(
             "required cohort StrategyInstance is not ready under governing DecisionPolicyVersion"
@@ -1089,7 +1522,6 @@ def evaluate_decision_cohort_trading_readiness(
         not_ready_strategy_instance_ids=not_ready,
         reasons=tuple(reasons),
     )
-
 
 def evaluate_generic_startup_catch_up_output(
     *,
@@ -1117,16 +1549,17 @@ def evaluate_generic_startup_catch_up_output(
 __all__ = [
     "BrokerAccountExecutionReadyInput",
     "CompletenessAuthorityClass",
+    "CompletenessEvidenceAuthority",
+    "CompletenessReadiness",
+    "CompletenessReadinessReceipt",
+    "CompletenessRequirementAuthority",
+    "CompletenessRequirementClassification",
     "DecisionCohortTradingReadinessEvaluation",
     "DecisionPolicyAuthorityClass",
     "DecisionPolicyAuthorityRef",
-    "CompletenessAuthorityClass",
-    "CompletenessEvidenceAuthority",
-    "CompletenessReadiness",
-    "CompletenessRequirementAuthority",
-    "CompletenessRequirementClassification",
     "K520ApplicabilityClassification",
     "K520ApplicabilityEvidence",
+    "K520ApplicabilityReceipt",
     "K520RecoveryEvidenceRef",
     "RequiredCohortMembershipEvidence",
     "StartupCatchUpIsolationEvaluation",
@@ -1136,14 +1569,22 @@ __all__ = [
     "StrategyGoverningContext",
     "StrategyGoverningTransitionAuthority",
     "StrategyGoverningTransitionIntegrityError",
+    "StrategyGoverningTransitionPhaseEvidence",
+    "StrategyGoverningTransitionPhaseKind",
+    "StrategyGoverningTransitionResolution",
+    "StrategyGoverningTransitionResolutionKind",
+    "StrategyGoverningTransitionResolutionReceipt",
     "StrategyGoverningTransitionState",
     "StrategyRestoreValidEvidence",
     "StrategyStateSchemaReference",
     "StrategyTradingReadinessEvaluation",
+    "classify_governing_transition",
     "evaluate_completeness_readiness",
+    "evaluate_completeness_readiness_receipt",
     "evaluate_decision_cohort_trading_readiness",
     "evaluate_generic_startup_catch_up_output",
     "evaluate_governing_transition",
     "evaluate_k520_applicability",
+    "evaluate_k520_applicability_receipt",
     "evaluate_strategy_trading_readiness",
 ]

@@ -997,7 +997,8 @@ def test_c16_rf01_postgres_append_preserves_exact_strategy_instance_authority_js
     assert connection.commits == 0
 
 
-def _c17_postgres_transition_authority():
+
+def _c17_postgres_transition_descriptor():
     from strategy.instance import (
         CanonicalInstrumentBindingProvenance,
         config_fingerprint,
@@ -1010,11 +1011,7 @@ def _c17_postgres_transition_authority():
     )
 
     source_config = {"symbol": "TX", "timeframe": "1m"}
-    target_config = {
-        "symbol": "TX",
-        "timeframe": "1m",
-        "mode": "target",
-    }
+    target_config = {"symbol": "TX", "timeframe": "1m", "mode": "target"}
     provenance = CanonicalInstrumentBindingProvenance(
         instrument_id=101,
         authority_id="CANONICAL-INSTRUMENT-PROVISIONING",
@@ -1076,11 +1073,10 @@ def _c17_postgres_transition_authority():
             authority_id="GOVERNING-TRANSITION",
             authority_version="V1",
         ),
-        begin_effective_boundary_ref="BEGIN-PG",
     )
 
 
-def test_c17_migration_is_append_only_head_pointer_contract_without_backfill() -> None:
+def test_c17_rf01_migration_has_pattern_a_contract_without_backfill() -> None:
     sql = Path(
         "persistence/postgres/migrations/"
         "0010_strategy_governing_transition_authority.sql"
@@ -1088,75 +1084,24 @@ def test_c17_migration_is_append_only_head_pointer_contract_without_backfill() -
 
     for table in (
         "strategy_governing_transition_authorities",
-        "strategy_governing_transition_heads",
+        "strategy_governing_transition_phase_evidence",
+        "strategy_governing_transition_resolution_receipts",
+        "strategy_governing_transition_resolution_heads",
     ):
         assert f"CREATE TABLE trading.{table}" in sql
         assert f"COMMENT ON TABLE trading.{table}" in sql
 
-    assert "transition_json JSONB" in sql
+    assert "BEGIN_EFFECTIVE" in sql
+    assert "COMPLETION" in sql
+    assert "NO_ACTIVE_TRANSITION" in sql
     assert "head_revision BIGINT" in sql
-    assert "CURRENT_TIMESTAMP" in sql
     assert "INSERT INTO" not in sql
     assert "UPDATE " not in sql
     assert "DELETE FROM" not in sql
     assert "backfill" not in sql.lower()
 
 
-def test_c17_postgres_append_persists_exact_immutable_transition_authority_json() -> None:
-    import json
-
-    from persistence.postgres.strategy_recovery import (
-        PostgresStrategyGoverningTransitionRepository,
-    )
-
-    authority = _c17_postgres_transition_authority()
-    connection = _Connection()
-
-    PostgresStrategyGoverningTransitionRepository(
-        connection
-    ).append(authority)
-
-    sql, params = connection.last
-    assert "INSERT INTO trading.strategy_governing_transition_authorities" in sql
-    assert isinstance(params[-1], str)
-    assert json.loads(params[-1]) == authority.model_dump(mode="json")
-    assert params[0] == authority.transition_id
-    assert params[1] == authority.strategy_instance_id
-    assert connection.commits == 0
-
-
-def test_c17_postgres_head_uses_exact_cas_pointer_without_latest_ordering() -> None:
-    from persistence.postgres.strategy_recovery import (
-        PostgresStrategyGoverningTransitionRepository,
-    )
-
-    authority = _c17_postgres_transition_authority()
-    connection = _QueueConnection(
-        [
-            (authority.strategy_instance_id,),
-            None,
-            (1,),
-        ]
-    )
-    repository = PostgresStrategyGoverningTransitionRepository(
-        connection
-    )
-
-    revision = repository.advance_head(
-        strategy_instance_id=authority.strategy_instance_id,
-        transition_id=authority.transition_id,
-        expected_head_revision=0,
-    )
-
-    assert revision == 1
-    sqls = [sql for sql, _ in connection.statements]
-    assert "FOR UPDATE" in sqls[1]
-    assert "head_revision" in sqls[2]
-    assert not any("ORDER BY" in sql.upper() for sql in sqls)
-    assert connection.commits == 0
-
-
-def test_c17_postgres_current_reconstructs_exact_head_authority_and_conflict_fails_closed() -> None:
+def test_ce02_postgres_descriptor_same_identity_different_material_fails_closed():
     from persistence.postgres.strategy_recovery import (
         PostgresStrategyGoverningTransitionRepository,
     )
@@ -1164,38 +1109,243 @@ def test_c17_postgres_current_reconstructs_exact_head_authority_and_conflict_fai
         StrategyTransitionPersistenceIntegrityError,
     )
 
-    authority = _c17_postgres_transition_authority()
+    descriptor = _c17_postgres_transition_descriptor()
+    exact = (
+        descriptor.strategy_instance_id,
+        descriptor.model_dump(mode="json"),
+    )
+    PostgresStrategyGoverningTransitionRepository(
+        _QueueConnection([exact])
+    ).append_descriptor(descriptor)
+
+    conflicting = descriptor.model_copy(
+        update={
+            "transition_policy": descriptor.transition_policy.model_copy(
+                update={"authority_version": "V2"}
+            )
+        }
+    )
+    with pytest.raises(
+        StrategyTransitionPersistenceIntegrityError,
+        match="different immutable descriptor",
+    ):
+        PostgresStrategyGoverningTransitionRepository(
+            _QueueConnection([exact])
+        ).append_descriptor(conflicting)
+
+
+def test_postgres_descriptor_append_serializes_exact_immutable_material():
+    import json
+    from persistence.postgres.strategy_recovery import (
+        PostgresStrategyGoverningTransitionRepository,
+    )
+
+    descriptor = _c17_postgres_transition_descriptor()
+    connection = _Connection()
+    PostgresStrategyGoverningTransitionRepository(
+        connection
+    ).append_descriptor(descriptor)
+    sql, params = connection.last
+    assert "INSERT INTO trading.strategy_governing_transition_authorities" in sql
+    assert json.loads(params[-1]) == descriptor.model_dump(mode="json")
+    assert connection.commits == 0
+
+
+def _phase_evidence(kind):
+    from strategy.recovery import (
+        StrategyAuthorityRef,
+        StrategyDurableStateReference,
+        StrategyGoverningTransitionPhaseEvidence,
+        StrategyGoverningTransitionPhaseKind,
+    )
+    descriptor = _c17_postgres_transition_descriptor()
+    target = descriptor.target_context
+    kwargs = {}
+    if kind is StrategyGoverningTransitionPhaseKind.COMPLETION:
+        kwargs["established_target_state"] = StrategyDurableStateReference(
+            snapshot_id="TARGET",
+            strategy_instance_id=target.strategy_instance_id,
+            strategy_id=target.strategy_id,
+            config_version=target.config_version,
+            config_fingerprint=target.config_fingerprint,
+            implementation_revision=target.implementation_revision,
+            instrument_id=target.instrument_id,
+            timeframe=target.timeframe,
+            state_schema_reference=target.state_schema_reference,
+        )
+    return StrategyGoverningTransitionPhaseEvidence(
+        evidence_id=f"EV-{kind.value}",
+        transition_id=descriptor.transition_id,
+        strategy_instance_id=descriptor.strategy_instance_id,
+        kind=kind,
+        boundary_ref=f"BOUNDARY-{kind.value}",
+        evidence_authority=StrategyAuthorityRef(
+            authority_id="TRANSITION-BOUNDARY",
+            authority_version="V1",
+        ),
+        **kwargs,
+    )
+
+
+def test_ce04_postgres_completion_requires_existing_begin():
+    from persistence.postgres.strategy_recovery import (
+        PostgresStrategyGoverningTransitionRepository,
+    )
+    from persistence.strategy_recovery import (
+        StrategyTransitionPersistenceIntegrityError,
+    )
+    from strategy.recovery import StrategyGoverningTransitionPhaseKind
+
+    descriptor = _c17_postgres_transition_descriptor()
+    completion = _phase_evidence(
+        StrategyGoverningTransitionPhaseKind.COMPLETION
+    )
+    connection = _QueueConnection(
+        [
+            (descriptor.strategy_instance_id, descriptor.model_dump(mode="json")),
+            None,
+            None,
+        ]
+    )
+    with pytest.raises(
+        StrategyTransitionPersistenceIntegrityError,
+        match="BEGIN_EFFECTIVE",
+    ):
+        PostgresStrategyGoverningTransitionRepository(
+            connection
+        ).append_phase_evidence(completion)
+
+
+def test_ce03_ce05_postgres_conflicting_phase_evidence_fails_closed():
+    from persistence.postgres.strategy_recovery import (
+        PostgresStrategyGoverningTransitionRepository,
+    )
+    from persistence.strategy_recovery import (
+        StrategyTransitionPersistenceIntegrityError,
+    )
+    from strategy.recovery import StrategyGoverningTransitionPhaseKind
+
+    descriptor = _c17_postgres_transition_descriptor()
+    for kind in (
+        StrategyGoverningTransitionPhaseKind.BEGIN_EFFECTIVE,
+        StrategyGoverningTransitionPhaseKind.COMPLETION,
+    ):
+        original = _phase_evidence(kind)
+        conflict = original.model_copy(
+            update={"boundary_ref": "DIFFERENT-BOUNDARY"}
+        )
+        connection = _QueueConnection(
+            [
+                (
+                    descriptor.strategy_instance_id,
+                    descriptor.model_dump(mode="json"),
+                ),
+                (
+                    original.strategy_instance_id,
+                    original.model_dump(mode="json"),
+                ),
+            ]
+        )
+        with pytest.raises(
+            StrategyTransitionPersistenceIntegrityError,
+            match="conflicting phase evidence",
+        ):
+            PostgresStrategyGoverningTransitionRepository(
+                connection
+            ).append_phase_evidence(conflict)
+
+
+def _no_active_receipt(revision=1):
+    from strategy.recovery import (
+        StrategyAuthorityRef,
+        StrategyGoverningTransitionResolutionKind,
+        StrategyGoverningTransitionResolutionReceipt,
+    )
+    descriptor = _c17_postgres_transition_descriptor()
+    return StrategyGoverningTransitionResolutionReceipt(
+        resolution_id=f"RES-PG-{revision}",
+        strategy_instance_id=descriptor.strategy_instance_id,
+        effective_governing_context=descriptor.source_context,
+        resolution_authority=StrategyAuthorityRef(
+            authority_id="STRATEGY-GOVERNING-TRANSITION-RESOLUTION",
+            authority_version="V1",
+        ),
+        resolution_kind=(
+            StrategyGoverningTransitionResolutionKind.NO_ACTIVE_TRANSITION
+        ),
+        resolution_revision=revision,
+        currentness_evidence_ref=f"HEAD-{revision}",
+    )
+
+
+def test_postgres_positive_no_active_receipt_and_head_use_exact_cas():
+    from persistence.postgres.strategy_recovery import (
+        PostgresStrategyGoverningTransitionRepository,
+    )
+
+    receipt = _no_active_receipt(1)
+    append_connection = _QueueConnection([None])
+    PostgresStrategyGoverningTransitionRepository(
+        append_connection
+    ).append_resolution(receipt)
+    assert "resolution_receipts" in append_connection.statements[-1][0]
+
+    cas_connection = _QueueConnection(
+        [
+            (receipt.strategy_instance_id, receipt.resolution_revision),
+            None,
+            (1,),
+        ]
+    )
+    revision = PostgresStrategyGoverningTransitionRepository(
+        cas_connection
+    ).advance_resolution_head(
+        strategy_instance_id=receipt.strategy_instance_id,
+        resolution_id=receipt.resolution_id,
+        expected_head_revision=0,
+    )
+    assert revision == 1
+    sqls = [sql for sql, _ in cas_connection.statements]
+    assert "FOR UPDATE" in sqls[1]
+    assert not any("ORDER BY" in sql.upper() for sql in sqls)
+    assert cas_connection.commits == 0
+
+
+def test_current_no_active_receipt_checks_structured_payload_exactly():
+    from persistence.postgres.strategy_recovery import (
+        PostgresStrategyGoverningTransitionRepository,
+    )
+    from persistence.strategy_recovery import (
+        StrategyTransitionPersistenceIntegrityError,
+    )
+
+    receipt = _no_active_receipt(1)
     row = (
-        authority.transition_id,
-        3,
-        authority.strategy_instance_id,
-        authority.source_context.config_version,
-        authority.source_context.config_fingerprint,
-        authority.source_context.implementation_revision,
-        authority.source_context.instrument_id,
-        authority.target_context.config_version,
-        authority.target_context.config_fingerprint,
-        authority.target_context.implementation_revision,
-        authority.target_context.instrument_id,
-        authority.transition_policy.authority_id,
-        authority.transition_policy.authority_version,
-        authority.model_dump(mode="json"),
+        receipt.resolution_id,
+        1,
+        receipt.strategy_instance_id,
+        receipt.resolution_revision,
+        receipt.resolution_kind.value,
+        None,
+        receipt.effective_governing_context.config_version,
+        receipt.effective_governing_context.config_fingerprint,
+        receipt.resolution_authority.authority_id,
+        receipt.resolution_authority.authority_version,
+        receipt.currentness_evidence_ref,
+        receipt.model_dump(mode="json"),
     )
-
-    repository = PostgresStrategyGoverningTransitionRepository(
+    restored = PostgresStrategyGoverningTransitionRepository(
         _QueueConnection([row])
-    )
-    restored = repository.current(
-        authority.strategy_instance_id
-    )
-    assert restored == authority
+    ).current_resolution(receipt.strategy_instance_id)
+    assert restored is not None
+    assert restored.receipt == receipt
 
-    conflicting = list(row)
-    conflicting[7] = "WRONG-TARGET-CONFIG"
+    bad = list(row)
+    bad[6] = "WRONG-CONFIG"
     with pytest.raises(
         StrategyTransitionPersistenceIntegrityError,
         match="structured authority",
     ):
         PostgresStrategyGoverningTransitionRepository(
-            _QueueConnection([tuple(conflicting)])
-        ).current(authority.strategy_instance_id)
+            _QueueConnection([tuple(bad)])
+        ).current_resolution(receipt.strategy_instance_id)

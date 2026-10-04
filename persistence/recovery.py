@@ -56,13 +56,24 @@ from persistence.strategy_state import (
     normalize_market_observation_revision_id,
 )
 from persistence.strategy_recovery import (
+    DecisionCohortAuthorityProvider,
     StrategyGoverningTransitionRepository,
 )
 from strategy.recovery import (
-    StrategyDurableStateReference,
+    BrokerAccountExecutionReadyInput,
+    CompletenessAuthorityClass,
+    CompletenessReadinessReceipt,
+    DecisionCohortTradingReadinessEvaluation,
+    DecisionPolicyAuthorityClass,
+    DecisionPolicyAuthorityRef,
+    K520ApplicabilityReceipt,
+    K520RecoveryEvidenceRef,
+    StrategyGoverningTransitionResolutionKind,
     StrategyGoverningTransitionState,
-    StrategyStateSchemaReference,
-    evaluate_governing_transition,
+    StrategyRestoreValidEvidence,
+    StrategyTradingReadinessEvaluation,
+    evaluate_decision_cohort_trading_readiness,
+    evaluate_strategy_trading_readiness,
 )
 from strategy.registry import (
     StrategyRegistry,
@@ -90,6 +101,77 @@ from trading.execution import (
     OrderEvent,
     validate_order_event_transition,
 )
+
+
+def evaluate_authoritative_strategy_trading_readiness(
+    *,
+    transition_repository: StrategyGoverningTransitionRepository | None,
+    instance,
+    broker_account: BrokerAccountExecutionReadyInput,
+    restore: StrategyRestoreValidEvidence,
+    k520_receipt: K520ApplicabilityReceipt | None,
+    k520_evidence: K520RecoveryEvidenceRef | None,
+    completeness_receipt: CompletenessReadinessReceipt | None,
+    runtime_completeness_authority_class: CompletenessAuthorityClass,
+) -> StrategyTradingReadinessEvaluation:
+    """Persistence/provider trusted boundary；missing resolver/read failure 一律 fail closed。"""
+
+    resolution = None
+    if transition_repository is not None:
+        try:
+            resolution = transition_repository.current_resolution(
+                instance.strategy_instance_id
+            )
+        except (LookupError, OSError, RuntimeError, TypeError, ValueError):
+            resolution = None
+
+    return evaluate_strategy_trading_readiness(
+        instance=instance,
+        broker_account=broker_account,
+        restore=restore,
+        transition_resolution=resolution,
+        k520_receipt=k520_receipt,
+        k520_evidence=k520_evidence,
+        completeness_receipt=completeness_receipt,
+        runtime_completeness_authority_class=(
+            runtime_completeness_authority_class
+        ),
+    )
+
+
+def evaluate_authoritative_decision_cohort_trading_readiness(
+    *,
+    provider: DecisionCohortAuthorityProvider | None,
+    cohort_id: str,
+    governing_policy: DecisionPolicyAuthorityRef,
+    strategy_readiness: tuple[StrategyTradingReadinessEvaluation, ...],
+    runtime_authority_class: DecisionPolicyAuthorityClass,
+) -> DecisionCohortTradingReadinessEvaluation:
+    """Production trusted boundary 自行 lookup；caller membership 不成為 authority。"""
+
+    cohort_id = normalize_stable_id(cohort_id)
+    membership = None
+
+    if provider is not None:
+        try:
+            candidate = provider.resolve_required_membership(
+                cohort_id=cohort_id,
+                policy=governing_policy,
+            )
+            if (
+                candidate is not None
+                and candidate.cohort_id == cohort_id
+                and candidate.policy == governing_policy
+            ):
+                membership = candidate
+        except (LookupError, OSError, RuntimeError, TypeError, ValueError):
+            membership = None
+
+    return evaluate_decision_cohort_trading_readiness(
+        membership=membership,
+        strategy_readiness=strategy_readiness,
+        runtime_authority_class=runtime_authority_class,
+    )
 
 
 class RecoveryReadinessState(
@@ -1202,65 +1284,37 @@ def recover_runtime(
 
         if transition_repository is not None:
             try:
-                transition = (
-                    transition_repository.current(
-                        instance_id
-                    )
+                resolution = transition_repository.current_resolution(
+                    instance_id
                 )
-                if transition is not None:
-                    durable_state = (
-                        StrategyDurableStateReference(
-                            snapshot_id=snapshot.snapshot_id,
-                            strategy_instance_id=(
-                                snapshot.strategy_instance_id
-                            ),
-                            strategy_id=snapshot.strategy_id,
-                            config_version=snapshot.config_version,
-                            config_fingerprint=(
-                                snapshot.config_fingerprint
-                            ),
-                            implementation_revision=(
-                                snapshot.strategy_version
-                            ),
-                            instrument_id=snapshot.instrument_id,
-                            timeframe=snapshot.timeframe,
-                            state_schema_reference=(
-                                StrategyStateSchemaReference(
-                                    strategy_id=(
-                                        snapshot.strategy_id
-                                    ),
-                                    schema_version=(
-                                        snapshot.state_schema_version
-                                    ),
-                                )
-                            ),
-                        )
+                if resolution is None:
+                    return RecoveryResult(
+                        state=RecoveryReadinessState.HALT,
+                        reasons=(
+                            "strategy governing transition resolution is missing",
+                        ),
                     )
-                    transition_state = (
-                        evaluate_governing_transition(
-                            authority=transition,
-                            source_instance=instance,
-                            durable_state=durable_state,
-                        )
-                    )
+
+                if (
+                    resolution.receipt.resolution_kind
+                    is StrategyGoverningTransitionResolutionKind.ACTIVE_TRANSITION
+                ):
+                    transition_state = resolution.transition_state
 
                     if (
                         transition_state
-                        is StrategyGoverningTransitionState
-                        .TRANSITION_IN_PROGRESS
+                        is StrategyGoverningTransitionState.TRANSITION_IN_PROGRESS
                     ):
                         return RecoveryResult(
                             state=RecoveryReadinessState.REVIEW,
                             reasons=(
-                                "strategy governing transition "
-                                "is in progress",
+                                "strategy governing transition is in progress",
                             ),
                         )
 
                     if (
                         transition_state
-                        is StrategyGoverningTransitionState
-                        .POST_TRANSITION
+                        is StrategyGoverningTransitionState.POST_TRANSITION
                     ):
                         return RecoveryResult(
                             state=RecoveryReadinessState.REVIEW,
@@ -1272,6 +1326,7 @@ def recover_runtime(
             except (
                 TypeError,
                 ValueError,
+                RuntimeError,
             ) as exc:
                 return RecoveryResult(
                     state=RecoveryReadinessState.HALT,
