@@ -1,0 +1,14 @@
+schema_version: automation.handoff.v1
+handoff_id: HANDOFF-EXEC-AUTO-IMP-001-20261004T162707325206Z-RESERVED
+from_run: EXEC-AUTO-IMP-001-20261004T162707325206Z
+status: RESERVED
+authorization_id: AUTH-AUTO-IMP-001-01
+authorization_state: RESERVED
+execution_id: EXEC-AUTO-IMP-001-20261004T162707325206Z
+next_owner: Automation_Control_Plane
+next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT
+exact_next_action: Recheck writer lock, HEAD/origin and exact authorization/package/quota binding; then durably mark dispatch committed and authorization CONSUMED before manually invoking CODEX.
+must_not_start:
+  - CODEX before CONSUMED
+  - AUTO-IMP-002 or later
+  - Runtime/Broker/Migration/LIVE/Production actions

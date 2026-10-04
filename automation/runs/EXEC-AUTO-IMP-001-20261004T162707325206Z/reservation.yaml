@@ -1,0 +1,35 @@
+schema_version: automation.execution_reservation.v1
+execution_id: EXEC-AUTO-IMP-001-20261004T162707325206Z
+work_package_id: AUTO-IMP-001
+work_package_revision: "1"
+authorization_id: AUTH-AUTO-IMP-001-01
+authorization_revision: "1"
+state: RESERVED
+eligibility_baseline_head: "8ff24fbdb7e52bcb02fd5179394be4e4220e6e44"
+reservation_created_at: "2026-10-05T00:27:07.325206+08:00"
+reconciled_interrupted_execution_id: EXEC-AUTO-IMP-001-20261004T161719932525Z
+writer_lock:
+  required: true
+  status: HELD
+  token_sha256: "e12685254a429449f918bcd921b88766f9c2bdc7b2d7ac8737339b830026fd76"
+quota:
+  policy_version: "1.1"
+  policy_path: automation/policies/quota_admission_policy.v1_1.yaml
+  policy_sha256: "b689b0ec69ab2e62b4e40be5a3d1cacfb509e339082cdf692ba2283811f29503"
+  evidence_path: automation/runs/EXEC-AUTO-IMP-001-20261004T162707325206Z/quota_evidence.json
+  evidence_sha256: "e5849dbfd913e58cbe22928c1071112e098159198225b5421a19409762815492"
+  five_hour_remaining_percent: 100
+  weekly_remaining_percent: 98
+  minimum_remaining_percent: 80
+  result: PASS
+executor:
+  profile: CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
+  automatic_dispatch: DENIED
+  invoked: false
+side_effects:
+  runtime: DENIED
+  broker: DENIED
+  migration: DENIED
+  live: DENIED
+  production: DENIED
+next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT

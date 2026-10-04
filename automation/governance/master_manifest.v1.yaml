@@ -15,18 +15,18 @@ compiled_program:
   implementation_authorized: false
   codex_execution_authorized: false
   program_review: PASS
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT
 
 compiled_authorization_candidate:
   authorization_id: AUTH-AUTO-IMP-001-01
   authorization_revision: "1"
   path: automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml
-  sha256: "2318c3b5c5222238034008830334f9bf3bf3b9001a452944b89b0a9b191b08d3"
+  sha256: "8d0f488681c617284d2512c9a4edcc5a2221be1704569f5012f5934a8e9d7073"
   work_package_id: AUTO-IMP-001
-  authorization_state: AUTHORIZED
-  document_status: AUTHORIZED_EFFECTIVE
+  authorization_state: RESERVED
+  document_status: RESERVED_EFFECTIVE
   planning_baseline_sha: "e96876de83da3282fb2a5a63b76b9d73c14937ad"
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT
 
 superseded_authorization_candidates:
   - authorization_id: AUTH-AUTO-IMP-W1-01
@@ -50,8 +50,8 @@ quota_policy_compatibility_rf:
   previous_policy_path: automation/policies/quota_admission_policy.v1.yaml
   previous_policy_sha256: "744239e70e9e78170487956cd4554f05610cf29fe700e600f5046cad583ff4bd"
   auto_imp_001_authorization_state: AUTHORIZED
-  execution_eligibility: NOT_RESOLVED_FRESH_RECHECK_REQUIRED
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
+  execution_eligibility: PASS_RESERVED
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT
 
 freeze:
   state: FROZEN
@@ -83,7 +83,7 @@ governance_document:
 agent_reentry:
   path: AGENTS.md
   protocol_version: "1.0"
-  sha256: "8fd2931f6ffd1931a88beed471f014219fca6f9b756e68506c0fdcba7aeb8fcf"
+  sha256: "8341fb1dab866a57a06fdecc8435d6c2b8fcb0a8186647c4a9a4d832ac38ae9c"
 
 policies:
   authorization_lifecycle:
@@ -123,7 +123,7 @@ activation:
   w1_wave_candidate_superseded: true
   auto_imp_001_authorization_candidate_compiled: true
   auto_imp_001_authorization_effective: true
-  auto_imp_001_execution_eligibility_resolved: false
+  auto_imp_001_execution_eligibility_resolved: true
   quota_qrf01_accepted_materialized: true
   quota_policy_v1_1_active: true
   implementation_started: false

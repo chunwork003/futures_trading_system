@@ -32,10 +32,10 @@ development_automation_w1_wave_authorization_disposition = SUPERSEDED_CANDIDATE_
 development_automation_current_package = AUTO-IMP-001
 development_automation_current_authorization_id = AUTH-AUTO-IMP-001-01
 development_automation_current_authorization_revision = 1
-development_automation_current_authorization_state = AUTHORIZED
+development_automation_current_authorization_state = RESERVED
 development_automation_current_authorization_candidate = AUTHORIZED_EFFECTIVE
 development_automation_auto_imp_001_source_modification = BOUNDED_AUTHORIZED
-development_automation_execution_eligibility = NOT_RESOLVED_FRESH_RECHECK_REQUIRED
+development_automation_execution_eligibility = PASS_RESERVED
 development_automation_quota_rf_id = AUTO-IMP-001-QRF01
 development_automation_quota_rf_status = ACCEPTED_MATERIALIZED
 development_automation_quota_rf_re_review = PASS
@@ -52,12 +52,13 @@ development_automation_manifest_hash_integrity_review = PASS
 development_automation_auto_rf01 = CLOSED
 development_automation_auto_rf02 = CLOSED
 development_automation_auto_manifest_rf01 = CLOSED
-development_automation_implementation = NOT_STARTED
+development_automation_implementation = RESERVED_NOT_STARTED
+development_automation_execution_id = EXEC-AUTO-IMP-001-20261004T162707325206Z
 development_automation_level_3b = NOT_ENABLED
 development_automation_level_3c = NOT_ENABLED
 development_automation_level_4 = NOT_ENABLED
 development_automation_level_5 = NOT_ENABLED
-development_automation_next_route = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
+development_automation_next_route = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT
 
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
@@ -105,7 +106,7 @@ migration_execution = NOT_AUTHORIZED
 live = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 next_mainline_gap = NOT_AUTHORIZED
-next = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
+next = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT
 ```
 
 Pointers：
@@ -213,7 +214,7 @@ No next mainline GAP is authorized.
 
 Next governance checkpoint:
 
-`AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY`
+`AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT`
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS
