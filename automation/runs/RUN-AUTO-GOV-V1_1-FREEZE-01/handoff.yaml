@@ -1,0 +1,19 @@
+schema_version: automation.handoff.v1
+handoff_id: HANDOFF-AUTO-GOV-V1_1-FREEZE-TO-COMPILER
+from_run: RUN-AUTO-GOV-V1_1-FREEZE-01
+status: COMPLETE
+next_owner: Automation_Architecture_Owner
+next_route: AUTOMATION_IMPLEMENTATION_PROGRAM_COMPILATION
+exact_next_action: Compile the Automation Implementation Program from the frozen v1.1 architecture and machine policies.
+must_not_repeat:
+  - AUTO-RF01 semantic review
+  - AUTO-RF02 semantic review
+  - manifest hash integrity review
+  - full AA01-AA21 redesign
+must_not_start:
+  - CODEX execution
+  - Level 3B activation
+  - Level 3C activation
+  - Level 4 activation
+  - Level 5 activation
+  - next trading mainline GAP

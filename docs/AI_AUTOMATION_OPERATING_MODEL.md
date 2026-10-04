@@ -239,7 +239,13 @@ GPT-6 已完成 AD-01～AD-04 決策。
 
 ```text
 MASTER_ARCHITECTURE_VERSION = 1.1
-STATUS = CANDIDATE_FOR_TARGETED_RE_REVIEW
+STATUS = FROZEN
+FREEZE_SOURCE_REVIEW_HEAD = 0eb899794a8af4d4e0ad2f3e0b3be709c93bed3e
+TARGETED_AUTOMATION_RF01_RF02_RE_REVIEW = PASS
+MANIFEST_HASH_INTEGRITY_ONLY_RE_REVIEW = PASS
+AUTO_RF01 = CLOSED
+AUTO_RF02 = CLOSED
+AUTO_MANIFEST_RF01 = CLOSED
 IMPLEMENTATION = NOT_STARTED
 LEVEL_3B = NOT_ENABLED
 LEVEL_3C = NOT_ENABLED
@@ -283,11 +289,23 @@ automation/runs/ = normalized durable run/checkpoint/delta/handoff/telemetry art
 ### Activation
 
 ```text
-TARGETED_RF_RE_REVIEW_PASS
--> MASTER_V1_1_FREEZE_ELIGIBLE
+MASTER_V1_1_FROZEN
 -> Automation Implementation Program compilation
 
 NOT
+-> CODEX execution
 -> immediate Level 3B/3C/4/5 activation
+-> next trading mainline GAP authorization
 ```
+
+
+### Freeze Materialization
+
+```text
+FREEZE_STATUS = FROZEN
+FREEZE_SOURCE_REVIEW_HEAD = 0eb899794a8af4d4e0ad2f3e0b3be709c93bed3e
+NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_PROGRAM_COMPILATION
+```
+
+Freeze is governance materialization only. It does not grant Runtime Authorization, broker I/O, migration execution, LIVE, production activation, next-mainline-GAP authority, or unattended CODEX execution.
 <!-- AUTOMATION_MASTER_V1_1_END -->
