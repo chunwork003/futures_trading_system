@@ -1,0 +1,85 @@
+{
+  "schema_version": "automation.bounded_execution_quota_amendment.v1",
+  "amendment_id": "AMEND-AUTO-IMP-001-CORR-02-QUOTA-01",
+  "amendment_revision": "1",
+  "status": "AUTHORIZED_EFFECTIVE",
+  "created_at": "2026-10-05T05:05:48Z",
+  "updated_at": "2026-10-05T05:05:48Z",
+  "authority": "HUMAN_GOVERNANCE_OWNER",
+  "decision_source": "USER_EXPLICIT_CURRENT_REQUEST",
+  "decision": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
+  "purpose": "Complete scheduled Work -> Codex pilot; defer quota calibration/optimization until several valid execution cohorts exist",
+  "exact_binding": {
+    "work_order_id": "WO-AUTO-IMP-001-CORR-02",
+    "package_id": "AUTO-IMP-001",
+    "package_revision": "1",
+    "correction_id": "AUTO-IMP-001-YAML-COMPAT-RF02",
+    "executor_profile": "CODEX_SCHEDULED_EXECUTOR_BOUNDED_CORRECTION",
+    "base_authorization_id": "AUTH-AUTO-IMP-001-CORR-02-01",
+    "base_authorization_revision": "1",
+    "base_authorization_path": "automation/work_orders/AUTH-AUTO-IMP-001-CORR-02-01.yaml",
+    "observed_remote_master_sha": "5759c98fa717566037fe0675c960ce7c0251dadd",
+    "code_base_sha": "db82001369017f42acd1887320f6350fa34634f1"
+  },
+  "quota": {
+    "admission_gate": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
+    "normalized_chatgpt_fallback_80_percent": "NOT_APPLICABLE_TO_THIS_SCHEDULED_EXECUTOR",
+    "reported_29_percent_below_80": "NOT_A_POLICY_FAILURE_FOR_THIS_EXACT_SCHEDULED_WORK_ORDER",
+    "minimum_remaining_percentage_required": false,
+    "fresh_human_usage_confirmation_required": false,
+    "machine_readable_quota_telemetry": "RECORD_IF_AVAILABLE_ELSE_NOT_AVAILABLE",
+    "machine_readable_token_telemetry": "RECORD_IF_AVAILABLE_ELSE_NOT_AVAILABLE",
+    "telemetry_unavailability_blocks_admission": false,
+    "frozen_policy_path": "automation/policies/quota_admission_policy.v1_1.yaml",
+    "frozen_policy_modified": false,
+    "provider_enforced_limits_waived": false
+  },
+  "effect": {
+    "quota_admission_blocker_only": true,
+    "other_execution_gates": "FRESH_REVALIDATION_REQUIRED",
+    "prior_quota_stop_result": "HISTORICAL_ONLY_NOT_CURRENT_ELIGIBILITY",
+    "effective_scope": "THIS_EXACT_WORK_ORDER_ONLY",
+    "prior_pilot_reuse": false,
+    "prior_pilot_extension": false,
+    "authorization_replay": false,
+    "correction_budget_added": 0,
+    "correction_budget_remaining": 1,
+    "semantic_cycles_consumed": 0,
+    "extra_work_order_created": false
+  },
+  "lifetime": {
+    "effective_for": "NEXT_FRESH_ELIGIBILITY_ATTEMPT_AND_SINGLE_USE_CLAIM_OF_THIS_ORDER",
+    "ends_on": [
+      "successful single-use claim and bounded execution completion",
+      "work order superseded or revoked"
+    ],
+    "other_work_order_reuse": "DENIED"
+  },
+  "negative_assertions": {
+    "implementation_scope_expansion": false,
+    "side_effect_expansion": false,
+    "architecture_change": false,
+    "broker": false,
+    "db_environment": false,
+    "migration": false,
+    "live": false,
+    "production": false,
+    "credentials": false,
+    "automatic_merge": false,
+    "automatic_additional_correction": false,
+    "auto_imp_002_authorized": false
+  },
+  "executor_reentry": [
+    "Fetch origin/master again; read exact amendment, effective base authority, current pointer and exact work order",
+    "Ignore earlier quota STOP as an eligibility snapshot; log it only as historical observation if available",
+    "Require exact amendment/work-order/package/correction/executor binding before applying quota waiver",
+    "Freshly verify remote branch absent, durable execution evidence absent, writer exclusivity, baseline ancestry and bounded drift, exact source/metadata scope, authority single-use and remaining budget",
+    "Resolve all non-quota gates freshly; provider enforced failure still stops execution; no inferred PASS",
+    "Claim without force only after all other gates PASS; no original consumed authorization replay"
+  ],
+  "next_package": {
+    "package_id": "AUTO-IMP-002",
+    "authorization": "NOT_AUTHORIZED",
+    "status": "NOT_STARTED"
+  }
+}

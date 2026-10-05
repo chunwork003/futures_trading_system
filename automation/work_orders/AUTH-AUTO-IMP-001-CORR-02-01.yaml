@@ -5,13 +5,13 @@
   "authorization_state": "AUTHORIZED",
   "document_status": "AUTHORIZED_EFFECTIVE",
   "created_at": "2026-10-05T04:21:50Z",
-  "updated_at": "2026-10-05T04:21:50Z",
+  "updated_at": "2026-10-05T05:05:48Z",
   "decision_evidence": {
     "authority": "HUMAN_GOVERNANCE_OWNER",
     "source": "USER_EXPLICIT_CURRENT_REQUEST",
     "decision": "AUTHORIZE_EXACTLY_ONE_NEW_BOUNDED_SAME_PACKAGE_CORRECTION",
     "decision_text": "我授權 AUTO-IMP-001 進行一個新的 bounded same-package correction。 grant exactly 1 additional bounded semantic correction cycle; publish one READY_FOR_CODEX work order, stop and let scheduled Codex Executor pick it up.",
-    "interpretation": "Fresh exact correction authority; not consumed authorization replay; no prior pilot extension or quota policy waiver"
+    "interpretation": "Fresh exact correction authority; no consumed authorization replay or prior pilot extension. Quota admission amended only by the separately explicit human decision in automation/work_orders/AMEND-AUTO-IMP-001-CORR-02-QUOTA-01.yaml; frozen policy unchanged."
   },
   "exact_binding": {
     "work_order_id": "WO-AUTO-IMP-001-CORR-02",
@@ -82,9 +82,14 @@
     "original_authorization_replay": false,
     "prior_pilot_reuse": false,
     "prior_pilot_extension": false,
-    "quota_policy_waiver": false,
+    "quota_policy_waiver": true,
     "fresh_executor_policy_eligibility_required": true,
-    "on_missing_or_inapplicable_gate": "STOP_HUMAN_DECISION_REQUIRED_NO_SILENT_WAIVER"
+    "on_missing_or_inapplicable_gate": "STOP_ON_NON_WAIVED_GATE_OR_AMENDMENT_BINDING_FAILURE",
+    "quota_admission_gate": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
+    "quota_amendment_path": "automation/work_orders/AMEND-AUTO-IMP-001-CORR-02-QUOTA-01.yaml",
+    "frozen_quota_policy_modified": false,
+    "fresh_non_quota_eligibility_required": true,
+    "quota_waiver_scope": "EXACT_QUOTA_ADMISSION_ONLY_FROZEN_POLICY_UNCHANGED"
   },
   "correction_budget": {
     "new_authorization_budget": 1,
@@ -113,5 +118,13 @@
     "package_id": "AUTO-IMP-002",
     "authorization": "NOT_AUTHORIZED",
     "status": "NOT_STARTED"
-  }
+  },
+  "effective_amendments": [
+    {
+      "amendment_id": "AMEND-AUTO-IMP-001-CORR-02-QUOTA-01",
+      "path": "automation/work_orders/AMEND-AUTO-IMP-001-CORR-02-QUOTA-01.yaml",
+      "effect": "EXACT_QUOTA_ADMISSION_ONLY",
+      "correction_budget_added": 0
+    }
+  ]
 }

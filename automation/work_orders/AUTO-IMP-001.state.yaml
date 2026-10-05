@@ -134,11 +134,17 @@ current_fresh_correction:
   status: READY_FOR_CODEX
   handoff_ready: true
   correction_budget_remaining: 1
-  execution_eligibility: FRESH_EXECUTOR_GATES_REQUIRED
+  execution_eligibility: QUOTA_ADMISSION_WAIVED_OTHER_GATES_FRESH_REVALIDATION_REQUIRED
   created_at: "2026-10-05T04:21:50Z"
-  updated_at: "2026-10-05T04:21:50Z"
+  updated_at: "2026-10-05T05:05:48Z"
   previous_work_order: WO-AUTO-IMP-001-CORR-01
   previous_human_blocker_disposition: EXACT_NEW_HUMAN_AUTHORIZATION_MATERIALIZED
   prior_order_redispatch: DENIED
   prior_pilot_reuse: DENIED
   automatic_next_package_progression: DENIED
+  quota_amendment_path: automation/work_orders/AMEND-AUTO-IMP-001-CORR-02-QUOTA-01.yaml
+  quota_admission: WAIVED_FOR_BOUNDED_AUTOMATION_PILOT
+  previous_quota_stop_reusable: false
+  fresh_non_quota_gates_required: true
+  correction_budget_added: 0
+  semantic_cycles_consumed: 0

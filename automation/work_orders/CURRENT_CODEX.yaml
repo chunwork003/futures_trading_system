@@ -25,7 +25,17 @@
     ],
     "prior_pilot_reuse": false,
     "prior_pilot_extension": false,
-    "quota_policy_waiver": false
+    "quota_policy_waiver": true,
+    "quota_amendment": {
+      "amendment_id": "AMEND-AUTO-IMP-001-CORR-02-QUOTA-01",
+      "revision": "1",
+      "path": "automation/work_orders/AMEND-AUTO-IMP-001-CORR-02-QUOTA-01.yaml",
+      "status": "AUTHORIZED_EFFECTIVE",
+      "decision": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
+      "exact_work_order_only": true,
+      "frozen_quota_policy_modified": false
+    },
+    "quota_waiver_scope": "EXACT_QUOTA_ADMISSION_ONLY_FROZEN_POLICY_UNCHANGED"
   },
   "exact_goal": "Resolve RF01-REVIEW-MERGE-01 and RF01-REVIEW-SAFE-TAG-02: preserve legal SafeLoader merge precedence and alias compatibility, reject duplicate explicit keys across all safe mapping construction including nested !!set; verify recursive aliases without redesigning YAML contract.",
   "exact_write_scope": [
@@ -102,16 +112,18 @@
   },
   "execution_branch": "auto/WO-AUTO-IMP-001-CORR-02",
   "claim_rules": [
+    "Fetch origin/master anew and confirm exact quota amendment is materialized; prior quota STOP is not a fresh eligibility snapshot",
     "Fetch origin/master; re-read authority and CURRENT_CODEX; verify exact new order is READY and handoff_ready true",
     "Verify fresh authorization exact binding and previous consumed authorization is not reused",
     "Verify no completion evidence or remote claim branch exists for this new work order; no competing active implementation writer",
     "Verify master descends from code_base_sha and only automation/work_orders/** changed since baseline; otherwise STOP for bounded revalidation",
-    "Resolve all existing applicable quota, eligibility and telemetry gates without using old pilot exemption; no policy mutation or inferred PASS",
+    "Read and bind exact quota amendment; waive only this order's quota admission; freshly resolve all remaining eligibility/writer/authority/baseline/scope gates. No old pilot reuse or frozen policy mutation",
     "Create isolated executor checkout from verified current origin/master, record execution_start_sha; do not merge or cherry-pick old execution branch",
     "Create one unique empty claim commit on auto/WO-AUTO-IMP-001-CORR-02 and push without force; successful first push durably consumes this new authorization once",
     "If claim branch already exists or push rejected, STOP without source edits; consumed claim cannot redispatch"
   ],
   "execution_start_rules": [
+    "Apply only this exact work order quota admission waiver; do not treat 29% < 80% manual-executor fallback as scheduled executor policy failure; quota/token telemetry optional NOT_AVAILABLE",
     "Current master still has original pre-RF01 loader. Reviewed RF01 implementation remains only on old branch. Implement a complete corrected duplicate-key solution from current master within the same two files; use prior source/diff as reference only",
     "Preserve existing contracts.py and public loader/schema contracts; do not merge old branch metadata or alter protected scope",
     "Validate duplicate explicit keys before merge flattening while preserving legal merge-derived collisions/precedence; no silent public YAML semantics change",
@@ -122,7 +134,7 @@
     "New branch or durable execution result already exists",
     "Conflicting active writer, unresolved claim or authority binding",
     "Master drift outside automation/work_orders/** after code_base_sha",
-    "Fresh execution gate missing, inapplicable, denied or ambiguous; no reuse of prior pilot quota waiver",
+    "Any non-waived execution gate missing, denied, inapplicable or ambiguous; exact amendment binding missing; provider-enforced limit blocks execution",
     "Required architecture/business semantics decision or feature/contract redesign",
     "Protected-file modification or exact scope violation",
     "Broker / DB / migration / LIVE / production / credential action needed",
@@ -169,11 +181,11 @@
     "authorization": "NOT_AUTHORIZED"
   },
   "created_at": "2026-10-05T04:21:50Z",
-  "updated_at": "2026-10-05T04:21:50Z",
+  "updated_at": "2026-10-05T05:05:48Z",
   "status": "READY_FOR_CODEX",
   "handoff_ready": true,
   "task_packet_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
-  "execution_eligibility": "FRESH_EXECUTOR_GATES_REQUIRED_READY_HANDOFF_IS_NOT_EXECUTABLE",
+  "execution_eligibility": "QUOTA_ADMISSION_WAIVED_OTHER_GATES_FRESH_REVALIDATION_REQUIRED",
   "rehydration": {
     "master_head": "db82001369017f42acd1887320f6350fa34634f1",
     "source": "CONNECTED_GITHUB_REMOTE_ONLY",
@@ -184,6 +196,17 @@
     "open_pull_requests": "UNKNOWN_READ_404",
     "pr_permission": "NO_RECOVERY_EVIDENCE_NO_CREATE_RETRY",
     "review_intake": "BOUND_HUMAN_DECISION_RECEIVED_FOR_TWO_EXACT_FINDINGS",
-    "old_order": "COMPLETED_PENDING_REVIEW_WITH_HUMAN_DECISION_REQUIRED_NO_REDISPATCH"
+    "old_order": "COMPLETED_PENDING_REVIEW_WITH_HUMAN_DECISION_REQUIRED_NO_REDISPATCH",
+    "quota_amendment_observed_master": "5759c98fa717566037fe0675c960ce7c0251dadd"
+  },
+  "quota_admission": {
+    "status": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
+    "authority_path": "automation/work_orders/AMEND-AUTO-IMP-001-CORR-02-QUOTA-01.yaml",
+    "human_usage_confirmation_required": false,
+    "minimum_remaining_percentage_required": false,
+    "normalized_80_percent_fallback": "NOT_APPLICABLE_TO_EXACT_SCHEDULED_EXECUTOR",
+    "telemetry": "RECORD_IF_AVAILABLE_ELSE_NOT_AVAILABLE",
+    "previous_quota_stop_reusable": false,
+    "other_gates": "FRESH_REVALIDATION_REQUIRED"
   }
 }
