@@ -5,7 +5,7 @@
   "document_status": "RESERVED_EFFECTIVE",
   "authorization_state": "RESERVED",
   "created_at": "2026-10-05T12:50:15Z",
-  "updated_at": "2026-10-05T12:58:07Z",
+  "updated_at": "2026-10-05T12:59:36Z",
   "source_candidate_head_sha": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
   "decision_evidence": {
     "decision": "APPROVE",
@@ -131,12 +131,13 @@
     "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/reservation.yaml",
     "writer_lock_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/writer_lock.yaml",
     "quota_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/quota_evidence.json",
-    "dispatch_committed": false,
-    "executor_invoked": false
+    "dispatch_committed": true,
+    "executor_invoked": false,
+    "reserved_commit_sha": "ab223a470c5353171bfa17162a5cd455fc426b6e"
   },
   "decision": {
-    "status": "RESERVED_PENDING_LOCK_HEAD_BINDING_RECHECK",
-    "next_route": "AUTO_IMP_002_RF02_PRE_DISPATCH_RECHECK"
+    "status": "DISPATCH_COMMITTED_PENDING_CONSUMPTION",
+    "next_route": "AUTO_IMP_002_RF02_CONSUMPTION_MATERIALIZATION"
   },
   "quota_amendment": {
     "amendment_id": "AMEND-AUTO-IMP-002-RF02-QUOTA-01",
