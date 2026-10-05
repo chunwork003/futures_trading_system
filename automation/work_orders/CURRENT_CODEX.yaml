@@ -58,7 +58,7 @@
     "broker / DB migration / LIVE / production / credentials"
   ],
   "stop_conditions": [
-    "Remote claim branch codex/auto-imp-001-dupkey-rf01 already exists or atomic claim push fails",
+    "Remote claim branch auto/WO-AUTO-IMP-001-CORR-01 already exists or atomic claim push fails",
     "Another active writer is proven for this exact work order",
     "Correction budget exhausted or uncertain",
     "Reviewer verdict changes or cannot bind to AUTO-IMP-001",
@@ -118,7 +118,7 @@
     "Fetch origin master and re-read CURRENT_CODEX.yaml plus AUTO_DISPATCH_PILOT_20261005.yaml",
     "Verify code_base_sha is an ancestor of current master and code_base_sha..current master changes only automation/work_orders/**",
     "Record current master as execution_start_sha",
-    "Verify remote branch codex/auto-imp-001-dupkey-rf01 does not exist",
+    "Verify remote branch auto/WO-AUTO-IMP-001-CORR-01 does not exist",
     "Create a unique empty claim commit on that branch and push without force; successful first push is the exclusive writer claim",
     "If the remote branch exists or claim push is rejected, STOP without source edits",
     "Do not perform any human quota check and do not use a percentage threshold for admission in this pilot",
@@ -127,12 +127,12 @@
   ],
   "git_rules": {
     "planner": "Publish only automation/work_orders/** to master by fast-forward commit",
-    "executor_branch": "codex/auto-imp-001-dupkey-rf01",
+    "executor_branch": "auto/WO-AUTO-IMP-001-CORR-01",
     "executor_base": "current master after exact rehydration",
     "implementation_commits": 1,
     "force_push": false,
     "direct_executor_master_push": false,
-    "pr": "CODEX_DOES_NOT_CREATE_PR; Work creates/updates PR after branch completion evidence",
+    "pr": "CODEX_MAY_CREATE_PR; if PR tooling is unavailable, push branch + completion evidence and Work creates PR; PR inability must not block implementation",
     "completion_status": "COMPLETED_PENDING_REVIEW",
     "next_package": "DENIED",
     "claim_commit": "ONE_UNIQUE_EMPTY_COMMIT_BEFORE_SOURCE_EDIT"
@@ -164,7 +164,12 @@
     "manual_confirmation": "NOT_REQUIRED",
     "token_optimization": "DEFER_UNTIL_AUTOMATION_PATH_PROVEN",
     "writer_claim": "REMOTE_BRANCH_ATOMIC_CLAIM",
-    "pr_owner": "WORK",
-    "executor_pr_creation": "DENIED"
+    "pr_owner": "CODEX_OR_WORK_FALLBACK",
+    "executor_pr_creation": "ALLOWED_WITH_WORK_FALLBACK"
+  },
+  "executor_contract_alignment": {
+    "branch": "auto/WO-AUTO-IMP-001-CORR-01",
+    "pr_creation": "ALLOWED_WITH_WORK_FALLBACK",
+    "coding_must_not_stop_for_pr_tool_unavailability": true
   }
 }
