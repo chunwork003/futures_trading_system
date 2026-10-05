@@ -1,0 +1,284 @@
+schema_version: automation.work_cost_accounting.v1
+status: DECIDED_NOT_MATERIALIZED
+
+purpose: >
+  Extend the existing execution-cost telemetry into lifecycle cost accounting
+  so the system can measure not only CODEX execution cost but also WORK
+  orchestration cost, rework cost, and optimization overhead without creating
+  a parallel telemetry system.
+
+role_model:
+  architecture:
+    name: HIGH_LEVEL_AI
+    responsibility:
+      - define system architecture
+      - define subsystem boundaries
+      - resolve architecture-level ambiguity
+      - define invariants and escalation boundaries
+    normal_execution_participant: false
+
+  work:
+    name: WORK
+    responsibility:
+      - rehydrate current state
+      - decompose decided architecture into bounded work orders
+      - forecast execution cost
+      - dispatch CODEX work
+      - ingest results
+      - validate evidence
+      - classify bugs
+      - create bounded correction work
+      - analyze efficiency
+      - trigger bounded optimization work
+      - escalate only architecture-level problems
+
+  codex:
+    name: CODEX
+    responsibility:
+      - implement bounded work order
+      - run required tests
+      - record execution observations
+      - produce durable result evidence
+    architecture_authority: false
+
+  normal_loop:
+    - WORK
+    - CODEX
+    - WORK
+
+  architecture_escalation_only_when:
+    - architecture_boundary_changes
+    - interface_contract_changes
+    - fundamental_data_model_changes
+    - invariant_or_authority_semantics_change
+    - decided_architecture_cannot_satisfy_requirement
+
+principles:
+  extend_existing_cost_telemetry: true
+  create_parallel_cost_system: false
+
+  exact_over_estimated: true
+  estimated_must_not_be_labeled_exact: true
+  unknown_must_not_be_coerced_to_zero: true
+
+  local_codex_reported_tokens_are_not_billing_cost: true
+  provider_quota_percent_is_not_token_conversion: true
+
+  cached_input_is_subset_of_input: true
+  reasoning_output_is_subset_of_output: true
+  do_not_sum_all_token_fields: true
+
+  deterministic_aggregation_before_ai_analysis: true
+  raw_transcript_reingestion_for_routine_analysis: false
+  stable_context_should_use_pointer_plus_delta: true
+
+  optimization_must_not_cost_more_than_reasonable_expected_savings: true
+
+work_cost_phases:
+  - WORK_REHYDRATION
+  - WORK_STATE_RESOLUTION
+  - WORK_PLANNING
+  - WORK_FORECASTING
+  - WORK_MATERIALIZATION
+  - WORK_HANDOFF
+  - WORK_RESULT_INTAKE
+  - WORK_VALIDATION
+  - WORK_BUG_REPLAN
+  - WORK_OPTIMIZATION_ANALYSIS
+
+codex_cost_phases:
+  - CODEX_CONTEXT
+  - CODEX_IMPLEMENTATION
+  - CODEX_TEST
+  - CODEX_FIX_RETRY
+  - CODEX_EVIDENCE
+
+rework_dimensions:
+  - FIRST_PASS
+  - BUG_FIX
+  - REVIEW_FIX
+  - TOOL_FAILURE_RETRY
+  - TEST_FAILURE_RETRY
+  - OPTIMIZATION_WORK
+
+measurement_types:
+  - EXACT
+  - PROVIDER_REPORTED
+  - CALIBRATED_ESTIMATE
+  - PROXY
+  - UNKNOWN
+
+measurement_requirements:
+  every_measurement_records:
+    - actor
+    - phase
+    - measurement_type
+    - source
+    - comparable_unit
+    - value_or_null
+
+  work_exact_tokens:
+    rule: >
+      Record exact WORK token usage only when the provider or execution
+      environment exposes task-bound exact usage.
+
+  work_fallback_when_exact_unavailable:
+    token_value: null
+    measurement_type: PROXY_OR_UNKNOWN
+    proxy_fields:
+      - model_turns
+      - tool_calls
+      - files_or_artifacts_read
+      - context_bytes_read_if_available
+      - artifacts_written
+      - wall_seconds
+
+  estimation_rule: >
+    A deterministic or calibrated estimate may be recorded separately from
+    actual usage, but it must retain CALIBRATED_ESTIMATE measurement type and
+    must never silently become EXACT.
+
+comparability:
+  lifecycle_token_sum_allowed_only_when:
+    - units_are_compatible
+    - attribution_is_bound
+    - measurement_semantics_are_declared
+
+  when_units_are_incompatible:
+    - do_not_sum
+    - report_actor_costs_separately
+    - report_proxy_ratios_separately
+    - mark_lifecycle_share_unavailable
+
+forecasting:
+  work_order_materialization_should_forecast:
+    - expected_work_orchestration_cost
+    - expected_codex_execution_cost
+    - expected_test_cycles
+    - expected_rework_risk
+
+  forecast_bands:
+    - p50
+    - p75
+    - p90
+
+  calibration:
+    minimum_comparable_samples: 3
+    before_minimum_samples: PROVISIONAL
+
+actuals:
+  codex:
+    use_existing_execution_cost_actual_contract: true
+
+  work:
+    record_after_orchestration_checkpoint:
+      - measurement_type
+      - exact_or_proxy_usage
+      - phase_breakdown_when_available
+      - wall_seconds
+      - model_turns
+      - tool_calls
+      - context_read_volume_if_available
+
+lifecycle_metrics:
+  required:
+    - work_cost
+    - codex_cost
+    - rework_cost
+    - optimization_cost
+    - first_pass_success
+    - work_order_count
+    - correction_count
+    - actual_vs_forecast_variance
+
+  when_comparable:
+    - work_share_pct
+    - codex_share_pct
+    - rework_share_pct
+    - optimization_share_pct
+    - lifecycle_total
+
+  rolling_views:
+    - PER_WORK_ORDER
+    - PER_WORK_TYPE
+    - LAST_10
+    - PROGRAM_LIFETIME
+
+efficiency_metrics:
+  - FIRST_PASS_ACCEPTANCE_RATE
+  - FORECAST_ERROR
+  - REWORK_RATIO
+  - WORK_OVERHEAD_RATIO
+  - TOKEN_AMPLIFICATION_FACTOR
+  - OPTIMIZATION_OVERHEAD_RATIO
+  - OPTIMIZATION_ROI
+
+optimization:
+  aggregation_rule: >
+    Deterministic scripts aggregate raw telemetry first. WORK consumes compact
+    summaries and anomaly records rather than replaying raw session history.
+
+  triggers:
+    - actual_above_forecast_p90
+    - repeated_work_overhead_above_cohort
+    - repeated_rework_above_plan
+    - repeated_context_replay
+    - repeated_test_cycle_expansion
+    - optimization_cost_exceeds_expected_value
+
+  action_rule: >
+    Generate one bounded optimization recommendation or optimization work item.
+    Do not redesign architecture for ordinary efficiency anomalies.
+
+  architecture_escalation: >
+    Escalate to HIGH_LEVEL_AI only when the required correction changes an
+    architecture boundary, fundamental contract, data model, invariant, or
+    cannot be solved inside the decided architecture.
+
+anti_overhead:
+  no_second_full_context_read_only_for_cost_analysis: true
+  no_raw_jsonl_to_work_when_normalized_summary_exists: true
+  no_new_metric_without_decision_value: true
+  no_new_ai_role_for_cost_accounting: true
+  no_review_role_required_for_normal_bug_loop: true
+
+  target_behavior: >
+    Cost telemetry must progressively reduce model consumption rather than
+    create a second management workload comparable to implementation itself.
+
+implementation_direction_for_work:
+  preserve:
+    - automation/telemetry/execution_cost_contract.v1.yaml
+    - automation/skills/execution-cost-forecaster/SKILL.md
+    - automation/skills/execution-efficiency-guard/SKILL.md
+    - scripts/codex_session_token_usage.ps1
+    - scripts/execution_cost_reconcile.ps1
+
+  work_must:
+    - inspect_existing_schema_before_adding_fields
+    - prefer_backward_compatible_extension_or_explicit_v2_migration
+    - create_minimum_number_of_new_artifacts
+    - keep_machine_readable_detail_out_of_role_kernels
+    - add_deterministic_tests_for_accounting_logic
+    - forecast_the_cost_of_this_implementation_before_codex_handoff
+
+  work_must_not:
+    - create_new_permanent_ai_roles
+    - duplicate_existing_execution_cost_contract
+    - treat_estimated_work_tokens_as_exact
+    - infer_billing_cost_from_local_reported_tokens
+    - infer_tokens_from_provider_quota_percent
+    - require_high_level_ai_for_normal_bug_fix
+    - require_high_level_ai_for_normal_optimization
+
+handoff_result_expected_from_work:
+  - bounded_implementation_plan
+  - proposed_schema_delta
+  - work_orders
+  - implementation_order
+  - test_plan
+  - migration_or_backward_compatibility_plan
+  - token_forecast_for_each_codex_work_order
+
+authority_effect: NONE
+implementation_authority: NOT_GRANTED_BY_THIS_SPEC
