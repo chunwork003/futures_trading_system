@@ -3,7 +3,7 @@
   "work_order_id": "WO-AUTO-IMP-001-CORR-01",
   "package_id": "AUTO-IMP-001",
   "correction_id": "AUTO-IMP-001-DUPKEY-RF01",
-  "code_base_sha": "a0ca84d4744e7fde78d3215f24ba5e89914f6784",
+  "code_base_sha": "3ad63f524fac564158c0542fc2950393d3a18ca4",
   "authority_basis": {
     "kind": "SAME_PACKAGE_BOUNDED_REVIEWER_CORRECTION",
     "reviewer_verdict": "REVIEW_FIX_REQUIRED",
@@ -19,7 +19,16 @@
     "authority_expansion": false,
     "write_scope_expansion": false,
     "side_effect_expansion": false,
-    "new_master_architecture_contradiction": "NO"
+    "new_master_architecture_contradiction": "NO",
+    "automated_dispatch_pilot": {
+      "pilot_id": "AUTO-DISPATCH-PILOT-20261005",
+      "path": "automation/work_orders/AUTO_DISPATCH_PILOT_20261005.yaml",
+      "status": "AUTHORIZED_BOUNDED",
+      "automatic_dispatch": "ALLOWED_FOR_THIS_EXACT_WORK_ORDER",
+      "human_manual_trigger_required": false,
+      "quota_admission_gate": "DISABLED_FOR_THIS_PILOT",
+      "expires_at": "2026-10-05T21:00:00+08:00"
+    }
   },
   "exact_goal": "Reject duplicate YAML mapping keys at every mapping depth, failing closed with AutomationYamlError, within AUTO-IMP-001 only.",
   "exact_write_scope": [
@@ -49,14 +58,13 @@
     "broker / DB migration / LIVE / production / credentials"
   ],
   "stop_conditions": [
-    "Any RUNNING work order or active writer",
-    "Another READY_FOR_CODEX order",
+    "Remote claim branch codex/auto-imp-001-dupkey-rf01 already exists or atomic claim push fails",
+    "Another active writer is proven for this exact work order",
     "Correction budget exhausted or uncertain",
     "Reviewer verdict changes or cannot bind to AUTO-IMP-001",
     "Architecture, authority, write-scope or side-effect expansion needed",
-    "Master moves beyond handoff publication without explicit bounded revalidation",
+    "Non-work-order source/governance drift exists after code_base_sha",
     "Original CONSUMED authorization would need redispatch",
-    "Fresh quota, writer ownership, execution binding or telemetry gates unresolved",
     "Required test failure persists after the one remaining bounded correction cycle",
     "Protected-file change or unreviewed public YAML semantics decision",
     "Known evidence-hash discrepancy is required to be repaired in protected scope"
@@ -67,9 +75,9 @@
       "automation/engine/yaml_io.py",
       "tests/automation/test_contracts.py"
     ],
-    "local_offline_tests": "ALLOW_AFTER_FRESH_EXECUTION_GATES",
-    "git": "ONE_CORRECTION_BRANCH_COMMIT_PUSH_DRAFT_PR_ONLY",
-    "automatic_dispatch": "DENIED",
+    "local_offline_tests": "ALLOW",
+    "git": "ATOMIC_REMOTE_BRANCH_CLAIM_THEN_ONE_IMPLEMENTATION_COMMIT_AND_RESULT_METADATA",
+    "automatic_dispatch": "ALLOWED_FOR_THIS_EXACT_WORK_ORDER_BY_AUTO_DISPATCH_PILOT_20261005",
     "automatic_next_package_progression": "DENIED",
     "runtime_operation": "DENIED",
     "broker": "DENIED",
@@ -87,13 +95,13 @@
     "on_exhaustion": "HUMAN_DECISION_REQUIRED",
     "publisher_cycles_used": 0
   },
-  "status": "HUMAN_DECISION_REQUIRED",
+  "status": "READY_FOR_CODEX",
   "task_packet_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
-  "handoff_ready": false,
+  "handoff_ready": true,
   "created_at": "2026-10-05T10:52:12+08:00",
   "updated_at": "2026-10-05T10:32:00+08:00",
   "rehydration": {
-    "master_head": "a0ca84d4744e7fde78d3215f24ba5e89914f6784",
+    "master_head": "3ad63f524fac564158c0542fc2950393d3a18ca4",
     "branches": [
       "main",
       "master"
@@ -103,35 +111,41 @@
     "running_work_orders": [],
     "prior_state_path": "automation/work_orders/AUTO-IMP-001.state.yaml",
     "result_intake": "COMPLETED_PENDING_REVIEW_INTAKEN_FOR_SAME_PACKAGE_CORRECTION",
-    "writer_lock": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+    "writer_lock": "TO_BE_ACQUIRED_BY_REMOTE_BRANCH_ATOMIC_CLAIM",
     "auto_imp_002": "NOT_STARTED"
   },
   "execution_start_rules": [
-    "Fetch/read GitHub master and all work orders again",
-    "Resolve this code_base_sha plus the publication commit containing only the listed work-order artifacts; record exact execution_start_sha",
-    "Publisher must durably claim this same order RUNNING and acquire exclusive writer ownership before any source edit; no original authorization replay",
-    "Obtain fresh quota/eligibility/telemetry evidence under frozen policies; stale historical snapshots cannot admit execution",
-    "Use a clean isolated branch codex/auto-imp-001-dupkey-rf01 based on verified master; never edit protected scope"
+    "Fetch origin master and re-read CURRENT_CODEX.yaml plus AUTO_DISPATCH_PILOT_20261005.yaml",
+    "Verify code_base_sha is an ancestor of current master and code_base_sha..current master changes only automation/work_orders/**",
+    "Record current master as execution_start_sha",
+    "Verify remote branch codex/auto-imp-001-dupkey-rf01 does not exist",
+    "Create a unique empty claim commit on that branch and push without force; successful first push is the exclusive writer claim",
+    "If the remote branch exists or claim push is rejected, STOP without source edits",
+    "Do not perform any human quota check and do not use a percentage threshold for admission in this pilot",
+    "Token/quota telemetry is optional observation only; NOT_AVAILABLE must not block execution",
+    "After successful claim, edit only exact implementation write scope and run required tests"
   ],
   "git_rules": {
     "planner": "Publish only automation/work_orders/** to master by fast-forward commit",
     "executor_branch": "codex/auto-imp-001-dupkey-rf01",
-    "executor_base": "master after exact rehydration and durable claim",
+    "executor_base": "current master after exact rehydration",
     "implementation_commits": 1,
     "force_push": false,
     "direct_executor_master_push": false,
-    "pr": "Draft PR to master, same-package correction only; no automatic merge",
+    "pr": "CODEX_DOES_NOT_CREATE_PR; Work creates/updates PR after branch completion evidence",
     "completion_status": "COMPLETED_PENDING_REVIEW",
-    "next_package": "DENIED"
+    "next_package": "DENIED",
+    "claim_commit": "ONE_UNIQUE_EMPTY_COMMIT_BEFORE_SOURCE_EDIT"
   },
   "required_completion_evidence": [
-    "exact starting master SHA and correction commit SHA",
-    "changed-file list proving exactly two allowed implementation files and unchanged contracts.py blob",
+    "exact execution_start_sha, claim commit SHA, and implementation commit SHA",
+    "changed implementation file list proving only automation/engine/yaml_io.py and tests/automation/test_contracts.py changed and contracts.py blob unchanged",
     "top-level and nested duplicate tests and targeted/full regression results with exit codes",
     "git diff --check and clean worktree evidence excluding known data",
     "correction cycles used and remaining budget",
-    "fresh quota before/after and available token telemetry, label unavailable metrics explicitly",
-    "draft PR URL and independent reviewer handoff; no acceptance claim"
+    "machine-readable token usage if exposed; otherwise NOT_AVAILABLE",
+    "remote branch push result and completion metadata under automation/work_orders/executions/**",
+    "no acceptance claim and AUTO-IMP-002 not started"
   ],
   "evidence_intake": {
     "prior_reports": {
@@ -144,17 +158,13 @@
     "historical_dispatch_revalidation": "NOT_ASSERTED",
     "prior_review_pending_projection": "Retained historical original-run projection; this work order records user-supplied REVIEW_FIX_REQUIRED, not acceptance."
   },
-  "blocker": {
-    "code": "AUTO_DISPATCH_GOVERNANCE_CONFLICT",
-    "summary": "Scheduled Codex automation is not currently authorized for this bounded correction under the frozen execution profile.",
-    "evidence": [
-      "AUTH-AUTO-IMP-001-01 allowed_executor_profile = CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
-      "execution_policy.automatic_dispatch = DENIED",
-      "telemetry_gate.automated_dispatch_without_measurable_channel = DENY",
-      "machine-readable token usage for the pilot = NOT_AVAILABLE"
-    ],
-    "decision_required": "Choose either MANUAL_TRIGGER_FOR_RF01 or AUTHORIZE_BOUNDED_AUTOMATED_DISPATCH_PILOT_EXCEPTION_THROUGH_2026-10-05T21:00+08:00",
-    "source_modification_started": false,
-    "auto_imp_002_started": false
+  "pilot_execution": {
+    "authority_path": "automation/work_orders/AUTO_DISPATCH_PILOT_20261005.yaml",
+    "quota_gate": "DISABLED_FOR_THIS_EXACT_PILOT",
+    "manual_confirmation": "NOT_REQUIRED",
+    "token_optimization": "DEFER_UNTIL_AUTOMATION_PATH_PROVEN",
+    "writer_claim": "REMOTE_BRANCH_ATOMIC_CLAIM",
+    "pr_owner": "WORK",
+    "executor_pr_creation": "DENIED"
   }
 }
