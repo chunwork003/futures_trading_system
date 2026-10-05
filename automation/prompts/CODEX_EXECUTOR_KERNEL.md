@@ -50,6 +50,32 @@ authority / dependency / baseline / scope / writer / existing branch / completio
 
 Existing branch requires resume/conflict resolution; never duplicate execution or consume authority twice.
 
+### Mandatory single-use lifecycle
+Read and obey:
+- automation/policies/authorization_lifecycle.v1.yaml
+- automation/skills/single-use-lifecycle-guard/SKILL.md
+
+A branch/claim commit alone is NOT sufficient.
+
+Before ANY implementation source edit or executor invocation, durable control-plane proof MUST already exist in this exact order:
+
+1. FRESH_AUTHORITY_RESOLUTION
+2. FRESH_ELIGIBILITY_EVALUATION
+3. ACQUIRE_GLOBAL_RUNTIME_WRITER_LOCK
+4. ALLOCATE_EXECUTION_ID
+5. DURABLY_CREATE_EXECUTION_RESERVATION
+6. STATE_TO_RESERVED
+7. RECHECK_LOCK_HEAD_AND_BINDING
+8. MARK_DISPATCH_COMMITTED
+9. STATE_TO_CONSUMED
+10. INVOKE_EXECUTOR
+
+Manual trigger is only a wake event and never bypasses this lifecycle.
+
+If reservation / RESERVED / dispatch committed / CONSUMED cannot be durably materialized by the current mechanism:
+STOP before editing source and route governance/control-plane reconciliation.
+Never substitute a local branch claim for canonical lifecycle state.
+
 ## Stability
 STRICT ORDER  
 RESUME BEFORE NEW  
