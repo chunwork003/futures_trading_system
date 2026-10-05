@@ -9,10 +9,10 @@
   "authorization_id": "AUTH-AUTO-IMP-002-IC01-01",
   "authorization_revision": "1",
   "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-IC01-01.v1.yaml",
-  "authorization_state": "AUTHORIZED",
+  "authorization_state": "RESERVED",
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-IC01-01.yaml",
-  "control_plane_baseline_sha": "940e2d9a67c99b6ae3aad0a942a63d8d86500772",
-  "code_base_sha": "940e2d9a67c99b6ae3aad0a942a63d8d86500772",
+  "control_plane_baseline_sha": "29d4ca4772c40c4032bce63fb8c51d9b426311d9",
+  "code_base_sha": "29d4ca4772c40c4032bce63fb8c51d9b426311d9",
   "baseline_assembly": {
     "fresh_master_control_plane_required": true,
     "source_reference_sha": "33c8eea0d90d4cca5ecf5c902579a687ec096034",
@@ -186,8 +186,8 @@
     "model_usage_measurement_type": "UNKNOWN"
   },
   "execution_branch": "auto/WO-AUTO-IMP-002-IC01-01",
-  "execution_id": null,
-  "status": "BLOCKED",
+  "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+  "status": "WAITING",
   "handoff_ready": false,
   "execution_eligibility": "BLOCKED_QUOTA_ADMISSION",
   "eligibility_path": "automation/work_orders/AUTO-IMP-002-IC01.eligibility.json",
@@ -264,10 +264,12 @@
   "next_route": "IC01_QUOTA_ADMISSION_DECISION",
   "current_action": "STOP_BEFORE_RESERVATION",
   "created_at": "2026-10-05T15:00:35Z",
-  "updated_at": "2026-10-05T15:00:35Z",
+  "updated_at": "2026-10-05T15:07:33Z",
   "quota_amendment": {
     "amendment_id": "AMEND-AUTO-IMP-002-IC01-QUOTA-01",
     "path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
     "status": "ACTIVE_EXACT_SINGLE_USE"
-  }
+  },
+  "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/reservation.yaml",
+  "writer_lock_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml"
 }

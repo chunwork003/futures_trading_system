@@ -2,11 +2,11 @@
   "schema_version": "automation.authorization.v1",
   "authorization_id": "AUTH-AUTO-IMP-002-IC01-01",
   "authorization_revision": "1",
-  "document_status": "AUTHORIZED_EFFECTIVE",
-  "authorization_state": "AUTHORIZED",
+  "document_status": "RESERVED_EFFECTIVE",
+  "authorization_state": "RESERVED",
   "source_candidate_head_sha": "940e2d9a67c99b6ae3aad0a942a63d8d86500772",
   "created_at": "2026-10-05T15:00:35Z",
-  "updated_at": "2026-10-05T15:00:35Z",
+  "updated_at": "2026-10-05T15:07:33Z",
   "decision_evidence": {
     "decision": "AUTO-IMP-002-IC01 = APPROVED_FOR_BOUNDED_IMPLEMENTATION",
     "authority": "HUMAN_GOVERNANCE_OWNER",
@@ -120,8 +120,9 @@
     "provider_enforced_limits_waived": false
   },
   "single_use_execution": {
-    "execution_id": null,
-    "reservation_path": null,
+    "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+    "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/reservation.yaml",
+    "writer_lock_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml",
     "dispatch_committed": false,
     "executor_invoked": false
   },

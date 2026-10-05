@@ -1,0 +1,64 @@
+{
+  "schema_version": "automation.quota_evidence.v1",
+  "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+  "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "captured_at": "2026-10-05T15:07:33Z",
+  "source": "CODEX_USAGE_STATUS_MACHINE_READABLE",
+  "raw_provider": {
+    "ordinaryUsageAllowed": true,
+    "rateLimits": {
+      "limitId": "codex",
+      "limitName": null,
+      "normalModelSlug": null,
+      "primary": {
+        "usedPercent": 38,
+        "windowDurationMins": 300,
+        "resetsAt": 1791222428
+      },
+      "secondary": {
+        "usedPercent": 27,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "credits": {
+        "hasCredits": false,
+        "unlimited": false,
+        "balance": "0"
+      },
+      "individualLimit": null,
+      "spendControlReached": false,
+      "planType": "plus",
+      "rateLimitReachedType": null
+    },
+    "rateLimitsByLimitId": {
+      "codex": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 38,
+          "windowDurationMins": 300,
+          "resetsAt": 1791222428
+        },
+        "secondary": {
+          "usedPercent": 27,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    }
+  },
+  "semantics": "SHARED_ACCOUNT_USAGE_PROXY_NOT_TOKEN_ALLOWANCE_OR_BILLING",
+  "amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
+  "provider_hard_block": false,
+  "policy_blob_sha": "556a86ba5be7a2b2818b1523d96b44caab487bd1"
+}

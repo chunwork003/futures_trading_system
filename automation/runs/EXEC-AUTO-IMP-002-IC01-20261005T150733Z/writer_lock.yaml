@@ -1,0 +1,16 @@
+{
+  "schema_version": "automation.writer_lock.v1",
+  "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+  "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-IC01-01",
+  "state": "HELD",
+  "scope": "AUTOMATION_BOUNDED_SINGLE_WRITER",
+  "acquired_at": "2026-10-05T15:07:33Z",
+  "acquired_after_eligibility_commit": "d27a5cdafed8d03a5012866b1f159771b26210cd",
+  "competing_writer_observed": false,
+  "release_condition": [
+    "DURABLE_RESULT_INTAKE",
+    "EXPLICIT_RECONCILIATION",
+    "PRE_EXECUTION_ABORT_WITH_GOVERNANCE_RECORD"
+  ]
+}
