@@ -6,6 +6,9 @@ from pathlib import Path
 from typing import TypeVar, overload
 
 import yaml
+from yaml.constructor import ConstructorError
+from yaml.nodes import MappingNode
+from yaml.resolver import BaseResolver
 
 from automation.engine.contracts import (
     CONTRACT_BY_SCHEMA,
@@ -20,12 +23,57 @@ class AutomationYamlError(ValueError):
 ContractT = TypeVar("ContractT", bound=AutomationContract)
 
 
+class _DuplicateMappingKeyError(ConstructorError):
+    """標記 YAML mapping 內重複 key，讓公開 boundary 回傳一致錯誤。"""
+
+
+class _UniqueKeySafeLoader(yaml.SafeLoader):
+    """保留 SafeLoader 限制，並在每一層 mapping 拒絕重複 key。"""
+
+
+def _construct_unique_mapping(
+    loader: _UniqueKeySafeLoader,
+    node: MappingNode,
+    deep: bool = False,
+) -> dict[object, object]:
+    """在建構 mapping 前檢查原始 key；容器內的巢狀 mapping 也會經過此處。"""
+
+    seen: set[object] = set()
+    for key_node, _ in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        try:
+            duplicate = key in seen
+            seen.add(key)
+        except TypeError:
+            # 非 hashable key 交由 SafeLoader 原有驗證處理，不改寫其安全語意。
+            continue
+        if duplicate:
+            raise _DuplicateMappingKeyError(
+                "while constructing a mapping",
+                node.start_mark,
+                f"found duplicate key {key!r}",
+                key_node.start_mark,
+            )
+    return yaml.SafeLoader.construct_mapping(loader, node, deep=deep)
+
+
+_UniqueKeySafeLoader.add_constructor(
+    BaseResolver.DEFAULT_MAPPING_TAG,
+    _construct_unique_mapping,
+)
+
+
 def load_yaml_mapping(path: str | Path) -> dict[str, object]:
     """以 safe_load 讀取單一 mapping document；不寫檔、不改變任何 authority。"""
 
     source = Path(path)
     try:
-        loaded = yaml.safe_load(source.read_text(encoding="utf-8"))
+        loaded = yaml.load(
+            source.read_text(encoding="utf-8"),
+            Loader=_UniqueKeySafeLoader,
+        )
+    except _DuplicateMappingKeyError as exc:
+        raise AutomationYamlError(f"duplicate YAML mapping key: {source}") from exc
     except yaml.YAMLError as exc:
         raise AutomationYamlError(f"invalid safe YAML document: {source}") from exc
     if not isinstance(loaded, dict):
