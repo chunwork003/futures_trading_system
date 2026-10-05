@@ -27,7 +27,8 @@
       "full_regression_seconds": 277.27
     },
     "sample_count": 1,
-    "calibration_status": "PROVISIONAL"
+    "calibration_status": "PROVISIONAL",
+    "cohort_path": "automation/telemetry/cohorts/LOCAL_CODEX_AUTOMATION_CORRECTION_V1.json"
   },
   "assumptions": [
     "RF02 remains exact two-file correction scope",
@@ -118,5 +119,7 @@
     "required_reconciliation": true
   },
   "authority_effect": "NONE",
-  "source_execution_authorized": false
+  "source_execution_authorized": false,
+  "contract_path": "automation/telemetry/execution_cost_contract.v1.yaml",
+  "reconcile_helper": "scripts/execution_cost_reconcile.ps1"
 }
