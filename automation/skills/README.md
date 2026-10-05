@@ -20,6 +20,7 @@ Dynamic state sources:
 Initial Shadow Skills:
 - repo-reentry
 - exact-binding-validator
+- single-use-lifecycle-guard
 - quota-snapshot-recorder
 - reviewer-packet-builder
 
@@ -32,3 +33,7 @@ Later:
 - work-cluster
 - quota-calibrator
 - optimization-analyzer
+
+Critical execution rule:
+- single-use-lifecycle-guard is mandatory procedural memory before any bounded executor start.
+- a claim branch/commit alone never proves AuthorizationLifecycleV1 conformance.
