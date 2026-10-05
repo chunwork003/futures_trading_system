@@ -1,0 +1,117 @@
+{
+  "schema_version": "automation.bounded_correction_authorization.v1",
+  "authorization_id": "AUTH-AUTO-IMP-001-CORR-02-01",
+  "authorization_revision": "1",
+  "authorization_state": "AUTHORIZED",
+  "document_status": "AUTHORIZED_EFFECTIVE",
+  "created_at": "2026-10-05T04:21:50Z",
+  "updated_at": "2026-10-05T04:21:50Z",
+  "decision_evidence": {
+    "authority": "HUMAN_GOVERNANCE_OWNER",
+    "source": "USER_EXPLICIT_CURRENT_REQUEST",
+    "decision": "AUTHORIZE_EXACTLY_ONE_NEW_BOUNDED_SAME_PACKAGE_CORRECTION",
+    "decision_text": "我授權 AUTO-IMP-001 進行一個新的 bounded same-package correction。 grant exactly 1 additional bounded semantic correction cycle; publish one READY_FOR_CODEX work order, stop and let scheduled Codex Executor pick it up.",
+    "interpretation": "Fresh exact correction authority; not consumed authorization replay; no prior pilot extension or quota policy waiver"
+  },
+  "exact_binding": {
+    "work_order_id": "WO-AUTO-IMP-001-CORR-02",
+    "package_id": "AUTO-IMP-001",
+    "package_revision": "1",
+    "correction_id": "AUTO-IMP-001-YAML-COMPAT-RF02",
+    "control_plane_baseline_sha": "db82001369017f42acd1887320f6350fa34634f1",
+    "reviewer_verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-01.verdict.json",
+    "reviewed_implementation_sha": "2a8974acbb7319ce55b3d7fb88737ad027061244",
+    "reviewed_evidence_sha": "383ea7305557575a3c5330a1c2e2e54161d1dceb",
+    "finding_ids": [
+      "RF01-REVIEW-MERGE-01",
+      "RF01-REVIEW-SAFE-TAG-02"
+    ],
+    "exact_implementation_write_scope": [
+      "automation/engine/yaml_io.py",
+      "tests/automation/test_contracts.py"
+    ],
+    "side_effect_class": "AUTOMATION_TOOLING_SOURCE_MODIFICATION_ONLY",
+    "governance_effect": "BOUNDED_SAME_PACKAGE_CORRECTION_ONLY",
+    "allowed_executor_profile": "CODEX_SCHEDULED_EXECUTOR_BOUNDED_CORRECTION",
+    "implementation_correction_budget": 1,
+    "review_barrier": "INDEPENDENT_EXACT_SHA_SEMANTIC_REVIEW_BEFORE_ACCEPTANCE"
+  },
+  "purpose": {
+    "merge": "Preserve valid YAML merge-key / merge precedence while rejecting duplicate explicit mapping keys",
+    "safe_tags": "Reject duplicate keys for all safe YAML mappings passing through SafeLoader mapping construction, including nested !!set",
+    "recursive_aliases": "Verify and preserve compatibility; no feature expansion or YAML contract redesign"
+  },
+  "protected_scope": [
+    "automation/engine/contracts.py",
+    "automation/authorizations/**",
+    "automation/governance/**",
+    "automation/policies/**",
+    "automation/packages/**",
+    "automation/programs/**",
+    "automation/runs/**",
+    "docs/**",
+    "data/**",
+    "all implementation files outside exact_write_scope",
+    "broker / DB / migration / LIVE / production / credentials"
+  ],
+  "required_verification": [
+    "valid YAML merge without duplicate explicit keys",
+    "legal merge precedence, including explicit override and merge sequence precedence",
+    "duplicate explicit keys rejected with AutomationYamlError",
+    "nested duplicate mappings rejected, including mappings in sequences",
+    "alias keys compatibility",
+    "recursive aliases compatibility preserved without YAML contract redesign",
+    "nested !!set duplicate entries rejected",
+    "unsafe-tag regression (unsafe object construction rejected)",
+    "representative canonical contract loading",
+    "targeted tests",
+    "full regression",
+    "git diff --check",
+    "exact implementation and metadata scope verification"
+  ],
+  "executor_metadata_write_scope": [
+    "automation/work_orders/executions/WO-AUTO-IMP-001-CORR-02.json"
+  ],
+  "execution": {
+    "scheduled_pickup": "AUTHORIZED_FOR_THIS_EXACT_NEW_WORK_ORDER",
+    "single_use": true,
+    "claim_branch": "auto/WO-AUTO-IMP-001-CORR-02",
+    "claim_protocol": "FIRST_SUCCESSFUL_NON_FORCE_PUSH_OF_UNIQUE_EMPTY_CLAIM_COMMIT",
+    "consumed_on": "DURABLE_SUCCESSFUL_EXCLUSIVE_CLAIM",
+    "work_order_projection_update_after_claim": "ORCHESTRATOR_ONLY",
+    "original_authorization_replay": false,
+    "prior_pilot_reuse": false,
+    "prior_pilot_extension": false,
+    "quota_policy_waiver": false,
+    "fresh_executor_policy_eligibility_required": true,
+    "on_missing_or_inapplicable_gate": "STOP_HUMAN_DECISION_REQUIRED_NO_SILENT_WAIVER"
+  },
+  "correction_budget": {
+    "new_authorization_budget": 1,
+    "cycles_used": 0,
+    "remaining": 1,
+    "previous_authorization_remaining": 0,
+    "on_failure_or_exhaustion": "HUMAN_DECISION_REQUIRED",
+    "automatic_additional_rf": false
+  },
+  "negative_assertions": {
+    "architecture_change": false,
+    "business_semantics_expansion": false,
+    "authority_expansion": false,
+    "side_effect_expansion": false,
+    "runtime_operation": false,
+    "broker": false,
+    "db_environment": false,
+    "migration": false,
+    "live": false,
+    "production": false,
+    "credentials": false,
+    "automatic_merge": false,
+    "next_package_authorization": false
+  },
+  "next_package": {
+    "package_id": "AUTO-IMP-002",
+    "authorization": "NOT_AUTHORIZED",
+    "status": "NOT_STARTED"
+  }
+}

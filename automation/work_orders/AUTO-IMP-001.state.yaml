@@ -1,4 +1,7 @@
 schema_version: automation.supervisor_work_order_state.v1
+current_state_owner: current_fresh_correction
+historical_sections: original execution verification, original reviewer, original correction_budget, latest_correction_execution
+historical_sections_are_dispatch_authority: false
 authority_role: OBSERVATION_AND_ROUTING_ONLY
 authoritative_branch: master
 observed_master_head: d09ce94692c27bf844c3d0ce245710941ddf1294
@@ -7,15 +10,15 @@ work_package_id: AUTO-IMP-001
 work_package_revision: "1"
 authorization_id: AUTH-AUTO-IMP-001-01
 execution_id: EXEC-AUTO-IMP-001-20261004T162707325206Z
-cycle_status: REVIEW_FIX_REQUIRED
+cycle_status: READY_FOR_CODEX
 canonical_execution_status: COMPLETED_PENDING_REVIEW
 state_axes:
   authorization: CONSUMED
   execution: RESULT_READY
   review: FIX_REQUIRED
-human_decision_required: true
+human_decision_required: false
 new_package_authorized: false
-automatic_executor_dispatch_authorized: false
+automatic_executor_dispatch_authorized: true
 accepted: false
 sources:
   canonical_current_state: docs/CURRENT_STATE.md
@@ -95,8 +98,8 @@ planner_handoff:
     - Implementation outside the exact two-file duplicate-key correction
     - Broker or DB migration or LIVE or production or credential actions
 
-current_codex_work_order_id: WO-AUTO-IMP-001-CORR-01
-current_codex_status: COMPLETED_PENDING_REVIEW
+current_codex_work_order_id: WO-AUTO-IMP-001-CORR-02
+current_codex_status: READY_FOR_CODEX
 current_codex_task_packet: automation/work_orders/CURRENT_CODEX_TASK.md
 review_result_intake:
   source: USER_SUPPLIED_AUTHORITATIVE_REVIEWER_VERDICT_CURRENT_REQUEST
@@ -120,3 +123,22 @@ latest_correction_execution:
   verdict_path: automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-01.verdict.json
   control_plane_status: HUMAN_DECISION_REQUIRED
   blocker: INDEPENDENT_REVIEW_FINDINGS_CORRECTION_BUDGET_EXHAUSTED
+
+current_fresh_correction:
+  work_order_id: WO-AUTO-IMP-001-CORR-02
+  correction_id: AUTO-IMP-001-YAML-COMPAT-RF02
+  authorization_id: AUTH-AUTO-IMP-001-CORR-02-01
+  authorization_path: automation/work_orders/AUTH-AUTO-IMP-001-CORR-02-01.yaml
+  authorization_state: AUTHORIZED
+  control_plane_baseline_sha: db82001369017f42acd1887320f6350fa34634f1
+  status: READY_FOR_CODEX
+  handoff_ready: true
+  correction_budget_remaining: 1
+  execution_eligibility: FRESH_EXECUTOR_GATES_REQUIRED
+  created_at: "2026-10-05T04:21:50Z"
+  updated_at: "2026-10-05T04:21:50Z"
+  previous_work_order: WO-AUTO-IMP-001-CORR-01
+  previous_human_blocker_disposition: EXACT_NEW_HUMAN_AUTHORIZATION_MATERIALIZED
+  prior_order_redispatch: DENIED
+  prior_pilot_reuse: DENIED
+  automatic_next_package_progression: DENIED
