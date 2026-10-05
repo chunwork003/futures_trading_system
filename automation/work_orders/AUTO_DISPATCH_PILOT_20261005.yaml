@@ -1,0 +1,68 @@
+schema_version: automation.automated_dispatch_pilot.v1
+pilot_id: AUTO-DISPATCH-PILOT-20261005
+status: AUTHORIZED_BOUNDED
+authority: HUMAN_GOVERNANCE_OWNER
+decision_source: USER_EXPLICIT_CURRENT_REQUEST
+decision: REMOVE_MANUAL_QUOTA_GATE_AND_RUN_AUTOMATION_FIRST
+authorized_at: "2026-10-05T10:32:00+08:00"
+expires_at: "2026-10-05T21:00:00+08:00"
+
+purpose: |
+  Prove unattended Work -> Codex bounded execution first.
+  Token/quota optimization is deferred until the automation path is proven stable.
+
+scope:
+  work_order_id: WO-AUTO-IMP-001-CORR-01
+  package_id: AUTO-IMP-001
+  correction_id: AUTO-IMP-001-DUPKEY-RF01
+  correction_only: true
+  next_package_authorization: DENIED
+  runtime_trading_source: DENIED
+  broker: DENIED
+  db_environment: DENIED
+  migration: DENIED
+  live: DENIED
+  production: DENIED
+  credentials: DENIED
+
+dispatch:
+  automatic_dispatch: ALLOWED_FOR_THIS_EXACT_WORK_ORDER
+  human_manual_trigger_required: false
+  original_consumed_authorization_redispatch: false
+  executor_profile: CODEX_SCHEDULED_AUTOMATION_BOUNDED_PILOT
+
+quota:
+  admission_gate: DISABLED_FOR_THIS_PILOT
+  minimum_remaining_percent: NONE
+  human_usage_confirmation_required: false
+  fresh_usage_snapshot_required: false
+  machine_readable_token_usage_required_to_start: false
+  telemetry_if_available: RECORD
+  token_optimization: DEFER_UNTIL_AUTOMATION_PATH_PROVEN
+  note: "No percentage threshold participates in execution admission for this exact pilot."
+
+writer_claim:
+  mode: REMOTE_BRANCH_ATOMIC_CLAIM
+  branch: codex/auto-imp-001-dupkey-rf01
+  protocol:
+    - fetch origin master
+    - verify remote claim branch absent
+    - create unique empty claim commit on branch from execution_start_sha
+    - push claim commit without force
+    - if push is rejected or branch already exists, STOP as already claimed
+  exclusive_writer_after_successful_claim: true
+
+executor:
+  implementation_write_scope:
+    - automation/engine/yaml_io.py
+    - tests/automation/test_contracts.py
+  metadata_write_scope:
+    - automation/work_orders/executions/**
+  pr_creation_by_codex: DENIED
+  push_branch: ALLOWED
+  automatic_merge: DENIED
+
+completion:
+  work_creates_or_updates_pr: true
+  work_performs_result_intake_and_review: true
+  human_notification: ONLY_ON_HUMAN_DECISION_REQUIRED
