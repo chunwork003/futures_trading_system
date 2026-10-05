@@ -8,9 +8,9 @@
   "authorization_state": "AUTHORIZED",
   "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-01.v1.yaml",
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-01.yaml",
-  "status": "STOPPED_GOVERNANCE_RECONCILIATION_REQUIRED",
+  "status": "COMPLETED_PENDING_REVIEW",
   "handoff_ready": false,
-  "execution_eligibility": "NOT_EXECUTABLE_RESULT_EXISTS_RECONCILIATION_REQUIRED",
+  "execution_eligibility": "NOT_EXECUTABLE_RESULT_EXISTS_REVIEW_PENDING",
   "exact_write_scope": [
     "automation/engine/manifest.py",
     "automation/engine/reentry.py",
@@ -32,7 +32,7 @@
     "provider_hard_block": "STOP",
     "other_execution_gates": "FRESH_REVALIDATION_AT_EXECUTOR_ENTRY"
   },
-  "current_action": "HUMAN_GOVERNANCE_DECISION_ON_AUTO_IMP_002_EXECUTION_PROVENANCE",
+  "current_action": "WAIT_FOR_AUTO_IMP_002_INDEPENDENT_REVIEW",
   "auto_imp_003_authorized": false,
   "runtime_authorization": "NOT_AUTHORIZED",
   "broker_db_migration_live_production": "NOT_AUTHORIZED",
@@ -43,7 +43,7 @@
     "effect": "EXACT_QUOTA_ADMISSION_ONLY"
   },
   "eligibility_path": "automation/work_orders/AUTO-IMP-002.eligibility.json",
-  "next_route": "AUTO_IMP_002_HUMAN_GOVERNANCE_RECONCILIATION",
+  "next_route": "AUTO_IMP_002_INDEPENDENT_REVIEW",
   "manifest_integrity": {
     "status": "PASS",
     "manifest_path": "automation/governance/master_manifest.v1.yaml",
@@ -58,5 +58,9 @@
     "status": "COMPLETED_PENDING_REVIEW"
   },
   "reconciliation_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.lifecycle.json",
-  "review_status": "BLOCKED_PENDING_GOVERNANCE_RECONCILIATION"
+  "review_status": "REVIEW_PENDING",
+  "reconciliation_status": "RESOLVED_BY_HUMAN_GOVERNANCE_ADOPTION",
+  "adoption_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.adoption.json",
+  "execution_lifecycle_conformance": "NONCONFORMING_RECORDED_NOT_REWRITTEN",
+  "reexecution_authorized": false
 }
