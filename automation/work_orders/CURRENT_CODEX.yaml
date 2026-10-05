@@ -10,7 +10,7 @@
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-01.yaml",
   "status": "READY_FOR_CODEX",
   "handoff_ready": true,
-  "execution_eligibility": "ELIGIBLE_FOR_MANUAL_TRIGGER_WITH_PROVIDER_HARD_BLOCK_GUARD",
+  "execution_eligibility": "ELIGIBLE_FOR_MANUAL_TRIGGER_WITH_MANIFEST_INTEGRITY_PASS",
   "exact_write_scope": [
     "automation/engine/manifest.py",
     "automation/engine/reentry.py",
@@ -43,5 +43,12 @@
     "effect": "EXACT_QUOTA_ADMISSION_ONLY"
   },
   "eligibility_path": "automation/work_orders/AUTO-IMP-002.eligibility.json",
-  "next_route": "AUTO_IMP_002_MANUAL_CODEX_TRIGGER"
+  "next_route": "AUTO_IMP_002_MANUAL_CODEX_TRIGGER",
+  "manifest_integrity": {
+    "status": "PASS",
+    "manifest_path": "automation/governance/master_manifest.v1.yaml",
+    "agent_reentry_sha256": "3c1b30cf1b0691b25d454c89e6b0f4bcb5d5985cec696511668ce651cc008bb8",
+    "refresh_commit": "9c7320af9da999407c5c83b635c3f023b63dc862",
+    "effect": "NAVIGATION_POINTER_ONLY_NO_AUTHORITY_EFFECT"
+  }
 }
