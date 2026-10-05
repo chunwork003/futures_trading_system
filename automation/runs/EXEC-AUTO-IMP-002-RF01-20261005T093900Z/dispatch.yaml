@@ -1,0 +1,32 @@
+schema_version: automation.dispatch_commit.v1
+execution_id: EXEC-AUTO-IMP-002-RF01-20261005T093900Z
+work_package_id: AUTO-IMP-002
+work_package_revision: "1"
+correction_id: AUTO-IMP-002-RF01
+work_order_id: WO-AUTO-IMP-002-RF01-01
+authorization_id: AUTH-AUTO-IMP-002-RF01-01
+authorization_revision: "1"
+reserved_commit_sha: "43fbab650d25c79a95edf2e0299adb12397ca28f"
+pre_dispatch_recheck_path: automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/pre_dispatch_recheck.json
+pre_dispatch_recheck_commit_sha: "261b5adc86371f7f544cefbdf82fc8a865fa0708"
+authorization_state: RESERVED
+dispatch_committed: true
+executor_profile: CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
+automatic_dispatch: DENIED
+executor_invoked: false
+writer_lock_required: true
+writer_lock_status: HELD
+write_scope:
+  - automation/engine/reentry.py
+  - tests/automation/test_reentry.py
+protected_unchanged:
+  - automation/engine/manifest.py
+  - tests/automation/test_manifest.py
+protected_side_effects:
+  runtime: DENIED
+  broker: DENIED
+  db: DENIED
+  migration: DENIED
+  live: DENIED
+  production: DENIED
+next_route: AUTO_IMP_002_RF01_STATE_TO_CONSUMED
