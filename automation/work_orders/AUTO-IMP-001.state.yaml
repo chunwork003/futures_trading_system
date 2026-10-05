@@ -111,10 +111,12 @@ review_result_intake:
 latest_correction_execution:
   work_order_id: WO-AUTO-IMP-001-CORR-01
   status: COMPLETED_PENDING_REVIEW
-  review_status: REVIEW_PENDING
+  review_status: HUMAN_DECISION_REQUIRED
+  semantic_review: REVIEW_FIX_REQUIRED
   correction_budget_remaining: 0
   handoff_ready: false
-  updated_at: "2026-10-05T11:56:10+08:00"
+  updated_at: "2026-10-05T04:15:25Z"
   result_intake_path: automation/work_orders/intakes/WO-AUTO-IMP-001-CORR-01.json
+  verdict_path: automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-01.verdict.json
   control_plane_status: HUMAN_DECISION_REQUIRED
-  blocker: PR_CREATION_PERMISSION_DENIED
+  blocker: INDEPENDENT_REVIEW_FINDINGS_CORRECTION_BUDGET_EXHAUSTED

@@ -99,7 +99,7 @@
   "task_packet_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
   "handoff_ready": false,
   "created_at": "2026-10-05T10:52:12+08:00",
-  "updated_at": "2026-10-05T11:56:10+08:00",
+  "updated_at": "2026-10-05T04:15:25Z",
   "rehydration": {
     "master_head": "3ad63f524fac564158c0542fc2950393d3a18ca4",
     "branches": [
@@ -177,15 +177,22 @@
   "claim_commit_sha": "d03809db4a020eec4ab68547fbb6fbf130b4b15e",
   "implementation_commit_sha": "2a8974acbb7319ce55b3d7fb88737ad027061244",
   "evidence_commit_sha": "383ea7305557575a3c5330a1c2e2e54161d1dceb",
-  "resolved_state": "COMPLETED_PENDING_REVIEW",
-  "review_status": "REVIEW_PENDING",
+  "resolved_state": "HUMAN_DECISION_REQUIRED",
+  "review_status": "HUMAN_DECISION_REQUIRED",
   "result_intake_path": "automation/work_orders/intakes/WO-AUTO-IMP-001-CORR-01.json",
   "human_decision_required": true,
   "blocker": {
-    "code": "PR_CREATION_PERMISSION_DENIED",
-    "requires": "Provide an authorized PR creation channel for existing execution branch",
+    "code": "INDEPENDENT_REVIEW_FINDINGS_CORRECTION_BUDGET_EXHAUSTED",
+    "requires": "Decide whether to authorize a new bounded same-package correction for these exact findings; existing budget is exhausted",
     "execution_failure": false
   },
   "execution_status": "COMPLETED_PENDING_REVIEW",
-  "control_plane_status": "HUMAN_DECISION_REQUIRED"
+  "control_plane_status": "HUMAN_DECISION_REQUIRED",
+  "independent_review": {
+    "verdict": "HUMAN_DECISION_REQUIRED",
+    "semantic_result": "REVIEW_FIX_REQUIRED",
+    "path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-01.verdict.json",
+    "implementation_sha": "2a8974acbb7319ce55b3d7fb88737ad027061244",
+    "evidence_sha": "383ea7305557575a3c5330a1c2e2e54161d1dceb"
+  }
 }

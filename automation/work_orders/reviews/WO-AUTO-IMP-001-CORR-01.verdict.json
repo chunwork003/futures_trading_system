@@ -1,0 +1,74 @@
+{
+  "schema_version": "automation.independent_review_verdict.v1",
+  "work_order_id": "WO-AUTO-IMP-001-CORR-01",
+  "package_id": "AUTO-IMP-001",
+  "correction_id": "AUTO-IMP-001-DUPKEY-RF01",
+  "verdict": "HUMAN_DECISION_REQUIRED",
+  "semantic_result": "REVIEW_FIX_REQUIRED",
+  "reviewer_identity": "fresh-context:/root/independent_review",
+  "reviewer_timestamp": "2026-10-05T04:13:16Z",
+  "created_at": "2026-10-05T04:15:25Z",
+  "updated_at": "2026-10-05T04:15:25Z",
+  "independent_context": true,
+  "base_sha": "b2dbe51568674a936d6da4a811b45943198b905c",
+  "claim_sha": "d03809db4a020eec4ab68547fbb6fbf130b4b15e",
+  "implementation_sha": "2a8974acbb7319ce55b3d7fb88737ad027061244",
+  "evidence_sha": "383ea7305557575a3c5330a1c2e2e54161d1dceb",
+  "exact_reviewed_scope": [
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py"
+  ],
+  "findings": [
+    {
+      "id": "RF01-REVIEW-MERGE-01",
+      "priority": "P1",
+      "path": "automation/engine/yaml_io.py",
+      "line": 42,
+      "conclusion": "Valid merge-key YAML rejected before SafeLoader.flatten_mapping; violates valid-document compatibility",
+      "counterexample": "defaults: &defaults\n  key: value\nnested:\n  <<: *defaults\n  other: valid\n"
+    },
+    {
+      "id": "RF01-REVIEW-SAFE-TAG-02",
+      "priority": "P2",
+      "path": "automation/engine/yaml_io.py",
+      "line": 60,
+      "conclusion": "Default mapping tag registration does not protect inherited construct_mapping used by nested !!set; duplicate entries silently collapse",
+      "counterexample": "schema_version: test\nnested: !!set\n  duplicate: null\n  duplicate: null\n"
+    }
+  ],
+  "additional_risk": "Default map constructor lacks upstream generator placeholder; recursive aliases require compatibility verification",
+  "source_reference": "https://github.com/yaml/pyyaml/blob/6.0.2/lib/yaml/constructor.py",
+  "evidence_method": "REMOTE_STATIC_CONTROL_FLOW_REVIEW",
+  "counterexamples_executed": false,
+  "tests": {
+    "targeted": "EXECUTOR_REPORTED_19_PASSED",
+    "regression": "EXECUTOR_REPORTED_1508_PASSED_8_SKIPPED",
+    "reviewer_rerun": false
+  },
+  "scope_verification": "PASS_EXACT_TWO_IMPLEMENTATION_FILES_AND_ONE_EVIDENCE_FILE_PROTECTED_UNCHANGED",
+  "correction_budget_remaining": 0,
+  "proposed_correction_scope": [
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py"
+  ],
+  "proposed_verification": [
+    "valid merge without duplicate explicit keys",
+    "legal merge precedence",
+    "duplicate explicit keys",
+    "alias keys",
+    "recursive aliases",
+    "nested !!set duplicate entries",
+    "unsafe-tag regression"
+  ],
+  "human_decision_needed": "Decide whether to authorize a new bounded same-package correction for these exact findings; existing budget is exhausted",
+  "new_correction_authorized": false,
+  "package_accepted": false,
+  "merge_authorized": false,
+  "next_package_authorized": false,
+  "limitations": [
+    "No local repository used",
+    "No tests rerun",
+    "Counterexamples inferred from candidate and official PyYAML constructor control flow",
+    "Does not establish whole AUTO-IMP-001 acceptance"
+  ]
+}
