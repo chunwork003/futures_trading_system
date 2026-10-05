@@ -1,0 +1,46 @@
+{
+  "schema_version": "automation.result_intake.v1",
+  "work_order_id": "WO-AUTO-IMP-001-CORR-01",
+  "execution_branch": "auto/WO-AUTO-IMP-001-CORR-01",
+  "execution_start_sha": "b2dbe51568674a936d6da4a811b45943198b905c",
+  "claim_commit_sha": "d03809db4a020eec4ab68547fbb6fbf130b4b15e",
+  "implementation_commit_sha": "2a8974acbb7319ce55b3d7fb88737ad027061244",
+  "evidence_commit_sha": "383ea7305557575a3c5330a1c2e2e54161d1dceb",
+  "created_at": "2026-10-05T11:56:10+08:00",
+  "updated_at": "2026-10-05T11:56:10+08:00",
+  "status": "COMPLETED_PENDING_REVIEW",
+  "mechanical_evidence": "PASS",
+  "verification": {
+    "remote_chain": "EXACT_START_EMPTY_CLAIM_IMPLEMENTATION_EVIDENCE",
+    "implementation_files": "EXACT_TWO_FILE_SCOPE",
+    "protected_files": "UNCHANGED_REMOTE_DIFF",
+    "evidence_file": "ONLY_COMPLETION_JSON",
+    "remote_head": "MATCHES_EVIDENCE_COMMIT",
+    "test_results": "EXECUTOR_REPORTED_NOT_RERUN_BY_ORCHESTRATOR",
+    "git_diff_check": "EXECUTOR_REPORTED_PASS",
+    "scope_violations": [],
+    "branch_push": "REMOTE_VERIFIED",
+    "correction_cycles_used": 1,
+    "correction_budget_remaining": 0,
+    "next_package": "NOT_STARTED"
+  },
+  "semantic_review": "PENDING",
+  "accepted": false,
+  "telemetry": {
+    "execution_lead_time_seconds": 204,
+    "implementation_files": 2,
+    "evidence_files": 1,
+    "targeted": "19 passed",
+    "regression": "1508 passed, 8 skipped",
+    "tooling_retries": 2,
+    "human_intervention_count_this_run": 0,
+    "token_usage": "NOT_AVAILABLE"
+  },
+  "pr_fallback": {
+    "status": "BLOCKED_PERMISSION",
+    "error": "GitHub connector 403 Resource not accessible by integration",
+    "base": "master",
+    "head": "auto/WO-AUTO-IMP-001-CORR-01",
+    "pr_body_path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-01.PR_BODY.md"
+  }
+}

@@ -79,7 +79,7 @@
     "production": "DENIED",
     "credentials": "DENIED"
   },
-  "correction_budget_remaining": 1,
+  "correction_budget_remaining": 0,
   "correction_budget": {
     "limit": 2,
     "previous_semantic_cycles_used": 1,
@@ -87,11 +87,11 @@
     "on_exhaustion": "HUMAN_DECISION_REQUIRED",
     "publisher_cycles_used": 0
   },
-  "status": "READY_FOR_CODEX",
+  "status": "COMPLETED_PENDING_REVIEW",
   "task_packet_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
-  "handoff_ready": true,
+  "handoff_ready": false,
   "created_at": "2026-10-05T10:52:12+08:00",
-  "updated_at": "2026-10-05T10:52:12+08:00",
+  "updated_at": "2026-10-05T11:56:10+08:00",
   "rehydration": {
     "master_head": "a0ca84d4744e7fde78d3215f24ba5e89914f6784",
     "branches": [
@@ -143,5 +143,11 @@
     "hash_finding_disposition": "PRESERVED_UNRESOLVED_NOT_IN_IMPLEMENTATION_CORRECTION_SCOPE",
     "historical_dispatch_revalidation": "NOT_ASSERTED",
     "prior_review_pending_projection": "Retained historical original-run projection; this work order records user-supplied REVIEW_FIX_REQUIRED, not acceptance."
-  }
+  },
+  "execution_branch": "auto/WO-AUTO-IMP-001-CORR-01",
+  "execution_start_sha": "b2dbe51568674a936d6da4a811b45943198b905c",
+  "claim_commit_sha": "d03809db4a020eec4ab68547fbb6fbf130b4b15e",
+  "implementation_commit_sha": "2a8974acbb7319ce55b3d7fb88737ad027061244",
+  "evidence_commit_sha": "383ea7305557575a3c5330a1c2e2e54161d1dceb",
+  "review_status": "REVIEW_PENDING"
 }

@@ -1,0 +1,34 @@
+{
+  "schema_version": "automation.codex_execution_result.v1",
+  "work_order_id": "WO-AUTO-IMP-001-CORR-01",
+  "package_id": "AUTO-IMP-001",
+  "correction_id": "AUTO-IMP-001-DUPKEY-RF01",
+  "execution_start_sha": "b2dbe51568674a936d6da4a811b45943198b905c",
+  "claim_commit_sha": "d03809db4a020eec4ab68547fbb6fbf130b4b15e",
+  "implementation_commit_sha": "2a8974acbb7319ce55b3d7fb88737ad027061244",
+  "changed_implementation_files": [
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py"
+  ],
+  "targeted_test": {
+    "command": "python -m pytest tests/automation/test_contracts.py -q -p no:cacheprovider --basetemp=.tmp/pytest-auto-imp-001/targeted-green",
+    "result": "19 passed",
+    "exit_code": 0
+  },
+  "full_regression": {
+    "command": "python -m pytest -q -p no:cacheprovider --basetemp=.tmp/pytest-auto-imp-001/full",
+    "result": "1508 passed, 8 skipped",
+    "exit_code": 0
+  },
+  "git_diff_check": "PASS",
+  "contracts_py_unchanged": true,
+  "correction_cycles_used": 1,
+  "correction_budget_remaining": 0,
+  "tooling_retries": 2,
+  "scope_violations": [],
+  "machine_readable_token_usage": "NOT_AVAILABLE",
+  "branch": "auto/WO-AUTO-IMP-001-CORR-01",
+  "branch_push_result": "SUCCESS",
+  "status": "COMPLETED_PENDING_REVIEW",
+  "AUTO-IMP-002": "NOT_STARTED"
+}

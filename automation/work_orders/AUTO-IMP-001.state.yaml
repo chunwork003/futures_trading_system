@@ -13,7 +13,7 @@ state_axes:
   authorization: CONSUMED
   execution: RESULT_READY
   review: FIX_REQUIRED
-human_decision_required: false
+human_decision_required: true
 new_package_authorized: false
 automatic_executor_dispatch_authorized: false
 accepted: false
@@ -96,7 +96,7 @@ planner_handoff:
     - Broker or DB migration or LIVE or production or credential actions
 
 current_codex_work_order_id: WO-AUTO-IMP-001-CORR-01
-current_codex_status: READY_FOR_CODEX
+current_codex_status: COMPLETED_PENDING_REVIEW
 current_codex_task_packet: automation/work_orders/CURRENT_CODEX_TASK.md
 review_result_intake:
   source: USER_SUPPLIED_AUTHORITATIVE_REVIEWER_VERDICT_CURRENT_REQUEST
@@ -107,3 +107,14 @@ review_result_intake:
   contracts_py_modification: DENIED
   original_authorization_replay: DENIED
   known_hash_finding: PRESERVED_UNRESOLVED
+
+latest_correction_execution:
+  work_order_id: WO-AUTO-IMP-001-CORR-01
+  status: COMPLETED_PENDING_REVIEW
+  review_status: REVIEW_PENDING
+  correction_budget_remaining: 0
+  handoff_ready: false
+  updated_at: "2026-10-05T11:56:10+08:00"
+  result_intake_path: automation/work_orders/intakes/WO-AUTO-IMP-001-CORR-01.json
+  control_plane_status: HUMAN_DECISION_REQUIRED
+  blocker: PR_CREATION_PERMISSION_DENIED
