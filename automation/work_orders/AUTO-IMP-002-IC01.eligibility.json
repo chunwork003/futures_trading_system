@@ -2,15 +2,31 @@
   "schema_version": "automation.execution_eligibility.v1",
   "work_order_id": "WO-AUTO-IMP-002-IC01-01",
   "authorization_id": "AUTH-AUTO-IMP-002-IC01-01",
-  "status": "BLOCKED",
-  "baseline_sha": "940e2d9a67c99b6ae3aad0a942a63d8d86500772",
-  "blocker": "IC01_QUOTA_ADMISSION_UNRESOLVED",
-  "reason": "No compatible provider-native P90 forecast; normalized fallback max_p90_planning_tokens=40000 excludes IC01 forecast P90=2500000; no exact IC01 waiver. Provider availability does not establish governance quota fit.",
-  "provider_hard_block_observed": false,
-  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-IC01-01.quota-preflight.json",
-  "other_lifecycle_gates": "NOT_COMPLETED_MUST_FRESH_REVALIDATE_AFTER_ADMISSION",
-  "reservation_created": false,
-  "authorization_consumed": false,
-  "created_at": "2026-10-05T15:00:35Z",
-  "updated_at": "2026-10-05T15:00:35Z"
+  "status": "PASS_PRE_RESERVATION",
+  "master_sha": "3ff3fcbdc0b5412b6577646ea9d2ce27a0965987",
+  "original_master_baseline_sha": "29d4ca4772c40c4032bce63fb8c51d9b426311d9",
+  "exact_scope": [
+    "automation/engine/reentry.py",
+    "tests/automation/test_reentry.py"
+  ],
+  "forecast_blob_sha": "d7c76e9b4111acf19f7497869a82ed42831dcecb",
+  "quota_policy_blob_sha": "556a86ba5be7a2b2818b1523d96b44caab487bd1",
+  "quota_amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
+  "quota_amendment_commit": "3ff3fcbdc0b5412b6577646ea9d2ce27a0965987",
+  "checks": {
+    "authority": "AUTHORIZED_EXACT_BINDING",
+    "scope": "PASS",
+    "forecast": "PROVISIONAL_IDENTITY_BOUND",
+    "provider": "ORDINARY_USAGE_ALLOWED_NO_HARD_BLOCK",
+    "writer": "NO_ACTIVE_WRITER",
+    "duplicate_branch_execution": "NONE",
+    "worktree": "REMOTE_CONTROL_PLANE_NO_LOCAL_WRITER; EXECUTOR_CLEAN_WORKTREE_RECHECK_REQUIRED",
+    "baseline": "FRESH_REMOTE_MASTER",
+    "quota": "EXACT_IC01_EXCEPTION_APPLIED",
+    "side_effects": "ALL_DENIED",
+    "rf02_redispatch": "DENIED",
+    "auto_imp_003": "NOT_AUTHORIZED"
+  },
+  "created_at": "2026-10-05T15:07:33Z",
+  "updated_at": "2026-10-05T15:07:33Z"
 }
