@@ -101,9 +101,23 @@ Provider hard block => STOP.
 ## Execution efficiency
 Read and obey:
 - automation/skills/execution-efficiency-guard/SKILL.md
+- automation/skills/execution-cost-forecaster/SKILL.md
 - automation/skills/quota-snapshot-recorder/SKILL.md
 
+Read the exact forecast artifact referenced by the work order.
+
+Record actual:
+- actor start/end
+- pre-fix case count
+- complete targeted pass count/time
+- full regression pass count/time
+- 5H/weekly start/end when available
+- unexpected retries/tool failures
+- local token status (normally PENDING_EXTERNAL_EXTRACTION)
+
 Use minimum pre-fix counterexamples, one complete targeted pass after the fix, and one full regression after targeted PASS. Do not expand Git-backed mutation matrices for semantics that can be pure/table-driven tests.
+
+If observable cost has already crossed forecast p90, do not begin an additional unplanned full targeted/full-regression cycle. Record COST_GUARD_WATCH and route to WORK if another expensive cycle is required.
 
 ## Evidence
 Each work order keeps separate:
