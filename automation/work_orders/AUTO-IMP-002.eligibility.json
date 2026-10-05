@@ -1,0 +1,27 @@
+{
+  "schema_version": "automation.execution_eligibility.v1",
+  "work_order_id": "WO-AUTO-IMP-002-01",
+  "package_id": "AUTO-IMP-002",
+  "authorization_id": "AUTH-AUTO-IMP-002-01",
+  "observed_master_sha": "b1b61b60ae7d55e77a9c057f52f87379ce0aa88d",
+  "status": "ELIGIBLE_FOR_MANUAL_TRIGGER",
+  "checks": {
+    "dependency_auto_imp_001": "PASS_ACCEPTED_MATERIALIZED",
+    "authorization": "PASS_AUTHORIZED",
+    "quota_amendment": "PASS_AUTHORIZED_EFFECTIVE",
+    "quota_admission": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
+    "execution_branch_absent": "PASS",
+    "completion_evidence_absent": "PASS",
+    "exact_write_scope_uncreated_on_master": "PASS",
+    "control_plane_drift_only": "PASS",
+    "competing_writer": "NONE_OBSERVED",
+    "provider_hard_block_guard": "ENFORCE_AT_EXECUTOR_ENTRY"
+  },
+  "trigger_mode": "MANUAL_TRIGGER_ONLY",
+  "handoff_can_be_published": true,
+  "non_quota_gates_must_be_revalidated_at_executor_entry": true,
+  "automatic_dispatch": false,
+  "automatic_next_package": false,
+  "runtime_broker_db_migration_live_production": "DENIED",
+  "next_route": "PUBLISH_READY_FOR_CODEX_MANUAL_TRIGGER"
+}
