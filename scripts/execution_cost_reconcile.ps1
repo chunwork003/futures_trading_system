@@ -154,6 +154,22 @@ if ($cycleBreaches.Count -gt 0 -and (Get-SeverityRank $overall) -lt (Get-Severit
 $cause = "WITHIN_EXPECTED_ENVELOPE"
 $recommendations = New-Object System.Collections.Generic.List[string]
 
+function Test-NumericMetric {
+    param([object]$Value)
+
+    if ($null -eq $Value) {
+        return $false
+    }
+
+    [double]$parsed = 0
+    return [double]::TryParse(
+        [string]$Value,
+        [System.Globalization.NumberStyles]::Any,
+        [System.Globalization.CultureInfo]::InvariantCulture,
+        [ref]$parsed
+    )
+}
+
 $actualTotal = $actual.actual.reported_total_tokens
 $actualUncached = $actual.actual.uncached_input_tokens
 $cacheRatio = $actual.actual.cached_input_ratio
@@ -162,16 +178,34 @@ $uncachedP90 = $forecast.forecast.uncached_input_tokens.p90
 $fiveHour = $actual.actual.five_hour_delta_pct
 $fiveHourP90 = $forecast.forecast.five_hour_delta_pct.p90
 
-if (($actualTotal -isnot [string]) -and ($cacheRatio -isnot [string]) -and
-    ([double]$actualTotal -gt [double]$totalP90) -and
-    ([double]$cacheRatio -ge 0.90) -and
-    (($actualUncached -isnot [string]) -and ([double]$actualUncached -le [double]$uncachedP90)) {
+$hasActualTotal = Test-NumericMetric $actualTotal
+$hasActualUncached = Test-NumericMetric $actualUncached
+$hasCacheRatio = Test-NumericMetric $cacheRatio
+$hasTotalP90 = Test-NumericMetric $totalP90
+$hasUncachedP90 = Test-NumericMetric $uncachedP90
+$hasFiveHour = Test-NumericMetric $fiveHour
+$hasFiveHourP90 = Test-NumericMetric $fiveHourP90
+
+if (
+    $hasActualTotal -and
+    $hasActualUncached -and
+    $hasCacheRatio -and
+    $hasTotalP90 -and
+    $hasUncachedP90 -and
+    (([double]$actualTotal) -gt ([double]$totalP90)) -and
+    (([double]$cacheRatio) -ge 0.90) -and
+    (([double]$actualUncached) -le ([double]$uncachedP90))
+) {
     $cause = "CONTEXT_REPLAY_DOMINATED"
     $recommendations.Add("REDUCE_MODEL_TOOL_TEST_ROUND_TRIPS")
     $recommendations.Add("KEEP_STABLE_CACHE_FRIENDLY_KERNEL")
     $recommendations.Add("DO_NOT_RELOAD_UNCHANGED_CONTEXT")
 }
-elseif (($actualUncached -isnot [string]) -and ([double]$actualUncached -gt [double]$uncachedP90)) {
+elseif (
+    $hasActualUncached -and
+    $hasUncachedP90 -and
+    (([double]$actualUncached) -gt ([double]$uncachedP90))
+) {
     $cause = "FRESH_CONTEXT_GROWTH"
     $recommendations.Add("TIGHTEN_POINTER_FIRST_CONTEXT")
     $recommendations.Add("REMOVE_UNRELATED_HISTORY")
@@ -183,13 +217,16 @@ elseif ($cycleBreaches.Count -gt 0) {
     $recommendations.Add("IMPACTED_SUBSET_UNTIL_CLEAN")
     $recommendations.Add("NO_EXTRA_FULL_SUITE_WITHOUT_NEW_DELTA")
 }
-elseif (($fiveHour -isnot [string]) -and ([double]$fiveHour -gt [double]$fiveHourP90) -and
-        ($overall -eq "NORMAL" -or $overall -eq "WATCH")) {
+elseif (
+    $hasFiveHour -and
+    $hasFiveHourP90 -and
+    (([double]$fiveHour) -gt ([double]$fiveHourP90)) -and
+    (($overall -eq "NORMAL") -or ($overall -eq "WATCH"))
+) {
     $cause = "PROVIDER_OR_SHARED_WINDOW_ANOMALY"
     $recommendations.Add("CHECK_RESET_WINDOW_AND_COMPETING_CONSUMERS")
     $recommendations.Add("PRESERVE_RAW_QUOTA_SNAPSHOTS")
 }
-
 $result = [ordered]@{
     schema_version = "automation.execution_cost_reconciliation.v1"
     forecast_path = $ForecastPath
@@ -199,9 +236,9 @@ $result = [ordered]@{
     forecast_confidence = $forecast.confidence
     overall_classification = $overall
     dominant_cause = $cause
-    metric_comparisons = @($comparisons)
-    cycle_breaches = @($cycleBreaches)
-    recommendations = @($recommendations)
+    metric_comparisons = $comparisons.ToArray()
+    cycle_breaches = $cycleBreaches.ToArray()
+    recommendations = $recommendations.ToArray()
     feedback_required_for_next_work_forecast = ($overall -ne "NORMAL")
     generated_at_utc = [datetimeoffset]::UtcNow.ToString("o")
 }
