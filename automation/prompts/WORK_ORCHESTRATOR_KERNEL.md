@@ -48,13 +48,10 @@ REVIEWER PASS != NEXT PACKAGE AUTHORIZATION
 Ambiguity => FAIL CLOSED.
 
 Before publishing READY_FOR_CODEX / manual trigger:
-- bind the exact AuthorizationLifecycleV1 procedure;
-- ensure a concrete control-plane mechanism can durably materialize reservation → RESERVED → dispatch committed → CONSUMED before executor start;
-- require automation/skills/single-use-lifecycle-guard/SKILL.md at handoff.
+- require automation/skills/single-use-lifecycle-guard/SKILL.md;
+- publish handoff only when that guard can prove the canonical durable lifecycle.
 
-A manual trigger is only a wake event.
-A claim branch/commit is never enough to satisfy the frozen lifecycle.
-If the lifecycle materializer is absent or ambiguous, WORK must route governance/control-plane work instead of handing source execution to Codex.
+Manual trigger is only a wake event. A claim branch/commit is never enough.
 
 ## Result flow
 Codex durable result
@@ -98,9 +95,14 @@ NO_PARALLEL_EXECUTION
 Wake signal does not select work.
 
 ## Optimization
+Canonical procedure:
+- automation/skills/execution-efficiency-guard/SKILL.md
+- automation/skills/quota-snapshot-recorder/SKILL.md
+
 Only at meaningful checkpoints:
 OBSERVE → CLASSIFY → GENERALIZE → MATERIALIZE → VERIFY
 
+Protect semantic coverage while preventing repeated context/test/quota cost growth.
 Only repeated problems become rules/contracts/Skills.
 
 ## Skill precedence
