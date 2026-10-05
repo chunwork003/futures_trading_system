@@ -3,7 +3,7 @@
   "correction_id": "AUTO-IMP-002-RF01",
   "parent_work_order_id": "WO-AUTO-IMP-002-01",
   "package_id": "AUTO-IMP-002",
-  "status": "PREPARED_NOT_AUTHORIZED",
+  "status": "AUTHORIZED_MATERIALIZED",
   "trigger_verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-01.verdict.json",
   "finding_id": "AUTO-IMP-002-REVIEW-BINDING-01",
   "reason": "Independent review found incomplete fail-closed cross-artifact binding validation in resolve_reentry().",
@@ -58,11 +58,17 @@
     "branch_claim_alone_is_insufficient": true
   },
   "authority": {
-    "source_modification": "NOT_AUTHORIZED",
-    "codex_execution": "NOT_AUTHORIZED",
-    "correction_budget_source": "NEW_HUMAN_DECISION_REQUIRED",
+    "source_modification": "AUTHORIZED_EXACT_SCOPE_PENDING_LIFECYCLE",
+    "codex_execution": "AUTHORIZED_PENDING_EXECUTION_ELIGIBILITY_AND_SINGLE_USE_LIFECYCLE",
+    "correction_budget_source": "HUMAN_GOVERNANCE_OWNER_CURRENT_DECISION",
     "automatic_rf_creation": "DENIED",
     "auto_imp_003_authorized": false
   },
-  "next_route": "HUMAN_GOVERNANCE_DECISION_AUTO_IMP_002_RF01"
+  "next_route": "AUTO_IMP_002_RF01_EXECUTION_ELIGIBILITY",
+  "materialized_authorization": {
+    "id": "AUTH-AUTO-IMP-002-RF01-01",
+    "path": "automation/authorizations/AUTH-AUTO-IMP-002-RF01-01.v1.yaml",
+    "work_order_id": "WO-AUTO-IMP-002-RF01-01",
+    "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-RF01-01.yaml"
+  }
 }
