@@ -1,0 +1,95 @@
+schema_version: automation.supervisor_work_order_state.v1
+authority_role: OBSERVATION_AND_ROUTING_ONLY
+authoritative_branch: master
+observed_master_head: d09ce94692c27bf844c3d0ce245710941ddf1294
+observed_at: "2026-10-05T10:47:02+08:00"
+work_package_id: AUTO-IMP-001
+work_package_revision: "1"
+authorization_id: AUTH-AUTO-IMP-001-01
+execution_id: EXEC-AUTO-IMP-001-20261004T162707325206Z
+cycle_status: REVIEW_FIX_REQUIRED
+canonical_execution_status: COMPLETED_PENDING_REVIEW
+state_axes:
+  authorization: CONSUMED
+  execution: RESULT_READY
+  review: PENDING
+human_decision_required: false
+new_package_authorized: false
+automatic_executor_dispatch_authorized: false
+accepted: false
+sources:
+  canonical_current_state: docs/CURRENT_STATE.md
+  manifest: automation/governance/master_manifest.v1.yaml
+  exact_work_order: automation/packages/AUTO-IMP-001.yaml
+  authorization: automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml
+  run_directory: automation/runs/EXEC-AUTO-IMP-001-20261004T162707325206Z
+verification:
+  package_sha256: d005d7f4090375966b5d0c1284339cd89b6622d6c3415b2f4bf1b7e7d3027606
+  package_hash_binding: PASS
+  dispatch_reservation_authorization_package_identity: PASS
+  consumed_baseline_sha: d7fc33ed6f2e70369f043aa4a14e16b58a79bbd2
+  implementation_commit_sha: 21a5a66e03e9918d0a4ddd631707a29979b29949
+  implementation_parent_equals_consumed_baseline: PASS
+  implementation_commit_count: 1
+  exact_diff_scope: PASS
+  changed_files:
+    - automation/engine/contracts.py
+    - automation/engine/yaml_io.py
+    - tests/automation/test_contracts.py
+  git_diff_check: PASS
+  result_completion_implementation_binding: PASS
+  active_quota_policy_blob_hash: PASS
+  writer_lock: RELEASED_AFTER_DURABLE_RESULT_INTAKE
+tests:
+  targeted_executor_report: "16 passed"
+  targeted_result_intake_rerun_report: "16 passed"
+  full_regression_executor_report: "1505 passed, 8 skipped"
+  supervisor_rerun: NOT_PERFORMED
+  evidence_level: DURABLE_COMPLETION_REPORTS
+  github_commit_statuses: NONE_RETURNED
+reviewer:
+  completion_review: MISSING
+  review_packet_present: true
+  packet_is_reviewer_acceptance: false
+  required_owner: Independent_Automation_Reviewer
+  review_focus:
+    - Nested FrozenSection required-field coverage
+    - Duplicate YAML mapping key fail-closed behavior
+repository_inventory:
+  branches: [main, master]
+  open_pull_requests: []
+  auto_imp_001_pull_requests: []
+  existing_work_order_state_files: []
+findings:
+  - id: AUTO-IMP-001-SUPERVISOR-QHASH-01
+    classification: BOUNDED_EVIDENCE_CORRECTION
+    path: automation/runs/EXEC-AUTO-IMP-001-20261004T162707325206Z/quota_evidence.json
+    declared_sha256: e5849dbfd913e58cbe22928c1071112e098159198225b5421a19409762815492
+    git_blob_sha256: fb3c8d01e5cd41594f145d07149b5fe27267828ca5a6589285d36ef348296aaa
+    reproduced_crlf_sha256: e5849dbfd913e58cbe22928c1071112e098159198225b5421a19409762815492
+    cause: DECLARED_HASH_MATCHES_CRLF_BYTES_NOT_COMMITTED_LF_BLOB_BYTES
+    canonical_hash_rule: GIT_BLOB_BYTES_NO_LINE_ENDING_NORMALIZATION
+    content_difference: LINE_ENDINGS_ONLY
+    affected_references:
+      - automation/runs/EXEC-AUTO-IMP-001-20261004T162707325206Z/reservation.yaml
+      - automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml
+    historical_dispatch_revalidation: NOT_ASSERTED
+correction_budget:
+  implementation_limit: 2
+  reported_semantic_cycles_used: 1
+  reported_implementation_cycles_remaining: 1
+  supervisor_implementation_cycles_used: 0
+planner_handoff:
+  next_owner: Work_Planner
+  exact_next_action: Prepare same-package evidence hash correction preserving original digest and provenance, then obtain independent AUTO-IMP-001 completion review.
+  scope: EXISTING_AUTO_IMP_001_ONLY
+  correction_class: GOVERNANCE_EVIDENCE_METADATA_ONLY
+  fresh_master_rehydration_required: true
+  prior_authorization_reusable_for_dispatch: false
+  supervisor_is_not_independent_reviewer: true
+  acceptance_requires_reviewer_evidence: true
+  canonical_next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
+  do_not_start:
+    - AUTO-IMP-002 or later
+    - Coding or trading runtime modification
+    - Broker or DB migration or LIVE or production or credential actions
