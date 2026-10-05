@@ -52,10 +52,15 @@
     "anomaly_checkpoint": "automation/work_orders/optimizations/OPT-AUTO-IMP-002-RF01-01.yaml"
   },
   "correction_budget_remaining": 0,
-  "semantic_review": "PENDING",
+  "semantic_review": "REVIEW_FIX_REQUIRED",
   "accepted": false,
   "merge_authorized": false,
   "source_correction_authorized": false,
   "auto_imp_003_authorized": false,
-  "next_route": "AUTO_IMP_002_RF01_INDEPENDENT_RE_REVIEW"
+  "next_route": "AUTO_IMP_002_RF02_HUMAN_DECISION",
+  "verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-RF01-01.verdict.json",
+  "review_finding_ids": [
+    "AUTO-IMP-002-RF01-REVIEW-EFFECT-01"
+  ],
+  "human_decision_required": true
 }
