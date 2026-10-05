@@ -70,6 +70,14 @@ def _validate_bindings(repo, sha, state, current, work, auth, quota, eligibility
     pointer。原始 package 是 planning record，只有 auth 的 exact binding
     能界定其 revision/scope；dependency 的 ACCEPTED 必須同時有正確 identity。
     """
+    # 候選路由不能放寬 Work 的 side-effect envelope、下一包或 provider guard。
+    for key in ("runtime", "broker", "db", "migration", "live", "production"):
+        _require(work["side_effects"].get(key), "DENIED", "WORK_SIDE_EFFECT_EXPANSION")
+    _require(current.get("auto_imp_003_authorized"), False, "NEXT_PACKAGE_AUTHORITY_MISMATCH")
+    _require(work["next_package"].get("package_id"), "AUTO-IMP-003", "NEXT_PACKAGE_AUTHORITY_MISMATCH")
+    _require(work["next_package"].get("authorization"), "NOT_AUTHORIZED", "NEXT_PACKAGE_AUTHORITY_MISMATCH")
+    for document in (current, work):
+        _require(document["quota_gate"].get("provider_hard_block"), "STOP", "PROVIDER_HARD_BLOCK_WEAKENED")
     for key in ("work_order_id", "package_id", "package_revision", "authorization_id",
                 "authorization_revision", "exact_write_scope", "execution_branch",
                 "authorization_path", "eligibility_path"):

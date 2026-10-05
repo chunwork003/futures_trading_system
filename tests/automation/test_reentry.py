@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import FrozenInstanceError
+from copy import deepcopy
 from pathlib import Path
 import subprocess
 
@@ -9,6 +10,7 @@ import yaml
 
 from automation.engine.manifest import ManifestIntegrityError
 from automation.engine.reentry import resolve_reentry
+import automation.engine.reentry as reentry_module
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -285,3 +287,36 @@ def test_valid_duplicate_document_cannot_hide_wrong_pointer(repository: Path, do
     result = resolve_reentry(repository, "HEAD")
     assert result.route == "STOP"
     assert result.execution_allowed is False
+
+
+@pytest.fixture(scope="module")
+def effect_documents():
+    """RF02 純語意基準：不為每個 effect 反例 clone/commit repository。"""
+    paths = [CURRENT, WORK, AUTH, QUOTA, ELIGIBILITY, PACKAGE, DEPENDENCY]
+    payloads = [yaml.safe_load((ROOT / path).read_bytes()) for path in paths]
+    state = reentry_module._current_projection((ROOT / STATE).read_text(encoding="utf-8"))
+    return state, payloads
+
+
+@pytest.mark.parametrize("case", ["side_effect_expansion", "next_package_authority", "provider_hard_block"])
+def test_rf02_execution_effect_counterexamples(effect_documents, monkeypatch, case: str) -> None:
+    state, baseline = effect_documents
+    # Package blob identity 已由 Git integration suite 覆蓋；本組只測 effect。
+    monkeypatch.setattr(reentry_module, "_git", lambda *_: baseline[2]["package_binding"]["git_blob_sha"].encode())
+    if case == "side_effect_expansion":
+        variants = [(1, ("side_effects", key), "ALLOW")
+                    for key in ("runtime", "broker", "db", "migration", "live", "production")]
+    elif case == "next_package_authority":
+        variants = [(0, ("auto_imp_003_authorized",), True),
+                    (1, ("next_package", "package_id"), "AUTO-OTHER"),
+                    (1, ("next_package", "authorization"), "AUTHORIZED")]
+    else:
+        variants = [(index, ("quota_gate", "provider_hard_block"), "IGNORE") for index in (0, 1)]
+    for index, fields, value in variants:
+        documents = deepcopy(baseline)
+        section = documents[index]
+        for field in fields[:-1]:
+            section = section[field]
+        section[fields[-1]] = value
+        with pytest.raises(ValueError):
+            reentry_module._validate_bindings(ROOT, "unused-pure-case", state, *documents)
