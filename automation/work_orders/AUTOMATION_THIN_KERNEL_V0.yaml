@@ -47,3 +47,22 @@ optimization_loop:
 promotion_rule:
   repeated_cost_only: true
   one_off_exception_does_not_expand_framework: true
+
+live_state_rule:
+  authority_source:
+    - docs/CURRENT_STATE.md
+    - automation/work_orders/CURRENT_CODEX.yaml
+  exact_task_source: automation/work_orders/CURRENT_CODEX_TASK.md
+  rule: "Dynamic state must come from live pointers; planning artifacts must not carry authoritative current-state snapshots."
+
+work_bootstrap_minimum:
+  - docs/CURRENT_STATE.md
+  - automation/work_orders/CURRENT_CODEX.yaml
+  - exact pointers referenced by current state
+  - planning artifacts only when planning/optimization is actually required
+
+codex_bootstrap_minimum:
+  - automation/work_orders/CURRENT_CODEX.yaml
+  - automation/work_orders/CURRENT_CODEX_TASK.md
+  - exact authorization/work-order/amendment/eligibility pointers referenced there
+  - do_not_reload_unreferenced_history
