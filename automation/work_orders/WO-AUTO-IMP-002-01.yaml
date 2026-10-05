@@ -76,5 +76,29 @@
     "frozen_policy_modified": false
   },
   "execution_eligibility": "ELIGIBLE_FOR_MANUAL_TRIGGER_WITH_PROVIDER_HARD_BLOCK_GUARD",
-  "eligibility_path": "automation/work_orders/AUTO-IMP-002.eligibility.json"
+  "eligibility_path": "automation/work_orders/AUTO-IMP-002.eligibility.json",
+  "pre_claim_drift_resolution": {
+    "status": "GOVERNANCE_MATERIALIZED",
+    "rule": "Permit only navigation/control-plane materialization after the authorization baseline when package/policy/architecture semantic bindings and exact implementation source scope are unchanged.",
+    "allowed_surfaces": [
+      "AGENTS.md",
+      "automation/prompts/**",
+      "automation/skills/**",
+      "automation/work_orders/**",
+      "docs/CURRENT_STATE.md",
+      "automation/governance/master_manifest.v1.yaml:agent_reentry hash/provenance only"
+    ],
+    "manifest_hash_refresh_commit": "9c7320af9da999407c5c83b635c3f023b63dc862",
+    "agent_reentry_change_commit": "3227c6ab9ea3ec71cf8a953f12746d60da826f57",
+    "authority_effect": "NONE",
+    "architecture_bundle_effect": "NONE",
+    "source_scope_effect": "NONE",
+    "stop_if": [
+      "automation policy/program/package semantic bytes changed",
+      "authorization binding changed outside explicit amendment",
+      "implementation source outside exact_write_scope changed",
+      "manifest change exceeds agent_reentry hash/provenance materialization",
+      "any other drift is ambiguous"
+    ]
+  }
 }
