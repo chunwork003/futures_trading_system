@@ -4,7 +4,7 @@
   "work_order_id": "WO-AUTO-IMP-002-01",
   "package_id": "AUTO-IMP-002",
   "execution_id": "EXEC-AUTO-IMP-002-20261005T083857515Z",
-  "status": "HUMAN_DECISION_REQUIRED",
+  "status": "RESOLVED_BY_HUMAN_GOVERNANCE_ADOPTION",
   "finding_id": "AUTO-IMP-002-LC-01",
   "severity": "GOVERNANCE_PROTOCOL_NONCONFORMANCE",
   "evidence": {
@@ -53,5 +53,12 @@
   ],
   "automatic_resolution": false,
   "auto_imp_003_authorized": false,
-  "merge_authorized": false
+  "merge_authorized": false,
+  "selected_resolution": "ADOPT_EXISTING_IMPLEMENTATION_AS_REVIEW_CANDIDATE",
+  "adoption_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.adoption.json",
+  "historical_lifecycle_conformance": "NONCONFORMING_RECORDED",
+  "reexecution_required": false,
+  "source_modification_required": false,
+  "independent_review_unblocked": true,
+  "resolution_note": "Existing immutable implementation/evidence SHAs are adopted only as a semantic review candidate. Original lifecycle nonconformance remains recorded and is not retroactively rewritten as conforming."
 }
