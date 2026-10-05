@@ -47,6 +47,15 @@ REVIEWER PASS != NEXT PACKAGE AUTHORIZATION
 
 Ambiguity => FAIL CLOSED.
 
+Before publishing READY_FOR_CODEX / manual trigger:
+- bind the exact AuthorizationLifecycleV1 procedure;
+- ensure a concrete control-plane mechanism can durably materialize reservation → RESERVED → dispatch committed → CONSUMED before executor start;
+- require automation/skills/single-use-lifecycle-guard/SKILL.md at handoff.
+
+A manual trigger is only a wake event.
+A claim branch/commit is never enough to satisfy the frozen lifecycle.
+If the lifecycle materializer is absent or ambiguous, WORK must route governance/control-plane work instead of handing source execution to Codex.
+
 ## Result flow
 Codex durable result
 → verify exact evidence/scope/SHAs
