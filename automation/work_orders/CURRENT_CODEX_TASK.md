@@ -1,34 +1,45 @@
-# AUTO-IMP-002 RF01 — COMPLETED_PENDING_REVIEW
+# AUTO-IMP-002 RF01 — REVIEW_FIX_REQUIRED / HUMAN DECISION
 
-No further Codex execution is authorized.
+No Codex execution is authorized.
 
-Exact result:
-- work order: WO-AUTO-IMP-002-RF01-01
-- execution: EXEC-AUTO-IMP-002-RF01-20261005T093900Z
+Independent re-review verdict:
+automation/work_orders/reviews/WO-AUTO-IMP-002-RF01-01.verdict.json
+
+Finding:
+AUTO-IMP-002-RF01-REVIEW-EFFECT-01
+
+Exact reviewed candidate:
 - implementation: 523e5a3b62af78991995765eaa555edb40b79e43
 - evidence: 0c64a9f509ba27c1bc1bad139681951e2f8c2775
-- exact source scope: automation/engine/reentry.py; tests/automation/test_reentry.py
-- targeted: 84 passed
-- full regression: 1615 passed, 8 skipped
-- writer lock: RELEASED_AFTER_DURABLE_RESULT_INTAKE
+- scope: automation/engine/reentry.py; tests/automation/test_reentry.py
 
-Independent re-review:
-automation/work_orders/reviews/WO-AUTO-IMP-002-RF01-01.md
+Remaining semantic blocker:
+resolve_reentry() still lacks fail-closed checks for:
+- WORK protected side_effects
+- CURRENT AUTO-IMP-003 authorization vs WORK next_package
+- CURRENT/WORK provider_hard_block
 
-Routing:
-automation/work_orders/reviews/WO-AUTO-IMP-002-RF01-01.routing.json
+RF02 preparation:
+automation/work_orders/AUTO-IMP-002-RF02.authorization-prep.json
 
-Efficiency checkpoint:
-automation/work_orders/optimizations/OPT-AUTO-IMP-002-RF01-01.yaml
+RF02 is PREPARED_NOT_AUTHORIZED.
+Correction budget from RF01 is 0.
+
+Efficiency contract for any authorized RF02:
+- only 3 minimum pre-fix counterexamples
+- no full negative matrix before fix
+- one complete targeted pass after the fix
+- one full regression after targeted PASS
+- no unnecessary Git-backed matrix expansion
 
 Do not:
-- rerun or modify RF01 source
-- create another execution identity
-- self-accept or merge
-- start AUTO-IMP-003
+- modify source now
+- rerun RF01
+- merge/accept AUTO-IMP-002
+- authorize/start AUTO-IMP-003
 
-Current owner:
-Independent_Automation_Reviewer
+Next owner:
+HUMAN_GOVERNANCE_OWNER
 
 Next:
-AUTO_IMP_002_RF01_INDEPENDENT_RE_REVIEW
+AUTO_IMP_002_RF02_HUMAN_DECISION
