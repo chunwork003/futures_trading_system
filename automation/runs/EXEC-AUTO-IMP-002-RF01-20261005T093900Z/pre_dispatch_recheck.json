@@ -1,0 +1,28 @@
+{
+  "schema_version": "automation.pre_dispatch_recheck.v1",
+  "execution_id": "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+  "work_order_id": "WO-AUTO-IMP-002-RF01-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-RF01-01",
+  "observed_master_sha": "6f46b2049a6a3b5c7e8ec1769ccb7d7bf339d371",
+  "status": "PASS",
+  "checks": {
+    "authorization_state": "RESERVED",
+    "reservation_state": "RESERVED",
+    "writer_lock": "HELD",
+    "exact_work_order_binding": "PASS",
+    "exact_authorization_binding": "PASS",
+    "exact_two_file_scope": "PASS",
+    "protected_manifest_files": "UNCHANGED",
+    "review_finding_binding": "PASS_AUTO_IMP_002_REVIEW_BINDING_01",
+    "source_candidate": "eccbe997fe4f9f2a9da06026d75df11af9c3a937",
+    "quota_amendment": "PASS_EXACT_RF01_PILOT",
+    "quota_evidence": "PASS_BY_EXACT_WAIVER",
+    "execution_branch_absent": "PASS",
+    "completion_evidence_absent": "PASS",
+    "competing_writer": "NONE_OBSERVED",
+    "provider_hard_block": "MUST_RECHECK_AT_MANUAL_EXECUTOR_TRIGGER",
+    "auto_imp_003": "NOT_AUTHORIZED"
+  },
+  "next_required_step": "MARK_DISPATCH_COMMITTED_AND_STATE_TO_CONSUMED",
+  "source_edit_allowed": false
+}
