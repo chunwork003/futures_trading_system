@@ -50,7 +50,10 @@
     ],
     "prohibit_redundant_full_matrix_reruns": true,
     "prohibit_unnecessary_new_git_backed_matrix": true,
-    "efficiency_skill": "automation/skills/execution-efficiency-guard/SKILL.md"
+    "efficiency_skill": "automation/skills/execution-efficiency-guard/SKILL.md",
+    "forecast_required_on_authorized_work_order": true,
+    "cost_contract": "automation/telemetry/execution_cost_contract.v1.yaml",
+    "forecaster_skill": "automation/skills/execution-cost-forecaster/SKILL.md"
   },
   "lifecycle_prevention": {
     "required_before_future_source_edit": true,
@@ -63,5 +66,17 @@
     "automatic_rf_creation": "DENIED",
     "auto_imp_003_authorized": false
   },
-  "next_route": "HUMAN_GOVERNANCE_DECISION_AUTO_IMP_002_RF02"
+  "next_route": "HUMAN_GOVERNANCE_DECISION_AUTO_IMP_002_RF02",
+  "cost_forecast": {
+    "status": "PLANNING_FORECAST_MATERIALIZED",
+    "path": "automation/work_orders/forecasts/AUTO-IMP-002-RF02.planning.json",
+    "confidence": "PROVISIONAL_SINGLE_COMPARABLE_SAMPLE",
+    "reported_total_tokens_p50": 5400000,
+    "reported_total_tokens_p90": 8100000,
+    "five_hour_delta_pct_p50": 8,
+    "five_hour_delta_pct_p90": 13,
+    "actor_seconds_p50": 900,
+    "actor_seconds_p90": 1280,
+    "authority_effect": "NONE"
+  }
 }
