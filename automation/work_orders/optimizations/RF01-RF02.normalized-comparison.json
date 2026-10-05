@@ -1,0 +1,47 @@
+{
+  "schema_version": "automation.normalized_cost_comparison.v1",
+  "status": "PROVISIONAL",
+  "cohort_samples": 2,
+  "baseline_execution_id": "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+  "current_execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+  "metrics": [
+    {
+      "metric": "reported_total_tokens",
+      "rf01": 8943945,
+      "rf02": 173378,
+      "reduction_pct": 98.06150417964332
+    },
+    {
+      "metric": "uncached_input_tokens",
+      "rf01": 64632,
+      "rf02": 58363,
+      "reduction_pct": 9.699529644758009
+    },
+    {
+      "metric": "actor_seconds",
+      "rf01": 1419,
+      "rf02": 904,
+      "reduction_pct": 36.29316420014095
+    },
+    {
+      "metric": "five_hour_delta_pct",
+      "rf01": 14,
+      "rf02": 6,
+      "reduction_pct": 57.14285714285714
+    },
+    {
+      "metric": "weekly_delta_pct",
+      "rf01": 2,
+      "rf02": 1,
+      "reduction_pct": 50
+    }
+  ],
+  "cached_input_ratio": {
+    "rf01": 0.992754,
+    "rf02": 0.66174
+  },
+  "causal_inference": "NOT_ESTABLISHED_TWO_OBSERVATIONS",
+  "billing_savings": "NOT_ASSERTED",
+  "recommendation": "PRESERVE_COHESIVE_WORK_ORDER_AND_MINIMUM_SUFFICIENT_TEST_CYCLES; collect authorized comparable samples before calibration",
+  "updated_at": "2026-10-05T13:46:46Z"
+}

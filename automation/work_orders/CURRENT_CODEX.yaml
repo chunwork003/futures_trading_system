@@ -92,18 +92,18 @@
     "consumed_required_before_source_edit": true,
     "branch_claim_alone_is_sufficient": false
   },
-  "status": "READY_FOR_CODEX",
-  "handoff_ready": true,
-  "execution_eligibility": "PASS_CONSUMED_READY_FOR_MANUAL_TRIGGER",
+  "status": "COMPLETED_PENDING_REVIEW",
+  "handoff_ready": false,
+  "execution_eligibility": "COMPLETED_NOT_REEXECUTABLE",
   "eligibility_path": "automation/work_orders/AUTO-IMP-002-RF02.eligibility.json",
   "execution_branch": "auto/WO-AUTO-IMP-002-RF02-01",
   "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
   "lifecycle_status": "CONSUMED",
-  "correction_budget_remaining": 1,
+  "correction_budget_remaining": 0,
   "correction_budget": {
     "limit": 1,
-    "used": 0,
-    "remaining": 1,
+    "used": 1,
+    "remaining": 0,
     "on_failure": "STOP_WORK_REPLAN_NO_AUTOMATIC_NEW_AUTHORITY"
   },
   "quota_gate": {
@@ -130,7 +130,7 @@
     "authorization": "NOT_AUTHORIZED"
   },
   "auto_imp_003_authorized": false,
-  "source_correction_authorized": true,
+  "source_correction_authorized": false,
   "reexecution_authorized": false,
   "runtime_authorization": "NOT_AUTHORIZED",
   "broker_db_migration_live_production": "NOT_AUTHORIZED",
@@ -150,10 +150,10 @@
     "provider hard block",
     "additional unplanned expensive test cycle without bounded WORK reason"
   ],
-  "next_route": "AUTO_IMP_002_RF02_MANUAL_CODEX_TRIGGER",
-  "current_action": "READY_FOR_MANUAL_CODEX_TRIGGER",
+  "next_route": "INDEPENDENT_RF02_SEMANTIC_REVIEW",
+  "current_action": "WAIT_FOR_BOUND_INDEPENDENT_REVIEW_VERDICT",
   "created_at": "2026-10-05T12:50:15Z",
-  "updated_at": "2026-10-05T13:02:14Z",
+  "updated_at": "2026-10-05T13:46:46Z",
   "quota_amendment": {
     "amendment_id": "AMEND-AUTO-IMP-002-RF02-QUOTA-01",
     "path": "automation/work_orders/AMEND-AUTO-IMP-002-RF02-QUOTA-01.yaml",
@@ -163,5 +163,10 @@
   "writer_lock_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/writer_lock.yaml",
   "dispatch_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/dispatch.yaml",
   "handoff_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/handoff.yaml",
-  "consumed_commit_sha": "50184f062ad3eb6522ff7717cfe9915a8152bbc9"
+  "consumed_commit_sha": "50184f062ad3eb6522ff7717cfe9915a8152bbc9",
+  "review_status": "REVIEW_PENDING",
+  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-RF02-01.review.yaml",
+  "result_intake_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/result_intake.json",
+  "implementation_commit_sha": "33c8eea0d90d4cca5ecf5c902579a687ec096034",
+  "evidence_commit_sha": "f5fa626b8aa587fa8f43d6f70fa93842d574b356"
 }

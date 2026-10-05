@@ -1,0 +1,107 @@
+{
+  "schema_version": "automation.independent_review_packet.v1",
+  "work_order_id": "WO-AUTO-IMP-002-RF02-01",
+  "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+  "status": "REVIEW_PENDING",
+  "route": "INDEPENDENT_FRESH_CONTEXT_REVIEW",
+  "base_sha": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
+  "implementation_sha": "33c8eea0d90d4cca5ecf5c902579a687ec096034",
+  "evidence_sha": "f5fa626b8aa587fa8f43d6f70fa93842d574b356",
+  "exact_scope": [
+    "automation/engine/reentry.py",
+    "tests/automation/test_reentry.py"
+  ],
+  "source_diff": [
+    {
+      "sha": "1b1fed31262c5488b6963b86746233dcd44e9702",
+      "filename": "automation/engine/reentry.py",
+      "status": "modified",
+      "additions": 8,
+      "deletions": 0,
+      "changes": 8,
+      "blob_url": "https://github.com/chunwork003/futures_trading_system/blob/33c8eea0d90d4cca5ecf5c902579a687ec096034/automation%2Fengine%2Freentry.py",
+      "raw_url": "https://github.com/chunwork003/futures_trading_system/raw/33c8eea0d90d4cca5ecf5c902579a687ec096034/automation%2Fengine%2Freentry.py",
+      "contents_url": "https://api.github.com/repos/chunwork003/futures_trading_system/contents/automation%2Fengine%2Freentry.py?ref=33c8eea0d90d4cca5ecf5c902579a687ec096034",
+      "patch": "@@ -70,6 +70,14 @@ def _validate_bindings(repo, sha, state, current, work, auth, quota, eligibility\n     pointer。原始 package 是 planning record，只有 auth 的 exact binding\n     能界定其 revision/scope；dependency 的 ACCEPTED 必須同時有正確 identity。\n     \"\"\"\n+    # 候選路由不能放寬 Work 的 side-effect envelope、下一包或 provider guard。\n+    for key in (\"runtime\", \"broker\", \"db\", \"migration\", \"live\", \"production\"):\n+        _require(work[\"side_effects\"].get(key), \"DENIED\", \"WORK_SIDE_EFFECT_EXPANSION\")\n+    _require(current.get(\"auto_imp_003_authorized\"), False, \"NEXT_PACKAGE_AUTHORITY_MISMATCH\")\n+    _require(work[\"next_package\"].get(\"package_id\"), \"AUTO-IMP-003\", \"NEXT_PACKAGE_AUTHORITY_MISMATCH\")\n+    _require(work[\"next_package\"].get(\"authorization\"), \"NOT_AUTHORIZED\", \"NEXT_PACKAGE_AUTHORITY_MISMATCH\")\n+    for document in (current, work):\n+        _require(document[\"quota_gate\"].get(\"provider_hard_block\"), \"STOP\", \"PROVIDER_HARD_BLOCK_WEAKENED\")\n     for key in (\"work_order_id\", \"package_id\", \"package_revision\", \"authorization_id\",\n                 \"authorization_revision\", \"exact_write_scope\", \"execution_branch\",\n                 \"authorization_path\", \"eligibility_path\"):"
+    },
+    {
+      "sha": "25a6bdde130c96af9b8ae6bd94319a256007aba9",
+      "filename": "tests/automation/test_reentry.py",
+      "status": "modified",
+      "additions": 35,
+      "deletions": 0,
+      "changes": 35,
+      "blob_url": "https://github.com/chunwork003/futures_trading_system/blob/33c8eea0d90d4cca5ecf5c902579a687ec096034/tests%2Fautomation%2Ftest_reentry.py",
+      "raw_url": "https://github.com/chunwork003/futures_trading_system/raw/33c8eea0d90d4cca5ecf5c902579a687ec096034/tests%2Fautomation%2Ftest_reentry.py",
+      "contents_url": "https://api.github.com/repos/chunwork003/futures_trading_system/contents/tests%2Fautomation%2Ftest_reentry.py?ref=33c8eea0d90d4cca5ecf5c902579a687ec096034",
+      "patch": "@@ -1,6 +1,7 @@\n from __future__ import annotations\n \n from dataclasses import FrozenInstanceError\n+from copy import deepcopy\n from pathlib import Path\n import subprocess\n \n@@ -9,6 +10,7 @@\n \n from automation.engine.manifest import ManifestIntegrityError\n from automation.engine.reentry import resolve_reentry\n+import automation.engine.reentry as reentry_module\n \n \n ROOT = Path(__file__).resolve().parents[2]\n@@ -285,3 +287,36 @@ def test_valid_duplicate_document_cannot_hide_wrong_pointer(repository: Path, do\n     result = resolve_reentry(repository, \"HEAD\")\n     assert result.route == \"STOP\"\n     assert result.execution_allowed is False\n+\n+\n+@pytest.fixture(scope=\"module\")\n+def effect_documents():\n+    \"\"\"RF02 純語意基準：不為每個 effect 反例 clone/commit repository。\"\"\"\n+    paths = [CURRENT, WORK, AUTH, QUOTA, ELIGIBILITY, PACKAGE, DEPENDENCY]\n+    payloads = [yaml.safe_load((ROOT / path).read_bytes()) for path in paths]\n+    state = reentry_module._current_projection((ROOT / STATE).read_text(encoding=\"utf-8\"))\n+    return state, payloads\n+\n+\n+@pytest.mark.parametrize(\"case\", [\"side_effect_expansion\", \"next_package_authority\", \"provider_hard_block\"])\n+def test_rf02_execution_effect_counterexamples(effect_documents, monkeypatch, case: str) -> None:\n+    state, baseline = effect_documents\n+    # Package blob identity 已由 Git integration suite 覆蓋；本組只測 effect。\n+    monkeypatch.setattr(reentry_module, \"_git\", lambda *_: baseline[2][\"package_binding\"][\"git_blob_sha\"].encode())\n+    if case == \"side_effect_expansion\":\n+        variants = [(1, (\"side_effects\", key), \"ALLOW\")\n+                    for key in (\"runtime\", \"broker\", \"db\", \"migration\", \"live\", \"production\")]\n+    elif case == \"next_package_authority\":\n+        variants = [(0, (\"auto_imp_003_authorized\",), True),\n+                    (1, (\"next_package\", \"package_id\"), \"AUTO-OTHER\"),\n+                    (1, (\"next_package\", \"authorization\"), \"AUTHORIZED\")]\n+    else:\n+        variants = [(index, (\"quota_gate\", \"provider_hard_block\"), \"IGNORE\") for index in (0, 1)]\n+    for index, fields, value in variants:\n+        documents = deepcopy(baseline)\n+        section = documents[index]\n+        for field in fields[:-1]:\n+            section = section[field]\n+        section[fields[-1]] = value\n+        with pytest.raises(ValueError):\n+            reentry_module._validate_bindings(ROOT, \"unused-pure-case\", state, *documents)"
+    }
+  ],
+  "completion_evidence": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/completion.json",
+  "intake": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/result_intake.json",
+  "intake_commit": "837369eb9c8bc5a676044ced730bbd293d5de822",
+  "acceptance_criteria": {
+    "goal": "Close only the remaining execution-effect restrictions before CODEX_EXECUTION_CANDIDATE.",
+    "required_checks": [
+      "WORK side_effects runtime/broker/db/migration/live/production must remain DENIED",
+      "CURRENT auto_imp_003_authorized=false must agree with WORK next_package package_id=AUTO-IMP-003 and authorization=NOT_AUTHORIZED",
+      "CURRENT and WORK quota_gate.provider_hard_block must both remain STOP"
+    ],
+    "preserve": [
+      "RF01 identity/pointer/revision/state/effect/profile/dependency checks",
+      "read-only/status-only/canonical-CURRENT behavior",
+      "supplemental non-authority metadata compatibility",
+      "manifest behavior",
+      "no runtime/broker/DB/migration/LIVE/production side effects"
+    ]
+  },
+  "counterexamples": [
+    {
+      "phase": "counterexample_first",
+      "command": "python -m pytest tests/automation/test_reentry.py -k rf02_execution_effect_counterexamples -q -p no:cacheprovider --tb=short",
+      "exit_code": 1,
+      "result": "3 failed, 84 deselected (expected: DID NOT RAISE)",
+      "seconds": 0.68
+    },
+    {
+      "phase": "impacted_subset",
+      "command": "python -m pytest tests/automation/test_reentry.py -k rf02_execution_effect_counterexamples -q -p no:cacheprovider --tb=short",
+      "exit_code": 0,
+      "result": "3 passed, 84 deselected; eleven effect variants",
+      "seconds": 0.24
+    },
+    {
+      "phase": "targeted",
+      "command": "python -m pytest tests/automation/test_reentry.py -q -p no:cacheprovider --tb=short",
+      "exit_code": 0,
+      "result": "87 passed",
+      "seconds": 248.6
+    },
+    {
+      "phase": "full_regression",
+      "command": "python -m pytest -q -p no:cacheprovider --tb=short",
+      "environment": {
+        "POSTGRES17_TEST_DSN": "",
+        "POSTGRES18_TEST_DSN": ""
+      },
+      "exit_code": 0,
+      "result": "1618 passed, 8 skipped",
+      "seconds": 278.84
+    },
+    {
+      "phase": "diff_check",
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "reviewer_instructions": [
+    "Independently assess all three fail-closed checks and preserve RF01 behavior; mechanical PASS is not semantic acceptance.",
+    "Bind verdict PASS / REVIEW_FIX_REQUIRED / HUMAN_DECISION_REQUIRED to work_order_id, implementation_sha, evidence_sha and exact reviewed scope.",
+    "Read exact source at implementation SHA and original RF01 finding pointers from work order when required.",
+    "No merge, acceptance materialization, redispatch, AUTO-IMP-003 or authority expansion."
+  ],
+  "verdict": null,
+  "execution_state": "QUEUED_NOT_EXECUTED_BY_WORK",
+  "created_at": "2026-10-05T13:46:46Z",
+  "updated_at": "2026-10-05T13:46:46Z"
+}

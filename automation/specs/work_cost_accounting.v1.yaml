@@ -282,3 +282,22 @@ handoff_result_expected_from_work:
 
 authority_effect: NONE
 implementation_authority: NOT_GRANTED_BY_THIS_SPEC
+
+work_order_granularity:
+  principle: OPTIMIZE_TOTAL_ENGINEERING_VALUE_NOT_TOKENS_PER_TICKET
+  primary_kpi: accepted engineering progress / total lifecycle cost
+  preserve_one_work_order_when:
+    - same authority boundary
+    - same subsystem and cohesive engineering goal
+    - same main test surface
+    - jointly acceptable scope
+    - reduced integration re-entry and review overhead
+  split_only_when:
+    - different authority or side-effect boundaries
+    - dependency validation requires sequencing
+    - meaningful failure or rollback isolation
+    - test or context cost materially exceeds reasonable p90
+    - different acceptance or semantic review gates
+    - combined scope materially increases rework blast radius
+  token_minimization_per_ticket_is_not_primary_kpi: true
+  authority_effect: NONE

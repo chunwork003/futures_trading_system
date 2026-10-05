@@ -9,9 +9,9 @@
     "repository": "chunwork003/futures_trading_system"
   },
   "calibration": {
-    "exact_samples": 1,
+    "exact_samples": 2,
     "minimum_samples_for_calibrated": 3,
-    "next_sample_candidate": "AUTO-IMP-002-RF02",
+    "next_sample_candidate": "NOT_AUTHORIZED",
     "aggregation_method_when_calibrated": "robust_median_and_percentile_envelope"
   },
   "samples": [
@@ -39,6 +39,35 @@
         "full_regression_passes": 1
       },
       "dominant_cost_driver": "CONTEXT_REPLAY_AND_MULTI_CYCLE_TESTING"
+    },
+    {
+      "work_order_id": "WO-AUTO-IMP-002-RF02-01",
+      "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+      "accepted_semantically": false,
+      "review_result": "REVIEW_PENDING",
+      "implementation_sha": "33c8eea0d90d4cca5ecf5c902579a687ec096034",
+      "local_token_evidence": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/local_token_usage.json",
+      "metrics": {
+        "input_tokens": 172539,
+        "cached_input_tokens": 114176,
+        "uncached_input_tokens": 58363,
+        "output_tokens": 839,
+        "reasoning_output_tokens": 412,
+        "total_tokens": 173378,
+        "cached_input_ratio": 0.66174,
+        "reported_total_tokens": 173378,
+        "actor_seconds": 904,
+        "targeted_seconds": 248.6,
+        "full_regression_seconds": 278.84,
+        "five_hour_delta_pct": 6,
+        "weekly_delta_pct": 1,
+        "test_cycles": {
+          "pre_fix_cases": 3,
+          "complete_targeted_passes": 1,
+          "full_regression_passes": 1
+        }
+      },
+      "dominant_cost_driver": "WITHIN_EXPECTED_ENVELOPE"
     }
   ],
   "rules": {
@@ -46,5 +75,6 @@
     "acceptance_status_is_separate_dimension": true,
     "billing_cost_from_local_tokens": "DENIED",
     "use_for_forecast": "PROVISIONAL_ONLY_UNTIL_3_EXACT_SAMPLES"
-  }
+  },
+  "updated_at": "2026-10-05T13:46:46Z"
 }

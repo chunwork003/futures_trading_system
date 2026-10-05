@@ -1,0 +1,126 @@
+{
+  "schema_version": "automation.execution_cost_reconciliation.v1",
+  "forecast_path": "automation/work_orders/forecasts/AUTO-IMP-002-RF02.planning.json",
+  "actual_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/execution_cost_actual.json",
+  "work_order_id": "WO-AUTO-IMP-002-RF02-01",
+  "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+  "forecast_confidence": "PROVISIONAL_SINGLE_COMPARABLE_SAMPLE",
+  "overall_classification": "NORMAL",
+  "dominant_cause": "WITHIN_EXPECTED_ENVELOPE",
+  "metric_comparisons": [
+    {
+      "metric": "reported_total_tokens",
+      "actual": 173378,
+      "p50": 5400000,
+      "p75": 6800000,
+      "p90": 8100000,
+      "actual_to_p50_ratio": 0.03210703703703704,
+      "actual_to_p90_ratio": 0.02140469135802469,
+      "p50_absolute_percentage_error": 0.967892962962963,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "uncached_input_tokens",
+      "actual": 58363,
+      "p50": 50000,
+      "p75": 70000,
+      "p90": 90000,
+      "actual_to_p50_ratio": 1.16726,
+      "actual_to_p90_ratio": 0.6484777777777778,
+      "p50_absolute_percentage_error": 0.16726,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "output_tokens",
+      "actual": 839,
+      "p50": 14000,
+      "p75": 20000,
+      "p90": 26000,
+      "actual_to_p50_ratio": 0.05992857142857143,
+      "actual_to_p90_ratio": 0.03226923076923077,
+      "p50_absolute_percentage_error": 0.9400714285714286,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "reasoning_output_tokens",
+      "actual": 412,
+      "p50": 6000,
+      "p75": 9000,
+      "p90": 12000,
+      "actual_to_p50_ratio": 0.06866666666666667,
+      "actual_to_p90_ratio": 0.034333333333333334,
+      "p50_absolute_percentage_error": 0.9313333333333333,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "five_hour_delta_pct",
+      "actual": 6,
+      "p50": 8,
+      "p75": 11,
+      "p90": 13,
+      "actual_to_p50_ratio": 0.75,
+      "actual_to_p90_ratio": 0.46153846153846156,
+      "p50_absolute_percentage_error": 0.25,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "weekly_delta_pct",
+      "actual": 1,
+      "p50": 1,
+      "p75": 2,
+      "p90": 2,
+      "actual_to_p50_ratio": 1,
+      "actual_to_p90_ratio": 0.5,
+      "p50_absolute_percentage_error": 0,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "actor_seconds",
+      "actual": 904,
+      "p50": 900,
+      "p75": 1100,
+      "p90": 1280,
+      "actual_to_p50_ratio": 1.0044444444444445,
+      "actual_to_p90_ratio": 0.70625,
+      "p50_absolute_percentage_error": 0.0044444444444444444,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "targeted_seconds",
+      "actual": 248.6,
+      "p50": null,
+      "p75": null,
+      "p90": 300,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.8286666666666667,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "full_regression_seconds",
+      "actual": 278.84,
+      "p50": null,
+      "p75": null,
+      "p90": 340,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.8201176470588235,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    }
+  ],
+  "cycle_breaches": [],
+  "recommendations": [],
+  "feedback_required_for_next_work_forecast": false,
+  "generated_at_utc": "2026-10-05T13:44:14.3072533+00:00",
+  "execution_provenance": {
+    "script_path": "scripts/execution_cost_reconcile.ps1",
+    "script_blob_sha": "84a4a8777f29d03cd7462f799c28544b7053f422",
+    "exit_code": 0,
+    "inputs": "REMOTE_CANONICAL_FORECAST_AND_ENRICHED_ACTUAL",
+    "execution_environment": "ISOLATED_SCRATCH_NO_LOCAL_CHECKOUT",
+    "original_cli_paths": {
+      "forecast": "./forecast.json",
+      "actual": "./actual.json"
+    }
+  }
+}
