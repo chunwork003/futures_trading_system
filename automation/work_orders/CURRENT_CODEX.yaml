@@ -99,11 +99,11 @@
     "production": "DENIED",
     "credentials": "DENIED"
   },
-  "correction_budget_remaining": 1,
+  "correction_budget_remaining": 0,
   "correction_budget": {
     "authorization_limit": 1,
-    "semantic_cycles_used": 0,
-    "remaining": 1,
+    "semantic_cycles_used": 1,
+    "remaining": 0,
     "previous_authorization_remaining": 0,
     "on_failure_or_exhaustion": "HUMAN_DECISION_REQUIRED",
     "automatic_additional_rf": false,
@@ -182,10 +182,10 @@
   },
   "created_at": "2026-10-05T04:21:50Z",
   "updated_at": "2026-10-05T05:05:48Z",
-  "status": "READY_FOR_CODEX",
-  "handoff_ready": true,
+  "status": "COMPLETED_PENDING_REVIEW",
+  "handoff_ready": false,
   "task_packet_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
-  "execution_eligibility": "QUOTA_ADMISSION_WAIVED_OTHER_GATES_FRESH_REVALIDATION_REQUIRED",
+  "execution_eligibility": "RESULT_INTAKEN_PENDING_INDEPENDENT_REVIEW",
   "rehydration": {
     "master_head": "db82001369017f42acd1887320f6350fa34634f1",
     "source": "CONNECTED_GITHUB_REMOTE_ONLY",
@@ -208,5 +208,25 @@
     "telemetry": "RECORD_IF_AVAILABLE_ELSE_NOT_AVAILABLE",
     "previous_quota_stop_reusable": false,
     "other_gates": "FRESH_REVALIDATION_REQUIRED"
+  },
+  "execution_start_sha": "6eb37dea649a53208fee7e1e90301562b8024c83",
+  "claim_commit_sha": "1449a5331278d1632ebab1fe18d31447502b2d8d",
+  "implementation_commit_sha": "7eab27c13b7987a0ba451d5d59210241aa77fb73",
+  "evidence_commit_sha": "735678afa9606ccd219a00e1c2f02471442231f7",
+  "execution_status": "COMPLETED_PENDING_REVIEW",
+  "control_plane_status": "REVIEW_PENDING",
+  "review_status": "REVIEW_PENDING",
+  "human_decision_required": false,
+  "result_intake_path": "automation/work_orders/intakes/WO-AUTO-IMP-001-CORR-02.json",
+  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-02.md",
+  "review_routing_path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-02.routing.json",
+  "quota_observation": {
+    "source": "EXECUTOR_EVIDENCE_RAW_SNAPSHOTS",
+    "five_hour_before_percent": 25,
+    "five_hour_after_percent": 16,
+    "weekly_before_percent": 86,
+    "weekly_after_percent": 85,
+    "attribution_status": "RAW_ONLY_PENDING_CROSS_ACTOR_SETTLEMENT_RECONCILIATION",
+    "planning_rule_path": "automation/work_orders/AUTOMATION_BATCH_V2_PLANNING_BASELINE.yaml"
   }
 }
