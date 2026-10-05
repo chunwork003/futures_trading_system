@@ -49,7 +49,21 @@
     "weekly_delta_percent": 2,
     "exact_token_cost": "NOT_AVAILABLE",
     "attribution": "SHARED_ACCOUNT_WINDOWS_NOT_EXCLUSIVE_RUN_TOKEN_USAGE",
-    "anomaly_checkpoint": "automation/work_orders/optimizations/OPT-AUTO-IMP-002-RF01-01.yaml"
+    "anomaly_checkpoint": "automation/work_orders/optimizations/OPT-AUTO-IMP-002-RF01-01.yaml",
+    "local_reported_tokens": {
+      "attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+      "evidence_path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/local_token_usage.json",
+      "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+      "input_tokens": 8919672,
+      "cached_input_tokens": 8855040,
+      "uncached_input_tokens": 64632,
+      "output_tokens": 24273,
+      "reasoning_output_tokens": 9585,
+      "total_tokens": 8943945,
+      "cached_input_ratio": 0.992754,
+      "billing_cost": "NOT_AVAILABLE"
+    },
+    "anomaly_classification": "EXPLAINED_HIGH_QUOTA_AND_CONTEXT_REPLAY"
   },
   "correction_budget_remaining": 0,
   "semantic_review": "REVIEW_FIX_REQUIRED",
