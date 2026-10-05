@@ -26,7 +26,7 @@ observed_run:
     weekly_used_percent_end: 20
     weekly_delta_percent: 2
     exact_token_cost: BILLING_COST_NOT_AVAILABLE
-    local_reported_token_delta: AMBIGUOUS_PENDING_STRONG_MARKER_DISAMBIGUATION
+    local_reported_token_delta: 8943945
 
 closest_comparable_baseline:
   work_order_id: WO-AUTO-IMP-002-01
@@ -85,7 +85,7 @@ token_cost_strategy:
     actor_start_utc: "2026-10-05T09:53:43Z"
     actor_end_utc: "2026-10-05T10:17:22Z"
     work_order_id: WO-AUTO-IMP-002-RF01-01
-    status: AMBIGUOUS_PENDING_STRONG_MARKER_DISAMBIGUATION
+    status: EXACT_SINGLE_STRONG_MARKER_MATCH
   fallback: PERCENTAGE_WINDOW_ANOMALY_ESTIMATE
   percentage_is_not_literal_tokens: true
   primary_signal: five_hour_delta_percent
@@ -108,7 +108,7 @@ next_action:
 
 local_token_telemetry_observation:
   observed_at_utc: "2026-10-05T11:23:08.0975084Z"
-  extraction_status: AMBIGUOUS_MULTIPLE_MATCHES_REVIEW_REQUIRED
+  extraction_status: EXACT_SINGLE_STRONG_MARKER_MATCH_BY_PER_CANDIDATE_EVIDENCE
   candidate_count: 2
   candidate_1:
     session_id: 01a10b28-9dde-74e1-9b69-0b5af56b31f6
@@ -126,5 +126,27 @@ local_token_telemetry_observation:
     uncached_input_tokens_delta: 60862
     output_tokens_delta: 1051
     reasoning_output_tokens_delta: 318
-  exact_attribution: PENDING_STRONG_MARKER_DISAMBIGUATION
-  note: DO_NOT_SUM_CANDIDATES_OR_TREAT_EITHER_AS_EXACT_UNTIL_DISAMBIGUATED
+  exact_attribution: 01a10b28-9dde-74e1-9b69-0b5af56b31f6
+  exact_total_tokens_delta: 8943945
+  exact_input_tokens_delta: 8919672
+  exact_cached_input_tokens_delta: 8855040
+  exact_uncached_input_tokens_delta: 64632
+  exact_output_tokens_delta: 24273
+  exact_reasoning_output_tokens_delta: 9585
+  cached_input_ratio: 0.992754
+  reported_token_classification: HIGH_CONTEXT_REPLAY_DOMINATED
+  billing_cost_classification: UNKNOWN_PROVIDER_BILLING_NOT_EXPOSED
+  exact_evidence_path: automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/local_token_usage.json
+  note: Candidate 1 uniquely contained both implementation and evidence strong markers. Candidate 2 lacked the evidence marker and is rejected for RF01 attribution.
+
+
+token_root_cause:
+  classification: HIGH_CONTEXT_REPLAY_DOMINATED
+  fresh_input_tokens: 64632
+  cached_input_tokens: 8855040
+  observation: "The large reported total is dominated by repeated cached context; fresh input is only about 0.72% of input tokens."
+  optimization_implication:
+    - reduce repeated full-context turns
+    - keep pre-fix counterexamples minimal
+    - avoid Git-backed semantic matrix expansion
+    - preserve cache-friendly stable kernels but reduce tool/test round trips
