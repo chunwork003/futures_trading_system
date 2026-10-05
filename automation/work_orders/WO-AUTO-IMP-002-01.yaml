@@ -1,0 +1,68 @@
+{
+  "schema_version": "automation.codex_work_order.v1",
+  "work_order_id": "WO-AUTO-IMP-002-01",
+  "package_id": "AUTO-IMP-002",
+  "package_revision": "1",
+  "authorization_id": "AUTH-AUTO-IMP-002-01",
+  "authorization_revision": "1",
+  "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-01.v1.yaml",
+  "authorization_state": "AUTHORIZED",
+  "control_plane_baseline_sha": "be3b94886deb9c6ad25bfb23da0b7a5509d97c37",
+  "exact_goal": "Implement exact Git-blob manifest verification and read-only unified re-entry snapshot resolution for frozen automation state, without authority mutation or runtime side effects.",
+  "exact_write_scope": [
+    "automation/engine/manifest.py",
+    "automation/engine/reentry.py",
+    "tests/automation/test_manifest.py",
+    "tests/automation/test_reentry.py"
+  ],
+  "protected_scope": [
+    "all product runtime source outside exact_write_scope",
+    "automation/policies/**",
+    "automation/governance/**",
+    "automation/programs/**",
+    "migrations/**",
+    "broker/live/production/credentials"
+  ],
+  "required_verification": [
+    "Git blob hash verification",
+    "CRLF counterexample",
+    "status-only no execution",
+    "repository answer prevents re-ask",
+    "targeted tests",
+    "full regression",
+    "git diff --check",
+    "exact four-file implementation scope"
+  ],
+  "execution_model": {
+    "mode": "SINGLE_PACKAGE_STABILITY_PHASE",
+    "strict_order": true,
+    "resume_before_new": true,
+    "quota_backfill": false,
+    "queue_reorder": false,
+    "parallel_execution": false
+  },
+  "quota_gate": {
+    "status": "FRESH_RESOLUTION_REQUIRED",
+    "five_hour": true,
+    "weekly": true,
+    "fixed_80_percent_rule": "INAPPLICABLE_BY_FROZEN_POLICY",
+    "no_comparable_provider_native_forecast_action": "STOP_AND_ROUTE_QUOTA_DECISION"
+  },
+  "correction_budget_remaining": 0,
+  "execution_branch": "auto/WO-AUTO-IMP-002-01",
+  "status": "AUTHORIZED_PENDING_EXECUTION_ELIGIBILITY",
+  "handoff_ready": false,
+  "next_route": "AUTO_IMP_002_EXECUTION_ELIGIBILITY",
+  "next_package": {
+    "package_id": "AUTO-IMP-003",
+    "authorization": "NOT_AUTHORIZED"
+  },
+  "side_effects": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED"
+  }
+}
