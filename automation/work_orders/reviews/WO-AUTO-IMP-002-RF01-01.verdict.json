@@ -1,0 +1,54 @@
+{
+  "schema_version": "automation.independent_review_verdict.v1",
+  "work_order_id": "WO-AUTO-IMP-002-RF01-01",
+  "package_id": "AUTO-IMP-002",
+  "correction_id": "AUTO-IMP-002-RF01",
+  "reviewer_role": "Independent_Automation_Reviewer",
+  "verdict": "REVIEW_FIX_REQUIRED",
+  "semantic_result": "REVIEW_FIX_REQUIRED",
+  "binding": {
+    "source_candidate_sha": "eccbe997fe4f9f2a9da06026d75df11af9c3a937",
+    "implementation_commit_sha": "523e5a3b62af78991995765eaa555edb40b79e43",
+    "evidence_commit_sha": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
+    "execution_id": "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+    "exact_scope": [
+      "automation/engine/reentry.py",
+      "tests/automation/test_reentry.py"
+    ]
+  },
+  "finding": {
+    "finding_id": "AUTO-IMP-002-RF01-REVIEW-EFFECT-01",
+    "severity": "SEMANTIC_FAIL_CLOSED_GAP",
+    "affected_logic": "automation/engine/reentry.py::_validate_bindings",
+    "summary": "RF01 closes the identity/pointer/revision/state/profile/dependency binding gaps but still does not fully fail closed on execution-effect restrictions that are present in CURRENT/WORK.",
+    "missing_checks": [
+      "WORK side_effects runtime/broker/db/migration/live/production must remain DENIED",
+      "CURRENT auto_imp_003_authorized must remain false and agree with WORK next_package.authorization == NOT_AUTHORIZED for AUTO-IMP-003",
+      "CURRENT and WORK quota_gate.provider_hard_block must remain STOP and agree"
+    ],
+    "concrete_counterexamples": [
+      "Change WORK side_effects.runtime from DENIED to ALLOWED; current RF01 validator has no side_effects check and can still emit CODEX_EXECUTION_CANDIDATE.",
+      "Change CURRENT auto_imp_003_authorized from false to true while WORK next_package.authorization remains NOT_AUTHORIZED; current RF01 validator has no cross-check and can still emit candidate.",
+      "Change CURRENT or WORK quota_gate.provider_hard_block from STOP to CONTINUE; current RF01 validator does not validate this execution-effect guard."
+    ],
+    "minimum_correction_scope": [
+      "automation/engine/reentry.py",
+      "tests/automation/test_reentry.py"
+    ]
+  },
+  "confirmed_passed_areas": [
+    "reviewed identity/pointer/revision/state/effect/profile/dependency matrix from parent RF01",
+    "duplicate valid document wrong-pointer fail-closed behavior",
+    "dependency identity plus ACCEPTED_MATERIALIZED binding",
+    "read-only/status-only/canonical-CURRENT behavior",
+    "exact two-file RF01 scope",
+    "manifest protected files unchanged"
+  ],
+  "correction_budget_remaining": 0,
+  "source_correction_authorized": false,
+  "auto_imp_002_may_proceed_to_governance_closure": false,
+  "merge_authorized": false,
+  "auto_imp_003_authorized": false,
+  "human_decision_required": true,
+  "next_route": "AUTO_IMP_002_RF02_HUMAN_DECISION"
+}
