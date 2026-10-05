@@ -21,6 +21,7 @@ Initial Shadow Skills:
 - repo-reentry
 - exact-binding-validator
 - single-use-lifecycle-guard
+- execution-efficiency-guard
 - quota-snapshot-recorder
 - reviewer-packet-builder
 
@@ -37,3 +38,6 @@ Later:
 Critical execution rule:
 - single-use-lifecycle-guard is mandatory procedural memory before any bounded executor start.
 - a claim branch/commit alone never proves AuthorizationLifecycleV1 conformance.
+
+Efficiency rule:
+- execution-efficiency-guard is the canonical home for test/context/quota growth controls; do not duplicate those procedures into role kernels.
