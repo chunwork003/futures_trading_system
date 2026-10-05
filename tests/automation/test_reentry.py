@@ -16,14 +16,76 @@ CURRENT = "automation/work_orders/CURRENT_CODEX.yaml"
 WORK = "automation/work_orders/WO-AUTO-IMP-002-01.yaml"
 AUTH = "automation/authorizations/AUTH-AUTO-IMP-002-01.v1.yaml"
 STATE = "docs/CURRENT_STATE.md"
+QUOTA = "automation/work_orders/AMEND-AUTO-IMP-002-QUOTA-01.yaml"
+ELIGIBILITY = "automation/work_orders/AUTO-IMP-002.eligibility.json"
+PACKAGE = "automation/packages/AUTO-IMP-002.yaml"
+DEPENDENCY = "automation/work_orders/AUTO-IMP-001.closure.yaml"
+
+# 每列只改一個欄位；其餘 documents 保持有效，覆蓋 reviewer 全部 binding classes。
+BINDING_MUTATIONS = [
+    (doc, (field,), value)
+    for doc in (CURRENT, WORK)
+    for field, value in [
+        ("work_order_id", "WO-OTHER"), ("package_id", "AUTO-OTHER"),
+        ("package_revision", "2"), ("authorization_id", "AUTH-OTHER"),
+        ("authorization_revision", "2"), ("exact_write_scope", ["other.py"]),
+        ("execution_branch", "auto/other"), ("authorization_state", "RESERVED"),
+        ("execution_eligibility", "ELIGIBLE_FOR_AUTOMATIC_TRIGGER"),
+    ]
+] + [
+    (doc, ("quota_amendment", key), value)
+    for doc in (CURRENT, WORK)
+    for key, value in [("amendment_id", "AMEND-OTHER"), ("status", "REVOKED"), ("effect", "SCOPE_EXPANSION")]
+] + [
+    (QUOTA, ("exact_binding", key), value)
+    for key, value in [
+        ("work_order_id", "WO-OTHER"), ("package_id", "AUTO-OTHER"),
+        ("package_revision", "2"), ("work_order_path", "automation/other.yaml"),
+        ("base_authorization_id", "AUTH-OTHER"), ("base_authorization_revision", "2"),
+        ("base_authorization_path", "automation/other.yaml"),
+        ("executor_profile", "AUTOMATIC_EXECUTOR"),
+    ]
+] + [
+    (ELIGIBILITY, (key,), value)
+    for key, value in [
+        ("work_order_id", "WO-OTHER"), ("package_id", "AUTO-OTHER"),
+        ("authorization_id", "AUTH-OTHER"), ("package_revision", "2"),
+        ("authorization_revision", "2"), ("status", "NOT_ELIGIBLE"),
+        ("trigger_mode", "AUTOMATIC_TRIGGER"), ("automatic_dispatch", True),
+        ("automatic_next_package", True),
+    ]
+] + [
+    (AUTH, ("authorization_id",), "AUTH-OTHER"),
+    (AUTH, ("authorization_revision",), "2"),
+    (AUTH, ("exact_binding", "work_package_id"), "AUTO-OTHER"),
+    (AUTH, ("exact_binding", "work_package_revision"), "2"),
+    (AUTH, ("exact_binding", "allowed_executor_profile"), "AUTOMATIC_EXECUTOR"),
+    (AUTH, ("exact_binding", "scope_digest"), "0" * 64),
+    (AUTH, ("exact_binding", "review_barrier"), "NONE"),
+    (AUTH, ("package_binding", "git_blob_sha"), "0" * 40),
+    (AUTH, ("package_binding", "planned_write_scope"), ["other.py"]),
+    (AUTH, ("package_binding", "package_revision"), "2"),
+    (AUTH, ("program_binding", "package_dependency"), "AUTO-OTHER_ACCEPTED_MATERIALIZED"),
+    (PACKAGE, ("work_package_id",), "AUTO-OTHER"),
+    (PACKAGE, ("work_package_revision",), "2"),
+    (PACKAGE, ("planned_write_scope",), ["other.py"]),
+    (DEPENDENCY, ("package_id",), "AUTO-OTHER"),
+    (DEPENDENCY, ("status",), "PENDING_REVIEW"),
+    (QUOTA, ("amendment_id",), "AMEND-OTHER"),
+    (QUOTA, ("status",), "REVOKED"),
+    (QUOTA, ("quota", "admission_gate"), "UNBOUNDED"),
+    (QUOTA, ("effect", "quota_admission_blocker_only"), False),
+    (QUOTA, ("effect", "effective_scope"), "ALL_WORK_ORDERS"),
+    (QUOTA, ("effect", "authorization_replay"), True),
+    (QUOTA, ("quota", "provider_enforced_limits_waived"), True),
+]
 
 
 def git(repo: Path, *args: str) -> bytes:
     return subprocess.check_output(["git", "-C", str(repo), *args], stderr=subprocess.PIPE)
 
 
-@pytest.fixture
-def repository(tmp_path: Path) -> Path:
+def _seed_repository(tmp_path: Path) -> Path:
     git(tmp_path, "init", "-b", "master")
     git(tmp_path, "config", "user.email", "fixture@example.invalid")
     git(tmp_path, "config", "user.name", "Fixture")
@@ -56,6 +118,20 @@ def repository(tmp_path: Path) -> Path:
         collect(yaml.safe_load(blob))
     git(tmp_path, "add", "--", *sorted(paths))
     git(tmp_path, "commit", "-m", "fixture")
+    return tmp_path
+
+
+@pytest.fixture(scope="session")
+def binding_template(tmp_path_factory) -> Path:
+    return _seed_repository(tmp_path_factory.mktemp("binding-template"))
+
+
+@pytest.fixture
+def repository(tmp_path: Path, binding_template: Path) -> Path:
+    git(tmp_path, "clone", "--no-hardlinks", str(binding_template), ".")
+    git(tmp_path, "config", "user.email", "fixture@example.invalid")
+    git(tmp_path, "config", "user.name", "Fixture")
+    git(tmp_path, "config", "core.autocrlf", "false")
     return tmp_path
 
 
@@ -153,3 +229,59 @@ def test_integrity_failure_blocks_candidate(repository: Path) -> None:
 def test_pinned_snapshot_ignores_uncommitted_authority(repository: Path) -> None:
     (repository / AUTH).write_text("malformed", encoding="utf-8")
     assert resolve_reentry(repository, "HEAD").route == "CODEX_EXECUTION_CANDIDATE"
+
+
+def test_review_counterexample_amendment_identity_stops(repository: Path) -> None:
+    """RF01 reviewer 反例：只改 CURRENT id，仍指向原有效 amendment。"""
+    payload = yaml.safe_load((repository / CURRENT).read_bytes())
+    original_path = payload["quota_amendment"]["path"]
+    payload["quota_amendment"]["amendment_id"] = "AMEND-OTHER"
+    (repository / CURRENT).write_text(yaml.safe_dump(payload), encoding="utf-8")
+    git(repository, "add", CURRENT)
+    git(repository, "commit", "-m", "review counterexample")
+    result = resolve_reentry(repository, "HEAD")
+    assert original_path in result.documents
+    assert result.route == "STOP"
+    assert result.execution_allowed is False
+
+
+@pytest.mark.parametrize("document,fields,value", BINDING_MUTATIONS,
+                         ids=[p.split("/")[-1] + ":" + ".".join(f) for p, f, _ in BINDING_MUTATIONS])
+def test_cross_artifact_negative_binding_matrix(repository: Path, document: str,
+                                                fields: tuple[str, ...], value: object) -> None:
+    payload = yaml.safe_load((repository / document).read_bytes())
+    section = payload
+    for field in fields[:-1]:
+        section = section[field]
+    section[fields[-1]] = value
+    (repository / document).write_text(yaml.safe_dump(payload), encoding="utf-8")
+    git(repository, "add", document)
+    git(repository, "commit", "-m", "single field binding mutation")
+    result = resolve_reentry(repository, "HEAD")
+    assert result.route == "STOP"
+    assert result.stop_reason is not None
+    assert result.execution_allowed is False
+
+
+@pytest.mark.parametrize("document,fields,target", [
+    (CURRENT, ("authorization_path",), AUTH), (WORK, ("authorization_path",), AUTH),
+    (CURRENT, ("eligibility_path",), ELIGIBILITY), (WORK, ("eligibility_path",), ELIGIBILITY),
+    (CURRENT, ("quota_amendment", "path"), QUOTA), (WORK, ("quota_amendment", "path"), QUOTA),
+    (AUTH, ("package_binding", "path"), PACKAGE),
+    (AUTH, ("program_binding", "dependency_closure_path"), DEPENDENCY),
+])
+def test_valid_duplicate_document_cannot_hide_wrong_pointer(repository: Path, document: str,
+                                                          fields: tuple[str, ...], target: str) -> None:
+    alias = "automation/alias.yaml"
+    (repository / alias).write_bytes((repository / target).read_bytes())
+    payload = yaml.safe_load((repository / document).read_bytes())
+    section = payload
+    for field in fields[:-1]:
+        section = section[field]
+    section[fields[-1]] = alias
+    (repository / document).write_text(yaml.safe_dump(payload), encoding="utf-8")
+    git(repository, "add", document, alias)
+    git(repository, "commit", "-m", "valid document wrong pointer")
+    result = resolve_reentry(repository, "HEAD")
+    assert result.route == "STOP"
+    assert result.execution_allowed is False
