@@ -29,13 +29,13 @@ function Get-SharedTextLines {
     $reader = $null
     try {
         $share = [System.IO.FileShare]::ReadWrite -bor [System.IO.FileShare]::Delete
-        $stream = New-Object System.IO.FileStream(
+        $stream = [System.IO.File]::Open(
             $Path,
             [System.IO.FileMode]::Open,
             [System.IO.FileAccess]::Read,
             $share
         )
-        $reader = New-Object System.IO.StreamReader($stream)
+        $reader = New-Object System.IO.StreamReader -ArgumentList $stream
         while (-not $reader.EndOfStream) {
             $reader.ReadLine()
         }
