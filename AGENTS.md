@@ -5,6 +5,26 @@
 This file is the agent re-entry guard and navigation surface.
 It does NOT independently establish Runtime Authorization.
 
+## Automation Kernel / Skill Entry Pointers
+
+Stable role kernels:
+- `automation/prompts/WORK_ORCHESTRATOR_KERNEL.md`
+- `automation/prompts/CODEX_EXECUTOR_KERNEL.md`
+
+Reusable automation skills:
+- `automation/skills/README.md`
+
+Dynamic current-state pointers:
+- `docs/CURRENT_STATE.md`
+- `automation/work_orders/CURRENT_CODEX.yaml`
+- `automation/work_orders/CURRENT_CODEX_TASK.md`
+
+Rules:
+- Dynamic authority/status MUST be resolved from current-state pointers, not from historical snapshots embedded later in this file.
+- Kernel/Skill files are stable procedure memory; they do not grant execution authority.
+- Repository state is authoritative over chat memory or copied prompts.
+
+
 ```text
 branch = master
 
