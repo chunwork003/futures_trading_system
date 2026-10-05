@@ -9,7 +9,7 @@
   "authorization_id": "AUTH-AUTO-IMP-002-IC01-01",
   "authorization_revision": "1",
   "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-IC01-01.v1.yaml",
-  "authorization_state": "RESERVED",
+  "authorization_state": "CONSUMED",
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-IC01-01.yaml",
   "control_plane_baseline_sha": "29d4ca4772c40c4032bce63fb8c51d9b426311d9",
   "code_base_sha": "29d4ca4772c40c4032bce63fb8c51d9b426311d9",
@@ -198,7 +198,9 @@
     "prior_amendment_reuse": "DENIED",
     "percentage_to_token_conversion": "DENIED",
     "amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
-    "provider_enforced_limits_waived": false
+    "provider_enforced_limits_waived": false,
+    "new_admission_or_reuse": "DENIED",
+    "admission_applied_to_reserved_execution": true
   },
   "side_effects": {
     "runtime": "DENIED",
@@ -264,12 +266,14 @@
   "next_route": "IC01_QUOTA_ADMISSION_DECISION",
   "current_action": "STOP_BEFORE_RESERVATION",
   "created_at": "2026-10-05T15:00:35Z",
-  "updated_at": "2026-10-05T15:07:33Z",
+  "updated_at": "2026-10-05T15:10:26Z",
   "quota_amendment": {
     "amendment_id": "AMEND-AUTO-IMP-002-IC01-QUOTA-01",
     "path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
-    "status": "ACTIVE_EXACT_SINGLE_USE"
+    "status": "EXPIRED_CONSUMED"
   },
   "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/reservation.yaml",
-  "writer_lock_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml"
+  "writer_lock_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml",
+  "lifecycle_status": "CONSUMED",
+  "dispatch_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/dispatch.yaml"
 }
