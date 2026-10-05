@@ -22,6 +22,7 @@ Initial Shadow Skills:
 - exact-binding-validator
 - single-use-lifecycle-guard
 - execution-efficiency-guard
+- execution-cost-forecaster
 - quota-snapshot-recorder
 - reviewer-packet-builder
 
@@ -41,3 +42,9 @@ Critical execution rule:
 
 Efficiency rule:
 - execution-efficiency-guard is the canonical home for test/context/quota growth controls; do not duplicate those procedures into role kernels.
+
+
+Forecast loop:
+- WORK creates the exact cost forecast before executable handoff.
+- CODEX records actual runtime/test/quota observations.
+- WORK enriches local token telemetry, reconciles variance, and feeds one bounded optimization back into the next forecast.
