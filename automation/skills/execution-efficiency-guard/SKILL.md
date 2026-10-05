@@ -131,3 +131,23 @@ Reported-token diagnostics:
 - treat local total_token_usage as reported usage telemetry, not billing cost;
 - if one execution has >90% cached input and HIGH 5H/runtime signals, classify CONTEXT_REPLAY_DOMINATED unless stronger evidence shows another cause;
 - optimize number of model/tool/test turns before shrinking stable cache-friendly kernels blindly.
+
+
+## 7. Forecast variance early warning
+
+Canonical forecast procedure:
+automation/skills/execution-cost-forecaster/SKILL.md
+
+Every executable work order must carry a forecast pointer before handoff.
+
+Do not wait for a later optimization checkpoint when the current run already breaches plan:
+- test cycle count over plan => immediate COST_GUARD_WATCH;
+- actor elapsed > p75 => WATCH;
+- actor elapsed > p90 => HIGH;
+- 5H delta > p75 when observable => WATCH;
+- 5H delta > p90 => HIGH;
+- an extra complete targeted/full-regression pass not in plan => HIGH before starting that extra pass.
+
+A HIGH signal does not revoke authority, but it blocks starting another unplanned expensive cycle until WORK has a bounded reason/replan.
+
+After completion, reconcile actual vs forecast and feed the dominant cause plus one bounded recommendation into the next WORK forecast.
