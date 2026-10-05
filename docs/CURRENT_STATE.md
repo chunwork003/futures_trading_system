@@ -35,6 +35,8 @@ development_automation_auto_imp_001_closure = ACCEPTED_MATERIALIZED
 development_automation_auto_imp_001_accepted_implementation_sha = 7eab27c13b7987a0ba451d5d59210241aa77fb73
 development_automation_auto_imp_001_accepted_evidence_sha = 735678afa9606ccd219a00e1c2f02471442231f7
 development_automation_auto_imp_001_closure_path = automation/work_orders/AUTO-IMP-001.closure.yaml
+development_automation_auto_imp_002_authorization_prep = PREPARED_NOT_AUTHORIZED
+development_automation_auto_imp_002_authorization_prep_path = automation/work_orders/AUTO-IMP-002.authorization-prep.yaml
 development_automation_current_authorization_id = AUTH-AUTO-IMP-001-01
 development_automation_current_authorization_revision = 1
 development_automation_current_authorization_state = CONSUMED
@@ -64,7 +66,7 @@ development_automation_level_3b = NOT_ENABLED
 development_automation_level_3c = NOT_ENABLED
 development_automation_level_4 = NOT_ENABLED
 development_automation_level_5 = NOT_ENABLED
-development_automation_next_route = AUTOMATION_IMPLEMENTATION_AUTO_IMP_002_AUTHORIZATION_PREPARATION
+development_automation_next_route = AUTO_IMP_002_AUTHORIZATION_DECISION
 
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
@@ -112,7 +114,7 @@ migration_execution = NOT_AUTHORIZED
 live = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 next_mainline_gap = NOT_AUTHORIZED
-next = AUTOMATION_IMPLEMENTATION_AUTO_IMP_002_AUTHORIZATION_PREPARATION
+next = AUTO_IMP_002_AUTHORIZATION_DECISION
 ```
 
 Pointers：
