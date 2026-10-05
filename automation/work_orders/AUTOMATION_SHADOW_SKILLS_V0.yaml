@@ -1,0 +1,58 @@
+schema_version: automation.shadow_skill_plan.v0
+plan_id: AUTOMATION-SHADOW-SKILLS-V0
+status: PLANNING_ONLY
+authority_effect: NONE
+source_baseline: AUTOMATION-BATCH-V2-DIRECTION-20261005
+
+goal:
+  - Reduce repeated prompt/context cost without changing governance authority.
+  - Move deterministic repeated procedures out of long prompts into composable skills.
+
+precedence: "Governance > Work > Skill > Codex/Tool"
+
+first_wave:
+  - id: repo-reentry
+    trigger: [WORK_START, CODEX_START]
+    purpose: "Fetch/read canonical remote state and return minimal pointers/deltas."
+  - id: exact-binding-validator
+    trigger: [BEFORE_CLAIM, BEFORE_RESUME]
+    purpose: "Validate authority/work-order/revision/scope binding."
+  - id: queue-resolver
+    trigger: [CODEX_WAKE]
+    purpose: "Resolve oldest unfinished/resumable work before new work."
+  - id: resume-resolver
+    trigger: [EXISTING_CLAIM_WITHOUT_TERMINAL_EVIDENCE]
+    purpose: "Decide safe resume vs conflict/stop without re-claiming."
+  - id: quota-snapshot-recorder
+    trigger: [ACTOR_START, ACTOR_END]
+    purpose: "Record raw 5H/weekly snapshots and timestamps; never self-tune policy."
+  - id: reviewer-packet-builder
+    trigger: [COMPLETED_PENDING_REVIEW]
+    purpose: "Compile exact SHA/scope/test/evidence pointers for independent review."
+
+later_wave:
+  - context-compiler
+  - work-cluster
+  - quota-calibrator
+  - optimization-analyzer
+
+constraints:
+  - skills_may_not_grant_authority
+  - skills_may_not_expand_write_scope
+  - skills_may_not_mutate_quota_or_authorization_policy
+  - skills_may_not_infer_runtime_authorization
+  - skills_may_not_auto_advance_packages
+  - unchanged_content_should_be_referenced_by_path_and_git_blob_sha
+  - output_should_be_minimal_pointer_or_delta_first
+
+activation:
+  first_wave: SHADOW_AFTER_AUTO_IMP_001_CLOSURE
+  execution_path_promotion: AFTER_FOUNDATION_STABILITY_AND_REVIEW
+  auto_imp_002_authorized: false
+
+success_metrics:
+  - less_repeated_context
+  - less_prompt_duplication
+  - no_authority_regression
+  - no_scope_regression
+  - no_resume_or_queue_regression
