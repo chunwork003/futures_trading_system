@@ -122,3 +122,12 @@ At each optimization checkpoint, record:
 - whether a new Skill/rule is justified
 
 Do not grow the framework for a one-off event.
+
+
+Reported-token diagnostics:
+- record input_tokens, cached_input_tokens, uncached_input_tokens, output_tokens, reasoning_output_tokens, total_tokens when exact local attribution is available;
+- cached_input_ratio = cached_input_tokens / input_tokens;
+- a very high cached_input_ratio with small uncached_input_tokens indicates context replay/tool-cycle cost, not equivalent fresh-context growth;
+- treat local total_token_usage as reported usage telemetry, not billing cost;
+- if one execution has >90% cached input and HIGH 5H/runtime signals, classify CONTEXT_REPLAY_DOMINATED unless stronger evidence shows another cause;
+- optimize number of model/tool/test turns before shrinking stable cache-friendly kernels blindly.
