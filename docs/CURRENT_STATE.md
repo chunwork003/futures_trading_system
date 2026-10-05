@@ -40,14 +40,17 @@ development_automation_auto_imp_002_authorization_prep_path = automation/work_or
 development_automation_auto_imp_002_authorization_id = AUTH-AUTO-IMP-002-01
 development_automation_auto_imp_002_authorization_state = AUTHORIZED
 development_automation_auto_imp_002_work_order = WO-AUTO-IMP-002-01
-development_automation_auto_imp_002_handoff_ready = false
-development_automation_auto_imp_002_quota_gate = FRESH_PROVIDER_NATIVE_RESOLUTION_REQUIRED
+development_automation_auto_imp_002_handoff_ready = true
+development_automation_auto_imp_002_quota_gate = WAIVED_FOR_BOUNDED_AUTOMATION_PILOT
+development_automation_auto_imp_002_quota_amendment = AMEND-AUTO-IMP-002-QUOTA-01
+development_automation_auto_imp_002_eligibility = ELIGIBLE_FOR_MANUAL_TRIGGER
+development_automation_auto_imp_002_eligibility_path = automation/work_orders/AUTO-IMP-002.eligibility.json
 development_automation_current_authorization_id = AUTH-AUTO-IMP-002-01
 development_automation_current_authorization_revision = 1
 development_automation_current_authorization_state = AUTHORIZED
 development_automation_current_authorization_candidate = AUTHORIZED_EFFECTIVE
 development_automation_auto_imp_001_source_modification = BOUNDED_AUTHORIZED
-development_automation_execution_eligibility = AUTO_IMP_002_FRESH_QUOTA_RESOLUTION_REQUIRED
+development_automation_execution_eligibility = AUTO_IMP_002_READY_FOR_MANUAL_CODEX_TRIGGER
 development_automation_quota_rf_id = AUTO-IMP-001-QRF01
 development_automation_quota_rf_status = ACCEPTED_MATERIALIZED
 development_automation_quota_rf_re_review = PASS
@@ -64,14 +67,14 @@ development_automation_manifest_hash_integrity_review = PASS
 development_automation_auto_rf01 = CLOSED
 development_automation_auto_rf02 = CLOSED
 development_automation_auto_manifest_rf01 = CLOSED
-development_automation_implementation = AUTO_IMP_002_AUTHORIZED_NOT_STARTED
+development_automation_implementation = AUTO_IMP_002_READY_NOT_STARTED
 development_automation_execution_id = EXEC-AUTO-IMP-001-20261004T162707325206Z
 development_automation_writer_lock_status = RELEASED_AFTER_DURABLE_RESULT_INTAKE
 development_automation_level_3b = NOT_ENABLED
 development_automation_level_3c = NOT_ENABLED
 development_automation_level_4 = NOT_ENABLED
 development_automation_level_5 = NOT_ENABLED
-development_automation_next_route = AUTO_IMP_002_EXECUTION_ELIGIBILITY
+development_automation_next_route = AUTO_IMP_002_MANUAL_CODEX_TRIGGER
 
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
@@ -119,7 +122,7 @@ migration_execution = NOT_AUTHORIZED
 live = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 next_mainline_gap = NOT_AUTHORIZED
-next = AUTO_IMP_002_EXECUTION_ELIGIBILITY
+next = AUTO_IMP_002_MANUAL_CODEX_TRIGGER
 ```
 
 Pointers：
