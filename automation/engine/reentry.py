@@ -219,24 +219,52 @@ def resolve_reentry(
     handoffs = [mapping(path) for path in handoff_paths]
     current = mapping("automation/work_orders/CURRENT_CODEX.yaml")
     text("automation/work_orders/CURRENT_CODEX_TASK.md")
-    work = mapping(current["work_order_path"])
-    auth = mapping(current["authorization_path"])
-    quota = mapping(current["quota_amendment"]["path"])
-    eligibility = mapping(current["eligibility_path"])
-    package = mapping(auth["package_binding"]["path"])
-    dependency = mapping(auth["program_binding"]["dependency_closure_path"])
+
+    def snapshot(route: str, action: str, reason: str | None = None) -> ReentrySnapshot:
+        return ReentrySnapshot(
+            sha, verification, state, _freeze_yaml_value(documents), route,
+            "REPORT_CURRENT_STATE_WITHOUT_EXECUTION" if status_only else action, reason,
+        )
+
+    # 狀態解析先於候選 package/program dereference；post-execution 不建立 authority。
+    if not verification.valid:
+        return snapshot("STOP", "RESOLVE_GOVERNANCE_INTEGRITY_OR_BINDING", "MANIFEST_INTEGRITY_MISMATCH")
+    try:
+        work = mapping(current["work_order_path"])
+    except (KeyError, TypeError, ManifestIntegrityError):
+        return snapshot("STOP", "RESOLVE_CURRENT_WORK", "INVALID_BINDING_DOCUMENT")
+    statuses = [doc.get("status") for doc in handoffs] + [current.get("status"), work.get("status")]
+    if any(s in ("STOP", "STOPPED", "HARD_BLOCK", "BLOCKED") for s in statuses):
+        return snapshot("STOP", "RESOLVE_REPOSITORY_STOP", "OPEN_STOP_OR_BLOCKER")
+    review_states = {"COMPLETED_PENDING_REVIEW", "PENDING_REVIEW", "REVIEW_PENDING",
+                     "RESULT_READY", "IMPLEMENTED_PENDING_REVIEW"}
+    if any(doc.get("status") in review_states for doc in handoffs):
+        return snapshot("PENDING_REVIEW", "ROUTE_DURABLE_RESULT_TO_WORK")
+    if current.get("status") != work.get("status"):
+        return snapshot("STOP", "RESOLVE_CURRENT_WORK", "CONFLICTING_WORK_STATUS")
+    if current.get("status") in review_states:
+        return snapshot("PENDING_REVIEW", "ROUTE_DURABLE_RESULT_TO_WORK")
+    if current.get("status") != "READY_FOR_CODEX" or current.get("handoff_ready") is not True:
+        return snapshot("STOP", "RESOLVE_CURRENT_WORK", "NO_LEGAL_READY_WORK")
+    # CONSUMED/RESERVED 是 lifecycle 狀態，不是可重新 claim 的 READY authority。
+    if (current.get("authorization_state") != "AUTHORIZED"
+            or work.get("authorization_state") != "AUTHORIZED"
+            or state.get("development_automation_current_authorization_state") != "AUTHORIZED"):
+        return snapshot("STOP", "RESOLVE_CURRENT_AUTHORIZATION", "AUTHORIZATION_NOT_AVAILABLE")
 
     reason = None
-    if not verification.valid:
-        reason = "MANIFEST_INTEGRITY_MISMATCH"
-    else:
-        try:
-            _validate_bindings(repo, sha, state, current, work, auth, quota,
-                               eligibility, package, dependency)
-        except _BindingMismatch as exc:
-            reason = str(exc)
-        except (KeyError, TypeError, AttributeError, ValueError):
-            reason = "INVALID_BINDING_DOCUMENT"
+    try:
+        auth = mapping(current["authorization_path"])
+        quota = mapping(current["quota_amendment"]["path"])
+        eligibility = mapping(current["eligibility_path"])
+        package = mapping(auth["package_binding"]["path"])
+        dependency = mapping(auth["program_binding"]["dependency_closure_path"])
+        _validate_bindings(repo, sha, state, current, work, auth, quota,
+                           eligibility, package, dependency)
+    except _BindingMismatch as exc:
+        reason = str(exc)
+    except (KeyError, TypeError, AttributeError, ValueError):
+        reason = "INVALID_BINDING_DOCUMENT"
 
     statuses = [doc.get("status") for doc in handoffs] + [current.get("status"), work.get("status")]
     if reason:
