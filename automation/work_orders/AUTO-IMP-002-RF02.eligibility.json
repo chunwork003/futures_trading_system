@@ -1,0 +1,38 @@
+{
+  "schema_version": "automation.execution_eligibility.v1",
+  "work_order_id": "WO-AUTO-IMP-002-RF02-01",
+  "package_id": "AUTO-IMP-002",
+  "correction_id": "AUTO-IMP-002-RF02",
+  "authorization_id": "AUTH-AUTO-IMP-002-RF02-01",
+  "authorization_revision": "1",
+  "observed_master_sha": "cdbd2bf9291c40a5db976ab1de5a3995b826fdb5",
+  "source_candidate_sha": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
+  "created_at": "2026-10-05T12:50:15Z",
+  "updated_at": "2026-10-05T12:50:15Z",
+  "status": "BLOCKED_QUOTA_ADMISSION_UNRESOLVED",
+  "checks": {
+    "fresh_authority": "PASS_EXPLICIT_HUMAN_EXACT_CORRECTION_APPROVAL",
+    "source_candidate": "PASS_EXACT_RF01_REVIEWED_REMOTE_CANDIDATE",
+    "scope": "PASS_PREPARED_TWO_FILES_ONLY",
+    "forecast": "PASS_EXISTING_PROVISIONAL_FORECAST_BOUND_UNCHANGED",
+    "efficiency_contract": "PASS_UNCHANGED",
+    "parent_writer": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+    "new_execution_branch": "ABSENT_REMOTE_BRANCH_INVENTORY",
+    "new_work_order": "ABSENT_BEFORE_MATERIALIZATION",
+    "new_authorization": "ABSENT_BEFORE_MATERIALIZATION",
+    "quota_admission": "BLOCKED_NO_RF02_EXACT_WAIVER_OR_COMPARABLE_FRESH_PROVIDER_NATIVE_ADMISSION_EVIDENCE",
+    "provider_hard_block": "RECHECK_AT_FRESH_ADMISSION"
+  },
+  "remaining_blockers": [
+    "RF02_QUOTA_ADMISSION_UNRESOLVED"
+  ],
+  "previous_waiver_reusable": false,
+  "eligible": false,
+  "trigger_mode": "MANUAL_TRIGGER_ONLY",
+  "automatic_dispatch": false,
+  "handoff_can_be_published": false,
+  "reservation_allowed": false,
+  "dispatch_allowed": false,
+  "executor_invoked": false,
+  "next_route": "AUTO_IMP_002_RF02_QUOTA_ADMISSION_DECISION"
+}

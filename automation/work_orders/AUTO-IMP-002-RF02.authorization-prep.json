@@ -3,7 +3,7 @@
   "correction_id": "AUTO-IMP-002-RF02",
   "parent_work_order_id": "WO-AUTO-IMP-002-RF01-01",
   "package_id": "AUTO-IMP-002",
-  "status": "PREPARED_NOT_AUTHORIZED",
+  "status": "AUTHORIZED_MATERIALIZED_PENDING_QUOTA_ELIGIBILITY",
   "trigger_verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-RF01-01.verdict.json",
   "finding_id": "AUTO-IMP-002-RF01-REVIEW-EFFECT-01",
   "reason": "Independent re-review found three remaining execution-effect fail-closed gaps after RF01.",
@@ -60,9 +60,9 @@
     "skill": "automation/skills/single-use-lifecycle-guard/SKILL.md"
   },
   "authority": {
-    "source_modification": "NOT_AUTHORIZED",
-    "codex_execution": "NOT_AUTHORIZED",
-    "correction_budget_source": "NEW_HUMAN_DECISION_REQUIRED",
+    "source_modification": "BOUNDED_AUTHORIZED_AFTER_CONSUMED_DISPATCH",
+    "codex_execution": "NOT_EXECUTABLE_PENDING_QUOTA_AND_LIFECYCLE",
+    "correction_budget_source": "AUTH-AUTO-IMP-002-RF02-01",
     "automatic_rf_creation": "DENIED",
     "auto_imp_003_authorized": false
   },
@@ -78,5 +78,9 @@
     "actor_seconds_p50": 900,
     "actor_seconds_p90": 1280,
     "authority_effect": "NONE"
-  }
+  },
+  "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-RF02-01.v1.yaml",
+  "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-RF02-01.yaml",
+  "eligibility_path": "automation/work_orders/AUTO-IMP-002-RF02.eligibility.json",
+  "updated_at": "2026-10-05T12:50:15Z"
 }
