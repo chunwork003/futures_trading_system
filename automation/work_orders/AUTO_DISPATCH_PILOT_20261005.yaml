@@ -43,7 +43,7 @@ quota:
 
 writer_claim:
   mode: REMOTE_BRANCH_ATOMIC_CLAIM
-  branch: codex/auto-imp-001-dupkey-rf01
+  branch: auto/WO-AUTO-IMP-001-CORR-01
   protocol:
     - fetch origin master
     - verify remote claim branch absent
@@ -58,11 +58,11 @@ executor:
     - tests/automation/test_contracts.py
   metadata_write_scope:
     - automation/work_orders/executions/**
-  pr_creation_by_codex: DENIED
+  pr_creation_by_codex: ALLOWED_WITH_WORK_FALLBACK
   push_branch: ALLOWED
   automatic_merge: DENIED
 
 completion:
-  work_creates_or_updates_pr: true
+  work_creates_or_updates_pr_if_codex_cannot: true
   work_performs_result_intake_and_review: true
   human_notification: ONLY_ON_HUMAN_DECISION_REQUIRED
