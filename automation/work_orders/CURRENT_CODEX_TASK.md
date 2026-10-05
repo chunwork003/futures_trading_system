@@ -1,34 +1,38 @@
-# AUTO-IMP-002 — COMPLETED_PENDING_REVIEW
+# AUTO-IMP-002 — REVIEW_FIX_REQUIRED / HUMAN DECISION
 
-No further Codex execution is authorized.
+No Codex execution is authorized.
 
-Exact adopted review candidate:
-- execution: EXEC-AUTO-IMP-002-20261005T083857515Z
-- claim: b8dcc8017fadfacae571c0e134cc424992ea953d
+Independent review verdict:
+automation/work_orders/reviews/WO-AUTO-IMP-002-01.verdict.json
+
+Finding:
+AUTO-IMP-002-REVIEW-BINDING-01
+
+Accepted review context:
 - implementation: 7d3e51802fb6d016bdd4f7d57908e01460535806
 - evidence: eccbe997fe4f9f2a9da06026d75df11af9c3a937
-- targeted: 29 passed
-- full: 1542 passed, 8 skipped
-- exact source scope: PASS
+- historical lifecycle remains NONCONFORMING_RECORDED_NOT_REWRITTEN
+- governance adoption remains REVIEW_CANDIDATE_ONLY
 
-Governance adoption:
-automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.adoption.json
+Semantic blocker:
+resolve_reentry() does not fully fail closed on contradictory cross-artifact identity/pointer/state/profile bindings. A mismatch can still route CODEX_EXECUTION_CANDIDATE.
 
-Historical lifecycle:
-NONCONFORMING_RECORDED_NOT_REWRITTEN
+Minimum reviewer correction scope:
+- automation/engine/reentry.py
+- tests/automation/test_reentry.py
 
-Independent review packet:
-automation/work_orders/reviews/WO-AUTO-IMP-002-01.md
+Correction budget:
+0
 
-Do not:
-- rerun AUTO-IMP-002
-- create a second execution
-- modify source
-- self-accept or merge
-- start AUTO-IMP-003
+Therefore:
+- no automatic RF
+- no source modification
+- no rerun
+- no merge/acceptance
+- no AUTO-IMP-003
 
-Current owner:
-Independent_Automation_Reviewer
+Next owner:
+HUMAN_GOVERNANCE_OWNER
 
-Next:
-AUTO_IMP_002_INDEPENDENT_REVIEW
+Next action:
+Explicitly authorize or reject one bounded AUTO-IMP-002 RF01 correction.
