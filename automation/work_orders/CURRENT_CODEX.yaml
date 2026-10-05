@@ -8,7 +8,7 @@
   "authorization_id": "AUTH-AUTO-IMP-002-RF02-01",
   "authorization_revision": "1",
   "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-RF02-01.v1.yaml",
-  "authorization_state": "RESERVED",
+  "authorization_state": "CONSUMED",
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-RF02-01.yaml",
   "control_plane_baseline_sha": "cdbd2bf9291c40a5db976ab1de5a3995b826fdb5",
   "source_candidate_sha": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
@@ -92,13 +92,13 @@
     "consumed_required_before_source_edit": true,
     "branch_claim_alone_is_sufficient": false
   },
-  "status": "BLOCKED",
+  "status": "LIFECYCLE_CONSUMED_PENDING_HANDOFF",
   "handoff_ready": false,
-  "execution_eligibility": "PASS_PENDING_SINGLE_USE_LIFECYCLE",
+  "execution_eligibility": "PASS_CONSUMED_MANUAL_INVOCATION_ONLY",
   "eligibility_path": "automation/work_orders/AUTO-IMP-002-RF02.eligibility.json",
   "execution_branch": "auto/WO-AUTO-IMP-002-RF02-01",
   "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
-  "lifecycle_status": "RESERVED",
+  "lifecycle_status": "CONSUMED",
   "correction_budget_remaining": 1,
   "correction_budget": {
     "limit": 1,
@@ -113,7 +113,9 @@
     "percentage_to_token_conversion": "DENIED",
     "provider_hard_block": "STOP",
     "no_comparable_provider_native_forecast_action": "STOP_AND_ROUTE_QUOTA_DECISION",
-    "amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-RF02-QUOTA-01.yaml"
+    "amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-RF02-QUOTA-01.yaml",
+    "admission_applied_to_reserved_execution": true,
+    "new_admission_or_reuse": "DENIED"
   },
   "side_effects": {
     "runtime": "DENIED",
@@ -148,14 +150,14 @@
     "provider hard block",
     "additional unplanned expensive test cycle without bounded WORK reason"
   ],
-  "next_route": "AUTO_IMP_002_RF02_CONSUMPTION_MATERIALIZATION",
-  "current_action": "MATERIALIZE_RF02_CONSUMED",
+  "next_route": "AUTO_IMP_002_RF02_HANDOFF_PUBLICATION",
+  "current_action": "PUBLISH_EXACT_RF02_HANDOFF",
   "created_at": "2026-10-05T12:50:15Z",
-  "updated_at": "2026-10-05T12:59:36Z",
+  "updated_at": "2026-10-05T13:00:31Z",
   "quota_amendment": {
     "amendment_id": "AMEND-AUTO-IMP-002-RF02-QUOTA-01",
     "path": "automation/work_orders/AMEND-AUTO-IMP-002-RF02-QUOTA-01.yaml",
-    "status": "AUTHORIZED_EFFECTIVE"
+    "status": "EXPIRED_CONSUMED"
   },
   "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/reservation.yaml",
   "writer_lock_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/writer_lock.yaml",

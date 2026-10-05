@@ -2,9 +2,9 @@
   "schema_version": "automation.bounded_execution_quota_amendment.v1",
   "amendment_id": "AMEND-AUTO-IMP-002-RF02-QUOTA-01",
   "amendment_revision": "1",
-  "status": "AUTHORIZED_EFFECTIVE",
+  "status": "EXPIRED_CONSUMED",
   "created_at": "2026-10-05T12:57:11Z",
-  "updated_at": "2026-10-05T12:57:11Z",
+  "updated_at": "2026-10-05T13:00:31Z",
   "authority": "HUMAN_GOVERNANCE_OWNER",
   "decision_source": "USER_EXPLICIT_CURRENT_REQUEST",
   "decision": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
@@ -52,5 +52,12 @@
       "authorization revoked"
     ],
     "reuse": "DENIED"
+  },
+  "expiration": {
+    "reason": "EXACT_RF02_SINGLE_USE_DISPATCH_CONSUMED",
+    "effective_for_new_admission": false,
+    "reuse": "DENIED",
+    "consumed_execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+    "admission_recorded_in_reservation": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/reservation.yaml"
   }
 }

@@ -7,7 +7,7 @@
   "work_order_id": "WO-AUTO-IMP-002-RF02-01",
   "authorization_id": "AUTH-AUTO-IMP-002-RF02-01",
   "authorization_revision": "1",
-  "state": "RESERVED",
+  "state": "CONSUMED",
   "created_at": "2026-10-05T12:58:07Z",
   "eligibility_path": "automation/work_orders/AUTO-IMP-002-RF02.eligibility.json",
   "eligibility_commit_sha": "ed14a0f92bab5aa1f4bdba81d0e8495b426448c5",
@@ -35,7 +35,7 @@
     "profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
     "automatic_dispatch": "DENIED",
     "invoked": false,
-    "dispatch_committed": false
+    "dispatch_committed": true
   },
   "side_effects": {
     "runtime": "DENIED",
@@ -45,5 +45,8 @@
     "live": "DENIED",
     "production": "DENIED"
   },
-  "next_route": "AUTO_IMP_002_RF02_PRE_DISPATCH_RECHECK"
+  "next_route": "AUTO_IMP_002_RF02_PRE_DISPATCH_RECHECK",
+  "consumed_at": "2026-10-05T13:00:31Z",
+  "reserved_commit_sha": "ab223a470c5353171bfa17162a5cd455fc426b6e",
+  "dispatch_commit_sha": "1ee39153c322291db1d82d6f275fa7b27948d0eb"
 }
