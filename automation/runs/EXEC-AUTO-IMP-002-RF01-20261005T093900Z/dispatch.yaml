@@ -9,7 +9,7 @@ authorization_revision: "1"
 reserved_commit_sha: "43fbab650d25c79a95edf2e0299adb12397ca28f"
 pre_dispatch_recheck_path: automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/pre_dispatch_recheck.json
 pre_dispatch_recheck_commit_sha: "261b5adc86371f7f544cefbdf82fc8a865fa0708"
-authorization_state: RESERVED
+authorization_state: CONSUMED
 dispatch_committed: true
 executor_profile: CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
 automatic_dispatch: DENIED
@@ -29,4 +29,5 @@ protected_side_effects:
   migration: DENIED
   live: DENIED
   production: DENIED
-next_route: AUTO_IMP_002_RF01_STATE_TO_CONSUMED
+consumed_commit_sha: 2281f42bcc2ed360ccbf88a79f530edbdb290009
+next_route: AUTO_IMP_002_RF01_MANUAL_CODEX_TRIGGER
