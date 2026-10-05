@@ -1,8 +1,8 @@
 schema_version: automation.authorization.v1
 authorization_id: AUTH-AUTO-IMP-002-RF01-01
 authorization_revision: "1"
-document_status: RESERVED_EFFECTIVE
-authorization_state: RESERVED
+document_status: CONSUMED_EFFECTIVE
+authorization_state: CONSUMED
 source_candidate_head_sha: "eccbe997fe4f9f2a9da06026d75df11af9c3a937"
 
 decision_evidence:
@@ -104,9 +104,11 @@ single_use_execution:
   writer_lock_path: automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/writer_lock.yaml
   quota_evidence_path: automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/quota_evidence.json
   reserved_commit_sha: 43fbab650d25c79a95edf2e0299adb12397ca28f
-  dispatch_committed: false
+  dispatch_commit_sha: a27b744ccaae1bb6417f4f45875a162fc5cbbb24
+  dispatch_committed: true
   executor_invoked: false
+  consumed_at: "2026-10-05T17:40:00+08:00"
 
 decision:
-  status: RESERVED_SINGLE_USE_EXECUTION
-  next_route: AUTO_IMP_002_RF01_RECHECK_AND_DISPATCH_COMMIT
+  status: DISPATCH_COMMITTED_CONSUMED
+  next_route: AUTO_IMP_002_RF01_MANUAL_CODEX_TRIGGER
