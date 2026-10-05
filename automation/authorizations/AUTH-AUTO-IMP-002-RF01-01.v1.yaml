@@ -1,8 +1,8 @@
 schema_version: automation.authorization.v1
 authorization_id: AUTH-AUTO-IMP-002-RF01-01
 authorization_revision: "1"
-document_status: AUTHORIZED_EFFECTIVE
-authorization_state: AUTHORIZED
+document_status: RESERVED_EFFECTIVE
+authorization_state: RESERVED
 source_candidate_head_sha: "eccbe997fe4f9f2a9da06026d75df11af9c3a937"
 
 decision_evidence:
@@ -99,11 +99,14 @@ quota_gate:
   telemetry_required_when_available: true
 
 single_use_execution:
-  execution_id: NOT_ALLOCATED
-  reservation_path: NOT_CREATED
+  execution_id: EXEC-AUTO-IMP-002-RF01-20261005T093900Z
+  reservation_path: automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/reservation.yaml
+  writer_lock_path: automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/writer_lock.yaml
+  quota_evidence_path: automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/quota_evidence.json
+  reserved_commit_sha: PENDING_CURRENT_COMMIT
   dispatch_committed: false
   executor_invoked: false
 
 decision:
-  status: AUTHORIZED_PENDING_EXECUTION_ELIGIBILITY
-  next_route: AUTO_IMP_002_RF01_EXECUTION_ELIGIBILITY
+  status: RESERVED_SINGLE_USE_EXECUTION
+  next_route: AUTO_IMP_002_RF01_RECHECK_AND_DISPATCH_COMMIT
