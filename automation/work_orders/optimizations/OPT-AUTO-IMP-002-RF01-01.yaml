@@ -25,7 +25,8 @@ observed_run:
     weekly_used_percent_start: 18
     weekly_used_percent_end: 20
     weekly_delta_percent: 2
-    exact_token_cost: PENDING_LOCAL_CODEX_SESSION_EXTRACTION
+    exact_token_cost: BILLING_COST_NOT_AVAILABLE
+    local_reported_token_delta: AMBIGUOUS_PENDING_STRONG_MARKER_DISAMBIGUATION
 
 closest_comparable_baseline:
   work_order_id: WO-AUTO-IMP-002-01
@@ -74,6 +75,7 @@ future_test_architecture:
     - one_full_regression_after_targeted_pass
 
 token_cost_strategy:
+  note: LOCAL_ROLLOUT_TOKENS_ARE_REPORTED_USAGE_NOT_BILLING_LEDGER
   exact_token_cost_priority:
     - provider_native_task_telemetry
     - exact_bound_local_codex_session_telemetry
