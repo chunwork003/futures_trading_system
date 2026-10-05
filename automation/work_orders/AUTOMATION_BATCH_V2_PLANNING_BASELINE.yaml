@@ -91,11 +91,10 @@ delivery_phases:
   utilization:
     - consider opportunistic queue reordering/backfill/parallelism only after stability and efficiency evidence
 
-current_gate:
-  work_order: WO-AUTO-IMP-001-CORR-02
-  required_next_step: INDEPENDENT_REVIEW_AND_CLOSURE
-  auto_imp_002_authorized: false
-  runtime_or_broker_or_db_or_migration_or_live_or_production_authorized: false
+live_state_pointer:
+  canonical: docs/CURRENT_STATE.md
+  codex_projection: automation/work_orders/CURRENT_CODEX.yaml
+  rule: "Do not duplicate dynamic gate/authorization state in this planning baseline."
 
 notes:
   - This file records planning direction only.
