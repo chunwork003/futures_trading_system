@@ -7,13 +7,30 @@
   "implementation_commit_sha": "2a8974acbb7319ce55b3d7fb88737ad027061244",
   "evidence_commit_sha": "383ea7305557575a3c5330a1c2e2e54161d1dceb",
   "created_at": "2026-10-05T11:56:10+08:00",
-  "updated_at": "2026-10-05T11:56:10+08:00",
+  "updated_at": "2026-10-05T04:12:35Z",
   "status": "REVIEW_PENDING",
   "next_owner": "Independent_Reviewer",
   "verdict": null,
   "packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-01.md",
-  "delivery": "DURABLE_REPOSITORY_REVIEW_QUEUE",
+  "delivery": "FRESH_CONTEXT_INDEPENDENT_REVIEW_AGENT",
   "pr_status": "BLOCKED_PERMISSION",
-  "reviewer_identity": "NOT_ASSIGNED_IN_REPOSITORY",
-  "semantic_pass_by_orchestrator": false
+  "reviewer_identity": "fresh-context:/root/independent_review",
+  "semantic_pass_by_orchestrator": false,
+  "observed_master_head": "6b643df7e6ec58628880f4c86f708eda9b74e1c3",
+  "review_execution_status": "RUNNING",
+  "pr_permission_probe": {
+    "read_open_prs": "404_NOT_FOUND",
+    "create_retry": "NOT_ATTEMPTED_NO_PERMISSION_RECOVERY_EVIDENCE",
+    "prior_failure": "403 Resource not accessible by integration",
+    "blocks_direct_remote_review": false
+  },
+  "review_binding": {
+    "base_sha": "b2dbe51568674a936d6da4a811b45943198b905c",
+    "implementation_sha": "2a8974acbb7319ce55b3d7fb88737ad027061244",
+    "evidence_sha": "383ea7305557575a3c5330a1c2e2e54161d1dceb",
+    "exact_scope": [
+      "automation/engine/yaml_io.py",
+      "tests/automation/test_contracts.py"
+    ]
+  }
 }
