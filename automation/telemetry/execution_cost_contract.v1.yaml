@@ -1,0 +1,115 @@
+schema_version: automation.execution_cost_contract.v1
+status: ACTIVE_SHADOW_TELEMETRY_CONTRACT
+purpose: >
+  Bind WORK pre-execution forecast, CODEX execution actuals, post-run local token
+  enrichment, variance classification, and optimization feedback without granting
+  execution authority or changing quota admission policy.
+
+unit_semantics:
+  reported_tokens: LOCAL_CODEX_ROLLOUT_USAGE_NOT_BILLING_LEDGER
+  quota_percent: PROVIDER_WINDOW_USAGE_PROXY_NOT_TOKEN_CONVERSION
+  billing_cost: ONLY_IF_PROVIDER_EXPLICITLY_EXPOSES_EXACT_TASK_COST
+  wall_time_seconds: EXECUTOR_ACTOR_ELAPSED
+  test_seconds: OBSERVED_TEST_COMMAND_DURATION
+
+forecast_required_at_work_order_materialization:
+  required: true
+  artifact_pattern: automation/work_orders/forecasts/<WORK_ORDER_ID>.json
+  inline_pointer_required: true
+  fields:
+    - forecast_version
+    - confidence
+    - comparable_cohort
+    - assumptions
+    - reported_tokens_p50_p75_p90
+    - five_hour_delta_pct_p50_p75_p90
+    - weekly_delta_pct_p50_p75_p90
+    - actor_seconds_p50_p75_p90
+    - targeted_seconds_p90
+    - full_regression_seconds_p90
+    - expected_test_cycles
+    - early_watch_rules
+    - variance_policy
+
+actual_required_from_codex:
+  required: true
+  minimum_fields:
+    - actor_start
+    - actor_end
+    - targeted_runs
+    - full_regression_runs
+    - targeted_seconds
+    - full_regression_seconds
+    - five_hour_before_after_if_available
+    - weekly_before_after_if_available
+    - local_reported_tokens_status
+  local_token_status_values:
+    - PENDING_EXTERNAL_EXTRACTION
+    - EXACT
+    - AMBIGUOUS
+    - NOT_AVAILABLE
+
+post_run_enrichment:
+  local_extractor: scripts/codex_session_token_usage.ps1
+  exact_token_evidence_pattern: automation/runs/<EXECUTION_ID>/local_token_usage.json
+  reconciliation_pattern: automation/work_orders/optimizations/<WORK_ORDER_ID>.cost-reconciliation.json
+
+variance_policy:
+  primary_expected_point: p50
+  normal: actual_le_p75
+  watch: p75_lt_actual_le_p90
+  high: p90_lt_actual_le_1_25x_p90
+  critical: actual_gt_1_25x_p90
+  immediate_cycle_watch:
+    extra_full_targeted_passes: 1
+    extra_full_regression_passes: 1
+    pre_fix_cases_over_plan: true
+  note: >
+    These are efficiency signals. They do not grant/revoke authorization and do
+    not replace provider hard blocks.
+
+cause_rules:
+  - when: total_tokens_gt_p90 AND cached_input_ratio_gte_0_90 AND uncached_input_le_p90
+    classify: CONTEXT_REPLAY_DOMINATED
+    recommend:
+      - reduce_model_tool_test_round_trips
+      - keep_stable_cache_friendly_kernel
+      - avoid_reloading_unchanged_context
+  - when: uncached_input_tokens_gt_p90
+    classify: FRESH_CONTEXT_GROWTH
+    recommend:
+      - tighten_pointer_first_context
+      - remove_unrelated_history
+      - split_oversized_work_order
+  - when: targeted_or_full_seconds_gt_p90 OR test_cycles_over_plan
+    classify: TEST_EXECUTION_DOMINATED
+    recommend:
+      - minimum_counterexample_before_fix
+      - impacted_subset_until_clean
+      - pure_semantic_tests_before_git_integration
+  - when: output_or_reasoning_tokens_gt_p90
+    classify: REASONING_OR_RESPONSE_EXPANSION
+    recommend:
+      - narrow_acceptance_contract
+      - reduce_ambiguous_instructions
+      - use_machine_readable_evidence
+  - when: five_hour_delta_pct_gt_p90 AND reported_tokens_and_runtime_within_p90
+    classify: PROVIDER_OR_SHARED_WINDOW_ANOMALY
+    recommend:
+      - inspect_reset_window
+      - check_competing_consumers
+      - preserve_raw_quota_snapshot
+      - do_not_infer_token_conversion
+
+calibration:
+  minimum_comparable_samples_for_non_provisional: 3
+  cohort_dimensions:
+    - model
+    - executor_profile
+    - task_class
+    - risk_or_correction_class
+    - test_profile
+  update_rule: >
+    WORK updates cohort statistics only from exact-bound completed executions.
+    Reviewer rejection does not invalidate cost telemetry, but acceptance status
+    must remain a separate dimension.
