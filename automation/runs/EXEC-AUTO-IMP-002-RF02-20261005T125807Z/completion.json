@@ -1,0 +1,93 @@
+{
+  "schema_version": "automation.execution_completion.v1",
+  "status": "COMPLETED_PENDING_REVIEW",
+  "work_order_id": "WO-AUTO-IMP-002-RF02-01",
+  "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+  "authorization_id": "AUTH-AUTO-IMP-002-RF02-01",
+  "authorization_state": "CONSUMED",
+  "first_manual_invocation": true,
+  "authoritative_master_sha": "8c4933a12d6a02e35027a63b9702294bc7cebaaf",
+  "source_candidate_sha": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
+  "implementation_commit_sha": "33c8eea0d90d4cca5ecf5c902579a687ec096034",
+  "execution_branch": "auto/WO-AUTO-IMP-002-RF02-01",
+  "lifecycle": {
+    "eligibility_commit": "ed14a0f92bab5aa1f4bdba81d0e8495b426448c5",
+    "reservation_commit": "ab223a470c5353171bfa17162a5cd455fc426b6e",
+    "dispatch_commit": "1ee39153c322291db1d82d6f275fa7b27948d0eb",
+    "consumed_commit": "50184f062ad3eb6522ff7717cfe9915a8152bbc9",
+    "reservation": "CONSUMED",
+    "dispatch_committed": true,
+    "writer_lock": "HELD",
+    "writer_lock_owner": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+    "new_identity_created": false,
+    "gate_result": "PASS_READY_TO_INVOKE_EXECUTOR",
+    "provider_hard_block": false
+  },
+  "scope": {
+    "source_files": [
+      "automation/engine/reentry.py",
+      "tests/automation/test_reentry.py"
+    ],
+    "exact_two_file_verification": "PASS",
+    "protected_blobs_unchanged": {
+      "automation/engine/manifest.py": "6262e33fcbd8999252b5ff8ffcc530571d8004ad",
+      "tests/automation/test_manifest.py": "0c3d063da3152535896b99bbf7b6a37b671b2b65"
+    },
+    "completion_metadata": [
+      "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/completion.json",
+      "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/execution_cost_actual.json"
+    ]
+  },
+  "validation": [
+    {
+      "phase": "counterexample_first",
+      "command": "python -m pytest tests/automation/test_reentry.py -k rf02_execution_effect_counterexamples -q -p no:cacheprovider --tb=short",
+      "exit_code": 1,
+      "result": "3 failed, 84 deselected (expected: DID NOT RAISE)",
+      "seconds": 0.68
+    },
+    {
+      "phase": "impacted_subset",
+      "command": "python -m pytest tests/automation/test_reentry.py -k rf02_execution_effect_counterexamples -q -p no:cacheprovider --tb=short",
+      "exit_code": 0,
+      "result": "3 passed, 84 deselected; eleven effect variants",
+      "seconds": 0.24
+    },
+    {
+      "phase": "targeted",
+      "command": "python -m pytest tests/automation/test_reentry.py -q -p no:cacheprovider --tb=short",
+      "exit_code": 0,
+      "result": "87 passed",
+      "seconds": 248.6
+    },
+    {
+      "phase": "full_regression",
+      "command": "python -m pytest -q -p no:cacheprovider --tb=short",
+      "environment": {
+        "POSTGRES17_TEST_DSN": "",
+        "POSTGRES18_TEST_DSN": ""
+      },
+      "exit_code": 0,
+      "result": "1618 passed, 8 skipped",
+      "seconds": 278.84
+    },
+    {
+      "phase": "diff_check",
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "effects_verified": [
+    "WORK side_effects runtime/broker/db/migration/live/production DENIED",
+    "CURRENT AUTO-IMP-003 false and WORK next package AUTO-IMP-003 NOT_AUTHORIZED",
+    "CURRENT and WORK provider_hard_block STOP"
+  ],
+  "execution_cost_actual_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/execution_cost_actual.json",
+  "reviewer_acceptance": "NOT_PERFORMED",
+  "merge": "NOT_PERFORMED",
+  "next_action": "STOP; durable result intake and independent review",
+  "limitations": [
+    "Actual PostgreSQL conformance not executed or verified",
+    "Local reported tokens await external extraction"
+  ]
+}
