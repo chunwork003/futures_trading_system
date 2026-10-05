@@ -87,11 +87,11 @@
     "on_exhaustion": "HUMAN_DECISION_REQUIRED",
     "publisher_cycles_used": 0
   },
-  "status": "READY_FOR_CODEX",
+  "status": "HUMAN_DECISION_REQUIRED",
   "task_packet_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
-  "handoff_ready": true,
+  "handoff_ready": false,
   "created_at": "2026-10-05T10:52:12+08:00",
-  "updated_at": "2026-10-05T10:52:12+08:00",
+  "updated_at": "2026-10-05T10:32:00+08:00",
   "rehydration": {
     "master_head": "a0ca84d4744e7fde78d3215f24ba5e89914f6784",
     "branches": [
@@ -143,5 +143,18 @@
     "hash_finding_disposition": "PRESERVED_UNRESOLVED_NOT_IN_IMPLEMENTATION_CORRECTION_SCOPE",
     "historical_dispatch_revalidation": "NOT_ASSERTED",
     "prior_review_pending_projection": "Retained historical original-run projection; this work order records user-supplied REVIEW_FIX_REQUIRED, not acceptance."
+  },
+  "blocker": {
+    "code": "AUTO_DISPATCH_GOVERNANCE_CONFLICT",
+    "summary": "Scheduled Codex automation is not currently authorized for this bounded correction under the frozen execution profile.",
+    "evidence": [
+      "AUTH-AUTO-IMP-001-01 allowed_executor_profile = CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+      "execution_policy.automatic_dispatch = DENIED",
+      "telemetry_gate.automated_dispatch_without_measurable_channel = DENY",
+      "machine-readable token usage for the pilot = NOT_AVAILABLE"
+    ],
+    "decision_required": "Choose either MANUAL_TRIGGER_FOR_RF01 or AUTHORIZE_BOUNDED_AUTOMATED_DISPATCH_PILOT_EXCEPTION_THROUGH_2026-10-05T21:00+08:00",
+    "source_modification_started": false,
+    "auto_imp_002_started": false
   }
 }
