@@ -61,9 +61,9 @@
     "branch_claim_alone_is_sufficient": false
   },
   "execution_branch": "auto/WO-AUTO-IMP-002-RF01-01",
-  "status": "READY_FOR_CODEX",
-  "handoff_ready": true,
-  "correction_budget_remaining": 1,
+  "status": "COMPLETED_PENDING_REVIEW",
+  "handoff_ready": false,
+  "correction_budget_remaining": 0,
   "quota_gate": {
     "status": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
     "five_hour": "TELEMETRY_ONLY_FOR_THIS_EXACT_RF01",
@@ -76,7 +76,7 @@
     "package_id": "AUTO-IMP-003",
     "authorization": "NOT_AUTHORIZED"
   },
-  "next_route": "AUTO_IMP_002_RF01_MANUAL_CODEX_TRIGGER",
+  "next_route": "AUTO_IMP_002_RF01_INDEPENDENT_RE_REVIEW",
   "quota_amendment": {
     "amendment_id": "AMEND-AUTO-IMP-002-RF01-QUOTA-01",
     "path": "automation/work_orders/AMEND-AUTO-IMP-002-RF01-QUOTA-01.yaml",
@@ -91,5 +91,11 @@
   "lifecycle_status": "CONSUMED",
   "current_action": "RECHECK_RF01_LOCK_HEAD_AND_BINDING",
   "dispatch_path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/dispatch.yaml",
-  "handoff_path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/handoff.yaml"
+  "handoff_path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/handoff.yaml",
+  "review_status": "REVIEW_PENDING",
+  "implementation_commit_sha": "523e5a3b62af78991995765eaa555edb40b79e43",
+  "evidence_commit_sha": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
+  "result_intake_path": "automation/work_orders/intakes/WO-AUTO-IMP-002-RF01-01.json",
+  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-RF01-01.md",
+  "source_correction_authorized": false
 }
