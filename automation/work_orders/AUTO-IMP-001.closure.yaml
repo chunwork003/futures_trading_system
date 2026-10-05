@@ -1,0 +1,43 @@
+schema_version: automation.package_closure.v1
+package_id: AUTO-IMP-001
+package_revision: "1"
+status: ACCEPTED_MATERIALIZED
+materialized_at: "2026-10-05T15:11:00+08:00"
+
+accepted_review:
+  work_order_id: WO-AUTO-IMP-001-CORR-02
+  verdict_path: automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-02.verdict.json
+  verdict: PASS
+  implementation_commit_sha: 7eab27c13b7987a0ba451d5d59210241aa77fb73
+  evidence_commit_sha: 735678afa9606ccd219a00e1c2f02471442231f7
+
+accepted_source:
+  automation/engine/contracts.py:
+    git_blob_sha: 3de2a944b8f9433c7deafc206211614eb0255291
+    provenance: ORIGINAL_AUTO_IMP_001_ACCEPTED_SOURCE
+  automation/engine/yaml_io.py:
+    git_blob_sha: a5e818221cddc6b175b9dacf75e98c1de4e45898
+    materialization_commit: 477271cfd4834b16861de3fe7511741ab737bd8f
+  tests/automation/test_contracts.py:
+    git_blob_sha: c0df433b12dc1116ddbd051ac0e5f58be249c9e1
+    materialization_commit: d2fb1c4dd5d1248d39336810e9c2c095b65b913b
+
+verification:
+  exact_review_binding: PASS
+  exact_two_file_rf02_scope: PASS
+  protected_files_unchanged: PASS
+  targeted_tests: "24 passed"
+  full_regression: "1513 passed, 8 skipped"
+  git_diff_check: PASS
+  semantic_review: PASS
+
+authority:
+  runtime_authorization: NOT_AUTHORIZED
+  broker_io: NOT_AUTHORIZED
+  db_environment_access: NOT_AUTHORIZED
+  migration_execution: NOT_AUTHORIZED
+  live: NOT_AUTHORIZED
+  production: NOT_AUTHORIZED
+  auto_imp_002_authorized: false
+
+next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_002_AUTHORIZATION_PREPARATION
