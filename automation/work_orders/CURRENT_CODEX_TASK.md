@@ -1,38 +1,37 @@
-# AUTO-IMP-002 — REVIEW_FIX_REQUIRED / HUMAN DECISION
+# AUTO-IMP-002 RF01 — AUTHORIZED / ELIGIBILITY PENDING
 
-No Codex execution is authorized.
+Current bounded correction:
+- correction: AUTO-IMP-002-RF01
+- work order: WO-AUTO-IMP-002-RF01-01
+- authorization: AUTH-AUTO-IMP-002-RF01-01
+- finding: AUTO-IMP-002-REVIEW-BINDING-01
+- source candidate: eccbe997fe4f9f2a9da06026d75df11af9c3a937
 
-Independent review verdict:
-automation/work_orders/reviews/WO-AUTO-IMP-002-01.verdict.json
-
-Finding:
-AUTO-IMP-002-REVIEW-BINDING-01
-
-Accepted review context:
-- implementation: 7d3e51802fb6d016bdd4f7d57908e01460535806
-- evidence: eccbe997fe4f9f2a9da06026d75df11af9c3a937
-- historical lifecycle remains NONCONFORMING_RECORDED_NOT_REWRITTEN
-- governance adoption remains REVIEW_CANDIDATE_ONLY
-
-Semantic blocker:
-resolve_reentry() does not fully fail closed on contradictory cross-artifact identity/pointer/state/profile bindings. A mismatch can still route CODEX_EXECUTION_CANDIDATE.
-
-Minimum reviewer correction scope:
+Exact source scope:
 - automation/engine/reentry.py
 - tests/automation/test_reentry.py
 
-Correction budget:
-0
+Protected unchanged:
+- automation/engine/manifest.py
+- tests/automation/test_manifest.py
 
-Therefore:
-- no automatic RF
-- no source modification
-- no rerun
-- no merge/acceptance
-- no AUTO-IMP-003
+Correction goal:
+Make resolve_reentry fail closed for the full reviewed cross-artifact pointer/identity/revision/state/effect/profile/dependency binding matrix.
 
-Next owner:
-HUMAN_GOVERNANCE_OWNER
+Current blocker:
+Fresh quota / execution eligibility is unresolved.
 
-Next action:
-Explicitly authorize or reject one bounded AUTO-IMP-002 RF01 correction.
+Important lifecycle rule:
+NO source edit and NO Codex invocation before durable:
+reservation → RESERVED → dispatch committed → CONSUMED.
+
+A branch/claim alone is insufficient.
+
+Do not:
+- reuse the previous AUTO-IMP-002 quota waiver
+- reserve or dispatch before eligibility PASS
+- edit source now
+- start AUTO-IMP-003
+
+Next:
+AUTO_IMP_002_RF01_EXECUTION_ELIGIBILITY
