@@ -1,0 +1,63 @@
+{
+  "schema_version": "automation.local_codex_token_usage.v1",
+  "execution_id": "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+  "work_order_id": "WO-AUTO-IMP-002-RF01-01",
+  "source": "LOCAL_CODEX_ROLLOUT_TOKEN_COUNT",
+  "attribution_status": "EXACT_SINGLE_STRONG_MARKER_MATCH_BY_PER_CANDIDATE_EVIDENCE",
+  "extractor_output_bug_observed": "strong_match_count reflected OrderedDictionary property count due PowerShell scalar unrolling; candidate-level marker booleans remain valid",
+  "extractor_fix_commit": "905a12fc7db99fa6a71a19405ead889489280f65",
+  "exact_session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+  "requested_window": {
+    "start_utc": "2026-10-05T09:53:43Z",
+    "end_utc": "2026-10-05T10:17:22Z",
+    "end_slack_seconds": 120
+  },
+  "strong_markers": {
+    "implementation_sha": {
+      "value": "523e5a3b62af78991995765eaa555edb40b79e43",
+      "hits": 6
+    },
+    "evidence_sha": {
+      "value": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
+      "hits": 5
+    }
+  },
+  "baseline": {
+    "timestamp_utc": "2026-10-05T09:53:25.742Z",
+    "input_tokens": 3843520,
+    "cached_input_tokens": 3610752,
+    "output_tokens": 18258,
+    "reasoning_output_tokens": 2358,
+    "total_tokens": 3861778
+  },
+  "final": {
+    "timestamp_utc": "2026-10-05T10:19:07.369Z",
+    "input_tokens": 12763192,
+    "cached_input_tokens": 12465792,
+    "output_tokens": 42531,
+    "reasoning_output_tokens": 11943,
+    "total_tokens": 12805723
+  },
+  "execution_delta": {
+    "input_tokens": 8919672,
+    "cached_input_tokens": 8855040,
+    "uncached_input_tokens": 64632,
+    "output_tokens": 24273,
+    "reasoning_output_tokens": 9585,
+    "total_tokens": 8943945,
+    "cached_input_ratio": 0.992754,
+    "uncached_input_ratio": 0.007246
+  },
+  "rejected_candidate": {
+    "session_id": "01a10b37-52f7-7e01-8114-33f4bc1513a0",
+    "reason": "implementation marker present once but evidence marker absent; strong_marker_all_matched=false",
+    "total_tokens_delta": 703449
+  },
+  "semantics": {
+    "billing_cost": "NOT_AVAILABLE",
+    "quota_cost": "USE_RECORDED_5H_WEEKLY_PERCENTAGE_TELEMETRY",
+    "local_total_tokens_are_billing_ledger": false,
+    "cached_input_is_subset_of_input_tokens": true
+  },
+  "conclusion": "RF01 exact local reported-token delta is 8,943,945 tokens; 99.2754% of input tokens were cached input. This is a high context-replay workload, not 8.9M tokens of fresh input."
+}
