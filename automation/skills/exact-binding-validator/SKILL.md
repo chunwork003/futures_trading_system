@@ -53,3 +53,16 @@ Cross-artifact minimum matrix:
 
 Negative-test rule:
 For every binding class above, keep at least one mutation test that changes only that field while preserving otherwise-valid documents. The resolver must return STOP/FAIL_CLOSED and must never return an execution candidate.
+
+
+Execution-effect restrictions:
+- WORK side_effects.runtime/broker/db/migration/live/production MUST remain DENIED when those surfaces are outside the exact authority.
+- CURRENT auto_imp_003_authorized MUST be false while WORK next_package identifies AUTO-IMP-003 as NOT_AUTHORIZED.
+- CURRENT and WORK quota_gate.provider_hard_block MUST both remain STOP.
+- Any contradiction that weakens a DENY/STOP/NOT_AUTHORIZED effect MUST FAIL_CLOSED before candidate routing.
+- Effect restrictions are first-class bindings; do not limit validation to identity/pointer/revision fields.
+
+Negative-test minimum:
+- one mutation that expands a protected side effect;
+- one mutation that authorizes the next package;
+- one mutation that weakens provider hard block.
