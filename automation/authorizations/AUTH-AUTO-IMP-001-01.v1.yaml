@@ -1,8 +1,8 @@
 schema_version: automation.authorization.v1
 authorization_id: AUTH-AUTO-IMP-001-01
 authorization_revision: "1"
-document_status: RESERVED_EFFECTIVE
-authorization_state: RESERVED
+document_status: CONSUMED_EFFECTIVE
+authorization_state: CONSUMED
 source_candidate_head_sha: "e96876de83da3282fb2a5a63b76b9d73c14937ad"
 
 decision_evidence:
@@ -90,8 +90,8 @@ telemetry_gate:
 decision:
   required: false
   authority_owner: Automation_Governance_Authority
-  status: RESERVED_SINGLE_USE_EXECUTION
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT
+  status: DISPATCH_COMMITTED_CONSUMED
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
 
 single_use_execution:
   execution_id: EXEC-AUTO-IMP-001-20261004T162707325206Z
@@ -103,5 +103,6 @@ single_use_execution:
   quota_evidence_sha256: "e5849dbfd913e58cbe22928c1071112e098159198225b5421a19409762815492"
   writer_lock_token_sha256: "e12685254a429449f918bcd921b88766f9c2bdc7b2d7ac8737339b830026fd76"
   reconciled_interrupted_execution_id: EXEC-AUTO-IMP-001-20261004T161719932525Z
-  dispatch_committed: false
+  dispatch_committed: true
   executor_invoked: false
+  consumed_at: "2026-10-05T08:56:57.627623+08:00"

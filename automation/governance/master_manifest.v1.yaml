@@ -15,18 +15,18 @@ compiled_program:
   implementation_authorized: false
   codex_execution_authorized: false
   program_review: PASS
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
 
 compiled_authorization_candidate:
   authorization_id: AUTH-AUTO-IMP-001-01
   authorization_revision: "1"
   path: automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml
-  sha256: "8d0f488681c617284d2512c9a4edcc5a2221be1704569f5012f5934a8e9d7073"
+  sha256: "51aad5fef4d23ae0d1c2417c930e2ff282481b797103f9d8afe0950438c295d6"
   work_package_id: AUTO-IMP-001
-  authorization_state: RESERVED
-  document_status: RESERVED_EFFECTIVE
+  authorization_state: CONSUMED
+  document_status: CONSUMED_EFFECTIVE
   planning_baseline_sha: "e96876de83da3282fb2a5a63b76b9d73c14937ad"
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
 
 superseded_authorization_candidates:
   - authorization_id: AUTH-AUTO-IMP-W1-01
@@ -49,9 +49,9 @@ quota_policy_compatibility_rf:
   active_policy_version: "1.1"
   previous_policy_path: automation/policies/quota_admission_policy.v1.yaml
   previous_policy_sha256: "744239e70e9e78170487956cd4554f05610cf29fe700e600f5046cad583ff4bd"
-  auto_imp_001_authorization_state: AUTHORIZED
-  execution_eligibility: PASS_RESERVED
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_DISPATCH_COMMIT
+  auto_imp_001_authorization_state: CONSUMED
+  execution_eligibility: PASS_CONSUMED_READY_FOR_MANUAL_TRIGGER
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
 
 freeze:
   state: FROZEN
@@ -83,7 +83,7 @@ governance_document:
 agent_reentry:
   path: AGENTS.md
   protocol_version: "1.0"
-  sha256: "8341fb1dab866a57a06fdecc8435d6c2b8fcb0a8186647c4a9a4d832ac38ae9c"
+  sha256: "6ea712650b0480cc88dcdd80af5e1612ccf4cea50a41ce927fd91789c6793908"
 
 policies:
   authorization_lifecycle:

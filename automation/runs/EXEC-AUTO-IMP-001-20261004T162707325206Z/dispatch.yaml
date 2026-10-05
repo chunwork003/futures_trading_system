@@ -1,0 +1,24 @@
+schema_version: automation.dispatch_commit.v1
+execution_id: EXEC-AUTO-IMP-001-20261004T162707325206Z
+work_package_id: AUTO-IMP-001
+authorization_id: AUTH-AUTO-IMP-001-01
+reserved_commit_sha: "22060a00c23d9c9b9728c75266e2297f7e637708"
+dispatch_committed_at: "2026-10-05T08:56:57.627623+08:00"
+authorization_state: CONSUMED
+dispatch_committed: true
+executor_profile: CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
+automatic_dispatch: DENIED
+executor_invoked: false
+writer_lock_required: true
+writer_lock_status: HELD
+write_scope:
+  - automation/engine/contracts.py
+  - automation/engine/yaml_io.py
+  - tests/automation/test_contracts.py
+protected_side_effects:
+  runtime: DENIED
+  broker: DENIED
+  migration: DENIED
+  live: DENIED
+  production: DENIED
+next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
