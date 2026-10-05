@@ -1,8 +1,8 @@
-# AUTO-IMP-002 — GOVERNANCE RECONCILIATION REQUIRED
+# AUTO-IMP-002 — COMPLETED_PENDING_REVIEW
 
-Implementation/evidence exists on `auto/WO-AUTO-IMP-002-01`, but no further Codex execution is authorized.
+No further Codex execution is authorized.
 
-Exact result:
+Exact adopted review candidate:
 - execution: EXEC-AUTO-IMP-002-20261005T083857515Z
 - claim: b8dcc8017fadfacae571c0e134cc424992ea953d
 - implementation: 7d3e51802fb6d016bdd4f7d57908e01460535806
@@ -11,20 +11,24 @@ Exact result:
 - full: 1542 passed, 8 skipped
 - exact source scope: PASS
 
-Current blocker:
-The frozen AuthorizationLifecycleV1 requires durable reservation → RESERVED → dispatch committed → CONSUMED before executor invocation. This run has a durable claim commit but does not materialize the canonical reservation/state/dispatch sequence.
+Governance adoption:
+automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.adoption.json
 
-Reconciliation:
-automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.lifecycle.json
+Historical lifecycle:
+NONCONFORMING_RECORDED_NOT_REWRITTEN
+
+Independent review packet:
+automation/work_orders/reviews/WO-AUTO-IMP-002-01.md
 
 Do not:
 - rerun AUTO-IMP-002
 - create a second execution
-- semantic-review/accept/merge yet
+- modify source
+- self-accept or merge
 - start AUTO-IMP-003
 
-Next owner:
-HUMAN_GOVERNANCE_OWNER
+Current owner:
+Independent_Automation_Reviewer
 
-Next action:
-Choose explicit provenance resolution, then re-enter through canonical CURRENT state.
+Next:
+AUTO_IMP_002_INDEPENDENT_REVIEW
