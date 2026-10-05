@@ -1,0 +1,151 @@
+schema_version: automation.context_loading_policy.v1
+status: ACTIVE
+authority_effect: NONE
+
+purpose: >
+  Minimize repeated model context consumption by separating stable role
+  invariants, current state, task-specific procedures, exact work deltas,
+  and historical evidence.
+
+core_rules:
+  pointer_over_duplicated_prose: true
+  delta_over_full_reload: true
+  unchanged_git_blob_do_not_reread: true
+  normalized_summary_over_raw_transcript: true
+  task_specific_context_only: true
+  historical_context_on_demand_only: true
+
+cache_identity:
+  key:
+    - repository
+    - path
+    - git_blob_sha
+  rule: >
+    If a previously loaded artifact has the same repository, path and git blob
+    SHA inside the same working context, do not reread it unless exact content
+    is required for a new decision.
+
+levels:
+  level_0_startup:
+    purpose: role_identity_and_navigation_only
+    always_load: true
+    content:
+      - role
+      - repository
+      - authoritative_branch
+      - role_kernel_pointer
+      - context_policy_pointer
+    forbidden:
+      - package_history
+      - current_sha_snapshot
+      - package_specific_findings
+      - copied_skill_procedures
+
+  level_1_role_kernel:
+    purpose: stable_cross_package_invariants
+    always_load: true
+    work:
+      - automation/prompts/WORK_ORCHESTRATOR_KERNEL.md
+    codex:
+      - automation/prompts/CODEX_EXECUTOR_KERNEL.md
+
+  level_2_current:
+    purpose: resolve_only_current_legal_work
+    always_resolve: true
+    preferred_order:
+      - automation/work_orders/CURRENT_CODEX.yaml
+      - automation/work_orders/CURRENT_CODEX_TASK.md
+    broader_governance:
+      path: docs/CURRENT_STATE.md
+      load_rule: >
+        Read only the relevant current governance section when CURRENT_CODEX
+        does not contain enough authority or routing information.
+    rule: CURRENT_BEFORE_HISTORY
+
+  level_3_task:
+    purpose: exact_task_execution_context
+    load_on_demand: true
+    examples:
+      - exact authorization
+      - exact work order
+      - exact forecast
+      - required policy
+      - required skill
+      - exact source files
+      - exact test files
+    rule: >
+      Follow pointers from CURRENT and the exact Work Order. Do not preload all
+      Skills, Specs, policies or planning documents.
+
+  level_4_history:
+    purpose: ambiguity_failure_or_provenance_resolution
+    default_load: false
+    load_only_when:
+      - current pointer is ambiguous
+      - authority cannot be proven
+      - regression requires prior evidence
+      - bug reproduction requires historical artifact
+      - architecture contradiction requires provenance
+    examples:
+      - old review packets
+      - superseded work orders
+      - historical closures
+      - old planning snapshots
+      - raw execution transcripts
+
+actor_rules:
+  WORK:
+    current_resolution:
+      - CURRENT_CODEX.yaml
+      - CURRENT_CODEX_TASK.md
+    broader_governance_only_when_needed: true
+    task_skills_only_when_triggered: true
+    raw_jsonl_allowed: false
+
+  CODEX:
+    current_resolution:
+      - CURRENT_CODEX.yaml
+      - CURRENT_CODEX_TASK.md
+    exact_work_order_only: true
+    exact_required_skills_only: true
+    unrelated_planning_history: false
+    raw_jsonl_allowed: false
+
+cost_rules:
+  context_loading_is_cost: true
+  do_not_reload_only_to_measure_cost: true
+  prefer_deterministic_metadata:
+    - git_blob_sha
+    - line_count
+    - byte_count
+    - exact_pointer
+  work_cost_accounting:
+    pointer: automation/specs/work_cost_accounting.v1.yaml
+
+anti_patterns:
+  - LONG_STARTUP_PROMPT_WITH_PACKAGE_HISTORY
+  - FULL_CURRENT_STATE_RELOAD_FOR_EVERY_TASK
+  - PRELOAD_ALL_SKILLS
+  - PRELOAD_ALL_SPECS
+  - COPY_WORK_ORDER_INTO_ROLE_KERNEL
+  - COPY_REVIEW_FINDING_INTO_ROLE_KERNEL
+  - RAW_JSONL_REINGESTION_WHEN_SUMMARY_EXISTS
+  - REREAD_UNCHANGED_BLOB_WITHOUT_DECISION_NEED
+
+architecture_escalation:
+  only_when:
+    - architecture_boundary_change
+    - fundamental_interface_contract_change
+    - fundamental_data_model_change
+    - invariant_or_authority_semantics_change
+    - decided_architecture_cannot_satisfy_requirement
+
+normal_loop:
+  - HIGH_LEVEL_AI
+  - WORK
+  - CODEX
+  - WORK
+
+note: >
+  Review, bug-fix, validation and optimization are pipeline phases or bounded
+  work, not additional permanent AI roles.
