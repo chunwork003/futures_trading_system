@@ -1,0 +1,56 @@
+{
+  "schema_version": "automation.bounded_quota_amendment.v1",
+  "amendment_id": "AMEND-AUTO-IMP-002-IC01-QUOTA-01",
+  "status": "ACTIVE_EXACT_SINGLE_USE",
+  "decision": "WAIVED_FOR_EXACT_BOUNDED_IC01_SINGLE_USE_EXECUTION",
+  "decision_source": "USER_EXPLICIT_HUMAN_GOVERNANCE_DECISION",
+  "exact_binding": {
+    "correction_id": "AUTO-IMP-002-IC01",
+    "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+    "authorization_id": "AUTH-AUTO-IMP-002-IC01-01",
+    "package_id": "AUTO-IMP-002",
+    "revision": "1",
+    "executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+    "baseline_sha": "29d4ca4772c40c4032bce63fb8c51d9b426311d9",
+    "scope": [
+      "automation/engine/reentry.py",
+      "tests/automation/test_reentry.py"
+    ],
+    "forecast_blob_sha": "d7c76e9b4111acf19f7497869a82ed42831dcecb"
+  },
+  "effect": "EXACT_WORK_ORDER_QUOTA_ADMISSION_EXCEPTION_ONLY",
+  "provider_hard_block": "STOP",
+  "provider_enforced_limits_waived": false,
+  "percentage_to_token_conversion": "DENIED",
+  "token_to_percentage_conversion": "DENIED",
+  "threshold_modified": false,
+  "frozen_policy_modified": false,
+  "automatic_dispatch": false,
+  "automatic_next_package": false,
+  "auto_imp_003_authorized": false,
+  "side_effects": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED"
+  },
+  "rf01_rf02_amendment_reuse": "DENIED",
+  "telemetry": {
+    "raw_before_after_required_when_available": true,
+    "unit": "SHARED_ACCOUNT_USAGE_PROXY",
+    "unavailable_blocks_admission": false,
+    "local_exact_token_source": "DETERMINISTIC_POST_EXECUTION_EXTRACTOR"
+  },
+  "lifetime": "THIS_EXACT_IC01_SINGLE_USE_EXECUTION_ONLY",
+  "ends_on": [
+    "DISPATCH_CONSUMED",
+    "WORK_ORDER_SUPERSEDED",
+    "AUTHORIZATION_REVOKED",
+    "BASELINE_SCOPE_EXECUTOR_IDENTITY_INVALIDATED"
+  ],
+  "reuse": "DENIED",
+  "created_at": "2026-10-05T15:06:31Z",
+  "updated_at": "2026-10-05T15:06:31Z"
+}

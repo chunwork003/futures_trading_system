@@ -112,10 +112,12 @@
   },
   "quota_gate": {
     "policy": "QuotaAdmissionPolicyV1_1",
-    "status": "IC01_QUOTA_ADMISSION_UNRESOLVED",
+    "status": "WAIVED_FOR_EXACT_BOUNDED_IC01_SINGLE_USE_EXECUTION",
     "provider_hard_block": "STOP",
     "prior_amendment_reuse": "DENIED",
-    "percentage_to_token_conversion": "DENIED"
+    "percentage_to_token_conversion": "DENIED",
+    "amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
+    "provider_enforced_limits_waived": false
   },
   "single_use_execution": {
     "execution_id": null,

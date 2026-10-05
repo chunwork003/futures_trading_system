@@ -193,10 +193,12 @@
   "eligibility_path": "automation/work_orders/AUTO-IMP-002-IC01.eligibility.json",
   "quota_gate": {
     "policy": "QuotaAdmissionPolicyV1_1",
-    "status": "IC01_QUOTA_ADMISSION_UNRESOLVED",
+    "status": "WAIVED_FOR_EXACT_BOUNDED_IC01_SINGLE_USE_EXECUTION",
     "provider_hard_block": "STOP",
     "prior_amendment_reuse": "DENIED",
-    "percentage_to_token_conversion": "DENIED"
+    "percentage_to_token_conversion": "DENIED",
+    "amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
+    "provider_enforced_limits_waived": false
   },
   "side_effects": {
     "runtime": "DENIED",
@@ -262,5 +264,10 @@
   "next_route": "IC01_QUOTA_ADMISSION_DECISION",
   "current_action": "STOP_BEFORE_RESERVATION",
   "created_at": "2026-10-05T15:00:35Z",
-  "updated_at": "2026-10-05T15:00:35Z"
+  "updated_at": "2026-10-05T15:00:35Z",
+  "quota_amendment": {
+    "amendment_id": "AMEND-AUTO-IMP-002-IC01-QUOTA-01",
+    "path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
+    "status": "ACTIVE_EXACT_SINGLE_USE"
+  }
 }
