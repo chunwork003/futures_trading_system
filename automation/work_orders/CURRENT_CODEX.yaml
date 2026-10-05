@@ -16,13 +16,14 @@
   "evidence_commit_sha": "735678afa9606ccd219a00e1c2f02471442231f7",
   "verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-02.verdict.json",
   "closure_path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
-  "current_action": "NO_AUTHORIZED_CODEX_WORK",
+  "current_action": "AUTHORIZATION_REQUIRED_FOR_AUTO_IMP_002",
   "correction_budget_remaining": 0,
   "next_package_restriction": {
     "package_id": "AUTO-IMP-002",
-    "status": "PLANNED_NOT_AUTHORIZED",
+    "status": "PREPARED_NOT_AUTHORIZED",
     "authorization": "NOT_AUTHORIZED",
-    "next_route": "AUTOMATION_IMPLEMENTATION_AUTO_IMP_002_AUTHORIZATION_PREPARATION"
+    "next_route": "AUTO_IMP_002_AUTHORIZATION_DECISION",
+    "authorization_prep_path": "automation/work_orders/AUTO-IMP-002.authorization-prep.yaml"
   },
   "runtime_authorization": "NOT_AUTHORIZED",
   "broker_db_migration_live_production": "NOT_AUTHORIZED",
