@@ -8,9 +8,9 @@
   "authorization_state": "AUTHORIZED",
   "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-01.v1.yaml",
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-01.yaml",
-  "status": "AUTHORIZED_PENDING_EXECUTION_ELIGIBILITY",
-  "handoff_ready": false,
-  "execution_eligibility": "QUOTA_AMENDMENT_MATERIALIZED_OTHER_GATES_FRESH_REVALIDATION_REQUIRED",
+  "status": "READY_FOR_CODEX",
+  "handoff_ready": true,
+  "execution_eligibility": "ELIGIBLE_FOR_MANUAL_TRIGGER_WITH_PROVIDER_HARD_BLOCK_GUARD",
   "exact_write_scope": [
     "automation/engine/manifest.py",
     "automation/engine/reentry.py",
@@ -38,5 +38,7 @@
     "path": "automation/work_orders/AMEND-AUTO-IMP-002-QUOTA-01.yaml",
     "status": "AUTHORIZED_EFFECTIVE",
     "effect": "EXACT_QUOTA_ADMISSION_ONLY"
-  }
+  },
+  "eligibility_path": "automation/work_orders/AUTO-IMP-002.eligibility.json",
+  "next_route": "AUTO_IMP_002_MANUAL_CODEX_TRIGGER"
 }
