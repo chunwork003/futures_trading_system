@@ -1,0 +1,97 @@
+schema_version: automation.optimization_checkpoint.v1
+checkpoint_id: OPT-AUTO-IMP-002-RF01-01
+status: MATERIALIZED
+scope: AUTO-IMP-002-RF01_EXECUTION_EFFICIENCY
+
+observed_run:
+  work_order_id: WO-AUTO-IMP-002-RF01-01
+  execution_id: EXEC-AUTO-IMP-002-RF01-20261005T093900Z
+  implementation_sha: 523e5a3b62af78991995765eaa555edb40b79e43
+  evidence_sha: 0c64a9f509ba27c1bc1bad139681951e2f8c2775
+  source_files_changed: 2
+  source_diff: "+270/-30"
+  targeted:
+    cases: 84
+    seconds: 242.52
+  full_regression:
+    passed: 1615
+    skipped: 8
+    seconds: 277.27
+  actor_elapsed_seconds: 1419
+  quota_raw:
+    five_hour_used_percent_start: 14
+    five_hour_used_percent_end: 28
+    five_hour_delta_percent: 14
+    weekly_used_percent_start: 18
+    weekly_used_percent_end: 20
+    weekly_delta_percent: 2
+    exact_token_cost: NOT_AVAILABLE
+
+closest_comparable_baseline:
+  work_order_id: WO-AUTO-IMP-002-01
+  evidence_sha: eccbe997fe4f9f2a9da06026d75df11af9c3a937
+  targeted_seconds: 64.74
+  full_regression_seconds: 76.48
+  actor_elapsed_seconds: 670
+  five_hour_delta_percent: 6
+  weekly_delta_percent: 1
+
+derived_signals:
+  five_hour_relative_ratio: 2.33
+  actor_elapsed_relative_ratio: 2.12
+  targeted_runtime_relative_ratio: 3.75
+  full_regression_runtime_relative_ratio: 3.63
+  classification: EXPLAINED_HIGH_COST
+  confidence: PROVISIONAL_TWO_SAMPLE_COHORT
+  dominant_driver: GIT_BACKED_NEGATIVE_BINDING_MATRIX_AND_MULTI_CYCLE_TESTING
+
+root_causes:
+  - pre_fix_full_negative_matrix_was_more_than_minimum_sufficient_counterexample
+  - semantic_binding_mutations_pay_repository_clone_commit_and_git_blob_cost_per_case
+  - intermediate_targeted_failure_added_another expensive test cycle
+  - full_regression inherits the expanded Git-backed matrix cost
+
+materialized_controls:
+  - automation/skills/execution-efficiency-guard/SKILL.md
+  - automation/skills/quota-snapshot-recorder/SKILL.md
+  - automation/prompts/CODEX_EXECUTOR_KERNEL.md
+  - automation/prompts/WORK_ORCHESTRATOR_KERNEL.md
+
+future_test_architecture:
+  rule: PURE_SEMANTIC_BINDING_CASES_SHOULD_NOT_REQUIRE_GIT_REPOSITORY_PER_CASE
+  git_integration_reserved_for:
+    - git_blob_commit_identity
+    - pointer_path_resolution
+    - CRLF_worktree_vs_blob
+    - symlink_tree_mode
+    - canonical_CURRENT_extraction
+    - repository_traversal
+  correction_test_sequence:
+    - minimum_pre_fix_counterexample
+    - implementation
+    - failed_or_impacted_subset_until_clean
+    - one_complete_targeted_pass
+    - one_full_regression_after_targeted_pass
+
+token_cost_strategy:
+  exact_token_cost_priority:
+    - provider_native_task_telemetry
+    - exact_bound_local_codex_session_telemetry
+  fallback: PERCENTAGE_WINDOW_ANOMALY_ESTIMATE
+  percentage_is_not_literal_tokens: true
+  primary_signal: five_hour_delta_percent
+  secondary_signals:
+    - weekly_delta_percent
+    - actor_elapsed_seconds
+    - targeted_seconds
+    - full_regression_seconds
+  provisional_thresholds:
+    normal_below_relative_ratio: 1.5
+    watch_below_relative_ratio: 2.0
+    high_at_or_above_relative_ratio: 2.0
+  calibration_after_comparable_samples: 3
+
+next_action:
+  source_refactor_now: false
+  reason: DO_NOT_CHANGE_RF01_REVIEW_CANDIDATE_SHA_BEFORE_REVIEW
+  future_refactor_candidate: EXTRACT_PURE_CROSS_ARTIFACT_BINDING_VALIDATOR_AND_KEEP_SMALL_GIT_INTEGRATION_SET
