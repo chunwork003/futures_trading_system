@@ -1,0 +1,57 @@
+schema_version: automation.authorization_preparation.v1
+package_id: AUTO-IMP-002
+package_revision: "1"
+status: PREPARED_NOT_AUTHORIZED
+prepared_from_master_sha: "9495b5cc7bbf69b4159290656f01b5b9858b7d8b"
+
+dependency_gate:
+  AUTO-IMP-001:
+    required: ACCEPTED_MATERIALIZED
+    closure_path: automation/work_orders/AUTO-IMP-001.closure.yaml
+    observed: PASS
+
+package:
+  path: automation/packages/AUTO-IMP-002.yaml
+  title: "Manifest Integrity and Unified Re-entry Snapshot Resolver"
+  risk: MEDIUM
+  planned_write_scope:
+    - automation/engine/manifest.py
+    - automation/engine/reentry.py
+    - tests/automation/test_manifest.py
+    - tests/automation/test_reentry.py
+
+execution_model:
+  mode: SINGLE_PACKAGE_STABILITY_PHASE
+  batch_candidate_membership: W1-FOUNDATION-BATCH-CANDIDATE-V0
+  strict_order: true
+  resume_before_new: true
+  shared_context_allowed: true
+  quota_backfill: false
+  queue_reorder: false
+  parallel_execution: false
+
+required_verification:
+  - Git blob hash verification
+  - CRLF counterexample
+  - status-only no execution
+  - repository answer prevents re-ask
+  - targeted tests
+  - full regression
+  - git diff --check
+  - exact scope verification
+
+quota:
+  work_forecast: REQUIRED_WHEN_DATA_AVAILABLE
+  codex_fresh_admission: REQUIRED
+  windows: [five_hour, weekly]
+  fixed_80_percent_rule: NOT_TARGET_MODEL
+
+authority:
+  source_modification: NOT_AUTHORIZED
+  codex_execution: NOT_AUTHORIZED
+  runtime_operation: NOT_AUTHORIZED
+  broker_db_migration_live_production: NOT_AUTHORIZED
+  decision_required_from: HUMAN_GOVERNANCE_OWNER
+
+review_barrier: REQUIRED_BEFORE_ACCEPTANCE
+next_route: AUTO_IMP_002_AUTHORIZATION_DECISION
