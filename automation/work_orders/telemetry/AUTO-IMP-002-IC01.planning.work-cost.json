@@ -1,0 +1,80 @@
+{
+  "schema_version": "automation.work_cost_observation.v1",
+  "actor": "WORK",
+  "phase": "WORK_BUG_REPLAN",
+  "correction_id": "AUTO-IMP-002-IC01",
+  "measurement_type": "PROXY",
+  "exact_tokens": null,
+  "token_status": "UNKNOWN",
+  "source": "TASK_BOUND_USAGE_UNAVAILABLE",
+  "proxy": {
+    "artifacts_read": 7,
+    "artifacts_written": 5,
+    "raw_transcript_reads": 0
+  },
+  "context_profile": {
+    "artifacts_read": [
+      {
+        "canonical_path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "git_blob_sha": "8e8d7354ee405bbbbdc701f65b8036d35fc144ed",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "automation/work_orders/AUTO-IMP-002-RF02.authorization-prep.json",
+        "git_blob_sha": "6ed6dd5b115463eeac2e61a6ca3aad1e65bf3abb",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "automation/work_orders/forecasts/AUTO-IMP-002-RF02.planning.json",
+        "git_blob_sha": "1a9e5814981fa8793afa9c8c12b4d240b15ea3e4",
+        "loaded_extent": "FULL",
+        "artifact_type": "forecast"
+      },
+      {
+        "canonical_path": "automation/specs/work_cost_accounting.v1.yaml",
+        "git_blob_sha": "f10a216f9e9a02d690bbc68b14dff002ebd75875",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-RF02-01.integration-verification.json",
+        "git_blob_sha": "2072e1a83143c246c2d6eb61bed1c9deafedb163",
+        "loaded_extent": "FULL",
+        "artifact_type": "evidence"
+      },
+      {
+        "canonical_path": "automation/engine/contracts.py",
+        "git_blob_sha": "3de2a944b8f9433c7deafc206211614eb0255291",
+        "loaded_extent": "FULL",
+        "artifact_type": "source"
+      },
+      {
+        "canonical_path": "automation/skills/execution-cost-forecaster/SKILL.md",
+        "git_blob_sha": "c3c6c7a10c9f8f2b8d4ee72d588313e56ab4e141",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance"
+      }
+    ],
+    "artifacts_by_type": {
+      "forecast": 1,
+      "source": 1,
+      "evidence": 1,
+      "governance": 4
+    },
+    "chars_read": 42521,
+    "char_convention": "JS_UTF16_CODE_UNITS",
+    "bytes_read": null,
+    "lines_read": null,
+    "raw_transcript_loaded": false,
+    "history_loaded_amount": {
+      "artifacts": 2,
+      "reason": "exact preparation/forecast schema precedent"
+    },
+    "content_token_estimate": null,
+    "model_usage_measurement_type": "UNKNOWN"
+  },
+  "created_at": "2026-10-05T14:55:09Z",
+  "updated_at": "2026-10-05T14:55:09Z"
+}

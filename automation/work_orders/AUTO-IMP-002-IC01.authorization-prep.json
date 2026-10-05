@@ -1,0 +1,249 @@
+{
+  "schema_version": "automation.correction_authorization_preparation.v1",
+  "correction_id": "AUTO-IMP-002-IC01",
+  "correction_class": "CURRENT_MASTER_INTEGRATION_COMPATIBILITY",
+  "package_id": "AUTO-IMP-002",
+  "parent_work_order_id": "WO-AUTO-IMP-002-RF02-01",
+  "future_work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "status": "PREPARED_NOT_AUTHORIZED",
+  "planning_baseline_sha": "7b3d2a762c737f187aa2c0378d36f0bd445478ba",
+  "decision_evidence": {
+    "decision": "APPROVE_BOUNDED_CURRENT_MASTER_COMPATIBILITY_REPLAN",
+    "source": "USER_EXPLICIT_ARCHITECTURE_INTEGRATION_DECISION",
+    "effect": "PLANNING_ONLY_NOT_IMPLEMENTATION_OR_DISPATCH"
+  },
+  "trigger_evidence_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-RF02-01.integration-verification.json",
+  "original_rf02_review": {
+    "verdict": "PASS_UNCHANGED",
+    "implementation_sha": "33c8eea0d90d4cca5ecf5c902579a687ec096034",
+    "evidence_sha": "f5fa626b8aa587fa8f43d6f70fa93842d574b356",
+    "exact_scope": [
+      "automation/engine/reentry.py",
+      "tests/automation/test_reentry.py"
+    ],
+    "finding_reopened": false
+  },
+  "exact_goal": "Separate non-candidate state/status resolution from READY deep binding validation; stabilize candidate tests independently of mutable CURRENT while preserving all RF01/RF02 fail-closed checks.",
+  "exact_source_scope": [
+    "automation/engine/reentry.py",
+    "tests/automation/test_reentry.py"
+  ],
+  "protected_unchanged": [
+    "automation/engine/manifest.py",
+    "tests/automation/test_manifest.py",
+    "automation/policies/**",
+    "automation/governance/**",
+    "automation/programs/**",
+    "automation/packages/**",
+    "runtime/broker/db/migration/live/production surfaces"
+  ],
+  "source_preparation": {
+    "method": "FRESH_MASTER_PLUS_EXACT_ACCEPTED_PACKAGE_BLOBS_ONLY_NO_OLD_CONTROL_PLANE",
+    "reviewed_reference": "33c8eea0d90d4cca5ecf5c902579a687ec096034",
+    "failed_candidate": "63b7efd1448f87a0e1033911317d9618d60463ba",
+    "correction_delta_only": [
+      "automation/engine/reentry.py",
+      "tests/automation/test_reentry.py"
+    ],
+    "prerequisite_blobs": {
+      "automation/engine/manifest.py": "6262e33fcbd8999252b5ff8ffcc530571d8004ad",
+      "tests/automation/test_manifest.py": "0c3d063da3152535896b99bbf7b6a37b671b2b65"
+    },
+    "baseline_refresh_required_before_authorized_handoff": true
+  },
+  "routing_contract": {
+    "non_candidate_states": [
+      "HUMAN_DECISION_REQUIRED",
+      "COMPLETED_PENDING_REVIEW",
+      "REVIEW_PENDING",
+      "STOP",
+      "BLOCKED",
+      "ACCEPTED",
+      "CLOSED"
+    ],
+    "non_candidate": "Parse canonical current state and return deterministic STOP/PENDING/status-only immutable snapshot with execution_allowed=false; no candidate-only auth.package_binding/program_binding dereference.",
+    "ready_candidate": "Only genuine READY_FOR_CODEX potential candidate loads required package/program/dependency exact bindings then applies all existing RF01/RF02 validations.",
+    "missing_candidate_binding": "DETERMINISTIC_STOP_NO_UNCAUGHT_KEYERROR",
+    "unknown_or_conflicting_state": "STOP_FAIL_CLOSED",
+    "status_only": "Report resolved current state safely; never grant execution",
+    "preserve": [
+      "RF01 identity/pointer/revision/state/effect/profile/dependency checks",
+      "read-only/status-only/canonical-CURRENT behavior",
+      "supplemental non-authority metadata compatibility",
+      "manifest behavior",
+      "no runtime/broker/DB/migration/LIVE/production side effects",
+      "WORK side_effects runtime/broker/db/migration/live/production must remain DENIED",
+      "CURRENT auto_imp_003_authorized=false must agree with WORK next_package package_id=AUTO-IMP-003 and authorization=NOT_AUTHORIZED",
+      "CURRENT and WORK quota_gate.provider_hard_block must both remain STOP"
+    ],
+    "authority_document_backfill": "DENIED"
+  },
+  "stable_fixture_strategy": {
+    "candidate": "Self-contained temporary Git repository built from explicit test-owned READY candidate documents, with fixed identity/pointers/versions, exact package/dependency blobs and valid manifest hash evidence. Test fixtures remain inside test_reentry.py.",
+    "reference_source": "Exact previously valid candidate evidence; materialize minimal deterministic fixture fields rather than recursively copying mutable HEAD/CURRENT.",
+    "non_vacuity": "First prove fixture routes to CODEX_EXECUTION_CANDIDATE with execution_allowed=false before each negative matrix family.",
+    "negative_tests": "Retain original RF01 cross-artifact matrix and all 11 RF02 effect variants; assert relevant STOP/error reasons where stable.",
+    "current_master_cases": "Separate exact post-execution current fixture and integration tests; never relabel current consumed authority as READY."
+  },
+  "pre_fix_counterexamples": [
+    {
+      "id": "IC01-STATE-01",
+      "case": "Consumed RF02 auth lacks legacy package/program bindings; regular reentry at HUMAN_DECISION_REQUIRED currently crashes."
+    },
+    {
+      "id": "IC01-STATUS-02",
+      "case": "Same current document set with status_only=True must safely report current state."
+    },
+    {
+      "id": "IC01-FIXTURE-03",
+      "case": "Mutable CURRENT has RF02 pointers while original candidate test constants use initial WO/Auth; reproduce fixture inconsistency before replacing candidate fixture."
+    }
+  ],
+  "efficiency_contract": {
+    "minimum_pre_fix_groups": 3,
+    "no_full_negative_matrix_before_fix": true,
+    "impacted_subset_until_clean": true,
+    "complete_targeted_passes": 1,
+    "full_regression_passes": 1,
+    "unplanned_expensive_cycle": "STOP_AND_ROUTE_WORK"
+  },
+  "test_plan": [
+    "minimum three pre-fix compatibility groups",
+    "all explicit non-candidate state cases deterministic no crash/no dispatch",
+    "stable valid READY fixture positive non-vacuity",
+    "candidate missing package_binding and program_binding independently STOP",
+    "all RF01 negative identity/pointer/revision/state/profile/dependency cases",
+    "all RF02 side-effect/next-package/provider negative variants",
+    "one complete test_reentry.py plus test_manifest.py pass",
+    "one full regression with actual DB/broker environments disabled",
+    "git diff --check; exact two-file delta; protected blob identities",
+    "after review PASS repeat exact four-file integration against fresh master with one targeted and one full regression; STOP on failure, no silent source fix"
+  ],
+  "review_plan": {
+    "fresh_context": true,
+    "scope": "IC01 compatibility delta plus preservation of previous RF01/RF02 semantics",
+    "bound_to": [
+      "work_order_id",
+      "implementation_sha",
+      "evidence_sha",
+      "exact_scope"
+    ],
+    "closure_order": [
+      "compatibility review PASS",
+      "fresh four-file integration verification PASS",
+      "AUTO-IMP-002 acceptance materialized",
+      "closure materialized"
+    ],
+    "rf02_re_review": false
+  },
+  "authority": {
+    "source_modification": "NOT_AUTHORIZED",
+    "codex_execution": "NOT_AUTHORIZED",
+    "dispatch": "DENIED",
+    "correction_budget": null,
+    "quota_amendment_reuse": "DENIED",
+    "consumed_rf01_rf02_document_modification": "DENIED",
+    "new_execution_identity": "NOT_ALLOCATED",
+    "auto_imp_003_authorized": false
+  },
+  "authorization_preparation": {
+    "candidate_authorization_id": "AUTH-AUTO-IMP-002-IC01-01",
+    "authority_artifact_created": false,
+    "remaining_before_execution": [
+      "Explicit bounded IC01 implementation authority including correction budget",
+      "Fresh exact baseline/scope/eligibility and quota admission",
+      "Single-use reservation/writer-lock/dispatch/consumption lifecycle"
+    ]
+  },
+  "forecast_path": "automation/work_orders/forecasts/AUTO-IMP-002-IC01.planning.json",
+  "task_profile": {
+    "task_class": "INTEGRATION_COMPATIBILITY",
+    "change_type": "BOUNDED_ROUTE_AND_FIXTURE_CORRECTION",
+    "subsystem": "automation.engine",
+    "functional_area": "canonical reentry",
+    "concise_engineering_goal": "Safe post-execution status and stable READY validation tests",
+    "primary_symbols_or_functional_surfaces": [
+      "resolve_reentry",
+      "_validate_bindings",
+      "candidate repository fixture"
+    ],
+    "behavior_dimensions": [
+      "non-candidate status",
+      "candidate deep validation",
+      "immutable snapshot",
+      "fixture non-vacuity"
+    ],
+    "source_file_count": 1,
+    "test_file_count": 1,
+    "semantic_profile": "FAIL_CLOSED_AUTHORITY_PRESERVATION",
+    "test_profile": "TARGETED_PLUS_FULL_PLUS_SEPARATE_MASTER_INTEGRATION",
+    "authority_boundary": "AUTO-IMP-002 exact two-file correction; runtime/DB/broker/LIVE denied",
+    "packaging_cohesion_decision": "KEEP_COHESIVE_SHARED_ROUTING_GOAL_TEST_SURFACE_ACCEPTANCE"
+  },
+  "next_route": "HUMAN_IC01_IMPLEMENTATION_AUTHORIZATION_DECISION",
+  "created_at": "2026-10-05T14:55:09Z",
+  "updated_at": "2026-10-05T14:55:09Z",
+  "context_profile": {
+    "artifacts_read": [
+      {
+        "canonical_path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "git_blob_sha": "8e8d7354ee405bbbbdc701f65b8036d35fc144ed",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "automation/work_orders/AUTO-IMP-002-RF02.authorization-prep.json",
+        "git_blob_sha": "6ed6dd5b115463eeac2e61a6ca3aad1e65bf3abb",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "automation/work_orders/forecasts/AUTO-IMP-002-RF02.planning.json",
+        "git_blob_sha": "1a9e5814981fa8793afa9c8c12b4d240b15ea3e4",
+        "loaded_extent": "FULL",
+        "artifact_type": "forecast"
+      },
+      {
+        "canonical_path": "automation/specs/work_cost_accounting.v1.yaml",
+        "git_blob_sha": "f10a216f9e9a02d690bbc68b14dff002ebd75875",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-RF02-01.integration-verification.json",
+        "git_blob_sha": "2072e1a83143c246c2d6eb61bed1c9deafedb163",
+        "loaded_extent": "FULL",
+        "artifact_type": "evidence"
+      },
+      {
+        "canonical_path": "automation/engine/contracts.py",
+        "git_blob_sha": "3de2a944b8f9433c7deafc206211614eb0255291",
+        "loaded_extent": "FULL",
+        "artifact_type": "source"
+      },
+      {
+        "canonical_path": "automation/skills/execution-cost-forecaster/SKILL.md",
+        "git_blob_sha": "c3c6c7a10c9f8f2b8d4ee72d588313e56ab4e141",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance"
+      }
+    ],
+    "artifacts_by_type": {
+      "forecast": 1,
+      "source": 1,
+      "evidence": 1,
+      "governance": 4
+    },
+    "chars_read": 42521,
+    "char_convention": "JS_UTF16_CODE_UNITS",
+    "bytes_read": null,
+    "lines_read": null,
+    "raw_transcript_loaded": false,
+    "history_loaded_amount": {
+      "artifacts": 2,
+      "reason": "exact preparation/forecast schema precedent"
+    },
+    "content_token_estimate": null,
+    "model_usage_measurement_type": "UNKNOWN"
+  }
+}

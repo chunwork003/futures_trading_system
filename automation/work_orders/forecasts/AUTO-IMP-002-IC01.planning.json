@@ -1,0 +1,88 @@
+{
+  "schema_version": "automation.execution_cost_forecast.v1",
+  "forecast_id": "FORECAST-AUTO-IMP-002-IC01-PLANNING-01",
+  "status": "PLANNING_FORECAST_NOT_AUTHORITY",
+  "package_id": "AUTO-IMP-002",
+  "correction_id": "AUTO-IMP-002-IC01",
+  "future_work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "confidence": "PROVISIONAL_TWO_COST_SAMPLES_NEW_TASK_CLASS",
+  "measurement_type": "PROXY",
+  "comparable_samples": [
+    "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+    "EXEC-AUTO-IMP-002-RF02-20261005T125807Z"
+  ],
+  "comparability_limit": "Same subsystem and test surface; IC01 has routing/fixture restructuring unlike RF02 eight-line correction; not calibrated.",
+  "forecast": {
+    "reported_total_tokens": {
+      "p50": 350000,
+      "p75": 900000,
+      "p90": 2500000
+    },
+    "uncached_input_tokens": {
+      "p50": 65000,
+      "p75": 90000,
+      "p90": 130000
+    },
+    "actor_seconds": {
+      "p50": 1200,
+      "p75": 1800,
+      "p90": 2700
+    },
+    "targeted_seconds": {
+      "p90": 360
+    },
+    "full_regression_seconds": {
+      "p90": 400
+    },
+    "test_cycles": {
+      "pre_fix_cases_max": 3,
+      "complete_targeted_passes_max": 1,
+      "full_regression_passes_max": 1
+    }
+  },
+  "quota_forecast": {
+    "five_hour_delta_pct": null,
+    "weekly_delta_pct": null,
+    "status": "UNKNOWN_NOT_AN_ADMISSION_SNAPSHOT"
+  },
+  "work_orchestration_forecast": {
+    "measurement_type": "PROXY",
+    "exact_tokens": null,
+    "artifact_reads": {
+      "p50": 6,
+      "p75": 10,
+      "p90": 14
+    },
+    "artifacts_written": {
+      "p50": 3,
+      "p75": 5,
+      "p90": 7
+    }
+  },
+  "integration_verification_forecast": {
+    "separate_phase": true,
+    "targeted_passes": 1,
+    "full_regression_passes": 1,
+    "targeted_seconds_p90": 360,
+    "full_regression_seconds_p90": 400,
+    "run_after_fresh_context_review_pass": true
+  },
+  "derivation": "Judgmental planning envelope using RF02 exact 173378 tokens as lower-complexity reference and RF01 replay-heavy sample as a warning, not calibrated percentile statistics. Integration phase budgeted separately; no duplicate full suites without relevant delta.",
+  "expected_cost_driver": "STABLE_FIXTURE_RESTRUCTURING_AND_ROUTE_PARTITION_PLUS_TESTS",
+  "rework_risk": "MEDIUM_CURRENT_METADATA_AND_FIXTURE_COMPATIBILITY",
+  "assumptions": [
+    "KEEP_COHESIVE exact two-file goal and shared acceptance gate",
+    "No raw JSONL/context history replay",
+    "No source beyond exact correction scope",
+    "Full suites only once per correction phase and once per distinct fresh-master integration phase"
+  ],
+  "early_watch": {
+    "actor_seconds": 1800,
+    "before_unplanned_full_cycle": "STOP_AND_ROUTE_WORK"
+  },
+  "billing_cost": "NOT_AVAILABLE",
+  "percentage_to_token_conversion": "DENIED",
+  "authority_effect": "NONE",
+  "created_at": "2026-10-05T14:55:09Z",
+  "updated_at": "2026-10-05T14:55:09Z"
+}
