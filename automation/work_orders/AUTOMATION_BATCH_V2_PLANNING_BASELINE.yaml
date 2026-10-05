@@ -1,0 +1,103 @@
+schema_version: automation.batch_v2_planning_baseline.v1
+baseline_id: AUTOMATION-BATCH-V2-DIRECTION-20261005
+status: PLANNING_BASELINE_ONLY
+authority_effect: NONE
+created_at: "2026-10-05T14:09:00+08:00"
+decision_source: USER_EXPLICIT_CURRENT_REQUEST
+
+purpose:
+  - Keep automation stable first, optimize second, maximize utilization last.
+  - Prevent prompt/context growth from becoming a recurring quota cost.
+  - Move toward Work batch planning plus Codex drain-until-blocked execution after foundation stability.
+
+hard_principles:
+  - STABILITY_FIRST
+  - STRICT_ORDER_FIRST
+  - RESUME_BEFORE_NEW_WORK
+  - APPEND_NEVER_REPLACE
+  - WAKE_SIGNAL_DOES_NOT_SELECT_WORK
+  - GLOBAL_QUEUE_STATE_SELECTS_WORK
+  - NO_WORK_ITEM_DISAPPEARS_BEFORE_TERMINAL
+  - NO_QUOTA_BACKFILL_DURING_STABILITY_PHASE
+  - BOTH_5H_AND_WEEKLY_WINDOWS_MUST_PASS_WHEN_APPLICABLE
+  - NO_AUTOMATIC_QUOTA_THRESHOLD_MUTATION
+  - POINTER_OVER_DUPLICATED_PROSE
+  - DELTA_OVER_FULL_RELOAD
+  - SKILL_OVER_REPEATED_INSTRUCTIONS
+  - SHARED_BATCH_CONTEXT_OVER_PER_WORK_ORDER_REREAD
+
+work_role:
+  - Continuously discover architecture decisions that are DECIDED but not yet materialized.
+  - Cluster, split, order and batch work by dependency, context reuse, test overlap, risk and review boundary.
+  - Publish durable batches; new batches append to existing unfinished queue.
+  - Insert optimization review only at stage/batch checkpoints or anomaly triggers, not high-frequency polling.
+  - Forecast quota per work order and calibrate from execution telemetry; proposals do not self-modify policy.
+
+codex_role:
+  - Focus on coding, tests, evidence and bounded execution.
+  - On wake, resolve unfinished/resumable work before new work.
+  - Drain one authorized batch in strict order until queue empty, quota wait, review barrier, human decision or other hard stop.
+  - Preserve per-work-order claim, commit, evidence and telemetry even when sharing batch context.
+  - Avoid unnecessary repeated repository/context reads.
+
+quota_telemetry:
+  record_for_each_actor: [actor, started_at, ended_at, five_hour_before, five_hour_after, weekly_before, weekly_after]
+  preserve_raw_snapshots: true
+  delayed_settlement_rule: "If no reset, overlap, or other known consumer exists, previous END to next START delta is attributed to the previous actor; otherwise keep as unallocated/estimated."
+  forecast_owner: WORK
+  fresh_admission_owner: CODEX
+  calibration_owner: WORK_OPTIMIZATION_CHECKPOINT
+  fixed_80_percent_rule: NOT_TARGET_MODEL
+  future_model: "Evidence-based per-work-order forecast (for example P90 + safety reserve) after sufficient qualified samples."
+
+skill_direction:
+  mode: SHADOW_FIRST
+  governance_precedence: "Governance > Work > Skill > Codex/Tool"
+  first_candidates:
+    - repo-reentry
+    - exact-binding-validator
+    - queue-resolver
+    - resume-resolver
+    - quota-snapshot-recorder
+    - reviewer-packet-builder
+  later_candidates:
+    - context-compiler
+    - work-cluster
+    - quota-calibrator
+    - optimization-analyzer
+  skill_may_grant_authority: false
+
+prompt_direction:
+  target: THIN_KERNEL
+  rule: "Keep only role/invariants/bootstrap/STOP in Work and Codex prompts; move stable deterministic procedures to repository rules and composable skills."
+  context_cache_key: "repo + path + git_blob_sha"
+  unchanged_blob_reread: AVOID
+
+delivery_phases:
+  stability:
+    - close AUTO-IMP-001
+    - implement AUTO-IMP-002
+    - implement AUTO-IMP-003
+    - implement AUTO-IMP-004
+    - implement AUTO-IMP-005
+    - establish resume-first strict queue and dual-window telemetry
+  efficiency:
+    - batch shared context
+    - context compiler
+    - work split/merge optimizer
+    - quota calibration
+    - test-plan optimization
+    - promote proven shadow skills
+  utilization:
+    - consider opportunistic queue reordering/backfill/parallelism only after stability and efficiency evidence
+
+current_gate:
+  work_order: WO-AUTO-IMP-001-CORR-02
+  required_next_step: INDEPENDENT_REVIEW_AND_CLOSURE
+  auto_imp_002_authorized: false
+  runtime_or_broker_or_db_or_migration_or_live_or_production_authorized: false
+
+notes:
+  - This file records planning direction only.
+  - It does not amend frozen Master Architecture v1.1 or authorize any implementation package.
+  - Batch/queue activation remains subject to existing foundation and governance gates.
