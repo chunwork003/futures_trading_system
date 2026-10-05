@@ -23,6 +23,10 @@ No reservation, dispatch, consumption or executor invocation occurred. RF02 PASS
 
 Current work `WO-AUTO-IMP-002-IC01-01`, execution `EXEC-AUTO-IMP-002-IC01-20261005T150733Z`: READY_FOR_MANUAL_CODEX_TRIGGER. Authorization CONSUMED; exact waiver EXPIRED_CONSUMED with admission bound to this reserved execution only; no reuse. Writer HELD by same execution. Executor not invoked. Canonical exact pointers: `automation/work_orders/CURRENT_CODEX.yaml` and `automation/work_orders/CURRENT_CODEX_TASK.md`. Earlier quota-blocked snapshots are superseded by this transition. Runtime/broker/DB/migration/LIVE/production DENIED; AUTO-IMP-003 NOT_AUTHORIZED.
 
+### IC01 Durable Result Intake — Review Barrier
+
+COMPLETED_PENDING_REVIEW; handoff_ready=false; writer released after intake `56c445c5651510231fe0befdc7fd535ce1d06948`. Exact source remains on execution branch, not master. Cost/token/reconciliation are canonical run metadata. No acceptance or integration is performed. Latest CURRENT pointers supersede earlier manual-ready text.
+
 ### CURRENT_AUTHORITY_SNAPSHOT
 
 ```text
@@ -128,7 +132,7 @@ development_automation_current_authorization_revision = 1
 development_automation_current_authorization_state = CONSUMED
 development_automation_current_authorization_candidate = CONSUMED_EFFECTIVE
 development_automation_auto_imp_001_source_modification = BOUNDED_AUTHORIZED
-development_automation_execution_eligibility = IC01_CONSUMED_READY_FOR_MANUAL_TRIGGER
+development_automation_execution_eligibility = IC01_COMPLETED_PENDING_REVIEW
 development_automation_quota_rf_id = AUTO-IMP-001-QRF01
 development_automation_quota_rf_status = ACCEPTED_MATERIALIZED
 development_automation_quota_rf_re_review = PASS
@@ -147,12 +151,12 @@ development_automation_auto_rf02 = CLOSED
 development_automation_auto_manifest_rf01 = CLOSED
 development_automation_implementation = AUTO_IMP_002_IMPLEMENTED_UNACCEPTED_REVIEW_FIX_REQUIRED
 development_automation_execution_id = EXEC-AUTO-IMP-002-IC01-20261005T150733Z
-development_automation_writer_lock_status = HELD_IC01_SINGLE_USE_RESERVED_OWNER
+development_automation_writer_lock_status = RELEASED_AFTER_DURABLE_RESULT_INTAKE
 development_automation_level_3b = NOT_ENABLED
 development_automation_level_3c = NOT_ENABLED
 development_automation_level_4 = NOT_ENABLED
 development_automation_level_5 = NOT_ENABLED
-development_automation_next_route = IC01_MANUAL_CODEX_TRIGGER
+development_automation_next_route = FRESH_CONTEXT_IC01_INDEPENDENT_REVIEW
 
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
@@ -200,13 +204,16 @@ migration_execution = NOT_AUTHORIZED
 live = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 next_mainline_gap = NOT_AUTHORIZED
-next = IC01_MANUAL_CODEX_TRIGGER
+next = FRESH_CONTEXT_IC01_INDEPENDENT_REVIEW
 development_automation_ic01_work_order = WO-AUTO-IMP-002-IC01-01
 development_automation_ic01_execution_id = EXEC-AUTO-IMP-002-IC01-20261005T150733Z
-development_automation_ic01_handoff_ready = true
+development_automation_ic01_handoff_ready = false
 development_automation_ic01_amendment = AMEND-AUTO-IMP-002-IC01-QUOTA-01
 development_automation_ic01_amendment_state = EXPIRED_CONSUMED_BOUND_EXECUTION_ONLY
 development_automation_auto_imp_003_authorized = false
+development_automation_ic01_review = REVIEW_PENDING
+development_automation_ic01_implementation_sha = cb911df46c3030c88599139a682dfbad0c658470
+development_automation_ic01_evidence_sha = d8eea3d6aba17ee975eb6866feaf8e93fdaf6ffd
 ```
 
 Pointers：

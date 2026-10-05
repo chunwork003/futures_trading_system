@@ -1,0 +1,51 @@
+{
+  "schema_version": "automation.execution_cost_index.v1",
+  "status": "DERIVED_REBUILDABLE_NON_AUTHORITY",
+  "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+  "task_profile": {
+    "task_class": "INTEGRATION_COMPATIBILITY",
+    "change_type": "BOUNDED_ROUTE_AND_FIXTURE_CORRECTION",
+    "subsystem": "automation.engine",
+    "functional_area": "canonical reentry",
+    "concise_engineering_goal": "Safe post-execution status and stable READY validation tests",
+    "primary_symbols_or_functional_surfaces": [
+      "resolve_reentry",
+      "_validate_bindings",
+      "candidate repository fixture"
+    ],
+    "behavior_dimensions": [
+      "non-candidate status",
+      "candidate deep validation",
+      "immutable snapshot",
+      "fixture non-vacuity"
+    ],
+    "source_file_count": 1,
+    "test_file_count": 1,
+    "semantic_profile": "FAIL_CLOSED_AUTHORITY_PRESERVATION",
+    "test_profile": "TARGETED_PLUS_FULL_PLUS_SEPARATE_MASTER_INTEGRATION",
+    "authority_boundary": "AUTO-IMP-002 exact two-file correction; runtime/DB/broker/LIVE denied",
+    "packaging_cohesion_decision": "KEEP_COHESIVE_SHARED_ROUTING_GOAL_TEST_SURFACE_ACCEPTANCE"
+  },
+  "context_summary": {
+    "bytes": 112682,
+    "raw_transcript_loaded": false,
+    "artifacts_by_type": {
+      "governance": 12,
+      "evidence": 6,
+      "forecast": 1,
+      "source": 5,
+      "history": 2
+    },
+    "measurement_scope": "Unique fully loaded Git blob sizes; excerpts and unchanged-cache metadata excluded; duplicate tool output replay not counted"
+  },
+  "canonical_paths": {
+    "actual": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/execution_cost_actual.json",
+    "tokens": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/local_token_usage.json",
+    "reconciliation": "automation/work_orders/optimizations/WO-AUTO-IMP-002-IC01-01.cost-reconciliation.json"
+  },
+  "cohort_path": "automation/telemetry/cohorts/LOCAL_CODEX_INTEGRATION_COMPATIBILITY_V1.json",
+  "cross_rf_cohort_membership": "DENIED_DIFFERENT_TASK_CLASS",
+  "calibration": "PROVISIONAL",
+  "updated_at": "2026-10-05T15:54:39Z"
+}

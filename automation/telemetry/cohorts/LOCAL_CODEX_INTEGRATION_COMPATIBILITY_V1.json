@@ -1,0 +1,86 @@
+{
+  "schema_version": "automation.execution_cost_cohort.v1",
+  "cohort_id": "LOCAL_CODEX_INTEGRATION_COMPATIBILITY_V1",
+  "status": "PROVISIONAL",
+  "dimensions": {
+    "executor_profile": "LOCAL_CODEX_SINGLE_EXECUTOR",
+    "task_class": "INTEGRATION_COMPATIBILITY",
+    "subsystem": "automation.engine",
+    "test_profile": "TARGETED_PLUS_FULL_PLUS_SEPARATE_MASTER_INTEGRATION"
+  },
+  "calibration": {
+    "exact_samples": 1,
+    "minimum_samples_for_calibrated": 3
+  },
+  "membership_reason": "Routing/fixture compatibility differs from RF semantic correction; not the RF cohort third sample.",
+  "samples": [
+    {
+      "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+      "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+      "accepted_semantically": false,
+      "review_result": "REVIEW_PENDING",
+      "implementation_sha": "cb911df46c3030c88599139a682dfbad0c658470",
+      "local_token_evidence": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/local_token_usage.json",
+      "actual_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/execution_cost_actual.json",
+      "metrics": {
+        "input_tokens": 4991399,
+        "cached_input_tokens": 4920064,
+        "output_tokens": 16923,
+        "reasoning_output_tokens": 3265,
+        "total_tokens": 5008322,
+        "uncached_input_tokens": 71335,
+        "cached_input_ratio": 0.9857084156165435,
+        "reported_total_tokens": 5008322,
+        "actor_seconds": 1156,
+        "targeted_seconds": 288.96,
+        "full_regression_seconds": 295.61,
+        "five_hour_delta_pct": 9,
+        "weekly_delta_pct": 2,
+        "test_cycles": {
+          "pre_fix_cases": 3,
+          "complete_targeted_passes": 1,
+          "full_regression_passes": 1
+        }
+      },
+      "task_profile": {
+        "task_class": "INTEGRATION_COMPATIBILITY",
+        "change_type": "BOUNDED_ROUTE_AND_FIXTURE_CORRECTION",
+        "subsystem": "automation.engine",
+        "functional_area": "canonical reentry",
+        "concise_engineering_goal": "Safe post-execution status and stable READY validation tests",
+        "primary_symbols_or_functional_surfaces": [
+          "resolve_reentry",
+          "_validate_bindings",
+          "candidate repository fixture"
+        ],
+        "behavior_dimensions": [
+          "non-candidate status",
+          "candidate deep validation",
+          "immutable snapshot",
+          "fixture non-vacuity"
+        ],
+        "source_file_count": 1,
+        "test_file_count": 1,
+        "semantic_profile": "FAIL_CLOSED_AUTHORITY_PRESERVATION",
+        "test_profile": "TARGETED_PLUS_FULL_PLUS_SEPARATE_MASTER_INTEGRATION",
+        "authority_boundary": "AUTO-IMP-002 exact two-file correction; runtime/DB/broker/LIVE denied",
+        "packaging_cohesion_decision": "KEEP_COHESIVE_SHARED_ROUTING_GOAL_TEST_SURFACE_ACCEPTANCE"
+      },
+      "context_summary": {
+        "bytes": 112682,
+        "raw_transcript_loaded": false,
+        "artifacts_by_type": {
+          "governance": 12,
+          "evidence": 6,
+          "forecast": 1,
+          "source": 5,
+          "history": 2
+        }
+      },
+      "dominant_cost_driver": "CONTEXT_REPLAY_DOMINATED"
+    }
+  ],
+  "authority_effect": "NONE",
+  "created_at": "2026-10-05T15:54:39Z",
+  "updated_at": "2026-10-05T15:54:39Z"
+}

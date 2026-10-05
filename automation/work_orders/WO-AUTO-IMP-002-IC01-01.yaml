@@ -187,9 +187,9 @@
   },
   "execution_branch": "auto/WO-AUTO-IMP-002-IC01-01",
   "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
-  "status": "READY_FOR_CODEX",
-  "handoff_ready": true,
-  "execution_eligibility": "PASS_CONSUMED_READY_FOR_MANUAL_TRIGGER",
+  "status": "COMPLETED_PENDING_REVIEW",
+  "handoff_ready": false,
+  "execution_eligibility": "COMPLETED_NOT_REEXECUTABLE",
   "eligibility_path": "automation/work_orders/AUTO-IMP-002-IC01.eligibility.json",
   "quota_gate": {
     "policy": "QuotaAdmissionPolicyV1_1",
@@ -217,12 +217,12 @@
   "auto_imp_003_authorized": false,
   "correction_budget": {
     "limit": 1,
-    "used": 0,
-    "remaining": 1,
+    "used": 1,
+    "remaining": 0,
     "semantics": "one bounded impacted-test correction cycle in this execution only",
     "exhaustion": "STOP_TO_WORK_NO_NEW_EXECUTION_OR_RF03"
   },
-  "correction_budget_remaining": 1,
+  "correction_budget_remaining": 0,
   "required_skills": [
     "automation/skills/single-use-lifecycle-guard/SKILL.md"
   ],
@@ -263,10 +263,10 @@
     ],
     "rf02_re_review": false
   },
-  "next_route": "IC01_MANUAL_CODEX_TRIGGER",
-  "current_action": "READY_FOR_MANUAL_CODEX_TRIGGER",
+  "next_route": "FRESH_CONTEXT_IC01_INDEPENDENT_REVIEW",
+  "current_action": "WAIT_FOR_FRESH_CONTEXT_IC01_INDEPENDENT_REVIEW",
   "created_at": "2026-10-05T15:00:35Z",
-  "updated_at": "2026-10-05T15:10:26Z",
+  "updated_at": "2026-10-05T15:54:39Z",
   "quota_amendment": {
     "amendment_id": "AMEND-AUTO-IMP-002-IC01-QUOTA-01",
     "path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
@@ -284,5 +284,12 @@
     "consumed_commit_sha": "8a4222d79f257c7e8b1311ffcf43d0b6df7a3e1b",
     "reuse": "DENIED",
     "first_invocation_of_bound_execution_only": true
-  }
+  },
+  "review_status": "REVIEW_PENDING",
+  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-IC01-01.review.yaml",
+  "result_intake_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/result_intake.json",
+  "assembly_commit_sha": "e8da7473853229899490c5634196d83d03a190a8",
+  "implementation_commit_sha": "cb911df46c3030c88599139a682dfbad0c658470",
+  "evidence_commit_sha": "d8eea3d6aba17ee975eb6866feaf8e93fdaf6ffd",
+  "reexecution_authorized": false
 }

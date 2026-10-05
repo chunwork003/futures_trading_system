@@ -1,0 +1,132 @@
+{
+  "schema_version": "automation.execution_cost_reconciliation.v1",
+  "forecast_path": "automation/work_orders/forecasts/AUTO-IMP-002-IC01.planning.json",
+  "actual_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/execution_cost_actual.json",
+  "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+  "forecast_confidence": "PROVISIONAL_TWO_COST_SAMPLES_NEW_TASK_CLASS",
+  "overall_classification": "CRITICAL",
+  "dominant_cause": "CONTEXT_REPLAY_DOMINATED",
+  "metric_comparisons": [
+    {
+      "metric": "reported_total_tokens",
+      "actual": 5008322,
+      "p50": 350000,
+      "p75": 900000,
+      "p90": 2500000,
+      "actual_to_p50_ratio": 14.309491428571429,
+      "actual_to_p90_ratio": 2.0033288,
+      "p50_absolute_percentage_error": 13.309491428571429,
+      "classification": "CRITICAL"
+    },
+    {
+      "metric": "uncached_input_tokens",
+      "actual": 71335,
+      "p50": 65000,
+      "p75": 90000,
+      "p90": 130000,
+      "actual_to_p50_ratio": 1.0974615384615385,
+      "actual_to_p90_ratio": 0.5487307692307692,
+      "p50_absolute_percentage_error": 0.09746153846153846,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "actor_seconds",
+      "actual": 1156,
+      "p50": 1200,
+      "p75": 1800,
+      "p90": 2700,
+      "actual_to_p50_ratio": 0.9633333333333334,
+      "actual_to_p90_ratio": 0.42814814814814817,
+      "p50_absolute_percentage_error": 0.03666666666666667,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "targeted_seconds",
+      "actual": 288.96,
+      "p50": null,
+      "p75": null,
+      "p90": 360,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.8026666666666666,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "full_regression_seconds",
+      "actual": 295.61,
+      "p50": null,
+      "p75": null,
+      "p90": 400,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.739025,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    }
+  ],
+  "cycle_breaches": [],
+  "recommendations": [
+    "REDUCE_MODEL_TOOL_TEST_ROUND_TRIPS",
+    "KEEP_STABLE_CACHE_FRIENDLY_KERNEL",
+    "DO_NOT_RELOAD_UNCHANGED_CONTEXT"
+  ],
+  "feedback_required_for_next_work_forecast": true,
+  "generated_at_utc": "2026-10-05T15:52:55.0758311+00:00",
+  "execution_provenance": {
+    "script_path": "scripts/execution_cost_reconcile.ps1",
+    "script_blob_sha": "84a4a8777f29d03cd7462f799c28544b7053f422",
+    "exit_code": 0,
+    "environment": "ISOLATED_SCRATCH_REMOTE_CANONICAL_INPUTS"
+  },
+  "interpretation_limit": "Dominant cause is contract rule classification, not causal proof from context volume; reported tokens are not billing.",
+  "normalized_analysis": {
+    "reported_total": {
+      "actual": 5008322,
+      "p50": 350000,
+      "p75": 900000,
+      "p90": 2500000,
+      "actual_to_p75": 5.564802222222222
+    },
+    "actor_seconds": 1156,
+    "targeted_seconds": 288.96,
+    "full_regression_seconds": 295.61,
+    "unexpected_retries": 1,
+    "correction_cycles": 1,
+    "correction_budget_remaining": 0,
+    "semantic_source_retry": "NONE_REPORTED",
+    "retry_cause": "fixture/environment autocrlf=false",
+    "five_hour_proxy_delta": 9,
+    "weekly_proxy_delta": 2,
+    "context_unique_loaded_bytes_reported": 112682,
+    "context_volume_source": "CODEX_EXECUTION_EVIDENCE",
+    "raw_transcript_loaded": false,
+    "task_profile": {
+      "task_class": "INTEGRATION_COMPATIBILITY",
+      "change_type": "BOUNDED_ROUTE_AND_FIXTURE_CORRECTION",
+      "subsystem": "automation.engine",
+      "functional_area": "canonical reentry",
+      "concise_engineering_goal": "Safe post-execution status and stable READY validation tests",
+      "primary_symbols_or_functional_surfaces": [
+        "resolve_reentry",
+        "_validate_bindings",
+        "candidate repository fixture"
+      ],
+      "behavior_dimensions": [
+        "non-candidate status",
+        "candidate deep validation",
+        "immutable snapshot",
+        "fixture non-vacuity"
+      ],
+      "source_file_count": 1,
+      "test_file_count": 1,
+      "semantic_profile": "FAIL_CLOSED_AUTHORITY_PRESERVATION",
+      "test_profile": "TARGETED_PLUS_FULL_PLUS_SEPARATE_MASTER_INTEGRATION",
+      "authority_boundary": "AUTO-IMP-002 exact two-file correction; runtime/DB/broker/LIVE denied",
+      "packaging_cohesion_decision": "KEEP_COHESIVE_SHARED_ROUTING_GOAL_TEST_SURFACE_ACCEPTANCE"
+    },
+    "context_profile_pointer": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/execution_cost_actual.json#/context_profile",
+    "causal_claim": "NOT_ESTABLISHED",
+    "packaging": "KEEP_COHESIVE",
+    "bounded_recommendation": "Preserve cohesive IC01 scope; use compact pointers/deltas and batch independent tool observations to reduce replay overhead; do not split tickets solely for token counts."
+  }
+}

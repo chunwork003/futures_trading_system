@@ -1,0 +1,71 @@
+{
+  "schema_version": "automation.local_codex_token_usage.v1",
+  "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+  "measurement_type": "EXACT",
+  "attribution_status": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+  "binding": "EXECUTION_ID_PLUS_WORK_ORDER_ID_PLUS_TIME_WINDOW_PLUS_EXACT_SHA_MARKERS",
+  "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+  "baseline": {
+    "timestamp": "2026-10-05T13:23:10.9400000+00:00",
+    "usage": {
+      "input_tokens": 15977905,
+      "cached_input_tokens": 15441408,
+      "output_tokens": 51829,
+      "reasoning_output_tokens": 13462,
+      "total_tokens": 16029734
+    }
+  },
+  "final": {
+    "timestamp": "2026-10-05T15:40:43.9630000+00:00",
+    "usage": {
+      "input_tokens": 20969304,
+      "cached_input_tokens": 20361472,
+      "output_tokens": 68752,
+      "reasoning_output_tokens": 16727,
+      "total_tokens": 21038056
+    }
+  },
+  "execution_token_delta": {
+    "input_tokens": 4991399,
+    "cached_input_tokens": 4920064,
+    "output_tokens": 16923,
+    "reasoning_output_tokens": 3265,
+    "total_tokens": 5008322,
+    "uncached_input_tokens": 71335,
+    "cached_input_ratio": 0.9857084156165435
+  },
+  "extraction": {
+    "script_path": "scripts/codex_session_token_usage.ps1",
+    "script_blob_sha": "5834edd880ec9c73781b220c1ee488027f98f77e",
+    "script_modified": false,
+    "runtime_adapter": "PowerShell 7 ConvertFrom-Json DateKind=String preserving original ISO timestamps; no policy change",
+    "candidate_window_hours": 3,
+    "end_slack_seconds": 240,
+    "strong_markers": [
+      "e8da7473853229899490c5634196d83d03a190a8",
+      "cb911df46c3030c88599139a682dfbad0c658470",
+      "d8eea3d6aba17ee975eb6866feaf8e93fdaf6ffd"
+    ],
+    "candidate_count": 2,
+    "strong_match_count": 1,
+    "strong_marker_hits": {
+      "e8da7473853229899490c5634196d83d03a190a8": 12,
+      "cb911df46c3030c88599139a682dfbad0c658470": 4,
+      "d8eea3d6aba17ee975eb6866feaf8e93fdaf6ffd": 5
+    },
+    "last_event_utc": "2026-10-05T15:40:43.9630000+00:00",
+    "flush_delay_seconds": 189.963,
+    "retries": [
+      "default discovery window no token event",
+      "expanded discovery window no token event under PS7 date coercion",
+      "Windows PowerShell script-signature policy prevented execution; policy not changed",
+      "original script with DateKind=String runtime adapter successful"
+    ],
+    "exit_code": 0
+  },
+  "unit_semantics": "LOCAL_REPORTED_USAGE_NOT_BILLING",
+  "raw_transcript_loaded_by_work": false,
+  "created_at": "2026-10-05T15:54:39Z",
+  "updated_at": "2026-10-05T15:54:39Z"
+}

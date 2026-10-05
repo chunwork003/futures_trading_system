@@ -1,0 +1,155 @@
+{
+  "schema_version": "automation.independent_review_packet.v1",
+  "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+  "correction_id": "AUTO-IMP-002-IC01",
+  "status": "REVIEW_PENDING",
+  "route": "FRESH_CONTEXT_IC01_INDEPENDENT_REVIEW",
+  "baseline_assembly_sha": "e8da7473853229899490c5634196d83d03a190a8",
+  "implementation_sha": "cb911df46c3030c88599139a682dfbad0c658470",
+  "evidence_sha": "d8eea3d6aba17ee975eb6866feaf8e93fdaf6ffd",
+  "exact_scope": [
+    "automation/engine/reentry.py",
+    "tests/automation/test_reentry.py"
+  ],
+  "source_diff": [
+    {
+      "sha": "be9626d148f7ddc8e0891d14745f43fb304471cd",
+      "filename": "automation/engine/reentry.py",
+      "status": "modified",
+      "additions": 44,
+      "deletions": 16,
+      "changes": 60,
+      "blob_url": "https://github.com/chunwork003/futures_trading_system/blob/cb911df46c3030c88599139a682dfbad0c658470/automation%2Fengine%2Freentry.py",
+      "raw_url": "https://github.com/chunwork003/futures_trading_system/raw/cb911df46c3030c88599139a682dfbad0c658470/automation%2Fengine%2Freentry.py",
+      "contents_url": "https://api.github.com/repos/chunwork003/futures_trading_system/contents/automation%2Fengine%2Freentry.py?ref=cb911df46c3030c88599139a682dfbad0c658470",
+      "patch": "@@ -219,24 +219,52 @@ def mapping(path: str) -> dict[str, object]:\n     handoffs = [mapping(path) for path in handoff_paths]\n     current = mapping(\"automation/work_orders/CURRENT_CODEX.yaml\")\n     text(\"automation/work_orders/CURRENT_CODEX_TASK.md\")\n-    work = mapping(current[\"work_order_path\"])\n-    auth = mapping(current[\"authorization_path\"])\n-    quota = mapping(current[\"quota_amendment\"][\"path\"])\n-    eligibility = mapping(current[\"eligibility_path\"])\n-    package = mapping(auth[\"package_binding\"][\"path\"])\n-    dependency = mapping(auth[\"program_binding\"][\"dependency_closure_path\"])\n \n-    reason = None\n+    def snapshot(route: str, action: str, reason: str | None = None) -> ReentrySnapshot:\n+        return ReentrySnapshot(\n+            sha, verification, state, _freeze_yaml_value(documents), route,\n+            \"REPORT_CURRENT_STATE_WITHOUT_EXECUTION\" if status_only else action, reason,\n+        )\n+\n+    # 狀態解析先於候選 package/program dereference；post-execution 不建立 authority。\n     if not verification.valid:\n-        reason = \"MANIFEST_INTEGRITY_MISMATCH\"\n-    else:\n-        try:\n-            _validate_bindings(repo, sha, state, current, work, auth, quota,\n-                               eligibility, package, dependency)\n-        except _BindingMismatch as exc:\n-            reason = str(exc)\n-        except (KeyError, TypeError, AttributeError, ValueError):\n-            reason = \"INVALID_BINDING_DOCUMENT\"\n+        return snapshot(\"STOP\", \"RESOLVE_GOVERNANCE_INTEGRITY_OR_BINDING\", \"MANIFEST_INTEGRITY_MISMATCH\")\n+    try:\n+        work = mapping(current[\"work_order_path\"])\n+    except (KeyError, TypeError, ManifestIntegrityError):\n+        return snapshot(\"STOP\", \"RESOLVE_CURRENT_WORK\", \"INVALID_BINDING_DOCUMENT\")\n+    statuses = [doc.get(\"status\") for doc in handoffs] + [current.get(\"status\"), work.get(\"status\")]\n+    if any(s in (\"STOP\", \"STOPPED\", \"HARD_BLOCK\", \"BLOCKED\") for s in statuses):\n+        return snapshot(\"STOP\", \"RESOLVE_REPOSITORY_STOP\", \"OPEN_STOP_OR_BLOCKER\")\n+    review_states = {\"COMPLETED_PENDING_REVIEW\", \"PENDING_REVIEW\", \"REVIEW_PENDING\",\n+                     \"RESULT_READY\", \"IMPLEMENTED_PENDING_REVIEW\"}\n+    if any(doc.get(\"status\") in review_states for doc in handoffs):\n+        return snapshot(\"PENDING_REVIEW\", \"ROUTE_DURABLE_RESULT_TO_WORK\")\n+    if current.get(\"status\") != work.get(\"status\"):\n+        return snapshot(\"STOP\", \"RESOLVE_CURRENT_WORK\", \"CONFLICTING_WORK_STATUS\")\n+    if current.get(\"status\") in review_states:\n+        return snapshot(\"PENDING_REVIEW\", \"ROUTE_DURABLE_RESULT_TO_WORK\")\n+    if current.get(\"status\") != \"READY_FOR_CODEX\" or current.get(\"handoff_ready\") is not True:\n+        return snapshot(\"STOP\", \"RESOLVE_CURRENT_WORK\", \"NO_LEGAL_READY_WORK\")\n+    # CONSUMED/RESERVED 是 lifecycle 狀態，不是可重新 claim 的 READY authority。\n+    if (current.get(\"authorization_state\") != \"AUTHORIZED\"\n+            or work.get(\"authorization_state\") != \"AUTHORIZED\"\n+            or state.get(\"development_automation_current_authorization_state\") != \"AUTHORIZED\"):\n+        return snapshot(\"STOP\", \"RESOLVE_CURRENT_AUTHORIZATION\", \"AUTHORIZATION_NOT_AVAILABLE\")\n+\n+    reason = None\n+    try:\n+        auth = mapping(current[\"authorization_path\"])\n+        quota = mapping(current[\"quota_amendment\"][\"path\"])\n+        eligibility = mapping(current[\"eligibility_path\"])\n+        package = mapping(auth[\"package_binding\"][\"path\"])\n+        dependency = mapping(auth[\"program_binding\"][\"dependency_closure_path\"])\n+        _validate_bindings(repo, sha, state, current, work, auth, quota,\n+                           eligibility, package, dependency)\n+    except _BindingMismatch as exc:\n+        reason = str(exc)\n+    except (KeyError, TypeError, AttributeError, ValueError):\n+        reason = \"INVALID_BINDING_DOCUMENT\"\n \n     statuses = [doc.get(\"status\") for doc in handoffs] + [current.get(\"status\"), work.get(\"status\")]\n     if reason:"
+    },
+    {
+      "sha": "c729f080adcd8460c54c4304f51e3c691d122461",
+      "filename": "tests/automation/test_reentry.py",
+      "status": "modified",
+      "additions": 125,
+      "deletions": 29,
+      "changes": 154,
+      "blob_url": "https://github.com/chunwork003/futures_trading_system/blob/cb911df46c3030c88599139a682dfbad0c658470/tests%2Fautomation%2Ftest_reentry.py",
+      "raw_url": "https://github.com/chunwork003/futures_trading_system/raw/cb911df46c3030c88599139a682dfbad0c658470/tests%2Fautomation%2Ftest_reentry.py",
+      "contents_url": "https://api.github.com/repos/chunwork003/futures_trading_system/contents/tests%2Fautomation%2Ftest_reentry.py?ref=cb911df46c3030c88599139a682dfbad0c658470",
+      "patch": "@@ -4,6 +4,7 @@\n from copy import deepcopy\n from pathlib import Path\n import subprocess\n+import hashlib\n \n import pytest\n import yaml\n@@ -92,48 +93,93 @@ def _seed_repository(tmp_path: Path) -> Path:\n     git(tmp_path, \"config\", \"user.email\", \"fixture@example.invalid\")\n     git(tmp_path, \"config\", \"user.name\", \"Fixture\")\n     git(tmp_path, \"config\", \"core.autocrlf\", \"false\")\n-    paths = {\"AGENTS.md\", STATE, \"docs/CURRENT_WORK.md\", CURRENT,\n-             \"automation/work_orders/CURRENT_CODEX_TASK.md\",\n-             \"automation/governance/master_manifest.v1.yaml\"}\n-    queue = list(paths)\n-    while queue:\n-        path = queue.pop()\n-        blob = git(ROOT, \"show\", \"HEAD:\" + path)\n+    # Candidate 完全由測試擁有，不從 mutable master CURRENT 遞迴複製 authority。\n+    for path, value in candidate_documents().items():\n         target = tmp_path / path\n         target.parent.mkdir(parents=True, exist_ok=True)\n-        target.write_bytes(blob)\n-        if not path.endswith((\".yaml\", \".json\")):\n-            continue\n-\n-        def collect(value):\n-            if isinstance(value, dict):\n-                for key, item in value.items():\n-                    if (key == \"path\" or key.endswith(\"_path\")) and isinstance(item, str) and \"/\" in item and item not in paths:\n-                        paths.add(item)\n-                        queue.append(item)\n-                    else:\n-                        collect(item)\n-            elif isinstance(value, list):\n-                for item in value:\n-                    collect(item)\n-\n-        collect(yaml.safe_load(blob))\n-    git(tmp_path, \"add\", \"--\", *sorted(paths))\n+        target.write_bytes(value.encode() if isinstance(value, str) else yaml.safe_dump(value).encode())\n+    git(tmp_path, \"add\", \".\")\n     git(tmp_path, \"commit\", \"-m\", \"fixture\")\n     return tmp_path\n \n \n+def candidate_documents() -> dict:\n+    \"\"\"固定 READY 契約與 exact package blob；僅 fixture，不建立 repository authority。\"\"\"\n+    scope = [\"automation/engine/manifest.py\", \"automation/engine/reentry.py\",\n+             \"tests/automation/test_manifest.py\", \"tests/automation/test_reentry.py\"]\n+    current = dict(work_order_id=\"WO-AUTO-IMP-002-01\", package_id=\"AUTO-IMP-002\",\n+                   package_revision=\"1\", authorization_id=\"AUTH-AUTO-IMP-002-01\",\n+                   authorization_revision=\"1\", authorization_state=\"AUTHORIZED\",\n+                   exact_write_scope=scope, execution_branch=\"auto/WO-AUTO-IMP-002-01\",\n+                   authorization_path=AUTH, work_order_path=WORK, eligibility_path=ELIGIBILITY,\n+                   status=\"READY_FOR_CODEX\", handoff_ready=True, auto_imp_003_authorized=False,\n+                   execution_eligibility=\"ELIGIBLE_FOR_MANUAL_TRIGGER_WITH_MANIFEST_INTEGRITY_PASS\",\n+                   quota_gate={\"provider_hard_block\": \"STOP\"},\n+                   quota_amendment=dict(amendment_id=\"AMEND-AUTO-IMP-002-QUOTA-01\", path=QUOTA,\n+                                        status=\"AUTHORIZED_EFFECTIVE\", effect=\"EXACT_QUOTA_ADMISSION_ONLY\"))\n+    work = deepcopy(current)\n+    work.update(side_effects={key: \"DENIED\" for key in (\"runtime\", \"broker\", \"db\", \"migration\", \"live\", \"production\")},\n+                next_package=dict(package_id=\"AUTO-IMP-003\", authorization=\"NOT_AUTHORIZED\"))\n+    package = dict(work_package_id=\"AUTO-IMP-002\", work_package_revision=\"1\",\n+                   planned_write_scope=scope, depends_on=[\"AUTO-IMP-001\"])\n+    blob = yaml.safe_dump(package).encode()\n+    oid = hashlib.sha1(b\"blob \" + str(len(blob)).encode() + b\"\\0\" + blob).hexdigest()\n+    auth = dict(authorization_id=current[\"authorization_id\"], authorization_revision=\"1\",\n+                authorization_state=\"AUTHORIZED\",\n+                exact_binding=dict(work_package_id=\"AUTO-IMP-002\", work_package_revision=\"1\",\n+                                   scope_digest=hashlib.sha256(\"\\n\".join(scope).encode()).hexdigest(),\n+                                   allowed_executor_profile=\"CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY\",\n+                                   review_barrier=\"REQUIRED_BEFORE_ACCEPTANCE\"),\n+                package_binding=dict(path=PACKAGE, git_blob_sha=oid, planned_write_scope=scope),\n+                program_binding=dict(package_dependency=\"AUTO-IMP-001_ACCEPTED_MATERIALIZED\",\n+                                     dependency_closure_path=DEPENDENCY))\n+    quota = dict(amendment_id=\"AMEND-AUTO-IMP-002-QUOTA-01\", status=\"AUTHORIZED_EFFECTIVE\",\n+                 decision=\"WAIVED_FOR_BOUNDED_AUTOMATION_PILOT\",\n+                 exact_binding=dict(work_order_id=current[\"work_order_id\"], package_id=\"AUTO-IMP-002\",\n+                                    package_revision=\"1\", work_order_path=WORK, base_authorization_path=AUTH,\n+                                    base_authorization_id=current[\"authorization_id\"], base_authorization_revision=\"1\",\n+                                    executor_profile=\"CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY\"),\n+                 effect=dict(quota_admission_blocker_only=True, effective_scope=\"THIS_EXACT_WORK_ORDER_ONLY\",\n+                             authorization_replay=False, extra_work_order_created=False, automatic_threshold_mutation=False),\n+                 quota=dict(admission_gate=\"WAIVED_FOR_BOUNDED_AUTOMATION_PILOT\", provider_enforced_limits_waived=False))\n+    eligibility = dict(work_order_id=current[\"work_order_id\"], package_id=\"AUTO-IMP-002\",\n+                       authorization_id=current[\"authorization_id\"], status=\"ELIGIBLE_FOR_MANUAL_TRIGGER\",\n+                       trigger_mode=\"MANUAL_TRIGGER_ONLY\", automatic_dispatch=False, automatic_next_package=False)\n+    state = \"### CURRENT_AUTHORITY_SNAPSHOT\\n```text\\nbranch = master\\n\" + \"\\n\".join(\n+        \"development_automation_current_\" + key + \" = \" + value for key, value in\n+        [(\"package\", \"AUTO-IMP-002\"), (\"authorization_id\", current[\"authorization_id\"]),\n+         (\"authorization_revision\", \"1\"), (\"authorization_state\", \"AUTHORIZED\")]) + \"\\n```\\n\"\n+    agents = \"Fixture navigation; no execution authority.\\n\"\n+    sections = (\"compiled_program\", \"compiled_authorization_candidate\", \"quota_policy_compatibility_rf\",\n+                \"freeze\", \"canonical_current_state\", \"governance_document\", \"policies\", \"negative_assertions\", \"activation\")\n+    manifest = {key: {} for key in sections}\n+    manifest.update(schema_version=\"automation.master_manifest.v1\", manifest_id=\"FIXTURE\",\n+                    manifest_version=\"1\", master_architecture_version=\"1.1\", status=\"FROZEN\",\n+                    materialization_baseline_sha=\"0\" * 40, superseded_authorization_candidates=[],\n+                    agent_reentry=dict(path=\"AGENTS.md\", sha256=hashlib.sha256(agents.encode()).hexdigest()),\n+                    hash_integrity=dict(algorithm=\"SHA-256\", canonical_input=\"git_blob_bytes\",\n+                                        verification_scope=\"exact_review_commit\", worktree_bytes_are_authoritative=False,\n+                                        line_ending_normalization=\"none\"))\n+    return {CURRENT: current, WORK: work, AUTH: auth, QUOTA: quota, ELIGIBILITY: eligibility,\n+            PACKAGE: package, DEPENDENCY: dict(package_id=\"AUTO-IMP-001\", status=\"ACCEPTED_MATERIALIZED\"),\n+            STATE: state, \"AGENTS.md\": agents, \"docs/CURRENT_WORK.md\": \"Fixture queue.\\n\",\n+            \"automation/work_orders/CURRENT_CODEX_TASK.md\": \"Fixture task.\\n\",\n+            \"automation/governance/master_manifest.v1.yaml\": manifest}\n+\n+\n @pytest.fixture(scope=\"session\")\n def binding_template(tmp_path_factory) -> Path:\n     return _seed_repository(tmp_path_factory.mktemp(\"binding-template\"))\n \n \n @pytest.fixture\n def repository(tmp_path: Path, binding_template: Path) -> Path:\n-    git(tmp_path, \"clone\", \"--no-hardlinks\", str(binding_template), \".\")\n+    git(tmp_path, \"-c\", \"core.autocrlf=false\", \"clone\", \"--no-hardlinks\", str(binding_template), \".\")\n     git(tmp_path, \"config\", \"user.email\", \"fixture@example.invalid\")\n     git(tmp_path, \"config\", \"user.name\", \"Fixture\")\n     git(tmp_path, \"config\", \"core.autocrlf\", \"false\")\n+    positive = resolve_reentry(tmp_path, \"HEAD\")\n+    assert positive.route == \"CODEX_EXECUTION_CANDIDATE\" and positive.execution_allowed is False\n     return tmp_path\n \n \n@@ -290,11 +336,13 @@ def test_valid_duplicate_document_cannot_hide_wrong_pointer(repository: Path, do\n \n \n @pytest.fixture(scope=\"module\")\n-def effect_documents():\n+def effect_documents(binding_template):\n     \"\"\"RF02 純語意基準：不為每個 effect 反例 clone/commit repository。\"\"\"\n     paths = [CURRENT, WORK, AUTH, QUOTA, ELIGIBILITY, PACKAGE, DEPENDENCY]\n-    payloads = [yaml.safe_load((ROOT / path).read_bytes()) for path in paths]\n-    state = reentry_module._current_projection((ROOT / STATE).read_text(encoding=\"utf-8\"))\n+    positive = resolve_reentry(binding_template, \"HEAD\")\n+    assert positive.route == \"CODEX_EXECUTION_CANDIDATE\" and positive.execution_allowed is False\n+    payloads = [yaml.safe_load((binding_template / path).read_bytes()) for path in paths]\n+    state = reentry_module._current_projection((binding_template / STATE).read_text(encoding=\"utf-8\"))\n     return state, payloads\n \n \n@@ -320,3 +368,51 @@ def test_rf02_execution_effect_counterexamples(effect_documents, monkeypatch, ca\n         section[fields[-1]] = value\n         with pytest.raises(ValueError):\n             reentry_module._validate_bindings(ROOT, \"unused-pure-case\", state, *documents)\n+\n+\n+@pytest.mark.parametrize(\"group\", [\"non_candidate\", \"missing_package_binding\", \"missing_program_binding\"])\n+def test_ic01_compatibility_groups(repository: Path, group: str) -> None:\n+    \"\"\"三個最小 pre-fix 群組；READY 缺 binding 與 post-execution 必須安全停止。\"\"\"\n+    if group == \"non_candidate\":\n+        change(repository, CURRENT, \"status\", \"COMPLETED_PENDING_REVIEW\")\n+        change(repository, WORK, \"status\", \"COMPLETED_PENDING_REVIEW\")\n+    payload = yaml.safe_load((repository / AUTH).read_bytes())\n+    payload.pop(\"program_binding\" if group == \"missing_program_binding\" else \"package_binding\")\n+    (repository / AUTH).write_text(yaml.safe_dump(payload), encoding=\"utf-8\")\n+    git(repository, \"add\", AUTH)\n+    git(repository, \"commit\", \"-m\", \"compatibility counterexample\")\n+    result = resolve_reentry(repository, \"HEAD\")\n+    assert result.route == (\"PENDING_REVIEW\" if group == \"non_candidate\" else \"STOP\")\n+    assert result.execution_allowed is False\n+\n+\n+@pytest.mark.parametrize(\"status\", [\"HUMAN_DECISION_REQUIRED\", \"COMPLETED_PENDING_REVIEW\",\n+                                     \"REVIEW_PENDING\", \"STOP\", \"BLOCKED\", \"ACCEPTED\", \"CLOSED\", \"UNKNOWN\"])\n+def test_ic01_non_candidate_states(repository: Path, status: str) -> None:\n+    before = git(repository, \"branch\", \"--list\")\n+    for path in (CURRENT, WORK):\n+        change(repository, path, \"status\", status)\n+    # 缺少整個 candidate-only authority 文件也不能造成 non-candidate crash。\n+    git(repository, \"rm\", AUTH, QUOTA, ELIGIBILITY, PACKAGE, DEPENDENCY)\n+    git(repository, \"commit\", \"-m\", \"non candidate without deep documents\")\n+    head = git(repository, \"rev-parse\", \"HEAD\")\n+    result = resolve_reentry(repository, \"HEAD\", status_only=True)\n+    assert result.route == (\"PENDING_REVIEW\" if status in (\"COMPLETED_PENDING_REVIEW\", \"REVIEW_PENDING\") else \"STOP\")\n+    assert result.execution_allowed is False\n+    assert result.next_action == \"REPORT_CURRENT_STATE_WITHOUT_EXECUTION\"\n+    assert git(repository, \"rev-parse\", \"HEAD\") == head\n+    assert git(repository, \"branch\", \"--list\") == before\n+    assert git(repository, \"status\", \"--porcelain\") == b\"\"\n+\n+\n+def test_ic01_actual_consumed_current_no_deep_dereference() -> None:\n+    result = resolve_reentry(ROOT, \"HEAD\", status_only=True)\n+    assert result.route == \"STOP\"\n+    assert result.stop_reason == \"AUTHORIZATION_NOT_AVAILABLE\"\n+    assert result.execution_allowed is False\n+\n+\n+def test_ic01_conflicting_status_stops(repository: Path) -> None:\n+    change(repository, CURRENT, \"status\", \"CLOSED\")\n+    result = resolve_reentry(repository, \"HEAD\")\n+    assert result.route == \"STOP\" and result.stop_reason == \"CONFLICTING_WORK_STATUS\""
+    }
+  ],
+  "completion_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/completion.json",
+  "intake_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/result_intake.json",
+  "intake_commit": "56c445c5651510231fe0befdc7fd535ce1d06948",
+  "tests": [
+    {
+      "phase": "pre_fix_positive_and_three_groups",
+      "command": "python -m pytest tests/automation/test_reentry.py -k 'repository_answer_prevents or ic01_compatibility_groups' -q -p no:cacheprovider --tb=short",
+      "exit_code": 1,
+      "result": "1 passed positive; 3 expected KeyError failures; 86 deselected",
+      "seconds": 18.03
+    },
+    {
+      "phase": "initial_impacted",
+      "command": "python -m pytest tests/automation/test_reentry.py -k 'ic01 or rf02_execution_effect_counterexamples or repository_answer_prevents or consumed_authorization or exact_open_handoff or pointer_binding_mismatch' -q -p no:cacheprovider --tb=short",
+      "exit_code": 1,
+      "result": "13 passed, 8 fixture Git rm failures (autocrlf), 79 deselected",
+      "seconds": 48.44
+    },
+    {
+      "phase": "bounded_impacted_retry",
+      "command": "same impacted command after clone configuration correction",
+      "exit_code": 0,
+      "result": "21 passed, 79 deselected",
+      "seconds": 55.79
+    },
+    {
+      "phase": "complete_targeted",
+      "command": "python -m pytest tests/automation/test_reentry.py tests/automation/test_manifest.py -q -p no:cacheprovider --tb=short",
+      "exit_code": 0,
+      "result": "118 passed",
+      "seconds": 288.96
+    },
+    {
+      "phase": "full_regression",
+      "command": "python -m pytest -q -p no:cacheprovider --tb=short",
+      "environment": {
+        "POSTGRES17_TEST_DSN": "",
+        "POSTGRES18_TEST_DSN": ""
+      },
+      "exit_code": 0,
+      "result": "1631 passed, 8 skipped",
+      "seconds": 295.61
+    },
+    {
+      "phase": "diff_check",
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "review_goal": [
+    "IC01 compatibility delta semantics",
+    "preserve previous RF01/RF02 binding/effect/profile/dependency/provider guards",
+    "non-candidate states avoid candidate-only dereference",
+    "genuine READY requires deep validation",
+    "missing package/program binding deterministic STOP",
+    "self-contained positively non-vacuous stable fixture independent of mutable CURRENT",
+    "no authority/backfill/runtime expansion"
+  ],
+  "requirements": {
+    "non_candidate_states": [
+      "HUMAN_DECISION_REQUIRED",
+      "COMPLETED_PENDING_REVIEW",
+      "REVIEW_PENDING",
+      "STOP",
+      "BLOCKED",
+      "ACCEPTED",
+      "CLOSED"
+    ],
+    "non_candidate": "Parse canonical current state and return deterministic STOP/PENDING/status-only immutable snapshot with execution_allowed=false; no candidate-only auth.package_binding/program_binding dereference.",
+    "ready_candidate": "Only genuine READY_FOR_CODEX potential candidate loads required package/program/dependency exact bindings then applies all existing RF01/RF02 validations.",
+    "missing_candidate_binding": "DETERMINISTIC_STOP_NO_UNCAUGHT_KEYERROR",
+    "unknown_or_conflicting_state": "STOP_FAIL_CLOSED",
+    "status_only": "Report resolved current state safely; never grant execution",
+    "preserve": [
+      "RF01 identity/pointer/revision/state/effect/profile/dependency checks",
+      "read-only/status-only/canonical-CURRENT behavior",
+      "supplemental non-authority metadata compatibility",
+      "manifest behavior",
+      "no runtime/broker/DB/migration/LIVE/production side effects",
+      "WORK side_effects runtime/broker/db/migration/live/production must remain DENIED",
+      "CURRENT auto_imp_003_authorized=false must agree with WORK next_package package_id=AUTO-IMP-003 and authorization=NOT_AUTHORIZED",
+      "CURRENT and WORK quota_gate.provider_hard_block must both remain STOP"
+    ],
+    "authority_document_backfill": "DENIED"
+  },
+  "protected_scope": [
+    "automation/engine/manifest.py",
+    "tests/automation/test_manifest.py",
+    "automation/policies/**",
+    "automation/governance/**",
+    "automation/programs/**",
+    "automation/packages/**",
+    "runtime/broker/db/migration/live/production surfaces",
+    "consumed RF01/RF02 authorization documents"
+  ],
+  "rf02_review_reopened": false,
+  "verdict": null,
+  "verdict_binding_required": [
+    "work_order_id",
+    "baseline_assembly_sha",
+    "implementation_sha",
+    "evidence_sha",
+    "exact_scope"
+  ],
+  "allowed_verdicts": [
+    "PASS",
+    "REVIEW_FIX_REQUIRED",
+    "HUMAN_DECISION_REQUIRED"
+  ],
+  "execution_state": "QUEUED",
+  "acceptance_materialized": false,
+  "integration_to_master": "NOT_PERFORMED",
+  "created_at": "2026-10-05T15:54:39Z",
+  "updated_at": "2026-10-05T15:54:39Z"
+}
