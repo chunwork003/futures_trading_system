@@ -1,0 +1,41 @@
+{
+  "schema_version": "automation.pre_dispatch_recheck.v1",
+  "work_order_id": "WO-AUTO-IMP-002-RF02-01",
+  "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+  "authorization_id": "AUTH-AUTO-IMP-002-RF02-01",
+  "checked_at": "2026-10-05T12:58:58Z",
+  "observed_master_sha": "ab223a470c5353171bfa17162a5cd455fc426b6e",
+  "reserved_commit_sha": "ab223a470c5353171bfa17162a5cd455fc426b6e",
+  "source_candidate_sha": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
+  "status": "PASS",
+  "checks": {
+    "authority_reserved": "PASS",
+    "exact_lock_owner_held": "PASS",
+    "reservation_binding": "PASS",
+    "source_candidate_remote_head": "PASS",
+    "rf02_branch_absent": "PASS",
+    "scope_and_forecast": "PASS_BOUND_UNCHANGED",
+    "quota_amendment": "PASS_EXACT_RF02",
+    "provider_hard_block": "NONE_OBSERVED_RECHECK_AT_EXECUTOR_ENTRY",
+    "other_writer": "NONE_OBSERVED_FROM_CURRENT_AND_PRIOR_RELEASE"
+  },
+  "source_blob_bindings": [
+    {
+      "path": "automation/engine/manifest.py",
+      "git_blob_sha": "6262e33fcbd8999252b5ff8ffcc530571d8004ad"
+    },
+    {
+      "path": "automation/engine/reentry.py",
+      "git_blob_sha": "dc910d1838fafe6fa4ce5c8319a622a93cdd281c"
+    },
+    {
+      "path": "tests/automation/test_manifest.py",
+      "git_blob_sha": "0c3d063da3152535896b99bbf7b6a37b671b2b65"
+    },
+    {
+      "path": "tests/automation/test_reentry.py",
+      "git_blob_sha": "a70e67db44ae24bc56de26b5b7cbf6cf39b9bea6"
+    }
+  ],
+  "executor_invoked": false
+}
