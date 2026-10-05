@@ -7,6 +7,11 @@
 This is the single current authority projection。
 If any cached handoff、AGENTS history、CURRENT_WORK、ACTIVE or older closure conflicts：this section wins and authority must be re-resolved。
 
+### AUTO-IMP-002 Integration Verification — STOP
+
+RF02 semantic review PASS remains bound to implementation `33c8eea0d90d4cca5ecf5c902579a687ec096034` and evidence `f5fa626b8aa587fa8f43d6f70fa93842d574b356`.
+Exact four-file package candidate `63b7efd1448f87a0e1033911317d9618d60463ba` failed current-master targeted integration verification (83 failed, 22 passed). Source candidate was not published to master; acceptance/closure not materialized. Canonical blocker: `automation/work_orders/reconciliations/WO-AUTO-IMP-002-RF02-01.integration-verification.json`. No execution is authorized; AUTO-IMP-003 remains NOT_AUTHORIZED. Older readiness fields below are superseded by this STOP event and CURRENT_CODEX.
+
 ### CURRENT_AUTHORITY_SNAPSHOT
 
 ```text

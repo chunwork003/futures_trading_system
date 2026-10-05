@@ -1,0 +1,51 @@
+{
+  "schema_version": "automation.integration_verification.v1",
+  "status": "INTEGRATION_VERIFICATION_FAILED",
+  "master_baseline": "dfb76f95ad0197a417bf50f63e970b508ee12266",
+  "candidate_commit": "63b7efd1448f87a0e1033911317d9618d60463ba",
+  "candidate_published_to_master": false,
+  "decision": "APPROVED_EXACT_PACKAGE_PREREQUISITE_INTEGRATION",
+  "decision_source": "USER_EXPLICIT_INTEGRATION_BOUNDARY_DECISION",
+  "package_blobs": {
+    "automation/engine/manifest.py": "6262e33fcbd8999252b5ff8ffcc530571d8004ad",
+    "tests/automation/test_manifest.py": "0c3d063da3152535896b99bbf7b6a37b671b2b65",
+    "automation/engine/reentry.py": "1b1fed31262c5488b6963b86746233dcd44e9702",
+    "tests/automation/test_reentry.py": "25a6bdde130c96af9b8ae6bd94319a256007aba9"
+  },
+  "source_scope_verification": "PASS_EXACT_FOUR_FILES",
+  "git_diff_check": "PASS",
+  "targeted": {
+    "command": "python -m pytest tests/automation/test_manifest.py tests/automation/test_reentry.py -q -p no:cacheprovider --tb=short --basetemp=./.verification-tmp",
+    "exit_code": 1,
+    "passed": 22,
+    "failed": 83,
+    "seconds": 123.71
+  },
+  "environment_retry": {
+    "initial": "7 passed, 98 setup errors",
+    "cause": "WinError 5 default pytest temp",
+    "resolution": "isolated writable basetemp; no source changes"
+  },
+  "failures": [
+    {
+      "surface": "resolve_reentry",
+      "location": "automation/engine/reentry.py:226",
+      "error": "KeyError: package_binding",
+      "context": "current master authorization loaded through CURRENT lacks package_binding expected by reviewed resolver"
+    },
+    {
+      "surface": "test_reentry fixture",
+      "error": "FileNotFoundError original WO-AUTO-IMP-002-01.yaml / AUTH-AUTO-IMP-002-01.v1.yaml",
+      "context": "fixture copies current RF02 pointers but tests reference original package constants"
+    }
+  ],
+  "full_regression": "NOT_RUN_STOP_ON_TARGETED_INTEGRATION_FAILURE",
+  "semantic_review": "PASS_UNCHANGED_EXACT_BINDING",
+  "acceptance": "NOT_MATERIALIZED",
+  "closure": "NOT_MATERIALIZED",
+  "source_modified_after_failure": false,
+  "auto_imp_003_authorized": false,
+  "next_legal_route": "WORK_BOUNDED_CURRENT_MASTER_COMPATIBILITY_REPLAN_NO_EXECUTION",
+  "created_at": "2026-10-05T14:39:53Z",
+  "updated_at": "2026-10-05T14:39:53Z"
+}

@@ -1,7 +1,7 @@
-# RF02 integration blocked
+# STOP — INTEGRATION_VERIFICATION_FAILED
 
-Independent semantic review: PASS.
-Exact verdict: `automation/work_orders/reviews/WO-AUTO-IMP-002-RF02-01.verdict.json`
-Blocker: `automation/work_orders/reconciliations/WO-AUTO-IMP-002-RF02-01.integration-blocker.json`
+RF02 semantic PASS remains unchanged. Candidate was not published to master.
 
-No acceptance, merge, redispatch, RF03 or AUTO-IMP-003. Resolve prerequisite integration boundary before closure.
+Verification: `automation/work_orders/reconciliations/WO-AUTO-IMP-002-RF02-01.integration-verification.json`
+
+Next legal route: bounded current-master compatibility replanning only; no source edit, CODEX dispatch, RF03 or AUTO-IMP-003 authority.
