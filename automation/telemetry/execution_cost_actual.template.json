@@ -1,0 +1,33 @@
+{
+  "schema_version": "automation.execution_cost_actual.v1",
+  "status": "TEMPLATE_NOT_EVIDENCE",
+  "work_order_id": "<WORK_ORDER_ID>",
+  "execution_id": "<EXECUTION_ID>",
+  "forecast_path": "automation/work_orders/forecasts/<WORK_ORDER_ID>.json",
+  "actual": {
+    "reported_total_tokens": "PENDING_EXTERNAL_EXTRACTION",
+    "input_tokens": "PENDING_EXTERNAL_EXTRACTION",
+    "cached_input_tokens": "PENDING_EXTERNAL_EXTRACTION",
+    "uncached_input_tokens": "PENDING_EXTERNAL_EXTRACTION",
+    "cached_input_ratio": "PENDING_EXTERNAL_EXTRACTION",
+    "output_tokens": "PENDING_EXTERNAL_EXTRACTION",
+    "reasoning_output_tokens": "PENDING_EXTERNAL_EXTRACTION",
+    "five_hour_delta_pct": "RECORD_IF_AVAILABLE",
+    "weekly_delta_pct": "RECORD_IF_AVAILABLE",
+    "actor_seconds": "REQUIRED",
+    "targeted_seconds": "REQUIRED_IF_RUN",
+    "full_regression_seconds": "REQUIRED_IF_RUN",
+    "test_cycles": {
+      "pre_fix_cases": "REQUIRED_FOR_CORRECTION",
+      "complete_targeted_passes": "REQUIRED",
+      "full_regression_passes": "REQUIRED"
+    },
+    "unexpected_retries": [],
+    "tool_failures": []
+  },
+  "evidence_sources": {
+    "codex_completion_evidence": "<POINTER>",
+    "local_token_usage": "PENDING_EXTERNAL_EXTRACTION"
+  },
+  "note": "WORK materializes an exact actual artifact from CODEX completion evidence plus local token enrichment. This template is not execution authority."
+}
