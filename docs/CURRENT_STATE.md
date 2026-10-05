@@ -35,7 +35,7 @@ development_automation_current_authorization_revision = 1
 development_automation_current_authorization_state = CONSUMED
 development_automation_current_authorization_candidate = CONSUMED_EFFECTIVE
 development_automation_auto_imp_001_source_modification = BOUNDED_AUTHORIZED
-development_automation_execution_eligibility = PASS_CONSUMED_READY_FOR_MANUAL_TRIGGER
+development_automation_execution_eligibility = COMPLETED_PENDING_REVIEW
 development_automation_quota_rf_id = AUTO-IMP-001-QRF01
 development_automation_quota_rf_status = ACCEPTED_MATERIALIZED
 development_automation_quota_rf_re_review = PASS
@@ -52,13 +52,14 @@ development_automation_manifest_hash_integrity_review = PASS
 development_automation_auto_rf01 = CLOSED
 development_automation_auto_rf02 = CLOSED
 development_automation_auto_manifest_rf01 = CLOSED
-development_automation_implementation = DISPATCH_COMMITTED_NOT_STARTED
+development_automation_implementation = IMPLEMENTED_PENDING_REVIEW
 development_automation_execution_id = EXEC-AUTO-IMP-001-20261004T162707325206Z
+development_automation_writer_lock_status = RELEASED_AFTER_DURABLE_RESULT_INTAKE
 development_automation_level_3b = NOT_ENABLED
 development_automation_level_3c = NOT_ENABLED
 development_automation_level_4 = NOT_ENABLED
 development_automation_level_5 = NOT_ENABLED
-development_automation_next_route = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
+development_automation_next_route = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
 
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
@@ -106,7 +107,7 @@ migration_execution = NOT_AUTHORIZED
 live = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 next_mainline_gap = NOT_AUTHORIZED
-next = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
+next = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
 ```
 
 Pointers：
@@ -214,7 +215,7 @@ No next mainline GAP is authorized.
 
 Next governance checkpoint:
 
-`AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER`
+`AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW`
 
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS

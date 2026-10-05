@@ -1,0 +1,38 @@
+schema_version: automation.execution_telemetry.v1
+execution_id: EXEC-AUTO-IMP-001-20261004T162707325206Z
+work_package_id: AUTO-IMP-001
+executor_profile: CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
+p90_planning_tokens: 36000
+machine_readable_token_usage: NOT_AVAILABLE
+quota:
+  admission_snapshot:
+    five_hour_remaining_percent: 100
+    weekly_remaining_percent: 98
+    note: RESERVATION_TIME_ONLY_NOT_VALID_PRE_EXECUTION_CONSUMPTION_BASELINE
+  post_execution_snapshot:
+    captured_at: "2026-10-05T09:17:55.967063+08:00"
+    source: USER_CURRENT_HUMAN_TRANSCRIPTION
+    five_hour_remaining_percent: 83
+    five_hour_reset_display: "4h44m"
+    weekly_remaining_percent: 95
+    weekly_reset_display: "5d5h"
+  consumption_delta_status: NOT_COMPUTABLE_RESET_BETWEEN_RESERVATION_AND_EXECUTION
+  calibration_eligible: false
+  telemetry_quality: POST_EXECUTION_SNAPSHOT_ONLY_FOR_QUOTA_PERCENTAGE
+optimization_evidence:
+  reservation_to_dispatch_age_was_material: true
+  pre_trigger_quota_snapshot_missing: true
+  candidate_improvements:
+    - PRE_TRIGGER_PROVIDER_QUOTA_SNAPSHOT
+    - RESERVATION_TO_DISPATCH_MAX_AGE_OR_FRESH_RECHECK
+  fixed_80_percent_threshold_should_not_be_treated_as_long_term_calibration: true
+efficiency:
+  changed_files: 3
+  additions: 474
+  deletions: 0
+  targeted_tests_passed: 16
+  broader_tests_passed: 1505
+  broader_tests_skipped: 8
+  semantic_correction_cycles: 1
+  tooling_retries: 1
+  scope_violations: 0

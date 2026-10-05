@@ -15,18 +15,18 @@ compiled_program:
   implementation_authorized: false
   codex_execution_authorized: false
   program_review: PASS
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
 
 compiled_authorization_candidate:
   authorization_id: AUTH-AUTO-IMP-001-01
   authorization_revision: "1"
   path: automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml
-  sha256: "51aad5fef4d23ae0d1c2417c930e2ff282481b797103f9d8afe0950438c295d6"
+  sha256: "558baf9c5188e926890efc9af268150d86a3e4abd9eb09a45086d7fd1d7195e3"
   work_package_id: AUTO-IMP-001
   authorization_state: CONSUMED
   document_status: CONSUMED_EFFECTIVE
   planning_baseline_sha: "e96876de83da3282fb2a5a63b76b9d73c14937ad"
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
 
 superseded_authorization_candidates:
   - authorization_id: AUTH-AUTO-IMP-W1-01
@@ -50,8 +50,8 @@ quota_policy_compatibility_rf:
   previous_policy_path: automation/policies/quota_admission_policy.v1.yaml
   previous_policy_sha256: "744239e70e9e78170487956cd4554f05610cf29fe700e600f5046cad583ff4bd"
   auto_imp_001_authorization_state: CONSUMED
-  execution_eligibility: PASS_CONSUMED_READY_FOR_MANUAL_TRIGGER
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
+  execution_eligibility: COMPLETED_PENDING_REVIEW
+  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
 
 freeze:
   state: FROZEN
@@ -83,7 +83,7 @@ governance_document:
 agent_reentry:
   path: AGENTS.md
   protocol_version: "1.0"
-  sha256: "6ea712650b0480cc88dcdd80af5e1612ccf4cea50a41ce927fd91789c6793908"
+  sha256: "7ed5ccf4a7b559c2568149eb77a8a44357db10efa534a27edb619c10798b4d47"
 
 policies:
   authorization_lifecycle:
@@ -126,7 +126,7 @@ activation:
   auto_imp_001_execution_eligibility_resolved: true
   quota_qrf01_accepted_materialized: true
   quota_policy_v1_1_active: true
-  implementation_started: false
+  implementation_started: true
   level_3b_enabled: false
   level_3c_enabled: false
   level_4_autonomy_enabled: false

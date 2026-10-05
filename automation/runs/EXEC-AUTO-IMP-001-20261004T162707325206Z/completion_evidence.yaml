@@ -1,0 +1,31 @@
+schema_version: automation.package_completion_evidence.v1
+execution_id: EXEC-AUTO-IMP-001-20261004T162707325206Z
+work_package_id: AUTO-IMP-001
+consumed_baseline_sha: "d7fc33ed6f2e70369f043aa4a14e16b58a79bbd2"
+implementation_commit_sha: "21a5a66e03e9918d0a4ddd631707a29979b29949"
+commit_message: "feat(automation): implement AUTO-IMP-001 contracts loader"
+changed_files:
+  - automation/engine/contracts.py
+  - automation/engine/yaml_io.py
+  - tests/automation/test_contracts.py
+mechanical_gates:
+  head_origin_exact: PASS
+  exactly_one_implementation_commit: PASS
+  exact_write_scope: PASS
+  diff_check: PASS
+  final_worktree: PASS_EXCEPT_KNOWN_DATA
+tests:
+  targeted_reported_by_codex: "16 passed"
+  targeted_rerun_by_result_intake: "16 passed"
+  broader_reported_by_codex: "1505 passed, 8 skipped"
+  broader_rerun_by_result_intake: NOT_REPEATED
+  broader_rerun_reason: CODEX_ALREADY_RAN_FULL_REGRESSION_AND_RESULT_INTAKE_PRESERVES_EXECUTION_EVIDENCE
+execution_report:
+  semantic_correction_cycles: 1
+  tooling_retries: 1
+  scope_violations: NONE
+  machine_readable_token_usage: NOT_AVAILABLE
+acceptance:
+  status: IMPLEMENTED_PENDING_REVIEW
+  independent_semantic_review_required: true
+  auto_imp_002_started: false

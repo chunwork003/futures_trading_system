@@ -1,13 +1,13 @@
 schema_version: automation.handoff.v1
 handoff_id: HANDOFF-EXEC-AUTO-IMP-001-20261004T162707325206Z-RESERVED
 from_run: EXEC-AUTO-IMP-001-20261004T162707325206Z
-status: READY_FOR_MANUAL_EXECUTOR_TRIGGER
+status: COMPLETION_EVIDENCE_READY_FOR_REVIEW
 authorization_id: AUTH-AUTO-IMP-001-01
 authorization_state: CONSUMED
 execution_id: EXEC-AUTO-IMP-001-20261004T162707325206Z
-next_owner: Human_Manual_CODEX_Trigger
-next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
-exact_next_action: Manually invoke exactly one CODEX execution using the generated exact task packet. Do not redispatch this authorization.
+next_owner: Independent_Automation_Reviewer
+next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
+exact_next_action: Review AUTO-IMP-001 implementation commit and completion evidence. Do not authorize or start AUTO-IMP-002.
 must_not_start:
   - AUTO-IMP-002 or later
   - Runtime/Broker/Migration/LIVE/Production actions

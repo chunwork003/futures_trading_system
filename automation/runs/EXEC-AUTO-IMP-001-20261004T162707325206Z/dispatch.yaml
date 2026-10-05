@@ -8,9 +8,9 @@ authorization_state: CONSUMED
 dispatch_committed: true
 executor_profile: CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
 automatic_dispatch: DENIED
-executor_invoked: false
+executor_invoked: true
 writer_lock_required: true
-writer_lock_status: HELD
+writer_lock_status: RELEASED_AFTER_DURABLE_RESULT_INTAKE
 write_scope:
   - automation/engine/contracts.py
   - automation/engine/yaml_io.py
@@ -22,3 +22,5 @@ protected_side_effects:
   live: DENIED
   production: DENIED
 next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_MANUAL_CODEX_TRIGGER
+implementation_commit_sha: "21a5a66e03e9918d0a4ddd631707a29979b29949"
+result_intake_status: COMPLETED_PENDING_REVIEW
