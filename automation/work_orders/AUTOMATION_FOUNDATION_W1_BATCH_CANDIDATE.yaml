@@ -1,0 +1,64 @@
+schema_version: automation.foundation_batch_candidate.v0
+candidate_id: W1-FOUNDATION-BATCH-CANDIDATE-V0
+status: PLANNING_ONLY
+authority_effect: NONE
+requires_before_activation:
+  - AUTO-IMP-001_ACCEPTED_CLOSED
+  - fresh_package_authorizations
+
+goal: "Use one shared foundation context while preserving exact package boundaries and evidence."
+
+sequence:
+  - AUTO-IMP-002
+  - AUTO-IMP-003
+  - AUTO-IMP-004
+  - AUTO-IMP-005
+
+package_rules:
+  AUTO-IMP-002:
+    role: "manifest + re-entry foundation"
+    may_start_after: [AUTO-IMP-001_ACCEPTED]
+  AUTO-IMP-003:
+    role: "authorization + state transition foundation"
+    may_start_after: [AUTO-IMP-001_ACCEPTED]
+  AUTO-IMP-004:
+    role: "quota + forecast foundation"
+    may_start_after: [AUTO-IMP-001_ACCEPTED]
+  AUTO-IMP-005:
+    role: "negative assertion harness"
+    may_start_after: [AUTO-IMP-002_ACCEPTED, AUTO-IMP-003_ACCEPTED, AUTO-IMP-004_ACCEPTED]
+
+stability_mode:
+  strict_order: true
+  resume_before_new: true
+  quota_backfill: false
+  queue_reorder: false
+  parallel_execution: false
+  each_package_keeps_own_claim_commit_evidence: true
+  shared_context_allowed: true
+
+review:
+  package_acceptance_still_requires_required_review_barrier: true
+  no_mechanical_pass_implies_acceptance: true
+  no_next_package_authority_is_inferred: true
+
+context_efficiency:
+  shared_read_once:
+    - automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml
+    - automation/governance/master_manifest.v1.yaml
+    - automation/work_orders/AUTOMATION_BATCH_V2_PLANNING_BASELINE.yaml
+    - automation/work_orders/AUTOMATION_SHADOW_SKILLS_V0.yaml
+    - automation/work_orders/AUTOMATION_THIN_KERNEL_V0.yaml
+  package_delta_only: true
+  unchanged_blob_reread: AVOID
+
+quota:
+  fixed_80_percent_gate: false
+  work_forecast: REQUIRED_WHEN_DATA_AVAILABLE
+  codex_fresh_admission_before_each_package: REQUIRED
+  windows: [five_hour, weekly]
+  insufficient_next_package_action: PAUSE_PRESERVE_CURSOR
+
+activation:
+  current: BLOCKED_BY_AUTO_IMP_001_REVIEW
+  auto_imp_002_authorized: false
