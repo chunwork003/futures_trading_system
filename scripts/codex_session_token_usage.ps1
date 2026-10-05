@@ -287,19 +287,26 @@ if (-not $results) {
 }
 
 $resultArray = @($results)
-$strongMatches = if ($StrongMarker.Count -eq 0) {
-    @()
-} else {
-    @($resultArray | Where-Object { $_.strong_marker_all_matched -eq $true })
-}
 
-$attributionStatus = if ($StrongMarker.Count -gt 0 -and $strongMatches.Count -eq 1) {
+# Avoid PowerShell scalar unrolling: a single OrderedDictionary exposes its
+# property Count, which is not the number of matching sessions.
+$strongMatchList = New-Object System.Collections.Generic.List[object]
+if ($StrongMarker.Count -gt 0) {
+    foreach ($candidate in $resultArray) {
+        if ($candidate.strong_marker_all_matched -eq $true) {
+            $strongMatchList.Add($candidate)
+        }
+    }
+}
+$strongMatchCount = $strongMatchList.Count
+
+$attributionStatus = if ($StrongMarker.Count -gt 0 -and $strongMatchCount -eq 1) {
     "EXACT_SINGLE_STRONG_MARKER_MATCH"
 }
-elseif ($StrongMarker.Count -gt 0 -and $strongMatches.Count -gt 1) {
+elseif ($StrongMarker.Count -gt 0 -and $strongMatchCount -gt 1) {
     "AMBIGUOUS_MULTIPLE_STRONG_MARKER_MATCHES"
 }
-elseif ($StrongMarker.Count -gt 0 -and $strongMatches.Count -eq 0) {
+elseif ($StrongMarker.Count -gt 0 -and $strongMatchCount -eq 0) {
     "NO_STRONG_MARKER_MATCH"
 }
 elseif ($resultArray.Count -eq 1) {
@@ -316,8 +323,8 @@ else {
     candidate_window_hours = $CandidateWindowHours
     candidate_count = $resultArray.Count
     strong_markers = @($StrongMarker)
-    strong_match_count = $strongMatches.Count
+    strong_match_count = $strongMatchCount
     attribution_status = $attributionStatus
-    exact_candidate_session_id = if ($strongMatches.Count -eq 1) { $strongMatches[0].session_id } else { $null }
+    exact_candidate_session_id = if ($strongMatchCount -eq 1) { $strongMatchList[0].session_id } else { $null }
     candidates = $resultArray
 } | ConvertTo-Json -Depth 20
