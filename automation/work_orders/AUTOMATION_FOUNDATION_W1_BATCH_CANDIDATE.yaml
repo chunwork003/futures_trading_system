@@ -60,5 +60,5 @@ quota:
   insufficient_next_package_action: PAUSE_PRESERVE_CURSOR
 
 activation:
-  current: BLOCKED_BY_AUTO_IMP_001_REVIEW
-  auto_imp_002_authorized: false
+  live_state_source: automation/work_orders/CURRENT_CODEX.yaml
+  rule: "This planning candidate does not duplicate current package authorization or execution state."
