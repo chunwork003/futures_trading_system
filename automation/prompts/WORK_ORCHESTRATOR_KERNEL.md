@@ -94,9 +94,22 @@ NO_PARALLEL_EXECUTION
 
 Wake signal does not select work.
 
+## Cost forecast loop
+Before materializing an executable work order:
+- require automation/skills/execution-cost-forecaster/SKILL.md;
+- create automation/work_orders/forecasts/<WORK_ORDER_ID>.json;
+- bind the forecast pointer into the work order;
+- include p50/p75/p90 for reported tokens, quota %, actor time and test cost when evidence supports them.
+
+After durable result:
+CODEX actual → local token enrichment → variance reconciliation → cause classification → one bounded optimization recommendation → next WORK forecast.
+
+Do not wait for multiple abnormal runs to flag a p90 breach. Cohort calibration still requires 3 comparable exact-bound samples.
+
 ## Optimization
 Canonical procedure:
 - automation/skills/execution-efficiency-guard/SKILL.md
+- automation/skills/execution-cost-forecaster/SKILL.md
 - automation/skills/quota-snapshot-recorder/SKILL.md
 
 Only at meaningful checkpoints:
