@@ -92,7 +92,7 @@
     "consumed_required_before_source_edit": true,
     "branch_claim_alone_is_sufficient": false
   },
-  "status": "COMPLETED_PENDING_REVIEW",
+  "status": "HUMAN_DECISION_REQUIRED",
   "handoff_ready": false,
   "execution_eligibility": "COMPLETED_NOT_REEXECUTABLE",
   "eligibility_path": "automation/work_orders/AUTO-IMP-002-RF02.eligibility.json",
@@ -150,10 +150,10 @@
     "provider hard block",
     "additional unplanned expensive test cycle without bounded WORK reason"
   ],
-  "next_route": "INDEPENDENT_RF02_SEMANTIC_REVIEW",
-  "current_action": "WAIT_FOR_BOUND_INDEPENDENT_REVIEW_VERDICT",
+  "next_route": "HUMAN_INTEGRATION_BOUNDARY_DECISION",
+  "current_action": "RESOLVE_PACKAGE_PREREQUISITE_INTEGRATION_SCOPE",
   "created_at": "2026-10-05T12:50:15Z",
-  "updated_at": "2026-10-05T13:46:46Z",
+  "updated_at": "2026-10-05T14:29:27Z",
   "quota_amendment": {
     "amendment_id": "AMEND-AUTO-IMP-002-RF02-QUOTA-01",
     "path": "automation/work_orders/AMEND-AUTO-IMP-002-RF02-QUOTA-01.yaml",
@@ -164,9 +164,11 @@
   "dispatch_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/dispatch.yaml",
   "handoff_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/handoff.yaml",
   "consumed_commit_sha": "50184f062ad3eb6522ff7717cfe9915a8152bbc9",
-  "review_status": "REVIEW_PENDING",
+  "review_status": "REVIEW_PASS",
   "review_packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-RF02-01.review.yaml",
   "result_intake_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/result_intake.json",
   "implementation_commit_sha": "33c8eea0d90d4cca5ecf5c902579a687ec096034",
-  "evidence_commit_sha": "f5fa626b8aa587fa8f43d6f70fa93842d574b356"
+  "evidence_commit_sha": "f5fa626b8aa587fa8f43d6f70fa93842d574b356",
+  "verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-RF02-01.verdict.json",
+  "integration_blocker_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-RF02-01.integration-blocker.json"
 }
