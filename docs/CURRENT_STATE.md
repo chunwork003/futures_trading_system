@@ -72,11 +72,15 @@ development_automation_auto_imp_002_rf01_handoff = automation/runs/EXEC-AUTO-IMP
 development_automation_auto_imp_002_rf01_implementation_sha = 523e5a3b62af78991995765eaa555edb40b79e43
 development_automation_auto_imp_002_rf01_evidence_sha = 0c64a9f509ba27c1bc1bad139681951e2f8c2775
 development_automation_auto_imp_002_rf01_result = COMPLETED_PENDING_REVIEW
-development_automation_auto_imp_002_rf01_review = REVIEW_PENDING
+development_automation_auto_imp_002_rf01_review = REVIEW_FIX_REQUIRED
 development_automation_auto_imp_002_rf01_correction_budget_remaining = 0
 development_automation_auto_imp_002_rf01_writer_lock = RELEASED_AFTER_DURABLE_RESULT_INTAKE
 development_automation_auto_imp_002_rf01_efficiency = EXPLAINED_HIGH_COST_PROVISIONAL
 development_automation_auto_imp_002_rf01_efficiency_checkpoint = automation/work_orders/optimizations/OPT-AUTO-IMP-002-RF01-01.yaml
+development_automation_auto_imp_002_rf01_re_review_finding = AUTO-IMP-002-RF01-REVIEW-EFFECT-01
+development_automation_auto_imp_002_rf02_prep = PREPARED_NOT_AUTHORIZED
+development_automation_auto_imp_002_rf02_prep_path = automation/work_orders/AUTO-IMP-002-RF02.authorization-prep.json
+development_automation_auto_imp_002_rf02_source_correction_authorized = false
 development_automation_auto_imp_002_minimum_review_fix_scope = automation/engine/reentry.py;tests/automation/test_reentry.py
 development_automation_single_use_lifecycle_guard = REQUIRED_FOR_ALL_FUTURE_BOUNDED_CODEX_EXECUTIONS
 development_automation_effective_lifecycle = ADOPTED_REVIEW_CANDIDATE_NO_REDISPATCH
@@ -87,7 +91,7 @@ development_automation_current_authorization_revision = 1
 development_automation_current_authorization_state = AUTHORIZED
 development_automation_current_authorization_candidate = AUTHORIZED_EFFECTIVE
 development_automation_auto_imp_001_source_modification = BOUNDED_AUTHORIZED
-development_automation_execution_eligibility = AUTO_IMP_002_RF01_RESULT_EXISTS_REVIEW_PENDING
+development_automation_execution_eligibility = AUTO_IMP_002_RF01_REVIEW_FIX_REQUIRED
 development_automation_quota_rf_id = AUTO-IMP-001-QRF01
 development_automation_quota_rf_status = ACCEPTED_MATERIALIZED
 development_automation_quota_rf_re_review = PASS
@@ -111,7 +115,7 @@ development_automation_level_3b = NOT_ENABLED
 development_automation_level_3c = NOT_ENABLED
 development_automation_level_4 = NOT_ENABLED
 development_automation_level_5 = NOT_ENABLED
-development_automation_next_route = AUTO_IMP_002_RF01_INDEPENDENT_RE_REVIEW
+development_automation_next_route = AUTO_IMP_002_RF02_HUMAN_DECISION
 
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
@@ -159,7 +163,7 @@ migration_execution = NOT_AUTHORIZED
 live = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 next_mainline_gap = NOT_AUTHORIZED
-next = AUTO_IMP_002_RF01_INDEPENDENT_RE_REVIEW
+next = AUTO_IMP_002_RF02_HUMAN_DECISION
 ```
 
 Pointers：
