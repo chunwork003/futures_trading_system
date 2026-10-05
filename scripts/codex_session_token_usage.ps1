@@ -14,7 +14,9 @@ param(
 
     [int]$EndSlackSeconds = 120,
 
-    [int]$CandidateWindowHours = 2
+    [int]$CandidateWindowHours = 2,
+
+    [string[]]$StrongMarker = @()
 )
 
 $ErrorActionPreference = "Stop"
@@ -178,9 +180,19 @@ $results = foreach ($file in $candidates) {
     $tokenEvents = 0
     $firstTokenTimestamp = $null
     $lastTokenTimestamp = $null
+    $markerCounts = [ordered]@{}
+    foreach ($marker in $StrongMarker) {
+        $markerCounts[$marker] = 0
+    }
 
     try {
         foreach ($line in Get-SharedTextLines -Path $file.FullName) {
+            foreach ($marker in $StrongMarker) {
+                if ($line.Contains($marker)) {
+                    $markerCounts[$marker] = [int]$markerCounts[$marker] + 1
+                }
+            }
+
             if (-not $line.Contains('"token_count"')) { continue }
 
             try {
@@ -259,7 +271,13 @@ $results = foreach ($file in $candidates) {
         baseline = if ($before) { $before } else { [ordered]@{ timestamp = $null; usage = $zero } }
         final = $final
         execution_token_delta = Subtract-Usage $final.usage $baselineUsage
-        attribution = "EXACT_LOCAL_SESSION_IDENTITY_PLUS_EXECUTION_TIME_WINDOW"
+        strong_marker_hits = $markerCounts
+        strong_marker_all_matched = if ($StrongMarker.Count -eq 0) {
+            $null
+        } else {
+            @($StrongMarker | Where-Object { [int]$markerCounts[$_] -gt 0 }).Count -eq $StrongMarker.Count
+        }
+        attribution = "LOCAL_SESSION_IDENTITY_PLUS_EXECUTION_TIME_WINDOW"
         note = "Metadata only. Raw transcript content is never emitted."
     }
 }
@@ -269,6 +287,27 @@ if (-not $results) {
 }
 
 $resultArray = @($results)
+$strongMatches = if ($StrongMarker.Count -eq 0) {
+    @()
+} else {
+    @($resultArray | Where-Object { $_.strong_marker_all_matched -eq $true })
+}
+
+$attributionStatus = if ($StrongMarker.Count -gt 0 -and $strongMatches.Count -eq 1) {
+    "EXACT_SINGLE_STRONG_MARKER_MATCH"
+}
+elseif ($StrongMarker.Count -gt 0 -and $strongMatches.Count -gt 1) {
+    "AMBIGUOUS_MULTIPLE_STRONG_MARKER_MATCHES"
+}
+elseif ($StrongMarker.Count -gt 0 -and $strongMatches.Count -eq 0) {
+    "NO_STRONG_MARKER_MATCH"
+}
+elseif ($resultArray.Count -eq 1) {
+    "EXACT_SINGLE_MATCH"
+}
+else {
+    "AMBIGUOUS_MULTIPLE_MATCHES_REVIEW_REQUIRED"
+}
 
 [ordered]@{
     schema_version = "automation.local_codex_token_usage.v1"
@@ -276,6 +315,9 @@ $resultArray = @($results)
     codex_home = $CodexHome
     candidate_window_hours = $CandidateWindowHours
     candidate_count = $resultArray.Count
-    attribution_status = if ($resultArray.Count -eq 1) { "EXACT_SINGLE_MATCH" } else { "AMBIGUOUS_MULTIPLE_MATCHES_REVIEW_REQUIRED" }
+    strong_markers = @($StrongMarker)
+    strong_match_count = $strongMatches.Count
+    attribution_status = $attributionStatus
+    exact_candidate_session_id = if ($strongMatches.Count -eq 1) { $strongMatches[0].session_id } else { $null }
     candidates = $resultArray
 } | ConvertTo-Json -Depth 20
