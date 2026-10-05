@@ -1,10 +1,11 @@
-> **REVIEW BLOCKED — GOVERNANCE RECONCILIATION REQUIRED**
+> **GOVERNANCE RECONCILIATION RESOLVED — REVIEW ACTIVE**
 >
-> Do not issue semantic PASS/REVIEW_FIX_REQUIRED yet. The implementation is inspectable, but execution provenance does not prove the frozen AuthorizationLifecycleV1 reservation → RESERVED → dispatch committed → CONSUMED sequence before executor start.
+> HUMAN_GOVERNANCE_OWNER explicitly adopted the immutable implementation/evidence SHAs as a semantic review candidate only.
+> The original execution lifecycle remains recorded as NONCONFORMING and is not retroactively rewritten as conforming.
+> No rerun, source modification, merge authority, acceptance, or AUTO-IMP-003 authority was granted.
 >
+> Adoption: `automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.adoption.json`
 > Reconciliation: `automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.lifecycle.json`
->
-> A HUMAN_GOVERNANCE_OWNER decision is required before this packet becomes an active independent-review request.
 
 # Independent review request — WO-AUTO-IMP-002-01
 
