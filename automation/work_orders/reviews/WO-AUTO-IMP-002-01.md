@@ -1,3 +1,11 @@
+> **REVIEW BLOCKED — GOVERNANCE RECONCILIATION REQUIRED**
+>
+> Do not issue semantic PASS/REVIEW_FIX_REQUIRED yet. The implementation is inspectable, but execution provenance does not prove the frozen AuthorizationLifecycleV1 reservation → RESERVED → dispatch committed → CONSUMED sequence before executor start.
+>
+> Reconciliation: `automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.lifecycle.json`
+>
+> A HUMAN_GOVERNANCE_OWNER decision is required before this packet becomes an active independent-review request.
+
 # Independent review request — WO-AUTO-IMP-002-01
 
 AUTO-IMP-002 implements exact Git-blob manifest integrity verification and a read-only unified re-entry snapshot resolver. Mechanical intake passed; semantic acceptance remains independent-review-only.
