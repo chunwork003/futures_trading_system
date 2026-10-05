@@ -10,7 +10,7 @@
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-01.yaml",
   "status": "AUTHORIZED_PENDING_EXECUTION_ELIGIBILITY",
   "handoff_ready": false,
-  "execution_eligibility": "FRESH_QUOTA_RESOLUTION_REQUIRED",
+  "execution_eligibility": "QUOTA_AMENDMENT_MATERIALIZED_OTHER_GATES_FRESH_REVALIDATION_REQUIRED",
   "exact_write_scope": [
     "automation/engine/manifest.py",
     "automation/engine/reentry.py",
@@ -29,8 +29,14 @@
     "fixed_80_percent_rule": "INAPPLICABLE_BY_FROZEN_POLICY",
     "no_comparable_provider_native_forecast_action": "STOP_AND_ROUTE_QUOTA_DECISION"
   },
-  "current_action": "RESOLVE_AUTO_IMP_002_EXECUTION_ELIGIBILITY",
+  "current_action": "FRESH_REVALIDATE_AUTO_IMP_002_AFTER_QUOTA_AMENDMENT",
   "auto_imp_003_authorized": false,
   "runtime_authorization": "NOT_AUTHORIZED",
-  "broker_db_migration_live_production": "NOT_AUTHORIZED"
+  "broker_db_migration_live_production": "NOT_AUTHORIZED",
+  "quota_amendment": {
+    "amendment_id": "AMEND-AUTO-IMP-002-QUOTA-01",
+    "path": "automation/work_orders/AMEND-AUTO-IMP-002-QUOTA-01.yaml",
+    "status": "AUTHORIZED_EFFECTIVE",
+    "effect": "EXACT_QUOTA_ADMISSION_ONLY"
+  }
 }
