@@ -1,0 +1,131 @@
+{
+  "schema_version": "automation.authorization.v1",
+  "authorization_id": "AUTH-AUTO-IMP-002-IC01-01",
+  "authorization_revision": "1",
+  "document_status": "AUTHORIZED_EFFECTIVE",
+  "authorization_state": "AUTHORIZED",
+  "source_candidate_head_sha": "940e2d9a67c99b6ae3aad0a942a63d8d86500772",
+  "created_at": "2026-10-05T15:00:35Z",
+  "updated_at": "2026-10-05T15:00:35Z",
+  "decision_evidence": {
+    "decision": "AUTO-IMP-002-IC01 = APPROVED_FOR_BOUNDED_IMPLEMENTATION",
+    "authority": "HUMAN_GOVERNANCE_OWNER",
+    "source": "USER_EXPLICIT_ATTACHED_GOVERNANCE_DECISION",
+    "preparation_path": "automation/work_orders/AUTO-IMP-002-IC01.authorization-prep.json",
+    "preparation_blob_sha": "b375310eeec2954ee4952dfd9240826049dd266a",
+    "effect": "EXACT_TWO_FILE_IC01_CORRECTION_PLUS_EXPLICIT_BRANCH_BASELINE_ASSEMBLY",
+    "quota_waiver_granted": false
+  },
+  "exact_binding": {
+    "work_package_id": "AUTO-IMP-002",
+    "work_package_revision": "1",
+    "correction_id": "AUTO-IMP-002-IC01",
+    "correction_class": "CURRENT_MASTER_INTEGRATION_COMPATIBILITY",
+    "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+    "planning_baseline_sha": "940e2d9a67c99b6ae3aad0a942a63d8d86500772",
+    "allowed_executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+    "implementation_correction_budget": 1,
+    "review_barrier": "REQUIRED_BEFORE_ACCEPTANCE",
+    "side_effect_class": "AUTOMATION_TOOLING_SOURCE_MODIFICATION_ONLY"
+  },
+  "exact_write_scope": [
+    "automation/engine/reentry.py",
+    "tests/automation/test_reentry.py"
+  ],
+  "protected_unchanged": [
+    "automation/engine/manifest.py",
+    "tests/automation/test_manifest.py",
+    "automation/policies/**",
+    "automation/governance/**",
+    "automation/programs/**",
+    "automation/packages/**",
+    "runtime/broker/db/migration/live/production surfaces",
+    "consumed RF01/RF02 authorization documents"
+  ],
+  "exact_goal": "Separate non-candidate state/status resolution from READY deep binding validation; stabilize candidate tests independently of mutable CURRENT while preserving all RF01/RF02 fail-closed checks.",
+  "baseline_assembly": {
+    "fresh_master_control_plane_required": true,
+    "source_reference_sha": "33c8eea0d90d4cca5ecf5c902579a687ec096034",
+    "exact_blobs": {
+      "automation/engine/manifest.py": "6262e33fcbd8999252b5ff8ffcc530571d8004ad",
+      "tests/automation/test_manifest.py": "0c3d063da3152535896b99bbf7b6a37b671b2b65",
+      "automation/engine/reentry.py": "1b1fed31262c5488b6963b86746233dcd44e9702",
+      "tests/automation/test_reentry.py": "25a6bdde130c96af9b8ae6bd94319a256007aba9"
+    },
+    "old_control_plane_copy": "DENIED",
+    "assembly_is_new_semantic_correction": false
+  },
+  "correction_budget": {
+    "limit": 1,
+    "used": 0,
+    "remaining": 1,
+    "semantics": "one bounded impacted-test correction cycle in this execution only",
+    "exhaustion": "STOP_TO_WORK_NO_NEW_EXECUTION_OR_RF03"
+  },
+  "routing_contract": {
+    "non_candidate_states": [
+      "HUMAN_DECISION_REQUIRED",
+      "COMPLETED_PENDING_REVIEW",
+      "REVIEW_PENDING",
+      "STOP",
+      "BLOCKED",
+      "ACCEPTED",
+      "CLOSED"
+    ],
+    "non_candidate": "Parse canonical current state and return deterministic STOP/PENDING/status-only immutable snapshot with execution_allowed=false; no candidate-only auth.package_binding/program_binding dereference.",
+    "ready_candidate": "Only genuine READY_FOR_CODEX potential candidate loads required package/program/dependency exact bindings then applies all existing RF01/RF02 validations.",
+    "missing_candidate_binding": "DETERMINISTIC_STOP_NO_UNCAUGHT_KEYERROR",
+    "unknown_or_conflicting_state": "STOP_FAIL_CLOSED",
+    "status_only": "Report resolved current state safely; never grant execution",
+    "preserve": [
+      "RF01 identity/pointer/revision/state/effect/profile/dependency checks",
+      "read-only/status-only/canonical-CURRENT behavior",
+      "supplemental non-authority metadata compatibility",
+      "manifest behavior",
+      "no runtime/broker/DB/migration/LIVE/production side effects",
+      "WORK side_effects runtime/broker/db/migration/live/production must remain DENIED",
+      "CURRENT auto_imp_003_authorized=false must agree with WORK next_package package_id=AUTO-IMP-003 and authorization=NOT_AUTHORIZED",
+      "CURRENT and WORK quota_gate.provider_hard_block must both remain STOP"
+    ],
+    "authority_document_backfill": "DENIED"
+  },
+  "stable_fixture_strategy": {
+    "candidate": "Self-contained temporary Git repository built from explicit test-owned READY candidate documents, with fixed identity/pointers/versions, exact package/dependency blobs and valid manifest hash evidence. Test fixtures remain inside test_reentry.py.",
+    "reference_source": "Exact previously valid candidate evidence; materialize minimal deterministic fixture fields rather than recursively copying mutable HEAD/CURRENT.",
+    "non_vacuity": "First prove fixture routes to CODEX_EXECUTION_CANDIDATE with execution_allowed=false before each negative matrix family.",
+    "negative_tests": "Retain original RF01 cross-artifact matrix and all 11 RF02 effect variants; assert relevant STOP/error reasons where stable.",
+    "current_master_cases": "Separate exact post-execution current fixture and integration tests; never relabel current consumed authority as READY."
+  },
+  "execution_policy": {
+    "manual_trigger_only": true,
+    "automatic_dispatch": "DENIED",
+    "automatic_next_package_progression": "DENIED",
+    "single_use_lifecycle_guard_required": true
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED"
+  },
+  "quota_gate": {
+    "policy": "QuotaAdmissionPolicyV1_1",
+    "status": "IC01_QUOTA_ADMISSION_UNRESOLVED",
+    "provider_hard_block": "STOP",
+    "prior_amendment_reuse": "DENIED",
+    "percentage_to_token_conversion": "DENIED"
+  },
+  "single_use_execution": {
+    "execution_id": null,
+    "reservation_path": null,
+    "dispatch_committed": false,
+    "executor_invoked": false
+  },
+  "forecast_path": "automation/work_orders/forecasts/AUTO-IMP-002-IC01.planning.json",
+  "decision": {
+    "status": "AUTHORIZED_NOT_EXECUTABLE_QUOTA_BLOCKED",
+    "next_route": "IC01_QUOTA_ADMISSION_DECISION"
+  }
+}

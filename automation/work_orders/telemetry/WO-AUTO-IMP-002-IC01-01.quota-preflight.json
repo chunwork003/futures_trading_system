@@ -1,0 +1,65 @@
+{
+  "schema_version": "automation.quota_evidence.v1",
+  "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "captured_at": "2026-10-05T15:00:35Z",
+  "source": "CODEX_USAGE_STATUS_MACHINE_READABLE",
+  "raw_provider_evidence": {
+    "ordinaryUsageAllowed": true,
+    "rateLimits": {
+      "limitId": "codex",
+      "limitName": null,
+      "normalModelSlug": null,
+      "primary": {
+        "usedPercent": 37,
+        "windowDurationMins": 300,
+        "resetsAt": 1791222428
+      },
+      "secondary": {
+        "usedPercent": 27,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "credits": {
+        "hasCredits": false,
+        "unlimited": false,
+        "balance": "0"
+      },
+      "individualLimit": null,
+      "spendControlReached": false,
+      "planType": "plus",
+      "rateLimitReachedType": null
+    },
+    "rateLimitsByLimitId": {
+      "codex": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 37,
+          "windowDurationMins": 300,
+          "resetsAt": 1791222428
+        },
+        "secondary": {
+          "usedPercent": 27,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    }
+  },
+  "interpretation": {
+    "five_hour_remaining_pct": 63,
+    "weekly_remaining_pct": 73,
+    "provider_hard_block": false,
+    "admission": "BLOCKED_INCOMPATIBLE_FORECAST_NO_WAIVER"
+  }
+}

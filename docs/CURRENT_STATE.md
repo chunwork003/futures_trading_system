@@ -12,6 +12,13 @@ If any cached handoff、AGENTS history、CURRENT_WORK、ACTIVE or older closure 
 RF02 semantic review PASS remains bound to implementation `33c8eea0d90d4cca5ecf5c902579a687ec096034` and evidence `f5fa626b8aa587fa8f43d6f70fa93842d574b356`.
 Exact four-file package candidate `63b7efd1448f87a0e1033911317d9618d60463ba` failed current-master targeted integration verification (83 failed, 22 passed). Source candidate was not published to master; acceptance/closure not materialized. Canonical blocker: `automation/work_orders/reconciliations/WO-AUTO-IMP-002-RF02-01.integration-verification.json`. No execution is authorized; AUTO-IMP-003 remains NOT_AUTHORIZED. Older readiness fields below are superseded by this STOP event and CURRENT_CODEX.
 
+### IC01 Bounded Implementation Authorization — QUOTA BLOCKED
+
+IC01 human decision APPROVED_FOR_BOUNDED_IMPLEMENTATION is materialized in `automation/authorizations/AUTH-AUTO-IMP-002-IC01-01.v1.yaml`.
+Current work: `WO-AUTO-IMP-002-IC01-01`; status BLOCKED; handoff_ready=false. Exact source correction scope remains reentry.py/test_reentry.py, budget 1 remaining.
+Only admission blocker: IC01_QUOTA_ADMISSION_UNRESOLVED; provider is not hard-blocked, but compatible provider-native forecast or exact IC01 quota amendment is absent. Frozen normalized fallback does not cover P90 2.5M.
+No reservation, dispatch, consumption or executor invocation occurred. RF02 PASS and integration failure evidence remain valid. AUTO-IMP-003 NOT_AUTHORIZED. Historical readiness fields below do not grant execution.
+
 ### CURRENT_AUTHORITY_SNAPSHOT
 
 ```text
