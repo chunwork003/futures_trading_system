@@ -1,49 +1,30 @@
-# AUTO-IMP-002 — READY_FOR_CODEX
+# AUTO-IMP-002 — GOVERNANCE RECONCILIATION REQUIRED
 
-Work order: WO-AUTO-IMP-002-01  
-Authorization: AUTH-AUTO-IMP-002-01  
-Quota amendment: AMEND-AUTO-IMP-002-QUOTA-01  
-Eligibility: automation/work_orders/AUTO-IMP-002.eligibility.json  
-Branch: auto/WO-AUTO-IMP-002-01
+Implementation/evidence exists on `auto/WO-AUTO-IMP-002-01`, but no further Codex execution is authorized.
 
-Exact source scope:
-- automation/engine/manifest.py
-- automation/engine/reentry.py
-- tests/automation/test_manifest.py
-- tests/automation/test_reentry.py
+Exact result:
+- execution: EXEC-AUTO-IMP-002-20261005T083857515Z
+- claim: b8dcc8017fadfacae571c0e134cc424992ea953d
+- implementation: 7d3e51802fb6d016bdd4f7d57908e01460535806
+- evidence: eccbe997fe4f9f2a9da06026d75df11af9c3a937
+- targeted: 29 passed
+- full: 1542 passed, 8 skipped
+- exact source scope: PASS
 
-Goal:
-Implement Git-blob manifest integrity verification and read-only unified re-entry snapshot resolution.
+Current blocker:
+The frozen AuthorizationLifecycleV1 requires durable reservation → RESERVED → dispatch committed → CONSUMED before executor invocation. This run has a durable claim commit but does not materialize the canonical reservation/state/dispatch sequence.
 
-Quota:
-- exact package-specific pilot waiver is active
-- fixed 80% fallback does not apply
-- no invented replacement threshold
-- record actor start/end time plus raw 5H/weekly before/after snapshots when available
-- provider hard block still STOP
-- telemetry unavailable alone does not block this exact pilot
+Reconciliation:
+automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.lifecycle.json
 
-Before claim:
-- fresh fetch origin/master
-- re-read authorization, amendment, CURRENT_CODEX, work order and eligibility
-- verify no existing execution branch/evidence or conflicting writer
-- verify only bounded control-plane drift since authorization
-- revalidate all non-quota gates
-- create one non-force durable claim only after gates PASS
+Do not:
+- rerun AUTO-IMP-002
+- create a second execution
+- semantic-review/accept/merge yet
+- start AUTO-IMP-003
 
-Required verification:
-- Git blob hash verification
-- CRLF counterexample
-- status-only no execution
-- repository answer prevents re-ask
-- targeted tests
-- full regression
-- git diff --check
-- exact four-file scope
+Next owner:
+HUMAN_GOVERNANCE_OWNER
 
-Finish:
-- per-work-order completion evidence
-- raw quota telemetry/timestamps if available
-- COMPLETED_PENDING_REVIEW
-- STOP
-- AUTO-IMP-003 remains NOT_AUTHORIZED
+Next action:
+Choose explicit provenance resolution, then re-enter through canonical CURRENT state.
