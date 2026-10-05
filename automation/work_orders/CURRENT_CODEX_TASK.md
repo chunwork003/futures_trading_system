@@ -75,13 +75,13 @@ Executor metadata may additionally write only:
    Any other drift => STOP.
 6. Record current `origin/master` as `execution_start_sha`.
 7. Confirm remote branch does NOT already exist:
-   - `codex/auto-imp-001-dupkey-rf01`
+   - `auto/WO-AUTO-IMP-001-CORR-01`
    Use ordinary git commands such as `git ls-remote --heads origin ...`; do not require gh CLI or private GitHub REST API.
 8. Create local branch from `execution_start_sha`.
 9. Before any source edit, create one unique empty claim commit, for example:
    `git commit --allow-empty -m "chore(automation): claim WO-AUTO-IMP-001-CORR-01 <unique-id>"`
 10. Push that claim commit to:
-    `origin codex/auto-imp-001-dupkey-rf01`
+    `origin auto/WO-AUTO-IMP-001-CORR-01`
     without force.
 11. If branch already exists or the claim push is rejected:
     STOP. Treat the work order as already claimed.
@@ -130,11 +130,12 @@ After tests pass:
 
 1. Commit the implementation once.
 2. Push the same remote branch.
-3. Do NOT create a PR from Codex.
-4. Do NOT merge.
-5. Work will create/update the PR and perform result intake/review.
+3. Create a PR to master if the executor environment provides a working PR creation path.
+4. If PR creation is unavailable, continue without blocking: keep the pushed branch and completion evidence; Work will create the PR on the next cycle.
+5. Do NOT merge.
+6. Work performs result intake/review.
 
-Codex must not depend on `gh` CLI or private-repository REST API.
+PR creation is non-blocking for this pilot. Missing PR tooling must not block coding, tests, commit, branch push, or completion evidence.
 
 ## Machine-readable completion evidence
 
