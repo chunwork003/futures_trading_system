@@ -1,150 +1,53 @@
 schema_version: automation.supervisor_work_order_state.v1
-current_state_owner: current_fresh_correction
-historical_sections: original execution verification, original reviewer, original correction_budget, latest_correction_execution
-historical_sections_are_dispatch_authority: false
+current_state_owner: auto_imp_001_closure
 authority_role: OBSERVATION_AND_ROUTING_ONLY
 authoritative_branch: master
-observed_master_head: d09ce94692c27bf844c3d0ce245710941ddf1294
-observed_at: "2026-10-05T10:47:02+08:00"
+
 work_package_id: AUTO-IMP-001
 work_package_revision: "1"
-authorization_id: AUTH-AUTO-IMP-001-01
-execution_id: EXEC-AUTO-IMP-001-20261004T162707325206Z
-cycle_status: READY_FOR_CODEX
-canonical_execution_status: COMPLETED_PENDING_REVIEW
+cycle_status: CLOSED_ACCEPTED
+canonical_execution_status: COMPLETED
+accepted: true
+human_decision_required: false
+new_package_authorized: false
+
 state_axes:
   authorization: CONSUMED
   execution: RESULT_READY
-  review: FIX_REQUIRED
-human_decision_required: false
-new_package_authorized: false
-automatic_executor_dispatch_authorized: true
-accepted: false
-sources:
-  canonical_current_state: docs/CURRENT_STATE.md
-  manifest: automation/governance/master_manifest.v1.yaml
-  exact_work_order: automation/packages/AUTO-IMP-001.yaml
-  authorization: automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml
-  run_directory: automation/runs/EXEC-AUTO-IMP-001-20261004T162707325206Z
-verification:
-  package_sha256: d005d7f4090375966b5d0c1284339cd89b6622d6c3415b2f4bf1b7e7d3027606
-  package_hash_binding: PASS
-  dispatch_reservation_authorization_package_identity: PASS
-  consumed_baseline_sha: d7fc33ed6f2e70369f043aa4a14e16b58a79bbd2
-  implementation_commit_sha: 21a5a66e03e9918d0a4ddd631707a29979b29949
-  implementation_parent_equals_consumed_baseline: PASS
-  implementation_commit_count: 1
-  exact_diff_scope: PASS
-  changed_files:
-    - automation/engine/contracts.py
-    - automation/engine/yaml_io.py
-    - tests/automation/test_contracts.py
-  git_diff_check: PASS
-  result_completion_implementation_binding: PASS
-  active_quota_policy_blob_hash: PASS
-  writer_lock: RELEASED_AFTER_DURABLE_RESULT_INTAKE
-tests:
-  targeted_executor_report: "16 passed"
-  targeted_result_intake_rerun_report: "16 passed"
-  full_regression_executor_report: "1505 passed, 8 skipped"
-  supervisor_rerun: NOT_PERFORMED
-  evidence_level: DURABLE_COMPLETION_REPORTS
-  github_commit_statuses: NONE_RETURNED
-reviewer:
-  completion_review: REVIEW_FIX_REQUIRED
-  verdict_source: USER_SUPPLIED_AUTHORITATIVE_REVIEWER_VERDICT_CURRENT_REQUEST
-  review_packet_present: true
-  packet_is_reviewer_acceptance: false
-  required_owner: Independent_Automation_Reviewer
-  review_focus:
-    - Nested FrozenSection required-field coverage
-    - Duplicate YAML mapping key fail-closed behavior
-repository_inventory:
-  branches: [main, master]
-  open_pull_requests: []
-  auto_imp_001_pull_requests: []
-  existing_work_order_state_files: []
-findings:
-  - id: AUTO-IMP-001-SUPERVISOR-QHASH-01
-    classification: BOUNDED_EVIDENCE_CORRECTION
-    path: automation/runs/EXEC-AUTO-IMP-001-20261004T162707325206Z/quota_evidence.json
-    declared_sha256: e5849dbfd913e58cbe22928c1071112e098159198225b5421a19409762815492
-    git_blob_sha256: fb3c8d01e5cd41594f145d07149b5fe27267828ca5a6589285d36ef348296aaa
-    reproduced_crlf_sha256: e5849dbfd913e58cbe22928c1071112e098159198225b5421a19409762815492
-    cause: DECLARED_HASH_MATCHES_CRLF_BYTES_NOT_COMMITTED_LF_BLOB_BYTES
-    canonical_hash_rule: GIT_BLOB_BYTES_NO_LINE_ENDING_NORMALIZATION
-    content_difference: LINE_ENDINGS_ONLY
-    affected_references:
-      - automation/runs/EXEC-AUTO-IMP-001-20261004T162707325206Z/reservation.yaml
-      - automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml
-    historical_dispatch_revalidation: NOT_ASSERTED
-correction_budget:
-  implementation_limit: 2
-  reported_semantic_cycles_used: 1
-  reported_implementation_cycles_remaining: 1
-  supervisor_implementation_cycles_used: 0
-planner_handoff:
-  next_owner: Work_Planner
-  exact_next_action: Publish same-package bounded duplicate-key correction handoff; preserve unresolved historical hash finding without changing original authorization.
-  scope: EXISTING_AUTO_IMP_001_ONLY
-  correction_class: BOUNDED_IMPLEMENTATION_CORRECTION
-  fresh_master_rehydration_required: true
-  prior_authorization_reusable_for_dispatch: false
-  supervisor_is_not_independent_reviewer: true
-  acceptance_requires_reviewer_evidence: true
-  canonical_next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
-  do_not_start:
-    - AUTO-IMP-002 or later
-    - Implementation outside the exact two-file duplicate-key correction
-    - Broker or DB migration or LIVE or production or credential actions
+  review: ACCEPTED
 
-current_codex_work_order_id: WO-AUTO-IMP-001-CORR-02
-current_codex_status: READY_FOR_CODEX
-current_codex_task_packet: automation/work_orders/CURRENT_CODEX_TASK.md
-review_result_intake:
-  source: USER_SUPPLIED_AUTHORITATIVE_REVIEWER_VERDICT_CURRENT_REQUEST
-  verdict: REVIEW_FIX_REQUIRED
-  observed_master_head: a0ca84d4744e7fde78d3215f24ba5e89914f6784
-  recorded_at: "2026-10-05T10:52:12+08:00"
-  correction_scope: [automation/engine/yaml_io.py, tests/automation/test_contracts.py]
-  contracts_py_modification: DENIED
-  original_authorization_replay: DENIED
-  known_hash_finding: PRESERVED_UNRESOLVED
-
-latest_correction_execution:
-  work_order_id: WO-AUTO-IMP-001-CORR-01
-  status: COMPLETED_PENDING_REVIEW
-  review_status: HUMAN_DECISION_REQUIRED
-  semantic_review: REVIEW_FIX_REQUIRED
-  correction_budget_remaining: 0
-  handoff_ready: false
-  updated_at: "2026-10-05T04:15:25Z"
-  result_intake_path: automation/work_orders/intakes/WO-AUTO-IMP-001-CORR-01.json
-  verdict_path: automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-01.verdict.json
-  control_plane_status: HUMAN_DECISION_REQUIRED
-  blocker: INDEPENDENT_REVIEW_FINDINGS_CORRECTION_BUDGET_EXHAUSTED
-
-current_fresh_correction:
+accepted_review:
   work_order_id: WO-AUTO-IMP-001-CORR-02
-  correction_id: AUTO-IMP-001-YAML-COMPAT-RF02
-  authorization_id: AUTH-AUTO-IMP-001-CORR-02-01
-  authorization_path: automation/work_orders/AUTH-AUTO-IMP-001-CORR-02-01.yaml
-  authorization_state: AUTHORIZED
-  control_plane_baseline_sha: db82001369017f42acd1887320f6350fa34634f1
-  status: READY_FOR_CODEX
-  handoff_ready: true
-  correction_budget_remaining: 1
-  execution_eligibility: QUOTA_ADMISSION_WAIVED_OTHER_GATES_FRESH_REVALIDATION_REQUIRED
-  created_at: "2026-10-05T04:21:50Z"
-  updated_at: "2026-10-05T05:05:48Z"
-  previous_work_order: WO-AUTO-IMP-001-CORR-01
-  previous_human_blocker_disposition: EXACT_NEW_HUMAN_AUTHORIZATION_MATERIALIZED
-  prior_order_redispatch: DENIED
-  prior_pilot_reuse: DENIED
-  automatic_next_package_progression: DENIED
-  quota_amendment_path: automation/work_orders/AMEND-AUTO-IMP-001-CORR-02-QUOTA-01.yaml
-  quota_admission: WAIVED_FOR_BOUNDED_AUTOMATION_PILOT
-  previous_quota_stop_reusable: false
-  fresh_non_quota_gates_required: true
-  correction_budget_added: 0
-  semantic_cycles_consumed: 0
+  verdict: PASS
+  verdict_path: automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-02.verdict.json
+  implementation_commit_sha: 7eab27c13b7987a0ba451d5d59210241aa77fb73
+  evidence_commit_sha: 735678afa9606ccd219a00e1c2f02471442231f7
+
+closure:
+  status: ACCEPTED_MATERIALIZED
+  path: automation/work_orders/AUTO-IMP-001.closure.yaml
+  accepted_source_materialized_to_master: true
+  correction_budget_remaining: 0
+
+current_codex:
+  status: NO_AUTHORIZED_WORK
+  handoff_ready: false
+
+next_package:
+  package_id: AUTO-IMP-002
+  status: PLANNED_NOT_AUTHORIZED
+  authorization: NOT_AUTHORIZED
+  route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_002_AUTHORIZATION_PREPARATION
+
+constraints:
+  runtime_authorization: NOT_AUTHORIZED
+  broker_io: NOT_AUTHORIZED
+  db_environment_access: NOT_AUTHORIZED
+  migration_execution: NOT_AUTHORIZED
+  live: NOT_AUTHORIZED
+  production: NOT_AUTHORIZED
+
+historical_evidence:
+  original_run_directory: automation/runs/EXEC-AUTO-IMP-001-20261004T162707325206Z
+  rf01_verdict: automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-01.verdict.json
+  rf02_intake: automation/work_orders/intakes/WO-AUTO-IMP-001-CORR-02.json
