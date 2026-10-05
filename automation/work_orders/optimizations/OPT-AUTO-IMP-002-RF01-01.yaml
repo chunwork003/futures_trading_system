@@ -83,7 +83,7 @@ token_cost_strategy:
     actor_start_utc: "2026-10-05T09:53:43Z"
     actor_end_utc: "2026-10-05T10:17:22Z"
     work_order_id: WO-AUTO-IMP-002-RF01-01
-    status: PENDING_OPERATOR_EXTRACTION
+    status: AMBIGUOUS_PENDING_STRONG_MARKER_DISAMBIGUATION
   fallback: PERCENTAGE_WINDOW_ANOMALY_ESTIMATE
   percentage_is_not_literal_tokens: true
   primary_signal: five_hour_delta_percent
@@ -102,3 +102,27 @@ next_action:
   source_refactor_now: false
   reason: DO_NOT_CHANGE_RF01_REVIEW_CANDIDATE_SHA_BEFORE_REVIEW
   future_refactor_candidate: EXTRACT_PURE_CROSS_ARTIFACT_BINDING_VALIDATOR_AND_KEEP_SMALL_GIT_INTEGRATION_SET
+
+
+local_token_telemetry_observation:
+  observed_at_utc: "2026-10-05T11:23:08.0975084Z"
+  extraction_status: AMBIGUOUS_MULTIPLE_MATCHES_REVIEW_REQUIRED
+  candidate_count: 2
+  candidate_1:
+    session_id: 01a10b28-9dde-74e1-9b69-0b5af56b31f6
+    total_tokens_delta: 8943945
+    input_tokens_delta: 8919672
+    cached_input_tokens_delta: 8855040
+    uncached_input_tokens_delta: 64632
+    output_tokens_delta: 24273
+    reasoning_output_tokens_delta: 9585
+  candidate_2:
+    session_id: 01a10b37-52f7-7e01-8114-33f4bc1513a0
+    total_tokens_delta: 703449
+    input_tokens_delta: 702398
+    cached_input_tokens_delta: 641536
+    uncached_input_tokens_delta: 60862
+    output_tokens_delta: 1051
+    reasoning_output_tokens_delta: 318
+  exact_attribution: PENDING_STRONG_MARKER_DISAMBIGUATION
+  note: DO_NOT_SUM_CANDIDATES_OR_TREAT_EITHER_AS_EXACT_UNTIL_DISAMBIGUATED
