@@ -52,9 +52,9 @@
   },
   "correction_budget_remaining": 0,
   "execution_branch": "auto/WO-AUTO-IMP-002-01",
-  "status": "AUTHORIZED_PENDING_EXECUTION_ELIGIBILITY",
-  "handoff_ready": false,
-  "next_route": "AUTO_IMP_002_FRESH_REVALIDATION",
+  "status": "READY_FOR_CODEX",
+  "handoff_ready": true,
+  "next_route": "AUTO_IMP_002_MANUAL_CODEX_TRIGGER",
   "next_package": {
     "package_id": "AUTO-IMP-003",
     "authorization": "NOT_AUTHORIZED"
@@ -75,5 +75,6 @@
     "provider_hard_limits_waived": false,
     "frozen_policy_modified": false
   },
-  "execution_eligibility": "QUOTA_AMENDMENT_MATERIALIZED_OTHER_GATES_FRESH_REVALIDATION_REQUIRED"
+  "execution_eligibility": "ELIGIBLE_FOR_MANUAL_TRIGGER_WITH_PROVIDER_HARD_BLOCK_GUARD",
+  "eligibility_path": "automation/work_orders/AUTO-IMP-002.eligibility.json"
 }
