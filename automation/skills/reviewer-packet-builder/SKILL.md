@@ -24,3 +24,16 @@ Rules:
 
 Output:
 review packet + routing metadata for a fresh-context Independent Reviewer.
+
+
+For resolver/control-plane work, include an explicit negative cross-binding matrix:
+- pointer identity mismatch
+- document identity/revision mismatch
+- authorization state mismatch
+- quota amendment identity/path/status/effect mismatch
+- eligibility identity/path/status mismatch
+- dependency identity/state mismatch
+- executor-profile mismatch
+- package identity/revision/scope mismatch
+
+Reviewer packets must ask whether each contradiction fails closed rather than merely whether happy-path routing works.
