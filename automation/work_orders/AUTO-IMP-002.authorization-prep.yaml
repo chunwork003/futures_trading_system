@@ -1,7 +1,7 @@
 schema_version: automation.authorization_preparation.v1
 package_id: AUTO-IMP-002
 package_revision: "1"
-status: PREPARED_NOT_AUTHORIZED
+status: AUTHORIZED_MATERIALIZED
 prepared_from_master_sha: "9495b5cc7bbf69b4159290656f01b5b9858b7d8b"
 
 dependency_gate:
@@ -47,11 +47,16 @@ quota:
   fixed_80_percent_rule: NOT_TARGET_MODEL
 
 authority:
-  source_modification: NOT_AUTHORIZED
-  codex_execution: NOT_AUTHORIZED
+  source_modification: AUTHORIZED_EXACT_SCOPE
+  codex_execution: AUTHORIZED_PENDING_EXECUTION_ELIGIBILITY
   runtime_operation: NOT_AUTHORIZED
   broker_db_migration_live_production: NOT_AUTHORIZED
   decision_required_from: HUMAN_GOVERNANCE_OWNER
 
 review_barrier: REQUIRED_BEFORE_ACCEPTANCE
-next_route: AUTO_IMP_002_AUTHORIZATION_DECISION
+next_route: AUTO_IMP_002_EXECUTION_ELIGIBILITY
+
+materialized_authorization:
+  id: AUTH-AUTO-IMP-002-01
+  path: automation/authorizations/AUTH-AUTO-IMP-002-01.v1.yaml
+  work_order: automation/work_orders/WO-AUTO-IMP-002-01.yaml
