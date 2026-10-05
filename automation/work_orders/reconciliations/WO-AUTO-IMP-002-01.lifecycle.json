@@ -1,0 +1,57 @@
+{
+  "schema_version": "automation.execution_reconciliation.v1",
+  "reconciliation_id": "RECON-AUTO-IMP-002-01-LIFECYCLE",
+  "work_order_id": "WO-AUTO-IMP-002-01",
+  "package_id": "AUTO-IMP-002",
+  "execution_id": "EXEC-AUTO-IMP-002-20261005T083857515Z",
+  "status": "HUMAN_DECISION_REQUIRED",
+  "finding_id": "AUTO-IMP-002-LC-01",
+  "severity": "GOVERNANCE_PROTOCOL_NONCONFORMANCE",
+  "evidence": {
+    "execution_start_sha": "a078289281dcf81e751d44af1ae1ddbf43dcfabe",
+    "claim_commit_sha": "b8dcc8017fadfacae571c0e134cc424992ea953d",
+    "implementation_commit_sha": "7d3e51802fb6d016bdd4f7d57908e01460535806",
+    "evidence_commit_sha": "eccbe997fe4f9f2a9da06026d75df11af9c3a937"
+  },
+  "observed": {
+    "durable_claim_commit": true,
+    "isolated_execution_branch": true,
+    "exact_four_file_scope": true,
+    "tests_passed": true,
+    "runtime_side_effects_observed": false,
+    "durable_reservation_artifact": false,
+    "authorization_state_reserved_materialized": false,
+    "dispatch_committed_materialized": false,
+    "authorization_state_consumed_before_executor": false
+  },
+  "governing_policy": {
+    "path": "automation/policies/authorization_lifecycle.v1.yaml",
+    "required_order": [
+      "FRESH_AUTHORITY_RESOLUTION",
+      "FRESH_ELIGIBILITY_EVALUATION",
+      "ACQUIRE_GLOBAL_RUNTIME_WRITER_LOCK",
+      "ALLOCATE_EXECUTION_ID",
+      "DURABLY_CREATE_EXECUTION_RESERVATION",
+      "STATE_TO_RESERVED",
+      "RECHECK_LOCK_HEAD_AND_BINDING",
+      "MARK_DISPATCH_COMMITTED",
+      "STATE_TO_CONSUMED",
+      "INVOKE_EXECUTOR"
+    ],
+    "invariant": "EXECUTOR_MUST_NOT_START_BEFORE_DURABLE_SINGLE_USE_BINDING"
+  },
+  "conclusion": "The implementation result is mechanically inspectable but the execution provenance does not prove conformance to the frozen single-use lifecycle. It must not be accepted or merged until governance resolves provenance.",
+  "candidate_resolutions": [
+    {
+      "id": "ADOPT_EXISTING_IMPLEMENTATION_AS_REVIEW_CANDIDATE",
+      "description": "Explicit one-time governance adoption/rebind of the existing implementation/evidence SHAs as a reviewable candidate, while recording the original execution lifecycle as nonconforming. No rerun and no source mutation."
+    },
+    {
+      "id": "REJECT_AND_REEXECUTE_WITH_CANONICAL_LIFECYCLE",
+      "description": "Reject this execution provenance and create a new explicitly authorized execution that materializes reservation, RESERVED, dispatch committed and CONSUMED before executor start."
+    }
+  ],
+  "automatic_resolution": false,
+  "auto_imp_003_authorized": false,
+  "merge_authorized": false
+}
