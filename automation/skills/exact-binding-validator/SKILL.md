@@ -20,6 +20,13 @@ Validate:
 - review barrier
 - existing branch
 - existing completion evidence
+- lifecycle reservation / RESERVED / dispatch committed / CONSUMED proof when trigger is BEFORE_DISPATCH or BEFORE_EXECUTOR_START
+
+Lifecycle rule:
+- validate against automation/policies/authorization_lifecycle.v1.yaml
+- branch/claim evidence alone is insufficient
+- missing or ambiguous lifecycle proof => FAIL_CLOSED / RECONCILIATION_REQUIRED
+- validator never fabricates or retroactively repairs lifecycle events
 
 Output:
 PASS or FAIL_CLOSED
