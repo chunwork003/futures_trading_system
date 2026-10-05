@@ -1,0 +1,79 @@
+{
+  "schema_version": "automation.bounded_execution_quota_amendment.v1",
+  "amendment_id": "AMEND-AUTO-IMP-002-QUOTA-01",
+  "amendment_revision": "1",
+  "status": "AUTHORIZED_EFFECTIVE",
+  "authority": "HUMAN_GOVERNANCE_OWNER",
+  "decision_source": "USER_EXPLICIT_CURRENT_REQUEST",
+  "decision": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
+  "purpose": "Allow exact AUTO-IMP-002 package execution without inventing a fixed percentage threshold; collect raw 5H/weekly telemetry for later calibration while preserving provider hard limits.",
+  "exact_binding": {
+    "work_order_id": "WO-AUTO-IMP-002-01",
+    "package_id": "AUTO-IMP-002",
+    "package_revision": "1",
+    "executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+    "base_authorization_id": "AUTH-AUTO-IMP-002-01",
+    "base_authorization_revision": "1",
+    "base_authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-01.v1.yaml",
+    "observed_remote_master_sha": "b1e8c0d2fb29c1bef8b9ec37266d1a710331362e",
+    "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-01.yaml"
+  },
+  "quota": {
+    "admission_gate": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
+    "normalized_chatgpt_fallback_80_percent": "INAPPLICABLE_BY_FROZEN_POLICY",
+    "minimum_remaining_percentage_required": false,
+    "fresh_human_usage_confirmation_required": false,
+    "five_hour_snapshot": "RECORD_BEFORE_AND_AFTER_IF_AVAILABLE",
+    "weekly_snapshot": "RECORD_BEFORE_AND_AFTER_IF_AVAILABLE",
+    "timestamps": "RECORD_START_AND_END_IF_AVAILABLE",
+    "machine_readable_quota_telemetry": "RECORD_IF_AVAILABLE_ELSE_NOT_AVAILABLE",
+    "machine_readable_token_telemetry": "RECORD_IF_AVAILABLE_ELSE_NOT_AVAILABLE",
+    "telemetry_unavailability_blocks_admission": false,
+    "raw_snapshots_must_be_preserved": true,
+    "delayed_settlement_reconciliation": "DEFER_TO_WORK_OPTIMIZATION",
+    "frozen_policy_path": "automation/policies/quota_admission_policy.v1_1.yaml",
+    "frozen_policy_modified": false,
+    "provider_enforced_limits_waived": false
+  },
+  "effect": {
+    "quota_admission_blocker_only": true,
+    "other_execution_gates": "FRESH_REVALIDATION_REQUIRED",
+    "effective_scope": "THIS_EXACT_WORK_ORDER_ONLY",
+    "authorization_replay": false,
+    "extra_work_order_created": false,
+    "automatic_threshold_mutation": false
+  },
+  "lifetime": {
+    "effective_for": "NEXT_FRESH_ELIGIBILITY_ATTEMPT_AND_SINGLE_USE_CLAIM_OF_THIS_ORDER",
+    "ends_on": [
+      "successful single-use claim and bounded execution completion",
+      "work order superseded or revoked"
+    ],
+    "other_work_order_reuse": "DENIED"
+  },
+  "negative_assertions": {
+    "implementation_scope_expansion": false,
+    "side_effect_expansion": false,
+    "architecture_change": false,
+    "broker": false,
+    "db_environment": false,
+    "migration": false,
+    "live": false,
+    "production": false,
+    "credentials": false,
+    "automatic_merge": false,
+    "auto_imp_003_authorized": false
+  },
+  "executor_reentry": [
+    "Fetch origin/master again; read exact amendment, base authorization, CURRENT_CODEX and exact work order",
+    "Require exact amendment/work-order/package/executor binding before applying quota waiver",
+    "Freshly verify execution branch/evidence absence or resumable ownership, writer exclusivity, baseline ancestry, exact scope and authority single-use state",
+    "Resolve all non-quota gates freshly; provider-enforced hard failure still stops execution",
+    "Record actor start/end time and raw 5H/weekly snapshots when available; telemetry unavailability alone does not block this exact pilot",
+    "Claim without force only after all non-waived gates PASS"
+  ],
+  "next_package": {
+    "package_id": "AUTO-IMP-003",
+    "authorization": "NOT_AUTHORIZED"
+  }
+}
