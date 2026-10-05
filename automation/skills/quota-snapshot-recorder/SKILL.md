@@ -21,8 +21,11 @@ Record when available:
 
 1. Provider-native per-task token/cost telemetry, if exposed and exactly bound to this execution.
 2. Local Codex session/thread telemetry, only when the session can be unambiguously bound to this execution.
-   - Typical Codex local session data may exist under the user's Codex session directory.
-   - Never scrape/attribute an unrelated session merely because timestamps overlap.
+   - Canonical helper: scripts/codex_session_token_usage.ps1
+   - Typical session data lives under CODEX_HOME/sessions or ~/.codex/sessions and archived_sessions.
+   - Bind by execution/work-order identity plus the actor start/end time window.
+   - Read token_count metadata only; never print raw transcript/tool outputs into an active Codex conversation.
+   - Never attribute an unrelated session merely because timestamps overlap.
 3. If exact token cost is unavailable, record TOKEN_COST_NOT_AVAILABLE and use percentage-window deltas only as an anomaly estimate.
 
 Do not fabricate a token count from percentage limits.
@@ -58,3 +61,14 @@ Use automation/skills/execution-efficiency-guard/SKILL.md for relative anomaly c
 - never convert percentage consumption into literal tokens
 - percentage estimates are for relative anomaly detection only
 - this Skill records evidence; it never changes admission policy
+
+
+## Local Codex safety guard
+
+Do NOT ask the active Codex agent to cat/sed/rg its raw rollout JSONL history. Raw self-session ingestion can itself inflate context/token usage.
+
+Preferred flow:
+- operator or external control-plane PowerShell runs scripts/codex_session_token_usage.ps1;
+- helper scans metadata only and emits a small JSON summary;
+- WORK may materialize that summary as telemetry evidence;
+- raw rollout files remain local/untracked and must never be committed.
