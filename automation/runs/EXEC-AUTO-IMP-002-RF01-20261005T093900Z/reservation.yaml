@@ -6,7 +6,7 @@ correction_id: AUTO-IMP-002-RF01
 work_order_id: WO-AUTO-IMP-002-RF01-01
 authorization_id: AUTH-AUTO-IMP-002-RF01-01
 authorization_revision: "1"
-state: CREATED_PENDING_RESERVED_TRANSITION
+state: RESERVED
 eligibility_path: automation/work_orders/AUTO-IMP-002-RF01.eligibility.json
 eligibility_commit_sha: f39a6be5e0f958504ff7125c6541bf9deb8a6c3b
 quota_amendment_path: automation/work_orders/AMEND-AUTO-IMP-002-RF01-QUOTA-01.yaml
@@ -33,4 +33,5 @@ side_effects:
   migration: DENIED
   live: DENIED
   production: DENIED
-next_route: AUTO_IMP_002_RF01_STATE_TO_RESERVED
+reserved_commit_sha: 43fbab650d25c79a95edf2e0299adb12397ca28f
+next_route: AUTO_IMP_002_RF01_RECHECK_AND_DISPATCH_COMMIT
