@@ -1,0 +1,49 @@
+schema_version: automation.prompt_kernel_plan.v0
+plan_id: AUTOMATION-THIN-KERNEL-V0
+status: PLANNING_ONLY
+authority_effect: NONE
+
+work_kernel_keep:
+  - role_and_authority_boundary
+  - remote_rehydrate_entry
+  - decided_not_materialized_discovery
+  - batch_compile_and_append
+  - review_or_optimization_checkpoint_rules
+  - stop_conditions
+
+codex_kernel_keep:
+  - executor_only_role
+  - remote_first
+  - resume_before_new
+  - strict_queue_order
+  - fresh_quota_gate_for_next_work
+  - exact_scope_and_evidence
+  - drain_until_blocked
+  - stop_conditions
+
+move_out_of_prompt:
+  - repeated_git_checks
+  - exact_binding_procedure
+  - queue_resolution_procedure
+  - resume_resolution_procedure
+  - quota_snapshot_format
+  - reviewer_packet_format
+  - repeated_context_explanation
+
+context_rules:
+  - use_pointer_before_copy
+  - use_delta_before_full_reload
+  - key_reusable_context_by_repo_path_and_git_blob_sha
+  - do_not_reread_unchanged_blob_without_reason
+  - batch_shared_context_once_then_per_work_order_delta
+
+optimization_loop:
+  - OBSERVE
+  - CLASSIFY
+  - GENERALIZE
+  - MATERIALIZE
+  - VERIFY
+
+promotion_rule:
+  repeated_cost_only: true
+  one_off_exception_does_not_expand_framework: true
