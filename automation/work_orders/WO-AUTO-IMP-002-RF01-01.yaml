@@ -65,13 +65,23 @@
   "handoff_ready": false,
   "correction_budget_remaining": 1,
   "quota_gate": {
-    "status": "FRESH_RESOLUTION_REQUIRED",
-    "prior_waiver_reuse": "DENIED",
-    "provider_hard_block": "STOP"
+    "status": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
+    "five_hour": "TELEMETRY_ONLY_FOR_THIS_EXACT_RF01",
+    "weekly": "TELEMETRY_ONLY_FOR_THIS_EXACT_RF01",
+    "minimum_remaining_percentage_required": false,
+    "provider_hard_block": "STOP",
+    "other_execution_gates": "FRESH_REVALIDATION_REQUIRED"
   },
   "next_package": {
     "package_id": "AUTO-IMP-003",
     "authorization": "NOT_AUTHORIZED"
   },
-  "next_route": "AUTO_IMP_002_RF01_EXECUTION_ELIGIBILITY"
+  "next_route": "AUTO_IMP_002_RF01_FRESH_REVALIDATION",
+  "quota_amendment": {
+    "amendment_id": "AMEND-AUTO-IMP-002-RF01-QUOTA-01",
+    "path": "automation/work_orders/AMEND-AUTO-IMP-002-RF01-QUOTA-01.yaml",
+    "status": "AUTHORIZED_EFFECTIVE",
+    "effect": "EXACT_QUOTA_ADMISSION_ONLY"
+  },
+  "execution_eligibility": "QUOTA_AMENDMENT_MATERIALIZED_OTHER_GATES_FRESH_REVALIDATION_REQUIRED"
 }
