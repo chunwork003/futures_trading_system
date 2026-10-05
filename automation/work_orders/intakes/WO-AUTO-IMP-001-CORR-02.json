@@ -34,10 +34,12 @@
     "branch_push": "REMOTE_VERIFIED",
     "semantic_cycles_used": 1,
     "correction_budget_remaining": 0,
-    "next_package": "AUTO-IMP-002_NOT_STARTED_NOT_AUTHORIZED"
+    "next_package": "AUTO-IMP-002_NOT_STARTED_NOT_AUTHORIZED",
+    "accepted_source_materialized_to_master": true,
+    "auto_imp_002_authorized": false
   },
-  "semantic_review": "PENDING",
-  "accepted": false,
+  "semantic_review": "PASS",
+  "accepted": true,
   "quota_telemetry": {
     "five_hour_before_percent": 25,
     "five_hour_after_percent": 16,
@@ -47,5 +49,10 @@
     "calibration_eligible": false,
     "rule_source": "automation/work_orders/AUTOMATION_BATCH_V2_PLANNING_BASELINE.yaml"
   },
-  "token_usage": "NOT_AVAILABLE"
+  "token_usage": "NOT_AVAILABLE",
+  "verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-02.verdict.json",
+  "package_closure_path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+  "control_plane_status": "ACCEPTED_MATERIALIZED",
+  "next_route": "AUTOMATION_IMPLEMENTATION_AUTO_IMP_002_AUTHORIZATION_PREPARATION",
+  "updated_at": "2026-10-05T15:11:00+08:00"
 }
