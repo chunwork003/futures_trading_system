@@ -1,0 +1,13 @@
+schema_version: automation.writer_lock.v1
+execution_id: EXEC-AUTO-IMP-002-RF01-20261005T093900Z
+work_order_id: WO-AUTO-IMP-002-RF01-01
+authorization_id: AUTH-AUTO-IMP-002-RF01-01
+state: HELD
+scope: AUTOMATION_BOUNDED_SINGLE_WRITER
+acquired_after_eligibility_commit: f39a6be5e0f958504ff7125c6541bf9deb8a6c3b
+quota_evidence_commit: 0f2c144502af5b4e70a4741847b2908be0c17110
+competing_writer_observed: false
+release_condition:
+  - DURABLE_RESULT_INTAKE
+  - EXPLICIT_RECONCILIATION
+  - PRE_EXECUTION_ABORT_WITH_GOVERNANCE_RECORD
