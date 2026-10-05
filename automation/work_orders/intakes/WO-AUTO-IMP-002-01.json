@@ -44,7 +44,7 @@
     "next_package": "AUTO-IMP-003_NOT_AUTHORIZED",
     "lifecycle_reconciliation": "REQUIRED"
   },
-  "semantic_review": "PENDING",
+  "semantic_review": "REVIEW_FIX_REQUIRED",
   "accepted": false,
   "quota_telemetry": {
     "source": "mcp__codex_app__get_usage_limits",
@@ -59,10 +59,17 @@
     "calibration_eligible": false
   },
   "review_packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-01.md",
-  "next_route": "AUTO_IMP_002_INDEPENDENT_REVIEW",
+  "next_route": "AUTO_IMP_002_HUMAN_DECISION_FOR_BOUNDED_RF01",
   "reconciliation_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.lifecycle.json",
   "adoption_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.adoption.json",
   "reconciliation_status": "RESOLVED_BY_HUMAN_GOVERNANCE_ADOPTION",
   "execution_lifecycle_conformance": "NONCONFORMING_RECORDED_NOT_REWRITTEN",
-  "review_candidate": true
+  "review_candidate": true,
+  "verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-01.verdict.json",
+  "review_finding_ids": [
+    "AUTO-IMP-002-REVIEW-BINDING-01"
+  ],
+  "correction_budget_remaining": 0,
+  "source_correction_authorized": false,
+  "human_decision_required": true
 }
