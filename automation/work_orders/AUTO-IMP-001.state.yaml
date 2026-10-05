@@ -12,7 +12,7 @@ canonical_execution_status: COMPLETED_PENDING_REVIEW
 state_axes:
   authorization: CONSUMED
   execution: RESULT_READY
-  review: PENDING
+  review: FIX_REQUIRED
 human_decision_required: false
 new_package_authorized: false
 automatic_executor_dispatch_authorized: false
@@ -48,7 +48,8 @@ tests:
   evidence_level: DURABLE_COMPLETION_REPORTS
   github_commit_statuses: NONE_RETURNED
 reviewer:
-  completion_review: MISSING
+  completion_review: REVIEW_FIX_REQUIRED
+  verdict_source: USER_SUPPLIED_AUTHORITATIVE_REVIEWER_VERDICT_CURRENT_REQUEST
   review_packet_present: true
   packet_is_reviewer_acceptance: false
   required_owner: Independent_Automation_Reviewer
@@ -81,9 +82,9 @@ correction_budget:
   supervisor_implementation_cycles_used: 0
 planner_handoff:
   next_owner: Work_Planner
-  exact_next_action: Prepare same-package evidence hash correction preserving original digest and provenance, then obtain independent AUTO-IMP-001 completion review.
+  exact_next_action: Publish same-package bounded duplicate-key correction handoff; preserve unresolved historical hash finding without changing original authorization.
   scope: EXISTING_AUTO_IMP_001_ONLY
-  correction_class: GOVERNANCE_EVIDENCE_METADATA_ONLY
+  correction_class: BOUNDED_IMPLEMENTATION_CORRECTION
   fresh_master_rehydration_required: true
   prior_authorization_reusable_for_dispatch: false
   supervisor_is_not_independent_reviewer: true
@@ -91,5 +92,18 @@ planner_handoff:
   canonical_next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
   do_not_start:
     - AUTO-IMP-002 or later
-    - Coding or trading runtime modification
+    - Implementation outside the exact two-file duplicate-key correction
     - Broker or DB migration or LIVE or production or credential actions
+
+current_codex_work_order_id: WO-AUTO-IMP-001-CORR-01
+current_codex_status: READY_FOR_CODEX
+current_codex_task_packet: automation/work_orders/CURRENT_CODEX_TASK.md
+review_result_intake:
+  source: USER_SUPPLIED_AUTHORITATIVE_REVIEWER_VERDICT_CURRENT_REQUEST
+  verdict: REVIEW_FIX_REQUIRED
+  observed_master_head: a0ca84d4744e7fde78d3215f24ba5e89914f6784
+  recorded_at: "2026-10-05T10:52:12+08:00"
+  correction_scope: [automation/engine/yaml_io.py, tests/automation/test_contracts.py]
+  contracts_py_modification: DENIED
+  original_authorization_replay: DENIED
+  known_hash_finding: PRESERVED_UNRESOLVED

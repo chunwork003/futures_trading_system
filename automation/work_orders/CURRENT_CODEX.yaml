@@ -1,0 +1,147 @@
+{
+  "schema_version": "automation.codex_work_order.v1",
+  "work_order_id": "WO-AUTO-IMP-001-CORR-01",
+  "package_id": "AUTO-IMP-001",
+  "correction_id": "AUTO-IMP-001-DUPKEY-RF01",
+  "code_base_sha": "a0ca84d4744e7fde78d3215f24ba5e89914f6784",
+  "authority_basis": {
+    "kind": "SAME_PACKAGE_BOUNDED_REVIEWER_CORRECTION",
+    "reviewer_verdict": "REVIEW_FIX_REQUIRED",
+    "verdict_source": "USER_SUPPLIED_AUTHORITATIVE_REVIEWER_VERDICT_CURRENT_REQUEST",
+    "repository_verdict_at_rehydration": "MISSING_IN_PRIOR_OBSERVATION",
+    "original_authorization_id": "AUTH-AUTO-IMP-001-01",
+    "original_authorization_state": "CONSUMED",
+    "reauthorization": false,
+    "redispatch_original_authorization": false,
+    "implementation_sha": "21a5a66e03e9918d0a4ddd631707a29979b29949",
+    "result_intake_baseline": "d09ce94692c27bf844c3d0ce245710941ddf1294",
+    "master_architecture_change": false,
+    "authority_expansion": false,
+    "write_scope_expansion": false,
+    "side_effect_expansion": false,
+    "new_master_architecture_contradiction": "NO"
+  },
+  "exact_goal": "Reject duplicate YAML mapping keys at every mapping depth, failing closed with AutomationYamlError, within AUTO-IMP-001 only.",
+  "exact_write_scope": [
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py"
+  ],
+  "tests": {
+    "required_assertions": [
+      "top-level duplicate key rejected with AutomationYamlError",
+      "nested duplicate key rejected with AutomationYamlError",
+      "all mapping depths reject duplicates; preserve safe YAML and existing loader contracts"
+    ],
+    "targeted_command": "python -m pytest tests/automation/test_contracts.py -q -p no:cacheprovider",
+    "regression_command": "python -m pytest -q -p no:cacheprovider",
+    "scope_check": "git diff --name-only <execution_start_sha> HEAD",
+    "whitespace_check": "git diff --check"
+  },
+  "protected_scope": [
+    "automation/engine/contracts.py",
+    "automation/authorizations/**",
+    "automation/governance/**",
+    "automation/policies/**",
+    "automation/packages/**",
+    "automation/runs/**",
+    "docs/**",
+    "all implementation source outside exact_write_scope",
+    "broker / DB migration / LIVE / production / credentials"
+  ],
+  "stop_conditions": [
+    "Any RUNNING work order or active writer",
+    "Another READY_FOR_CODEX order",
+    "Correction budget exhausted or uncertain",
+    "Reviewer verdict changes or cannot bind to AUTO-IMP-001",
+    "Architecture, authority, write-scope or side-effect expansion needed",
+    "Master moves beyond handoff publication without explicit bounded revalidation",
+    "Original CONSUMED authorization would need redispatch",
+    "Fresh quota, writer ownership, execution binding or telemetry gates unresolved",
+    "Required test failure persists after the one remaining bounded correction cycle",
+    "Protected-file change or unreviewed public YAML semantics decision",
+    "Known evidence-hash discrepancy is required to be repaired in protected scope"
+  ],
+  "side_effect_envelope": {
+    "planner_write_scope": "automation/work_orders/**",
+    "executor_source_write_scope": [
+      "automation/engine/yaml_io.py",
+      "tests/automation/test_contracts.py"
+    ],
+    "local_offline_tests": "ALLOW_AFTER_FRESH_EXECUTION_GATES",
+    "git": "ONE_CORRECTION_BRANCH_COMMIT_PUSH_DRAFT_PR_ONLY",
+    "automatic_dispatch": "DENIED",
+    "automatic_next_package_progression": "DENIED",
+    "runtime_operation": "DENIED",
+    "broker": "DENIED",
+    "db_environment_access": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "correction_budget_remaining": 1,
+  "correction_budget": {
+    "limit": 2,
+    "previous_semantic_cycles_used": 1,
+    "this_handoff_allocated_max": 1,
+    "on_exhaustion": "HUMAN_DECISION_REQUIRED",
+    "publisher_cycles_used": 0
+  },
+  "status": "READY_FOR_CODEX",
+  "task_packet_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+  "handoff_ready": true,
+  "created_at": "2026-10-05T10:52:12+08:00",
+  "updated_at": "2026-10-05T10:52:12+08:00",
+  "rehydration": {
+    "master_head": "a0ca84d4744e7fde78d3215f24ba5e89914f6784",
+    "branches": [
+      "main",
+      "master"
+    ],
+    "auto_branches": [],
+    "open_pull_requests": [],
+    "running_work_orders": [],
+    "prior_state_path": "automation/work_orders/AUTO-IMP-001.state.yaml",
+    "result_intake": "COMPLETED_PENDING_REVIEW_INTAKEN_FOR_SAME_PACKAGE_CORRECTION",
+    "writer_lock": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+    "auto_imp_002": "NOT_STARTED"
+  },
+  "execution_start_rules": [
+    "Fetch/read GitHub master and all work orders again",
+    "Resolve this code_base_sha plus the publication commit containing only the listed work-order artifacts; record exact execution_start_sha",
+    "Publisher must durably claim this same order RUNNING and acquire exclusive writer ownership before any source edit; no original authorization replay",
+    "Obtain fresh quota/eligibility/telemetry evidence under frozen policies; stale historical snapshots cannot admit execution",
+    "Use a clean isolated branch codex/auto-imp-001-dupkey-rf01 based on verified master; never edit protected scope"
+  ],
+  "git_rules": {
+    "planner": "Publish only automation/work_orders/** to master by fast-forward commit",
+    "executor_branch": "codex/auto-imp-001-dupkey-rf01",
+    "executor_base": "master after exact rehydration and durable claim",
+    "implementation_commits": 1,
+    "force_push": false,
+    "direct_executor_master_push": false,
+    "pr": "Draft PR to master, same-package correction only; no automatic merge",
+    "completion_status": "COMPLETED_PENDING_REVIEW",
+    "next_package": "DENIED"
+  },
+  "required_completion_evidence": [
+    "exact starting master SHA and correction commit SHA",
+    "changed-file list proving exactly two allowed implementation files and unchanged contracts.py blob",
+    "top-level and nested duplicate tests and targeted/full regression results with exit codes",
+    "git diff --check and clean worktree evidence excluding known data",
+    "correction cycles used and remaining budget",
+    "fresh quota before/after and available token telemetry, label unavailable metrics explicitly",
+    "draft PR URL and independent reviewer handoff; no acceptance claim"
+  ],
+  "evidence_intake": {
+    "prior_reports": {
+      "targeted": "16 passed",
+      "regression": "1505 passed, 8 skipped",
+      "rerun_by_publisher": false
+    },
+    "known_pending_finding": "AUTO-IMP-001-SUPERVISOR-QHASH-01",
+    "hash_finding_disposition": "PRESERVED_UNRESOLVED_NOT_IN_IMPLEMENTATION_CORRECTION_SCOPE",
+    "historical_dispatch_revalidation": "NOT_ASSERTED",
+    "prior_review_pending_projection": "Retained historical original-run projection; this work order records user-supplied REVIEW_FIX_REQUIRED, not acceptance."
+  }
+}
