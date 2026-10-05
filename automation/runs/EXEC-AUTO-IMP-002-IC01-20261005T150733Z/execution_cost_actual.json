@@ -1,0 +1,395 @@
+{
+  "schema_version": "automation.execution_cost_actual.v1",
+  "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+  "actor_start": "2026-10-05 15:18:18 UTC",
+  "actor_end": "2026-10-05 15:37:34 UTC",
+  "actor_seconds": 1156,
+  "actor_end_boundary": "Implementation/tests complete; sampled before completion evidence publication",
+  "pre_fix_compatibility_groups": 3,
+  "positive_non_vacuity_passes": 1,
+  "impacted_subset_runs": 2,
+  "targeted_runs": 1,
+  "full_regression_runs": 1,
+  "targeted_seconds": 288.96,
+  "full_regression_seconds": 295.61,
+  "unexpected_retries": 1,
+  "correction_cycles": 1,
+  "correction_budget_used": 1,
+  "tool_failures": 1,
+  "tool_failure_details": [
+    "Non-elevated read-only temporary fixture diagnostic denied; elevated dry-run identified autocrlf local modifications."
+  ],
+  "test_repair": "Clone core.autocrlf=false at checkout; no source semantic retry",
+  "five_hour_before_after_if_available": {
+    "before": {
+      "usedPercent": 41,
+      "windowDurationMins": 300,
+      "resetsAt": 1791222428
+    },
+    "after": {
+      "usedPercent": 50,
+      "windowDurationMins": 300,
+      "resetsAt": 1791222428
+    }
+  },
+  "weekly_before_after_if_available": {
+    "before": {
+      "usedPercent": 27,
+      "windowDurationMins": 10080,
+      "resetsAt": 1791615796
+    },
+    "after": {
+      "usedPercent": 29,
+      "windowDurationMins": 10080,
+      "resetsAt": 1791615796
+    }
+  },
+  "raw_provider_before": {
+    "ordinaryUsageAllowed": true,
+    "rateLimits": {
+      "limitId": "codex",
+      "limitName": null,
+      "normalModelSlug": null,
+      "primary": {
+        "usedPercent": 41,
+        "windowDurationMins": 300,
+        "resetsAt": 1791222428
+      },
+      "secondary": {
+        "usedPercent": 27,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "credits": {
+        "hasCredits": false,
+        "unlimited": false,
+        "balance": "0"
+      },
+      "individualLimit": null,
+      "spendControlReached": false,
+      "planType": "plus",
+      "rateLimitReachedType": null
+    },
+    "rateLimitsByLimitId": {
+      "codex": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 41,
+          "windowDurationMins": 300,
+          "resetsAt": 1791222428
+        },
+        "secondary": {
+          "usedPercent": 27,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    }
+  },
+  "raw_provider_after": {
+    "ordinaryUsageAllowed": true,
+    "rateLimits": {
+      "limitId": "codex",
+      "limitName": null,
+      "normalModelSlug": null,
+      "primary": {
+        "usedPercent": 50,
+        "windowDurationMins": 300,
+        "resetsAt": 1791222428
+      },
+      "secondary": {
+        "usedPercent": 29,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "credits": {
+        "hasCredits": false,
+        "unlimited": false,
+        "balance": "0"
+      },
+      "individualLimit": null,
+      "spendControlReached": false,
+      "planType": "plus",
+      "rateLimitReachedType": null
+    },
+    "rateLimitsByLimitId": {
+      "codex": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 50,
+          "windowDurationMins": 300,
+          "resetsAt": 1791222428
+        },
+        "secondary": {
+          "usedPercent": 29,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    }
+  },
+  "quota_semantics": "SHARED_ACCOUNT_USAGE_PROXY; no task-exclusive cost attribution or token conversion",
+  "local_reported_tokens_status": "PENDING_EXTERNAL_EXTRACTION",
+  "billing_cost": "NOT_AVAILABLE",
+  "forecast_path": "automation/work_orders/forecasts/AUTO-IMP-002-IC01.planning.json",
+  "forecast_git_blob_sha": "d7c76e9b4111acf19f7497869a82ed42831dcecb",
+  "task_profile": {
+    "task_class": "INTEGRATION_COMPATIBILITY",
+    "change_type": "BOUNDED_ROUTE_AND_FIXTURE_CORRECTION",
+    "subsystem": "automation.engine",
+    "functional_area": "canonical reentry",
+    "concise_engineering_goal": "Safe post-execution status and stable READY validation tests",
+    "primary_symbols_or_functional_surfaces": [
+      "resolve_reentry",
+      "_validate_bindings",
+      "candidate repository fixture"
+    ],
+    "behavior_dimensions": [
+      "non-candidate status",
+      "candidate deep validation",
+      "immutable snapshot",
+      "fixture non-vacuity"
+    ],
+    "source_file_count": 1,
+    "test_file_count": 1,
+    "semantic_profile": "FAIL_CLOSED_AUTHORITY_PRESERVATION",
+    "test_profile": "TARGETED_PLUS_FULL_PLUS_SEPARATE_MASTER_INTEGRATION",
+    "authority_boundary": "AUTO-IMP-002 exact two-file correction; runtime/DB/broker/LIVE denied",
+    "packaging_cohesion_decision": "KEEP_COHESIVE_SHARED_ROUTING_GOAL_TEST_SURFACE_ACCEPTANCE"
+  },
+  "context_profile": {
+    "measurement_scope": "Actual CODEX artifact reads in this IC01 invocation; not planning profile",
+    "artifacts_read": [
+      {
+        "canonical_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "git_blob_sha": "4301d7e825b30c85734ebc50bf5e9259e01d361e",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance",
+        "blob_bytes": 2768
+      },
+      {
+        "canonical_path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "git_blob_sha": "0c45aa8f82146df97880df49079e19bea7f6c984",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance",
+        "blob_bytes": 12782
+      },
+      {
+        "canonical_path": "automation/prompts/CODEX_STARTUP.md",
+        "git_blob_sha": "f43c7c0b6f28e602e6e7cda8e73ce6b21546fea6",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance",
+        "blob_bytes": 1262
+      },
+      {
+        "canonical_path": "automation/skills/single-use-lifecycle-guard/SKILL.md",
+        "git_blob_sha": "f03d48051df5bc9bb3d2edfe8a4ea43011741c43",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance",
+        "blob_bytes": 1691
+      },
+      {
+        "canonical_path": "automation/authorizations/AUTH-AUTO-IMP-002-IC01-01.v1.yaml",
+        "git_blob_sha": "b03cdd7a71cfbc578ccf007822a1d161e14bd8a4",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance",
+        "blob_bytes": 6859
+      },
+      {
+        "canonical_path": "automation/work_orders/AUTO-IMP-002-IC01.eligibility.json",
+        "git_blob_sha": "978353f0ff4aaaac7e613f5bf1b384bad3141180",
+        "loaded_extent": "FULL",
+        "artifact_type": "evidence",
+        "blob_bytes": 1509
+      },
+      {
+        "canonical_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/reservation.yaml",
+        "git_blob_sha": "1b7d730e030bcf904b6d351a4a263fe1e44bd72c",
+        "loaded_extent": "FULL",
+        "artifact_type": "evidence",
+        "blob_bytes": 722
+      },
+      {
+        "canonical_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml",
+        "git_blob_sha": "711e357b4597d8147e44e2c321b51e9d127c4db4",
+        "loaded_extent": "FULL",
+        "artifact_type": "evidence",
+        "blob_bytes": 577
+      },
+      {
+        "canonical_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/dispatch.yaml",
+        "git_blob_sha": "910a4a0d2baa38aa3fcd34ebf2165ef87552e7db",
+        "loaded_extent": "FULL",
+        "artifact_type": "evidence",
+        "blob_bytes": 624
+      },
+      {
+        "canonical_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/handoff.yaml",
+        "git_blob_sha": "032a68800702f35a22f0864fe1089a387034e7f2",
+        "loaded_extent": "FULL",
+        "artifact_type": "evidence",
+        "blob_bytes": 739
+      },
+      {
+        "canonical_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/pre_dispatch_recheck.json",
+        "git_blob_sha": "39979aa2b0611a29d3fc6c87323c6c1d61de195d",
+        "loaded_extent": "FULL",
+        "artifact_type": "evidence",
+        "blob_bytes": 2071
+      },
+      {
+        "canonical_path": "automation/work_orders/WO-AUTO-IMP-002-IC01-01.yaml",
+        "git_blob_sha": "0c45aa8f82146df97880df49079e19bea7f6c984",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance",
+        "blob_bytes": 12782
+      },
+      {
+        "canonical_path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
+        "git_blob_sha": "0aba6287e8956573b76e503624340b553771425f",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance",
+        "blob_bytes": 2161
+      },
+      {
+        "canonical_path": "automation/work_orders/forecasts/AUTO-IMP-002-IC01.planning.json",
+        "git_blob_sha": "d7c76e9b4111acf19f7497869a82ed42831dcecb",
+        "loaded_extent": "FULL",
+        "artifact_type": "forecast",
+        "blob_bytes": 2886
+      },
+      {
+        "canonical_path": "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+        "git_blob_sha": "ea461d2059c793ae487dd4b4cd2434618931961e",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance",
+        "blob_bytes": 3849
+      },
+      {
+        "canonical_path": "automation/specs/context_loading_policy.v1.yaml",
+        "git_blob_sha": "2b6a1501e717d1a1b997dc4ab6c43e753e044a31",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance",
+        "blob_bytes": 4265
+      },
+      {
+        "canonical_path": "automation/policies/authorization_lifecycle.v1.yaml",
+        "git_blob_sha": "a00c8f8277204380dd6211548a6828380afb51e0",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance",
+        "blob_bytes": 1993
+      },
+      {
+        "canonical_path": "automation/governance/master_manifest.v1.yaml",
+        "git_blob_sha": "c2455d0ab4d79b77cc83ee00d5ea378b981544e6",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance",
+        "blob_bytes": 5559
+      },
+      {
+        "canonical_path": "automation/engine/contracts.py",
+        "git_blob_sha": "3de2a944b8f9433c7deafc206211614eb0255291",
+        "loaded_extent": "EXCERPT",
+        "artifact_type": "source",
+        "blob_bytes": 8371
+      },
+      {
+        "canonical_path": "automation/engine/reentry.py",
+        "git_blob_sha": "1b1fed31262c5488b6963b86746233dcd44e9702",
+        "loaded_extent": "FULL",
+        "artifact_type": "source",
+        "blob_bytes": 15232
+      },
+      {
+        "canonical_path": "tests/automation/test_reentry.py",
+        "git_blob_sha": "25a6bdde130c96af9b8ae6bd94319a256007aba9",
+        "loaded_extent": "FULL",
+        "artifact_type": "source",
+        "blob_bytes": 14778
+      },
+      {
+        "canonical_path": "automation/engine/manifest.py",
+        "git_blob_sha": "6262e33fcbd8999252b5ff8ffcc530571d8004ad",
+        "loaded_extent": "FULL",
+        "artifact_type": "source",
+        "blob_bytes": 6030
+      },
+      {
+        "canonical_path": "tests/automation/test_manifest.py",
+        "git_blob_sha": "0c3d063da3152535896b99bbf7b6a37b671b2b65",
+        "loaded_extent": "FULL",
+        "artifact_type": "source",
+        "blob_bytes": 4191
+      },
+      {
+        "canonical_path": "automation/authorizations/AUTH-AUTO-IMP-002-01.v1.yaml",
+        "git_blob_sha": "a087b46967bb61a2160d56588df3afe3ee5c60a5",
+        "loaded_extent": "FULL",
+        "artifact_type": "history",
+        "blob_bytes": 3605
+      },
+      {
+        "canonical_path": "automation/work_orders/AMEND-AUTO-IMP-002-QUOTA-01.yaml",
+        "git_blob_sha": "892670031ba9ed72d509b91cc52765388c9a5a08",
+        "loaded_extent": "FULL",
+        "artifact_type": "history",
+        "blob_bytes": 3747
+      },
+      {
+        "canonical_path": "AGENTS.md",
+        "git_blob_sha": "8313abbbb441d91fdca7d892852e6d919e2d76b7",
+        "loaded_extent": "UNCHANGED_BLOB_CACHE",
+        "artifact_type": "governance",
+        "blob_bytes": 21678
+      }
+    ],
+    "artifacts_by_type": {
+      "governance": 12,
+      "evidence": 6,
+      "forecast": 1,
+      "source": 5,
+      "history": 2
+    },
+    "bytes_read": 112682,
+    "byte_convention": "Unique fully loaded Git blob sizes; excerpts and unchanged-cache metadata excluded; duplicate tool output replay not counted",
+    "chars_read": null,
+    "lines_read": null,
+    "raw_transcript_loaded": false,
+    "history_loaded_amount": {
+      "artifacts": 2,
+      "reason": "Exact previously valid authority/quota fields for explicit self-contained candidate fixture; no current authority inferred"
+    },
+    "content_token_estimate": null,
+    "model_usage_measurement_type": "UNKNOWN"
+  },
+  "variance": {
+    "actor": "WITHIN_P50",
+    "targeted": "WITHIN_P90",
+    "full_regression": "WITHIN_P90",
+    "complete_test_cycles": "WITHIN_PLAN",
+    "tokens": "PENDING_EXTERNAL_EXTRACTION"
+  }
+}
