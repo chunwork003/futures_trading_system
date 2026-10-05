@@ -301,3 +301,93 @@ work_order_granularity:
     - combined scope materially increases rework blast radius
   token_minimization_per_ticket_is_not_primary_kpi: true
   authority_effect: NONE
+
+compact_cost_metadata:
+  status: DECIDED_NOT_MATERIALIZED
+  integration: EXTEND_EXISTING_EXECUTION_COST_TELEMETRY
+  parallel_cost_system: DENIED
+  applicability: EVERY_FUTURE_WORK_ORDER
+  task_profile:
+    required_fields:
+      - task_class
+      - change_type
+      - subsystem
+      - functional_area
+      - concise_engineering_goal
+      - primary_symbols_or_functional_surfaces
+      - behavior_dimensions
+      - source_file_count
+      - test_file_count
+      - semantic_profile
+      - test_profile
+      - authority_boundary
+      - packaging_cohesion_decision
+    packaging_cohesion_decision:
+      preferred: KEEP_COHESIVE
+      record: decision_and_compact_reason
+      shared_acceptance_gate_required_for_cohesion: true
+      governing_principle: OPTIMIZE_TOTAL_ENGINEERING_VALUE_NOT_TOKENS_PER_TICKET
+  context_profile:
+    required_fields:
+      - artifacts_read
+      - artifacts_by_type
+      - volume_by_artifact_type
+      - raw_transcript_loaded
+      - history_loaded_amount
+      - source_context_volume
+      - test_context_volume
+      - governance_context_volume
+      - telemetry_context_volume
+    artifact_identity:
+      - canonical_path
+      - git_blob_sha_or_content_identity
+      - artifact_type
+      - actor_and_phase
+      - loaded_extent
+    volume_measurement:
+      units: [bytes, chars, lines]
+      availability: DETERMINISTIC_WHEN_AVAILABLE_OTHERWISE_NULL_WITH_REASON
+      declared_semantics:
+        - bytes_encoding
+        - character_count_convention
+        - line_count_convention
+        - full_artifact_vs_loaded_excerpt
+      distinguish:
+        - unique_artifact_volume
+        - cumulative_loaded_volume_including_reloads
+        - reused_pointer_or_unchanged_blob_not_loaded
+      history: COMPACT_COUNT_AND_VOLUME_NOT_HISTORICAL_CONTENT
+      raw_transcript_flag: ACTUAL_OBSERVATION_NOT_INFERRED_FROM_POINTER
+    optional_content_token_estimate:
+      measurement_types: [PROXY, CALIBRATED_ESTIMATE]
+      exact_model_usage_label: DENIED
+      record: method_version_unit_provenance_and_value_or_null
+      model_consumption_equivalence: NOT_ASSERTED
+  analysis:
+    selection_order:
+      - compact_task_dimensions_and_context_profile
+      - exact_original_artifacts_only_when_necessary
+    cost_driver_dimensions:
+      - functional_complexity
+      - context_reload
+      - test_cycles
+      - rework
+    context_volume_vs_model_consumption: CORRELATION_REQUIRES_COMPATIBLE_ATTRIBUTION_NOT_CAUSAL_PROOF
+    no_full_work_order_review_or_source_history_reloads_for_routine_selection: true
+    no_raw_transcript_reingestion_for_cost_analysis: true
+  derived_index_and_cohort:
+    searchable_dimensions: COMPACT_TASK_PROFILE_FIELDS
+    copy_full_documents: DENIED
+    canonical_detailed_artifacts: AUTHORITATIVE
+    profile_and_index: DETERMINISTIC_REBUILDABLE_NON_AUTHORITY_METADATA
+    provenance: EXACT_CANONICAL_POINTERS_AND_BLOB_IDENTITIES
+    stale_or_missing_profile: REBUILD_OR_MARK_UNKNOWN_NEVER_INVENT
+    preserve_existing_cost_evidence: true
+  delivery_boundary:
+    planning_window: AFTER_RF02_LEGAL_CLOSURE
+    integrate_with: TELEMETRY_FINALIZATION_AND_WORK_COST_ACCOUNTING_IMPLEMENTATION
+    current_rf02_review_barrier: PRESERVE
+    new_implementation_started_by_requirement: false
+    new_work_order_created_by_requirement: false
+    authority_effect: NONE
+    implementation_authority: NOT_GRANTED_BY_THIS_REQUIREMENT
