@@ -52,9 +52,9 @@
   },
   "correction_budget_remaining": 0,
   "execution_branch": "auto/WO-AUTO-IMP-002-01",
-  "status": "COMPLETED_PENDING_REVIEW",
+  "status": "REVIEW_FIX_REQUIRED_HUMAN_DECISION",
   "handoff_ready": false,
-  "next_route": "AUTO_IMP_002_INDEPENDENT_REVIEW",
+  "next_route": "AUTO_IMP_002_HUMAN_DECISION_FOR_BOUNDED_RF01",
   "next_package": {
     "package_id": "AUTO-IMP-003",
     "authorization": "NOT_AUTHORIZED"
@@ -112,6 +112,8 @@
   },
   "reconciliation_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.lifecycle.json",
   "adoption_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.adoption.json",
-  "review_status": "REVIEW_PENDING",
-  "reexecution_authorized": false
+  "review_status": "REVIEW_FIX_REQUIRED",
+  "reexecution_authorized": false,
+  "source_correction_authorized": false,
+  "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-01.verdict.json"
 }
