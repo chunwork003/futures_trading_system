@@ -3,230 +3,29 @@
   "work_order_id": "WO-AUTO-IMP-001-CORR-02",
   "package_id": "AUTO-IMP-001",
   "package_revision": "1",
-  "correction_id": "AUTO-IMP-001-YAML-COMPAT-RF02",
-  "code_base_sha": "db82001369017f42acd1887320f6350fa34634f1",
-  "control_plane_baseline_sha": "db82001369017f42acd1887320f6350fa34634f1",
-  "authority_basis": {
-    "kind": "FRESH_HUMAN_AUTHORIZED_BOUNDED_SAME_PACKAGE_CORRECTION",
-    "authorization_id": "AUTH-AUTO-IMP-001-CORR-02-01",
-    "authorization_revision": "1",
-    "path": "automation/work_orders/AUTH-AUTO-IMP-001-CORR-02-01.yaml",
-    "authorization_state": "AUTHORIZED",
-    "original_authorization_id": "AUTH-AUTO-IMP-001-01",
-    "original_authorization_state": "CONSUMED",
-    "redispatch_original_authorization": false,
-    "previous_work_order_id": "WO-AUTO-IMP-001-CORR-01",
-    "reviewer_verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-01.verdict.json",
-    "reviewed_implementation_sha": "2a8974acbb7319ce55b3d7fb88737ad027061244",
-    "reviewed_evidence_sha": "383ea7305557575a3c5330a1c2e2e54161d1dceb",
-    "finding_ids": [
-      "RF01-REVIEW-MERGE-01",
-      "RF01-REVIEW-SAFE-TAG-02"
-    ],
-    "prior_pilot_reuse": false,
-    "prior_pilot_extension": false,
-    "quota_policy_waiver": true,
-    "quota_amendment": {
-      "amendment_id": "AMEND-AUTO-IMP-001-CORR-02-QUOTA-01",
-      "revision": "1",
-      "path": "automation/work_orders/AMEND-AUTO-IMP-001-CORR-02-QUOTA-01.yaml",
-      "status": "AUTHORIZED_EFFECTIVE",
-      "decision": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
-      "exact_work_order_only": true,
-      "frozen_quota_policy_modified": false
-    },
-    "quota_waiver_scope": "EXACT_QUOTA_ADMISSION_ONLY_FROZEN_POLICY_UNCHANGED"
-  },
-  "exact_goal": "Resolve RF01-REVIEW-MERGE-01 and RF01-REVIEW-SAFE-TAG-02: preserve legal SafeLoader merge precedence and alias compatibility, reject duplicate explicit keys across all safe mapping construction including nested !!set; verify recursive aliases without redesigning YAML contract.",
-  "exact_write_scope": [
-    "automation/engine/yaml_io.py",
-    "tests/automation/test_contracts.py"
-  ],
-  "protected_scope": [
-    "automation/engine/contracts.py",
-    "automation/authorizations/**",
-    "automation/governance/**",
-    "automation/policies/**",
-    "automation/packages/**",
-    "automation/programs/**",
-    "automation/runs/**",
-    "docs/**",
-    "data/**",
-    "all implementation files outside exact_write_scope",
-    "broker / DB / migration / LIVE / production / credentials"
-  ],
-  "tests": {
-    "required_assertions": [
-      "valid YAML merge without duplicate explicit keys",
-      "legal merge precedence, including explicit override and merge sequence precedence",
-      "duplicate explicit keys rejected with AutomationYamlError",
-      "nested duplicate mappings rejected, including mappings in sequences",
-      "alias keys compatibility",
-      "recursive aliases compatibility preserved without YAML contract redesign",
-      "nested !!set duplicate entries rejected",
-      "unsafe-tag regression (unsafe object construction rejected)",
-      "representative canonical contract loading",
-      "targeted tests",
-      "full regression",
-      "git diff --check",
-      "exact implementation and metadata scope verification"
-    ],
-    "targeted_command": "python -m pytest tests/automation/test_contracts.py -q -p no:cacheprovider",
-    "regression_command": "python -m pytest -q -p no:cacheprovider",
-    "scope_check": "git diff --name-only <execution_start_sha> <implementation_commit_sha>; compare protected blob identities and evidence-only metadata diff",
-    "whitespace_check": "git diff --check <execution_start_sha> <implementation_commit_sha>",
-    "acceptance": "ALL_REQUIRED_VERIFICATION_PASS_AND_INDEPENDENT_SEMANTIC_REVIEW"
-  },
-  "side_effect_envelope": {
-    "planner_write_scope": "automation/work_orders/**",
-    "executor_source_write_scope": [
-      "automation/engine/yaml_io.py",
-      "tests/automation/test_contracts.py"
-    ],
-    "executor_metadata_write_scope": [
-      "automation/work_orders/executions/WO-AUTO-IMP-001-CORR-02.json"
-    ],
-    "local_offline_tests": "ALLOW_AFTER_FRESH_EXECUTION_GATES",
-    "scheduled_pickup": "AUTHORIZED_FOR_THIS_EXACT_NEW_WORK_ORDER",
-    "git": "ONE_ATOMIC_REMOTE_CLAIM_ONE_IMPLEMENTATION_COMMIT_ONE_COMPLETION_EVIDENCE_COMMIT_PUSH_WITHOUT_FORCE",
-    "automatic_next_package_progression": "DENIED",
-    "automatic_merge": "DENIED",
-    "runtime_operation": "DENIED",
-    "broker": "DENIED",
-    "db_environment_access": "DENIED",
-    "migration": "DENIED",
-    "live": "DENIED",
-    "production": "DENIED",
-    "credentials": "DENIED"
-  },
-  "correction_budget_remaining": 0,
-  "correction_budget": {
-    "authorization_limit": 1,
-    "semantic_cycles_used": 1,
-    "remaining": 0,
-    "previous_authorization_remaining": 0,
-    "on_failure_or_exhaustion": "HUMAN_DECISION_REQUIRED",
-    "automatic_additional_rf": false,
-    "tooling_retries_separate_from_semantic_budget": true,
-    "tooling_retry_policy": "Record reversible tooling retries; cannot hide semantic correction or scope expansion"
-  },
-  "execution_branch": "auto/WO-AUTO-IMP-001-CORR-02",
-  "claim_rules": [
-    "Fetch origin/master anew and confirm exact quota amendment is materialized; prior quota STOP is not a fresh eligibility snapshot",
-    "Fetch origin/master; re-read authority and CURRENT_CODEX; verify exact new order is READY and handoff_ready true",
-    "Verify fresh authorization exact binding and previous consumed authorization is not reused",
-    "Verify no completion evidence or remote claim branch exists for this new work order; no competing active implementation writer",
-    "Verify master descends from code_base_sha and only automation/work_orders/** changed since baseline; otherwise STOP for bounded revalidation",
-    "Read and bind exact quota amendment; waive only this order's quota admission; freshly resolve all remaining eligibility/writer/authority/baseline/scope gates. No old pilot reuse or frozen policy mutation",
-    "Create isolated executor checkout from verified current origin/master, record execution_start_sha; do not merge or cherry-pick old execution branch",
-    "Create one unique empty claim commit on auto/WO-AUTO-IMP-001-CORR-02 and push without force; successful first push durably consumes this new authorization once",
-    "If claim branch already exists or push rejected, STOP without source edits; consumed claim cannot redispatch"
-  ],
-  "execution_start_rules": [
-    "Apply only this exact work order quota admission waiver; do not treat 29% < 80% manual-executor fallback as scheduled executor policy failure; quota/token telemetry optional NOT_AVAILABLE",
-    "Current master still has original pre-RF01 loader. Reviewed RF01 implementation remains only on old branch. Implement a complete corrected duplicate-key solution from current master within the same two files; use prior source/diff as reference only",
-    "Preserve existing contracts.py and public loader/schema contracts; do not merge old branch metadata or alter protected scope",
-    "Validate duplicate explicit keys before merge flattening while preserving legal merge-derived collisions/precedence; no silent public YAML semantics change",
-    "Retain safe constructors and recursive alias compatibility; do not expand features or redesign YAML contract",
-    "Use exactly one additional bounded semantic correction cycle; any required semantic correction after that cycle or failed acceptance => STOP HUMAN_DECISION_REQUIRED"
-  ],
-  "stop_conditions": [
-    "New branch or durable execution result already exists",
-    "Conflicting active writer, unresolved claim or authority binding",
-    "Master drift outside automation/work_orders/** after code_base_sha",
-    "Any non-waived execution gate missing, denied, inapplicable or ambiguous; exact amendment binding missing; provider-enforced limit blocks execution",
-    "Required architecture/business semantics decision or feature/contract redesign",
-    "Protected-file modification or exact scope violation",
-    "Broker / DB / migration / LIVE / production / credential action needed",
-    "Any required verification fails after the one bounded semantic correction cycle or budget exhausted",
-    "Need for automatic RF03 or another package"
-  ],
-  "required_completion_evidence": [
-    "work_order_id, package_id, correction_id and fresh authorization_id",
-    "exact execution_start_sha, claim_commit_sha, implementation_commit_sha and evidence commit externally resolved",
-    "exact changed implementation files and metadata files; protected blob identities unchanged",
-    "required assertion/counterexample results with test names, commands and exit codes",
-    "targeted and full regression results with exit codes",
-    "git diff --check result and exact scope validation",
-    "semantic correction cycles, tooling retries, scope violations and remaining new budget",
-    "machine-readable token usage if available, else NOT_AVAILABLE (token usage unavailable alone is not a waiver of other gates)",
-    "branch push result, durable claim binding and next package NOT_STARTED",
-    "status COMPLETED_PENDING_REVIEW; no semantic ACCEPTED claim"
-  ],
-  "git_rules": {
-    "executor_branch": "auto/WO-AUTO-IMP-001-CORR-02",
-    "executor_base": "fresh current origin/master after bounded drift check",
-    "claim_commit": "ONE_UNIQUE_EMPTY_COMMIT",
-    "implementation_commits": 1,
-    "evidence_commit": "ONE_COMPLETION_JSON_COMMIT",
-    "force_push": false,
-    "direct_executor_master_push": false,
-    "automatic_merge": false,
-    "pr": "KNOWN_PERMISSION_BLOCK_DO_NOT_RETRY_WITHOUT_RECOVERY; PUSH_EVIDENCE_FOR_WORK_INTAKE",
-    "next_package": "DENIED"
-  },
-  "source_reference": {
-    "prior_unmerged_branch": "auto/WO-AUTO-IMP-001-CORR-01",
-    "prior_implementation_sha": "2a8974acbb7319ce55b3d7fb88737ad027061244",
-    "prior_evidence_sha": "383ea7305557575a3c5330a1c2e2e54161d1dceb",
-    "prior_source_merge": "NOT_AUTHORIZED_OR_REQUIRED",
-    "master_source_blob_shas": {
-      "yaml_io": "325521913bf6aa72af28c52da3584aebcd894a92",
-      "test_contracts": "4e8379592a546ff86e4069a283b34c07eba9789c"
-    }
-  },
-  "next_package_restriction": {
-    "package_id": "AUTO-IMP-002",
-    "status": "NOT_STARTED",
-    "authorization": "NOT_AUTHORIZED"
-  },
-  "created_at": "2026-10-05T04:21:50Z",
-  "updated_at": "2026-10-05T05:05:48Z",
-  "status": "COMPLETED_PENDING_REVIEW",
+  "status": "CLOSED_ACCEPTED",
   "handoff_ready": false,
-  "task_packet_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
-  "execution_eligibility": "RESULT_INTAKEN_PENDING_INDEPENDENT_REVIEW",
-  "rehydration": {
-    "master_head": "db82001369017f42acd1887320f6350fa34634f1",
-    "source": "CONNECTED_GITHUB_REMOTE_ONLY",
-    "existing_execution_branch": "auto/WO-AUTO-IMP-001-CORR-01",
-    "new_execution_branch": "ABSENT",
-    "new_completion_evidence": "ABSENT",
-    "active_implementation_writer": "NONE_FROM_REMOTE_BRANCH_AND_EVIDENCE",
-    "open_pull_requests": "UNKNOWN_READ_404",
-    "pr_permission": "NO_RECOVERY_EVIDENCE_NO_CREATE_RETRY",
-    "review_intake": "BOUND_HUMAN_DECISION_RECEIVED_FOR_TWO_EXACT_FINDINGS",
-    "old_order": "COMPLETED_PENDING_REVIEW_WITH_HUMAN_DECISION_REQUIRED_NO_REDISPATCH",
-    "quota_amendment_observed_master": "5759c98fa717566037fe0675c960ce7c0251dadd"
-  },
-  "quota_admission": {
-    "status": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
-    "authority_path": "automation/work_orders/AMEND-AUTO-IMP-001-CORR-02-QUOTA-01.yaml",
-    "human_usage_confirmation_required": false,
-    "minimum_remaining_percentage_required": false,
-    "normalized_80_percent_fallback": "NOT_APPLICABLE_TO_EXACT_SCHEDULED_EXECUTOR",
-    "telemetry": "RECORD_IF_AVAILABLE_ELSE_NOT_AVAILABLE",
-    "previous_quota_stop_reusable": false,
-    "other_gates": "FRESH_REVALIDATION_REQUIRED"
-  },
+  "accepted": true,
+  "execution_status": "COMPLETED",
+  "review_status": "PASS",
+  "control_plane_status": "ACCEPTED_MATERIALIZED",
+  "execution_branch": "auto/WO-AUTO-IMP-001-CORR-02",
   "execution_start_sha": "6eb37dea649a53208fee7e1e90301562b8024c83",
   "claim_commit_sha": "1449a5331278d1632ebab1fe18d31447502b2d8d",
   "implementation_commit_sha": "7eab27c13b7987a0ba451d5d59210241aa77fb73",
   "evidence_commit_sha": "735678afa9606ccd219a00e1c2f02471442231f7",
-  "execution_status": "COMPLETED_PENDING_REVIEW",
-  "control_plane_status": "REVIEW_PENDING",
-  "review_status": "REVIEW_PENDING",
-  "human_decision_required": false,
-  "result_intake_path": "automation/work_orders/intakes/WO-AUTO-IMP-001-CORR-02.json",
-  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-02.md",
-  "review_routing_path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-02.routing.json",
-  "quota_observation": {
-    "source": "EXECUTOR_EVIDENCE_RAW_SNAPSHOTS",
-    "five_hour_before_percent": 25,
-    "five_hour_after_percent": 16,
-    "weekly_before_percent": 86,
-    "weekly_after_percent": 85,
-    "attribution_status": "RAW_ONLY_PENDING_CROSS_ACTOR_SETTLEMENT_RECONCILIATION",
-    "planning_rule_path": "automation/work_orders/AUTOMATION_BATCH_V2_PLANNING_BASELINE.yaml"
-  }
+  "verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-001-CORR-02.verdict.json",
+  "closure_path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+  "current_action": "NO_AUTHORIZED_CODEX_WORK",
+  "correction_budget_remaining": 0,
+  "next_package_restriction": {
+    "package_id": "AUTO-IMP-002",
+    "status": "PLANNED_NOT_AUTHORIZED",
+    "authorization": "NOT_AUTHORIZED",
+    "next_route": "AUTOMATION_IMPLEMENTATION_AUTO_IMP_002_AUTHORIZATION_PREPARATION"
+  },
+  "runtime_authorization": "NOT_AUTHORIZED",
+  "broker_db_migration_live_production": "NOT_AUTHORIZED",
+  "planning_baseline": "automation/work_orders/AUTOMATION_BATCH_V2_PLANNING_BASELINE.yaml",
+  "updated_at": "2026-10-05T15:11:00+08:00"
 }
