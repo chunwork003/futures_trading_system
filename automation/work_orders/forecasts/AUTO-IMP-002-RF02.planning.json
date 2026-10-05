@@ -1,0 +1,122 @@
+{
+  "schema_version": "automation.execution_cost_forecast.v1",
+  "forecast_id": "FORECAST-AUTO-IMP-002-RF02-PLANNING-01",
+  "status": "PLANNING_FORECAST_NOT_AUTHORITY",
+  "package_id": "AUTO-IMP-002",
+  "correction_id": "AUTO-IMP-002-RF02",
+  "future_work_order_id": "NOT_YET_MATERIALIZED",
+  "forecast_version": 1,
+  "created_by": "WORK_ORCHESTRATOR",
+  "confidence": "PROVISIONAL_SINGLE_COMPARABLE_SAMPLE",
+  "unit_semantics": {
+    "reported_tokens": "LOCAL_CODEX_ROLLOUT_USAGE_NOT_BILLING_LEDGER",
+    "quota_percent": "PROVIDER_WINDOW_USAGE_PROXY",
+    "billing_cost": "NOT_FORECASTABLE_FROM_CURRENT_EVIDENCE"
+  },
+  "comparable_cohort": {
+    "primary_sample": {
+      "work_order_id": "WO-AUTO-IMP-002-RF01-01",
+      "execution_id": "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+      "total_tokens": 8943945,
+      "uncached_input_tokens": 64632,
+      "cached_input_ratio": 0.992754,
+      "five_hour_delta_pct": 14,
+      "weekly_delta_pct": 2,
+      "actor_seconds": 1419,
+      "targeted_seconds": 242.52,
+      "full_regression_seconds": 277.27
+    },
+    "sample_count": 1,
+    "calibration_status": "PROVISIONAL"
+  },
+  "assumptions": [
+    "RF02 remains exact two-file correction scope",
+    "pre-fix is limited to 3 canonical effect counterexamples",
+    "no full negative matrix before fix",
+    "only impacted subset is rerun until clean",
+    "one complete targeted pass after impacted subset is clean",
+    "one full regression after targeted PASS",
+    "no provider hard block and no unrelated concurrent Codex consumer",
+    "same local Codex executor profile and broadly comparable model/session behavior"
+  ],
+  "expected_cost_driver": "CONTEXT_REPLAY_PLUS_ONE_TARGETED_AND_ONE_FULL_REGRESSION",
+  "forecast": {
+    "reported_total_tokens": {
+      "p50": 5400000,
+      "p75": 6800000,
+      "p90": 8100000
+    },
+    "uncached_input_tokens": {
+      "p50": 50000,
+      "p75": 70000,
+      "p90": 90000
+    },
+    "output_tokens": {
+      "p50": 14000,
+      "p75": 20000,
+      "p90": 26000
+    },
+    "reasoning_output_tokens": {
+      "p50": 6000,
+      "p75": 9000,
+      "p90": 12000
+    },
+    "cached_input_ratio": {
+      "expected_min": 0.95,
+      "expected_max": 0.995
+    },
+    "five_hour_delta_pct": {
+      "p50": 8,
+      "p75": 11,
+      "p90": 13
+    },
+    "weekly_delta_pct": {
+      "p50": 1,
+      "p75": 2,
+      "p90": 2
+    },
+    "actor_seconds": {
+      "p50": 900,
+      "p75": 1100,
+      "p90": 1280
+    },
+    "targeted_seconds": {
+      "p90": 300
+    },
+    "full_regression_seconds": {
+      "p90": 340
+    },
+    "test_cycles": {
+      "pre_fix_cases_max": 3,
+      "complete_targeted_passes_max": 1,
+      "full_regression_passes_max": 1
+    }
+  },
+  "derivation": {
+    "basis": "RF01 actual minus known avoidable pre-fix full-matrix and intermediate full-targeted cycles, with conservative uncertainty because only one exact local-token sample exists.",
+    "rf01_total_tokens": 8943945,
+    "rf01_actor_seconds": 1419,
+    "p50_reduction_assumption": "approximately 40 percent from RF01 total replay workload",
+    "p75_reduction_assumption": "approximately 24 percent from RF01",
+    "p90_reduction_assumption": "approximately 9 percent from RF01",
+    "legacy_package_token_forecast_comparison": "DENIED_INCOMPATIBLE_UNCALIBRATED_UNIT"
+  },
+  "early_watch_rules": {
+    "before_any_extra_complete_targeted_pass": "STOP_AND_ROUTE_WORK_UNLESS_NEW_CODE_DELTA_REQUIRES_IT",
+    "before_any_extra_full_regression": "STOP_AND_ROUTE_WORK",
+    "actor_elapsed_seconds_watch": 1100,
+    "actor_elapsed_seconds_high": 1280,
+    "five_hour_delta_pct_watch": 11,
+    "five_hour_delta_pct_high": 13,
+    "if_high_before_completion": "COST_GUARD_WATCH_AND_NO_NEW_EXPENSIVE_CYCLE"
+  },
+  "post_run_variance": {
+    "normal": "actual <= p75",
+    "watch": "p75 < actual <= p90",
+    "high": "p90 < actual <= 1.25*p90",
+    "critical": "actual > 1.25*p90",
+    "required_reconciliation": true
+  },
+  "authority_effect": "NONE",
+  "source_execution_authorized": false
+}
