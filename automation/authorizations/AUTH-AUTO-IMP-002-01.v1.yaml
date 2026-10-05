@@ -1,0 +1,103 @@
+schema_version: automation.authorization.v1
+authorization_id: AUTH-AUTO-IMP-002-01
+authorization_revision: "1"
+document_status: AUTHORIZED_EFFECTIVE
+authorization_state: AUTHORIZED
+source_candidate_head_sha: "3d7b22e721ecb67bf83980b7eeb88f2fa7bf6011"
+
+decision_evidence:
+  decision: APPROVE
+  authority: HUMAN_GOVERNANCE_OWNER
+  source: USER_EXPLICIT_CURRENT_REQUEST
+  decision_text: "授權 AUTO-IMP-002 依目前 authorization preparation 執行"
+  decision_scope: EXACT_BOUND_AUTO_IMP_002_ONLY
+  runtime_authorization_effect: NONE
+  broker_migration_live_production_effect: NONE
+
+exact_binding:
+  work_package_id: AUTO-IMP-002
+  work_package_revision: "1"
+  architecture_id: DEVELOPMENT-AUTOMATION-MASTER
+  architecture_revision: "1.1"
+  architecture_bundle_hash: "d6b2c5b4e8ff95a337c4c9982ed03a64e1cf4ea4c03f250857e98d37e3df6cfa"
+  planning_baseline_sha: "52921ae3f205ef2eec4306e84ff92d4cd9cdeab3"
+  scope_digest: "5d076a41926a905f46cac07c7207b2c625d762925e49a2b566a13ea072807b39"
+  side_effect_class: AUTOMATION_TOOLING_SOURCE_MODIFICATION_ONLY
+  governance_effect: BOUNDED_AUTOMATION_IMPLEMENTATION_SOURCE_MODIFICATION_ONLY
+  allowed_executor_profile: CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY
+  implementation_correction_budget: 0
+  review_barrier: REQUIRED_BEFORE_ACCEPTANCE
+
+program_binding:
+  program_id: AUTO-IMP-PROGRAM-V1
+  program_revision: "1"
+  package_dependency: AUTO-IMP-001_ACCEPTED_MATERIALIZED
+  dependency_closure_path: automation/work_orders/AUTO-IMP-001.closure.yaml
+
+package_binding:
+  path: automation/packages/AUTO-IMP-002.yaml
+  git_blob_sha: 0d18a02402808652e7bdda30edd31764ac12fc43
+  risk: MEDIUM
+  p90_tokens: 44000
+  planned_write_scope:
+    - automation/engine/manifest.py
+    - automation/engine/reentry.py
+    - tests/automation/test_manifest.py
+    - tests/automation/test_reentry.py
+
+execution_policy:
+  manual_trigger_only: true
+  automatic_dispatch: DENIED
+  automatic_next_package_progression: DENIED
+  one_runtime_writer_required: true
+  strict_order: true
+  resume_before_new: true
+  quota_backfill: DENIED
+  queue_reorder: DENIED
+  parallel_execution: DENIED
+  fresh_reentry_before_execution: true
+  fresh_authority_resolution_before_execution: true
+  fresh_quota_resolution_before_execution: true
+
+side_effect_envelope:
+  automation_source_modification: ALLOW_ONLY_AFTER_AUTHORIZED
+  automation_test_execution: ALLOW_ONLY_AFTER_AUTHORIZED
+  product_runtime_source_modification: DENY
+  db_environment_access: DENY
+  migration_creation: DENY
+  migration_execution: DENY
+  broker_network: DENY
+  paper_broker_io: DENY
+  production_broker_io: DENY
+  credential_material: DENY
+  runtime_operation: DENY
+  live: DENY
+  production_activation: DENY
+  next_mainline_gap_activation: DENY
+
+quota_gate:
+  policy: QuotaAdmissionPolicyV1_1
+  status: FRESH_RESOLUTION_REQUIRED
+  five_hour_fit_required: true
+  weekly_fit_required: true
+  fixed_80_percent_rule_for_this_package: INAPPLICABLE_BY_POLICY
+  reason: PACKAGE_RISK_MEDIUM_AND_P90_ABOVE_NORMALIZED_FALLBACK_SCOPE
+  percent_to_token_conversion: DENIED
+  no_comparable_provider_native_forecast_action: STOP_AND_ROUTE_QUOTA_DECISION
+
+telemetry_gate:
+  actor_start_end_usage_required_when_available: true
+  raw_snapshot_preservation_required: true
+  ambiguous_binding: STOP_TELEMETRY_AMBIGUOUS_BINDING
+
+decision:
+  required: false
+  authority_owner: Automation_Governance_Authority
+  status: AUTHORIZED_PENDING_EXECUTION_ELIGIBILITY
+  next_route: AUTO_IMP_002_EXECUTION_ELIGIBILITY
+
+single_use_execution:
+  execution_id: NOT_ALLOCATED
+  reservation_path: NOT_CREATED
+  dispatch_committed: false
+  executor_invoked: false
