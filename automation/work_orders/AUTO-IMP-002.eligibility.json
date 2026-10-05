@@ -3,7 +3,7 @@
   "work_order_id": "WO-AUTO-IMP-002-01",
   "package_id": "AUTO-IMP-002",
   "authorization_id": "AUTH-AUTO-IMP-002-01",
-  "observed_master_sha": "b1b61b60ae7d55e77a9c057f52f87379ce0aa88d",
+  "observed_master_sha": "9c7320af9da999407c5c83b635c3f023b63dc862",
   "status": "ELIGIBLE_FOR_MANUAL_TRIGGER",
   "checks": {
     "dependency_auto_imp_001": "PASS_ACCEPTED_MATERIALIZED",
@@ -15,7 +15,11 @@
     "exact_write_scope_uncreated_on_master": "PASS",
     "control_plane_drift_only": "PASS",
     "competing_writer": "NONE_OBSERVED",
-    "provider_hard_block_guard": "ENFORCE_AT_EXECUTOR_ENTRY"
+    "provider_hard_block_guard": "ENFORCE_AT_EXECUTOR_ENTRY",
+    "manifest_integrity": "PASS_AFTER_AGENT_REENTRY_HASH_REFRESH",
+    "agent_reentry_sha256": "3c1b30cf1b0691b25d454c89e6b0f4bcb5d5985cec696511668ce651cc008bb8",
+    "manifest_refresh_commit": "9c7320af9da999407c5c83b635c3f023b63dc862",
+    "manifest_refresh_effect": "NAVIGATION_POINTER_ONLY_NO_AUTHORITY_OR_ARCHITECTURE_BUNDLE_CHANGE"
   },
   "trigger_mode": "MANUAL_TRIGGER_ONLY",
   "handoff_can_be_published": true,
