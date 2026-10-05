@@ -135,7 +135,7 @@ $results = foreach ($file in $candidates) {
         if (-not $line.Contains('"token_count"')) { continue }
 
         try {
-            $event = $line | ConvertFrom-Json -Depth 100
+            $event = $line | ConvertFrom-Json
         }
         catch {
             continue
