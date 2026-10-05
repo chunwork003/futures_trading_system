@@ -8,8 +8,8 @@
   "observed_master_sha": "5fac52a5a86ffd367165d5adcc5eb3bcff803e79",
   "source_candidate_sha": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
   "created_at": "2026-10-05T12:50:15Z",
-  "updated_at": "2026-10-05T12:57:11Z",
-  "status": "PASS_PENDING_SINGLE_USE_LIFECYCLE",
+  "updated_at": "2026-10-05T13:02:14Z",
+  "status": "PASS_CONSUMED_READY_FOR_MANUAL_TRIGGER",
   "checks": {
     "fresh_authority": "PASS_EXPLICIT_HUMAN_EXACT_CORRECTION_APPROVAL",
     "source_candidate": "PASS_EXACT_RF01_REVIEWED_REMOTE_CANDIDATE",
@@ -21,18 +21,19 @@
     "new_work_order": "ABSENT_BEFORE_MATERIALIZATION",
     "new_authorization": "ABSENT_BEFORE_MATERIALIZATION",
     "quota_admission": "PASS_NEW_EXACT_RF02_AMENDMENT",
-    "provider_hard_block": "NONE_OBSERVED_RECHECK_BEFORE_INVOKE"
+    "provider_hard_block": "NONE_OBSERVED_RECHECK_BEFORE_INVOKE",
+    "lifecycle": "PASS_DURABLE_ORDERED_SINGLE_USE"
   },
   "remaining_blockers": [],
   "previous_waiver_reusable": false,
   "eligible": true,
   "trigger_mode": "MANUAL_TRIGGER_ONLY",
   "automatic_dispatch": false,
-  "handoff_can_be_published": false,
-  "reservation_allowed": true,
+  "handoff_can_be_published": true,
+  "reservation_allowed": false,
   "dispatch_allowed": false,
   "executor_invoked": false,
-  "next_route": "AUTO_IMP_002_RF02_RESERVATION",
+  "next_route": "AUTO_IMP_002_RF02_MANUAL_CODEX_TRIGGER",
   "quota_amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-RF02-QUOTA-01.yaml",
   "source_blob_bindings": [
     {
@@ -52,5 +53,18 @@
       "git_blob_sha": "a70e67db44ae24bc56de26b5b7cbf6cf39b9bea6"
     }
   ],
-  "global_writer_lock": "NONE_ACTIVE_ONLY_PRIOR_RF01_RELEASED"
+  "global_writer_lock": "NONE_ACTIVE_ONLY_PRIOR_RF01_RELEASED",
+  "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+  "authorization_state": "CONSUMED",
+  "lifecycle": {
+    "eligibility_commit_sha": "ed14a0f92bab5aa1f4bdba81d0e8495b426448c5",
+    "reservation_commit_sha": "ab223a470c5353171bfa17162a5cd455fc426b6e",
+    "recheck_commit_sha": "cde20994815605ce407827b706c50562d3c05e51",
+    "dispatch_commit_sha": "1ee39153c322291db1d82d6f275fa7b27948d0eb",
+    "consumed_commit_sha": "50184f062ad3eb6522ff7717cfe9915a8152bbc9",
+    "writer_lock_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/writer_lock.yaml",
+    "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/reservation.yaml",
+    "dispatch_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/dispatch.yaml"
+  },
+  "new_dispatch_or_reservation": "DENIED_ALREADY_CONSUMED"
 }
