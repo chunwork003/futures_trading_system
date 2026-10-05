@@ -25,7 +25,7 @@ observed_run:
     weekly_used_percent_start: 18
     weekly_used_percent_end: 20
     weekly_delta_percent: 2
-    exact_token_cost: NOT_AVAILABLE
+    exact_token_cost: PENDING_LOCAL_CODEX_SESSION_EXTRACTION
 
 closest_comparable_baseline:
   work_order_id: WO-AUTO-IMP-002-01
@@ -77,6 +77,13 @@ token_cost_strategy:
   exact_token_cost_priority:
     - provider_native_task_telemetry
     - exact_bound_local_codex_session_telemetry
+  local_extractor: scripts/codex_session_token_usage.ps1
+  local_session_binding:
+    execution_id: EXEC-AUTO-IMP-002-RF01-20261005T093900Z
+    actor_start_utc: "2026-10-05T09:53:43Z"
+    actor_end_utc: "2026-10-05T10:17:22Z"
+    work_order_id: WO-AUTO-IMP-002-RF01-01
+    status: PENDING_OPERATOR_EXTRACTION
   fallback: PERCENTAGE_WINDOW_ANOMALY_ESTIMATE
   percentage_is_not_literal_tokens: true
   primary_signal: five_hour_delta_percent
