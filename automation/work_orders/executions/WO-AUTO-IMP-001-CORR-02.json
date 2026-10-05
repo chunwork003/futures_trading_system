@@ -1,0 +1,62 @@
+{
+  "schema_version": "automation.codex_execution_result.v1",
+  "work_order_id": "WO-AUTO-IMP-001-CORR-02",
+  "package_id": "AUTO-IMP-001",
+  "correction_id": "AUTO-IMP-001-YAML-COMPAT-RF02",
+  "authorization_id": "AUTH-AUTO-IMP-001-CORR-02-01",
+  "quota_amendment_id": "AMEND-AUTO-IMP-001-CORR-02-QUOTA-01",
+  "execution_start_sha": "6eb37dea649a53208fee7e1e90301562b8024c83",
+  "claim_commit_sha": "1449a5331278d1632ebab1fe18d31447502b2d8d",
+  "implementation_commit_sha": "7eab27c13b7987a0ba451d5d59210241aa77fb73",
+  "changed_implementation_files": [
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py"
+  ],
+  "counterexample_test": {
+    "command": "python -m pytest tests/automation/test_contracts.py -q -p no:cacheprovider --basetemp=.tmp/pytest-WO-AUTO-IMP-001-CORR-02/counterexample",
+    "result": "4 failed, 20 passed (expected duplicate-key failures before correction)",
+    "exit_code": 1
+  },
+  "targeted_test": {
+    "command": "python -m pytest tests/automation/test_contracts.py -q -p no:cacheprovider --basetemp=.tmp/pytest-WO-AUTO-IMP-001-CORR-02/targeted-green",
+    "result": "24 passed",
+    "exit_code": 0
+  },
+  "full_regression": {
+    "command": "python -m pytest -q -p no:cacheprovider --basetemp=.tmp/pytest-WO-AUTO-IMP-001-CORR-02/full",
+    "result": "1513 passed, 8 skipped",
+    "exit_code": 0
+  },
+  "git_diff_check": "PASS",
+  "scope_check": "PASS_EXACT_TWO_IMPLEMENTATION_FILES",
+  "protected_file_checks": {
+    "automation/engine/contracts.py": "UNCHANGED:3de2a944b8f9433c7deafc206211614eb0255291",
+    "automation/policies/quota_admission_policy.v1_1.yaml": "UNCHANGED:556a86ba5be7a2b2818b1523d96b44caab487bd1",
+    "automation/work_orders/AUTH-AUTO-IMP-001-CORR-02-01.yaml": "UNCHANGED:7d6f24f8a288c9c1e891f8e84549dfaacb88ba69",
+    "automation/work_orders/AMEND-AUTO-IMP-001-CORR-02-QUOTA-01.yaml": "UNCHANGED:b8fe0ba38732ad0d2ec09675dfd668d218dbc754"
+  },
+  "diff_stat": {
+    "files_changed": 2,
+    "insertions": 131,
+    "deletions": 1
+  },
+  "semantic_correction_cycles_used": 1,
+  "semantic_budget_remaining": 0,
+  "tooling_retries": 0,
+  "scope_violations": [],
+  "machine_readable_token_usage": "NOT_AVAILABLE",
+  "quota_telemetry": {
+    "five_hour_remaining_before_percent": 25,
+    "weekly_remaining_before_percent": 86,
+    "five_hour_remaining_after_percent": 16,
+    "weekly_remaining_after_percent": 85,
+    "five_hour_resets_at_unix": 1791180029,
+    "weekly_resets_at_unix": 1791615796,
+    "provider_hard_block_before": false,
+    "provider_hard_block_after": false
+  },
+  "branch": "auto/WO-AUTO-IMP-001-CORR-02",
+  "branch_push_result": "SUCCESS",
+  "status": "COMPLETED_PENDING_REVIEW",
+  "next_package_state": "AUTO-IMP-002_NOT_STARTED_NOT_AUTHORIZED"
+}
