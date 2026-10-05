@@ -7,11 +7,11 @@
   "claim_commit_sha": "b8dcc8017fadfacae571c0e134cc424992ea953d",
   "implementation_commit_sha": "7d3e51802fb6d016bdd4f7d57908e01460535806",
   "evidence_commit_sha": "eccbe997fe4f9f2a9da06026d75df11af9c3a937",
-  "status": "REVIEW_PENDING",
-  "next_owner": "Independent_Automation_Reviewer",
+  "status": "GOVERNANCE_RECONCILIATION_REQUIRED",
+  "next_owner": "HUMAN_GOVERNANCE_OWNER",
   "packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-01.md",
   "intake_path": "automation/work_orders/intakes/WO-AUTO-IMP-002-01.json",
-  "delivery": "FRESH_CONTEXT_INDEPENDENT_REVIEW_AGENT",
+  "delivery": "BLOCKED_DO_NOT_SEND_TO_INDEPENDENT_REVIEW_YET",
   "semantic_pass_by_orchestrator": false,
   "review_binding": {
     "base_sha": "a078289281dcf81e751d44af1ae1ddbf43dcfabe",
@@ -30,5 +30,6 @@
   "next_package_authorized": false,
   "auto_imp_003_authorized": false,
   "direct_remote_review_available": true,
-  "next_route": "AUTO_IMP_002_INDEPENDENT_REVIEW"
+  "next_route": "AUTO_IMP_002_HUMAN_GOVERNANCE_RECONCILIATION",
+  "reconciliation_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-01.lifecycle.json"
 }
