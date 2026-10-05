@@ -24,12 +24,15 @@
   "quota_backfill": false,
   "parallel_execution": false,
   "quota_gate": {
-    "five_hour": "REQUIRED",
-    "weekly": "REQUIRED",
+    "status": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
+    "five_hour": "TELEMETRY_ONLY_FOR_THIS_EXACT_PILOT",
+    "weekly": "TELEMETRY_ONLY_FOR_THIS_EXACT_PILOT",
     "fixed_80_percent_rule": "INAPPLICABLE_BY_FROZEN_POLICY",
-    "no_comparable_provider_native_forecast_action": "STOP_AND_ROUTE_QUOTA_DECISION"
+    "minimum_remaining_percentage_required": false,
+    "provider_hard_block": "STOP",
+    "other_execution_gates": "FRESH_REVALIDATION_AT_EXECUTOR_ENTRY"
   },
-  "current_action": "FRESH_REVALIDATE_AUTO_IMP_002_AFTER_QUOTA_AMENDMENT",
+  "current_action": "READY_FOR_MANUAL_CODEX_TRIGGER",
   "auto_imp_003_authorized": false,
   "runtime_authorization": "NOT_AUTHORIZED",
   "broker_db_migration_live_production": "NOT_AUTHORIZED",
