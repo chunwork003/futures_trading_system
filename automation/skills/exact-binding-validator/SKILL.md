@@ -35,3 +35,21 @@ Any mismatch or ambiguity => FAIL_CLOSED.
 
 Must not:
 repair bindings, modify authority, expand scope, consume authorization, create claims.
+
+
+Cross-artifact minimum matrix:
+- CURRENT work_order_id/package_id/package_revision/authorization_id/authorization_revision/exact_write_scope/execution_branch MUST equal WORK
+- CURRENT authorization_path MUST equal WORK authorization_path and the loaded authorization document identity
+- CURRENT/WORK authorization_state MUST be compatible with the loaded authorization_state
+- CURRENT quota_amendment.amendment_id/path/status/effect MUST equal the loaded amendment identity/path/status/effect
+- amendment exact_binding work_order_id/package_id/package_revision/work_order_path MUST equal canonical CURRENT/WORK
+- amendment exact_binding base_authorization_id/revision/path MUST equal the loaded/current authorization
+- amendment exact_binding executor_profile MUST equal authorization exact_binding.allowed_executor_profile
+- CURRENT eligibility_path MUST equal WORK eligibility_path and the loaded eligibility document
+- eligibility work_order_id/package_id/authorization_id/status/trigger mode MUST match canonical CURRENT/WORK/AUTH expectations
+- authorization package_binding path/revision/scope MUST match the loaded package; package identity/revision and planned scope must match CURRENT/WORK
+- authorization program_binding dependency pointer MUST resolve to the expected dependency package identity and ACCEPTED_MATERIALIZED state
+- any contradictory pointer, identity, revision, state, effect, executor profile, or dependency identity MUST FAIL_CLOSED
+
+Negative-test rule:
+For every binding class above, keep at least one mutation test that changes only that field while preserving otherwise-valid documents. The resolver must return STOP/FAIL_CLOSED and must never return an execution candidate.
