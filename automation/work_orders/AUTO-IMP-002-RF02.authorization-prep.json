@@ -1,0 +1,67 @@
+{
+  "schema_version": "automation.correction_authorization_preparation.v1",
+  "correction_id": "AUTO-IMP-002-RF02",
+  "parent_work_order_id": "WO-AUTO-IMP-002-RF01-01",
+  "package_id": "AUTO-IMP-002",
+  "status": "PREPARED_NOT_AUTHORIZED",
+  "trigger_verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-RF01-01.verdict.json",
+  "finding_id": "AUTO-IMP-002-RF01-REVIEW-EFFECT-01",
+  "reason": "Independent re-review found three remaining execution-effect fail-closed gaps after RF01.",
+  "exact_source_scope": [
+    "automation/engine/reentry.py",
+    "tests/automation/test_reentry.py"
+  ],
+  "protected_unchanged": [
+    "automation/engine/manifest.py",
+    "tests/automation/test_manifest.py",
+    "automation/policies/**",
+    "automation/governance/**",
+    "automation/programs/**",
+    "automation/packages/**",
+    "runtime/broker/db/migration/live/production surfaces"
+  ],
+  "correction_contract": {
+    "goal": "Close only the remaining execution-effect restrictions before CODEX_EXECUTION_CANDIDATE.",
+    "required_checks": [
+      "WORK side_effects runtime/broker/db/migration/live/production must remain DENIED",
+      "CURRENT auto_imp_003_authorized=false must agree with WORK next_package package_id=AUTO-IMP-003 and authorization=NOT_AUTHORIZED",
+      "CURRENT and WORK quota_gate.provider_hard_block must both remain STOP"
+    ],
+    "preserve": [
+      "RF01 identity/pointer/revision/state/effect/profile/dependency checks",
+      "read-only/status-only/canonical-CURRENT behavior",
+      "supplemental non-authority metadata compatibility",
+      "manifest behavior",
+      "no runtime/broker/DB/migration/LIVE/production side effects"
+    ]
+  },
+  "efficiency_contract": {
+    "pre_fix_counterexamples": [
+      "one side_effects expansion",
+      "one AUTO-IMP-003 authorization contradiction",
+      "one provider_hard_block weakening"
+    ],
+    "maximum_pre_fix_cases": 3,
+    "no_full_negative_matrix_before_fix": true,
+    "after_fix": [
+      "run only the 3 new/impacted effect tests until clean",
+      "run one complete test_reentry targeted pass",
+      "run one full regression after targeted PASS"
+    ],
+    "prohibit_redundant_full_matrix_reruns": true,
+    "prohibit_unnecessary_new_git_backed_matrix": true,
+    "efficiency_skill": "automation/skills/execution-efficiency-guard/SKILL.md"
+  },
+  "lifecycle_prevention": {
+    "required_before_future_source_edit": true,
+    "skill": "automation/skills/single-use-lifecycle-guard/SKILL.md"
+  },
+  "authority": {
+    "source_modification": "NOT_AUTHORIZED",
+    "codex_execution": "NOT_AUTHORIZED",
+    "correction_budget_source": "NEW_HUMAN_DECISION_REQUIRED",
+    "automatic_rf_creation": "DENIED",
+    "auto_imp_003_authorized": false
+  },
+  "next_route": "HUMAN_GOVERNANCE_DECISION_AUTO_IMP_002_RF02"
+}
