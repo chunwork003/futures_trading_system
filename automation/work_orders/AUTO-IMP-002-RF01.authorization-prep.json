@@ -1,0 +1,68 @@
+{
+  "schema_version": "automation.correction_authorization_preparation.v1",
+  "correction_id": "AUTO-IMP-002-RF01",
+  "parent_work_order_id": "WO-AUTO-IMP-002-01",
+  "package_id": "AUTO-IMP-002",
+  "status": "PREPARED_NOT_AUTHORIZED",
+  "trigger_verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-01.verdict.json",
+  "finding_id": "AUTO-IMP-002-REVIEW-BINDING-01",
+  "reason": "Independent review found incomplete fail-closed cross-artifact binding validation in resolve_reentry().",
+  "exact_source_scope": [
+    "automation/engine/reentry.py",
+    "tests/automation/test_reentry.py"
+  ],
+  "protected_unchanged": [
+    "automation/engine/manifest.py",
+    "tests/automation/test_manifest.py",
+    "automation/policies/**",
+    "automation/governance/**",
+    "automation/programs/**",
+    "automation/packages/**",
+    "runtime/broker/db/migration/live/production surfaces"
+  ],
+  "correction_contract": {
+    "goal": "Make unified re-entry fail closed for every contradictory cross-artifact pointer/identity/revision/state/effect/profile/dependency binding before any CODEX_EXECUTION_CANDIDATE route can be emitted.",
+    "required_negative_matrix": [
+      "CURRENT quota_amendment.amendment_id mismatch with loaded amendment",
+      "CURRENT/WORK authorization_path mismatch with loaded authorization",
+      "CURRENT/WORK authorization_state mismatch with loaded authorization",
+      "quota base_authorization_path/id/revision mismatch",
+      "quota work_order_path/work_order_id/package_id/package_revision mismatch",
+      "quota executor_profile mismatch with authorization allowed_executor_profile",
+      "CURRENT/WORK eligibility_path mismatch",
+      "eligibility identity/status/trigger mismatch",
+      "authorization package path/identity/revision/scope mismatch",
+      "dependency closure package identity mismatch despite ACCEPTED_MATERIALIZED status",
+      "any related pointer/state/identity contradiction returns STOP and never candidate"
+    ],
+    "preserve": [
+      "manifest.py reviewed behavior",
+      "read-only snapshot semantics",
+      "status_only never executes",
+      "canonical CURRENT precedence",
+      "repository-known-answer behavior",
+      "no runtime/broker/DB/migration/LIVE/production side effects"
+    ]
+  },
+  "test_strategy": {
+    "counterexample_first": true,
+    "preferred_pattern": "single-field mutation while all other documents remain valid",
+    "targeted": "tests/automation/test_reentry.py",
+    "full_regression": true,
+    "git_diff_check": true,
+    "exact_two_file_scope": true
+  },
+  "lifecycle_prevention": {
+    "required_before_any_future_codex_source_edit": true,
+    "skill": "automation/skills/single-use-lifecycle-guard/SKILL.md",
+    "branch_claim_alone_is_insufficient": true
+  },
+  "authority": {
+    "source_modification": "NOT_AUTHORIZED",
+    "codex_execution": "NOT_AUTHORIZED",
+    "correction_budget_source": "NEW_HUMAN_DECISION_REQUIRED",
+    "automatic_rf_creation": "DENIED",
+    "auto_imp_003_authorized": false
+  },
+  "next_route": "HUMAN_GOVERNANCE_DECISION_AUTO_IMP_002_RF01"
+}
