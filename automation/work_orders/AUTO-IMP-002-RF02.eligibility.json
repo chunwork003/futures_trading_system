@@ -5,11 +5,11 @@
   "correction_id": "AUTO-IMP-002-RF02",
   "authorization_id": "AUTH-AUTO-IMP-002-RF02-01",
   "authorization_revision": "1",
-  "observed_master_sha": "cdbd2bf9291c40a5db976ab1de5a3995b826fdb5",
+  "observed_master_sha": "5fac52a5a86ffd367165d5adcc5eb3bcff803e79",
   "source_candidate_sha": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
   "created_at": "2026-10-05T12:50:15Z",
-  "updated_at": "2026-10-05T12:50:15Z",
-  "status": "BLOCKED_QUOTA_ADMISSION_UNRESOLVED",
+  "updated_at": "2026-10-05T12:57:11Z",
+  "status": "PASS_PENDING_SINGLE_USE_LIFECYCLE",
   "checks": {
     "fresh_authority": "PASS_EXPLICIT_HUMAN_EXACT_CORRECTION_APPROVAL",
     "source_candidate": "PASS_EXACT_RF01_REVIEWED_REMOTE_CANDIDATE",
@@ -20,19 +20,37 @@
     "new_execution_branch": "ABSENT_REMOTE_BRANCH_INVENTORY",
     "new_work_order": "ABSENT_BEFORE_MATERIALIZATION",
     "new_authorization": "ABSENT_BEFORE_MATERIALIZATION",
-    "quota_admission": "BLOCKED_NO_RF02_EXACT_WAIVER_OR_COMPARABLE_FRESH_PROVIDER_NATIVE_ADMISSION_EVIDENCE",
-    "provider_hard_block": "RECHECK_AT_FRESH_ADMISSION"
+    "quota_admission": "PASS_NEW_EXACT_RF02_AMENDMENT",
+    "provider_hard_block": "NONE_OBSERVED_RECHECK_BEFORE_INVOKE"
   },
-  "remaining_blockers": [
-    "RF02_QUOTA_ADMISSION_UNRESOLVED"
-  ],
+  "remaining_blockers": [],
   "previous_waiver_reusable": false,
-  "eligible": false,
+  "eligible": true,
   "trigger_mode": "MANUAL_TRIGGER_ONLY",
   "automatic_dispatch": false,
   "handoff_can_be_published": false,
-  "reservation_allowed": false,
+  "reservation_allowed": true,
   "dispatch_allowed": false,
   "executor_invoked": false,
-  "next_route": "AUTO_IMP_002_RF02_QUOTA_ADMISSION_DECISION"
+  "next_route": "AUTO_IMP_002_RF02_RESERVATION",
+  "quota_amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-RF02-QUOTA-01.yaml",
+  "source_blob_bindings": [
+    {
+      "path": "automation/engine/manifest.py",
+      "git_blob_sha": "6262e33fcbd8999252b5ff8ffcc530571d8004ad"
+    },
+    {
+      "path": "automation/engine/reentry.py",
+      "git_blob_sha": "dc910d1838fafe6fa4ce5c8319a622a93cdd281c"
+    },
+    {
+      "path": "tests/automation/test_manifest.py",
+      "git_blob_sha": "0c3d063da3152535896b99bbf7b6a37b671b2b65"
+    },
+    {
+      "path": "tests/automation/test_reentry.py",
+      "git_blob_sha": "a70e67db44ae24bc56de26b5b7cbf6cf39b9bea6"
+    }
+  ],
+  "global_writer_lock": "NONE_ACTIVE_ONLY_PRIOR_RF01_RELEASED"
 }

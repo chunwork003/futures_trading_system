@@ -1,0 +1,65 @@
+{
+  "schema_version": "automation.quota_observation.v1",
+  "work_order_id": "WO-AUTO-IMP-002-RF02-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-RF02-01",
+  "observed_at": "2026-10-05T12:57:11Z",
+  "source": "mcp__codex_app__get_usage_limits",
+  "raw_quota_evidence": {
+    "ordinaryUsageAllowed": true,
+    "rateLimits": {
+      "limitId": "codex",
+      "limitName": null,
+      "normalModelSlug": null,
+      "primary": {
+        "usedPercent": 5,
+        "windowDurationMins": 300,
+        "resetsAt": 1791222428
+      },
+      "secondary": {
+        "usedPercent": 22,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "credits": {
+        "hasCredits": false,
+        "unlimited": false,
+        "balance": "0"
+      },
+      "individualLimit": null,
+      "spendControlReached": false,
+      "planType": "plus",
+      "rateLimitReachedType": null
+    },
+    "rateLimitsByLimitId": {
+      "codex": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 5,
+          "windowDurationMins": 300,
+          "resetsAt": 1791222428
+        },
+        "secondary": {
+          "usedPercent": 22,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    }
+  },
+  "admission": "WAIVED_BY_EXACT_HUMAN_AMENDMENT",
+  "provider_hard_block": "NONE_OBSERVED_RECHECK_AT_EXECUTOR_ENTRY",
+  "percentage_to_token_conversion": false,
+  "exact_token_cost": "NOT_AVAILABLE",
+  "actor": "WORK_PRE_DISPATCH_NOT_CODEX_START"
+}

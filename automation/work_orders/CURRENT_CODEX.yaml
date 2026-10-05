@@ -94,7 +94,7 @@
   },
   "status": "BLOCKED",
   "handoff_ready": false,
-  "execution_eligibility": "BLOCKED_QUOTA_ADMISSION_UNRESOLVED",
+  "execution_eligibility": "PASS_PENDING_SINGLE_USE_LIFECYCLE",
   "eligibility_path": "automation/work_orders/AUTO-IMP-002-RF02.eligibility.json",
   "execution_branch": "auto/WO-AUTO-IMP-002-RF02-01",
   "execution_id": "NOT_ALLOCATED",
@@ -108,11 +108,12 @@
   },
   "quota_gate": {
     "policy": "QuotaAdmissionPolicyV1_1",
-    "status": "BLOCKED_QUOTA_ADMISSION_UNRESOLVED",
+    "status": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
     "previous_rf01_waiver_reuse": "DENIED_EXACT_RF01_ONLY_AND_CONSUMED",
     "percentage_to_token_conversion": "DENIED",
     "provider_hard_block": "STOP",
-    "no_comparable_provider_native_forecast_action": "STOP_AND_ROUTE_QUOTA_DECISION"
+    "no_comparable_provider_native_forecast_action": "STOP_AND_ROUTE_QUOTA_DECISION",
+    "amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-RF02-QUOTA-01.yaml"
   },
   "side_effects": {
     "runtime": "DENIED",
@@ -140,7 +141,6 @@
     "COMPLETED_PENDING_REVIEW; no acceptance/merge claim"
   ],
   "stop_conditions": [
-    "unresolved quota admission",
     "missing required durable lifecycle steps 1-9",
     "wrong scope/source/authority binding",
     "conflicting writer or existing RF02 execution",
@@ -148,8 +148,13 @@
     "provider hard block",
     "additional unplanned expensive test cycle without bounded WORK reason"
   ],
-  "next_route": "AUTO_IMP_002_RF02_QUOTA_ADMISSION_DECISION",
-  "current_action": "RESOLVE_EXACT_RF02_QUOTA_ADMISSION",
+  "next_route": "AUTO_IMP_002_RF02_RESERVATION",
+  "current_action": "MATERIALIZE_RF02_RESERVATION",
   "created_at": "2026-10-05T12:50:15Z",
-  "updated_at": "2026-10-05T12:50:15Z"
+  "updated_at": "2026-10-05T12:57:11Z",
+  "quota_amendment": {
+    "amendment_id": "AMEND-AUTO-IMP-002-RF02-QUOTA-01",
+    "path": "automation/work_orders/AMEND-AUTO-IMP-002-RF02-QUOTA-01.yaml",
+    "status": "AUTHORIZED_EFFECTIVE"
+  }
 }

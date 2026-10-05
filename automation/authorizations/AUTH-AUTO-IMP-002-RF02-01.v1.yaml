@@ -5,7 +5,7 @@
   "document_status": "AUTHORIZED_EFFECTIVE",
   "authorization_state": "AUTHORIZED",
   "created_at": "2026-10-05T12:50:15Z",
-  "updated_at": "2026-10-05T12:50:15Z",
+  "updated_at": "2026-10-05T12:57:11Z",
   "source_candidate_head_sha": "0c64a9f509ba27c1bc1bad139681951e2f8c2775",
   "decision_evidence": {
     "decision": "APPROVE",
@@ -119,11 +119,12 @@
   },
   "quota_gate": {
     "policy": "QuotaAdmissionPolicyV1_1",
-    "status": "BLOCKED_QUOTA_ADMISSION_UNRESOLVED",
+    "status": "WAIVED_FOR_BOUNDED_AUTOMATION_PILOT",
     "previous_rf01_waiver_reuse": "DENIED_EXACT_RF01_ONLY_AND_CONSUMED",
     "percentage_to_token_conversion": "DENIED",
     "provider_hard_block": "STOP",
-    "no_comparable_provider_native_forecast_action": "STOP_AND_ROUTE_QUOTA_DECISION"
+    "no_comparable_provider_native_forecast_action": "STOP_AND_ROUTE_QUOTA_DECISION",
+    "amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-RF02-QUOTA-01.yaml"
   },
   "single_use_execution": {
     "execution_id": "NOT_ALLOCATED",
@@ -133,7 +134,12 @@
     "executor_invoked": false
   },
   "decision": {
-    "status": "AUTHORIZED_PENDING_QUOTA_ELIGIBILITY",
+    "status": "AUTHORIZED_ELIGIBILITY_PASS_PENDING_RESERVATION",
     "next_route": "AUTO_IMP_002_RF02_QUOTA_ADMISSION_DECISION"
+  },
+  "quota_amendment": {
+    "amendment_id": "AMEND-AUTO-IMP-002-RF02-QUOTA-01",
+    "path": "automation/work_orders/AMEND-AUTO-IMP-002-RF02-QUOTA-01.yaml",
+    "status": "AUTHORIZED_EFFECTIVE"
   }
 }
