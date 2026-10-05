@@ -12,10 +12,43 @@ param(
 
     [string]$CodexHome = $(if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $HOME ".codex" }),
 
-    [int]$EndSlackSeconds = 120
+    [int]$EndSlackSeconds = 120,
+
+    [int]$CandidateWindowHours = 2
 )
 
 $ErrorActionPreference = "Stop"
+
+function Get-SharedTextLines {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path
+    )
+
+    $stream = $null
+    $reader = $null
+    try {
+        $share = [System.IO.FileShare]::ReadWrite -bor [System.IO.FileShare]::Delete
+        $stream = New-Object System.IO.FileStream(
+            $Path,
+            [System.IO.FileMode]::Open,
+            [System.IO.FileAccess]::Read,
+            $share
+        )
+        $reader = New-Object System.IO.StreamReader($stream)
+        while (-not $reader.EndOfStream) {
+            $reader.ReadLine()
+        }
+    }
+    finally {
+        if ($null -ne $reader) {
+            $reader.Dispose()
+        }
+        elseif ($null -ne $stream) {
+            $stream.Dispose()
+        }
+    }
+}
 
 function Get-UsageValue {
     param(
@@ -98,7 +131,16 @@ foreach ($root in $roots) {
     }
 }
 
-$files = $files | Sort-Object FullName -Unique
+$windowStart = $start.UtcDateTime.AddHours(-1 * $CandidateWindowHours)
+$windowEnd = $end.UtcDateTime.AddHours($CandidateWindowHours)
+
+$files = $files |
+    Sort-Object FullName -Unique |
+    Where-Object {
+        $_.LastWriteTimeUtc -ge $windowStart -and
+        $_.CreationTimeUtc -le $windowEnd
+    }
+
 if (-not $files) {
     throw "No candidate rollout JSONL files found near the execution window."
 }
@@ -108,14 +150,20 @@ if ($WorkOrderId) { $matchTerms += $WorkOrderId }
 
 $candidates = foreach ($file in $files) {
     $matched = $false
-    foreach ($line in [System.IO.File]::ReadLines($file.FullName)) {
-        foreach ($term in $matchTerms) {
-            if ($line.Contains($term)) {
-                $matched = $true
-                break
+    try {
+        foreach ($line in Get-SharedTextLines -Path $file.FullName) {
+            foreach ($term in $matchTerms) {
+                if ($line.Contains($term)) {
+                    $matched = $true
+                    break
+                }
             }
+            if ($matched) { break }
         }
-        if ($matched) { break }
+    }
+    catch [System.IO.IOException] {
+        Write-Warning ("Skipping temporarily unreadable Codex rollout: " + $file.FullName)
+        continue
     }
     if ($matched) { $file }
 }
@@ -131,48 +179,54 @@ $results = foreach ($file in $candidates) {
     $firstTokenTimestamp = $null
     $lastTokenTimestamp = $null
 
-    foreach ($line in [System.IO.File]::ReadLines($file.FullName)) {
-        if (-not $line.Contains('"token_count"')) { continue }
+    try {
+        foreach ($line in Get-SharedTextLines -Path $file.FullName) {
+            if (-not $line.Contains('"token_count"')) { continue }
 
-        try {
-            $event = $line | ConvertFrom-Json
-        }
-        catch {
-            continue
-        }
+            try {
+                $event = $line | ConvertFrom-Json
+            }
+            catch {
+                continue
+            }
 
-        if ($event.type -ne "event_msg" -or $event.payload.type -ne "token_count") {
-            continue
-        }
+            if ($event.type -ne "event_msg" -or $event.payload.type -ne "token_count") {
+                continue
+            }
 
-        $info = $event.payload.info
-        if ($null -eq $info -or $null -eq $info.total_token_usage) {
-            continue
-        }
+            $info = $event.payload.info
+            if ($null -eq $info -or $null -eq $info.total_token_usage) {
+                continue
+            }
 
-        try {
-            $timestamp = [datetimeoffset]::Parse($event.timestamp).ToUniversalTime()
-        }
-        catch {
-            continue
-        }
+            try {
+                $timestamp = [datetimeoffset]::Parse($event.timestamp).ToUniversalTime()
+            }
+            catch {
+                continue
+            }
 
-        $tokenEvents++
-        if ($null -eq $firstTokenTimestamp) { $firstTokenTimestamp = $timestamp }
-        $lastTokenTimestamp = $timestamp
+            $tokenEvents++
+            if ($null -eq $firstTokenTimestamp) { $firstTokenTimestamp = $timestamp }
+            $lastTokenTimestamp = $timestamp
 
-        $snapshot = [ordered]@{
-            timestamp = $timestamp.ToString("o")
-            usage = Convert-Usage $info.total_token_usage
-        }
+            $snapshot = [ordered]@{
+                timestamp = $timestamp.ToString("o")
+                usage = Convert-Usage $info.total_token_usage
+            }
 
-        if ($timestamp -lt $start) {
-            $before = $snapshot
-        }
+            if ($timestamp -lt $start) {
+                $before = $snapshot
+            }
 
-        if ($timestamp -ge $start -and $timestamp -le $end) {
-            $final = $snapshot
+            if ($timestamp -ge $start -and $timestamp -le $end) {
+                $final = $snapshot
+            }
         }
+    }
+    catch [System.IO.IOException] {
+        Write-Warning ("Skipping temporarily unreadable matching Codex rollout: " + $file.FullName)
+        continue
     }
 
     if ($null -eq $final) {
@@ -214,9 +268,14 @@ if (-not $results) {
     throw "Matching session found, but no token_count event was available in the requested execution window."
 }
 
+$resultArray = @($results)
+
 [ordered]@{
     schema_version = "automation.local_codex_token_usage.v1"
     generated_at_utc = [datetimeoffset]::UtcNow.ToString("o")
     codex_home = $CodexHome
-    candidates = @($results)
+    candidate_window_hours = $CandidateWindowHours
+    candidate_count = $resultArray.Count
+    attribution_status = if ($resultArray.Count -eq 1) { "EXACT_SINGLE_MATCH" } else { "AMBIGUOUS_MULTIPLE_MATCHES_REVIEW_REQUIRED" }
+    candidates = $resultArray
 } | ConvertTo-Json -Depth 20
