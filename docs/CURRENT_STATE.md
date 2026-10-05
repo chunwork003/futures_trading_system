@@ -19,6 +19,10 @@ Current work: `WO-AUTO-IMP-002-IC01-01`; status BLOCKED; handoff_ready=false. Ex
 Only admission blocker: IC01_QUOTA_ADMISSION_UNRESOLVED; provider is not hard-blocked, but compatible provider-native forecast or exact IC01 quota amendment is absent. Frozen normalized fallback does not cover P90 2.5M.
 No reservation, dispatch, consumption or executor invocation occurred. RF02 PASS and integration failure evidence remain valid. AUTO-IMP-003 NOT_AUTHORIZED. Historical readiness fields below do not grant execution.
 
+### IC01 Canonical Ready Handoff
+
+Current work `WO-AUTO-IMP-002-IC01-01`, execution `EXEC-AUTO-IMP-002-IC01-20261005T150733Z`: READY_FOR_MANUAL_CODEX_TRIGGER. Authorization CONSUMED; exact waiver EXPIRED_CONSUMED with admission bound to this reserved execution only; no reuse. Writer HELD by same execution. Executor not invoked. Canonical exact pointers: `automation/work_orders/CURRENT_CODEX.yaml` and `automation/work_orders/CURRENT_CODEX_TASK.md`. Earlier quota-blocked snapshots are superseded by this transition. Runtime/broker/DB/migration/LIVE/production DENIED; AUTO-IMP-003 NOT_AUTHORIZED.
+
 ### CURRENT_AUTHORITY_SNAPSHOT
 
 ```text

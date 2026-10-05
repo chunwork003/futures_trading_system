@@ -187,9 +187,9 @@
   },
   "execution_branch": "auto/WO-AUTO-IMP-002-IC01-01",
   "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
-  "status": "WAITING",
-  "handoff_ready": false,
-  "execution_eligibility": "BLOCKED_QUOTA_ADMISSION",
+  "status": "READY_FOR_CODEX",
+  "handoff_ready": true,
+  "execution_eligibility": "PASS_CONSUMED_READY_FOR_MANUAL_TRIGGER",
   "eligibility_path": "automation/work_orders/AUTO-IMP-002-IC01.eligibility.json",
   "quota_gate": {
     "policy": "QuotaAdmissionPolicyV1_1",
@@ -263,8 +263,8 @@
     ],
     "rf02_re_review": false
   },
-  "next_route": "IC01_QUOTA_ADMISSION_DECISION",
-  "current_action": "STOP_BEFORE_RESERVATION",
+  "next_route": "IC01_MANUAL_CODEX_TRIGGER",
+  "current_action": "READY_FOR_MANUAL_CODEX_TRIGGER",
   "created_at": "2026-10-05T15:00:35Z",
   "updated_at": "2026-10-05T15:10:26Z",
   "quota_amendment": {
@@ -275,5 +275,14 @@
   "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/reservation.yaml",
   "writer_lock_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml",
   "lifecycle_status": "CONSUMED",
-  "dispatch_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/dispatch.yaml"
+  "dispatch_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/dispatch.yaml",
+  "consumed_commit_sha": "8a4222d79f257c7e8b1311ffcf43d0b6df7a3e1b",
+  "handoff_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/handoff.yaml",
+  "authority_basis": {
+    "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-IC01-01.v1.yaml",
+    "quota_amendment_path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
+    "consumed_commit_sha": "8a4222d79f257c7e8b1311ffcf43d0b6df7a3e1b",
+    "reuse": "DENIED",
+    "first_invocation_of_bound_execution_only": true
+  }
 }
