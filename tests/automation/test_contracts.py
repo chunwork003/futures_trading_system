@@ -106,6 +106,90 @@ def test_safe_loader_rejects_unsafe_yaml_tag(tmp_path: Path) -> None:
         load_yaml_mapping(source)
 
 
+def test_safe_loader_preserves_valid_merge_and_explicit_override(
+    tmp_path: Path,
+) -> None:
+    source = tmp_path / "merge.yaml"
+    source.write_text(
+        "defaults: &defaults\n"
+        "  inherited: value\n"
+        "  override: default\n"
+        "nested:\n"
+        "  <<: *defaults\n"
+        "  override: explicit\n",
+        encoding="utf-8",
+    )
+
+    loaded = load_yaml_mapping(source)
+
+    assert loaded["nested"] == {"inherited": "value", "override": "explicit"}
+
+
+def test_safe_loader_preserves_merge_sequence_precedence(tmp_path: Path) -> None:
+    source = tmp_path / "merge-sequence.yaml"
+    source.write_text(
+        "first: &first\n"
+        "  winner: first\n"
+        "second: &second\n"
+        "  winner: second\n"
+        "nested:\n"
+        "  <<: [*first, *second]\n",
+        encoding="utf-8",
+    )
+
+    loaded = load_yaml_mapping(source)
+
+    assert loaded["nested"] == {"winner": "first"}
+
+
+@pytest.mark.parametrize(
+    "document",
+    [
+        "schema_version: first\nschema_version: second\n",
+        "schema_version: test\nnested:\n  key: first\n  key: second\n",
+        "schema_version: test\nitems:\n  - key: first\n    key: second\n",
+        "schema_version: test\nnested: !!set\n  duplicate: null\n  duplicate: null\n",
+    ],
+)
+def test_safe_loader_rejects_duplicate_explicit_keys_at_every_mapping_boundary(
+    tmp_path: Path, document: str
+) -> None:
+    source = tmp_path / "duplicate.yaml"
+    source.write_text(document, encoding="utf-8")
+
+    with pytest.raises(AutomationYamlError, match="duplicate YAML mapping key"):
+        load_yaml_mapping(source)
+
+
+def test_safe_loader_preserves_alias_keys(tmp_path: Path) -> None:
+    source = tmp_path / "alias-key.yaml"
+    source.write_text(
+        "key_source: &shared_key aliased\n"
+        "nested:\n"
+        "  *shared_key: value\n",
+        encoding="utf-8",
+    )
+
+    loaded = load_yaml_mapping(source)
+
+    assert loaded["nested"] == {"aliased": "value"}
+
+
+def test_safe_loader_preserves_recursive_aliases(tmp_path: Path) -> None:
+    source = tmp_path / "recursive-alias.yaml"
+    source.write_text(
+        "recursive: &recursive\n"
+        "  self: *recursive\n",
+        encoding="utf-8",
+    )
+
+    loaded = load_yaml_mapping(source)
+    recursive = loaded["recursive"]
+
+    assert isinstance(recursive, dict)
+    assert recursive["self"] is recursive
+
+
 def test_unknown_schema_fails_closed(tmp_path: Path) -> None:
     source = tmp_path / "unknown.yaml"
     source.write_text("schema_version: automation.unknown.v1\n", encoding="utf-8")

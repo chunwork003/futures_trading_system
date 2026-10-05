@@ -6,6 +6,8 @@ from pathlib import Path
 from typing import TypeVar, overload
 
 import yaml
+from yaml.constructor import ConstructorError
+from yaml.nodes import MappingNode
 
 from automation.engine.contracts import (
     CONTRACT_BY_SCHEMA,
@@ -20,12 +22,56 @@ class AutomationYamlError(ValueError):
 ContractT = TypeVar("ContractT", bound=AutomationContract)
 
 
+class _DuplicateMappingKeyError(ConstructorError):
+    """標記 explicit YAML mapping key 重複，供公開 boundary 統一轉譯。"""
+
+
+class _UniqueKeySafeLoader(yaml.SafeLoader):
+    """在 SafeLoader mapping boundary 拒絕重複 explicit key。
+
+    檢查發生於 merge flattening 前，因此合法 merge precedence、alias 與
+    SafeLoader 的 generator placeholder 行為保持不變；此類別不增加 YAML 功能。
+    """
+
+    def construct_mapping(
+        self,
+        node: MappingNode,
+        deep: bool = False,
+    ) -> dict[object, object]:
+        seen: set[object] = set()
+        for key_node, _ in node.value:
+            # Merge directive 由 SafeLoader flatten_mapping 處理；其來源 key
+            # 碰撞屬合法 precedence，不是同一 mapping 的 explicit duplicate。
+            if key_node.tag == "tag:yaml.org,2002:merge":
+                continue
+            key = self.construct_object(key_node, deep=deep)
+            try:
+                duplicate = key in seen
+                seen.add(key)
+            except TypeError:
+                # 非 hashable key 仍交由 SafeLoader 原生驗證 fail closed。
+                continue
+            if duplicate:
+                raise _DuplicateMappingKeyError(
+                    "while constructing a mapping",
+                    node.start_mark,
+                    f"found duplicate key {key!r}",
+                    key_node.start_mark,
+                )
+        return super().construct_mapping(node, deep=deep)
+
+
 def load_yaml_mapping(path: str | Path) -> dict[str, object]:
     """以 safe_load 讀取單一 mapping document；不寫檔、不改變任何 authority。"""
 
     source = Path(path)
     try:
-        loaded = yaml.safe_load(source.read_text(encoding="utf-8"))
+        loaded = yaml.load(
+            source.read_text(encoding="utf-8"),
+            Loader=_UniqueKeySafeLoader,
+        )
+    except _DuplicateMappingKeyError as exc:
+        raise AutomationYamlError(f"duplicate YAML mapping key: {source}") from exc
     except yaml.YAMLError as exc:
         raise AutomationYamlError(f"invalid safe YAML document: {source}") from exc
     if not isinstance(loaded, dict):
