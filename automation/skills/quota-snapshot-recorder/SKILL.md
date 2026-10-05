@@ -15,18 +15,19 @@ Record when available:
 - weekly used/remaining percentage
 - reset metadata
 - provider evidence source
-- exact task token/cost evidence when the client exposes it
+- exact task reported-token evidence when the client exposes it
+- provider-native billing/cost evidence only when explicitly exposed
 
 ## Token-cost resolution order
 
-1. Provider-native per-task token/cost telemetry, if exposed and exactly bound to this execution.
-2. Local Codex session/thread telemetry, only when the session can be unambiguously bound to this execution.
+1. Provider-native per-task billing/cost telemetry, if explicitly exposed and exactly bound to this execution.
+2. Local Codex session/thread reported-token telemetry, only when the session can be unambiguously bound to this execution.
    - Canonical helper: scripts/codex_session_token_usage.ps1
    - Typical session data lives under CODEX_HOME/sessions or ~/.codex/sessions and archived_sessions.
    - Bind by execution/work-order identity plus the actor start/end time window.
    - Read token_count metadata only; never print raw transcript/tool outputs into an active Codex conversation.
    - Never attribute an unrelated session merely because timestamps overlap.
-3. If exact token cost is unavailable, record TOKEN_COST_NOT_AVAILABLE and use percentage-window deltas only as an anomaly estimate.
+3. If exact billing/cost is unavailable, record BILLING_COST_NOT_AVAILABLE. Local rollout token deltas may still be used as reported-token telemetry; percentage-window deltas remain the quota anomaly estimate.
 
 Do not fabricate a token count from percentage limits.
 
@@ -72,3 +73,10 @@ Preferred flow:
 - helper scans metadata only and emits a small JSON summary;
 - WORK may materialize that summary as telemetry evidence;
 - raw rollout files remain local/untracked and must never be committed.
+
+
+Telemetry semantics:
+- Local rollout total_token_usage is usage telemetry, not a guaranteed billing ledger.
+- cached_input_tokens is reported separately inside input usage and must not be double-counted.
+- Never equate total_tokens, cached tokens, or a local token delta directly to ChatGPT 5H/weekly percentage consumption.
+- If client/version omits a token category, preserve that limitation instead of synthesizing it.
