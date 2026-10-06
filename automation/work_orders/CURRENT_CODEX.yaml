@@ -1,525 +1,110 @@
 {
   "schema_version": "automation.codex_work_order.v1",
-  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
-  "package_id": "AUTO-GOV-EXEC-CAPACITY-V2",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "package_id": "AUTO-GOV-PROGRAM-1_2-ORCHESTRATION",
   "package_revision": "1",
-  "correction_id": "AUTO-GOV-EXEC-CAPACITY-V2-RF01",
-  "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
-  "authorization_revision": "1",
-  "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.v1.yaml",
-  "authorization_state": "CONSUMED",
-  "work_order_path": "automation/work_orders/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.yaml",
-  "code_base_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
-  "source_candidate_head_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
-  "control_plane_baseline_sha": "de871f44d08a1a015a86c2b0a30ead5d0768f314",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "program_status": "COMPILED_CANDIDATE_PENDING_COHESIVE_IMPLEMENTATION_AND_REVIEW",
+  "architecture_active": "1.2",
+  "architecture_status": "ACTIVE",
+  "status": "BLOCKED",
+  "handoff_ready": false,
+  "execution_eligibility": "BLOCKED_CAPACITY",
+  "sole_blocker": "QUALIFIED_CAPACITY_REQUIRED",
+  "current_route": "WORK_CAPACITY_REVIEW",
+  "next_route": "WORK_CAPACITY_REVIEW",
+  "current_action": "STOP_AFTER_COHESIVE_COMPILATION_CAPACITY_BLOCKER",
+  "work_order_path": "automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01.v1.yaml",
+  "authorization_state": "AUTHORIZED",
   "authority_basis": {
-    "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.v1.yaml",
-    "bootstrap": "GOVERNANCE_POLICY_MIGRATION_REVIEW_FIX_BOOTSTRAP",
-    "review_verdict_commit": "6a3e99e4e4431990df97c8426bbd385af42c2e6c"
+    "owner_decision_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
+    "initial_materialization_commit": "3d40f89169a7a85b54f66599db3a6b3394059ebb",
+    "active_architecture": "1.2",
+    "architecture_bundle_hash": "db3317cc191360fcb0b715766cb94781a63d9710196341879b3289c3848282a9",
+    "scope_digest": "47b4277ed2e74fc17bb83c4ec986dd9df01dc4a30768b22e65382a93f036424b",
+    "policy": "NORMAL_ARCHITECTURE1.2_CAPACITY_PROVIDER_LIFECYCLE_NO_BOOTSTRAP_EXCEPTION",
+    "owner_decision_materialized_commit": "a11cb88a76da22c714e5e8397958b5e5e17642b7"
   },
-  "exact_goal": "Fix only V2-CAL-01 and V2-SER-01; preserve reviewed V2 architecture",
+  "code_base_sha": "4cd98db0a6faddd3e0f02df1f72a4c9407f3747c",
+  "control_plane_baseline_sha": "a11cb88a76da22c714e5e8397958b5e5e17642b7",
+  "owner_decision_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
+  "plan_path": "automation/packages/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.plan.yaml",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.json",
+  "eligibility_path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.eligibility.json",
+  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.provider-evidence.json",
+  "compilation_consistency_path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.compilation-consistency.json",
   "exact_write_scope": [
-    "automation/engine/execution_capacity.py",
-    "tests/automation/test_execution_capacity.py",
+    "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+    "automation/policies/orchestration_control_policy.v1.yaml",
+    "automation/engine/orchestration.py",
     "automation/engine/contracts.py",
-    "tests/automation/test_contracts.py"
+    "tests/automation/test_orchestration.py",
+    "tests/automation/test_contracts.py",
+    "scripts/execution_cost_reconcile.ps1",
+    "tests/automation/test_execution_cost_reconcile.py",
+    "automation/specs/context_loading_policy.v1.yaml",
+    "automation/skills/repo-reentry/SKILL.md",
+    "automation/skills/single-use-lifecycle-guard/SKILL.md",
+    "automation/skills/execution-cost-forecaster/SKILL.md",
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+    "automation/governance/master_manifest.v1.yaml",
+    "docs/CURRENT_STATE.md",
+    "docs/CURRENT_WORK.md",
+    "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+    "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
   ],
-  "protected_scope": [
-    "All other original19 V2 reviewed implementation blobs",
-    "docs/**",
-    "historical v1/v1.1",
-    "IVF01 source",
-    "all existing consumed authorizations and execution evidence",
-    "runtime/broker/db/migration/live/production/credentials/data/**"
-  ],
-  "protected_effective_candidate_blobs": {
-    "automation/policies/execution_capacity_policy.v2.yaml": "29beffc4b63eb14a1a2734ceb88773fdcdf7916c",
-    "automation/policies/authorization_lifecycle.v1_1.yaml": "dda6fde0c69f289a81aa743a5474db2aa5bf1867",
-    "automation/policies/development_state_machine.v2.yaml": "b36939d7645ba1188e3faffd64e4d10c0fa143f3",
-    "automation/policies/development_entry_protocol.v2.yaml": "8f48fbdf96809a44fd1ddbd412de0cf1fe2819a7",
-    "automation/telemetry/execution_cost_contract.v2.yaml": "178c60a49261d3746193a5521439f0c45dbaa75d",
-    "automation/specs/work_cost_accounting.v2.yaml": "9691b6e16e24004e0ea3e1a34ab577714570cdd7",
-    "automation/specs/negative_assertions.v2.yaml": "4e5d9ea39ae67fa0753e8402fa21aa75fe0e9b40",
-    "scripts/execution_cost_reconcile.ps1": "0817676efed4c6d5899dedbaa37ad01500db611e",
-    "automation/skills/quota-snapshot-recorder/SKILL.md": "293f5d341dfbdedce2f60db5b1581e6f2bc12a8f",
-    "automation/skills/execution-cost-forecaster/SKILL.md": "4f7855bffc71fd233c99d451127c7d6360e597fa",
-    "automation/skills/execution-efficiency-guard/SKILL.md": "9e69be396e790fef9fecbac8b003fb1e6263ce22",
-    "automation/skills/single-use-lifecycle-guard/SKILL.md": "fc0eb62a69f1a38643ee18c4c7b538a356cf9461",
-    "automation/skills/repo-reentry/SKILL.md": "24bb896d023953f8e718bb608784e6c4cfe15252",
-    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md": "4b19eabab43d3bbc511711724117150381062045",
-    "automation/prompts/CODEX_EXECUTOR_KERNEL.md": "e51259ac317d63de73826a3a7d6e02d28969ca50",
-    "automation/governance/master_manifest.v1.yaml": "b32ef0063d35d48c58b4411456c689139cfff0c5",
-    "docs/AI_AUTOMATION_OPERATING_MODEL.md": "c1b59c0ec6c4107b0e16ab9e261340ce740d8ed4",
-    "docs/CURRENT_STATE.md": "3d2b852a80dbad50a9747f027fda35a0ad4152f3",
-    "docs/CURRENT_WORK.md": "78a3315a982b68abd6c0f8b4ae2cb870f4fcf9e5"
-  },
-  "protected_git_blobs": {
-    "automation/engine/yaml_io.py": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
-    "automation/policies/authorization_lifecycle.v1.yaml": "a00c8f8277204380dd6211548a6828380afb51e0",
-    "automation/policies/development_entry_protocol.v1.yaml": "40d0a8ee5ca3bc1f416e324d755f752b67c0d2d6",
-    "automation/policies/development_state_machine.v1.yaml": "36d8f1e3108420963d2020a36e66de59c718c0cf",
-    "automation/policies/quota_admission_policy.v1.yaml": "57c30aae1c4f481af98dd4e9b47323159fc74f41",
-    "automation/policies/quota_admission_policy.v1_1.yaml": "556a86ba5be7a2b2818b1523d96b44caab487bd1",
-    "automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml": "bb7969c891a314b3e2f9c69da2834f07e1f6bcb4",
-    "automation/specs/negative_assertions.v1.yaml": "6fecc7e30ed5057b64ee8851f1787198a7ad722a",
-    "automation/specs/work_cost_accounting.v1.yaml": "f10a216f9e9a02d690bbc68b14dff002ebd75875",
-    "automation/telemetry/execution_cost_contract.v1.yaml": "0ae6b4f269c534b7b691a898584b94655afd1605",
-    "scripts/codex_session_token_usage.ps1": "5834edd880ec9c73781b220c1ee488027f98f77e"
-  },
-  "original_binding": {
-    "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
-    "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
-    "implementation_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
-    "evidence_sha": "b899984462e48eb4dd02eae502918bd36ec937d4",
-    "candidate_bundle_sha256": "21949d0035f9c290a3bab45b342f37e1ee598b09057a6deb5c9d22b3428e1391"
-  },
-  "requirements": {
-    "finding_ids": [
-      "V2-CAL-01",
-      "V2-SER-01"
-    ],
-    "calibration": {
-      "token_equations": [
-        "cached_input_tokens + uncached_input_tokens == input_tokens",
-        "reasoning_output_tokens <= output_tokens",
-        "total_tokens == input_tokens + output_tokens"
-      ],
-      "negative_noninteger": "REJECT",
-      "identity": "Before/after evidence must mechanically match required calibration provider/limit/window identity, and account/workspace where supplied. Matching resets and monotonic percentages alone insufficient. Missing required facts -> qualification false; never fabricate.",
-      "mandatory_negatives": [
-        "reasoning>output",
-        "total!=input+output",
-        "cached+uncached!=input",
-        "provider window identity mismatch",
-        "limit/window incompatibility",
-        "reset incompatibility",
-        "competing consumer",
-        "invalid exact-binding"
-      ],
-      "positive": "Clean exact-bound compatible samples ACCEPT",
-      "sample_count_alone": "NOT_CONFIDENCE",
-      "estimate_is_exact": false
-    },
-    "serialization": {
-      "runtime": "DEEPLY_IMMUTABLE",
-      "boundary": "DETERMINISTIC_PLAIN_DATA",
-      "model_dump_json": "SUCCEEDS_WITHOUT_V2_SERIALIZER_MISMATCH_WARNING",
-      "round_trip": "VALIDATES_PRESERVES_CONTENT",
-      "preserve": [
-        "extra=forbid",
-        "frozen=True",
-        "strict=True",
-        "deep read-only",
-        "strict scalar",
-        "unsafe YAML unchanged"
-      ]
-    },
-    "architecture_pass_preserved": {
-      "architecture": {
-        "decision": "EXECUTION_CAPACITY_AND_RESUME_V2 = APPROVED_FOR_COHESIVE_IMPLEMENTATION",
-        "target_version": "1.2",
-        "active_master_version_until_acceptance": "1.1",
-        "packaging": "KEEP_COHESIVE",
-        "principle": "OPTIMIZE_TOTAL_ENGINEERING_VALUE_NOT_TOKENS_PER_TICKET",
-        "review_required_before_activation": true
-      },
-      "admission": {
-        "separate_gates": [
-          "EXECUTION_COST_GATE",
-          "PROVIDER_AVAILABILITY_GATE"
-        ],
-        "forecast": "Per-WO P50/P75/P90 reported demand with input/cached/uncached/output/reasoning dimensions separate",
-        "capacity": "Best qualified evidence and uncertainty; no arbitrary global P90 ceiling or artificial remaining-percent reserve",
-        "insufficient_calibration": "PROVISIONAL; no fabricated numeric capacity; manual low-risk explicitly authorized bounded work may ALLOW_WITH_WATCH; unattended automatic trigger disabled until confidence qualified",
-        "provider_denial": "WAIT_PROVIDER_AVAILABLE before start; actual denial always wins",
-        "legacy_static_package_forecasts": "LEGACY_PLANNING_INPUT_NOT_OPERATIONAL_ADMISSION_AUTHORITY"
-      },
-      "calibration": {
-        "provider_percent": "CAPACITY_ESTIMATION_TELEMETRY",
-        "raw_observations": [
-          "five-hour used/remaining",
-          "weekly used/remaining",
-          "reset metadata",
-          "ordinaryUsageAllowed",
-          "rate-limit/spend-control",
-          "account/workspace/provider/limit/model/executor/client-policy identity when available"
-        ],
-        "raw_mutation": "DENIED",
-        "eligible_sample": "Exact bound tokens, clean attribution, no incompatible reset/rollover or known ambiguous competing consumer",
-        "identity_dimensions": [
-          "provider",
-          "account",
-          "workspace",
-          "limit_id",
-          "window_type",
-          "model",
-          "executor_profile",
-          "provider_client_policy_version"
-        ],
-        "token_features": "Keep cached/uncached/input/output/reasoning dimensions; no unsupported identical weights or fixed linear total-token conversion",
-        "measurement_types": {
-          "local_exact_bound": "EXACT",
-          "provider_raw": "PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY",
-          "derived_capacity": "CALIBRATED_ESTIMATE_OR_PROVISIONAL_ESTIMATE_NEVER_EXACT",
-          "billing": "ONLY_EXPLICIT_EXACT_PROVIDER_TASK_COST"
-        },
-        "qualification": "Use existing minimum-comparable-samples discipline plus clean attribution and identity/uncertainty evidence; no automatic confidence upgrade from sample count alone"
-      },
-      "resume": {
-        "states": [
-          "RUNNING",
-          "PAUSED_PROVIDER_LIMIT",
-          "RESUME_PENDING_REVALIDATION"
-        ],
-        "running_limit": "Pause same already-invoked execution; not implementation/correction failure, not new WO/execution/dispatch, not correction-budget consumption",
-        "preserve": [
-          "WO",
-          "execution_id",
-          "authorization/reservation/dispatch lineage",
-          "branch",
-          "delta",
-          "budget",
-          "completed tests/evidence",
-          "accumulated telemetry",
-          "writer ownership lineage"
-        ],
-        "recovery": "Wake only -> fresh revalidation -> RESUME_SAME_EXECUTION or STOP_TO_WORK",
-        "checks": [
-          "origin/master/current HEAD compatibility",
-          "exact execution",
-          "reservation ownership",
-          "dispatch/CONSUMED and already-invoked proof",
-          "authority not revoked/superseded",
-          "scope unchanged",
-          "writer continue/reacquire safely and no competing owner",
-          "provider available",
-          "architecture/policy compatible"
-        ],
-        "missing_or_ambiguous_lineage": "STOP_NO_FABRICATED_INVOCATION_OR_HISTORICAL_EVENTS",
-        "redispatch_consumed": "DENIED",
-        "resume_already_invoked": "ALLOWED_ONLY_AFTER_REVALIDATION",
-        "new_identity_reservation_authority_for_resume": "DENIED"
-      },
-      "routing": {
-        "priority": [
-          "SAFETY_GOVERNANCE",
-          "RESUMABLE_UNFINISHED_EXECUTION",
-          "PENDING_RESULT_REVIEW_INTEGRATION",
-          "AUTHORIZED_NEW_WORK"
-        ],
-        "resumable_blocks_new_dispatch": true,
-        "continue_intent": "Repository-first exact unfinished execution resolution; no silent READY selection",
-        "provider_reset": "WAKE_ONLY_NEVER_DIRECT_INVOKE"
-      },
-      "state_machine": {
-        "execution": [
-          "IDLE",
-          "QUEUED",
-          "PRE_DISPATCH",
-          "RUNNING",
-          "PAUSED_PROVIDER_LIMIT",
-          "RESUME_PENDING_REVALIDATION",
-          "RESULT_READY",
-          "STOPPED"
-        ],
-        "separate_provider_and_cost_axes": true,
-        "preserve": [
-          "review/acceptance barriers",
-          "single writer",
-          "no unauthorized unattended path",
-          "RESULT_READY != ACCEPTED",
-          "REVIEW_PASS != integration PASS",
-          "integration PASS != acceptance until materialized"
-        ]
-      },
-      "forecast_capacity_review": {
-        "trigger": "Any running provider-limit interruption",
-        "type": "WORK_FORECAST_CAPACITY_REVIEW_NOT_INDEPENDENT_SEMANTIC_REVIEW",
-        "dimensions": [
-          "forecast vs exact tokens",
-          "provider movement",
-          "capacity error",
-          "cached replay",
-          "uncached context",
-          "output/reasoning",
-          "test cycles",
-          "tool retries",
-          "context reload",
-          "reset/competing-consumer ambiguity"
-        ],
-        "does_not_block_legal_same_execution_resume": true,
-        "must_materialize_before_new_work_after_interrupted_execution_completes": true,
-        "authority_mutation": "DENIED",
-        "escalate_only": "Architecture/invariant/authority conflict"
-      },
-      "reconcile": {
-        "path": "scripts/execution_cost_reconcile.ps1",
-        "backward_compatible": true,
-        "optional_fields": [
-          "provider_limit_encountered",
-          "provider_pause_count",
-          "provider_pause_seconds",
-          "resume_count",
-          "resumed_same_execution",
-          "capacity_forecast_at_start",
-          "capacity_estimate_at_start",
-          "forecast_capacity_review_required"
-        ],
-        "pause_recommendation": "Bounded capacity/forecast feedback; never automatically source-defect classification",
-        "preserve_variance": [
-          "context replay",
-          "fresh context",
-          "test execution"
-        ],
-        "extractor": "scripts/codex_session_token_usage.ps1 PROTECTED; stop and report proven compatibility defect instead of expanding current scope"
-      },
-      "contracts": {
-        "new_schemas": [
-          "automation.execution_capacity_policy.v2",
-          "automation.authorization_lifecycle.v1_1",
-          "automation.development_state_machine.v2",
-          "automation.development_entry_protocol.v2",
-          "automation.execution_cost_contract.v2",
-          "automation.work_cost_accounting.v2",
-          "automation.negative_assertions.v2"
-        ],
-        "historical_required_versions_readable": true,
-        "unknown_schema": "FAIL_CLOSED",
-        "pydantic_extra_field_rejection_and_deep_read_only": "PRESERVE",
-        "yaml_io": "PROTECTED_NO_UNNECESSARY_CHANGE"
-      },
-      "implementation": {
-        "deterministic_module": "automation/engine/execution_capacity.py: pure/read-only provider-cost/routing/resume evidence evaluation, no provider IO, no executor invocation or authority mutation",
-        "call_surface": "Policies/kernels call exact revalidation procedure; deterministic tests prove resume-first and negative matrix; no trading/runtime module edits",
-        "skills_kernels": "Consistent successor policy pointers, estimation typing, same-execution pause and resume-before-new machine invariant"
-      },
-      "manifest": {
-        "candidate_branch": "Version/hash updates are proposed candidate evidence, never active master authority before governance review",
-        "after_pass": "WORK integrate exact reviewed delta while preserving later master telemetry/control plane; materialize Architecture1.2 and consistent bundle/hash",
-        "historical_versions": "Immutable read-only superseded pointers, no deletion or semantic rewrite"
-      },
-      "ivf01": {
-        "during_migration": "BLOCKED_NO_EXECUTION_NO_WAIVER",
-        "rev1": "Preserve AUTH-AUTO-IMP-002-IVF01-01 unchanged; once1.2active mark projection ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED; never mutate into1.2authority",
-        "after_v2_acceptance": "Recompile same one-test-file IVF01 under1.2, suggested AUTH-AUTO-IMP-002-IVF01-02; no quota waiver solely for removed oldfloor",
-        "reentry_production": "Protected unless independent production defect; no silent edit"
-      },
-      "bootstrap": {
-        "basis": "HUMAN_EXPLICIT_GOVERNANCE_POLICY_MIGRATION_BOOTSTRAP",
-        "exact_work_only": true,
-        "old_internal_80pct_40k_gate": "INAPPLICABLE_FOR_THIS_APPROVED_SUPERSESSION_MIGRATION",
-        "provider_enforced_limits_waived": false,
-        "requirements": [
-          "ordinaryUsageAllowed true",
-          "no provider hard/rate-limit/spend denial",
-          "exact WO/authority",
-          "single-use lifecycle",
-          "exact scope",
-          "forecast",
-          "runtime/broker/db/migration/live/production DENIED"
-        ]
-      },
-      "review": {
-        "fresh_context": true,
-        "type": "INDEPENDENT_GOVERNANCE_SEMANTIC",
-        "checks": [
-          "no redispatch loophole",
-          "resume identity continuity",
-          "unfinished execution blocks new work",
-          "provider hard block wins",
-          "estimate typing not EXACT",
-          "forecast review cannot grant authority",
-          "IVF01 Rev1 stale not reused",
-          "all runtime/broker/DB/migration/LIVE/production denied"
-        ],
-        "stop_before_architecture_activation": true
-      },
-      "exclusions": [
-        "IVF01 Rev1 execution",
-        "IVF01 quota waiver",
-        "AUTO-IMP-003",
-        "other AUTO-IMP package",
-        "trading/runtime/broker/recovery architecture changes",
-        "historical deletion",
-        "silent evidence reinterpretation"
-      ],
-      "stop": "Any new architecture-semantic contradiction outside decision -> STOP_TO_ARCHITECTURE_OWNER"
-    },
-    "stop_scope_expansion": "STOP_SCOPE_EXPANSION_REQUIRED"
-  },
-  "tests": [
-    "Minimum pre-fix reproduction for V2-CAL-01 and V2-SER-01 before edits; impacted subsets until clean.",
-    "Calibration: cached+uncached=input; reasoning<=output; total=input+output; reject negative/noninteger dimensions.",
-    "Calibration: reject provider/account/workspace/limit/window mismatch when supplied; missing evidence required for qualification fails closed; reset/window mismatch; competing consumers; invalid exact-binding.",
-    "Positive non-vacuity: clean exact-bound compatible samples ACCEPT; sample_count alone never establishes confidence; CALIBRATED_ESTIMATE never EXACT.",
-    "Serialization: nested deep immutability; model_dump deterministic plain data; model_dump_json succeeds; round-trip validation and semantic content preserved.",
-    "Explicitly capture serializer warnings and require no V2 MappingProxyType serialization mismatch; no unstable warning-text dependence.",
-    "Preserve extra=forbid, frozen=True, strict=True, strict scalar behavior, unsafe YAML, all existing negatives.",
-    "One complete targeted tests/automation pass after impacted clean; one full regression with POSTGRES17_TEST_DSN and POSTGRES18_TEST_DSN empty; no actual DB/broker.",
-    "git diff --check; exact four-file delta against e414c108e075c8aa2307d607ffe77013b40c5391; protected19 original reviewed blob equality; historical protected blob equality.",
-    "No repeated full regression for metadata/hash-only delta. Additional semantic correction beyond authorized RF01 STOP."
-  ],
+  "scope_digest": "47b4277ed2e74fc17bb83c4ec986dd9df01dc4a30768b22e65382a93f036424b",
   "side_effect_envelope": {
     "runtime": "DENIED",
     "broker": "DENIED",
     "db": "DENIED",
     "migration": "DENIED",
     "live": "DENIED",
-    "production": "DENIED"
+    "production": "DENIED",
+    "credentials": "DENIED"
   },
-  "quota_gate": {
-    "status": "GOVERNANCE_POLICY_MIGRATION_REVIEW_FIX_BOOTSTRAP",
-    "provider_hard_block": "STOP",
-    "provider_enforced_limits_waived": false,
-    "old_80pct_40k_gate": "INAPPLICABLE_EXACT_HUMAN_SUPERSESSION_BOOTSTRAP",
-    "ivf01_quota_waiver": false,
-    "prior_amendment_reuse": "DENIED"
-  },
-  "forecast": {
-    "path": "automation/work_orders/forecasts/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.json",
-    "confidence": "PROVISIONAL_NO_SAME_CLASS_EXACT_COHORT"
-  },
-  "task_profile": {
-    "task_class": "BOUNDED_GOVERNANCE_REVIEW_FIX",
-    "change_type": "CALIBRATION_ACCOUNTING_AND_IMMUTABLE_SERIALIZATION_CORRECTION",
-    "subsystem": "automation execution capacity and contracts",
-    "functional_area": "calibration qualification / Pydantic serialization",
-    "concise_engineering_goal": "Fix only V2-CAL-01 and V2-SER-01; preserve reviewed V2 architecture",
-    "primary_symbols_or_functional_surfaces": [
-      "calibration qualification",
-      "immutable contract dump/JSON/round-trip"
-    ],
-    "behavior_dimensions": [
-      "token-accounting consistency",
-      "provider window identity",
-      "plain serialization",
-      "deep immutability"
-    ],
-    "source_file_count": 2,
-    "test_file_count": 2,
-    "semantic_profile": "NARROW_RE_REVIEW_OF_EFFECTIVE_CANDIDATE",
-    "test_profile": "MIN_COUNTEREXAMPLE_IMPACTED_ONE_TARGETED_ONE_REGRESSION",
-    "authority_boundary": "Exact four files; no architecture activation or runtime effects",
-    "packaging_cohesion_decision": "KEEP_COHESIVE: same authority, subsystem and shared targeted/re-review surface; optimize total engineering value"
-  },
-  "context_profile": {
-    "artifacts_read": [],
-    "artifacts_by_type": {
-      "governance": 8,
-      "telemetry": 1,
-      "source": 0,
-      "test": 0
-    },
-    "volume_by_artifact_type": null,
-    "raw_transcript_loaded": false,
-    "history_loaded_amount": {
-      "artifacts": 1,
-      "reason": "Original candidate exact Git tree identities only"
-    },
-    "source_context_volume": 0,
-    "test_context_volume": 0,
-    "governance_context_volume": null,
-    "telemetry_context_volume": null,
-    "content_token_estimate": null,
-    "model_usage_measurement_type": "UNKNOWN",
-    "measurement_limit": "Pointer/blob reuse and partial outputs; no fabricated cumulative volume"
-  },
-  "correction_budget": {
-    "limit": 1,
-    "used": 1,
-    "remaining": 0,
-    "automatic_rf02": false
-  },
-  "correction_budget_remaining": 0,
-  "execution_branch": "auto/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
-  "status": "CLOSED",
-  "handoff_ready": false,
-  "eligibility_path": "automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2-RF01.eligibility.json",
+  "active_dispatch_mode": "MANUAL",
+  "controlled_auto": "DISABLED",
   "manual_trigger_only": true,
   "automatic_dispatch": false,
   "automatic_next_package": false,
-  "executor_invoked": true,
-  "architecture_active": "1.2",
-  "architecture_candidate": null,
-  "auto_imp_003_authorized": false,
-  "blocked_ivf01": {
-    "work_order_id": "WO-AUTO-IMP-002-IVF01-01",
-    "authorization_id": "AUTH-AUTO-IMP-002-IVF01-01",
-    "execution": "DENIED",
-    "recompile_after_1_2_reviewed_active": "REQUIRES_SEPARATE_OWNER_DECISION_AND_AUTHORITY",
-    "rev1_state": "ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED",
-    "rev1_authority_modified": false,
-    "rev2_created": false,
-    "rev2_authorized": false
+  "execution_id": null,
+  "current_execution_id": null,
+  "executor_invoked": false,
+  "reexecution_authorized": false,
+  "writer_state": "NONE_HELD",
+  "reservation_created": false,
+  "dispatch_committed": false,
+  "correction_budget_remaining": 0,
+  "ivf01": {
+    "rev1": "ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED",
+    "rev2": "NOT_AUTHORIZED_PREPARATION_ONLY",
+    "flow_path": "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
   },
+  "auto_imp_003_authorized": false,
   "next_package": {
     "package_id": "AUTO-IMP-003",
     "authorization": "NOT_AUTHORIZED"
   },
-  "source_baseline_rule": "Fresh read origin/master for CURRENT/WO/authority/lifecycle. Start isolated correction branch at exact reviewed source commit e414c108e075c8aa2307d607ffe77013b40c5391, not master source. Authority always from fresh master, never candidate historical CURRENT/auth. Do not copy old candidate control plane to master. Exact correction delta measured against source candidate; all protected19 candidate blobs unchanged.",
-  "stop_conditions": [
-    "STOP_SCOPE_EXPANSION_REQUIRED",
-    "provider hard/rate/spend denial",
-    "authority/baseline/scope/writer drift",
-    "unapproved architecture modification",
-    "extra semantic correction beyond RF01",
-    "automatic trigger attempt"
+  "operational_order": [
+    "AUTO-IMP-002",
+    "AUTO-IMP-003",
+    "AUTO-IMP-004",
+    "AUTO-IMP-005",
+    "AUTO-IMP-006",
+    "AUTO-IMP-007",
+    "AUTO-IMP-008",
+    "AUTO-IMP-009"
   ],
-  "completion_evidence_requirements": [
-    "COMPLETED_PENDING_RE_REVIEW",
-    "exact master/start/source/claim/implementation/evidence SHAs",
-    "four-file correction delta; protected19 and historical hash equality",
-    "tests/exit/timing/diff-check",
-    "own completion and execution_cost_actual only; no authority mutation",
-    "raw provider before/after; local tokens pending deterministic post-execution extraction"
-  ],
-  "review_plan": {
-    "type": "FRESH_NARROW_INDEPENDENT_GOVERNANCE_RE_REVIEW",
-    "effective_candidate": "Original23-file candidate + exactfour-fileRF01delta",
-    "findings": [
-      "V2-CAL-01 FIXED",
-      "V2-SER-01 FIXED"
-    ],
-    "protected19_unchanged": true,
-    "unrelated_pass_scope_preserved": true,
-    "on_pass_next_route": "WORK_MATERIALIZE_REVIEWED_ARCHITECTURE_1_2_NO_AUTO_DISPATCH",
-    "activation_before_review": "DENIED"
-  },
-  "next_route": "AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION",
-  "created_at": "2026-10-06T06:34:12.425Z",
-  "updated_at": "2026-10-06T07:37:53.663Z",
-  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
-  "writer_state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
-  "writer_lock_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
-  "writer_ownership_lineage_path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.writer-lock.yaml",
-  "reservation_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/reservation.yaml",
-  "lifecycle_status": "CLOSED_WRITER_RELEASED_NO_REEXECUTION",
-  "execution_eligibility": "CLOSED_NO_EXECUTION_AUTHORITY",
-  "current_action": "STOP_FOR_PROGRAM_COMPATIBILITY_AND_NEXT_FLOW_DISCUSSION",
-  "dispatch_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/dispatch.yaml",
-  "handoff_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/handoff.yaml",
-  "eligibility_reconciliation_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/pre_dispatch_recheck.json",
-  "reserved_commit_sha": "6c44e0d670a30da61425cb159d4ee72d930784a8",
-  "writer_acquired_commit_sha": "48997d9b72ae479f2f4fac1eb826e1c3f0afebc3",
-  "recheck_commit_sha": "583a8b9a4ea660b041db9f4d774b51a39bb84d4a",
-  "dispatch_commit_sha": "192bb6911994306fa043d06857cfe8f87e85e6fb",
-  "single_use_steps_1_through_9": "DURABLE_PASS",
-  "reexecution_authorized": false,
-  "result_intake_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/result_intake.json",
-  "implementation_commit_sha": "ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a",
-  "evidence_commit_sha": "606d8273cc7ead110547d3fa232b7c5e41c0e78e",
-  "review_status": "PASS",
-  "writer_release_commit": "a7835e42930affbcbd0481238f26299cab41dd9a",
-  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.review.yaml",
-  "effective_candidate_identity_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.effective-candidate.json",
-  "local_token_usage_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/local_token_usage.json",
-  "cost_reconciliation_path": "automation/work_orders/optimizations/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.cost-reconciliation.json",
-  "semantic_acceptance": "ACCEPTED_MATERIALIZED",
-  "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json",
-  "accepted_semantically": true,
-  "architecture_status": "ACTIVE",
-  "current_execution_id": null,
-  "closure_path": "automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2-RF01.closure.json",
-  "architecture_activation_path": "automation/work_orders/EXECUTION-CAPACITY-V2.architecture-1_2.activation.json",
-  "program_compatibility_path": "automation/work_orders/AUTOMATION-PROGRAM-1_1-TO-1_2.discussion.json"
+  "logical_DAG_changed": false,
+  "cohesive_review_required": true,
+  "KNOWN_AUTOMATION_ARCHITECTURE_DEBT": "NONE",
+  "debt_semantics": "All known design decisions specified and implementation consistency issues included in exact scope; does NOT claim implementation complete or capacity evidence calibrated",
+  "prior_closed_work_order": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "prior_closure_pointer": "automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2-RF01.closure.json",
+  "created_at": "2026-10-06T08:24:37Z",
+  "updated_at": "2026-10-06T08:32:03Z"
 }

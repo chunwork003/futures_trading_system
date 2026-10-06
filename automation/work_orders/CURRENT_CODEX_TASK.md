@@ -1,15 +1,14 @@
-# CURRENT — Architecture1.2 ACTIVE; no executable handoff
+# CURRENT CODEX Task — BLOCKED / DO NOT INVOKE
 
-Execution Capacity V2 ACCEPTED_MATERIALIZED; V2 RF01 CLOSED; V2-CAL-01/V2-SER-01 CLOSED. CODEX NOT_RUNNING; handoff_ready=false; no execution authorized by this materialization; writer released. No RF02.
+Work Order: WO-AUTO-GOV-PROGRAM-1_2-ORCH-01
+Package: AUTO-GOV-PROGRAM-1_2-ORCHESTRATION
+Architecture: 1.2 ACTIVE
+Authority: AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01 AUTHORIZED, not consumed
+State: BLOCKED
+handoff_ready: false
+Sole blocker: QUALIFIED_CAPACITY_REQUIRED
+Route: WORK_CAPACITY_REVIEW
 
-Activation: `automation/work_orders/EXECUTION-CAPACITY-V2.architecture-1_2.activation.json`
-Closure: `automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2-RF01.closure.json`
-Reviewer PASS: `automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json`
+Read exact CURRENT -> automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml -> automation/packages/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.plan.yaml -> automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json and exact forecast/eligibility pointers. Complete19-file scope and49-case matrix are in WO. This is one cohesive Program V2 / queue / event / deterministic route / dedupe / forecast / promotion implementation; no separate architecture discussion remains.
 
-IVF01 Rev1 ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED; Rev2 NOT_CREATED/NOT_AUTHORIZED. AUTO-IMP-003 NOT_AUTHORIZED; runtime/broker/DB/migration/LIVE/production DENIED. No automatic dispatch/progression.
-
-Program1.1 historical binding remains unchanged; compatibility/recompile is unresolved. No new DAG dependency or sequencing permission inferred.
-
-Only next route: `AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION`
-Owner discussion: `automation/work_orders/AUTOMATION-PROGRAM-1_1-TO-1_2.discussion.json`
-STOP; do not execute or compile next package.
+No writer/execution/reservation/dispatch exists. This document is status-only, not executable handoff. Do not claim, invoke CODEX, consume authority, reuse any previous execution, execute IVF01 or authorize003. Only after qualified capacity and fresh all normal1.2 gates may WORK materialize new exact lifecycle for a manual trigger. Provider denial always STOP. MANUAL active; CONTROLLED_AUTO DISABLED; all runtime/broker/DB/migration/LIVE/production DENIED.

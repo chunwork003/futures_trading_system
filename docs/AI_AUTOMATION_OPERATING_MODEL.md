@@ -1,4 +1,14 @@
-## CURRENT — Architecture 1.2 Accepted Materialization
+## CURRENT — Program 1.2 / Orchestration Compilation
+
+Architecture 1.2 remains ACTIVE with its accepted provider/cost/resume/lifecycle semantics unchanged. Current work, queue route and authority are canonical in `automation/work_orders/CURRENT_CODEX.yaml` and `docs/CURRENT_STATE.md`. Owner has DECIDED explicit Program V2 successor and CLOSE_AUTO_IMP_002_IVF01_FIRST; prior compatibility/sequencing discussion is resolved. Complete queue/event/route/dedupe/dispatch/promotion/forecast design is authoritative in `automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json`. Program V2/controller remain implementation candidates pending one cohesive independent review and WORK acceptance.
+
+Current work `WO-AUTO-GOV-PROGRAM-1_2-ORCH-01`: BLOCKED / QUALIFIED_CAPACITY_REQUIRED / WORK_CAPACITY_REVIEW; handoff_ready=false. Implementation authority is AUTHORIZED, not consumed; no writer/execution/reservation/dispatch. MANUAL is the active mode; CONTROLLED_AUTO DISABLED. IVF01 Rev1 stale, Rev2 preparation only NOT_AUTHORIZED; AUTO-IMP-003–009 NOT_AUTHORIZED; runtime/broker/DB/migration/LIVE/production DENIED. No automatic CODEX or next package. Design complete; qualified capacity evidence remains an external admission dependency, not a future architecture TODO.
+
+## Historical checkpoints — no current route or execution authority
+
+The following preserved checkpoint text is audit history. Its former unresolved Program discussion/current routing is superseded by the Owner decision and canonical CURRENT above. Historical quota text is evidence only; Architecture1.2 active policies are the admission authority.
+
+### Historical Architecture 1.2 Accepted Materialization checkpoint
 
 Architecture 1.2 = ACTIVE; Execution Capacity V2 = ACCEPTED_MATERIALIZED; V2 RF01 = CLOSED; V2-CAL-01 = CLOSED; V2-SER-01 = CLOSED; serializer warning assessment RESOLVED. Independent narrow PASS: `automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json`; exact reviewed source integrated at `14ff081757fe4205ab78c85b82f7ef6ca9c1e76f`. Original candidate e414c108e075c8aa2307d607ffe77013b40c5391; RF01 implementation ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a; evidence606d8273cc7ead110547d3fa232b7c5e41c0e78e; effective source bundle f5a1fea9c2a8f4084348bbe6e8912d6020c9ea9ecfb80ac128eda33a5aaffa9d.
 

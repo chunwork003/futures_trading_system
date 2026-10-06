@@ -1,0 +1,323 @@
+{
+  "schema_version": "automation.work_cost_actual.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "activity": "WORK_COHESIVE_OWNER_DECISION_PACKAGE_AUTHORITY_FORECAST_ELIGIBILITY_MATERIALIZATION",
+  "master_baseline": "4cd98db0a6faddd3e0f02df1f72a4c9407f3747c",
+  "owner_decision_commit": "3d40f89169a7a85b54f66599db3a6b3394059ebb",
+  "compilation_commit": "a11cb88a76da22c714e5e8397958b5e5e17642b7",
+  "measurement_type": "UNKNOWN",
+  "local_exact_tokens": null,
+  "billing_cost": "NOT_AVAILABLE",
+  "quota_proxy_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.provider-evidence.json",
+  "quota_task_attribution": "NOT_AVAILABLE_SHARED_ACCOUNT_ONLY",
+  "task_profile": {
+    "task_class": "COHESIVE_ORCHESTRATION_CONTROL_LAYER_BASELINE",
+    "change_type": "EXPLICIT_PROGRAM_SUCCESSOR_AND_DETERMINISTIC_AUTHORITY_SEPARATED_CONTROLLER",
+    "subsystem": "automation.engine / program and control-plane governance",
+    "functional_area": "queue/event/route/forecast/promotion",
+    "concise_engineering_goal": "Complete Program1.2 and deterministic orchestration baseline in one reviewable package",
+    "primary_symbols_or_functional_surfaces": [
+      "ImplementationProgram",
+      "SuccessorGovernanceContract",
+      "orchestration route/queue/event models",
+      "execution_cost_reconcile recommendations"
+    ],
+    "behavior_dimensions": [
+      "DAG vs single-lane",
+      "wake vs dispatch",
+      "resume-first",
+      "dedupe/CAS",
+      "authority separation",
+      "manual/controlledauto",
+      "context ROI"
+    ],
+    "source_file_count": 3,
+    "test_file_count": 3,
+    "governance_and_docs_file_count": 13,
+    "semantic_profile": "ONE_COHESIVE_FRESH_INDEPENDENT_GOVERNANCE_REVIEW",
+    "test_profile": "STABLE_SELF_CONTAINED_POSITIVE_FIXTURE_AND_NEGATIVE_MATRIX_ONE_TARGETED_ONE_FULL",
+    "authority_boundary": "Exact19 candidate implementation files; no policy capacity relaxation, runtime or next package",
+    "packaging_cohesion_decision": "KEEP_COHESIVE / OPTIMIZE_TOTAL_ENGINEERING_VALUE_NOT_TOKENS_PER_TICKET; shared authority, queue/route subsystem, acceptance and test surface"
+  },
+  "context_profile": {
+    "artifacts_read": [
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
+        "git_blob": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+        "type": "governance",
+        "deterministic_file_chars": 1166,
+        "deterministic_file_lines": 25
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
+        "git_blob": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+        "type": "governance",
+        "deterministic_file_chars": 1283,
+        "deterministic_file_lines": 26
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml",
+        "git_blob": "63023ef80205e6d8c496011d6fe52631b39f47ad",
+        "type": "governance",
+        "deterministic_file_chars": 757,
+        "deterministic_file_lines": 20
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/writer_lock.yaml",
+        "git_blob": "7e2406016fa31821d126c951170c75120d0e7ccf",
+        "type": "governance",
+        "deterministic_file_chars": 846,
+        "deterministic_file_lines": 20
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/writer_lock.yaml",
+        "git_blob": "e60cee543d88d4049b5a4edf7693e402b7ff9656",
+        "type": "governance",
+        "deterministic_file_chars": 882,
+        "deterministic_file_lines": 21
+      },
+      {
+        "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.writer-lock.yaml",
+        "git_blob": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+        "type": "governance",
+        "deterministic_file_chars": 1166,
+        "deterministic_file_lines": 25
+      },
+      {
+        "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.writer-lock.yaml",
+        "git_blob": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+        "type": "governance",
+        "deterministic_file_chars": 1283,
+        "deterministic_file_lines": 26
+      },
+      {
+        "path": "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+        "git_blob": "9e43c91f44ba6a7a55dce3acb1214c864cf0a843",
+        "type": "governance",
+        "deterministic_file_chars": 6120,
+        "deterministic_file_lines": 189
+      },
+      {
+        "path": "automation/specs/context_loading_policy.v1.yaml",
+        "git_blob": "2b6a1501e717d1a1b997dc4ab6c43e753e044a31",
+        "type": "governance",
+        "deterministic_file_chars": 4265,
+        "deterministic_file_lines": 151
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "git_blob": "42dbb0ed5174e9741a4e460a327184e9381d84ef",
+        "type": "governance",
+        "deterministic_file_chars": 26861,
+        "deterministic_file_lines": 526
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "git_blob": "069056e711998e93ecbaf50eaccb925b1ae75b55",
+        "type": "governance",
+        "deterministic_file_chars": 1124,
+        "deterministic_file_lines": 16
+      },
+      {
+        "path": "docs/CURRENT_STATE.md",
+        "git_blob": "3c94381b4d43dcd09713ae8c46ed2ab1f391ecd5",
+        "type": "current_docs",
+        "deterministic_file_chars": 47460,
+        "deterministic_file_lines": 1043
+      },
+      {
+        "path": "docs/CURRENT_WORK.md",
+        "git_blob": "d69e67689c40eb32dfa7c5549c767e5c95f5914f",
+        "type": "current_docs",
+        "deterministic_file_chars": 20140,
+        "deterministic_file_lines": 733
+      },
+      {
+        "path": "automation/governance/master_manifest.v1.yaml",
+        "git_blob": "3a8064b73e364557d7ea3eabca363be304a1ed98",
+        "type": "governance",
+        "deterministic_file_chars": 12668,
+        "deterministic_file_lines": 276
+      },
+      {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml",
+        "git_blob": "bb7969c891a314b3e2f9c69da2834f07e1f6bcb4",
+        "type": "governance",
+        "deterministic_file_chars": 6564,
+        "deterministic_file_lines": 203
+      },
+      {
+        "path": "automation/policies/execution_capacity_policy.v2.yaml",
+        "git_blob": "41664ebad296156b2039f78d086605b17d448610",
+        "type": "governance",
+        "deterministic_file_chars": 2195,
+        "deterministic_file_lines": 65
+      },
+      {
+        "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "git_blob": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+        "type": "governance",
+        "deterministic_file_chars": 2046,
+        "deterministic_file_lines": 63
+      },
+      {
+        "path": "automation/engine/contracts.py",
+        "git_blob": "e2cc94bd56182441991334005ec985b688b2cfdf",
+        "type": "source",
+        "deterministic_file_chars": 10773,
+        "deterministic_file_lines": 319
+      },
+      {
+        "path": "automation/engine/execution_capacity.py",
+        "git_blob": "48b2d11199f3a864c7e1ccc4821645cb1eea28cd",
+        "type": "source",
+        "deterministic_file_chars": 13364,
+        "deterministic_file_lines": 282
+      },
+      {
+        "path": "scripts/execution_cost_reconcile.ps1",
+        "git_blob": "0817676efed4c6d5899dedbaa37ad01500db611e",
+        "type": "governance",
+        "deterministic_file_chars": 9371,
+        "deterministic_file_lines": 274
+      },
+      {
+        "path": "automation/specs/work_cost_accounting.v2.yaml",
+        "git_blob": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+        "type": "governance",
+        "deterministic_file_chars": 1641,
+        "deterministic_file_lines": 48
+      },
+      {
+        "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+        "git_blob": "e2b0422f294ac718f06403b704a8f28607a5002f",
+        "type": "governance",
+        "deterministic_file_chars": 2061,
+        "deterministic_file_lines": 62
+      },
+      {
+        "path": "automation/skills/single-use-lifecycle-guard/SKILL.md",
+        "git_blob": "0959290343d81395bfc695b3840c5af1c97a05f3",
+        "type": "governance",
+        "deterministic_file_chars": 5230,
+        "deterministic_file_lines": 81
+      },
+      {
+        "path": "automation/skills/execution-cost-forecaster/SKILL.md",
+        "git_blob": "9caaaef264dff02d3647c7da8100717a03921702",
+        "type": "governance",
+        "deterministic_file_chars": 4673,
+        "deterministic_file_lines": 120
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/execution_cost_actual.json",
+        "git_blob": "e57b76deabc0746bdb30fbb35e906b020848c89f",
+        "type": "telemetry",
+        "deterministic_file_chars": 14275,
+        "deterministic_file_lines": 375
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/local_token_usage.json",
+        "git_blob": "6aa594ec80beada0f0734bd1901055394e1bd137",
+        "type": "telemetry",
+        "deterministic_file_chars": 2353,
+        "deterministic_file_lines": 63
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/execution_cost_actual.json",
+        "git_blob": "4ca1e8404ff1ae664a909a4c35383e8f96fb3735",
+        "type": "telemetry",
+        "deterministic_file_chars": 11589,
+        "deterministic_file_lines": 295
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/local_token_usage.json",
+        "git_blob": "6fb16d9c223de5dee9bd592703c87293213a7d2e",
+        "type": "telemetry",
+        "deterministic_file_chars": 2011,
+        "deterministic_file_lines": 55
+      },
+      {
+        "path": "automation/telemetry/cohorts/LOCAL_CODEX_AUTOMATION_CORRECTION_V1.json",
+        "git_blob": "ddf3363a3fbec2ae07414b94e5d94dbf75477f0d",
+        "type": "telemetry",
+        "deterministic_file_chars": 3022,
+        "deterministic_file_lines": 81
+      },
+      {
+        "path": "automation/telemetry/cohorts/LOCAL_CODEX_INTEGRATION_COMPATIBILITY_V1.json",
+        "git_blob": "63a059b1fefc51a9dbb10848166a0da42704563e",
+        "type": "telemetry",
+        "deterministic_file_chars": 3388,
+        "deterministic_file_lines": 88
+      },
+      {
+        "path": "automation/policies/development_entry_protocol.v2.yaml",
+        "git_blob": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+        "type": "governance",
+        "deterministic_file_chars": 1445,
+        "deterministic_file_lines": 41,
+        "read_reason": "Active manifest exact8-component hash integrity; model inspection partial output"
+      },
+      {
+        "path": "automation/policies/development_state_machine.v2.yaml",
+        "git_blob": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+        "type": "governance",
+        "deterministic_file_chars": 1745,
+        "deterministic_file_lines": 67,
+        "read_reason": "Active manifest exact8-component hash integrity; model inspection partial output"
+      },
+      {
+        "path": "automation/specs/negative_assertions.v2.yaml",
+        "git_blob": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+        "type": "governance",
+        "deterministic_file_chars": 1496,
+        "deterministic_file_lines": 47,
+        "read_reason": "Active manifest exact8-component hash integrity; model inspection partial output"
+      },
+      {
+        "path": "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+        "git_blob": "d7527ab5dadd5be3c525296925f483a0803aff4e",
+        "type": "governance",
+        "deterministic_file_chars": 22366,
+        "deterministic_file_lines": 484,
+        "read_reason": "Active manifest exact8-component hash integrity; model inspection partial output"
+      }
+    ],
+    "artifacts_by_type": {
+      "governance": 24,
+      "source": 2,
+      "telemetry": 6,
+      "current_docs": 2
+    },
+    "actual_model_context_volume_by_type": "UNKNOWN_PARTIAL_FULL_OUTPUTS_AND_REUSED_BLOBS_NOT_TASK_BOUND_MEASUREMENT",
+    "canonical_file_footprint": "Deterministic full-file chars/lines recorded per artifact; not a measure of bytes actually consumed by model",
+    "raw_transcript_loaded": false,
+    "history_loaded_amount": {
+      "purpose": "Exact ProgramV1 derivation, template/schema and cohort evidence only; no raw rollout or old architecture discussion",
+      "raw_transcript": 0
+    },
+    "source_context_volume": "UNKNOWN",
+    "test_context_volume": 0,
+    "governance_context_volume": "UNKNOWN",
+    "telemetry_context_volume": "UNKNOWN",
+    "content_token_estimate": null,
+    "content_measurement_type": "PROXY_OR_UNKNOWN_NOT_EXACT"
+  },
+  "known_tooling_observations": [
+    "One authorization template lookup without .v1 suffix returned404; exact tree pointer resolved suffix; no repository mutation from lookup",
+    "Open PR list returned404; no PR create/retry or execution attempted",
+    "One compact derivation-output read exceeded output budget; retried compact-only extraction; no repository semantic change"
+  ],
+  "human_intervention_count_for_current_execution_admission": 0,
+  "new_human_authority_fabricated": false,
+  "manual_prompt_copy_required": false,
+  "execution_dispatched": false,
+  "source_implemented_by_WORK": false,
+  "semantic_review_performed_by_WORK": false,
+  "KNOWN_AUTOMATION_ARCHITECTURE_DEBT": "NONE",
+  "outcome": "BLOCKED_QUALIFIED_CAPACITY_REQUIRED_AFTER_COMPLETE_COHESIVE_COMPILATION",
+  "created_at": "2026-10-06T08:29:54Z",
+  "updated_at": "2026-10-06T08:32:03Z",
+  "projection_hash_rebind": "db3317cc191360fcb0b715766cb94781a63d9710196341879b3289c3848282a9"
+}

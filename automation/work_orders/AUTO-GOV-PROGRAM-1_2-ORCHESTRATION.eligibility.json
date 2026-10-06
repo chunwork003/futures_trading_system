@@ -1,0 +1,116 @@
+{
+  "schema_version": "automation.execution_eligibility.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "package_id": "AUTO-GOV-PROGRAM-1_2-ORCHESTRATION",
+  "master_sha": "a11cb88a76da22c714e5e8397958b5e5e17642b7",
+  "source_baseline_sha": "4cd98db0a6faddd3e0f02df1f72a4c9407f3747c",
+  "decision_commit": "3d40f89169a7a85b54f66599db3a6b3394059ebb",
+  "compilation_commit": "a11cb88a76da22c714e5e8397958b5e5e17642b7",
+  "architecture": "1.2",
+  "architecture_bundle_hash": "db3317cc191360fcb0b715766cb94781a63d9710196341879b3289c3848282a9",
+  "scope_digest": "47b4277ed2e74fc17bb83c4ec986dd9df01dc4a30768b22e65382a93f036424b",
+  "status": "BLOCKED",
+  "execution_eligible": false,
+  "route": "WORK_CAPACITY_REVIEW",
+  "sole_blocker": "QUALIFIED_CAPACITY_REQUIRED",
+  "checks": {
+    "fresh_master": "PASS",
+    "compatible_controlplane_only_descendants": "PASS",
+    "exact_authorization": "PASS_AUTHORIZED_NOT_CONSUMED",
+    "scope_binding": "PASS_19_UNIQUE_PATHS",
+    "program_schema_and_DAG": "PASS",
+    "provider": "PASS_PROVIDER_AVAILABLE",
+    "authority_side_effects": "PASS_ALL_DENIED",
+    "writer": "PASS_NONE_HELD",
+    "new_execution_branch": "ABSENT",
+    "durable_execution_for_this_WO": "ABSENT",
+    "current_higher_priority_execution": "NONE_INVOCABLE_RESUMABLE; IVF01_REV1_STALE_BLOCKED_NO_WRITER",
+    "capacity": "FAIL_QUALIFIED_CAPACITY_REQUIRED",
+    "reservation": "NOT_REACHED",
+    "pre_dispatch_recheck": "NOT_REACHED",
+    "dispatch": "NOT_REACHED"
+  },
+  "capacity": {
+    "measurement_type": "NOT_AVAILABLE",
+    "estimate": null,
+    "compatible_qualified_samples": 0,
+    "calibration": false,
+    "provisional_manual_low_risk_fallback_applicable": false,
+    "risk": "HIGH_AUTHORITY_SENSITIVE_CONTROLLER",
+    "proof": "Canonical fresh execution_capacity.py cost_gate; capacity=None, exact_authorized=True, manual=True, low_risk=False -> WORK_CAPACITY_REVIEW/QUALIFIED_CAPACITY_REQUIRED",
+    "policy_path": "automation/policies/execution_capacity_policy.v2.yaml",
+    "policy_git_blob": "41664ebad296156b2039f78d086605b17d448610",
+    "evaluator_git_blob": "48b2d11199f3a864c7e1ccc4821645cb1eea28cd",
+    "available_cohorts_checked": [
+      "automation/telemetry/cohorts/LOCAL_CODEX_AUTOMATION_CORRECTION_V1.json",
+      "automation/telemetry/cohorts/LOCAL_CODEX_INTEGRATION_COMPATIBILITY_V1.json"
+    ],
+    "supporting_executions_not_same_class": true,
+    "no_fabricated_capacity": true,
+    "policy_exception": false
+  },
+  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.provider-evidence.json",
+  "protected_existing_tree": "ALL_PREEXISTING_BLOBS_UNCHANGED_THROUGH_COMPILATION",
+  "writer_proof": [
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
+      "git_blob": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
+      "git_blob": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml",
+      "git_blob": "63023ef80205e6d8c496011d6fe52631b39f47ad",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/writer_lock.yaml",
+      "git_blob": "7e2406016fa31821d126c951170c75120d0e7ccf",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/writer_lock.yaml",
+      "git_blob": "e60cee543d88d4049b5a4edf7693e402b7ff9656",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.writer-lock.yaml",
+      "git_blob": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.writer-lock.yaml",
+      "git_blob": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    }
+  ],
+  "pr_read_capability": "LIST_OPEN_PRS_RETURNED404_NO_PERMISSION_CHANGE_PROVEN; no PR mutation or execution attempted",
+  "lifecycle": {
+    "state": "PRE_RESERVATION_BLOCKED_CAPACITY",
+    "execution_id": null,
+    "writer_acquired": false,
+    "reservation_created": false,
+    "dispatch_committed": false,
+    "authorization_state": "AUTHORIZED",
+    "consumed": false,
+    "executor_invoked": false
+  },
+  "automatic_dispatch": false,
+  "automatic_next_package": false,
+  "handoff_ready": false,
+  "next_legal_action": "WORK_CAPACITY_REVIEW_ONLY: obtain mechanically qualified capacity evidence applicable to this HIGH task; fresh all gates before any writer/allocation. No gate relaxation, no further controller design required.",
+  "created_at": "2026-10-06T08:28:54Z",
+  "updated_at": "2026-10-06T08:32:03Z",
+  "projection_rebind": {
+    "as_of_master": "a11cb88a76da22c714e5e8397958b5e5e17642b7",
+    "projected_manifest_bundle": "db3317cc191360fcb0b715766cb94781a63d9710196341879b3289c3848282a9",
+    "predecessor_bundle": "41e81af6c038722397c400ce70ac1edbf9275027b96b3f3ff425d1386434a7d3",
+    "policy_semantics_unchanged": true,
+    "requires_fresh_post_materialization_reentry_before_allocation": true
+  }
+}

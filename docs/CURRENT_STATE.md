@@ -1,6 +1,20 @@
 # Current State
 
-## CURRENT — Architecture 1.2 Accepted Materialization
+
+## CURRENT — Program 1.2 / Orchestration Complete Baseline Compilation
+
+Architecture 1.2 ACTIVE. Owner final decision materialized; Program V2 is an explicit compiled successor candidate, not operationally accepted. Program V1 remains immutable historical Architecture1.1 evidence; no automatic rebind. Exact current work: `WO-AUTO-GOV-PROGRAM-1_2-ORCH-01`; authority `AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01` AUTHORIZED, not CONSUMED. Owner contract: `automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json`; plan: `automation/packages/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.plan.yaml`; complete49-case acceptance matrix and exact19-file scope: `automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml`.
+
+State BLOCKED; sole blocker QUALIFIED_CAPACITY_REQUIRED. Current route WORK_CAPACITY_REVIEW. Canonical Architecture1.2 evaluator rejects absent qualified capacity for this HIGH_AUTHORITY_SENSITIVE_CONTROLLER task; provider available is a separate gate. Eligibility: `automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.eligibility.json`. No policy exception/80% floor/40k fallback/percentage conversion. No new writer/execution/reservation/dispatch; handoff_ready=false; CODEX NOT_RUNNING.
+
+Owner operational order CLOSE_AUTO_IMP_002_IVF01_FIRST: 002→003→004→005→006→007→008→009. Logical DAG unchanged: 003 depends001, not002. Single-lane priority: safety/governance > resumable unfinished > pending result/review/integration > authorized new work. Queue/event/forecast/review never grant authority; all triggers WAKE_ONLY. Active dispatch model MANUAL; CONTROLLED_AUTO DISABLED. All promotion levels/gates fully defined in Owner implementation contract; only external evidence + explicit activation may remain pending. One cohesive independent governance/semantic review of the complete implementation candidate required before baseline acceptance.
+
+IVF01 Rev1 ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED and unchanged; Rev2 preparation metadata only, NOT_AUTHORIZED. AUTO-IMP-003 through009 NOT_AUTHORIZED until their own exact authority. Runtime/broker/DB/migration/LIVE/production DENIED. RF01 split recommendation contradiction included in this package; FRESH_CONTEXT_GROWTH is not structural evidence for splitting. KNOWN_AUTOMATION_ARCHITECTURE_DEBT = NONE means design complete/all known implementation issues included, not code implemented or capacity calibrated. No automatic next package.
+
+Current machine pointers above supersede all prior checkpoints below. Sole next legal action: mechanically qualify applicable capacity evidence and fresh revalidate; do not allocate or invoke CODEX while BLOCKED.
+
+
+## HISTORICAL CHECKPOINT — Architecture 1.2 Accepted Materialization (superseded current route)
 
 Architecture 1.2 = ACTIVE; Execution Capacity V2 = ACCEPTED_MATERIALIZED; V2 RF01 = CLOSED; V2-CAL-01 = CLOSED; V2-SER-01 = CLOSED; serializer warning assessment RESOLVED. Independent narrow PASS: `automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json`; exact reviewed source integrated at `14ff081757fe4205ab78c85b82f7ef6ca9c1e76f`. Original candidate e414c108e075c8aa2307d607ffe77013b40c5391; RF01 implementation ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a; evidence606d8273cc7ead110547d3fa232b7c5e41c0e78e; effective source bundle f5a1fea9c2a8f4084348bbe6e8912d6020c9ea9ecfb80ac128eda33a5aaffa9d.
 
