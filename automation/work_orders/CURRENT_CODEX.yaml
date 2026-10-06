@@ -416,7 +416,7 @@
     "ivf01_quota_waiver": false,
     "prior_amendment_reuse": "DENIED"
   },
-  "lifecycle_status": "DISPATCH_COMMITTED_CONSUMED_NOT_INVOKED",
+  "lifecycle_status": "COMPLETED_INTAKEN_WRITER_RELEASED_REVIEW_PENDING",
   "correction_budget": {
     "limit": 0,
     "used": 0,
@@ -481,10 +481,10 @@
     "execution": "DENIED_DURING_MIGRATION",
     "recompile_after_1_2_reviewed_active": true
   },
-  "next_route": "TOKEN_FINALIZATION_AND_COST_RECONCILIATION_BEFORE_REVIEW",
+  "next_route": "WAIT_FOR_FRESH_CONTEXT_V2_INDEPENDENT_GOVERNANCE_REVIEW",
   "current_action": "LOCAL_TOKEN_FINALIZATION_THEN_COST_RECONCILIATION",
   "created_at": "2026-10-06T03:35:25Z",
-  "updated_at": "2026-10-06T05:16:03Z",
+  "updated_at": "2026-10-06T05:21:17.095Z",
   "reservation_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/reservation.yaml",
   "writer_lock_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
   "writer_ownership_lineage_path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.writer-lock.yaml",
@@ -498,5 +498,13 @@
   "implementation_commit_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
   "evidence_commit_sha": "b899984462e48eb4dd02eae502918bd36ec937d4",
   "result_intake_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/result_intake.json",
-  "review_status": "REVIEW_PENDING"
+  "review_status": "REVIEW_PENDING",
+  "writer_state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+  "writer_release_commit": "933cd0b2a720579b465cdff1136058898658a2ce",
+  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.review.yaml",
+  "local_token_usage_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/local_token_usage.json",
+  "cost_reconciliation_path": "automation/work_orders/optimizations/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.cost-reconciliation.json",
+  "semantic_acceptance": "NOT_PERFORMED",
+  "architecture_active": "1.1",
+  "architecture_candidate": "1.2_CANDIDATE_PENDING_REVIEW"
 }

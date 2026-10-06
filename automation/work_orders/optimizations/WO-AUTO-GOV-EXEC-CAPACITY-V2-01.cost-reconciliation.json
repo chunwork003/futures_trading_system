@@ -1,0 +1,86 @@
+{
+  "schema_version": "automation.execution_cost_reconciliation.v1",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.json",
+  "actual_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/execution_cost_actual.json",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+  "forecast_confidence": "PROVISIONAL_NO_SAME_CLASS_EXACT_COHORT",
+  "overall_classification": "NORMAL",
+  "dominant_cause": "WITHIN_EXPECTED_ENVELOPE",
+  "metric_comparisons": [
+    {
+      "metric": "reported_total_tokens",
+      "actual": 3556566,
+      "p50": 2000000,
+      "p75": 5500000,
+      "p90": 12000000,
+      "actual_to_p50_ratio": 1.778283,
+      "actual_to_p90_ratio": 0.2963805,
+      "p50_absolute_percentage_error": 0.778283,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "uncached_input_tokens",
+      "actual": 51799,
+      "p50": 90000,
+      "p75": 150000,
+      "p90": 250000,
+      "actual_to_p50_ratio": 0.5755444444444444,
+      "actual_to_p90_ratio": 0.207196,
+      "p50_absolute_percentage_error": 0.42445555555555553,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "actor_seconds",
+      "actual": 526,
+      "p50": 2400,
+      "p75": 4200,
+      "p90": 7200,
+      "actual_to_p50_ratio": 0.21916666666666668,
+      "actual_to_p90_ratio": 0.07305555555555555,
+      "p50_absolute_percentage_error": 0.7808333333333334,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "targeted_seconds",
+      "actual": 2.98,
+      "p50": null,
+      "p75": null,
+      "p90": 900,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.003311111111111111,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "full_regression_seconds",
+      "actual": 15.75,
+      "p50": null,
+      "p75": null,
+      "p90": 1000,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.01575,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    }
+  ],
+  "cycle_breaches": [],
+  "recommendations": [],
+  "feedback_required_for_next_work_forecast": false,
+  "generated_at_utc": "2026-10-06T05:20:16.6502590+00:00",
+  "provenance": {
+    "canonical_script": "scripts/execution_cost_reconcile.ps1",
+    "git_blob_sha": "84a4a8777f29d03cd7462f799c28544b7053f422",
+    "active_master_architecture": "1.1",
+    "candidate_script_not_executed": true,
+    "exit_code": 0,
+    "token_finalization_commit": "92fdd786c486c834b4310e1ea349ca81c19112f9"
+  },
+  "cost_driver_observation": {
+    "reported_token_composition": "CACHED_INPUT_DOMINATES",
+    "cached_input_share_of_total": 0.9782739867613872,
+    "causal_defect_inference": "NOT_PERFORMED",
+    "forecast_accuracy": "TOTAL_BETWEEN_P50_P75_UNCACHED_AND_ACTOR_BELOW_P50",
+    "calibration": "PROVISIONAL_NO_SAME_CLASS_EXACT_COHORT"
+  }
+}

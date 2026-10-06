@@ -7,6 +7,10 @@
 This is the single current authority projection。
 If any cached handoff、AGENTS history、CURRENT_WORK、ACTIVE or older closure conflicts：this section wins and authority must be re-resolved。
 
+### Execution Capacity / Resume V2 — CURRENT Review Barrier
+
+Execution `EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z` completed on exact evidence `b899984462e48eb4dd02eae502918bd36ec937d4`; mechanical intake PASS, semantic acceptance NOT_PERFORMED. Writer released after durable intake `b83c0ce1773b06b936032487d0e42ec85bc27a7c` at release commit `933cd0b2a720579b465cdff1136058898658a2ce`. Exact local tokens and cost reconciliation are durable canonical run metadata. CURRENT/WO/eligibility now resolve COMPLETED_PENDING_REVIEW, handoff_ready=false, no CODEX reexecution. Sole next route: `WAIT_FOR_FRESH_CONTEXT_V2_INDEPENDENT_GOVERNANCE_REVIEW`; packet: `automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.review.yaml`. Architecture 1.1 ACTIVE; 1.2 CANDIDATE_PENDING_REVIEW; no activation/integration/acceptance. IVF01 BLOCKED; AUTO-IMP-003 NOT_AUTHORIZED; runtime/broker/DB/migration/LIVE/production DENIED. Earlier readiness snapshots are historical and superseded by this current transition.
+
 ### AUTO-IMP-002 Integration Verification — STOP
 
 RF02 semantic review PASS remains bound to implementation `33c8eea0d90d4cca5ecf5c902579a687ec096034` and evidence `f5fa626b8aa587fa8f43d6f70fa93842d574b356`.
