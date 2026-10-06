@@ -12,12 +12,12 @@
     "targeted_seconds": 26.67,
     "cross_targeted_seconds": 29.35,
     "full_regression_seconds": 39.5,
-    "reported_total_tokens": null,
-    "input_tokens": null,
-    "cached_input_tokens": null,
-    "uncached_input_tokens": null,
-    "output_tokens": null,
-    "reasoning_output_tokens": null,
+    "reported_total_tokens": 2391244,
+    "input_tokens": 2380661,
+    "cached_input_tokens": 2355200,
+    "uncached_input_tokens": 25461,
+    "output_tokens": 10583,
+    "reasoning_output_tokens": 2020,
     "test_cycles": {
       "pre_fix_cases": 5,
       "complete_targeted_passes": 1,
@@ -29,10 +29,11 @@
     "provider_pause_seconds": 0,
     "resume_count": 0,
     "resumed_same_execution": false,
-    "forecast_capacity_review_required": false
+    "forecast_capacity_review_required": false,
+    "total_tokens": 2391244
   },
-  "token_status": "PENDING_EXTERNAL_EXTRACTION",
-  "token_measurement_type": "UNKNOWN_UNTIL_DETERMINISTIC_ATTRIBUTION",
+  "token_status": "EXACT_FINALIZED",
+  "token_measurement_type": "EXACT",
   "billing": "NOT_AVAILABLE",
   "provider_measurement_type": "PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY",
   "provider_raw_selected_fields": {
@@ -328,5 +329,12 @@
     "method": "git log -1 --format=%H -- automation\\runs\\EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z\\completion.json",
     "identity": "CONTAINING_EVIDENCE_COMMIT",
     "note": "Exact evidence commit resolved after commit; no recursive self-hash"
-  }
+  },
+  "local_token_usage_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/local_token_usage.json",
+  "token_attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+  "original_execution_evidence_sha": "e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40",
+  "original_execution_cost_blob": "20a28833c0dc109e5ee8727269665d8fa3953d98",
+  "evidence_commit_sha": "e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40",
+  "master_normalization": true,
+  "normalized_at": "2026-10-06T15:31:13Z"
 }

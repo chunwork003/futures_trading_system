@@ -1,0 +1,136 @@
+{
+  "schema_version": "automation.execution_cost_reconciliation.v1",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.json",
+  "actual_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/execution_cost_actual.json",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "forecast_confidence": "LOW_PROVISIONAL",
+  "overall_classification": "HIGH",
+  "dominant_cause": "TEST_EXECUTION_DOMINATED",
+  "metric_comparisons": [
+    {
+      "metric": "reported_total_tokens",
+      "actual": 2391244,
+      "p50": 800000,
+      "p75": 1500000,
+      "p90": 2500000,
+      "actual_to_p50_ratio": 2.989055,
+      "actual_to_p90_ratio": 0.9564976,
+      "p50_absolute_percentage_error": 1.989055,
+      "classification": "WATCH"
+    },
+    {
+      "metric": "uncached_input_tokens",
+      "actual": 25461,
+      "p50": 100000,
+      "p75": 180000,
+      "p90": 300000,
+      "actual_to_p50_ratio": 0.25461,
+      "actual_to_p90_ratio": 0.08487,
+      "p50_absolute_percentage_error": 0.74539,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "output_tokens",
+      "actual": 10583,
+      "p50": 10000,
+      "p75": 20000,
+      "p90": 40000,
+      "actual_to_p50_ratio": 1.0583,
+      "actual_to_p90_ratio": 0.264575,
+      "p50_absolute_percentage_error": 0.0583,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "reasoning_output_tokens",
+      "actual": 2020,
+      "p50": 3000,
+      "p75": 6000,
+      "p90": 12000,
+      "actual_to_p50_ratio": 0.6733333333333333,
+      "actual_to_p90_ratio": 0.16833333333333333,
+      "p50_absolute_percentage_error": 0.32666666666666666,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "actor_seconds",
+      "actual": 270.593889,
+      "p50": 450,
+      "p75": 900,
+      "p90": 1500,
+      "actual_to_p50_ratio": 0.6013197533333333,
+      "actual_to_p90_ratio": 0.18039592599999998,
+      "p50_absolute_percentage_error": 0.3986802466666667,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "targeted_seconds",
+      "actual": 26.67,
+      "p50": null,
+      "p75": null,
+      "p90": 90,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.29633333333333334,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "full_regression_seconds",
+      "actual": 39.5,
+      "p50": null,
+      "p75": null,
+      "p90": 180,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.21944444444444444,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    }
+  ],
+  "cycle_breaches": [
+    "PRE_FIX_CASES_OVER_PLAN"
+  ],
+  "recommendations": [
+    "MINIMUM_COUNTEREXAMPLE_BEFORE_FIX",
+    "IMPACTED_SUBSET_UNTIL_CLEAN",
+    "NO_EXTRA_FULL_SUITE_WITHOUT_NEW_DELTA"
+  ],
+  "feedback_required_for_next_work_forecast": true,
+  "provider_interruption": {
+    "provider_limit_encountered": false,
+    "provider_pause_count": 0,
+    "provider_pause_seconds": 0,
+    "resume_count": 0,
+    "resumed_same_execution": false,
+    "forecast_capacity_review_required": false
+  },
+  "forecast_capacity_review_required": false,
+  "provider_pause_is_source_defect": false,
+  "generated_at_utc": "2026-10-06T15:31:57.2274455+00:00",
+  "canonical_tool": {
+    "path": "scripts/execution_cost_reconcile.ps1",
+    "blob": "0817676efed4c6d5899dedbaa37ad01500db611e",
+    "master_ref": "a2e9edf92c7043a364d6a7b7af849ee7203fe6a2",
+    "runtime": "PowerShell7",
+    "exit_code": 0
+  },
+  "evidence_binding": {
+    "implementation_sha": "85b94c92ccba4b4c569e3be846646902cb6348d2",
+    "original_evidence_sha": "e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40",
+    "intake_commit": "f2f1032110bb5a40b0f1a84ef9e1ff2d9b5384e3",
+    "local_token_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/local_token_usage.json"
+  },
+  "materializer_observations": {
+    "token_variance": "CACHED_REPLAY",
+    "cached_input_ratio": 0.9893050711546079,
+    "uncached_input_tokens": 25461,
+    "raw_classification_preserved": true,
+    "pre_fix_count_semantics": "Forecast planned1 reproduction; actual records5 selected cases in ONE pre-fix invocation (four expected failures plus positive control). Mandatory Owner test matrix; no additional semantic correction or repeated full suite.",
+    "forecast_feedback": "Forecast explicit required case count and distinguish cases vs invocations; preserve targeted/cross/full bands",
+    "recommendations_non_authority": true,
+    "source_defect_inference": "NOT_PERFORMED",
+    "split_recommendation": "NOT_MATERIALIZED",
+    "provider_delta_type": "SHARED_ACCOUNT_PROXY_NOT_EXCLUSIVE_TASK_COST",
+    "provider_primary_delta_pp": 4,
+    "provider_weekly_delta_pp": 1
+  }
+}

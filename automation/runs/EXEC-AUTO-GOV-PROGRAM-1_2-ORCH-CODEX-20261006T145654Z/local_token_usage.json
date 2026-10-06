@@ -1,0 +1,63 @@
+{
+  "schema_version": "automation.local_codex_token_usage.v1",
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "measurement_type": "EXACT",
+  "attribution_status": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+  "binding": "EXECUTION_ID_PLUS_WORK_ORDER_ID_PLUS_TIME_WINDOW_PLUS_EXACT_SESSION_PLUS_THREE_STRONG_MARKERS",
+  "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+  "input_tokens": 2380661,
+  "cached_input_tokens": 2355200,
+  "output_tokens": 10583,
+  "reasoning_output_tokens": 2020,
+  "total_tokens": 2391244,
+  "uncached_input_tokens": 25461,
+  "reported_total_tokens": 2391244,
+  "cached_input_ratio": 0.9893050711546079,
+  "candidate_count": 2,
+  "strong_match_count": 1,
+  "strong_marker_hits": {
+    "ba569c85b202171e401151db3ffae3101b664482": 5,
+    "85b94c92ccba4b4c569e3be846646902cb6348d2": 5,
+    "e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40": 5
+  },
+  "baseline": {
+    "timestamp": "2026-10-06T15:12:22.1350000+00:00",
+    "usage": {
+      "input_tokens": 29177130,
+      "cached_input_tokens": 27859328,
+      "output_tokens": 116001,
+      "reasoning_output_tokens": 27322,
+      "total_tokens": 29293131
+    }
+  },
+  "final": {
+    "timestamp": "2026-10-06T15:19:28.7680000+00:00",
+    "usage": {
+      "input_tokens": 31557791,
+      "cached_input_tokens": 30214528,
+      "output_tokens": 126584,
+      "reasoning_output_tokens": 29342,
+      "total_tokens": 31684375
+    }
+  },
+  "requested_start_utc": "2026-10-06T15:12:52.4061110+00:00",
+  "requested_end_utc": "2026-10-06T15:17:23.0000000+00:00",
+  "end_slack_seconds": 300,
+  "flush_delay_seconds": 125.768,
+  "extractor": {
+    "path": "scripts/codex_session_token_usage.ps1",
+    "ref": "a2e9edf92c7043a364d6a7b7af849ee7203fe6a2",
+    "blob": "5834edd880ec9c73781b220c1ee488027f98f77e",
+    "runtime": "Windows PowerShell 5.1",
+    "method": "EXACT_CANONICAL_BYTES_SCRIPTBLOCK_UTF8_NO_POLICY_MUTATION",
+    "diagnostic_note": "PowerShell7 extractor returned no token snapshot; same immutable extractor succeeded in Windows PowerShell5.1"
+  },
+  "billing": "NOT_AVAILABLE",
+  "reasoning_subset_of_output": true,
+  "cached_input_not_double_counted": true,
+  "raw_transcript_loaded_into_model": false,
+  "created_at": "2026-10-06T15:29:04.3630775+00:00",
+  "updated_at": "2026-10-06T15:29:04.3630775+00:00"
+}
