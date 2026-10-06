@@ -1,4 +1,4 @@
-param(
+﻿param(
     [Parameter(Mandatory = $true)]
     [string]$ForecastPath,
 
@@ -16,6 +16,24 @@ function Read-JsonFile {
         throw "File not found: $Path"
     }
     return Get-Content $Path -Raw -Encoding UTF8 | ConvertFrom-Json
+}
+
+function Get-OptionalPropertyValue {
+    param(
+        [object]$Object,
+        [string]$Name
+    )
+
+    if ($null -eq $Object) {
+        return $null
+    }
+
+    $property = $Object.PSObject.Properties[$Name]
+    if ($null -eq $property) {
+        return $null
+    }
+
+    return $property.Value
 }
 
 function Get-SeverityRank {
@@ -95,8 +113,8 @@ $metricMap = @(
 foreach ($pair in $metricMap) {
     $forecastName = $pair[0]
     $actualName = $pair[1]
-    $band = $forecast.forecast.PSObject.Properties[$forecastName].Value
-    $value = $actual.actual.PSObject.Properties[$actualName].Value
+    $band = Get-OptionalPropertyValue -Object $forecast.forecast -Name $forecastName
+    $value = Get-OptionalPropertyValue -Object $actual.actual -Name $actualName
 
     if ($null -eq $band -or $null -eq $value) { continue }
     if ($value -is [string]) { continue }
@@ -107,8 +125,8 @@ foreach ($pair in $metricMap) {
 
 # Test-runtime metrics currently forecast only p90. They can still produce a direct p90 breach signal.
 foreach ($name in @("targeted_seconds", "full_regression_seconds")) {
-    $band = $forecast.forecast.PSObject.Properties[$name].Value
-    $value = $actual.actual.PSObject.Properties[$name].Value
+    $band = Get-OptionalPropertyValue -Object $forecast.forecast -Name $name
+    $value = Get-OptionalPropertyValue -Object $actual.actual -Name $name
     if ($null -eq $band -or $null -eq $value -or $value -is [string] -or $null -eq $band.p90) { continue }
 
     $classification = if ([double]$value -le [double]$band.p90) { "NORMAL" } else { "HIGH" }
@@ -125,8 +143,8 @@ foreach ($name in @("targeted_seconds", "full_regression_seconds")) {
     })
 }
 
-$cyclePlan = $forecast.forecast.test_cycles
-$cycleActual = $actual.actual.test_cycles
+$cyclePlan = Get-OptionalPropertyValue -Object $forecast.forecast -Name "test_cycles"
+$cycleActual = Get-OptionalPropertyValue -Object $actual.actual -Name "test_cycles"
 $cycleBreaches = New-Object System.Collections.Generic.List[string]
 
 if ($null -ne $cyclePlan -and $null -ne $cycleActual) {
@@ -170,13 +188,18 @@ function Test-NumericMetric {
     )
 }
 
-$actualTotal = $actual.actual.reported_total_tokens
-$actualUncached = $actual.actual.uncached_input_tokens
-$cacheRatio = $actual.actual.cached_input_ratio
-$totalP90 = $forecast.forecast.reported_total_tokens.p90
-$uncachedP90 = $forecast.forecast.uncached_input_tokens.p90
-$fiveHour = $actual.actual.five_hour_delta_pct
-$fiveHourP90 = $forecast.forecast.five_hour_delta_pct.p90
+$actualTotal = Get-OptionalPropertyValue -Object $actual.actual -Name "reported_total_tokens"
+$actualUncached = Get-OptionalPropertyValue -Object $actual.actual -Name "uncached_input_tokens"
+$cacheRatio = Get-OptionalPropertyValue -Object $actual.actual -Name "cached_input_ratio"
+
+$totalBand = Get-OptionalPropertyValue -Object $forecast.forecast -Name "reported_total_tokens"
+$uncachedBand = Get-OptionalPropertyValue -Object $forecast.forecast -Name "uncached_input_tokens"
+$fiveHourBand = Get-OptionalPropertyValue -Object $forecast.forecast -Name "five_hour_delta_pct"
+
+$totalP90 = Get-OptionalPropertyValue -Object $totalBand -Name "p90"
+$uncachedP90 = Get-OptionalPropertyValue -Object $uncachedBand -Name "p90"
+$fiveHour = Get-OptionalPropertyValue -Object $actual.actual -Name "five_hour_delta_pct"
+$fiveHourP90 = Get-OptionalPropertyValue -Object $fiveHourBand -Name "p90"
 
 $hasActualTotal = Test-NumericMetric $actualTotal
 $hasActualUncached = Test-NumericMetric $actualUncached
@@ -209,7 +232,7 @@ elseif (
     $cause = "FRESH_CONTEXT_GROWTH"
     $recommendations.Add("TIGHTEN_POINTER_FIRST_CONTEXT")
     $recommendations.Add("REMOVE_UNRELATED_HISTORY")
-    $recommendations.Add("SPLIT_OVERSIZED_WORK_ORDER")
+    $recommendations.Add("RECALIBRATE_UNCACHED_INPUT_FORECAST")
 }
 elseif ($cycleBreaches.Count -gt 0) {
     $cause = "TEST_EXECUTION_DOMINATED"
@@ -233,8 +256,8 @@ $interruption = [ordered]@{}
 foreach ($name in @('provider_limit_encountered', 'provider_pause_count', 'provider_pause_seconds',
     'resume_count', 'resumed_same_execution', 'capacity_forecast_at_start',
     'capacity_estimate_at_start', 'forecast_capacity_review_required')) {
-    $property = $actual.actual.PSObject.Properties[$name]
-    if ($null -ne $property) { $interruption[$name] = $property.Value }
+    $value = Get-OptionalPropertyValue -Object $actual.actual -Name $name
+    if ($null -ne $value) { $interruption[$name] = $value }
 }
 $capacityReviewRequired = ($interruption.provider_limit_encountered -eq $true) -or
     ($interruption.forecast_capacity_review_required -eq $true) -or
@@ -242,6 +265,25 @@ $capacityReviewRequired = ($interruption.provider_limit_encountered -eq $true) -
 if ($capacityReviewRequired) {
     $recommendations.Add('WORK_FORECAST_CAPACITY_REVIEW_PRESERVE_SAME_EXECUTION')
 }
+
+# Work-package split is never inferred from fresh-context variance alone.
+# Optional structural evidence can produce only a NON-AUTHORITY sizing assessment.
+$sizingAssessment = "NO_AUTOMATIC_SPLIT"
+$sizingEvidence = Get-OptionalPropertyValue -Object $actual.actual -Name "structural_sizing_evidence"
+if ($null -ne $sizingEvidence) {
+    $evidence = $sizingEvidence
+    $isStructural = ($evidence.genuinely_oversized_work_package -eq $true)
+    $positiveRoi = ($evidence.positive_total_lifecycle_roi -eq $true)
+
+    if ($isStructural -and $positiveRoi) {
+        $sizingAssessment = "STRUCTURAL_SPLIT_CANDIDATE_NON_AUTHORITY"
+        $recommendations.Add("WORK_REVIEW_STRUCTURAL_SPLIT_CANDIDATE")
+    }
+    else {
+        $sizingAssessment = "STRUCTURAL_SPLIT_NOT_ESTABLISHED"
+    }
+}
+
 $result = [ordered]@{
     schema_version = "automation.execution_cost_reconciliation.v1"
     forecast_path = $ForecastPath
@@ -258,6 +300,8 @@ $result = [ordered]@{
     provider_interruption = $interruption
     forecast_capacity_review_required = $capacityReviewRequired
     provider_pause_is_source_defect = $false
+    work_package_sizing_assessment = $sizingAssessment
+    split_authority_created = $false
     generated_at_utc = [datetimeoffset]::UtcNow.ToString("o")
 }
 
