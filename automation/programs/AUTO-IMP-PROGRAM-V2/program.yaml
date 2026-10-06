@@ -1,7 +1,7 @@
 {
   "schema_version": "automation.implementation_program.v1",
   "program_id": "AUTO-IMP-PROGRAM-V2",
-  "program_revision": "1",
+  "program_revision": "2",
   "status": "COMPILED_CANDIDATE_PENDING_COHESIVE_IMPLEMENTATION_AND_REVIEW",
   "compiled_from_freeze_head": "4cd98db0a6faddd3e0f02df1f72a4c9407f3747c",
   "frozen_master_manifest_sha256": "c95a3cff78b2f7c26eb16e429bbdfe2265159b755d8ad1a0784595b18306d9de",
@@ -50,6 +50,15 @@
       "all_designs_defined": true,
       "activation": "EXTERNAL_EVIDENCE_AND_OWNER_ACTIVATION_ONLY",
       "manual_controller_status": "PENDING_COHESIVE_IMPLEMENTATION_REVIEW_NOT_OPERATIONAL"
+    },
+    "capacity_calibration": {
+      "module": "automation.engine.capacity_calibration",
+      "status": "PENDING_SAME_COHESIVE_IMPLEMENTATION",
+      "method": "NON_NEGATIVE_ZERO_INTERCEPT_FEATURE_CALIBRATION",
+      "method_authority": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json",
+      "task_class_not_capacity_identity": true,
+      "forecast_task_class_comparability_separate": true,
+      "no_provider_io_authority_lifecycle_mutation": true
     }
   },
   "near_horizon_exact_packages": [
@@ -373,6 +382,8 @@
     "ivf01_flow_path": "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml",
     "automatic_next_package_authorization": "DENIED",
     "all_002_009_need_own_exact_authority": true,
-    "controller_review_barrier": "ONE_COHESIVE_FRESH_INDEPENDENT_REVIEW"
+    "controller_review_barrier": "ONE_COHESIVE_FRESH_INDEPENDENT_REVIEW",
+    "capacity_campaign_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.json",
+    "current_controller_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2"
   }
 }

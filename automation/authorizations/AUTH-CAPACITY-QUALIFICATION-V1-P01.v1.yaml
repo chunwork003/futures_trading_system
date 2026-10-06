@@ -1,0 +1,114 @@
+{
+  "schema_version": "automation.authorization.v1",
+  "authorization_id": "AUTH-CAPACITY-QUALIFICATION-V1-P01",
+  "authorization_revision": "1",
+  "document_status": "APPROVED_EFFECTIVE",
+  "authorization_state": "AUTHORIZED",
+  "source_candidate_head_sha": "7308578c722030d9c26528178faa7a946e6878e1",
+  "decision_evidence": {
+    "authority": "HUMAN_GOVERNANCE_OWNER",
+    "source": "EXACT_OWNER_CAPACITY_QUALIFICATION_CAMPAIGN_V1_UPTO3_USEFUL_READ_ONLY_PROBES",
+    "amendment_path": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json",
+    "amendment_commit": "6c05611928e5e686b11e61190bff2b10cb9ad98e",
+    "created_at": "2026-10-06T09:04:45Z",
+    "updated_at": "2026-10-06T09:04:45Z"
+  },
+  "exact_binding": {
+    "authorization_id": "AUTH-CAPACITY-QUALIFICATION-V1-P01",
+    "authorization_revision": "1",
+    "work_package_id": "CAPACITY_QUALIFICATION_CAMPAIGN_V1",
+    "work_package_revision": "1",
+    "work_order_id": "WO-CAPACITY-QUALIFICATION-V1-P01",
+    "architecture_id": "DEVELOPMENT-AUTOMATION-MASTER",
+    "architecture_revision": "1.2",
+    "architecture_bundle_hash": "41222a925572c2a3f6659083df749685311cac02c9d7da1633403c9dc9650516",
+    "planning_baseline_sha": "7308578c722030d9c26528178faa7a946e6878e1",
+    "scope_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "scope_digest_convention": "SHA256_UTF8_NEWLINE_JOIN_EMPTY_SOURCE_WRITE_SCOPE",
+    "side_effect_class": "LOW_RISK_READ_ONLY_REPOSITORY_VERIFICATION_EVIDENCE_ONLY",
+    "governance_effect": "EVIDENCE_ACQUISITION_NO_SOURCE_OR_AUTHORITY_CHANGE",
+    "allowed_executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+    "implementation_correction_budget": 0,
+    "review_barrier": "WORK_MECHANICAL_INTAKE_AND_ALL_CAPACITY_QUALIFICATION_PROOFS",
+    "campaign_id": "CAPACITY_QUALIFICATION_CAMPAIGN_V1",
+    "probe_id": "P01"
+  },
+  "program_binding": {
+    "campaign_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.json",
+    "program_id": "CAPACITY_QUALIFICATION_CAMPAIGN_V1",
+    "program_revision": "1",
+    "not_an_architecture_implementation_package": true
+  },
+  "package_binding": {
+    "goal": "Verify exact current manifest8-component Git-byte hashes and active1.2 historical separation; report any stale authority projection without edits",
+    "read_scope": [
+      "automation/governance/master_manifest.v1.yaml",
+      "automation/policies/execution_capacity_policy.v2.yaml",
+      "automation/policies/authorization_lifecycle.v1_1.yaml",
+      "automation/work_orders/CURRENT_CODEX.yaml"
+    ],
+    "planned_write_scope": [],
+    "evidence_scope": "Only own exact future execution completion.json and execution_cost_actual.json with rawbeforeafter; all further intake/token/cohort byWORK",
+    "protected_scope": [
+      "ALL_IMPLEMENTATION_SOURCE",
+      "ALL_REPOSITORY_SEMANTICS",
+      "ALL_CONSUMED_AUTHORITY_AND_EXECUTION_HISTORY",
+      "runtime/broker/DB/migration/LIVE/production/credentials"
+    ],
+    "risk": "LOW_RISK_READ_ONLY"
+  },
+  "execution_policy": {
+    "single_use": true,
+    "manual_trigger_only": true,
+    "automatic_dispatch": false,
+    "automatic_next_package": false,
+    "sequential_campaign_only": true,
+    "remaining_slot_count_max": 3,
+    "continue_only_if_qualification_needed": true,
+    "all8identity_before_invocation_required": true,
+    "missingidentity_stop": true,
+    "no_competing_consumer_required": true,
+    "normal1_2_lifecycle": true
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "quota_gate": {
+    "policy_path": "automation/policies/execution_capacity_policy.v2.yaml",
+    "provider_hard_block": "STOP",
+    "provider_enforced_limits_waived": false,
+    "provisional_low_risk_manual": "ALLOW_WITH_WATCH_EXISTING_POLICY_ONLY_AFTER_EXACT_AUTH_AND_PROVIDER_PASS",
+    "quota_waiver": false
+  },
+  "telemetry_gate": {
+    "campaign_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.json",
+    "same_identity_binding": "ALL8FIELDS_PER_REAL_WINDOW; never CLIversion/client-policy substitution",
+    "before_after": "IMMEDIATE_ORIGINAL_PROVIDER_RAW_CALL_TIMESTAMPS",
+    "exact_token_extractor_blob": "5834edd880ec9c73781b220c1ee488027f98f77e",
+    "no_raw_transcript_in_model": true,
+    "competing_consumer": "Any compatible overlappingpositive delta or uncertainattribution rejects sample",
+    "billing_inference": "DENIED"
+  },
+  "decision": {
+    "owner_campaign_approval": true,
+    "execution_eligible": false,
+    "sole_preflight_blocker": "PROVIDER_CLIENT_POLICY_IDENTITY_UNRESOLVED",
+    "not_permission_to_invokewhileblocked": true,
+    "created_at": "2026-10-06T09:04:45Z",
+    "updated_at": "2026-10-06T09:09:49Z"
+  },
+  "single_use_execution": {
+    "execution_id": null,
+    "reservation_created": false,
+    "dispatch_committed": false,
+    "executor_invoked": false,
+    "writer_acquired": false,
+    "consumed": false
+  }
+}

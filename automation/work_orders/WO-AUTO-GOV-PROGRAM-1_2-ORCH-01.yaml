@@ -2,23 +2,28 @@
   "schema_version": "automation.codex_work_order.v1",
   "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
   "package_id": "AUTO-GOV-PROGRAM-1_2-ORCHESTRATION",
-  "package_revision": "1",
+  "package_revision": "2",
   "work_order_path": "automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml",
-  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01",
-  "authorization_revision": "1",
-  "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01.v1.yaml",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2",
+  "authorization_revision": "2",
+  "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2.v2.yaml",
   "authorization_state": "AUTHORIZED",
   "authority_basis": {
     "owner_decision_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
     "initial_materialization_commit": "3d40f89169a7a85b54f66599db3a6b3394059ebb",
     "active_architecture": "1.2",
-    "architecture_bundle_hash": "db3317cc191360fcb0b715766cb94781a63d9710196341879b3289c3848282a9",
-    "scope_digest": "47b4277ed2e74fc17bb83c4ec986dd9df01dc4a30768b22e65382a93f036424b",
+    "architecture_bundle_hash": "41222a925572c2a3f6659083df749685311cac02c9d7da1633403c9dc9650516",
+    "scope_digest": "462a6fbb2df42a12ac4463645ae2797945fee755b8809eba7107438c606a9a12",
     "policy": "NORMAL_ARCHITECTURE1.2_CAPACITY_PROVIDER_LIFECYCLE_NO_BOOTSTRAP_EXCEPTION",
-    "owner_decision_materialized_commit": "a11cb88a76da22c714e5e8397958b5e5e17642b7"
+    "owner_decision_materialized_commit": "a11cb88a76da22c714e5e8397958b5e5e17642b7",
+    "amendment_path": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json",
+    "authorization_revision": "2",
+    "prior_disposition_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01.supersession.json",
+    "amendment_overrides_base_scope_only": true,
+    "amendment_materialization_commit": "6c05611928e5e686b11e61190bff2b10cb9ad98e"
   },
-  "control_plane_baseline_sha": "3d40f89169a7a85b54f66599db3a6b3394059ebb",
-  "code_base_sha": "4cd98db0a6faddd3e0f02df1f72a4c9407f3747c",
+  "control_plane_baseline_sha": "7308578c722030d9c26528178faa7a946e6878e1",
+  "code_base_sha": "7308578c722030d9c26528178faa7a946e6878e1",
   "baseline_rule": "Fresh origin/master prior to admission; only provably compatible control-plane descendants acceptable. Source/path/policy identity drift STOP; exact future execution start SHA recorded. Candidate uses fresh master, no stale candidate control-plane copies.",
   "exact_goal": "PROGRAM_1_2_AND_ORCHESTRATION_CONTROL_LAYER_COMPLETE_BASELINE: implement complete24-section Owner decision in one cohesive candidate and one review",
   "implementation_contract_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
@@ -42,10 +47,12 @@
     "docs/CURRENT_STATE.md",
     "docs/CURRENT_WORK.md",
     "docs/AI_AUTOMATION_OPERATING_MODEL.md",
-    "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
+    "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml",
+    "automation/engine/capacity_calibration.py",
+    "tests/automation/test_capacity_calibration.py"
   ],
   "protected_scope": [
-    "ALL_PATHS_OUTSIDE_EXACT_19_IMPLEMENTATION_FILES_AND_OWN_TWO_EXECUTION_EVIDENCE_FILES",
+    "ALL_PATHS_OUTSIDE_EXACT_21_IMPLEMENTATION_FILES_AND_OWN_TWO_EXECUTION_EVIDENCE_FILES",
     "automation/programs/AUTO-IMP-PROGRAM-V1/**",
     "automation/authorizations/** (including this new exact authority; executor cannot mutate)",
     "automation/runs/** historical",
@@ -65,7 +72,7 @@
     "IVF01/test_reentry source and original package prerequisite source",
     "runtime/trading/broker/data/DB/migration/LIVE/production/credentials"
   ],
-  "scope_digest": "47b4277ed2e74fc17bb83c4ec986dd9df01dc4a30768b22e65382a93f036424b",
+  "scope_digest": "462a6fbb2df42a12ac4463645ae2797945fee755b8809eba7107438c606a9a12",
   "tests": {
     "QUEUE": [
       "same relevant revision/subject/generation across wake classes produces one entry",
@@ -111,7 +118,8 @@
       "qualified cohort count alone insufficient; wrong controller/capacity/window identity rejected",
       "unqualified/provisional capacity denies unattended dispatch",
       "explicit exact Owner activation mandatory; reviewerPASS/event/forecast notactivation",
-      "consumed single use never redispatch; valid same invoked resume delegates active1.2 checks"
+      "consumed single use never redispatch; valid same invoked resume delegates active1.2 checks",
+      "Immutable v1 stillcontainsAUTHORIZED historicaltext but durable supersession deniesrouting; onlyCURRENT-boundREV2may proceed"
     ],
     "FORECAST": [
       "legacy static token forecasts not admission authority",
@@ -129,6 +137,28 @@
       "actual provider denial wins; no default missing evidence PASS",
       "Program/controller candidate manifest status never activates before cohesive review",
       "Rev1 consumed/historical authority unchanged; no Rev2 authorization or003 authority"
+    ],
+    "CAPACITY_CALIBRATION": [
+      "fewer than3distinct samples rejected",
+      "duplicate executionIDs rejected",
+      "wrong provider/account/workspace/limit/window/model/executor/client-policy rejected",
+      "missing identity rejects, missing!=NOT_EXPOSED",
+      "competingconsumer and unknowncleanattribution rejected",
+      "reset/window mismatch rejected",
+      "invalid integer tokenaccounting rejected",
+      "nonnegative coefficients, zero-intercept, zero work zero usage",
+      "exact nonoverlapping fourfeatures; no input/output/total duplication",
+      "deterministic point/residual/1pp/1.25 uncertainty upper, larger evidence margin retained",
+      "provider percentage proxy and CALIBRATED_ESTIMATE never EXACT/billing",
+      "PRIMARY_5H and SECONDARY_WEEKLY separate real models; missingexposedmodel failclosed",
+      "tighter lower selected, deterministic tie order, no syntheticwindow",
+      "integerfloored lower<=upper and positive-demand zero-prediction failclosed",
+      "P90>lower ->capacitymiss;P90<=lower->COST_FIT via existing cost_gate",
+      "different task classes permitted in capacity samples, only demandconfidence affected",
+      "historicalmissingidentity neverbackfilled fromcurrent snapshot orCLIversion",
+      "strict deeplyimmutable deterministicserialization roundtrip",
+      "invalid rank/featurecoverage/nonconvergence/uncertainty notconcealed toforcefit",
+      "modulepure no providerIO/no authority/reservation/dispatch/invocation; raw evidence immutable"
     ]
   },
   "fixture_strategy": "Self-contained valid immutable snapshot and eligible manual candidate first; mutation-only negatives; no fixture reading mutable repository CURRENT. Compare fixture to explicit schema/policy binding; exact repository integration separately.",
@@ -185,14 +215,36 @@
   ],
   "review_plan": {
     "type": "ONE_COHESIVE_FRESH_INDEPENDENT_GOVERNANCE_SEMANTIC_REVIEW_COMPLETE_EFFECTIVE_PACKAGE",
-    "scope": "COMPLETE_EFFECTIVE19_FILE_PROGRAM_QUEUE_EVENT_ROUTE_DEDUPE_AUTHORITY_MODES_PROMOTION_FORECAST_PACKAGE",
+    "scope": "Complete21-file effectiveProgramV2/orchestration/forecast/capacityestimator/promotion/IVF01prep/historicalpreservation, ONE_COHESIVE_REVIEW",
     "verdicts": [
       "PASS",
       "REVIEW_FIX_REQUIRED",
       "HUMAN_DECISION_REQUIRED"
     ],
     "independent_reviewer_cannot_authorize_or_activate": true,
-    "on_pass": "WORK_ACCEPT_REVIEWED_PROGRAM_V2_ORCHESTRATION_BASELINE_NO_AUTO_DISPATCH; then fresh compile IVF01Rev2 candidate under normal gates, no future unknown authority"
+    "on_pass": "WORK_ACCEPT_REVIEWED_PROGRAM_V2_ORCHESTRATION_BASELINE_NO_AUTO_DISPATCH; then fresh compile IVF01Rev2 candidate under normal gates, no future unknown authority",
+    "calibration_questions": [
+      "fewer than3distinct samples rejected",
+      "duplicate executionIDs rejected",
+      "wrong provider/account/workspace/limit/window/model/executor/client-policy rejected",
+      "missing identity rejects, missing!=NOT_EXPOSED",
+      "competingconsumer and unknowncleanattribution rejected",
+      "reset/window mismatch rejected",
+      "invalid integer tokenaccounting rejected",
+      "nonnegative coefficients, zero-intercept, zero work zero usage",
+      "exact nonoverlapping fourfeatures; no input/output/total duplication",
+      "deterministic point/residual/1pp/1.25 uncertainty upper, larger evidence margin retained",
+      "provider percentage proxy and CALIBRATED_ESTIMATE never EXACT/billing",
+      "PRIMARY_5H and SECONDARY_WEEKLY separate real models; missingexposedmodel failclosed",
+      "tighter lower selected, deterministic tie order, no syntheticwindow",
+      "integerfloored lower<=upper and positive-demand zero-prediction failclosed",
+      "P90>lower ->capacitymiss;P90<=lower->COST_FIT via existing cost_gate",
+      "different task classes permitted in capacity samples, only demandconfidence affected",
+      "historicalmissingidentity neverbackfilled fromcurrent snapshot orCLIversion",
+      "strict deeplyimmutable deterministicserialization roundtrip",
+      "invalid rank/featurecoverage/nonconvergence/uncertainty notconcealed toforcefit",
+      "modulepure no providerIO/no authority/reservation/dispatch/invocation; raw evidence immutable"
+    ]
   },
   "stop_conditions": [
     "provider hard/rate/spend denial",
@@ -213,7 +265,7 @@
     "rev2": "NOT_AUTHORIZED_PREPARATION_ONLY",
     "flow_path": "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
   },
-  "current_route": "WORK_CAPACITY_REVIEW",
+  "current_route": "WORK_CAPACITY_QUALIFICATION_CAMPAIGN_PRECHECK",
   "sole_blocker": "QUALIFIED_CAPACITY_REQUIRED",
   "active_dispatch_mode": "MANUAL",
   "controlled_auto": "DISABLED",
@@ -221,7 +273,7 @@
     "task_class": "COHESIVE_ORCHESTRATION_CONTROL_LAYER_BASELINE",
     "change_type": "EXPLICIT_PROGRAM_SUCCESSOR_AND_DETERMINISTIC_AUTHORITY_SEPARATED_CONTROLLER",
     "subsystem": "automation.engine / program and control-plane governance",
-    "functional_area": "queue/event/route/forecast/promotion",
+    "functional_area": "queue/event/route/forecast/promotion / permanent capacity calibration",
     "concise_engineering_goal": "Complete Program1.2 and deterministic orchestration baseline in one reviewable package",
     "primary_symbols_or_functional_surfaces": [
       "ImplementationProgram",
@@ -236,10 +288,11 @@
       "dedupe/CAS",
       "authority separation",
       "manual/controlledauto",
-      "context ROI"
+      "context ROI",
+      "provider-window feature calibration and conservativeinterval"
     ],
-    "source_file_count": 3,
-    "test_file_count": 3,
+    "source_file_count": 4,
+    "test_file_count": 4,
     "governance_and_docs_file_count": 13,
     "semantic_profile": "ONE_COHESIVE_FRESH_INDEPENDENT_GOVERNANCE_REVIEW",
     "test_profile": "STABLE_SELF_CONTAINED_POSITIVE_FIXTURE_AND_NEGATIVE_MATRIX_ONE_TARGETED_ONE_FULL",
@@ -249,7 +302,23 @@
   "KNOWN_AUTOMATION_ARCHITECTURE_DEBT": "NONE",
   "debt_semantics": "All known design decisions specified and implementation consistency issues included in exact scope; does NOT claim implementation complete or capacity evidence calibrated",
   "created_at": "2026-10-06T08:24:37Z",
-  "updated_at": "2026-10-06T08:32:03Z",
+  "updated_at": "2026-10-06T09:09:49Z",
   "compilation_commit": "a11cb88a76da22c714e5e8397958b5e5e17642b7",
-  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.provider-evidence.json"
+  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.capacity-provider-evidence.json",
+  "capacity_calibration": {
+    "amendment_path": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json",
+    "cohort_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.json",
+    "qualification_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.qualification.json",
+    "module": "automation/engine/capacity_calibration.py",
+    "tests": "tests/automation/test_capacity_calibration.py",
+    "feature_method": "NON_NEGATIVE_ZERO_INTERCEPT_FEATURE_CALIBRATION",
+    "task_class_capacity_rejection": "DENIED",
+    "forecast_p90_total_unchanged": 12000000
+  },
+  "capacity_campaign_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.json",
+  "capacity_campaign_preflight_blocker": "PROVIDER_CLIENT_POLICY_IDENTITY_UNRESOLVED",
+  "implementation_contract_amendments": [
+    "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json"
+  ],
+  "capacity_estimate_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.capacity-estimate.json"
 }

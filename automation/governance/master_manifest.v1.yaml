@@ -15,25 +15,26 @@
     "implementation_authorized": false,
     "codex_execution_authorized": false,
     "program_review": "PASS",
-    "next_route": "WORK_CAPACITY_REVIEW",
+    "next_route": "WORK_CAPACITY_QUALIFICATION_CAMPAIGN_PRECHECK",
     "current_compatibility": {
       "historical_architecture_binding": "1.1",
       "active_master_architecture": "1.2",
       "automatic_rebind": false,
       "status": "OWNER_DECIDED_EXPLICIT_V2_SUCCESSOR_PENDING_COHESIVE_IMPLEMENTATION_REVIEW",
-      "required_route": "WORK_CAPACITY_REVIEW",
+      "required_route": "WORK_CAPACITY_QUALIFICATION_CAMPAIGN_PRECHECK",
       "owner_decision_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json"
     },
     "successor_candidate": {
       "program_id": "AUTO-IMP-PROGRAM-V2",
-      "program_revision": "1",
+      "program_revision": "2",
       "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
-      "sha256": "1202c93286fea9dd224dede4a77646de23d7400f2c74e24beba050b4cd559964",
+      "sha256": "d2e8dd862e581df4b92be2aa2d96ffb227e5495e3541cc4564dc657a4fbbb941",
       "status": "COMPILED_CANDIDATE_PENDING_COHESIVE_IMPLEMENTATION_AND_REVIEW",
       "active": false,
       "architecture": "1.2",
-      "implementation_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01",
-      "execution_eligible": false
+      "implementation_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2",
+      "execution_eligible": false,
+      "capacity_amendment_path": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json"
     }
   },
   "compiled_authorization_candidate": {
@@ -104,7 +105,7 @@
   "governance_document": {
     "path": "docs/AI_AUTOMATION_OPERATING_MODEL.md",
     "version": "1.2",
-    "sha256": "4670431796264b1a8a0569bc32addcbb71b7fe925c32a5bc2ee25de30fd0bf6e"
+    "sha256": "7a9a1259ba0349acd4ffc959a5d914bed377359064d9396a63625153ccb6d637"
   },
   "agent_reentry": {
     "path": "AGENTS.md",
@@ -244,7 +245,7 @@
     "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json",
     "review_verdict_commit": "38bff8f90e40c1b4a9eb25d5e57396be79a694b5",
     "reviewed_source_integration_commit": "14ff081757fe4205ab78c85b82f7ef6ca9c1e76f",
-    "bundle_hash": "db3317cc191360fcb0b715766cb94781a63d9710196341879b3289c3848282a9",
+    "bundle_hash": "41222a925572c2a3f6659083df749685311cac02c9d7da1633403c9dc9650516",
     "bundle_components": [
       {
         "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
@@ -276,7 +277,7 @@
       },
       {
         "path": "docs/AI_AUTOMATION_OPERATING_MODEL.md",
-        "sha256": "4670431796264b1a8a0569bc32addcbb71b7fe925c32a5bc2ee25de30fd0bf6e"
+        "sha256": "7a9a1259ba0349acd4ffc959a5d914bed377359064d9396a63625153ccb6d637"
       }
     ],
     "bundle_hash_convention": "SHA256_UTF8_COMPACT_SORTED_KEYS_JSON_LIST_SORTED_PATH_NO_TRAILING_NEWLINE",
@@ -319,7 +320,7 @@
     "ivf01_rev1": "ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED",
     "ivf01_rev2": "NOT_AUTHORIZED",
     "auto_imp_003_authorized": false,
-    "next_route": "WORK_CAPACITY_REVIEW",
+    "next_route": "WORK_CAPACITY_QUALIFICATION_CAMPAIGN_PRECHECK",
     "runtime": "DENIED",
     "broker": "DENIED",
     "db": "DENIED",
@@ -327,13 +328,19 @@
     "live": "DENIED",
     "production": "DENIED",
     "current_work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
-    "current_implementation_authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+    "current_implementation_authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2",
     "projection_update_provenance": {
-      "baseline": "4cd98db0a6faddd3e0f02df1f72a4c9407f3747c",
-      "reason": "Owner Program/orchestration decision and current route; operating model current projection only, preserve historical text; no capacity/lifecycle policy semantic change",
-      "predecessor_architecture_bundle_hash": "41e81af6c038722397c400ce70ac1edbf9275027b96b3f3ff425d1386434a7d3",
-      "updated_document_sha256": "4670431796264b1a8a0569bc32addcbb71b7fe925c32a5bc2ee25de30fd0bf6e"
-    }
+      "baseline": "7308578c722030d9c26528178faa7a946e6878e1",
+      "reason": "Owner preexecution capacity amendment currentprojection only; activepolicy/spec blobs unchanged",
+      "predecessor_architecture_bundle_hash": "db3317cc191360fcb0b715766cb94781a63d9710196341879b3289c3848282a9",
+      "updated_document_sha256": "7a9a1259ba0349acd4ffc959a5d914bed377359064d9396a63625153ccb6d637"
+    },
+    "current_capacity_campaign": "CAPACITY_QUALIFICATION_CAMPAIGN_V1",
+    "capacity_qualified_samples_per_window": {
+      "PRIMARY_5H": 0,
+      "SECONDARY_WEEKLY": 0
+    },
+    "capacity_probe_invoked": false
   },
   "candidate_successor": {
     "target_architecture_version": "1.2",

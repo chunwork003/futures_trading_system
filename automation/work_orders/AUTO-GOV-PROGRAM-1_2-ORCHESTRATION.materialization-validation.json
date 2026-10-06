@@ -1,31 +1,27 @@
 {
   "schema_version": "automation.materialization_validation.v1",
   "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
-  "baseline": "4cd98db0a6faddd3e0f02df1f72a4c9407f3747c",
-  "compilation_commit": "a11cb88a76da22c714e5e8397958b5e5e17642b7",
-  "current_bundle_hash": "db3317cc191360fcb0b715766cb94781a63d9710196341879b3289c3848282a9",
+  "revision": "2",
+  "base_master": "7308578c722030d9c26528178faa7a946e6878e1",
   "checks": {
-    "strict_existing_ProgramV1_schema_for_V2": "PASS",
-    "exact_DAG_preserved": "PASS",
-    "strict_auth_plan_manifest_models": "PASS",
-    "unique19_scope_digest": "PASS",
-    "forecast_accounting_and_bands": "PASS",
-    "all6_promotion_models_fully_defined": "PASS",
-    "all17_controlled_auto_criteria_conjunctive": "REQUIRED_IN_IMPLEMENTATION_CONTRACT_NOT_YET_IMPLEMENTED",
-    "canonical_capacity_gate": "WORK_CAPACITY_REVIEW/QUALIFIED_CAPACITY_REQUIRED",
-    "provider_availability": "PASS",
-    "all_preexisting_blobs_unchanged_through_compilation": "PASS",
-    "current_operating_model_projection_rebound": "PASS_EXACT_GIT_BYTES",
-    "active7_policy_spec_blobs_unchanged": "PASS",
-    "manifest_bundle_hash_integrity": "PASS",
-    "protected_history": "PASS_NO_CONSUMED_ARTIFACT_MODIFICATION",
-    "current_timestamp_monotonic": "PASS",
-    "handoff": "BLOCKED_FALSE",
-    "writer_execution_reservation_dispatch": "NONE_CREATED"
+    "strict_authorization_main_and3readonly": "PASS_EXISTING_AUTHORIZATION_V1_MODEL",
+    "strict_package_plan": "PASS",
+    "strict_program_manifest": "PASS",
+    "CapacityEstimate": "PASS_PROVISIONAL_NULL_BOUND_MODEL_NO_CALIBRATEDCLAIM",
+    "scope_digest": "PASS21_EXACT_SCOPE",
+    "normal_high_cost_gate": "WORK_CAPACITY_REVIEW_QUALIFIED_CAPACITY_REQUIRED",
+    "conditional_lowrisk_probe_gate": "ALLOW_WITH_WATCH_ONLY_IF_ALL_OTHER_GATESPASS",
+    "task_class_capacity_filter": "NOT_USED",
+    "historical_window_counts": {
+      "PRIMARY_5H": 0,
+      "SECONDARY_WEEKLY": 0
+    },
+    "no_historical_fact_backfill": true,
+    "no_policy_waiver": true,
+    "source_implementation_written": false
   },
   "semantic_acceptance": "NOT_PERFORMED",
-  "implementation": "NOT_STARTED_BY_WORK",
-  "tests": "Deterministic compilation/contract/hash checks only; no source tests required for WORK metadata; complete implementation49-case matrix assigned to CODEX after gates",
-  "created_at": "2026-10-06T08:32:03Z",
-  "updated_at": "2026-10-06T08:32:03Z"
+  "independent_review": "PENDING_FUTURE_COHESIVE21FILE_IMPLEMENTATION",
+  "created_at": "2026-10-06T09:09:49Z",
+  "updated_at": "2026-10-06T09:09:49Z"
 }

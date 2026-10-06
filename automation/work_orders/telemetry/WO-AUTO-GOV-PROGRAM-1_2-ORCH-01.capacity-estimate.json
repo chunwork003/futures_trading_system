@@ -1,0 +1,41 @@
+{
+  "schema_version": "automation.work_order_capacity_evidence.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2",
+  "authorization_revision": "2",
+  "architecture": "1.2",
+  "architecture_bundle_hash": "41222a925572c2a3f6659083df749685311cac02c9d7da1633403c9dc9650516",
+  "scope_digest": "462a6fbb2df42a12ac4463645ae2797945fee755b8809eba7107438c606a9a12",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.json",
+  "forecast_identity_revision": "2",
+  "forecast_p90_total": 12000000,
+  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.capacity-provider-evidence.json",
+  "cohort_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.json",
+  "qualified_samples_per_window": {
+    "PRIMARY_5H": 0,
+    "SECONDARY_WEEKLY": 0
+  },
+  "binding_window": null,
+  "feature_method": "NON_NEGATIVE_ZERO_INTERCEPT_FEATURE_CALIBRATION",
+  "estimate": {
+    "measurement_type": "PROVISIONAL_ESTIMATE",
+    "identity": {},
+    "available_tokens_lower": null,
+    "available_tokens_upper": null,
+    "feature_method": "NON_NEGATIVE_ZERO_INTERCEPT_FEATURE_CALIBRATION",
+    "uncertainty": "{\"clean_attribution\":\"FAILED_COMPETING_CONSUMERS\",\"client_policy_identity\":\"MISSING\",\"no_estimate_created\":true,\"qualified_samples_per_window\":{\"PRIMARY_5H\":0,\"SECONDARY_WEEKLY\":0}}",
+    "samples": [],
+    "qualification_reviewed": false
+  },
+  "contract_validation": "CapacityEstimate.model_validate PASS as PROVISIONAL_ESTIMATE with NULL bounds, notCALIBRATED",
+  "cost_gate_result": "WORK_CAPACITY_REVIEW",
+  "cost_gate_reason": "QUALIFIED_CAPACITY_REQUIRED",
+  "campaign_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.json",
+  "campaign_preflight_blocker": "PROVIDER_CLIENT_POLICY_IDENTITY_UNRESOLVED",
+  "no_hand_edited_calibrated_json": true,
+  "no_estimate_fabricated": true,
+  "created_at": "2026-10-06T09:04:45Z",
+  "updated_at": "2026-10-06T09:09:49Z",
+  "forecast_sha256": "96de96ada8383ce265f181e5153d510b9049a541703af9bf7f629e98dae8cf43",
+  "forecast_sha256_convention": "SHA256_EXACT_GIT_BLOB_CONTENT_UTF8_BYTES"
+}

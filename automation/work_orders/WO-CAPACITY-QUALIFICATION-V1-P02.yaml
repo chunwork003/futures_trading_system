@@ -1,0 +1,147 @@
+{
+  "schema_version": "automation.codex_work_order.v1",
+  "work_order_id": "WO-CAPACITY-QUALIFICATION-V1-P02",
+  "package_id": "CAPACITY_QUALIFICATION_CAMPAIGN_V1",
+  "package_revision": "1",
+  "authorization_id": "AUTH-CAPACITY-QUALIFICATION-V1-P02",
+  "authorization_revision": "1",
+  "authorization_path": "automation/authorizations/AUTH-CAPACITY-QUALIFICATION-V1-P02.v1.yaml",
+  "authorization_state": "AUTHORIZED",
+  "campaign_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.json",
+  "master_baseline": "7308578c722030d9c26528178faa7a946e6878e1",
+  "code_base_sha": "7308578c722030d9c26528178faa7a946e6878e1",
+  "fresh_head_rule": "Only provably compatible controlplane descendants; all semantics read-only; recordexactactualstart",
+  "exact_goal": "Verify ProgramV1/V2 exact DAG and operational singlelane separation and allfuture package nonauthority; read-only positive/negative static contract inspection",
+  "exact_read_scope": [
+    "automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml",
+    "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+    "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
+  ],
+  "exact_write_scope": [],
+  "protected_scope": [
+    "ALL_IMPLEMENTATION_SOURCE",
+    "ALL_REPOSITORY_SEMANTICS",
+    "ALL_CONSUMED_AUTHORITY_AND_EXECUTION_HISTORY",
+    "runtime/broker/DB/migration/LIVE/production/credentials"
+  ],
+  "source_scope_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "identity_requirements": {
+    "provider": {
+      "expected": "openai",
+      "source": "ORIGINAL_CLIENT_MODEL_PROVIDER",
+      "fresh_proof_required": true
+    },
+    "account": {
+      "expected": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+      "source": "ORIGINAL_CREATOR_ACCOUNT_AND_FRESH_PROVIDER_ACCOUNT",
+      "fresh_proof_required": true
+    },
+    "workspace": {
+      "expected": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+      "source": "ORIGINAL_EXECUTOR_CLIENT_WORKSPACE_METADATA",
+      "fresh_proof_required": true
+    },
+    "limit_id": {
+      "expected": "codex",
+      "fresh_proof_required": true
+    },
+    "window_types": [
+      "PRIMARY_5H",
+      "SECONDARY_WEEKLY"
+    ],
+    "model": {
+      "expected": "gpt-6.1-sol",
+      "source": "ORIGINAL_TARGET_EXECUTOR_TURN_CONTEXT",
+      "fresh_actual_target_proof_required": true,
+      "change": "STOP_NO_MODEL_DOWNGRADE"
+    },
+    "executor_profile": {
+      "expected": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+      "fresh_actual_target_proof_required": true
+    },
+    "provider_client_policy_version": {
+      "expected": null,
+      "status": "MISSING_EXPLICIT_DURABLE_SOURCE",
+      "CLI_version_substitution": "DENIED",
+      "current_provider_snapshot_backfill": "DENIED",
+      "NOT_EXPOSED_substitution": "DENIED_UNLESS_ORIGINAL_EVIDENCE_AND_ACCEPTED_REPRESENTATION_PROVEN"
+    }
+  },
+  "forecast": {
+    "measurement_type": "PROXY",
+    "reported_total_tokens": {
+      "p50": 50000,
+      "p75": 120000,
+      "p90": 250000
+    },
+    "input_tokens": {
+      "p50": 49500,
+      "p75": 118000,
+      "p90": 245000
+    },
+    "cached_input_tokens": {
+      "p50": 39500,
+      "p75": 98000,
+      "p90": 205000
+    },
+    "uncached_input_tokens": {
+      "p50": 10000,
+      "p75": 20000,
+      "p90": 40000
+    },
+    "output_tokens": {
+      "p50": 500,
+      "p75": 2000,
+      "p90": 5000
+    },
+    "reasoning_output_tokens": {
+      "p50": 150,
+      "p75": 500,
+      "p90": 1500
+    },
+    "actor_seconds": {
+      "p50": 120,
+      "p75": 240,
+      "p90": 600
+    },
+    "confidence": "PROVISIONAL_READ_ONLY_USEFUL_VERIFICATION_NO_FORCED_TOKEN_BURN"
+  },
+  "claim_rules": "Do notclaimwhileBLOCKED; only afterall8identity+provider+isolatedmeasurement+freshauthority+normalguard durablesteps1_9; manualtriggeronly",
+  "completion_evidence_requirements": [
+    "Owncompletion/cost only; exactsource/root/claim/evidence hashes; nosemantics/sourcechange",
+    "Immediate rawprovider before/after andAPIcall timestamps allrealwindows",
+    "Actual account/workspace/model/executor/clientpolicy identity with sourceproof",
+    "Actorstart/end; tokenstatusPENDING_EXTERNAL_EXTRACTION; no ownrawJSONLread",
+    "Boundedverification findings; no repeatedcontextloads/artificialwork"
+  ],
+  "stop_conditions": [
+    "identity missing/drifted",
+    "ambiguous binding",
+    "overlapping consumer",
+    "unknown competing consumer",
+    "reset/window mismatch",
+    "actual provider denial",
+    "no measurable positive prediction / unidentifiable fit / uncertainty insufficient"
+  ],
+  "status": "BLOCKED",
+  "handoff_ready": false,
+  "current_route": "WORK_CAPACITY_CAMPAIGN_IDENTITY_PRECHECK",
+  "sole_blocker": "PROVIDER_CLIENT_POLICY_IDENTITY_UNRESOLVED",
+  "execution_id": null,
+  "writer_state": "NONE_HELD",
+  "reservation_created": false,
+  "dispatch_committed": false,
+  "manual_trigger_only": true,
+  "automatic_dispatch": false,
+  "created_at": "2026-10-06T09:04:45Z",
+  "updated_at": "2026-10-06T09:09:49Z"
+}

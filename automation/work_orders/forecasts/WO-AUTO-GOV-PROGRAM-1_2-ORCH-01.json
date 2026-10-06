@@ -94,14 +94,20 @@
     "type": "NOT_AVAILABLE_NO_QUALIFIED_ESTIMATE",
     "controller_comparable_qualified_samples": 0,
     "calibrated": false,
-    "provider_percent_conversion": "DENIED"
+    "provider_percent_conversion": "DENIED",
+    "task_class_not_capacity_filter": true,
+    "qualified_samples_per_window": {
+      "PRIMARY_5H": 0,
+      "SECONDARY_WEEKLY": 0
+    }
   },
   "assumptions": [
     "Fresh19-file cohesive controller baseline, materially larger than four-file RF; two exact prior executions are supporting only",
     "Uncached500k/800k/1.2M engineering envelope explicitly widens prior45k/75k/120k miss; no calibrated percentile claim",
     "Pointer-first bound context; no raw rollout or unrelated history; reuse unchanged blobs",
     "New deterministic positive fixtures for all queues/routes; PowerShell subprocess tests; one targeted+onefull; no DB/broker environment",
-    "Reasoning included in output, cached included in input; no provider-to-token conversion"
+    "Reasoning included in output, cached included in input; no provider-to-token conversion",
+    "Exactly two permanent calibration surfaces added to samecohesive package; wide existingtotal12M P90 remains unchanged; extra same-target tests expected within120s/180s p90 envelope. Noforecastreduction toadmit."
   ],
   "uncertainty": "HIGH_NEW_CONTROLLER_NO_COMPARABLE_CAPACITY; planning bands not admission allowance",
   "expected_dominant_cost_driver": "CONTEXT_AND_COHESIVE_CONTROLLER_SEMANTIC_MATRIX",
@@ -134,7 +140,7 @@
     "task_class": "COHESIVE_ORCHESTRATION_CONTROL_LAYER_BASELINE",
     "change_type": "EXPLICIT_PROGRAM_SUCCESSOR_AND_DETERMINISTIC_AUTHORITY_SEPARATED_CONTROLLER",
     "subsystem": "automation.engine / program and control-plane governance",
-    "functional_area": "queue/event/route/forecast/promotion",
+    "functional_area": "queue/event/route/forecast/promotion / permanent capacity calibration",
     "concise_engineering_goal": "Complete Program1.2 and deterministic orchestration baseline in one reviewable package",
     "primary_symbols_or_functional_surfaces": [
       "ImplementationProgram",
@@ -149,10 +155,11 @@
       "dedupe/CAS",
       "authority separation",
       "manual/controlledauto",
-      "context ROI"
+      "context ROI",
+      "provider-window feature calibration and conservativeinterval"
     ],
-    "source_file_count": 3,
-    "test_file_count": 3,
+    "source_file_count": 4,
+    "test_file_count": 4,
     "governance_and_docs_file_count": 13,
     "semantic_profile": "ONE_COHESIVE_FRESH_INDEPENDENT_GOVERNANCE_REVIEW",
     "test_profile": "STABLE_SELF_CONTAINED_POSITIVE_FIXTURE_AND_NEGATIVE_MATRIX_ONE_TARGETED_ONE_FULL",
@@ -175,5 +182,9 @@
     "content_tokens_measurement": "PROXY_OR_CALIBRATED_ESTIMATE_NEVER_EXACT"
   },
   "created_at": "2026-10-06T08:20:36Z",
-  "updated_at": "2026-10-06T08:20:36Z"
+  "updated_at": "2026-10-06T08:52:23Z",
+  "amendment_path": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json",
+  "scope_count": 21,
+  "scope_digest": "462a6fbb2df42a12ac4463645ae2797945fee755b8809eba7107438c606a9a12",
+  "forecast_identity_revision": "2"
 }

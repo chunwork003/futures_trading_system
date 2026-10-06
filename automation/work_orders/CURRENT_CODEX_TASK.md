@@ -1,14 +1,9 @@
-# CURRENT CODEX Task — BLOCKED / DO NOT INVOKE
+# CURRENT CODEX Task — BLOCKED, no invocation
 
-Work Order: WO-AUTO-GOV-PROGRAM-1_2-ORCH-01
-Package: AUTO-GOV-PROGRAM-1_2-ORCHESTRATION
-Architecture: 1.2 ACTIVE
-Authority: AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01 AUTHORIZED, not consumed
-State: BLOCKED
-handoff_ready: false
-Sole blocker: QUALIFIED_CAPACITY_REQUIRED
-Route: WORK_CAPACITY_REVIEW
+Logical WO WO-AUTO-GOV-PROGRAM-1_2-ORCH-01; package revision2; authority AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2 revision2 AUTHORIZED/notCONSUMED. Original v1 immutable, disposition SUPERSEDED_PRE_EXECUTION_NO_CONSUMPTION.
 
-Read exact CURRENT -> automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml -> automation/packages/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.plan.yaml -> automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json and exact forecast/eligibility pointers. Complete19-file scope and49-case matrix are in WO. This is one cohesive Program V2 / queue / event / deterministic route / dedupe / forecast / promotion implementation; no separate architecture discussion remains.
+Exact21scope and fullcohesive test/review contract: automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml; permanent calibration amendment: automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json. Main cost gate QUALIFIED_CAPACITY_REQUIRED; P90 total12,000,000 unchanged. No writer/execution/reservation/dispatch.
 
-No writer/execution/reservation/dispatch exists. This document is status-only, not executable handoff. Do not claim, invoke CODEX, consume authority, reuse any previous execution, execute IVF01 or authorize003. Only after qualified capacity and fresh all normal1.2 gates may WORK materialize new exact lifecycle for a manual trigger. Provider denial always STOP. MANUAL active; CONTROLLED_AUTO DISABLED; all runtime/broker/DB/migration/LIVE/production DENIED.
+Canonical cohort qualified PRIMARY_5H=0, SECONDARY_WEEKLY=0. Capacity campaign automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.json: three exact useful read-only manual probe identities,0used. Preflight blocker PROVIDER_CLIENT_POLICY_IDENTITY_UNRESOLVED. No eligible CODEX handoff; do not claim/invoke main orprobe whileblocked. WORK must mechanically bind allrequired identity/evidence, then fresh normalguard before minimum P01manualtrigger. Never substitute CLI version/current account/missing NOT_EXPOSED. No raw transcript read by executor; postexecution exact extractor byWORK.
+
+Provider actual denial STOP; no auto dispatch ornextpackage; MANUAL active/CONTROLLED_AUTOdisabled; IVF01Rev2 and003 NOT_AUTHORIZED; runtime/broker/DB/migration/LIVE/production/credentials DENIED.

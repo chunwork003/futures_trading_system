@@ -1,10 +1,10 @@
 {
   "schema_version": "automation.work_package_plan.v1",
   "work_package_id": "AUTO-GOV-PROGRAM-1_2-ORCHESTRATION",
-  "work_package_revision": "1",
+  "work_package_revision": "2",
   "status": "OWNER_APPROVED_COMPILED_PENDING_EXECUTION_CAPACITY",
   "program_id": "AUTO-IMP-PROGRAM-V2",
-  "planning_baseline_sha": "3d40f89169a7a85b54f66599db3a6b3394059ebb",
+  "planning_baseline_sha": "7308578c722030d9c26528178faa7a946e6878e1",
   "wave": "GOVERNANCE_ORCHESTRATION_COMPLETE_BASELINE",
   "title": "Program1.2 + cohesive single-lane deterministic orchestration baseline",
   "risk": "HIGH_AUTHORITY_SENSITIVE_CONTROLLER",
@@ -13,14 +13,16 @@
   ],
   "purpose": "Materialize complete Owner24-section decision into one implementation candidate; no future queue/trigger/progression design debt",
   "authorization": {
-    "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01",
-    "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01.v1.yaml",
+    "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2",
+    "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2.v2.yaml",
     "decision_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
     "decision_commit": "3d40f89169a7a85b54f66599db3a6b3394059ebb",
     "implementation_authorized": true,
     "execution_eligible": false,
     "correction_budget": 0,
-    "not_an_auto_imp_003_authority": true
+    "not_an_auto_imp_003_authority": true,
+    "amendment_path": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json",
+    "prior_authority_disposition_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01.supersession.json"
   },
   "side_effect_envelope": {
     "runtime": "DENIED",
@@ -50,10 +52,12 @@
     "docs/CURRENT_STATE.md",
     "docs/CURRENT_WORK.md",
     "docs/AI_AUTOMATION_OPERATING_MODEL.md",
-    "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
+    "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml",
+    "automation/engine/capacity_calibration.py",
+    "tests/automation/test_capacity_calibration.py"
   ],
   "protected_scope": [
-    "ALL_PATHS_OUTSIDE_EXACT_19_IMPLEMENTATION_FILES_AND_OWN_TWO_EXECUTION_EVIDENCE_FILES",
+    "ALL_PATHS_OUTSIDE_EXACT_21_IMPLEMENTATION_FILES_AND_OWN_TWO_EXECUTION_EVIDENCE_FILES",
     "automation/programs/AUTO-IMP-PROGRAM-V1/**",
     "automation/authorizations/** (including this new exact authority; executor cannot mutate)",
     "automation/runs/** historical",
@@ -122,19 +126,40 @@
     "SAFETY: deep immutable strict/extra-forbid new queue/event/policy contracts; deterministic dump/JSON round-trip",
     "SAFETY: actual provider denial wins; no default missing evidence PASS",
     "SAFETY: Program/controller candidate manifest status never activates before cohesive review",
-    "SAFETY: Rev1 consumed/historical authority unchanged; no Rev2 authorization or003 authority"
+    "SAFETY: Rev1 consumed/historical authority unchanged; no Rev2 authorization or003 authority",
+    "CAPACITY_CALIBRATION: fewer than3distinct samples rejected",
+    "CAPACITY_CALIBRATION: duplicate executionIDs rejected",
+    "CAPACITY_CALIBRATION: wrong provider/account/workspace/limit/window/model/executor/client-policy rejected",
+    "CAPACITY_CALIBRATION: missing identity rejects, missing!=NOT_EXPOSED",
+    "CAPACITY_CALIBRATION: competingconsumer and unknowncleanattribution rejected",
+    "CAPACITY_CALIBRATION: reset/window mismatch rejected",
+    "CAPACITY_CALIBRATION: invalid integer tokenaccounting rejected",
+    "CAPACITY_CALIBRATION: nonnegative coefficients, zero-intercept, zero work zero usage",
+    "CAPACITY_CALIBRATION: exact nonoverlapping fourfeatures; no input/output/total duplication",
+    "CAPACITY_CALIBRATION: deterministic point/residual/1pp/1.25 uncertainty upper, larger evidence margin retained",
+    "CAPACITY_CALIBRATION: provider percentage proxy and CALIBRATED_ESTIMATE never EXACT/billing",
+    "CAPACITY_CALIBRATION: PRIMARY_5H and SECONDARY_WEEKLY separate real models; missingexposedmodel failclosed",
+    "CAPACITY_CALIBRATION: tighter lower selected, deterministic tie order, no syntheticwindow",
+    "CAPACITY_CALIBRATION: integerfloored lower<=upper and positive-demand zero-prediction failclosed",
+    "CAPACITY_CALIBRATION: P90>lower ->capacitymiss;P90<=lower->COST_FIT via existing cost_gate",
+    "CAPACITY_CALIBRATION: different task classes permitted in capacity samples, only demandconfidence affected",
+    "CAPACITY_CALIBRATION: historicalmissingidentity neverbackfilled fromcurrent snapshot orCLIversion",
+    "CAPACITY_CALIBRATION: strict deeplyimmutable deterministicserialization roundtrip",
+    "CAPACITY_CALIBRATION: invalid rank/featurecoverage/nonconvergence/uncertainty notconcealed toforcefit",
+    "CAPACITY_CALIBRATION: modulepure no providerIO/no authority/reservation/dispatch/invocation; raw evidence immutable"
   ],
   "cost_forecast": {
     "path": "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.json",
     "confidence": "PROVISIONAL_NO_CONTROLLER_SAME_CLASS_COMPARABLE_COHORT",
-    "capacity": "NORMAL1.2_GATE_NO_EXCEPTION"
+    "capacity": "NORMAL1.2_GATE_NO_EXCEPTION",
+    "capacity_campaign_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.json"
   },
   "telemetry": {
     "task_profile": {
       "task_class": "COHESIVE_ORCHESTRATION_CONTROL_LAYER_BASELINE",
       "change_type": "EXPLICIT_PROGRAM_SUCCESSOR_AND_DETERMINISTIC_AUTHORITY_SEPARATED_CONTROLLER",
       "subsystem": "automation.engine / program and control-plane governance",
-      "functional_area": "queue/event/route/forecast/promotion",
+      "functional_area": "queue/event/route/forecast/promotion / permanent capacity calibration",
       "concise_engineering_goal": "Complete Program1.2 and deterministic orchestration baseline in one reviewable package",
       "primary_symbols_or_functional_surfaces": [
         "ImplementationProgram",
@@ -149,10 +174,11 @@
         "dedupe/CAS",
         "authority separation",
         "manual/controlledauto",
-        "context ROI"
+        "context ROI",
+        "provider-window feature calibration and conservativeinterval"
       ],
-      "source_file_count": 3,
-      "test_file_count": 3,
+      "source_file_count": 4,
+      "test_file_count": 4,
       "governance_and_docs_file_count": 13,
       "semantic_profile": "ONE_COHESIVE_FRESH_INDEPENDENT_GOVERNANCE_REVIEW",
       "test_profile": "STABLE_SELF_CONTAINED_POSITIVE_FIXTURE_AND_NEGATIVE_MATRIX_ONE_TARGETED_ONE_FULL",
@@ -164,12 +190,12 @@
     "authority_effect": "NONE"
   },
   "git_policy": {
-    "source_baseline": "4cd98db0a6faddd3e0f02df1f72a4c9407f3747c",
-    "control_plane_baseline": "3d40f89169a7a85b54f66599db3a6b3394059ebb",
+    "source_baseline": "7308578c722030d9c26528178faa7a946e6878e1",
+    "control_plane_baseline": "7308578c722030d9c26528178faa7a946e6878e1",
     "branch": "auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
     "copy_old_control_plane": false,
     "force_push": false,
-    "scope_check": "Compare exact paths and Git blob identities to fresh recorded start; only approved19+executioncompletion/cost evidence; historical paths unchanged",
+    "scope_check": "Compare exact paths and Git blob identities to fresh recorded start; only approved21+executioncompletion/cost evidence; historical paths unchanged",
     "manifest": "Candidate projection/hash/status only; preserve active1.2 capacity/lifecycle; recompute hashes from exact Git blobs; no acceptance/active controller before one reviewPASS"
   },
   "review_barrier": "ONE_COHESIVE_FRESH_INDEPENDENT_GOVERNANCE_SEMANTIC_REVIEW_COMPLETE_EFFECTIVE_PACKAGE"
