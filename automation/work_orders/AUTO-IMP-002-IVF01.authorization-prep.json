@@ -1,0 +1,383 @@
+{
+  "schema_version": "automation.correction_authorization_preparation.v1",
+  "correction_id": "AUTO-IMP-002-IVF01",
+  "correction_class": "INTEGRATION_VERIFICATION_TEST_EXPECTATION_FIX",
+  "package_id": "AUTO-IMP-002",
+  "package_revision": "1",
+  "parent_work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "future_work_order_id": "WO-AUTO-IMP-002-IVF01-01",
+  "status": "PREPARED_NOT_AUTHORIZED",
+  "planning_baseline_sha": "1f2217105939fd32ca3d053483ff97cb870a7fea",
+  "decision_evidence": {
+    "source": "USER_EXPLICIT_ARCHITECTURE_DECISION",
+    "decision": "IVF01_TEST_EXPECTATION_REPLAN_ONLY",
+    "effect": "PLANNING_ONLY_NOT_IMPLEMENTATION_OR_DISPATCH"
+  },
+  "trigger_evidence_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-IC01-01.integration-verification.json",
+  "original_ic01_review": {
+    "verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-IC01-01.verdict.json",
+    "verdict": "PASS_UNCHANGED",
+    "assembly_sha": "e8da7473853229899490c5634196d83d03a190a8",
+    "implementation_sha": "cb911df46c3030c88599139a682dfbad0c658470",
+    "evidence_sha": "d8eea3d6aba17ee975eb6866feaf8e93fdaf6ffd",
+    "exact_scope": [
+      "automation/engine/reentry.py",
+      "tests/automation/test_reentry.py"
+    ],
+    "semantic_reopening": false
+  },
+  "exact_goal": "Replace mutable ROOT/HEAD historical-state assertion with deterministic REVIEW_PASS coverage while preserving IC01/RF01/RF02 semantics",
+  "exact_source_scope": [
+    "tests/automation/test_reentry.py"
+  ],
+  "protected_unchanged": [
+    "automation/engine/reentry.py",
+    "automation/engine/manifest.py",
+    "tests/automation/test_manifest.py",
+    "automation/authorizations/**",
+    "automation/governance/**",
+    "automation/policies/**",
+    "automation/programs/**",
+    "automation/packages/**",
+    "consumed RF01/RF02/IC01 authority and quota evidence",
+    "runtime/broker/db/migration/live/production surfaces"
+  ],
+  "protected_source_blobs": {
+    "automation/engine/manifest.py": "6262e33fcbd8999252b5ff8ffcc530571d8004ad",
+    "automation/engine/reentry.py": "be9626d148f7ddc8e0891d14745f43fb304471cd",
+    "tests/automation/test_manifest.py": "0c3d063da3152535896b99bbf7b6a37b671b2b65"
+  },
+  "source_preparation": {
+    "method": "FRESH_MASTER_CONTROL_PLANE_PLUS_EXACT_IC01_FOUR_SOURCE_BLOBS_ONLY",
+    "source_reference_sha": "cb911df46c3030c88599139a682dfbad0c658470",
+    "exact_start_blobs": {
+      "automation/engine/manifest.py": "6262e33fcbd8999252b5ff8ffcc530571d8004ad",
+      "automation/engine/reentry.py": "be9626d148f7ddc8e0891d14745f43fb304471cd",
+      "tests/automation/test_manifest.py": "0c3d063da3152535896b99bbf7b6a37b671b2b65",
+      "tests/automation/test_reentry.py": "c729f080adcd8460c54c4304f51e3c691d122461"
+    },
+    "correction_delta_only": [
+      "tests/automation/test_reentry.py"
+    ],
+    "old_control_plane_copy": "DENIED",
+    "baseline_refresh_required_before_authorized_handoff": true,
+    "source_assembly_not_new_semantic_correction": true
+  },
+  "proposed_correction_budget": {
+    "limit": 1,
+    "used": 0,
+    "remaining": 1,
+    "status": "PROPOSED_NOT_GRANTED",
+    "failure_or_exhaustion": "STOP_TO_WORK_NO_AUTOMATIC_NEW_CORRECTION"
+  },
+  "pre_fix_counterexamples": [
+    {
+      "id": "IVF01-STALE-EXPECTATION-01",
+      "minimum_reproduction_test": "tests/automation/test_reentry.py::test_ic01_actual_consumed_current_no_deep_dereference",
+      "evidence_result": "117 passed, 1 failed in 274.17s",
+      "expected_reason": "AUTHORIZATION_NOT_AVAILABLE",
+      "actual_reason": "NO_LEGAL_READY_WORK",
+      "baseline_sha": "9c8c05ca9ec6adc278da2eca7e7d52fd63a2eece",
+      "candidate_sha": "c0780fb422d6429332261d193a90815ec0c90f0d",
+      "reproduction_strategy": "One failing node only; deterministic post-review fixture matching recorded REVIEW_PASS snapshot; do not reproduce full targeted matrix before fix",
+      "historical_failure_not_rewritten": true
+    }
+  ],
+  "stable_fixture_strategy": {
+    "replacement": "Replace/remove mutable ROOT/HEAD lifecycle assertion with explicit self-contained post-review fixture; add REVIEW_PASS to deterministic non-candidate coverage",
+    "review_pass_checks": [
+      "regular route STOP",
+      "execution_allowed=false",
+      "status_only next_action REPORT_CURRENT_STATE_WITHOUT_EXECUTION",
+      "remove candidate-only AUTH/QUOTA/ELIGIBILITY/PACKAGE/DEPENDENCY evidence to prove no deep dereference",
+      "HEAD/branches/worktree remain unchanged",
+      "no authority document creation"
+    ],
+    "exact_historical_stop_reason_required": false,
+    "ready_positive_non_vacuity": "CODEX_EXECUTION_CANDIDATE with execution_allowed=false",
+    "preserve": [
+      "missing package_binding STOP",
+      "missing program_binding STOP",
+      "RF01 negative binding matrix",
+      "RF02 effects/next-package/provider hard-block matrix"
+    ],
+    "fresh_master_behavior": "Record separately as integration evidence, not a mutable ROOT/HEAD unit-test invariant"
+  },
+  "efficiency_contract": {
+    "minimum_pre_fix_cases": 1,
+    "impacted_subset_until_clean": true,
+    "complete_targeted_passes": 1,
+    "full_regression_passes": 1,
+    "extra_expensive_cycle": "STOP_AND_ROUTE_WORK",
+    "packaging": "KEEP_COHESIVE"
+  },
+  "test_plan": {
+    "pre_fix": "Exact stale assertion node or self-contained REVIEW_PASS equivalent first; retain recorded 117/1 evidence",
+    "impacted": "REVIEW_PASS normal/status-only, non-candidate states, missing binding groups, stable READY positive and changed fixture surfaces",
+    "targeted": "python -m pytest tests/automation/test_reentry.py tests/automation/test_manifest.py -q -p no:cacheprovider --tb=short",
+    "full_regression": "One python -m pytest -q -p no:cacheprovider --tb=short after targeted PASS; actual DB/broker environments disabled",
+    "scope": "git diff --check; exact one-file correction delta; protected three-source blob equality; no consumed authority edits",
+    "coverage": "Preserve complete RF01/RF02 matrix and IC01 compatibility coverage"
+  },
+  "review_plan": {
+    "fresh_context": true,
+    "scope": "TEST_EXPECTATION_COMPATIBILITY + COVERAGE_PRESERVATION",
+    "exact_scope": [
+      "tests/automation/test_reentry.py"
+    ],
+    "bound_to": [
+      "work_order_id",
+      "implementation_sha",
+      "evidence_sha",
+      "exact_scope"
+    ],
+    "unchanged_reentry_re_review": false,
+    "production_defect": "STOP_PRODUCTION_SEMANTIC_CHANGE_REQUIRED"
+  },
+  "integration_reverification_plan": {
+    "after": "IVF01 narrow independent review PASS",
+    "method": "Fresh master plus protected three exact package blobs and final reviewed IVF01 test blob; never cherry-pick old control plane",
+    "sequence": [
+      "exact four source blob verification",
+      "complete targeted PASS",
+      "one full regression PASS",
+      "git diff --check",
+      "fresh master regular/status-only no crash/no dispatch evidence",
+      "authority/side-effect/003 guards",
+      "AUTO-IMP-002 acceptance",
+      "closure"
+    ],
+    "failure": "STOP_NO_SOURCE_FIX_OR_SCOPE_EXPANSION",
+    "new_execution_identity_for_integration": false
+  },
+  "authority": {
+    "source_modification": "NOT_AUTHORIZED",
+    "codex_execution": "NOT_AUTHORIZED",
+    "dispatch": "DENIED",
+    "automatic_dispatch": false,
+    "automatic_next_package": false,
+    "correction_budget_granted": 0,
+    "quota_amendment_reuse": "DENIED",
+    "consumed_authority_modification": "DENIED",
+    "new_execution_identity": "NOT_ALLOCATED",
+    "auto_imp_003_authorized": false,
+    "side_effects": {
+      "runtime": "DENIED",
+      "broker": "DENIED",
+      "db": "DENIED",
+      "migration": "DENIED",
+      "live": "DENIED",
+      "production": "DENIED"
+    }
+  },
+  "authorization_preparation": {
+    "candidate_authorization_id": "AUTH-AUTO-IMP-002-IVF01-01",
+    "authority_artifact_created": false,
+    "remaining_before_execution": [
+      "Separate explicit IVF01 implementation authority with exactly one correction cycle",
+      "Fresh exact baseline/scope/forecast and quota admission",
+      "Single-use reservation/writer lock/dispatch/consumption lifecycle"
+    ]
+  },
+  "forecast_path": "automation/work_orders/forecasts/AUTO-IMP-002-IVF01.planning.json",
+  "task_profile": {
+    "task_class": "INTEGRATION_VERIFICATION_TEST_EXPECTATION_FIX",
+    "change_type": "TEST_ONLY_DETERMINISTIC_LIFECYCLE_FIXTURE",
+    "subsystem": "automation.engine",
+    "functional_area": "reentry semantic test lifecycle independence",
+    "concise_engineering_goal": "Replace mutable ROOT/HEAD historical-state assertion with deterministic REVIEW_PASS coverage while preserving IC01/RF01/RF02 semantics",
+    "primary_symbols_or_functional_surfaces": [
+      "test_ic01_actual_consumed_current_no_deep_dereference",
+      "test_ic01_non_candidate_states",
+      "self-contained READY candidate fixture"
+    ],
+    "behavior_dimensions": [
+      "REVIEW_PASS STOP/no dispatch",
+      "status-only current reporting",
+      "no candidate-only dereference",
+      "no mutation or authority creation",
+      "READY non-vacuity",
+      "RF01/RF02 coverage preservation"
+    ],
+    "source_file_count": 0,
+    "test_file_count": 1,
+    "semantic_profile": "TEST_EXPECTATION_COMPATIBILITY_AND_COVERAGE_PRESERVATION",
+    "test_profile": "IMPACTED_TARGETED_FULL_NARROW_REVIEW_THEN_FRESH_MASTER_INTEGRATION",
+    "authority_boundary": "Proposed AUTO-IMP-002 one-test-file correction only; implementation not authorized",
+    "packaging_cohesion_decision": "KEEP_COHESIVE: same test surface, fixture goal and narrow acceptance gate"
+  },
+  "context_profile": {
+    "artifacts_read": [
+      {
+        "canonical_path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "git_blob_sha": "38e35970f0d1fb759bb531bc458aaa397bcaa374",
+        "artifact_type": "governance",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 13633,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 301,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "git_blob_sha": "30f9cf730ef4ee8583fecc385af259b71e643271",
+        "artifact_type": "governance",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 500,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 9,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/work_orders/AUTO-IMP-002-IC01.authorization-prep.json",
+        "git_blob_sha": "b375310eeec2954ee4952dfd9240826049dd266a",
+        "artifact_type": "governance",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 11140,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 250,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/work_orders/forecasts/AUTO-IMP-002-IC01.planning.json",
+        "git_blob_sha": "d7c76e9b4111acf19f7497869a82ed42831dcecb",
+        "artifact_type": "forecast",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 2886,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 89,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/skills/execution-cost-forecaster/SKILL.md",
+        "git_blob_sha": "c3c6c7a10c9f8f2b8d4ee72d588313e56ab4e141",
+        "artifact_type": "governance",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 3671,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 111,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-IC01-01.integration-verification.json",
+        "git_blob_sha": "ab749479e47d11d1e704c8a6ae34431acd5da212",
+        "artifact_type": "evidence",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 4453,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 102,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/work_orders/optimizations/WO-AUTO-IMP-002-IC01-01.cost-reconciliation.json",
+        "git_blob_sha": "104af0b41d0b2c4d15eb5a4469b0e74a0d05815a",
+        "artifact_type": "telemetry",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 4930,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 133,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "tests/automation/test_reentry.py",
+        "git_blob_sha": "c729f080adcd8460c54c4304f51e3c691d122461",
+        "artifact_type": "test",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "EXCERPT_LINES_365_430",
+        "chars": 2894,
+        "lines": 54
+      }
+    ],
+    "artifacts_by_type": {
+      "governance": 4,
+      "forecast": 1,
+      "evidence": 1,
+      "telemetry": 1,
+      "test": 1
+    },
+    "volume_by_artifact_type": {
+      "governance": {
+        "artifacts": 4,
+        "chars": 28944,
+        "lines": 671,
+        "bytes": null
+      },
+      "forecast": {
+        "artifacts": 1,
+        "chars": 2886,
+        "lines": 89,
+        "bytes": null
+      },
+      "evidence": {
+        "artifacts": 1,
+        "chars": 4453,
+        "lines": 102,
+        "bytes": null
+      },
+      "telemetry": {
+        "artifacts": 1,
+        "chars": 4930,
+        "lines": 133,
+        "bytes": null
+      },
+      "test": {
+        "artifacts": 1,
+        "chars": 2894,
+        "lines": 54,
+        "bytes": null
+      }
+    },
+    "raw_transcript_loaded": false,
+    "history_loaded_amount": {
+      "artifacts": 2,
+      "reason": "Exact IC01 planning/forecast schema precedent",
+      "chars": 14026
+    },
+    "source_context_volume": {
+      "chars": 0,
+      "lines": 0,
+      "bytes": 0
+    },
+    "test_context_volume": {
+      "artifacts": 1,
+      "chars": 2894,
+      "lines": 54,
+      "bytes": null
+    },
+    "governance_context_volume": {
+      "artifacts": 4,
+      "chars": 28944,
+      "lines": 671,
+      "bytes": null
+    },
+    "telemetry_context_volume": {
+      "artifacts": 1,
+      "chars": 4930,
+      "lines": 133,
+      "bytes": null
+    },
+    "measurement_scope": "Fresh current-run listed artifact content and test excerpt only; prior conversation/tool replay not measured",
+    "bytes": null,
+    "bytes_unavailable_reason": "UTF8 byte count not exposed by file connector in this runtime",
+    "content_token_estimate": null,
+    "model_usage_measurement_type": "UNKNOWN"
+  },
+  "next_route": "HUMAN_IVF01_IMPLEMENTATION_AUTHORIZATION_DECISION",
+  "created_at": "2026-10-06T02:56:26Z",
+  "updated_at": "2026-10-06T02:56:26Z"
+}

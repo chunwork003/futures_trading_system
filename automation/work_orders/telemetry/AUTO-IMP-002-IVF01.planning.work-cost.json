@@ -1,0 +1,217 @@
+{
+  "schema_version": "automation.work_cost_observation.v1",
+  "actor": "WORK",
+  "phase": "WORK_BUG_REPLAN_FORECAST_MATERIALIZATION",
+  "work_order_id": "WO-AUTO-IMP-002-IVF01-01",
+  "work_order_identity_state": "FUTURE_ONLY_NOT_CREATED",
+  "measurement_type": "PROXY",
+  "exact_tokens": null,
+  "token_status": "UNKNOWN",
+  "source": "TASK_BOUND_EXACT_WORK_USAGE_NOT_EXPOSED",
+  "proxy": {
+    "artifacts_written": 6,
+    "implementation_edits": 0,
+    "test_runs": 0,
+    "raw_transcript_reads": 0
+  },
+  "task_profile": {
+    "task_class": "INTEGRATION_VERIFICATION_TEST_EXPECTATION_FIX",
+    "change_type": "TEST_ONLY_DETERMINISTIC_LIFECYCLE_FIXTURE",
+    "subsystem": "automation.engine",
+    "functional_area": "reentry semantic test lifecycle independence",
+    "concise_engineering_goal": "Replace mutable ROOT/HEAD historical-state assertion with deterministic REVIEW_PASS coverage while preserving IC01/RF01/RF02 semantics",
+    "primary_symbols_or_functional_surfaces": [
+      "test_ic01_actual_consumed_current_no_deep_dereference",
+      "test_ic01_non_candidate_states",
+      "self-contained READY candidate fixture"
+    ],
+    "behavior_dimensions": [
+      "REVIEW_PASS STOP/no dispatch",
+      "status-only current reporting",
+      "no candidate-only dereference",
+      "no mutation or authority creation",
+      "READY non-vacuity",
+      "RF01/RF02 coverage preservation"
+    ],
+    "source_file_count": 0,
+    "test_file_count": 1,
+    "semantic_profile": "TEST_EXPECTATION_COMPATIBILITY_AND_COVERAGE_PRESERVATION",
+    "test_profile": "IMPACTED_TARGETED_FULL_NARROW_REVIEW_THEN_FRESH_MASTER_INTEGRATION",
+    "authority_boundary": "Proposed AUTO-IMP-002 one-test-file correction only; implementation not authorized",
+    "packaging_cohesion_decision": "KEEP_COHESIVE: same test surface, fixture goal and narrow acceptance gate"
+  },
+  "context_profile": {
+    "artifacts_read": [
+      {
+        "canonical_path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "git_blob_sha": "38e35970f0d1fb759bb531bc458aaa397bcaa374",
+        "artifact_type": "governance",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 13633,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 301,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "git_blob_sha": "30f9cf730ef4ee8583fecc385af259b71e643271",
+        "artifact_type": "governance",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 500,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 9,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/work_orders/AUTO-IMP-002-IC01.authorization-prep.json",
+        "git_blob_sha": "b375310eeec2954ee4952dfd9240826049dd266a",
+        "artifact_type": "governance",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 11140,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 250,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/work_orders/forecasts/AUTO-IMP-002-IC01.planning.json",
+        "git_blob_sha": "d7c76e9b4111acf19f7497869a82ed42831dcecb",
+        "artifact_type": "forecast",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 2886,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 89,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/skills/execution-cost-forecaster/SKILL.md",
+        "git_blob_sha": "c3c6c7a10c9f8f2b8d4ee72d588313e56ab4e141",
+        "artifact_type": "governance",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 3671,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 111,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-IC01-01.integration-verification.json",
+        "git_blob_sha": "ab749479e47d11d1e704c8a6ae34431acd5da212",
+        "artifact_type": "evidence",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 4453,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 102,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "automation/work_orders/optimizations/WO-AUTO-IMP-002-IC01-01.cost-reconciliation.json",
+        "git_blob_sha": "104af0b41d0b2c4d15eb5a4469b0e74a0d05815a",
+        "artifact_type": "telemetry",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "FULL",
+        "chars": 4930,
+        "char_convention": "JS_UTF16_CODE_UNITS",
+        "lines": 133,
+        "line_convention": "LF_SPLIT_INCLUDING_TRAILING_EMPTY_LINE"
+      },
+      {
+        "canonical_path": "tests/automation/test_reentry.py",
+        "git_blob_sha": "c729f080adcd8460c54c4304f51e3c691d122461",
+        "artifact_type": "test",
+        "actor": "WORK",
+        "phase": "WORK_BUG_REPLAN",
+        "loaded_extent": "EXCERPT_LINES_365_430",
+        "chars": 2894,
+        "lines": 54
+      }
+    ],
+    "artifacts_by_type": {
+      "governance": 4,
+      "forecast": 1,
+      "evidence": 1,
+      "telemetry": 1,
+      "test": 1
+    },
+    "volume_by_artifact_type": {
+      "governance": {
+        "artifacts": 4,
+        "chars": 28944,
+        "lines": 671,
+        "bytes": null
+      },
+      "forecast": {
+        "artifacts": 1,
+        "chars": 2886,
+        "lines": 89,
+        "bytes": null
+      },
+      "evidence": {
+        "artifacts": 1,
+        "chars": 4453,
+        "lines": 102,
+        "bytes": null
+      },
+      "telemetry": {
+        "artifacts": 1,
+        "chars": 4930,
+        "lines": 133,
+        "bytes": null
+      },
+      "test": {
+        "artifacts": 1,
+        "chars": 2894,
+        "lines": 54,
+        "bytes": null
+      }
+    },
+    "raw_transcript_loaded": false,
+    "history_loaded_amount": {
+      "artifacts": 2,
+      "reason": "Exact IC01 planning/forecast schema precedent",
+      "chars": 14026
+    },
+    "source_context_volume": {
+      "chars": 0,
+      "lines": 0,
+      "bytes": 0
+    },
+    "test_context_volume": {
+      "artifacts": 1,
+      "chars": 2894,
+      "lines": 54,
+      "bytes": null
+    },
+    "governance_context_volume": {
+      "artifacts": 4,
+      "chars": 28944,
+      "lines": 671,
+      "bytes": null
+    },
+    "telemetry_context_volume": {
+      "artifacts": 1,
+      "chars": 4930,
+      "lines": 133,
+      "bytes": null
+    },
+    "measurement_scope": "Fresh current-run listed artifact content and test excerpt only; prior conversation/tool replay not measured",
+    "bytes": null,
+    "bytes_unavailable_reason": "UTF8 byte count not exposed by file connector in this runtime",
+    "content_token_estimate": null,
+    "model_usage_measurement_type": "UNKNOWN"
+  },
+  "authority_effect": "NONE",
+  "created_at": "2026-10-06T02:56:26Z",
+  "updated_at": "2026-10-06T02:56:26Z"
+}

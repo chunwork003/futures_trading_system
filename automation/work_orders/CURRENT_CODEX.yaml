@@ -263,10 +263,10 @@
     ],
     "rf02_re_review": false
   },
-  "next_route": "WORK_INTEGRATION_VERIFICATION_FAILURE_RESOLUTION_NO_DISPATCH",
-  "current_action": "STOP_INTEGRATION_VERIFICATION_FAILED",
+  "next_route": "HUMAN_IVF01_IMPLEMENTATION_AUTHORIZATION_DECISION",
+  "current_action": "WAIT_FOR_SEPARATE_IVF01_IMPLEMENTATION_AUTHORITY",
   "created_at": "2026-10-05T15:00:35Z",
-  "updated_at": "2026-10-06T02:37:41Z",
+  "updated_at": "2026-10-06T02:56:26Z",
   "quota_amendment": {
     "amendment_id": "AMEND-AUTO-IMP-002-IC01-QUOTA-01",
     "path": "automation/work_orders/AMEND-AUTO-IMP-002-IC01-QUOTA-01.yaml",
@@ -296,5 +296,8 @@
   "acceptance_materialized": false,
   "integration_verification_path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-IC01-01.integration-verification.json",
   "integration_status": "INTEGRATION_VERIFICATION_FAILED",
-  "closure_materialized": false
+  "closure_materialized": false,
+  "integration_correction_preparation_path": "automation/work_orders/AUTO-IMP-002-IVF01.authorization-prep.json",
+  "pending_correction_id": "AUTO-IMP-002-IVF01",
+  "pending_correction_status": "PREPARED_NOT_AUTHORIZED"
 }

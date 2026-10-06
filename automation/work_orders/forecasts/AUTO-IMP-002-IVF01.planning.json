@@ -1,0 +1,113 @@
+{
+  "schema_version": "automation.execution_cost_forecast.v1",
+  "forecast_id": "FORECAST-AUTO-IMP-002-IVF01-PLANNING-01",
+  "status": "PLANNING_FORECAST_NOT_AUTHORITY",
+  "package_id": "AUTO-IMP-002",
+  "correction_id": "AUTO-IMP-002-IVF01",
+  "future_work_order_id": "WO-AUTO-IMP-002-IVF01-01",
+  "confidence": "PROVISIONAL_NO_EXACT_SAME_TASK_CLASS_SAMPLE",
+  "measurement_type": "PROXY",
+  "comparable_samples": [],
+  "reference_samples": [
+    "EXEC-AUTO-IMP-002-IC01-20261005T150733Z"
+  ],
+  "comparability_limit": "IC01 shared subsystem/test surface but production routing+fixture work; IVF01 is narrower test-only. Reference does not constitute calibrated same-task sample.",
+  "forecast": {
+    "reported_total_tokens": {
+      "p50": 250000,
+      "p75": 1000000,
+      "p90": 5500000
+    },
+    "uncached_input_tokens": {
+      "p50": 30000,
+      "p75": 60000,
+      "p90": 90000
+    },
+    "actor_seconds": {
+      "p50": 700,
+      "p75": 1100,
+      "p90": 1800
+    },
+    "targeted_seconds": {
+      "p90": 360
+    },
+    "full_regression_seconds": {
+      "p90": 400
+    },
+    "test_cycles": {
+      "pre_fix_cases_max": 1,
+      "complete_targeted_passes_max": 1,
+      "full_regression_passes_max": 1
+    },
+    "cached_input_ratio": {
+      "status": "UNKNOWN",
+      "range": null
+    },
+    "output_tokens": {
+      "status": "UNKNOWN",
+      "p50": null,
+      "p75": null,
+      "p90": null
+    },
+    "reasoning_output_tokens": {
+      "status": "UNKNOWN",
+      "p50": null,
+      "p75": null,
+      "p90": null
+    }
+  },
+  "quota_forecast": {
+    "five_hour_delta_pct": {
+      "p50": null,
+      "p75": null,
+      "p90": null
+    },
+    "weekly_delta_pct": {
+      "p50": null,
+      "p75": null,
+      "p90": null
+    },
+    "status": "UNKNOWN_NOT_ADMISSION_EVIDENCE",
+    "percentage_to_token_conversion": "DENIED"
+  },
+  "work_orchestration_forecast": {
+    "measurement_type": "PROXY",
+    "exact_tokens": null,
+    "artifact_reads": {
+      "p50": 5,
+      "p75": 8,
+      "p90": 12
+    },
+    "artifacts_written": {
+      "p50": 4,
+      "p75": 6,
+      "p90": 8
+    }
+  },
+  "integration_verification_forecast": {
+    "separate_phase": true,
+    "targeted_passes": 1,
+    "full_regression_passes": 1,
+    "targeted_seconds_p90": 360,
+    "full_regression_seconds_p90": 400,
+    "run_after_narrow_review_pass": true
+  },
+  "derivation": "Judgmental uncalibrated planning envelope; narrow test-only goal reduces typical work, but reported-token P90 retains IC01 observed 5,008,322 replay risk rounded upward. Uncached and elapsed envelopes are independent proxies, not token/quota conversions.",
+  "expected_cost_driver": "FULL_TEST_SURFACE_PLUS_CONTEXT_REPLAY_RISK",
+  "rework_risk": "LOW_MEDIUM_FIXTURE_COVERAGE_PRESERVATION",
+  "recommendation_applied_to_next_forecast": "Use compact pointers/excerpt and one pre-fix node; batch observations; preserve cohesive one-file correction; no raw transcript reload or repeated complete suite without relevant delta.",
+  "early_watch": {
+    "actor_seconds": 1100,
+    "extra_full_cycle": "STOP_AND_ROUTE_WORK"
+  },
+  "assumptions": [
+    "Reviewed production resolver unchanged",
+    "Deterministic REVIEW_PASS fixture fits existing fixture architecture",
+    "No same-class calibrated cohort",
+    "One complete targeted and one full suite per authorized implementation phase; distinct fresh integration phase budgeted separately"
+  ],
+  "billing_cost": "NOT_AVAILABLE",
+  "authority_effect": "NONE",
+  "created_at": "2026-10-06T02:56:26Z",
+  "updated_at": "2026-10-06T02:56:26Z"
+}

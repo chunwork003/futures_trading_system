@@ -1,8 +1,10 @@
-# IC01 integration STOP
+# IVF01 planning only — no CODEX handoff
 
-INTEGRATION_VERIFICATION_FAILED; handoff_ready=false; no execution authorized.
-Evidence: `automation/work_orders/reconciliations/WO-AUTO-IMP-002-IC01-01.integration-verification.json`.
-Independent IC01 PASS remains exact-bound; acceptance/closure unmaterialized.
-Candidate `c0780fb422d6429332261d193a90815ec0c90f0d` remains unpublished.
-Only next legal route: WORK_INTEGRATION_VERIFICATION_FAILURE_RESOLUTION_NO_DISPATCH.
-No source fix, CODEX dispatch, RF03 or AUTO-IMP-003.
+Current IC01 remains BLOCKED by preserved integration-verification failure; semantic PASS unchanged.
+Bounded next correction preparation: `automation/work_orders/AUTO-IMP-002-IVF01.authorization-prep.json`.
+Forecast: `automation/work_orders/forecasts/AUTO-IMP-002-IVF01.planning.json`.
+Future work order identity only: `WO-AUTO-IMP-002-IVF01-01`; executable Work Order not created.
+Exact proposed write scope: `tests/automation/test_reentry.py` only.
+Implementation/dispatch NOT_AUTHORIZED; no execution/reservation/writer lock allocated.
+Next legal action: separate bounded IVF01 implementation authorization decision.
+No IC01 redispatch, RF03, AUTO-IMP-003 or runtime/broker/DB/migration/LIVE/production.
