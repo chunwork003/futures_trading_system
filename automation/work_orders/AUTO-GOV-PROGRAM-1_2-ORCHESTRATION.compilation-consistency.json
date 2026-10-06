@@ -1,0 +1,122 @@
+{
+  "schema_version": "automation.compilation_consistency.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "baseline": "4cd98db0a6faddd3e0f02df1f72a4c9407f3747c",
+  "owner_decision_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
+  "checks": [
+    {
+      "issue": "CONFLICTING_CURRENT_PRIOR_DISCUSSION_ROUTE",
+      "resolution": "New CURRENT/manifest/docs top current supersedes prior unresolved discussion; historical text retained labelled",
+      "files": [
+        "automation/work_orders/CURRENT_CODEX.yaml",
+        "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "automation/governance/master_manifest.v1.yaml",
+        "docs/CURRENT_STATE.md",
+        "docs/CURRENT_WORK.md"
+      ]
+    },
+    {
+      "issue": "PROGRAM1.1_VS1.2_NO_AUTOREBIND",
+      "resolution": "Immutable V1 blob; explicit V2 same strict Program schema and copied exact DAG",
+      "files": [
+        "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml"
+      ]
+    },
+    {
+      "issue": "DAG_VS_OPERATIONAL_ORDER",
+      "resolution": "Separate fields; close002IVF01first; never add003depends002; head-block and real DAG gates",
+      "files": [
+        "automation/policies/orchestration_control_policy.v1.yaml",
+        "automation/engine/orchestration.py",
+        "tests/automation/test_orchestration.py"
+      ]
+    },
+    {
+      "issue": "DUPLICATE_POLICY_GATE_OWNERS",
+      "resolution": "Controller delegates active1.2 execution_capacity provider/cost/resume; one full queue resolver; legacy route_work lower-level only; no gate copy",
+      "files": [
+        "automation/engine/orchestration.py",
+        "automation/skills/repo-reentry/SKILL.md",
+        "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md"
+      ]
+    },
+    {
+      "issue": "OLD80_40K_STATIC_FORECAST",
+      "resolution": "Active1.2 removesfloors; Program2 moves static values into LEGACY_PLANNING_HINT_NOT_ADMISSION_AUTHORITY; forecaster active text no candidate mislabeled or legacy admission",
+      "files": [
+        "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+        "automation/skills/execution-cost-forecaster/SKILL.md"
+      ]
+    },
+    {
+      "issue": "UNCONDITIONAL_SPLIT_RECOMMENDATION",
+      "resolution": "Confirmed canonical PowerShell fresh-context branch unconditionalSPLIT; change here withtests, structural evidence+positive lifecycleROI only non-authority sizing",
+      "files": [
+        "scripts/execution_cost_reconcile.ps1",
+        "tests/automation/test_execution_cost_reconcile.py"
+      ]
+    },
+    {
+      "issue": "TRIGGER_DISPATCH_AND_QUEUE_AUTHORITY_LEAKAGE",
+      "resolution": "Pure typed events wakeonly, nonauthority queue; false defaults; no IO calls; all17 promotion conjunctive includingOwner activation",
+      "files": [
+        "automation/engine/orchestration.py",
+        "tests/automation/test_orchestration.py",
+        "automation/policies/orchestration_control_policy.v1.yaml"
+      ]
+    },
+    {
+      "issue": "DUPLICATE_LIFECYCLE_PATH",
+      "resolution": "Dedupe hash omits wakeevent/wallclock; relevant revision excludes queue-only writes; stage receipts+CAS; only existing singleuse guard mutates exact lineage; no second path",
+      "files": [
+        "automation/engine/orchestration.py",
+        "automation/skills/single-use-lifecycle-guard/SKILL.md",
+        "tests/automation/test_orchestration.py"
+      ]
+    },
+    {
+      "issue": "IVF01_REV1_OR_AUTOIMP003_ACCIDENTAL_AUTHORITY",
+      "resolution": "Rev1 immutable stale; Rev2 metadata only requires future exact baseline/authority after cohesivePASS; every002009 ownauthority; no policy-waiver",
+      "files": [
+        "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml",
+        "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+        "tests/automation/test_orchestration.py"
+      ]
+    },
+    {
+      "issue": "FUTURE_AUTO_DESIGN_UNDEFINED",
+      "resolution": "Complete6levels eachentry/allowed/prohibited/rollback/Owner/review/writer/authority; external evidence+activation only deferred",
+      "files": [
+        "automation/policies/orchestration_control_policy.v1.yaml",
+        "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml"
+      ]
+    },
+    {
+      "issue": "CONTEXT_COST_PROFILE",
+      "resolution": "Compact task dimensions; actual readinventory separate planned profile; bounded pointer-first source/test history onlyambiguity; no exact content tokenusage; recalibrateuncached forecast",
+      "files": [
+        "automation/specs/context_loading_policy.v1.yaml",
+        "automation/skills/execution-cost-forecaster/SKILL.md",
+        "automation/prompts/CODEX_EXECUTOR_KERNEL.md"
+      ]
+    },
+    {
+      "issue": "MANIFEST_HASH_AND_CANDIDATE_ACTIVE_BOUNDARY",
+      "resolution": "Git-byte hashes; new controller/Program candidate only; oldactive1.2policybundles unchanged until reviewerPASS/materialization; current governance compatibility decision documentednow",
+      "files": [
+        "automation/governance/master_manifest.v1.yaml",
+        "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+        "tests/automation/test_contracts.py"
+      ]
+    }
+  ],
+  "known_issues_in_exact_scope": true,
+  "implementation_not_yet_completed": true,
+  "design_complete": true,
+  "KNOWN_AUTOMATION_ARCHITECTURE_DEBT": "NONE",
+  "external_execution_evidence_dependency": "QUALIFIED_CAPACITY_REQUIRED_FOR_HIGH_AUTHORITY_SENSITIVE_MANUAL_TASK; not deferred controller design",
+  "test_matrix_path": "automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml#tests",
+  "validation": "PASS",
+  "created_at": "2026-10-06T08:26:03Z",
+  "updated_at": "2026-10-06T08:26:03Z"
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "automation.preparation_metadata.v1",
+  "identity": "AUTO-IMP-002-IVF01-REV2-FLOW",
+  "status": "PREPARATION_ONLY_NOT_AUTHORITY",
+  "architecture": "1.2",
+  "owner_decision_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
+  "rev1_path": "automation/authorizations/AUTH-AUTO-IMP-002-IVF01-01.v1.yaml",
+  "rev1_blob": "a152327dbe4a95817c4768b0fb890505d475cbe9",
+  "rev1_state": "ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED",
+  "rev1_reuse": "DENIED",
+  "proposed_future_authorization_id": "AUTH-AUTO-IMP-002-IVF01-02",
+  "proposed_scope": [
+    "tests/automation/test_reentry.py"
+  ],
+  "historical_finding": "IVF01-STALE-EXPECTATION-01",
+  "original_scope_pointer": "automation/work_orders/WO-AUTO-IMP-002-IVF01-01.yaml#stable_fixture_strategy",
+  "goal": "Stable self-contained post-review fixture; regular failclosed/status-only report; retain READY positive and RF01/RF02/IC01 negatives; no production resolver edits",
+  "next_flow": [
+    "Controller/program cohesive independent review PASS",
+    "WORK fresh resolve current1.2 accepted implementation and immutable IVF01 finding/scope",
+    "Compile exact tests/automation/test_reentry.py-only Rev2 candidate bound to fresh reviewed commit; same accepted fixture-expectation correction, no production resolver edit",
+    "Exact Owner-authorized correction preparation from this decision is not future-unknown-commit authorization",
+    "Fresh normal authority+capacity/provider+lifecycle before execution; no quota waiver"
+  ],
+  "prerequisites": [
+    "ONE_COHESIVE_PROGRAM_ORCHESTRATION_REVIEW_PASS_AND_WORK_ACCEPTANCE",
+    "FRESH_EXACT_SOURCE_BASELINE_AND_FINDING_VALIDITY",
+    "NORMAL1.2_AUTHORITY_CAPACITY_PROVIDER_LIFECYCLE"
+  ],
+  "unknown_future_commit_authorized": false,
+  "execution_authorized": false,
+  "quota_waiver": false,
+  "created_at": "2026-10-06T08:20:36Z",
+  "updated_at": "2026-10-06T08:20:36Z"
+}

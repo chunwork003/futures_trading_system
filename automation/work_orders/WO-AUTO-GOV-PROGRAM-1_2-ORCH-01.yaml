@@ -1,0 +1,252 @@
+{
+  "schema_version": "automation.codex_work_order.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "package_id": "AUTO-GOV-PROGRAM-1_2-ORCHESTRATION",
+  "package_revision": "1",
+  "work_order_path": "automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "authorization_revision": "1",
+  "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01.v1.yaml",
+  "authorization_state": "AUTHORIZED",
+  "authority_basis": {
+    "owner_decision_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
+    "initial_materialization_commit": "3d40f89169a7a85b54f66599db3a6b3394059ebb",
+    "active_architecture": "1.2",
+    "architecture_bundle_hash": "41e81af6c038722397c400ce70ac1edbf9275027b96b3f3ff425d1386434a7d3",
+    "scope_digest": "47b4277ed2e74fc17bb83c4ec986dd9df01dc4a30768b22e65382a93f036424b",
+    "policy": "NORMAL_ARCHITECTURE1.2_CAPACITY_PROVIDER_LIFECYCLE_NO_BOOTSTRAP_EXCEPTION"
+  },
+  "control_plane_baseline_sha": "3d40f89169a7a85b54f66599db3a6b3394059ebb",
+  "code_base_sha": "4cd98db0a6faddd3e0f02df1f72a4c9407f3747c",
+  "baseline_rule": "Fresh origin/master prior to admission; only provably compatible control-plane descendants acceptable. Source/path/policy identity drift STOP; exact future execution start SHA recorded. Candidate uses fresh master, no stale candidate control-plane copies.",
+  "exact_goal": "PROGRAM_1_2_AND_ORCHESTRATION_CONTROL_LAYER_COMPLETE_BASELINE: implement complete24-section Owner decision in one cohesive candidate and one review",
+  "implementation_contract_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
+  "plan_path": "automation/packages/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.plan.yaml",
+  "exact_write_scope": [
+    "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+    "automation/policies/orchestration_control_policy.v1.yaml",
+    "automation/engine/orchestration.py",
+    "automation/engine/contracts.py",
+    "tests/automation/test_orchestration.py",
+    "tests/automation/test_contracts.py",
+    "scripts/execution_cost_reconcile.ps1",
+    "tests/automation/test_execution_cost_reconcile.py",
+    "automation/specs/context_loading_policy.v1.yaml",
+    "automation/skills/repo-reentry/SKILL.md",
+    "automation/skills/single-use-lifecycle-guard/SKILL.md",
+    "automation/skills/execution-cost-forecaster/SKILL.md",
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+    "automation/governance/master_manifest.v1.yaml",
+    "docs/CURRENT_STATE.md",
+    "docs/CURRENT_WORK.md",
+    "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+    "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
+  ],
+  "protected_scope": [
+    "ALL_PATHS_OUTSIDE_EXACT_19_IMPLEMENTATION_FILES_AND_OWN_TWO_EXECUTION_EVIDENCE_FILES",
+    "automation/programs/AUTO-IMP-PROGRAM-V1/**",
+    "automation/authorizations/** (including this new exact authority; executor cannot mutate)",
+    "automation/runs/** historical",
+    "automation/work_orders/** historical and new authority/plan/forecast/Owner decision; own completion/cost evidence only",
+    "automation/governance/decisions/**",
+    "automation/policies/execution_capacity_policy.v2.yaml",
+    "automation/policies/authorization_lifecycle.v1_1.yaml",
+    "automation/policies/development_state_machine.v2.yaml",
+    "automation/policies/development_entry_protocol.v2.yaml",
+    "automation/telemetry/**",
+    "automation/specs/work_cost_accounting.v2.yaml",
+    "automation/specs/negative_assertions.v2.yaml",
+    "all historical1.0/1.1 policies/specs and consumed amendments",
+    "automation/engine/execution_capacity.py",
+    "automation/engine/yaml_io.py",
+    "scripts/codex_session_token_usage.ps1",
+    "IVF01/test_reentry source and original package prerequisite source",
+    "runtime/trading/broker/data/DB/migration/LIVE/production/credentials"
+  ],
+  "scope_digest": "47b4277ed2e74fc17bb83c4ec986dd9df01dc4a30768b22e65382a93f036424b",
+  "tests": {
+    "QUEUE": [
+      "same relevant revision/subject/generation across wake classes produces one entry",
+      "multiple observed/blocked entries legal",
+      "two executable/in-progress entries fail reconciliation",
+      "unfinished/resumable beats authorized new work",
+      "review/integration beats authorized new work",
+      "queue position does not grant authority",
+      "blocked operational head prevents skipping; true DAG prerequisites remain required"
+    ],
+    "TRIGGER": [
+      "timer wake produces proposals only, no lifecycle or executor IO",
+      "provider recovery produces wake only, no dispatch/new execution",
+      "review-result wake does not authorize/accept/merge",
+      "repeated event idempotent",
+      "CAS stale revision loses safely, no second reservation"
+    ],
+    "ROUTE": [
+      "contradictory CURRENT vs durable current lifecycle -> RECONCILIATION_REQUIRED",
+      "historical phase snapshot cannot override current",
+      "paused already-invoked exact lineage resume-first; provider denied WAIT_PROVIDER_AVAILABLE",
+      "CONSUMED never-invoked never resumable; no synthetic invocation",
+      "completion pending intake -> WORK_RESULT_INTAKE",
+      "pending review -> WAIT_REVIEW",
+      "review PASS waiting integration -> WAIT_INTEGRATION",
+      "safety/revocation/sideeffect -> STOP_SAFETY_GOVERNANCE",
+      "no authority -> execution_allowed=false and WORK_AUTHORIZATION_REQUIRED or NO_LEGAL_READY_WORK per explicit readiness",
+      "valid exact manual authority -> READY_FOR_MANUAL_DISPATCH proposal only",
+      "missing or drifted policy/scope/identity fail closed"
+    ],
+    "PROGRAM": [
+      "existing implementation_program.v1 validates V2 without new program schema",
+      "Program V1 exact blob unchanged and historical1.1; V2 explicit1.2",
+      "002 precedes003 operationally, no003depends002 DAG edge",
+      "005 waits002+003+004",
+      "007 waits002+003+004+006",
+      "009 waits007+008; 008 waits001+003;006waits005",
+      "every002009 NOT_AUTHORIZED absent its own exact authority"
+    ],
+    "DISPATCH": [
+      "MANUAL active, no automatic invocation",
+      "CONTROLLED_AUTO default false, fail closed when any one of17 proofs absent/invalid",
+      "qualified cohort count alone insufficient; wrong controller/capacity/window identity rejected",
+      "unqualified/provisional capacity denies unattended dispatch",
+      "explicit exact Owner activation mandatory; reviewerPASS/event/forecast notactivation",
+      "consumed single use never redispatch; valid same invoked resume delegates active1.2 checks"
+    ],
+    "FORECAST": [
+      "legacy static token forecasts not admission authority",
+      "fresh-context uncached P90 miss -> context/forecast feedback, no automatic SPLIT",
+      "structural sizing evidence+positive lifecycle ROI may produce non-authority assessment only",
+      "provider percentage remains shared-account proxy, never EXACT/token conversion",
+      "reasoning subset output, cached subset input, total=input+output",
+      "PowerShell canonical reconciler backward compatibility and existing pause/resume metrics preserved"
+    ],
+    "SAFETY": [
+      "runtime/broker/DB/migration/LIVE/production DENIED",
+      "no duplicate writer/reservation/dispatch path",
+      "no authority generated from queue/event/review/forecast",
+      "deep immutable strict/extra-forbid new queue/event/policy contracts; deterministic dump/JSON round-trip",
+      "actual provider denial wins; no default missing evidence PASS",
+      "Program/controller candidate manifest status never activates before cohesive review",
+      "Rev1 consumed/historical authority unchanged; no Rev2 authorization or003 authority"
+    ]
+  },
+  "fixture_strategy": "Self-contained valid immutable snapshot and eligible manual candidate first; mutation-only negatives; no fixture reading mutable repository CURRENT. Compare fixture to explicit schema/policy binding; exact repository integration separately.",
+  "efficiency_contract": {
+    "minimum_pre_fix_or_contract_reproductions": 3,
+    "impacted_subset_until_clean": true,
+    "complete_targeted_passes": 1,
+    "full_regression_passes": 1,
+    "tests_command": "python -m pytest tests/automation -q -p no:cacheprovider --tb=short",
+    "full_command": "python -m pytest -q -p no:cacheprovider --tb=short with actual POSTGRES17/18 test DSNs unset",
+    "metadata_only_repeated_regression": false,
+    "extra_expensive_cycle": "STOP_AND_ROUTE_WORK",
+    "packaging": "KEEP_COHESIVE_OPTIMIZE_TOTAL_ENGINEERING_VALUE_NOT_TOKENS_PER_TICKET"
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "risk": "HIGH_AUTHORITY_SENSITIVE_CONTROLLER",
+  "correction_budget_remaining": 0,
+  "correction_budget": {
+    "limit": 0,
+    "remaining": 0,
+    "automatic_correction": false,
+    "on_new_correction_required": "STOP_TO_WORK_FOR_EXACT_AUTHORITY"
+  },
+  "execution_branch": "auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "execution_id": null,
+  "execution_eligibility": "BLOCKED_CAPACITY",
+  "status": "BLOCKED",
+  "handoff_ready": false,
+  "manual_trigger_only": true,
+  "automatic_dispatch": false,
+  "automatic_next_package": false,
+  "executor_invoked": false,
+  "writer_state": "NONE_HELD",
+  "reservation_created": false,
+  "dispatch_committed": false,
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.json",
+  "eligibility_path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.eligibility.json",
+  "claim_rules": "No claim while BLOCKED. Only after normal fresh gates, one writer and new identity/reservation/precheck/dispatch/CONSUMED durable, manual trigger. Existing branch/evidence/lifecycle must block duplicate creation; no CONSUMED redispatch.",
+  "completion_evidence_requirements": [
+    "COMPLETED_PENDING_REVIEW, not accepted",
+    "exact start/claim/implementation/evidence SHA, exact19 scope and historical protection",
+    "only own automation/runs/<exactexecution>/completion.json and execution_cost_actual.json in addition to implementation scope",
+    "test commands/counts/exit codes/timings, diffcheck, metadata/source path inventory, scope violations, tooling retries/correction counts",
+    "raw provider before/after proxy if exposed; deterministic local-token extraction after result; task_profile/context_profile actual reads",
+    "manifest candidate Git-blob hashes and lineage; no controller activation/auto mode/IVF01/003 authority"
+  ],
+  "review_plan": {
+    "type": "ONE_COHESIVE_FRESH_INDEPENDENT_GOVERNANCE_SEMANTIC_REVIEW_COMPLETE_EFFECTIVE_PACKAGE",
+    "scope": "COMPLETE_EFFECTIVE19_FILE_PROGRAM_QUEUE_EVENT_ROUTE_DEDUPE_AUTHORITY_MODES_PROMOTION_FORECAST_PACKAGE",
+    "verdicts": [
+      "PASS",
+      "REVIEW_FIX_REQUIRED",
+      "HUMAN_DECISION_REQUIRED"
+    ],
+    "independent_reviewer_cannot_authorize_or_activate": true,
+    "on_pass": "WORK_ACCEPT_REVIEWED_PROGRAM_V2_ORCHESTRATION_BASELINE_NO_AUTO_DISPATCH; then fresh compile IVF01Rev2 candidate under normal gates, no future unknown authority"
+  },
+  "stop_conditions": [
+    "provider hard/rate/spend denial",
+    "capacity not qualified for this HIGH task",
+    "baseline/scope/authority/policy drift",
+    "competing/unfinished writer/execution or existing branch/evidence",
+    "out-of-scope semantic change",
+    "attempted automatic dispatch or next package",
+    "unknown machine evidence / contradictory CURRENT",
+    "new correction without exact authority"
+  ],
+  "next_package": {
+    "package_id": "AUTO-IMP-003",
+    "authorization": "NOT_AUTHORIZED"
+  },
+  "ivf01": {
+    "rev1": "ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED",
+    "rev2": "NOT_AUTHORIZED_PREPARATION_ONLY",
+    "flow_path": "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
+  },
+  "current_route": "WORK_CAPACITY_REVIEW",
+  "sole_blocker": "QUALIFIED_CAPACITY_REQUIRED",
+  "active_dispatch_mode": "MANUAL",
+  "controlled_auto": "DISABLED",
+  "task_profile": {
+    "task_class": "COHESIVE_ORCHESTRATION_CONTROL_LAYER_BASELINE",
+    "change_type": "EXPLICIT_PROGRAM_SUCCESSOR_AND_DETERMINISTIC_AUTHORITY_SEPARATED_CONTROLLER",
+    "subsystem": "automation.engine / program and control-plane governance",
+    "functional_area": "queue/event/route/forecast/promotion",
+    "concise_engineering_goal": "Complete Program1.2 and deterministic orchestration baseline in one reviewable package",
+    "primary_symbols_or_functional_surfaces": [
+      "ImplementationProgram",
+      "SuccessorGovernanceContract",
+      "orchestration route/queue/event models",
+      "execution_cost_reconcile recommendations"
+    ],
+    "behavior_dimensions": [
+      "DAG vs single-lane",
+      "wake vs dispatch",
+      "resume-first",
+      "dedupe/CAS",
+      "authority separation",
+      "manual/controlledauto",
+      "context ROI"
+    ],
+    "source_file_count": 3,
+    "test_file_count": 3,
+    "governance_and_docs_file_count": 13,
+    "semantic_profile": "ONE_COHESIVE_FRESH_INDEPENDENT_GOVERNANCE_REVIEW",
+    "test_profile": "STABLE_SELF_CONTAINED_POSITIVE_FIXTURE_AND_NEGATIVE_MATRIX_ONE_TARGETED_ONE_FULL",
+    "authority_boundary": "Exact19 candidate implementation files; no policy capacity relaxation, runtime or next package",
+    "packaging_cohesion_decision": "KEEP_COHESIVE / OPTIMIZE_TOTAL_ENGINEERING_VALUE_NOT_TOKENS_PER_TICKET; shared authority, queue/route subsystem, acceptance and test surface"
+  },
+  "KNOWN_AUTOMATION_ARCHITECTURE_DEBT": "NONE",
+  "debt_semantics": "All known design decisions specified and implementation consistency issues included in exact scope; does NOT claim implementation complete or capacity evidence calibrated",
+  "created_at": "2026-10-06T08:24:37Z",
+  "updated_at": "2026-10-06T08:24:37Z"
+}

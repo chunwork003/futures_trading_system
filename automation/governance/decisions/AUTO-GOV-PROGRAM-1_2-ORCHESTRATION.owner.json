@@ -160,17 +160,28 @@
       "reserve_execution_without_exact_authority",
       "dispatch_commit_without_exact_authority",
       "consume_without_exact_authority",
-      "invoke_CODEX_without_exact_authority_lifecycle_manual_trigger",
+      "invoke_CODEX_without_exact_authority_active_dispatch_mode_and_canonical_lifecycle",
       "activate_architecture",
       "merge_candidate",
       "approve_independent_review",
-      "enable_runtime_broker_DB_migration_LIVE_production"
+      "enable_runtime_broker_DB_migration_LIVE_production",
+      "direct_executor_invocation_from_trigger",
+      "direct_authorization_or_consumption_from_trigger"
     ],
     "invariants": [
       "EVENT != AUTHORITY",
       "WAKE != DISPATCH"
     ],
-    "scheduler_behavior": "One bounded cycle per wake; no persistent self-created background dispatcher or installed scheduled task in this package"
+    "scheduler_behavior": "One bounded cycle per wake; no persistent self-created background dispatcher or installed scheduled task in this package",
+    "trigger_adapter_contract": {
+      "inputs": [
+        "typed_event",
+        "fresh_canonical_snapshot"
+      ],
+      "output": "NON_AUTHORITY_WAKE_ROUTE_QUEUE_PROPOSAL_ONLY",
+      "actions": "WORK performs permitted materialization through existing single-use guard; controller never allocates or invokes; no scheduler installation",
+      "cursor": "Immutable event identity plus relevant artifact revision; queue update CAS on fresh HEAD; failures rerun from repository"
+    }
   },
   "route_resolver": {
     "pure_read_only": true,
@@ -281,7 +292,7 @@
       "reserve_execution_without_exact_authority",
       "dispatch_commit_without_exact_authority",
       "consume_without_exact_authority",
-      "invoke_CODEX_without_exact_authority_lifecycle_manual_trigger",
+      "invoke_CODEX_without_exact_authority_active_dispatch_mode_and_canonical_lifecycle",
       "activate_architecture",
       "merge_candidate",
       "approve_independent_review",
@@ -356,7 +367,7 @@
         "reserve_execution_without_exact_authority",
         "dispatch_commit_without_exact_authority",
         "consume_without_exact_authority",
-        "invoke_CODEX_without_exact_authority_lifecycle_manual_trigger",
+        "invoke_CODEX_without_exact_authority_active_dispatch_mode_and_canonical_lifecycle",
         "activate_architecture",
         "merge_candidate",
         "approve_independent_review",
@@ -420,7 +431,7 @@
         "reserve_execution_without_exact_authority",
         "dispatch_commit_without_exact_authority",
         "consume_without_exact_authority",
-        "invoke_CODEX_without_exact_authority_lifecycle_manual_trigger",
+        "invoke_CODEX_without_exact_authority_active_dispatch_mode_and_canonical_lifecycle",
         "activate_architecture",
         "merge_candidate",
         "approve_independent_review",
@@ -490,7 +501,7 @@
         "reserve_execution_without_exact_authority",
         "dispatch_commit_without_exact_authority",
         "consume_without_exact_authority",
-        "invoke_CODEX_without_exact_authority_lifecycle_manual_trigger",
+        "invoke_CODEX_without_exact_authority_active_dispatch_mode_and_canonical_lifecycle",
         "activate_architecture",
         "merge_candidate",
         "approve_independent_review",
@@ -558,7 +569,7 @@
         "reserve_execution_without_exact_authority",
         "dispatch_commit_without_exact_authority",
         "consume_without_exact_authority",
-        "invoke_CODEX_without_exact_authority_lifecycle_manual_trigger",
+        "invoke_CODEX_without_exact_authority_active_dispatch_mode_and_canonical_lifecycle",
         "activate_architecture",
         "merge_candidate",
         "approve_independent_review",
@@ -628,7 +639,7 @@
         "reserve_execution_without_exact_authority",
         "dispatch_commit_without_exact_authority",
         "consume_without_exact_authority",
-        "invoke_CODEX_without_exact_authority_lifecycle_manual_trigger",
+        "invoke_CODEX_without_exact_authority_active_dispatch_mode_and_canonical_lifecycle",
         "activate_architecture",
         "merge_candidate",
         "approve_independent_review",
@@ -700,7 +711,7 @@
         "reserve_execution_without_exact_authority",
         "dispatch_commit_without_exact_authority",
         "consume_without_exact_authority",
-        "invoke_CODEX_without_exact_authority_lifecycle_manual_trigger",
+        "invoke_CODEX_without_exact_authority_active_dispatch_mode_and_canonical_lifecycle",
         "activate_architecture",
         "merge_candidate",
         "approve_independent_review",
@@ -774,7 +785,8 @@
     "automation/governance/master_manifest.v1.yaml",
     "docs/CURRENT_STATE.md",
     "docs/CURRENT_WORK.md",
-    "docs/AI_AUTOMATION_OPERATING_MODEL.md"
+    "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+    "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
   ],
   "side_effects": {
     "runtime": "DENIED",
@@ -792,5 +804,24 @@
   "KNOWN_AUTOMATION_ARCHITECTURE_DEBT": "NONE",
   "debt_semantics": "All known design decisions specified and implementation consistency issues included in exact scope; does NOT claim implementation complete or capacity evidence calibrated",
   "created_at": "2026-10-06T08:14:18.247Z",
-  "updated_at": "2026-10-06T08:14:18.247Z"
+  "updated_at": "2026-10-06T08:24:37Z",
+  "implementation_api": {
+    "single_module": "automation.engine.orchestration",
+    "typed_immutable_inputs": [
+      "WakeEvent",
+      "QueueItem",
+      "OrchestrationSnapshot",
+      "RouteDecision",
+      "PromotionEvidence"
+    ],
+    "pure_surfaces": [
+      "dedupe_key",
+      "project_queue",
+      "resolve_route",
+      "evaluate_promotion",
+      "bounded_context_profile"
+    ],
+    "io": "No GitHub/provider/executor/scheduler/subprocess/lifecycle IO in resolver. WORK existing adapters alone materialize exact non-authority proposals and invoke lifecycle guard under authority; reconciler CLI remains separate existing script.",
+    "policy_schema_need": "Existing ImplementationProgram schema sufficient. Existing successor schemas have no queue/event/promotion machine schema; add one OrchestrationControlPolicy subclass of existing SuccessorGovernanceContract plus strict registry entry, preserve all previous contracts/read-only/serialization. Queue/event structs in same focused module, no micro-module."
+  }
 }
