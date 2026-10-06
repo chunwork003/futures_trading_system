@@ -1,0 +1,255 @@
+{
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+  "implementation_sha": "ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a",
+  "actor_start_utc": "2026-10-06T06:50:07Z",
+  "actor_end_utc": "2026-10-06T06:55:35Z",
+  "actor_seconds": 328,
+  "actor_interval": "fresh re-entry through implementation commit/provider after; evidence publication separate",
+  "task_profile": {
+    "task_class": "BOUNDED_GOVERNANCE_REVIEW_FIX",
+    "change_type": "CALIBRATION_ACCOUNTING_AND_IMMUTABLE_SERIALIZATION_CORRECTION",
+    "subsystem": "automation execution capacity and contracts",
+    "functional_area": "calibration qualification / Pydantic serialization",
+    "concise_engineering_goal": "Fix only V2-CAL-01 and V2-SER-01; preserve reviewed V2 architecture",
+    "primary_symbols_or_functional_surfaces": [
+      "calibration qualification",
+      "immutable contract dump/JSON/round-trip"
+    ],
+    "behavior_dimensions": [
+      "token-accounting consistency",
+      "provider window identity",
+      "plain serialization",
+      "deep immutability"
+    ],
+    "source_file_count": 2,
+    "test_file_count": 2,
+    "semantic_profile": "NARROW_RE_REVIEW_OF_EFFECTIVE_CANDIDATE",
+    "test_profile": "MIN_COUNTEREXAMPLE_IMPACTED_ONE_TARGETED_ONE_REGRESSION",
+    "authority_boundary": "Exact four files; no architecture activation or runtime effects",
+    "packaging_cohesion_decision": "KEEP_COHESIVE: same authority, subsystem and shared targeted/re-review surface; optimize total engineering value"
+  },
+  "context_profile": {
+    "artifacts_read": [
+      {
+        "path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "full",
+        "blob": "17376dd435677e87c79c0151a77a877b3d50c78e"
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "full",
+        "blob": "ea3953b89852f0f36e815d555fa7bbba12da8fab"
+      },
+      {
+        "path": "automation/work_orders/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.yaml",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "structured gate fields",
+        "blob": "17376dd435677e87c79c0151a77a877b3d50c78e"
+      },
+      {
+        "path": "automation/authorizations/AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.v1.yaml",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "full",
+        "blob": "7b862e32919fb87c1269f090f2a5fd37f8a3c3a9"
+      },
+      {
+        "path": "automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2-RF01.eligibility.json",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "full",
+        "blob": "53936bdb4735aeaf3a8b76ea74058c8d459207bd"
+      },
+      {
+        "path": "automation/work_orders/forecasts/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.json",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "full",
+        "blob": "1630bbb0d505f925c0620947a5fe5f8d8339e368"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/reservation.yaml",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "full",
+        "blob": "64bd3904d64d8081eece426b58a3f89e83f7fe5d"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "full",
+        "blob": "c59ab57847d00ce844be7e44b467905498e65c5e"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/pre_dispatch_recheck.json",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "full",
+        "blob": "789e73c71ce2f136a9d9349c63f4db1099b2baa2"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/dispatch.yaml",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "full",
+        "blob": "fcd8f44169abdfaff0d5698e4ce77045b4030366"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/handoff.yaml",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "full",
+        "blob": "1457af54024cdfb3c84654fc8e76ecfd6599551c"
+      },
+      {
+        "path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.verdict.json",
+        "authority_ref": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+        "extent": "full",
+        "blob": "c58f3081d1e53941bc2ca8165210e647000239be"
+      },
+      {
+        "path": "automation/engine/contracts.py",
+        "authority_ref": "e414c108e075c8aa2307d607ffe77013b40c5391",
+        "extent": "source/test content and bounded edits; cached exact baseline context reused",
+        "blob": "5c69bd5b4fa3aaea1bab34d443992ce96983fa3f"
+      },
+      {
+        "path": "automation/engine/execution_capacity.py",
+        "authority_ref": "e414c108e075c8aa2307d607ffe77013b40c5391",
+        "extent": "source/test content and bounded edits; cached exact baseline context reused",
+        "blob": "c64d9201cb5389585eec1f1bf5e6eb26d818fc35"
+      },
+      {
+        "path": "tests/automation/test_contracts.py",
+        "authority_ref": "e414c108e075c8aa2307d607ffe77013b40c5391",
+        "extent": "source/test content and bounded edits; cached exact baseline context reused",
+        "blob": "efbedbec8921a7439f6dcbaa5eabfbb2d9c5f617"
+      },
+      {
+        "path": "tests/automation/test_execution_capacity.py",
+        "authority_ref": "e414c108e075c8aa2307d607ffe77013b40c5391",
+        "extent": "source/test content and bounded edits; cached exact baseline context reused",
+        "blob": "6b7e99fbd6777fbba8fb1a4a61f3b564a793c141"
+      }
+    ],
+    "planning_context_used_as_actual": false,
+    "raw_transcript_loaded": false,
+    "history_loaded_amount": {
+      "artifacts": 1,
+      "reason": "exact original review verdict; lifecycle commit/blob metadata also checked"
+    },
+    "volume_by_artifact_type": null,
+    "content_token_estimate": null,
+    "measurement_limit": "Partial reads and cache reuse prevent exact cumulative read/token volume; no fabricated values"
+  },
+  "execution_cost_actual": {
+    "local_tokens_status": "PENDING_EXTERNAL_EXTRACTION",
+    "local_tokens": null,
+    "measurement_type": "PENDING_EXTERNAL_EXTRACTION",
+    "billing": null,
+    "provider_measurement_type": "PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY",
+    "percent_to_exact_tokens": false
+  },
+  "provider_observations": {
+    "before": {
+      "ordinaryUsageAllowed": true,
+      "rateLimits": {
+        "limitId": "codex",
+        "primary": {
+          "usedPercent": 54,
+          "windowDurationMins": 300,
+          "resetsAt": 1791271699
+        },
+        "secondary": {
+          "usedPercent": 39,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "spendControlReached": false,
+        "rateLimitReachedType": null
+      }
+    },
+    "after": {
+      "ordinaryUsageAllowed": true,
+      "rateLimits": {
+        "limitId": "codex",
+        "primary": {
+          "usedPercent": 57,
+          "windowDurationMins": 300,
+          "resetsAt": 1791271699
+        },
+        "secondary": {
+          "usedPercent": 39,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "spendControlReached": false,
+        "rateLimitReachedType": null
+      }
+    },
+    "raw_fields_policy": "Unmodified availability and window values selected from provider tool; unrelated account/reset-credit fields omitted",
+    "attribution": "shared account proxy; not exclusive task usage"
+  },
+  "tests": [
+    {
+      "phase": "minimum_pre_fix",
+      "exit_code": 1,
+      "expected_failure": true,
+      "failed": 2,
+      "deselected": 45,
+      "warnings": 1,
+      "seconds": 0.55,
+      "command": "python -m pytest tests/automation/test_execution_capacity.py -k 'rf01_cal_minimum_counterexample or rf01_ser_minimum_counterexample' -q -p no:cacheprovider --tb=short"
+    },
+    {
+      "phase": "impacted",
+      "exit_code": 0,
+      "passed": 75,
+      "deselected": 69,
+      "warnings": 0,
+      "seconds": 0.5,
+      "command": "python -m pytest tests/automation/test_execution_capacity.py tests/automation/test_contracts.py -k 'rf01 or ambiguous_sample or estimate_never_exact' -q -p no:cacheprovider --tb=short -W error::UserWarning"
+    },
+    {
+      "phase": "targeted",
+      "exit_code": 0,
+      "passed": 144,
+      "warnings": 0,
+      "seconds": 3.29,
+      "command": "python -m pytest tests/automation -q -p no:cacheprovider --tb=short -W error::UserWarning"
+    },
+    {
+      "phase": "full_regression",
+      "exit_code": 0,
+      "passed": 1633,
+      "skipped": 8,
+      "warnings": 0,
+      "seconds": 13.36,
+      "command": "python -m pytest -q -p no:cacheprovider --tb=short",
+      "environment": {
+        "POSTGRES17_TEST_DSN": "",
+        "POSTGRES18_TEST_DSN": ""
+      }
+    }
+  ],
+  "test_cycles": {
+    "pre_fix": 1,
+    "impacted": 1,
+    "targeted": 1,
+    "full_regression": 1
+  },
+  "correction_cycles": 1,
+  "unexpected_retries": 0,
+  "provider_pause_count": 0,
+  "resume_count": 0,
+  "provider_limit_encountered": false,
+  "forecast_capacity_review_required": false,
+  "forecast_guardrails": {
+    "reported_tokens_p90": 6000000,
+    "uncached_input_p90": 120000,
+    "actor_seconds_p90": 2400,
+    "targeted_seconds_p90": 120,
+    "full_seconds_p90": 180
+  },
+  "token_guardrail_assessment": "PENDING_EXTERNAL_EXTRACTION",
+  "time_guardrail_assessment": "WITHIN_FORECAST",
+  "evidence_sha_resolution": {
+    "method": "git log -1 --format=%H -- automation\\runs\\EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z\\completion.json",
+    "reason": "Containing evidence commit identity is resolved after commit; no recursive self-hash"
+  }
+}
