@@ -1,0 +1,52 @@
+{
+    "schema_version":  "automation.owner_decision.v1",
+    "decision_id":  "MANUAL-EXECUTOR-FALLBACK",
+    "status":  "OWNER_APPROVED_ACTIVE_REQUIREMENT",
+    "decided_at":  "2026-10-06T12:16:01.269Z",
+    "authority":  "HUMAN_GOVERNANCE_OWNER",
+    "architecture":  "1.2.2",
+    "work_order_id":  "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+    "decision":  {
+                     "automation_is_accelerator_not_required_entry":  true,
+                     "supported_dispatch_modes":  [
+                                                      "MANUAL",
+                                                      "CONTROLLED_AUTO"
+                                                  ],
+                     "supported_executor_modes":  [
+                                                      "HUMAN_DIALOGUE",
+                                                      "CODEX"
+                                                  ],
+                     "permanent_manual_fallback":  true,
+                     "codex_unavailable_does_not_block_project":  true,
+                     "human_dialogue_codex_capacity_gate":  "NOT_APPLICABLE",
+                     "authority_scope_review_safety_same_across_executors":  true,
+                     "human_observed_external_evidence":  "ALLOWED_IF_EXPLICITLY_TYPED_AS_HUMAN_OBSERVED",
+                     "executor_switch":  "ONLY_AT_DURABLE_CHECKPOINT_NO_CONCURRENT_WRITERS",
+                     "same_execution_multi_executor":  "DENIED",
+                     "runtime":  "DENIED",
+                     "broker":  "DENIED",
+                     "db":  "DENIED",
+                     "migration":  "DENIED",
+                     "live":  "DENIED",
+                     "production":  "DENIED"
+                 },
+    "current_transition":  {
+                               "predecessor_authorization":  "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4",
+                               "predecessor_execution":  "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-20261006T115006Z",
+                               "predecessor_executor":  "CODEX",
+                               "predecessor_executor_invoked":  false,
+                               "predecessor_disposition":  "EXECUTOR_UNAVAILABLE_BEFORE_FIRST_INVOCATION",
+                               "successor_authorization":  "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5",
+                               "successor_executor":  "HUMAN_DIALOGUE",
+                               "same_logical_work_order":  true,
+                               "same_exact_21_file_scope":  true,
+                               "same_scope_digest":  "3df284e380940456e6e63af7dfc4b0125460a0a2f3a1bd324f1f81031304a2c7",
+                               "implementation_correction_budget":  2,
+                               "review_fix_budget":  2
+                           },
+    "source_implementation_requirement":  "INCLUDE_PERMANENT_HUMAN_DIALOGUE_FALLBACK_IN_EXISTING_COHESIVE_PROGRAM_V2_IMPLEMENTATION_AND_FINAL_REVIEW",
+    "separate_architecture_review_before_manual_execution":  false,
+    "cohesive_final_review_required":  true,
+    "auto_imp_002":  "NOT_AUTHORIZED",
+    "auto_imp_003":  "NOT_AUTHORIZED"
+}
