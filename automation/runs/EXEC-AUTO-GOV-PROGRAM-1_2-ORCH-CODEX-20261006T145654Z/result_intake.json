@@ -1,0 +1,211 @@
+{
+  "schema_version": "automation.result_intake.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "mechanical_intake": "PASS",
+  "semantic_acceptance": "NOT_PERFORMED",
+  "status": "COMPLETED_PENDING_REVIEW",
+  "master_baseline_sha": "a2e9edf92c7043a364d6a7b7af849ee7203fe6a2",
+  "source_baseline_sha": "52f0b5da1d050a8876f9716b227055219f4fd070",
+  "claim_sha": "ba569c85b202171e401151db3ffae3101b664482",
+  "implementation_sha": "85b94c92ccba4b4c569e3be846646902cb6348d2",
+  "evidence_sha": "e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40",
+  "execution_branch": "auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "branch_tip_sha": "e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40",
+  "ancestry": "SOURCE_52F0_CLAIM_BA569_IMPLEMENTATION_85B94_EVIDENCE_E877_DIRECT_PARENT_CHAIN",
+  "invocation": {
+    "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/invocation.json",
+    "blob": "31f4e1dce1ab82287a4722649906847dff090eaa",
+    "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+    "executor_invoked": true,
+    "historical_backfill": false,
+    "first_manual_invocation": true
+  },
+  "exact_implementation_scope": [
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+    "automation/skills/execution-cost-forecaster/SKILL.md",
+    "automation/skills/repo-reentry/SKILL.md",
+    "automation/skills/single-use-lifecycle-guard/SKILL.md",
+    "automation/specs/context_loading_policy.v1.yaml",
+    "scripts/execution_cost_reconcile.ps1",
+    "tests/automation/test_execution_cost_reconcile.py"
+  ],
+  "source_delta": {
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md": {
+      "before_blob": "8aacdb1bce0ce9b0087e40e65f9e43fa8337f071",
+      "after_blob": "8d0a8e11bd93692459c1f8d57be36d10333cee5c",
+      "after_sha256": "116bc129f836f261dc07e2f62377afac5de999d3a65bcc78416b78979d657e8b"
+    },
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md": {
+      "before_blob": "be6950b138297724b8d3f9398da6a1a06bcb457a",
+      "after_blob": "7c94d4e31d2c0fc5a4aae85ed48638b53b5b265b",
+      "after_sha256": "45e5d8ce63b61b93c73d85663cb54c216ec2810dcddb641ec0bc32a164038efa"
+    },
+    "automation/skills/execution-cost-forecaster/SKILL.md": {
+      "before_blob": "691b45fff57f43c315756d87007877ce426d7626",
+      "after_blob": "c09f14b127417daf32e87c917f76a3e62e9216c8",
+      "after_sha256": "2b374ea7afb717b9fcf0e358d1ea75dfa355ed4cf3718959001d2bd540d654a0"
+    },
+    "automation/skills/repo-reentry/SKILL.md": {
+      "before_blob": "7d36d6af80696f9c14cb63ccf7567506c5263c88",
+      "after_blob": "b170a0eb3a28341eb5e87c3f07ed23ca36a48aeb",
+      "after_sha256": "e71bcedb7b7ca77b1d055ddcb02f77a42e536a929b8c1bc11a969d06391e82e5"
+    },
+    "automation/skills/single-use-lifecycle-guard/SKILL.md": {
+      "before_blob": "7c3de1e7e61252373fdee8b280db685766c3a9f0",
+      "after_blob": "75e04e1a364a94d633796510deef0b06c5b84a07",
+      "after_sha256": "5f5965bac9b0f0cdebac011efbd3007014c1074bc17ad08897cca1004f02b829"
+    },
+    "automation/specs/context_loading_policy.v1.yaml": {
+      "before_blob": "2b6a1501e717d1a1b997dc4ab6c43e753e044a31",
+      "after_blob": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+      "after_sha256": "ec149e576e9d91c85034a66fcd369d72e5623ba2933cb2da9b081c176103de03"
+    },
+    "scripts/execution_cost_reconcile.ps1": {
+      "before_blob": "0817676efed4c6d5899dedbaa37ad01500db611e",
+      "after_blob": "4a3d006ff00609cce928cb11a33b942530aa6875",
+      "after_sha256": "ee07aa562ffbfd814708a92c68c6d5456dc1c3dc2bb12f2cdc3e51fc4a198859"
+    },
+    "tests/automation/test_execution_cost_reconcile.py": {
+      "before_blob": null,
+      "after_blob": "6bf6f9eae983769b3116710e77b90861f6ef89d0",
+      "after_sha256": "12497c9b956559ea44d9a8bba160d2a738385f2554e7b64d850726e602e9e835"
+    }
+  },
+  "checkpoint": {
+    "sha256": "e65e2f7bd8cd6c4ea32af290fac0467364b7239a864b90c394f82e6597bf1591",
+    "tree_local_reconstruction": "62de95d107fbd325fc51a1a62fe4fb7258e6cbfa",
+    "raw_patch_sha256_verified": true,
+    "first_six_raw_sha256_verified": true,
+    "reconciler_post_checkpoint_delta": "EXACT_BOM_PREFIX_ONLY"
+  },
+  "protected13": {
+    "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+    "automation/policies/orchestration_control_policy.v1.yaml": "a0b755057de05cf854761a9bf76105da350b9f87",
+    "automation/engine/orchestration.py": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+    "automation/engine/contracts.py": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+    "tests/automation/test_orchestration.py": "958953e3fa6afb96bb085d9602d1ac633d146568",
+    "tests/automation/test_contracts.py": "65f48178384ed8b21287c0e152b700c133a8008f",
+    "automation/governance/master_manifest.v1.yaml": "89de89c47d23080af8369544a165e199856d2832",
+    "docs/CURRENT_STATE.md": "a64c24a65abfa97e057a900b842d5dbb57b97e26",
+    "docs/CURRENT_WORK.md": "3bc8b05a51a7356d36b61438aad8f229fcf36212",
+    "docs/AI_AUTOMATION_OPERATING_MODEL.md": "41c9fa8305ecc3c8bff9c97a849f9d2579b68bcc",
+    "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml": "f4e3322776833b65e5170a5c81e2dd44855a3daf",
+    "automation/engine/execution_capacity.py": "987bfe3c80683bed689d7d4c7ff631bfd561b6f6",
+    "tests/automation/test_execution_capacity.py": "fb00b535626b2dab1f337b4fd42179dbe7964fcc"
+  },
+  "protected13_git_blob_equality": "PASS",
+  "commit_file_sets": {
+    "claim": [
+      "claim.json",
+      "invocation.json"
+    ],
+    "implementation": [
+      "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+      "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+      "automation/skills/execution-cost-forecaster/SKILL.md",
+      "automation/skills/repo-reentry/SKILL.md",
+      "automation/skills/single-use-lifecycle-guard/SKILL.md",
+      "automation/specs/context_loading_policy.v1.yaml",
+      "scripts/execution_cost_reconcile.ps1",
+      "tests/automation/test_execution_cost_reconcile.py"
+    ],
+    "evidence": [
+      "completion.json",
+      "execution_cost_actual.json"
+    ]
+  },
+  "all_other_source_blobs": "UNCHANGED",
+  "tests": [
+    {
+      "phase": "minimum_pre_fix_ps5_1",
+      "command": "in-memory pytest selection of four failed cases and pause=False control, force powershell executable; -p no:cacheprovider",
+      "exit_code": 1,
+      "expected_failure": true,
+      "failed": 4,
+      "passed": 1,
+      "deselected": 127,
+      "seconds": 3.26
+    },
+    {
+      "phase": "impacted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_execution_cost_reconcile.py -k 'provider_pause_metrics or missing_optional_forecast or minimal_legacy or optional_nested_shapes or pause_false or shell_version' -q --tb=short",
+      "exit_code": 0,
+      "passed": 28,
+      "deselected": 10,
+      "seconds": 21.94
+    },
+    {
+      "phase": "complete_targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_execution_cost_reconcile.py -q --tb=short",
+      "exit_code": 0,
+      "passed": 38,
+      "seconds": 26.67
+    },
+    {
+      "phase": "cross_targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_execution_cost_reconcile.py tests/automation/test_execution_capacity.py tests/automation/test_orchestration.py tests/automation/test_contracts.py -q --tb=short",
+      "exit_code": 0,
+      "passed": 229,
+      "seconds": 29.35
+    },
+    {
+      "phase": "full_regression",
+      "command": "python -m pytest -p no:cacheprovider -q --tb=short",
+      "exit_code": 0,
+      "passed": 1718,
+      "skipped": 8,
+      "seconds": 39.5,
+      "environment": {
+        "POSTGRES17_TEST_DSN": "",
+        "POSTGRES18_TEST_DSN": "",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    }
+  ],
+  "tests_not_rerun": true,
+  "tests_evidence_consistency": "PASS",
+  "git_diff_check": "PASS_REPORTED_DURABLE_EXECUTOR_EVIDENCE",
+  "scope_violations": "NONE",
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "budget_actual": {
+    "original_implementation": {
+      "limit": 2,
+      "used": 2,
+      "remaining": 0
+    },
+    "separate_owner_exception": {
+      "limit": 1,
+      "used": 1,
+      "remaining": 0
+    },
+    "review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2
+    },
+    "automatic_extra_cycle": false
+  },
+  "lifecycle": {
+    "reservation": "CONSUMED",
+    "dispatch": "DISPATCH_COMMITTED",
+    "authorization": "CONSUMED",
+    "writer": "HELD_PENDING_RELEASE_AFTER_THIS_DURABLE_INTAKE",
+    "no_new_lifecycle": true
+  },
+  "merge": "DENIED",
+  "controller_activation": "DENIED",
+  "next_package": "NOT_AUTHORIZED",
+  "created_at": "2026-10-06T15:30:22Z",
+  "updated_at": "2026-10-06T15:30:22Z"
+}

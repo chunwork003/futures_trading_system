@@ -1,0 +1,332 @@
+{
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "schema_version": "automation.execution_cost_actual.v1",
+  "implementation_sha": "85b94c92ccba4b4c569e3be846646902cb6348d2",
+  "claim_sha": "ba569c85b202171e401151db3ffae3101b664482",
+  "actor_start_utc": "2026-10-06T15:12:52.406111+00:00",
+  "actor_end_utc": "2026-10-06T15:17:23Z",
+  "actual": {
+    "actor_seconds": 270.593889,
+    "targeted_seconds": 26.67,
+    "cross_targeted_seconds": 29.35,
+    "full_regression_seconds": 39.5,
+    "reported_total_tokens": null,
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "uncached_input_tokens": null,
+    "output_tokens": null,
+    "reasoning_output_tokens": null,
+    "test_cycles": {
+      "pre_fix_cases": 5,
+      "complete_targeted_passes": 1,
+      "cross_targeted_passes": 1,
+      "full_regression_passes": 1
+    },
+    "provider_limit_encountered": false,
+    "provider_pause_count": 0,
+    "provider_pause_seconds": 0,
+    "resume_count": 0,
+    "resumed_same_execution": false,
+    "forecast_capacity_review_required": false
+  },
+  "token_status": "PENDING_EXTERNAL_EXTRACTION",
+  "token_measurement_type": "UNKNOWN_UNTIL_DETERMINISTIC_ATTRIBUTION",
+  "billing": "NOT_AVAILABLE",
+  "provider_measurement_type": "PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY",
+  "provider_raw_selected_fields": {
+    "before": {
+      "ordinaryUsageAllowed": true,
+      "rateLimits": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 25,
+          "windowDurationMins": 300,
+          "resetsAt": 1791313151
+        },
+        "secondary": {
+          "usedPercent": 58,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    },
+    "after": {
+      "ordinaryUsageAllowed": true,
+      "rateLimits": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 29,
+          "windowDurationMins": 300,
+          "resetsAt": 1791313151
+        },
+        "secondary": {
+          "usedPercent": 59,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    },
+    "selection": "Availability and rateLimits retained verbatim; unrelated account/reset-credit identity omitted"
+  },
+  "provider_delta_percentage_points": {
+    "primary": 4,
+    "secondary": 1,
+    "attribution": "SHARED_ACCOUNT_PROXY_NOT_EXCLUSIVE_TASK_COST"
+  },
+  "capacity_at_invocation": {
+    "route": "ALLOW_WITH_WATCH",
+    "safe_capacity": 37597983,
+    "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+    "primary_p75": 1500000,
+    "weekly_execution_gate": false
+  },
+  "task_profile": {
+    "task_class": "BOUNDED_IMPLEMENTATION_COMPATIBILITY_CONTINUATION",
+    "change_type": "CHECKPOINT_RESTORE_PLUS_ENCODING_TEST_CORRECTION",
+    "subsystem": "AUTOMATION_EXECUTION_COST",
+    "functional_area": "POWERSHELL_SCRIPT_DECODING",
+    "engineering_goal": "Restore preserved Batch4 then UTF8 BOM PS5.1 compatibility without semantic changes",
+    "source_file_count": 7,
+    "test_file_count": 1,
+    "semantic_write_file_count": 2,
+    "authority_boundary": "OWNER_ONE_CYCLE_EXCEPTION_EXACT8_NO_NEWSEMANTICS",
+    "packaging_decision": "KEEP_COHESIVE_SAME_LOGICAL_WO"
+  },
+  "context_profile": {
+    "planning_profile_used_as_actual": false,
+    "artifacts_read": [
+      {
+        "path": "AGENTS.md",
+        "ref": "origin/master",
+        "blob": "8313abbbb441d91fdca7d892852e6d919e2d76b7",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "ref": "origin/master",
+        "blob": "5de42629194f568454904a7988e45bd6e34957c0",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "ref": "origin/master",
+        "blob": "16224d679a1691a020e88a7e2d74263d88d10f1b",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6.v6.yaml",
+        "ref": "origin/master",
+        "blob": "a056d0d195e6a8ae0e09abcbf65e9ef044efe1df",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/handoff.yaml",
+        "ref": "origin/master",
+        "blob": "20b826684a8948c8f1f8c2b3985d3b01dc3dfdbd",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/reservation.yaml",
+        "ref": "origin/master",
+        "blob": "bbb012e465182945970fc67527b7c628beebce87",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/dispatch.yaml",
+        "ref": "origin/master",
+        "blob": "6c293ffeb3c52333192a25859b8e94c34450d4bf",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_lock.yaml",
+        "ref": "origin/master",
+        "blob": "cc73f72a76e2438ce3eac212469d5b6919dd2b5b",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/governance/decisions/OWNER-AUTO-GOV-PROGRAM-1_2-ORCH-REV6-NARROW-CORRECTION-01.json",
+        "ref": "origin/master",
+        "blob": "f9924f50134b7193fd03808fb5957e9aa83e4c02",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/checkpoint/Batch4.checkpoint.json",
+        "ref": "origin/master",
+        "blob": "84b6f12eff3a44e5b2316d75f44e08be01a679a3",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/REV6.eligibility.json",
+        "ref": "origin/master",
+        "blob": "e4cb60494035eba013cefb24c024c9a22583fa66",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.json",
+        "ref": "origin/master",
+        "blob": "ee1cc5c1d9b052e9ef2c29d2c20a207fab906322",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/REV6.continuation-plan.json",
+        "ref": "origin/master",
+        "blob": "e9cb525ae84c0f54f2304bcf8104d6de340ee8f1",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/pre_dispatch_recheck.json",
+        "ref": "origin/master",
+        "blob": "969719b0510ff19f8ec32db36f96a13208f810aa",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/capacity_evidence.json",
+        "ref": "origin/master",
+        "blob": "ae9bb8de2c63e16f3986ef5d141168b9e0727765",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+        "ref": "origin/master",
+        "blob": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+        "extent": "fresh read"
+      },
+      {
+        "path": "automation/skills/execution-efficiency-guard/SKILL.md",
+        "ref": "origin/master",
+        "blob": "ba101393c3106e5e4a5e24ce7149987da2ea7894",
+        "extent": "fresh read"
+      }
+    ],
+    "additional_reads": [
+      {
+        "path": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/checkpoint/Batch4.checkpoint.patch",
+        "extent": "binary patch mechanically inspected and verified, then applied"
+      },
+      {
+        "path": "automation/governance/master_manifest.v1.yaml",
+        "extent": "parsed output partly truncated; no full model-read claim"
+      },
+      {
+        "path": "docs/CURRENT_STATE.md",
+        "extent": "current REV6 projection excerpts"
+      },
+      {
+        "path": "docs/CURRENT_WORK.md",
+        "extent": "current REV6 projection excerpts"
+      }
+    ],
+    "source_test_context": "Exact checkpoint bytes restored; reconciler/test forensic context reused from same chat; bounded test delta added. No raw transcript read.",
+    "raw_transcript_loaded": false,
+    "history_loaded": "Exact linked checkpoint/lifecycle metadata; preceding forensic context already in chat",
+    "cumulative_content_volume": null,
+    "measurement_limit": "Partial outputs/cache reuse; no fabricated read volume or model usage"
+  },
+  "tests": [
+    {
+      "phase": "minimum_pre_fix_ps5_1",
+      "command": "in-memory pytest selection of four failed cases and pause=False control, force powershell executable; -p no:cacheprovider",
+      "exit_code": 1,
+      "expected_failure": true,
+      "failed": 4,
+      "passed": 1,
+      "deselected": 127,
+      "seconds": 3.26
+    },
+    {
+      "phase": "impacted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_execution_cost_reconcile.py -k 'provider_pause_metrics or missing_optional_forecast or minimal_legacy or optional_nested_shapes or pause_false or shell_version' -q --tb=short",
+      "exit_code": 0,
+      "passed": 28,
+      "deselected": 10,
+      "seconds": 21.94
+    },
+    {
+      "phase": "complete_targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_execution_cost_reconcile.py -q --tb=short",
+      "exit_code": 0,
+      "passed": 38,
+      "seconds": 26.67
+    },
+    {
+      "phase": "cross_targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_execution_cost_reconcile.py tests/automation/test_execution_capacity.py tests/automation/test_orchestration.py tests/automation/test_contracts.py -q --tb=short",
+      "exit_code": 0,
+      "passed": 229,
+      "seconds": 29.35
+    },
+    {
+      "phase": "full_regression",
+      "command": "python -m pytest -p no:cacheprovider -q --tb=short",
+      "exit_code": 0,
+      "passed": 1718,
+      "skipped": 8,
+      "seconds": 39.5,
+      "environment": {
+        "POSTGRES17_TEST_DSN": "",
+        "POSTGRES18_TEST_DSN": "",
+        "PYTHONDONTWRITEBYTECODE": "1"
+      }
+    }
+  ],
+  "budget_actual": {
+    "original_implementation": {
+      "limit": 2,
+      "used": 2,
+      "remaining": 0
+    },
+    "separate_owner_exception": {
+      "limit": 1,
+      "used": 1,
+      "remaining": 0
+    },
+    "review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2
+    },
+    "automatic_extra_cycle": false
+  },
+  "correction_cycles": 1,
+  "unexpected_test_retries": 0,
+  "diagnostic_tool_retries": 2,
+  "diagnostic_retry_details": [
+    "UTF8 stdout retry while reading current projection excerpts",
+    "scope checker rerun to exclude permitted own claim/invocation metadata; no source changes"
+  ],
+  "forecast_guardrail_assessment": {
+    "actor": "WITHIN_P75",
+    "targeted": "WITHIN_P75",
+    "full_regression": "WITHIN_P75",
+    "tokens": "PENDING_EXTERNAL_EXTRACTION"
+  },
+  "evidence_sha_resolution": {
+    "method": "git log -1 --format=%H -- automation\\runs\\EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z\\completion.json",
+    "identity": "CONTAINING_EVIDENCE_COMMIT",
+    "note": "Exact evidence commit resolved after commit; no recursive self-hash"
+  }
+}
