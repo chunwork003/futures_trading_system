@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "remote_git_blob_identity": "PASS",
+  "manifest_hash_references_verified": 33,
+  "distinct_manifest_hash_paths": 17,
+  "active_bundle_sha256": "41e81af6c038722397c400ce70ac1edbf9275027b96b3f3ff425d1386434a7d3",
+  "effective_source_bundle_sha256": "f5a1fea9c2a8f4084348bbe6e8912d6020c9ea9ecfb80ac128eda33a5aaffa9d",
+  "policy_semantics_unchanged": 7,
+  "strict_contract_loading": "PASS",
+  "current_projection": "PASS",
+  "git_diff_check": "PASS",
+  "git_diff_check_exit_code": 0,
+  "full_regression_rerun": false,
+  "test_rerun": false,
+  "new_execution_authority": false,
+  "automatic_dispatch": false,
+  "schema_version": "automation.materialization_validation.v1",
+  "review_barrier_master": "332dfb4770d0de534cccf068f361e6836aaa4d02",
+  "verdict_commit": "38bff8f90e40c1b4a9eb25d5e57396be79a694b5",
+  "reviewed_source_integration_commit": "14ff081757fe4205ab78c85b82f7ef6ca9c1e76f",
+  "materialization_candidate_commit": "3b515a2e5a327c632e7d207b30e00817d9f95c9a",
+  "exact_rf01_source_blobs": {
+    "automation/engine/execution_capacity.py": "48b2d11199f3a864c7e1ccc4821645cb1eea28cd",
+    "tests/automation/test_execution_capacity.py": "a07aa574f19d544dcc3d33f58ef9fa8fdb03ce2d",
+    "automation/engine/contracts.py": "e2cc94bd56182441991334005ec985b688b2cfdf",
+    "tests/automation/test_contracts.py": "8c8b6f9db2209102b8068a8d293c70775f881cc0"
+  },
+  "historical_protected": "PASS",
+  "program_v1_1_blob_preserved": "bb7969c891a314b3e2f9c69da2834f07e1f6bcb4",
+  "ivf01_rev1_authority_unchanged": true,
+  "new_authorization_count": 0,
+  "new_execution_count": 0,
+  "new_reservation_count": 0,
+  "new_dispatch_count": 0,
+  "executable_handoff_count": 0,
+  "writer_lifecycle": [
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+      "git_blob_sha": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/writer_lock.yaml",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+      "git_blob_sha": "e60cee543d88d4049b5a4edf7693e402b7ff9656"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+      "git_blob_sha": "63023ef80205e6d8c496011d6fe52631b39f47ad"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+      "git_blob_sha": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/writer_lock.yaml",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+      "git_blob_sha": "7e2406016fa31821d126c951170c75120d0e7ccf"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.writer-lock.yaml",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+      "git_blob_sha": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.writer-lock.yaml",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+      "git_blob_sha": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5"
+    }
+  ],
+  "writer_held_count": 0,
+  "validation_method": "Remote exact Git-blob bytes and staged Git tree are authority; isolated scratch/index used only for deterministic contract/hash/diff-check, no repository checkout or test rerun",
+  "created_at": "2026-10-06T07:42:03.977Z",
+  "updated_at": "2026-10-06T07:42:03.977Z"
+}
