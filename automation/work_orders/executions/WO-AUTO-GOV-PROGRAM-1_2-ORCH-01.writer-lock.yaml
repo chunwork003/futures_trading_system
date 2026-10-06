@@ -2,7 +2,7 @@
   "schema_version": "automation.writer_lock.v1",
   "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
   "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
-  "state": "HELD",
+  "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
   "scope": "AUTOMATION_BOUNDED_SINGLE_WRITER",
   "owner_work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
   "executor_mode": "CODEX",
@@ -13,12 +13,18 @@
   "previous_writer_release_commit": "e65774fcda1cfc8d498de51075efd338c198e405",
   "no_concurrent_writer_evidence": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/REV6.no-concurrent-writer.json",
   "acquired_at": "2026-10-06T14:55:53Z",
-  "updated_at": "2026-10-06T14:56:54Z",
+  "updated_at": "2026-10-06T15:31:13Z",
   "release_condition": [
     "DURABLE_RESULT_INTAKE",
     "EXPLICIT_RECONCILIATION",
     "PRE_EXECUTION_ABORT_WITH_GOVERNANCE_RECORD"
   ],
   "execution_branch": "auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
-  "allocation_after_lock_commit": "39d14716329f356b79a3b3c13707d0773bcf4aa0"
+  "allocation_after_lock_commit": "39d14716329f356b79a3b3c13707d0773bcf4aa0",
+  "released_at": "2026-10-06T15:31:13Z",
+  "intake_commit_sha": "f2f1032110bb5a40b0f1a84ef9e1ff2d9b5384e3",
+  "intake_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/result_intake.json",
+  "result_implementation_sha": "85b94c92ccba4b4c569e3be846646902cb6348d2",
+  "result_evidence_sha": "e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40",
+  "release_evidence_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_release.json"
 }
