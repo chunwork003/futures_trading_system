@@ -5,7 +5,7 @@
   "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-01",
   "authorization_revision": "1",
   "status": "PASS_READY_FOR_MANUAL_FIRST_INVOCATION",
-  "master_sha": "acc1ed4a14d9023ebcb4df78e2baf100172daab7",
+  "master_sha": "9d90e746571e4534c35e67baec3c1614c291493a",
   "authority_commit_sha": "acc1ed4a14d9023ebcb4df78e2baf100172daab7",
   "exact_scope": [
     "automation/policies/execution_capacity_policy.v2.yaml",
@@ -36,27 +36,30 @@
   "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.json",
   "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.provider-evidence.json",
   "checks": {
-    "authority": "PASS_EXACT_EXPLICIT_BOOTSTRAP_BOUND",
-    "baseline": "PASS_FRESH_REMOTE_MASTER",
+    "authority": "PASS_EXACT_CONSUMED_SINGLE_USE_FIRST_INVOCATION_ONLY",
+    "baseline": "PASS_FRESH_REMOTE_MASTER_OWN_CONTROL_PLANE_DESCENDANTS_NO_IMPLEMENTATION_DELTA",
     "worktree": "REMOTE_CONTROL_PLANE_NO_LOCAL_IMPLEMENTATION_WRITER; EXECUTOR_CLEAN_WORKTREE_FRESH_RECHECK_BEFORE_INVOCATION",
     "scope": "PASS23FILES_NO_TRADING_RUNTIME",
-    "writer": "PASS_REGISTERED_LOCKS_RELEASED_NO_COMPETING_ACTIVE_CLAIM",
+    "writer": "PASS_HELD_BY_EXACT_EXECUTION_NO_COMPETING_OWNER",
     "unfinished_execution": "NONE_RESUMABLE_IN_CANONICAL_CURRENT_OR_REGISTERED_RUNNING_LOCKS",
     "ordering": "Explicit governance prerequisite migration supersedes blocked IVF01 action; no003progression",
     "forecast": "PASS_PROVISIONAL_NOT_CAPACITY_EVIDENCE",
     "quota": "PASS_EXACT_SUPERSESSION_BOOTSTRAP_NO_OBSOLETE_INTERNAL_GATE",
-    "provider": "PASS_ORDINARY_USAGE_ALLOWED_NO_HARD_SPEND_OR_RATE_DENIAL",
-    "lifecycle": "AUTHORIZED_NOT_RESERVED_NOT_CONSUMED",
+    "provider": "PASS_CURRENT_ORDINARY_USAGE_ALLOWED_NO_HARD_RATE_SPEND_DENIAL",
+    "lifecycle": "DISPATCH_COMMITTED_CONSUMED_NOT_INVOKED",
     "architecture": "ACTIVE1_1_TO_PROPOSED1_2_REVIEW_BARRIER",
-    "ivf01": "BLOCKED_NO_EXECUTION"
+    "ivf01": "BLOCKED_NO_EXECUTION",
+    "reservation": "PASS_EXISTS_SAME_EXECUTION_OWNERSHIP",
+    "dispatch": "PASS_DURABLE_COMMITTED_SAME_EXECUTION",
+    "completion": "NONE_NO_INVOCATION_OR_RESULT_ALREADY_EXISTS"
   },
   "automatic_dispatch": false,
   "automatic_next_package": false,
   "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
-  "reservation_created": false,
-  "dispatch_committed": false,
+  "reservation_created": true,
+  "dispatch_committed": true,
   "created_at": "2026-10-06T03:37:09Z",
-  "updated_at": "2026-10-06T03:41:30Z",
+  "updated_at": "2026-10-06T04:02:30Z",
   "authorization_state": "CONSUMED",
   "reservation_commit": "bad930d63382b18c705fb3b9d579bdbf690b7e80",
   "writer_acquired_commit": "bfabb322dd63bc622ef52dc217094c95163d8323",
@@ -65,5 +68,19 @@
   "consumed_commit": "de0e835759180705df26b311e8b46ae923554c08",
   "executor_invoked": false,
   "single_use_steps_1_through_9": "DURABLE_PASS",
-  "next_route": "READY_FOR_MANUAL_CODEX_TRIGGER"
+  "next_route": "READY_FOR_MANUAL_CODEX_TRIGGER",
+  "projection_phase": "CURRENT_PRE_INVOCATION",
+  "reconciliation_path": "automation/work_orders/reconciliations/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.pre-invocation-eligibility.json",
+  "historical_pre_reservation_snapshot": {
+    "phase": "PRE_RESERVATION",
+    "commit": "2af442fc6d154a5a62f596178f654165529b7abe",
+    "git_blob_sha": "de4f9538a1482e96d98defde233403241f6a2de9",
+    "path": "automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2.eligibility.json"
+  },
+  "writer_ownership": {
+    "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+    "state": "HELD",
+    "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
+    "git_blob_sha": "a3fdd619648577db02309627afe5cf3f97735c22"
+  }
 }
