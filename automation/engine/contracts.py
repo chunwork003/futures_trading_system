@@ -282,6 +282,11 @@ class WorkCostAccountingV2(SuccessorGovernanceContract):
 class NegativeAssertionsV2(SuccessorGovernanceContract):
     schema_version: Literal["automation.negative_assertions.v2"]
 
+class OrchestrationControlPolicy(SuccessorGovernanceContract):
+    """Read-only Program V2 orchestration control policy contract."""
+
+    schema_version: Literal["automation.orchestration_control_policy.v1"]
+
 
 CONTRACT_BY_SCHEMA: Mapping[str, type[AutomationContract]] = MappingProxyType(
     {
@@ -300,6 +305,7 @@ CONTRACT_BY_SCHEMA: Mapping[str, type[AutomationContract]] = MappingProxyType(
         "automation.execution_cost_contract.v2": ExecutionCostContractV2,
         "automation.work_cost_accounting.v2": WorkCostAccountingV2,
         "automation.negative_assertions.v2": NegativeAssertionsV2,
+        "automation.orchestration_control_policy.v1": OrchestrationControlPolicy,
     }
 )
 
@@ -313,6 +319,7 @@ __all__ = [
     "DevelopmentStateMachinePolicy",
     "ImplementationProgram",
     "MasterManifest",
+    "OrchestrationControlPolicy",
     "QuotaAdmissionPolicy",
     "WorkPackageRecord",
 ]

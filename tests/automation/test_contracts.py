@@ -15,6 +15,7 @@ from automation.engine.contracts import (
     DevelopmentStateMachinePolicy,
     ImplementationProgram,
     MasterManifest,
+    OrchestrationControlPolicy,
     QuotaAdmissionPolicy,
     WorkPackageRecord,
 )
@@ -248,10 +249,11 @@ def test_representative_canonical_contracts_load(
     "automation/specs/work_cost_accounting.v2.yaml",
     "automation/specs/negative_assertions.v2.yaml",
 ])
-def test_successor_candidate_closed_and_deep_read_only(relative_path):
+def test_successor_candidate_active_and_deep_read_only(relative_path):
     loaded = load_yaml_contract(ROOT / relative_path)
-    assert loaded.active is False
-    assert loaded.authority["active_master_architecture"] == "1.1"
+    assert loaded.status == "ACCEPTED_MATERIALIZED"
+    assert loaded.active is True
+    assert loaded.authority["active_master_architecture"] == "1.2"
     with pytest.raises(TypeError): loaded.semantics["grant_authority"] = True
     payload = load_yaml_mapping(ROOT / relative_path)
     payload["unreviewed_authority"] = True
@@ -294,3 +296,23 @@ def test_rf01_canonical_json_round_trip_no_serializer_warning(relative_path):
         restored = type(record).model_validate_json(encoded)
     assert not captured and restored == record
     assert plain == json.loads(encoded) == restored.model_dump()
+
+
+def test_orchestration_control_policy_contract_is_strict() -> None:
+    payload = {
+        "schema_version": "automation.orchestration_control_policy.v1",
+        "policy_id": "ORCHESTRATION-CONTROL",
+        "policy_version": "1",
+        "status": "CANDIDATE",
+        "active": False,
+        "authority": {"grant_authority": False},
+        "semantics": {"events": "WAKE_ONLY"},
+        "invariants": ["QUEUE_ENTRY != AUTHORITY"],
+        "historical": {"preserved": True},
+    }
+    record = OrchestrationControlPolicy.model_validate(payload)
+    assert record.semantics["events"] == "WAKE_ONLY"
+    with pytest.raises(TypeError):
+        record.semantics["events"] = "DISPATCH"
+    with pytest.raises(ValidationError):
+        OrchestrationControlPolicy.model_validate({**payload, "unreviewed_authority": True})
