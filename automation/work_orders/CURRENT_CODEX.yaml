@@ -7,7 +7,7 @@
   "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-01",
   "authorization_revision": "1",
   "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-EXEC-CAPACITY-V2-01.v1.yaml",
-  "authorization_state": "AUTHORIZED",
+  "authorization_state": "RESERVED",
   "work_order_path": "automation/work_orders/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.yaml",
   "code_base_sha": "9182108afda38c63aa22d8070cf156fee8644716",
   "control_plane_baseline_sha": "9182108afda38c63aa22d8070cf156fee8644716",
@@ -403,7 +403,7 @@
     "reused_context": "Unchanged kernels/specs retained by exact Git blob; no full historical reload"
   },
   "execution_branch": "auto/WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
-  "execution_id": null,
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
   "status": "BLOCKED",
   "handoff_ready": false,
   "execution_eligibility": "PENDING_FRESH_PRE_RESERVATION_PROOF",
@@ -416,7 +416,7 @@
     "ivf01_quota_waiver": false,
     "prior_amendment_reuse": "DENIED"
   },
-  "lifecycle_status": "AUTHORIZED_NOT_RESERVED",
+  "lifecycle_status": "RESERVED_PENDING_RECHECK",
   "correction_budget": {
     "limit": 0,
     "used": 0,
@@ -483,5 +483,8 @@
   "next_route": "MIGRATION_FRESH_ELIGIBILITY",
   "current_action": "COMPLETE_SINGLE_USE_PREFLIGHT",
   "created_at": "2026-10-06T03:35:25Z",
-  "updated_at": "2026-10-06T03:35:25Z"
+  "updated_at": "2026-10-06T03:38:04Z",
+  "reservation_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/reservation.yaml",
+  "writer_lock_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
+  "writer_ownership_lineage_path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.writer-lock.yaml"
 }

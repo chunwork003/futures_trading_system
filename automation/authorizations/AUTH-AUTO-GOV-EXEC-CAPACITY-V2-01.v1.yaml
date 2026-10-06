@@ -2,8 +2,8 @@
   "schema_version": "automation.authorization.v1",
   "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-01",
   "authorization_revision": "1",
-  "document_status": "AUTHORIZED_EFFECTIVE",
-  "authorization_state": "AUTHORIZED",
+  "document_status": "RESERVED_EFFECTIVE",
+  "authorization_state": "RESERVED",
   "source_candidate_head_sha": "9182108afda38c63aa22d8070cf156fee8644716",
   "decision_evidence": {
     "decision": "EXECUTION_CAPACITY_AND_RESUME_V2 = APPROVED_FOR_COHESIVE_IMPLEMENTATION",
@@ -134,15 +134,17 @@
     "task_profile_context_profile_required": true
   },
   "decision": {
-    "status": "AUTHORIZED_PENDING_FRESH_ELIGIBILITY",
+    "status": "RESERVED_PENDING_RECHECK",
     "next_route": "MIGRATION_PRE_RESERVATION_ELIGIBILITY",
     "created_at": "2026-10-06T03:35:25Z",
-    "updated_at": "2026-10-06T03:35:25Z"
+    "updated_at": "2026-10-06T03:38:04Z"
   },
   "single_use_execution": {
-    "execution_id": "NOT_ALLOCATED",
-    "reservation_path": "NOT_CREATED",
+    "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+    "reservation_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/reservation.yaml",
     "dispatch_committed": false,
-    "executor_invoked": false
+    "executor_invoked": false,
+    "writer_lock_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
+    "writer_acquired_commit_sha": "bfabb322dd63bc622ef52dc217094c95163d8323"
   }
 }
