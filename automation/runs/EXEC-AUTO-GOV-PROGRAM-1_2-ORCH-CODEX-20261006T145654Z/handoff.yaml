@@ -1,0 +1,110 @@
+{
+  "schema_version": "automation.execution_handoff.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "executor_mode": "CODEX",
+  "status": "READY_FOR_MANUAL_CODEX_TRIGGER",
+  "handoff_ready": true,
+  "executor_invoked": false,
+  "first_invocation_only": true,
+  "source_candidate_head_sha": "52f0b5da1d050a8876f9716b227055219f4fd070",
+  "control_plane_recheck_head_sha": "73b1f7889d3d08ead4228e50f72e107b6a59eb5b",
+  "execution_branch": "auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "owner_path": "automation/governance/decisions/OWNER-AUTO-GOV-PROGRAM-1_2-ORCH-REV6-NARROW-CORRECTION-01.json",
+  "checkpoint_path": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/checkpoint/Batch4.checkpoint.patch",
+  "checkpoint_evidence_path": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/checkpoint/Batch4.checkpoint.json",
+  "checkpoint_sha256": "e65e2f7bd8cd6c4ea32af290fac0467364b7239a864b90c394f82e6597bf1591",
+  "checkpoint_tree": "62de95d107fbd325fc51a1a62fe4fb7258e6cbfa",
+  "exact_write_scope": [
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+    "automation/skills/execution-cost-forecaster/SKILL.md",
+    "automation/skills/repo-reentry/SKILL.md",
+    "automation/skills/single-use-lifecycle-guard/SKILL.md",
+    "automation/specs/context_loading_policy.v1.yaml",
+    "scripts/execution_cost_reconcile.ps1",
+    "tests/automation/test_execution_cost_reconcile.py"
+  ],
+  "scope_digest": "6bfc178a0a47aa551332027efa3cc034764d670ee1d9b53caafd4be368de32e0",
+  "checkpoint_restore_only": [
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+    "automation/skills/execution-cost-forecaster/SKILL.md",
+    "automation/skills/repo-reentry/SKILL.md",
+    "automation/skills/single-use-lifecycle-guard/SKILL.md",
+    "automation/specs/context_loading_policy.v1.yaml"
+  ],
+  "semantic_correction_scope": [
+    "scripts/execution_cost_reconcile.ps1",
+    "tests/automation/test_execution_cost_reconcile.py"
+  ],
+  "verification_only": [
+    "tests/automation/test_execution_capacity.py",
+    "tests/automation/test_orchestration.py",
+    "tests/automation/test_contracts.py"
+  ],
+  "protected_blobs": {
+    "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+    "automation/policies/orchestration_control_policy.v1.yaml": "a0b755057de05cf854761a9bf76105da350b9f87",
+    "automation/engine/orchestration.py": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+    "automation/engine/contracts.py": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+    "tests/automation/test_orchestration.py": "958953e3fa6afb96bb085d9602d1ac633d146568",
+    "tests/automation/test_contracts.py": "65f48178384ed8b21287c0e152b700c133a8008f",
+    "automation/governance/master_manifest.v1.yaml": "89de89c47d23080af8369544a165e199856d2832",
+    "docs/CURRENT_STATE.md": "a64c24a65abfa97e057a900b842d5dbb57b97e26",
+    "docs/CURRENT_WORK.md": "3bc8b05a51a7356d36b61438aad8f229fcf36212",
+    "docs/AI_AUTOMATION_OPERATING_MODEL.md": "41c9fa8305ecc3c8bff9c97a849f9d2579b68bcc",
+    "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml": "f4e3322776833b65e5170a5c81e2dd44855a3daf",
+    "automation/engine/execution_capacity.py": "987bfe3c80683bed689d7d4c7ff631bfd561b6f6",
+    "tests/automation/test_execution_capacity.py": "fb00b535626b2dab1f337b4fd42179dbe7964fcc"
+  },
+  "reservation_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/reservation.yaml",
+  "dispatch_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/dispatch.yaml",
+  "writer_lock_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_lock.yaml",
+  "writer_commit": "39d14716329f356b79a3b3c13707d0773bcf4aa0",
+  "reservation_commit": "148a674d07cc16740b2c202dafba5b8ab7851757",
+  "dispatch_commit": "f5802c20252b38f75c907e5e86301fb7323e2399",
+  "pre_dispatch_recheck_commit": "73b1f7889d3d08ead4228e50f72e107b6a59eb5b",
+  "actual_invocation_requirement": "Executor records contemporaneous execution/session/UTC invocation and claim evidence BEFORE source edits, only this exact already-reserved first manual invocation; no historical backfill",
+  "correction_family": "POWERSHELL_5_1_UTF8_NO_BOM_SCRIPT_DECODING_COMPATIBILITY",
+  "additional_implementation_cycle_limit": 1,
+  "original_implementation_budget": "2/2 EXHAUSTED_UNCHANGED",
+  "review_fix_budget": "2/2 UNTOUCHED_NOT_USED_FOR_THIS_FIX",
+  "automatic_dispatch": false,
+  "automatic_next_package": false,
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "tests": {
+    "shells": [
+      "Windows PowerShell5.1 REQUIRED",
+      "PowerShell7 if installed; absence recorded NOT_AVAILABLE not false PASS"
+    ],
+    "cases": [
+      "four previously failing cases",
+      "pause=False positive control",
+      "minimal legacy empty payload",
+      "optional bands absent/null/partial",
+      "test_cycles absent/null/partial",
+      "structural evidence absent/null/partial",
+      "provider_interruption empty object preserved",
+      "provider pause telemetry and capacity review signal",
+      "provider_pause_is_source_defect=false",
+      "no automatic split authority"
+    ],
+    "commands": [
+      "python -m pytest -p no:cacheprovider tests/automation/test_execution_cost_reconcile.py",
+      "python -m pytest -p no:cacheprovider tests/automation/test_execution_cost_reconcile.py tests/automation/test_execution_capacity.py tests/automation/test_orchestration.py tests/automation/test_contracts.py"
+    ],
+    "full_regression": "Only after targeted/cross-targeted PASS: one full regression when required by existing test-cost policy; no repeats for metadata/hash-only changes"
+  },
+  "created_at": "2026-10-06T15:02:30Z",
+  "updated_at": "2026-10-06T15:02:30Z"
+}
