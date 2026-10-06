@@ -1,0 +1,118 @@
+{
+  "schema_version": "automation.execution_cost_reconciliation.v1",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.json",
+  "actual_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/execution_cost_actual.json",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+  "forecast_confidence": "PROVISIONAL_NO_SAME_CLASS_EXACT_COHORT",
+  "overall_classification": "CRITICAL",
+  "dominant_cause": "FRESH_CONTEXT_GROWTH",
+  "metric_comparisons": [
+    {
+      "metric": "reported_total_tokens",
+      "actual": 2229994,
+      "p50": 1800000,
+      "p75": 3600000,
+      "p90": 6000000,
+      "actual_to_p50_ratio": 1.2388855555555556,
+      "actual_to_p90_ratio": 0.37166566666666667,
+      "p50_absolute_percentage_error": 0.23888555555555555,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "uncached_input_tokens",
+      "actual": 241023,
+      "p50": 45000,
+      "p75": 75000,
+      "p90": 120000,
+      "actual_to_p50_ratio": 5.356066666666667,
+      "actual_to_p90_ratio": 2.008525,
+      "p50_absolute_percentage_error": 4.356066666666667,
+      "classification": "CRITICAL"
+    },
+    {
+      "metric": "output_tokens",
+      "actual": 11499,
+      "p50": 16000,
+      "p75": 28000,
+      "p90": 45000,
+      "actual_to_p50_ratio": 0.7186875,
+      "actual_to_p90_ratio": 0.25553333333333333,
+      "p50_absolute_percentage_error": 0.2813125,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "reasoning_output_tokens",
+      "actual": 3265,
+      "p50": 4000,
+      "p75": 8000,
+      "p90": 15000,
+      "actual_to_p50_ratio": 0.81625,
+      "actual_to_p90_ratio": 0.21766666666666667,
+      "p50_absolute_percentage_error": 0.18375,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "actor_seconds",
+      "actual": 328,
+      "p50": 900,
+      "p75": 1500,
+      "p90": 2400,
+      "actual_to_p50_ratio": 0.36444444444444446,
+      "actual_to_p90_ratio": 0.13666666666666666,
+      "p50_absolute_percentage_error": 0.6355555555555555,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "targeted_seconds",
+      "actual": 3.29,
+      "p50": null,
+      "p75": null,
+      "p90": 120,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.027416666666666666,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "full_regression_seconds",
+      "actual": 13.36,
+      "p50": null,
+      "p75": null,
+      "p90": 180,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.07422222222222222,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    }
+  ],
+  "cycle_breaches": [],
+  "recommendations": [
+    "TIGHTEN_POINTER_FIRST_CONTEXT",
+    "REMOVE_UNRELATED_HISTORY",
+    "SPLIT_OVERSIZED_WORK_ORDER"
+  ],
+  "feedback_required_for_next_work_forecast": true,
+  "generated_at_utc": "2026-10-06T07:03:17.5663514+00:00",
+  "provenance": {
+    "canonical_script": "scripts/execution_cost_reconcile.ps1",
+    "git_blob_sha": "84a4a8777f29d03cd7462f799c28544b7053f422",
+    "canonical_master": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+    "candidate_script_not_executed": true,
+    "exit_code": 0,
+    "token_finalization_commit": "e45f4aba866f83cce3f3f6b92659ab40adf9ed4c"
+  },
+  "cost_driver_assessment": {
+    "measurement": "UNCACHED_INPUT_P90_BREACH",
+    "cache_ratio": 0.8913574292482066,
+    "source_defect_inference": "NOT_PERFORMED",
+    "provider_interruptions": false,
+    "forecast_feedback_required": true
+  },
+  "bounded_optimization_decision": {
+    "recommendation": "TIGHTEN_POINTER_FIRST_CONTEXT_AND_RECALIBRATE_UNCACHED_FORECAST_USING_COMPACT_CONTEXT_PROFILE",
+    "split_work_order": "NOT_AUTHORIZED_BY_METRIC_VARIANCE",
+    "reason": "Keep cohesive authority/test/re-review surface; no evidence that splitting improves total lifecycle value",
+    "new_implementation": "NOT_STARTED"
+  }
+}
