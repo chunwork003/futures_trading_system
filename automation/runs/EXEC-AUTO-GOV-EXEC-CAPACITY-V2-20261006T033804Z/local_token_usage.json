@@ -1,0 +1,62 @@
+{
+  "schema_version": "automation.local_codex_token_usage.v1",
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+  "measurement_type": "EXACT",
+  "attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+  "binding": "EXECUTION_ID_PLUS_WORK_ORDER_ID_PLUS_TIME_WINDOW_PLUS_STRONG_MARKERS",
+  "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+  "input_tokens": 3531095,
+  "cached_input_tokens": 3479296,
+  "uncached_input_tokens": 51799,
+  "output_tokens": 25471,
+  "reasoning_output_tokens": 5609,
+  "total_tokens": 3556566,
+  "cached_input_ratio": 0.9853306127419398,
+  "baseline_timestamp": "2026-10-06T04:09:54.8400000+00:00",
+  "final_timestamp": "2026-10-06T04:20:59.4230000+00:00",
+  "baseline_source": "LAST_TOKEN_COUNT_BEFORE_EXECUTION",
+  "baseline_usage": {
+    "input_tokens": 21907050,
+    "cached_input_tokens": 21055232,
+    "output_tokens": 71426,
+    "reasoning_output_tokens": 17673,
+    "total_tokens": 21978476
+  },
+  "final_usage": {
+    "input_tokens": 25438145,
+    "cached_input_tokens": 24534528,
+    "output_tokens": 96897,
+    "reasoning_output_tokens": 23282,
+    "total_tokens": 25535042
+  },
+  "candidate_count": 2,
+  "strong_match_count": 1,
+  "strong_marker_match_status": true,
+  "strong_marker_hits": {
+    "f2574bdfb55232a6169406787839c8c8d9938ac8": 4,
+    "e414c108e075c8aa2307d607ffe77013b40c5391": 2,
+    "b899984462e48eb4dd02eae502918bd36ec937d4": 5
+  },
+  "strong_markers": [
+    "f2574bdfb55232a6169406787839c8c8d9938ac8",
+    "e414c108e075c8aa2307d607ffe77013b40c5391",
+    "b899984462e48eb4dd02eae502918bd36ec937d4"
+  ],
+  "requested_start_utc": "2026-10-06T04:10:10.0000000+00:00",
+  "requested_end_utc": "2026-10-06T04:18:56.0000000+00:00",
+  "end_slack_seconds": 300,
+  "candidate_window_hours": 3,
+  "flush_delay_seconds": 123.423,
+  "billing_cost": "NOT_AVAILABLE",
+  "raw_transcript_loaded_into_model": false,
+  "extractor_provenance": {
+    "canonical_path": "scripts/codex_session_token_usage.ps1",
+    "git_blob_sha": "5834edd880ec9c73781b220c1ee488027f98f77e",
+    "master_ref": "aef31074f8ceb3829c193498b032011c35e44d06",
+    "execution": "WINDOWS_POWERSHELL5_CANONICAL_SCRIPTBLOCK_FROM_EXACT_VERIFIED_REMOTE_BYTES",
+    "script_modified": false,
+    "exit_code": 0
+  },
+  "generated_at_utc": "2026-10-06T05:17:49.0762616+00:00"
+}
