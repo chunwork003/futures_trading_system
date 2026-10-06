@@ -1,4 +1,35 @@
-# CURRENT — Final capacity1.2.2 / policy2.2
+# CURRENT — Program V2 Orchestration Manual CODEX Handoff
+
+Architecture 1.2.2 / Capacity Policy 2.2 ACTIVE.
+
+WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 / AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4 is CONSUMED for exact execution:
+
+$ExecId
+
+Lifecycle:
+- writer HELD
+- reservation CONSUMED
+- pre-dispatch PASS
+- dispatch COMMITTED
+- executor NOT_INVOKED
+- READY_FOR_MANUAL_CODEX_TRIGGER
+- manual first invocation only
+- no redispatch
+- no automatic next package
+
+Implementation correction budget=2.
+Review-fix budget=2.
+CONTROLLED_AUTO DISABLED.
+Runtime/broker/DB/migration/LIVE/production DENIED.
+AUTO-IMP-003 NOT_AUTHORIZED.
+
+Lifecycle serialization evidence defect from the local materializer was repaired before first executor invocation:
+$RepairPath
+
+The section below is retained historical projection and does not override this CURRENT section.
+
+---
+# CURRENT ??Final capacity1.2.2 / policy2.2
 
 Architecture1.2.2 ACTIVE after one bounded final independentpolicyreview. Main WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 / AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4 AUTHORIZED_NOT_CONSUMED PRE_RESERVATION_BLOCKED_CAPACITY / WAIT_5H_CAPACITY; fresh5Hcapacity=6605051 < MANUALP75=7000000; no writer/execution/reservation/dispatch; no implementationstarted, no automaticCODEX. Weekly planning/scheduling only, weekly_execution_gate=false. MANUAL statisticalgate PRIMARY_5H P75=7,000,000; P90=12,000,000 advisory. Unknown5H manual allowswatch; actualproviderdenialwins. Implementationbudget2, reviewfixbudget2 exactsame21file/conformanceonly Ownergrant; no parentCONSUMEDreuse. CONTROLLED_AUTO DISABLED, usable5H P90 plus5acceptedmanualcurrentcontroller andOwneractivation required. Complete5H statistical-only blocking triggers nonauthority livenessoptimization. No newcalibrationcampaign/probes. Runtime/broker/DB/migration/LIVE/production DENIED. AUTO-IMP-003 NOT_AUTHORIZED. After mainclosure, definedAUTO-IMP-002/IVF01Rev2flow, no newarchitecturediscussion; exact authority/lifecycle still required.
 
@@ -6,9 +37,9 @@ Exact current lifecycle: automation/work_orders/CURRENT_CODEX.yaml. FinalOwner a
 
 KNOWN_CAPACITY_AND_ORCHESTRATION_GOVERNANCE_DEBT = NONE (complete governance, mainimplementation still pending).
 
-## HISTORICAL CURRENT PROJECTIONS BELOW — retained audit evidence, not current authority
+## HISTORICAL CURRENT PROJECTIONS BELOW ??retained audit evidence, not current authority
 
-# CURRENT — Dynamic rolling capacity successor 1.2.1
+# CURRENT ??Dynamic rolling capacity successor 1.2.1
 
 Architecture 1.2.1 ACTIVE; capacity policy2.1. Main WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 / AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3 AUTHORIZED / NOT_CONSUMED; WAIT_PROVIDER_CAPACITY. No writer/execution/reservation/dispatch/invocation. ProgramV2 revision3 candidate pending cohesive implementation/review. ControlledAuto DISABLED. Capacity campaign/P01/P02/P03 SUPERSEDED_PRE_EXECUTION_BY_DYNAMIC_CAPACITY_POLICY, zero probes. Exact local tokens primary; quota identity provider/account/limit/window only; model/client/workspace/taskclass metadata. No feature-coefficient/bootstrap gate. Same-execution resume and all sideeffect denials preserved. AUTO-IMP-003 NOT_AUTHORIZED; IVF01 Rev1 baseline changed, Rev2 NOT_AUTHORIZED.
 
@@ -16,13 +47,13 @@ Canonical policy: automation/policies/execution_capacity_policy.v2_1.yaml; evide
 
 KNOWN_CAPACITY_ARCHITECTURE_DEBT = NONE (complete policy design; main cohesive implementation still required).
 
-## HISTORICAL PROJECTIONS BELOW — superseded current headings are retained audit evidence
+## HISTORICAL PROJECTIONS BELOW ??superseded current headings are retained audit evidence
 
 # Current State
 
 
 
-## CURRENT — Capacity Calibration Amendment / Same Cohesive Package
+## CURRENT ??Capacity Calibration Amendment / Same Cohesive Package
 
 Architecture 1.2 ACTIVE; current logical work remains `WO-AUTO-GOV-PROGRAM-1_2-ORCH-01`, package revision2. Owner Amendment01: `automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json`. Exact source scope is21files: previous19 plus `automation/engine/capacity_calibration.py` and `tests/automation/test_capacity_calibration.py`. `execution_capacity.py` remains protected unchanged. Risk remains HIGH_AUTHORITY_SENSITIVE_CONTROLLER; forecast P90 remains12,000,000. One cohesive implementation and independent review, no split/waiver/floor/fallback.
 
@@ -30,29 +61,29 @@ Authority v1 bytes preserved: `AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01` current dispos
 
 Historical5exacttokenruns inspected. Both PRIMARY_5H and SECONDARY_WEEKLY qualified count0. All token arithmetic PASS; original machine recovery found same-account overlappingpositive-delta sessions and no explicit provider-client-policy version. RF02 recovered model association additionally incompatible/unproven; RF01 lacks canonical pairedprovider capture. Historicalsemanticreview disposition/taskclass never automatically rejects cost/capacity samples; required identity/cleanattribution proof does. Canonical audit/cohort: `automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.qualification.json` and `LOCAL_CODEX_CAPACITY_ARCH1_2_V1.json`; no rejected entries in qualified arrays. No current account ID backfill; CLI version != provider-client-policy version; missing != NOT_EXPOSED.
 
-Canonical method NON_NEGATIVE_ZERO_INTERCEPT_FEATURE_CALIBRATION: cached, uncached, nonreasoning output, reasoning; separate real provider windows; conservative upper=max(point+1pp+2maxresidual,point×1.25,largerrequiredmargin); binding lowest floored conservative lower; CALIBRATED_ESTIMATE only, no billing inference. Productionmodule/tests implement same Owner method; no providerIO/authority/lifecycle sideeffects.
+Canonical method NON_NEGATIVE_ZERO_INTERCEPT_FEATURE_CALIBRATION: cached, uncached, nonreasoning output, reasoning; separate real provider windows; conservative upper=max(point+1pp+2maxresidual,point?1.25,largerrequiredmargin); binding lowest floored conservative lower; CALIBRATED_ESTIMATE only, no billing inference. Productionmodule/tests implement same Owner method; no providerIO/authority/lifecycle sideeffects.
 
 Main work BLOCKED / QUALIFIED_CAPACITY_REQUIRED. Campaign CAPACITY_QUALIFICATION_CAMPAIGN_V1 prepared: at most3usefulLOW_RISK_MANUAL_READ_ONLY probes, minimumonly; allrules/WO/authorityidentities precompiled, no executionIDs. Existing ALLOW_WITH_WATCH is applicable to an otherwise fullyeligible exactauthorized lowriskmanual probe, not a waiver for mainHIGH work. Current campaign preflight blocker PROVIDER_CLIENT_POLICY_IDENTITY_UNRESOLVED. Probe count used0; campaign NOT_EXHAUSTED. Do not invoke a probe with known missing required identity merely to manufacture sample count. WO-specific typed CapacityEstimate is PROVISIONAL_ESTIMATE with NULL bounds, no fabricated calibrated interval.
 
 Only next action: mechanically establish explicit durable target provider-client-policy identity and fresh all8identity/runtime/provider/measurement-isolation/lifecycle gates before P01 manual handoff. No automatic CODEX invocation. After eachprobe intake/release/exacttokens/providerbinding/qualification, stop at3qualified perwindow; ifmax3used andinsufficient, CAPACITY_EVIDENCE_INSUFFICIENT. No additionalOwnerarchitecturediscussion or package design needed betweenprobes.
 
-MANUAL active; CONTROLLED_AUTO DISABLED; IVF01Rev1 stale, Rev2 NOT_AUTHORIZED; AUTO-IMP-003–009 NOT_AUTHORIZED; runtime/broker/DB/migration/LIVE/production/credentials DENIED. OriginalDAG and002→003→004→005→006→007→008→009 operationallane unchanged. KNOWN_AUTOMATION_ARCHITECTURE_DEBT=NONE means allcalibration/orchestrationdesign and tests included, not implementationalreadyoperational. Current machine pointers supersede historicalcheckpoint text below.
+MANUAL active; CONTROLLED_AUTO DISABLED; IVF01Rev1 stale, Rev2 NOT_AUTHORIZED; AUTO-IMP-003??09 NOT_AUTHORIZED; runtime/broker/DB/migration/LIVE/production/credentials DENIED. OriginalDAG and002??03??04??05??06??07??08??09 operationallane unchanged. KNOWN_AUTOMATION_ARCHITECTURE_DEBT=NONE means allcalibration/orchestrationdesign and tests included, not implementationalreadyoperational. Current machine pointers supersede historicalcheckpoint text below.
 
 
-## HISTORICAL CHECKPOINT — Program 1.2 / Orchestration Compilation
+## HISTORICAL CHECKPOINT ??Program 1.2 / Orchestration Compilation
 
 Architecture 1.2 ACTIVE. Owner final decision materialized; Program V2 is an explicit compiled successor candidate, not operationally accepted. Program V1 remains immutable historical Architecture1.1 evidence; no automatic rebind. Exact current work: `WO-AUTO-GOV-PROGRAM-1_2-ORCH-01`; authority `AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01` AUTHORIZED, not CONSUMED. Owner contract: `automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json`; plan: `automation/packages/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.plan.yaml`; complete49-case acceptance matrix and exact19-file scope: `automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml`.
 
 State BLOCKED; sole blocker QUALIFIED_CAPACITY_REQUIRED. Current route WORK_CAPACITY_REVIEW. Canonical Architecture1.2 evaluator rejects absent qualified capacity for this HIGH_AUTHORITY_SENSITIVE_CONTROLLER task; provider available is a separate gate. Eligibility: `automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.eligibility.json`. No policy exception/80% floor/40k fallback/percentage conversion. No new writer/execution/reservation/dispatch; handoff_ready=false; CODEX NOT_RUNNING.
 
-Owner operational order CLOSE_AUTO_IMP_002_IVF01_FIRST: 002→003→004→005→006→007→008→009. Logical DAG unchanged: 003 depends001, not002. Single-lane priority: safety/governance > resumable unfinished > pending result/review/integration > authorized new work. Queue/event/forecast/review never grant authority; all triggers WAKE_ONLY. Active dispatch model MANUAL; CONTROLLED_AUTO DISABLED. All promotion levels/gates fully defined in Owner implementation contract; only external evidence + explicit activation may remain pending. One cohesive independent governance/semantic review of the complete implementation candidate required before baseline acceptance.
+Owner operational order CLOSE_AUTO_IMP_002_IVF01_FIRST: 002??03??04??05??06??07??08??09. Logical DAG unchanged: 003 depends001, not002. Single-lane priority: safety/governance > resumable unfinished > pending result/review/integration > authorized new work. Queue/event/forecast/review never grant authority; all triggers WAKE_ONLY. Active dispatch model MANUAL; CONTROLLED_AUTO DISABLED. All promotion levels/gates fully defined in Owner implementation contract; only external evidence + explicit activation may remain pending. One cohesive independent governance/semantic review of the complete implementation candidate required before baseline acceptance.
 
 IVF01 Rev1 ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED and unchanged; Rev2 preparation metadata only, NOT_AUTHORIZED. AUTO-IMP-003 through009 NOT_AUTHORIZED until their own exact authority. Runtime/broker/DB/migration/LIVE/production DENIED. RF01 split recommendation contradiction included in this package; FRESH_CONTEXT_GROWTH is not structural evidence for splitting. KNOWN_AUTOMATION_ARCHITECTURE_DEBT = NONE means design complete/all known implementation issues included, not code implemented or capacity calibrated. No automatic next package.
 
 Current machine pointers above supersede all prior checkpoints below. Sole next legal action: mechanically qualify applicable capacity evidence and fresh revalidate; do not allocate or invoke CODEX while BLOCKED.
 
 
-## HISTORICAL CHECKPOINT — Architecture 1.2 Accepted Materialization (superseded current route)
+## HISTORICAL CHECKPOINT ??Architecture 1.2 Accepted Materialization (superseded current route)
 
 Architecture 1.2 = ACTIVE; Execution Capacity V2 = ACCEPTED_MATERIALIZED; V2 RF01 = CLOSED; V2-CAL-01 = CLOSED; V2-SER-01 = CLOSED; serializer warning assessment RESOLVED. Independent narrow PASS: `automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json`; exact reviewed source integrated at `14ff081757fe4205ab78c85b82f7ef6ca9c1e76f`. Original candidate e414c108e075c8aa2307d607ffe77013b40c5391; RF01 implementation ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a; evidence606d8273cc7ead110547d3fa232b7c5e41c0e78e; effective source bundle f5a1fea9c2a8f4084348bbe6e8912d6020c9ea9ecfb80ac128eda33a5aaffa9d.
 
@@ -68,23 +99,23 @@ Only next route: `AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQU
 
 <!-- HISTORICAL_PRE_1_2_PROJECTIONS_BEGIN: retained audit only; CURRENT section above supersedes readiness/architecture statements below -->
 
-## Canonical CURRENT Governance Projection — GOV-01
+## Canonical CURRENT Governance Projection ??GOV-01
 
-**CURRENT GOVERNANCE PROJECTION — CANONICAL**
+**CURRENT GOVERNANCE PROJECTION ??CANONICAL**
 
-This is the single current authority projection。
-If any cached handoff、AGENTS history、CURRENT_WORK、ACTIVE or older closure conflicts：this section wins and authority must be re-resolved。
+This is the single current authority projection??
+If any cached handoff?GENTS history?URRENT_WORK?CTIVE or older closure conflicts嚗his section wins and authority must be re-resolved??
 
-### Execution Capacity / Resume V2 — CURRENT Review Barrier
+### Execution Capacity / Resume V2 ??CURRENT Review Barrier
 
 Execution `EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z` completed on exact evidence `b899984462e48eb4dd02eae502918bd36ec937d4`; mechanical intake PASS, semantic acceptance NOT_PERFORMED. Writer released after durable intake `b83c0ce1773b06b936032487d0e42ec85bc27a7c` at release commit `933cd0b2a720579b465cdff1136058898658a2ce`. Exact local tokens and cost reconciliation are durable canonical run metadata. CURRENT/WO/eligibility now resolve COMPLETED_PENDING_REVIEW, handoff_ready=false, no CODEX reexecution. Sole next route: `WAIT_FOR_FRESH_CONTEXT_V2_INDEPENDENT_GOVERNANCE_REVIEW`; packet: `automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.review.yaml`. Architecture 1.1 ACTIVE; 1.2 CANDIDATE_PENDING_REVIEW; no activation/integration/acceptance. IVF01 BLOCKED; AUTO-IMP-003 NOT_AUTHORIZED; runtime/broker/DB/migration/LIVE/production DENIED. Earlier readiness snapshots are historical and superseded by this current transition.
 
-### AUTO-IMP-002 Integration Verification — STOP
+### AUTO-IMP-002 Integration Verification ??STOP
 
 RF02 semantic review PASS remains bound to implementation `33c8eea0d90d4cca5ecf5c902579a687ec096034` and evidence `f5fa626b8aa587fa8f43d6f70fa93842d574b356`.
 Exact four-file package candidate `63b7efd1448f87a0e1033911317d9618d60463ba` failed current-master targeted integration verification (83 failed, 22 passed). Source candidate was not published to master; acceptance/closure not materialized. Canonical blocker: `automation/work_orders/reconciliations/WO-AUTO-IMP-002-RF02-01.integration-verification.json`. No execution is authorized; AUTO-IMP-003 remains NOT_AUTHORIZED. Older readiness fields below are superseded by this STOP event and CURRENT_CODEX.
 
-### IC01 Bounded Implementation Authorization — QUOTA BLOCKED
+### IC01 Bounded Implementation Authorization ??QUOTA BLOCKED
 
 IC01 human decision APPROVED_FOR_BOUNDED_IMPLEMENTATION is materialized in `automation/authorizations/AUTH-AUTO-IMP-002-IC01-01.v1.yaml`.
 Current work: `WO-AUTO-IMP-002-IC01-01`; status BLOCKED; handoff_ready=false. Exact source correction scope remains reentry.py/test_reentry.py, budget 1 remaining.
@@ -95,27 +126,27 @@ No reservation, dispatch, consumption or executor invocation occurred. RF02 PASS
 
 Current work `WO-AUTO-IMP-002-IC01-01`, execution `EXEC-AUTO-IMP-002-IC01-20261005T150733Z`: READY_FOR_MANUAL_CODEX_TRIGGER. Authorization CONSUMED; exact waiver EXPIRED_CONSUMED with admission bound to this reserved execution only; no reuse. Writer HELD by same execution. Executor not invoked. Canonical exact pointers: `automation/work_orders/CURRENT_CODEX.yaml` and `automation/work_orders/CURRENT_CODEX_TASK.md`. Earlier quota-blocked snapshots are superseded by this transition. Runtime/broker/DB/migration/LIVE/production DENIED; AUTO-IMP-003 NOT_AUTHORIZED.
 
-### IC01 Durable Result Intake — Review Barrier
+### IC01 Durable Result Intake ??Review Barrier
 
 COMPLETED_PENDING_REVIEW; handoff_ready=false; writer released after intake `56c445c5651510231fe0befdc7fd535ce1d06948`. Exact source remains on execution branch, not master. Cost/token/reconciliation are canonical run metadata. No acceptance or integration is performed. Latest CURRENT pointers supersede earlier manual-ready text.
 
-### IC01 Bound Review PASS — Integration Pending
+### IC01 Bound Review PASS ??Integration Pending
 
 Final independent verdict: PASS, findings NONE, exact IC01 implementation/evidence binding preserved. Acceptance remains unmaterialized. Only next action: fresh-master exact four-file integration verification. Earlier STOP/ready/review snapshots remain historical; canonical CURRENT supersedes them. No dispatch; AUTO-IMP-003 NOT_AUTHORIZED.
 
-### IC01 Fresh-Master Integration Verification — STOP (CURRENT)
+### IC01 Fresh-Master Integration Verification ??STOP (CURRENT)
 
 Independent IC01 PASS remains valid at its exact reviewed SHA/scope. Candidate `c0780fb422d6429332261d193a90815ec0c90f0d` on fresh master `9c8c05ca9ec6adc278da2eca7e7d52fd63a2eece` failed targeted verification: 117 passed, 1 failed. `test_ic01_actual_consumed_current_no_deep_dereference` expects AUTHORIZATION_NOT_AVAILABLE, while REVIEW_PASS current state safely returns NO_LEGAL_READY_WORK. Canonical evidence: `automation/work_orders/reconciliations/WO-AUTO-IMP-002-IC01-01.integration-verification.json`. Source candidate remains unpublished; full regression not run; acceptance/closure not materialized. No source fix or dispatch; AUTO-IMP-003 NOT_AUTHORIZED. Earlier READY/review-barrier text is historical and superseded by this STOP.
 
-### IVF01 Test-Expectation Replan — PREPARED / NOT AUTHORIZED (CURRENT)
+### IVF01 Test-Expectation Replan ??PREPARED / NOT AUTHORIZED (CURRENT)
 
 Architecture decision confirms production resolver behavior is safe and must remain unchanged. IVF01 preparation: `automation/work_orders/AUTO-IMP-002-IVF01.authorization-prep.json`; future identity `WO-AUTO-IMP-002-IVF01-01`; exact proposed correction scope is `tests/automation/test_reentry.py` only, proposed budget 1 (not granted). IC01 PASS and failed integration evidence remain unchanged; no acceptance/closure. Separate implementation authority and fresh lifecycle/quota gates are required before any execution. No CODEX dispatch; AUTO-IMP-003 NOT_AUTHORIZED.
 
-### IVF01 Exact Implementation Authority — QUOTA BLOCKED (CURRENT)
+### IVF01 Exact Implementation Authority ??QUOTA BLOCKED (CURRENT)
 
 Human IVF01 bounded implementation decision is materialized in `automation/authorizations/AUTH-AUTO-IMP-002-IVF01-01.v1.yaml`; exact work order `WO-AUTO-IMP-002-IVF01-01` is BLOCKED, handoff_ready=false. Only `tests/automation/test_reentry.py` may receive semantic correction; budget 1 unused. Sole pre-reservation blocker: IVF01_QUOTA_ADMISSION_UNRESOLVED (P90 5.5M exceeds frozen normalized fallback 40k; no compatible provider-native admission). Provider presently permits ordinary usage, with no hard-block; percentages are not token budgets. No execution/reservation/lock/dispatch/consumption. IC01 semantic PASS and historical integration failure remain unchanged. AUTO-IMP-003 and runtime/broker/DB/migration/LIVE/production remain NOT_AUTHORIZED. Prior preparation and IC01 snapshots below are historical; CURRENT_CODEX is the exact active pointer.
 
-### Execution Capacity / Resume V2 — Authorized Migration, NOT ACTIVE
+### Execution Capacity / Resume V2 ??Authorized Migration, NOT ACTIVE
 
 Human decision EXECUTION_CAPACITY_AND_RESUME_V2 = APPROVED_FOR_COHESIVE_IMPLEMENTATION authorizes one exact governance migration bootstrap. Current migration WO: `WO-AUTO-GOV-EXEC-CAPACITY-V2-01`; authority: `AUTH-AUTO-GOV-EXEC-CAPACITY-V2-01`. Active master architecture remains1.1 until fresh Independent Governance/Semantic Review PASS and WORK accepted materialization. This bootstrap excludes obsolete internal80%/40k gate only for the migration; provider hard-block still STOP. IVF01 Rev1 remains blocked/no execution and will require recompilation after1.2active; no waiver. AUTO-IMP-003/runtime/broker/DB/migration/LIVE/production remain NOT_AUTHORIZED. CURRENT pointers supersede earlier IVF01 next-route text.
 
@@ -317,87 +348,87 @@ development_automation_governance_migration_handoff_ready = true
 development_automation_master_1_2 = PROPOSED_PENDING_INDEPENDENT_REVIEW_NOT_ACTIVE
 ```
 
-Pointers：
+Pointers嚗?
 
-- W3 closure：`docs/work/GAP08_WAVE3_CLOSURE.md`
-- W4 execution package：`docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`
-- W4 original auth：`docs/work/GAP08_WAVE4_AUTHORIZATION.md`
-- W4 RF01：`docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_01.md`
-- W4 RF02：`docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_02.md`
-- W4 architect decision / replan boundary：`docs/work/GAP08_WAVE4_ARCHITECT_DECISION_REPLAN.md`
-- workflow：`docs/CODEX_EXECUTION_WORKFLOW.md`
-- AI operating model / architect audit registry / automation maturity：`docs/AI_AUTOMATION_OPERATING_MODEL.md`
-- W4 VIBE replan candidate：`docs/work/GAP08_WAVE4_REPLAN_V2.md`
-- W4R package freeze：`docs/work/GAP08_W4R_PACKAGE_FREEZE.md`
-- W4R-A authorization：`docs/work/GAP08_W4R_A_AUTHORIZATION.md`
-- W4R-A independent review：`docs/work/GAP08_W4R_A_REVIEW_RF01.md`
-- W4R-A RF01 authorization：`docs/work/GAP08_W4R_A_AUTHORIZATION_AMENDMENT_01.md`
-- W4R-A RF02 review：`docs/work/GAP08_W4R_A_REVIEW_RF02.md`
-- W4R-A RF02 authorization：`docs/work/GAP08_W4R_A_AUTHORIZATION_AMENDMENT_02.md`
-- W4R-A closure：`docs/work/GAP08_W4R_A_CLOSURE.md`
-- W4R-B execution plan：`docs/work/GAP08_W4R_B_EXECUTION_PLAN.md`
-- W4R-B1 authorization：`docs/work/GAP08_W4R_B1_AUTHORIZATION.md`
-- W4R-B1 independent review：`docs/work/GAP08_W4R_B1_REVIEW_RF01.md`
-- W4R-B1 RF01 authorization：`docs/work/GAP08_W4R_B1_AUTHORIZATION_AMENDMENT_01.md`
-- W4R-B1 closure：`docs/work/GAP08_W4R_B1_CLOSURE.md`
-- W4R-B2 authorization：`docs/work/GAP08_W4R_B2_AUTHORIZATION.md`
-- W4R-B2 independent review：`docs/work/GAP08_W4R_B2_REVIEW_RF01.md`
-- W4R-B2 RF01 authorization：`docs/work/GAP08_W4R_B2_AUTHORIZATION_AMENDMENT_01.md`
-- W4R-B2 / W4R-B closure：`docs/work/GAP08_W4R_B2_CLOSURE.md`
-- W4R-C execution plan：`docs/work/GAP08_W4R_C_EXECUTION_PLAN.md`
-- W4R-C1 authorization：`docs/work/GAP08_W4R_C1_AUTHORIZATION.md`
-- W4R-C1 closure：`docs/work/GAP08_W4R_C1_CLOSURE.md`
-- W4R-C2 execution plan：`docs/work/GAP08_W4R_C2_EXECUTION_PLAN.md`
-- W4R-C2A authorization：`docs/work/GAP08_W4R_C2A_AUTHORIZATION.md`
-- W4R-C2A independent review：`docs/work/GAP08_W4R_C2A_REVIEW_RF01.md`
-- W4R-C2A RF01 authorization：`docs/work/GAP08_W4R_C2A_AUTHORIZATION_AMENDMENT_01.md`
-- W4R-C2A closure：`docs/work/GAP08_W4R_C2A_CLOSURE.md`
-- W4R-C2B authorization：`docs/work/GAP08_W4R_C2B_AUTHORIZATION.md`
-- W4R-C2B independent review：`docs/work/GAP08_W4R_C2B_REVIEW_RF01.md`
-- W4R-C2B RF01 authorization：`docs/work/GAP08_W4R_C2B_AUTHORIZATION_AMENDMENT_01.md`
-- W4R-C2B / W4R-C closure：`docs/work/GAP08_W4R_C2B_CLOSURE.md`
-- W4R-D execution plan：`docs/work/GAP08_W4R_D_EXECUTION_PLAN.md`
-- W4R-D1A authorization：`docs/work/GAP08_W4R_D1A_AUTHORIZATION.md`
-- W4R-D1A independent review：`docs/work/GAP08_W4R_D1A_REVIEW_RF01.md`
-- W4R-D1A RF01 authorization：`docs/work/GAP08_W4R_D1A_AUTHORIZATION_AMENDMENT_01.md`
-- W4R-D1A RF01 blocker note：`docs/work/GAP08_W4R_D1A_RF01_BLOCKER_01.md`
-- W4R-D1A RF01 resume authorization：`docs/work/GAP08_W4R_D1A_AUTHORIZATION_AMENDMENT_02.md`
-- W4R-D1A RF01 Resume blocker 02：`docs/work/GAP08_W4R_D1A_RF01_BLOCKER_02.md`
-- W4R-D1A RF01 Resume-2 authorization：`docs/work/GAP08_W4R_D1A_AUTHORIZATION_AMENDMENT_03.md`
-- W4R-D1A closure：`docs/work/GAP08_W4R_D1A_CLOSURE.md`
-- W4R-D1B authorization：`docs/work/GAP08_W4R_D1B_AUTHORIZATION.md`
-- W4R-D1B closure：`docs/work/GAP08_W4R_D1B_CLOSURE.md`
-- W4R-D2 authorization：`docs/work/GAP08_W4R_D2_AUTHORIZATION.md`
-- W4R-D2 tooling blocker 01：`docs/work/GAP08_W4R_D2_TOOLING_BLOCKER_01.md`
-- W4R-D2 authorization amendment 01：`docs/work/GAP08_W4R_D2_AUTHORIZATION_AMENDMENT_01.md`
-- W4R-D2 independent review RF01：`docs/work/GAP08_W4R_D2_REVIEW_RF01.md`
-- W4R-D2 RF01 authorization：`docs/work/GAP08_W4R_D2_AUTHORIZATION_AMENDMENT_02.md`
-- W4R-D2 independent review RF02：`docs/work/GAP08_W4R_D2_REVIEW_RF02.md`
-- W4R-D2 RF02 authorization：`docs/work/GAP08_W4R_D2_AUTHORIZATION_AMENDMENT_03.md`
-- W4R-D2 closure：`docs/work/GAP08_W4R_D2_CLOSURE.md`
-- W4R-D3 authorization：`docs/work/GAP08_W4R_D3_AUTHORIZATION.md`
-- W4R-D3 independent review RF01：`docs/work/GAP08_W4R_D3_REVIEW_RF01.md`
-- W4R-D3 RF01 authorization：`docs/work/GAP08_W4R_D3_AUTHORIZATION_AMENDMENT_01.md`
-- W4R-D3 closure：`docs/work/GAP08_W4R_D3_CLOSURE.md`
-- W4R PostgreSQL integration/concurrency gate authorization：`docs/work/GAP08_W4R_POSTGRES_CONCURRENCY_GATE_AUTHORIZATION.md`
-- W4R PostgreSQL harness ENV_BLOCKED closure：`docs/work/GAP08_W4R_PG_CONCURRENCY_ENV_BLOCKED_CLOSURE.md`
-- W4R PostgreSQL gate RF01 review：`docs/work/GAP08_W4R_PG_CONCURRENCY_REVIEW_RF01.md`
-- W4R PostgreSQL gate RF01 authorization：`docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_01.md`
-- W4R PostgreSQL gate RF02 review：`docs/work/GAP08_W4R_PG_CONCURRENCY_REVIEW_RF02.md`
-- W4R PostgreSQL gate RF02 authorization：`docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_02.md`
-- W4R PostgreSQL gate RF02A FK fixture review：`docs/work/GAP08_W4R_PG_CONCURRENCY_REVIEW_RF02A.md`
-- W4R PostgreSQL gate RF02A authorization：`docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_03.md`
+- W3 closure嚗docs/work/GAP08_WAVE3_CLOSURE.md`
+- W4 execution package嚗docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`
+- W4 original auth嚗docs/work/GAP08_WAVE4_AUTHORIZATION.md`
+- W4 RF01嚗docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_01.md`
+- W4 RF02嚗docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_02.md`
+- W4 architect decision / replan boundary嚗docs/work/GAP08_WAVE4_ARCHITECT_DECISION_REPLAN.md`
+- workflow嚗docs/CODEX_EXECUTION_WORKFLOW.md`
+- AI operating model / architect audit registry / automation maturity嚗docs/AI_AUTOMATION_OPERATING_MODEL.md`
+- W4 VIBE replan candidate嚗docs/work/GAP08_WAVE4_REPLAN_V2.md`
+- W4R package freeze嚗docs/work/GAP08_W4R_PACKAGE_FREEZE.md`
+- W4R-A authorization嚗docs/work/GAP08_W4R_A_AUTHORIZATION.md`
+- W4R-A independent review嚗docs/work/GAP08_W4R_A_REVIEW_RF01.md`
+- W4R-A RF01 authorization嚗docs/work/GAP08_W4R_A_AUTHORIZATION_AMENDMENT_01.md`
+- W4R-A RF02 review嚗docs/work/GAP08_W4R_A_REVIEW_RF02.md`
+- W4R-A RF02 authorization嚗docs/work/GAP08_W4R_A_AUTHORIZATION_AMENDMENT_02.md`
+- W4R-A closure嚗docs/work/GAP08_W4R_A_CLOSURE.md`
+- W4R-B execution plan嚗docs/work/GAP08_W4R_B_EXECUTION_PLAN.md`
+- W4R-B1 authorization嚗docs/work/GAP08_W4R_B1_AUTHORIZATION.md`
+- W4R-B1 independent review嚗docs/work/GAP08_W4R_B1_REVIEW_RF01.md`
+- W4R-B1 RF01 authorization嚗docs/work/GAP08_W4R_B1_AUTHORIZATION_AMENDMENT_01.md`
+- W4R-B1 closure嚗docs/work/GAP08_W4R_B1_CLOSURE.md`
+- W4R-B2 authorization嚗docs/work/GAP08_W4R_B2_AUTHORIZATION.md`
+- W4R-B2 independent review嚗docs/work/GAP08_W4R_B2_REVIEW_RF01.md`
+- W4R-B2 RF01 authorization嚗docs/work/GAP08_W4R_B2_AUTHORIZATION_AMENDMENT_01.md`
+- W4R-B2 / W4R-B closure嚗docs/work/GAP08_W4R_B2_CLOSURE.md`
+- W4R-C execution plan嚗docs/work/GAP08_W4R_C_EXECUTION_PLAN.md`
+- W4R-C1 authorization嚗docs/work/GAP08_W4R_C1_AUTHORIZATION.md`
+- W4R-C1 closure嚗docs/work/GAP08_W4R_C1_CLOSURE.md`
+- W4R-C2 execution plan嚗docs/work/GAP08_W4R_C2_EXECUTION_PLAN.md`
+- W4R-C2A authorization嚗docs/work/GAP08_W4R_C2A_AUTHORIZATION.md`
+- W4R-C2A independent review嚗docs/work/GAP08_W4R_C2A_REVIEW_RF01.md`
+- W4R-C2A RF01 authorization嚗docs/work/GAP08_W4R_C2A_AUTHORIZATION_AMENDMENT_01.md`
+- W4R-C2A closure嚗docs/work/GAP08_W4R_C2A_CLOSURE.md`
+- W4R-C2B authorization嚗docs/work/GAP08_W4R_C2B_AUTHORIZATION.md`
+- W4R-C2B independent review嚗docs/work/GAP08_W4R_C2B_REVIEW_RF01.md`
+- W4R-C2B RF01 authorization嚗docs/work/GAP08_W4R_C2B_AUTHORIZATION_AMENDMENT_01.md`
+- W4R-C2B / W4R-C closure嚗docs/work/GAP08_W4R_C2B_CLOSURE.md`
+- W4R-D execution plan嚗docs/work/GAP08_W4R_D_EXECUTION_PLAN.md`
+- W4R-D1A authorization嚗docs/work/GAP08_W4R_D1A_AUTHORIZATION.md`
+- W4R-D1A independent review嚗docs/work/GAP08_W4R_D1A_REVIEW_RF01.md`
+- W4R-D1A RF01 authorization嚗docs/work/GAP08_W4R_D1A_AUTHORIZATION_AMENDMENT_01.md`
+- W4R-D1A RF01 blocker note嚗docs/work/GAP08_W4R_D1A_RF01_BLOCKER_01.md`
+- W4R-D1A RF01 resume authorization嚗docs/work/GAP08_W4R_D1A_AUTHORIZATION_AMENDMENT_02.md`
+- W4R-D1A RF01 Resume blocker 02嚗docs/work/GAP08_W4R_D1A_RF01_BLOCKER_02.md`
+- W4R-D1A RF01 Resume-2 authorization嚗docs/work/GAP08_W4R_D1A_AUTHORIZATION_AMENDMENT_03.md`
+- W4R-D1A closure嚗docs/work/GAP08_W4R_D1A_CLOSURE.md`
+- W4R-D1B authorization嚗docs/work/GAP08_W4R_D1B_AUTHORIZATION.md`
+- W4R-D1B closure嚗docs/work/GAP08_W4R_D1B_CLOSURE.md`
+- W4R-D2 authorization嚗docs/work/GAP08_W4R_D2_AUTHORIZATION.md`
+- W4R-D2 tooling blocker 01嚗docs/work/GAP08_W4R_D2_TOOLING_BLOCKER_01.md`
+- W4R-D2 authorization amendment 01嚗docs/work/GAP08_W4R_D2_AUTHORIZATION_AMENDMENT_01.md`
+- W4R-D2 independent review RF01嚗docs/work/GAP08_W4R_D2_REVIEW_RF01.md`
+- W4R-D2 RF01 authorization嚗docs/work/GAP08_W4R_D2_AUTHORIZATION_AMENDMENT_02.md`
+- W4R-D2 independent review RF02嚗docs/work/GAP08_W4R_D2_REVIEW_RF02.md`
+- W4R-D2 RF02 authorization嚗docs/work/GAP08_W4R_D2_AUTHORIZATION_AMENDMENT_03.md`
+- W4R-D2 closure嚗docs/work/GAP08_W4R_D2_CLOSURE.md`
+- W4R-D3 authorization嚗docs/work/GAP08_W4R_D3_AUTHORIZATION.md`
+- W4R-D3 independent review RF01嚗docs/work/GAP08_W4R_D3_REVIEW_RF01.md`
+- W4R-D3 RF01 authorization嚗docs/work/GAP08_W4R_D3_AUTHORIZATION_AMENDMENT_01.md`
+- W4R-D3 closure嚗docs/work/GAP08_W4R_D3_CLOSURE.md`
+- W4R PostgreSQL integration/concurrency gate authorization嚗docs/work/GAP08_W4R_POSTGRES_CONCURRENCY_GATE_AUTHORIZATION.md`
+- W4R PostgreSQL harness ENV_BLOCKED closure嚗docs/work/GAP08_W4R_PG_CONCURRENCY_ENV_BLOCKED_CLOSURE.md`
+- W4R PostgreSQL gate RF01 review嚗docs/work/GAP08_W4R_PG_CONCURRENCY_REVIEW_RF01.md`
+- W4R PostgreSQL gate RF01 authorization嚗docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_01.md`
+- W4R PostgreSQL gate RF02 review嚗docs/work/GAP08_W4R_PG_CONCURRENCY_REVIEW_RF02.md`
+- W4R PostgreSQL gate RF02 authorization嚗docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_02.md`
+- W4R PostgreSQL gate RF02A FK fixture review嚗docs/work/GAP08_W4R_PG_CONCURRENCY_REVIEW_RF02A.md`
+- W4R PostgreSQL gate RF02A authorization嚗docs/work/GAP08_W4R_PG_CONCURRENCY_AUTHORIZATION_AMENDMENT_03.md`
 - W4R PostgreSQL final closure: `docs/work/GAP08_W4R_PG_CONCURRENCY_CLOSURE.md`
 - W4 final closure: `docs/work/GAP08_WAVE4_CLOSURE.md`
 - GOV-SYNC W4/PRE-P7 record: `docs/work/GOV_SYNC_W4_PREP7.md`
 - P7 C16 closure: `docs/work/GAP08_P7_C16_CLOSURE.md`
 - P7 remainder authorization: `docs/work/GAP08_P7_REMAINDER_AUTHORIZATION.md`
 - P7 C16 authorization: `docs/work/GAP08_P7_C16_AUTHORIZATION.md`
-- P7 remainder acceptance closure：`docs/work/GAP08_P7_REMAINDER_CLOSURE.md`
-- GAP-08 final closure：`docs/work/GAP08_FINAL_CLOSURE.md`
-- Scheduler V2：`scripts/codex_level3a_scheduler_v2.ps1`
-- Result Intake V1：`scripts/codex_level3a_result_intake_v1.ps1`
-- Scheduler V1：`scripts/codex_level3a_scheduler_v1.ps1`
+- P7 remainder acceptance closure嚗docs/work/GAP08_P7_REMAINDER_CLOSURE.md`
+- GAP-08 final closure嚗docs/work/GAP08_FINAL_CLOSURE.md`
+- Scheduler V2嚗scripts/codex_level3a_scheduler_v2.ps1`
+- Result Intake V1嚗scripts/codex_level3a_result_intake_v1.ps1`
+- Scheduler V1嚗scripts/codex_level3a_scheduler_v1.ps1`
 
 Current action:
 
@@ -427,39 +458,39 @@ Next governance checkpoint:
 ---
 ### POST-5E ACCEPTED PLANNING INPUTS
 
-The following post-5E items were ACCEPTED PLANNING INPUTS and are now materialized into the docs-only Correction-Freeze Work Package；they remain planning inputs and are NOT a new Architecture Decision Baseline。
+The following post-5E items were ACCEPTED PLANNING INPUTS and are now materialized into the docs-only Correction-Freeze Work Package嚗hey remain planning inputs and are NOT a new Architecture Decision Baseline??
 
-They are NOT a new Architecture Decision Baseline and do NOT grant Runtime Authorization。
+They are NOT a new Architecture Decision Baseline and do NOT grant Runtime Authorization??
 
-K520：
+K520嚗?
 
-- DEFER CONFIRMED。
-- GAP-09 OWNED。
-- CONDITIONAL_PRODUCTION_DEPENDENCY。
-- GAP-08_FAIL_CLOSED_ENFORCEMENT_REQUIRED。
-- K520_NOT_APPLICABLE requires positive proof under the exact governing StrategyInstance recovery contract。
+- DEFER CONFIRMED??
+- GAP-09 OWNED??
+- CONDITIONAL_PRODUCTION_DEPENDENCY??
+- GAP-08_FAIL_CLOSED_ENFORCEMENT_REQUIRED??
+- K520_NOT_APPLICABLE requires positive proof under the exact governing StrategyInstance recovery contract??
 
-BG-01～BG-07：
+BG-01嚚G-07嚗?
 
-- CLASSIFICATION CLOSED FOR CORRECTION-FREEZE PLANNING。
-- implementation work、capability verification and production-gate state remain distinct。
-- PAPER_VERIFIED != PRODUCTION_VERIFIED。
+- CLASSIFICATION CLOSED FOR CORRECTION-FREEZE PLANNING??
+- implementation work?apability verification and production-gate state remain distinct??
+- PAPER_VERIFIED != PRODUCTION_VERIFIED??
 
-Expanded Correction-Scope Map：
+Expanded Correction-Scope Map嚗?
 
-- ARCHITECTURALLY CLOSED for correction-freeze planning。
-- no R-01～R-14 / K520 / BG-01～BG-07 reopen without concrete contradiction or new authoritative evidence。
+- ARCHITECTURALLY CLOSED for correction-freeze planning??
+- no R-01嚚-14 / K520 / BG-01嚚G-07 reopen without concrete contradiction or new authoritative evidence??
 
-Delta-to-Contract：
+Delta-to-Contract嚗?
 
-- FROZEN PLANNING RULE。
-- architecture scope size != runtime correction size。
-- KNOWN_CONFORMANT requires exact positive evidence against the exact Frozen Contract Assertion。
-- no defect found != KNOWN_CONFORMANT。
-- historical test pass != current frozen-contract conformance。
-- insufficient evidence defaults to UNKNOWN_CONFORMANCE。
+- FROZEN PLANNING RULE??
+- architecture scope size != runtime correction size??
+- KNOWN_CONFORMANT requires exact positive evidence against the exact Frozen Contract Assertion??
+- no defect found != KNOWN_CONFORMANT??
+- historical test pass != current frozen-contract conformance??
+- insufficient evidence defaults to UNKNOWN_CONFORMANCE??
 
-Planning materialization：
+Planning materialization嚗?
 
     Frozen Contract Assertion Inventory
         -> Evidence / Delta Classification
@@ -467,416 +498,416 @@ Planning materialization：
         -> materialize only required
            Engineering / Correction / Conformance / Verification leaves
 
-Disposition is planning metadata only；it is not an independent authority state。
+Disposition is planning metadata only嚗t is not an independent authority state??
 
-Production Gate is evidence-dependent status metadata and has no coding weight；evidence-producing verification work may have engineering weight。
+Production Gate is evidence-dependent status metadata and has no coding weight嚗vidence-producing verification work may have engineering weight??
 
-DB-CONF-01：
+DB-CONF-01嚗?
 
-- DB-CONF-01A = Repository Persistence Baseline Verification。
-- DB-CONF-01B = Actual Environment Conformance Verification。
-- unavailable actual DB != correction code cannot be written。
-- unknown actual DB => no environment-conformance claim and no blind migration。
+- DB-CONF-01A = Repository Persistence Baseline Verification??
+- DB-CONF-01B = Actual Environment Conformance Verification??
+- unavailable actual DB != correction code cannot be written??
+- unknown actual DB => no environment-conformance claim and no blind migration??
 
-Correction-Freeze Decision Checkpoint：COMPLETE / DOCS-ONLY。
+Correction-Freeze Decision Checkpoint嚗OMPLETE / DOCS-ONLY??
 
-Authoritative execution-planning detail：
+Authoritative execution-planning detail嚗?
 
 `docs/work/GAP08_CORRECTION_FREEZE.md`
 
-Reweighted bounded correction core：
+Reweighted bounded correction core嚗?
 
-- C01～C25：weight 110。
-- V06 repository persistence verification：weight 3。
-- bounded correction core：weight 113。
-- original candidate 151 + bounded correction core 113 = 264。
-- separate V01～V05 broker capability verification：weight 19。
-- mapped envelope excluding actual DB environment verification：283。
-- V07 actual PostgreSQL environment conformance：weight 4 conditional。
-- maximum mapped envelope when V07 is explicitly scoped：287。
+- C01嚚25嚗eight 110??
+- V06 repository persistence verification嚗eight 3??
+- bounded correction core嚗eight 113??
+- original candidate 151 + bounded correction core 113 = 264??
+- separate V01嚚05 broker capability verification嚗eight 19??
+- mapped envelope excluding actual DB environment verification嚗?83??
+- V07 actual PostgreSQL environment conformance嚗eight 4 conditional??
+- maximum mapped envelope when V07 is explicitly scoped嚗?87??
 
-The Correction-Freeze checkpoint itself granted no runtime authority；later bounded authorizations for V06+C01 and C22 were separately granted、executed and consumed。
+The Correction-Freeze checkpoint itself granted no runtime authority嚗ater bounded authorizations for V06+C01 and C22 were separately granted?xecuted and consumed??
 
-The existing 47.92% remains the recorded architecture-freeze lifecycle baseline；this docs-only planning checkpoint does not claim new acceptance percentage。
+The existing 47.92% remains the recorded architecture-freeze lifecycle baseline嚗his docs-only planning checkpoint does not claim new acceptance percentage??
 
 ### Current Planning / Execution Sequence
 
-Post-C25 Planning Baseline：
+Post-C25 Planning Baseline嚗?
 
 `eb8d4a3419d52fc4ee8e66641260baa96cfd7ec9`
 
-Post-C25 CURRENT consistency verification：
+Post-C25 CURRENT consistency verification嚗?
 
-COMPLETE。
+COMPLETE??
 
-Frozen P1：
+Frozen P1嚗?
 
     C01 COMPLETE
         -> C22 COMPLETE
         -> C11 COMPLETE
 
-P1 status：
+P1 status嚗?
 
-COMPLETE。
+COMPLETE??
 
-Frozen P2：
+Frozen P2嚗?
 
     C23 COMPLETE
         -> C24 COMPLETE
         -> C25 COMPLETE
 
-P2 status：
+P2 status嚗?
 
-COMPLETE。
+COMPLETE??
 
-Correction-core progress：
+Correction-core progress嚗?
 
     27 / 113 complete / verified
     86 remaining
 
-Current Runtime Authorization：
+Current Runtime Authorization嚗?
 
-NOT_AUTHORIZED。
+NOT_AUTHORIZED??
 
-Current Runtime Source Modification Authorization：
+Current Runtime Source Modification Authorization嚗?
 
-NOT_AUTHORIZED。
+NOT_AUTHORIZED??
 
-Next runtime candidate：
+Next runtime candidate嚗?
 
-C02 — BrokerAccount Revision Head + Exact Checkpoint。
+C02 ??BrokerAccount Revision Head + Exact Checkpoint??
 
-C02：
+C02嚗?
 
-NOT_AUTHORIZED。
+NOT_AUTHORIZED??
 
-VIBE V0 / Wave workflow materialization：
+VIBE V0 / Wave workflow materialization嚗?
 
-COMPLETE。
+COMPLETE??
 
-Materialization authorization：
+Materialization authorization嚗?
 
 `docs/work/VIBE_V0_WORKFLOW_AUTHORIZATION.md`
 
-Materialized workflow owner：
+Materialized workflow owner嚗?
 
 `docs/CODEX_EXECUTION_WORKFLOW.md`
 
-Work Package / Wave authorization schema：
+Work Package / Wave authorization schema嚗?
 
 `docs/work/WORK_PACKAGE_TEMPLATE.md`
 
-Docs / Workflow Modification Authorization：
+Docs / Workflow Modification Authorization嚗?
 
-CONSUMED / CLOSED。
+CONSUMED / CLOSED??
 
-Runtime Authorization：
+Runtime Authorization嚗?
 
-NOT_AUTHORIZED。
+NOT_AUTHORIZED??
 
-Runtime Source Modification Authorization：
+Runtime Source Modification Authorization嚗?
 
-NOT_AUTHORIZED。
+NOT_AUTHORIZED??
 
-Wave-1 final result：
+Wave-1 final result嚗?
 
-COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
+COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED??
 
-Final Runtime HEAD：
+Final Runtime HEAD嚗?
 
 `6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`
 
-Closure：
+Closure嚗?
 
 `docs/work/GAP08_WAVE1_CLOSURE.md`
 
-Correction-core progress：
+Correction-core progress嚗?
 
     46 / 113 complete / verified
     67 remaining
 
-W1 Runtime Source Modification Authorization：
+W1 Runtime Source Modification Authorization嚗?
 
-CONSUMED / CLOSED。
+CONSUMED / CLOSED??
 
-Runtime Authorization：
+Runtime Authorization嚗?
 
-NOT_AUTHORIZED。
+NOT_AUTHORIZED??
 
-Next dependency-coherent candidate：
+Next dependency-coherent candidate嚗?
 
     C08
         -> C05
         -> C06
 
-W2 weight：
+W2 weight嚗?
 
-14。
+14??
 
-W2 Execution Coherence：
+W2 Execution Coherence嚗?
 
-VERIFIED。
+VERIFIED??
 
-W2 Runtime Source Modification Authorization：
+W2 Runtime Source Modification Authorization嚗?
 
-CONSUMED / CLOSED。
+CONSUMED / CLOSED??
 
-Next：
+Next嚗?
 
-W2 final Runtime HEAD `a9a8277afd4aeda5150d596b41597a179ad63570` -> RF01 PASS -> W2 COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED。
+W2 final Runtime HEAD `a9a8277afd4aeda5150d596b41597a179ad63570` -> RF01 PASS -> W2 COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED??
 
-P5 / W3 Broker Recovery Evidence：C07 -> C09 -> C10；execution coherence VERIFIED；bounded source modification AUTHORIZED by `docs/work/GAP08_WAVE3_AUTHORIZATION.md`。Canonical Runtime Authorization remains NOT_AUTHORIZED。
+P5 / W3 Broker Recovery Evidence嚗07 -> C09 -> C10嚗xecution coherence VERIFIED嚗ounded source modification AUTHORIZED by `docs/work/GAP08_WAVE3_AUTHORIZATION.md`?anonical Runtime Authorization remains NOT_AUTHORIZED??
 
-No step implicitly grants authority to the next step。
+No step implicitly grants authority to the next step??
 
-A future runtime/source-modification authorization decision must identify at least：
+A future runtime/source-modification authorization decision must identify at least嚗?
 
-Authorization Baseline、Authorized Leaf Set、Runtime Modification Scope、Excluded/Deferred Scope、Environment Scope、DB/Broker side-effect permissions、Capability Verification modes、Required Tests、Git policy and Stop Boundary。
+Authorization Baseline?uthorized Leaf Set?untime Modification Scope?xcluded/Deferred Scope?nvironment Scope?B/Broker side-effect permissions?apability Verification modes?equired Tests?it policy and Stop Boundary??
 
-A bare `AUTHORIZED` value is insufficient。
+A bare `AUTHORIZED` value is insufficient??
 
 ---
 
-All older runtime-launch/current-work snapshots below are historical evidence unless explicitly identified as part of this canonical CURRENT projection。
+All older runtime-launch/current-work snapshots below are historical evidence unless explicitly identified as part of this canonical CURRENT projection??
 
 ## Repository Baseline
 
-Repository：
+Repository嚗?
 
 `futures_trading_system`
 
-Branch：
+Branch嚗?
 
 `master`
 
-Architecture baseline：
+Architecture baseline嚗?
 
 `771f10f`
 
-GAP-ACCOUNT-001 execution authorization baseline：
+GAP-ACCOUNT-001 execution authorization baseline嚗?
 
 `5e24960`
 
-Actual runtime execution HEAD：
+Actual runtime execution HEAD嚗?
 
-由每次 Work Package precheck 取得。
+?望?甈?Work Package precheck ????
 
-本文件不保存「精確 current HEAD」，避免 documentation commit 造成自我參照與立即 stale。
+?祆?隞嗡?靽??移蝣?current HEAD???踹? documentation commit ???芣??????stale??
 
-Recorded full regression：
+Recorded full regression嚗?
 
 934 passed / 4 skipped
 
-Known warning：
+Known warning嚗?
 
-1 PytestCacheWarning / GAP-ENV-001。
+1 PytestCacheWarning / GAP-ENV-001??
 
-Known local untracked：
+Known local untracked嚗?
 
 `data/`
 
-`data/` 不得自動 stage。
+`data/` 銝??芸? stage??
 
 ---
 
 ## Blueprint Baseline
 
-Status：
+Status嚗?
 
-AUTHORITATIVE。
+AUTHORITATIVE??
 
-Baseline commit：
+Baseline commit嚗?
 
 `432c48fb63c3d8d2760c0f2f5338e205ded63d30`
 
-Engineering inventory：
+Engineering inventory嚗?
 
-- A～O V1 Domains。
-- 603 engineering leaves。
-- total weight 2137。
-- Blueprint IDs / source / authority / traceability / metrics 已啟用。
+- A嚚 V1 Domains??
+- 603 engineering leaves??
+- total weight 2137??
+- Blueprint IDs / source / authority / traceability / metrics 撌脣??具?
 
-GAP-ACCOUNT-001：
+GAP-ACCOUNT-001嚗?
 
-COMPLETED / ACCEPTED。
+COMPLETED / ACCEPTED??
 
-Accepted runtime commit：
+Accepted runtime commit嚗?
 
 `50813b679f818f3837a9f50fdcda9921495ab507`
 
-Blueprint launch gate 已完成使命，不再阻塞 runtime。
+Blueprint launch gate 撌脣??蝙?踝?銝??餃? runtime??
 
-## Historical Phase Snapshot — SUPERSEDED BY GOV-01 CURRENT PROJECTION
+## Historical Phase Snapshot ??SUPERSEDED BY GOV-01 CURRENT PROJECTION
 
-Current milestone：M6 — Persistence / Recovery / Provenance。
+Current milestone嚗6 ??Persistence / Recovery / Provenance??
 
-GAP-08ABCD：COMPLETED / ACCEPTED。
+GAP-08ABCD嚗OMPLETED / ACCEPTED??
 
-Current Work Package：GAP-08EFGHI — Operational Persistence + Recovery。
+Current Work Package嚗AP-08EFGHI ??Operational Persistence + Recovery??
 
-Original blueprint runtime scope：35 leaves / weight 151。
+Original blueprint runtime scope嚗?5 leaves / weight 151??
 
-Runtime implementation：COMPLETED_CANDIDATE。
+Runtime implementation嚗OMPLETED_CANDIDATE??
 
-Runtime commit：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+Runtime commit嚗6b62239bca1d11543944f9f078e577e16010bcbf`??
 
-Runtime verification：934 passed / 4 skipped / 1 warning。
+Runtime verification嚗?34 passed / 4 skipped / 1 warning??
 
-Architecture acceptance：HOLD。
+Architecture acceptance嚗OLD??
 
-Runtime Authorization：NOT_AUTHORIZED_FOR_FURTHER_EXECUTION。
+Runtime Authorization嚗OT_AUTHORIZED_FOR_FURTHER_EXECUTION??
 
-Decision Checkpoint 4 baseline：
+Decision Checkpoint 4 baseline嚗?
 
 `11ead24d4f09ead611243c19aab982f09756f172`
 
-Architecture decisions：
+Architecture decisions嚗?
 
-- R-01：DECIDED / CORRECTION_REQUIRED。
-- R-02：DECIDED / CORRECTION_REQUIRED。
-- R-03A/B/C/D：DECIDED / CORRECTION_REQUIRED。
-- R-03 overall：DECIDED。
-- R-04A/B/C/D/E/F/G/H：DECIDED / CORRECTION_REQUIRED。
-- R-04 overall：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-01嚗ECIDED / CORRECTION_REQUIRED??
+- R-02嚗ECIDED / CORRECTION_REQUIRED??
+- R-03A/B/C/D嚗ECIDED / CORRECTION_REQUIRED??
+- R-03 overall嚗ECIDED??
+- R-04A/B/C/D/E/F/G/H嚗ECIDED / CORRECTION_REQUIRED??
+- R-04 overall嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
 
-R-04 broker capability gates remain implementation/production authorization requirements and do not reopen architecture。
+R-04 broker capability gates remain implementation/production authorization requirements and do not reopen architecture??
 
-Linked dependencies：
+Linked dependencies嚗?
 
-- R-12 ReconciliationRun audit contract。
-- R-13 Operator Authorization / Approval Runtime Contract。
-- R-14 / GAP-DATA-001 operational market-data completeness / gap detection。
-- K520 incremental feature/state provenance remains GAP-09-owned。
+- R-12 ReconciliationRun audit contract??
+- R-13 Operator Authorization / Approval Runtime Contract??
+- R-14 / GAP-DATA-001 operational market-data completeness / gap detection??
+- K520 incremental feature/state provenance remains GAP-09-owned??
 
-Expanded correction scope from R-03/R-04 is outside the original 35 / 151 implementation candidate and is not yet lifecycle-weighted。
+Expanded correction scope from R-03/R-04 is outside the original 35 / 151 implementation candidate and is not yet lifecycle-weighted??
 
-Correction freeze must explicitly map at least：
+Correction freeze must explicitly map at least嚗?
 
-- MarketObservation revision/value-object and operational evidence persistence。
-- broker_client_order_ref exact correlation contract。
-- BrokerOrderStateProvider restart discovery。
-- BrokerActionAttempt / BrokerActionResolution / BrokerActionHead。
-- BrokerDiscoveryObservation / ExecutionContinuityEpoch。
-- broker report durable inbox/application semantics。
-- restart-stable BrokerDealIdentity / Fill reconstruction capability。
-- AccountRecoveryControl / recovery cut / race-free handoff。
-- shared AccountAuthorityCommit primitive。
-- SideEffectSafetyGate。
-- BrokerAccount READY / REVIEW / HALT aggregation。
+- MarketObservation revision/value-object and operational evidence persistence??
+- broker_client_order_ref exact correlation contract??
+- BrokerOrderStateProvider restart discovery??
+- BrokerActionAttempt / BrokerActionResolution / BrokerActionHead??
+- BrokerDiscoveryObservation / ExecutionContinuityEpoch??
+- broker report durable inbox/application semantics??
+- restart-stable BrokerDealIdentity / Fill reconstruction capability??
+- AccountRecoveryControl / recovery cut / race-free handoff??
+- shared AccountAuthorityCommit primitive??
+- SideEffectSafetyGate??
+- BrokerAccount READY / REVIEW / HALT aggregation??
 
-Launch Gate：HOLD_FOR_BOUNDED_CORRECTION_FREEZE。
+Launch Gate嚗OLD_FOR_BOUNDED_CORRECTION_FREEZE??
 
-35 / 151 remains IMPLEMENTED CANDIDATE / NOT ACCEPTED。
+35 / 151 remains IMPLEMENTED CANDIDATE / NOT ACCEPTED??
 
-Official lifecycle metric remains the 47.92% architecture-freeze baseline until correction scope is reweighted and final acceptance is rebased。
+Official lifecycle metric remains the 47.92% architecture-freeze baseline until correction scope is reweighted and final acceptance is rebased??
 
-Level 3B：NOT_ENABLED。
+Level 3B嚗OT_ENABLED??
 
 ## Existing Major Foundation
 
-已完成或高度成熟：
+撌脣???擃漲??嚗?
 
-- historical ingestion。
-- validation / cleaning。
-- bar aggregation。
-- Parquet / DuckDB analytical layer。
-- trading calendar foundation。
-- batch features。
-- strategy framework。
-- deterministic backtest。
-- LONG / SHORT。
-- SL / TP。
-- commission / slippage。
-- analysis / optimization。
-- OOS / WFO。
-- Monte Carlo。
-- paper trading。
-- async order lifecycle。
-- partial entry / exit。
-- strategy virtual positions。
-- conflict resolution。
-- TargetAccountPosition。
-- attribution / netting。
-- direction-change wait-for-flat。
-- portfolio risk。
-- position sizing。
-- capital management。
-- Shioaji adapter foundation。
-- InstrumentSpec。
-- ContractSpec。
-- TradingSessionRef。
-- MarginSchedule。
-- BrokerInstrumentReference。
-- actual canonical multiplier consumer。
-- actual canonical margin consumer。
-- BrokerAccount。
-- canonical internal AccountPosition foundation。
-- BrokerPositionSnapshot。
-- read-only broker account / position query ports。
-- Sinopac pure account / position mapping。
-- broker contract reverse resolution。
-- pure expected / actual pairwise reconciliation foundation。
-- ReconciliationResult / policy / case lifecycle。
-- deterministic multi-position collection reconciliation。
-- startup reconciliation readiness gate。
-- broker-neutral OrderIntent。
-- PositionEffect OPEN / REDUCE / CLOSE。
-- pure PositionEffect validation。
-- explicit Shioaji Buy / Sell + New / Cover mapping。
-- order-ID New/Cover inference removed。
+- historical ingestion??
+- validation / cleaning??
+- bar aggregation??
+- Parquet / DuckDB analytical layer??
+- trading calendar foundation??
+- batch features??
+- strategy framework??
+- deterministic backtest??
+- LONG / SHORT??
+- SL / TP??
+- commission / slippage??
+- analysis / optimization??
+- OOS / WFO??
+- Monte Carlo??
+- paper trading??
+- async order lifecycle??
+- partial entry / exit??
+- strategy virtual positions??
+- conflict resolution??
+- TargetAccountPosition??
+- attribution / netting??
+- direction-change wait-for-flat??
+- portfolio risk??
+- position sizing??
+- capital management??
+- Shioaji adapter foundation??
+- InstrumentSpec??
+- ContractSpec??
+- TradingSessionRef??
+- MarginSchedule??
+- BrokerInstrumentReference??
+- actual canonical multiplier consumer??
+- actual canonical margin consumer??
+- BrokerAccount??
+- canonical internal AccountPosition foundation??
+- BrokerPositionSnapshot??
+- read-only broker account / position query ports??
+- Sinopac pure account / position mapping??
+- broker contract reverse resolution??
+- pure expected / actual pairwise reconciliation foundation??
+- ReconciliationResult / policy / case lifecycle??
+- deterministic multi-position collection reconciliation??
+- startup reconciliation readiness gate??
+- broker-neutral OrderIntent??
+- PositionEffect OPEN / REDUCE / CLOSE??
+- pure PositionEffect validation??
+- explicit Shioaji Buy / Sell + New / Cover mapping??
+- order-ID New/Cover inference removed??
 
 ---
 
 ## Critical Missing V1
 
-主要剩餘：
+銝餉??拚?嚗?
 
-- AccountPosition fill/event projection。
+- AccountPosition fill/event projection??
 
-- operational PostgreSQL。
-- trading persistence。
-- restart recovery。
-- decision/risk provenance。
-- incremental feature state。
-- SimulationBroker。
-- LIVE authorization / safety。
-- Python service API。
-- ASP.NET Core Application。
-- React Workspace。
-- operational review / audit。
+- operational PostgreSQL??
+- trading persistence??
+- restart recovery??
+- decision/risk provenance??
+- incremental feature state??
+- SimulationBroker??
+- LIVE authorization / safety??
+- Python service API??
+- ASP.NET Core Application??
+- React Workspace??
+- operational review / audit??
 
 ## Progress
 
-Total V1 capability blocks：
+Total V1 capability blocks嚗?
 
-92。
+92??
 
-Engineering leaves：
+Engineering leaves嚗?
 
-603。
+603??
 
 +
 
-47.92%。
+47.92%??
 
-Architecture Design Coverage：87.60%。
-Design Freeze Coverage：52.22%。
-Runtime Implementation：39.59%。
-Unit Verification：36.36%。
-Integration Verification：36.27%。
-Accepted Capability：36.27%。
+Architecture Design Coverage嚗?7.60%??
+Design Freeze Coverage嚗?2.22%??
+Runtime Implementation嚗?9.59%??
+Unit Verification嚗?6.36%??
+Integration Verification嚗?6.27%??
+Accepted Capability嚗?6.27%??
 
-Capability status：
+Capability status嚗?
 
-COMPLETE 12 / PARTIAL 49 / NOT_STARTED 31。
+COMPLETE 12 / PARTIAL 49 / NOT_STARTED 31??
 
-Readiness：
+Readiness嚗?
 
-- Operational：NOT_READY。
-- Production Live：BLOCKED。
-- LIVE_AUTO：NOT_AUTHORIZED。
+- Operational嚗OT_READY??
+- Production Live嚗LOCKED??
+- LIVE_AUTO嚗OT_AUTHORIZED??
 
-Latest accepted runtime：
+Latest accepted runtime嚗?
 
 `98dc38ce39bdab191ce0bc6d71e37ef69059ec9c`
 
@@ -884,53 +915,53 @@ Latest accepted runtime：
 
 ### Level 1
 
-Manual Work Package relay。
+Manual Work Package relay??
 
-Validated。
+Validated??
 
 ### Level 2
 
-Bounded autonomous bundle。
+Bounded autonomous bundle??
 
-Validated by GAP-07-CLOSE。
+Validated by GAP-07-CLOSE??
 
 ### Level 3A
 
-Repository queue + ACTIVE full Work Package。
+Repository queue + ACTIVE full Work Package??
 
-Formal runtime calibration samples：7。
+Formal runtime calibration samples嚗???
 
-Completed runtime samples：
+Completed runtime samples嚗?
 
-- GAP-ACCOUNT-001：12%。
-- GAP-BROKER-001：14%。
-- GAP-RECON-001A：11%。
-- GAP-RECON-001B：16%。
-- GAP-BROKER-002：10%。
-- GAP-08ABCD：12%。
-- GAP-08EFGHI：28%。
+- GAP-ACCOUNT-001嚗?2%??
+- GAP-BROKER-001嚗?4%??
+- GAP-RECON-001A嚗?1%??
+- GAP-RECON-001B嚗?6%??
+- GAP-BROKER-002嚗?0%??
+- GAP-08ABCD嚗?2%??
+- GAP-08EFGHI嚗?8%??
 
-Observed average 5HR usage：14.71%。
+Observed average 5HR usage嚗?4.71%??
 
-Total implementation correction cycles：4。
+Total implementation correction cycles嚗???
 
-GAP-08EFGHI runtime test result is PASS but architecture acceptance is HOLD；this sample is retained for sizing calibration。
+GAP-08EFGHI runtime test result is PASS but architecture acceptance is HOLD嚗his sample is retained for sizing calibration??
 
 ### Level 3B
 
-Continuous autonomous queue execution。
+Continuous autonomous queue execution??
 
-ELIGIBLE_FOR_EVALUATION。
+ELIGIBLE_FOR_EVALUATION??
 
-NOT_ENABLED。
+NOT_ENABLED??
 
-Persistence/recovery mainline 不因 Level 3A 樣本數自動升級 Level 3B。
+Persistence/recovery mainline 銝? Level 3A 璅??貉??蝝?Level 3B??
 
 ---
 
 ## Automation Efficiency Observation
 
-Formal Level 3A runtime samples：
+Formal Level 3A runtime samples嚗?
 
 | Sample | Work Package | 5HR | Files Read | Files Changed | Tool Ops | Corrections | Regression |
 |---:|---|---:|---:|---:|---:|---:|---:|
@@ -941,154 +972,154 @@ Formal Level 3A runtime samples：
 | 5 | GAP-BROKER-002 | 10% | 12 | 3 | 17 | 0 | 869 |
 | 6 | GAP-08ABCD | 12% | 8 | 15 | 23 | 1 | 897 |
 
-Six-sample average：
+Six-sample average嚗?
 
-12.50%。
+12.50%??
 
-Total implementation correction cycles：
+Total implementation correction cycles嚗?
 
-2。
+2??
 
-Sample 6：
+Sample 6嚗?
 
-- expanded bundle：19 leaves / weight 77。
-- wall time：約 12m09s。
-- retries：1。
-- PG17 / PG18 integration：PENDING。
-- token/context：UNAVAILABLE。
+- expanded bundle嚗?9 leaves / weight 77??
+- wall time嚗? 12m09s??
+- retries嚗???
+- PG17 / PG18 integration嚗ENDING??
+- token/context嚗NAVAILABLE??
 
-Observation：
+Observation嚗?
 
-larger coherent scope did not increase observed 5HR usage；however wall time / tool operations / correction behavior remain part of sizing evaluation。
+larger coherent scope did not increase observed 5HR usage嚗owever wall time / tool operations / correction behavior remain part of sizing evaluation??
 
-Policy：
+Policy嚗?
 
-- do not target a fixed quota percentage。
-- merge same-context work when semantics permit。
-- split only at genuine public-semantics / authority / safety / external-verification seams。
+- do not target a fixed quota percentage??
+- merge same-context work when semantics permit??
+- split only at genuine public-semantics / authority / safety / external-verification seams??
 
 ## Live State
 
-Real-money LIVE_AUTO：
+Real-money LIVE_AUTO嚗?
 
-NOT AUTHORIZED。
+NOT AUTHORIZED??
 
-原因：
+??嚗?
 
-Persistence、Recovery、Live Safety 尚未完成。
+Persistence?ecovery?ive Safety 撠摰???
 
 ---
 
-## Historical Runtime Launch Snapshot — SUPERSEDED
+## Historical Runtime Launch Snapshot ??SUPERSEDED
 
-Work Package：
+Work Package嚗?
 
-GAP-08EFGHI Operational Persistence + Recovery。
+GAP-08EFGHI Operational Persistence + Recovery??
 
-Status：READY_FOR_EXECUTION。
+Status嚗EADY_FOR_EXECUTION??
 
-Blueprint：35 leaves / weight 151。
+Blueprint嚗?5 leaves / weight 151??
 
-Runtime Gate：RELEASED_ARCHITECTURE_FREEZE。
+Runtime Gate嚗ELEASED_ARCHITECTURE_FREEZE??
 
-Runtime authorization：AUTHORIZED_FOR_LEVEL_3A_RUNTIME。
+Runtime authorization嚗UTHORIZED_FOR_LEVEL_3A_RUNTIME??
 
-Execution Mode：LEVEL_3A_BOUNDED。
+Execution Mode嚗EVEL_3A_BOUNDED??
 
-Recommended model：GPT-5.6 Sol / 中度。
+Recommended model嚗PT-5.6 Sol / 銝剖漲??
 
-Reason for 中度：
+Reason for 銝剖漲嚗?
 
-single bundle now crosses execution state machine、multi-table transaction、account reconciliation、strategy state reconstruction and recovery safety。
+single bundle now crosses execution state machine?ulti-table transaction?ccount reconciliation?trategy state reconstruction and recovery safety??
 
-No runtime until freeze commit/push is verified。
+No runtime until freeze commit/push is verified??
 
-## Historical Decision Checkpoint 5A State — SUPERSEDED AS CURRENT PROJECTION
+## Historical Decision Checkpoint 5A State ??SUPERSEDED AS CURRENT PROJECTION
 
-Architecture Decision Status：
+Architecture Decision Status嚗?
 
-- R-01：DECIDED / AMENDED。
-- R-02：DECIDED / AMENDED。
-- R-03：DECIDED / UNCHANGED。
-- R-04：DECIDED / AMENDED。
-- R-05：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
+- R-01嚗ECIDED / AMENDED??
+- R-02嚗ECIDED / AMENDED??
+- R-03嚗ECIDED / UNCHANGED??
+- R-04嚗ECIDED / AMENDED??
+- R-05嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
 
-R-05 final contract：Read + Validate + Explicit Result；Coherent Complete RecoveryCut；validated transitive recovery dependency closure；positive baseline proof；deterministic projection validation anchors；staged RecoveryExecutionContext。
+R-05 final contract嚗ead + Validate + Explicit Result嚗oherent Complete RecoveryCut嚗alidated transitive recovery dependency closure嚗ositive baseline proof嚗eterministic projection validation anchors嚗taged RecoveryExecutionContext??
 
-Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+Runtime candidate remains嚗6b62239bca1d11543944f9f078e577e16010bcbf`??
 
-Runtime conformance to these decisions is NOT asserted。
+Runtime conformance to these decisions is NOT asserted??
 
-Runtime Authorization：NOT_AUTHORIZED。
+Runtime Authorization嚗OT_AUTHORIZED??
 
-Architecture Acceptance：HOLD。
+Architecture Acceptance嚗OLD??
 
-Next architecture work：R-06 + R-07 Recovery Boundary Cluster。
+Next architecture work嚗-06 + R-07 Recovery Boundary Cluster??
 
-## Historical Decision Checkpoint 5B State — SUPERSEDED AS CURRENT PROJECTION
+## Historical Decision Checkpoint 5B State ??SUPERSEDED AS CURRENT PROJECTION
 
-Architecture Decision Status：
+Architecture Decision Status嚗?
 
-- R-01：DECIDED / AMENDED。
-- R-02：DECIDED / AMENDED。
-- R-03：DECIDED / UNCHANGED。
-- R-04：DECIDED / AMENDED。
-- R-05：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
-- R-06：DECIDED。
-- R-07：DECIDED。
+- R-01嚗ECIDED / AMENDED??
+- R-02嚗ECIDED / AMENDED??
+- R-03嚗ECIDED / UNCHANGED??
+- R-04嚗ECIDED / AMENDED??
+- R-05嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-06嚗ECIDED??
+- R-07嚗ECIDED??
 
-R-06 freezes StrategyInstance-scoped recovery、multi-frontier recovery evidence、positive fresh/stateless authority、exact governing policy continuity、decision-cohort readiness and startup catch-up isolation。
+R-06 freezes StrategyInstance-scoped recovery?ulti-frontier recovery evidence?ositive fresh/stateless authority?xact governing policy continuity?ecision-cohort readiness and startup catch-up isolation??
 
-R-07 freezes BrokerAccount-scoped ReconciliationCase ownership、V1 BrokerAccount isolation floor、account-scoped readiness evaluation and non-economic case authority。
+R-07 freezes BrokerAccount-scoped ReconciliationCase ownership?1 BrokerAccount isolation floor?ccount-scoped readiness evaluation and non-economic case authority??
 
-Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
+Runtime candidate remains嚗6b62239bca1d11543944f9f078e577e16010bcbf`??
 
-Runtime conformance is NOT asserted。
+Runtime conformance is NOT asserted??
 
-Runtime Authorization：NOT_AUTHORIZED。
+Runtime Authorization嚗OT_AUTHORIZED??
 
-Architecture Acceptance：HOLD。
+Architecture Acceptance嚗OLD??
 
-Next architecture work：R-08 + R-09 identity/config authority cluster。
+Next architecture work嚗-08 + R-09 identity/config authority cluster??
 
-## Historical Decision Checkpoint 5C State — SUPERSEDED AS CURRENT PROJECTION
+## Historical Decision Checkpoint 5C State ??SUPERSEDED AS CURRENT PROJECTION
 
-- R-08：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
-- R-09：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
-- R-01 through R-09 architecture decision sequence is now closed except R-10/R-11 and linked later follow-ups。
-- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
-- Runtime conformance：NOT ASSERTED。
-- Production readiness：NOT ASSERTED。
-- Runtime Authorization：NOT_AUTHORIZED。
-- Architecture Acceptance：HOLD。
-- Next：R-10 formal closure -> R-11 clock authority。
+- R-08嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-09嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-01 through R-09 architecture decision sequence is now closed except R-10/R-11 and linked later follow-ups??
+- Runtime candidate remains嚗6b62239bca1d11543944f9f078e577e16010bcbf`??
+- Runtime conformance嚗OT ASSERTED??
+- Production readiness嚗OT ASSERTED??
+- Runtime Authorization嚗OT_AUTHORIZED??
+- Architecture Acceptance嚗OLD??
+- Next嚗-10 formal closure -> R-11 clock authority??
 
-## Historical Decision Checkpoint 5D State — SUPERSEDED AS CURRENT PROJECTION
+## Historical Decision Checkpoint 5D State ??SUPERSEDED AS CURRENT PROJECTION
 
-- R-10：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
-- R-11：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
-- R-01 through R-11 architecture decisions are closed；R-12 and later linked boundaries remain。
-- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
-- Runtime conformance：NOT ASSERTED。
-- Production readiness：NOT ASSERTED。
-- Runtime Authorization：NOT_AUTHORIZED。
-- Architecture Acceptance：HOLD。
-- Next：R-12 ReconciliationRun audit contract。
+- R-10嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-11嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-01 through R-11 architecture decisions are closed嚗-12 and later linked boundaries remain??
+- Runtime candidate remains嚗6b62239bca1d11543944f9f078e577e16010bcbf`??
+- Runtime conformance嚗OT ASSERTED??
+- Production readiness嚗OT ASSERTED??
+- Runtime Authorization嚗OT_AUTHORIZED??
+- Architecture Acceptance嚗OLD??
+- Next嚗-12 ReconciliationRun audit contract??
 
-## Historical Decision Checkpoint 5E State — ARCHITECTURE RECORD
+## Historical Decision Checkpoint 5E State ??ARCHITECTURE RECORD
 
-- R-12：DECIDED / IMPLEMENTATION_CORRECTION_REQUIRED。
-- R-13：DECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED。
-- R-14：DECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY。
-- No R-12I / R-13I / R-14I。
-- Recovery decisions R-01 through R-14 are now closed/classified for the current correction-freeze preparation phase。
-- Runtime candidate remains：`6b62239bca1d11543944f9f078e577e16010bcbf`。
-- Candidate commit is not an authorized runtime baseline。
-- Runtime conformance：NOT ASSERTED。
-- Production readiness：NOT ASSERTED。
-- Runtime Authorization：NOT_AUTHORIZED。
-- Architecture Acceptance：HOLD。
-- Correction Expansion：RECORDED / NOT YET REWEIGHTED。
-- Next：K520 defer confirmation，then broker capability gate classification。
+- R-12嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-13嚗ECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-14嚗ECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY??
+- No R-12I / R-13I / R-14I??
+- Recovery decisions R-01 through R-14 are now closed/classified for the current correction-freeze preparation phase??
+- Runtime candidate remains嚗6b62239bca1d11543944f9f078e577e16010bcbf`??
+- Candidate commit is not an authorized runtime baseline??
+- Runtime conformance嚗OT ASSERTED??
+- Production readiness嚗OT ASSERTED??
+- Runtime Authorization嚗OT_AUTHORIZED??
+- Architecture Acceptance嚗OLD??
+- Correction Expansion嚗ECORDED / NOT YET REWEIGHTED??
+- Next嚗520 defer confirmation嚗hen broker capability gate classification??
 
 <!-- HISTORICAL_PRE_1_2_PROJECTIONS_END -->
