@@ -1,26 +1,23 @@
 {
   "schema_version": "automation.writer_lock.v1",
   "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
-  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5",
-  "state": "RELEASED",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "state": "HELD",
   "scope": "AUTOMATION_BOUNDED_SINGLE_WRITER",
   "owner_work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
-  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z",
-  "executor_mode": "HUMAN_DIALOGUE",
-  "acquired_after_eligibility_commit": "1524d8cea75a630006f31bc069377beb0143bccb",
+  "executor_mode": "CODEX",
+  "execution_id": null,
+  "acquired_after_eligibility_commit": "7e21d643114da24aeb90903acd295985ee42e194",
+  "authorization_commit": "cdf086a484779ede8a2f136316a0192d30f18b2b",
   "competing_writer_observed": false,
-  "acquired_at": "2026-10-06T12:20:27.927Z",
+  "previous_writer_release_commit": "e65774fcda1cfc8d498de51075efd338c198e405",
+  "no_concurrent_writer_evidence": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/REV6.no-concurrent-writer.json",
+  "acquired_at": "2026-10-06T14:55:53Z",
+  "updated_at": "2026-10-06T14:55:53Z",
   "release_condition": [
     "DURABLE_RESULT_INTAKE",
     "EXPLICIT_RECONCILIATION",
     "PRE_EXECUTION_ABORT_WITH_GOVERNANCE_RECORD"
   ],
-  "writer_acquired_commit": "30841f0668b7d73ec858171f52d30df23ecd4a95",
-  "execution_branch": "manual/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5",
-  "released_at": "2026-10-06T14:51:20Z",
-  "updated_at": "2026-10-06T14:51:20Z",
-  "release_reason": "EXPLICIT_RECONCILIATION",
-  "release_evidence_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/writer_release.json",
-  "checkpoint_commit": "a41e1c02c0a38e5725835bef41db6ab44b82993c",
-  "previous_held_git_blob": "48b7bab4f5b26badcefd69369cf7e35a19414522"
+  "execution_branch": "auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6"
 }
