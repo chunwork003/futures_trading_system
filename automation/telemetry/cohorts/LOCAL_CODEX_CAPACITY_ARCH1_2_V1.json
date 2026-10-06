@@ -1,0 +1,55 @@
+{
+  "schema_version": "automation.capacity_cohort.v1",
+  "cohort_id": "LOCAL_CODEX_CAPACITY_ARCH1_2_V1",
+  "status": "UNQUALIFIED_NO_CALIBRATED_SAMPLES",
+  "architecture": "1.2",
+  "feature_method": "NON_NEGATIVE_ZERO_INTERCEPT_FEATURE_CALIBRATION",
+  "solver_contract": {
+    "algorithm": "CYCLIC_NON_NEGATIVE_COORDINATE_DESCENT_ZERO_START_V1",
+    "dependencies": "Python standard library only; pyproject has no numeric dependency; no additional dependency/scope",
+    "feature_order": [
+      "cached_input_tokens",
+      "uncached_input_tokens",
+      "non_reasoning_output_tokens",
+      "reasoning_output_tokens"
+    ],
+    "column_scaling": "Divide each feature by its positive maximum over training samples; zero feature column coefficient fixed0. Re-express fitted weights in original token units.",
+    "initial_coefficients": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "coordinate_update": "Fixed-order exact nonnegative single-coordinate least-squares minimizer holding others fixed; zero intercept",
+    "termination": "Both max coefficient change and objective change <=1e-12 relative tolerance, deterministic max100000 sweeps; nonconvergence/nonfinite/poorly-identified required prediction -> fail closed",
+    "ties": "Zero initialization and fixed feature order define deterministic fitted representative; record rank/coverage in uncertainty review; never claim unique identifiable weights from3samples alone",
+    "serialization": "Stable feature ordering and plain-data dump, deterministic numeric rounding convention documented and tested, no negative coefficients",
+    "bootstrap_production_same_method": true
+  },
+  "qualified_samples": [],
+  "windows": {
+    "PRIMARY_5H": {
+      "qualified_samples": [],
+      "sample_count": 0,
+      "coefficients": null,
+      "residuals": null,
+      "uncertainty": null
+    },
+    "SECONDARY_WEEKLY": {
+      "qualified_samples": [],
+      "sample_count": 0,
+      "coefficients": null,
+      "residuals": null,
+      "uncertainty": null
+    }
+  },
+  "audit_rejection_matrix_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.qualification.json",
+  "recovery_evidence_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+  "minimum_distinct_samples": 3,
+  "task_class_is_forecast_metadata_not_capacity_filter": true,
+  "qualification_materializer": "WORK_DETERMINISTIC_MACHINE_EVIDENCE",
+  "billing_inference": "DENIED",
+  "current_account_backfill": "DENIED",
+  "created_at": "2026-10-06T08:52:23Z",
+  "updated_at": "2026-10-06T08:52:23Z"
+}

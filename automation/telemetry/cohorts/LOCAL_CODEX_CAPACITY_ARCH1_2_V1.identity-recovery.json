@@ -1,0 +1,558 @@
+{
+  "schema_version": "automation.capacity_identity_recovery.v1",
+  "master_sha": "7308578c722030d9c26528178faa7a946e6878e1",
+  "method": "WHITELISTED_ORIGINAL_SESSION_METADATA_TOKEN_RATE_EVENTS_AND_VERIFIED_PROVIDER_API_CALL_OUTPUTS_ONLY",
+  "raw_transcript_loaded_into_model": false,
+  "local_session_inventory": {
+    "source": "DETERMINISTIC_WHITELISTED_LOCAL_SESSION_MACHINE_FIELDS",
+    "scan_dates": [
+      "2026-10-05",
+      "2026-10-06"
+    ],
+    "session_files_scanned": 36,
+    "samples": [
+      {
+        "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+        "work_order_id": "WO-AUTO-IMP-002-RF02-01",
+        "actor_start": "2026-10-05 13:06:01 UTC",
+        "actor_end": "2026-10-05 13:21:05 UTC",
+        "target_session": "01a10c30-f2b8-7723-a20d-9c593bcff7ec",
+        "target_found": true,
+        "raw_transcript_loaded_into_model": false,
+        "target_file": "rollout-2026-10-05T21-11-37-01a10c30-f2b8-7723-a20d-9c593bcff7ec.jsonl",
+        "target_file_sha256": "f15ff63f5c1df0594eb05db9a4ee48a44af2b9bb7718ddd4873c6bc19b40314a",
+        "recovered_session_metadata": {
+          "id": "01a10c30-f2b8-7723-a20d-9c593bcff7ec",
+          "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+          "creator_account_id": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+          "runtime_workspace_roots": [
+            "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+            "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\05\\01a10b28-9dde-74e1-9b69-0b5af56b31f6"
+          ],
+          "model_provider": "openai",
+          "originator": "Codex Desktop",
+          "cli_version": "0.160.0"
+        },
+        "explicit_identity_fields": [],
+        "execution_wo_marker_count_in_actor_slack": 6,
+        "model_context_at_execution": {
+          "timestamp": "2026-10-05T13:20:59.186Z",
+          "model": "codex-auto-review",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "overlapping_positive_delta_competitors": [
+          {
+            "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+            "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+            "positive_delta": 2461044,
+            "first_timestamp": "2026-10-05T13:06:02.226Z",
+            "last_timestamp": "2026-10-05T13:20:49.878Z",
+            "provider_windows": {
+              "limit_id": "codex",
+              "limit_name": null,
+              "primary": {
+                "used_percent": 16,
+                "window_minutes": 300,
+                "resets_at": 1791222428
+              },
+              "secondary": {
+                "used_percent": 23,
+                "window_minutes": 10080,
+                "resets_at": 1791615796
+              },
+              "credits": {
+                "has_credits": false,
+                "unlimited": false,
+                "balance": "0"
+              },
+              "individual_limit": null,
+              "spend_control_reached": null,
+              "plan_type": "plus",
+              "rate_limit_reached_type": null
+            },
+            "file_sha256": "014cf5923d8ba682c6fa9086c05ef9f8eb3003f476132118d4c19ce759bd31e0"
+          },
+          {
+            "session_id": "01a10b37-52f7-7e01-8114-33f4bc1513a0",
+            "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+            "positive_delta": 274638,
+            "first_timestamp": "2026-10-05T13:08:10.611Z",
+            "last_timestamp": "2026-10-05T13:09:17.788Z",
+            "provider_windows": {
+              "limit_id": "codex",
+              "limit_name": null,
+              "primary": {
+                "used_percent": 13,
+                "window_minutes": 300,
+                "resets_at": 1791222428
+              },
+              "secondary": {
+                "used_percent": 23,
+                "window_minutes": 10080,
+                "resets_at": 1791615796
+              },
+              "credits": {
+                "has_credits": false,
+                "unlimited": false,
+                "balance": "0"
+              },
+              "individual_limit": null,
+              "spend_control_reached": null,
+              "plan_type": "plus",
+              "rate_limit_reached_type": null
+            },
+            "file_sha256": "bb56fd2a1bea7ba73137b196991f1f7e7bbb7875e784add32959238935245c71"
+          }
+        ],
+        "client_policy_identity_recovered": false,
+        "proof_limits": [
+          "session metadata creator account/workspace/model are durable client facts; do not substitute current snapshot",
+          "no explicit provider-client-policy version -> no fabricated CLI-version equivalence",
+          "local scan cannot prove absence of remote/shared-account consumers; available evidence only"
+        ]
+      },
+      {
+        "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+        "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+        "actor_start": "2026-10-05 15:18:18 UTC",
+        "actor_end": "2026-10-05 15:37:34 UTC",
+        "target_session": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+        "target_found": true,
+        "raw_transcript_loaded_into_model": false,
+        "target_file": "rollout-2026-10-05T16-22-53-01a10b28-9dde-74e1-9b69-0b5af56b31f6.jsonl",
+        "target_file_sha256": "014cf5923d8ba682c6fa9086c05ef9f8eb3003f476132118d4c19ce759bd31e0",
+        "recovered_session_metadata": {
+          "id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+          "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+          "creator_account_id": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+          "runtime_workspace_roots": [
+            "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+          ],
+          "model_provider": "openai",
+          "originator": "Codex Desktop",
+          "cli_version": "0.160.0"
+        },
+        "explicit_identity_fields": [],
+        "execution_wo_marker_count_in_actor_slack": 30,
+        "model_context_at_execution": {
+          "timestamp": "2026-10-05T15:18:02.215Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "overlapping_positive_delta_competitors": [
+          {
+            "session_id": "01a10c30-f2b8-7723-a20d-9c593bcff7ec",
+            "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+            "positive_delta": 426859,
+            "first_timestamp": "2026-10-05T15:19:52.161Z",
+            "last_timestamp": "2026-10-05T15:37:31.580Z",
+            "provider_windows": {
+              "limit_id": "codex",
+              "limit_name": null,
+              "primary": {
+                "used_percent": 50,
+                "window_minutes": 300,
+                "resets_at": 1791222429
+              },
+              "secondary": {
+                "used_percent": 29,
+                "window_minutes": 10080,
+                "resets_at": 1791615796
+              },
+              "credits": {
+                "has_credits": false,
+                "unlimited": false,
+                "balance": "0"
+              },
+              "individual_limit": null,
+              "spend_control_reached": null,
+              "plan_type": "plus",
+              "rate_limit_reached_type": null
+            },
+            "file_sha256": "f15ff63f5c1df0594eb05db9a4ee48a44af2b9bb7718ddd4873c6bc19b40314a"
+          }
+        ],
+        "client_policy_identity_recovered": false,
+        "proof_limits": [
+          "session metadata creator account/workspace/model are durable client facts; do not substitute current snapshot",
+          "no explicit provider-client-policy version -> no fabricated CLI-version equivalence",
+          "local scan cannot prove absence of remote/shared-account consumers; available evidence only"
+        ]
+      },
+      {
+        "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+        "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+        "actor_start": "2026-10-06 04:10:10 UTC",
+        "actor_end": "2026-10-06 04:18:56 UTC",
+        "target_session": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+        "target_found": true,
+        "raw_transcript_loaded_into_model": false,
+        "target_file": "rollout-2026-10-05T16-22-53-01a10b28-9dde-74e1-9b69-0b5af56b31f6.jsonl",
+        "target_file_sha256": "014cf5923d8ba682c6fa9086c05ef9f8eb3003f476132118d4c19ce759bd31e0",
+        "recovered_session_metadata": {
+          "id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+          "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+          "creator_account_id": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+          "runtime_workspace_roots": [
+            "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+          ],
+          "model_provider": "openai",
+          "originator": "Codex Desktop",
+          "cli_version": "0.160.0"
+        },
+        "explicit_identity_fields": [],
+        "execution_wo_marker_count_in_actor_slack": 19,
+        "model_context_at_execution": {
+          "timestamp": "2026-10-06T04:09:35.584Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "overlapping_positive_delta_competitors": [
+          {
+            "session_id": "01a10f67-2c64-7682-9a62-6ab6e89e9a20",
+            "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+            "positive_delta": 474367,
+            "first_timestamp": "2026-10-06T04:10:23.814Z",
+            "last_timestamp": "2026-10-06T04:18:54.407Z",
+            "provider_windows": {
+              "limit_id": "codex",
+              "limit_name": null,
+              "primary": {
+                "used_percent": 37,
+                "window_minutes": 300,
+                "resets_at": 1791271699
+              },
+              "secondary": {
+                "used_percent": 36,
+                "window_minutes": 10080,
+                "resets_at": 1791615796
+              },
+              "credits": {
+                "has_credits": false,
+                "unlimited": false,
+                "balance": "0"
+              },
+              "individual_limit": null,
+              "spend_control_reached": null,
+              "plan_type": "plus",
+              "rate_limit_reached_type": null
+            },
+            "file_sha256": "dbde1318e364a6dd9a8db1c3339e8dd574804a693d07475a52d2a972e9c6dd04"
+          }
+        ],
+        "client_policy_identity_recovered": false,
+        "proof_limits": [
+          "session metadata creator account/workspace/model are durable client facts; do not substitute current snapshot",
+          "no explicit provider-client-policy version -> no fabricated CLI-version equivalence",
+          "local scan cannot prove absence of remote/shared-account consumers; available evidence only"
+        ]
+      },
+      {
+        "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+        "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+        "actor_start": "2026-10-06T06:50:07Z",
+        "actor_end": "2026-10-06T06:55:35Z",
+        "target_session": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+        "target_found": true,
+        "raw_transcript_loaded_into_model": false,
+        "target_file": "rollout-2026-10-05T16-22-53-01a10b28-9dde-74e1-9b69-0b5af56b31f6.jsonl",
+        "target_file_sha256": "014cf5923d8ba682c6fa9086c05ef9f8eb3003f476132118d4c19ce759bd31e0",
+        "recovered_session_metadata": {
+          "id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+          "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+          "creator_account_id": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+          "runtime_workspace_roots": [
+            "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+          ],
+          "model_provider": "openai",
+          "originator": "Codex Desktop",
+          "cli_version": "0.160.0"
+        },
+        "explicit_identity_fields": [],
+        "execution_wo_marker_count_in_actor_slack": 21,
+        "model_context_at_execution": {
+          "timestamp": "2026-10-06T06:49:48.727Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "overlapping_positive_delta_competitors": [
+          {
+            "session_id": "01a10f67-2c64-7682-9a62-6ab6e89e9a20",
+            "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+            "positive_delta": 463651,
+            "first_timestamp": "2026-10-06T06:51:48.488Z",
+            "last_timestamp": "2026-10-06T06:55:32.570Z",
+            "provider_windows": {
+              "limit_id": "codex",
+              "limit_name": null,
+              "primary": {
+                "used_percent": 57,
+                "window_minutes": 300,
+                "resets_at": 1791271699
+              },
+              "secondary": {
+                "used_percent": 39,
+                "window_minutes": 10080,
+                "resets_at": 1791615796
+              },
+              "credits": {
+                "has_credits": false,
+                "unlimited": false,
+                "balance": "0"
+              },
+              "individual_limit": null,
+              "spend_control_reached": null,
+              "plan_type": "plus",
+              "rate_limit_reached_type": null
+            },
+            "file_sha256": "dbde1318e364a6dd9a8db1c3339e8dd574804a693d07475a52d2a972e9c6dd04"
+          }
+        ],
+        "client_policy_identity_recovered": false,
+        "proof_limits": [
+          "session metadata creator account/workspace/model are durable client facts; do not substitute current snapshot",
+          "no explicit provider-client-policy version -> no fabricated CLI-version equivalence",
+          "local scan cannot prove absence of remote/shared-account consumers; available evidence only"
+        ]
+      },
+      {
+        "execution_id": "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+        "work_order_id": "WO-AUTO-IMP-002-RF01-01",
+        "actor_start": "2026-10-05T09:53:43Z",
+        "actor_end": "2026-10-05T10:17:22Z",
+        "target_session": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+        "target_found": true,
+        "raw_transcript_loaded_into_model": false,
+        "target_file": "rollout-2026-10-05T16-22-53-01a10b28-9dde-74e1-9b69-0b5af56b31f6.jsonl",
+        "target_file_sha256": "014cf5923d8ba682c6fa9086c05ef9f8eb3003f476132118d4c19ce759bd31e0",
+        "recovered_session_metadata": {
+          "id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+          "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+          "creator_account_id": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+          "runtime_workspace_roots": [
+            "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+          ],
+          "model_provider": "openai",
+          "originator": "Codex Desktop",
+          "cli_version": "0.160.0"
+        },
+        "explicit_identity_fields": [],
+        "execution_wo_marker_count_in_actor_slack": 25,
+        "model_context_at_execution": {
+          "timestamp": "2026-10-05T09:52:55.293Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "overlapping_positive_delta_competitors": [
+          {
+            "session_id": "01a10b37-52f7-7e01-8114-33f4bc1513a0",
+            "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+            "positive_delta": 540699,
+            "first_timestamp": "2026-10-05T09:56:15.726Z",
+            "last_timestamp": "2026-10-05T10:17:21.193Z",
+            "provider_windows": {
+              "limit_id": "codex",
+              "limit_name": null,
+              "primary": {
+                "used_percent": 28,
+                "window_minutes": 300,
+                "resets_at": 1791204390
+              },
+              "secondary": {
+                "used_percent": 20,
+                "window_minutes": 10080,
+                "resets_at": 1791615796
+              },
+              "credits": {
+                "has_credits": false,
+                "unlimited": false,
+                "balance": "0"
+              },
+              "individual_limit": null,
+              "spend_control_reached": null,
+              "plan_type": "plus",
+              "rate_limit_reached_type": null
+            },
+            "file_sha256": "bb56fd2a1bea7ba73137b196991f1f7e7bbb7875e784add32959238935245c71"
+          }
+        ],
+        "client_policy_identity_recovered": false,
+        "proof_limits": [
+          "session metadata creator account/workspace/model are durable client facts; do not substitute current snapshot",
+          "no explicit provider-client-policy version -> no fabricated CLI-version equivalence",
+          "local scan cannot prove absence of remote/shared-account consumers; available evidence only"
+        ]
+      }
+    ]
+  },
+  "provider_API_recovery": {
+    "recovered_machine_provider_calls": [
+      {
+        "tool_reply_timestamp": "2026-10-05T09:53:44.634Z",
+        "provider_call_started_at": "2026-10-05T09:53:41.117Z",
+        "provider_observed_at": "NOT_EXPLICITLY_EXPOSED",
+        "source_session_file": "rollout-2026-10-05T16-22-53-01a10b28-9dde-74e1-9b69-0b5af56b31f6.jsonl",
+        "call_id": "call_L6rriUWKCdwS3RIVnsdczqRw",
+        "execution_time_candidates": [
+          "EXEC-AUTO-IMP-002-RF01-20261005T093900Z"
+        ],
+        "account_id": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "provider_client_policy_version": null,
+        "workspace_id": null,
+        "ordinary_usage_allowed": true,
+        "limit_id": "codex",
+        "model_slug": null,
+        "primary": {
+          "usedPercent": 14,
+          "windowDurationMins": 300,
+          "resetsAt": 1791204390
+        },
+        "secondary": {
+          "usedPercent": 18,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "spend_control_reached": false,
+        "rate_limit_reached_type": null,
+        "raw_observation_sha256": "469b4361b3e8d5021237455271151626445d6f469c76c5c2058b2e5264bb0abb",
+        "qualification_note": "Provider API call verified; multi-output call can still contain summarized historical snapshots; exact before/after association requires canonical execution evidence match, not earliest/latest timestamp assumption"
+      },
+      {
+        "tool_reply_timestamp": "2026-10-05T10:17:23.478Z",
+        "provider_call_started_at": "2026-10-05T10:17:17.839Z",
+        "provider_observed_at": "NOT_EXPLICITLY_EXPOSED",
+        "source_session_file": "rollout-2026-10-05T16-22-53-01a10b28-9dde-74e1-9b69-0b5af56b31f6.jsonl",
+        "call_id": "call_rPtImB3eMkhYlEypCrNp12hS",
+        "execution_time_candidates": [
+          "EXEC-AUTO-IMP-002-RF01-20261005T093900Z"
+        ],
+        "account_id": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "provider_client_policy_version": null,
+        "workspace_id": null,
+        "ordinary_usage_allowed": true,
+        "limit_id": "codex",
+        "model_slug": null,
+        "primary": {
+          "usedPercent": 28,
+          "windowDurationMins": 300,
+          "resetsAt": 1791204390
+        },
+        "secondary": {
+          "usedPercent": 20,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "spend_control_reached": false,
+        "rate_limit_reached_type": null,
+        "raw_observation_sha256": "2880854b5ee6eba6030be93c66d3e6b90ee869a5743eb7fb56687a5da380e549",
+        "qualification_note": "Provider API call verified; multi-output call can still contain summarized historical snapshots; exact before/after association requires canonical execution evidence match, not earliest/latest timestamp assumption"
+      },
+      {
+        "tool_reply_timestamp": "2026-10-05T13:06:02.211Z",
+        "provider_call_started_at": "2026-10-05T13:05:58.646Z",
+        "provider_observed_at": "NOT_EXPLICITLY_EXPOSED",
+        "source_session_file": "rollout-2026-10-05T16-22-53-01a10b28-9dde-74e1-9b69-0b5af56b31f6.jsonl",
+        "call_id": "call_xF601YjWgdhEM9r4niWYknLp",
+        "execution_time_candidates": [
+          "EXEC-AUTO-IMP-002-RF02-20261005T125807Z"
+        ],
+        "account_id": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "provider_client_policy_version": null,
+        "workspace_id": null,
+        "ordinary_usage_allowed": true,
+        "limit_id": "codex",
+        "model_slug": null,
+        "primary": {
+          "usedPercent": 10,
+          "windowDurationMins": 300,
+          "resetsAt": 1791222428
+        },
+        "secondary": {
+          "usedPercent": 22,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "spend_control_reached": false,
+        "rate_limit_reached_type": null,
+        "raw_observation_sha256": "0223ef2cf5b4d5b63bca2b71c708aedfa039bbee51f452eac16645e89e34b94e",
+        "qualification_note": "Provider API call verified; multi-output call can still contain summarized historical snapshots; exact before/after association requires canonical execution evidence match, not earliest/latest timestamp assumption"
+      },
+      {
+        "tool_reply_timestamp": "2026-10-05T13:06:02.211Z",
+        "provider_call_started_at": "2026-10-05T13:05:58.646Z",
+        "provider_observed_at": "NOT_EXPLICITLY_EXPOSED",
+        "source_session_file": "rollout-2026-10-05T16-22-53-01a10b28-9dde-74e1-9b69-0b5af56b31f6.jsonl",
+        "call_id": "call_xF601YjWgdhEM9r4niWYknLp",
+        "execution_time_candidates": [
+          "EXEC-AUTO-IMP-002-RF02-20261005T125807Z"
+        ],
+        "account_id": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "provider_client_policy_version": null,
+        "workspace_id": null,
+        "ordinary_usage_allowed": true,
+        "limit_id": "codex",
+        "model_slug": null,
+        "primary": {
+          "usedPercent": 10,
+          "windowDurationMins": 300,
+          "resetsAt": 1791222428
+        },
+        "secondary": {
+          "usedPercent": 22,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "spend_control_reached": false,
+        "rate_limit_reached_type": null,
+        "raw_observation_sha256": "0223ef2cf5b4d5b63bca2b71c708aedfa039bbee51f452eac16645e89e34b94e",
+        "qualification_note": "Provider API call verified; multi-output call can still contain summarized historical snapshots; exact before/after association requires canonical execution evidence match, not earliest/latest timestamp assumption"
+      },
+      {
+        "tool_reply_timestamp": "2026-10-06T06:50:52.825Z",
+        "provider_call_started_at": "2026-10-06T06:50:46.942Z",
+        "provider_observed_at": "NOT_EXPLICITLY_EXPOSED",
+        "source_session_file": "rollout-2026-10-05T16-22-53-01a10b28-9dde-74e1-9b69-0b5af56b31f6.jsonl",
+        "call_id": "call_SpRKvcg5aquZOE7kHvsXjpHp",
+        "execution_time_candidates": [
+          "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z"
+        ],
+        "account_id": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "provider_client_policy_version": null,
+        "workspace_id": null,
+        "ordinary_usage_allowed": true,
+        "limit_id": "codex",
+        "model_slug": null,
+        "primary": {
+          "usedPercent": 54,
+          "windowDurationMins": 300,
+          "resetsAt": 1791271699
+        },
+        "secondary": {
+          "usedPercent": 39,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "spend_control_reached": false,
+        "rate_limit_reached_type": null,
+        "raw_observation_sha256": "bd78883c44d89e1864d918e560d48ff71199c3c4e56322a3fb58e40bfc750a1c",
+        "qualification_note": "Provider API call verified; multi-output call can still contain summarized historical snapshots; exact before/after association requires canonical execution evidence match, not earliest/latest timestamp assumption"
+      }
+    ],
+    "raw_transcript_loaded_into_model": false
+  },
+  "source_script_filenames": [
+    "capacity-recover-machines.py",
+    "capacity-provider-recover.py"
+  ],
+  "source_script_commit": "OPERATOR_DETERMINISTIC_HELPERS_NOT_IMPLEMENTATION_SOURCE",
+  "facts_not_reconstructed_from_current": true,
+  "client_policy_version_not_recovered": true,
+  "CLI_version_not_substitution": true,
+  "created_at": "2026-10-06T08:52:23Z",
+  "updated_at": "2026-10-06T08:52:23Z"
+}

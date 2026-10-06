@@ -1,0 +1,606 @@
+{
+  "schema_version": "automation.capacity_sample_qualification_matrix.v1",
+  "matrix_id": "CAPACITY-ARCH1_2-HISTORICAL-20261006",
+  "master_sha": "7308578c722030d9c26528178faa7a946e6878e1",
+  "architecture": "1.2",
+  "samples": [
+    {
+      "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+      "work_order_id": "WO-AUTO-IMP-002-RF02-01",
+      "token_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/local_token_usage.json",
+      "token_git_blob": "144a629bbf3fd5155ff8b3ff451d2ade54ce56f3",
+      "exact_execution_binding": "CANONICAL_EXACT_ASSERTION_PRESENT_BUT_ACTOR_PROVIDER_MODEL_ASSOCIATION_NOT_PROVEN_FOR_CAPACITY",
+      "token_arithmetic": "PASS",
+      "token_features": {
+        "cached_input_tokens": 114176,
+        "uncached_input_tokens": 58363,
+        "non_reasoning_output_tokens": 427,
+        "reasoning_output_tokens": 412
+      },
+      "total_tokens": 173378,
+      "provider_identity": "openai",
+      "account_identity_recovery": {
+        "value": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "source": "ORIGINAL_SESSION_META_CREATOR_ACCOUNT_NOT_CURRENT_SNAPSHOT"
+      },
+      "workspace_identity_recovery": {
+        "value": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "source": "ORIGINAL_CLIENT_WORKSPACE_CWD; no provider-workspace alias assumption"
+      },
+      "model_identity_recovery": "codex-auto-review",
+      "executor_profile": "CANONICAL_WO_AUTHORITY_PROFILE_REQUIRES_EXACT_RUNTIME_ASSOCIATION; no task-class rejection",
+      "client_policy_identity": null,
+      "client_policy_rejection": "CLI_VERSION_NOT_PROVIDER_CLIENT_POLICY_VERSION; no explicit original machine field",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/execution_cost_actual.json",
+      "clean_attribution": false,
+      "competing_consumer": true,
+      "competing_consumer_proof": [
+        {
+          "session_id": "01a10b28-9dde-74e1-9b69-0b5af56b31f6",
+          "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+          "positive_delta": 2461044,
+          "first_timestamp": "2026-10-05T13:06:02.226Z",
+          "last_timestamp": "2026-10-05T13:20:49.878Z",
+          "provider_windows": {
+            "limit_id": "codex",
+            "limit_name": null,
+            "primary": {
+              "used_percent": 16,
+              "window_minutes": 300,
+              "resets_at": 1791222428
+            },
+            "secondary": {
+              "used_percent": 23,
+              "window_minutes": 10080,
+              "resets_at": 1791615796
+            },
+            "credits": {
+              "has_credits": false,
+              "unlimited": false,
+              "balance": "0"
+            },
+            "individual_limit": null,
+            "spend_control_reached": null,
+            "plan_type": "plus",
+            "rate_limit_reached_type": null
+          },
+          "file_sha256": "014cf5923d8ba682c6fa9086c05ef9f8eb3003f476132118d4c19ce759bd31e0"
+        },
+        {
+          "session_id": "01a10b37-52f7-7e01-8114-33f4bc1513a0",
+          "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+          "positive_delta": 274638,
+          "first_timestamp": "2026-10-05T13:08:10.611Z",
+          "last_timestamp": "2026-10-05T13:09:17.788Z",
+          "provider_windows": {
+            "limit_id": "codex",
+            "limit_name": null,
+            "primary": {
+              "used_percent": 13,
+              "window_minutes": 300,
+              "resets_at": 1791222428
+            },
+            "secondary": {
+              "used_percent": 23,
+              "window_minutes": 10080,
+              "resets_at": 1791615796
+            },
+            "credits": {
+              "has_credits": false,
+              "unlimited": false,
+              "balance": "0"
+            },
+            "individual_limit": null,
+            "spend_control_reached": null,
+            "plan_type": "plus",
+            "rate_limit_reached_type": null
+          },
+          "file_sha256": "bb56fd2a1bea7ba73137b196991f1f7e7bbb7875e784add32959238935245c71"
+        }
+      ],
+      "accepted": false,
+      "task_class_not_a_rejection": true,
+      "windows": [
+        {
+          "window_type": "PRIMARY_5H",
+          "limit_id_before": "codex",
+          "limit_id_after": "codex",
+          "window_duration_mins": 300,
+          "resets_at_before": 1791222428,
+          "resets_at_after": 1791222428,
+          "used_percent_before": 10,
+          "used_percent_after": 16,
+          "reset_compatibility": "PASS_WITHIN_SAMPLE",
+          "qualified": false,
+          "rejection_reasons": [
+            "MISSING_PROVIDER_CLIENT_POLICY_VERSION",
+            "OVERLAPPING_POSITIVE_DELTA_COMPETING_LOCAL_CONSUMER",
+            "ACTOR_MODEL_IDENTITY_NOT_PROVEN_COMPATIBLE"
+          ]
+        },
+        {
+          "window_type": "SECONDARY_WEEKLY",
+          "limit_id_before": "codex",
+          "limit_id_after": "codex",
+          "window_duration_mins": 10080,
+          "resets_at_before": 1791615796,
+          "resets_at_after": 1791615796,
+          "used_percent_before": 22,
+          "used_percent_after": 23,
+          "reset_compatibility": "PASS_WITHIN_SAMPLE",
+          "qualified": false,
+          "rejection_reasons": [
+            "MISSING_PROVIDER_CLIENT_POLICY_VERSION",
+            "OVERLAPPING_POSITIVE_DELTA_COMPETING_LOCAL_CONSUMER",
+            "ACTOR_MODEL_IDENTITY_NOT_PROVEN_COMPATIBLE"
+          ]
+        }
+      ],
+      "local_recovery_source": "f15ff63f5c1df0594eb05db9a4ee48a44af2b9bb7718ddd4873c6bc19b40314a",
+      "raw_transcript_loaded_into_model": false,
+      "additional_identity_rejection": "Original recovered model context is codex-auto-review, not blindly pooled with gpt-6.1-sol executions; actor-bound model consistency must be proven",
+      "provider_call_recovery": {
+        "artifact_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+        "verified_API_output_count": 2,
+        "original_field_policy_version_exposed": false,
+        "tool_reply_timestamp_not_provider_observed_timestamp": true,
+        "no_time_nearest_pair_fabrication": true
+      }
+    },
+    {
+      "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+      "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+      "token_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/local_token_usage.json",
+      "token_git_blob": "5f2264e127b2de263c74c28a4bc74c378d729b9c",
+      "exact_execution_binding": "CANONICAL_EXACT_STRONG_MARKER_BINDING_PRESENT; recovery targetsession + execution/WO markers; does not implycleanproviderattribution",
+      "token_arithmetic": "PASS",
+      "token_features": {
+        "cached_input_tokens": 4920064,
+        "uncached_input_tokens": 71335,
+        "non_reasoning_output_tokens": 13658,
+        "reasoning_output_tokens": 3265
+      },
+      "total_tokens": 5008322,
+      "provider_identity": "openai",
+      "account_identity_recovery": {
+        "value": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "source": "ORIGINAL_SESSION_META_CREATOR_ACCOUNT_NOT_CURRENT_SNAPSHOT"
+      },
+      "workspace_identity_recovery": {
+        "value": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "source": "ORIGINAL_CLIENT_WORKSPACE_CWD; no provider-workspace alias assumption"
+      },
+      "model_identity_recovery": "gpt-6.1-sol",
+      "executor_profile": "CANONICAL_WO_AUTHORITY_PROFILE_REQUIRES_EXACT_RUNTIME_ASSOCIATION; no task-class rejection",
+      "client_policy_identity": null,
+      "client_policy_rejection": "CLI_VERSION_NOT_PROVIDER_CLIENT_POLICY_VERSION; no explicit original machine field",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/execution_cost_actual.json",
+      "clean_attribution": false,
+      "competing_consumer": true,
+      "competing_consumer_proof": [
+        {
+          "session_id": "01a10c30-f2b8-7723-a20d-9c593bcff7ec",
+          "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+          "positive_delta": 426859,
+          "first_timestamp": "2026-10-05T15:19:52.161Z",
+          "last_timestamp": "2026-10-05T15:37:31.580Z",
+          "provider_windows": {
+            "limit_id": "codex",
+            "limit_name": null,
+            "primary": {
+              "used_percent": 50,
+              "window_minutes": 300,
+              "resets_at": 1791222429
+            },
+            "secondary": {
+              "used_percent": 29,
+              "window_minutes": 10080,
+              "resets_at": 1791615796
+            },
+            "credits": {
+              "has_credits": false,
+              "unlimited": false,
+              "balance": "0"
+            },
+            "individual_limit": null,
+            "spend_control_reached": null,
+            "plan_type": "plus",
+            "rate_limit_reached_type": null
+          },
+          "file_sha256": "f15ff63f5c1df0594eb05db9a4ee48a44af2b9bb7718ddd4873c6bc19b40314a"
+        }
+      ],
+      "accepted": false,
+      "task_class_not_a_rejection": true,
+      "windows": [
+        {
+          "window_type": "PRIMARY_5H",
+          "limit_id_before": "codex",
+          "limit_id_after": "codex",
+          "window_duration_mins": 300,
+          "resets_at_before": 1791222428,
+          "resets_at_after": 1791222428,
+          "used_percent_before": 41,
+          "used_percent_after": 50,
+          "reset_compatibility": "PASS_WITHIN_SAMPLE",
+          "qualified": false,
+          "rejection_reasons": [
+            "MISSING_PROVIDER_CLIENT_POLICY_VERSION",
+            "OVERLAPPING_POSITIVE_DELTA_COMPETING_LOCAL_CONSUMER"
+          ]
+        },
+        {
+          "window_type": "SECONDARY_WEEKLY",
+          "limit_id_before": "codex",
+          "limit_id_after": "codex",
+          "window_duration_mins": 10080,
+          "resets_at_before": 1791615796,
+          "resets_at_after": 1791615796,
+          "used_percent_before": 27,
+          "used_percent_after": 29,
+          "reset_compatibility": "PASS_WITHIN_SAMPLE",
+          "qualified": false,
+          "rejection_reasons": [
+            "MISSING_PROVIDER_CLIENT_POLICY_VERSION",
+            "OVERLAPPING_POSITIVE_DELTA_COMPETING_LOCAL_CONSUMER"
+          ]
+        }
+      ],
+      "local_recovery_source": "014cf5923d8ba682c6fa9086c05ef9f8eb3003f476132118d4c19ce759bd31e0",
+      "raw_transcript_loaded_into_model": false,
+      "provider_call_recovery": {
+        "artifact_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+        "verified_API_output_count": 0,
+        "original_field_policy_version_exposed": false,
+        "tool_reply_timestamp_not_provider_observed_timestamp": true,
+        "no_time_nearest_pair_fabrication": true
+      }
+    },
+    {
+      "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+      "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+      "token_evidence_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/local_token_usage.json",
+      "token_git_blob": "6aa594ec80beada0f0734bd1901055394e1bd137",
+      "exact_execution_binding": "CANONICAL_EXACT_STRONG_MARKER_BINDING_PRESENT; recovery targetsession + execution/WO markers; does not implycleanproviderattribution",
+      "token_arithmetic": "PASS",
+      "token_features": {
+        "cached_input_tokens": 3479296,
+        "uncached_input_tokens": 51799,
+        "non_reasoning_output_tokens": 19862,
+        "reasoning_output_tokens": 5609
+      },
+      "total_tokens": 3556566,
+      "provider_identity": "openai",
+      "account_identity_recovery": {
+        "value": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "source": "ORIGINAL_SESSION_META_CREATOR_ACCOUNT_NOT_CURRENT_SNAPSHOT"
+      },
+      "workspace_identity_recovery": {
+        "value": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "source": "ORIGINAL_CLIENT_WORKSPACE_CWD; no provider-workspace alias assumption"
+      },
+      "model_identity_recovery": "gpt-6.1-sol",
+      "executor_profile": "CANONICAL_WO_AUTHORITY_PROFILE_REQUIRES_EXACT_RUNTIME_ASSOCIATION; no task-class rejection",
+      "client_policy_identity": null,
+      "client_policy_rejection": "CLI_VERSION_NOT_PROVIDER_CLIENT_POLICY_VERSION; no explicit original machine field",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/execution_cost_actual.json",
+      "clean_attribution": false,
+      "competing_consumer": true,
+      "competing_consumer_proof": [
+        {
+          "session_id": "01a10f67-2c64-7682-9a62-6ab6e89e9a20",
+          "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+          "positive_delta": 474367,
+          "first_timestamp": "2026-10-06T04:10:23.814Z",
+          "last_timestamp": "2026-10-06T04:18:54.407Z",
+          "provider_windows": {
+            "limit_id": "codex",
+            "limit_name": null,
+            "primary": {
+              "used_percent": 37,
+              "window_minutes": 300,
+              "resets_at": 1791271699
+            },
+            "secondary": {
+              "used_percent": 36,
+              "window_minutes": 10080,
+              "resets_at": 1791615796
+            },
+            "credits": {
+              "has_credits": false,
+              "unlimited": false,
+              "balance": "0"
+            },
+            "individual_limit": null,
+            "spend_control_reached": null,
+            "plan_type": "plus",
+            "rate_limit_reached_type": null
+          },
+          "file_sha256": "dbde1318e364a6dd9a8db1c3339e8dd574804a693d07475a52d2a972e9c6dd04"
+        }
+      ],
+      "accepted": false,
+      "task_class_not_a_rejection": true,
+      "windows": [
+        {
+          "window_type": "PRIMARY_5H",
+          "limit_id_before": "codex",
+          "limit_id_after": "codex",
+          "window_duration_mins": 300,
+          "resets_at_before": 1791271699,
+          "resets_at_after": 1791271699,
+          "used_percent_before": 30,
+          "used_percent_after": 37,
+          "reset_compatibility": "PASS_WITHIN_SAMPLE",
+          "qualified": false,
+          "rejection_reasons": [
+            "MISSING_PROVIDER_CLIENT_POLICY_VERSION",
+            "OVERLAPPING_POSITIVE_DELTA_COMPETING_LOCAL_CONSUMER"
+          ]
+        },
+        {
+          "window_type": "SECONDARY_WEEKLY",
+          "limit_id_before": "codex",
+          "limit_id_after": "codex",
+          "window_duration_mins": 10080,
+          "resets_at_before": 1791615796,
+          "resets_at_after": 1791615796,
+          "used_percent_before": 35,
+          "used_percent_after": 36,
+          "reset_compatibility": "PASS_WITHIN_SAMPLE",
+          "qualified": false,
+          "rejection_reasons": [
+            "MISSING_PROVIDER_CLIENT_POLICY_VERSION",
+            "OVERLAPPING_POSITIVE_DELTA_COMPETING_LOCAL_CONSUMER"
+          ]
+        }
+      ],
+      "local_recovery_source": "014cf5923d8ba682c6fa9086c05ef9f8eb3003f476132118d4c19ce759bd31e0",
+      "raw_transcript_loaded_into_model": false,
+      "provider_call_recovery": {
+        "artifact_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+        "verified_API_output_count": 0,
+        "original_field_policy_version_exposed": false,
+        "tool_reply_timestamp_not_provider_observed_timestamp": true,
+        "no_time_nearest_pair_fabrication": true
+      }
+    },
+    {
+      "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+      "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+      "token_evidence_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/local_token_usage.json",
+      "token_git_blob": "6fb16d9c223de5dee9bd592703c87293213a7d2e",
+      "exact_execution_binding": "CANONICAL_EXACT_STRONG_MARKER_BINDING_PRESENT; recovery targetsession + execution/WO markers; does not implycleanproviderattribution",
+      "token_arithmetic": "PASS",
+      "token_features": {
+        "cached_input_tokens": 1977472,
+        "uncached_input_tokens": 241023,
+        "non_reasoning_output_tokens": 8234,
+        "reasoning_output_tokens": 3265
+      },
+      "total_tokens": 2229994,
+      "provider_identity": "openai",
+      "account_identity_recovery": {
+        "value": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "source": "ORIGINAL_SESSION_META_CREATOR_ACCOUNT_NOT_CURRENT_SNAPSHOT"
+      },
+      "workspace_identity_recovery": {
+        "value": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "source": "ORIGINAL_CLIENT_WORKSPACE_CWD; no provider-workspace alias assumption"
+      },
+      "model_identity_recovery": "gpt-6.1-sol",
+      "executor_profile": "CANONICAL_WO_AUTHORITY_PROFILE_REQUIRES_EXACT_RUNTIME_ASSOCIATION; no task-class rejection",
+      "client_policy_identity": null,
+      "client_policy_rejection": "CLI_VERSION_NOT_PROVIDER_CLIENT_POLICY_VERSION; no explicit original machine field",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/execution_cost_actual.json",
+      "clean_attribution": false,
+      "competing_consumer": true,
+      "competing_consumer_proof": [
+        {
+          "session_id": "01a10f67-2c64-7682-9a62-6ab6e89e9a20",
+          "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+          "positive_delta": 463651,
+          "first_timestamp": "2026-10-06T06:51:48.488Z",
+          "last_timestamp": "2026-10-06T06:55:32.570Z",
+          "provider_windows": {
+            "limit_id": "codex",
+            "limit_name": null,
+            "primary": {
+              "used_percent": 57,
+              "window_minutes": 300,
+              "resets_at": 1791271699
+            },
+            "secondary": {
+              "used_percent": 39,
+              "window_minutes": 10080,
+              "resets_at": 1791615796
+            },
+            "credits": {
+              "has_credits": false,
+              "unlimited": false,
+              "balance": "0"
+            },
+            "individual_limit": null,
+            "spend_control_reached": null,
+            "plan_type": "plus",
+            "rate_limit_reached_type": null
+          },
+          "file_sha256": "dbde1318e364a6dd9a8db1c3339e8dd574804a693d07475a52d2a972e9c6dd04"
+        }
+      ],
+      "accepted": false,
+      "task_class_not_a_rejection": true,
+      "windows": [
+        {
+          "window_type": "PRIMARY_5H",
+          "limit_id_before": "codex",
+          "limit_id_after": "codex",
+          "window_duration_mins": 300,
+          "resets_at_before": 1791271699,
+          "resets_at_after": 1791271699,
+          "used_percent_before": 54,
+          "used_percent_after": 57,
+          "reset_compatibility": "PASS_WITHIN_SAMPLE",
+          "qualified": false,
+          "rejection_reasons": [
+            "MISSING_PROVIDER_CLIENT_POLICY_VERSION",
+            "OVERLAPPING_POSITIVE_DELTA_COMPETING_LOCAL_CONSUMER"
+          ]
+        },
+        {
+          "window_type": "SECONDARY_WEEKLY",
+          "limit_id_before": "codex",
+          "limit_id_after": "codex",
+          "window_duration_mins": 10080,
+          "resets_at_before": 1791615796,
+          "resets_at_after": 1791615796,
+          "used_percent_before": 39,
+          "used_percent_after": 39,
+          "reset_compatibility": "PASS_WITHIN_SAMPLE",
+          "qualified": false,
+          "rejection_reasons": [
+            "MISSING_PROVIDER_CLIENT_POLICY_VERSION",
+            "OVERLAPPING_POSITIVE_DELTA_COMPETING_LOCAL_CONSUMER"
+          ]
+        }
+      ],
+      "local_recovery_source": "014cf5923d8ba682c6fa9086c05ef9f8eb3003f476132118d4c19ce759bd31e0",
+      "raw_transcript_loaded_into_model": false,
+      "provider_call_recovery": {
+        "artifact_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+        "verified_API_output_count": 1,
+        "original_field_policy_version_exposed": false,
+        "tool_reply_timestamp_not_provider_observed_timestamp": true,
+        "no_time_nearest_pair_fabrication": true
+      }
+    },
+    {
+      "execution_id": "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+      "work_order_id": "WO-AUTO-IMP-002-RF01-01",
+      "token_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/local_token_usage.json",
+      "token_git_blob": "59c21e30c3cc8a19afec0890a15b73230e70034e",
+      "exact_execution_binding": "CANONICAL_EXACT_STRONG_MARKER_BINDING_PRESENT; recovery targetsession + execution/WO markers; does not implycleanproviderattribution",
+      "token_arithmetic": "PASS",
+      "token_features": {
+        "cached_input_tokens": 8855040,
+        "uncached_input_tokens": 64632,
+        "non_reasoning_output_tokens": 14688,
+        "reasoning_output_tokens": 9585
+      },
+      "total_tokens": 8943945,
+      "provider_identity": "openai",
+      "account_identity_recovery": {
+        "value": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "source": "ORIGINAL_SESSION_META_CREATOR_ACCOUNT_NOT_CURRENT_SNAPSHOT"
+      },
+      "workspace_identity_recovery": {
+        "value": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "source": "ORIGINAL_CLIENT_WORKSPACE_CWD; no provider-workspace alias assumption"
+      },
+      "model_identity_recovery": "gpt-6.1-sol",
+      "executor_profile": "CANONICAL_WO_AUTHORITY_PROFILE_REQUIRES_EXACT_RUNTIME_ASSOCIATION; no task-class rejection",
+      "client_policy_identity": null,
+      "client_policy_rejection": "CLI_VERSION_NOT_PROVIDER_CLIENT_POLICY_VERSION; no explicit original machine field",
+      "provider_evidence_path": null,
+      "clean_attribution": false,
+      "competing_consumer": true,
+      "competing_consumer_proof": [
+        {
+          "session_id": "01a10b37-52f7-7e01-8114-33f4bc1513a0",
+          "account_binding": "EXACT_CREATOR_ACCOUNT_MATCH",
+          "positive_delta": 540699,
+          "first_timestamp": "2026-10-05T09:56:15.726Z",
+          "last_timestamp": "2026-10-05T10:17:21.193Z",
+          "provider_windows": {
+            "limit_id": "codex",
+            "limit_name": null,
+            "primary": {
+              "used_percent": 28,
+              "window_minutes": 300,
+              "resets_at": 1791204390
+            },
+            "secondary": {
+              "used_percent": 20,
+              "window_minutes": 10080,
+              "resets_at": 1791615796
+            },
+            "credits": {
+              "has_credits": false,
+              "unlimited": false,
+              "balance": "0"
+            },
+            "individual_limit": null,
+            "spend_control_reached": null,
+            "plan_type": "plus",
+            "rate_limit_reached_type": null
+          },
+          "file_sha256": "bb56fd2a1bea7ba73137b196991f1f7e7bbb7875e784add32959238935245c71"
+        }
+      ],
+      "accepted": false,
+      "task_class_not_a_rejection": true,
+      "windows": [
+        {
+          "window_type": "PRIMARY_5H",
+          "limit_id_before": null,
+          "limit_id_after": null,
+          "window_duration_mins": null,
+          "resets_at_before": null,
+          "resets_at_after": null,
+          "used_percent_before": null,
+          "used_percent_after": null,
+          "reset_compatibility": "MISSING_PROVIDER_PAIR",
+          "qualified": false,
+          "rejection_reasons": [
+            "MISSING_PROVIDER_CLIENT_POLICY_VERSION",
+            "OVERLAPPING_POSITIVE_DELTA_COMPETING_LOCAL_CONSUMER",
+            "MISSING_IMMEDIATE_PROVIDER_BEFORE_AFTER_PAIR"
+          ]
+        },
+        {
+          "window_type": "SECONDARY_WEEKLY",
+          "limit_id_before": null,
+          "limit_id_after": null,
+          "window_duration_mins": null,
+          "resets_at_before": null,
+          "resets_at_after": null,
+          "used_percent_before": null,
+          "used_percent_after": null,
+          "reset_compatibility": "MISSING_PROVIDER_PAIR",
+          "qualified": false,
+          "rejection_reasons": [
+            "MISSING_PROVIDER_CLIENT_POLICY_VERSION",
+            "OVERLAPPING_POSITIVE_DELTA_COMPETING_LOCAL_CONSUMER",
+            "MISSING_IMMEDIATE_PROVIDER_BEFORE_AFTER_PAIR"
+          ]
+        }
+      ],
+      "local_recovery_source": "014cf5923d8ba682c6fa9086c05ef9f8eb3003f476132118d4c19ce759bd31e0",
+      "raw_transcript_loaded_into_model": false,
+      "provider_call_recovery": {
+        "artifact_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+        "verified_API_output_count": 2,
+        "original_field_policy_version_exposed": false,
+        "tool_reply_timestamp_not_provider_observed_timestamp": true,
+        "no_time_nearest_pair_fabrication": true
+      }
+    }
+  ],
+  "qualified_count_per_window": {
+    "PRIMARY_5H": 0,
+    "SECONDARY_WEEKLY": 0
+  },
+  "scan_scope": {
+    "session_dates": [
+      "2026-10-05",
+      "2026-10-06"
+    ],
+    "session_files_scanned": 36,
+    "all_canonical_local_token_artifacts_in_master_tree": 5
+  },
+  "historical_verdict_rejection_not_cost_exclusion": true,
+  "task_class_not_capacity_identity": true,
+  "qualification_materializer": "WORK_DETERMINISTIC_MECHANICAL_EVIDENCE_ONLY",
+  "created_at": "2026-10-06T08:52:23Z",
+  "updated_at": "2026-10-06T08:52:23Z"
+}

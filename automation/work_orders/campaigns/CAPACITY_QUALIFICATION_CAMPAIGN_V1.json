@@ -1,0 +1,174 @@
+{
+  "schema_version": "automation.capacity_qualification_campaign.v1",
+  "campaign_id": "CAPACITY_QUALIFICATION_CAMPAIGN_V1",
+  "owner_amendment_path": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json",
+  "status": "PREPARED_BLOCKED_IDENTITY_PRECHECK",
+  "purpose": "Minimum useful read-only evidence acquisition; one manual singleuse execution at a time; not another architecture/source package",
+  "maximum_new_probe_executions": 3,
+  "probes_used": 0,
+  "minimum_distinct_per_window": 3,
+  "qualified_historical_per_window": {
+    "PRIMARY_5H": 0,
+    "SECONDARY_WEEKLY": 0
+  },
+  "conditional_probe_slots": [
+    {
+      "suffix": "P01",
+      "goal": "Verify exact current manifest8-component Git-byte hashes and active1.2 historical separation; report any stale authority projection without edits",
+      "paths": [
+        "automation/governance/master_manifest.v1.yaml",
+        "automation/policies/execution_capacity_policy.v2.yaml",
+        "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "automation/work_orders/CURRENT_CODEX.yaml"
+      ],
+      "work_order_id": "WO-CAPACITY-QUALIFICATION-V1-P01",
+      "authorization_id": "AUTH-CAPACITY-QUALIFICATION-V1-P01",
+      "execution_id": null,
+      "reservation": null,
+      "dispatch": null,
+      "writer": null,
+      "state": "PREPARED_NOT_EXECUTABLE",
+      "risk": "LOW_RISK_READ_ONLY",
+      "exact_source_write_scope": [],
+      "permitted_evidence_scope": "Only own future exact execution completion/cost/provider evidence; tokenartifact/intake/qualifiedcohort by WORK afterwards; no source or repository semantic edits"
+    },
+    {
+      "suffix": "P02",
+      "goal": "Verify ProgramV1/V2 exact DAG and operational singlelane separation and allfuture package nonauthority; read-only positive/negative static contract inspection",
+      "paths": [
+        "automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml",
+        "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+        "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
+      ],
+      "work_order_id": "WO-CAPACITY-QUALIFICATION-V1-P02",
+      "authorization_id": "AUTH-CAPACITY-QUALIFICATION-V1-P02",
+      "execution_id": null,
+      "reservation": null,
+      "dispatch": null,
+      "writer": null,
+      "state": "PREPARED_NOT_EXECUTABLE",
+      "risk": "LOW_RISK_READ_ONLY",
+      "exact_source_write_scope": [],
+      "permitted_evidence_scope": "Only own future exact execution completion/cost/provider evidence; tokenartifact/intake/qualifiedcohort by WORK afterwards; no source or repository semantic edits"
+    },
+    {
+      "suffix": "P03",
+      "goal": "Verify current exact token arithmetic/reconciliation measurement semantics and calibration qualification audit; no provider-percent billing/token conversion",
+      "paths": [
+        "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.json",
+        "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.qualification.json",
+        "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.json",
+        "automation/engine/execution_capacity.py"
+      ],
+      "work_order_id": "WO-CAPACITY-QUALIFICATION-V1-P03",
+      "authorization_id": "AUTH-CAPACITY-QUALIFICATION-V1-P03",
+      "execution_id": null,
+      "reservation": null,
+      "dispatch": null,
+      "writer": null,
+      "state": "PREPARED_NOT_EXECUTABLE",
+      "risk": "LOW_RISK_READ_ONLY",
+      "exact_source_write_scope": [],
+      "permitted_evidence_scope": "Only own future exact execution completion/cost/provider evidence; tokenartifact/intake/qualifiedcohort by WORK afterwards; no source or repository semantic edits"
+    }
+  ],
+  "next_probe": "WO-CAPACITY-QUALIFICATION-V1-P01",
+  "identity": {
+    "provider": {
+      "expected": "openai",
+      "source": "ORIGINAL_CLIENT_MODEL_PROVIDER",
+      "fresh_proof_required": true
+    },
+    "account": {
+      "expected": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+      "source": "ORIGINAL_CREATOR_ACCOUNT_AND_FRESH_PROVIDER_ACCOUNT",
+      "fresh_proof_required": true
+    },
+    "workspace": {
+      "expected": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+      "source": "ORIGINAL_EXECUTOR_CLIENT_WORKSPACE_METADATA",
+      "fresh_proof_required": true
+    },
+    "limit_id": {
+      "expected": "codex",
+      "fresh_proof_required": true
+    },
+    "window_types": [
+      "PRIMARY_5H",
+      "SECONDARY_WEEKLY"
+    ],
+    "model": {
+      "expected": "gpt-6.1-sol",
+      "source": "ORIGINAL_TARGET_EXECUTOR_TURN_CONTEXT",
+      "fresh_actual_target_proof_required": true,
+      "change": "STOP_NO_MODEL_DOWNGRADE"
+    },
+    "executor_profile": {
+      "expected": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+      "fresh_actual_target_proof_required": true
+    },
+    "provider_client_policy_version": {
+      "expected": null,
+      "status": "MISSING_EXPLICIT_DURABLE_SOURCE",
+      "CLI_version_substitution": "DENIED",
+      "current_provider_snapshot_backfill": "DENIED",
+      "NOT_EXPOSED_substitution": "DENIED_UNLESS_ORIGINAL_EVIDENCE_AND_ACCEPTED_REPRESENTATION_PROVEN"
+    }
+  },
+  "preflight": [
+    "mechanically prove all8identity fields for exacttargetclient/provider; no futureunknowncommit authority",
+    "fresh current master/current/auth/campaign source scope, active1.2",
+    "provider ordinary usageallowed true and no hard/rate/spend denial",
+    "no writer/resumablehigherpriority execution",
+    "exclusive measured actor interval: no overlapping compatible positive-delta session, no second automation execution/writer",
+    "same resets inside window; immediate before+after actualprovider evidence, actual call timestamps",
+    "normal singleuse guard eligibility->writer->executionid->reservation->RESERVED->precheck->dispatch->CONSUMED; stopbeforemanualinvoke"
+  ],
+  "admission": "ALLOW_WITH_WATCH_ONLY_EXISTING_PROVISIONAL_LOW_RISK_MANUAL_EXACT_AUTHORIZED_NO_WAIVER",
+  "manual_trigger_only": true,
+  "automatic_dispatch": false,
+  "automatic_executor_invocation": false,
+  "stop_after_every_probe": "WORK intake->release->exacttokenextractor->providerbinding->qualification; manualtriggernextonly afterfreshgates",
+  "stop_as_soon_as_qualified": "Never use more thanminimum3qualified samples per exposed window; campaign closes when qualifiedcapacity sufficient; do not run extra token-burning samples",
+  "no_competing_consumers": "No WORK/model-review/other CODEX consumption during probe actor interval; machine scan+provider window evidence afterwards, unknownremotenonsumability never silentlyclean",
+  "extractor": {
+    "path": "scripts/codex_session_token_usage.ps1",
+    "blob": "5834edd880ec9c73781b220c1ee488027f98f77e",
+    "no_executor_raw_transcript_read": true,
+    "strong_binding": "EXECID+WOID+actorstartend+owncompletion/evidenceSHAs",
+    "raw_model_context": false
+  },
+  "probe_forecast": {
+    "measurement_type": "PROXY",
+    "reported_total_tokens": {
+      "p50": 50000,
+      "p75": 120000,
+      "p90": 250000
+    },
+    "uncached_input_tokens": {
+      "p50": 10000,
+      "p75": 20000,
+      "p90": 40000
+    },
+    "actor_seconds": {
+      "p50": 120,
+      "p75": 240,
+      "p90": 600
+    },
+    "purpose": "Planning only; bound useful checks, no forceconsume forecast, no repeatedtests"
+  },
+  "rejection_conditions": [
+    "identity missing/drifted",
+    "ambiguous binding",
+    "overlapping consumer",
+    "unknown competing consumer",
+    "reset/window mismatch",
+    "actual provider denial",
+    "no measurable positive prediction / unidentifiable fit / uncertainty insufficient"
+  ],
+  "terminal_after_maximum": "CAPACITY_EVIDENCE_INSUFFICIENT with exact qualification dimension, never relaxpolicy",
+  "current_sole_preflight_blocker": "PROVIDER_CLIENT_POLICY_IDENTITY_UNRESOLVED",
+  "next_action": "Mechanically obtain explicit durable target provider-client-policy identity and exact runtime association; then fresh isolate provider windows and materialize minimum P01 single-use manual handoff. No probe allocated while this required dimension missing.",
+  "created_at": "2026-10-06T08:52:23Z",
+  "updated_at": "2026-10-06T08:52:23Z"
+}

@@ -1,0 +1,192 @@
+{
+  "schema_version": "automation.owner_pre_execution_amendment.v1",
+  "amendment_id": "AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01",
+  "authority": "HUMAN_GOVERNANCE_OWNER",
+  "source": "USER_EXPLICIT_CURRENT20_SECTION_CAPACITY_DECISION",
+  "decision": "APPROVED_PERMANENT_CALIBRATION_MACHINERY_AND_BOUNDED_EVIDENCE_ACQUISITION",
+  "master_baseline": "7308578c722030d9c26528178faa7a946e6878e1",
+  "architecture": "1.2_ACTIVE",
+  "package_id": "AUTO-GOV-PROGRAM-1_2-ORCHESTRATION",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "prior_authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "prior_authorization_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01.v1.yaml",
+  "prior_authorization_git_blob": "37a786ad45b02b0c53d523b67c8e6285d777d18a",
+  "prior_disposition": "SUPERSEDED_PRE_EXECUTION_NO_CONSUMPTION",
+  "prior_history_immutable": true,
+  "successor_authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2",
+  "successor_revision": "2",
+  "same_logical_WO": true,
+  "new_scope": [
+    "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+    "automation/policies/orchestration_control_policy.v1.yaml",
+    "automation/engine/orchestration.py",
+    "automation/engine/contracts.py",
+    "tests/automation/test_orchestration.py",
+    "tests/automation/test_contracts.py",
+    "scripts/execution_cost_reconcile.ps1",
+    "tests/automation/test_execution_cost_reconcile.py",
+    "automation/specs/context_loading_policy.v1.yaml",
+    "automation/skills/repo-reentry/SKILL.md",
+    "automation/skills/single-use-lifecycle-guard/SKILL.md",
+    "automation/skills/execution-cost-forecaster/SKILL.md",
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+    "automation/governance/master_manifest.v1.yaml",
+    "docs/CURRENT_STATE.md",
+    "docs/CURRENT_WORK.md",
+    "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+    "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml",
+    "automation/engine/capacity_calibration.py",
+    "tests/automation/test_capacity_calibration.py"
+  ],
+  "protected_execution_capacity_blob": "48b2d11199f3a864c7e1ccc4821645cb1eea28cd",
+  "permanent_surfaces": [
+    "automation/engine/capacity_calibration.py",
+    "tests/automation/test_capacity_calibration.py"
+  ],
+  "scope_expansion_rule": "Exactly two permanent surfaces added; previous19 unchanged; no execution_capacity.py edits without independently proven interface defect",
+  "risk": "HIGH_AUTHORITY_SENSITIVE_CONTROLLER_UNCHANGED",
+  "forecast_p90_total": 12000000,
+  "no_waiver": true,
+  "no_risk_downgrade": true,
+  "no_forecast_reduction": true,
+  "no_package_split": true,
+  "capacity_vs_demand": {
+    "task_class": "DEMAND_FORECAST_COMPARABILITY_ONLY_NOT_CAPACITY_QUALIFICATION",
+    "capacity_identity": [
+      "provider",
+      "account",
+      "workspace",
+      "limit_id",
+      "window_type",
+      "model",
+      "executor_profile",
+      "provider_client_policy_version"
+    ],
+    "proof": [
+      "exact_binding",
+      "clean_attribution",
+      "reset_window_compatible",
+      "no_competing_consumer",
+      "uncertainty_review"
+    ],
+    "missing_not_not_exposed": true,
+    "current_identity_backfill_denied": true,
+    "cli_version_is_not_client_policy_version": true
+  },
+  "method": {
+    "feature_method": "NON_NEGATIVE_ZERO_INTERCEPT_FEATURE_CALIBRATION",
+    "features": [
+      "cached_input_tokens",
+      "uncached_input_tokens",
+      "non_reasoning_output_tokens",
+      "reasoning_output_tokens"
+    ],
+    "non_reasoning_output": "output_tokens - reasoning_output_tokens",
+    "duplicate_features": "DENIED_INPUT_TOTAL_OUTPUT_OVERLAP",
+    "fit": "Independent nonnegative zero-intercept least-squares per real provider window; deterministic solver/tie-break and version recorded; no fixed total-token scalar",
+    "solver_contract": {
+      "algorithm": "CYCLIC_NON_NEGATIVE_COORDINATE_DESCENT_ZERO_START_V1",
+      "dependencies": "Python standard library only; pyproject has no numeric dependency; no additional dependency/scope",
+      "feature_order": [
+        "cached_input_tokens",
+        "uncached_input_tokens",
+        "non_reasoning_output_tokens",
+        "reasoning_output_tokens"
+      ],
+      "column_scaling": "Divide each feature by its positive maximum over training samples; zero feature column coefficient fixed0. Re-express fitted weights in original token units.",
+      "initial_coefficients": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "coordinate_update": "Fixed-order exact nonnegative single-coordinate least-squares minimizer holding others fixed; zero intercept",
+      "termination": "Both max coefficient change and objective change <=1e-12 relative tolerance, deterministic max100000 sweeps; nonconvergence/nonfinite/poorly-identified required prediction -> fail closed",
+      "ties": "Zero initialization and fixed feature order define deterministic fitted representative; record rank/coverage in uncertainty review; never claim unique identifiable weights from3samples alone",
+      "serialization": "Stable feature ordering and plain-data dump, deterministic numeric rounding convention documented and tested, no negative coefficients",
+      "bootstrap_production_same_method": true
+    },
+    "windows": [
+      "PRIMARY_5H",
+      "SECONDARY_WEEKLY"
+    ],
+    "minimum_distinct_qualified_executions_per_window": 3,
+    "point_usage": "dot(nonnegative_coefficients,P90_nonoverlapping_features)",
+    "conservative_upper_usage": "max(point + 1pp + 2*max_absolute_calibration_residual, point*1.25, larger_evidence_required_margin)",
+    "zero_work": "ZERO_PREDICTED_USAGE",
+    "zero_positive_demand_prediction": "FAIL_CLOSED_UNIDENTIFIABLE_CAPACITY_NO_DIVISION_BY_ZERO",
+    "point_capacity_total": "floor(P90_total*current_remaining_percent/point_prediction)",
+    "conservative_capacity_lower": "floor(P90_total*current_remaining_percent/conservative_upper_usage)",
+    "interval": "0 <= lower <= upper; take binding real window with lowest conservative lower; tie PRIMARY_5H then SECONDARY_WEEKLY",
+    "measurement_type": "CALIBRATED_ESTIMATE_NEVER_EXACT",
+    "uncertainty_fields": [
+      "sample_count",
+      "maximum_absolute_residual",
+      "quantization_margin_1pp",
+      "relative_safety_margin_minimum0.25",
+      "larger_evidence_margin_if_any",
+      "feature_coverage_identifiability",
+      "binding_window",
+      "current_remaining_percentage"
+    ],
+    "both_windows": "Evaluate both exposed windows independently; if either required window unqualified, do not silently discard it and admit on other window",
+    "gate": "CapacityEstimate.model_validate then normal cost_gate; available_tokens_lower >= forecast.p90"
+  },
+  "historical_recovery": {
+    "minimum_candidates": [
+      "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+      "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+      "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+      "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+      "EXEC-AUTO-IMP-002-RF01-20261005T093900Z"
+    ],
+    "procedure": "Whitelist deterministic original machine fields only; execution/WO/interval/strongmarkers/provider timestamps; no raw transcript in model; exact source hashes; no historical edits"
+  },
+  "campaign": {
+    "identity": "CAPACITY_QUALIFICATION_CAMPAIGN_V1",
+    "purpose": "Useful bounded read-only repository verification, not token burning or implementation",
+    "max_new_probes": 3,
+    "minimum_only": true,
+    "probe_risk": "LOW_RISK_READ_ONLY_MANUAL",
+    "admission": "EXISTING_ARCH1.2_ALLOW_WITH_WATCH_IF_EXACT_AUTHORIZED_PROVIDER_AVAILABLE",
+    "no_quota_waiver": true,
+    "manual_only": true,
+    "automatic_invocation": false,
+    "preflight": "All8 identity dimensions mechanically proven with original client/provider evidence, clean measurement isolation, provider available, normal singleuse. Missing policy identity must block rather than relabel CLI version or fabricate NOT_EXPOSED.",
+    "intake_sequence": [
+      "intake",
+      "writer_release_after_durable_intake",
+      "canonical_exact_token_extraction",
+      "bind_immediate_provider_before_after",
+      "allwindowqualification",
+      "stop_when3qualified_else_next_minimal_probe"
+    ],
+    "no_design_between_probes": true,
+    "stop_on": [
+      "actual_provider_denial",
+      "identity_missing_or_drift",
+      "competing_consumer",
+      "reset_mismatch",
+      "ambiguous_exact_binding",
+      "max3newprobes_used_and_less_than3qualified_or_capacity_insufficient"
+    ]
+  },
+  "one_cohesive_review": true,
+  "review_scope": "Original complete19-file package plus permanent calibration engine/tests, effective21files; one verdict",
+  "correction_budget_consumed": 0,
+  "automatic_dispatch": false,
+  "AUTO_IMP_003": "NOT_AUTHORIZED",
+  "IVF01_rev2": "NOT_AUTHORIZED",
+  "side_effects": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "created_at": "2026-10-06T08:52:23Z",
+  "updated_at": "2026-10-06T08:52:23Z"
+}
