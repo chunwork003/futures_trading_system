@@ -39,6 +39,10 @@ Independent IC01 PASS remains valid at its exact reviewed SHA/scope. Candidate `
 
 Architecture decision confirms production resolver behavior is safe and must remain unchanged. IVF01 preparation: `automation/work_orders/AUTO-IMP-002-IVF01.authorization-prep.json`; future identity `WO-AUTO-IMP-002-IVF01-01`; exact proposed correction scope is `tests/automation/test_reentry.py` only, proposed budget 1 (not granted). IC01 PASS and failed integration evidence remain unchanged; no acceptance/closure. Separate implementation authority and fresh lifecycle/quota gates are required before any execution. No CODEX dispatch; AUTO-IMP-003 NOT_AUTHORIZED.
 
+### IVF01 Exact Implementation Authority — QUOTA BLOCKED (CURRENT)
+
+Human IVF01 bounded implementation decision is materialized in `automation/authorizations/AUTH-AUTO-IMP-002-IVF01-01.v1.yaml`; exact work order `WO-AUTO-IMP-002-IVF01-01` is BLOCKED, handoff_ready=false. Only `tests/automation/test_reentry.py` may receive semantic correction; budget 1 unused. Sole pre-reservation blocker: IVF01_QUOTA_ADMISSION_UNRESOLVED (P90 5.5M exceeds frozen normalized fallback 40k; no compatible provider-native admission). Provider presently permits ordinary usage, with no hard-block; percentages are not token budgets. No execution/reservation/lock/dispatch/consumption. IC01 semantic PASS and historical integration failure remain unchanged. AUTO-IMP-003 and runtime/broker/DB/migration/LIVE/production remain NOT_AUTHORIZED. Prior preparation and IC01 snapshots below are historical; CURRENT_CODEX is the exact active pointer.
+
 ### CURRENT_AUTHORITY_SNAPSHOT
 
 ```text
@@ -139,12 +143,12 @@ development_automation_single_use_lifecycle_guard = REQUIRED_FOR_ALL_FUTURE_BOUN
 development_automation_effective_lifecycle = ADOPTED_REVIEW_CANDIDATE_NO_REDISPATCH
 development_automation_agent_reentry_sha256 = 3c1b30cf1b0691b25d454c89e6b0f4bcb5d5985cec696511668ce651cc008bb8
 development_automation_agent_reentry_hash_refresh = NAVIGATION_POINTER_ONLY_NO_AUTHORITY_EFFECT
-development_automation_current_authorization_id = AUTH-AUTO-IMP-002-IC01-01
+development_automation_current_authorization_id = AUTH-AUTO-IMP-002-IVF01-01
 development_automation_current_authorization_revision = 1
-development_automation_current_authorization_state = CONSUMED
-development_automation_current_authorization_candidate = CONSUMED_EFFECTIVE
+development_automation_current_authorization_state = AUTHORIZED
+development_automation_current_authorization_candidate = AUTHORIZED_EFFECTIVE_PENDING_QUOTA
 development_automation_auto_imp_001_source_modification = BOUNDED_AUTHORIZED
-development_automation_execution_eligibility = INTEGRATION_VERIFICATION_FAILED
+development_automation_execution_eligibility = IVF01_QUOTA_ADMISSION_UNRESOLVED
 development_automation_quota_rf_id = AUTO-IMP-001-QRF01
 development_automation_quota_rf_status = ACCEPTED_MATERIALIZED
 development_automation_quota_rf_re_review = PASS
@@ -162,13 +166,13 @@ development_automation_auto_rf01 = CLOSED
 development_automation_auto_rf02 = CLOSED
 development_automation_auto_manifest_rf01 = CLOSED
 development_automation_implementation = AUTO_IMP_002_IMPLEMENTED_UNACCEPTED_REVIEW_FIX_REQUIRED
-development_automation_execution_id = EXEC-AUTO-IMP-002-IC01-20261005T150733Z
-development_automation_writer_lock_status = RELEASED_AFTER_DURABLE_RESULT_INTAKE
+development_automation_execution_id = NONE_NOT_ALLOCATED
+development_automation_writer_lock_status = NO_ACTIVE_REGISTERED_AUTOMATION_WRITER
 development_automation_level_3b = NOT_ENABLED
 development_automation_level_3c = NOT_ENABLED
 development_automation_level_4 = NOT_ENABLED
 development_automation_level_5 = NOT_ENABLED
-development_automation_next_route = HUMAN_IVF01_IMPLEMENTATION_AUTHORIZATION_DECISION
+development_automation_next_route = HUMAN_IVF01_QUOTA_ADMISSION_DECISION
 
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
@@ -216,7 +220,7 @@ migration_execution = NOT_AUTHORIZED
 live = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 next_mainline_gap = NOT_AUTHORIZED
-next = HUMAN_IVF01_IMPLEMENTATION_AUTHORIZATION_DECISION
+next = HUMAN_IVF01_QUOTA_ADMISSION_DECISION
 development_automation_ic01_work_order = WO-AUTO-IMP-002-IC01-01
 development_automation_ic01_execution_id = EXEC-AUTO-IMP-002-IC01-20261005T150733Z
 development_automation_ic01_handoff_ready = false
@@ -226,6 +230,11 @@ development_automation_auto_imp_003_authorized = false
 development_automation_ic01_review = REVIEW_PASS
 development_automation_ic01_implementation_sha = cb911df46c3030c88599139a682dfbad0c658470
 development_automation_ic01_evidence_sha = d8eea3d6aba17ee975eb6866feaf8e93fdaf6ffd
+development_automation_ivf01_work_order = WO-AUTO-IMP-002-IVF01-01
+development_automation_ivf01_authorization = AUTH-AUTO-IMP-002-IVF01-01
+development_automation_ivf01_state = BLOCKED_QUOTA_ADMISSION
+development_automation_ivf01_budget_remaining = 1
+development_automation_ivf01_handoff_ready = false
 ```
 
 Pointers：

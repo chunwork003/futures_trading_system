@@ -1,0 +1,162 @@
+{
+  "schema_version": "automation.authorization.v1",
+  "authorization_id": "AUTH-AUTO-IMP-002-IVF01-01",
+  "authorization_revision": "1",
+  "document_status": "AUTHORIZED_EFFECTIVE",
+  "authorization_state": "AUTHORIZED",
+  "source_candidate_head_sha": "1566ae85d5ea32bb4fb562ea5121c72d0fe88c9d",
+  "created_at": "2026-10-06T03:03:56Z",
+  "updated_at": "2026-10-06T03:03:56Z",
+  "decision_evidence": {
+    "decision": "AUTO-IMP-002-IVF01 = APPROVED_FOR_BOUNDED_IMPLEMENTATION",
+    "authority": "HUMAN_GOVERNANCE_OWNER",
+    "source": "USER_EXPLICIT_ATTACHED_GOVERNANCE_DECISION",
+    "preparation_path": "automation/work_orders/AUTO-IMP-002-IVF01.authorization-prep.json",
+    "preparation_blob_sha": "e8f62a5353a9cd279d2397415f546398ac8a9a76",
+    "effect": "EXACT_ONE_TEST_FILE_CORRECTION_PLUS_EXPLICIT_SOURCE_BASELINE_ASSEMBLY",
+    "quota_waiver_granted": false
+  },
+  "exact_binding": {
+    "authorization_id": "AUTH-AUTO-IMP-002-IVF01-01",
+    "authorization_revision": "1",
+    "work_package_id": "AUTO-IMP-002",
+    "work_package_revision": "1",
+    "correction_id": "AUTO-IMP-002-IVF01",
+    "correction_class": "INTEGRATION_VERIFICATION_TEST_EXPECTATION_FIX",
+    "work_order_id": "WO-AUTO-IMP-002-IVF01-01",
+    "architecture_id": "DEVELOPMENT-AUTOMATION-MASTER",
+    "architecture_revision": "1.1",
+    "architecture_bundle_hash": "d6b2c5b4e8ff95a337c4c9982ed03a64e1cf4ea4c03f250857e98d37e3df6cfa",
+    "architecture_binding_provenance": "automation/authorizations/AUTH-AUTO-IMP-002-01.v1.yaml#/exact_binding",
+    "planning_baseline_sha": "1566ae85d5ea32bb4fb562ea5121c72d0fe88c9d",
+    "scope_digest": "28a7c1b52f017832afa65b5a86f6d513bac133c3f6e5803a7f9501f1774ab082",
+    "scope_digest_convention": "SHA256_UTF8_NEWLINE_JOIN_EXACT_ORDER_NO_TRAILING_NEWLINE",
+    "side_effect_class": "AUTOMATION_TEST_SOURCE_MODIFICATION_ONLY",
+    "governance_effect": "EXACT_BOUNDED_TEST_EXPECTATION_CORRECTION_ONLY",
+    "allowed_executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+    "implementation_correction_budget": 1,
+    "review_barrier": "REQUIRED_BEFORE_ACCEPTANCE"
+  },
+  "exact_write_scope": [
+    "tests/automation/test_reentry.py"
+  ],
+  "protected_unchanged": [
+    "automation/engine/reentry.py",
+    "automation/engine/manifest.py",
+    "tests/automation/test_manifest.py",
+    "automation/authorizations/**",
+    "automation/governance/**",
+    "automation/policies/**",
+    "automation/programs/**",
+    "automation/packages/**",
+    "consumed RF01/RF02/IC01 authority and quota evidence",
+    "runtime/broker/db/migration/live/production surfaces"
+  ],
+  "protected_source_blobs": {
+    "automation/engine/manifest.py": "6262e33fcbd8999252b5ff8ffcc530571d8004ad",
+    "automation/engine/reentry.py": "be9626d148f7ddc8e0891d14745f43fb304471cd",
+    "tests/automation/test_manifest.py": "0c3d063da3152535896b99bbf7b6a37b671b2b65"
+  },
+  "exact_goal": "Replace mutable ROOT/HEAD historical-state assertion with deterministic REVIEW_PASS coverage while preserving IC01/RF01/RF02 semantics",
+  "baseline_assembly": {
+    "fresh_master_control_plane_required": true,
+    "source_reference_sha": "cb911df46c3030c88599139a682dfbad0c658470",
+    "exact_blobs": {
+      "automation/engine/manifest.py": "6262e33fcbd8999252b5ff8ffcc530571d8004ad",
+      "automation/engine/reentry.py": "be9626d148f7ddc8e0891d14745f43fb304471cd",
+      "tests/automation/test_manifest.py": "0c3d063da3152535896b99bbf7b6a37b671b2b65",
+      "tests/automation/test_reentry.py": "c729f080adcd8460c54c4304f51e3c691d122461"
+    },
+    "old_control_plane_copy": "DENIED",
+    "assembly_is_new_semantic_correction": false
+  },
+  "correction_budget": {
+    "limit": 1,
+    "used": 0,
+    "remaining": 1,
+    "semantics": "One bounded test-only correction cycle inside exact one-file scope",
+    "exhaustion": "STOP_TO_WORK_NO_AUTOMATIC_NEW_CORRECTION"
+  },
+  "stable_fixture_strategy": {
+    "replacement": "Replace/remove mutable ROOT/HEAD lifecycle assertion with explicit self-contained post-review fixture; add REVIEW_PASS to deterministic non-candidate coverage",
+    "review_pass_checks": [
+      "regular route STOP",
+      "execution_allowed=false",
+      "status_only next_action REPORT_CURRENT_STATE_WITHOUT_EXECUTION",
+      "remove candidate-only AUTH/QUOTA/ELIGIBILITY/PACKAGE/DEPENDENCY evidence to prove no deep dereference",
+      "HEAD/branches/worktree remain unchanged",
+      "no authority document creation"
+    ],
+    "exact_historical_stop_reason_required": false,
+    "ready_positive_non_vacuity": "CODEX_EXECUTION_CANDIDATE with execution_allowed=false",
+    "preserve": [
+      "missing package_binding STOP",
+      "missing program_binding STOP",
+      "RF01 negative binding matrix",
+      "RF02 effects/next-package/provider hard-block matrix"
+    ],
+    "fresh_master_behavior": "Record separately as integration evidence, not a mutable ROOT/HEAD unit-test invariant"
+  },
+  "execution_policy": {
+    "manual_trigger_only": true,
+    "automatic_dispatch": "DENIED",
+    "automatic_next_package_progression": "DENIED",
+    "single_use_lifecycle_guard_required": true,
+    "strict_order": true,
+    "resume_before_new": true
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED"
+  },
+  "quota_gate": {
+    "policy": "QuotaAdmissionPolicyV1_1",
+    "policy_version": "1.1",
+    "policy_path": "automation/policies/quota_admission_policy.v1_1.yaml",
+    "policy_blob_sha": "556a86ba5be7a2b2818b1523d96b44caab487bd1",
+    "status": "IVF01_QUOTA_ADMISSION_UNRESOLVED",
+    "provider_hard_block": "STOP",
+    "prior_amendment_reuse": "DENIED",
+    "percentage_to_token_conversion": "DENIED",
+    "waiver_granted": false,
+    "provider_enforced_limits_waived": false,
+    "evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-IVF01-01.quota-evidence.json"
+  },
+  "single_use_execution": {
+    "execution_id": "NOT_ALLOCATED",
+    "reservation_path": "NOT_CREATED",
+    "writer_lock_path": "NOT_CREATED",
+    "dispatch_committed": false,
+    "executor_invoked": false
+  },
+  "forecast_path": "automation/work_orders/forecasts/AUTO-IMP-002-IVF01.planning.json",
+  "decision": {
+    "status": "AUTHORIZED_PENDING_QUOTA_ADMISSION",
+    "next_route": "HUMAN_IVF01_QUOTA_ADMISSION_DECISION"
+  },
+  "stop_conditions": [
+    "PRODUCTION_SEMANTIC_CHANGE_REQUIRED",
+    "scope/authority expansion",
+    "quota admission unresolved or provider hard block",
+    "budget exhaustion",
+    "unplanned expensive cycle",
+    "baseline drift or competing writer"
+  ],
+  "ic01_review": {
+    "verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-IC01-01.verdict.json",
+    "verdict": "PASS_UNCHANGED",
+    "assembly_sha": "e8da7473853229899490c5634196d83d03a190a8",
+    "implementation_sha": "cb911df46c3030c88599139a682dfbad0c658470",
+    "evidence_sha": "d8eea3d6aba17ee975eb6866feaf8e93fdaf6ffd",
+    "exact_scope": [
+      "automation/engine/reentry.py",
+      "tests/automation/test_reentry.py"
+    ],
+    "semantic_reopening": false
+  },
+  "auto_imp_003_authorized": false
+}

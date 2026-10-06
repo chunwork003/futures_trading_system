@@ -1,0 +1,64 @@
+{
+  "schema_version": "automation.work_cost_observation.v1",
+  "actor": "WORK",
+  "phase": "WORK_AUTHORIZATION_MATERIALIZATION_FRESH_ELIGIBILITY_QUOTA_RESOLUTION",
+  "work_order_id": "WO-AUTO-IMP-002-IVF01-01",
+  "measurement_type": "PROXY",
+  "exact_tokens": null,
+  "token_status": "UNKNOWN",
+  "source": "TASK_BOUND_EXACT_WORK_USAGE_NOT_EXPOSED",
+  "proxy": {
+    "artifacts_written": 8,
+    "source_edits": 0,
+    "test_runs": 0,
+    "raw_transcript_reads": 0
+  },
+  "task_profile": {
+    "task_class": "INTEGRATION_VERIFICATION_TEST_EXPECTATION_FIX",
+    "change_type": "TEST_ONLY_DETERMINISTIC_LIFECYCLE_FIXTURE",
+    "subsystem": "automation.engine",
+    "functional_area": "reentry semantic test lifecycle independence",
+    "concise_engineering_goal": "Replace mutable ROOT/HEAD historical-state assertion with deterministic REVIEW_PASS coverage while preserving IC01/RF01/RF02 semantics",
+    "primary_symbols_or_functional_surfaces": [
+      "test_ic01_actual_consumed_current_no_deep_dereference",
+      "test_ic01_non_candidate_states",
+      "self-contained READY candidate fixture"
+    ],
+    "behavior_dimensions": [
+      "REVIEW_PASS STOP/no dispatch",
+      "status-only current reporting",
+      "no candidate-only dereference",
+      "no mutation or authority creation",
+      "READY non-vacuity",
+      "RF01/RF02 coverage preservation"
+    ],
+    "source_file_count": 0,
+    "test_file_count": 1,
+    "semantic_profile": "TEST_EXPECTATION_COMPATIBILITY_AND_COVERAGE_PRESERVATION",
+    "test_profile": "IMPACTED_TARGETED_FULL_NARROW_REVIEW_THEN_FRESH_MASTER_INTEGRATION",
+    "authority_boundary": "AUTHORIZED exact one-test-file IVF01 correction; execution blocked by quota",
+    "packaging_cohesion_decision": "KEEP_COHESIVE: same test surface, fixture goal and narrow acceptance gate"
+  },
+  "context_profile": {
+    "raw_transcript_loaded": false,
+    "artifacts_read": [
+      "CURRENT_CODEX",
+      "automation/work_orders/AUTO-IMP-002-IVF01.authorization-prep.json",
+      "automation/work_orders/forecasts/AUTO-IMP-002-IVF01.planning.json",
+      "AUTH-AUTO-IMP-002-IC01 schema precedent",
+      "AUTH-AUTO-IMP-002 architecture binding",
+      "QuotaAdmissionPolicyV1_1",
+      "AuthorizationLifecycleV1",
+      "master_manifest",
+      "registered writer locks",
+      "source reference tree",
+      "CURRENT_STATE current section"
+    ],
+    "content_token_estimate": null,
+    "model_usage_measurement_type": "UNKNOWN"
+  },
+  "result": "IVF01_QUOTA_ADMISSION_UNRESOLVED",
+  "authority_effect": "NONE",
+  "created_at": "2026-10-06T03:03:56Z",
+  "updated_at": "2026-10-06T03:03:56Z"
+}
