@@ -1,0 +1,96 @@
+{
+  "schema_version": "automation.pre_dispatch_recheck.v1",
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "master_sha": "6c44e0d670a30da61425cb159d4ee72d930784a8",
+  "source_candidate_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
+  "scope_digest": "c883e63e204ca82ae936353efa6cee7934ef8ce863bf99285e842889c7c4d481",
+  "reservation_commit": "6c44e0d670a30da61425cb159d4ee72d930784a8",
+  "writer_acquired_commit": "48997d9b72ae479f2f4fac1eb826e1c3f0afebc3",
+  "writer_lock_blob": "c59ab57847d00ce844be7e44b467905498e65c5e",
+  "status": "PASS",
+  "checks": {
+    "head": "PASS_ONLY_OWN_CONTROL_PLANE_DESCENDANTS",
+    "scope": "PASS_EXACT_FOUR_SOURCE_FILES",
+    "candidate19": "PASS_BOUND_REVIEWED_BLOBS_UNCHANGED",
+    "authority": "PASS_EXACT_RESERVED_RF01",
+    "writer": "PASS_EXACT_OWNER_HELD",
+    "reservation": "PASS_EXACT_EXECUTION",
+    "provider": "PASS_NO_HARD_RATE_SPEND_DENIAL",
+    "invocation": "NOT_INVOKED",
+    "automatic_dispatch": "DENIED",
+    "executor_worktree": "MUST_FRESH_VERIFY_CLEAN_ISOLATED_CANDIDATE_BRANCH_BEFORE_FIRST_INVOCATION"
+  },
+  "raw_provider_snapshot": {
+    "ordinaryUsageAllowed": true,
+    "rateLimits": {
+      "limitId": "codex",
+      "limitName": null,
+      "normalModelSlug": null,
+      "primary": {
+        "usedPercent": 51,
+        "windowDurationMins": 300,
+        "resetsAt": 1791271699
+      },
+      "secondary": {
+        "usedPercent": 38,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "credits": {
+        "hasCredits": false,
+        "unlimited": false,
+        "balance": "0"
+      },
+      "individualLimit": null,
+      "spendControlReached": false,
+      "planType": "plus",
+      "rateLimitReachedType": null
+    },
+    "rateLimitsByLimitId": {
+      "codex": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 51,
+          "windowDurationMins": 300,
+          "resetsAt": 1791271699
+        },
+        "secondary": {
+          "usedPercent": 38,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    },
+    "rateLimitResetCredits": {
+      "availableCount": 1,
+      "credits": [
+        {
+          "id": "RateLimitResetCredit_771ee9c1c33c8191bb6446adef907c3b",
+          "resetType": "codexRateLimits",
+          "status": "available",
+          "grantedAt": 1790699427,
+          "expiresAt": 1793291427,
+          "title": "Full reset (Weekly + 5 hr)",
+          "description": "Thanks for using Codex! You've been granted one free rate limit reset."
+        }
+      ]
+    },
+    "accountId": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+    "rateLimitUpsell": null
+  },
+  "created_at": "2026-10-06T06:37:52.473Z",
+  "updated_at": "2026-10-06T06:37:52.473Z"
+}
