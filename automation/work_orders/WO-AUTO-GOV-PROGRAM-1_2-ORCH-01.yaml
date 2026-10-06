@@ -218,7 +218,7 @@
     "executor_invoked":  false,
     "writer_state":  "HELD",
     "reservation_created":  true,
-    "dispatch_committed":  false,
+    "dispatch_committed":  true,
     "forecast_path":  "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.json",
     "eligibility_path":  "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.eligibility.json",
     "claim_rules":  "No claim while BLOCKED. Only after normal fresh gates, one writer and new identity/reservation/precheck/dispatch/CONSUMED durable, manual trigger. Existing branch/evidence/lifecycle must block duplicate creation; no CONSUMED redispatch.",
@@ -293,7 +293,7 @@
                   "rev2":  "NOT_AUTHORIZED_PREPARATION_ONLY",
                   "flow_path":  "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
               },
-    "current_route":  "MARK_DISPATCH_COMMITTED",
+    "current_route":  "STATE_TO_CONSUMED",
     "sole_blocker":  null,
     "active_dispatch_mode":  "MANUAL",
     "controlled_auto":  "DISABLED",
