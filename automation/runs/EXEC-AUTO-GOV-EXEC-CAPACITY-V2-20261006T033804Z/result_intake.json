@@ -1,0 +1,257 @@
+{
+  "schema_version": "automation.result_intake.v1",
+  "mechanical_intake": "PASS",
+  "semantic_acceptance": "NOT_PERFORMED",
+  "status": "COMPLETED_PENDING_REVIEW",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+  "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-01",
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+  "master_start_sha": "aef31074f8ceb3829c193498b032011c35e44d06",
+  "master_at_intake_sha": "aef31074f8ceb3829c193498b032011c35e44d06",
+  "initial_implementation_sha": "f2574bdfb55232a6169406787839c8c8d9938ac8",
+  "implementation_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
+  "evidence_sha": "b899984462e48eb4dd02eae502918bd36ec937d4",
+  "execution_branch": "auto/WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+  "exact_implementation_scope": [
+    "automation/policies/execution_capacity_policy.v2.yaml",
+    "automation/policies/authorization_lifecycle.v1_1.yaml",
+    "automation/policies/development_state_machine.v2.yaml",
+    "automation/policies/development_entry_protocol.v2.yaml",
+    "automation/telemetry/execution_cost_contract.v2.yaml",
+    "automation/specs/work_cost_accounting.v2.yaml",
+    "automation/specs/negative_assertions.v2.yaml",
+    "automation/engine/execution_capacity.py",
+    "tests/automation/test_execution_capacity.py",
+    "automation/engine/contracts.py",
+    "tests/automation/test_contracts.py",
+    "scripts/execution_cost_reconcile.ps1",
+    "automation/skills/quota-snapshot-recorder/SKILL.md",
+    "automation/skills/execution-cost-forecaster/SKILL.md",
+    "automation/skills/execution-efficiency-guard/SKILL.md",
+    "automation/skills/single-use-lifecycle-guard/SKILL.md",
+    "automation/skills/repo-reentry/SKILL.md",
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+    "automation/governance/master_manifest.v1.yaml",
+    "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+    "docs/CURRENT_STATE.md",
+    "docs/CURRENT_WORK.md"
+  ],
+  "exact_implementation_blobs": [
+    {
+      "path": "automation/engine/contracts.py",
+      "insertions": 51,
+      "deletions": 0,
+      "git_blob_sha": "5c69bd5b4fa3aaea1bab34d443992ce96983fa3f"
+    },
+    {
+      "path": "automation/engine/execution_capacity.py",
+      "insertions": 261,
+      "deletions": 0,
+      "git_blob_sha": "c64d9201cb5389585eec1f1bf5e6eb26d818fc35"
+    },
+    {
+      "path": "automation/governance/master_manifest.v1.yaml",
+      "insertions": 87,
+      "deletions": 50,
+      "git_blob_sha": "b32ef0063d35d48c58b4411456c689139cfff0c5"
+    },
+    {
+      "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+      "insertions": 62,
+      "deletions": 0,
+      "git_blob_sha": "dda6fde0c69f289a81aa743a5474db2aa5bf1867"
+    },
+    {
+      "path": "automation/policies/development_entry_protocol.v2.yaml",
+      "insertions": 40,
+      "deletions": 0,
+      "git_blob_sha": "8f48fbdf96809a44fd1ddbd412de0cf1fe2819a7"
+    },
+    {
+      "path": "automation/policies/development_state_machine.v2.yaml",
+      "insertions": 66,
+      "deletions": 0,
+      "git_blob_sha": "b36939d7645ba1188e3faffd64e4d10c0fa143f3"
+    },
+    {
+      "path": "automation/policies/execution_capacity_policy.v2.yaml",
+      "insertions": 64,
+      "deletions": 0,
+      "git_blob_sha": "29beffc4b63eb14a1a2734ceb88773fdcdf7916c"
+    },
+    {
+      "path": "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+      "insertions": 6,
+      "deletions": 1,
+      "git_blob_sha": "e51259ac317d63de73826a3a7d6e02d28969ca50"
+    },
+    {
+      "path": "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+      "insertions": 8,
+      "deletions": 3,
+      "git_blob_sha": "4b19eabab43d3bbc511711724117150381062045"
+    },
+    {
+      "path": "automation/skills/execution-cost-forecaster/SKILL.md",
+      "insertions": 6,
+      "deletions": 0,
+      "git_blob_sha": "4f7855bffc71fd233c99d451127c7d6360e597fa"
+    },
+    {
+      "path": "automation/skills/execution-efficiency-guard/SKILL.md",
+      "insertions": 6,
+      "deletions": 0,
+      "git_blob_sha": "9e69be396e790fef9fecbac8b003fb1e6263ce22"
+    },
+    {
+      "path": "automation/skills/quota-snapshot-recorder/SKILL.md",
+      "insertions": 8,
+      "deletions": 2,
+      "git_blob_sha": "293f5d341dfbdedce2f60db5b1581e6f2bc12a8f"
+    },
+    {
+      "path": "automation/skills/repo-reentry/SKILL.md",
+      "insertions": 6,
+      "deletions": 0,
+      "git_blob_sha": "24bb896d023953f8e718bb608784e6c4cfe15252"
+    },
+    {
+      "path": "automation/skills/single-use-lifecycle-guard/SKILL.md",
+      "insertions": 22,
+      "deletions": 0,
+      "git_blob_sha": "fc0eb62a69f1a38643ee18c4c7b538a356cf9461"
+    },
+    {
+      "path": "automation/specs/negative_assertions.v2.yaml",
+      "insertions": 46,
+      "deletions": 0,
+      "git_blob_sha": "4e5d9ea39ae67fa0753e8402fa21aa75fe0e9b40"
+    },
+    {
+      "path": "automation/specs/work_cost_accounting.v2.yaml",
+      "insertions": 47,
+      "deletions": 0,
+      "git_blob_sha": "9691b6e16e24004e0ea3e1a34ab577714570cdd7"
+    },
+    {
+      "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+      "insertions": 61,
+      "deletions": 0,
+      "git_blob_sha": "178c60a49261d3746193a5521439f0c45dbaa75d"
+    },
+    {
+      "path": "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+      "insertions": 27,
+      "deletions": 0,
+      "git_blob_sha": "c1b59c0ec6c4107b0e16ab9e261340ce740d8ed4"
+    },
+    {
+      "path": "docs/CURRENT_STATE.md",
+      "insertions": 5,
+      "deletions": 0,
+      "git_blob_sha": "3d2b852a80dbad50a9747f027fda35a0ad4152f3"
+    },
+    {
+      "path": "docs/CURRENT_WORK.md",
+      "insertions": 5,
+      "deletions": 0,
+      "git_blob_sha": "78a3315a982b68abd6c0f8b4ae2cb870f4fcf9e5"
+    },
+    {
+      "path": "scripts/execution_cost_reconcile.ps1",
+      "insertions": 19,
+      "deletions": 1,
+      "git_blob_sha": "0817676efed4c6d5899dedbaa37ad01500db611e"
+    },
+    {
+      "path": "tests/automation/test_contracts.py",
+      "insertions": 19,
+      "deletions": 0,
+      "git_blob_sha": "efbedbec8921a7439f6dcbaa5eabfbb2d9c5f617"
+    },
+    {
+      "path": "tests/automation/test_execution_capacity.py",
+      "insertions": 200,
+      "deletions": 0,
+      "git_blob_sha": "6b7e99fbd6777fbba8fb1a4a61f3b564a793c141"
+    }
+  ],
+  "execution_evidence_files": [
+    "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/completion.json",
+    "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/execution_cost_actual.json"
+  ],
+  "completion_git_blob_sha": "b097e006a464799d9c02416e9d8715f97ebc6566",
+  "original_actual_git_blob_sha": "030c1b582266ab159580bfadba470146d1cd4352",
+  "scope_verification": {
+    "changed_files": 25,
+    "implementation_files": 23,
+    "evidence_files": 2,
+    "all_other_base_blobs_unchanged": true,
+    "protected_identities": {
+      "automation/engine/yaml_io.py": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+      "automation/policies/authorization_lifecycle.v1.yaml": "a00c8f8277204380dd6211548a6828380afb51e0",
+      "automation/policies/development_entry_protocol.v1.yaml": "40d0a8ee5ca3bc1f416e324d755f752b67c0d2d6",
+      "automation/policies/development_state_machine.v1.yaml": "36d8f1e3108420963d2020a36e66de59c718c0cf",
+      "automation/policies/quota_admission_policy.v1.yaml": "57c30aae1c4f481af98dd4e9b47323159fc74f41",
+      "automation/policies/quota_admission_policy.v1_1.yaml": "556a86ba5be7a2b2818b1523d96b44caab487bd1",
+      "automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml": "bb7969c891a314b3e2f9c69da2834f07e1f6bcb4",
+      "automation/specs/negative_assertions.v1.yaml": "6fecc7e30ed5057b64ee8851f1787198a7ad722a",
+      "automation/specs/work_cost_accounting.v1.yaml": "f10a216f9e9a02d690bbc68b14dff002ebd75875",
+      "automation/telemetry/execution_cost_contract.v1.yaml": "0ae6b4f269c534b7b691a898584b94655afd1605",
+      "scripts/codex_session_token_usage.ps1": "5834edd880ec9c73781b220c1ee488027f98f77e"
+    },
+    "tests_rerun": false,
+    "tests_reported_and_bound": [
+      {
+        "phase": "complete_targeted",
+        "command": "python -m pytest tests/automation -q -p no:cacheprovider --tb=short --disable-warnings",
+        "exit_code": 0,
+        "result": "76 passed, 19 serializer warnings",
+        "seconds": 2.98
+      },
+      {
+        "phase": "full_regression",
+        "command": "python -m pytest -q -p no:cacheprovider --tb=short --disable-warnings",
+        "environment": {
+          "POSTGRES17_TEST_DSN": "",
+          "POSTGRES18_TEST_DSN": ""
+        },
+        "exit_code": 0,
+        "result": "1565 passed, 8 skipped, 19 serializer warnings",
+        "seconds": 15.75
+      }
+    ],
+    "git_diff_check": "PASS_BOUND_CODEX_EVIDENCE_NOT_RERUN",
+    "candidate_git_blob_sha256": "PASS_DETERMINISTIC_REMOTE_BLOB_VERIFICATION",
+    "candidate_bundle": "21949d0035f9c290a3bab45b342f37e1ee598b09057a6deb5c9d22b3428e1391",
+    "candidate_bundle_verified": "PASS"
+  },
+  "lifecycle_identity": {
+    "consumed_commit": "de0e835759180705df26b311e8b46ae923554c08",
+    "steps_1_through_9": "DURABLE_PASS",
+    "new_identity_reservation_dispatch": false,
+    "authorization_reconsumed": false,
+    "writer_owner": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+    "writer_state": "HELD_FOR_WORK_INTAKE",
+    "reconciliation": "PASS_RECONCILED_READY_FOR_SAME_FIRST_MANUAL_INVOCATION",
+    "invocation_kind": "FIRST_NOT_REDISPATCH_NOT_RESUME"
+  },
+  "first_invocation": true,
+  "executor_invoked": true,
+  "no_new_identity_reservation_dispatch": true,
+  "no_authorization_reconsumption": true,
+  "side_effects": "NONE_RUNTIME_BROKER_DB_MIGRATION_LIVE_PRODUCTION",
+  "active_architecture": "1.1",
+  "candidate_architecture": "1.2_PENDING_REVIEW",
+  "ivf01": "BLOCKED",
+  "auto_imp_003": "NOT_AUTHORIZED",
+  "observations": [
+    {
+      "classification": "REVIEW_OBSERVATION_NOT_YET_BLOCKER",
+      "description": "19 Pydantic serializer warnings; tests PASS; Independent Reviewer must evaluate serialization/deep-read-only consequences. Hash authority uses exact Git blob bytes."
+    }
+  ],
+  "created_at": "2026-10-06T05:16:03Z",
+  "updated_at": "2026-10-06T05:16:03Z"
+}
