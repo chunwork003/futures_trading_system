@@ -3,7 +3,7 @@
   "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
   "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4",
   "authorization_state": "AUTHORIZED",
-  "baseline_sha": "a30979bcc8c54ab218f7c52ac5b61ab4b43713df",
+  "baseline_sha": "b1ab08871eef8b67437c198929256ce8a3c72f9b",
   "architecture": "1.2.2",
   "policy_path": "automation/policies/execution_capacity_policy.v2_2.yaml",
   "bundle_hash": "c10b7f2f2b2d73116d260a33dabdb1f9b20af3fc9b433e3b3fe17c9076465ea7",
@@ -21,7 +21,7 @@
   "execution_id": null,
   "next_route": "WAIT_5H_CAPACITY",
   "created_at": "2026-10-06T11:03:38Z",
-  "updated_at": "2026-10-06T11:21:40Z",
+  "updated_at": "2026-10-06T11:24:46Z",
   "sole_blocker": "WAIT_5H_CAPACITY",
   "state": "PRE_RESERVATION_BLOCKED_CAPACITY",
   "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.rolling-provider-evidence.json",
@@ -39,6 +39,9 @@
     "reservation": "NONE",
     "dispatch": "NONE",
     "invocation": false,
-    "pre_reservation_capacity": "WAIT_5H_CAPACITY"
+    "pre_reservation_capacity": "WAIT_5H_CAPACITY",
+    "post_activation_fresh_provider": "PASS",
+    "known_primary_safe_capacity": 5588889,
+    "source_and_history_blob_preservation": "PASS"
   }
 }
