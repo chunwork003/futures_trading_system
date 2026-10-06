@@ -294,3 +294,375 @@ def test_rf01_clean_sample_positive_and_dump_roundtrip():
     first["samples"][0]["token_features"]["total_tokens"] = -1
     assert original.samples[0].token_features["total_tokens"] == 12
     with pytest.raises(TypeError): original.samples[0].token_features["total_tokens"] = -1
+
+
+# ---------------------------------------------------------------------------
+# Policy 2.2 rolling estimator / admission
+# ---------------------------------------------------------------------------
+
+
+def rolling_observation(
+    execution_id: str,
+    *,
+    ratio_tokens: int = 1000,
+    before: float = 10,
+    after: float = 11,
+    reset_before: str = "R1",
+    reset_after: str = "R1",
+    actor_end_utc: str | None = None,
+    window_type: str = "PRIMARY_5H",
+    provider_name: str = "openai",
+    account: str = "acct",
+    limit_id: str = "limit",
+    overlapping_usage: bool = False,
+    metadata: dict | None = None,
+):
+    from automation.engine.execution_capacity import RollingCapacityObservation
+
+    return RollingCapacityObservation(
+        execution_id=execution_id,
+        actor_end_utc=actor_end_utc or f"2026-10-06T00:{int(execution_id[1:]) % 60:02d}:00Z",
+        provider=provider_name,
+        account=account,
+        limit_id=limit_id,
+        window_type=window_type,
+        exact_total_tokens=ratio_tokens,
+        before_used_percent=before,
+        after_used_percent=after,
+        before_reset=reset_before,
+        after_reset=reset_after,
+        exact_binding_verified=True,
+        overlapping_usage=overlapping_usage,
+        metadata=metadata or {},
+    )
+
+
+def test_policy22_pool_identity_ignores_metadata_dimensions():
+    from automation.engine.execution_capacity import estimate_rolling_capacity
+
+    observations = (
+        rolling_observation("E1", ratio_tokens=1000, metadata={"model": "A", "workspace": "W1"}),
+        rolling_observation("E2", ratio_tokens=800, metadata={"model": "B", "workspace": "W2"}),
+    )
+    estimate = estimate_rolling_capacity(
+        observations,
+        provider="openai",
+        account="acct",
+        limit_id="limit",
+        window_type="PRIMARY_5H",
+        current_used_percent=50,
+    )
+
+    assert estimate.usable_ratio_count == 2
+    assert estimate.safe_tokens_per_percentage_point == 800
+    assert estimate.safe_remaining_percentage_points == 49
+    assert estimate.safe_available_tokens == 39200
+
+
+def test_policy22_count_1_to_4_uses_minimum():
+    from automation.engine.execution_capacity import estimate_rolling_capacity
+
+    observations = tuple(
+        rolling_observation(f"E{i}", ratio_tokens=value)
+        for i, value in enumerate((1000, 700, 900, 800), start=1)
+    )
+    estimate = estimate_rolling_capacity(
+        observations,
+        provider="openai",
+        account="acct",
+        limit_id="limit",
+        window_type="PRIMARY_5H",
+        current_used_percent=10,
+    )
+    assert estimate.safe_tokens_per_percentage_point == 700
+    assert estimate.confidence == "MINIMUM_1_TO_4"
+
+
+def test_policy22_count_5_plus_uses_linear_p25():
+    from automation.engine.execution_capacity import estimate_rolling_capacity
+
+    observations = tuple(
+        rolling_observation(f"E{i}", ratio_tokens=value)
+        for i, value in enumerate((100, 200, 300, 400, 500), start=1)
+    )
+    estimate = estimate_rolling_capacity(
+        observations,
+        provider="openai",
+        account="acct",
+        limit_id="limit",
+        window_type="PRIMARY_5H",
+        current_used_percent=0,
+    )
+    assert estimate.safe_tokens_per_percentage_point == 200
+    assert estimate.confidence == "P25_5_PLUS"
+    assert estimate.safe_remaining_percentage_points == 99
+
+
+def test_policy22_last20_usable_ratios_only():
+    from automation.engine.execution_capacity import estimate_rolling_capacity
+
+    observations = tuple(
+        rolling_observation(
+            f"E{i}",
+            ratio_tokens=i * 100,
+            actor_end_utc=f"2026-10-06T{i:02d}:00:00Z",
+        )
+        for i in range(1, 26)
+    )
+    estimate = estimate_rolling_capacity(
+        observations,
+        provider="openai",
+        account="acct",
+        limit_id="limit",
+        window_type="PRIMARY_5H",
+        current_used_percent=50,
+    )
+
+    assert estimate.usable_ratio_count == 20
+    assert estimate.considered_execution_ids[0] == "E6"
+    assert estimate.considered_execution_ids[-1] == "E25"
+
+
+def test_policy22_delta_zero_and_reset_crossing_excluded_from_ratio():
+    from automation.engine.execution_capacity import estimate_rolling_capacity
+
+    observations = (
+        rolling_observation("E1", before=10, after=10),
+        rolling_observation("E2", reset_before="R1", reset_after="R2"),
+    )
+    estimate = estimate_rolling_capacity(
+        observations,
+        provider="openai",
+        account="acct",
+        limit_id="limit",
+        window_type="PRIMARY_5H",
+        current_used_percent=30,
+    )
+    assert estimate.usable_ratio_count == 0
+    assert estimate.safe_available_tokens is None
+    assert estimate.confidence == "UNKNOWN"
+
+
+def test_policy22_overlap_ratio_retained_but_flagged_noisy():
+    from automation.engine.execution_capacity import estimate_rolling_capacity
+
+    estimate = estimate_rolling_capacity(
+        (rolling_observation("E1", overlapping_usage=True),),
+        provider="openai",
+        account="acct",
+        limit_id="limit",
+        window_type="PRIMARY_5H",
+        current_used_percent=25,
+    )
+    assert estimate.usable_ratio_count == 1
+    assert estimate.overlap_observed is True
+
+
+def test_policy22_manual_uses_p75_and_weekly_never_blocks():
+    from automation.engine.execution_capacity import (
+        RollingCapacityEstimate,
+        evaluate_policy_2_2_admission,
+    )
+
+    primary = RollingCapacityEstimate(
+        "ROLLING_CAPACITY_ESTIMATE", "PRIMARY_5H", 5, ("E1",),
+        100.0, 50.0, 250, "P25_5_PLUS", False,
+    )
+    weekly = RollingCapacityEstimate(
+        "ROLLING_CAPACITY_ESTIMATE", "SECONDARY_WEEKLY", 5, ("W1",),
+        1.0, 1.0, 1, "P25_5_PLUS", False,
+    )
+
+    result = evaluate_policy_2_2_admission(
+        provider(),
+        forecast(),
+        primary,
+        weekly,
+        exact_authorized=True,
+        dispatch_mode="MANUAL",
+    )
+    assert result.route == "ALLOW_WITH_WATCH"
+
+
+def test_policy22_manual_below_p75_waits_and_unknown_allows_watch():
+    from automation.engine.execution_capacity import (
+        RollingCapacityEstimate,
+        evaluate_policy_2_2_admission,
+    )
+
+    low = RollingCapacityEstimate(
+        "ROLLING_CAPACITY_ESTIMATE", "PRIMARY_5H", 1, ("E1",),
+        100.0, 1.0, 199, "MINIMUM_1_TO_4", False,
+    )
+    assert evaluate_policy_2_2_admission(
+        provider(), forecast(), low, None,
+        exact_authorized=True, dispatch_mode="MANUAL",
+    ).route == "WAIT_5H_CAPACITY"
+
+    assert evaluate_policy_2_2_admission(
+        provider(), forecast(), None, None,
+        exact_authorized=True, dispatch_mode="MANUAL",
+    ).route == "ALLOW_WITH_WATCH"
+
+
+def test_policy22_controlled_auto_requires_p90_and_promotion():
+    from automation.engine.execution_capacity import (
+        RollingCapacityEstimate,
+        evaluate_policy_2_2_admission,
+    )
+
+    fit = RollingCapacityEstimate(
+        "ROLLING_CAPACITY_ESTIMATE", "PRIMARY_5H", 5, ("E1",),
+        100.0, 50.0, 300, "P25_5_PLUS", False,
+    )
+
+    assert evaluate_policy_2_2_admission(
+        provider(), forecast(), fit, None,
+        exact_authorized=True,
+        dispatch_mode="CONTROLLED_AUTO",
+        controlled_auto_promotion_ready=False,
+    ).route == "CONTROLLED_AUTO_PROMOTION_REQUIRED"
+
+    assert evaluate_policy_2_2_admission(
+        provider(), forecast(), fit, None,
+        exact_authorized=True,
+        dispatch_mode="CONTROLLED_AUTO",
+        controlled_auto_promotion_ready=True,
+    ).route == "CONTROLLED_AUTO_CAPACITY_FIT"
+
+
+def test_policy22_provider_denial_wins_for_codex():
+    from automation.engine.execution_capacity import evaluate_policy_2_2_admission
+
+    result = evaluate_policy_2_2_admission(
+        provider(hard_block=True),
+        forecast(),
+        None,
+        None,
+        exact_authorized=True,
+        dispatch_mode="MANUAL",
+        executor_mode="CODEX",
+    )
+    assert result.route == "WAIT_PROVIDER_AVAILABLE"
+
+
+def test_policy22_human_dialogue_capacity_gate_not_applicable():
+    from automation.engine.execution_capacity import evaluate_policy_2_2_admission
+
+    result = evaluate_policy_2_2_admission(
+        provider(hard_block=True),
+        forecast(),
+        None,
+        None,
+        exact_authorized=True,
+        dispatch_mode="MANUAL",
+        executor_mode="HUMAN_DIALOGUE",
+    )
+    assert result.route == "ALLOW_WITH_WATCH"
+    assert result.reason == "HUMAN_DIALOGUE_CODEX_CAPACITY_GATE_NOT_APPLICABLE"
+
+
+def test_policy22_liveness_requires_complete_primary_window_and_reset():
+    from automation.engine.execution_capacity import (
+        CapacityLivenessEvidence,
+        evaluate_capacity_liveness,
+    )
+
+    good = CapacityLivenessEvidence(
+        only_blocker="WAIT_5H_CAPACITY",
+        blocked_minutes=300,
+        window_type="PRIMARY_5H",
+        primary_window_minutes=300,
+        reset_boundary_crossed=True,
+        provider_continuously_available=True,
+        actual_denial_observed=False,
+        unchanged_work_scope_authority=True,
+        authorized_ready_and_noncapacity_gates_pass=True,
+    )
+    assert evaluate_capacity_liveness(good).route == "CAPACITY_LIVENESS_OPTIMIZATION"
+
+    short = replace(good, blocked_minutes=299)
+    assert evaluate_capacity_liveness(short).route == "NO_CAPACITY_LIVENESS_ACTION"
+
+    denied = replace(good, actual_denial_observed=True)
+    assert evaluate_capacity_liveness(denied).route == "NO_CAPACITY_LIVENESS_ACTION"
+
+
+
+def test_policy22_secondary_weekly_cannot_be_used_as_primary_gate():
+    from automation.engine.execution_capacity import (
+        RollingCapacityEstimate,
+        evaluate_policy_2_2_admission,
+    )
+
+    weekly_disguised_as_primary = RollingCapacityEstimate(
+        "ROLLING_CAPACITY_ESTIMATE",
+        "SECONDARY_WEEKLY",
+        5,
+        ("W1",),
+        1.0,
+        1.0,
+        1,
+        "P25_5_PLUS",
+        False,
+    )
+
+    manual = evaluate_policy_2_2_admission(
+        provider(), forecast(), weekly_disguised_as_primary, None,
+        exact_authorized=True, dispatch_mode="MANUAL",
+    )
+    assert manual.route == "ALLOW_WITH_WATCH"
+    assert manual.reason == "PRIMARY_5H_UNKNOWN_MANUAL"
+
+    controlled = evaluate_policy_2_2_admission(
+        provider(), forecast(), weekly_disguised_as_primary, None,
+        exact_authorized=True,
+        dispatch_mode="CONTROLLED_AUTO",
+        controlled_auto_promotion_ready=True,
+    )
+    assert controlled.route == "CONTROLLED_AUTO_CAPACITY_NOT_ESTABLISHED"
+
+
+def test_policy22_liveness_requires_authorized_ready_noncapacity_pass():
+    from automation.engine.execution_capacity import (
+        CapacityLivenessEvidence,
+        evaluate_capacity_liveness,
+    )
+
+    evidence = CapacityLivenessEvidence(
+        only_blocker="WAIT_5H_CAPACITY",
+        blocked_minutes=300,
+        window_type="PRIMARY_5H",
+        primary_window_minutes=300,
+        reset_boundary_crossed=True,
+        provider_continuously_available=True,
+        actual_denial_observed=False,
+        unchanged_work_scope_authority=True,
+        authorized_ready_and_noncapacity_gates_pass=False,
+    )
+    assert evaluate_capacity_liveness(evidence).route == "NO_CAPACITY_LIVENESS_ACTION"
+
+
+def test_policy22_liveness_weekly_or_sub5h_never_triggers():
+    from automation.engine.execution_capacity import (
+        CapacityLivenessEvidence,
+        evaluate_capacity_liveness,
+    )
+
+    base = CapacityLivenessEvidence(
+        only_blocker="WAIT_5H_CAPACITY",
+        blocked_minutes=300,
+        window_type="PRIMARY_5H",
+        primary_window_minutes=300,
+        reset_boundary_crossed=True,
+        provider_continuously_available=True,
+        actual_denial_observed=False,
+        unchanged_work_scope_authority=True,
+        authorized_ready_and_noncapacity_gates_pass=True,
+    )
+
+    weekly = replace(base, window_type="SECONDARY_WEEKLY")
+    assert evaluate_capacity_liveness(weekly).route == "NO_CAPACITY_LIVENESS_ACTION"
+
+    sub5h = replace(base, primary_window_minutes=299, blocked_minutes=299)
+    assert evaluate_capacity_liveness(sub5h).route == "NO_CAPACITY_LIVENESS_ACTION"
