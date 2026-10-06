@@ -327,14 +327,14 @@
                                                        },
                        "old_80pct_40k_operational_admission_authority":  false,
                        "provider_actual_denial":  "STOP",
-                       "codex_execution_authorized":  true,
+                       "codex_execution_authorized":  false,
                        "automatic_dispatch":  false,
                        "automatic_next_package":  false,
-                       "writer_state":  "HELD",
+                       "writer_state":  "NONE_HELD",
                        "ivf01_rev1":  "ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED",
                        "ivf01_rev2":  "NOT_AUTHORIZED",
                        "auto_imp_003_authorized":  false,
-                       "next_route":  "READY_FOR_MANUAL_CODEX_TRIGGER",
+                       "next_route":  "ACQUIRE_GLOBAL_RUNTIME_WRITER_LOCK",
                        "runtime":  "DENIED",
                        "broker":  "DENIED",
                        "db":  "DENIED",
@@ -342,7 +342,7 @@
                        "live":  "DENIED",
                        "production":  "DENIED",
                        "current_work_order_id":  "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
-                       "current_implementation_authorization_id":  "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4",
+                       "current_implementation_authorization_id":  "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5",
                        "projection_update_provenance":  {
                                                             "baseline":  "e2de7e9c873a062429675ff6be3ed9d108e3ac4f",
                                                             "reason":  "Owner finalcapacity2.2/liveness/budget semantic successor, lifecycle preserved",
@@ -502,7 +502,9 @@
                        "weekly_execution_gate":  false,
                        "implementation_correction_budget":  2,
                        "review_fix_budget":  2,
-                       "current_execution_id":  "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-20261006T115006Z"
+                       "current_execution_id":  null,
+                       "human_dialogue_execution_authorized":  true,
+                       "executor_mode":  "HUMAN_DIALOGUE"
                    },
     "candidate_successor":  {
                                 "target_architecture_version":  "1.2",
