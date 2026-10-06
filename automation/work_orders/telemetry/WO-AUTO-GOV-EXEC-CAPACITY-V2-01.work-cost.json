@@ -1,0 +1,66 @@
+{
+  "schema_version": "automation.work_cost_observation.v1",
+  "actor": "WORK",
+  "phase": "WORK_COHESIVE_GOVERNANCE_MIGRATION_PLANNING_FORECAST_AUTHORIZATION_LIFECYCLE_HANDOFF",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+  "measurement_type": "PROXY",
+  "exact_tokens": null,
+  "token_status": "UNKNOWN",
+  "source": "TASK_BOUND_EXACT_WORK_MODEL_USAGE_NOT_EXPOSED",
+  "proxy": {
+    "implementation_edits": 0,
+    "test_runs": 0,
+    "raw_transcript_reads": 0,
+    "planning_artifacts": 3,
+    "single_use_dispatches": 1,
+    "executor_invocations": 0
+  },
+  "task_profile": {
+    "task_class": "AUTOMATION_GOVERNANCE_POLICY_CONSOLIDATION",
+    "change_type": "VERSIONED_AUTHORITY_CAPACITY_RESUME_MIGRATION",
+    "subsystem": "automation governance / contracts / reconciliation",
+    "functional_area": "execution capacity, single-use resume and routing",
+    "concise_engineering_goal": "Cohesive successor policies and machine-checkable same-execution resume with exact/proxy/estimated cost separation",
+    "primary_symbols_or_functional_surfaces": [
+      "CONTRACT_BY_SCHEMA",
+      "execution_capacity pure gate evaluator",
+      "execution_cost_reconcile.ps1",
+      "versioned governance policies",
+      "WORK/CODEX routing kernels"
+    ],
+    "behavior_dimensions": [
+      "provider availability",
+      "cost demand/capacity estimate",
+      "same-execution resume",
+      "single writer",
+      "reviewed1.2activation"
+    ],
+    "source_file_count": 3,
+    "test_file_count": 2,
+    "semantic_profile": "AUTHORITY_AND_LIFECYCLE_CHANGE_REQUIRES_INDEPENDENT_REVIEW",
+    "test_profile": "TARGETED_AUTOMATION_PLUS_RECONCILER_NEGATIVES_PLUS_ONE_FULL_REGRESSION",
+    "authority_boundary": "Exact bootstrap governance migration only; runtime/broker/DB/migration/live/production denied",
+    "packaging_cohesion_decision": "KEEP_COHESIVE: shared authority/routing/cost invariants, one acceptance gate; no validated sequencing dependency requiring separate WOs"
+  },
+  "context_profile": {
+    "raw_transcript_loaded": false,
+    "history_loaded_amount": {
+      "artifacts": 1,
+      "reason": "IVF01 authorization exact architecture binding"
+    },
+    "source_context_volume": {
+      "chars": 8095
+    },
+    "telemetry_context_volume": {
+      "chars": 3920
+    },
+    "content_token_estimate": null,
+    "model_usage_measurement_type": "UNKNOWN",
+    "reused_context": "Unchanged kernels/specs retained by exact Git blob; no full historical reload"
+  },
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.json",
+  "authority_effect": "NONE_TELEMETRY_ONLY",
+  "created_at": "2026-10-06T03:41:30Z",
+  "updated_at": "2026-10-06T03:41:30Z"
+}
