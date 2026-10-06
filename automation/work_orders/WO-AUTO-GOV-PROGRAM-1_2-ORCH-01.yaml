@@ -114,7 +114,7 @@
   "automatic_next_package": false,
   "executor_invoked": false,
   "writer_state": "HELD",
-  "reservation_created": false,
+  "reservation_created": true,
   "dispatch_committed": true,
   "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.json",
   "eligibility_path": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/REV6.eligibility.json",
@@ -260,14 +260,14 @@
   "KNOWN_AUTOMATION_ARCHITECTURE_DEBT": "NONE",
   "debt_semantics": "Completefinalcapacity/liveness/boundedcorrectionpolicy design; cohesive sourceimplementation and review remain lifecycle work, no architectureTODO",
   "created_at": "2026-10-06T08:24:37Z",
-  "updated_at": "2026-10-06T15:02:30Z",
+  "updated_at": "2026-10-06T15:05:47Z",
   "compilation_commit": "HISTORICAL_PREDECESSOR_COMPILATION_ONLY",
-  "provider_evidence_path": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/REV6.provider-evidence.json",
+  "provider_evidence_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/pre_dispatch_recheck.json",
   "implementation_contract_amendments": [
     "automation/governance/decisions/EXECUTION-CAPACITY-FINAL-LIVENESS.owner.json",
     "automation/governance/decisions/MANUAL-EXECUTOR-FALLBACK.owner.json"
   ],
-  "capacity_estimate_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.rolling-capacity.json",
+  "capacity_estimate_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/capacity_evidence.json",
   "capacity_policy": {
     "primary_cost": "EXACT_LOCAL_REPORTED_TOKENS",
     "provider_signal": "COARSE_SHARED_ACCOUNT_CAPACITY_SIGNAL",
@@ -362,5 +362,6 @@
   "handoff_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/handoff.yaml",
   "original_implementation_budget_remaining": 0,
   "additional_owner_exception_budget_remaining": 1,
-  "next_route": "MANUAL_CODEX_FIRST_INVOCATION_ONLY"
+  "next_route": "MANUAL_CODEX_FIRST_INVOCATION_ONLY",
+  "capacity_provider_evidence_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/pre_dispatch_recheck.json"
 }

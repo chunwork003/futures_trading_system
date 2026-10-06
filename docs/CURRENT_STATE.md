@@ -1,3 +1,17 @@
+# CURRENT — REV6 READY_FOR_MANUAL_CODEX_TRIGGER
+
+Architecture1.2.2 / CapacityPolicy2.2 unchanged ACTIVE.
+AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6 CONSUMED for exact CODEX execution EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z.
+Reservation CONSUMED, dispatch COMMITTED, fresh CODEX writer HELD; executor NOT_INVOKED. Manual first invocation only; no automatic CODEX or redispatch.
+Old HUMAN_DIALOGUE execution STOPPED with immutable false invocation evidence; old run writer RELEASED under exact reconciliation/checkpoint evidence.
+Checkpoint8 restore, first6 byte-exact; semantic correction only reconciler and its test. Original budget2/2 EXHAUSTED, separate Owner exception1 UNUSED, review-fix2/2 UNTOUCHED.
+Source52f0b5da1d050a8876f9716b227055219f4fd070; fresh controlplane from origin/master. Handoff automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/handoff.yaml.
+Provider/5H pre-dispatch PASS; MANUAL forecastP75=1,500,000; weekly advisory only.
+CURRENT fields verified against durable reservation/dispatch/writer; projection repair has no invocation backfill or authority regrant.
+No source implementation by WORK, no acceptance; AUTO-IMP-002/003 NOT_AUTHORIZED; CONTROLLED_AUTO DISABLED; runtime/broker/DB/migration/LIVE/production/credentials DENIED.
+
+## Historical projections below — superseded, preserved for audit
+
 # CURRENT — Execution reconciliation STOP
 
 Architecture 1.2.2 ACTIVE; existing lifecycle semantics unchanged.

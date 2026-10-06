@@ -68,7 +68,7 @@
   "executor_invoked": false,
   "reexecution_authorized": false,
   "writer_state": "HELD",
-  "reservation_created": false,
+  "reservation_created": true,
   "dispatch_committed": true,
   "correction_budget_remaining": 1,
   "ivf01": {
@@ -99,7 +99,7 @@
   "prior_closed_work_order": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
   "prior_closure_pointer": "automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2-RF01.closure.json",
   "created_at": "2026-10-06T08:24:37Z",
-  "updated_at": "2026-10-06T15:02:30Z",
+  "updated_at": "2026-10-06T15:05:47Z",
   "authorization_revision": "6",
   "prior_authorization": {
     "id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3",
@@ -107,8 +107,8 @@
     "disposition": "SUPERSEDED_PRE_EXECUTION_NO_CONSUMPTION",
     "disposition_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3.supersession.json"
   },
-  "capacity_estimate_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.rolling-capacity.json",
-  "capacity_provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.rolling-provider-evidence.json",
+  "capacity_estimate_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/capacity_evidence.json",
+  "capacity_provider_evidence_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/pre_dispatch_recheck.json",
   "cohort_path": "automation/telemetry/cohorts/LOCAL_CODEX_ROLLING_CAPACITY_V2_1.json",
   "probes_used": 0,
   "program_revision": "4",
@@ -152,5 +152,6 @@
   "dispatch_commit": "f5802c20252b38f75c907e5e86301fb7323e2399",
   "first_invocation_only": true,
   "invocation_status": "NOT_INVOKED_FIRST_MANUAL_TRIGGER_PENDING",
-  "handoff_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/handoff.yaml"
+  "handoff_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/handoff.yaml",
+  "consumed_commit": "7a087c3b2f87f4063148981bb279e179bf72a6dc"
 }

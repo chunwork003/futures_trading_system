@@ -1,0 +1,33 @@
+{
+  "schema_version": "automation.current_projection_reconciliation.v1",
+  "reason": "CURRENT_RESERVATION_WRITER_IDENTITY_SERIALIZATION_FIELDS_STALE_AFTER_CONSUMPTION",
+  "baseline_sha": "7a087c3b2f87f4063148981bb279e179bf72a6dc",
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "durable_inputs": {
+    "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/reservation.yaml": "bbb012e465182945970fc67527b7c628beebce87",
+    "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/dispatch.yaml": "6c293ffeb3c52333192a25859b8e94c34450d4bf",
+    "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_lock.yaml": "cc73f72a76e2438ce3eac212469d5b6919dd2b5b",
+    "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/handoff.yaml": "20b826684a8948c8f1f8c2b3985d3b01dc3dfdbd"
+  },
+  "corrected_fields": [
+    "authorization.single_use_execution.execution_id",
+    "authorization.single_use_execution.reservation_created",
+    "authorization.single_use_execution.writer_acquired",
+    "CURRENT/WO.reservation_created",
+    "CURRENT/WO.capacity_evidence_pointers"
+  ],
+  "evidence_basis": "Exact durable reservation/dispatch/writer commits already exist; reconcile mutable CURRENT fields to actual evidence; prior phase/current serialization snapshots remain in Git history",
+  "invocation_backfill": false,
+  "executor_invoked_before": false,
+  "executor_invoked_after": false,
+  "authority_regrant": false,
+  "new_execution_allocation": false,
+  "new_reservation_or_dispatch": false,
+  "source_semantic_change": false,
+  "policy_semantic_change": false,
+  "original_manual_history_unchanged": true,
+  "result": "PASS_CURRENT_MATCHES_DURABLE_LIFECYCLE",
+  "created_at": "2026-10-06T15:05:47Z",
+  "updated_at": "2026-10-06T15:05:47Z"
+}
