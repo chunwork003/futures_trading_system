@@ -1,0 +1,360 @@
+{
+  "schema_version": "automation.execution_cost_actual.v1",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+  "actor_start": "2026-10-06 04:10:10 UTC",
+  "actor_end": "2026-10-06 04:18:56 UTC",
+  "actor_seconds": 526,
+  "actor_end_boundary": "sampled after implementation/hash validation, before completion publication",
+  "actual": {
+    "actor_seconds": 526,
+    "targeted_seconds": 2.98,
+    "full_regression_seconds": 15.75,
+    "test_cycles": {
+      "pre_fix_cases": 1,
+      "impacted_subset_runs": 3,
+      "complete_targeted_passes": 1,
+      "full_regression_passes": 1
+    },
+    "provider_limit_encountered": false,
+    "provider_pause_count": 0,
+    "provider_pause_seconds": 0,
+    "resume_count": 0,
+    "resumed_same_execution": false,
+    "capacity_forecast_at_start": {
+      "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.json",
+      "confidence": "PROVISIONAL_NO_SAME_CLASS_EXACT_COHORT"
+    },
+    "capacity_estimate_at_start": null,
+    "forecast_capacity_review_required": false,
+    "reported_total_tokens": null,
+    "uncached_input_tokens": null,
+    "cached_input_ratio": null,
+    "output_tokens": null,
+    "reasoning_output_tokens": null
+  },
+  "local_reported_tokens_status": "PENDING_EXTERNAL_EXTRACTION",
+  "billing_cost": "NOT_AVAILABLE",
+  "raw_provider_before": {
+    "ordinaryUsageAllowed": true,
+    "rateLimits": {
+      "limitId": "codex",
+      "limitName": null,
+      "normalModelSlug": null,
+      "primary": {
+        "usedPercent": 30,
+        "windowDurationMins": 300,
+        "resetsAt": 1791271699
+      },
+      "secondary": {
+        "usedPercent": 35,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "credits": {
+        "hasCredits": false,
+        "unlimited": false,
+        "balance": "0"
+      },
+      "individualLimit": null,
+      "spendControlReached": false,
+      "planType": "plus",
+      "rateLimitReachedType": null
+    },
+    "rateLimitsByLimitId": {
+      "codex": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 30,
+          "windowDurationMins": 300,
+          "resetsAt": 1791271699
+        },
+        "secondary": {
+          "usedPercent": 35,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    }
+  },
+  "raw_provider_after": {
+    "ordinaryUsageAllowed": true,
+    "rateLimits": {
+      "limitId": "codex",
+      "limitName": null,
+      "normalModelSlug": null,
+      "primary": {
+        "usedPercent": 37,
+        "windowDurationMins": 300,
+        "resetsAt": 1791271699
+      },
+      "secondary": {
+        "usedPercent": 36,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "credits": {
+        "hasCredits": false,
+        "unlimited": false,
+        "balance": "0"
+      },
+      "individualLimit": null,
+      "spendControlReached": false,
+      "planType": "plus",
+      "rateLimitReachedType": null
+    },
+    "rateLimitsByLimitId": {
+      "codex": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 37,
+          "windowDurationMins": 300,
+          "resetsAt": 1791271699
+        },
+        "secondary": {
+          "usedPercent": 36,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    }
+  },
+  "provider_semantics": "PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY_NO_EXCLUSIVE_TASK_COST_OR_TOKEN_CONVERSION",
+  "task_profile": {
+    "task_class": "AUTOMATION_GOVERNANCE_POLICY_CONSOLIDATION",
+    "change_type": "VERSIONED_AUTHORITY_CAPACITY_RESUME_MIGRATION",
+    "subsystem": "automation governance / contracts / reconciliation",
+    "functional_area": "execution capacity, single-use resume and routing",
+    "concise_engineering_goal": "Cohesive successor policies and machine-checkable same-execution resume with exact/proxy/estimated cost separation",
+    "primary_symbols_or_functional_surfaces": [
+      "CONTRACT_BY_SCHEMA",
+      "execution_capacity pure gate evaluator",
+      "execution_cost_reconcile.ps1",
+      "versioned governance policies",
+      "WORK/CODEX routing kernels"
+    ],
+    "behavior_dimensions": [
+      "provider availability",
+      "cost demand/capacity estimate",
+      "same-execution resume",
+      "single writer",
+      "reviewed1.2activation"
+    ],
+    "source_file_count": 3,
+    "test_file_count": 2,
+    "semantic_profile": "AUTHORITY_AND_LIFECYCLE_CHANGE_REQUIRES_INDEPENDENT_REVIEW",
+    "test_profile": "TARGETED_AUTOMATION_PLUS_RECONCILER_NEGATIVES_PLUS_ONE_FULL_REGRESSION",
+    "authority_boundary": "Exact bootstrap governance migration only; runtime/broker/DB/migration/live/production denied",
+    "packaging_cohesion_decision": "KEEP_COHESIVE: shared authority/routing/cost invariants, one acceptance gate; no validated sequencing dependency requiring separate WOs"
+  },
+  "context_profile": {
+    "measurement_scope": "ACTUAL_CODEX_READS_AND_CACHE_USE_NOT_PLANNING_PROFILE",
+    "artifacts_read": [
+      {
+        "canonical_path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "git_blob_sha": "6686dce42d27bb247657c07a06715478edf0162c",
+        "loaded_extent": "FULL_REUSED_REQUIREMENTS_PLUS_FRESH_MACHINE_GATES",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "git_blob_sha": "f638988c5c06fc7d5976be118693717145aac9d7",
+        "loaded_extent": "FULL",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "automation/work_orders/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.yaml",
+        "git_blob_sha": "6686dce42d27bb247657c07a06715478edf0162c",
+        "loaded_extent": "EXACT_BLOB_CACHED_AND_PROGRAMMATIC_SCOPE",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "automation/authorizations/AUTH-AUTO-GOV-EXEC-CAPACITY-V2-01.v1.yaml",
+        "git_blob_sha": "d022de22d83c36dde9278917a3d457e0b9642580",
+        "loaded_extent": "EXACT_BLOB_CACHED_AND_FRESH_PROGRAMMATIC_GATES",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2.eligibility.json",
+        "git_blob_sha": "c30e783e67f6a7aa6fafa66f02c292cba276f4b0",
+        "loaded_extent": "CURRENT_PROGRAMMATIC_GATES",
+        "artifact_type": "evidence"
+      },
+      {
+        "canonical_path": "automation/work_orders/reconciliations/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.pre-invocation-eligibility.json",
+        "git_blob_sha": "c223c1d67d37d40809332a6b86c285192b0691c3",
+        "loaded_extent": "FULL",
+        "artifact_type": "evidence"
+      },
+      {
+        "canonical_path": "automation/work_orders/forecasts/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.json",
+        "git_blob_sha": "3d66e0efe7fccd4b1e60500d19ab1bfb3234475e",
+        "loaded_extent": "UNCHANGED_BLOB_CACHE",
+        "artifact_type": "forecast"
+      },
+      {
+        "canonical_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/reservation.yaml",
+        "git_blob_sha": "68d2049665dc24e206f1804da5b6a57550aa09c5",
+        "loaded_extent": "UNCHANGED_BLOB_CACHE_PLUS_PROGRAMMATIC_GATES",
+        "artifact_type": "evidence"
+      },
+      {
+        "canonical_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
+        "git_blob_sha": "a3fdd619648577db02309627afe5cf3f97735c22",
+        "loaded_extent": "UNCHANGED_BLOB_CACHE_PLUS_PROGRAMMATIC_GATES",
+        "artifact_type": "evidence"
+      },
+      {
+        "canonical_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/dispatch.yaml",
+        "git_blob_sha": "3d436f717f1d2d61464ca1cfdf4b5f8dd8105a3c",
+        "loaded_extent": "UNCHANGED_BLOB_CACHE_PLUS_PROGRAMMATIC_GATES",
+        "artifact_type": "evidence"
+      },
+      {
+        "canonical_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/handoff.yaml",
+        "git_blob_sha": "a0abe317a3ee98c8ea5ab1b174ee6478b80ebc33",
+        "loaded_extent": "UNCHANGED_BLOB_CACHE_PLUS_PROGRAMMATIC_GATES",
+        "artifact_type": "evidence"
+      },
+      {
+        "canonical_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/pre_dispatch_recheck.json",
+        "git_blob_sha": "0076a82b961fef48ed4bfed79e7fcdef986d5e85",
+        "loaded_extent": "UNCHANGED_BLOB_CACHE",
+        "artifact_type": "evidence"
+      },
+      {
+        "canonical_path": "automation/engine/contracts.py",
+        "git_blob_sha": "3de2a944b8f9433c7deafc206211614eb0255291",
+        "loaded_extent": "FULL",
+        "artifact_type": "source"
+      },
+      {
+        "canonical_path": "tests/automation/test_contracts.py",
+        "git_blob_sha": "c0df433b12dc1116ddbd051ac0e5f58be249c9e1",
+        "loaded_extent": "FULL",
+        "artifact_type": "source"
+      },
+      {
+        "canonical_path": "scripts/execution_cost_reconcile.ps1",
+        "git_blob_sha": "84a4a8777f29d03cd7462f799c28544b7053f422",
+        "loaded_extent": "FULL",
+        "artifact_type": "source"
+      },
+      {
+        "canonical_path": "automation/skills/quota-snapshot-recorder/SKILL.md",
+        "git_blob_sha": "cda4a5ea639a8465de0fa3514b4e3018b48f83c5",
+        "loaded_extent": "FULL",
+        "artifact_type": "skill"
+      },
+      {
+        "canonical_path": "automation/skills/repo-reentry/SKILL.md",
+        "git_blob_sha": "b41f02d8b43c5d7eb25ce6da29f3c631b51fa7f3",
+        "loaded_extent": "FULL",
+        "artifact_type": "skill"
+      },
+      {
+        "canonical_path": "automation/skills/single-use-lifecycle-guard/SKILL.md",
+        "git_blob_sha": "f03d48051df5bc9bb3d2edfe8a4ea43011741c43",
+        "loaded_extent": "UNCHANGED_BLOB_CACHE",
+        "artifact_type": "skill"
+      },
+      {
+        "canonical_path": "automation/skills/execution-efficiency-guard/SKILL.md",
+        "git_blob_sha": "bd580f3e2b4e952c0a2727e178798ef97857bad2",
+        "loaded_extent": "UNCHANGED_BLOB_CACHE",
+        "artifact_type": "skill"
+      },
+      {
+        "canonical_path": "automation/skills/execution-cost-forecaster/SKILL.md",
+        "git_blob_sha": "c3c6c7a10c9f8f2b8d4ee72d588313e56ab4e141",
+        "loaded_extent": "UNCHANGED_BLOB_CACHE",
+        "artifact_type": "skill"
+      },
+      {
+        "canonical_path": "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+        "git_blob_sha": "b4666092cfc445bbe2c5ee9b8f0fe7b40374c9ea",
+        "loaded_extent": "FULL_TOOL_OUTPUT_PARTIALLY_TRUNCATED",
+        "artifact_type": "kernel"
+      },
+      {
+        "canonical_path": "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+        "git_blob_sha": "ea461d2059c793ae487dd4b4cd2434618931961e",
+        "loaded_extent": "TAIL_EXCERPT_PLUS_CACHE",
+        "artifact_type": "kernel"
+      },
+      {
+        "canonical_path": "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+        "git_blob_sha": "500344c51706e0bd47ee94a5aa73418670cbb505",
+        "loaded_extent": "SEARCH_EXCERPTS_PLUS_PROGRAMMATIC_APPEND",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "docs/CURRENT_STATE.md",
+        "git_blob_sha": "207c62a20e88eb54837c220e522a4ba8883cc0d8",
+        "loaded_extent": "FIRST_45_LINES_PLUS_SEARCH_EXCERPTS",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "docs/CURRENT_WORK.md",
+        "git_blob_sha": "cb21141eb5eb08c5b6c7e9e4fbfdb667c93b4e25",
+        "loaded_extent": "FIRST_25_LINES_PLUS_SEARCH_EXCERPTS",
+        "artifact_type": "governance"
+      },
+      {
+        "canonical_path": "automation/engine/yaml_io.py",
+        "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+        "loaded_extent": "FULL",
+        "artifact_type": "source"
+      },
+      {
+        "canonical_path": "automation/governance/master_manifest.v1.yaml",
+        "git_blob_sha": "c2455d0ab4d79b77cc83ee00d5ea378b981544e6",
+        "loaded_extent": "PROGRAMMATIC_HASH_ASSEMBLY_NO_FULL_MODEL_RELOAD",
+        "artifact_type": "governance"
+      }
+    ],
+    "raw_transcript_loaded": false,
+    "history_loaded_amount": {
+      "artifacts": 0,
+      "reason": "no new historical transcript or package evidence reload in this invocation"
+    },
+    "chars_read": null,
+    "bytes_read": null,
+    "lines_read": null,
+    "measurement_limit": "Mixed cache/tool excerpts and programmatic Git reads; no fabricated volume or token estimates",
+    "content_token_estimate": null,
+    "model_usage_measurement_type": "UNKNOWN"
+  },
+  "initial_debugging_retries": 2,
+  "semantic_correction_cycles": 0,
+  "correction_budget_consumed": 0,
+  "tooling_failures": [
+    "Windows rg wildcard path syntax diagnostic",
+    "Hash verification failed on worktree-vs-Git bytes; compound shell continued commit; repaired exact Git hash metadata"
+  ],
+  "hash_repair_required": true,
+  "hash_repair_semantic_delta": false,
+  "complete_tests_not_repeated_for_hash_only_delta": true
+}
