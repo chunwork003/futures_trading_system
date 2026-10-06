@@ -1,0 +1,585 @@
+{
+  "schema_version": "automation.rolling_capacity_cohort.v1",
+  "policy_path": "automation/policies/execution_capacity_policy.v2_1.yaml",
+  "sample_limit": 20,
+  "pool_identity_dimensions": [
+    "provider",
+    "account",
+    "limit_id",
+    "window_type"
+  ],
+  "metadata_only": [
+    "workspace",
+    "model",
+    "executor_profile",
+    "provider_client_policy_version",
+    "task_class"
+  ],
+  "percentile_convention": "P25_LINEAR_INTERPOLATION_SORT_ASC_INDEX_0.25_TIMES_N_MINUS_1",
+  "samples": [
+    {
+      "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+      "work_order_id": "WO-AUTO-IMP-002-RF02-01",
+      "actor_end_utc": "2026-10-05T13:21:05Z",
+      "identity": {
+        "provider": "openai",
+        "account": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "limit_id": "codex",
+        "window_type": "PRIMARY_5H"
+      },
+      "local_token_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/local_token_usage.json",
+      "local_token_git_blob": "144a629bbf3fd5155ff8b3ff451d2ade54ce56f3",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/execution_cost_actual.json",
+      "provider_evidence_git_blob": "432dd597142b3e1e3b94d11a6a5e7967dd0c72bb",
+      "account_provenance_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "exact_attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+      "tokens": {
+        "total_tokens": 173378,
+        "input_tokens": 172539,
+        "cached_input_tokens": 114176,
+        "uncached_input_tokens": 58363,
+        "output_tokens": 839,
+        "reasoning_output_tokens": 412
+      },
+      "token_evidence_retained": true,
+      "metadata": {
+        "model": {
+          "timestamp": "2026-10-05T13:20:59.186Z",
+          "model": "codex-auto-review",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "workspace": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "task_class": "ANALYTICS_ONLY",
+        "executor_profile": "MANUAL_HISTORICAL_METADATA_ONLY"
+      },
+      "provider_before": {
+        "usedPercent": 10,
+        "windowDurationMins": 300,
+        "resetsAt": 1791222428
+      },
+      "provider_after": {
+        "usedPercent": 16,
+        "windowDurationMins": 300,
+        "resetsAt": 1791222428
+      },
+      "provider_delta_pp": 6,
+      "reset_unchanged": true,
+      "ratio_usable": true,
+      "ratio_exclusion_reason": null,
+      "tokens_per_percentage_point": 28896.333333333332,
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "consumer_attribution": "NOISY_SHARED_USAGE",
+      "confidence": "REDUCED_SHARED_ACCOUNT",
+      "exclusive_billing_inferred": false,
+      "RF01_recovery_caveat": null
+    },
+    {
+      "execution_id": "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+      "work_order_id": "WO-AUTO-IMP-002-RF02-01",
+      "actor_end_utc": "2026-10-05T13:21:05Z",
+      "identity": {
+        "provider": "openai",
+        "account": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "limit_id": "codex",
+        "window_type": "SECONDARY_WEEKLY"
+      },
+      "local_token_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/local_token_usage.json",
+      "local_token_git_blob": "144a629bbf3fd5155ff8b3ff451d2ade54ce56f3",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/execution_cost_actual.json",
+      "provider_evidence_git_blob": "432dd597142b3e1e3b94d11a6a5e7967dd0c72bb",
+      "account_provenance_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "exact_attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+      "tokens": {
+        "total_tokens": 173378,
+        "input_tokens": 172539,
+        "cached_input_tokens": 114176,
+        "uncached_input_tokens": 58363,
+        "output_tokens": 839,
+        "reasoning_output_tokens": 412
+      },
+      "token_evidence_retained": true,
+      "metadata": {
+        "model": {
+          "timestamp": "2026-10-05T13:20:59.186Z",
+          "model": "codex-auto-review",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "workspace": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "task_class": "ANALYTICS_ONLY",
+        "executor_profile": "MANUAL_HISTORICAL_METADATA_ONLY"
+      },
+      "provider_before": {
+        "usedPercent": 22,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "provider_after": {
+        "usedPercent": 23,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "provider_delta_pp": 1,
+      "reset_unchanged": true,
+      "ratio_usable": true,
+      "ratio_exclusion_reason": null,
+      "tokens_per_percentage_point": 173378.0,
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "consumer_attribution": "NOISY_SHARED_USAGE",
+      "confidence": "REDUCED_SHARED_ACCOUNT",
+      "exclusive_billing_inferred": false,
+      "RF01_recovery_caveat": null
+    },
+    {
+      "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+      "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+      "actor_end_utc": "2026-10-05T15:37:34Z",
+      "identity": {
+        "provider": "openai",
+        "account": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "limit_id": "codex",
+        "window_type": "PRIMARY_5H"
+      },
+      "local_token_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/local_token_usage.json",
+      "local_token_git_blob": "5f2264e127b2de263c74c28a4bc74c378d729b9c",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/execution_cost_actual.json",
+      "provider_evidence_git_blob": "6c427c18f4c4269f710f588969d4a6f5326a579c",
+      "account_provenance_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "exact_attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+      "tokens": {
+        "total_tokens": 5008322,
+        "input_tokens": 4991399,
+        "cached_input_tokens": 4920064,
+        "uncached_input_tokens": 71335,
+        "output_tokens": 16923,
+        "reasoning_output_tokens": 3265
+      },
+      "token_evidence_retained": true,
+      "metadata": {
+        "model": {
+          "timestamp": "2026-10-05T15:18:02.215Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "workspace": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "task_class": "ANALYTICS_ONLY",
+        "executor_profile": "MANUAL_HISTORICAL_METADATA_ONLY"
+      },
+      "provider_before": {
+        "usedPercent": 41,
+        "windowDurationMins": 300,
+        "resetsAt": 1791222428
+      },
+      "provider_after": {
+        "usedPercent": 50,
+        "windowDurationMins": 300,
+        "resetsAt": 1791222428
+      },
+      "provider_delta_pp": 9,
+      "reset_unchanged": true,
+      "ratio_usable": true,
+      "ratio_exclusion_reason": null,
+      "tokens_per_percentage_point": 556480.2222222222,
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "consumer_attribution": "NOISY_SHARED_USAGE",
+      "confidence": "REDUCED_SHARED_ACCOUNT",
+      "exclusive_billing_inferred": false,
+      "RF01_recovery_caveat": null
+    },
+    {
+      "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+      "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+      "actor_end_utc": "2026-10-05T15:37:34Z",
+      "identity": {
+        "provider": "openai",
+        "account": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "limit_id": "codex",
+        "window_type": "SECONDARY_WEEKLY"
+      },
+      "local_token_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/local_token_usage.json",
+      "local_token_git_blob": "5f2264e127b2de263c74c28a4bc74c378d729b9c",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/execution_cost_actual.json",
+      "provider_evidence_git_blob": "6c427c18f4c4269f710f588969d4a6f5326a579c",
+      "account_provenance_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "exact_attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+      "tokens": {
+        "total_tokens": 5008322,
+        "input_tokens": 4991399,
+        "cached_input_tokens": 4920064,
+        "uncached_input_tokens": 71335,
+        "output_tokens": 16923,
+        "reasoning_output_tokens": 3265
+      },
+      "token_evidence_retained": true,
+      "metadata": {
+        "model": {
+          "timestamp": "2026-10-05T15:18:02.215Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "workspace": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "task_class": "ANALYTICS_ONLY",
+        "executor_profile": "MANUAL_HISTORICAL_METADATA_ONLY"
+      },
+      "provider_before": {
+        "usedPercent": 27,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "provider_after": {
+        "usedPercent": 29,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "provider_delta_pp": 2,
+      "reset_unchanged": true,
+      "ratio_usable": true,
+      "ratio_exclusion_reason": null,
+      "tokens_per_percentage_point": 2504161.0,
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "consumer_attribution": "NOISY_SHARED_USAGE",
+      "confidence": "REDUCED_SHARED_ACCOUNT",
+      "exclusive_billing_inferred": false,
+      "RF01_recovery_caveat": null
+    },
+    {
+      "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+      "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+      "actor_end_utc": "2026-10-06T04:18:56Z",
+      "identity": {
+        "provider": "openai",
+        "account": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "limit_id": "codex",
+        "window_type": "PRIMARY_5H"
+      },
+      "local_token_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/local_token_usage.json",
+      "local_token_git_blob": "6aa594ec80beada0f0734bd1901055394e1bd137",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/execution_cost_actual.json",
+      "provider_evidence_git_blob": "e57b76deabc0746bdb30fbb35e906b020848c89f",
+      "account_provenance_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "exact_attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+      "tokens": {
+        "total_tokens": 3556566,
+        "input_tokens": 3531095,
+        "cached_input_tokens": 3479296,
+        "uncached_input_tokens": 51799,
+        "output_tokens": 25471,
+        "reasoning_output_tokens": 5609
+      },
+      "token_evidence_retained": true,
+      "metadata": {
+        "model": {
+          "timestamp": "2026-10-06T04:09:35.584Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "workspace": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "task_class": "ANALYTICS_ONLY",
+        "executor_profile": "MANUAL_HISTORICAL_METADATA_ONLY"
+      },
+      "provider_before": {
+        "usedPercent": 30,
+        "windowDurationMins": 300,
+        "resetsAt": 1791271699
+      },
+      "provider_after": {
+        "usedPercent": 37,
+        "windowDurationMins": 300,
+        "resetsAt": 1791271699
+      },
+      "provider_delta_pp": 7,
+      "reset_unchanged": true,
+      "ratio_usable": true,
+      "ratio_exclusion_reason": null,
+      "tokens_per_percentage_point": 508080.85714285716,
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "consumer_attribution": "NOISY_SHARED_USAGE",
+      "confidence": "REDUCED_SHARED_ACCOUNT",
+      "exclusive_billing_inferred": false,
+      "RF01_recovery_caveat": null
+    },
+    {
+      "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+      "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+      "actor_end_utc": "2026-10-06T04:18:56Z",
+      "identity": {
+        "provider": "openai",
+        "account": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "limit_id": "codex",
+        "window_type": "SECONDARY_WEEKLY"
+      },
+      "local_token_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/local_token_usage.json",
+      "local_token_git_blob": "6aa594ec80beada0f0734bd1901055394e1bd137",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/execution_cost_actual.json",
+      "provider_evidence_git_blob": "e57b76deabc0746bdb30fbb35e906b020848c89f",
+      "account_provenance_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "exact_attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+      "tokens": {
+        "total_tokens": 3556566,
+        "input_tokens": 3531095,
+        "cached_input_tokens": 3479296,
+        "uncached_input_tokens": 51799,
+        "output_tokens": 25471,
+        "reasoning_output_tokens": 5609
+      },
+      "token_evidence_retained": true,
+      "metadata": {
+        "model": {
+          "timestamp": "2026-10-06T04:09:35.584Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "workspace": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "task_class": "ANALYTICS_ONLY",
+        "executor_profile": "MANUAL_HISTORICAL_METADATA_ONLY"
+      },
+      "provider_before": {
+        "usedPercent": 35,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "provider_after": {
+        "usedPercent": 36,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "provider_delta_pp": 1,
+      "reset_unchanged": true,
+      "ratio_usable": true,
+      "ratio_exclusion_reason": null,
+      "tokens_per_percentage_point": 3556566.0,
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "consumer_attribution": "NOISY_SHARED_USAGE",
+      "confidence": "REDUCED_SHARED_ACCOUNT",
+      "exclusive_billing_inferred": false,
+      "RF01_recovery_caveat": null
+    },
+    {
+      "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+      "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+      "actor_end_utc": "2026-10-06T06:55:35Z",
+      "identity": {
+        "provider": "openai",
+        "account": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "limit_id": "codex",
+        "window_type": "PRIMARY_5H"
+      },
+      "local_token_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/local_token_usage.json",
+      "local_token_git_blob": "6fb16d9c223de5dee9bd592703c87293213a7d2e",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/execution_cost_actual.json",
+      "provider_evidence_git_blob": "4ca1e8404ff1ae664a909a4c35383e8f96fb3735",
+      "account_provenance_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "exact_attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+      "tokens": {
+        "total_tokens": 2229994,
+        "input_tokens": 2218495,
+        "cached_input_tokens": 1977472,
+        "uncached_input_tokens": 241023,
+        "output_tokens": 11499,
+        "reasoning_output_tokens": 3265
+      },
+      "token_evidence_retained": true,
+      "metadata": {
+        "model": {
+          "timestamp": "2026-10-06T06:49:48.727Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "workspace": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "task_class": "ANALYTICS_ONLY",
+        "executor_profile": "MANUAL_HISTORICAL_METADATA_ONLY"
+      },
+      "provider_before": {
+        "usedPercent": 54,
+        "windowDurationMins": 300,
+        "resetsAt": 1791271699
+      },
+      "provider_after": {
+        "usedPercent": 57,
+        "windowDurationMins": 300,
+        "resetsAt": 1791271699
+      },
+      "provider_delta_pp": 3,
+      "reset_unchanged": true,
+      "ratio_usable": true,
+      "ratio_exclusion_reason": null,
+      "tokens_per_percentage_point": 743331.3333333334,
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "consumer_attribution": "NOISY_SHARED_USAGE",
+      "confidence": "REDUCED_SHARED_ACCOUNT",
+      "exclusive_billing_inferred": false,
+      "RF01_recovery_caveat": null
+    },
+    {
+      "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+      "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+      "actor_end_utc": "2026-10-06T06:55:35Z",
+      "identity": {
+        "provider": "openai",
+        "account": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "limit_id": "codex",
+        "window_type": "SECONDARY_WEEKLY"
+      },
+      "local_token_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/local_token_usage.json",
+      "local_token_git_blob": "6fb16d9c223de5dee9bd592703c87293213a7d2e",
+      "provider_evidence_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/execution_cost_actual.json",
+      "provider_evidence_git_blob": "4ca1e8404ff1ae664a909a4c35383e8f96fb3735",
+      "account_provenance_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "exact_attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+      "tokens": {
+        "total_tokens": 2229994,
+        "input_tokens": 2218495,
+        "cached_input_tokens": 1977472,
+        "uncached_input_tokens": 241023,
+        "output_tokens": 11499,
+        "reasoning_output_tokens": 3265
+      },
+      "token_evidence_retained": true,
+      "metadata": {
+        "model": {
+          "timestamp": "2026-10-06T06:49:48.727Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "workspace": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "task_class": "ANALYTICS_ONLY",
+        "executor_profile": "MANUAL_HISTORICAL_METADATA_ONLY"
+      },
+      "provider_before": {
+        "usedPercent": 39,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "provider_after": {
+        "usedPercent": 39,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "provider_delta_pp": 0,
+      "reset_unchanged": true,
+      "ratio_usable": false,
+      "ratio_exclusion_reason": "ZERO_DISPLAY_DELTA",
+      "tokens_per_percentage_point": null,
+      "measurement_type": "TOKEN_ONLY_NO_RATIO",
+      "consumer_attribution": "NOISY_SHARED_USAGE",
+      "confidence": "REDUCED_SHARED_ACCOUNT",
+      "exclusive_billing_inferred": false,
+      "RF01_recovery_caveat": null
+    },
+    {
+      "execution_id": "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+      "work_order_id": "WO-AUTO-IMP-002-RF01-01",
+      "actor_end_utc": "2026-10-05T10:17:22Z",
+      "identity": {
+        "provider": "openai",
+        "account": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "limit_id": "codex",
+        "window_type": "PRIMARY_5H"
+      },
+      "local_token_path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/local_token_usage.json",
+      "local_token_git_blob": "59c21e30c3cc8a19afec0890a15b73230e70034e",
+      "provider_evidence_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "provider_evidence_git_blob": "8c2b72049b4a1496bb8630b081581272d8b2bf60",
+      "account_provenance_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "exact_attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH_BY_PER_CANDIDATE_EVIDENCE",
+      "tokens": {
+        "total_tokens": 8943945,
+        "input_tokens": 8919672,
+        "cached_input_tokens": 8855040,
+        "uncached_input_tokens": 64632,
+        "output_tokens": 24273,
+        "reasoning_output_tokens": 9585
+      },
+      "token_evidence_retained": true,
+      "metadata": {
+        "model": {
+          "timestamp": "2026-10-05T09:52:55.293Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "workspace": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "task_class": "ANALYTICS_ONLY",
+        "executor_profile": "MANUAL_HISTORICAL_METADATA_ONLY"
+      },
+      "provider_before": {
+        "usedPercent": 14,
+        "windowDurationMins": 300,
+        "resetsAt": 1791204390
+      },
+      "provider_after": {
+        "usedPercent": 28,
+        "windowDurationMins": 300,
+        "resetsAt": 1791204390
+      },
+      "provider_delta_pp": 14,
+      "reset_unchanged": true,
+      "ratio_usable": true,
+      "ratio_exclusion_reason": null,
+      "tokens_per_percentage_point": 638853.2142857143,
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "consumer_attribution": "NOISY_SHARED_USAGE",
+      "confidence": "REDUCED_SHARED_ACCOUNT",
+      "exclusive_billing_inferred": false,
+      "RF01_recovery_caveat": "Actor-associated original API calls used; raw call hashes and timestamps retained in recovery artifact; not current identity backfill"
+    },
+    {
+      "execution_id": "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+      "work_order_id": "WO-AUTO-IMP-002-RF01-01",
+      "actor_end_utc": "2026-10-05T10:17:22Z",
+      "identity": {
+        "provider": "openai",
+        "account": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+        "limit_id": "codex",
+        "window_type": "SECONDARY_WEEKLY"
+      },
+      "local_token_path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/local_token_usage.json",
+      "local_token_git_blob": "59c21e30c3cc8a19afec0890a15b73230e70034e",
+      "provider_evidence_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "provider_evidence_git_blob": "8c2b72049b4a1496bb8630b081581272d8b2bf60",
+      "account_provenance_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "exact_attribution": "EXACT_SINGLE_STRONG_MARKER_MATCH_BY_PER_CANDIDATE_EVIDENCE",
+      "tokens": {
+        "total_tokens": 8943945,
+        "input_tokens": 8919672,
+        "cached_input_tokens": 8855040,
+        "uncached_input_tokens": 64632,
+        "output_tokens": 24273,
+        "reasoning_output_tokens": 9585
+      },
+      "token_evidence_retained": true,
+      "metadata": {
+        "model": {
+          "timestamp": "2026-10-05T09:52:55.293Z",
+          "model": "gpt-6.1-sol",
+          "cwd": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system"
+        },
+        "workspace": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system",
+        "task_class": "ANALYTICS_ONLY",
+        "executor_profile": "MANUAL_HISTORICAL_METADATA_ONLY"
+      },
+      "provider_before": {
+        "usedPercent": 18,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "provider_after": {
+        "usedPercent": 20,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "provider_delta_pp": 2,
+      "reset_unchanged": true,
+      "ratio_usable": true,
+      "ratio_exclusion_reason": null,
+      "tokens_per_percentage_point": 4471972.5,
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "consumer_attribution": "NOISY_SHARED_USAGE",
+      "confidence": "REDUCED_SHARED_ACCOUNT",
+      "exclusive_billing_inferred": false,
+      "RF01_recovery_caveat": "Actor-associated original API calls used; raw call hashes and timestamps retained in recovery artifact; not current identity backfill"
+    }
+  ],
+  "exact_token_evidence_immutable": true,
+  "historical_old_qualification_rejections_not_capacity_v2_1_filter": true,
+  "created_at": "2026-10-06T10:26:29Z",
+  "updated_at": "2026-10-06T10:26:29Z"
+}

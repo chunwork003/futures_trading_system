@@ -2,31 +2,27 @@
   "schema_version": "automation.codex_work_order.v1",
   "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
   "package_id": "AUTO-GOV-PROGRAM-1_2-ORCHESTRATION",
-  "package_revision": "2",
+  "package_revision": "3",
   "work_order_path": "automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml",
-  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2",
-  "authorization_revision": "2",
-  "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2.v2.yaml",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3",
+  "authorization_revision": "3",
+  "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3.v3.yaml",
   "authorization_state": "AUTHORIZED",
   "authority_basis": {
-    "owner_decision_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
-    "initial_materialization_commit": "3d40f89169a7a85b54f66599db3a6b3394059ebb",
-    "active_architecture": "1.2",
-    "architecture_bundle_hash": "41222a925572c2a3f6659083df749685311cac02c9d7da1633403c9dc9650516",
-    "scope_digest": "462a6fbb2df42a12ac4463645ae2797945fee755b8809eba7107438c606a9a12",
-    "policy": "NORMAL_ARCHITECTURE1.2_CAPACITY_PROVIDER_LIFECYCLE_NO_BOOTSTRAP_EXCEPTION",
-    "owner_decision_materialized_commit": "a11cb88a76da22c714e5e8397958b5e5e17642b7",
-    "amendment_path": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json",
-    "authorization_revision": "2",
-    "prior_disposition_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01.supersession.json",
-    "amendment_overrides_base_scope_only": true,
-    "amendment_materialization_commit": "6c05611928e5e686b11e61190bff2b10cb9ad98e"
+    "owner_decision_path": "automation/governance/decisions/EXECUTION-CAPACITY-DYNAMIC-ROLLING.owner.json",
+    "active_architecture": "1.2.1",
+    "architecture_bundle_hash": "df5882dab351f73f9f7f82d7e90c99779096c09694848684cd3f4f76920bb160",
+    "scope_digest": "3df284e380940456e6e63af7dfc4b0125460a0a2f3a1bd324f1f81031304a2c7",
+    "policy": "automation/policies/execution_capacity_policy.v2_1.yaml",
+    "authorization_revision": "3",
+    "review_verdict_path": "automation/work_orders/reviews/EXECUTION-CAPACITY-DYNAMIC-ROLLING.verdict.json",
+    "prior_disposition_path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2.supersession.json"
   },
-  "control_plane_baseline_sha": "7308578c722030d9c26528178faa7a946e6878e1",
-  "code_base_sha": "7308578c722030d9c26528178faa7a946e6878e1",
+  "control_plane_baseline_sha": "3f86479cb0e166810ae52aba6b5732f2ca5b8d80",
+  "code_base_sha": "3f86479cb0e166810ae52aba6b5732f2ca5b8d80",
   "baseline_rule": "Fresh origin/master prior to admission; only provably compatible control-plane descendants acceptable. Source/path/policy identity drift STOP; exact future execution start SHA recorded. Candidate uses fresh master, no stale candidate control-plane copies.",
   "exact_goal": "PROGRAM_1_2_AND_ORCHESTRATION_CONTROL_LAYER_COMPLETE_BASELINE: implement complete24-section Owner decision in one cohesive candidate and one review",
-  "implementation_contract_path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
+  "implementation_contract_path": "automation/governance/decisions/EXECUTION-CAPACITY-DYNAMIC-ROLLING.owner.json",
   "plan_path": "automation/packages/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.plan.yaml",
   "exact_write_scope": [
     "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
@@ -48,8 +44,8 @@
     "docs/CURRENT_WORK.md",
     "docs/AI_AUTOMATION_OPERATING_MODEL.md",
     "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml",
-    "automation/engine/capacity_calibration.py",
-    "tests/automation/test_capacity_calibration.py"
+    "automation/engine/execution_capacity.py",
+    "tests/automation/test_execution_capacity.py"
   ],
   "protected_scope": [
     "ALL_PATHS_OUTSIDE_EXACT_21_IMPLEMENTATION_FILES_AND_OWN_TWO_EXECUTION_EVIDENCE_FILES",
@@ -66,13 +62,13 @@
     "automation/specs/work_cost_accounting.v2.yaml",
     "automation/specs/negative_assertions.v2.yaml",
     "all historical1.0/1.1 policies/specs and consumed amendments",
-    "automation/engine/execution_capacity.py",
     "automation/engine/yaml_io.py",
     "scripts/codex_session_token_usage.ps1",
     "IVF01/test_reentry source and original package prerequisite source",
-    "runtime/trading/broker/data/DB/migration/LIVE/production/credentials"
+    "runtime/trading/broker/data/DB/migration/LIVE/production/credentials",
+    "automation/policies/execution_capacity_policy.v2_1.yaml (reviewed governance successor, executor cannot change semantics)"
   ],
-  "scope_digest": "462a6fbb2df42a12ac4463645ae2797945fee755b8809eba7107438c606a9a12",
+  "scope_digest": "3df284e380940456e6e63af7dfc4b0125460a0a2f3a1bd324f1f81031304a2c7",
   "tests": {
     "QUEUE": [
       "same relevant revision/subject/generation across wake classes produces one entry",
@@ -105,7 +101,7 @@
     ],
     "PROGRAM": [
       "existing implementation_program.v1 validates V2 without new program schema",
-      "Program V1 exact blob unchanged and historical1.1; V2 explicit1.2",
+      "Program V1 exact blob unchanged and historical1.1; V2 explicit1.2.1",
       "002 precedes003 operationally, no003depends002 DAG edge",
       "005 waits002+003+004",
       "007 waits002+003+004+006",
@@ -113,19 +109,18 @@
       "every002009 NOT_AUTHORIZED absent its own exact authority"
     ],
     "DISPATCH": [
-      "MANUAL active, no automatic invocation",
-      "CONTROLLED_AUTO default false, fail closed when any one of17 proofs absent/invalid",
-      "qualified cohort count alone insufficient; wrong controller/capacity/window identity rejected",
-      "unqualified/provisional capacity denies unattended dispatch",
-      "explicit exact Owner activation mandatory; reviewerPASS/event/forecast notactivation",
-      "consumed single use never redispatch; valid same invoked resume delegates active1.2 checks",
-      "Immutable v1 stillcontainsAUTHORIZED historicaltext but durable supersession deniesrouting; onlyCURRENT-boundREV2may proceed"
+      "MANUAL active; no automatic invocation",
+      "CONTROLLED_AUTO default disabled; all current2.1 promotion proofs required",
+      "at least5 recent accepted manual executions under currentcontroller; model/taskclass equality NOT required",
+      "each qualifying exact token binding and every exposed rollingwindow capacity fit",
+      "explicit Owner activation mandatory, no authority from wake/review/forecast",
+      "consumed no redispatch; legal sameinvoked resume preserved"
     ],
     "FORECAST": [
       "legacy static token forecasts not admission authority",
       "fresh-context uncached P90 miss -> context/forecast feedback, no automatic SPLIT",
       "structural sizing evidence+positive lifecycle ROI may produce non-authority assessment only",
-      "provider percentage remains shared-account proxy, never EXACT/token conversion",
+      "provider percentage remains shared-account proxy, derivedrolling ratio ESTIMATE only; never EXACT task quota/billing",
       "reasoning subset output, cached subset input, total=input+output",
       "PowerShell canonical reconciler backward compatibility and existing pause/resume metrics preserved"
     ],
@@ -138,27 +133,24 @@
       "Program/controller candidate manifest status never activates before cohesive review",
       "Rev1 consumed/historical authority unchanged; no Rev2 authorization or003 authority"
     ],
-    "CAPACITY_CALIBRATION": [
-      "fewer than3distinct samples rejected",
-      "duplicate executionIDs rejected",
-      "wrong provider/account/workspace/limit/window/model/executor/client-policy rejected",
-      "missing identity rejects, missing!=NOT_EXPOSED",
-      "competingconsumer and unknowncleanattribution rejected",
-      "reset/window mismatch rejected",
-      "invalid integer tokenaccounting rejected",
-      "nonnegative coefficients, zero-intercept, zero work zero usage",
-      "exact nonoverlapping fourfeatures; no input/output/total duplication",
-      "deterministic point/residual/1pp/1.25 uncertainty upper, larger evidence margin retained",
-      "provider percentage proxy and CALIBRATED_ESTIMATE never EXACT/billing",
-      "PRIMARY_5H and SECONDARY_WEEKLY separate real models; missingexposedmodel failclosed",
-      "tighter lower selected, deterministic tie order, no syntheticwindow",
-      "integerfloored lower<=upper and positive-demand zero-prediction failclosed",
-      "P90>lower ->capacitymiss;P90<=lower->COST_FIT via existing cost_gate",
-      "different task classes permitted in capacity samples, only demandconfidence affected",
-      "historicalmissingidentity neverbackfilled fromcurrent snapshot orCLIversion",
-      "strict deeplyimmutable deterministicserialization roundtrip",
-      "invalid rank/featurecoverage/nonconvergence/uncertainty notconcealed toforcefit",
-      "modulepure no providerIO/no authority/reservation/dispatch/invocation; raw evidence immutable"
+    "ROLLING_CAPACITY": [
+      "metadata model/workspace/executor/clientpolicy/taskclass do not reject history",
+      "provider/account/limit/window separate quota pools",
+      "exact strong bound tokens primary; ambiguous token attribution never EXACT",
+      "delta0 and reset crossing retain tokens, exclude ratio",
+      "overlap -> NOISY_SHARED_USAGE, retains ratio reduced confidence",
+      "most recent20 usable distinct execution observations; timestamp then executionID deterministic",
+      "1..4 ratios minimum;5+ linear interpolation P25 at index0.25*(n-1)",
+      "safeRemaining=max(0,100-used-1), floor safeTokens",
+      "MANUAL exactauthority providerPASS unknowncapacity ALLOW_WITH_WATCH for allrisk",
+      "MANUAL known restrictive capacity<P90 WAIT_PROVIDER_CAPACITY",
+      "provider hard/rate/spend/ordinarydenial WAIT_PROVIDER_AVAILABLE wins",
+      "CONTROLLED_AUTO lacks either exposed-window evidence denied",
+      "sameexecution providerpause/resume; CONSUMED redispatch denied",
+      "queue/event/forecast/capacity generates noauthority",
+      "roundtrip deterministic plain serializable immutable contracts",
+      "no special coefficient/rank/probe/bootstrap gate",
+      "all original orchestration and lifecycle negative matrix preserved"
     ]
   },
   "fixture_strategy": "Self-contained valid immutable snapshot and eligible manual candidate first; mutation-only negatives; no fixture reading mutable repository CURRENT. Compare fixture to explicit schema/policy binding; exact repository integration separately.",
@@ -192,7 +184,7 @@
   },
   "execution_branch": "auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
   "execution_id": null,
-  "execution_eligibility": "BLOCKED_CAPACITY",
+  "execution_eligibility": "PRE_RESERVATION_WAIT_PROVIDER_CAPACITY",
   "status": "BLOCKED",
   "handoff_ready": false,
   "manual_trigger_only": true,
@@ -207,7 +199,7 @@
   "claim_rules": "No claim while BLOCKED. Only after normal fresh gates, one writer and new identity/reservation/precheck/dispatch/CONSUMED durable, manual trigger. Existing branch/evidence/lifecycle must block duplicate creation; no CONSUMED redispatch.",
   "completion_evidence_requirements": [
     "COMPLETED_PENDING_REVIEW, not accepted",
-    "exact start/claim/implementation/evidence SHA, exact19 scope and historical protection",
+    "exact start/claim/implementation/evidence SHA, exact21 scope and historical protection",
     "only own automation/runs/<exactexecution>/completion.json and execution_cost_actual.json in addition to implementation scope",
     "test commands/counts/exit codes/timings, diffcheck, metadata/source path inventory, scope violations, tooling retries/correction counts",
     "raw provider before/after proxy if exposed; deterministic local-token extraction after result; task_profile/context_profile actual reads",
@@ -215,7 +207,7 @@
   ],
   "review_plan": {
     "type": "ONE_COHESIVE_FRESH_INDEPENDENT_GOVERNANCE_SEMANTIC_REVIEW_COMPLETE_EFFECTIVE_PACKAGE",
-    "scope": "Complete21-file effectiveProgramV2/orchestration/forecast/capacityestimator/promotion/IVF01prep/historicalpreservation, ONE_COHESIVE_REVIEW",
+    "scope": "Complete21-file effectiveProgramV2/orchestration/forecast/rollingcapacity/promotion/IVF01prep/historicalpreservation, ONE_COHESIVE_REVIEW",
     "verdicts": [
       "PASS",
       "REVIEW_FIX_REQUIRED",
@@ -223,37 +215,35 @@
     ],
     "independent_reviewer_cannot_authorize_or_activate": true,
     "on_pass": "WORK_ACCEPT_REVIEWED_PROGRAM_V2_ORCHESTRATION_BASELINE_NO_AUTO_DISPATCH; then fresh compile IVF01Rev2 candidate under normal gates, no future unknown authority",
-    "calibration_questions": [
-      "fewer than3distinct samples rejected",
-      "duplicate executionIDs rejected",
-      "wrong provider/account/workspace/limit/window/model/executor/client-policy rejected",
-      "missing identity rejects, missing!=NOT_EXPOSED",
-      "competingconsumer and unknowncleanattribution rejected",
-      "reset/window mismatch rejected",
-      "invalid integer tokenaccounting rejected",
-      "nonnegative coefficients, zero-intercept, zero work zero usage",
-      "exact nonoverlapping fourfeatures; no input/output/total duplication",
-      "deterministic point/residual/1pp/1.25 uncertainty upper, larger evidence margin retained",
-      "provider percentage proxy and CALIBRATED_ESTIMATE never EXACT/billing",
-      "PRIMARY_5H and SECONDARY_WEEKLY separate real models; missingexposedmodel failclosed",
-      "tighter lower selected, deterministic tie order, no syntheticwindow",
-      "integerfloored lower<=upper and positive-demand zero-prediction failclosed",
-      "P90>lower ->capacitymiss;P90<=lower->COST_FIT via existing cost_gate",
-      "different task classes permitted in capacity samples, only demandconfidence affected",
-      "historicalmissingidentity neverbackfilled fromcurrent snapshot orCLIversion",
-      "strict deeplyimmutable deterministicserialization roundtrip",
-      "invalid rank/featurecoverage/nonconvergence/uncertainty notconcealed toforcefit",
-      "modulepure no providerIO/no authority/reservation/dispatch/invocation; raw evidence immutable"
+    "capacity_successor_review": "Preexecution one independent policy patch review at automation/work_orders/reviews/EXECUTION-CAPACITY-DYNAMIC-ROLLING.verdict.json; main complete source package still one cohesive fresh semantic review, no implementation acceptance from policy review.",
+    "rolling_capacity_questions": [
+      "metadata model/workspace/executor/clientpolicy/taskclass do not reject history",
+      "provider/account/limit/window separate quota pools",
+      "exact strong bound tokens primary; ambiguous token attribution never EXACT",
+      "delta0 and reset crossing retain tokens, exclude ratio",
+      "overlap -> NOISY_SHARED_USAGE, retains ratio reduced confidence",
+      "most recent20 usable distinct execution observations; timestamp then executionID deterministic",
+      "1..4 ratios minimum;5+ linear interpolation P25 at index0.25*(n-1)",
+      "safeRemaining=max(0,100-used-1), floor safeTokens",
+      "MANUAL exactauthority providerPASS unknowncapacity ALLOW_WITH_WATCH for allrisk",
+      "MANUAL known restrictive capacity<P90 WAIT_PROVIDER_CAPACITY",
+      "provider hard/rate/spend/ordinarydenial WAIT_PROVIDER_AVAILABLE wins",
+      "CONTROLLED_AUTO lacks either exposed-window evidence denied",
+      "sameexecution providerpause/resume; CONSUMED redispatch denied",
+      "queue/event/forecast/capacity generates noauthority",
+      "roundtrip deterministic plain serializable immutable contracts",
+      "no special coefficient/rank/probe/bootstrap gate",
+      "all original orchestration and lifecycle negative matrix preserved"
     ]
   },
   "stop_conditions": [
-    "provider hard/rate/spend denial",
-    "capacity not qualified for this HIGH task",
+    "provider hard/rate/spend/ordinary actual denial",
+    "known rolling restrictive capacity below current P90",
     "baseline/scope/authority/policy drift",
     "competing/unfinished writer/execution or existing branch/evidence",
     "out-of-scope semantic change",
     "attempted automatic dispatch or next package",
-    "unknown machine evidence / contradictory CURRENT",
+    "unknown required authority/lifecycle evidence or contradictory CURRENT (capacity unknown alone allowed in MANUAL)",
     "new correction without exact authority"
   ],
   "next_package": {
@@ -265,15 +255,15 @@
     "rev2": "NOT_AUTHORIZED_PREPARATION_ONLY",
     "flow_path": "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
   },
-  "current_route": "WORK_CAPACITY_QUALIFICATION_CAMPAIGN_PRECHECK",
-  "sole_blocker": "QUALIFIED_CAPACITY_REQUIRED",
+  "current_route": "WAIT_PROVIDER_CAPACITY",
+  "sole_blocker": "WAIT_PROVIDER_CAPACITY",
   "active_dispatch_mode": "MANUAL",
   "controlled_auto": "DISABLED",
   "task_profile": {
     "task_class": "COHESIVE_ORCHESTRATION_CONTROL_LAYER_BASELINE",
     "change_type": "EXPLICIT_PROGRAM_SUCCESSOR_AND_DETERMINISTIC_AUTHORITY_SEPARATED_CONTROLLER",
     "subsystem": "automation.engine / program and control-plane governance",
-    "functional_area": "queue/event/route/forecast/promotion / permanent capacity calibration",
+    "functional_area": "queue/event/route/forecast/promotion/rolling capacity",
     "concise_engineering_goal": "Complete Program1.2 and deterministic orchestration baseline in one reviewable package",
     "primary_symbols_or_functional_surfaces": [
       "ImplementationProgram",
@@ -289,36 +279,74 @@
       "authority separation",
       "manual/controlledauto",
       "context ROI",
-      "provider-window feature calibration and conservativeinterval"
+      "actual-token-first rolling quota-pool capacity"
     ],
     "source_file_count": 4,
     "test_file_count": 4,
     "governance_and_docs_file_count": 13,
     "semantic_profile": "ONE_COHESIVE_FRESH_INDEPENDENT_GOVERNANCE_REVIEW",
     "test_profile": "STABLE_SELF_CONTAINED_POSITIVE_FIXTURE_AND_NEGATIVE_MATRIX_ONE_TARGETED_ONE_FULL",
-    "authority_boundary": "Exact19 candidate implementation files; no policy capacity relaxation, runtime or next package",
+    "authority_boundary": "Exact21file candidate, immutable reviewed successor policy, no runtime/nextpackage",
     "packaging_cohesion_decision": "KEEP_COHESIVE / OPTIMIZE_TOTAL_ENGINEERING_VALUE_NOT_TOKENS_PER_TICKET; shared authority, queue/route subsystem, acceptance and test surface"
   },
   "KNOWN_AUTOMATION_ARCHITECTURE_DEBT": "NONE",
-  "debt_semantics": "All known design decisions specified and implementation consistency issues included in exact scope; does NOT claim implementation complete or capacity evidence calibrated",
+  "debt_semantics": "No unresolved capacity design/bootstrap dependency; exact accepted design to implement in existing cohesive main package. Pending implementation/review are lifecycle barriers, not design TODO.",
   "created_at": "2026-10-06T08:24:37Z",
-  "updated_at": "2026-10-06T09:09:49Z",
-  "compilation_commit": "a11cb88a76da22c714e5e8397958b5e5e17642b7",
-  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.capacity-provider-evidence.json",
-  "capacity_calibration": {
-    "amendment_path": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json",
-    "cohort_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.json",
-    "qualification_path": "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.qualification.json",
-    "module": "automation/engine/capacity_calibration.py",
-    "tests": "tests/automation/test_capacity_calibration.py",
-    "feature_method": "NON_NEGATIVE_ZERO_INTERCEPT_FEATURE_CALIBRATION",
-    "task_class_capacity_rejection": "DENIED",
-    "forecast_p90_total_unchanged": 12000000
-  },
-  "capacity_campaign_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.json",
-  "capacity_campaign_preflight_blocker": "PROVIDER_CLIENT_POLICY_IDENTITY_UNRESOLVED",
+  "updated_at": "2026-10-06T10:26:29Z",
+  "compilation_commit": "HISTORICAL_PREDECESSOR_COMPILATION_ONLY",
+  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.rolling-provider-evidence.json",
   "implementation_contract_amendments": [
-    "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json"
+    "automation/governance/decisions/EXECUTION-CAPACITY-DYNAMIC-ROLLING.owner.json"
   ],
-  "capacity_estimate_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.capacity-estimate.json"
+  "capacity_estimate_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.rolling-capacity.json",
+  "capacity_policy": {
+    "primary_cost": "EXACT_LOCAL_REPORTED_TOKENS",
+    "provider_signal": "COARSE_SHARED_ACCOUNT_CAPACITY_SIGNAL",
+    "pool_identity": [
+      "provider",
+      "account",
+      "limit_id",
+      "window_type"
+    ],
+    "metadata_only": [
+      "workspace",
+      "model",
+      "executor_profile",
+      "provider_client_policy_version",
+      "task_class"
+    ],
+    "sample_limit": 20,
+    "sample_order": "actor_end_utc ASC, execution_id ASC; take last20 usable ratios; distinct executionID per pool/window",
+    "ratio": "exact_total_tokens / positive_provider_delta_percentage_points",
+    "ratio_prerequisites": "strict exact local binding; same provider/account/limit/window; both snapshots real and reset unchanged; before/after used in[0,100], after>before",
+    "delta0_or_reset_crossing": "RETAIN_EXACT_TOKENS_EXCLUDE_RATIO",
+    "overlap": "NOISY_SHARED_USAGE_RETAIN_RATIO_REDUCED_CONFIDENCE_NO_EXCLUSIVE_QUOTA_COST",
+    "count0": "UNKNOWN",
+    "count1_to4": "MINIMUM",
+    "count5_plus": "P25_LINEAR_INTERPOLATION_SORT_ASC_INDEX_0.25_TIMES_N_MINUS_1",
+    "safety": "safe_remaining_pct=max(0,100-used_pct-1);safe_available_tokens=floor(safe_tokens_per_pct*safe_remaining_pct)",
+    "measurement": "ROLLING_CAPACITY_ESTIMATE_NEVER_EXACT",
+    "window_evaluation": [
+      "PRIMARY_5H",
+      "SECONDARY_WEEKLY"
+    ],
+    "manual": "exact-authorized allrisk + providerPASS: UNKNOWN=>ALLOW_WITH_WATCH; allknownwindows_fit=>ALLOW_WITH_WATCH; anyknownwindow<P90=>WAIT_PROVIDER_CAPACITY",
+    "controlled_auto": "every relevant exposed window must have usable rolling evidence and fit P90; else CONTROLLED_AUTO_CAPACITY_NOT_ESTABLISHED; mode remains DISABLED",
+    "forecast": "PER_WO_P50_P75_P90_TOTAL_PRIMARY; detailed dimensions telemetry; no forecast reduction to force fit",
+    "billing": "NOT_AVAILABLE_UNLESS_PROVIDER_EXACT_TASK_BILLING",
+    "feature_coefficient_gate": "NOT_REQUIRED",
+    "calibration_campaign": "SUPERSEDED_PRE_EXECUTION_BY_DYNAMIC_CAPACITY_POLICY",
+    "controlled_auto_promotion": [
+      "at least5 recent successful manually-triggered accepted executions under current orchestration controller",
+      "exact execution-bound local tokens for each qualifying execution",
+      "usable rolling capacity for every exposed window and safe capacity >= current forecastP90",
+      "exact preexisting authority/scope/reservation/dispatch and current architecture",
+      "no higher-priority unfinished work; one writer; stable dedupe",
+      "zero duplicate dispatch; zero fabricated resume; zero writer conflict",
+      "no unresolved HIGH/CRITICAL governance anomaly",
+      "provider actual gates PASS",
+      "independent orchestration semantic review PASS",
+      "explicit Human Governance Owner CONTROLLED_AUTO activation"
+    ]
+  }
 }

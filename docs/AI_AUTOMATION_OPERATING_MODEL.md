@@ -1,3 +1,13 @@
+# CURRENT — Dynamic rolling capacity successor 1.2.1
+
+Architecture 1.2.1 ACTIVE; capacity policy2.1. Main WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 / AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3 AUTHORIZED / NOT_CONSUMED; WAIT_PROVIDER_CAPACITY. No writer/execution/reservation/dispatch/invocation. ProgramV2 revision3 candidate pending cohesive implementation/review. ControlledAuto DISABLED. Capacity campaign/P01/P02/P03 SUPERSEDED_PRE_EXECUTION_BY_DYNAMIC_CAPACITY_POLICY, zero probes. Exact local tokens primary; quota identity provider/account/limit/window only; model/client/workspace/taskclass metadata. No feature-coefficient/bootstrap gate. Same-execution resume and all sideeffect denials preserved. AUTO-IMP-003 NOT_AUTHORIZED; IVF01 Rev1 baseline changed, Rev2 NOT_AUTHORIZED.
+
+Canonical policy: automation/policies/execution_capacity_policy.v2_1.yaml; evidence: automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.rolling-capacity.json; Owner successor: automation/governance/decisions/EXECUTION-CAPACITY-DYNAMIC-ROLLING.owner.json.
+
+KNOWN_CAPACITY_ARCHITECTURE_DEBT = NONE (complete policy design; main cohesive implementation still required).
+
+## HISTORICAL PROJECTIONS BELOW — superseded current headings are retained audit evidence
+
 ## CURRENT — Capacity Calibration Amendment / Same Cohesive Package
 
 Architecture 1.2 ACTIVE; current logical work remains `WO-AUTO-GOV-PROGRAM-1_2-ORCH-01`, package revision2. Owner Amendment01: `automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json`. Exact source scope is21files: previous19 plus `automation/engine/capacity_calibration.py` and `tests/automation/test_capacity_calibration.py`. `execution_capacity.py` remains protected unchanged. Risk remains HIGH_AUTHORITY_SENSITIVE_CONTROLLER; forecast P90 remains12,000,000. One cohesive implementation and independent review, no split/waiver/floor/fallback.

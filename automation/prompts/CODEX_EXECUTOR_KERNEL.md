@@ -1,3 +1,11 @@
+# CURRENT PROCEDURE — Architecture1.2.1 / capacity2.1
+
+Fresh manifest determines active policies. automation/policies/execution_capacity_policy.v2_1.yaml supersedes predecessor capacity/admission clauses only. Exact local reported tokens primary; provider percentages coarse proxy; derived total-token ratio is ROLLING_CAPACITY_ESTIMATE never EXACT task cost/billing. No fixed80%/40k or coefficient/probe/bootstrap gate. Quota pool provider/account/limit/window only; model/workspace/executor/clientpolicy/taskclass metadata. Same reset positive delta ratios, delta0/reset-crossing retain tokens exclude ratio; overlaps NOISY_SHARED_USAGE reducedconfidence. Last20 usable, n1-4minimum, n>=5linearP25, subtract1pp. Manual exactauthorized allrisk providerPASS unknown=>ALLOW_WITH_WATCH; anyknownwindow belowP90=>WAIT_PROVIDER_CAPACITY. Actual denial=>WAIT_PROVIDER_AVAILABLE. CONTROLLED_AUTO remains DISABLED; at least5 accepted manual currentcontroller executions with strict exacttokens, rolling evidence for both exposedwindows, zero duplicate/fabricatedresume/writerconflicts, no unresolvedgovernance anomaly, independentcontrollerPASS, explicitOwner activation.
+
+Single-use lifecycle/resume/writer/scope/authority gates unchanged; queue/event creates noauthority; wakeonly. No newexecution/reservation/dispatch for alreadyinvoked sameexecution resume. Current predecessor execution_capacity source is not2.1 admission implementation yet; main21file candidate must update evaluator/tests and all current kernel pointers before cohesive source review/acceptance. WORK preexecution uses reviewed2.1 governance policy plus exact deterministic evidence; never reuses predecessor cost_gate projection. No automatic CODEX invocation.
+
+## Predecessor procedure text — preserved navigation/history; capacity2.1 above prevails
+
 # CODEX Executor Kernel
 
 Architecture1.2 ACTIVE after accepted fresh review and WORK materialization. Canonical active successor section below supersedes predecessor procedure pointers; historical artifacts grant no current execution authority. No automatic dispatch or next package authority.
@@ -171,7 +179,9 @@ NO AUTHORITY INFERENCE
 EVIDENCE BEFORE ACCEPTANCE
 STOP AT BARRIER
 
-## Successor capacity/resume boundary (ACTIVE)
+## Historical predecessor capacity procedure — superseded ONLY for capacity by2.1
+
+### Historical1.2 procedure, current capacity clauses below prevail
 
 Under active Architecture1.2 use execution_capacity_policy.v2, authorization_lifecycle.v1_1, development_state_machine.v2 and development_entry_protocol.v2 under automation/policies; execution_cost_contract.v2 under automation/telemetry and work_cost_accounting.v2 under automation/specs. Architecture1.2 is ACTIVE after WORK materialization. Procedure owner: automation/skills/single-use-lifecycle-guard/SKILL.md.
 Execution cost and provider availability are separate gates; no V2 fixed percentage floor/token fallback. Derived capacity is estimate, never EXACT. Actual provider denial wins. Checkpoint PAUSED_PROVIDER_LIMIT; recovery is wake-only, then RESUME_PENDING_REVALIDATION and fresh exact revalidation. Resume same already-invoked execution != CONSUMED redispatch; no new identity/reservation/dispatch/budget. Unfinished execution blocks new work. Contradictory current lifecycle projection -> RECONCILIATION_REQUIRED; historical phase snapshots stay immutable. WORK forecast/capacity review cannot grant authority. Review PASS != Integration PASS != materialized acceptance.

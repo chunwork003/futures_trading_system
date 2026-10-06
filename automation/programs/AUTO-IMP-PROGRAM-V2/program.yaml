@@ -1,11 +1,11 @@
 {
   "schema_version": "automation.implementation_program.v1",
   "program_id": "AUTO-IMP-PROGRAM-V2",
-  "program_revision": "2",
+  "program_revision": "3",
   "status": "COMPILED_CANDIDATE_PENDING_COHESIVE_IMPLEMENTATION_AND_REVIEW",
-  "compiled_from_freeze_head": "4cd98db0a6faddd3e0f02df1f72a4c9407f3747c",
-  "frozen_master_manifest_sha256": "c95a3cff78b2f7c26eb16e429bbdfe2265159b755d8ad1a0784595b18306d9de",
-  "master_architecture_version": "1.2",
+  "compiled_from_freeze_head": "3f86479cb0e166810ae52aba6b5732f2ca5b8d80",
+  "frozen_master_manifest_sha256": "885d24685d38773129f7cc27f127560da3e14a8615cfb7504c4187bc32d02185",
+  "master_architecture_version": "1.2.1",
   "authority": {
     "implementation_authorized": false,
     "codex_execution_authorized": false,
@@ -13,8 +13,12 @@
     "next_mainline_gap_authorized": false,
     "program_review": "PENDING_COHESIVE_REVIEW",
     "review_required_before_wave_authorization": true,
-    "next_route": "AUTO_GOV_PROGRAM_1_2_ORCHESTRATION_COHESIVE_IMPLEMENTATION",
-    "automatic_rebind": false
+    "next_route": "MAIN_COHESIVE_IMPLEMENTATION_AFTER_FRESH_2.1_ADMISSION",
+    "automatic_rebind": false,
+    "architecture_patch_decision": "automation/governance/decisions/EXECUTION-CAPACITY-DYNAMIC-ROLLING.owner.json",
+    "capacity_policy": "automation/policies/execution_capacity_policy.v2_1.yaml",
+    "policy_review_verdict": "automation/work_orders/reviews/EXECUTION-CAPACITY-DYNAMIC-ROLLING.verdict.json",
+    "implementation_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3"
   },
   "implementation_strategy": {
     "pattern": "STRANGLER_DUAL_RUN",
@@ -51,14 +55,55 @@
       "activation": "EXTERNAL_EVIDENCE_AND_OWNER_ACTIVATION_ONLY",
       "manual_controller_status": "PENDING_COHESIVE_IMPLEMENTATION_REVIEW_NOT_OPERATIONAL"
     },
-    "capacity_calibration": {
-      "module": "automation.engine.capacity_calibration",
-      "status": "PENDING_SAME_COHESIVE_IMPLEMENTATION",
-      "method": "NON_NEGATIVE_ZERO_INTERCEPT_FEATURE_CALIBRATION",
-      "method_authority": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json",
-      "task_class_not_capacity_identity": true,
-      "forecast_task_class_comparability_separate": true,
-      "no_provider_io_authority_lifecycle_mutation": true
+    "rolling_capacity": {
+      "primary_cost": "EXACT_LOCAL_REPORTED_TOKENS",
+      "provider_signal": "COARSE_SHARED_ACCOUNT_CAPACITY_SIGNAL",
+      "pool_identity": [
+        "provider",
+        "account",
+        "limit_id",
+        "window_type"
+      ],
+      "metadata_only": [
+        "workspace",
+        "model",
+        "executor_profile",
+        "provider_client_policy_version",
+        "task_class"
+      ],
+      "sample_limit": 20,
+      "sample_order": "actor_end_utc ASC, execution_id ASC; take last20 usable ratios; distinct executionID per pool/window",
+      "ratio": "exact_total_tokens / positive_provider_delta_percentage_points",
+      "ratio_prerequisites": "strict exact local binding; same provider/account/limit/window; both snapshots real and reset unchanged; before/after used in[0,100], after>before",
+      "delta0_or_reset_crossing": "RETAIN_EXACT_TOKENS_EXCLUDE_RATIO",
+      "overlap": "NOISY_SHARED_USAGE_RETAIN_RATIO_REDUCED_CONFIDENCE_NO_EXCLUSIVE_QUOTA_COST",
+      "count0": "UNKNOWN",
+      "count1_to4": "MINIMUM",
+      "count5_plus": "P25_LINEAR_INTERPOLATION_SORT_ASC_INDEX_0.25_TIMES_N_MINUS_1",
+      "safety": "safe_remaining_pct=max(0,100-used_pct-1);safe_available_tokens=floor(safe_tokens_per_pct*safe_remaining_pct)",
+      "measurement": "ROLLING_CAPACITY_ESTIMATE_NEVER_EXACT",
+      "window_evaluation": [
+        "PRIMARY_5H",
+        "SECONDARY_WEEKLY"
+      ],
+      "manual": "exact-authorized allrisk + providerPASS: UNKNOWN=>ALLOW_WITH_WATCH; allknownwindows_fit=>ALLOW_WITH_WATCH; anyknownwindow<P90=>WAIT_PROVIDER_CAPACITY",
+      "controlled_auto": "every relevant exposed window must have usable rolling evidence and fit P90; else CONTROLLED_AUTO_CAPACITY_NOT_ESTABLISHED; mode remains DISABLED",
+      "forecast": "PER_WO_P50_P75_P90_TOTAL_PRIMARY; detailed dimensions telemetry; no forecast reduction to force fit",
+      "billing": "NOT_AVAILABLE_UNLESS_PROVIDER_EXACT_TASK_BILLING",
+      "feature_coefficient_gate": "NOT_REQUIRED",
+      "calibration_campaign": "SUPERSEDED_PRE_EXECUTION_BY_DYNAMIC_CAPACITY_POLICY",
+      "controlled_auto_promotion": [
+        "at least5 recent successful manually-triggered accepted executions under current orchestration controller",
+        "exact execution-bound local tokens for each qualifying execution",
+        "usable rolling capacity for every exposed window and safe capacity >= current forecastP90",
+        "exact preexisting authority/scope/reservation/dispatch and current architecture",
+        "no higher-priority unfinished work; one writer; stable dedupe",
+        "zero duplicate dispatch; zero fabricated resume; zero writer conflict",
+        "no unresolved HIGH/CRITICAL governance anomaly",
+        "provider actual gates PASS",
+        "independent orchestration semantic review PASS",
+        "explicit Human Governance Owner CONTROLLED_AUTO activation"
+      ]
     }
   },
   "near_horizon_exact_packages": [
@@ -305,14 +350,14 @@
       "required_evidence": "Exact per-level evidence+review+Owner activation in orchestration policy; existing strategic prerequisite retained; no authority from milestone"
     },
     {
-      "id": "M12_STABILITY_COHORT_MINIMUM_3_COMPARABLE_ACCEPTED_EXECUTIONS",
+      "id": "M12_STABILITY_COHORT_MINIMUM_5_RECENT_ACCEPTED_MANUAL_EXECUTIONS",
       "prerequisite": "M11_ACCEPTED",
       "design_status": "DEFINED_IN_ORCHESTRATION_PROMOTION_CONTRACT",
       "deferral": "EVIDENCE_AND_EXPLICIT_OWNER_ACTIVATION_ONLY_NOT_FUTURE_DESIGN",
       "promotion_contract_level": "CONTROLLED_SINGLE_USE_AUTO",
-      "required_evidence": "Exact per-level evidence+review+Owner activation in orchestration policy; existing strategic prerequisite retained; no authority from milestone",
+      "required_evidence": "Recent accepted MANUAL executions under current controller, exact tokens, rolling exposed-window evidence; model/taskclass equality not required",
       "historical_id_provenance": "M12_STABILITY_COHORT_2_TO_3_PACKAGES",
-      "minimum_accepted_exact_comparable": 3
+      "minimum_accepted_exact_comparable": 5
     },
     {
       "id": "M13_LEVEL_3B_QUEUE_DRIVEN",
@@ -383,7 +428,7 @@
     "automatic_next_package_authorization": "DENIED",
     "all_002_009_need_own_exact_authority": true,
     "controller_review_barrier": "ONE_COHESIVE_FRESH_INDEPENDENT_REVIEW",
-    "capacity_campaign_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.json",
-    "current_controller_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2"
+    "current_controller_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3",
+    "capacity_campaign_disposition_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.supersession.json"
   }
 }

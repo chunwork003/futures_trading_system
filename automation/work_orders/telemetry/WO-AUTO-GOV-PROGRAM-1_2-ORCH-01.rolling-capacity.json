@@ -1,0 +1,62 @@
+{
+  "schema_version": "automation.rolling_capacity_evidence.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3",
+  "policy_path": "automation/policies/execution_capacity_policy.v2_1.yaml",
+  "scope_digest": "3df284e380940456e6e63af7dfc4b0125460a0a2f3a1bd324f1f81031304a2c7",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.json",
+  "forecast_p90": 12000000,
+  "cohort_path": "automation/telemetry/cohorts/LOCAL_CODEX_ROLLING_CAPACITY_V2_1.json",
+  "provider_path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.rolling-provider-evidence.json",
+  "windows": {
+    "PRIMARY_5H": {
+      "sample_count": 5,
+      "sample_execution_ids": [
+        "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+        "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+        "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z"
+      ],
+      "used_pct": 50,
+      "remaining_pct": 50,
+      "safe_remaining_pct": 49,
+      "resets_at": 1791289900,
+      "safe_tokens_per_pct": 508080.85714285716,
+      "estimator": "P25_LINEAR_INTERPOLATION",
+      "safe_available_tokens": 24895962,
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "confidence": "REDUCED_NOISY_SHARED_ACCOUNT",
+      "forecast_p90": 12000000,
+      "route": "ALLOW_WITH_WATCH"
+    },
+    "SECONDARY_WEEKLY": {
+      "sample_count": 4,
+      "sample_execution_ids": [
+        "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+        "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+        "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z"
+      ],
+      "used_pct": 48,
+      "remaining_pct": 52,
+      "safe_remaining_pct": 51,
+      "resets_at": 1791615796,
+      "safe_tokens_per_pct": 173378.0,
+      "estimator": "MINIMUM",
+      "safe_available_tokens": 8842278,
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "confidence": "REDUCED_NOISY_SHARED_ACCOUNT",
+      "forecast_p90": 12000000,
+      "route": "WAIT_PROVIDER_CAPACITY"
+    }
+  },
+  "binding_window": "SECONDARY_WEEKLY",
+  "safe_available_tokens": 8842278,
+  "capacity_route": "WAIT_PROVIDER_CAPACITY",
+  "provider_gate": "PASS",
+  "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+  "billing": "NOT_AVAILABLE",
+  "created_at": "2026-10-06T10:26:29Z",
+  "updated_at": "2026-10-06T10:26:29Z"
+}

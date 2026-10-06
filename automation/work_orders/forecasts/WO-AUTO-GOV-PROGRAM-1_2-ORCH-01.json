@@ -91,25 +91,19 @@
   ],
   "comparable_sample_ids": [],
   "capacity_evidence": {
-    "type": "NOT_AVAILABLE_NO_QUALIFIED_ESTIMATE",
-    "controller_comparable_qualified_samples": 0,
-    "calibrated": false,
-    "provider_percent_conversion": "DENIED",
-    "task_class_not_capacity_filter": true,
-    "qualified_samples_per_window": {
-      "PRIMARY_5H": 0,
-      "SECONDARY_WEEKLY": 0
-    }
+    "type": "ROLLING_CAPACITY_ESTIMATE",
+    "path": "automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.rolling-capacity.json",
+    "task_class_model_metadata_only": true
   },
   "assumptions": [
     "Fresh19-file cohesive controller baseline, materially larger than four-file RF; two exact prior executions are supporting only",
     "Uncached500k/800k/1.2M engineering envelope explicitly widens prior45k/75k/120k miss; no calibrated percentile claim",
     "Pointer-first bound context; no raw rollout or unrelated history; reuse unchanged blobs",
     "New deterministic positive fixtures for all queues/routes; PowerShell subprocess tests; one targeted+onefull; no DB/broker environment",
-    "Reasoning included in output, cached included in input; no provider-to-token conversion",
-    "Exactly two permanent calibration surfaces added to samecohesive package; wide existingtotal12M P90 remains unchanged; extra same-target tests expected within120s/180s p90 envelope. Noforecastreduction toadmit."
+    "Reasoning included in output, cached included in input; provider ratio estimate permitted by2.1, never EXACT",
+    "Replace two planned coefficient-module surfaces with existing evaluator/test;12M totalP90 retained, no reduction to pass admission"
   ],
-  "uncertainty": "HIGH_NEW_CONTROLLER_NO_COMPARABLE_CAPACITY; planning bands not admission allowance",
+  "uncertainty": "HIGH_NEW_CONTROLLER_DEMAND_FORECAST_CONFIDENCE; capacity uses independent rolling quota pool evidence",
   "expected_dominant_cost_driver": "CONTEXT_AND_COHESIVE_CONTROLLER_SEMANTIC_MATRIX",
   "early_watch_thresholds": {
     "reported_tokens": 12000000,
@@ -140,7 +134,7 @@
     "task_class": "COHESIVE_ORCHESTRATION_CONTROL_LAYER_BASELINE",
     "change_type": "EXPLICIT_PROGRAM_SUCCESSOR_AND_DETERMINISTIC_AUTHORITY_SEPARATED_CONTROLLER",
     "subsystem": "automation.engine / program and control-plane governance",
-    "functional_area": "queue/event/route/forecast/promotion / permanent capacity calibration",
+    "functional_area": "queue/event/route/forecast/promotion/rolling capacity",
     "concise_engineering_goal": "Complete Program1.2 and deterministic orchestration baseline in one reviewable package",
     "primary_symbols_or_functional_surfaces": [
       "ImplementationProgram",
@@ -156,35 +150,36 @@
       "authority separation",
       "manual/controlledauto",
       "context ROI",
-      "provider-window feature calibration and conservativeinterval"
+      "actual-token-first rolling quota-pool capacity"
     ],
     "source_file_count": 4,
     "test_file_count": 4,
     "governance_and_docs_file_count": 13,
     "semantic_profile": "ONE_COHESIVE_FRESH_INDEPENDENT_GOVERNANCE_REVIEW",
     "test_profile": "STABLE_SELF_CONTAINED_POSITIVE_FIXTURE_AND_NEGATIVE_MATRIX_ONE_TARGETED_ONE_FULL",
-    "authority_boundary": "Exact19 candidate implementation files; no policy capacity relaxation, runtime or next package",
+    "authority_boundary": "Exact21file candidate, immutable reviewed successor policy, no runtime/nextpackage",
     "packaging_cohesion_decision": "KEEP_COHESIVE / OPTIMIZE_TOTAL_ENGINEERING_VALUE_NOT_TOKENS_PER_TICKET; shared authority, queue/route subsystem, acceptance and test surface"
   },
   "planned_context_profile": {
     "type": "PLANNING_PROFILE_NOT_ACTUAL_READS",
     "exact_pointer_first": [
+      "automation/governance/decisions/EXECUTION-CAPACITY-DYNAMIC-ROLLING.owner.json",
       "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
       "automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml",
       "automation/packages/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.plan.yaml",
       "automation/governance/master_manifest.v1.yaml",
-      "automation/policies/execution_capacity_policy.v2.yaml",
+      "automation/policies/execution_capacity_policy.v2_1.yaml",
       "automation/policies/authorization_lifecycle.v1_1.yaml"
     ],
-    "implementation_context": "Only exact19 implementation surfaces and tests needed; original ProgramV1 derivation once; no raw transcript; historical evidence only concrete ambiguity",
+    "implementation_context": "Only exact21 implementation surfaces and tests needed; original ProgramV1 derivation once; no raw transcript; historical evidence only concrete ambiguity",
     "raw_transcript_allowed": false,
     "history_policy": "DELTA_ONLY_REQUIRED_IDENTITY_NOT_FULL_DISCUSSION",
     "content_tokens_measurement": "PROXY_OR_CALIBRATED_ESTIMATE_NEVER_EXACT"
   },
   "created_at": "2026-10-06T08:20:36Z",
-  "updated_at": "2026-10-06T08:52:23Z",
-  "amendment_path": "automation/governance/decisions/AMEND-AUTO-GOV-PROGRAM-1_2-ORCH-01-CAPACITY-01.json",
+  "updated_at": "2026-10-06T10:26:29Z",
+  "amendment_path": "automation/governance/decisions/EXECUTION-CAPACITY-DYNAMIC-ROLLING.owner.json",
   "scope_count": 21,
-  "scope_digest": "462a6fbb2df42a12ac4463645ae2797945fee755b8809eba7107438c606a9a12",
-  "forecast_identity_revision": "2"
+  "scope_digest": "3df284e380940456e6e63af7dfc4b0125460a0a2f3a1bd324f1f81031304a2c7",
+  "forecast_identity_revision": "3"
 }

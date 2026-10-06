@@ -1,0 +1,130 @@
+{
+  "schema_version": "automation.execution_capacity_policy.v2",
+  "policy_id": "EXECUTION_CAPACITY_POLICY",
+  "policy_version": "2.1",
+  "status": "ACCEPTED_MATERIALIZED",
+  "active": true,
+  "authority": {
+    "active_master_architecture": "1.2.1",
+    "target_architecture": "1.2.1",
+    "decision_path": "automation/governance/decisions/EXECUTION-CAPACITY-DYNAMIC-ROLLING.owner.json",
+    "review_path": "automation/work_orders/reviews/EXECUTION-CAPACITY-DYNAMIC-ROLLING.verdict.json",
+    "activation": "WORK_MATERIALIZATION_AFTER_ONE_INDEPENDENT_CAPACITY_PATCH_REVIEW_PASS",
+    "side_effects": {
+      "runtime": "DENIED",
+      "broker": "DENIED",
+      "db": "DENIED",
+      "migration": "DENIED",
+      "live": "DENIED",
+      "production": "DENIED",
+      "credentials": "DENIED"
+    }
+  },
+  "semantics": {
+    "gates": [
+      "EXECUTION_COST_GATE",
+      "PROVIDER_AVAILABILITY_GATE"
+    ],
+    "demand": {
+      "primary": "PER_WO_P50_P75_P90_TOTAL_TOKENS",
+      "exact_attribution": "STRICT_EXECUTION_WO_TIME_STRONG_MARKER_UNAMBIGUOUS",
+      "dimensions": [
+        "input",
+        "cached_input",
+        "uncached_input",
+        "output",
+        "reasoning",
+        "total",
+        "model",
+        "actor",
+        "provider_windows",
+        "reset",
+        "interruption"
+      ]
+    },
+    "capacity": {
+      "primary_cost": "EXACT_LOCAL_REPORTED_TOKENS",
+      "provider_signal": "COARSE_SHARED_ACCOUNT_CAPACITY_SIGNAL",
+      "pool_identity": [
+        "provider",
+        "account",
+        "limit_id",
+        "window_type"
+      ],
+      "metadata_only": [
+        "workspace",
+        "model",
+        "executor_profile",
+        "provider_client_policy_version",
+        "task_class"
+      ],
+      "sample_limit": 20,
+      "sample_order": "actor_end_utc ASC, execution_id ASC; take last20 usable ratios; distinct executionID per pool/window",
+      "ratio": "exact_total_tokens / positive_provider_delta_percentage_points",
+      "ratio_prerequisites": "strict exact local binding; same provider/account/limit/window; both snapshots real and reset unchanged; before/after used in[0,100], after>before",
+      "delta0_or_reset_crossing": "RETAIN_EXACT_TOKENS_EXCLUDE_RATIO",
+      "overlap": "NOISY_SHARED_USAGE_RETAIN_RATIO_REDUCED_CONFIDENCE_NO_EXCLUSIVE_QUOTA_COST",
+      "count0": "UNKNOWN",
+      "count1_to4": "MINIMUM",
+      "count5_plus": "P25_LINEAR_INTERPOLATION_SORT_ASC_INDEX_0.25_TIMES_N_MINUS_1",
+      "safety": "safe_remaining_pct=max(0,100-used_pct-1);safe_available_tokens=floor(safe_tokens_per_pct*safe_remaining_pct)",
+      "measurement": "ROLLING_CAPACITY_ESTIMATE_NEVER_EXACT",
+      "window_evaluation": [
+        "PRIMARY_5H",
+        "SECONDARY_WEEKLY"
+      ],
+      "manual": "exact-authorized allrisk + providerPASS: UNKNOWN=>ALLOW_WITH_WATCH; allknownwindows_fit=>ALLOW_WITH_WATCH; anyknownwindow<P90=>WAIT_PROVIDER_CAPACITY",
+      "controlled_auto": "every relevant exposed window must have usable rolling evidence and fit P90; else CONTROLLED_AUTO_CAPACITY_NOT_ESTABLISHED; mode remains DISABLED",
+      "forecast": "PER_WO_P50_P75_P90_TOTAL_PRIMARY; detailed dimensions telemetry; no forecast reduction to force fit",
+      "billing": "NOT_AVAILABLE_UNLESS_PROVIDER_EXACT_TASK_BILLING",
+      "feature_coefficient_gate": "NOT_REQUIRED",
+      "calibration_campaign": "SUPERSEDED_PRE_EXECUTION_BY_DYNAMIC_CAPACITY_POLICY",
+      "controlled_auto_promotion": [
+        "at least5 recent successful manually-triggered accepted executions under current orchestration controller",
+        "exact execution-bound local tokens for each qualifying execution",
+        "usable rolling capacity for every exposed window and safe capacity >= current forecastP90",
+        "exact preexisting authority/scope/reservation/dispatch and current architecture",
+        "no higher-priority unfinished work; one writer; stable dedupe",
+        "zero duplicate dispatch; zero fabricated resume; zero writer conflict",
+        "no unresolved HIGH/CRITICAL governance anomaly",
+        "provider actual gates PASS",
+        "independent orchestration semantic review PASS",
+        "explicit Human Governance Owner CONTROLLED_AUTO activation"
+      ]
+    },
+    "provider_denial_before_start": "WAIT_PROVIDER_AVAILABLE",
+    "running_denial": "PAUSED_PROVIDER_LIMIT",
+    "recovery": "WAKE_THEN_FRESH_REVALIDATE_RESUME_SAME_ALREADY_INVOKED_EXECUTION",
+    "forecast_miss": "NONAUTHORITY_FEEDBACK_NO_BUDGET_CONSUMPTION",
+    "variance_classes": [
+      "FRESH_CONTEXT_GROWTH",
+      "CACHED_REPLAY",
+      "TEST_RETRY",
+      "TOOL_RETRY",
+      "TRUE_SCOPE_GROWTH",
+      "MODEL_BEHAVIOR_VARIANCE"
+    ],
+    "package_splitting": "STRUCTURAL_ENGINEERING_VALUE_EVIDENCE_REQUIRED_NOT_TOKEN_VARIANCE",
+    "fixed_remaining_floor": null,
+    "normalized_fallback_tokens": null
+  },
+  "invariants": [
+    "PROVIDER_ACTUAL_DENIAL_WINS",
+    "CONSUMED_REDISPATCH_DENIED",
+    "RESUME_NOT_REDISPATCH",
+    "ONE_WRITER",
+    "NO_AUTHORITY_FROM_QUEUE_EVENT_FORECAST_CAPACITY",
+    "WAKE_ONLY",
+    "REVIEW_INTEGRATION_ACCEPTANCE_SEPARATE",
+    "PERCENT_NEVER_EXACT_TASK_TOKENS",
+    "REASONING_SUBSET_OUTPUT_CACHED_SUBSET_INPUT",
+    "HISTORICAL_SNAPSHOT_NOT_CURRENT_AUTHORITY"
+  ],
+  "historical": {
+    "predecessor_path": "automation/policies/execution_capacity_policy.v2.yaml",
+    "predecessor_git_blob": "41664ebad296156b2039f78d086605b17d448610",
+    "architecture1_2_immutable_commit": "3f86479cb0e166810ae52aba6b5732f2ca5b8d80",
+    "old_80pct_40k": "HISTORICAL_NOT_ADMISSION_AUTHORITY",
+    "original_1_2_and_RF01_review": "PRESERVED_UNCHANGED"
+  }
+}
