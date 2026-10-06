@@ -10,7 +10,7 @@ import math
 from types import MappingProxyType
 from typing import Literal, Mapping, TypeAlias
 
-from pydantic import BaseModel, ConfigDict, model_validator
+from pydantic import BaseModel, ConfigDict, field_serializer, model_validator
 
 
 FrozenSection: TypeAlias = Mapping[str, object]
@@ -49,10 +49,26 @@ def _freeze_yaml_value(value: object) -> object:
     raise ValueError(f"unsupported YAML contract value: {type(value).__name__}")
 
 
+def _plain_contract_value(value: object) -> object:
+    """Machine dump 與 runtime freeze 分離；遞迴輸出 deterministic JSON-like plain data。"""
+    if isinstance(value, AutomationContract):
+        return value.model_dump()
+    if isinstance(value, Mapping):
+        return {key: _plain_contract_value(value[key]) for key in sorted(value)}
+    if isinstance(value, (list, tuple)):
+        return [_plain_contract_value(item) for item in value]
+    return value
+
+
 class AutomationContract(BaseModel):
     """所有 machine contract 的共同 fail-closed 與深層唯讀邊界。"""
 
     model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+
+    @field_serializer("*", check_fields=False)
+    def _serialize_plain_data(self, value: object) -> object:
+        # serializer 建立 plain 副本；原有 MappingProxyType/frozen nested model 不變。
+        return _plain_contract_value(value)
 
     @model_validator(mode="before")
     @classmethod

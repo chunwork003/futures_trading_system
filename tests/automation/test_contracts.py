@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 from types import MappingProxyType
+import json
+import warnings
 
 import pytest
 from pydantic import ValidationError
@@ -254,3 +256,41 @@ def test_successor_candidate_closed_and_deep_read_only(relative_path):
     payload = load_yaml_mapping(ROOT / relative_path)
     payload["unreviewed_authority"] = True
     with pytest.raises(ValidationError): type(loaded).model_validate(payload)
+
+
+def test_rf01_plain_serialization_preserves_immutable_strict_contract():
+    payload = _minimal_package()
+    payload["telemetry"] = {"nested": [{"token_status": "PENDING_EXTERNAL_EXTRACTION"}]}
+    record = WorkPackageRecord.model_validate(payload)
+    with warnings.catch_warnings(record=True) as captured:
+        warnings.simplefilter("always")
+        plain = record.model_dump()
+        encoded = record.model_dump_json()
+        restored = WorkPackageRecord.model_validate_json(encoded)
+        plain_restored = WorkPackageRecord.model_validate(plain)
+    assert not captured
+    assert plain == json.loads(encoded) == restored.model_dump()
+    assert plain_restored == restored == record
+    assert type(plain["telemetry"]) is dict and type(plain["telemetry"]["nested"]) is list
+    with pytest.raises(TypeError): record.telemetry["nested"][0]["token_status"] = "EXACT"
+    with pytest.raises(ValidationError): record.status = "AUTHORIZED"
+    for invalid in ({**plain, "unreviewed_authority": True}, {**plain, "wave": 1},
+                    {**plain, "depends_on": [1]}):
+        with pytest.raises(ValidationError): WorkPackageRecord.model_validate(invalid)
+    plain["telemetry"]["nested"][0]["token_status"] = "EXACT"
+    assert record.telemetry["nested"][0]["token_status"] == "PENDING_EXTERNAL_EXTRACTION"
+
+
+@pytest.mark.parametrize("relative_path", [
+    "automation/governance/master_manifest.v1.yaml",
+    "automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml",
+    "automation/policies/execution_capacity_policy.v2.yaml",
+])
+def test_rf01_canonical_json_round_trip_no_serializer_warning(relative_path):
+    record = load_yaml_contract(ROOT / relative_path)
+    with warnings.catch_warnings(record=True) as captured:
+        warnings.simplefilter("always")
+        plain, encoded = record.model_dump(), record.model_dump_json()
+        restored = type(record).model_validate_json(encoded)
+    assert not captured and restored == record
+    assert plain == json.loads(encoded) == restored.model_dump()

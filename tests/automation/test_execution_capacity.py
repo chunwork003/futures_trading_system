@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import warnings
 import pytest
 from pydantic import ValidationError
 from automation.engine.execution_capacity import (
@@ -31,8 +32,10 @@ def samples():
     return identity, tuple(CalibrationSample(execution_id=f"E{i}", measurement_type="EXACT",
         identity=identity, token_features=dict(input_tokens=10, cached_input_tokens=6,
         uncached_input_tokens=4, output_tokens=2, reasoning_output_tokens=1, total_tokens=12),
-        provider_before={"resets_at": 123, "used_percent": 1},
-        provider_after={"resets_at": 123, "used_percent": 2}, exact_binding_verified=True,
+        provider_before={"resets_at": 123, "used_percent": 1,
+                         **{key: identity[key] for key in ("provider", "limit_id", "window_type", "account", "workspace")}},
+        provider_after={"resets_at": 123, "used_percent": 2,
+                        **{key: identity[key] for key in ("provider", "limit_id", "window_type", "account", "workspace")}}, exact_binding_verified=True,
         clean_attribution=True, reset_compatible=True, competing_consumer=False) for i in range(3))
 
 
@@ -198,3 +201,96 @@ def test_reconciler_backward_compatible_and_optional_pause(tmp_path, interrupted
     assert result["dominant_cause"] == "WITHIN_EXPECTED_ENVELOPE"
     assert result["forecast_capacity_review_required"] is interrupted
     assert result["provider_pause_is_source_defect"] is False
+
+
+def test_rf01_cal_minimum_counterexample():
+    identity, observations = samples()
+    changed = observations[0].model_dump()
+    changed["token_features"] = dict(changed["token_features"], reasoning_output_tokens=3)
+    assert not qualified_samples((CalibrationSample(**changed), *observations[1:]), identity)
+
+
+def test_rf01_ser_minimum_counterexample():
+    original = capacity()
+    with warnings.catch_warnings(record=True) as captured:
+        warnings.simplefilter("always")
+        dumped = original.model_dump()
+        encoded = original.model_dump_json()
+    assert not captured
+    assert type(dumped["identity"]) is dict
+    assert CapacityEstimate.model_validate_json(encoded) == original
+
+
+@pytest.mark.parametrize("field,value", [("reasoning_output_tokens", 3), ("total_tokens", 13),
+    ("cached_input_tokens", 7), ("uncached_input_tokens", 5),
+    *[(key, value) for key in ("input_tokens", "cached_input_tokens", "uncached_input_tokens",
+        "output_tokens", "reasoning_output_tokens", "total_tokens") for value in (-1, 1.5, True, "1")]])
+def test_rf01_complete_token_accounting(field, value):
+    identity, observations = samples()
+    assert qualified_samples(observations, identity)
+    changed = observations[0].model_dump()
+    changed["token_features"][field] = value
+    assert not qualified_samples((CalibrationSample(**changed), *observations[1:]), identity)
+
+
+@pytest.mark.parametrize("window", ["provider_before", "provider_after"])
+@pytest.mark.parametrize("key", ["provider", "limit_id", "window_type", "account", "workspace",
+                                 "model", "executor_profile", "provider_client_policy_version"])
+def test_rf01_provider_window_identity(window, key):
+    identity, observations = samples()
+    assert qualified_samples(observations, identity)
+    changed = observations[0].model_dump()
+    changed[window][key] = "OTHER"
+    assert not qualified_samples((CalibrationSample(**changed), *observations[1:]), identity)
+
+
+@pytest.mark.parametrize("key", ["provider", "limit_id", "window_type", "resets_at", "used_percent"])
+@pytest.mark.parametrize("window", ["provider_before", "provider_after"])
+def test_rf01_missing_required_provider_facts(window, key):
+    identity, observations = samples()
+    changed = observations[0].model_dump()
+    del changed[window][key]
+    assert not qualified_samples((CalibrationSample(**changed), *observations[1:]), identity)
+
+
+@pytest.mark.parametrize("key", ["account", "workspace"])
+def test_rf01_optional_identity_not_fabricated(key):
+    identity, observations = samples()
+    # 身分未由 provider snapshot 表示時不補造；任一端表示後必須雙端相符。
+    changed = [item.model_dump() for item in observations]
+    for item in changed:
+        for window in ("provider_before", "provider_after"):
+            del item[window][key]
+    absent = tuple(CalibrationSample(**item) for item in changed)
+    assert qualified_samples(absent, identity)
+    changed[0]["provider_before"][key] = identity[key]
+    assert not qualified_samples(tuple(CalibrationSample(**item) for item in changed), identity)
+
+
+@pytest.mark.parametrize("after", [None, 120, -1, True, "60"])
+def test_rf01_window_duration_incompatibility(after):
+    identity, observations = samples()
+    changed = observations[0].model_dump()
+    changed["provider_before"]["window_duration_mins"] = 60
+    changed["provider_after"]["window_duration_mins"] = after
+    assert not qualified_samples((CalibrationSample(**changed), *observations[1:]), identity)
+
+
+def test_rf01_clean_sample_positive_and_dump_roundtrip():
+    identity, observations = samples()
+    assert qualified_samples(observations, identity)
+    original = capacity()
+    with warnings.catch_warnings(record=True) as captured:
+        warnings.simplefilter("always")
+        first = original.model_dump()
+        second = original.model_dump()
+        encoded = original.model_dump_json()
+        restored = CapacityEstimate.model_validate_json(encoded)
+        restored_from_plain = CapacityEstimate.model_validate(first)
+    assert captured == []
+    assert first == second == json.loads(encoded) == restored.model_dump()
+    assert restored_from_plain == restored == original
+    assert type(first["samples"]) is list and type(first["samples"][0]["token_features"]) is dict
+    first["samples"][0]["token_features"]["total_tokens"] = -1
+    assert original.samples[0].token_features["total_tokens"] == 12
+    with pytest.raises(TypeError): original.samples[0].token_features["total_tokens"] = -1

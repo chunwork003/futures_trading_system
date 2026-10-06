@@ -55,7 +55,7 @@ def qualified_samples(samples: tuple[CalibrationSample, ...], identity: FrozenSe
     """樣本數不是 confidence 升級；每個 identity、歸因與 reset 證據皆必須合格。"""
     if len(samples) < 3 or len({s.execution_id for s in samples}) != len(samples):
         return False
-    if any(not isinstance(identity.get(k), str) or not identity[k] for k in IDENTITY_DIMENSIONS):
+    if any(not isinstance(identity.get(k), str) or not identity[k].strip() for k in IDENTITY_DIMENSIONS):
         return False
     for sample in samples:
         if (not sample.execution_id or not sample.exact_binding_verified or not sample.clean_attribution
@@ -67,10 +67,30 @@ def qualified_samples(samples: tuple[CalibrationSample, ...], identity: FrozenSe
                for k in TOKEN_DIMENSIONS):
             return False
         f = sample.token_features
-        if f["cached_input_tokens"] + f["uncached_input_tokens"] != f["input_tokens"]:
+        if (f["cached_input_tokens"] + f["uncached_input_tokens"] != f["input_tokens"]
+                or f["reasoning_output_tokens"] > f["output_tokens"]
+                or f["total_tokens"] != f["input_tokens"] + f["output_tokens"]):
             return False
         if not sample.provider_before or not sample.provider_after:
             return False
+        # reset/百分比相符不足以證明 window identity；必要事實不能由 identity 補造。
+        for key in ("provider", "limit_id", "window_type"):
+            if any(window.get(key) != identity[key]
+                   for window in (sample.provider_before, sample.provider_after)):
+                return False
+        for key in IDENTITY_DIMENSIONS:
+            if key in sample.provider_before or key in sample.provider_after:
+                if any(window.get(key) != identity[key]
+                       for window in (sample.provider_before, sample.provider_after)):
+                    return False
+        duration = "window_duration_mins"
+        if duration in identity or duration in sample.provider_before or duration in sample.provider_after:
+            before_duration = sample.provider_before.get(duration)
+            after_duration = sample.provider_after.get(duration)
+            if (type(before_duration) is not int or before_duration <= 0
+                    or type(after_duration) is not int or before_duration != after_duration
+                    or (duration in identity and before_duration != identity[duration])):
+                return False
         if (sample.provider_before.get("resets_at") is None
                 or sample.provider_before.get("resets_at") != sample.provider_after.get("resets_at")):
             return False
