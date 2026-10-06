@@ -1,3 +1,18 @@
+## CURRENT — Architecture 1.2 Accepted Materialization
+
+Architecture 1.2 = ACTIVE; Execution Capacity V2 = ACCEPTED_MATERIALIZED; V2 RF01 = CLOSED; V2-CAL-01 = CLOSED; V2-SER-01 = CLOSED; serializer warning assessment RESOLVED. Independent narrow PASS: `automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json`; exact reviewed source integrated at `14ff081757fe4205ab78c85b82f7ef6ca9c1e76f`. Original candidate e414c108e075c8aa2307d607ffe77013b40c5391; RF01 implementation ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a; evidence606d8273cc7ead110547d3fa232b7c5e41c0e78e; effective source bundle f5a1fea9c2a8f4084348bbe6e8912d6020c9ea9ecfb80ac128eda33a5aaffa9d.
+
+Authoritative active successor pointers are in `automation/governance/master_manifest.v1.yaml`: execution_capacity_policy.v2, authorization_lifecycle.v1_1, development_state_machine.v2, development_entry_protocol.v2, execution_cost_contract.v2, work_cost_accounting.v2 and negative_assertions.v2. Historical Architecture1.0/1.1 artifacts remain immutable, superseded for current admission; old80% remaining floor/40k fallback are not active operational authority. Provider denial remains authoritative. Activation does not grant CODEX execution or automatic dispatch/progression.
+
+CODEX = NOT_RUNNING / NONE_AUTHORIZED_BY_THIS_MATERIALIZATION; handoff_ready=false; no writer held; no new authorization/execution/reservation/dispatch. Runtime/broker/DB/migration/LIVE/production DENIED. AUTO-IMP-003 NOT_AUTHORIZED. IVF01 Rev1 AUTH-AUTO-IMP-002-IVF01-01 = ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED; historical authority unchanged, not reusable as1.2authority. IVF01Rev2 NOT_CREATED / NOT_AUTHORIZED; no waiver.
+
+Program AUTO-IMP-PROGRAM-V1 remains exact immutable reviewed1.1 binding. PROGRAM_V1_1_BINDING != AUTOMATIC_PROGRAM_1_2_REBIND. Compatibility/recompile is UNRESOLVED_OWNER_DECISION_REQUIRED; no existing exact accepted authority determines1.2rebind. Program DAG AUTO-IMP-003 depends_on AUTO-IMP-001 is preserved; no inferred new dependency on002, execution permission or queue reorder. Owner must decide1.1->1.2Program compatibility/recompile, close002/IVF01first vs separately authorized independent003planning, and orchestration/trigger/queue/auto-progression boundaries.
+
+RF01 cost CRITICAL/FRESH_CONTEXT_GROWTH is non-blocking forecast feedback: total2229994, uncached241023, actor328s, targeted3.29s, full13.36s. Future feedback TIGHTEN_POINTER_FIRST_CONTEXT, REMOVE_UNRELATED_HISTORY, RECALIBRATE_UNCACHED_INPUT_FORECAST. Metric variance does not authorize source correction or SPLIT_OVERSIZED_WORK_ORDER; preserve cohesive engineering value.
+
+Only next route: `AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION`. STOP; no next package.
+
+<!-- HISTORICAL_1_0_1_1_OPERATING_MODEL_BEGIN; immutable prior prose retained, superseded for current architecture authority -->
 # AI / CODEX Automation Operating Model
 
 ## 1. Purpose
@@ -436,3 +451,33 @@ NEXT_ROUTE = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_EXECUTION_ELIGIBILITY
 The reviewed v1.1 provider-native quota semantics are now materialized as the canonical active policy. The original v1.0 bytes and the reviewed v1.1 candidate remain immutable historical/source evidence. Policy activation does not itself make AUTO-IMP-001 executable; a new reservation-bound quota snapshot and full single-use eligibility/reservation sequence are still required.
 
 <!-- AUTOMATION_MASTER_V1_1_END -->
+
+<!-- HISTORICAL_1_0_1_1_OPERATING_MODEL_END -->
+
+
+
+## Development Automation Master 1.2 — ACTIVE / ACCEPTED_MATERIALIZED
+
+Architecture1.2 ACTIVE on authoritative master after accepted independent narrow PASS and WORK materialization. Architecture1.1 is historical/superseded. V2 policy/spec pointers and deterministic evaluator are reviewed accepted successor semantics. CODEX grants no activation/acceptance authority. Historical1.1 policy sections remain immutable source evidence; their admission floor/fallback is superseded, never retroactively rewritten.
+
+
+## Execution Capacity / Resume V2 — ACTIVE procedure
+
+Successor policy pointers (ACTIVE after accepted independent review and WORK activation):
+- automation/policies/execution_capacity_policy.v2.yaml
+- automation/policies/authorization_lifecycle.v1_1.yaml
+- automation/policies/development_state_machine.v2.yaml
+- automation/policies/development_entry_protocol.v2.yaml
+- automation/telemetry/execution_cost_contract.v2.yaml
+- automation/specs/work_cost_accounting.v2.yaml
+- automation/specs/negative_assertions.v2.yaml
+
+Active master architecture is1.2 after reviewed materialization; presence of these files grants no execution authority. V2 evaluation surface: automation.engine.execution_capacity. Control plane assembles exact fresh evidence; evaluator performs no IO/invocation or authority mutation.
+
+EXECUTION_COST_GATE != PROVIDER_AVAILABILITY_GATE. Per-WO P50/P75/P90 demand is primary; legacy static package forecasts are historical planning inputs. V2 has no fixed remaining-percent floor or normalized token fallback. Preserve cached/uncached/input/output/reasoning features. Exact task-bound local usage remains EXACT actual usage, not billing. Provider percentages are immutable shared-account proxy and may inform qualified capacity calibration. Derived capacity/token values are PROVISIONAL_ESTIMATE or CALIBRATED_ESTIMATE, never EXACT; no unsupported constant linear conversion or identical feature weights. Require minimum comparable samples plus identity, attribution, reset and uncertainty qualification; count alone never upgrades confidence.
+
+Actual provider denial wins. Running denial checkpoints SAME execution as PAUSED_PROVIDER_LIMIT with WO/authorization/reservation/dispatch/branch/delta/budget/tests/telemetry/writer lineage. Pause is not source failure or correction-budget consumption. Recovery wakes only: RESUME_PENDING_REVALIDATION -> fresh head, scope, policy, authority, invocation, reservation, dispatch and writer/provider checks -> RESUME_SAME_EXECUTION or STOP_TO_WORK. Safe lock reacquisition needs verified ownership lineage and no competing owner. No new WO/execution/authorization/reservation/dispatch/budget for resume. CONSUMED redispatch remains DENIED; already-invoked same-execution continuation is distinct.
+
+HISTORICAL_PHASE_SNAPSHOT != CURRENT_LIFECYCLE_PROJECTION. Never reinterpret pre-reservation snapshot flags as current truth. Current projection must agree with all durable lifecycle fields; contradiction -> FAIL_CLOSED_RECONCILIATION_REQUIRED; no event fabrication or historical rewriting.
+
+Safety/governance -> unfinished resumable execution -> pending result/review/integration -> exact authorized new work. Unfinished execution blocks new dispatch. Every provider interruption triggers WORK_FORECAST_CAPACITY_REVIEW; this feedback grants no authority, does not block legal resume, and must be materialized before new work after interrupted completion. Review PASS != Integration PASS != materialized acceptance. IVF01 Rev1 stays BLOCKED_NO_EXECUTION_NO_WAIVER; after reviewed Architecture1.2 activation its projection is ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED; never rewrite/reuse Rev1. AUTO-IMP-003 remains NOT_AUTHORIZED. All runtime/broker/DB/migration/LIVE/production effects DENIED.

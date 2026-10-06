@@ -1,125 +1,181 @@
 schema_version: automation.master_manifest.v1
 manifest_id: DEVELOPMENT-AUTOMATION-MASTER
-manifest_version: "1.0"
-master_architecture_version: "1.1"
-status: FROZEN
-materialization_baseline_sha: "4e4235fc3a1dbaaf32bdd756f776fcf881d22d7f"
-
+manifest_version: '1.0'
+master_architecture_version: '1.2'
+status: ACTIVE
+materialization_baseline_sha: 332dfb4770d0de534cccf068f361e6836aaa4d02
 compiled_program:
   program_id: AUTO-IMP-PROGRAM-V1
-  program_revision: "1"
+  program_revision: '1'
   path: automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml
-  sha256: "f23d52fd22febf4a6c93b07e6e7e21a49cdafffa8068c983257324953ba4bd7f"
-  source_freeze_head_sha: "52921ae3f205ef2eec4306e84ff92d4cd9cdeab3"
+  sha256: f23d52fd22febf4a6c93b07e6e7e21a49cdafffa8068c983257324953ba4bd7f
+  source_freeze_head_sha: 52921ae3f205ef2eec4306e84ff92d4cd9cdeab3
   status: ACCEPTED_FOR_IMPLEMENTATION_PLANNING
   implementation_authorized: false
   codex_execution_authorized: false
   program_review: PASS
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
-
+  next_route: AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION
+  current_compatibility:
+    historical_architecture_binding: '1.1'
+    active_master_architecture: '1.2'
+    automatic_rebind: false
+    status: UNRESOLVED_OWNER_DECISION_REQUIRED
+    required_route: AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION
 compiled_authorization_candidate:
   authorization_id: AUTH-AUTO-IMP-001-01
-  authorization_revision: "1"
+  authorization_revision: '1'
   path: automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml
-  sha256: "558baf9c5188e926890efc9af268150d86a3e4abd9eb09a45086d7fd1d7195e3"
+  sha256: 558baf9c5188e926890efc9af268150d86a3e4abd9eb09a45086d7fd1d7195e3
   work_package_id: AUTO-IMP-001
   authorization_state: CONSUMED
   document_status: CONSUMED_EFFECTIVE
-  planning_baseline_sha: "e96876de83da3282fb2a5a63b76b9d73c14937ad"
+  planning_baseline_sha: e96876de83da3282fb2a5a63b76b9d73c14937ad
   next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
-
+  current_disposition: HISTORICAL_CONSUMED_NO_NEW_EXECUTION_AUTHORITY
 superseded_authorization_candidates:
-  - authorization_id: AUTH-AUTO-IMP-W1-01
-    authorization_revision: "1"
-    disposition: SUPERSEDED_CANDIDATE_NON_AUTHORITY
-
+- authorization_id: AUTH-AUTO-IMP-W1-01
+  authorization_revision: '1'
+  disposition: SUPERSEDED_CANDIDATE_NON_AUTHORITY
 quota_policy_compatibility_rf:
   rf_id: AUTO-IMP-001-QRF01
   issue: PROVIDER_QUOTA_UNIT_MISMATCH
   candidate_path: automation/policies/quota_admission_policy.v1_1_candidate.yaml
-  candidate_sha256: "17c7ceecc58fa550b43c8a990313227399883c999b1f204f8fe182ece6bbca78"
-  candidate_version: "1.1-candidate"
+  candidate_sha256: 17c7ceecc58fa550b43c8a990313227399883c999b1f204f8fe182ece6bbca78
+  candidate_version: 1.1-candidate
   candidate_status: ACCEPTED_SOURCE_EVIDENCE
   candidate_active: false
   independent_re_review: PASS
-  accepted_review_head_sha: "54a316cf816b8f1bb57da5b778d2a7e43ce92748"
+  accepted_review_head_sha: 54a316cf816b8f1bb57da5b778d2a7e43ce92748
   materialization_status: MATERIALIZED
-  active_policy_path: automation/policies/quota_admission_policy.v1_1.yaml
-  active_policy_sha256: "b689b0ec69ab2e62b4e40be5a3d1cacfb509e339082cdf692ba2283811f29503"
-  active_policy_version: "1.1"
+  active_policy_path: automation/policies/execution_capacity_policy.v2.yaml
+  active_policy_sha256: 416af750229653ce99887f44c0a040c932c0ae51bf8b2773a6ae6a77478dad3e
+  active_policy_version: '2.0'
   previous_policy_path: automation/policies/quota_admission_policy.v1.yaml
-  previous_policy_sha256: "744239e70e9e78170487956cd4554f05610cf29fe700e600f5046cad583ff4bd"
+  previous_policy_sha256: 744239e70e9e78170487956cd4554f05610cf29fe700e600f5046cad583ff4bd
   auto_imp_001_authorization_state: CONSUMED
   execution_eligibility: COMPLETED_PENDING_REVIEW
-  next_route: AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
-
+  next_route: AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION
+  status: HISTORICAL_SUPERSEDED_OPERATIONAL_ADMISSION
+  historical_v1_1_path: automation/policies/quota_admission_policy.v1_1.yaml
+  historical_v1_1_sha256: b689b0ec69ab2e62b4e40be5a3d1cacfb509e339082cdf692ba2283811f29503
 freeze:
   state: FROZEN
-  source_review_head_sha: "0eb899794a8af4d4e0ad2f3e0b3be709c93bed3e"
+  source_review_head_sha: 0eb899794a8af4d4e0ad2f3e0b3be709c93bed3e
   targeted_automation_rf01_rf02_re_review: PASS
   manifest_hash_integrity_only_re_review: PASS
   auto_rf01: CLOSED
   auto_rf02: CLOSED
   auto_manifest_rf01: CLOSED
   semantic_delta: STATUS_AND_GOVERNANCE_MATERIALIZATION_ONLY
-  next_route: AUTOMATION_IMPLEMENTATION_PROGRAM_COMPILATION
-
+  next_route: AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION
+  current_architecture: '1.2'
+  current_review_verdict_commit: 38bff8f90e40c1b4a9eb25d5e57396be79a694b5
 hash_integrity:
   algorithm: SHA-256
   canonical_input: git_blob_bytes
   verification_scope: exact_review_commit
   worktree_bytes_are_authoritative: false
   line_ending_normalization: none
-
-
 canonical_current_state:
   path: docs/CURRENT_STATE.md
-
 governance_document:
   path: docs/AI_AUTOMATION_OPERATING_MODEL.md
-  version: "1.1"
-  sha256: "1f440d27e2947096762be2addcc91f3bc04e3003468d06821be99499a6fe235b"
-
+  version: '1.2'
+  sha256: d2e2b1c3034d0d6a1abcaf7dd45bfcc7e9a8561f1fbc0bdafca530249122b340
 agent_reentry:
   path: AGENTS.md
-  protocol_version: "1.0"
-  sha256: "3c1b30cf1b0691b25d454c89e6b0f4bcb5d5985cec696511668ce651cc008bb8"
+  protocol_version: '1.0'
+  sha256: 3c1b30cf1b0691b25d454c89e6b0f4bcb5d5985cec696511668ce651cc008bb8
   materialization:
-    source_commit_sha: "3227c6ab9ea3ec71cf8a953f12746d60da826f57"
-    previous_sha256: "7ed5ccf4a7b559c2568149eb77a8a44357db10efa534a27edb619c10798b4d47"
+    source_commit_sha: 3227c6ab9ea3ec71cf8a953f12746d60da826f57
+    previous_sha256: 7ed5ccf4a7b559c2568149eb77a8a44357db10efa534a27edb619c10798b4d47
     change_class: NAVIGATION_POINTER_EXTENSION_ONLY
     authority_effect: NONE
     architecture_bundle_effect: NONE
     frozen_semantics_modified: false
-
 policies:
-  authorization_lifecycle:
+  authorization_lifecycle_history:
     path: automation/policies/authorization_lifecycle.v1.yaml
-    version: "1.0"
-    sha256: "4b1da305701766104fd0f4dd36c47696de599fabb69526a8e58615a26063b93f"
-  quota_admission:
-    path: automation/policies/quota_admission_policy.v1_1.yaml
-    version: "1.1"
-    sha256: "b689b0ec69ab2e62b4e40be5a3d1cacfb509e339082cdf692ba2283811f29503"
-  quota_admission_v1_0_history:
-    path: automation/policies/quota_admission_policy.v1.yaml
-    version: "1.0"
+    version: '1.0'
+    sha256: 4b1da305701766104fd0f4dd36c47696de599fabb69526a8e58615a26063b93f
     status: FROZEN_SUPERSEDED_READ_ONLY
-    sha256: "744239e70e9e78170487956cd4554f05610cf29fe700e600f5046cad583ff4bd"
-  development_state_machine:
+    active: false
+  quota_admission_history:
+    path: automation/policies/quota_admission_policy.v1_1.yaml
+    version: '1.1'
+    sha256: b689b0ec69ab2e62b4e40be5a3d1cacfb509e339082cdf692ba2283811f29503
+    status: FROZEN_SUPERSEDED_READ_ONLY
+    active: false
+  quota_admission_v1_0_history_history:
+    path: automation/policies/quota_admission_policy.v1.yaml
+    version: '1.0'
+    status: FROZEN_SUPERSEDED_READ_ONLY
+    sha256: 744239e70e9e78170487956cd4554f05610cf29fe700e600f5046cad583ff4bd
+    active: false
+  development_state_machine_history:
     path: automation/policies/development_state_machine.v1.yaml
-    version: "1.0"
-    sha256: "76b0fb50d63a1a23112e2680920414d561c83d9a68c8d8051d520f80bfffed91"
-  development_entry:
+    version: '1.0'
+    sha256: 76b0fb50d63a1a23112e2680920414d561c83d9a68c8d8051d520f80bfffed91
+    status: FROZEN_SUPERSEDED_READ_ONLY
+    active: false
+  development_entry_history:
     path: automation/policies/development_entry_protocol.v1.yaml
-    version: "1.0"
-    sha256: "9a130998468c55be2402baf1dd3ef0c67f213d834b2b823b35a4474e19c1ab64"
-
+    version: '1.0'
+    sha256: 9a130998468c55be2402baf1dd3ef0c67f213d834b2b823b35a4474e19c1ab64
+    status: FROZEN_SUPERSEDED_READ_ONLY
+    active: false
+  authorization_lifecycle:
+    path: automation/policies/authorization_lifecycle.v1_1.yaml
+    sha256: 268b353d39461ccd629456cbe32cea6ded3bb1e617042584c7d52f27f46e8486
+    version: '1.1'
+    status: ACCEPTED_MATERIALIZED
+    active: true
+  execution_capacity:
+    path: automation/policies/execution_capacity_policy.v2.yaml
+    sha256: 416af750229653ce99887f44c0a040c932c0ae51bf8b2773a6ae6a77478dad3e
+    version: '2.0'
+    status: ACCEPTED_MATERIALIZED
+    active: true
+  quota_admission:
+    path: automation/policies/execution_capacity_policy.v2.yaml
+    sha256: 416af750229653ce99887f44c0a040c932c0ae51bf8b2773a6ae6a77478dad3e
+    version: '2.0'
+    status: ACCEPTED_MATERIALIZED
+    active: true
+  development_state_machine:
+    path: automation/policies/development_state_machine.v2.yaml
+    sha256: 17c76e24fddc23db036a52771620e6fd848c1ca710e4fb8f7a1b82a3dd91b863
+    version: '2.0'
+    status: ACCEPTED_MATERIALIZED
+    active: true
+  development_entry:
+    path: automation/policies/development_entry_protocol.v2.yaml
+    sha256: e722303a6c0821392418d2d2716892248ec8fae58c57524202d773c3e3ed9ab5
+    version: '2.0'
+    status: ACCEPTED_MATERIALIZED
+    active: true
+  execution_cost_contract:
+    path: automation/telemetry/execution_cost_contract.v2.yaml
+    sha256: 8772ed5eaa71cdeab124b8c667c58a915d1ad21ed861b01ffc3d0692ed5fe73a
+    version: '2.0'
+    status: ACCEPTED_MATERIALIZED
+    active: true
+  work_cost_accounting:
+    path: automation/specs/work_cost_accounting.v2.yaml
+    sha256: a4ae5dfa602293dbe4721e3f0a4bc82960c52072ef8ac00535cb42432fa30a5a
+    version: '2.0'
+    status: ACCEPTED_MATERIALIZED
+    active: true
 negative_assertions:
-  path: automation/specs/negative_assertions.v1.yaml
-  version: "1.0"
-  sha256: "e3b6f790f0a5c84bfd54615902b9f88c401a703b576228c746dca29b2396dfd4"
-
+  path: automation/specs/negative_assertions.v2.yaml
+  sha256: 4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344
+  version: '2.0'
+  status: ACCEPTED_MATERIALIZED
+  active: true
+  historical_predecessor:
+    path: automation/specs/negative_assertions.v1.yaml
+    version: '1.0'
+    sha256: e3b6f790f0a5c84bfd54615902b9f88c401a703b576228c746dca29b2396dfd4
 activation:
   master_frozen: true
   implementation_program_compilation_next: false
@@ -132,10 +188,88 @@ activation:
   auto_imp_001_authorization_effective: true
   auto_imp_001_execution_eligibility_resolved: true
   quota_qrf01_accepted_materialized: true
-  quota_policy_v1_1_active: true
+  quota_policy_v1_1_active: false
   implementation_started: true
   level_3b_enabled: false
   level_3c_enabled: false
   level_4_autonomy_enabled: false
   level_5_continuous_development_enabled: false
   next_mainline_gap_authorized: false
+  architecture_version: '1.2'
+  architecture_status: ACTIVE
+  execution_capacity_v2: ACCEPTED_MATERIALIZED
+  rf01: CLOSED
+  review_result: PASS
+  review_verdict_path: automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json
+  review_verdict_commit: 38bff8f90e40c1b4a9eb25d5e57396be79a694b5
+  reviewed_source_integration_commit: 14ff081757fe4205ab78c85b82f7ef6ca9c1e76f
+  bundle_hash: 41e81af6c038722397c400ce70ac1edbf9275027b96b3f3ff425d1386434a7d3
+  bundle_components:
+  - path: automation/policies/authorization_lifecycle.v1_1.yaml
+    sha256: 268b353d39461ccd629456cbe32cea6ded3bb1e617042584c7d52f27f46e8486
+  - path: automation/policies/development_entry_protocol.v2.yaml
+    sha256: e722303a6c0821392418d2d2716892248ec8fae58c57524202d773c3e3ed9ab5
+  - path: automation/policies/development_state_machine.v2.yaml
+    sha256: 17c76e24fddc23db036a52771620e6fd848c1ca710e4fb8f7a1b82a3dd91b863
+  - path: automation/policies/execution_capacity_policy.v2.yaml
+    sha256: 416af750229653ce99887f44c0a040c932c0ae51bf8b2773a6ae6a77478dad3e
+  - path: automation/specs/negative_assertions.v2.yaml
+    sha256: 4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344
+  - path: automation/specs/work_cost_accounting.v2.yaml
+    sha256: a4ae5dfa602293dbe4721e3f0a4bc82960c52072ef8ac00535cb42432fa30a5a
+  - path: automation/telemetry/execution_cost_contract.v2.yaml
+    sha256: 8772ed5eaa71cdeab124b8c667c58a915d1ad21ed861b01ffc3d0692ed5fe73a
+  - path: docs/AI_AUTOMATION_OPERATING_MODEL.md
+    sha256: d2e2b1c3034d0d6a1abcaf7dd45bfcc7e9a8561f1fbc0bdafca530249122b340
+  bundle_hash_convention: SHA256_UTF8_COMPACT_SORTED_KEYS_JSON_LIST_SORTED_PATH_NO_TRAILING_NEWLINE
+  active_successor_references:
+    execution_capacity_policy_v2:
+      path: automation/policies/execution_capacity_policy.v2.yaml
+      sha256: 416af750229653ce99887f44c0a040c932c0ae51bf8b2773a6ae6a77478dad3e
+    authorization_lifecycle_v1_1:
+      path: automation/policies/authorization_lifecycle.v1_1.yaml
+      sha256: 268b353d39461ccd629456cbe32cea6ded3bb1e617042584c7d52f27f46e8486
+    development_state_machine_v2:
+      path: automation/policies/development_state_machine.v2.yaml
+      sha256: 17c76e24fddc23db036a52771620e6fd848c1ca710e4fb8f7a1b82a3dd91b863
+    development_entry_protocol_v2:
+      path: automation/policies/development_entry_protocol.v2.yaml
+      sha256: e722303a6c0821392418d2d2716892248ec8fae58c57524202d773c3e3ed9ab5
+    execution_cost_contract_v2:
+      path: automation/telemetry/execution_cost_contract.v2.yaml
+      sha256: 8772ed5eaa71cdeab124b8c667c58a915d1ad21ed861b01ffc3d0692ed5fe73a
+    work_cost_accounting_v2:
+      path: automation/specs/work_cost_accounting.v2.yaml
+      sha256: a4ae5dfa602293dbe4721e3f0a4bc82960c52072ef8ac00535cb42432fa30a5a
+    negative_assertions_v2:
+      path: automation/specs/negative_assertions.v2.yaml
+      sha256: 4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344
+  old_80pct_40k_operational_admission_authority: false
+  provider_actual_denial: STOP
+  codex_execution_authorized: false
+  automatic_dispatch: false
+  automatic_next_package: false
+  writer_state: NONE_HELD
+  ivf01_rev1: ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED
+  ivf01_rev2: NOT_AUTHORIZED
+  auto_imp_003_authorized: false
+  next_route: AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION
+  runtime: DENIED
+  broker: DENIED
+  db: DENIED
+  migration: DENIED
+  live: DENIED
+  production: DENIED
+candidate_successor:
+  target_architecture_version: '1.2'
+  status: CLOSED_ACCEPTED_MATERIALIZED
+  active: false
+  active_master_version: '1.2'
+  original_candidate_bundle_hash: 21949d0035f9c290a3bab45b342f37e1ee598b09057a6deb5c9d22b3428e1391
+  original_v2_implementation: e414c108e075c8aa2307d607ffe77013b40c5391
+  rf01_implementation: ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a
+  rf01_evidence: 606d8273cc7ead110547d3fa232b7c5e41c0e78e
+  effective_source_bundle_sha256: f5a1fea9c2a8f4084348bbe6e8912d6020c9ea9ecfb80ac128eda33a5aaffa9d
+  review_verdict_path: automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json
+  review_verdict_commit: 38bff8f90e40c1b4a9eb25d5e57396be79a694b5
+  reviewed_source_integration_commit: 14ff081757fe4205ab78c85b82f7ef6ca9c1e76f

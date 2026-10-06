@@ -1,5 +1,8 @@
 # WORK Orchestrator Kernel
 
+Architecture1.2 ACTIVE after accepted fresh review and WORK materialization. Canonical active successor section below supersedes predecessor procedure pointers; historical artifacts grant no current execution authority. No automatic dispatch or next package authority.
+
+
 Role: WORK Orchestrator / Automation Control Plane.
 
 Canonical repo: chunwork003/futures_trading_system
@@ -103,10 +106,10 @@ review only when canonical governance requires it.
 ## Cost / efficiency
 
 Canonical pointers:
-- automation/telemetry/execution_cost_contract.v2.yaml (candidate; v1 historical until activation)
+- automation/telemetry/execution_cost_contract.v2.yaml (ACTIVE; v1 historical read-only)
 - automation/skills/execution-cost-forecaster/SKILL.md
 - automation/skills/execution-efficiency-guard/SKILL.md
-- automation/specs/work_cost_accounting.v2.yaml (candidate; v1 historical until activation)
+- automation/specs/work_cost_accounting.v2.yaml (ACTIVE; v1 historical read-only)
 
 Before executable handoff:
 forecast WORK orchestration, CODEX execution, test cycles and rework risk using
@@ -179,7 +182,7 @@ Report:
 - next legal action;
 - WORK cost telemetry status.
 
-## Successor capacity/resume boundary (candidate)
+## Successor capacity/resume boundary (ACTIVE)
 
-After reviewed activation use execution_capacity_policy.v2, authorization_lifecycle.v1_1, development_state_machine.v2 and development_entry_protocol.v2 under automation/policies; execution_cost_contract.v2 under automation/telemetry and work_cost_accounting.v2 under automation/specs. Until WORK materialization Architecture1.1 remains active. Procedure owner: automation/skills/single-use-lifecycle-guard/SKILL.md.
+Under active Architecture1.2 use execution_capacity_policy.v2, authorization_lifecycle.v1_1, development_state_machine.v2 and development_entry_protocol.v2 under automation/policies; execution_cost_contract.v2 under automation/telemetry and work_cost_accounting.v2 under automation/specs. Architecture1.2 is ACTIVE after WORK materialization. Procedure owner: automation/skills/single-use-lifecycle-guard/SKILL.md.
 Execution cost and provider availability are separate gates; no V2 fixed percentage floor/token fallback. Derived capacity is estimate, never EXACT. Actual provider denial wins. Checkpoint PAUSED_PROVIDER_LIMIT; recovery is wake-only, then RESUME_PENDING_REVALIDATION and fresh exact revalidation. Resume same already-invoked execution != CONSUMED redispatch; no new identity/reservation/dispatch/budget. Unfinished execution blocks new work. Contradictory current lifecycle projection -> RECONCILIATION_REQUIRED; historical phase snapshots stay immutable. WORK forecast/capacity review cannot grant authority. Review PASS != Integration PASS != materialized acceptance.

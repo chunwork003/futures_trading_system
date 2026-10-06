@@ -1,0 +1,117 @@
+{
+  "schema_version": "automation.architecture_activation.v1",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+  "package_id": "AUTO-GOV-EXEC-CAPACITY-V2",
+  "status": "ACTIVE",
+  "execution_capacity_v2": "ACCEPTED_MATERIALIZED",
+  "rf01": "CLOSED",
+  "review_result": "PASS",
+  "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json",
+  "review_verdict_commit": "38bff8f90e40c1b4a9eb25d5e57396be79a694b5",
+  "reviewed_source_integration_commit": "14ff081757fe4205ab78c85b82f7ef6ca9c1e76f",
+  "original_v2_implementation": "e414c108e075c8aa2307d607ffe77013b40c5391",
+  "original_v2_evidence": "b899984462e48eb4dd02eae502918bd36ec937d4",
+  "rf01_implementation": "ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a",
+  "rf01_evidence": "606d8273cc7ead110547d3fa232b7c5e41c0e78e",
+  "reviewed_effective_source_bundle_sha256": "f5a1fea9c2a8f4084348bbe6e8912d6020c9ea9ecfb80ac128eda33a5aaffa9d",
+  "active_architecture_bundle_sha256": "41e81af6c038722397c400ce70ac1edbf9275027b96b3f3ff425d1386434a7d3",
+  "findings": {
+    "V2-CAL-01": "CLOSED",
+    "V2-SER-01": "CLOSED"
+  },
+  "serializer_warning_assessment": "RESOLVED",
+  "accepted_semantically": true,
+  "writer": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+  "new_execution_authority": false,
+  "automatic_dispatch": false,
+  "automatic_next_package": false,
+  "activation_path": "automation/work_orders/EXECUTION-CAPACITY-V2.architecture-1_2.activation.json",
+  "validation_path": "automation/work_orders/reconciliations/EXECUTION-CAPACITY-V2.architecture-1_2.materialization-validation.json",
+  "next_route": "AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION",
+  "created_at": "2026-10-06T07:37:53.663Z",
+  "updated_at": "2026-10-06T07:37:53.663Z",
+  "architecture_id": "DEVELOPMENT-AUTOMATION-MASTER",
+  "architecture_version": "1.2",
+  "predecessor_architecture": "1.1_HISTORICAL_SUPERSEDED_READ_ONLY",
+  "active_successor_references": {
+    "execution_capacity_policy_v2": {
+      "path": "automation/policies/execution_capacity_policy.v2.yaml",
+      "sha256": "416af750229653ce99887f44c0a040c932c0ae51bf8b2773a6ae6a77478dad3e"
+    },
+    "authorization_lifecycle_v1_1": {
+      "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+      "sha256": "268b353d39461ccd629456cbe32cea6ded3bb1e617042584c7d52f27f46e8486"
+    },
+    "development_state_machine_v2": {
+      "path": "automation/policies/development_state_machine.v2.yaml",
+      "sha256": "17c76e24fddc23db036a52771620e6fd848c1ca710e4fb8f7a1b82a3dd91b863"
+    },
+    "development_entry_protocol_v2": {
+      "path": "automation/policies/development_entry_protocol.v2.yaml",
+      "sha256": "e722303a6c0821392418d2d2716892248ec8fae58c57524202d773c3e3ed9ab5"
+    },
+    "execution_cost_contract_v2": {
+      "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+      "sha256": "8772ed5eaa71cdeab124b8c667c58a915d1ad21ed861b01ffc3d0692ed5fe73a"
+    },
+    "work_cost_accounting_v2": {
+      "path": "automation/specs/work_cost_accounting.v2.yaml",
+      "sha256": "a4ae5dfa602293dbe4721e3f0a4bc82960c52072ef8ac00535cb42432fa30a5a"
+    },
+    "negative_assertions_v2": {
+      "path": "automation/specs/negative_assertions.v2.yaml",
+      "sha256": "4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344"
+    }
+  },
+  "active_bundle_components": [
+    {
+      "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+      "sha256": "268b353d39461ccd629456cbe32cea6ded3bb1e617042584c7d52f27f46e8486"
+    },
+    {
+      "path": "automation/policies/development_entry_protocol.v2.yaml",
+      "sha256": "e722303a6c0821392418d2d2716892248ec8fae58c57524202d773c3e3ed9ab5"
+    },
+    {
+      "path": "automation/policies/development_state_machine.v2.yaml",
+      "sha256": "17c76e24fddc23db036a52771620e6fd848c1ca710e4fb8f7a1b82a3dd91b863"
+    },
+    {
+      "path": "automation/policies/execution_capacity_policy.v2.yaml",
+      "sha256": "416af750229653ce99887f44c0a040c932c0ae51bf8b2773a6ae6a77478dad3e"
+    },
+    {
+      "path": "automation/specs/negative_assertions.v2.yaml",
+      "sha256": "4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344"
+    },
+    {
+      "path": "automation/specs/work_cost_accounting.v2.yaml",
+      "sha256": "a4ae5dfa602293dbe4721e3f0a4bc82960c52072ef8ac00535cb42432fa30a5a"
+    },
+    {
+      "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+      "sha256": "8772ed5eaa71cdeab124b8c667c58a915d1ad21ed861b01ffc3d0692ed5fe73a"
+    },
+    {
+      "path": "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+      "sha256": "d2e2b1c3034d0d6a1abcaf7dd45bfcc7e9a8561f1fbc0bdafca530249122b340"
+    }
+  ],
+  "hash_convention": "SHA256_UTF8_COMPACT_SORTED_KEYS_JSON_LIST_SORTED_PATH_NO_TRAILING_NEWLINE",
+  "materialization_authority": "USER_EXPLICIT_APPROVED_EXACT_WORK_ACTIVATION_AFTER_ACCEPTED_INDEPENDENT_NARROW_PASS",
+  "effect": "ARCHITECTURE_ACTIVATION_ONLY_NO_EXECUTOR_AUTHORIZATION",
+  "historical_policies": "UNCHANGED_BYTES_SUPERSEDED_FOR_CURRENT_ADMISSION",
+  "program_yaml_modified": false,
+  "ivf01_rev1": "ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED",
+  "ivf01_rev2": "NOT_CREATED_NOT_AUTHORIZED",
+  "auto_imp_003": "NOT_AUTHORIZED",
+  "side_effects": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED"
+  }
+}

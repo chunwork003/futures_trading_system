@@ -1,5 +1,21 @@
 # Current State
 
+## CURRENT — Architecture 1.2 Accepted Materialization
+
+Architecture 1.2 = ACTIVE; Execution Capacity V2 = ACCEPTED_MATERIALIZED; V2 RF01 = CLOSED; V2-CAL-01 = CLOSED; V2-SER-01 = CLOSED; serializer warning assessment RESOLVED. Independent narrow PASS: `automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json`; exact reviewed source integrated at `14ff081757fe4205ab78c85b82f7ef6ca9c1e76f`. Original candidate e414c108e075c8aa2307d607ffe77013b40c5391; RF01 implementation ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a; evidence606d8273cc7ead110547d3fa232b7c5e41c0e78e; effective source bundle f5a1fea9c2a8f4084348bbe6e8912d6020c9ea9ecfb80ac128eda33a5aaffa9d.
+
+Authoritative active successor pointers are in `automation/governance/master_manifest.v1.yaml`: execution_capacity_policy.v2, authorization_lifecycle.v1_1, development_state_machine.v2, development_entry_protocol.v2, execution_cost_contract.v2, work_cost_accounting.v2 and negative_assertions.v2. Historical Architecture1.0/1.1 artifacts remain immutable, superseded for current admission; old80% remaining floor/40k fallback are not active operational authority. Provider denial remains authoritative. Activation does not grant CODEX execution or automatic dispatch/progression.
+
+CODEX = NOT_RUNNING / NONE_AUTHORIZED_BY_THIS_MATERIALIZATION; handoff_ready=false; no writer held; no new authorization/execution/reservation/dispatch. Runtime/broker/DB/migration/LIVE/production DENIED. AUTO-IMP-003 NOT_AUTHORIZED. IVF01 Rev1 AUTH-AUTO-IMP-002-IVF01-01 = ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED; historical authority unchanged, not reusable as1.2authority. IVF01Rev2 NOT_CREATED / NOT_AUTHORIZED; no waiver.
+
+Program AUTO-IMP-PROGRAM-V1 remains exact immutable reviewed1.1 binding. PROGRAM_V1_1_BINDING != AUTOMATIC_PROGRAM_1_2_REBIND. Compatibility/recompile is UNRESOLVED_OWNER_DECISION_REQUIRED; no existing exact accepted authority determines1.2rebind. Program DAG AUTO-IMP-003 depends_on AUTO-IMP-001 is preserved; no inferred new dependency on002, execution permission or queue reorder. Owner must decide1.1->1.2Program compatibility/recompile, close002/IVF01first vs separately authorized independent003planning, and orchestration/trigger/queue/auto-progression boundaries.
+
+RF01 cost CRITICAL/FRESH_CONTEXT_GROWTH is non-blocking forecast feedback: total2229994, uncached241023, actor328s, targeted3.29s, full13.36s. Future feedback TIGHTEN_POINTER_FIRST_CONTEXT, REMOVE_UNRELATED_HISTORY, RECALIBRATE_UNCACHED_INPUT_FORECAST. Metric variance does not authorize source correction or SPLIT_OVERSIZED_WORK_ORDER; preserve cohesive engineering value.
+
+Only next route: `AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION`. STOP; no next package.
+
+<!-- HISTORICAL_PRE_1_2_PROJECTIONS_BEGIN: retained audit only; CURRENT section above supersedes readiness/architecture statements below -->
+
 ## Canonical CURRENT Governance Projection — GOV-01
 
 **CURRENT GOVERNANCE PROJECTION — CANONICAL**
@@ -1022,3 +1038,5 @@ Next architecture work：R-08 + R-09 identity/config authority cluster。
 - Architecture Acceptance：HOLD。
 - Correction Expansion：RECORDED / NOT YET REWEIGHTED。
 - Next：K520 defer confirmation，then broker capability gate classification。
+
+<!-- HISTORICAL_PRE_1_2_PROJECTIONS_END -->

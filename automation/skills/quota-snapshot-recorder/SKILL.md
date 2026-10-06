@@ -1,5 +1,8 @@
 # Skill: quota-snapshot-recorder
 
+Architecture1.2 ACTIVE after accepted fresh review and WORK materialization. Canonical active successor section below supersedes predecessor procedure pointers; historical artifacts grant no current execution authority. No automatic dispatch or next package authority.
+
+
 Status: SHADOW
 
 Trigger:
@@ -82,7 +85,7 @@ Telemetry semantics:
 - If client/version omits a token category, preserve that limitation instead of synthesizing it.
 
 
-## V2 successor procedure — candidate only
+## V2 successor procedure — ACTIVE
 
 Record immutable provider raw observations and all identity/window/reset/competing-consumer limitations. Percentages are PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY, usable for qualified capacity calibration; derived values are PROVISIONAL_ESTIMATE/CALIBRATED_ESTIMATE never EXACT. Keep local exact-bound feature dimensions separate; no fixed weights or constant total-token conversion. Use execution_capacity_policy.v2 and execution_cost_contract.v2 after reviewed activation. Pauses retain SAME execution telemetry; no raw mutation.
-Architecture1.1 remains ACTIVE until fresh governance review and WORK materialization; candidate presence grants no authority. Provider denial always wins.
+Architecture1.2 ACTIVE; policy presence grants no execution authority. Provider denial always wins.

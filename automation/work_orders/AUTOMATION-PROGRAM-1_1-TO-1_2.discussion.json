@@ -1,0 +1,53 @@
+{
+  "schema_version": "automation.governance_discussion_projection.v1",
+  "status": "WAIT_OWNER_DISCUSSION",
+  "route": "AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION",
+  "authority_effect": "NONE",
+  "automatic_dispatch": false,
+  "program": {
+    "program_id": "AUTO-IMP-PROGRAM-V1",
+    "path": "automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml",
+    "git_blob_sha": "bb7969c891a314b3e2f9c69da2834f07e1f6bcb4",
+    "historical_binding": "1.1",
+    "active_architecture": "1.2",
+    "compatibility": "UNRESOLVED_OWNER_DECISION_REQUIRED",
+    "automatic_rebind": false,
+    "choices": [
+      "EXISTING_SEMANTIC_COMPATIBILITY_WITH_EXPLICIT_MATERIALIZATION",
+      "BOUNDED_RECOMPILATION_AND_RE_REVIEW"
+    ],
+    "existing_accepted_governance_determines_choice": false
+  },
+  "sequencing": {
+    "existing_dag_auto_imp_003_depends_on": [
+      "AUTO-IMP-001"
+    ],
+    "auto_imp_002_ivf01_pending": true,
+    "single_lane_operation": true,
+    "automatic_new_dependency_on_002": false,
+    "auto_imp_003_execution_permission": false,
+    "choices": [
+      "CLOSE_AUTO_IMP_002_IVF01_FIRST",
+      "SEPARATELY_AUTHORIZED_DAG_INDEPENDENT_AUTO_IMP_003_PLANNING_LANE"
+    ],
+    "decision": "NOT_MADE"
+  },
+  "trigger_queue_auto_progression_boundary": "OWNER_DISCUSSION_REQUIRED_NOT_AUTHORIZED_HERE",
+  "cost_feedback": {
+    "classification": "CRITICAL_FRESH_CONTEXT_GROWTH_NON_BLOCKING",
+    "reported_total_tokens": 2229994,
+    "uncached_input_tokens": 241023,
+    "actor_seconds": 328,
+    "targeted_seconds": 3.29,
+    "full_regression_seconds": 13.36,
+    "recommendations": [
+      "TIGHTEN_POINTER_FIRST_CONTEXT",
+      "REMOVE_UNRELATED_HISTORY",
+      "RECALIBRATE_UNCACHED_INPUT_FORECAST"
+    ],
+    "automatic_split": false,
+    "source_defect": false
+  },
+  "created_at": "2026-10-06T07:37:53.663Z",
+  "updated_at": "2026-10-06T07:37:53.663Z"
+}

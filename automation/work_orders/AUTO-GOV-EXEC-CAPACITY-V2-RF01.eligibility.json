@@ -5,7 +5,7 @@
   "correction_id": "AUTO-GOV-EXEC-CAPACITY-V2-RF01",
   "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
   "authorization_revision": "1",
-  "status": "COMPLETED_NOT_REEXECUTABLE",
+  "status": "CLOSED_NO_EXECUTION_AUTHORITY",
   "master_sha": "9db1ad0a7940e2b613f48cad4e5d327f41228e6a",
   "control_plane_baseline_sha": "de871f44d08a1a015a86c2b0a30ead5d0768f314",
   "source_candidate_head_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
@@ -31,11 +31,11 @@
     "quota": "PASS_EXACT_REVIEW_FIX_BOOTSTRAP_OLD80_40K_INAPPLICABLE_NOT_POLICY_MUTATION",
     "provider": "HISTORICAL_RAW_EXECUTION_OBSERVATIONS_PRESERVED_NO_NEW_ADMISSION",
     "forecast": "PASS_PROVISIONAL_RF01_SEPARATE_FORECAST",
-    "architecture": "ACTIVE1_1_CANDIDATE1_2_FIX_ONLY_NO_REDECISION",
-    "ivf01": "BLOCKED",
+    "architecture": "ACTIVE1_2_ACCEPTED_MATERIALIZED",
+    "ivf01": "ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED",
     "auto_imp_003": "NOT_AUTHORIZED",
-    "lifecycle": "COMPLETED_INTAKEN_WRITER_RELEASED_RE_REVIEW_PENDING",
-    "completion": "PASS_MECHANICAL_INTAKE_SEMANTIC_NOT_PERFORMED",
+    "lifecycle": "CLOSED_WRITER_RELEASED_NO_REEXECUTION",
+    "completion": "ACCEPTED_MATERIALIZED_CLOSED_NO_REEXECUTION",
     "worktree": "EXECUTION_COMPLETED_NO_REEXECUTION"
   },
   "automatic_dispatch": false,
@@ -44,7 +44,7 @@
   "reservation_created": true,
   "dispatch_committed": true,
   "created_at": "2026-10-06T06:35:06.634Z",
-  "updated_at": "2026-10-06T07:04:54.363Z",
+  "updated_at": "2026-10-06T07:37:53.663Z",
   "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
   "authorization_state": "CONSUMED",
   "writer_ownership": {
@@ -53,13 +53,15 @@
     "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
     "release_commit": "a7835e42930affbcbd0481238f26299cab41dd9a"
   },
-  "projection_phase": "CURRENT_COMPLETED_PENDING_RE_REVIEW",
+  "projection_phase": "CURRENT_CLOSED",
   "single_use_steps_1_through_9": "DURABLE_PASS",
   "reservation_commit": "6c44e0d670a30da61425cb159d4ee72d930784a8",
   "writer_acquired_commit": "48997d9b72ae479f2f4fac1eb826e1c3f0afebc3",
   "recheck_commit": "583a8b9a4ea660b041db9f4d774b51a39bb84d4a",
   "dispatch_commit": "192bb6911994306fa043d06857cfe8f87e85e6fb",
-  "next_route": "WAIT_FOR_FRESH_NARROW_INDEPENDENT_V2_RF01_RE_REVIEW",
+  "next_route": "AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION",
   "result_intake_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/result_intake.json",
-  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.review.yaml"
+  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.review.yaml",
+  "architecture_active": "1.2",
+  "new_execution_authorized": false
 }

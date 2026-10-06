@@ -1,16 +1,15 @@
-# RF01 narrow independent re-review barrier
+# CURRENT — Architecture1.2 ACTIVE; no executable handoff
 
-`WAIT_FOR_FRESH_NARROW_INDEPENDENT_V2_RF01_RE_REVIEW`
+Execution Capacity V2 ACCEPTED_MATERIALIZED; V2 RF01 CLOSED; V2-CAL-01/V2-SER-01 CLOSED. CODEX NOT_RUNNING; handoff_ready=false; no execution authorized by this materialization; writer released. No RF02.
 
-Work Order: `WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01`
-Execution: `EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z`
-Status: COMPLETED_PENDING_RE_REVIEW / RE_REVIEW_PENDING
-handoff_ready=false; CODEX reexecution=false; writer RELEASED_AFTER_DURABLE_RESULT_INTAKE.
+Activation: `automation/work_orders/EXECUTION-CAPACITY-V2.architecture-1_2.activation.json`
+Closure: `automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2-RF01.closure.json`
+Reviewer PASS: `automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.verdict.json`
 
-Exact packet: `automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.review.yaml`
-Effective candidate identity: `automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.effective-candidate.json`
-Original candidate e414c108e075c8aa2307d607ffe77013b40c5391 + RF01 four-file delta ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a; evidence606d8273cc7ead110547d3fa232b7c5e41c0e78e.
+IVF01 Rev1 ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED; Rev2 NOT_CREATED/NOT_AUTHORIZED. AUTO-IMP-003 NOT_AUTHORIZED; runtime/broker/DB/migration/LIVE/production DENIED. No automatic dispatch/progression.
 
-Review ONLY V2-CAL-01/V2-SER-01 plus preservation of effective candidate. Unrelated reviewed architecture PASS remains preserved absent contradictory evidence. No semantic acceptance/merge/activation.
-Architecture1.1 ACTIVE;1.2 CANDIDATE_REVIEW_FIX_REQUIRED/NOT_ACTIVE; IVF01BLOCKED; AUTO-IMP-003NOT_AUTHORIZED; runtime/broker/DB/migration/LIVE/productionDENIED.
-If narrow PASS, next route WORK_MATERIALIZE_REVIEWED_ARCHITECTURE_1_2_NO_AUTO_DISPATCH; reviewer itself cannot activate.
+Program1.1 historical binding remains unchanged; compatibility/recompile is unresolved. No new DAG dependency or sequencing permission inferred.
+
+Only next route: `AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQUENCING_DISCUSSION`
+Owner discussion: `automation/work_orders/AUTOMATION-PROGRAM-1_1-TO-1_2.discussion.json`
+STOP; do not execute or compile next package.
