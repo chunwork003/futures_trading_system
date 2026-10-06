@@ -235,3 +235,22 @@ def test_representative_canonical_contracts_load(
     loaded = load_yaml_contract(ROOT / relative_path)
 
     assert isinstance(loaded, expected_type)
+
+
+@pytest.mark.parametrize("relative_path", [
+    "automation/policies/execution_capacity_policy.v2.yaml",
+    "automation/policies/authorization_lifecycle.v1_1.yaml",
+    "automation/policies/development_state_machine.v2.yaml",
+    "automation/policies/development_entry_protocol.v2.yaml",
+    "automation/telemetry/execution_cost_contract.v2.yaml",
+    "automation/specs/work_cost_accounting.v2.yaml",
+    "automation/specs/negative_assertions.v2.yaml",
+])
+def test_successor_candidate_closed_and_deep_read_only(relative_path):
+    loaded = load_yaml_contract(ROOT / relative_path)
+    assert loaded.active is False
+    assert loaded.authority["active_master_architecture"] == "1.1"
+    with pytest.raises(TypeError): loaded.semantics["grant_authority"] = True
+    payload = load_yaml_mapping(ROOT / relative_path)
+    payload["unreviewed_authority"] = True
+    with pytest.raises(ValidationError): type(loaded).model_validate(payload)

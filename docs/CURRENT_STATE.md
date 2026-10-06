@@ -1018,3 +1018,8 @@ Next architecture work：R-08 + R-09 identity/config authority cluster。
 - Architecture Acceptance：HOLD。
 - Correction Expansion：RECORDED / NOT YET REWEIGHTED。
 - Next：K520 defer confirmation，then broker capability gate classification。
+
+
+## Execution Capacity / Resume V2 candidate result
+
+Architecture1.1 remains ACTIVE. The exact23file migration branch proposes Architecture1.2; status CANDIDATE / COMPLETED_PENDING_REVIEW, not accepted/activated. Successor policy/hash evidence: automation/governance/master_manifest.v1.yaml candidate_successor. Procedure: automation/skills/single-use-lifecycle-guard/SKILL.md. IVF01 Rev1 remains BLOCKED_NO_EXECUTION_NO_WAIVER, AUTO-IMP-003 NOT_AUTHORIZED. WORK intake -> token finalization -> cost reconciliation -> fresh Independent Governance/Semantic Review. Historical lifecycle/evidence unchanged; current projections must match durable truth. Runtime/broker/DB/migration/LIVE/production DENIED.

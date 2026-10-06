@@ -1,0 +1,66 @@
+schema_version: automation.development_state_machine.v2
+policy_id: DEVELOPMENT_STATE_MACHINE
+policy_version: '2.0'
+status: CANDIDATE_PENDING_INDEPENDENT_GOVERNANCE_REVIEW
+active: false
+authority:
+  active_master_architecture: '1.1'
+  target_architecture: '1.2'
+  activation: WORK_MATERIALIZATION_AFTER_FRESH_INDEPENDENT_GOVERNANCE_REVIEW_PASS
+  side_effects:
+    runtime: DENIED
+    broker: DENIED
+    db: DENIED
+    migration: DENIED
+    live: DENIED
+    production: DENIED
+semantics:
+  execution:
+  - IDLE
+  - QUEUED
+  - PRE_DISPATCH
+  - RUNNING
+  - PAUSED_PROVIDER_LIMIT
+  - RESUME_PENDING_REVALIDATION
+  - RESULT_READY
+  - STOPPED
+  orthogonal_axes:
+  - AUTHORIZATION
+  - EXECUTION
+  - COST_DEMAND_CAPACITY
+  - PROVIDER_AVAILABILITY
+  - REVIEW
+  - INTEGRATION
+  - ACCEPTANCE
+  transitions:
+    RUNNING_PROVIDER_DENIAL: PAUSED_PROVIDER_LIMIT_SAME_IDENTITY
+    PROVIDER_RECOVERY: WAKE_ONLY_RESUME_PENDING_REVALIDATION
+    REVALIDATION_PASS: RESUME_SAME_EXECUTION
+    REVALIDATION_FAIL: STOP_TO_WORK
+  pause_preserves:
+  - WO
+  - execution_id
+  - authorization
+  - reservation
+  - dispatch
+  - branch
+  - delta
+  - budget
+  - completed_tests
+  - telemetry
+  - writer_lineage
+  pause_is_source_failure: false
+  pause_consumes_correction_budget: false
+  result_ready_is_accepted: false
+invariants:
+- PROVIDER_ACTUAL_DENIAL_WINS
+- NO_AUTHORITY_CREATION
+- HISTORICAL_PHASE_SNAPSHOT != CURRENT_LIFECYCLE_PROJECTION
+- CONTRADICTORY_CURRENT_PROJECTION_FAIL_CLOSED_RECONCILIATION_REQUIRED
+- REVIEW_PASS != INTEGRATION_PASS != MATERIALIZED_ACCEPTANCE
+- IVF01_BLOCKED_UNTIL_REVIEWED_1_2_ACTIVATION_THEN_REV1_STALE
+- AUTO_IMP_003_NOT_AUTHORIZED
+historical:
+  predecessor_path: automation/policies/development_state_machine.v1.yaml
+  immutable: true
+  not_retroactively_active: true

@@ -712,3 +712,8 @@ Next authoritative sequence：
     5. Explicit bounded runtime authorization decision
 
 Do not begin runtime correction before step 5 explicitly authorizes a bounded Work Package。
+
+
+## Execution Capacity / Resume V2 candidate result
+
+Architecture1.1 remains ACTIVE. The exact23file migration branch proposes Architecture1.2; status CANDIDATE / COMPLETED_PENDING_REVIEW, not accepted/activated. Successor policy/hash evidence: automation/governance/master_manifest.v1.yaml candidate_successor. Procedure: automation/skills/single-use-lifecycle-guard/SKILL.md. IVF01 Rev1 remains BLOCKED_NO_EXECUTION_NO_WAIVER, AUTO-IMP-003 NOT_AUTHORIZED. WORK intake -> token finalization -> cost reconciliation -> fresh Independent Governance/Semantic Review. Historical lifecycle/evidence unchanged; current projections must match durable truth. Runtime/broker/DB/migration/LIVE/production DENIED.

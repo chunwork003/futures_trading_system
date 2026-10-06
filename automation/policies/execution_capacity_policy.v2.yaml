@@ -1,0 +1,64 @@
+schema_version: automation.execution_capacity_policy.v2
+policy_id: EXECUTION_CAPACITY_POLICY
+policy_version: '2.0'
+status: CANDIDATE_PENDING_INDEPENDENT_GOVERNANCE_REVIEW
+active: false
+authority:
+  active_master_architecture: '1.1'
+  target_architecture: '1.2'
+  activation: WORK_MATERIALIZATION_AFTER_FRESH_INDEPENDENT_GOVERNANCE_REVIEW_PASS
+  side_effects:
+    runtime: DENIED
+    broker: DENIED
+    db: DENIED
+    migration: DENIED
+    live: DENIED
+    production: DENIED
+semantics:
+  gates:
+  - EXECUTION_COST_GATE
+  - PROVIDER_AVAILABILITY_GATE
+  demand:
+    primary: PER_WO_P50_P75_P90
+    dimensions:
+    - input
+    - cached_input
+    - uncached_input
+    - output
+    - reasoning
+    - total
+    legacy_package: LEGACY_PLANNING_INPUT_NOT_OPERATIONAL_ADMISSION_AUTHORITY
+  capacity:
+    remaining_percentage: CAPACITY_ESTIMATION_TELEMETRY_NOT_FIXED_FLOOR
+    fixed_remaining_floor: null
+    normalized_fallback_tokens: null
+    uncalibrated: PROVISIONAL_ESTIMATE_NO_FABRICATED_NUMBER
+    manual_low_risk_exact_authorized: ALLOW_WITH_WATCH
+    unattended: DISABLED_UNTIL_QUALIFIED_CAPACITY_AND_EXACT_DISPATCH_AUTHORITY
+    calibrated: CALIBRATED_ESTIMATE_NEVER_EXACT
+    qualification: AT_LEAST_THREE_DISTINCT_EXACT_BOUND_SAMPLES_PLUS_CLEAN_ATTRIBUTION_IDENTITY_RESET_UNCERTAINTY_REVIEW
+    identity_dimensions:
+    - provider
+    - account
+    - workspace
+    - limit_id
+    - window_type
+    - model
+    - executor_profile
+    - provider_client_policy_version
+    model: PRESERVE_FEATURE_DIMENSIONS_NO_UNSUPPORTED_IDENTICAL_WEIGHTS_OR_FIXED_TOTAL_TOKEN_LINEAR_CONVERSION
+  provider_denial_before_start: WAIT_PROVIDER_AVAILABLE
+  running_denial: PAUSED_PROVIDER_LIMIT
+  forecast_miss: WORK_FORECAST_CAPACITY_REVIEW_NO_AUTHORITY
+invariants:
+- PROVIDER_ACTUAL_DENIAL_WINS
+- NO_AUTHORITY_CREATION
+- HISTORICAL_PHASE_SNAPSHOT != CURRENT_LIFECYCLE_PROJECTION
+- CONTRADICTORY_CURRENT_PROJECTION_FAIL_CLOSED_RECONCILIATION_REQUIRED
+- REVIEW_PASS != INTEGRATION_PASS != MATERIALIZED_ACCEPTANCE
+- IVF01_BLOCKED_UNTIL_REVIEWED_1_2_ACTIVATION_THEN_REV1_STALE
+- AUTO_IMP_003_NOT_AUTHORIZED
+historical:
+  predecessor_path: automation/policies/quota_admission_policy.v1_1.yaml
+  immutable: true
+  not_retroactively_active: true

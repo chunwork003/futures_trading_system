@@ -167,3 +167,8 @@ NO DUPLICATE EXECUTION
 NO AUTHORITY INFERENCE
 EVIDENCE BEFORE ACCEPTANCE
 STOP AT BARRIER
+
+## Successor capacity/resume boundary (candidate)
+
+After reviewed activation use execution_capacity_policy.v2, authorization_lifecycle.v1_1, development_state_machine.v2 and development_entry_protocol.v2 under automation/policies; execution_cost_contract.v2 under automation/telemetry and work_cost_accounting.v2 under automation/specs. Until WORK materialization Architecture1.1 remains active. Procedure owner: automation/skills/single-use-lifecycle-guard/SKILL.md.
+Execution cost and provider availability are separate gates; no V2 fixed percentage floor/token fallback. Derived capacity is estimate, never EXACT. Actual provider denial wins. Checkpoint PAUSED_PROVIDER_LIMIT; recovery is wake-only, then RESUME_PENDING_REVALIDATION and fresh exact revalidation. Resume same already-invoked execution != CONSUMED redispatch; no new identity/reservation/dispatch/budget. Unfinished execution blocks new work. Contradictory current lifecycle projection -> RECONCILIATION_REQUIRED; historical phase snapshots stay immutable. WORK forecast/capacity review cannot grant authority. Review PASS != Integration PASS != materialized acceptance.

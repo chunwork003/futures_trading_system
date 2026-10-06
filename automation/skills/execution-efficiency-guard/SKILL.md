@@ -151,3 +151,9 @@ Do not wait for a later optimization checkpoint when the current run already bre
 A HIGH signal does not revoke authority, but it blocks starting another unplanned expensive cycle until WORK has a bounded reason/replan.
 
 After completion, reconcile actual vs forecast and feed the dominant cause plus one bounded recommendation into the next WORK forecast.
+
+
+## V2 successor procedure — candidate only
+
+Separate provider availability from execution cost under execution_capacity_policy.v2. Candidate V2 has no fixed remaining-percent floor/token fallback. Provider actual denial checkpoints same execution; preserve completed tests and accumulated telemetry, no additional full suites just because capacity recovers. Forecast-capacity review is WORK feedback, no authority or automatic source failure. Keep initial test debugging distinct from separately authorized semantic correction.
+Architecture1.1 remains ACTIVE until fresh governance review and WORK materialization; candidate presence grants no authority. Provider denial always wins.

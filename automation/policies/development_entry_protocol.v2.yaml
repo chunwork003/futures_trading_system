@@ -1,0 +1,40 @@
+schema_version: automation.development_entry_protocol.v2
+policy_id: DEVELOPMENT_ENTRY_PROTOCOL
+policy_version: '2.0'
+status: CANDIDATE_PENDING_INDEPENDENT_GOVERNANCE_REVIEW
+active: false
+authority:
+  active_master_architecture: '1.1'
+  target_architecture: '1.2'
+  activation: WORK_MATERIALIZATION_AFTER_FRESH_INDEPENDENT_GOVERNANCE_REVIEW_PASS
+  side_effects:
+    runtime: DENIED
+    broker: DENIED
+    db: DENIED
+    migration: DENIED
+    live: DENIED
+    production: DENIED
+semantics:
+  routing_priority:
+  - SAFETY_GOVERNANCE
+  - RESUMABLE_UNFINISHED_EXECUTION
+  - PENDING_RESULT_REVIEW_INTEGRATION
+  - AUTHORIZED_NEW_WORK
+  unfinished_blocks_new_dispatch: true
+  continue: FRESH_REPOSITORY_EXACT_UNFINISHED_EXECUTION_FIRST
+  timer_reset_reviewer_provider_recovery: WAKE_ONLY_NEVER_DIRECT_INVOKE
+  resume: FRESH_REVALIDATION_SAME_ALREADY_INVOKED_EXECUTION
+  feedback_before_new_work_after_interrupt: DURABLE_WORK_FORECAST_CAPACITY_REVIEW
+  review_feedback_grants_authority: false
+invariants:
+- PROVIDER_ACTUAL_DENIAL_WINS
+- NO_AUTHORITY_CREATION
+- HISTORICAL_PHASE_SNAPSHOT != CURRENT_LIFECYCLE_PROJECTION
+- CONTRADICTORY_CURRENT_PROJECTION_FAIL_CLOSED_RECONCILIATION_REQUIRED
+- REVIEW_PASS != INTEGRATION_PASS != MATERIALIZED_ACCEPTANCE
+- IVF01_BLOCKED_UNTIL_REVIEWED_1_2_ACTIVATION_THEN_REV1_STALE
+- AUTO_IMP_003_NOT_AUTHORIZED
+historical:
+  predecessor_path: automation/policies/development_entry_protocol.v1.yaml
+  immutable: true
+  not_retroactively_active: true

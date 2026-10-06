@@ -59,8 +59,8 @@ Use automation/skills/execution-efficiency-guard/SKILL.md for relative anomaly c
 - raw observations are immutable evidence
 - never replace raw values with reconciled values
 - never infer an admission threshold from historical percentages
-- never convert percentage consumption into literal tokens
-- percentage estimates are for relative anomaly detection only
+- never label percentage-derived capacity/token estimates EXACT
+- percentage proxy telemetry may support qualified capacity calibration
 - this Skill records evidence; it never changes admission policy
 
 
@@ -80,3 +80,9 @@ Telemetry semantics:
 - cached_input_tokens is reported separately inside input usage and must not be double-counted.
 - Never equate total_tokens, cached tokens, or a local token delta directly to ChatGPT 5H/weekly percentage consumption.
 - If client/version omits a token category, preserve that limitation instead of synthesizing it.
+
+
+## V2 successor procedure — candidate only
+
+Record immutable provider raw observations and all identity/window/reset/competing-consumer limitations. Percentages are PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY, usable for qualified capacity calibration; derived values are PROVISIONAL_ESTIMATE/CALIBRATED_ESTIMATE never EXACT. Keep local exact-bound feature dimensions separate; no fixed weights or constant total-token conversion. Use execution_capacity_policy.v2 and execution_cost_contract.v2 after reviewed activation. Pauses retain SAME execution telemetry; no raw mutation.
+Architecture1.1 remains ACTIVE until fresh governance review and WORK materialization; candidate presence grants no authority. Provider denial always wins.

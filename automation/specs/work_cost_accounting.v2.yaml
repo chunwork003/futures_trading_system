@@ -1,0 +1,47 @@
+schema_version: automation.work_cost_accounting.v2
+policy_id: WORK_COST_ACCOUNTING
+policy_version: '2.0'
+status: CANDIDATE_PENDING_INDEPENDENT_GOVERNANCE_REVIEW
+active: false
+authority:
+  active_master_architecture: '1.1'
+  target_architecture: '1.2'
+  activation: WORK_MATERIALIZATION_AFTER_FRESH_INDEPENDENT_GOVERNANCE_REVIEW_PASS
+  side_effects:
+    runtime: DENIED
+    broker: DENIED
+    db: DENIED
+    migration: DENIED
+    live: DENIED
+    production: DENIED
+semantics:
+  forecast: P50_P75_P90_BY_DEMAND_DIMENSION_WITH_CONFIDENCE_AND_UNCERTAINTY
+  context: ACTUAL_READS_NOT_PLANNING_PROFILE
+  units: EXACT_LOCAL_USAGE_SEPARATE_PROVIDER_PROXY_SEPARATE_CAPACITY_ESTIMATES
+  interruption: SEPARATE_PAUSE_TIME_RESUME_COUNT_AND_CAPACITY_ERROR_FROM_SOURCE_CORRECTION
+  review_dimensions:
+  - forecast_vs_exact
+  - provider_movement
+  - capacity_error
+  - cached_replay
+  - uncached_context
+  - output_reasoning
+  - test_cycles
+  - tool_retries
+  - context_reload
+  - reset_competing_consumer_ambiguity
+  feedback: BOUNDED_RECOMMENDATION_BEFORE_NEXT_WO_NOT_AUTHORITY
+  calibration: MINIMUM_THREE_COMPARABLE_SAMPLES_PLUS_IDENTITY_CLEAN_ATTRIBUTION_NOT_COUNT_ONLY
+  billing_inference: DENIED
+invariants:
+- PROVIDER_ACTUAL_DENIAL_WINS
+- NO_AUTHORITY_CREATION
+- HISTORICAL_PHASE_SNAPSHOT != CURRENT_LIFECYCLE_PROJECTION
+- CONTRADICTORY_CURRENT_PROJECTION_FAIL_CLOSED_RECONCILIATION_REQUIRED
+- REVIEW_PASS != INTEGRATION_PASS != MATERIALIZED_ACCEPTANCE
+- IVF01_BLOCKED_UNTIL_REVIEWED_1_2_ACTIVATION_THEN_REV1_STALE
+- AUTO_IMP_003_NOT_AUTHORIZED
+historical:
+  predecessor_path: automation/specs/work_cost_accounting.v1.yaml
+  immutable: true
+  not_retroactively_active: true

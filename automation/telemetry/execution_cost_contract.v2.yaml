@@ -1,0 +1,61 @@
+schema_version: automation.execution_cost_contract.v2
+policy_id: EXECUTION_COST_CONTRACT
+policy_version: '2.0'
+status: CANDIDATE_PENDING_INDEPENDENT_GOVERNANCE_REVIEW
+active: false
+authority:
+  active_master_architecture: '1.1'
+  target_architecture: '1.2'
+  activation: WORK_MATERIALIZATION_AFTER_FRESH_INDEPENDENT_GOVERNANCE_REVIEW_PASS
+  side_effects:
+    runtime: DENIED
+    broker: DENIED
+    db: DENIED
+    migration: DENIED
+    live: DENIED
+    production: DENIED
+semantics:
+  units:
+    local_exact_bound_tokens: EXACT_ACTUAL_USAGE_NOT_BILLING
+    raw_provider: PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY
+    derived_capacity: PROVISIONAL_ESTIMATE_OR_CALIBRATED_ESTIMATE_NEVER_EXACT
+    billing: ONLY_EXPLICIT_EXACT_PROVIDER_TASK_COST
+  actual_required:
+  - actor_start
+  - actor_end
+  - test_cycles
+  - targeted_seconds
+  - full_regression_seconds
+  - tool_retries
+  - raw_provider_before_after
+  - task_profile
+  - actual_context_profile
+  - local_token_status
+  optional_interruption:
+  - provider_limit_encountered
+  - provider_pause_count
+  - provider_pause_seconds
+  - resume_count
+  - resumed_same_execution
+  - capacity_forecast_at_start
+  - capacity_estimate_at_start
+  - forecast_capacity_review_required
+  local_tokens_during_active_session: PENDING_EXTERNAL_EXTRACTION
+  raw_mutation: DENIED
+  extractor: scripts/codex_session_token_usage.ps1
+  review_trigger: ANY_RUNNING_PROVIDER_LIMIT_INTERRUPTION
+  review_blocks_legal_resume: false
+  review_materialized_before_new_work_after_completion: true
+  review_type: WORK_FORECAST_CAPACITY_REVIEW_NOT_SOURCE_DEFECT_OR_SEMANTIC_REVIEW
+invariants:
+- PROVIDER_ACTUAL_DENIAL_WINS
+- NO_AUTHORITY_CREATION
+- HISTORICAL_PHASE_SNAPSHOT != CURRENT_LIFECYCLE_PROJECTION
+- CONTRADICTORY_CURRENT_PROJECTION_FAIL_CLOSED_RECONCILIATION_REQUIRED
+- REVIEW_PASS != INTEGRATION_PASS != MATERIALIZED_ACCEPTANCE
+- IVF01_BLOCKED_UNTIL_REVIEWED_1_2_ACTIVATION_THEN_REV1_STALE
+- AUTO_IMP_003_NOT_AUTHORIZED
+historical:
+  predecessor_path: automation/telemetry/execution_cost_contract.v1.yaml
+  immutable: true
+  not_retroactively_active: true
