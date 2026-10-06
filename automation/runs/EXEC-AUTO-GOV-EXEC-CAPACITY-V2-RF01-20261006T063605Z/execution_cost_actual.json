@@ -138,12 +138,19 @@
     "measurement_limit": "Partial reads and cache reuse prevent exact cumulative read/token volume; no fabricated values"
   },
   "execution_cost_actual": {
-    "local_tokens_status": "PENDING_EXTERNAL_EXTRACTION",
-    "local_tokens": null,
-    "measurement_type": "PENDING_EXTERNAL_EXTRACTION",
-    "billing": null,
+    "local_tokens_status": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+    "local_tokens": {
+      "input_tokens": 2218495,
+      "cached_input_tokens": 1977472,
+      "output_tokens": 11499,
+      "reasoning_output_tokens": 3265,
+      "total_tokens": 2229994
+    },
+    "measurement_type": "EXACT",
+    "billing": "NOT_AVAILABLE",
     "provider_measurement_type": "PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY",
-    "percent_to_exact_tokens": false
+    "percent_to_exact_tokens": false,
+    "local_token_usage_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/local_token_usage.json"
   },
   "provider_observations": {
     "before": {
@@ -251,5 +258,37 @@
   "evidence_sha_resolution": {
     "method": "git log -1 --format=%H -- automation\\runs\\EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z\\completion.json",
     "reason": "Containing evidence commit identity is resolved after commit; no recursive self-hash"
-  }
+  },
+  "schema_version": "automation.execution_cost_actual.v1",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "actual": {
+    "input_tokens": 2218495,
+    "cached_input_tokens": 1977472,
+    "output_tokens": 11499,
+    "reasoning_output_tokens": 3265,
+    "total_tokens": 2229994,
+    "reported_total_tokens": 2229994,
+    "uncached_input_tokens": 241023,
+    "cached_input_ratio": 0.8913574292482066,
+    "actor_seconds": 328,
+    "targeted_seconds": 3.29,
+    "full_regression_seconds": 13.36,
+    "five_hour_delta_pct": 3,
+    "weekly_delta_pct": 0,
+    "unexpected_retries": 0,
+    "provider_limit_encountered": false,
+    "provider_pause_count": 0,
+    "resume_count": 0,
+    "forecast_capacity_review_required": false,
+    "test_cycles": {
+      "pre_fix_cases": 2,
+      "complete_targeted_passes": 1,
+      "full_regression_passes": 1
+    }
+  },
+  "local_reported_tokens_status": "EXACT_SINGLE_STRONG_MARKER_MATCH",
+  "local_token_usage_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/local_token_usage.json",
+  "original_execution_evidence_sha": "606d8273cc7ead110547d3fa232b7c5e41c0e78e",
+  "original_actual_git_blob_sha": "f6959f8e4459aa19ac5103af75c4c14e37a74b89",
+  "billing_cost": "NOT_AVAILABLE"
 }
