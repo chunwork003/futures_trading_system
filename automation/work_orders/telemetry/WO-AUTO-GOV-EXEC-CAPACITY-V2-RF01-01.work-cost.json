@@ -1,0 +1,62 @@
+{
+  "schema_version": "automation.work_cost_actual.v1",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "actor": "WORK",
+  "phase": "REVIEW_FIX_AUTHORITY_FORECAST_LIFECYCLE_MATERIALIZATION",
+  "measurement_type": "PROXY",
+  "exact_model_tokens": null,
+  "model_usage_status": "UNKNOWN",
+  "billing_cost": "NOT_AVAILABLE",
+  "raw_transcript_loaded": false,
+  "implementation_files_modified": 0,
+  "tests_run": 0,
+  "context_profile": {
+    "artifacts_read": [],
+    "artifacts_by_type": {
+      "governance": 8,
+      "telemetry": 1,
+      "source": 0,
+      "test": 0
+    },
+    "volume_by_artifact_type": null,
+    "raw_transcript_loaded": false,
+    "history_loaded_amount": {
+      "artifacts": 1,
+      "reason": "Original candidate exact Git tree identities only"
+    },
+    "source_context_volume": 0,
+    "test_context_volume": 0,
+    "governance_context_volume": null,
+    "telemetry_context_volume": null,
+    "content_token_estimate": null,
+    "model_usage_measurement_type": "UNKNOWN",
+    "measurement_limit": "Pointer/blob reuse and partial outputs; no fabricated cumulative volume"
+  },
+  "task_profile": {
+    "task_class": "BOUNDED_GOVERNANCE_REVIEW_FIX",
+    "change_type": "CALIBRATION_ACCOUNTING_AND_IMMUTABLE_SERIALIZATION_CORRECTION",
+    "subsystem": "automation execution capacity and contracts",
+    "functional_area": "calibration qualification / Pydantic serialization",
+    "concise_engineering_goal": "Fix only V2-CAL-01 and V2-SER-01; preserve reviewed V2 architecture",
+    "primary_symbols_or_functional_surfaces": [
+      "calibration qualification",
+      "immutable contract dump/JSON/round-trip"
+    ],
+    "behavior_dimensions": [
+      "token-accounting consistency",
+      "provider window identity",
+      "plain serialization",
+      "deep immutability"
+    ],
+    "source_file_count": 2,
+    "test_file_count": 2,
+    "semantic_profile": "NARROW_RE_REVIEW_OF_EFFECTIVE_CANDIDATE",
+    "test_profile": "MIN_COUNTEREXAMPLE_IMPACTED_ONE_TARGETED_ONE_REGRESSION",
+    "authority_boundary": "Exact four files; no architecture activation or runtime effects",
+    "packaging_cohesion_decision": "KEEP_COHESIVE: same authority, subsystem and shared targeted/re-review surface; optimize total engineering value"
+  },
+  "tooling_retries": 1,
+  "retry_reason": "In-memory pointer reload before pre-dispatch recheck; no dispatch attempted before recheck",
+  "created_at": "2026-10-06T06:39:11.514Z",
+  "updated_at": "2026-10-06T06:39:11.514Z"
+}
