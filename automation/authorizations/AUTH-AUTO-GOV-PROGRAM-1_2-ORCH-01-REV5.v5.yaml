@@ -2,8 +2,8 @@
     "schema_version":  "automation.authorization.v1",
     "authorization_id":  "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5",
     "authorization_revision":  "5",
-    "document_status":  "APPROVED_EFFECTIVE",
-    "authorization_state":  "AUTHORIZED",
+    "document_status":  "RESERVED_EFFECTIVE",
+    "authorization_state":  "RESERVED",
     "source_candidate_head_sha":  "79ed933e1f30809609f7ff96a248b1b0da50fad6",
     "decision_evidence":  {
                               "authority":  "HUMAN_GOVERNANCE_OWNER",
@@ -178,7 +178,7 @@
                        },
     "decision":  {
                      "implementation":  "APPROVED",
-                     "execution":  "AUTHORIZED_PENDING_MANUAL_DIALOGUE_LIFECYCLE",
+                     "execution":  "RESERVED_PENDING_PREDISPATCH_RECHECK",
                      "controller_activation":  "DENIED_BEFORE_COHESIVE_REVIEW_PASS_AND_WORK_ACCEPTANCE",
                      "mode":  "MANUAL",
                      "controlled_auto":  "DISABLED",
@@ -191,11 +191,14 @@
                      "executor_mode":  "HUMAN_DIALOGUE"
                  },
     "single_use_execution":  {
-                                 "execution_id":  null,
-                                 "reservation_created":  false,
+                                 "execution_id":  "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z",
+                                 "reservation_created":  true,
                                  "dispatch_committed":  false,
                                  "executor_invoked":  false,
-                                 "writer_acquired":  false,
-                                 "consumed":  false
+                                 "writer_acquired":  true,
+                                 "consumed":  false,
+                                 "reservation_path":  "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/reservation.yaml",
+                                 "writer_lock_path":  "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/writer_lock.yaml",
+                                 "writer_acquired_commit_sha":  "30841f0668b7d73ec858171f52d30df23ecd4a95"
                              }
 }
