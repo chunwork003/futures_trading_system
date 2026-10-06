@@ -1,0 +1,112 @@
+{
+  "schema_version": "automation.pre_dispatch_recheck.v1",
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "state": "PASS",
+  "master_head": "fd94c6814d1bbce43931d64cb95ccf7b55d4af4a",
+  "source_candidate_head_sha": "52f0b5da1d050a8876f9716b227055219f4fd070",
+  "authorization_state": "RESERVED",
+  "scope_digest": "6bfc178a0a47aa551332027efa3cc034764d670ee1d9b53caafd4be368de32e0",
+  "checkpoint_sha256": "e65e2f7bd8cd6c4ea32af290fac0467364b7239a864b90c394f82e6597bf1591",
+  "architecture": "1.2.2",
+  "architecture_bundle_hash": "c10b7f2f2b2d73116d260a33dabdb1f9b20af3fc9b433e3b3fe17c9076465ea7",
+  "owner_decision_commit": "b6454d65e08021af79c293c340a4ce5ce41b702d",
+  "writer_acquired_commit": "39d14716329f356b79a3b3c13707d0773bcf4aa0",
+  "reservation_commit": "148a674d07cc16740b2c202dafba5b8ab7851757",
+  "reserved_commit": "fd94c6814d1bbce43931d64cb95ccf7b55d4af4a",
+  "writer_owner": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "checks": {
+    "source_branch_head": "PASS",
+    "source_tracked_clean": "PASS",
+    "old_executor_quiescent": "PASS",
+    "old_consumed_not_reused": "PASS",
+    "exact_checkpoint_sha256_and_tree": "PASS",
+    "eight_path_scope": "PASS",
+    "fresh_reserved_auth": "PASS",
+    "new_execution_writer": "PASS",
+    "new_branch_absent": "PASS",
+    "current_manifest_and_active_policy_git_blobs": "UNCHANGED_PASS",
+    "canonical_auth_contract_shape": "PASS",
+    "additional_owner_cycle": "ONE_UNUSED",
+    "review_fix_budget": "UNTOUCHED",
+    "provider_actual": "PASS",
+    "manual_5h_p75": "ALLOW_WITH_WATCH"
+  },
+  "provider_raw": {
+    "ordinaryUsageAllowed": true,
+    "rateLimits": {
+      "limitId": "codex",
+      "limitName": null,
+      "normalModelSlug": null,
+      "primary": {
+        "usedPercent": 17,
+        "windowDurationMins": 300,
+        "resetsAt": 1791313151
+      },
+      "secondary": {
+        "usedPercent": 57,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791615796
+      },
+      "credits": {
+        "hasCredits": false,
+        "unlimited": false,
+        "balance": "0"
+      },
+      "individualLimit": null,
+      "spendControlReached": false,
+      "planType": "plus",
+      "rateLimitReachedType": null
+    },
+    "rateLimitsByLimitId": {
+      "codex": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 17,
+          "windowDurationMins": 300,
+          "resetsAt": 1791313151
+        },
+        "secondary": {
+          "usedPercent": 57,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    },
+    "rateLimitResetCredits": {
+      "availableCount": 1,
+      "credits": [
+        {
+          "id": "RateLimitResetCredit_771ee9c1c33c8191bb6446adef907c3b",
+          "resetType": "codexRateLimits",
+          "status": "available",
+          "grantedAt": 1790699427,
+          "expiresAt": 1793291427,
+          "title": "Full reset (Weekly + 5 hr)",
+          "description": "Thanks for using Codex! You've been granted one free rate limit reset."
+        }
+      ]
+    },
+    "accountId": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+    "rateLimitUpsell": null
+  },
+  "manual_forecast_p75": 1500000,
+  "primary_safe_capacity": 41662630,
+  "weekly_execution_gate": false,
+  "executor_invoked": false,
+  "automatic_dispatch": false,
+  "created_at": "2026-10-06T14:59:51Z",
+  "updated_at": "2026-10-06T14:59:51Z"
+}
