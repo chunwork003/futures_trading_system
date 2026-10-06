@@ -7,7 +7,7 @@
   "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
   "authorization_revision": "1",
   "authorization_path": "automation/authorizations/AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.v1.yaml",
-  "authorization_state": "AUTHORIZED",
+  "authorization_state": "RESERVED",
   "work_order_path": "automation/work_orders/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.yaml",
   "code_base_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
   "source_candidate_head_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
@@ -432,7 +432,7 @@
   },
   "correction_budget_remaining": 1,
   "execution_branch": "auto/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
-  "status": "PREPARING",
+  "status": "RESERVED",
   "handoff_ready": false,
   "eligibility_path": "automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2-RF01.eligibility.json",
   "manual_trigger_only": true,
@@ -483,5 +483,11 @@
   },
   "next_route": "FRESH_ELIGIBILITY",
   "created_at": "2026-10-06T06:34:12.425Z",
-  "updated_at": "2026-10-06T06:34:12.425Z"
+  "updated_at": "2026-10-06T06:36:05.176Z",
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+  "writer_state": "HELD",
+  "writer_lock_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
+  "writer_ownership_lineage_path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.writer-lock.yaml",
+  "reservation_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/reservation.yaml",
+  "lifecycle_status": "RESERVED_NOT_DISPATCHED"
 }

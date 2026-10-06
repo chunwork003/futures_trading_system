@@ -2,8 +2,8 @@
   "schema_version": "automation.authorization.v1",
   "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
   "authorization_revision": "1",
-  "document_status": "APPROVED_EFFECTIVE",
-  "authorization_state": "AUTHORIZED",
+  "document_status": "RESERVED_EFFECTIVE",
+  "authorization_state": "RESERVED",
   "source_candidate_head_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
   "decision_evidence": {
     "decision": "EXECUTION_CAPACITY_V2_RF01 = APPROVED_FOR_BOUNDED_IMPLEMENTATION",
@@ -118,9 +118,17 @@
     "task_profile_context_profile_required": true
   },
   "decision": {
-    "status": "AUTHORIZED",
+    "status": "RESERVED",
     "next_route": "FRESH_ELIGIBILITY",
     "created_at": "2026-10-06T06:34:12.425Z",
-    "updated_at": "2026-10-06T06:34:12.425Z"
+    "updated_at": "2026-10-06T06:36:05.176Z"
+  },
+  "single_use_execution": {
+    "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+    "reservation_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/reservation.yaml",
+    "writer_lock_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
+    "writer_acquired_commit_sha": "48997d9b72ae479f2f4fac1eb826e1c3f0afebc3",
+    "dispatch_committed": false,
+    "executor_invoked": false
   }
 }

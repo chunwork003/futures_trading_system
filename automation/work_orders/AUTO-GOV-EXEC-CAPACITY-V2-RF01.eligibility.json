@@ -5,7 +5,7 @@
   "correction_id": "AUTO-GOV-EXEC-CAPACITY-V2-RF01",
   "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
   "authorization_revision": "1",
-  "status": "PASS_PRE_RESERVATION",
+  "status": "RESERVED_PENDING_PRE_DISPATCH_RECHECK",
   "master_sha": "12c901837bd5906a18caceeca7af6e33c4a2dff0",
   "control_plane_baseline_sha": "de871f44d08a1a015a86c2b0a30ead5d0768f314",
   "source_candidate_head_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
@@ -38,8 +38,15 @@
   "automatic_dispatch": false,
   "automatic_next_package": false,
   "executor_invoked": false,
-  "reservation_created": false,
+  "reservation_created": true,
   "dispatch_committed": false,
   "created_at": "2026-10-06T06:35:06.634Z",
-  "updated_at": "2026-10-06T06:35:06.634Z"
+  "updated_at": "2026-10-06T06:36:05.176Z",
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+  "authorization_state": "RESERVED",
+  "writer_ownership": {
+    "state": "HELD",
+    "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+    "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml"
+  }
 }
