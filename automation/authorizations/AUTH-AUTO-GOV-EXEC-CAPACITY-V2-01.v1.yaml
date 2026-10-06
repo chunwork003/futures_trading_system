@@ -134,17 +134,20 @@
     "task_profile_context_profile_required": true
   },
   "decision": {
-    "status": "RESERVED_PENDING_RECHECK",
+    "status": "DISPATCH_COMMITTED_PENDING_CONSUMPTION",
     "next_route": "MIGRATION_PRE_RESERVATION_ELIGIBILITY",
     "created_at": "2026-10-06T03:35:25Z",
-    "updated_at": "2026-10-06T03:38:04Z"
+    "updated_at": "2026-10-06T03:39:52Z"
   },
   "single_use_execution": {
     "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
     "reservation_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/reservation.yaml",
-    "dispatch_committed": false,
+    "dispatch_committed": true,
     "executor_invoked": false,
     "writer_lock_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
-    "writer_acquired_commit_sha": "bfabb322dd63bc622ef52dc217094c95163d8323"
+    "writer_acquired_commit_sha": "bfabb322dd63bc622ef52dc217094c95163d8323",
+    "dispatch_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/dispatch.yaml",
+    "recheck_commit_sha": "4eb07308af37380fb12e6bc6ba3241b003414ec0",
+    "reserved_commit_sha": "bad930d63382b18c705fb3b9d579bdbf690b7e80"
   }
 }
