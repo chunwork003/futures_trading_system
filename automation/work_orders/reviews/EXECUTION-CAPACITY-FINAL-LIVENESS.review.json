@@ -1,0 +1,81 @@
+{
+  "schema_version": "automation.independent_review_packet.v1",
+  "review_id": "EXECUTION-CAPACITY-FINAL-LIVENESS",
+  "status": "REVIEW_PENDING",
+  "authority_effect": "NONE",
+  "repository": "chunwork003/futures_trading_system",
+  "baseline_sha": "e2de7e9c873a062429675ff6be3ed9d108e3ac4f",
+  "policy_candidate_path": "automation/work_orders/reviews/EXECUTION-CAPACITY-FINAL-LIVENESS.policy-candidate.yaml",
+  "owner_decision_candidate_path": "automation/work_orders/reviews/EXECUTION-CAPACITY-FINAL-LIVENESS.owner-candidate.json",
+  "policy_semantic_digest": "1e786abb4b55370675e9cc23f105add9d98a13d7863b63985cb0fab98c9f94c1",
+  "owner_candidate_digest": "bc7751530aaf5295a86095e131a00938691ce6973c6890e696a2593875f2c9a9",
+  "review_scope": "ONE_BOUNDED_FINAL_CAPACITY_SEMANTIC_DELTA_AND_EXACT_MAIN_REBIND_CONTRACT",
+  "main_rebind_contract": {
+    "logical_work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+    "source_baseline": "e2de7e9c873a062429675ff6be3ed9d108e3ac4f",
+    "scope_digest": "3df284e380940456e6e63af7dfc4b0125460a0a2f3a1bd324f1f81031304a2c7",
+    "exact_scope": [
+      "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+      "automation/policies/orchestration_control_policy.v1.yaml",
+      "automation/engine/orchestration.py",
+      "automation/engine/contracts.py",
+      "tests/automation/test_orchestration.py",
+      "tests/automation/test_contracts.py",
+      "scripts/execution_cost_reconcile.ps1",
+      "tests/automation/test_execution_cost_reconcile.py",
+      "automation/specs/context_loading_policy.v1.yaml",
+      "automation/skills/repo-reentry/SKILL.md",
+      "automation/skills/single-use-lifecycle-guard/SKILL.md",
+      "automation/skills/execution-cost-forecaster/SKILL.md",
+      "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+      "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+      "automation/governance/master_manifest.v1.yaml",
+      "docs/CURRENT_STATE.md",
+      "docs/CURRENT_WORK.md",
+      "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+      "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml",
+      "automation/engine/execution_capacity.py",
+      "tests/automation/test_execution_capacity.py"
+    ],
+    "next_authorization_identity": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4",
+    "revision": 4,
+    "prior_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3",
+    "prior_supersession": "Only after independentPASS; preserveREV3originalbytes; neverreserved/consumed/invoked",
+    "budgets": {
+      "implementation": 2,
+      "review_fix": 2
+    },
+    "review_fix_grant": "Conditional ownerapproved conformanceonly; exact futurechildsourcefindingbinding+singleuselifecycle, notexecutableunknownSHA, notparentCONSUMEDreuse",
+    "current_authorization_changed": false,
+    "writer_execution_reservation_dispatch_created": false,
+    "mandatory_materialization_checks": [
+      "source and historicalblobs unchanged",
+      "canonicalcontractshapevalidation",
+      "mainCURRENT/WO/plan/auth/program/forecast hashes and scopes equal",
+      "no current weekly/P90manual/zerobudget contradictory clauses",
+      "exactpolicysemanticdigest unchanged atactivation",
+      "latestprovider snapshots and ONLY5H/P75 statisticalgate before lifecycle",
+      "onewriter/normalordered singleuse lifecycle, noautomaticCODEX"
+    ]
+  },
+  "required_checks": [
+    "weekly advisory-only no statistical MANUAL/CONTROLLED_AUTOblock",
+    "5H-only gate +1pp; MANUALP75/P90advisory; unknownwatchallrisk",
+    "quota poolprovider/account/limit separate; nonquota metadata notgate",
+    "full5H/reset liveness feedback withoutauthorityoverride/uniformquotapacing",
+    "2implementation+2reviewfix bounded grant preservesexactscope/noauthorityexpansion/singleuselifecycle",
+    "provideractualdenial/sameexecutionresume/consumeddenial/onewriter/queueeventnoauthority/reviewintegrationpreserved",
+    "CONTROLLED_AUTO disabled; usable5HP90+5acceptedcurrentcontroller+Owneractivation, weeklynevergate",
+    "no calibrationcampaign/probes or unknownfuture executableauthority",
+    "main21cohesiveimplementationstillpendingCODEXandcohesivesourceacceptance"
+  ],
+  "activation_permission_after_PASS": "WORK may materialize target1.2.2 policy2.2 with ONLY reviewedcandidate status->ACCEPTED_MATERIALIZED, active->true, authority.active_master_architecture->1.2.2; then recompile exact successor metadata/pointers/hashes under this reviewedrebindcontract. No sourceimplementation writes byWORK.",
+  "reviewer_activation": "DENIED",
+  "verdicts": [
+    "PASS",
+    "REVIEW_FIX_REQUIRED",
+    "HUMAN_DECISION_REQUIRED"
+  ],
+  "created_at": "2026-10-06T11:03:38Z",
+  "updated_at": "2026-10-06T11:03:38Z"
+}
