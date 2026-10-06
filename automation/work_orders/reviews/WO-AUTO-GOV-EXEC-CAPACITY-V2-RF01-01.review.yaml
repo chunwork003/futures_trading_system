@@ -1,0 +1,321 @@
+{
+  "schema_version": "automation.independent_review_packet.v1",
+  "reviewer_type": "FRESH_NARROW_INDEPENDENT_V2_RF01_RE_REVIEW",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+  "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "correction_id": "AUTO-GOV-EXEC-CAPACITY-V2-RF01",
+  "status": "RE_REVIEW_PENDING",
+  "original_v2_implementation": "e414c108e075c8aa2307d607ffe77013b40c5391",
+  "original_v2_evidence": "b899984462e48eb4dd02eae502918bd36ec937d4",
+  "original_review_verdict": "REVIEW_FIX_REQUIRED",
+  "original_review_verdict_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.verdict.json",
+  "rf01_implementation": "ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a",
+  "rf01_evidence": "606d8273cc7ead110547d3fa232b7c5e41c0e78e",
+  "rf01_branch": "auto/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "control_plane_master_start": "8afc5d09f66734829c3ca449fc73b0e1c1aa974d",
+  "effective_candidate": "ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a",
+  "effective_candidate_description": "Original23-file candidate + exact4-file RF01 delta; review effective candidate, not RF01 files in isolation",
+  "effective_candidate_identity_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.effective-candidate.json",
+  "effective_source_bundle_sha256": "f5a1fea9c2a8f4084348bbe6e8912d6020c9ea9ecfb80ac128eda33a5aaffa9d",
+  "original_architecture_bundle_sha256": "21949d0035f9c290a3bab45b342f37e1ee598b09057a6deb5c9d22b3428e1391",
+  "exact_correction_scope": [
+    "automation/engine/execution_capacity.py",
+    "tests/automation/test_execution_capacity.py",
+    "automation/engine/contracts.py",
+    "tests/automation/test_contracts.py"
+  ],
+  "effective_scope": [
+    {
+      "path": "automation/engine/contracts.py",
+      "git_blob_sha": "e2cc94bd56182441991334005ec985b688b2cfdf"
+    },
+    {
+      "path": "automation/engine/execution_capacity.py",
+      "git_blob_sha": "48b2d11199f3a864c7e1ccc4821645cb1eea28cd"
+    },
+    {
+      "path": "automation/governance/master_manifest.v1.yaml",
+      "git_blob_sha": "b32ef0063d35d48c58b4411456c689139cfff0c5"
+    },
+    {
+      "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+      "git_blob_sha": "dda6fde0c69f289a81aa743a5474db2aa5bf1867"
+    },
+    {
+      "path": "automation/policies/development_entry_protocol.v2.yaml",
+      "git_blob_sha": "8f48fbdf96809a44fd1ddbd412de0cf1fe2819a7"
+    },
+    {
+      "path": "automation/policies/development_state_machine.v2.yaml",
+      "git_blob_sha": "b36939d7645ba1188e3faffd64e4d10c0fa143f3"
+    },
+    {
+      "path": "automation/policies/execution_capacity_policy.v2.yaml",
+      "git_blob_sha": "29beffc4b63eb14a1a2734ceb88773fdcdf7916c"
+    },
+    {
+      "path": "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+      "git_blob_sha": "e51259ac317d63de73826a3a7d6e02d28969ca50"
+    },
+    {
+      "path": "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+      "git_blob_sha": "4b19eabab43d3bbc511711724117150381062045"
+    },
+    {
+      "path": "automation/skills/execution-cost-forecaster/SKILL.md",
+      "git_blob_sha": "4f7855bffc71fd233c99d451127c7d6360e597fa"
+    },
+    {
+      "path": "automation/skills/execution-efficiency-guard/SKILL.md",
+      "git_blob_sha": "9e69be396e790fef9fecbac8b003fb1e6263ce22"
+    },
+    {
+      "path": "automation/skills/quota-snapshot-recorder/SKILL.md",
+      "git_blob_sha": "293f5d341dfbdedce2f60db5b1581e6f2bc12a8f"
+    },
+    {
+      "path": "automation/skills/repo-reentry/SKILL.md",
+      "git_blob_sha": "24bb896d023953f8e718bb608784e6c4cfe15252"
+    },
+    {
+      "path": "automation/skills/single-use-lifecycle-guard/SKILL.md",
+      "git_blob_sha": "fc0eb62a69f1a38643ee18c4c7b538a356cf9461"
+    },
+    {
+      "path": "automation/specs/negative_assertions.v2.yaml",
+      "git_blob_sha": "4e5d9ea39ae67fa0753e8402fa21aa75fe0e9b40"
+    },
+    {
+      "path": "automation/specs/work_cost_accounting.v2.yaml",
+      "git_blob_sha": "9691b6e16e24004e0ea3e1a34ab577714570cdd7"
+    },
+    {
+      "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+      "git_blob_sha": "178c60a49261d3746193a5521439f0c45dbaa75d"
+    },
+    {
+      "path": "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+      "git_blob_sha": "c1b59c0ec6c4107b0e16ab9e261340ce740d8ed4"
+    },
+    {
+      "path": "docs/CURRENT_STATE.md",
+      "git_blob_sha": "3d2b852a80dbad50a9747f027fda35a0ad4152f3"
+    },
+    {
+      "path": "docs/CURRENT_WORK.md",
+      "git_blob_sha": "78a3315a982b68abd6c0f8b4ae2cb870f4fcf9e5"
+    },
+    {
+      "path": "scripts/execution_cost_reconcile.ps1",
+      "git_blob_sha": "0817676efed4c6d5899dedbaa37ad01500db611e"
+    },
+    {
+      "path": "tests/automation/test_contracts.py",
+      "git_blob_sha": "8c8b6f9db2209102b8068a8d293c70775f881cc0"
+    },
+    {
+      "path": "tests/automation/test_execution_capacity.py",
+      "git_blob_sha": "a07aa574f19d544dcc3d33f58ef9fa8fdb03ce2d"
+    }
+  ],
+  "protected19": {
+    "automation/policies/execution_capacity_policy.v2.yaml": "29beffc4b63eb14a1a2734ceb88773fdcdf7916c",
+    "automation/policies/authorization_lifecycle.v1_1.yaml": "dda6fde0c69f289a81aa743a5474db2aa5bf1867",
+    "automation/policies/development_state_machine.v2.yaml": "b36939d7645ba1188e3faffd64e4d10c0fa143f3",
+    "automation/policies/development_entry_protocol.v2.yaml": "8f48fbdf96809a44fd1ddbd412de0cf1fe2819a7",
+    "automation/telemetry/execution_cost_contract.v2.yaml": "178c60a49261d3746193a5521439f0c45dbaa75d",
+    "automation/specs/work_cost_accounting.v2.yaml": "9691b6e16e24004e0ea3e1a34ab577714570cdd7",
+    "automation/specs/negative_assertions.v2.yaml": "4e5d9ea39ae67fa0753e8402fa21aa75fe0e9b40",
+    "scripts/execution_cost_reconcile.ps1": "0817676efed4c6d5899dedbaa37ad01500db611e",
+    "automation/skills/quota-snapshot-recorder/SKILL.md": "293f5d341dfbdedce2f60db5b1581e6f2bc12a8f",
+    "automation/skills/execution-cost-forecaster/SKILL.md": "4f7855bffc71fd233c99d451127c7d6360e597fa",
+    "automation/skills/execution-efficiency-guard/SKILL.md": "9e69be396e790fef9fecbac8b003fb1e6263ce22",
+    "automation/skills/single-use-lifecycle-guard/SKILL.md": "fc0eb62a69f1a38643ee18c4c7b538a356cf9461",
+    "automation/skills/repo-reentry/SKILL.md": "24bb896d023953f8e718bb608784e6c4cfe15252",
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md": "4b19eabab43d3bbc511711724117150381062045",
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md": "e51259ac317d63de73826a3a7d6e02d28969ca50",
+    "automation/governance/master_manifest.v1.yaml": "b32ef0063d35d48c58b4411456c689139cfff0c5",
+    "docs/AI_AUTOMATION_OPERATING_MODEL.md": "c1b59c0ec6c4107b0e16ab9e261340ce740d8ed4",
+    "docs/CURRENT_STATE.md": "3d2b852a80dbad50a9747f027fda35a0ad4152f3",
+    "docs/CURRENT_WORK.md": "78a3315a982b68abd6c0f8b4ae2cb870f4fcf9e5"
+  },
+  "historical_protected": {
+    "automation/engine/yaml_io.py": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+    "automation/policies/authorization_lifecycle.v1.yaml": "a00c8f8277204380dd6211548a6828380afb51e0",
+    "automation/policies/development_entry_protocol.v1.yaml": "40d0a8ee5ca3bc1f416e324d755f752b67c0d2d6",
+    "automation/policies/development_state_machine.v1.yaml": "36d8f1e3108420963d2020a36e66de59c718c0cf",
+    "automation/policies/quota_admission_policy.v1.yaml": "57c30aae1c4f481af98dd4e9b47323159fc74f41",
+    "automation/policies/quota_admission_policy.v1_1.yaml": "556a86ba5be7a2b2818b1523d96b44caab487bd1",
+    "automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml": "bb7969c891a314b3e2f9c69da2834f07e1f6bcb4",
+    "automation/specs/negative_assertions.v1.yaml": "6fecc7e30ed5057b64ee8851f1787198a7ad722a",
+    "automation/specs/work_cost_accounting.v1.yaml": "f10a216f9e9a02d690bbc68b14dff002ebd75875",
+    "automation/telemetry/execution_cost_contract.v1.yaml": "0ae6b4f269c534b7b691a898584b94655afd1605",
+    "scripts/codex_session_token_usage.ps1": "5834edd880ec9c73781b220c1ee488027f98f77e"
+  },
+  "source_delta": {
+    "automation/engine/contracts.py": {
+      "before_blob": "5c69bd5b4fa3aaea1bab34d443992ce96983fa3f",
+      "after_blob": "e2cc94bd56182441991334005ec985b688b2cfdf"
+    },
+    "automation/engine/execution_capacity.py": {
+      "before_blob": "c64d9201cb5389585eec1f1bf5e6eb26d818fc35",
+      "after_blob": "48b2d11199f3a864c7e1ccc4821645cb1eea28cd"
+    },
+    "tests/automation/test_contracts.py": {
+      "before_blob": "efbedbec8921a7439f6dcbaa5eabfbb2d9c5f617",
+      "after_blob": "8c8b6f9db2209102b8068a8d293c70775f881cc0"
+    },
+    "tests/automation/test_execution_capacity.py": {
+      "before_blob": "6b7e99fbd6777fbba8fb1a4a61f3b564a793c141",
+      "after_blob": "a07aa574f19d544dcc3d33f58ef9fa8fdb03ce2d"
+    }
+  },
+  "source_diff": [
+    {
+      "path": "automation/engine/contracts.py",
+      "patch": "@@ -10,7 +10,7 @@\n from types import MappingProxyType\n from typing import Literal, Mapping, TypeAlias\n \n-from pydantic import BaseModel, ConfigDict, model_validator\n+from pydantic import BaseModel, ConfigDict, field_serializer, model_validator\n \n \n FrozenSection: TypeAlias = Mapping[str, object]\n@@ -49,11 +49,27 @@ def _freeze_yaml_value(value: object) -> object:\n     raise ValueError(f\"unsupported YAML contract value: {type(value).__name__}\")\n \n \n+def _plain_contract_value(value: object) -> object:\n+    \"\"\"Machine dump 與 runtime freeze 分離；遞迴輸出 deterministic JSON-like plain data。\"\"\"\n+    if isinstance(value, AutomationContract):\n+        return value.model_dump()\n+    if isinstance(value, Mapping):\n+        return {key: _plain_contract_value(value[key]) for key in sorted(value)}\n+    if isinstance(value, (list, tuple)):\n+        return [_plain_contract_value(item) for item in value]\n+    return value\n+\n+\n class AutomationContract(BaseModel):\n     \"\"\"所有 machine contract 的共同 fail-closed 與深層唯讀邊界。\"\"\"\n \n     model_config = ConfigDict(extra=\"forbid\", frozen=True, strict=True)\n \n+    @field_serializer(\"*\", check_fields=False)\n+    def _serialize_plain_data(self, value: object) -> object:\n+        # serializer 建立 plain 副本；原有 MappingProxyType/frozen nested model 不變。\n+        return _plain_contract_value(value)\n+\n     @model_validator(mode=\"before\")\n     @classmethod\n     def _accept_yaml_sequences(cls, value: object) -> object:",
+      "exact_source_url": "https://github.com/chunwork003/futures_trading_system/blob/ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a/automation/engine/contracts.py"
+    },
+    {
+      "path": "automation/engine/execution_capacity.py",
+      "patch": "@@ -55,7 +55,7 @@ def qualified_samples(samples: tuple[CalibrationSample, ...], identity: FrozenSe\n     \"\"\"樣本數不是 confidence 升級；每個 identity、歸因與 reset 證據皆必須合格。\"\"\"\n     if len(samples) < 3 or len({s.execution_id for s in samples}) != len(samples):\n         return False\n-    if any(not isinstance(identity.get(k), str) or not identity[k] for k in IDENTITY_DIMENSIONS):\n+    if any(not isinstance(identity.get(k), str) or not identity[k].strip() for k in IDENTITY_DIMENSIONS):\n         return False\n     for sample in samples:\n         if (not sample.execution_id or not sample.exact_binding_verified or not sample.clean_attribution\n@@ -67,10 +67,30 @@ def qualified_samples(samples: tuple[CalibrationSample, ...], identity: FrozenSe\n                for k in TOKEN_DIMENSIONS):\n             return False\n         f = sample.token_features\n-        if f[\"cached_input_tokens\"] + f[\"uncached_input_tokens\"] != f[\"input_tokens\"]:\n+        if (f[\"cached_input_tokens\"] + f[\"uncached_input_tokens\"] != f[\"input_tokens\"]\n+                or f[\"reasoning_output_tokens\"] > f[\"output_tokens\"]\n+                or f[\"total_tokens\"] != f[\"input_tokens\"] + f[\"output_tokens\"]):\n             return False\n         if not sample.provider_before or not sample.provider_after:\n             return False\n+        # reset/百分比相符不足以證明 window identity；必要事實不能由 identity 補造。\n+        for key in (\"provider\", \"limit_id\", \"window_type\"):\n+            if any(window.get(key) != identity[key]\n+                   for window in (sample.provider_before, sample.provider_after)):\n+                return False\n+        for key in IDENTITY_DIMENSIONS:\n+            if key in sample.provider_before or key in sample.provider_after:\n+                if any(window.get(key) != identity[key]\n+                       for window in (sample.provider_before, sample.provider_after)):\n+                    return False\n+        duration = \"window_duration_mins\"\n+        if duration in identity or duration in sample.provider_before or duration in sample.provider_after:\n+            before_duration = sample.provider_before.get(duration)\n+            after_duration = sample.provider_after.get(duration)\n+            if (type(before_duration) is not int or before_duration <= 0\n+                    or type(after_duration) is not int or before_duration != after_duration\n+                    or (duration in identity and before_duration != identity[duration])):\n+                return False\n         if (sample.provider_before.get(\"resets_at\") is None\n                 or sample.provider_before.get(\"resets_at\") != sample.provider_after.get(\"resets_at\")):\n             return False",
+      "exact_source_url": "https://github.com/chunwork003/futures_trading_system/blob/ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a/automation/engine/execution_capacity.py"
+    },
+    {
+      "path": "tests/automation/test_contracts.py",
+      "patch": "@@ -2,6 +2,8 @@\n \n from pathlib import Path\n from types import MappingProxyType\n+import json\n+import warnings\n \n import pytest\n from pydantic import ValidationError\n@@ -254,3 +256,41 @@ def test_successor_candidate_closed_and_deep_read_only(relative_path):\n     payload = load_yaml_mapping(ROOT / relative_path)\n     payload[\"unreviewed_authority\"] = True\n     with pytest.raises(ValidationError): type(loaded).model_validate(payload)\n+\n+\n+def test_rf01_plain_serialization_preserves_immutable_strict_contract():\n+    payload = _minimal_package()\n+    payload[\"telemetry\"] = {\"nested\": [{\"token_status\": \"PENDING_EXTERNAL_EXTRACTION\"}]}\n+    record = WorkPackageRecord.model_validate(payload)\n+    with warnings.catch_warnings(record=True) as captured:\n+        warnings.simplefilter(\"always\")\n+        plain = record.model_dump()\n+        encoded = record.model_dump_json()\n+        restored = WorkPackageRecord.model_validate_json(encoded)\n+        plain_restored = WorkPackageRecord.model_validate(plain)\n+    assert not captured\n+    assert plain == json.loads(encoded) == restored.model_dump()\n+    assert plain_restored == restored == record\n+    assert type(plain[\"telemetry\"]) is dict and type(plain[\"telemetry\"][\"nested\"]) is list\n+    with pytest.raises(TypeError): record.telemetry[\"nested\"][0][\"token_status\"] = \"EXACT\"\n+    with pytest.raises(ValidationError): record.status = \"AUTHORIZED\"\n+    for invalid in ({**plain, \"unreviewed_authority\": True}, {**plain, \"wave\": 1},\n+                    {**plain, \"depends_on\": [1]}):\n+        with pytest.raises(ValidationError): WorkPackageRecord.model_validate(invalid)\n+    plain[\"telemetry\"][\"nested\"][0][\"token_status\"] = \"EXACT\"\n+    assert record.telemetry[\"nested\"][0][\"token_status\"] == \"PENDING_EXTERNAL_EXTRACTION\"\n+\n+\n+@pytest.mark.parametrize(\"relative_path\", [\n+    \"automation/governance/master_manifest.v1.yaml\",\n+    \"automation/authorizations/AUTH-AUTO-IMP-001-01.v1.yaml\",\n+    \"automation/policies/execution_capacity_policy.v2.yaml\",\n+])\n+def test_rf01_canonical_json_round_trip_no_serializer_warning(relative_path):\n+    record = load_yaml_contract(ROOT / relative_path)\n+    with warnings.catch_warnings(record=True) as captured:\n+        warnings.simplefilter(\"always\")\n+        plain, encoded = record.model_dump(), record.model_dump_json()\n+        restored = type(record).model_validate_json(encoded)\n+    assert not captured and restored == record\n+    assert plain == json.loads(encoded) == restored.model_dump()",
+      "exact_source_url": "https://github.com/chunwork003/futures_trading_system/blob/ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a/tests/automation/test_contracts.py"
+    },
+    {
+      "path": "tests/automation/test_execution_capacity.py",
+      "patch": "@@ -4,6 +4,7 @@\n from pathlib import Path\n import shutil\n import subprocess\n+import warnings\n import pytest\n from pydantic import ValidationError\n from automation.engine.execution_capacity import (\n@@ -31,8 +32,10 @@ def samples():\n     return identity, tuple(CalibrationSample(execution_id=f\"E{i}\", measurement_type=\"EXACT\",\n         identity=identity, token_features=dict(input_tokens=10, cached_input_tokens=6,\n         uncached_input_tokens=4, output_tokens=2, reasoning_output_tokens=1, total_tokens=12),\n-        provider_before={\"resets_at\": 123, \"used_percent\": 1},\n-        provider_after={\"resets_at\": 123, \"used_percent\": 2}, exact_binding_verified=True,\n+        provider_before={\"resets_at\": 123, \"used_percent\": 1,\n+                         **{key: identity[key] for key in (\"provider\", \"limit_id\", \"window_type\", \"account\", \"workspace\")}},\n+        provider_after={\"resets_at\": 123, \"used_percent\": 2,\n+                        **{key: identity[key] for key in (\"provider\", \"limit_id\", \"window_type\", \"account\", \"workspace\")}}, exact_binding_verified=True,\n         clean_attribution=True, reset_compatible=True, competing_consumer=False) for i in range(3))\n \n \n@@ -198,3 +201,96 @@ def test_reconciler_backward_compatible_and_optional_pause(tmp_path, interrupted\n     assert result[\"dominant_cause\"] == \"WITHIN_EXPECTED_ENVELOPE\"\n     assert result[\"forecast_capacity_review_required\"] is interrupted\n     assert result[\"provider_pause_is_source_defect\"] is False\n+\n+\n+def test_rf01_cal_minimum_counterexample():\n+    identity, observations = samples()\n+    changed = observations[0].model_dump()\n+    changed[\"token_features\"] = dict(changed[\"token_features\"], reasoning_output_tokens=3)\n+    assert not qualified_samples((CalibrationSample(**changed), *observations[1:]), identity)\n+\n+\n+def test_rf01_ser_minimum_counterexample():\n+    original = capacity()\n+    with warnings.catch_warnings(record=True) as captured:\n+        warnings.simplefilter(\"always\")\n+        dumped = original.model_dump()\n+        encoded = original.model_dump_json()\n+    assert not captured\n+    assert type(dumped[\"identity\"]) is dict\n+    assert CapacityEstimate.model_validate_json(encoded) == original\n+\n+\n+@pytest.mark.parametrize(\"field,value\", [(\"reasoning_output_tokens\", 3), (\"total_tokens\", 13),\n+    (\"cached_input_tokens\", 7), (\"uncached_input_tokens\", 5),\n+    *[(key, value) for key in (\"input_tokens\", \"cached_input_tokens\", \"uncached_input_tokens\",\n+        \"output_tokens\", \"reasoning_output_tokens\", \"total_tokens\") for value in (-1, 1.5, True, \"1\")]])\n+def test_rf01_complete_token_accounting(field, value):\n+    identity, observations = samples()\n+    assert qualified_samples(observations, identity)\n+    changed = observations[0].model_dump()\n+    changed[\"token_features\"][field] = value\n+    assert not qualified_samples((CalibrationSample(**changed), *observations[1:]), identity)\n+\n+\n+@pytest.mark.parametrize(\"window\", [\"provider_before\", \"provider_after\"])\n+@pytest.mark.parametrize(\"key\", [\"provider\", \"limit_id\", \"window_type\", \"account\", \"workspace\",\n+                                 \"model\", \"executor_profile\", \"provider_client_policy_version\"])\n+def test_rf01_provider_window_identity(window, key):\n+    identity, observations = samples()\n+    assert qualified_samples(observations, identity)\n+    changed = observations[0].model_dump()\n+    changed[window][key] = \"OTHER\"\n+    assert not qualified_samples((CalibrationSample(**changed), *observations[1:]), identity)\n+\n+\n+@pytest.mark.parametrize(\"key\", [\"provider\", \"limit_id\", \"window_type\", \"resets_at\", \"used_percent\"])\n+@pytest.mark.parametrize(\"window\", [\"provider_before\", \"provider_after\"])\n+def test_rf01_missing_required_provider_facts(window, key):\n+    identity, observations = samples()\n+    changed = observations[0].model_dump()\n+    del changed[window][key]\n+    assert not qualified_samples((CalibrationSample(**changed), *observations[1:]), identity)\n+\n+\n+@pytest.mark.parametrize(\"key\", [\"account\", \"workspace\"])\n+def test_rf01_optional_identity_not_fabricated(key):\n+    identity, observations = samples()\n+    # 身分未由 provider snapshot 表示時不補造；任一端表示後必須雙端相符。\n+    changed = [item.model_dump() for item in observations]\n+    for item in changed:\n+        for window in (\"provider_before\", \"provider_after\"):\n+            del item[window][key]\n+    absent = tuple(CalibrationSample(**item) for item in changed)\n+    assert qualified_samples(absent, identity)\n+    changed[0][\"provider_before\"][key] = identity[key]\n+    assert not qualified_samples(tuple(CalibrationSample(**item) for item in changed), identity)\n+\n+\n+@pytest.mark.parametrize(\"after\", [None, 120, -1, True, \"60\"])\n+def test_rf01_window_duration_incompatibility(after):\n+    identity, observations = samples()\n+    changed = observations[0].model_dump()\n+    changed[\"provider_before\"][\"window_duration_mins\"] = 60\n+    changed[\"provider_after\"][\"window_duration_mins\"] = after\n+    assert not qualified_samples((CalibrationSample(**changed), *observations[1:]), identity)\n+\n+\n+def test_rf01_clean_sample_positive_and_dump_roundtrip():\n+    identity, observations = samples()\n+    assert qualified_samples(observations, identity)\n+    original = capacity()\n+    with warnings.catch_warnings(record=True) as captured:\n+        warnings.simplefilter(\"always\")\n+        first = original.model_dump()\n+        second = original.model_dump()\n+        encoded = original.model_dump_json()\n+        restored = CapacityEstimate.model_validate_json(encoded)\n+        restored_from_plain = CapacityEstimate.model_validate(first)\n+    assert captured == []\n+    assert first == second == json.loads(encoded) == restored.model_dump()\n+    assert restored_from_plain == restored == original\n+    assert type(first[\"samples\"]) is list and type(first[\"samples\"][0][\"token_features\"]) is dict\n+    first[\"samples\"][0][\"token_features\"][\"total_tokens\"] = -1\n+    assert original.samples[0].token_features[\"total_tokens\"] == 12\n+    with pytest.raises(TypeError): original.samples[0].token_features[\"total_tokens\"] = -1",
+      "exact_source_url": "https://github.com/chunwork003/futures_trading_system/blob/ffbf46f67740f5a314b2bcc6fd125dcbcfb23d9a/tests/automation/test_execution_capacity.py"
+    }
+  ],
+  "intake_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/result_intake.json",
+  "intake_commit": "ec6159d159a99783e0784d69bdede48e546f3488",
+  "writer_release_commit": "a7835e42930affbcbd0481238f26299cab41dd9a",
+  "writer_state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+  "local_token_usage_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/local_token_usage.json",
+  "token_finalization_commit": "e45f4aba866f83cce3f3f6b92659ab40adf9ed4c",
+  "cost_reconciliation_path": "automation/work_orders/optimizations/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.cost-reconciliation.json",
+  "cost_bundle_commit": "9db1ad0a7940e2b613f48cad4e5d327f41228e6a",
+  "mechanical_intake": "PASS",
+  "tests": [
+    {
+      "phase": "minimum_pre_fix",
+      "exit_code": 1,
+      "expected_failure": true,
+      "failed": 2,
+      "deselected": 45,
+      "warnings": 1,
+      "seconds": 0.55,
+      "command": "python -m pytest tests/automation/test_execution_capacity.py -k 'rf01_cal_minimum_counterexample or rf01_ser_minimum_counterexample' -q -p no:cacheprovider --tb=short"
+    },
+    {
+      "phase": "impacted",
+      "exit_code": 0,
+      "passed": 75,
+      "deselected": 69,
+      "warnings": 0,
+      "seconds": 0.5,
+      "command": "python -m pytest tests/automation/test_execution_capacity.py tests/automation/test_contracts.py -k 'rf01 or ambiguous_sample or estimate_never_exact' -q -p no:cacheprovider --tb=short -W error::UserWarning"
+    },
+    {
+      "phase": "targeted",
+      "exit_code": 0,
+      "passed": 144,
+      "warnings": 0,
+      "seconds": 3.29,
+      "command": "python -m pytest tests/automation -q -p no:cacheprovider --tb=short -W error::UserWarning"
+    },
+    {
+      "phase": "full_regression",
+      "exit_code": 0,
+      "passed": 1633,
+      "skipped": 8,
+      "warnings": 0,
+      "seconds": 13.36,
+      "command": "python -m pytest -q -p no:cacheprovider --tb=short",
+      "environment": {
+        "POSTGRES17_TEST_DSN": "",
+        "POSTGRES18_TEST_DSN": ""
+      }
+    }
+  ],
+  "tests_rerun": false,
+  "findings_to_review": [
+    "V2-CAL-01",
+    "V2-SER-01"
+  ],
+  "required_checks": {
+    "calibration": [
+      "cached+uncached=input",
+      "reasoning<=output",
+      "total=input+output",
+      "negative/noninteger reject",
+      "provider/limit/window identity compatibility",
+      "account/workspace when applicable",
+      "reset/window compatibility",
+      "competing consumer reject",
+      "invalid exact binding reject",
+      "missing required identity fails qualification",
+      "clean compatible exact-bound samples qualify",
+      "derived estimate never EXACT"
+    ],
+    "serialization": [
+      "deep nested immutability",
+      "deterministic plain model_dump",
+      "model_dump_json succeeds",
+      "roundtrip validates and preserves semantic content",
+      "extra fields forbidden",
+      "strict/frozen preserved",
+      "MappingProxyType serializer mismatch gone",
+      "no hidden authority/evidence representation regression"
+    ],
+    "preservation": [
+      "Exact19 original V2 blobs unchanged",
+      "historical protected unchanged",
+      "no architecture redesign",
+      "no runtime/broker/DB/migration/LIVE/production authority change",
+      "IVF01 BLOCKED",
+      "AUTO-IMP-003 NOT_AUTHORIZED"
+    ]
+  },
+  "review_instructions": "Fresh narrow independent context. Read exact effective candidate source using bound Git refs; inspect positives and counterexamples. Previous unrelated architecture PASS must not reopen absent contradictory evidence. Work mechanical PASS/test warnings0 do not establish semantic acceptance. Validate both fixes plus effective candidate preservation.",
+  "accepted_verdicts": [
+    "PASS",
+    "REVIEW_FIX_REQUIRED",
+    "HUMAN_DECISION_REQUIRED"
+  ],
+  "pass_required": {
+    "V2_CAL_01": "FIXED",
+    "V2_SER_01": "FIXED",
+    "effective_candidate_preservation": "PASS"
+  },
+  "verdict_binding_required": [
+    "work_order_id",
+    "execution_id",
+    "original_v2_implementation",
+    "original_v2_evidence",
+    "rf01_implementation",
+    "rf01_evidence",
+    "effective_source_bundle_sha256",
+    "exact_reviewed_scope"
+  ],
+  "on_pass_next_route": "WORK_MATERIALIZE_REVIEWED_ARCHITECTURE_1_2_NO_AUTO_DISPATCH",
+  "prohibited": [
+    "activateArchitecture1.2",
+    "mergeeffectivecandidate",
+    "authorizeadditionalcorrection",
+    "IVF01executionorRev2",
+    "AUTO-IMP-003",
+    "runtime/broker/DB/migration/LIVE/production"
+  ],
+  "semantic_acceptance": "NOT_PERFORMED",
+  "architecture_active": "1.1",
+  "architecture_candidate": "1.2_CANDIDATE_REVIEW_FIX_REQUIRED_NOT_ACTIVE",
+  "created_at": "2026-10-06T07:04:54.363Z",
+  "updated_at": "2026-10-06T07:04:54.363Z"
+}

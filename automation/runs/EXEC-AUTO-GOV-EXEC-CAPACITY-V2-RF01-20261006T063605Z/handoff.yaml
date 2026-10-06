@@ -17,12 +17,18 @@
   "manual_trigger_only": true,
   "automatic_dispatch": false,
   "automatic_next_package": false,
-  "executor_invoked": false,
+  "executor_invoked": true,
   "first_invocation_only": true,
   "reuse": "DENIED",
-  "status": "READY_FOR_MANUAL_CODEX_TRIGGER",
-  "required_order": "Fresh fetch origin/master -> exact master CURRENT/WO/auth/forecast/CONSUMED dispatch/reservation/lock -> fresh provider/head/scope proof -> isolated clean source branch at e414 reviewed candidate -> exact first manual invocation only",
+  "status": "COMPLETED_PENDING_RE_REVIEW",
+  "required_order": "WORK intake/token/reconcile complete -> fresh narrow effective-candidate independent re-review -> STOP",
   "architecture_activation": "DENIED_PENDING_RF01_NARROW_RE_REVIEW_AND_WORK_MATERIALIZATION",
   "created_at": "2026-10-06T06:39:11.514Z",
-  "updated_at": "2026-10-06T06:39:11.514Z"
+  "updated_at": "2026-10-06T07:04:54.363Z",
+  "handoff_ready": false,
+  "reexecution": false,
+  "next_route": "WAIT_FOR_FRESH_NARROW_INDEPENDENT_V2_RF01_RE_REVIEW",
+  "completion_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/completion.json",
+  "result_intake_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/result_intake.json",
+  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.review.yaml"
 }
