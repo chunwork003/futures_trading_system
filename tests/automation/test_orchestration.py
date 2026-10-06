@@ -158,3 +158,31 @@ def test_bounded_context_profile_is_pointer_first_and_history_on_demand() -> Non
 def test_wake_event_is_non_authority_value_object() -> None:
     event = _event("PROVIDER_AVAILABILITY_RECOVERY")
     assert event.effect == "WAKE_ONLY" and event.grants_authority is False and event.dispatches is False
+
+
+def test_program_v2_declares_permanent_manual_executor_fallback() -> None:
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2]
+    program = json.loads(
+        (
+            root
+            / "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml"
+        ).read_text(encoding="utf-8")
+    )
+
+    strategy = program["implementation_strategy"]
+
+    assert strategy["supported_dispatch_modes"] == ["MANUAL", "CONTROLLED_AUTO"]
+    assert strategy["supported_executor_modes"] == ["HUMAN_DIALOGUE", "CODEX"]
+    assert strategy["permanent_manual_fallback"]["supported"] is True
+    assert (
+        strategy["permanent_manual_fallback"]["human_dialogue_codex_capacity_gate"]
+        == "NOT_APPLICABLE"
+    )
+    assert (
+        strategy["permanent_manual_fallback"]["same_execution_multi_executor"]
+        == "DENIED"
+    )
+    assert strategy["controlled_auto"] == "DISABLED"

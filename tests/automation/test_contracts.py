@@ -316,3 +316,22 @@ def test_orchestration_control_policy_contract_is_strict() -> None:
         record.semantics["events"] = "DISPATCH"
     with pytest.raises(ValidationError):
         OrchestrationControlPolicy.model_validate({**payload, "unreviewed_authority": True})
+
+def test_program_v2_orchestration_policy_loads_as_strict_contract() -> None:
+    loaded = load_yaml_contract(
+        ROOT / "automation/policies/orchestration_control_policy.v1.yaml"
+    )
+
+    assert isinstance(loaded, OrchestrationControlPolicy)
+    assert loaded.active is False
+    assert loaded.status == "CANDIDATE_PENDING_COHESIVE_REVIEW"
+    assert loaded.authority["active_master_architecture"] == "1.2.2"
+    assert loaded.semantics["executor"]["human_dialogue"]["permanent_fallback"] is True
+    assert (
+        loaded.semantics["executor"]["human_dialogue"]["codex_capacity_gate"]
+        == "NOT_APPLICABLE"
+    )
+    assert loaded.semantics["dispatch"]["controlled_auto"] == "DISABLED"
+
+    with pytest.raises(TypeError):
+        loaded.semantics["dispatch"]["controlled_auto"] = "ENABLED"
