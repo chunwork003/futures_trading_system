@@ -1,0 +1,75 @@
+{
+  "schema_version": "automation.authorization_candidate.v1",
+  "document_status": "NON_AUTHORITY_CANDIDATE",
+  "authorization_state": "NOT_AUTHORIZED",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "executor_mode": "CODEX",
+  "executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+  "source_candidate_head_sha": "52f0b5da1d050a8876f9716b227055219f4fd070",
+  "exact_write_scope": [
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+    "automation/skills/execution-cost-forecaster/SKILL.md",
+    "automation/skills/repo-reentry/SKILL.md",
+    "automation/skills/single-use-lifecycle-guard/SKILL.md",
+    "automation/specs/context_loading_policy.v1.yaml",
+    "scripts/execution_cost_reconcile.ps1",
+    "tests/automation/test_execution_cost_reconcile.py"
+  ],
+  "post_checkpoint_fix_scope": [
+    "scripts/execution_cost_reconcile.ps1",
+    "tests/automation/test_execution_cost_reconcile.py"
+  ],
+  "scope_digest": "RECOMPUTE_CANONICAL_EXACT_ORDER_AND_BIND_CHECKPOINT_SHA_BEFORE_AUTHORIZED",
+  "checkpoint_sha256": null,
+  "architecture": "1.2.2",
+  "budget_authority": "MISSING_EXPLICIT_ONE_CYCLE_OWNER_GRANT",
+  "prior_budget_remaining": 0,
+  "review_fix_budget_repurposed": false,
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "forecast": "Fresh continuation forecast from bounded context/test plan required; do not reuse 21-file forecast as exact same-class demand",
+  "new_execution_identity_allocated": false,
+  "reservation_created": false,
+  "dispatch_committed": false,
+  "handoff_ready": false,
+  "tests": {
+    "shells": [
+      "Windows PowerShell5.1 REQUIRED",
+      "PowerShell7 if installed; absence recorded NOT_AVAILABLE not false PASS"
+    ],
+    "cases": [
+      "four previously failing cases",
+      "pause=False positive control",
+      "minimal legacy empty payload",
+      "optional bands absent/null/partial",
+      "test_cycles absent/null/partial",
+      "structural evidence absent/null/partial",
+      "provider_interruption empty object preserved",
+      "provider pause telemetry and capacity review signal",
+      "provider_pause_is_source_defect=false",
+      "no automatic split authority"
+    ],
+    "commands": [
+      "python -m pytest -p no:cacheprovider tests/automation/test_execution_cost_reconcile.py",
+      "python -m pytest -p no:cacheprovider tests/automation/test_execution_cost_reconcile.py tests/automation/test_execution_capacity.py tests/automation/test_orchestration.py tests/automation/test_contracts.py"
+    ],
+    "full_regression": "Only after targeted/cross-targeted PASS: one full regression when required by existing test-cost policy; no repeats for metadata/hash-only changes"
+  },
+  "required_before_authorized": [
+    "Explicit narrow additional correction cycle authority",
+    "Remote durable verified Batch4 checkpoint and clean-source/quiescence evidence",
+    "Durable reconciliation and old writer release",
+    "Fresh exact source/controlplane/scope/architecture binding and provider/5H gates"
+  ],
+  "created_at": "2026-10-06T14:11:54Z",
+  "updated_at": "2026-10-06T14:11:54Z"
+}

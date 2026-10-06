@@ -1,0 +1,177 @@
+{
+  "schema_version": "automation.execution_reconciliation.v1",
+  "decision_id": "PROGRAM-V2-HUMAN-DIALOGUE-RECONCILIATION-01",
+  "repository": "chunwork003/futures_trading_system",
+  "master_baseline_sha": "b36e9bc253a13a3a361b3861e607455658df524b",
+  "architecture": "1.2.2",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5",
+  "decision": "STOP_CURRENT_EXECUTION_PRESERVE_HISTORY_PREPARE_FRESH_SINGLE_WRITER_CODEX_SUCCESSOR",
+  "execution_state": "STOPPED",
+  "reason": "RECONCILIATION_REQUIRED_MISSING_INVOCATION_EVIDENCE",
+  "policy_basis": [
+    "automation/policies/authorization_lifecycle.v1_1.yaml#semantics.missing_invocation_evidence=STOP_NO_BACKFILL",
+    "automation/policies/authorization_lifecycle.v1_1.yaml#semantics.ambiguous_projection=RECONCILIATION_REQUIRED",
+    "automation/policies/development_state_machine.v2.yaml#semantics.execution=STOPPED",
+    "automation/governance/decisions/MANUAL-EXECUTOR-FALLBACK.owner.json#decision.executor_switch=ONLY_AT_DURABLE_CHECKPOINT_NO_CONCURRENT_WRITERS",
+    "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/writer_lock.yaml#release_condition=EXPLICIT_RECONCILIATION"
+  ],
+  "architecture_escalation_required": false,
+  "policy_semantics_changed": false,
+  "historical_files": {
+    "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/handoff.yaml": {
+      "git_blob": "2d7b7a3a5c8a9cac61973ee4aad8fb71c8e7f637",
+      "immutable_record": true,
+      "preserve_in_this_phase": true
+    },
+    "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/dispatch.yaml": {
+      "git_blob": "8dccb6662a01203ae4eb60a6f20aaad29ccd7099",
+      "immutable_record": true,
+      "preserve_in_this_phase": true
+    },
+    "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/reservation.yaml": {
+      "git_blob": "45ce5f1793d80608cef7d2a5588722c7f0b04141",
+      "immutable_record": true,
+      "preserve_in_this_phase": true
+    },
+    "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/writer_lock.yaml": {
+      "git_blob": "48b7bab4f5b26badcefd69369cf7e35a19414522",
+      "immutable_record": false,
+      "preserve_in_this_phase": true
+    }
+  },
+  "invocation_evidence": {
+    "historical_executor_invoked": false,
+    "actual_invocation_proof": "MISSING_NOT_BACKFILLED",
+    "source_activity_is_invocation_proof": false,
+    "resume_same_execution": "DENIED",
+    "consumed_redispatch": "DENIED",
+    "multi_executor_same_execution": "DENIED"
+  },
+  "actual_implementation": {
+    "branch": "manual/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5",
+    "head": "52f0b5da1d050a8876f9716b227055219f4fd070",
+    "commits": [
+      "2fa5b55cdc44fc681d080c9f08ade4071b8b7304",
+      "f993860c85e7889db74e39e76d803f6406ebe689",
+      "52f0b5da1d050a8876f9716b227055219f4fd070"
+    ],
+    "remote_verified": true,
+    "changed_source_files": [
+      "automation/engine/contracts.py",
+      "automation/engine/execution_capacity.py",
+      "automation/engine/orchestration.py",
+      "automation/policies/orchestration_control_policy.v1.yaml",
+      "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+      "tests/automation/test_contracts.py",
+      "tests/automation/test_execution_capacity.py",
+      "tests/automation/test_orchestration.py"
+    ],
+    "batch3_cross_targeted": {
+      "reported": "191 passed",
+      "measurement": "HUMAN_REPORTED_NOT_INDEPENDENTLY_VERIFIED"
+    }
+  },
+  "batch4": {
+    "scope": [
+      "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+      "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+      "automation/skills/execution-cost-forecaster/SKILL.md",
+      "automation/skills/repo-reentry/SKILL.md",
+      "automation/skills/single-use-lifecycle-guard/SKILL.md",
+      "automation/specs/context_loading_policy.v1.yaml",
+      "scripts/execution_cost_reconcile.ps1",
+      "tests/automation/test_execution_cost_reconcile.py"
+    ],
+    "patch_sha256": null,
+    "status": "LOCAL_DIRTY_DELTA_REPORTED_CHECKPOINT_NOT_YET_REMOTE_VERIFIED",
+    "forensic": {
+      "result": "PASS",
+      "measurement": "HUMAN_REPORTED_READ_ONLY_FORENSIC",
+      "root_cause": "POWERSHELL_5_1_UTF8_NO_BOM_SCRIPT_DECODING_COMPATIBILITY",
+      "additional_semantic_defect": "NOT_ESTABLISHED"
+    },
+    "preservation_required_before_cleanup": true
+  },
+  "budget": {
+    "implementation": {
+      "limit": 2,
+      "used": 2,
+      "remaining": 0,
+      "evidence": "HUMAN_REPORTED_THIS_REQUEST",
+      "attempts": [
+        "BATCH4_COMPAT_RF01=TARGETED_FAIL",
+        "BATCH4_COMPAT_RF02=TARGETED_FAIL"
+      ],
+      "projection_correction": "Existing 2 remaining is stale phase projection, not renewed authority"
+    },
+    "review_fix": {
+      "remaining": 2,
+      "available_for_this_pre_review_fix": false,
+      "reason": "Requires bound independent REVIEW_FIX_REQUIRED; forensic PASS is not that verdict"
+    },
+    "renewal_authority": "NOT_GRANTED_BY_EXISTING_OWNER_ARTIFACT",
+    "required_owner_action": "Explicitly grant one additional narrow Batch4 encoding-compatibility implementation correction cycle for the prepared REV6 eight-file continuation; no architecture change"
+  },
+  "writer": {
+    "current": "HELD",
+    "release_now": false,
+    "release_condition": "EXPLICIT_RECONCILIATION",
+    "ordering": [
+      "Durable reconciliation STOP record",
+      "Mechanically verified exact 8-file patch and untracked test snapshot; actual checkpoint SHA256/tree and quiescence attestation durable on GitHub",
+      "Restore tracked state exactly to source HEAD, preserve untracked test outside active source path, data untouched",
+      "Fresh remote evidence/head/writer revalidation",
+      "Append exact writer-release evidence; update current writer lock to RELEASED with prior HELD blob preserved in Git; reference reconciliation/checkpoint commits",
+      "Confirm no concurrent writer before successor acquisition"
+    ]
+  },
+  "successor": {
+    "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+    "state": "CANDIDATE_NOT_AUTHORIZED",
+    "execution_id": null,
+    "execution_id_pattern": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-<fresh UTC yyyyMMddTHHmmssZ>",
+    "same_logical_wo": true,
+    "new_single_use_lifecycle_required": true,
+    "source_candidate_sha": "52f0b5da1d050a8876f9716b227055219f4fd070",
+    "exact_write_scope": [
+      "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+      "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+      "automation/skills/execution-cost-forecaster/SKILL.md",
+      "automation/skills/repo-reentry/SKILL.md",
+      "automation/skills/single-use-lifecycle-guard/SKILL.md",
+      "automation/specs/context_loading_policy.v1.yaml",
+      "scripts/execution_cost_reconcile.ps1",
+      "tests/automation/test_execution_cost_reconcile.py"
+    ],
+    "patch_apply_scope": [
+      "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+      "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+      "automation/skills/execution-cost-forecaster/SKILL.md",
+      "automation/skills/repo-reentry/SKILL.md",
+      "automation/skills/single-use-lifecycle-guard/SKILL.md",
+      "automation/specs/context_loading_policy.v1.yaml",
+      "scripts/execution_cost_reconcile.ps1",
+      "tests/automation/test_execution_cost_reconcile.py"
+    ],
+    "post_restore_semantic_write_scope": [
+      "scripts/execution_cost_reconcile.ps1",
+      "tests/automation/test_execution_cost_reconcile.py"
+    ],
+    "protected_remainder": "All committed Batch1-3 source blobs unchanged; no policy/Program semantic edits beyond exact checkpoint materialization, no historical lifecycle writes",
+    "handoff_ready": false
+  },
+  "semantic_acceptance": "NOT_PERFORMED",
+  "runtime_side_effects": "DENIED",
+  "auto_imp_002": "NOT_AUTHORIZED",
+  "auto_imp_003": "NOT_AUTHORIZED",
+  "work_self_cost": {
+    "token_usage": "UNKNOWN",
+    "measurement": "PROXY",
+    "raw_transcript_loaded": false,
+    "implementation_tests_run": 0
+  },
+  "created_at": "2026-10-06T14:11:54Z",
+  "updated_at": "2026-10-06T14:11:54Z"
+}

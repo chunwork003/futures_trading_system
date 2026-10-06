@@ -1,3 +1,16 @@
+# CURRENT — Execution reconciliation STOP
+
+Architecture 1.2.2 ACTIVE; existing lifecycle semantics unchanged.
+WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 / REV5 CONSUMED.
+Execution EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z: STOPPED; reason RECONCILIATION_REQUIRED / missing invocation evidence.
+Implementation commits exist through 52f0b5da1d050a8876f9716b227055219f4fd070; no historical executor_invoked=false backfill, no same-execution CODEX resume, no consumed redispatch.
+Writer remains HELD pending durable checkpoint/quiescence verification and EXPLICIT_RECONCILIATION release. No new writer/execution/reservation/dispatch allocated.
+Implementation budget exhausted 2/2 (human-reported); review-fix 2 remains conditional on bound independent REVIEW_FIX_REQUIRED, cannot fund pre-review forensic correction.
+REV6 is a non-authority candidate. Exact plan: automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/reconciliation.json and MATERIALIZATION.md.
+No executable handoff, no CODEX, no source implementation by WORK. Runtime/broker/DB/migration/LIVE/production DENIED. AUTO-IMP-002/003 NOT_AUTHORIZED.
+
+## Historical projections below — audit only; current STOP above prevails
+
 # CURRENT — Human Dialogue Manual Fallback
 
 Architecture 1.2.2 remains ACTIVE.
