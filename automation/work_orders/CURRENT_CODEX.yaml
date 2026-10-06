@@ -11,8 +11,8 @@
   "handoff_ready": false,
   "execution_eligibility": "PASS_PENDING_ORDERED_LIFECYCLE",
   "sole_blocker": null,
-  "current_route": "WORK_ALLOCATE_FRESH_REV6_EXECUTION",
-  "next_route": "WORK_ALLOCATE_FRESH_REV6_EXECUTION",
+  "current_route": "WORK_SET_REV6_RESERVED",
+  "next_route": "WORK_SET_REV6_RESERVED",
   "current_action": "NORMAL_FRESH_REV6_SINGLE_USE_LIFECYCLE",
   "work_order_path": "automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml",
   "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
@@ -63,12 +63,12 @@
   "manual_trigger_only": true,
   "automatic_dispatch": false,
   "automatic_next_package": false,
-  "execution_id": null,
-  "current_execution_id": null,
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "current_execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
   "executor_invoked": false,
   "reexecution_authorized": false,
-  "writer_state": "HELD",
-  "reservation_created": false,
+  "writer_state": "NONE_HELD",
+  "reservation_created": true,
   "dispatch_committed": false,
   "correction_budget_remaining": 1,
   "ivf01": {
@@ -99,7 +99,7 @@
   "prior_closed_work_order": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
   "prior_closure_pointer": "automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2-RF01.closure.json",
   "created_at": "2026-10-06T08:24:37Z",
-  "updated_at": "2026-10-06T14:55:53Z",
+  "updated_at": "2026-10-06T14:56:54Z",
   "authorization_revision": "6",
   "prior_authorization": {
     "id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3",
@@ -144,5 +144,7 @@
   "scope_count": 8,
   "predecessor_execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z",
   "predecessor_authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5",
-  "predecessor_state": "STOPPED_CONSUMED_NOT_RESUMABLE"
+  "predecessor_state": "STOPPED_CONSUMED_NOT_RESUMABLE",
+  "reservation_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/reservation.yaml",
+  "writer_lock_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_lock.yaml"
 }

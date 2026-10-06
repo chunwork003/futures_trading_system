@@ -105,7 +105,7 @@
     "scope_or_semantic_expansion": "STOP_TO_OWNER"
   },
   "execution_branch": "auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
-  "execution_id": null,
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
   "execution_eligibility": "PASS_PENDING_ORDERED_LIFECYCLE",
   "status": "AUTHORIZED",
   "handoff_ready": false,
@@ -113,8 +113,8 @@
   "automatic_dispatch": false,
   "automatic_next_package": false,
   "executor_invoked": false,
-  "writer_state": "NONE_HELD",
-  "reservation_created": false,
+  "writer_state": "HELD",
+  "reservation_created": true,
   "dispatch_committed": false,
   "forecast_path": "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.json",
   "eligibility_path": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/REV6.eligibility.json",
@@ -260,7 +260,7 @@
   "KNOWN_AUTOMATION_ARCHITECTURE_DEBT": "NONE",
   "debt_semantics": "Completefinalcapacity/liveness/boundedcorrectionpolicy design; cohesive sourceimplementation and review remain lifecycle work, no architectureTODO",
   "created_at": "2026-10-06T08:24:37Z",
-  "updated_at": "2026-10-06T14:55:09Z",
+  "updated_at": "2026-10-06T14:56:54Z",
   "compilation_commit": "HISTORICAL_PREDECESSOR_COMPILATION_ONLY",
   "provider_evidence_path": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/REV6.provider-evidence.json",
   "implementation_contract_amendments": [
@@ -351,5 +351,6 @@
     "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml": "f4e3322776833b65e5170a5c81e2dd44855a3daf",
     "automation/engine/execution_capacity.py": "987bfe3c80683bed689d7d4c7ff631bfd561b6f6",
     "tests/automation/test_execution_capacity.py": "fb00b535626b2dab1f337b4fd42179dbe7964fcc"
-  }
+  },
+  "reservation_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/reservation.yaml"
 }
