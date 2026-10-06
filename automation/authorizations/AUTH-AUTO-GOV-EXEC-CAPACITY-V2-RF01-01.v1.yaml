@@ -1,0 +1,126 @@
+{
+  "schema_version": "automation.authorization.v1",
+  "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "authorization_revision": "1",
+  "document_status": "APPROVED_EFFECTIVE",
+  "authorization_state": "AUTHORIZED",
+  "source_candidate_head_sha": "e414c108e075c8aa2307d607ffe77013b40c5391",
+  "decision_evidence": {
+    "decision": "EXECUTION_CAPACITY_V2_RF01 = APPROVED_FOR_BOUNDED_IMPLEMENTATION",
+    "authority": "HUMAN_GOVERNANCE_OWNER",
+    "source": "USER_EXPLICIT_GOVERNANCE_DECISION_THIS_TURN",
+    "architecture_redecision_required": false,
+    "human_decision_required": false,
+    "bootstrap": "GOVERNANCE_POLICY_MIGRATION_REVIEW_FIX_BOOTSTRAP",
+    "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.verdict.json",
+    "review_verdict_commit": "6a3e99e4e4431990df97c8426bbd385af42c2e6c",
+    "created_at": "2026-10-06T06:34:12.425Z",
+    "updated_at": "2026-10-06T06:34:12.425Z"
+  },
+  "exact_binding": {
+    "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+    "authorization_revision": "1",
+    "work_package_id": "AUTO-GOV-EXEC-CAPACITY-V2",
+    "work_package_revision": "1",
+    "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+    "architecture_id": "DEVELOPMENT-AUTOMATION-MASTER",
+    "architecture_revision": "1.1",
+    "architecture_bundle_hash": "d6b2c5b4e8ff95a337c4c9982ed03a64e1cf4ea4c03f250857e98d37e3df6cfa",
+    "target_architecture_revision": "1.2_PENDING_INDEPENDENT_REVIEW_AND_MATERIALIZATION",
+    "planning_baseline_sha": "de871f44d08a1a015a86c2b0a30ead5d0768f314",
+    "scope_digest": "c883e63e204ca82ae936353efa6cee7934ef8ce863bf99285e842889c7c4d481",
+    "scope_digest_convention": "SHA256_UTF8_NEWLINE_JOIN_EXACT_ORDER_NO_TRAILING_NEWLINE",
+    "side_effect_class": "BOUNDED_GOVERNANCE_REVIEW_FIX_NO_TRADING_RUNTIME",
+    "governance_effect": "FIX_TWO_FINDINGS_ONLY_NO_ARCHITECTURE_REDECISION_OR_ACTIVATION",
+    "allowed_executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+    "implementation_correction_budget": 1,
+    "review_barrier": "FRESH_NARROW_INDEPENDENT_GOVERNANCE_RE_REVIEW",
+    "correction_id": "AUTO-GOV-EXEC-CAPACITY-V2-RF01"
+  },
+  "program_binding": {
+    "program_id": "GOVERNANCE_POLICY_MIGRATION_REVIEW_FIX_BOOTSTRAP",
+    "program_revision": "1",
+    "decision_path": "automation/authorizations/AUTH-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.v1.yaml",
+    "legacy_auto_imp_program_modified": false,
+    "ordering": "Bound correction of current pending V2 before blocked IVF01"
+  },
+  "package_binding": {
+    "path": "automation/work_orders/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.yaml",
+    "planned_write_scope": [
+      "automation/engine/execution_capacity.py",
+      "tests/automation/test_execution_capacity.py",
+      "automation/engine/contracts.py",
+      "tests/automation/test_contracts.py"
+    ],
+    "protected_effective_candidate_blobs": {
+      "automation/policies/execution_capacity_policy.v2.yaml": "29beffc4b63eb14a1a2734ceb88773fdcdf7916c",
+      "automation/policies/authorization_lifecycle.v1_1.yaml": "dda6fde0c69f289a81aa743a5474db2aa5bf1867",
+      "automation/policies/development_state_machine.v2.yaml": "b36939d7645ba1188e3faffd64e4d10c0fa143f3",
+      "automation/policies/development_entry_protocol.v2.yaml": "8f48fbdf96809a44fd1ddbd412de0cf1fe2819a7",
+      "automation/telemetry/execution_cost_contract.v2.yaml": "178c60a49261d3746193a5521439f0c45dbaa75d",
+      "automation/specs/work_cost_accounting.v2.yaml": "9691b6e16e24004e0ea3e1a34ab577714570cdd7",
+      "automation/specs/negative_assertions.v2.yaml": "4e5d9ea39ae67fa0753e8402fa21aa75fe0e9b40",
+      "scripts/execution_cost_reconcile.ps1": "0817676efed4c6d5899dedbaa37ad01500db611e",
+      "automation/skills/quota-snapshot-recorder/SKILL.md": "293f5d341dfbdedce2f60db5b1581e6f2bc12a8f",
+      "automation/skills/execution-cost-forecaster/SKILL.md": "4f7855bffc71fd233c99d451127c7d6360e597fa",
+      "automation/skills/execution-efficiency-guard/SKILL.md": "9e69be396e790fef9fecbac8b003fb1e6263ce22",
+      "automation/skills/single-use-lifecycle-guard/SKILL.md": "fc0eb62a69f1a38643ee18c4c7b538a356cf9461",
+      "automation/skills/repo-reentry/SKILL.md": "24bb896d023953f8e718bb608784e6c4cfe15252",
+      "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md": "4b19eabab43d3bbc511711724117150381062045",
+      "automation/prompts/CODEX_EXECUTOR_KERNEL.md": "e51259ac317d63de73826a3a7d6e02d28969ca50",
+      "automation/governance/master_manifest.v1.yaml": "b32ef0063d35d48c58b4411456c689139cfff0c5",
+      "docs/AI_AUTOMATION_OPERATING_MODEL.md": "c1b59c0ec6c4107b0e16ab9e261340ce740d8ed4",
+      "docs/CURRENT_STATE.md": "3d2b852a80dbad50a9747f027fda35a0ad4152f3",
+      "docs/CURRENT_WORK.md": "78a3315a982b68abd6c0f8b4ae2cb870f4fcf9e5"
+    },
+    "protected_historical_git_blobs": {
+      "automation/engine/yaml_io.py": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+      "automation/policies/authorization_lifecycle.v1.yaml": "a00c8f8277204380dd6211548a6828380afb51e0",
+      "automation/policies/development_entry_protocol.v1.yaml": "40d0a8ee5ca3bc1f416e324d755f752b67c0d2d6",
+      "automation/policies/development_state_machine.v1.yaml": "36d8f1e3108420963d2020a36e66de59c718c0cf",
+      "automation/policies/quota_admission_policy.v1.yaml": "57c30aae1c4f481af98dd4e9b47323159fc74f41",
+      "automation/policies/quota_admission_policy.v1_1.yaml": "556a86ba5be7a2b2818b1523d96b44caab487bd1",
+      "automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml": "bb7969c891a314b3e2f9c69da2834f07e1f6bcb4",
+      "automation/specs/negative_assertions.v1.yaml": "6fecc7e30ed5057b64ee8851f1787198a7ad722a",
+      "automation/specs/work_cost_accounting.v1.yaml": "f10a216f9e9a02d690bbc68b14dff002ebd75875",
+      "automation/telemetry/execution_cost_contract.v1.yaml": "0ae6b4f269c534b7b691a898584b94655afd1605",
+      "scripts/codex_session_token_usage.ps1": "5834edd880ec9c73781b220c1ee488027f98f77e"
+    }
+  },
+  "execution_policy": {
+    "manual_trigger_only": true,
+    "automatic_dispatch": "DENIED",
+    "automatic_next_package_progression": "DENIED",
+    "single_use_lifecycle_guard_required": true,
+    "one_writer_required": true,
+    "implementation_initial_iteration": "Exactly one bounded RF01 correction cycle; no automatic RF02"
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED"
+  },
+  "quota_gate": {
+    "status": "GOVERNANCE_POLICY_MIGRATION_REVIEW_FIX_BOOTSTRAP",
+    "provider_hard_block": "STOP",
+    "provider_enforced_limits_waived": false,
+    "old_80pct_40k_gate": "INAPPLICABLE_EXACT_HUMAN_SUPERSESSION_BOOTSTRAP",
+    "ivf01_quota_waiver": false,
+    "prior_amendment_reuse": "DENIED"
+  },
+  "telemetry_gate": {
+    "exact_local_tokens": "BOUND_POST_EXECUTION_DETERMINISTIC_EXTRACTOR",
+    "raw_provider_snapshot": "PRESERVE_WHEN_AVAILABLE",
+    "estimate_typing": "NEVER_EXACT_PERCENT_DERIVED",
+    "task_profile_context_profile_required": true
+  },
+  "decision": {
+    "status": "AUTHORIZED",
+    "next_route": "FRESH_ELIGIBILITY",
+    "created_at": "2026-10-06T06:34:12.425Z",
+    "updated_at": "2026-10-06T06:34:12.425Z"
+  }
+}

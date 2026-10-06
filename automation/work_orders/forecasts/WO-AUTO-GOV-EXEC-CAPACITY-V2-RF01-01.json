@@ -1,0 +1,142 @@
+{
+  "schema_version": "automation.execution_cost_forecast.v1",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01",
+  "confidence": "PROVISIONAL_NO_SAME_CLASS_EXACT_COHORT",
+  "measurement_type": "PROXY",
+  "forecast": {
+    "reported_total_tokens": {
+      "p50": 1800000,
+      "p75": 3600000,
+      "p90": 6000000
+    },
+    "uncached_input_tokens": {
+      "p50": 45000,
+      "p75": 75000,
+      "p90": 120000
+    },
+    "expected_cached_input_ratio_range": [
+      0.9,
+      0.995
+    ],
+    "output_tokens": {
+      "p50": 16000,
+      "p75": 28000,
+      "p90": 45000
+    },
+    "reasoning_output_tokens": {
+      "p50": 4000,
+      "p75": 8000,
+      "p90": 15000
+    },
+    "five_hour_delta_pct": {
+      "p50": null,
+      "p75": null,
+      "p90": null
+    },
+    "weekly_delta_pct": {
+      "p50": null,
+      "p75": null,
+      "p90": null
+    },
+    "actor_seconds": {
+      "p50": 900,
+      "p75": 1500,
+      "p90": 2400
+    },
+    "targeted_seconds": {
+      "p90": 120
+    },
+    "full_regression_seconds": {
+      "p90": 180
+    },
+    "test_cycles": {
+      "pre_fix_cases_max": 2,
+      "complete_targeted_passes_max": 1,
+      "full_regression_passes_max": 1
+    }
+  },
+  "supporting_evidence": [
+    {
+      "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+      "actual_path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/local_token_usage.json",
+      "total_tokens": 3556566,
+      "uncached_input_tokens": 51799,
+      "actor_seconds": 526,
+      "targeted_seconds": 2.98,
+      "full_regression_seconds": 15.75,
+      "classification": "NORMAL",
+      "same_class_comparable": false
+    }
+  ],
+  "comparable_sample_ids": [],
+  "assumptions": [
+    "Two substantive findings in four candidate files; explicit negative matrix and immutable serialization round-trip demand debugging allowance",
+    "Original23-file migration is supporting evidence only, not exact same-class calibration",
+    "Forecast bands are engineering planning proxies, no percentage-to-token conversion or calibrated confidence"
+  ],
+  "expected_dominant_cost_driver": "CONTEXT_REPLAY_AND_IMPACTED_DEBUGGING_NOT_TEST_RUNTIME",
+  "early_watch_thresholds": {
+    "reported_tokens": 6000000,
+    "actor_seconds": 2400,
+    "complete_targeted_passes": 1,
+    "full_regression_passes": 1
+  },
+  "work_orchestration_forecast": {
+    "measurement_type": "PROXY",
+    "actor_seconds": {
+      "p50": 600,
+      "p75": 900,
+      "p90": 1500
+    },
+    "tokens": null
+  },
+  "rework_risk": "MODERATE_TWO_VALIDATED_FINDINGS_NO_AUTOMATIC_RF02",
+  "recommendation_applied_to_next_forecast": "KEEP_COHESIVE_POINTER_FIRST_NO_EXTRA_FULL_SUITE",
+  "task_profile": {
+    "task_class": "BOUNDED_GOVERNANCE_REVIEW_FIX",
+    "change_type": "CALIBRATION_ACCOUNTING_AND_IMMUTABLE_SERIALIZATION_CORRECTION",
+    "subsystem": "automation execution capacity and contracts",
+    "functional_area": "calibration qualification / Pydantic serialization",
+    "concise_engineering_goal": "Fix only V2-CAL-01 and V2-SER-01; preserve reviewed V2 architecture",
+    "primary_symbols_or_functional_surfaces": [
+      "calibration qualification",
+      "immutable contract dump/JSON/round-trip"
+    ],
+    "behavior_dimensions": [
+      "token-accounting consistency",
+      "provider window identity",
+      "plain serialization",
+      "deep immutability"
+    ],
+    "source_file_count": 2,
+    "test_file_count": 2,
+    "semantic_profile": "NARROW_RE_REVIEW_OF_EFFECTIVE_CANDIDATE",
+    "test_profile": "MIN_COUNTEREXAMPLE_IMPACTED_ONE_TARGETED_ONE_REGRESSION",
+    "authority_boundary": "Exact four files; no architecture activation or runtime effects",
+    "packaging_cohesion_decision": "KEEP_COHESIVE: same authority, subsystem and shared targeted/re-review surface; optimize total engineering value"
+  },
+  "context_profile": {
+    "artifacts_read": [],
+    "artifacts_by_type": {
+      "governance": 8,
+      "telemetry": 1,
+      "source": 0,
+      "test": 0
+    },
+    "volume_by_artifact_type": null,
+    "raw_transcript_loaded": false,
+    "history_loaded_amount": {
+      "artifacts": 1,
+      "reason": "Original candidate exact Git tree identities only"
+    },
+    "source_context_volume": 0,
+    "test_context_volume": 0,
+    "governance_context_volume": null,
+    "telemetry_context_volume": null,
+    "content_token_estimate": null,
+    "model_usage_measurement_type": "UNKNOWN",
+    "measurement_limit": "Pointer/blob reuse and partial outputs; no fabricated cumulative volume"
+  },
+  "created_at": "2026-10-06T06:34:12.425Z",
+  "updated_at": "2026-10-06T06:34:12.425Z"
+}
