@@ -108,3 +108,9 @@ Do not grow forecast prose inside kernels.
 Keep machine-readable detail in the forecast/reconciliation artifacts and link to them.
 
 Do not add new metrics unless they can change a planning or optimization decision.
+
+
+## V2 successor procedure — candidate only
+
+Use execution_cost_contract.v2 and work_cost_accounting.v2 candidate pointers. Primary demand is per-WO P50/P75/P90 with cached/uncached/input/output/reasoning dimensions; no old static package forecast as admission authority. Capacity estimates need identity/attribution/reset/uncertainty qualification, never confidence by sample count alone. Running provider interruption requires WORK forecast/capacity review, not source-defect classification; legal same-execution resume can proceed after revalidation; durable feedback precedes new work after completion. Review cannot grant authority.
+Architecture1.1 remains ACTIVE until fresh governance review and WORK materialization; candidate presence grants no authority. Provider denial always wins.

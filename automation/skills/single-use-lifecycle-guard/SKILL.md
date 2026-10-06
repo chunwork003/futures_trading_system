@@ -53,3 +53,25 @@ Must not:
 - rewrite a nonconforming historical run as conforming
 - auto-reexecute
 - expand source scope
+
+
+## Execution Capacity / Resume V2 — candidate procedure
+
+Successor policy pointers (candidate until fresh Independent Governance/Semantic Review PASS and WORK activation):
+- automation/policies/execution_capacity_policy.v2.yaml
+- automation/policies/authorization_lifecycle.v1_1.yaml
+- automation/policies/development_state_machine.v2.yaml
+- automation/policies/development_entry_protocol.v2.yaml
+- automation/telemetry/execution_cost_contract.v2.yaml
+- automation/specs/work_cost_accounting.v2.yaml
+- automation/specs/negative_assertions.v2.yaml
+
+Active master architecture stays 1.1 until reviewed materialization; presence of these files grants no execution authority. V2 evaluation surface: automation.engine.execution_capacity. Control plane assembles exact fresh evidence; evaluator performs no IO/invocation or authority mutation.
+
+EXECUTION_COST_GATE != PROVIDER_AVAILABILITY_GATE. Per-WO P50/P75/P90 demand is primary; legacy static package forecasts are historical planning inputs. V2 has no fixed remaining-percent floor or normalized token fallback. Preserve cached/uncached/input/output/reasoning features. Exact task-bound local usage remains EXACT actual usage, not billing. Provider percentages are immutable shared-account proxy and may inform qualified capacity calibration. Derived capacity/token values are PROVISIONAL_ESTIMATE or CALIBRATED_ESTIMATE, never EXACT; no unsupported constant linear conversion or identical feature weights. Require minimum comparable samples plus identity, attribution, reset and uncertainty qualification; count alone never upgrades confidence.
+
+Actual provider denial wins. Running denial checkpoints SAME execution as PAUSED_PROVIDER_LIMIT with WO/authorization/reservation/dispatch/branch/delta/budget/tests/telemetry/writer lineage. Pause is not source failure or correction-budget consumption. Recovery wakes only: RESUME_PENDING_REVALIDATION -> fresh head, scope, policy, authority, invocation, reservation, dispatch and writer/provider checks -> RESUME_SAME_EXECUTION or STOP_TO_WORK. Safe lock reacquisition needs verified ownership lineage and no competing owner. No new WO/execution/authorization/reservation/dispatch/budget for resume. CONSUMED redispatch remains DENIED; already-invoked same-execution continuation is distinct.
+
+HISTORICAL_PHASE_SNAPSHOT != CURRENT_LIFECYCLE_PROJECTION. Never reinterpret pre-reservation snapshot flags as current truth. Current projection must agree with all durable lifecycle fields; contradiction -> FAIL_CLOSED_RECONCILIATION_REQUIRED; no event fabrication or historical rewriting.
+
+Safety/governance -> unfinished resumable execution -> pending result/review/integration -> exact authorized new work. Unfinished execution blocks new dispatch. Every provider interruption triggers WORK_FORECAST_CAPACITY_REVIEW; this feedback grants no authority, does not block legal resume, and must be materialized before new work after interrupted completion. Review PASS != Integration PASS != materialized acceptance. IVF01 Rev1 stays BLOCKED_NO_EXECUTION_NO_WAIVER; only after reviewed Architecture1.2 activation does its projection become ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED; never rewrite/reuse Rev1. AUTO-IMP-003 remains NOT_AUTHORIZED. All runtime/broker/DB/migration/LIVE/production effects DENIED.

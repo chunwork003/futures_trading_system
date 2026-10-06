@@ -10,7 +10,7 @@ import math
 from types import MappingProxyType
 from typing import Literal, Mapping, TypeAlias
 
-from pydantic import BaseModel, ConfigDict, model_validator
+from pydantic import BaseModel, ConfigDict, field_serializer, model_validator
 
 
 FrozenSection: TypeAlias = Mapping[str, object]
@@ -35,6 +35,9 @@ def _freeze_yaml_value(value: object) -> object:
         if not math.isfinite(value):
             raise ValueError("YAML contract does not allow non-finite numbers")
         return value
+    # V2 typed evidence 可巢狀包含已驗證的 frozen contract；不接受任意 mutable model。
+    if isinstance(value, AutomationContract):
+        return value
     if isinstance(value, Mapping):
         if any(not isinstance(key, str) for key in value):
             raise ValueError("YAML contract mapping keys must be strings")
@@ -46,10 +49,26 @@ def _freeze_yaml_value(value: object) -> object:
     raise ValueError(f"unsupported YAML contract value: {type(value).__name__}")
 
 
+def _plain_contract_value(value: object) -> object:
+    """Machine dump 與 runtime freeze 分離；遞迴輸出 deterministic JSON-like plain data。"""
+    if isinstance(value, AutomationContract):
+        return value.model_dump()
+    if isinstance(value, Mapping):
+        return {key: _plain_contract_value(value[key]) for key in sorted(value)}
+    if isinstance(value, (list, tuple)):
+        return [_plain_contract_value(item) for item in value]
+    return value
+
+
 class AutomationContract(BaseModel):
     """所有 machine contract 的共同 fail-closed 與深層唯讀邊界。"""
 
     model_config = ConfigDict(extra="forbid", frozen=True, strict=True)
+
+    @field_serializer("*", check_fields=False)
+    def _serialize_plain_data(self, value: object) -> object:
+        # serializer 建立 plain 副本；原有 MappingProxyType/frozen nested model 不變。
+        return _plain_contract_value(value)
 
     @model_validator(mode="before")
     @classmethod
@@ -88,6 +107,7 @@ class MasterManifest(AutomationContract):
     policies: FrozenSection
     negative_assertions: FrozenSection
     activation: FrozenSection
+    candidate_successor: FrozenSection | None = None
 
 
 class AuthorizationRecord(AutomationContract):
@@ -223,6 +243,46 @@ class ImplementationProgram(AutomationContract):
     authorization_compilation: FrozenSection
 
 
+class SuccessorGovernanceContract(AutomationContract):
+    """V2 successor 的共用候選邊界；section 深層唯讀，未列 top-level 欄位拒絕。"""
+    policy_id: str
+    policy_version: str
+    status: str
+    active: bool
+    authority: FrozenSection
+    semantics: FrozenSection
+    invariants: tuple[str, ...]
+    historical: FrozenSection
+
+
+class ExecutionCapacityPolicy(SuccessorGovernanceContract):
+    schema_version: Literal["automation.execution_capacity_policy.v2"]
+
+
+class AuthorizationLifecyclePolicyV1_1(SuccessorGovernanceContract):
+    schema_version: Literal["automation.authorization_lifecycle.v1_1"]
+
+
+class DevelopmentStateMachinePolicyV2(SuccessorGovernanceContract):
+    schema_version: Literal["automation.development_state_machine.v2"]
+
+
+class DevelopmentEntryProtocolV2(SuccessorGovernanceContract):
+    schema_version: Literal["automation.development_entry_protocol.v2"]
+
+
+class ExecutionCostContractV2(SuccessorGovernanceContract):
+    schema_version: Literal["automation.execution_cost_contract.v2"]
+
+
+class WorkCostAccountingV2(SuccessorGovernanceContract):
+    schema_version: Literal["automation.work_cost_accounting.v2"]
+
+
+class NegativeAssertionsV2(SuccessorGovernanceContract):
+    schema_version: Literal["automation.negative_assertions.v2"]
+
+
 CONTRACT_BY_SCHEMA: Mapping[str, type[AutomationContract]] = MappingProxyType(
     {
         "automation.master_manifest.v1": MasterManifest,
@@ -233,6 +293,13 @@ CONTRACT_BY_SCHEMA: Mapping[str, type[AutomationContract]] = MappingProxyType(
         "automation.development_state_machine.v1": DevelopmentStateMachinePolicy,
         "automation.development_entry_protocol.v1": DevelopmentEntryProtocol,
         "automation.implementation_program.v1": ImplementationProgram,
+        "automation.execution_capacity_policy.v2": ExecutionCapacityPolicy,
+        "automation.authorization_lifecycle.v1_1": AuthorizationLifecyclePolicyV1_1,
+        "automation.development_state_machine.v2": DevelopmentStateMachinePolicyV2,
+        "automation.development_entry_protocol.v2": DevelopmentEntryProtocolV2,
+        "automation.execution_cost_contract.v2": ExecutionCostContractV2,
+        "automation.work_cost_accounting.v2": WorkCostAccountingV2,
+        "automation.negative_assertions.v2": NegativeAssertionsV2,
     }
 )
 

@@ -29,3 +29,9 @@ Rules:
 
 Must not:
 grant authority, infer missing authority, mutate repo, preload unrelated history.
+
+
+## V2 successor procedure — candidate only
+
+After reviewed activation follow development_entry_protocol.v2 and authorization_lifecycle.v1_1. Safety -> exact unfinished execution -> pending result/review/integration -> authorized new work. Provider recovery is wake-only; RESUME_PENDING_REVALIDATION requires exact fresh HEAD/authority/dispatch/invocation/scope/writer/provider/policy continuity. Historical phase snapshots are not current projections; contradictions require reconciliation. Owner procedure: single-use-lifecycle-guard/SKILL.md. No new identity/reservation/dispatch/budget for same invoked resume.
+Architecture1.1 remains ACTIVE until fresh governance review and WORK materialization; candidate presence grants no authority. Provider denial always wins.

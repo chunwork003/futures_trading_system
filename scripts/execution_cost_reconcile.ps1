@@ -227,6 +227,21 @@ elseif (
     $recommendations.Add("CHECK_RESET_WINDOW_AND_COMPETING_CONSUMERS")
     $recommendations.Add("PRESERVE_RAW_QUOTA_SNAPSHOTS")
 }
+# Provider 中斷是 capacity/forecast feedback，不自動判定 source defect。
+# 舊 actual 不含欄位時保持原有 reconciliation；新欄位只附加原始觀察。
+$interruption = [ordered]@{}
+foreach ($name in @('provider_limit_encountered', 'provider_pause_count', 'provider_pause_seconds',
+    'resume_count', 'resumed_same_execution', 'capacity_forecast_at_start',
+    'capacity_estimate_at_start', 'forecast_capacity_review_required')) {
+    $property = $actual.actual.PSObject.Properties[$name]
+    if ($null -ne $property) { $interruption[$name] = $property.Value }
+}
+$capacityReviewRequired = ($interruption.provider_limit_encountered -eq $true) -or
+    ($interruption.forecast_capacity_review_required -eq $true) -or
+    ($interruption.provider_pause_count -gt 0)
+if ($capacityReviewRequired) {
+    $recommendations.Add('WORK_FORECAST_CAPACITY_REVIEW_PRESERVE_SAME_EXECUTION')
+}
 $result = [ordered]@{
     schema_version = "automation.execution_cost_reconciliation.v1"
     forecast_path = $ForecastPath
@@ -239,7 +254,10 @@ $result = [ordered]@{
     metric_comparisons = $comparisons.ToArray()
     cycle_breaches = $cycleBreaches.ToArray()
     recommendations = $recommendations.ToArray()
-    feedback_required_for_next_work_forecast = ($overall -ne "NORMAL")
+    feedback_required_for_next_work_forecast = (($overall -ne "NORMAL") -or $capacityReviewRequired)
+    provider_interruption = $interruption
+    forecast_capacity_review_required = $capacityReviewRequired
+    provider_pause_is_source_defect = $false
     generated_at_utc = [datetimeoffset]::UtcNow.ToString("o")
 }
 
