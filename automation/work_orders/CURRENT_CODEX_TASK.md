@@ -1,5 +1,3 @@
-# WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 — WAIT_PROVIDER_CAPACITY
+# WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 — final2.2 authority prepared, not yet executable
 
-No executable CODEX handoff. AUTH AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3 AUTHORIZED / NOT_CONSUMED. Architecture1.2.1 active, capacity2.1. Re-enter origin/master and exact CURRENT pointers. Main scope21; no execution/writer/reservation/dispatch/invocation. No P01/P02/P03 probes. Provider actual denial wins; manual UNKNOWN capacity allows watch, known insufficient waits. 12M P90 preserved. Canonical evidence automation/work_orders/telemetry/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.rolling-capacity.json.
-
-WORK next action: fresh provider/current revalidation; only if capacity fit/unknown and all authority/lifecycle gates PASS may materialize single-use lifecycle, then STOP for manual trigger. CONTROLLED_AUTO DISABLED. No AUTO-IMP-003/IVF01 authority.
+Architecture1.2.2/capacity2.2 normativeactivation after bound independentPASS. Main AUTH AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4 AUTHORIZED/NOT_CONSUMED; normalfreshsingleuse lifecycle required. Weekly neverstatisticalexecutiongate; MANUALPRIMARY_5HP75=7M; P90=12Madvisory. NoautomaticCODEX. Budgets implementation2 + reviewfix2 per automation/governance/decisions/EXECUTION-CAPACITY-FINAL-LIVENESS.owner.json; scope21 unchanged. Current exactpointers govern.

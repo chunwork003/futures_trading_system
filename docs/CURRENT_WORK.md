@@ -1,3 +1,13 @@
+# CURRENT — Final capacity1.2.2 / policy2.2
+
+Architecture1.2.2 ACTIVE after one bounded final independentpolicyreview. Main WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 / AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4 AUTHORIZED_NOT_CONSUMED PRE_RESERVATION_BLOCKED_CAPACITY / WAIT_5H_CAPACITY; fresh5Hcapacity=6605051 < MANUALP75=7000000; no writer/execution/reservation/dispatch; no implementationstarted, no automaticCODEX. Weekly planning/scheduling only, weekly_execution_gate=false. MANUAL statisticalgate PRIMARY_5H P75=7,000,000; P90=12,000,000 advisory. Unknown5H manual allowswatch; actualproviderdenialwins. Implementationbudget2, reviewfixbudget2 exactsame21file/conformanceonly Ownergrant; no parentCONSUMEDreuse. CONTROLLED_AUTO DISABLED, usable5H P90 plus5acceptedmanualcurrentcontroller andOwneractivation required. Complete5H statistical-only blocking triggers nonauthority livenessoptimization. No newcalibrationcampaign/probes. Runtime/broker/DB/migration/LIVE/production DENIED. AUTO-IMP-003 NOT_AUTHORIZED. After mainclosure, definedAUTO-IMP-002/IVF01Rev2flow, no newarchitecturediscussion; exact authority/lifecycle still required.
+
+Exact current lifecycle: automation/work_orders/CURRENT_CODEX.yaml. FinalOwner automation/governance/decisions/EXECUTION-CAPACITY-FINAL-LIVENESS.owner.json; policy automation/policies/execution_capacity_policy.v2_2.yaml.
+
+KNOWN_CAPACITY_AND_ORCHESTRATION_GOVERNANCE_DEBT = NONE (complete governance, mainimplementation still pending).
+
+## HISTORICAL CURRENT PROJECTIONS BELOW — retained audit evidence, not current authority
+
 # CURRENT — Dynamic rolling capacity successor 1.2.1
 
 Architecture 1.2.1 ACTIVE; capacity policy2.1. Main WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 / AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3 AUTHORIZED / NOT_CONSUMED; WAIT_PROVIDER_CAPACITY. No writer/execution/reservation/dispatch/invocation. ProgramV2 revision3 candidate pending cohesive implementation/review. ControlledAuto DISABLED. Capacity campaign/P01/P02/P03 SUPERSEDED_PRE_EXECUTION_BY_DYNAMIC_CAPACITY_POLICY, zero probes. Exact local tokens primary; quota identity provider/account/limit/window only; model/client/workspace/taskclass metadata. No feature-coefficient/bootstrap gate. Same-execution resume and all sideeffect denials preserved. AUTO-IMP-003 NOT_AUTHORIZED; IVF01 Rev1 baseline changed, Rev2 NOT_AUTHORIZED.

@@ -1,11 +1,11 @@
 {
   "schema_version": "automation.implementation_program.v1",
   "program_id": "AUTO-IMP-PROGRAM-V2",
-  "program_revision": "3",
+  "program_revision": "4",
   "status": "COMPILED_CANDIDATE_PENDING_COHESIVE_IMPLEMENTATION_AND_REVIEW",
-  "compiled_from_freeze_head": "3f86479cb0e166810ae52aba6b5732f2ca5b8d80",
-  "frozen_master_manifest_sha256": "885d24685d38773129f7cc27f127560da3e14a8615cfb7504c4187bc32d02185",
-  "master_architecture_version": "1.2.1",
+  "compiled_from_freeze_head": "e2de7e9c873a062429675ff6be3ed9d108e3ac4f",
+  "frozen_master_manifest_sha256": "f8e7c869045a55d8e65c84818d1b75520de963ee390f200e0a57c9b0ef99b5a7",
+  "master_architecture_version": "1.2.2",
   "authority": {
     "implementation_authorized": false,
     "codex_execution_authorized": false,
@@ -15,10 +15,10 @@
     "review_required_before_wave_authorization": true,
     "next_route": "MAIN_COHESIVE_IMPLEMENTATION_AFTER_FRESH_2.1_ADMISSION",
     "automatic_rebind": false,
-    "architecture_patch_decision": "automation/governance/decisions/EXECUTION-CAPACITY-DYNAMIC-ROLLING.owner.json",
-    "capacity_policy": "automation/policies/execution_capacity_policy.v2_1.yaml",
-    "policy_review_verdict": "automation/work_orders/reviews/EXECUTION-CAPACITY-DYNAMIC-ROLLING.verdict.json",
-    "implementation_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3"
+    "architecture_patch_decision": "automation/governance/decisions/EXECUTION-CAPACITY-FINAL-LIVENESS.owner.json",
+    "capacity_policy": "automation/policies/execution_capacity_policy.v2_2.yaml",
+    "policy_review_verdict": "automation/work_orders/reviews/EXECUTION-CAPACITY-FINAL-LIVENESS.verdict.json",
+    "implementation_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4"
   },
   "implementation_strategy": {
     "pattern": "STRANGLER_DUAL_RUN",
@@ -61,8 +61,7 @@
       "pool_identity": [
         "provider",
         "account",
-        "limit_id",
-        "window_type"
+        "limit_id"
       ],
       "metadata_only": [
         "workspace",
@@ -86,24 +85,86 @@
         "PRIMARY_5H",
         "SECONDARY_WEEKLY"
       ],
-      "manual": "exact-authorized allrisk + providerPASS: UNKNOWN=>ALLOW_WITH_WATCH; allknownwindows_fit=>ALLOW_WITH_WATCH; anyknownwindow<P90=>WAIT_PROVIDER_CAPACITY",
-      "controlled_auto": "every relevant exposed window must have usable rolling evidence and fit P90; else CONTROLLED_AUTO_CAPACITY_NOT_ESTABLISHED; mode remains DISABLED",
+      "manual": "Exact authorized allrisk + actualproviderPASS: UNKNOWN5H=>ALLOW_WITH_WATCH;known5H>=P75=>ALLOW_WITH_WATCH;known5H<P75=>WAIT_5H_CAPACITY. Weekly never changes result.",
+      "controlled_auto": "ActualproviderPASS + usable5H safe>=P90 and explicitpromotionauthority; weeklystatisticalestimate neverblocks; UNKNOWN5H=>CONTROLLED_AUTO_CAPACITY_NOT_ESTABLISHED",
       "forecast": "PER_WO_P50_P75_P90_TOTAL_PRIMARY; detailed dimensions telemetry; no forecast reduction to force fit",
       "billing": "NOT_AVAILABLE_UNLESS_PROVIDER_EXACT_TASK_BILLING",
       "feature_coefficient_gate": "NOT_REQUIRED",
       "calibration_campaign": "SUPERSEDED_PRE_EXECUTION_BY_DYNAMIC_CAPACITY_POLICY",
       "controlled_auto_promotion": [
-        "at least5 recent successful manually-triggered accepted executions under current orchestration controller",
-        "exact execution-bound local tokens for each qualifying execution",
-        "usable rolling capacity for every exposed window and safe capacity >= current forecastP90",
-        "exact preexisting authority/scope/reservation/dispatch and current architecture",
-        "no higher-priority unfinished work; one writer; stable dedupe",
-        "zero duplicate dispatch; zero fabricated resume; zero writer conflict",
-        "no unresolved HIGH/CRITICAL governance anomaly",
-        "provider actual gates PASS",
-        "independent orchestration semantic review PASS",
-        "explicit Human Governance Owner CONTROLLED_AUTO activation"
-      ]
+        "provider actual availability PASS",
+        "usable PRIMARY_5H rolling evidence and safe capacity >= perWO totalP90",
+        "at least5 recent successful accepted MANUAL executions under current orchestration controller with strict exact local token evidence",
+        "zero duplicate dispatch/fabricated resume/writer conflict",
+        "no unresolved HIGH/CRITICAL governance issue",
+        "exact preexisting authority/scope/lifecycle; one writer; no higher-priority unfinished work",
+        "independent orchestration review PASS",
+        "explicit Human Governance Owner CONTROLLED_AUTO activation",
+        "weekly data advisory only, never statistical admission blocker"
+      ],
+      "observation_window_type": "PRIMARY_5H execution gate, SECONDARY_WEEKLY advisory independent observations",
+      "statistical_execution_windows": [
+        "PRIMARY_5H"
+      ],
+      "weekly_execution_gate": false,
+      "weekly_role": "PLANNING_AND_SCHEDULING_SIGNAL_ONLY",
+      "manual_demand_threshold": "PER_WO_TOTAL_P75",
+      "p90_manual": "ADVISORY_WARNING_FORECAST_OPTIMIZATION_NOT_HARD_GATE",
+      "controlled_auto_demand_threshold": "PER_WO_TOTAL_P90"
+    },
+    "capacity_liveness": {
+      "event": "CAPACITY_LIVENESS_OPTIMIZATION",
+      "trigger_all": [
+        "authorized_ready_and_all_noncapacity_gates_PASS",
+        "fresh ordinaryUsageAllowed=true and no actual hard/rate/spend denial throughout recorded blocking interval",
+        "only blocker WAIT_5H_CAPACITY",
+        "blocked interval spans >= one complete provider PRIMARY_5H window (300 minutes when exposed) AND unchanged work/scope/authority plus observed reset boundary crossed"
+      ],
+      "evidence": "Retain block-start/provider snapshots/reset metadata; require positive evidence of complete-window duration and recovery snapshots. Missing continuity evidence does not fabricate trigger; reevaluate at later wake. Any actual denial or authority/scope change restarts statistical-only interval. Historical weekly-only blocking never counts.",
+      "evaluate": [
+        "recent exact token actuals",
+        "forecast vs actual error",
+        "recent5 vs recent20 behavior",
+        "stale/noisy samples",
+        "model efficiency metadata (not identity gate)",
+        "context replay ratio",
+        "tool/test retries and overhead",
+        "task size prediction"
+      ],
+      "objective": "MAXIMIZE_ACCEPTED_ENGINEERING_VALUE_PER_TIME_AND_TOKEN",
+      "not_objective": "SPREAD_QUOTA_EVENLY",
+      "outputs": "Deterministic optimization/forecast/queue proposals, evidence-bound recommendations; no authority creation, no dispatch, no consumed reset, no coefficient/probe requirement, no deliberate uniform-quota pacing",
+      "gate_override": "DENIED; no unsupported forecast reduction to force fit; rolling rule changes need Owner semantics, normal evidence-backed reforecast remains nonauthority feedback"
+    },
+    "bounded_correction": {
+      "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+      "owner_authority_path": "automation/governance/decisions/EXECUTION-CAPACITY-FINAL-LIVENESS.owner.json",
+      "implementation": {
+        "limit": 2,
+        "used": 0,
+        "remaining": 2,
+        "scope": "Same exact21 files, architecture/sideeffects unchanged, current invoked execution; ordinary implementation/test/serialization/route/docs/hash conformance defects",
+        "pref_fix_expected_failures_are_budget_use": false,
+        "tooling_retries_separate_telemetry": true,
+        "on_exhaustion": "STOP_TO_OWNER"
+      },
+      "review_fix": {
+        "limit": 2,
+        "used": 0,
+        "remaining": 2,
+        "grant": "OWNER_PREAUTHORIZED_CONDITIONAL_NOT_CURRENTLY_EXECUTABLE",
+        "required_verdict": "Bound independent REVIEW_FIX_REQUIRED of same logicalWO/effective candidate",
+        "every_finding": "IN_SCOPE_IMPLEMENTATION_CONFORMANCE_ONLY_NO_ARCHITECTURE_AUTHORITY_SIDE_EFFECT_EXPANSION",
+        "logical_work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+        "single_use_rule": "Each later fix exact child authorization/revision binds actual reviewer finding and candidate SHA under this existing Owner grant; fresh eligibility/writer/execution/reservation/dispatch; parent CONSUMED authority never reused. No executable authority over unknown future SHA now. MANUAL invocation only.",
+        "narrow_re_review": "Exact changed effective candidate plus preservation; targeted validation; at most one final full regression when warranted",
+        "on_exhaustion": "STOP_TO_OWNER"
+      },
+      "ordinary_defect_within_remaining_budget": "USE_BOUNDED_BUDGET_NO_NEW_OWNER_ROUND",
+      "scope_or_architecture_or_authority_or_sideeffect_change": "STOP_TO_OWNER",
+      "budget_renewal": "DENIED",
+      "auto_dispatch": "DENIED",
+      "next_package_authority": "NONE"
     }
   },
   "near_horizon_exact_packages": [
@@ -428,7 +489,8 @@
     "automatic_next_package_authorization": "DENIED",
     "all_002_009_need_own_exact_authority": true,
     "controller_review_barrier": "ONE_COHESIVE_FRESH_INDEPENDENT_REVIEW",
-    "current_controller_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV3",
-    "capacity_campaign_disposition_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.supersession.json"
+    "current_controller_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4",
+    "capacity_campaign_disposition_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.supersession.json",
+    "after_controller_closure": "WORK_COMPILE_AUTO_IMP_002_IVF01_REV2_DEFINED_FLOW_NO_ARCHITECTURE_DISCUSSION"
   }
 }
