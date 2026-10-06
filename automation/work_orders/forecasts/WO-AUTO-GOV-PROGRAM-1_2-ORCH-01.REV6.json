@@ -1,0 +1,120 @@
+{
+  "schema_version": "automation.execution_cost_forecast.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "forecast_identity_revision": "6",
+  "scope_count": 8,
+  "scope_digest": "6bfc178a0a47aa551332027efa3cc034764d670ee1d9b53caafd4be368de32e0",
+  "source_candidate_head_sha": "52f0b5da1d050a8876f9716b227055219f4fd070",
+  "checkpoint_sha256": "e65e2f7bd8cd6c4ea32af290fac0467364b7239a864b90c394f82e6597bf1591",
+  "confidence": "LOW_PROVISIONAL",
+  "measurement_type": "PROXY_PLANNING_FORECAST_NOT_EXACT",
+  "forecast": {
+    "input_tokens": {
+      "p50": 790000,
+      "p75": 1480000,
+      "p90": 2460000
+    },
+    "cached_input_tokens": {
+      "p50": 690000,
+      "p75": 1300000,
+      "p90": 2160000
+    },
+    "uncached_input_tokens": {
+      "p50": 100000,
+      "p75": 180000,
+      "p90": 300000
+    },
+    "output_tokens": {
+      "p50": 10000,
+      "p75": 20000,
+      "p90": 40000
+    },
+    "reasoning_output_tokens": {
+      "p50": 3000,
+      "p75": 6000,
+      "p90": 12000
+    },
+    "reported_total_tokens": {
+      "p50": 800000,
+      "p75": 1500000,
+      "p90": 2500000
+    },
+    "actor_seconds": {
+      "p50": 450,
+      "p75": 900,
+      "p90": 1500
+    },
+    "targeted_seconds": {
+      "p50": 15,
+      "p75": 45,
+      "p90": 90
+    },
+    "full_regression_seconds": {
+      "p50": 20,
+      "p75": 60,
+      "p90": 180
+    },
+    "test_cycles": {
+      "minimum_pre_fix_or_contract_reproductions": 1,
+      "complete_targeted_passes_max": 1,
+      "full_regression_passes_max": 1,
+      "bounded_implementation_cycles_max": 1,
+      "bounded_review_fix_cycles_max": 0
+    }
+  },
+  "supporting_evidence": [
+    {
+      "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z",
+      "total": 2229994,
+      "uncached": 241023,
+      "actor_seconds": 328,
+      "comparability": "SUPPORTING_ONLY_FOUR_FILE_REVIEW_FIX_NOT_EXACT_SAME_CLASS"
+    },
+    {
+      "execution_id": "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+      "total": 3556566,
+      "uncached": 51799,
+      "actor_seconds": 526,
+      "comparability": "SUPPORTING_ONLY_LARGER_MIGRATION"
+    }
+  ],
+  "comparable_sample_ids": [],
+  "assumptions": [
+    "Single established encoding defect; byte-exact six-file restoration, two-file BOM/test correction",
+    "Both shell compatibility matrix; existing parser already forensic-reproduced",
+    "Exact pointers first; no raw transcript or unrelated history reload",
+    "One allowed exception cycle; any unexplained defect STOP; do not force forecast lower to pass capacity"
+  ],
+  "uncertainty": "No exact same-class cohort; conservative upper includes context/reentry and shell fixture retries. Detailed bands are planning estimates, not calibrated capacity.",
+  "expected_dominant_cost_driver": "BOUND_CONTEXT_AND_CACHED_REPLAY; shell matrix modest",
+  "task_profile": {
+    "task_class": "BOUNDED_IMPLEMENTATION_COMPATIBILITY_CONTINUATION",
+    "change_type": "CHECKPOINT_RESTORE_PLUS_ENCODING_TEST_CORRECTION",
+    "subsystem": "AUTOMATION_EXECUTION_COST",
+    "functional_area": "POWERSHELL_SCRIPT_DECODING",
+    "engineering_goal": "Restore preserved Batch4 then UTF8 BOM PS5.1 compatibility without semantic changes",
+    "source_file_count": 7,
+    "test_file_count": 1,
+    "semantic_write_file_count": 2,
+    "authority_boundary": "OWNER_ONE_CYCLE_EXCEPTION_EXACT8_NO_NEWSEMANTICS",
+    "packaging_decision": "KEEP_COHESIVE_SAME_LOGICAL_WO"
+  },
+  "planned_context_profile": {
+    "raw_transcript_loaded": false,
+    "history_loaded": "EXACT_RECONCILIATION_AND_FORENSIC_NORMALIZED_POINTERS_ONLY",
+    "artifacts_read": [
+      "automation/governance/decisions/OWNER-AUTO-GOV-PROGRAM-1_2-ORCH-REV6-NARROW-CORRECTION-01.json",
+      "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/reconciliation.json",
+      "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/checkpoint/Batch4.checkpoint.json",
+      "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/checkpoint/Batch4.checkpoint.patch",
+      "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6.v6.yaml",
+      "automation/policies/execution_capacity_policy.v2_2.yaml"
+    ],
+    "checkpoint_bytes": 36348,
+    "source_bytes": 69473,
+    "measurement": "PROXY_BOUNDED_CONTEXT_NOT_MODEL_USAGE"
+  },
+  "created_at": "2026-10-06T14:53:25Z",
+  "updated_at": "2026-10-06T14:53:25Z"
+}
