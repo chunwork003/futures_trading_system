@@ -4,7 +4,7 @@
   "reviewer_type": "FRESH_COHESIVE_INDEPENDENT_CAPACITY_PATCH_AND_PROGRAM_REBIND",
   "baseline_sha": "3f86479cb0e166810ae52aba6b5732f2ca5b8d80",
   "proposal_path": "automation/work_orders/reviews/EXECUTION-CAPACITY-DYNAMIC-ROLLING.materialization-proposal.json",
-  "proposal_digest": "c81dbe5de945546f0e8c9d5450b2fb54354e096f1cf9a327e1b297295da2a157",
+  "proposal_digest": "baf05b089dadc9a7d6dbf5b8c6c28f8831156a9608dc15decda4d2915b29a555",
   "proposed_architecture": "1.2.1",
   "proposed_policy": "2.1",
   "bundle_hash": "df5882dab351f73f9f7f82d7e90c99779096c09694848684cd3f4f76920bb160",
@@ -19,6 +19,11 @@
     "automation/packages/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.plan.yaml",
     "automation/policies/execution_capacity_policy.v2_1.yaml",
     "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+    "automation/skills/execution-cost-forecaster/SKILL.md",
+    "automation/skills/repo-reentry/SKILL.md",
+    "automation/skills/single-use-lifecycle-guard/SKILL.md",
     "automation/telemetry/cohorts/LOCAL_CODEX_ROLLING_CAPACITY_V2_1.json",
     "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.compilation-consistency.json",
     "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.eligibility.json",
@@ -53,5 +58,6 @@
     "HUMAN_DECISION_REQUIRED"
   ],
   "activation_by_reviewer": "DENIED",
-  "created_at": "2026-10-06T10:26:29Z"
+  "created_at": "2026-10-06T10:26:29Z",
+  "materialization_preparation_delta": "Correct legacy review questions/protection references, canonical plan shape and successor paths; normalize chronology; current procedure capacity pointers supersede predecessor, no source implementation changes"
 }
