@@ -1,0 +1,231 @@
+{
+  "schema_version": "automation.work_cost_actual.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "work_task": "Owner dynamicrollingcapacity successor review/materialization and uninvoked main rebind",
+  "measurement_type": "PROXY",
+  "exact_model_token_usage": "UNKNOWN",
+  "input_tokens": null,
+  "output_tokens": null,
+  "total_tokens": null,
+  "billing": "NOT_AVAILABLE",
+  "actor_seconds_observed_operator_phase": 980.0,
+  "observed_phase_start": "2026-10-06T10:26:29Z",
+  "observed_phase_end": "2026-10-06T10:42:49Z",
+  "whole_turn_time_attribution": "NOT_AVAILABLE",
+  "task_profile": {
+    "task_class": "GOVERNANCE_SEMANTIC_SUCCESSOR_MATERIALIZATION",
+    "subsystem": "execution capacity and ProgramV2 preexecution authority",
+    "goal": "Remove coefficient/hiddenidentity/bootstrap gate, preserve exacttoken/provider/lifecycle safety",
+    "authority_boundary": "Explicit22Ownerdecisions, normativepatch and controlplane only, no implementation coding",
+    "cohesion": "KEEP_COHESIVE",
+    "independent_review_count": 1,
+    "review_preparation_iterations": 3
+  },
+  "context_profile": {
+    "artifacts_read": [
+      "automation/governance/master_manifest.v1.yaml",
+      "automation/work_orders/CURRENT_CODEX.yaml",
+      "automation/work_orders/CURRENT_CODEX_TASK.md",
+      "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+      "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV2.v2.yaml",
+      "automation/work_orders/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.yaml",
+      "automation/packages/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.plan.yaml",
+      "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+      "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.json",
+      "automation/telemetry/cohorts/LOCAL_CODEX_CAPACITY_ARCH1_2_V1.identity-recovery.json",
+      "docs/CURRENT_STATE.md",
+      "docs/CURRENT_WORK.md",
+      "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+      "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/local_token_usage.json",
+      "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/execution_cost_actual.json",
+      "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/quota_evidence.json",
+      "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/local_token_usage.json",
+      "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/execution_cost_actual.json",
+      "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/quota_evidence.json",
+      "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/local_token_usage.json",
+      "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/execution_cost_actual.json",
+      "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/local_token_usage.json",
+      "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/execution_cost_actual.json",
+      "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/local_token_usage.json",
+      "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/quota_evidence.json",
+      "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+      "automation/skills/repo-reentry/SKILL.md",
+      "automation/skills/execution-cost-forecaster/SKILL.md",
+      "automation/skills/single-use-lifecycle-guard/SKILL.md"
+    ],
+    "artifacts_by_type": {
+      "GOVERNANCE_CONTROL_PLANE": {
+        "files": 13,
+        "bytes": 110741,
+        "chars": 110715,
+        "lines": 2372
+      },
+      "TELEMETRY": {
+        "files": 13,
+        "bytes": 84490,
+        "chars": 84370,
+        "lines": 2243
+      },
+      "GOVERNANCE_DOCS": {
+        "files": 3,
+        "bytes": 112150,
+        "chars": 108461,
+        "lines": 2347
+      }
+    },
+    "raw_transcript_loaded": false,
+    "history_loaded": "Canonical exacttoken/providerrecovery metadata plus unchanged document bodies preserved in reviewedproposal; no raw session transcript",
+    "content_token_estimate": null,
+    "content_tokens_measurement_type": "PROXY_IF_FUTURE_DETERMINISTIC_ESTIMATE_NOT_EXACT",
+    "tree_metadata_chars": 301890,
+    "materialization_proposal_chars": 310057,
+    "model_loaded_volume": "NOT_EXACTLY_OBSERVABLE"
+  },
+  "provider_shared_proxy": {
+    "before": {
+      "ordinaryUsageAllowed": true,
+      "rateLimits": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 50,
+          "windowDurationMins": 300,
+          "resetsAt": 1791289900
+        },
+        "secondary": {
+          "usedPercent": 48,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      },
+      "rateLimitsByLimitId": {
+        "codex": {
+          "limitId": "codex",
+          "limitName": null,
+          "normalModelSlug": null,
+          "primary": {
+            "usedPercent": 50,
+            "windowDurationMins": 300,
+            "resetsAt": 1791289900
+          },
+          "secondary": {
+            "usedPercent": 48,
+            "windowDurationMins": 10080,
+            "resetsAt": 1791615796
+          },
+          "credits": {
+            "hasCredits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individualLimit": null,
+          "spendControlReached": false,
+          "planType": "plus",
+          "rateLimitReachedType": null
+        }
+      },
+      "rateLimitResetCredits": {
+        "availableCount": 1,
+        "credits": [
+          {
+            "id": "RateLimitResetCredit_771ee9c1c33c8191bb6446adef907c3b",
+            "resetType": "codexRateLimits",
+            "status": "available",
+            "grantedAt": 1790699427,
+            "expiresAt": 1793291427,
+            "title": "Full reset (Weekly + 5 hr)",
+            "description": "Thanks for using Codex! You've been granted one free rate limit reset."
+          }
+        ]
+      },
+      "accountId": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+      "rateLimitUpsell": null
+    },
+    "after": {
+      "ordinaryUsageAllowed": true,
+      "rateLimits": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 71,
+          "windowDurationMins": 300,
+          "resetsAt": 1791289900
+        },
+        "secondary": {
+          "usedPercent": 51,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791615796
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      },
+      "rateLimitsByLimitId": {
+        "codex": {
+          "limitId": "codex",
+          "limitName": null,
+          "normalModelSlug": null,
+          "primary": {
+            "usedPercent": 71,
+            "windowDurationMins": 300,
+            "resetsAt": 1791289900
+          },
+          "secondary": {
+            "usedPercent": 51,
+            "windowDurationMins": 10080,
+            "resetsAt": 1791615796
+          },
+          "credits": {
+            "hasCredits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individualLimit": null,
+          "spendControlReached": false,
+          "planType": "plus",
+          "rateLimitReachedType": null
+        }
+      },
+      "rateLimitResetCredits": {
+        "availableCount": 1,
+        "credits": [
+          {
+            "id": "RateLimitResetCredit_771ee9c1c33c8191bb6446adef907c3b",
+            "resetType": "codexRateLimits",
+            "status": "available",
+            "grantedAt": 1790699427,
+            "expiresAt": 1793291427,
+            "title": "Full reset (Weekly + 5 hr)",
+            "description": "Thanks for using Codex! You've been granted one free rate limit reset."
+          }
+        ]
+      },
+      "accountId": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+      "rateLimitUpsell": null
+    },
+    "not_task_exclusive_or_token_equivalent": true
+  },
+  "source_tests_runs": 0,
+  "implementation_correction_budget_consumed": 0,
+  "probes_used": 0,
+  "execution_allocated": false,
+  "created_at": "2026-10-06T10:42:49Z",
+  "updated_at": "2026-10-06T10:42:49Z"
+}
