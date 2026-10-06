@@ -1,3 +1,22 @@
+# CURRENT — Program V2 / REV6 cohesive review barrier
+
+Architecture 1.2.2 and Capacity Policy 2.2 ACTIVE. Program V2/orchestration remains IMPLEMENTED_PENDING_REVIEW, candidate NOT_ACCEPTED / controller NOT_ACTIVE.
+Execution EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z COMPLETED_PENDING_REVIEW; authorization REV6 remains CONSUMED. Actual first CODEX invocation is contemporaneously proven by ba569c85b202171e401151db3ffae3101b664482, with no historical backfill.
+Implementation 85b94c92ccba4b4c569e3be846646902cb6348d2; evidence e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40; complete effective21-file bundle 21cd40faa6f652e279d13c991812d7c269ea481490c22a421804fb0dce6eab9e.
+Mechanical intake PASS f2f1032110bb5a40b0f1a84ef9e1ff2d9b5384e3; writer RELEASED_AFTER_DURABLE_RESULT_INTAKE 17f355625d274aa204885992a4a14e7064af27dd; no concurrent canonical writer.
+Exact local session tokens2391244 (input2380661, cached2355200, uncached25461, output10583, reasoning2020 subset of output). Attribution EXACT_SINGLE_STRONG_MARKER_MATCH; billing NOT_AVAILABLE.
+Canonical reconciliation HIGH / TEST_EXECUTION_DOMINATED because pre-fix case forecast1 vs actual5 required cases in ONE invocation; token WATCH withinP90. Cached replay98.9305%; provider+4pp primary/+1pp weekly SHARED_ACCOUNT_PROXY_NOT_EXCLUSIVE_TASK_COST; no provider interruption.
+Original implementation2/2 and separate REV6 exception1/1 EXHAUSTED. Review-fix0/2, remaining2 UNTOUCHED; only bound cohesive independent REVIEW_FIX_REQUIRED can enable consideration under existing Owner conditional grant.
+Review packet: automation/work_orders/reviews/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.review.yaml
+Effective source: automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/effective_candidate.json
+Next route: ONE_COHESIVE_FRESH_INDEPENDENT_PROGRAM_V2_REVIEW
+handoff_ready=false; no CODEX reexecution, no source merge, semantic acceptance NOT_PERFORMED, controller activation DENIED; CONTROLLED_AUTO DISABLED.
+Old HUMAN_DIALOGUE STOPPED missing-invocation history unchanged. Consumption/reservation/dispatch pre-invocation snapshots stay immutable; current lifecycle uses actual invocation/intake/release evidence.
+AUTO-IMP-002/IVF01Rev2 and AUTO-IMP-003 NOT_AUTHORIZED. Runtime/broker/DB/migration/LIVE/production/credentials DENIED.
+WORK has prepared ONE request, not performed independent review.
+
+## Historical projections below — preserved for audit
+
 # CURRENT — REV6 COMPLETED_PENDING_REVIEW / WORK TELEMETRY FINALIZATION
 
 Architecture 1.2.2 / Capacity Policy 2.2 ACTIVE; Program V2/controller candidate not accepted or activated.

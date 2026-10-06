@@ -1,0 +1,48 @@
+{
+  "schema_version": "automation.current_lifecycle_projection.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "state": "COMPLETED_PENDING_REVIEW",
+  "review_state": "REVIEW_PENDING",
+  "authorization_state": "CONSUMED",
+  "reservation_state": "CONSUMED",
+  "dispatch_state": "DISPATCH_COMMITTED",
+  "executor_invoked": true,
+  "invocation_commit": "ba569c85b202171e401151db3ffae3101b664482",
+  "invocation_blob": "31f4e1dce1ab82287a4722649906847dff090eaa",
+  "invocation_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/invocation.json",
+  "writer_state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+  "writer_release_commit": "17f355625d274aa204885992a4a14e7064af27dd",
+  "intake_commit": "f2f1032110bb5a40b0f1a84ef9e1ff2d9b5384e3",
+  "telemetry_commit": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+  "no_concurrent_writer": "PASS_CANONICAL_ALIASES_ALL_RELEASED",
+  "historical_phase_snapshots": "AUTH_CONSUMPTION_RESERVATION_DISPATCH_PRE_INVOCATION_FALSE_RETAINED_IMMUTABLE; contemporaneous claim/invocation plus durable intake define current invoked=true. Old HUMAN_DIALOGUE missing evidence remains STOP_NO_BACKFILL.",
+  "budget_actual": {
+    "original_implementation": {
+      "limit": 2,
+      "used": 2,
+      "remaining": 0
+    },
+    "separate_owner_exception": {
+      "limit": 1,
+      "used": 1,
+      "remaining": 0
+    },
+    "review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2
+    },
+    "automatic_extra_cycle": false
+  },
+  "handoff_ready": false,
+  "reexecution": false,
+  "semantic_acceptance": "NOT_PERFORMED",
+  "merge": "DENIED",
+  "controller_activation": "DENIED",
+  "next_package": "NOT_AUTHORIZED",
+  "route": "ONE_COHESIVE_FRESH_INDEPENDENT_PROGRAM_V2_REVIEW",
+  "created_at": "2026-10-06T15:35:44Z",
+  "updated_at": "2026-10-06T15:35:44Z"
+}

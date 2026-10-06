@@ -1,14 +1,7 @@
-# CURRENT — REV6 COMPLETED_PENDING_REVIEW / WORK TELEMETRY FINALIZATION
+# NO EXECUTABLE CODEX HANDOFF — REVIEW_PENDING
 
-Architecture 1.2.2 / Capacity Policy 2.2 ACTIVE; Program V2/controller candidate not accepted or activated.
-REV6 CODEX invoked with contemporaneous invocation proof ba569c85b202171e401151db3ffae3101b664482; implementation 85b94c92ccba4b4c569e3be846646902cb6348d2; evidence e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40.
-Durable mechanical intake PASS at f2f1032110bb5a40b0f1a84ef9e1ff2d9b5384e3; semantic acceptance NOT_PERFORMED. Writer RELEASED_AFTER_DURABLE_RESULT_INTAKE; no concurrent canonical writer.
-Authorization remains CONSUMED; reservation/dispatch prior phase snapshots preserved. No resume, redispatch, new authorization or CODEX invocation.
-Original implementation2/2 and separate REV6 exception1/1 EXHAUSTED; review-fix0/2, remaining2 UNTOUCHED.
-Next: WORK token finalization/cost reconciliation, then ONE_COHESIVE_FRESH_INDEPENDENT_PROGRAM_V2_REVIEW. handoff_ready=false.
-Old HUMAN_DIALOGUE STOPPED history and false invocation evidence remain immutable. AUTO-IMP-002/003 NOT_AUTHORIZED; CONTROLLED_AUTO DISABLED; runtime/broker/DB/migration/LIVE/production/credentials DENIED.
+ONE_COHESIVE_FRESH_INDEPENDENT_PROGRAM_V2_REVIEW
 
-## Historical projections below — preserved for audit
+Read canonical CURRENT and automation/work_orders/reviews/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.review.yaml. Exact source target 85b94c92ccba4b4c569e3be846646902cb6348d2, evidence e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40; complete effective21-file bundle 21cd40faa6f652e279d13c991812d7c269ea481490c22a421804fb0dce6eab9e.
 
-
-No executable CODEX task. Resolve CURRENT and exact result intake pointers; do not invoke or redispatch.
+handoff_ready=false. REV6 completed; authorization CONSUMED, writer released. No resume/redispatch or next package. WORK did not review, ACCEPT, merge or activate. Fresh independent reviewer must evaluate the entire cohesive Program V2 package and return an exact bound verdict. Review-fix budget2 remains conditional/unconsumed.

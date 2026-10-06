@@ -1,0 +1,115 @@
+{
+  "schema_version": "automation.work_cost_actual.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "actor": "WORK",
+  "phase": "REV6_RESULT_INTAKE_TOKEN_FINALIZATION_COHESIVE_REVIEW_PREPARATION",
+  "measurement_type": "PROXY",
+  "exact_model_tokens": "UNKNOWN",
+  "billing": "NOT_AVAILABLE",
+  "task_profile": {
+    "task_class": "CONTROL_PLANE_RESULT_INTAKE",
+    "change_type": "METADATA_ONLY",
+    "subsystem": "AUTOMATION_GOVERNANCE_TELEMETRY",
+    "engineering_goal": "Verify exactREV6, intake, release writer, finalize tokens/cost, prepare ONE cohesive21-file review",
+    "authority_boundary": "NO_IMPLEMENTATION_NO_REVIEW_NO_ACCEPTANCE_NO_MERGE_NO_DISPATCH",
+    "packaging_decision": "KEEP_COHESIVE_SAME_LOGICAL_WO"
+  },
+  "context_profile": {
+    "artifacts_read": [
+      {
+        "path": "automation/governance/master_manifest.v1.yaml",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "89de89c47d23080af8369544a165e199856d2832"
+      },
+      {
+        "path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "e7cbc0b4a5a017cec336e132ec8fb661fabc3f60"
+      },
+      {
+        "path": "automation/governance/decisions/EXECUTION-CAPACITY-FINAL-LIVENESS.owner.json",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "766da8dc65ecfab89b370377de3967963468a73a"
+      },
+      {
+        "path": "automation/governance/decisions/MANUAL-EXECUTOR-FALLBACK.owner.json",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "277de627be2af91d17dde62fe255c8b616da86dc"
+      },
+      {
+        "path": "automation/governance/decisions/OWNER-AUTO-GOV-PROGRAM-1_2-ORCH-REV6-NARROW-CORRECTION-01.json",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "f9924f50134b7193fd03808fb5957e9aa83e4c02"
+      },
+      {
+        "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "e455d24c90ba07cef8e00ca0de0eb4d803949014"
+      },
+      {
+        "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "ee7569bee3df4f628cc912e84db6ed36731b929b"
+      },
+      {
+        "path": "automation/policies/development_state_machine.v2.yaml",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "bdb3dae292564d40fbf54899281c21c6e05aff99"
+      },
+      {
+        "path": "automation/policies/development_entry_protocol.v2.yaml",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2"
+      },
+      {
+        "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "e2b0422f294ac718f06403b704a8f28607a5002f"
+      },
+      {
+        "path": "automation/specs/work_cost_accounting.v2.yaml",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "f40b88fe7ed1996d92794ec0106eccfd18f465f4"
+      },
+      {
+        "path": "automation/authorizations/AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6.v6.yaml",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "a056d0d195e6a8ae0e09abcbf65e9ef044efe1df"
+      },
+      {
+        "path": "automation/work_orders/reconciliations/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/reconciliation.json",
+        "ref": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
+        "git_blob": "49e94a53c2833fb1c1ad400a94c962832da8a332"
+      }
+    ],
+    "additional_evidence": [
+      "claim.json",
+      "invocation.json",
+      "completion.json",
+      "execution_cost_actual.json",
+      "checkpoint manifest/patch",
+      "canonical extractor/reconciler",
+      "REV6 forecast",
+      "canonical writer projections",
+      "Git commit parent/file lists and exact trees"
+    ],
+    "raw_transcript_loaded": false,
+    "history_loaded": "EXACT_LINKED_RECONCILIATION_BATCH1_2_3_AND_OWNER_POINTERS_ONLY",
+    "source_context": "8 exact bytes inspected mechanically for checksum; no independent semantic review by WORK",
+    "content_volume": "UNKNOWN_NOT_MODEL_TOKEN_USAGE"
+  },
+  "implementation_tests_run": 0,
+  "full_regression_runs_by_work": 0,
+  "source_files_modified": 0,
+  "independent_reviews_performed": 0,
+  "approval_review_rejection": {
+    "count": 1,
+    "action": "Publish raw reconciliation output with local absolute paths",
+    "resolution": "Removed raw output artifact; only canonical-path normalized telemetry published"
+  },
+  "extractor_diagnostics": "Canonical PS7 produced no snapshot; exact canonical bytes run successfully via WindowsPS5.1; no script/source change or execution-policy mutation",
+  "provider_percent_to_tokens": false,
+  "created_at": "2026-10-06T15:35:44Z",
+  "updated_at": "2026-10-06T15:35:44Z"
+}
