@@ -43,6 +43,10 @@ Architecture decision confirms production resolver behavior is safe and must rem
 
 Human IVF01 bounded implementation decision is materialized in `automation/authorizations/AUTH-AUTO-IMP-002-IVF01-01.v1.yaml`; exact work order `WO-AUTO-IMP-002-IVF01-01` is BLOCKED, handoff_ready=false. Only `tests/automation/test_reentry.py` may receive semantic correction; budget 1 unused. Sole pre-reservation blocker: IVF01_QUOTA_ADMISSION_UNRESOLVED (P90 5.5M exceeds frozen normalized fallback 40k; no compatible provider-native admission). Provider presently permits ordinary usage, with no hard-block; percentages are not token budgets. No execution/reservation/lock/dispatch/consumption. IC01 semantic PASS and historical integration failure remain unchanged. AUTO-IMP-003 and runtime/broker/DB/migration/LIVE/production remain NOT_AUTHORIZED. Prior preparation and IC01 snapshots below are historical; CURRENT_CODEX is the exact active pointer.
 
+### Execution Capacity / Resume V2 — Authorized Migration, NOT ACTIVE
+
+Human decision EXECUTION_CAPACITY_AND_RESUME_V2 = APPROVED_FOR_COHESIVE_IMPLEMENTATION authorizes one exact governance migration bootstrap. Current migration WO: `WO-AUTO-GOV-EXEC-CAPACITY-V2-01`; authority: `AUTH-AUTO-GOV-EXEC-CAPACITY-V2-01`. Active master architecture remains1.1 until fresh Independent Governance/Semantic Review PASS and WORK accepted materialization. This bootstrap excludes obsolete internal80%/40k gate only for the migration; provider hard-block still STOP. IVF01 Rev1 remains blocked/no execution and will require recompilation after1.2active; no waiver. AUTO-IMP-003/runtime/broker/DB/migration/LIVE/production remain NOT_AUTHORIZED. CURRENT pointers supersede earlier IVF01 next-route text.
+
 ### CURRENT_AUTHORITY_SNAPSHOT
 
 ```text

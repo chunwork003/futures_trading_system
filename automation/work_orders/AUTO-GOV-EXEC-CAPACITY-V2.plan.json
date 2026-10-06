@@ -1,0 +1,127 @@
+{
+  "schema_version": "automation.work_package_plan.v1",
+  "work_package_id": "AUTO-GOV-EXEC-CAPACITY-V2",
+  "work_package_revision": "1",
+  "status": "AUTHORIZED_MIGRATION_PLANNING",
+  "program_id": "GOVERNANCE_POLICY_MIGRATION_BOOTSTRAP",
+  "planning_baseline_sha": "9182108afda38c63aa22d8070cf156fee8644716",
+  "wave": "COHESIVE_GOVERNANCE_MIGRATION",
+  "title": "Execution Capacity and Same-Execution Resume V2",
+  "risk": "HIGH_AUTHORITY_SEMANTICS_EXPLICIT_HUMAN_APPROVAL",
+  "depends_on": [],
+  "purpose": "Cohesive successor policies and machine-checkable same-execution resume with exact/proxy/estimated cost separation",
+  "authorization": {
+    "path": "automation/authorizations/AUTH-AUTO-GOV-EXEC-CAPACITY-V2-01.v1.yaml",
+    "decision": "EXECUTION_CAPACITY_AND_RESUME_V2 = APPROVED_FOR_COHESIVE_IMPLEMENTATION",
+    "automatic_dispatch": false
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED"
+  },
+  "planned_write_scope": [
+    "automation/policies/execution_capacity_policy.v2.yaml",
+    "automation/policies/authorization_lifecycle.v1_1.yaml",
+    "automation/policies/development_state_machine.v2.yaml",
+    "automation/policies/development_entry_protocol.v2.yaml",
+    "automation/telemetry/execution_cost_contract.v2.yaml",
+    "automation/specs/work_cost_accounting.v2.yaml",
+    "automation/specs/negative_assertions.v2.yaml",
+    "automation/engine/execution_capacity.py",
+    "tests/automation/test_execution_capacity.py",
+    "automation/engine/contracts.py",
+    "tests/automation/test_contracts.py",
+    "scripts/execution_cost_reconcile.ps1",
+    "automation/skills/quota-snapshot-recorder/SKILL.md",
+    "automation/skills/execution-cost-forecaster/SKILL.md",
+    "automation/skills/execution-efficiency-guard/SKILL.md",
+    "automation/skills/single-use-lifecycle-guard/SKILL.md",
+    "automation/skills/repo-reentry/SKILL.md",
+    "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+    "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+    "automation/governance/master_manifest.v1.yaml",
+    "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+    "docs/CURRENT_STATE.md",
+    "docs/CURRENT_WORK.md"
+  ],
+  "protected_scope": [
+    "automation/policies/quota_admission_policy.v1.yaml",
+    "automation/policies/quota_admission_policy.v1_1.yaml",
+    "automation/policies/authorization_lifecycle.v1.yaml",
+    "automation/policies/development_state_machine.v1.yaml",
+    "automation/policies/development_entry_protocol.v1.yaml",
+    "automation/telemetry/execution_cost_contract.v1.yaml",
+    "automation/specs/work_cost_accounting.v1.yaml",
+    "automation/specs/negative_assertions.v1.yaml",
+    "automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml",
+    "scripts/codex_session_token_usage.ps1",
+    "automation/engine/yaml_io.py",
+    "automation/engine/reentry.py",
+    "automation/engine/manifest.py",
+    "tests/automation/test_reentry.py",
+    "tests/automation/test_manifest.py",
+    "all existing authorizations and consumed authority/quota/execution/cost/review evidence",
+    "runtime/broker/db/migration/live/production/credentials/data/**"
+  ],
+  "acceptance_tests": [
+    "All seven new canonical schemas parse; intended historical schema fixtures still load; unknown schema and extra fields rejected; deep read-only values preserved",
+    "Exact SHA256 Git-blob manifest/policy/spec/architecture bundle hashes; no worktree newline normalization",
+    "Provider unavailable before dispatch denies execute; running provider limit pauses same identity, no correction budget consumption",
+    "Recovery cannot allocate new execution/dispatch; CONSUMED already-invoked resume only with exact lineage/revalidation; non-invoked consumed cannot resume",
+    "Legal unfinished execution blocks new READY selection; revoked/superseded/baseline/scope/writer/policy conflict STOP",
+    "Ambiguous/reset/competing-account percentage samples cannot calibrate; derived estimate cannot be EXACT; qualified features preserved separately",
+    "Forecast-capacity-review required on interruption; continuation may resume legally but new work after completion waits durable feedback; review cannot grant authority",
+    "Backward-compatible reconciliation existing metrics plus optional pause/resume fields and bounded recommendation; existing fixtures unchanged",
+    "Old80%/40k semantics absent from ACTIVEv2, v1/v1.1 byte identities unchanged; kernels agree with policies",
+    "IVF01 Rev1 remains blocked, unchanged/stale after1.2activation; no IVFwaiver or003authorization",
+    "Minimum missing-v2 schema/behavior counterexample then impacted subset until clean; one complete targeted automation + deterministic reconciler tests",
+    "One full regression after targeted PASS with POSTGRES17_TEST_DSN and POSTGRES18_TEST_DSN empty; no broker/actual DB/network credentials",
+    "git diff --check; exact23 implementation files plus own run evidence only; protected unchanged; candidate completion only NOT_ACCEPTED"
+  ],
+  "cost_forecast": {
+    "path": "automation/work_orders/forecasts/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.json",
+    "confidence": "PROVISIONAL_NO_SAME_CLASS_EXACT_COHORT"
+  },
+  "telemetry": {
+    "task_profile": {
+      "task_class": "AUTOMATION_GOVERNANCE_POLICY_CONSOLIDATION",
+      "change_type": "VERSIONED_AUTHORITY_CAPACITY_RESUME_MIGRATION",
+      "subsystem": "automation governance / contracts / reconciliation",
+      "functional_area": "execution capacity, single-use resume and routing",
+      "concise_engineering_goal": "Cohesive successor policies and machine-checkable same-execution resume with exact/proxy/estimated cost separation",
+      "primary_symbols_or_functional_surfaces": [
+        "CONTRACT_BY_SCHEMA",
+        "execution_capacity pure gate evaluator",
+        "execution_cost_reconcile.ps1",
+        "versioned governance policies",
+        "WORK/CODEX routing kernels"
+      ],
+      "behavior_dimensions": [
+        "provider availability",
+        "cost demand/capacity estimate",
+        "same-execution resume",
+        "single writer",
+        "reviewed1.2activation"
+      ],
+      "source_file_count": 3,
+      "test_file_count": 2,
+      "semantic_profile": "AUTHORITY_AND_LIFECYCLE_CHANGE_REQUIRES_INDEPENDENT_REVIEW",
+      "test_profile": "TARGETED_AUTOMATION_PLUS_RECONCILER_NEGATIVES_PLUS_ONE_FULL_REGRESSION",
+      "authority_boundary": "Exact bootstrap governance migration only; runtime/broker/DB/migration/live/production denied",
+      "packaging_cohesion_decision": "KEEP_COHESIVE: shared authority/routing/cost invariants, one acceptance gate; no validated sequencing dependency requiring separate WOs"
+    },
+    "raw_transcript_load": "DENIED",
+    "local_exact_tokens": "POST_EXECUTION_DETERMINISTIC_EXTRACTION",
+    "work_exact_tokens": "UNKNOWN_UNLESS_TASK_BOUND"
+  },
+  "git_policy": {
+    "branch": "auto/WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+    "force_push": false,
+    "no_cherry_pick_old_control_plane": true
+  },
+  "review_barrier": "FRESH_CONTEXT_INDEPENDENT_GOVERNANCE_SEMANTIC_BEFORE_ARCHITECTURE1_2_ACTIVE"
+}

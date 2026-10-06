@@ -1,0 +1,148 @@
+{
+  "schema_version": "automation.authorization.v1",
+  "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-01",
+  "authorization_revision": "1",
+  "document_status": "AUTHORIZED_EFFECTIVE",
+  "authorization_state": "AUTHORIZED",
+  "source_candidate_head_sha": "9182108afda38c63aa22d8070cf156fee8644716",
+  "decision_evidence": {
+    "decision": "EXECUTION_CAPACITY_AND_RESUME_V2 = APPROVED_FOR_COHESIVE_IMPLEMENTATION",
+    "authority": "HUMAN_GOVERNANCE_OWNER",
+    "source": "USER_EXPLICIT_ATTACHED_FINAL_ARCHITECTURE_GOVERNANCE_DECISION",
+    "effect": "EXACT_COHESIVE23FILE_GOVERNANCE_POLICY_MIGRATION_BOOTSTRAP",
+    "runtime_authority": "NONE",
+    "bootstrap": {
+      "basis": "HUMAN_EXPLICIT_GOVERNANCE_POLICY_MIGRATION_BOOTSTRAP",
+      "exact_work_only": true,
+      "old_internal_80pct_40k_gate": "INAPPLICABLE_FOR_THIS_APPROVED_SUPERSESSION_MIGRATION",
+      "provider_enforced_limits_waived": false,
+      "requirements": [
+        "ordinaryUsageAllowed true",
+        "no provider hard/rate-limit/spend denial",
+        "exact WO/authority",
+        "single-use lifecycle",
+        "exact scope",
+        "forecast",
+        "runtime/broker/db/migration/live/production DENIED"
+      ]
+    },
+    "created_at": "2026-10-06T03:35:25Z",
+    "updated_at": "2026-10-06T03:35:25Z"
+  },
+  "exact_binding": {
+    "authorization_id": "AUTH-AUTO-GOV-EXEC-CAPACITY-V2-01",
+    "authorization_revision": "1",
+    "work_package_id": "AUTO-GOV-EXEC-CAPACITY-V2",
+    "work_package_revision": "1",
+    "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+    "architecture_id": "DEVELOPMENT-AUTOMATION-MASTER",
+    "architecture_revision": "1.1",
+    "architecture_bundle_hash": "d6b2c5b4e8ff95a337c4c9982ed03a64e1cf4ea4c03f250857e98d37e3df6cfa",
+    "target_architecture_revision": "1.2_PENDING_INDEPENDENT_REVIEW_AND_MATERIALIZATION",
+    "planning_baseline_sha": "9182108afda38c63aa22d8070cf156fee8644716",
+    "scope_digest": "adaed4bf372eab01d9c8875c7c870156e87ce7e7535fca99dd100317af7a31d1",
+    "scope_digest_convention": "SHA256_UTF8_NEWLINE_JOIN_EXACT_ORDER_NO_TRAILING_NEWLINE",
+    "side_effect_class": "GOVERNANCE_POLICY_MIGRATION_NO_TRADING_RUNTIME",
+    "governance_effect": "PROPOSE_REVIEWED_SUCCESSOR_SEMANTICS_NOT_ACTIVATE_BEFORE_ACCEPTANCE",
+    "allowed_executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+    "implementation_correction_budget": 0,
+    "review_barrier": "FRESH_CONTEXT_INDEPENDENT_GOVERNANCE_SEMANTIC_REQUIRED"
+  },
+  "program_binding": {
+    "program_id": "GOVERNANCE_POLICY_MIGRATION_BOOTSTRAP",
+    "program_revision": "1",
+    "decision_path": "automation/work_orders/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.yaml",
+    "legacy_auto_imp_program_modified": false,
+    "ordering": "Human-authorized prerequisite migration before blocked IVF01; no AUTO-IMP package progression"
+  },
+  "package_binding": {
+    "path": "automation/work_orders/AUTO-GOV-EXEC-CAPACITY-V2.plan.json",
+    "risk": "AUTHORITY_SEMANTIC_CHANGE_EXPLICITLY_APPROVED",
+    "planned_write_scope": [
+      "automation/policies/execution_capacity_policy.v2.yaml",
+      "automation/policies/authorization_lifecycle.v1_1.yaml",
+      "automation/policies/development_state_machine.v2.yaml",
+      "automation/policies/development_entry_protocol.v2.yaml",
+      "automation/telemetry/execution_cost_contract.v2.yaml",
+      "automation/specs/work_cost_accounting.v2.yaml",
+      "automation/specs/negative_assertions.v2.yaml",
+      "automation/engine/execution_capacity.py",
+      "tests/automation/test_execution_capacity.py",
+      "automation/engine/contracts.py",
+      "tests/automation/test_contracts.py",
+      "scripts/execution_cost_reconcile.ps1",
+      "automation/skills/quota-snapshot-recorder/SKILL.md",
+      "automation/skills/execution-cost-forecaster/SKILL.md",
+      "automation/skills/execution-efficiency-guard/SKILL.md",
+      "automation/skills/single-use-lifecycle-guard/SKILL.md",
+      "automation/skills/repo-reentry/SKILL.md",
+      "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+      "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+      "automation/governance/master_manifest.v1.yaml",
+      "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+      "docs/CURRENT_STATE.md",
+      "docs/CURRENT_WORK.md"
+    ],
+    "protected_scope": [
+      "automation/policies/quota_admission_policy.v1.yaml",
+      "automation/policies/quota_admission_policy.v1_1.yaml",
+      "automation/policies/authorization_lifecycle.v1.yaml",
+      "automation/policies/development_state_machine.v1.yaml",
+      "automation/policies/development_entry_protocol.v1.yaml",
+      "automation/telemetry/execution_cost_contract.v1.yaml",
+      "automation/specs/work_cost_accounting.v1.yaml",
+      "automation/specs/negative_assertions.v1.yaml",
+      "automation/programs/AUTO-IMP-PROGRAM-V1/program.yaml",
+      "scripts/codex_session_token_usage.ps1",
+      "automation/engine/yaml_io.py",
+      "automation/engine/reentry.py",
+      "automation/engine/manifest.py",
+      "tests/automation/test_reentry.py",
+      "tests/automation/test_manifest.py",
+      "all existing authorizations and consumed authority/quota/execution/cost/review evidence",
+      "runtime/broker/db/migration/live/production/credentials/data/**"
+    ]
+  },
+  "execution_policy": {
+    "manual_trigger_only": true,
+    "automatic_dispatch": "DENIED",
+    "automatic_next_package_progression": "DENIED",
+    "single_use_lifecycle_guard_required": true,
+    "one_writer_required": true,
+    "implementation_initial_iteration": "Bounded coherent initial implementation and impacted debugging; no extra post-result semantic correction authority"
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED"
+  },
+  "quota_gate": {
+    "status": "GOVERNANCE_POLICY_MIGRATION_BOOTSTRAP",
+    "provider_hard_block": "STOP",
+    "provider_enforced_limits_waived": false,
+    "old_80pct_40k_gate": "INAPPLICABLE_EXACT_HUMAN_SUPERSESSION_BOOTSTRAP",
+    "ivf01_quota_waiver": false,
+    "prior_amendment_reuse": "DENIED"
+  },
+  "telemetry_gate": {
+    "exact_local_tokens": "BOUND_POST_EXECUTION_DETERMINISTIC_EXTRACTOR",
+    "raw_provider_snapshot": "PRESERVE_WHEN_AVAILABLE",
+    "estimate_typing": "NEVER_EXACT_PERCENT_DERIVED",
+    "task_profile_context_profile_required": true
+  },
+  "decision": {
+    "status": "AUTHORIZED_PENDING_FRESH_ELIGIBILITY",
+    "next_route": "MIGRATION_PRE_RESERVATION_ELIGIBILITY",
+    "created_at": "2026-10-06T03:35:25Z",
+    "updated_at": "2026-10-06T03:35:25Z"
+  },
+  "single_use_execution": {
+    "execution_id": "NOT_ALLOCATED",
+    "reservation_path": "NOT_CREATED",
+    "dispatch_committed": false,
+    "executor_invoked": false
+  }
+}

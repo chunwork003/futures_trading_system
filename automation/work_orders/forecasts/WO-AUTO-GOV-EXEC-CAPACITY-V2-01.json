@@ -1,0 +1,103 @@
+{
+  "schema_version": "automation.execution_cost_forecast.v1",
+  "forecast_id": "FORECAST-AUTO-GOV-EXEC-CAPACITY-V2-01",
+  "status": "PLANNING_FORECAST_NOT_AUTHORITY",
+  "work_order_id": "WO-AUTO-GOV-EXEC-CAPACITY-V2-01",
+  "package_id": "AUTO-GOV-EXEC-CAPACITY-V2",
+  "confidence": "PROVISIONAL_NO_SAME_CLASS_EXACT_COHORT",
+  "measurement_type": "PROXY",
+  "comparable_samples": [],
+  "reference_samples": [
+    "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+    "EXEC-AUTO-IMP-002-RF02-20261005T125807Z"
+  ],
+  "comparability_limit": "References share automation tests/telemetry, not governance-semantic migration class; not calibrated percentiles",
+  "forecast": {
+    "reported_total_tokens": {
+      "p50": 2000000,
+      "p75": 5500000,
+      "p90": 12000000
+    },
+    "uncached_input_tokens": {
+      "p50": 90000,
+      "p75": 150000,
+      "p90": 250000
+    },
+    "actor_seconds": {
+      "p50": 2400,
+      "p75": 4200,
+      "p90": 7200
+    },
+    "targeted_seconds": {
+      "p90": 900
+    },
+    "full_regression_seconds": {
+      "p90": 1000
+    },
+    "test_cycles": {
+      "pre_fix_cases_max": 1,
+      "complete_targeted_passes_max": 1,
+      "full_regression_passes_max": 1
+    },
+    "output_tokens": {
+      "p50": null,
+      "p75": null,
+      "p90": null
+    },
+    "reasoning_output_tokens": {
+      "p50": null,
+      "p75": null,
+      "p90": null
+    },
+    "cached_input_ratio": {
+      "range": null,
+      "status": "UNKNOWN"
+    }
+  },
+  "quota_forecast": {
+    "five_hour_delta_pct": {
+      "p50": null,
+      "p75": null,
+      "p90": null
+    },
+    "weekly_delta_pct": {
+      "p50": null,
+      "p75": null,
+      "p90": null
+    },
+    "status": "UNKNOWN_NOT_ADMISSION",
+    "provider_enforced_limits_waived": false
+  },
+  "work_orchestration_forecast": {
+    "measurement_type": "PROXY",
+    "exact_tokens": null,
+    "artifact_reads": {
+      "p50": 10,
+      "p75": 16,
+      "p90": 22
+    },
+    "artifacts_written": {
+      "p50": 12,
+      "p75": 18,
+      "p90": 24
+    }
+  },
+  "rework_risk": "MEDIUM_HIGH_AUTHORITY_SEMANTIC_CONSISTENCY",
+  "expected_cost_driver": "CROSS_POLICY_CONTRACT_AND_RESUME_NEGATIVE_MATRIX_PLUS_CONTEXT_REPLAY",
+  "early_watch": {
+    "actor_seconds": 4200,
+    "extra_full_suite": "STOP_TO_WORK_WITH_CHECKPOINT"
+  },
+  "assumptions": [
+    "One cohesive23file boundary",
+    "Existing3sample qualification discipline plus clean attribution; no arbitrary token admission cap",
+    "Batch independent reads; no raw transcripts or repeated unchanged context",
+    "One final targeted and full regression; preserve test progress across provider pause"
+  ],
+  "derivation": "Judgmental planning bands: observed IC015.008M replay-heavy total plus larger coherent policy/loader/reconciler work and uncertainty; not calibrated statistical percentile or provider capacity",
+  "recommendation_applied_to_next_forecast": "Compact decision/WO pointers; preserve cohesion; minimize replay and redundant suites",
+  "billing_cost": "NOT_AVAILABLE",
+  "authority_effect": "NONE",
+  "created_at": "2026-10-06T03:35:25Z",
+  "updated_at": "2026-10-06T03:35:25Z"
+}
