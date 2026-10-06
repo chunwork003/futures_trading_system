@@ -1,4 +1,40 @@
-# CURRENT — Program V2 Orchestration Manual CODEX Handoff
+# CURRENT — Human Dialogue Manual Fallback
+
+Architecture 1.2.2 remains ACTIVE.
+
+Current logical Work Order:
+WO-AUTO-GOV-PROGRAM-1_2-ORCH-01
+
+Current authorization:
+AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5
+
+Current execution:
+EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z
+
+Executor:
+HUMAN_DIALOGUE
+
+State:
+READY_FOR_MANUAL_DIALOGUE_IMPLEMENTATION
+
+Manual fallback is permanently supported.
+Codex availability and Codex capacity do not block HUMAN_DIALOGUE execution.
+
+Same exact 21-file implementation scope.
+Implementation correction budget = 2.
+Review-fix budget = 2.
+
+CONTROLLED_AUTO remains DISABLED.
+Runtime / broker / DB / migration / LIVE / production remain DENIED.
+AUTO-IMP-002 and AUTO-IMP-003 remain NOT_AUTHORIZED.
+
+Predecessor Codex execution:
+EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-20261006T115006Z
+EXECUTOR_UNAVAILABLE_BEFORE_FIRST_INVOCATION
+NOT REUSABLE.
+
+---
+# CURRENT ??Program V2 Orchestration Manual CODEX Handoff
 
 Architecture 1.2.2 / Capacity Policy 2.2 ACTIVE.
 
@@ -152,13 +188,13 @@ Only next route: `AUTOMATION_PROGRAM_1_1_TO_1_2_COMPATIBILITY_AND_NEXT_FLOW_SEQU
 
 This document records planning/work state only and does NOT independently establish Runtime Authorization??
 
-Runtime Authorization summary嚗OT_AUTHORIZED??
+Runtime Authorization summary?彿OT_AUTHORIZED??
 
-Architecture Decision Baseline嚗22ceaa729ab6e9da9c00ae52e09ae7116be5a743`??
+Architecture Decision Baseline??22ceaa729ab6e9da9c00ae52e09ae7116be5a743`??
 
-Governance Planning Baseline嚗f45742d9d16165f87f145f0d2bdc8d530772e5ee`嚗orrection-Freeze Baseline嚗93fb846a9c9cd61eea44427a86a542fc95f9ac28`嚗atest bounded execution closure嚗docs/work/GAP08_WAVE1_CLOSURE.md`??
+Governance Planning Baseline??f45742d9d16165f87f145f0d2bdc8d530772e5ee`??orrection-Freeze Baseline??93fb846a9c9cd61eea44427a86a542fc95f9ac28`?炮atest bounded execution closure??docs/work/GAP08_WAVE1_CLOSURE.md`??
 
-Post-5E accepted planning inputs?aterialized leaves?AG?ounded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`??
+Post-5E accepted planning inputs?蹍仟terialized leaves?蹎劈G?蹍unded rewrite policy and reweight are frozen in `docs/work/GAP08_CORRECTION_FREEZE.md`??
 
 Current execution action: GAP-08 is CLOSED_ACCEPTED; no runtime work is active. No next mainline GAP is authorized. Development Automation Master v1.1 is FROZEN; next automation route is AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW.
 
@@ -209,30 +245,30 @@ NEXT = AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW
 
 ## Purpose
 
-?祆?隞嗅靽?嚗?
+?蟡????園豲???
 
 - Current work??
 - Mainline queue??
 - Dependencies??
 - Blocking relation??
 
-摰?Ｗ??嚗?
+?堆??嚗??賹???
 
 `V1_CAPABILITY_MAP.md`
 
-摰撌亦??圾嚗?
+?堆?格?鈭?????
 
 `V1_SYSTEM_BLUEPRINT.md`
 
-摰 architecture嚗?
+?堆??architecture??
 
 `ARCHITECTURE.md`
 
-Technical issues嚗?
+Technical issues??
 
 `GAP_REGISTER.md`
 
-摰 Work Package嚗?
+?堆??Work Package??
 
 `work/ACTIVE.md`
 
@@ -240,39 +276,39 @@ Technical issues嚗?
 
 # Current Active Candidate
 
-Current Parent GAP嚗?
+Current Parent GAP??
 
 `NONE`
 
-Last Closed Parent GAP嚗?
+Last Closed Parent GAP??
 
 `GAP-08`
 
-GAP-08 Status嚗?
+GAP-08 Status??
 
 `CLOSED_ACCEPTED`
 
-Runtime Work Package嚗?
+Runtime Work Package??
 
 `NONE`
 
-Final accepted corrected runtime HEAD嚗?
+Final accepted corrected runtime HEAD??
 
 `e4e238ccc3edb753c86e89368efe0645d6337f58`
 
-Architecture Acceptance嚗?
+Architecture Acceptance??
 
 `ACCEPTED_FOR_GAP08_SCOPE`
 
-Runtime Authorization嚗?
+Runtime Authorization??
 
 `NOT_AUTHORIZED`
 
-Next mainline GAP嚗?
+Next mainline GAP??
 
 `NOT_AUTHORIZED`
 
-Next governance checkpoint嚗?
+Next governance checkpoint??
 
 `AUTOMATION_IMPLEMENTATION_AUTO_IMP_001_COMPLETION_REVIEW`
 
@@ -280,7 +316,7 @@ The historical GAP-08EFGHI candidate and prior correction leaves below are retai
 
 ## Latest Completed Correction Leaves
 
-Previously completed / verified嚗?
+Previously completed / verified??
 
 - V06??
 - C01??
@@ -290,186 +326,186 @@ Previously completed / verified嚗?
 - C24??
 - C25??
 
-GAP08-W1嚗?
+GAP08-W1??
 
 COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED??
 
-Accepted W1 leaves嚗?
+Accepted W1 leaves??
 
 - C02??
 - C04??
 - C21??
 - C03??
 
-Closure嚗?
+Closure??
 
 `docs/work/GAP08_WAVE1_CLOSURE.md`
 
-Final W1 Runtime HEAD嚗?
+Final W1 Runtime HEAD??
 
 `6b9db14ff0e6f104f59e418aae2aa8f99f3a2119`
 
-Reviewer-correction verification嚗?
+Reviewer-correction verification??
 
-- targeted嚗?9 passed??
-- full regression嚗?119 passed / 4 skipped??
-- RF01嚗ASS??
-- RF02嚗ASS??
+- targeted??9 passed??
+- full regression??119 passed / 4 skipped??
+- RF01?忝ASS??
+- RF02?忝ASS??
 
-Migration 0005嚗?
+Migration 0005??
 
 CREATED / NOT EXECUTED??
 
-Actual PostgreSQL / V07嚗?
+Actual PostgreSQL / V07??
 
 NOT EXECUTED / NOT VERIFIED??
 
-Correction-core progress嚗?
+Correction-core progress??
 
     46 / 113 complete / verified
     67 remaining
 
 ## Current Execution Gate
 
-Runtime Authorization嚗?
+Runtime Authorization??
 
 NOT_AUTHORIZED??
 
-W1嚗?
+W1??
 
 COMPLETE / VERIFIED / ACCEPTED / CLOSED??
 
-W1 source-modification authorization嚗?
+W1 source-modification authorization??
 
 CONSUMED / CLOSED??
 
-Next Wave candidate嚗?
+Next Wave candidate??
 
     C08
         -> C05
         -> C06
 
-W2 weight嚗?
+W2 weight??
 
 14??
 
-W2 Execution Coherence嚗?
+W2 Execution Coherence??
 
 VERIFIED??
 
-W2 Runtime Source Modification Authorization嚗?
+W2 Runtime Source Modification Authorization??
 
 CONSUMED / CLOSED??
 
-Migration execution嚗?
+Migration execution??
 
 NOT_AUTHORIZED??
 
-Actual PostgreSQL / V07嚗?
+Actual PostgreSQL / V07??
 
 NOT_AUTHORIZED??
 
-Broker I/O / Production Activation嚗?
+Broker I/O / Production Activation??
 
 NOT_AUTHORIZED??
 
-W2 final Runtime HEAD嚗?
+W2 final Runtime HEAD??
 
 `a9a8277afd4aeda5150d596b41597a179ad63570`
 
-W2嚗?
+W2??
 
 COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED??
 
-Closure嚗?
+Closure??
 
 `docs/work/GAP08_WAVE2_CLOSURE.md`
 
-Accepted correction-core progress嚗?
+Accepted correction-core progress??
 
 60 / 113??
-Remaining嚗?
+Remaining??
 
 53??
 
-P5 / W3嚗?
+P5 / W3??
 
     C07
         -> C09
         -> C10
 
-W3 weight嚗?
+W3 weight??
 
 15??
 
-W3嚗?
+W3??
 
 COMPLETE / VERIFIED / REVIEWER_ACCEPTED / CLOSED??
 
-Final Runtime HEAD嚗?
+Final Runtime HEAD??
 
 `8085697e7211b4cd43df8e4574c3eef25cba604a`
 
-Closure嚗?
+Closure??
 
 `docs/work/GAP08_WAVE3_CLOSURE.md`
 
-Accepted correction-core progress嚗?
+Accepted correction-core progress??
 
 75 / 113??
 
-Remaining嚗?
+Remaining??
 
 38??
 
-Next frozen package嚗?
+Next frozen package??
 
     C13
         -> C12
         -> C14
         -> C15
 
-P6 / W4 weight嚗?
+P6 / W4 weight??
 
 18??
 
-Execution package嚗?
+Execution package??
 
 `docs/work/GAP08_WAVE4_EXECUTION_PACKAGE.md`
 
-Execution coherence嚗?
+Execution coherence??
 
 VERIFIED??
 
-Reviewer嚗OLD / RF01_REQUIRED??
+Reviewer?延OLD / RF01_REQUIRED??
 
-C13 / C14嚗ASS / FROZEN / READ_ONLY??
-C12 / C15嚗F01 REQUIRED??
+C13 / C14?忝ASS / FROZEN / READ_ONLY??
+C12 / C15?忽F01 REQUIRED??
 
-Runtime Source Modification Authorization嚗?
+Runtime Source Modification Authorization??
 
 BOUNDED_AUTHORIZED_FOR_GAP08_W4_RF01_C12_C15_ONLY??
 
-RF01嚗?
+RF01??
 `docs/work/GAP08_WAVE4_AUTHORIZATION_AMENDMENT_01.md`
 
-Next actual project action嚗?
-one bounded C12+C15 correction commit嚗argeted + final W4 targeted + one final full regression嚗ush once and STOP for reviewer??
+Next actual project action??
+one bounded C12+C15 correction commit?狡argeted + final W4 targeted + one final full regression?牯ush once and STOP for reviewer??
 
-No migration execution?ctual PostgreSQL or broker I/O is authorized??
+No migration execution?蹍tual PostgreSQL or broker I/O is authorized??
 
 
 # Completed Work Package ??GAP-BROKER-002
 
-Status嚗?
+Status??
 
 CLOSED / ACCEPTED
 
-Accepted runtime commit嚗?
+Accepted runtime commit??
 
 `7d7fdabcb99da59d3d23ccec62b11c6572ceea82`
 
-Accepted嚗?
+Accepted??
 
 - broker-neutral BrokerCapability contract??
 - BrokerCapabilitySupport??
@@ -480,7 +516,7 @@ Accepted嚗?
 - no SIMULATION / PRODUCTION claim??
 - no live authorization implication??
 
-Verification嚗?
+Verification??
 
 - targeted 22 passed??
 - compatibility 45 passed??
@@ -490,15 +526,15 @@ Verification嚗?
 
 # Completed Work Package ??GAP-RECON-001B
 
-Status嚗?
+Status??
 
 COMPLETED / ACCEPTED
 
-Accepted runtime commit嚗?
+Accepted runtime commit??
 
 `4049f982474454556baf8734a5729ecbedc7a438`
 
-Accepted嚗?
+Accepted??
 
 - deterministic collection reconciliation??
 - ExpectedPositionLoader seam??
@@ -509,27 +545,27 @@ Accepted嚗?
 - strategy_state_ready dependency??
 - no silent startup repair??
 
-Verification嚗?
+Verification??
 
 - targeted 58 passed??
 - compatibility 22 passed??
 - full regression 847 passed??
 - implementation correction cycles 1??
 
-Parent GAP-RECON-001嚗LOSED / ACCEPTED??
+Parent GAP-RECON-001?庚LOSED / ACCEPTED??
 
 
 # Completed Work Package ??GAP-RECON-001A
 
-Status嚗?
+Status??
 
 COMPLETED / ACCEPTED
 
-Accepted runtime commit嚗?
+Accepted runtime commit??
 
 `d7dbd884f09e72d7737726409e11e0679206ed8d`
 
-Accepted嚗?
+Accepted??
 
 - ReconciliationResult evidence semantics??
 - UNKNOWN_EXTERNAL_STATE??
@@ -538,7 +574,7 @@ Accepted嚗?
 - pure create / resolve??
 - no corrective action boundary??
 
-Verification嚗?
+Verification??
 
 - targeted 32 passed??
 - compatibility 22 passed??
@@ -550,15 +586,15 @@ Parent GAP remains IN_PROGRESS until 001B acceptance??
 
 # Completed Work Package ??GAP-BROKER-001
 
-Status嚗?
+Status??
 
 CLOSED / ACCEPTED
 
-Accepted runtime commit嚗?
+Accepted runtime commit??
 
 `b5d309cc91c6dbdf539c17a46662cdde46716224`
 
-Accepted嚗?
+Accepted??
 
 - OrderIntent??
 - PositionEffect OPEN / REDUCE / CLOSE??
@@ -569,7 +605,7 @@ Accepted嚗?
 - explicit Buy/Sell + New/Cover mapping??
 - order-ID prefix inference removal??
 
-Verification嚗?
+Verification??
 
 - targeted 49 passed??
 - compatibility 80 passed??
@@ -581,15 +617,15 @@ Corrective reconciliation remains outside this completed Work Package??
 
 # Completed Work Package ??GAP-ACCOUNT-001
 
-Status嚗?
+Status??
 
 CLOSED / ACCEPTED
 
-Accepted runtime commit嚗?
+Accepted runtime commit??
 
 `50813b679f818f3837a9f50fdcda9921495ab507`
 
-Accepted嚗?
+Accepted??
 
 - BrokerAccount??
 - canonical AccountPosition foundation??
@@ -599,35 +635,35 @@ Accepted嚗?
 - pure Sinopac account / position mapping??
 - pure pairwise expected / actual comparison??
 
-Verification嚗?
+Verification??
 
 - targeted 50 passed??
 - compatibility 48 passed??
 - full regression 776 passed??
 - correction cycles 0??
 
-Corrective execution 隞????
+Corrective execution ??謓?????
 
 # Sequencing Rule
 
-Accepted嚗?
+Accepted??
 
 1. GAP-08ABCD ??CLOSED / ACCEPTED??
 
-Current expanded bundle嚗?
+Current expanded bundle??
 
 2. GAP-08EFGHI ??Operational Persistence + Recovery??
 
-Former EF and GHI boundaries are merged only after explicit architecture freeze of canonical OMS?napshot?trategyInstance and recovery semantics??
+Former EF and GHI boundaries are merged only after explicit architecture freeze of canonical OMS?蹍南apshot?蹍rategyInstance and recovery semantics??
 
 K520 remains GAP-09??
 
-Sizing experiment嚗?
+Sizing experiment??
 
 - current scope 35 leaves / weight 151??
 - projected accepted lifecycle gain approximately +6.27pp??
-- target is improved accepted work/resource嚗ot forced quota consumption??
-- if correction/debug cost becomes nonlinear嚗ext bundle must shrink??
+- target is improved accepted work/resource?ot forced quota consumption??
+- if correction/debug cost becomes nonlinear?ext bundle must shrink??
 
 # Mainline Queue
 
@@ -651,7 +687,7 @@ Sizing experiment嚗?
 
 # Follow-Up Queue
 
-隞乩?銝???mainline READY ?銵???
+?鼎??????mainline READY ?蹇?蛛????
 
 - GAP-07-TIME-001??
 - GAP-07-SESSION-001??
@@ -666,58 +702,58 @@ Sizing experiment嚗?
 - GAP-ENV-001??
 - GAP-DOC-001??
 
-?嗡葉嚗?
+??∟???
 
-GAP-07-TIME-001 ??GAP-07-SESSION-EXPIRY 敹???production live ????
+GAP-07-TIME-001 ??GAP-07-SESSION-EXPIRY ?對???production live ??????
 
 ---
 
 # Queue Selection Rules
 
-??嚗?
+?????
 
 1. P0 current correctness/safety blocker??
 2. READY P1 mainline??
 3. Required mainline dependency??
 4. Approved milestone-required work??
 5. P2 follow-up only when explicitly scheduled??
-6. P3 / OBS 銝銵銵?
+6. P3 / OBS ???桅?綜??蛛??
 
-??mainline ??READY 撌乩?嚗?
+??mainline ??READY ?鼎???
 
-蝳迫?芾???cleanup??
+?啾撮餈?????cleanup??
 
 ---
 
 # Automation Rule
 
-Level 3A嚗?
+Level 3A??
 
-瘥活 autonomous run ?芸銵???ACTIVE Work Package??
+?伍瘣?autonomous run ??賃??蛛???ACTIVE Work Package??
 
-Runtime Codex 摰?敺?
+Runtime Codex ?堆??綽??
 
-- 摰? runtime implementation / tests??
+- ?堆? runtime implementation / tests??
 - runtime commit / push??
 - final report??
 - STOP??
 
-??ACTIVE ?? deterministic docs closure ?曹犖撌亥?鞎穿?
+??ACTIVE ??? deterministic docs closure ??寧??漸??忽?
 
-鈭箏極??堆?
+?剔?璆??????
 
 - CURRENT_STATE??
 - CURRENT_WORK??
 - GAP_REGISTER??
 - DEVELOPMENT_LOG??
 
-銝???runtime executor ?芸???銝???mainline??
+?????runtime executor ???????????mainline??
 
-?喳? 2?? ??queue-driven runtime Work Package 蝛拙?敺???隡?Level 3B??
+??? 2?? ??queue-driven runtime Work Package ????綽???????Level 3B??
 
 ## Historical Decision Checkpoint 5A Work Boundary
 
-Completed architecture work嚗?
+Completed architecture work??
 
 - R-01 amendments A1-A4??
 - R-02 amendments A5-A6??
@@ -725,9 +761,9 @@ Completed architecture work嚗?
 - R-04 unmanaged-external-execution + complete-RecoveryCut handoff clarification??
 - R-05A-F final contract??
 
-Current runtime work嚗ONE AUTHORIZED??
+Current runtime work?彿ONE AUTHORIZED??
 
-Next decision cluster嚗?
+Next decision cluster??
 
     R-06 ??Multi-strategy recovery boundary
     R-07 ??ReconciliationCase / BrokerAccount recovery scope formal closure
@@ -736,32 +772,32 @@ Do not start runtime correction from this checkpoint??
 
 ## Historical Decision Checkpoint 5B Work Boundary
 
-Completed architecture work嚗?
+Completed architecture work??
 
-- R-06 Multi-strategy recovery boundary嚗ECIDED??
-- R-07 ReconciliationCase BrokerAccount scope嚗ECIDED??
+- R-06 Multi-strategy recovery boundary?店ECIDED??
+- R-07 ReconciliationCase BrokerAccount scope?店ECIDED??
 
-Runtime work嚗ONE AUTHORIZED??
+Runtime work?彿ONE AUTHORIZED??
 
-Next decision cluster嚗?
+Next decision cluster??
 
     R-08 ??StrategyInstance instrument vs symbol identity
     R-09 ??strategy_instance_id / config_version / lifecycle authority
 
-R-09 remains the owner of exact StrategyInstance/config identity?olicy-version transition and lifecycle/provisioning authority??
+R-09 remains the owner of exact StrategyInstance/config identity?蹍矣licy-version transition and lifecycle/provisioning authority??
 
 Do not begin runtime correction from this checkpoint??
 
 ## Historical Decision Checkpoint 5C Work Boundary
 
-Completed architecture work嚗?
+Completed architecture work??
 
-- R-08 StrategyInstance instrument vs symbol identity嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
-- R-09 StrategyInstance / config / implementation / lifecycle authority嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-08 StrategyInstance instrument vs symbol identity?店ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-09 StrategyInstance / config / implementation / lifecycle authority?店ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
 
-Runtime work嚗ONE AUTHORIZED??
+Runtime work?彿ONE AUTHORIZED??
 
-Next嚗?
+Next??
 
     R-10 ??Initial explicit FLAT snapshot provenance formal closure
     R-11 ??occurred_at / received_at clock authority
@@ -770,14 +806,14 @@ Do not begin runtime correction from this checkpoint??
 
 ## Historical Decision Checkpoint 5D Work Boundary
 
-Completed architecture work嚗?
+Completed architecture work??
 
-- R-10 Initial explicit expected-state provenance嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
-- R-11 operational clock/timestamp authority嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-10 Initial explicit expected-state provenance?店ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-11 operational clock/timestamp authority?店ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
 
-Runtime work嚗ONE AUTHORIZED??
+Runtime work?彿ONE AUTHORIZED??
 
-Next嚗?
+Next??
 
     R-12 ??ReconciliationRun audit contract
     then R-13 / R-14 boundary classification
@@ -786,15 +822,15 @@ Do not begin runtime correction from this checkpoint??
 
 ## Historical Decision Checkpoint 5E Work Boundary ??ARCHITECTURE RECORD
 
-Completed architecture/classification work嚗?
+Completed architecture/classification work??
 
-- R-12 ReconciliationRun audit contract嚗ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
-- R-13 Operator Authorization嚗ECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED??
-- R-14 Operational Market-Data Completeness嚗ECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY??
+- R-12 ReconciliationRun audit contract?店ECIDED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-13 Operator Authorization?店ECIDED / BOUNDARY_CLASSIFIED / IMPLEMENTATION_CORRECTION_REQUIRED??
+- R-14 Operational Market-Data Completeness?店ECIDED / BOUNDARY_CLASSIFIED / GAP-08_ENFORCEMENT_CORRECTION_REQUIRED / GAP-DATA-001_DEFERRED_PRODUCTION_DEPENDENCY??
 
-Runtime work嚗ONE AUTHORIZED??
+Runtime work?彿ONE AUTHORIZED??
 
-Mandatory anti-misread嚗?
+Mandatory anti-misread??
 
     R-13 production auth runtime not implemented != authorization requirement waived
 
@@ -802,7 +838,7 @@ Mandatory anti-misread嚗?
 
 Candidate runtime commit is not an authorized runtime baseline??
 
-Next authoritative sequence嚗?
+Next authoritative sequence??
 
     1. K520 defer confirmation
     2. Broker capability gate classification
