@@ -1,0 +1,101 @@
+{
+  "schema_version": "automation.integration_verification.v1",
+  "status": "INTEGRATION_VERIFICATION_FAILED",
+  "package_id": "AUTO-IMP-002",
+  "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+  "correction_id": "AUTO-IMP-002-IC01",
+  "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+  "fresh_master_baseline_sha": "9c8c05ca9ec6adc278da2eca7e7d52fd63a2eece",
+  "candidate_commit_sha": "c0780fb422d6429332261d193a90815ec0c90f0d",
+  "candidate_published_to_master": false,
+  "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-IC01-01.verdict.json",
+  "review_verdict": "PASS",
+  "review_binding": {
+    "schema_version": "automation.independent_review_verdict.v1",
+    "work_order_id": "WO-AUTO-IMP-002-IC01-01",
+    "correction_id": "AUTO-IMP-002-IC01",
+    "execution_id": "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+    "baseline_assembly_sha": "e8da7473853229899490c5634196d83d03a190a8",
+    "implementation_sha": "cb911df46c3030c88599139a682dfbad0c658470",
+    "evidence_sha": "d8eea3d6aba17ee975eb6866feaf8e93fdaf6ffd",
+    "exact_scope": [
+      "automation/engine/reentry.py",
+      "tests/automation/test_reentry.py"
+    ],
+    "verdict": "PASS",
+    "findings": [],
+    "rf01_preservation": "PASS",
+    "rf02_preservation": "PASS",
+    "ic01_compatibility": "PASS",
+    "review_context": "FRESH_CONTEXT_INDEPENDENT_REVIEW",
+    "provenance": "HUMAN_TRANSMITTED_FINAL_INDEPENDENT_REVIEW_RESULT",
+    "permitted_route": "FRESH_MASTER_FOUR_FILE_INTEGRATION_VERIFICATION",
+    "acceptance_materialized": false,
+    "automatic_dispatch": false,
+    "auto_imp_003_authorized": false,
+    "created_at": "2026-10-06T02:30:44Z",
+    "updated_at": "2026-10-06T02:30:44Z"
+  },
+  "exact_source_blobs": {
+    "automation/engine/manifest.py": "6262e33fcbd8999252b5ff8ffcc530571d8004ad",
+    "automation/engine/reentry.py": "be9626d148f7ddc8e0891d14745f43fb304471cd",
+    "tests/automation/test_manifest.py": "0c3d063da3152535896b99bbf7b6a37b671b2b65",
+    "tests/automation/test_reentry.py": "c729f080adcd8460c54c4304f51e3c691d122461"
+  },
+  "verification": {
+    "four_blob_identities": "PASS",
+    "source_tree_delta_exact_four": "PASS",
+    "master_governance_spec_telemetry_preserved": "PASS",
+    "consumed_authorities_unchanged": "PASS",
+    "foundation_blobs_unchanged": "PASS",
+    "old_control_plane_copied": false,
+    "git_diff_check": {
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    "targeted": {
+      "command": "python -m pytest tests/automation/test_reentry.py tests/automation/test_manifest.py -q -p no:cacheprovider --tb=short --basetemp=<isolated-writable-scratch>",
+      "exit_code": 1,
+      "passed": 117,
+      "failed": 1,
+      "seconds": 274.17,
+      "failing_test": "tests/automation/test_reentry.py::test_ic01_actual_consumed_current_no_deep_dereference",
+      "line": 411,
+      "expected_stop_reason": "AUTHORIZATION_NOT_AVAILABLE",
+      "actual_stop_reason": "NO_LEGAL_READY_WORK"
+    },
+    "full_regression": {
+      "status": "NOT_RUN_TARGETED_FAILED",
+      "runs": 0
+    },
+    "current_master_reentry": {
+      "normal": {
+        "route": "STOP",
+        "action": "RESOLVE_CURRENT_WORK",
+        "reason": "NO_LEGAL_READY_WORK",
+        "execution_allowed": false
+      },
+      "status_only": {
+        "route": "STOP",
+        "action": "REPORT_CURRENT_STATE_WITHOUT_EXECUTION",
+        "reason": "NO_LEGAL_READY_WORK",
+        "execution_allowed": false
+      },
+      "runtime_broker_db_migration_live_production": "DENIED",
+      "auto_imp_003": "NOT_AUTHORIZED",
+      "provider_hard_block": "STOP",
+      "consumed_authority_unchanged": true
+    }
+  },
+  "failure_class": "FIXTURE_CURRENT_STATE_EXPECTATION_INCOMPATIBILITY",
+  "failure_description": "Actual-current integration test asserts consumed READY authorization reason. After bound verdict materialization CURRENT/WORK status=REVIEW_PASS, resolver safely stops before candidate authorization validation with NO_LEGAL_READY_WORK. No crash or execution; exact reviewed test expectations do not match fresh post-review master state.",
+  "semantic_review_reinterpreted": false,
+  "acceptance_materialized": false,
+  "closure_materialized": false,
+  "source_modified_after_failure": false,
+  "new_execution_created": false,
+  "auto_imp_003_authorized": false,
+  "next_route": "WORK_INTEGRATION_VERIFICATION_FAILURE_RESOLUTION_NO_DISPATCH",
+  "created_at": "2026-10-06T02:37:41Z",
+  "updated_at": "2026-10-06T02:37:41Z"
+}

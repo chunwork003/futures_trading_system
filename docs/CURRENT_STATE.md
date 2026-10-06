@@ -31,6 +31,10 @@ COMPLETED_PENDING_REVIEW; handoff_ready=false; writer released after intake `56c
 
 Final independent verdict: PASS, findings NONE, exact IC01 implementation/evidence binding preserved. Acceptance remains unmaterialized. Only next action: fresh-master exact four-file integration verification. Earlier STOP/ready/review snapshots remain historical; canonical CURRENT supersedes them. No dispatch; AUTO-IMP-003 NOT_AUTHORIZED.
 
+### IC01 Fresh-Master Integration Verification — STOP (CURRENT)
+
+Independent IC01 PASS remains valid at its exact reviewed SHA/scope. Candidate `c0780fb422d6429332261d193a90815ec0c90f0d` on fresh master `9c8c05ca9ec6adc278da2eca7e7d52fd63a2eece` failed targeted verification: 117 passed, 1 failed. `test_ic01_actual_consumed_current_no_deep_dereference` expects AUTHORIZATION_NOT_AVAILABLE, while REVIEW_PASS current state safely returns NO_LEGAL_READY_WORK. Canonical evidence: `automation/work_orders/reconciliations/WO-AUTO-IMP-002-IC01-01.integration-verification.json`. Source candidate remains unpublished; full regression not run; acceptance/closure not materialized. No source fix or dispatch; AUTO-IMP-003 NOT_AUTHORIZED. Earlier READY/review-barrier text is historical and superseded by this STOP.
+
 ### CURRENT_AUTHORITY_SNAPSHOT
 
 ```text
@@ -136,7 +140,7 @@ development_automation_current_authorization_revision = 1
 development_automation_current_authorization_state = CONSUMED
 development_automation_current_authorization_candidate = CONSUMED_EFFECTIVE
 development_automation_auto_imp_001_source_modification = BOUNDED_AUTHORIZED
-development_automation_execution_eligibility = IC01_COMPLETED_PENDING_REVIEW
+development_automation_execution_eligibility = INTEGRATION_VERIFICATION_FAILED
 development_automation_quota_rf_id = AUTO-IMP-001-QRF01
 development_automation_quota_rf_status = ACCEPTED_MATERIALIZED
 development_automation_quota_rf_re_review = PASS
@@ -160,7 +164,7 @@ development_automation_level_3b = NOT_ENABLED
 development_automation_level_3c = NOT_ENABLED
 development_automation_level_4 = NOT_ENABLED
 development_automation_level_5 = NOT_ENABLED
-development_automation_next_route = FRESH_MASTER_FOUR_FILE_INTEGRATION_VERIFICATION
+development_automation_next_route = WORK_INTEGRATION_VERIFICATION_FAILURE_RESOLUTION_NO_DISPATCH
 
 runtime_conformance = NOT_ASSERTED
 production_readiness = NOT_ASSERTED
@@ -208,7 +212,7 @@ migration_execution = NOT_AUTHORIZED
 live = NOT_AUTHORIZED
 production_activation = NOT_AUTHORIZED
 next_mainline_gap = NOT_AUTHORIZED
-next = FRESH_MASTER_FOUR_FILE_INTEGRATION_VERIFICATION
+next = WORK_INTEGRATION_VERIFICATION_FAILURE_RESOLUTION_NO_DISPATCH
 development_automation_ic01_work_order = WO-AUTO-IMP-002-IC01-01
 development_automation_ic01_execution_id = EXEC-AUTO-IMP-002-IC01-20261005T150733Z
 development_automation_ic01_handoff_ready = false
