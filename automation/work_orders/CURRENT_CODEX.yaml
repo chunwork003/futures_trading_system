@@ -11,9 +11,9 @@
   "status": "RESERVED",
   "candidate_status": "PROMOTED_OWNER_AUTHORIZED",
   "handoff_ready": false,
-  "current_action": "RECHECK_LOCK_HEAD_AND_BINDING",
-  "current_route": "RECHECK_LOCK_HEAD_AND_BINDING",
-  "next_route": "RECHECK_LOCK_HEAD_AND_BINDING",
+  "current_action": "MARK_DISPATCH_COMMITTED",
+  "current_route": "MARK_DISPATCH_COMMITTED",
+  "next_route": "MARK_DISPATCH_COMMITTED",
   "sole_blocker": null,
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml",
   "package_path": "automation/packages/AUTO-IMP-002.v2.yaml",
@@ -235,7 +235,7 @@
   "prior_program_baseline": "ACCEPTED_MATERIALIZED_NO_AUTHORITY_TRANSFER",
   "work_cost_telemetry_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.compilation.work-cost.json",
   "created_at": "2026-10-07T02:53:21Z",
-  "updated_at": "2026-10-07T03:31:48Z",
+  "updated_at": "2026-10-07T03:32:56Z",
   "review_fix_executable_now": false,
   "budgets": {
     "initial_implementation": {
@@ -262,5 +262,7 @@
   "writer_lock_path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml",
   "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/reservation.yaml",
   "reservation_state": "RESERVED",
-  "reservation_commit": "838981dec6c9e3f91c2432099386a114c5b6575f"
+  "reservation_commit": "838981dec6c9e3f91c2432099386a114c5b6575f",
+  "pre_dispatch_recheck_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/pre_dispatch_recheck.json",
+  "pre_dispatch_recheck": "PASS"
 }

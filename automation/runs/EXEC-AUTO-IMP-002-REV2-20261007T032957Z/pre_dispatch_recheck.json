@@ -1,0 +1,210 @@
+{
+  "schema_version": "automation.pre_dispatch_recheck.v1",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "state": "PASS",
+  "master_head": "6116b69c4d2d38feae99005ea5fecaf091f816b1",
+  "source_candidate_head_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "authorization_state": "RESERVED",
+  "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+  "exact_write_scope": [
+    "automation/engine/repository_snapshot.py",
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "architecture": "1.2.2",
+  "capacity_policy": "2.2",
+  "owner_decision_commit": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
+  "authorization_commit": "d9808efec1c2b48e94d295d9d76e28b16ace1f2b",
+  "writer_acquired_commit": "9cd0366fd5e38a7605cfd2d1091a1bcc07860419",
+  "execution_allocation_commit": "4e2465688e92ff3ab82be6b5208b1453bc316074",
+  "reservation_commit": "838981dec6c9e3f91c2432099386a114c5b6575f",
+  "reserved_commit": "24314d88713c958ec6097d8f8c8a3aa242c40419",
+  "writer_owner": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "checks": {
+    "fresh_head": "PASS",
+    "source_preimages": "PASS",
+    "exact_scope": "PASS",
+    "authority_state": "RESERVED",
+    "writer_identity": "PASS_ONE_CANONICAL_OWNER",
+    "no_other_canonical_writer": "PASS_UNCHANGED_RELEASED_ALIAS_BLOBS",
+    "no_conflicting_execution": "PASS",
+    "higher_priority_unfinished_work": "NONE_PREVIOUS_PROGRAM_CLOSED",
+    "current_projection": "PASS_RESERVED_NO_INVOCATION",
+    "package_wo_snapshot_scope": "PASS_INITIAL_AUTHORIZED_SNAPSHOT_AND_CURRENT_SCOPE_MATCH",
+    "source_modification": "NONE",
+    "side_effects": "DENIED",
+    "provider": "PASS",
+    "capacity": "ALLOW_WITH_WATCH"
+  },
+  "proofs": [
+    {
+      "path": "automation/engine/repository_snapshot.py",
+      "git_blob_sha": null,
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    {
+      "path": "automation/engine/yaml_io.py",
+      "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    {
+      "path": "tests/automation/test_contracts.py",
+      "git_blob_sha": "65f48178384ed8b21287c0e152b700c133a8008f",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    {
+      "path": "tests/automation/test_repository_snapshot.py",
+      "git_blob_sha": null,
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    }
+  ],
+  "writer_artifact_blobs": [
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml",
+      "sha": "e436c4e72fe1cd54d6221db3a9d477219ff54740"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/writer_lock.yaml",
+      "sha": "e436c4e72fe1cd54d6221db3a9d477219ff54740"
+    }
+  ],
+  "provider_raw": {
+    "ordinaryUsageAllowed": true,
+    "rateLimits": {
+      "limitId": "codex",
+      "limitName": null,
+      "normalModelSlug": null,
+      "primary": {
+        "usedPercent": 1,
+        "windowDurationMins": 300,
+        "resetsAt": 1791361879
+      },
+      "secondary": {
+        "usedPercent": 0,
+        "windowDurationMins": 10080,
+        "resetsAt": 1791948679
+      },
+      "credits": {
+        "hasCredits": false,
+        "unlimited": false,
+        "balance": "0"
+      },
+      "individualLimit": null,
+      "spendControlReached": false,
+      "planType": "plus",
+      "rateLimitReachedType": null
+    },
+    "rateLimitsByLimitId": {
+      "codex": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 1,
+          "windowDurationMins": 300,
+          "resetsAt": 1791361879
+        },
+        "secondary": {
+          "usedPercent": 0,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791948679
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      }
+    },
+    "rateLimitResetCredits": {
+      "availableCount": 1,
+      "credits": [
+        {
+          "id": "RateLimitResetCredit_771ee9c1c33c8191bb6446adef907c3b",
+          "resetType": "codexRateLimits",
+          "status": "available",
+          "grantedAt": 1790699427,
+          "expiresAt": 1793291427,
+          "title": "Full reset (Weekly + 5 hr)",
+          "description": "Thanks for using Codex! You've been granted one free rate limit reset."
+        }
+      ]
+    },
+    "accountId": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+    "rateLimitUpsell": null
+  },
+  "provider_evidence_source": "mcp__codex_app__get_usage_limits",
+  "provider_observed_at": "2026-10-07T03:32:56Z",
+  "provider_gate": {
+    "route": "PROVIDER_AVAILABLE",
+    "reason": "PROVIDER_REPORTED_AVAILABILITY",
+    "execution_allowed": false,
+    "authority_created": false,
+    "forecast_capacity_review_required": false
+  },
+  "capacity_gate": {
+    "route": "ALLOW_WITH_WATCH",
+    "reason": "PRIMARY_5H_AT_OR_ABOVE_P75",
+    "execution_allowed": false,
+    "authority_created": false,
+    "forecast_capacity_review_required": false
+  },
+  "capacity_windows": {
+    "PRIMARY_5H": {
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "window_type": "PRIMARY_5H",
+      "usable_ratio_count": 5,
+      "considered_execution_ids": [
+        "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+        "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+        "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z"
+      ],
+      "safe_tokens_per_percentage_point": 508080.85714285716,
+      "safe_remaining_percentage_points": 98,
+      "safe_available_tokens": 49791924,
+      "confidence": "P25_5_PLUS",
+      "overlap_observed": true
+    },
+    "SECONDARY_WEEKLY": {
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "window_type": "SECONDARY_WEEKLY",
+      "usable_ratio_count": 4,
+      "considered_execution_ids": [
+        "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+        "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+        "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z"
+      ],
+      "safe_tokens_per_percentage_point": 173378,
+      "safe_remaining_percentage_points": 99,
+      "safe_available_tokens": 17164422,
+      "confidence": "MINIMUM_1_TO_4",
+      "overlap_observed": true
+    }
+  },
+  "manual_forecast_p75": 3500000,
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+  "forecast_git_blob": "1d9cec27f56c335fcd792c7654f5b4788866144e",
+  "primary_safe_capacity": 49791924,
+  "weekly_execution_gate": false,
+  "executor_invoked": false,
+  "automatic_invocation": false,
+  "observed_reset_movement": {
+    "initial_primary_reset": 1791356768,
+    "recheck_primary_reset": 1791361879,
+    "initial_weekly_reset": 1791615796,
+    "recheck_weekly_reset": 1791948679,
+    "cause": "NOT_INFERRED_PROVIDER_RAW_OBSERVATIONS_ONLY"
+  },
+  "created_at": "2026-10-07T03:32:56Z",
+  "updated_at": "2026-10-07T03:32:56Z"
+}
