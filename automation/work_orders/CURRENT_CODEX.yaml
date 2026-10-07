@@ -11,9 +11,9 @@
   "status": "AUTHORIZED",
   "candidate_status": "PROMOTED_OWNER_AUTHORIZED",
   "handoff_ready": false,
-  "current_action": "ACQUIRE_GLOBAL_RUNTIME_WRITER_LOCK",
-  "current_route": "ACQUIRE_GLOBAL_RUNTIME_WRITER_LOCK",
-  "next_route": "ACQUIRE_GLOBAL_RUNTIME_WRITER_LOCK",
+  "current_action": "ALLOCATE_EXECUTION_ID",
+  "current_route": "ALLOCATE_EXECUTION_ID",
+  "next_route": "ALLOCATE_EXECUTION_ID",
   "sole_blocker": null,
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml",
   "package_path": "automation/packages/AUTO-IMP-002.v2.yaml",
@@ -182,8 +182,8 @@
   "active_execution_id": null,
   "executor_invoked": false,
   "reexecution_authorized": false,
-  "active_writer": "NONE",
-  "writer_state": "NONE",
+  "active_writer": "WO-AUTO-IMP-002-REV2-01",
+  "writer_state": "HELD",
   "reservation_created": false,
   "dispatch_committed": false,
   "automatic_dispatch": false,
@@ -235,7 +235,7 @@
   "prior_program_baseline": "ACCEPTED_MATERIALIZED_NO_AUTHORITY_TRANSFER",
   "work_cost_telemetry_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.compilation.work-cost.json",
   "created_at": "2026-10-07T02:53:21Z",
-  "updated_at": "2026-10-07T03:28:52Z",
+  "updated_at": "2026-10-07T03:29:39Z",
   "review_fix_executable_now": false,
   "budgets": {
     "initial_implementation": {
@@ -258,5 +258,6 @@
   },
   "eligibility_path": "automation/work_orders/AUTO-IMP-002-REV2.eligibility.json",
   "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.provider-evidence.json",
-  "capacity_estimate_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.rolling-capacity.json"
+  "capacity_estimate_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.rolling-capacity.json",
+  "writer_lock_path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml"
 }
