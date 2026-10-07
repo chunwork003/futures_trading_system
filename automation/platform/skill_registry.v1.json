@@ -1,0 +1,419 @@
+{
+  "schema_version": "p00.skill_registry.v1",
+  "status": "CANDIDATE",
+  "skills": [
+    {
+      "skill_id": "exact-binding-validator",
+      "version": "source-blob:1de78c83f5de052d472a0d8a6013877b28401f70",
+      "purpose": "exact artifact/effect binding",
+      "trigger": "EXPLICIT_TASK_REQUIRES_CAPABILITY",
+      "inputs": [
+        "bound current pointer",
+        "exact package",
+        "relevant evidence"
+      ],
+      "required_context": [
+        "automation/skills/exact-binding-validator/SKILL.md",
+        "automation/governance/master_manifest.v1.yaml"
+      ],
+      "outputs": [
+        "structured result with evidence and failure classification"
+      ],
+      "allowed_tools": [
+        "READ",
+        "BOUND_OFFLINE_VALIDATION"
+      ],
+      "side_effects": "NO_GRANT_NO_DISPATCH",
+      "preconditions": [
+        "resolve current policy first"
+      ],
+      "failure_modes": [
+        "STALE_POLICY_POINTER",
+        "AMBIGUOUS_BINDING",
+        "MISSING_EVIDENCE"
+      ],
+      "validation": {
+        "status": "SHADOW_SPEC_NOT_BEHAVIORALLY_QUALIFIED",
+        "fixture": null,
+        "positive_example": null,
+        "negative_example": null
+      },
+      "examples": [],
+      "owner": "WORK",
+      "compatibility": "accepted policy at invocation overrides historical copied procedure",
+      "source": {
+        "path": "automation/skills/exact-binding-validator/SKILL.md",
+        "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "1de78c83f5de052d472a0d8a6013877b28401f70"
+      },
+      "observed_maturity": "L2",
+      "telemetry": [
+        "invocations",
+        "outcome",
+        "duration",
+        "reported_tokens_or_unknown"
+      ],
+      "adoption": "KEEP_AND_STANDARDIZE"
+    },
+    {
+      "skill_id": "execution-cost-forecaster",
+      "version": "source-blob:c09f14b127417daf32e87c917f76a3e62e9216c8",
+      "purpose": "forecast and variance",
+      "trigger": "EXPLICIT_TASK_REQUIRES_CAPABILITY",
+      "inputs": [
+        "bound current pointer",
+        "exact package",
+        "relevant evidence"
+      ],
+      "required_context": [
+        "automation/skills/execution-cost-forecaster/SKILL.md",
+        "automation/governance/master_manifest.v1.yaml"
+      ],
+      "outputs": [
+        "structured result with evidence and failure classification"
+      ],
+      "allowed_tools": [
+        "READ",
+        "BOUND_OFFLINE_VALIDATION"
+      ],
+      "side_effects": "NO_GRANT_NO_DISPATCH",
+      "preconditions": [
+        "resolve current policy first"
+      ],
+      "failure_modes": [
+        "STALE_POLICY_POINTER",
+        "AMBIGUOUS_BINDING",
+        "MISSING_EVIDENCE"
+      ],
+      "validation": {
+        "status": "SHADOW_SPEC_NOT_BEHAVIORALLY_QUALIFIED",
+        "fixture": null,
+        "positive_example": null,
+        "negative_example": null
+      },
+      "examples": [],
+      "owner": "WORK",
+      "compatibility": "accepted policy at invocation overrides historical copied procedure",
+      "source": {
+        "path": "automation/skills/execution-cost-forecaster/SKILL.md",
+        "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "c09f14b127417daf32e87c917f76a3e62e9216c8"
+      },
+      "observed_maturity": "L2",
+      "telemetry": [
+        "invocations",
+        "outcome",
+        "duration",
+        "reported_tokens_or_unknown"
+      ],
+      "adoption": "KEEP_AND_STANDARDIZE"
+    },
+    {
+      "skill_id": "execution-efficiency-guard",
+      "version": "source-blob:ba101393c3106e5e4a5e24ce7149987da2ea7894",
+      "purpose": "context/test cost control",
+      "trigger": "EXPLICIT_TASK_REQUIRES_CAPABILITY",
+      "inputs": [
+        "bound current pointer",
+        "exact package",
+        "relevant evidence"
+      ],
+      "required_context": [
+        "automation/skills/execution-efficiency-guard/SKILL.md",
+        "automation/governance/master_manifest.v1.yaml"
+      ],
+      "outputs": [
+        "structured result with evidence and failure classification"
+      ],
+      "allowed_tools": [
+        "READ",
+        "BOUND_OFFLINE_VALIDATION"
+      ],
+      "side_effects": "NO_GRANT_NO_DISPATCH",
+      "preconditions": [
+        "resolve current policy first"
+      ],
+      "failure_modes": [
+        "STALE_POLICY_POINTER",
+        "AMBIGUOUS_BINDING",
+        "MISSING_EVIDENCE"
+      ],
+      "validation": {
+        "status": "SHADOW_SPEC_NOT_BEHAVIORALLY_QUALIFIED",
+        "fixture": null,
+        "positive_example": null,
+        "negative_example": null
+      },
+      "examples": [],
+      "owner": "WORK",
+      "compatibility": "accepted policy at invocation overrides historical copied procedure",
+      "source": {
+        "path": "automation/skills/execution-efficiency-guard/SKILL.md",
+        "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "ba101393c3106e5e4a5e24ce7149987da2ea7894"
+      },
+      "observed_maturity": "L2",
+      "telemetry": [
+        "invocations",
+        "outcome",
+        "duration",
+        "reported_tokens_or_unknown"
+      ],
+      "adoption": "KEEP_AND_STANDARDIZE"
+    },
+    {
+      "skill_id": "quota-snapshot-recorder",
+      "version": "source-blob:d270125538d5654fedc729ce8e3afd3f0b2f1f2c",
+      "purpose": "usage evidence capture",
+      "trigger": "EXPLICIT_TASK_REQUIRES_CAPABILITY",
+      "inputs": [
+        "bound current pointer",
+        "exact package",
+        "relevant evidence"
+      ],
+      "required_context": [
+        "automation/skills/quota-snapshot-recorder/SKILL.md",
+        "automation/governance/master_manifest.v1.yaml"
+      ],
+      "outputs": [
+        "structured result with evidence and failure classification"
+      ],
+      "allowed_tools": [
+        "READ",
+        "BOUND_OFFLINE_VALIDATION"
+      ],
+      "side_effects": "NO_GRANT_NO_DISPATCH",
+      "preconditions": [
+        "resolve current policy first"
+      ],
+      "failure_modes": [
+        "STALE_POLICY_POINTER",
+        "AMBIGUOUS_BINDING",
+        "MISSING_EVIDENCE"
+      ],
+      "validation": {
+        "status": "SHADOW_SPEC_NOT_BEHAVIORALLY_QUALIFIED",
+        "fixture": null,
+        "positive_example": null,
+        "negative_example": null
+      },
+      "examples": [],
+      "owner": "WORK",
+      "compatibility": "accepted policy at invocation overrides historical copied procedure",
+      "source": {
+        "path": "automation/skills/quota-snapshot-recorder/SKILL.md",
+        "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "d270125538d5654fedc729ce8e3afd3f0b2f1f2c"
+      },
+      "observed_maturity": "L2",
+      "telemetry": [
+        "invocations",
+        "outcome",
+        "duration",
+        "reported_tokens_or_unknown"
+      ],
+      "adoption": "KEEP_AND_STANDARDIZE"
+    },
+    {
+      "skill_id": "repo-reentry",
+      "version": "source-blob:b170a0eb3a28341eb5e87c3f07ed23ca36a48aeb",
+      "purpose": "fresh authority rehydrate",
+      "trigger": "EXPLICIT_TASK_REQUIRES_CAPABILITY",
+      "inputs": [
+        "bound current pointer",
+        "exact package",
+        "relevant evidence"
+      ],
+      "required_context": [
+        "automation/skills/repo-reentry/SKILL.md",
+        "automation/governance/master_manifest.v1.yaml"
+      ],
+      "outputs": [
+        "structured result with evidence and failure classification"
+      ],
+      "allowed_tools": [
+        "READ",
+        "BOUND_OFFLINE_VALIDATION"
+      ],
+      "side_effects": "NO_GRANT_NO_DISPATCH",
+      "preconditions": [
+        "resolve current policy first"
+      ],
+      "failure_modes": [
+        "STALE_POLICY_POINTER",
+        "AMBIGUOUS_BINDING",
+        "MISSING_EVIDENCE"
+      ],
+      "validation": {
+        "status": "SHADOW_SPEC_NOT_BEHAVIORALLY_QUALIFIED",
+        "fixture": null,
+        "positive_example": null,
+        "negative_example": null
+      },
+      "examples": [],
+      "owner": "WORK",
+      "compatibility": "accepted policy at invocation overrides historical copied procedure",
+      "source": {
+        "path": "automation/skills/repo-reentry/SKILL.md",
+        "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "b170a0eb3a28341eb5e87c3f07ed23ca36a48aeb"
+      },
+      "observed_maturity": "L2",
+      "telemetry": [
+        "invocations",
+        "outcome",
+        "duration",
+        "reported_tokens_or_unknown"
+      ],
+      "adoption": "KEEP_AND_STANDARDIZE"
+    },
+    {
+      "skill_id": "reviewer-packet-builder",
+      "version": "source-blob:597e49a6a6788976eeeedc4ba8e04b7333e851a4",
+      "purpose": "independent review packet",
+      "trigger": "EXPLICIT_TASK_REQUIRES_CAPABILITY",
+      "inputs": [
+        "bound current pointer",
+        "exact package",
+        "relevant evidence"
+      ],
+      "required_context": [
+        "automation/skills/reviewer-packet-builder/SKILL.md",
+        "automation/governance/master_manifest.v1.yaml"
+      ],
+      "outputs": [
+        "structured result with evidence and failure classification"
+      ],
+      "allowed_tools": [
+        "READ",
+        "BOUND_OFFLINE_VALIDATION"
+      ],
+      "side_effects": "NO_GRANT_NO_DISPATCH",
+      "preconditions": [
+        "resolve current policy first"
+      ],
+      "failure_modes": [
+        "STALE_POLICY_POINTER",
+        "AMBIGUOUS_BINDING",
+        "MISSING_EVIDENCE"
+      ],
+      "validation": {
+        "status": "SHADOW_SPEC_NOT_BEHAVIORALLY_QUALIFIED",
+        "fixture": null,
+        "positive_example": null,
+        "negative_example": null
+      },
+      "examples": [],
+      "owner": "WORK",
+      "compatibility": "accepted policy at invocation overrides historical copied procedure",
+      "source": {
+        "path": "automation/skills/reviewer-packet-builder/SKILL.md",
+        "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "597e49a6a6788976eeeedc4ba8e04b7333e851a4"
+      },
+      "observed_maturity": "L2",
+      "telemetry": [
+        "invocations",
+        "outcome",
+        "duration",
+        "reported_tokens_or_unknown"
+      ],
+      "adoption": "KEEP_AND_STANDARDIZE"
+    },
+    {
+      "skill_id": "single-use-lifecycle-guard",
+      "version": "source-blob:75e04e1a364a94d633796510deef0b06c5b84a07",
+      "purpose": "single-use lifecycle proof",
+      "trigger": "EXPLICIT_TASK_REQUIRES_CAPABILITY",
+      "inputs": [
+        "bound current pointer",
+        "exact package",
+        "relevant evidence"
+      ],
+      "required_context": [
+        "automation/skills/single-use-lifecycle-guard/SKILL.md",
+        "automation/governance/master_manifest.v1.yaml"
+      ],
+      "outputs": [
+        "structured result with evidence and failure classification"
+      ],
+      "allowed_tools": [
+        "READ",
+        "BOUND_OFFLINE_VALIDATION"
+      ],
+      "side_effects": "NO_GRANT_NO_DISPATCH",
+      "preconditions": [
+        "resolve current policy first"
+      ],
+      "failure_modes": [
+        "STALE_POLICY_POINTER",
+        "AMBIGUOUS_BINDING",
+        "MISSING_EVIDENCE"
+      ],
+      "validation": {
+        "status": "SHADOW_SPEC_NOT_BEHAVIORALLY_QUALIFIED",
+        "fixture": null,
+        "positive_example": null,
+        "negative_example": null
+      },
+      "examples": [],
+      "owner": "WORK",
+      "compatibility": "accepted policy at invocation overrides historical copied procedure",
+      "source": {
+        "path": "automation/skills/single-use-lifecycle-guard/SKILL.md",
+        "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "75e04e1a364a94d633796510deef0b06c5b84a07"
+      },
+      "observed_maturity": "L2",
+      "telemetry": [
+        "invocations",
+        "outcome",
+        "duration",
+        "reported_tokens_or_unknown"
+      ],
+      "adoption": "KEEP_AND_STANDARDIZE"
+    }
+  ],
+  "missing_capabilities": [
+    {
+      "id": "context-resolver",
+      "decision": "COMPOSE_EXISTING_FIRST_NOT_NEW_SKILL_PER_PACKAGE"
+    },
+    {
+      "id": "package-compiler",
+      "decision": "COMPOSE_EXISTING_FIRST_NOT_NEW_SKILL_PER_PACKAGE"
+    },
+    {
+      "id": "contract-validator",
+      "decision": "COMPOSE_EXISTING_FIRST_NOT_NEW_SKILL_PER_PACKAGE"
+    },
+    {
+      "id": "test-impact-analyzer",
+      "decision": "COMPOSE_EXISTING_FIRST_NOT_NEW_SKILL_PER_PACKAGE"
+    },
+    {
+      "id": "migration-planner",
+      "decision": "COMPOSE_EXISTING_FIRST_NOT_NEW_SKILL_PER_PACKAGE"
+    },
+    {
+      "id": "integration-preflight",
+      "decision": "COMPOSE_EXISTING_FIRST_NOT_NEW_SKILL_PER_PACKAGE"
+    },
+    {
+      "id": "progress-calculator",
+      "decision": "COMPOSE_EXISTING_FIRST_NOT_NEW_SKILL_PER_PACKAGE"
+    },
+    {
+      "id": "incident-to-regression",
+      "decision": "COMPOSE_EXISTING_FIRST_NOT_NEW_SKILL_PER_PACKAGE"
+    },
+    {
+      "id": "release-preflight",
+      "decision": "COMPOSE_EXISTING_FIRST_NOT_NEW_SKILL_PER_PACKAGE"
+    },
+    {
+      "id": "current-projection-builder",
+      "decision": "COMPOSE_EXISTING_FIRST_NOT_NEW_SKILL_PER_PACKAGE"
+    }
+  ]
+}

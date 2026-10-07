@@ -1,0 +1,86 @@
+{
+  "schema_version": "p00.continuation.v1",
+  "status": "IN_PROGRESS_NOT_READY_FOR_BASELINE_APPROVAL",
+  "baseline": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "branch": "architecture/p00-v1-baseline",
+  "mainline_package": "P00",
+  "authority": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
+  "runtime_dispatch_authorized": false,
+  "completed_this_turn": [
+    "Fresh master rehydrate and source provenance index",
+    "Source capability inventory and seven existing shadow Skill registry",
+    "Candidate V1 scope/ownership/contracts/state machines",
+    "Candidate 13-package dependency roadmap and six release journeys",
+    "Candidate development operating model; cancellation CAS inconsistency repaired"
+  ],
+  "materialized": [
+    "docs/work/P00_BASELINE.md",
+    "docs/program/P00_OWNER_REQUEST.md",
+    "docs/program/current_truth.v1.json",
+    "docs/program/request_coverage.v1.json",
+    "docs/program/V1_PROGRAM.md",
+    "docs/architecture/V1_BASELINE.md",
+    "docs/architecture/V1_CONTRACTS.md",
+    "docs/architecture/V1_STATE_MACHINES.md",
+    "automation/platform/README.md",
+    "automation/platform/OPERATING_MODEL.md",
+    "automation/platform/capability_inventory.v1.json",
+    "automation/platform/skill_registry.v1.json"
+  ],
+  "remaining": [
+    {
+      "id": "R01",
+      "work": "Complete machine-readable API/domain schemas, examples, error mapping, workload/performance bounds and outstanding public semantics",
+      "state": "NOT_COMPLETED"
+    },
+    {
+      "id": "R02",
+      "work": "Typed agent/tool registries, bootstrap/context policy/resolver with exact hashes and forbidden-path negative fixtures",
+      "state": "NOT_COMPLETED"
+    },
+    {
+      "id": "R03",
+      "work": "Package schema/compiler, exact P01/P02 candidate packages, pattern/generator/eval/KPI/telemetry contracts",
+      "state": "NOT_COMPLETED"
+    },
+    {
+      "id": "R04",
+      "work": "AUTO-IMP-003 through 009 requirement-preserving A1/A2/A3 mapping, bounded delegation and scheduler schema",
+      "state": "NOT_COMPLETED"
+    },
+    {
+      "id": "R05",
+      "work": "Stable weighted deliverable ledger and historical full-product requirement coverage; calibrated progress/ETA",
+      "state": "NOT_COMPLETED"
+    },
+    {
+      "id": "R06",
+      "work": "Compact CURRENT/navigation migration preserving accepted authority and resolver compatibility; no accepted policy mutation before tests",
+      "state": "NOT_COMPLETED"
+    },
+    {
+      "id": "R07",
+      "work": "Offline structural validators, semantic negative fixtures and full platform regression; independent review packet",
+      "state": "NOT_COMPLETED"
+    },
+    {
+      "id": "R08",
+      "work": "Verify every owner request section and provide final A-S deliverable; no self-acceptance",
+      "state": "NOT_COMPLETED"
+    }
+  ],
+  "next_continuation_point": "R01: read candidate V1_BASELINE/V1_CONTRACTS/V1_STATE_MACHINES and define complete OpenAPI/domain schemas plus concrete workload bounds; then R02–R08. Do not repeat completed full repository inventory; recheck only master drift/current authority.",
+  "verification": {
+    "json_parse": "PASS",
+    "whitespace": "PASS_STAGED_DIFF_CHECK",
+    "protected_tracked_files": "PASS_AT_CHECKPOINT",
+    "platform_tests": "NOT_IMPLEMENTED_NOT_RUN",
+    "product_tests": "NOT_RUN_DOCS_ONLY",
+    "independent_review": "NOT_STARTED"
+  },
+  "release_journeys_passed": 0,
+  "release_journeys_total": 6,
+  "weighted_v1_completion": "UNCALIBRATED",
+  "human_action_required": "NONE_TO_CONTINUE_P00",
+  "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION"
+}

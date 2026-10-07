@@ -1,0 +1,265 @@
+{
+  "schema_version": "p00.current_truth.v1",
+  "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "authoritative_branch": "master",
+  "observed_local_head_before_fetch": "b36e9bc253a13a3a361b3861e607455658df524b",
+  "source_request": {
+    "path": "docs/program/P00_OWNER_REQUEST.md",
+    "sha256": "5f37fbb5100a9e10c7e7901df9f85e53636a959d19681eca28e9f1cfe30f90b4",
+    "scope": "ARCHITECT_MATERIALIZATION_AND_PACKAGE_PREPARATION",
+    "not_a_codex_dispatch": true
+  },
+  "remote_observed_date": "2026-10-07",
+  "timezone": "Asia/Taipei",
+  "classification_vocabulary": [
+    "ACCEPTED",
+    "IMPLEMENTED_NOT_ACCEPTED",
+    "DESIGNED",
+    "PLANNED",
+    "OBSOLETE",
+    "CONFLICTING",
+    "BLOCKED",
+    "EXTERNAL_ONLY",
+    "NOT_STARTED"
+  ],
+  "active_execution": null,
+  "active_writer_at_source_baseline": null,
+  "current_architect_package": "P00",
+  "candidate_status": "IN_PROGRESS_NOT_ACCEPTED",
+  "review_pending": "P00_FRESH_INDEPENDENT_REVIEW_NOT_STARTED",
+  "integration_pending": "P00_CANDIDATE_NOT_MERGED",
+  "runtime_authorization": "NOT_AUTHORIZED",
+  "controlled_auto": "DISABLED",
+  "items": [
+    {
+      "id": "GAP08",
+      "status": "ACCEPTED",
+      "evidence": [
+        {
+          "path": "docs/work/GAP08_FINAL_CLOSURE.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "77f855dfc165c17402c3f5c1d39f963c0c3ffb55"
+        },
+        {
+          "path": "persistence/recovery.py",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "0dea77243c15528c5947a7400ff97b0c3374fcf5"
+        }
+      ],
+      "note": "113/113 correction core; not whole-product completion"
+    },
+    {
+      "id": "PG17_ISOLATED_TEST",
+      "status": "ACCEPTED",
+      "evidence": [
+        {
+          "path": "docs/work/GAP08_W4R_PG_CONCURRENCY_CLOSURE.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "b237c0f9680796ace71f341c137d8e080ea7e2c3"
+        }
+      ],
+      "note": "isolated test gate; not V07/production"
+    },
+    {
+      "id": "PG18_V07_BROKER",
+      "status": "EXTERNAL_ONLY",
+      "evidence": [
+        {
+          "path": "docs/work/GAP08_FINAL_CLOSURE.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "77f855dfc165c17402c3f5c1d39f963c0c3ffb55"
+        }
+      ],
+      "note": "not verified; does not block independent offline product work"
+    },
+    {
+      "id": "AUTO001",
+      "status": "ACCEPTED",
+      "evidence": [
+        {
+          "path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "2e87cd18a170baffeeb78be346791f15bf9ac360"
+        }
+      ],
+      "note": "preserve"
+    },
+    {
+      "id": "AUTO002",
+      "status": "ACCEPTED",
+      "evidence": [
+        {
+          "path": "automation/work_orders/AUTO-IMP-002-REV2.acceptance.json",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "92dec38fee56cb92595a17e4e28a042e0596fa36"
+        }
+      ],
+      "note": "closed; no reopening"
+    },
+    {
+      "id": "PROGRAM_V2_REV5",
+      "status": "ACCEPTED",
+      "evidence": [
+        {
+          "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-acceptance.json",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "815a919cc896e8aaa0a8dcdd37df8227cdb420eb"
+        }
+      ],
+      "note": "preserve source evidence; proposed successor not active"
+    },
+    {
+      "id": "AUTO003_REV2",
+      "status": "PLANNED",
+      "evidence": [
+        {
+          "path": "automation/packages/AUTO-IMP-003.v2.yaml",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "b6dcc67e2ce8d2df503e05e2775dab371895dbbe"
+        },
+        {
+          "path": "automation/work_orders/CURRENT_CODEX.yaml",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "130c48afb564874b600979979bcd623d1172d5b8"
+        }
+      ],
+      "note": "compiled but implementation authority NOT_GRANTED in repository"
+    },
+    {
+      "id": "PYTHON_CORE",
+      "status": "ACCEPTED",
+      "evidence": [
+        {
+          "path": "docs/V1_CAPABILITY_MAP.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "b22ce06a228af4b148b36e23b639f48f882db4e2"
+        },
+        {
+          "path": "backtest/engine.py",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "55f79574f4d10843963232f13319ab7b26660e2f"
+        }
+      ],
+      "note": "component evidence only; product convergence remains incomplete"
+    },
+    {
+      "id": "INCREMENTAL_RUNTIME",
+      "status": "NOT_STARTED",
+      "evidence": [
+        {
+          "path": "docs/blueprint/E_FEATURE_STRATEGY.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "9e54cba5c72fb699de564600c6ad05f0f923e947"
+        }
+      ],
+      "note": "state/recovery foundations exist; full incremental consumer not delivered"
+    },
+    {
+      "id": "DECISION_RISK_PROVENANCE",
+      "status": "DESIGNED",
+      "evidence": [
+        {
+          "path": "docs/blueprint/G_DECISION_RISK.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "ae2dba1a54e4c2d0b95cce3fc02b20d6d4302e0f"
+        },
+        {
+          "path": "backtest/decision_layer.py",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "e4c7c84ac5d7bbeee3bb45ae4af854c5a2bd35d1"
+        }
+      ],
+      "note": "legacy implementation exists; canonical operational integration not complete"
+    },
+    {
+      "id": "SERVICE_APP_WEB",
+      "status": "NOT_STARTED",
+      "evidence": [
+        {
+          "path": "docs/blueprint/M_PYTHON_SERVICE.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "17b0c009009cc66d59d134dc5197e436404433f5"
+        },
+        {
+          "path": "docs/blueprint/N_ASPNET_APPLICATION.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "8dec0eec8067c88d930d05062f6ddc272f2c5972"
+        },
+        {
+          "path": "docs/blueprint/O_REACT_WORKSPACE.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "7d3ad6a49940911ad7491be42212bb3c40460e04"
+        }
+      ],
+      "note": "no delivered host/BFF/UI"
+    },
+    {
+      "id": "SIMULATOR",
+      "status": "NOT_STARTED",
+      "evidence": [
+        {
+          "path": "docs/blueprint/L_SIMULATION_LIVE_SAFETY.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "32b9e606dd1ce6c7fbdf64eeaf63def5499410b1"
+        },
+        {
+          "path": "backtest/paper_broker.py",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "a8f83d03a188f47add1a00589cd81fe1fd70f9cf"
+        }
+      ],
+      "note": "PaperBroker exists; not SimulationBroker"
+    },
+    {
+      "id": "ROADMAP_CURRENT_LINE",
+      "status": "OBSOLETE",
+      "evidence": [
+        {
+          "path": "docs/ROADMAP.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "f15b1418960209e5b2b4b15bf347a78a5fed5eba"
+        }
+      ],
+      "note": "historical GAP08 READY/47.92 must not override CURRENT or new evidence"
+    },
+    {
+      "id": "P00",
+      "status": "IMPLEMENTED_NOT_ACCEPTED",
+      "evidence": [
+        {
+          "path": "docs/CURRENT_STATE.md",
+          "ref": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+          "git_blob": "159b0253aacca4623b6124e476c4364180a18b63"
+        }
+      ],
+      "note": "new candidate materialization in current branch; this classification does not mean whole P00 complete"
+    }
+  ],
+  "reconciliations": [
+    {
+      "id": "DRIFT-001",
+      "kind": "WORKTREE_CONTEXT",
+      "finding": "local master behind remote; descendant verified; isolated branch from origin/master",
+      "resolved_for_p00": true
+    },
+    {
+      "id": "DRIFT-002",
+      "kind": "AUTHORIZATION",
+      "finding": "prior user review said 003 authorized; pinned repository says not granted",
+      "resolution": "no executable grant inferred; new request permits P00, not reuse 003 lineage",
+      "runtime_block": true
+    },
+    {
+      "id": "DRIFT-003",
+      "kind": "DOCUMENTATION",
+      "finding": "CURRENT history, ACTIVE and AI_HANDOFF carry stale historical routes",
+      "resolution": "candidate compact projection design; preserve accepted machine bindings until compatibility review"
+    },
+    {
+      "id": "DRIFT-004",
+      "kind": "POLICY_EVOLUTION",
+      "finding": "fixed operational lane differs from requested adaptive DAG",
+      "resolution": "propose explicit successor; accepted lane remains in force until adoption"
+    }
+  ]
+}
