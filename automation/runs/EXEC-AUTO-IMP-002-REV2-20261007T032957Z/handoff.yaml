@@ -1,0 +1,326 @@
+{
+  "schema_version": "automation.codex_handoff.v1",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "package_id": "AUTO-IMP-002",
+  "package_revision": "2",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "state": "READY_FOR_MANUAL_CODEX_TRIGGER",
+  "executor_mode": "CODEX",
+  "executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+  "executor_invoked": false,
+  "invocation_status": "NOT_YET_PERFORMED_FIRST_MANUAL_INVOCATION_ONLY",
+  "source_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "control_plane_head_before_handoff": "796bd1f4c529786e7612d5a1e7a20dc4bafc0641",
+  "handoff_commit_resolution": "CONTAINING_COMMIT_OF_THIS_ARTIFACT; first invocation must freshly fetch origin/master and bind its exact compatible HEAD",
+  "execution_start_sha_resolution": "Fresh compatible origin/master SHA at actual first manual invocation; branch starts there. Source preimages must equal accepted b564 baseline. Record contemporaneously, never backfill.",
+  "execution_branch": "auto/WO-AUTO-IMP-002-REV2-01",
+  "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+  "scope_digest_convention": "SHA256_UTF8_NEWLINE_JOIN_EXACT_ORDER_NO_TRAILING_NEWLINE",
+  "exact_write_scope": [
+    "automation/engine/repository_snapshot.py",
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "protected_scope": [
+    "automation/engine/contracts.py",
+    "automation/engine/orchestration.py",
+    "automation/engine/execution_capacity.py",
+    "automation/authorizations/**",
+    "automation/governance/**",
+    "automation/policies/**",
+    "automation/programs/**",
+    "automation/packages/**",
+    "automation/prompts/**",
+    "automation/skills/**",
+    "automation/specs/**",
+    "automation/telemetry/**",
+    "automation/runs/**",
+    "automation/work_orders/**",
+    "docs/**",
+    "scripts/**",
+    "tests/automation/test_orchestration.py",
+    "tests/automation/test_execution_capacity.py",
+    "runtime/**",
+    "src/**",
+    "data/**",
+    "ALL_OTHER_PATHS_OUTSIDE_EXACT_FOUR_FILE_SOURCE_SCOPE"
+  ],
+  "source_preimages": [
+    {
+      "path": "automation/engine/repository_snapshot.py",
+      "git_blob_sha": null,
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    {
+      "path": "automation/engine/yaml_io.py",
+      "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    {
+      "path": "tests/automation/test_contracts.py",
+      "git_blob_sha": "65f48178384ed8b21287c0e152b700c133a8008f",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    {
+      "path": "tests/automation/test_repository_snapshot.py",
+      "git_blob_sha": null,
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    }
+  ],
+  "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
+  "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml",
+  "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml",
+  "package_path": "automation/packages/AUTO-IMP-002.v2.yaml",
+  "plan_path": "automation/work_orders/planning/AUTO-IMP-002-REV2.compilation.json",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.provider-evidence.json",
+  "capacity_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.rolling-capacity.json",
+  "pre_dispatch_recheck_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/pre_dispatch_recheck.json",
+  "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/reservation.yaml",
+  "reserved_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/reserved.json",
+  "dispatch_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/dispatch.yaml",
+  "consumed_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/consumed.json",
+  "writer_lock_path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml",
+  "lifecycle_commits": {
+    "owner_decision": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
+    "authorization": "d9808efec1c2b48e94d295d9d76e28b16ace1f2b",
+    "eligibility": "ddbe34c9e76a0f9704c86604726c7db6e52324b0",
+    "writer_acquisition": "9cd0366fd5e38a7605cfd2d1091a1bcc07860419",
+    "execution_allocation": "4e2465688e92ff3ab82be6b5208b1453bc316074",
+    "reservation": "838981dec6c9e3f91c2432099386a114c5b6575f",
+    "reserved": "24314d88713c958ec6097d8f8c8a3aa242c40419",
+    "pre_dispatch_recheck": "5ee442fa0d03fcd006160c0103103d4ef3bd32e0",
+    "dispatch": "3889f5d7fbd2b9cfcccd3f588aca27cb8baaba67",
+    "consumed": "796bd1f4c529786e7612d5a1e7a20dc4bafc0641"
+  },
+  "authorization_state": "CONSUMED",
+  "reservation_state": "CONSUMED",
+  "dispatch_state": "DISPATCH_COMMITTED",
+  "writer_owner": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "writer_state": "HELD",
+  "budgets": {
+    "initial_implementation": {
+      "limit": 1,
+      "used": 0,
+      "remaining": 1
+    },
+    "implementation_corrections": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2
+    },
+    "conditional_review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2,
+      "executable_now": false,
+      "requires": "BOUND_REVIEW_FIX_REQUIRED_IN_EXACT_SCOPE_NO_ARCHITECTURE_AUTHORITY_SIDE_EFFECT_EXPANSION"
+    }
+  },
+  "initial_implementation_remaining": 1,
+  "implementation_correction_remaining": 2,
+  "review_fix_remaining": 2,
+  "review_fix_executable_now": false,
+  "implementation_intent": {
+    "legacy_four_file_restore": false,
+    "new_focused_module": "automation.engine.repository_snapshot",
+    "reason": "Current master contains accepted route/queue engine and immutable contracts. Integrity/provenance/snapshot assembly form one read boundary; delegate routing to existing owner.",
+    "schemas": "No new governance schema or route vocabulary required. Immutable diagnostic/snapshot values are implementation types, not authority documents.",
+    "proposed_api": [
+      "GitBlobReader resolve/read exact commit+blob (injected; production adapter strictly read-only Git object access)",
+      "verify_manifest_bindings verified raw bytes against declared exact refs/hashes -> immutable IntegrityReport",
+      "resolve_repository_snapshot pointer-first single-commit reads -> immutable RepositorySnapshot plus existing RouteDecision",
+      "load_yaml_mapping_bytes verified bytes -> same safe mapping semantics; optional contract selection reuses existing contract registry/model_validate"
+    ],
+    "freshness_boundary": "Caller supplies freshly rehydrated authoritative commit and provenance; read-only Git object adapter proves object/commit consistency, never claims remote freshness from a cached local ref. Any current-source compatibility drift requires fresh preflight before authority/execution."
+  },
+  "semantic_requirements": [
+    "Verify exact Git object identities and declared SHA-256 over raw blob bytes; no worktree/newline normalization.",
+    "Pin the complete snapshot and provenance to one caller-supplied freshly rehydrated authoritative commit. Ref movement must invalidate/revalidate, never mix reads across HEAD.",
+    "Repository-first/pointer-first: CURRENT_CODEX, optional CURRENT_CODEX_TASK, exact referenced artifacts; relevant CURRENT_STATE only for unresolved governance; historical context on ambiguity/failure/provenance only.",
+    "Read current lifecycle and status before candidate-only authorization/package/program/dependency deep bindings. Non-candidate status must return deterministic STOP/PENDING/status, never KeyError.",
+    "Only a genuine execution-candidate route loads complete required identity/revision/scope/profile/dependency/effect/provider bindings. Missing/duplicate/ambiguous/incompatible bindings fail closed.",
+    "Status-only never invokes, dispatches, reserves, consumes, creates authority or resumes an executor.",
+    "Use accepted orchestration.resolve_route(OrchestrationSnapshot) for routing; proposal != authority, invocation_allowed=false. No duplicate queue/priority/capacity/lifecycle algorithm.",
+    "Historical embedded CURRENT text, manifest candidate-phase snapshots and immutable Program phase snapshots cannot override canonical current lifecycle plus bound accepted evidence.",
+    "Strict unknown-schema/field handling follows existing contracts. Unsafe YAML and duplicate explicit/nested keys remain rejected; merge precedence and recursive/alias compatibility preserved.",
+    "All side effects denied; AUTO-IMP-003 remains NOT_AUTHORIZED; controller NOT_ACTIVE and CONTROLLED_AUTO DISABLED.",
+    "Read-only Git adapter permits only commit/blob inspection, no fetch/push/checkout/reset/merge/config mutations/provider/executor/DB/network I/O.",
+    "Exact contradictions return an explicit diagnostic with canonical STOP/reconciliation result; never repair authority, hashes, protected files or historical evidence.",
+    "Do not interpret permissive OrchestrationSnapshot default values as proven authority/provider/lifecycle facts. Candidate-required evidence must be present and validated explicitly; absent evidence fails closed."
+  ],
+  "required_tests": {
+    "matrix": [
+      {
+        "group": "integrity",
+        "cases": [
+          "matching raw Git blob/SHA256 PASS",
+          "one-byte mismatch STOP",
+          "CRLF bytes differ from LF; no normalization",
+          "missing object/path/ref; wrong declared algorithm; ambiguous ref STOP",
+          "same pinned commit for all reads; moved canonical ref demands revalidation",
+          "historical self/provenance hashes verified at declared exact ref; no recursive self-hash invention"
+        ]
+      },
+      {
+        "group": "pointer_and_status",
+        "cases": [
+          "CURRENT pointer-first ordered read audit",
+          "optional task absent handled; required pointer absent fail closed",
+          "HUMAN_DECISION_REQUIRED/BLOCKED/STOP/COMPLETED_PENDING_REVIEW/REVIEW_PENDING/CLOSED without legacy package_binding/program_binding never crash",
+          "status_only returns status without any execution-candidate deep load/invocation",
+          "current Rev2 planning-only snapshot reports no executable authority",
+          "accepted Program V2 proof wins over its immutable candidate phase text, without altering source"
+        ]
+      },
+      {
+        "group": "candidate_fail_closed",
+        "cases": [
+          "stable self-contained fully bound READY positive fixture proposes manual readiness only",
+          "missing candidate package/program binding STOP",
+          "cross-artifact ID/revision/path/scope/profile/dependency mismatch STOP",
+          "duplicate or ambiguous binding/path and conflicting lifecycle evidence STOP",
+          "WORK denied effects and CURRENT/WORK AUTO-IMP-003 NOT_AUTHORIZED consistency",
+          "provider actual denial and provider_hard_block STOP preserved",
+          "consumed authorization not reusable; same invoked execution resume delegates existing protections",
+          "missing current evidence cannot silently inherit permissive orchestration defaults"
+        ]
+      },
+      {
+        "group": "yaml_bytes_compatibility",
+        "cases": [
+          "new bytes loader equals path loader for canonical safe contracts",
+          "valid merge and legal merge precedence",
+          "duplicate explicit/nested mappings and nested !!set rejected",
+          "alias keys and recursive aliases compatible",
+          "unsafe tags rejected; no replacement SafeLoader",
+          "strict/frozen/extra forbid and deterministic plain serialization preserved",
+          "invalid UTF8 reported fail closed without partial payload"
+        ]
+      },
+      {
+        "group": "fixture_and_preservation",
+        "cases": [
+          "in-memory blob map and explicit disposable Git commit fixture; core unit tests never recurse mutable repository ROOT/HEAD/CURRENT",
+          "current baseline read-only integration smoke returns diagnostics safely, not an assumed candidate PASS",
+          "orchestration/capacity negative matrix unchanged",
+          "read spy proves no provider/executor/network/Git mutation calls",
+          "no runtime/broker/DB/migration/LIVE/production/credentials effects"
+        ]
+      }
+    ],
+    "fixture_strategy": "In-memory immutable blob maps and explicit disposable Git commits. No unit fixture derives semantics recursively from mutable repository ROOT/HEAD/CURRENT. Optional integration smoke pins an explicit SHA and tolerates legitimate non-candidate STOP diagnostics.",
+    "commands": [
+      "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py -q",
+      "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py tests/automation/test_orchestration.py tests/automation/test_execution_capacity.py -q",
+      "python -m pytest -p no:cacheprovider -q",
+      "git diff --check"
+    ],
+    "order": "Minimum contract/counterexample tests -> impacted subset until clean -> one complete targeted -> one cross-targeted -> one full after targeted PASS -> diff/scope/protected checks.",
+    "external_environment": "No broker, DB, credentials, migration, LIVE or production integration; configured external-environment tests remain gated, never enable them.",
+    "planning_tests_run": false
+  },
+  "hard_stops": [
+    "architecture/authority/lifecycle semantic change",
+    "fundamental model/interface incompatibility requiring architecture redesign",
+    "need for any source write outside exact four paths",
+    "historical source/authorization/execution/budget reuse",
+    "ambiguous current lifecycle or competing writer at future execution",
+    "unprovable fresh baseline/scope/pointer/hash binding",
+    "unsafe side effect or controller/next-package authority expansion",
+    "Authorization revoked/superseded, baseline/scope drift, conflicting writer/execution, or contradictory canonical CURRENT/lifecycle",
+    "Provider actual denial; known PRIMARY_5H safe capacity below P75 at fresh first-invocation validation",
+    "Historical manifest/reentry source restoration; fifth semantic write path",
+    "Missing contemporaneous own claim/invocation before source writes; no backfill",
+    "Do not use conditional review-fix as pre-review implementation budget"
+  ],
+  "telemetry": {
+    "actor_start_end": "Record exact UTC session/actor interval at actual invocation/completion",
+    "before_after_provider": "Fresh raw account/window/reset/ordinary/rate/spend observations; shared-account proxy only",
+    "local_tokens": "Canonical deterministic scripts/codex_session_token_usage.ps1 post-execution extraction by WORK; exact execution/WO/time/session/strong markers only",
+    "extractor_git_blob": "5834edd880ec9c73781b220c1ee488027f98f77e",
+    "raw_transcript_into_model": "DENIED",
+    "token_unknown": "UNKNOWN_OR_PENDING_EXTERNAL_EXTRACTION_NOT_FABRICATED",
+    "billing": "NOT_AVAILABLE",
+    "cached_input": "Subset of input",
+    "reasoning_output": "Subset of output",
+    "task_profile": {
+      "task_class": "CLEAN_SUCCESSOR_MANIFEST_REENTRY_IMPLEMENTATION",
+      "change_type": "NEW_READ_ONLY_SNAPSHOT_ADAPTER_PLUS_SAFE_BYTES_API",
+      "subsystem": "AUTOMATION_CONTROL_PLANE",
+      "functional_area": "GIT_BLOB_INTEGRITY_AND_REENTRY",
+      "engineering_goal": "Manifest Integrity and Unified Re-entry Snapshot Resolver on accepted Program V2 master",
+      "primary_symbols": [
+        "GitBlobReader",
+        "RepositorySnapshot",
+        "verify_manifest_bindings",
+        "resolve_repository_snapshot",
+        "orchestration.OrchestrationSnapshot",
+        "orchestration.resolve_route",
+        "yaml_io.load_yaml_mapping_bytes"
+      ],
+      "behavior_dimensions": [
+        "integrity",
+        "pointer_order",
+        "non_candidate_status",
+        "candidate_binding",
+        "immutability",
+        "authority_separation"
+      ],
+      "source_file_count": 2,
+      "test_file_count": 2,
+      "semantic_test_profile": "FAIL_CLOSED_NEGATIVE_MATRIX_AND_STABLE_FIXTURES",
+      "authority_boundary": "EXACT_REV2_OWNER_GRANTED_FOUR_FILE_MANUAL_CODEX_SINGLE_USE",
+      "packaging_decision": "KEEP_COHESIVE",
+      "cohesion_reason": "Same read boundary, authority boundary, shared safety tests and one acceptance gate; no splitting solely for token variance."
+    },
+    "context_profile": "Record compact exact artifacts/read volume where deterministic; no model-usage EXACT estimate",
+    "provider_limit_pause": "Same invoked execution checkpoint/resume; no redispatch/new WO/authority/correction budget"
+  },
+  "claim_and_invocation": {
+    "manual_trigger_required": true,
+    "first_invocation_only": true,
+    "required_own_metadata": [
+      "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/claim.json",
+      "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/invocation.json",
+      "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/completion.json",
+      "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/execution_cost_actual.json"
+    ],
+    "write_exception": "Only these exact four own execution evidence artifacts outside four semantic source paths. Lifecycle/authority/CURRENT/policy/history remains WORK-owned and protected.",
+    "step": "Fresh fetch/validate active CURRENT plus handoff/reservation/dispatch/CONSUMED/writer/provider/capacity/source; claim exclusive absent execution branch using this exact branch; durably publish own contemporaneous first claim+invocation before source edits.",
+    "reservation_or_dispatch_recreation": "DENIED",
+    "same_execution_resume_before_invocation": "DENIED",
+    "authority_from_event": "NONE"
+  },
+  "completion_state": "COMPLETED_PENDING_REVIEW",
+  "merge": "DENIED",
+  "semantic_acceptance": "NOT_PERFORMED",
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "auto_imp_003": "NOT_AUTHORIZED",
+  "automatic_next_package": "DENIED",
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "historical_lineage": "HISTORICAL_EVIDENCE_ONLY",
+  "inheritance": {
+    "authorization": false,
+    "execution": false,
+    "source_baseline": false,
+    "source_assembly": false,
+    "quota_amendment": false,
+    "correction_budget": false,
+    "prior_review_pass": false
+  },
+  "handoff_ready": true,
+  "created_at": "2026-10-07T03:36:44Z",
+  "updated_at": "2026-10-07T03:36:44Z"
+}

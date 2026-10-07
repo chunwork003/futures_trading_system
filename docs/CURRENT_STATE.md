@@ -1,3 +1,17 @@
+# CURRENT — AUTO-IMP-002 revision 2 READY_FOR_MANUAL_CODEX_TRIGGER
+
+Architecture 1.2.2 ACTIVE; Capacity Policy 2.2 ACTIVE; Program V2 ACCEPTED_MATERIALIZED.
+WO WO-AUTO-IMP-002-REV2-01; exact fresh authorization AUTH-AUTO-IMP-002-REV2-01 CONSUMED after dispatch. Source baseline b56494966f33c47ea7744c5c1fed271ad01b39f1; Owner decision automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json at c5b0e2b0238b131398c9541b1cc3c448960b2341.
+Execution EXEC-AUTO-IMP-002-REV2-20261007T032957Z; one writer HELD by this exact execution. Reservation CONSUMED, dispatch DISPATCH_COMMITTED; recheck PASS. Full lifecycle commits/pointers: automation/work_orders/CURRENT_CODEX.yaml and automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/current_lifecycle_projection.json.
+Handoff automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/handoff.yaml; handoff_ready=true. CODEX_INVOCATION=NOT_YET_PERFORMED; SOURCE_MODIFICATION=NONE. First explicit MANUAL CODEX invocation only after fresh origin/master/source/authority/writer/provider/capacity revalidation; no redispatch or invocation backfill.
+Provider PASS; PRIMARY_5H 1% used, estimated safe capacity 49791924 vs MANUAL P75 3,500,000. Weekly advisory only. Provider actual denial always wins.
+Exact semantic write scope: automation/engine/repository_snapshot.py; automation/engine/yaml_io.py; tests/automation/test_contracts.py; tests/automation/test_repository_snapshot.py. Digest bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7. Every other semantic path protected. Own claim/invocation/completion/cost evidence only in this execution directory.
+Fresh initial implementation1; implementation corrections0/2 used,2 remaining; conditional review-fix0/2 used,2 remaining NON_EXECUTABLE now. Historical RF01/RF02/IC01/IVF01 authorization/execution/source/budget/review inheritance NONE; no manifest.py/reentry.py restoration.
+Controller NOT_ACTIVE; CONTROLLED_AUTO DISABLED; AUTO-IMP-003 NOT_AUTHORIZED; automatic next package DENIED. Runtime/broker/DB/migration/LIVE/production/credentials DENIED.
+Current route READY_FOR_MANUAL_CODEX_TRIGGER. NEXT=MANUAL_CODEX_FIRST_INVOCATION. WORK STOP; no implementation, tests, CODEX invocation, review, merge or acceptance performed.
+
+## Historical phase projections below — preserved audit only
+
 # CURRENT — AUTO-IMP-002 revision 2 RESERVED / pre-dispatch recheck pending
 
 Architecture1.2.2 ACTIVE; Capacity2.2 ACTIVE; ProgramV2 ACCEPTED_MATERIALIZED. Work Order WO-AUTO-IMP-002-REV2-01; authorization AUTH-AUTO-IMP-002-REV2-01 RESERVED. Execution EXEC-AUTO-IMP-002-REV2-20261007T032957Z; one CODEX writer HELD by this exact execution; reservation automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/reservation.yaml RESERVED.

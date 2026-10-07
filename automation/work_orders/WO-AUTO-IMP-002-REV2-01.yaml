@@ -9,8 +9,8 @@
   "capacity_policy": "2.2",
   "source_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
   "control_plane_compilation_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
-  "status": "AUTHORIZED",
-  "handoff_ready": false,
+  "status": "READY_FOR_CODEX",
+  "handoff_ready": true,
   "code_base_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
   "authority_basis": {
     "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
@@ -288,12 +288,12 @@
     "review remains independent"
   ],
   "next_package_restriction": "AUTO-IMP-003 NOT_AUTHORIZED; automatic next dispatch DENIED",
-  "current_route": "FRESH_AUTHORITY_AND_ELIGIBILITY_REVALIDATION",
-  "next_route": "FRESH_AUTHORITY_AND_ELIGIBILITY_REVALIDATION",
-  "execution_eligibility": "PENDING_FRESH_ELIGIBILITY",
-  "execution_id": null,
+  "current_route": "READY_FOR_MANUAL_CODEX_TRIGGER",
+  "next_route": "READY_FOR_MANUAL_CODEX_TRIGGER",
+  "execution_eligibility": "READY_FOR_MANUAL_CODEX_TRIGGER",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
   "created_at": "2026-10-07T02:53:21Z",
-  "updated_at": "2026-10-07T03:25:16Z",
+  "updated_at": "2026-10-07T03:36:44Z",
   "scope_count": 4,
   "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
   "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml",
@@ -318,5 +318,21 @@
     }
   },
   "review_fix_budget_remaining": 2,
-  "review_fix_executable_now": false
+  "review_fix_executable_now": false,
+  "authorization_state": "CONSUMED",
+  "handoff_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/handoff.yaml",
+  "lifecycle_commits": {
+    "owner_decision": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
+    "authorization": "d9808efec1c2b48e94d295d9d76e28b16ace1f2b",
+    "eligibility": "ddbe34c9e76a0f9704c86604726c7db6e52324b0",
+    "writer_acquisition": "9cd0366fd5e38a7605cfd2d1091a1bcc07860419",
+    "execution_allocation": "4e2465688e92ff3ab82be6b5208b1453bc316074",
+    "reservation": "838981dec6c9e3f91c2432099386a114c5b6575f",
+    "reserved": "24314d88713c958ec6097d8f8c8a3aa242c40419",
+    "pre_dispatch_recheck": "5ee442fa0d03fcd006160c0103103d4ef3bd32e0",
+    "dispatch": "3889f5d7fbd2b9cfcccd3f588aca27cb8baaba67",
+    "consumed": "796bd1f4c529786e7612d5a1e7a20dc4bafc0641"
+  },
+  "executor_invoked": false,
+  "control_plane_head_before_handoff": "796bd1f4c529786e7612d5a1e7a20dc4bafc0641"
 }

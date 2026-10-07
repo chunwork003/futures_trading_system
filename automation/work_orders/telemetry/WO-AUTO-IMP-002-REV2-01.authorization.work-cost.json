@@ -1,0 +1,78 @@
+{
+  "schema_version": "automation.work_cost_observation.v1",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "phase": "OWNER_AUTHORIZATION_AND_SINGLE_USE_LIFECYCLE",
+  "spec_path": "automation/specs/work_cost_accounting.v2.yaml",
+  "measurement_type": "PROXY",
+  "model_usage": {
+    "status": "UNKNOWN",
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "uncached_input_tokens": null,
+    "output_tokens": null,
+    "reasoning_output_tokens": null,
+    "total_tokens": null,
+    "billing": "NOT_AVAILABLE"
+  },
+  "task_profile": {
+    "task_class": "CONTROL_PLANE_AUTHORIZATION_LIFECYCLE",
+    "change_type": "OWNER_DECISION_AUTHORIZATION_RESERVATION_DISPATCH_HANDOFF",
+    "subsystem": "AUTOMATION",
+    "functional_area": "FRESH_SINGLE_USE_REV2_PRE_EXECUTION",
+    "engineering_goal": "Materialize exact approved four-file clean successor lifecycle; stop before invocation",
+    "primary_symbols": [
+      "AuthorizationRecord",
+      "WorkPackageRecord",
+      "evaluate_policy_2_2_admission"
+    ],
+    "behavior_dimensions": [
+      "authority",
+      "scope",
+      "single_writer",
+      "provider",
+      "capacity",
+      "manual_first_invocation"
+    ],
+    "source_file_count": 0,
+    "test_file_count": 0,
+    "semantic_test_profile": "REMOTE_SCHEMA_SCOPE_IDENTITY_AND_PROTECTED_BLOB_GUARDS",
+    "authority_boundary": "EXACT_OWNER_APPROVED_REV2_SINGLE_USE_ONLY",
+    "packaging_decision": "KEEP_COHESIVE"
+  },
+  "context_profile": {
+    "raw_transcript_loaded": false,
+    "history_loaded": "Canonical lifecycle convention example + accepted normalized capacity pool observations; no old AUTO-IMP-002 source restoration or authority reuse",
+    "artifacts_read": [
+      "automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml",
+      "automation/packages/AUTO-IMP-002.v2.yaml",
+      "automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml",
+      "automation/work_orders/AUTO-IMP-002-REV2.eligibility.json",
+      "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.provider-evidence.json",
+      "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.rolling-capacity.json",
+      "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml",
+      "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+      "automation/work_orders/planning/AUTO-IMP-002-REV2.compilation.json",
+      "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
+      "automation/engine/contracts.py",
+      "automation/engine/execution_capacity.py",
+      "automation/skills/single-use-lifecycle-guard/SKILL.md",
+      "automation/policies/authorization_lifecycle.v1_1.yaml",
+      "automation/policies/execution_capacity_policy.v2_2.yaml",
+      "automation/telemetry/cohorts/LOCAL_CODEX_ROLLING_CAPACITY_V2_1.json"
+    ],
+    "content_volume": "UNKNOWN_PARTIAL_MODEL_READ; exact Git blobs recorded in eligibility/capacity/authorization evidence",
+    "content_token_estimate": null,
+    "model_usage_not_inferred_from_provider": true
+  },
+  "tooling_retries": 2,
+  "tooling_retry_details": [
+    "GitHub create-tree connection dropped; fresh master verified unchanged before safe retry",
+    "Operator-only PowerShell quoting correction; no source/budget change"
+  ],
+  "implementation_correction_cycles_consumed": 0,
+  "review_fix_cycles_consumed": 0,
+  "provider_or_quota_waiver": false,
+  "executor_invoked": false,
+  "created_at": "2026-10-07T03:36:44Z",
+  "updated_at": "2026-10-07T03:36:44Z"
+}
