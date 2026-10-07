@@ -2,7 +2,7 @@
   "schema_version": "automation.writer_lock.v1",
   "work_order_id": "WO-AUTO-IMP-002-REV2-01",
   "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
-  "state": "HELD",
+  "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
   "scope": "AUTOMATION_BOUNDED_SINGLE_WRITER",
   "owner_work_order_id": "WO-AUTO-IMP-002-REV2-01",
   "executor_mode": "CODEX",
@@ -16,12 +16,15 @@
   "competing_writer_observed": false,
   "no_concurrent_writer_evidence": "automation/work_orders/AUTO-IMP-002-REV2.eligibility.json",
   "acquired_at": "2026-10-07T03:29:39Z",
-  "updated_at": "2026-10-07T03:29:57Z",
+  "updated_at": "2026-10-07T04:09:57Z",
   "release_condition": [
     "DURABLE_RESULT_INTAKE",
     "EXPLICIT_RECONCILIATION",
     "PRE_EXECUTION_ABORT_WITH_GOVERNANCE_RECORD"
   ],
   "execution_branch": "auto/WO-AUTO-IMP-002-REV2-01",
-  "allocation_after_lock_commit": "9cd0366fd5e38a7605cfd2d1091a1bcc07860419"
+  "allocation_after_lock_commit": "9cd0366fd5e38a7605cfd2d1091a1bcc07860419",
+  "released_at": "2026-10-07T04:09:57Z",
+  "release_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/writer_release.json",
+  "result_intake_commit": "718266e01f5315457ba9c3e871f6f1ac638984f3"
 }
