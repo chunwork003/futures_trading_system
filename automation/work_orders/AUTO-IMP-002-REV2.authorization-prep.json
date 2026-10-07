@@ -1,0 +1,210 @@
+{
+  "schema_version": "automation.authorization_preparation.v1",
+  "package_id": "AUTO-IMP-002",
+  "package_revision": "2",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "proposed_authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "architecture": "1.2.2",
+  "capacity_policy": "2.2",
+  "source_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "control_plane_compilation_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "status": "NON_AUTHORITY_CANDIDATE",
+  "authorization_state": "NOT_AUTHORIZED",
+  "document_status": "PREPARATION_ONLY",
+  "authority_effect": "NONE",
+  "package_path": "automation/packages/AUTO-IMP-002.v2.candidate.yaml",
+  "work_order_candidate_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-01.candidate.yaml",
+  "plan_path": "automation/work_orders/planning/AUTO-IMP-002-REV2.compilation.json",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+  "owner_strategy_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-FRESH-PROGRAM-V2-BASELINE.json",
+  "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+  "exact_binding": {
+    "source_candidate_head_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+    "package_revision": "2",
+    "program_status": "ACCEPTED_MATERIALIZED",
+    "architecture": "1.2.2",
+    "capacity_policy": "2.2",
+    "exact_write_scope": [
+      "automation/engine/repository_snapshot.py",
+      "automation/engine/yaml_io.py",
+      "tests/automation/test_contracts.py",
+      "tests/automation/test_repository_snapshot.py"
+    ]
+  },
+  "dependencies": {
+    "dag": [
+      "AUTO-IMP-001"
+    ],
+    "logical_dag_changed": false,
+    "operational_order": [
+      "AUTO-IMP-002",
+      "AUTO-IMP-003",
+      "AUTO-IMP-004",
+      "AUTO-IMP-005",
+      "AUTO-IMP-006",
+      "AUTO-IMP-007",
+      "AUTO-IMP-008",
+      "AUTO-IMP-009"
+    ],
+    "foundation": {
+      "closure": {
+        "path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+        "git_blob_sha": "2e87cd18a170baffeeb78be346791f15bf9ac360",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      "status": "ACCEPTED_MATERIALIZED",
+      "source_binding": "Current accepted master blobs; contracts/test_contracts evolved through accepted Program V2, not historical AUTO-IMP-001 closure blobs as current identity.",
+      "current_blobs": [
+        {
+          "path": "automation/engine/contracts.py",
+          "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/engine/yaml_io.py",
+          "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "tests/automation/test_contracts.py",
+          "git_blob_sha": "65f48178384ed8b21287c0e152b700c133a8008f",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        }
+      ]
+    },
+    "program": {
+      "definition": {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+        "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      "acceptance": {
+        "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.acceptance.json",
+        "git_blob_sha": "332568ca9e9d712117fbca7976bf1b198a5ed54a",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      "operational_baseline": {
+        "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.integrated-operational-baseline.json",
+        "git_blob_sha": "efe4f1e29b67be20d8145839476aa688463adb16",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      "status": "ACCEPTED_MATERIALIZED",
+      "controller": "NOT_ACTIVE",
+      "phase_snapshot_does_not_override_acceptance": true
+    },
+    "normative_bindings": [
+      {
+        "path": "automation/governance/master_manifest.v1.yaml",
+        "git_blob_sha": "89de89c47d23080af8369544a165e199856d2832",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/policies/orchestration_control_policy.v1.yaml",
+        "git_blob_sha": "a0b755057de05cf854761a9bf76105da350b9f87",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+        "git_blob_sha": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "git_blob_sha": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/policies/development_state_machine.v2.yaml",
+        "git_blob_sha": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/policies/development_entry_protocol.v2.yaml",
+        "git_blob_sha": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/specs/context_loading_policy.v1.yaml",
+        "git_blob_sha": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/specs/work_cost_accounting.v2.yaml",
+        "git_blob_sha": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+        "git_blob_sha": "e2b0422f294ac718f06403b704a8f28607a5002f",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      }
+    ],
+    "current_interfaces": [
+      {
+        "path": "automation/engine/orchestration.py",
+        "git_blob_sha": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/engine/contracts.py",
+        "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/engine/yaml_io.py",
+        "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "tests/automation/test_orchestration.py",
+        "git_blob_sha": "958953e3fa6afb96bb085d9602d1ac633d146568",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      }
+    ]
+  },
+  "inheritance": {
+    "authorization": false,
+    "execution": false,
+    "source_baseline": false,
+    "correction_budget": false,
+    "source_assembly": false,
+    "quota_amendment": false,
+    "review_pass_as_new_package_acceptance": false
+  },
+  "correction_budget": {
+    "authorized": 0,
+    "inherited": 0,
+    "proposal": "Human decision must grant exact new budget, if any; no consumed lineage or Program V2 budget transfers."
+  },
+  "required_human_decision": "Explicit exact implementation authority for AUTO-IMP-002 revision2, source/scope/forecast binding, execution mode and bounded budgets. Compilation approval does not grant execution.",
+  "required_future_gates": [
+    "fresh canonical master/source compatibility",
+    "bound accepted Program V2 and AUTO-IMP-001 dependency evidence",
+    "exact approved scope and architecture/policy identities",
+    "no higher-priority unfinished canonical work",
+    "no concurrent writer",
+    "fresh actual provider gate",
+    "Capacity2.2 PRIMARY_5H vs P75 for MANUAL; unknown not independent blocker; weekly advisory only",
+    "new single-use lifecycle only after exact authority and all gates PASS"
+  ],
+  "execution_id": null,
+  "writer": "NONE",
+  "reservation": false,
+  "dispatch": false,
+  "consume_authorization": false,
+  "controlled_auto": "DISABLED",
+  "controller_activation": "NOT_ACTIVE",
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "next_route": "HUMAN_AUTO_IMP_002_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION",
+  "created_at": "2026-10-07T02:53:21Z",
+  "updated_at": "2026-10-07T02:53:21Z"
+}

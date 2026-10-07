@@ -1,0 +1,49 @@
+{
+  "schema_version": "automation.owner_decision.v1",
+  "decision_id": "OWNER-AUTO-IMP-002-REV2-FRESH-PROGRAM-V2-BASELINE",
+  "decision": "AUTO_IMP_002_BASELINE_STRATEGY = FRESH_PROGRAM_V2_BASELINE_NO_HISTORICAL_LINEAGE_INHERITANCE",
+  "decision_source": "EXPLICIT_HUMAN_GOVERNANCE_OWNER_INSTRUCTION",
+  "baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "architecture": "1.2.2_ACTIVE_UNCHANGED",
+  "capacity_policy": "2.2_ACTIVE_UNCHANGED",
+  "program_status": "ACCEPTED_MATERIALIZED",
+  "authority_effect": "COMPILATION_AND_PLANNING_ONLY",
+  "package_id": "AUTO-IMP-002",
+  "package_revision": "2",
+  "historical_lineage": "HISTORICAL_EVIDENCE_ONLY",
+  "retirement_mapping_path": "automation/work_orders/reconciliations/AUTO-IMP-002.historical-lineage-retirement.json",
+  "inheritance": {
+    "authorization": false,
+    "execution": false,
+    "source_baseline": false,
+    "correction_budget": false,
+    "source_assembly": false,
+    "quota_amendment": false,
+    "review_pass_as_new_package_acceptance": false
+  },
+  "permitted_inputs": [
+    "PROVEN_REQUIREMENTS",
+    "COUNTEREXAMPLES",
+    "REGRESSION_LESSONS"
+  ],
+  "execution_authority": "NOT_AUTHORIZED",
+  "execution_id_allocation": false,
+  "writer_acquisition": false,
+  "reservation": false,
+  "dispatch": false,
+  "invoke_codex": false,
+  "auto_imp_003": "NOT_AUTHORIZED",
+  "controller_activation": "NOT_ACTIVE",
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "next_route": "HUMAN_AUTO_IMP_002_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION",
+  "created_at": "2026-10-07T02:53:21Z",
+  "updated_at": "2026-10-07T02:53:21Z"
+}

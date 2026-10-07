@@ -1,0 +1,513 @@
+{
+  "schema_version": "automation.work_cost_observation.v1",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "package_revision": "2",
+  "phase": "CLEAN_SUCCESSOR_COMPILATION",
+  "baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "spec_path": "automation/specs/work_cost_accounting.v2.yaml",
+  "measurement_type": "PROXY",
+  "model_usage": {
+    "status": "UNKNOWN",
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "uncached_input_tokens": null,
+    "output_tokens": null,
+    "reasoning_output_tokens": null,
+    "total_tokens": null,
+    "billing": "NOT_AVAILABLE"
+  },
+  "task_profile": {
+    "task_class": "CLEAN_SUCCESSOR_MANIFEST_REENTRY_IMPLEMENTATION",
+    "change_type": "NEW_READ_ONLY_SNAPSHOT_ADAPTER_PLUS_SAFE_BYTES_API",
+    "subsystem": "AUTOMATION_CONTROL_PLANE",
+    "functional_area": "GIT_BLOB_INTEGRITY_AND_REENTRY",
+    "engineering_goal": "Manifest Integrity and Unified Re-entry Snapshot Resolver on accepted Program V2 master",
+    "primary_symbols": [
+      "GitBlobReader",
+      "RepositorySnapshot",
+      "verify_manifest_bindings",
+      "resolve_repository_snapshot",
+      "orchestration.OrchestrationSnapshot",
+      "orchestration.resolve_route",
+      "yaml_io.load_yaml_mapping_bytes"
+    ],
+    "behavior_dimensions": [
+      "integrity",
+      "pointer_order",
+      "non_candidate_status",
+      "candidate_binding",
+      "immutability",
+      "authority_separation"
+    ],
+    "source_file_count": 2,
+    "test_file_count": 2,
+    "semantic_test_profile": "FAIL_CLOSED_NEGATIVE_MATRIX_AND_STABLE_FIXTURES",
+    "authority_boundary": "PLANNING_ONLY; future exact single-use implementation authority required",
+    "packaging_decision": "KEEP_COHESIVE",
+    "cohesion_reason": "Same read boundary, authority boundary, shared safety tests and one acceptance gate; no splitting solely for token variance."
+  },
+  "context_profile": {
+    "artifacts_read": [
+      {
+        "path": "AGENTS.md",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "8313abbbb441d91fdca7d892852e6d919e2d76b7",
+        "type": "governance",
+        "fetched_bytes": 21678,
+        "characters": 19154,
+        "lines": 370,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "7c94d4e31d2c0fc5a4aae85ed48638b53b5b265b",
+        "type": "governance",
+        "fetched_bytes": 10557,
+        "characters": 10547,
+        "lines": 207,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/specs/context_loading_policy.v1.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+        "type": "governance",
+        "fetched_bytes": 5173,
+        "characters": 5173,
+        "lines": 175,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "e7d2e34fae9892168e56e3d09c41fba406504e58",
+        "type": "governance",
+        "fetched_bytes": 11592,
+        "characters": 11592,
+        "lines": 188,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "bbacad50c9658e0645ff57152a940e7ce6996aff",
+        "type": "governance",
+        "fetched_bytes": 614,
+        "characters": 612,
+        "lines": 8,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "docs/CURRENT_STATE.md",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "0fca72a01d5ea86bab3b3e6bfac31646e848f3af",
+        "type": "governance",
+        "fetched_bytes": 68118,
+        "characters": 67373,
+        "lines": 1240,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Relevant current section viewed; fetched full artifact, truncated tool output not counted as fully model-read"
+      },
+      {
+        "path": "docs/CURRENT_WORK.md",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "5385d17a536cd9af51ff5ebee4a48b9a4c5c7702",
+        "type": "governance",
+        "fetched_bytes": 40155,
+        "characters": 39854,
+        "lines": 930,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Relevant current section viewed; fetched full artifact, truncated tool output not counted as fully model-read"
+      },
+      {
+        "path": "automation/engine/contracts.py",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+        "type": "source",
+        "fetched_bytes": 11484,
+        "characters": 11098,
+        "lines": 326,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/engine/yaml_io.py",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+        "type": "source",
+        "fetched_bytes": 4043,
+        "characters": 3789,
+        "lines": 117,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/engine/orchestration.py",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+        "type": "source",
+        "fetched_bytes": 14915,
+        "characters": 14905,
+        "lines": 310,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "tests/automation/test_contracts.py",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "65f48178384ed8b21287c0e152b700c133a8008f",
+        "type": "test",
+        "fetched_bytes": 11917,
+        "characters": 11917,
+        "lines": 338,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "tests/automation/test_orchestration.py",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "958953e3fa6afb96bb085d9602d1ac633d146568",
+        "type": "test",
+        "fetched_bytes": 10020,
+        "characters": 10020,
+        "lines": 189,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/governance/master_manifest.v1.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "89de89c47d23080af8369544a165e199856d2832",
+        "type": "governance",
+        "fetched_bytes": 50903,
+        "characters": 50903,
+        "lines": 525,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+        "type": "governance",
+        "fetched_bytes": 23475,
+        "characters": 23475,
+        "lines": 515,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.acceptance.json",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "332568ca9e9d712117fbca7976bf1b198a5ed54a",
+        "type": "governance",
+        "fetched_bytes": 9144,
+        "characters": 9144,
+        "lines": 206,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.integrated-operational-baseline.json",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "efe4f1e29b67be20d8145839476aa688463adb16",
+        "type": "governance",
+        "fetched_bytes": 7467,
+        "characters": 7467,
+        "lines": 154,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "2e87cd18a170baffeeb78be346791f15bf9ac360",
+        "type": "governance",
+        "fetched_bytes": 1506,
+        "characters": 1506,
+        "lines": 44,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/packages/AUTO-IMP-002.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "0d18a02402808652e7bdda30edd31764ac12fc43",
+        "type": "governance",
+        "fetched_bytes": 1969,
+        "characters": 1969,
+        "lines": 69,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/policies/orchestration_control_policy.v1.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "a0b755057de05cf854761a9bf76105da350b9f87",
+        "type": "governance",
+        "fetched_bytes": 4943,
+        "characters": 4943,
+        "lines": 151,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+        "type": "governance",
+        "fetched_bytes": 10331,
+        "characters": 10331,
+        "lines": 206,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/specs/work_cost_accounting.v2.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+        "type": "governance",
+        "fetched_bytes": 1641,
+        "characters": 1641,
+        "lines": 48,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/execution_cost_actual.json",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "c7665ec8ace3d756927a8d3ad335949a4e2ea84f",
+        "type": "telemetry",
+        "fetched_bytes": 12461,
+        "characters": 12461,
+        "lines": 341,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/work_orders/forecasts/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.json",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "ee1cc5c1d9b052e9ef2c29d2c20a207fab906322",
+        "type": "telemetry",
+        "fetched_bytes": 4534,
+        "characters": 4534,
+        "lines": 121,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_lock.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "da43c15e5ef293a05dd661561a439e6282d859f5",
+        "type": "telemetry",
+        "fetched_bytes": 1711,
+        "characters": 1711,
+        "lines": 31,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_release.json",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "a768b76e80cec4a48aafe378c5c7aa3dfa3c7e17",
+        "type": "telemetry",
+        "fetched_bytes": 1949,
+        "characters": 1949,
+        "lines": 40,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/review_barrier_projection.json",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "edc971b550f30565cc5777ffca02d9c7915a614d",
+        "type": "telemetry",
+        "fetched_bytes": 2086,
+        "characters": 2086,
+        "lines": 51,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/work_orders/reviews/WO-AUTO-IMP-002-RF01-01.verdict.json",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "2ed12b6383b4b0030524990942c8bd486ef1b57e",
+        "type": "historical_evidence",
+        "fetched_bytes": 2826,
+        "characters": 2826,
+        "lines": 55,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Mechanically extracted only identity fields for retirement; no full historical semantic reload"
+      },
+      {
+        "path": "automation/work_orders/reviews/WO-AUTO-IMP-002-RF02-01.verdict.json",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "7fa3fe5ee1bb49b5df0af4e80980dd4e4d2615be",
+        "type": "historical_evidence",
+        "fetched_bytes": 652,
+        "characters": 652,
+        "lines": 18,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Mechanically extracted only identity fields for retirement; no full historical semantic reload"
+      },
+      {
+        "path": "automation/work_orders/reviews/WO-AUTO-IMP-002-IC01-01.verdict.json",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "a5240e3016a1d5160a10e684e8366e5828270bf0",
+        "type": "historical_evidence",
+        "fetched_bytes": 1027,
+        "characters": 1027,
+        "lines": 27,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Mechanically extracted only identity fields for retirement; no full historical semantic reload"
+      },
+      {
+        "path": "automation/work_orders/reconciliations/WO-AUTO-IMP-002-RF02-01.integration-verification.json",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "2072e1a83143c246c2d6eb61bed1c9deafedb163",
+        "type": "historical_evidence",
+        "fetched_bytes": 2293,
+        "characters": 2293,
+        "lines": 52,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Mechanically extracted only identity fields for retirement; no full historical semantic reload"
+      },
+      {
+        "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.writer-lock.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+        "type": "governance",
+        "fetched_bytes": 1166,
+        "characters": 1166,
+        "lines": 25,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.writer-lock.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+        "type": "governance",
+        "fetched_bytes": 1283,
+        "characters": 1283,
+        "lines": 26,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      },
+      {
+        "path": "automation/work_orders/executions/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.writer-lock.yaml",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+        "git_blob_sha": "da43c15e5ef293a05dd661561a439e6282d859f5",
+        "type": "governance",
+        "fetched_bytes": 1711,
+        "characters": 1711,
+        "lines": 31,
+        "measurement": "DETERMINISTIC_ARTIFACT_VOLUME_NOT_MODEL_CONSUMPTION",
+        "extent": "Exact-pointer content or relevant interface excerpt; fetched volume is not exact model context"
+      }
+    ],
+    "artifacts_by_type": {
+      "governance": {
+        "count": 19,
+        "bytes": 273426,
+        "characters": 269844,
+        "lines": 5118,
+        "unavailable_byte_counts": 0
+      },
+      "source": {
+        "count": 3,
+        "bytes": 30442,
+        "characters": 29792,
+        "lines": 753,
+        "unavailable_byte_counts": 0
+      },
+      "test": {
+        "count": 2,
+        "bytes": 21937,
+        "characters": 21937,
+        "lines": 527,
+        "unavailable_byte_counts": 0
+      },
+      "telemetry": {
+        "count": 5,
+        "bytes": 22741,
+        "characters": 22741,
+        "lines": 584,
+        "unavailable_byte_counts": 0
+      },
+      "historical_evidence": {
+        "count": 4,
+        "bytes": 6798,
+        "characters": 6798,
+        "lines": 152,
+        "unavailable_byte_counts": 0
+      }
+    },
+    "raw_transcript_loaded": false,
+    "history_loaded": {
+      "mode": "EXACT_POINTER_PROVENANCE_EXTRACTION_AND_RETIREMENT_INVENTORY_ONLY",
+      "full_historical_discussion_loaded": false,
+      "inventory_artifact_count": 89,
+      "original_chat_history_consumption": "UNKNOWN_NOT_MEASURED"
+    },
+    "source_test_governance_telemetry_volume": {
+      "governance": {
+        "count": 19,
+        "bytes": 273426,
+        "characters": 269844,
+        "lines": 5118,
+        "unavailable_byte_counts": 0
+      },
+      "source": {
+        "count": 3,
+        "bytes": 30442,
+        "characters": 29792,
+        "lines": 753,
+        "unavailable_byte_counts": 0
+      },
+      "test": {
+        "count": 2,
+        "bytes": 21937,
+        "characters": 21937,
+        "lines": 527,
+        "unavailable_byte_counts": 0
+      },
+      "telemetry": {
+        "count": 5,
+        "bytes": 22741,
+        "characters": 22741,
+        "lines": 584,
+        "unavailable_byte_counts": 0
+      },
+      "historical_evidence": {
+        "count": 4,
+        "bytes": 6798,
+        "characters": 6798,
+        "lines": 152,
+        "unavailable_byte_counts": 0
+      }
+    },
+    "content_token_estimate": null,
+    "actual_model_context_volume": "UNKNOWN_PARTIAL_EXCERPTS_AND_CACHED_CONTEXT"
+  },
+  "mechanical_checks": {
+    "fresh_remote_master": true,
+    "accepted_program_v2_19_exact_blobs": "PASS",
+    "existing_package_schema": "PASS_USING_REMOTE_CONTRACT_BYTES",
+    "package_serialization_roundtrip": "PASS",
+    "scope_digest": "PASS_EXISTING_LF_CONVENTION",
+    "implementation_tests_run": false,
+    "writer_checks": "CANONICAL_WRITER_ALIASES_RELEASED",
+    "no_execution_allocated": true
+  },
+  "optimization_observation": "Some broad artifacts were fetched with truncated output; future execution packet should expose only exact pointer/section context. Do not treat fetched bytes as exact model usage.",
+  "authority_effect": "NONE",
+  "created_at": "2026-10-07T02:53:21Z",
+  "updated_at": "2026-10-07T02:53:21Z"
+}

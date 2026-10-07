@@ -1,0 +1,294 @@
+{
+  "schema_version": "automation.codex_work_order.v1",
+  "package_id": "AUTO-IMP-002",
+  "package_revision": "2",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "proposed_authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "architecture": "1.2.2",
+  "capacity_policy": "2.2",
+  "source_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "control_plane_compilation_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "handoff_ready": false,
+  "code_base_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "authority_basis": {
+    "owner_compilation_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-FRESH-PROGRAM-V2-BASELINE.json",
+    "authority_candidate_path": "automation/work_orders/AUTO-IMP-002-REV2.authorization-prep.json",
+    "implementation_authority": "NOT_AUTHORIZED",
+    "dependencies": {
+      "dag": [
+        "AUTO-IMP-001"
+      ],
+      "logical_dag_changed": false,
+      "operational_order": [
+        "AUTO-IMP-002",
+        "AUTO-IMP-003",
+        "AUTO-IMP-004",
+        "AUTO-IMP-005",
+        "AUTO-IMP-006",
+        "AUTO-IMP-007",
+        "AUTO-IMP-008",
+        "AUTO-IMP-009"
+      ],
+      "foundation": {
+        "closure": {
+          "path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+          "git_blob_sha": "2e87cd18a170baffeeb78be346791f15bf9ac360",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        "status": "ACCEPTED_MATERIALIZED",
+        "source_binding": "Current accepted master blobs; contracts/test_contracts evolved through accepted Program V2, not historical AUTO-IMP-001 closure blobs as current identity.",
+        "current_blobs": [
+          {
+            "path": "automation/engine/contracts.py",
+            "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+            "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+          },
+          {
+            "path": "automation/engine/yaml_io.py",
+            "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+            "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+          },
+          {
+            "path": "tests/automation/test_contracts.py",
+            "git_blob_sha": "65f48178384ed8b21287c0e152b700c133a8008f",
+            "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+          }
+        ]
+      },
+      "program": {
+        "definition": {
+          "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+          "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        "acceptance": {
+          "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.acceptance.json",
+          "git_blob_sha": "332568ca9e9d712117fbca7976bf1b198a5ed54a",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        "operational_baseline": {
+          "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.integrated-operational-baseline.json",
+          "git_blob_sha": "efe4f1e29b67be20d8145839476aa688463adb16",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        "status": "ACCEPTED_MATERIALIZED",
+        "controller": "NOT_ACTIVE",
+        "phase_snapshot_does_not_override_acceptance": true
+      },
+      "normative_bindings": [
+        {
+          "path": "automation/governance/master_manifest.v1.yaml",
+          "git_blob_sha": "89de89c47d23080af8369544a165e199856d2832",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/policies/orchestration_control_policy.v1.yaml",
+          "git_blob_sha": "a0b755057de05cf854761a9bf76105da350b9f87",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+          "git_blob_sha": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+          "git_blob_sha": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/policies/development_state_machine.v2.yaml",
+          "git_blob_sha": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/policies/development_entry_protocol.v2.yaml",
+          "git_blob_sha": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/specs/context_loading_policy.v1.yaml",
+          "git_blob_sha": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/specs/work_cost_accounting.v2.yaml",
+          "git_blob_sha": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+          "git_blob_sha": "e2b0422f294ac718f06403b704a8f28607a5002f",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        }
+      ],
+      "current_interfaces": [
+        {
+          "path": "automation/engine/orchestration.py",
+          "git_blob_sha": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/engine/contracts.py",
+          "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/engine/yaml_io.py",
+          "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "tests/automation/test_orchestration.py",
+          "git_blob_sha": "958953e3fa6afb96bb085d9602d1ac633d146568",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        }
+      ]
+    },
+    "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7"
+  },
+  "exact_goal": "Manifest Integrity and Unified Re-entry Snapshot Resolver",
+  "exact_write_scope": [
+    "automation/engine/repository_snapshot.py",
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "protected_scope": [
+    "automation/engine/contracts.py",
+    "automation/engine/orchestration.py",
+    "automation/engine/execution_capacity.py",
+    "automation/authorizations/**",
+    "automation/governance/**",
+    "automation/policies/**",
+    "automation/programs/**",
+    "automation/packages/**",
+    "automation/prompts/**",
+    "automation/skills/**",
+    "automation/specs/**",
+    "automation/telemetry/**",
+    "automation/runs/**",
+    "automation/work_orders/**",
+    "docs/**",
+    "scripts/**",
+    "tests/automation/test_orchestration.py",
+    "tests/automation/test_execution_capacity.py",
+    "runtime/**",
+    "src/**",
+    "data/**",
+    "ALL_OTHER_PATHS_OUTSIDE_EXACT_FOUR_FILE_SOURCE_SCOPE"
+  ],
+  "package_path": "automation/packages/AUTO-IMP-002.v2.candidate.yaml",
+  "plan_path": "automation/work_orders/planning/AUTO-IMP-002-REV2.compilation.json",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+  "retirement_path": "automation/work_orders/reconciliations/AUTO-IMP-002.historical-lineage-retirement.json",
+  "tests": {
+    "matrix": [
+      {
+        "group": "integrity",
+        "cases": [
+          "matching raw Git blob/SHA256 PASS",
+          "one-byte mismatch STOP",
+          "CRLF bytes differ from LF; no normalization",
+          "missing object/path/ref; wrong declared algorithm; ambiguous ref STOP",
+          "same pinned commit for all reads; moved canonical ref demands revalidation",
+          "historical self/provenance hashes verified at declared exact ref; no recursive self-hash invention"
+        ]
+      },
+      {
+        "group": "pointer_and_status",
+        "cases": [
+          "CURRENT pointer-first ordered read audit",
+          "optional task absent handled; required pointer absent fail closed",
+          "HUMAN_DECISION_REQUIRED/BLOCKED/STOP/COMPLETED_PENDING_REVIEW/REVIEW_PENDING/CLOSED without legacy package_binding/program_binding never crash",
+          "status_only returns status without any execution-candidate deep load/invocation",
+          "current Rev2 planning-only snapshot reports no executable authority",
+          "accepted Program V2 proof wins over its immutable candidate phase text, without altering source"
+        ]
+      },
+      {
+        "group": "candidate_fail_closed",
+        "cases": [
+          "stable self-contained fully bound READY positive fixture proposes manual readiness only",
+          "missing candidate package/program binding STOP",
+          "cross-artifact ID/revision/path/scope/profile/dependency mismatch STOP",
+          "duplicate or ambiguous binding/path and conflicting lifecycle evidence STOP",
+          "WORK denied effects and CURRENT/WORK AUTO-IMP-003 NOT_AUTHORIZED consistency",
+          "provider actual denial and provider_hard_block STOP preserved",
+          "consumed authorization not reusable; same invoked execution resume delegates existing protections"
+        ]
+      },
+      {
+        "group": "yaml_bytes_compatibility",
+        "cases": [
+          "new bytes loader equals path loader for canonical safe contracts",
+          "valid merge and legal merge precedence",
+          "duplicate explicit/nested mappings and nested !!set rejected",
+          "alias keys and recursive aliases compatible",
+          "unsafe tags rejected; no replacement SafeLoader",
+          "strict/frozen/extra forbid and deterministic plain serialization preserved",
+          "invalid UTF8 reported fail closed without partial payload"
+        ]
+      },
+      {
+        "group": "fixture_and_preservation",
+        "cases": [
+          "in-memory blob map and explicit disposable Git commit fixture; core unit tests never recurse mutable repository ROOT/HEAD/CURRENT",
+          "current baseline read-only integration smoke returns diagnostics safely, not an assumed candidate PASS",
+          "orchestration/capacity negative matrix unchanged",
+          "read spy proves no provider/executor/network/Git mutation calls",
+          "no runtime/broker/DB/migration/LIVE/production/credentials effects"
+        ]
+      }
+    ],
+    "fixture_strategy": "In-memory immutable blob maps and explicit disposable Git commits. No unit fixture derives semantics recursively from mutable repository ROOT/HEAD/CURRENT. Optional integration smoke pins an explicit SHA and tolerates legitimate non-candidate STOP diagnostics.",
+    "commands": [
+      "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py -q",
+      "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py tests/automation/test_orchestration.py tests/automation/test_execution_capacity.py -q",
+      "python -m pytest -p no:cacheprovider -q",
+      "git diff --check"
+    ],
+    "order": "Minimum contract/counterexample tests -> impacted subset until clean -> one complete targeted -> one cross-targeted -> one full after targeted PASS -> diff/scope/protected checks.",
+    "external_environment": "No broker, DB, credentials, migration, LIVE or production integration; configured external-environment tests remain gated, never enable them.",
+    "planning_tests_run": false
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "correction_budget_remaining": 0,
+  "correction_budget_state": "NOT_GRANTED_NOT_INHERITED",
+  "execution_branch": null,
+  "claim_rules": "NO_CLAIM_ALLOWED_PLANNING_ONLY",
+  "STOP_conditions": [
+    "architecture/authority/lifecycle semantic change",
+    "fundamental model/interface incompatibility requiring architecture redesign",
+    "need for any source write outside exact four paths",
+    "historical source/authorization/execution/budget reuse",
+    "ambiguous current lifecycle or competing writer at future execution",
+    "unprovable fresh baseline/scope/pointer/hash binding",
+    "unsafe side effect or controller/next-package authority expansion"
+  ],
+  "completion_evidence_requirements": [
+    "Future exact invocation/implementation/evidence binding",
+    "exact four-file delta/protected proof",
+    "targeted/cross/full exit codes and diff check",
+    "strict local token attribution or explicit UNKNOWN; provider evidence separately",
+    "review remains independent"
+  ],
+  "next_package_restriction": "AUTO-IMP-003 NOT_AUTHORIZED; automatic next dispatch DENIED",
+  "current_route": "HUMAN_AUTO_IMP_002_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION",
+  "next_route": "HUMAN_AUTO_IMP_002_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION",
+  "execution_eligibility": "NOT_AUTHORIZED_PLANNING_ONLY",
+  "execution_id": null,
+  "created_at": "2026-10-07T02:53:21Z",
+  "updated_at": "2026-10-07T02:53:21Z",
+  "scope_count": 4
+}

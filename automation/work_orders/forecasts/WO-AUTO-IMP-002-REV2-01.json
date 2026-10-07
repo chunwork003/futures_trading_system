@@ -1,0 +1,219 @@
+{
+  "schema_version": "automation.execution_cost_forecast.v1",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "authorization_id": null,
+  "proposed_authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "forecast_identity_revision": "1",
+  "package_revision": "2",
+  "scope_count": 4,
+  "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+  "source_candidate_head_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "confidence": "LOW_PROVISIONAL",
+  "measurement_type": "PROXY_PLANNING_FORECAST_NOT_EXACT",
+  "forecast": {
+    "input_tokens": {
+      "p50": 1775000,
+      "p75": 3450000,
+      "p90": 5910000
+    },
+    "cached_input_tokens": {
+      "p50": 1595000,
+      "p75": 3130000,
+      "p90": 5360000
+    },
+    "uncached_input_tokens": {
+      "p50": 180000,
+      "p75": 320000,
+      "p90": 550000
+    },
+    "output_tokens": {
+      "p50": 25000,
+      "p75": 50000,
+      "p90": 90000
+    },
+    "reasoning_output_tokens": {
+      "p50": 8000,
+      "p75": 16000,
+      "p90": 30000
+    },
+    "reported_total_tokens": {
+      "p50": 1800000,
+      "p75": 3500000,
+      "p90": 6000000
+    },
+    "actor_seconds": {
+      "p50": 1200,
+      "p75": 2400,
+      "p90": 4200
+    },
+    "targeted_seconds": {
+      "p50": 30,
+      "p75": 90,
+      "p90": 180
+    },
+    "cross_targeted_seconds": {
+      "p50": 45,
+      "p75": 120,
+      "p90": 240
+    },
+    "full_regression_seconds": {
+      "p50": 60,
+      "p75": 150,
+      "p90": 300
+    },
+    "test_cycles": {
+      "initial_contract_counterexample_passes": 1,
+      "complete_targeted_passes_max": 1,
+      "cross_targeted_passes_max": 1,
+      "full_regression_passes_max": 1,
+      "correction_cycles_authorized": 0
+    }
+  },
+  "supporting_evidence": [
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/execution_cost_actual.json",
+      "git_blob_sha": "c7665ec8ace3d756927a8d3ad335949a4e2ea84f",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+      "reported_total_tokens": 2391244,
+      "uncached_input_tokens": 25461,
+      "actor_seconds": 270.593889,
+      "comparability": "SUPPORTING_ONLY_ACCEPTED_ORCHESTRATION_SUBSYSTEM; encoding continuation is not new snapshot implementation same-class"
+    }
+  ],
+  "comparable_sample_ids": [],
+  "calibrated_cohort": false,
+  "assumptions": [
+    "One cohesive new snapshot module plus tested safe bytes API; broad fail-closed fixtures but no new route semantics.",
+    "Existing accepted orchestration/contracts/YAML behavior reused; no old AUTO-IMP-002 source assembly.",
+    "Fresh context risk includes active policy/pointer distinctions and self-contained fixture creation; upper envelope not reduced to satisfy capacity.",
+    "Cached input subset of input; reasoning subset of output; total=input+output."
+  ],
+  "uncertainty": "No exact same-class accepted Rev2 cohort. Bands are fresh engineering planning estimates; supporting run is not inherited authority/budget or calibrated capacity.",
+  "expected_dominant_cost_driver": "FRESH_POINTER_BOUND_CONTEXT_AND_NEGATIVE_FIXTURE_DESIGN",
+  "task_profile": {
+    "task_class": "CLEAN_SUCCESSOR_MANIFEST_REENTRY_IMPLEMENTATION",
+    "change_type": "NEW_READ_ONLY_SNAPSHOT_ADAPTER_PLUS_SAFE_BYTES_API",
+    "subsystem": "AUTOMATION_CONTROL_PLANE",
+    "functional_area": "GIT_BLOB_INTEGRITY_AND_REENTRY",
+    "engineering_goal": "Manifest Integrity and Unified Re-entry Snapshot Resolver on accepted Program V2 master",
+    "primary_symbols": [
+      "GitBlobReader",
+      "RepositorySnapshot",
+      "verify_manifest_bindings",
+      "resolve_repository_snapshot",
+      "orchestration.OrchestrationSnapshot",
+      "orchestration.resolve_route",
+      "yaml_io.load_yaml_mapping_bytes"
+    ],
+    "behavior_dimensions": [
+      "integrity",
+      "pointer_order",
+      "non_candidate_status",
+      "candidate_binding",
+      "immutability",
+      "authority_separation"
+    ],
+    "source_file_count": 2,
+    "test_file_count": 2,
+    "semantic_test_profile": "FAIL_CLOSED_NEGATIVE_MATRIX_AND_STABLE_FIXTURES",
+    "authority_boundary": "PLANNING_ONLY; future exact single-use implementation authority required",
+    "packaging_decision": "KEEP_COHESIVE",
+    "cohesion_reason": "Same read boundary, authority boundary, shared safety tests and one acceptance gate; no splitting solely for token variance."
+  },
+  "planned_context_profile": {
+    "exact_pointers_first": true,
+    "raw_transcript_loaded": false,
+    "history_loaded": "NONE_BY_DEFAULT; retirement inventory metadata only, counterexamples in plan",
+    "primary_artifacts": [
+      {
+        "path": "automation/engine/orchestration.py",
+        "git_blob_sha": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/engine/contracts.py",
+        "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/engine/yaml_io.py",
+        "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "tests/automation/test_orchestration.py",
+        "git_blob_sha": "958953e3fa6afb96bb085d9602d1ac633d146568",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/governance/master_manifest.v1.yaml",
+        "git_blob_sha": "89de89c47d23080af8369544a165e199856d2832",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/policies/orchestration_control_policy.v1.yaml",
+        "git_blob_sha": "a0b755057de05cf854761a9bf76105da350b9f87",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+        "git_blob_sha": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "git_blob_sha": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/policies/development_state_machine.v2.yaml",
+        "git_blob_sha": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/policies/development_entry_protocol.v2.yaml",
+        "git_blob_sha": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/specs/context_loading_policy.v1.yaml",
+        "git_blob_sha": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/specs/work_cost_accounting.v2.yaml",
+        "git_blob_sha": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+        "git_blob_sha": "e2b0422f294ac718f06403b704a8f28607a5002f",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      }
+    ],
+    "content_token_estimate": null,
+    "measurement_type": "PROXY_NOT_EXACT_MODEL_USAGE"
+  },
+  "admission": {
+    "phase": "NOT_EVALUATED_PLANNING_ONLY",
+    "manual_future_threshold": "PRIMARY_5H_VS_P75",
+    "p90": "ADVISORY_FOR_MANUAL",
+    "weekly_execution_gate": false,
+    "unknown_manual_capacity": "ALLOW_WITH_WATCH_WITH_EXACT_AUTHORITY_AND_PROVIDER_PASS",
+    "provider_actual_denial": "STOP_OR_WAIT_PROVIDER_AVAILABLE",
+    "controlled_auto": "DISABLED",
+    "fixed_80_percent_floor": false,
+    "normalized_40k_fallback": false
+  },
+  "work_orchestration_forecast": {
+    "reported_total_tokens": {
+      "p50": 100000,
+      "p75": 180000,
+      "p90": 320000
+    },
+    "measurement_type": "PROXY_PLANNING_NOT_EXECUTOR_TOKENS",
+    "independent_review": "Forecast separately at bound candidate; no authority granted."
+  },
+  "created_at": "2026-10-07T02:53:21Z",
+  "updated_at": "2026-10-07T02:53:21Z"
+}

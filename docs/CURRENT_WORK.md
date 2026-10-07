@@ -1,3 +1,25 @@
+# CURRENT — AUTO-IMP-002 revision 2 clean successor compilation
+
+Architecture 1.2.2 ACTIVE; Capacity Policy 2.2 ACTIVE. Accepted Program V2 baseline remains ACCEPTED_MATERIALIZED.
+Owner strategy: FRESH_PROGRAM_V2_BASELINE_NO_HISTORICAL_LINEAGE_INHERITANCE.
+Planning/source baseline: b56494966f33c47ea7744c5c1fed271ad01b39f1. Package AUTO-IMP-002 revision 2; Work Order candidate WO-AUTO-IMP-002-REV2-01.
+Compilation PASS; execution authority NOT_AUTHORIZED. No execution ID, writer, reservation, dispatch or executable CODEX handoff.
+Product goal: Manifest Integrity and Unified Re-entry Snapshot Resolver. Fresh four-file proposal composes accepted orchestration, not historical manifest/reentry restoration.
+Package candidate: automation/packages/AUTO-IMP-002.v2.candidate.yaml
+Compilation/interfaces/tests/review/dependencies: automation/work_orders/planning/AUTO-IMP-002-REV2.compilation.json
+Authority preparation ONLY: automation/work_orders/AUTO-IMP-002-REV2.authorization-prep.json
+Forecast: automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json (P50 1,800,000 / P75 3,500,000 / P90 6,000,000 reported tokens; LOW_PROVISIONAL).
+Owner decision: automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-FRESH-PROGRAM-V2-BASELINE.json
+Retirement mapping: automation/work_orders/reconciliations/AUTO-IMP-002.historical-lineage-retirement.json
+Historical AUTO-IMP-002 revision1/RF01/RF02/IC01/IVF01, authorizations, executions and source assembly are HISTORICAL_EVIDENCE_ONLY. Historical IVF01 Rev2 preparation route is superseded by this clean successor. Proven requirements/counterexamples/regression lessons may inform compilation; no authority/execution/source/budget is inherited.
+Accepted Program V2 definition, manifest and IVF01 flow files retain their immutable reviewed phase snapshots; current Owner strategy and this current projection govern the next route. No automatic program rebind or historical source assembly.
+Logical DAG unchanged; operational single lane AUTO-IMP-002 before AUTO-IMP-003. AUTO-IMP-003 NOT_AUTHORIZED.
+Controller NOT_ACTIVE; CONTROLLED_AUTO DISABLED; automatic next dispatch DENIED. Runtime/broker/DB/migration/LIVE/production/credentials DENIED.
+New implementation/review correction budget: NOT_GRANTED; historical budgets unchanged, no transfers.
+Current route: HUMAN_AUTO_IMP_002_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION. Human decision must separately grant exact revision2 implementation authority; this compilation does not authorize execution.
+
+## Historical projections below — preserved immutable audit context, not current routing authority
+
 # CURRENT — Program V2 reviewed baseline ACCEPTED_MATERIALIZED
 
 Architecture 1.2.2 ACTIVE; Capacity Policy 2.2 ACTIVE, unchanged.
