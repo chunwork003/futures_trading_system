@@ -33,7 +33,9 @@
     "implementation_correction_budget": 2,
     "review_fix_budget": 2,
     "review_barrier": "FRESH_COHESIVE_INDEPENDENT_SEMANTIC_REVIEW_BEFORE_WORK_ACCEPTANCE",
-    "work_order_git_blob_sha": "42af114f22401f5712b507d67b4031ceb2366542"
+    "work_order_git_blob_sha": "42af114f22401f5712b507d67b4031ceb2366542",
+    "work_order_binding_ref": "d9808efec1c2b48e94d295d9d76e28b16ace1f2b",
+    "work_order_binding_phase": "INITIAL_AUTHORIZED_SNAPSHOT; current lifecycle status metadata must be cross-validated separately without changing scope"
   },
   "program_binding": {
     "definition": {
@@ -257,7 +259,8 @@
       "execution_cost_actual.json"
     ],
     "own_metadata_rule": "Only exact newly allocated run directory; no lifecycle/authority/protected artifact writes by executor.",
-    "git_blob_sha": "1932ee920c9b94f000891640a7a02475f831c8cb"
+    "git_blob_sha": "1932ee920c9b94f000891640a7a02475f831c8cb",
+    "binding_ref": "d9808efec1c2b48e94d295d9d76e28b16ace1f2b"
   },
   "execution_policy": {
     "single_use": true,
@@ -347,15 +350,20 @@
     "AUTO_IMP_003": "NOT_AUTHORIZED",
     "automatic_next_package": "DENIED",
     "created_at": "2026-10-07T03:25:16Z",
-    "updated_at": "2026-10-07T03:25:16Z"
+    "updated_at": "2026-10-07T03:31:17Z"
   },
   "single_use_execution": {
-    "execution_id": null,
-    "reservation_created": false,
+    "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+    "reservation_created": true,
     "dispatch_committed": false,
     "executor_invoked": false,
-    "writer_acquired": false,
+    "writer_acquired": true,
     "consumed": false,
-    "invocation_status": "NOT_YET_PERFORMED"
+    "invocation_status": "NOT_YET_PERFORMED",
+    "writer_lock_path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml",
+    "writer_acquired_commit_sha": "9cd0366fd5e38a7605cfd2d1091a1bcc07860419",
+    "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/reservation.yaml",
+    "reservation_state": "CREATED",
+    "allocation_commit_sha": "4e2465688e92ff3ab82be6b5208b1453bc316074"
   }
 }

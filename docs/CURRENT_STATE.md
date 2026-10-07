@@ -1,3 +1,10 @@
+# CURRENT — AUTO-IMP-002 revision 2 single-use lifecycle preparation
+
+Architecture1.2.2 ACTIVE; Capacity2.2 ACTIVE; ProgramV2 ACCEPTED_MATERIALIZED. WO WO-AUTO-IMP-002-REV2-01; authorization AUTH-AUTO-IMP-002-REV2-01 AUTHORIZED, no dispatch/consumption/invocation yet. Execution EXEC-AUTO-IMP-002-REV2-20261007T032957Z allocated; one writer HELD by exact execution; reservation CREATED awaiting RESERVED transition. Durable eligibility ddbe34c9e76a0f9704c86604726c7db6e52324b0 PASS; provider PASS, capacity ALLOW_WITH_WATCH. Exact4 scope/digest bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7; accepted source baseline b56494966f33c47ea7744c5c1fed271ad01b39f1. Handoff_ready=false; no CODEX invocation/source modification. Budgets initial1, implementation corrections0/2 used, review-fix0/2 used conditional not executable. Historical chains EVIDENCE_ONLY, no reuse. Controller NOT_ACTIVE; CONTROLLED_AUTO DISABLED; AUTO-IMP-003 NOT_AUTHORIZED; automatic next dispatch DENIED; runtime/broker/DB/migration/LIVE/production/credentials DENIED.
+Current route STATE_TO_RESERVED.
+
+## Historical projections below — retained audit only
+
 # CURRENT — AUTO-IMP-002 revision 2 AUTHORIZED; lifecycle preflight pending
 
 Architecture 1.2.2 ACTIVE; Capacity Policy 2.2 ACTIVE; Program V2 ACCEPTED_MATERIALIZED.

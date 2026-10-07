@@ -1,0 +1,58 @@
+{
+  "schema_version": "automation.execution_reservation.v1",
+  "reservation_id": "RESERVATION-EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "state": "CREATED",
+  "authorization_state": "AUTHORIZED",
+  "source_candidate_head_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "control_plane_head": "4e2465688e92ff3ab82be6b5208b1453bc316074",
+  "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+  "exact_write_scope": [
+    "automation/engine/repository_snapshot.py",
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "architecture": "1.2.2",
+  "capacity_policy": "2.2",
+  "executor_mode": "CODEX",
+  "executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+  "writer_owner": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "writer_lock_path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml",
+  "writer_acquired_commit": "9cd0366fd5e38a7605cfd2d1091a1bcc07860419",
+  "execution_allocation_commit": "4e2465688e92ff3ab82be6b5208b1453bc316074",
+  "authorization_commit": "d9808efec1c2b48e94d295d9d76e28b16ace1f2b",
+  "eligibility_commit": "ddbe34c9e76a0f9704c86604726c7db6e52324b0",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.provider-evidence.json",
+  "capacity_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.rolling-capacity.json",
+  "execution_branch": "auto/WO-AUTO-IMP-002-REV2-01",
+  "budgets": {
+    "initial_implementation": {
+      "limit": 1,
+      "used": 0,
+      "remaining": 1
+    },
+    "implementation_corrections": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2
+    },
+    "conditional_review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2,
+      "executable_now": false,
+      "requires": "BOUND_REVIEW_FIX_REQUIRED_IN_EXACT_SCOPE_NO_ARCHITECTURE_AUTHORITY_SIDE_EFFECT_EXPANSION"
+    }
+  },
+  "dispatch_committed": false,
+  "executor_invoked": false,
+  "single_use": true,
+  "consumed_redispatch": "DENIED",
+  "historical_lineage_inherited": false,
+  "created_at": "2026-10-07T03:31:17Z",
+  "updated_at": "2026-10-07T03:31:17Z"
+}
