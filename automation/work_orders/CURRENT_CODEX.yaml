@@ -13,8 +13,8 @@
   "status": "RESERVED",
   "handoff_ready": false,
   "current_action": "FRESH_RF01_PRE_DISPATCH_RECHECK",
-  "current_route": "MARK_DISPATCH_COMMITTED",
-  "next_route": "MARK_DISPATCH_COMMITTED",
+  "current_route": "STATE_TO_CONSUMED",
+  "next_route": "STATE_TO_CONSUMED",
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-RF01-01.yaml",
   "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-RF01-01.v1.yaml",
   "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
@@ -188,7 +188,7 @@
   "active_writer": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
   "writer_state": "HELD",
   "reservation_created": true,
-  "dispatch_committed": false,
+  "dispatch_committed": true,
   "executor_mode": "CODEX",
   "executor_invoked": false,
   "invocation_status": "NOT_YET_PERFORMED",
@@ -251,7 +251,7 @@
   "review_state": "PARENT_REVIEW_FIX_REQUIRED_RF01_NOT_YET_EXECUTED",
   "historical_lineage": "HISTORICAL_EVIDENCE_ONLY",
   "created_at": "2026-10-07T04:54:39Z",
-  "updated_at": "2026-10-07T04:58:11Z",
+  "updated_at": "2026-10-07T04:58:26Z",
   "writer_lock_path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-RF01-01.writer-lock.yaml",
   "writer_owner": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
   "current_execution_id": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
@@ -264,5 +264,7 @@
   "pre_dispatch_recheck_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/pre_dispatch_recheck.json",
   "pre_dispatch_recheck": "PASS",
   "primary_safe_capacity": 29976770,
-  "provider_pre_dispatch_used_percent": 40
+  "provider_pre_dispatch_used_percent": 40,
+  "dispatch_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/dispatch.yaml",
+  "pre_dispatch_recheck_commit": "3bef631227ab81de37143569ea925c5fc4d5e267"
 }

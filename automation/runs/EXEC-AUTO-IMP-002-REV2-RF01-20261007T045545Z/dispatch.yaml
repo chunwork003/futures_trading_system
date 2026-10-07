@@ -1,0 +1,64 @@
+{
+  "schema_version": "automation.execution_dispatch.v1",
+  "dispatch_id": "DISPATCH-EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "state": "DISPATCH_COMMITTED",
+  "executor_mode": "CODEX",
+  "executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+  "control_plane_head_before_dispatch": "3bef631227ab81de37143569ea925c5fc4d5e267",
+  "source_candidate_head_sha": "6380f2ffb62686d7e2543915804940d1855f8c90",
+  "source_assembly_path": "automation/work_orders/AUTO-IMP-002-REV2-RF01.source-assembly.json",
+  "execution_branch": "auto/WO-AUTO-IMP-002-REV2-RF01-01",
+  "scope_digest": "bf9e862393f56a843f5b50518e3441c31924bacfdfd0daaf08d00196ea1aab44",
+  "exact_write_scope": [
+    "automation/engine/repository_snapshot.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "protected_candidate_blobs": {
+    "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+    "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63"
+  },
+  "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/reservation.yaml",
+  "reservation_commit": "3bfb487fbb41d72968dd54b3e981627c658d39e6",
+  "reserved_commit": "2ca5c3a688117f19212c184bfaabc1f837e6acf2",
+  "pre_dispatch_recheck_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/pre_dispatch_recheck.json",
+  "pre_dispatch_recheck_commit": "3bef631227ab81de37143569ea925c5fc4d5e267",
+  "writer_owner": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "writer_acquired_commit": "b513a07f60160f7858ba235a3a3751fcec52e78e",
+  "provider_gate": "PASS",
+  "capacity_route": "ALLOW_WITH_WATCH",
+  "single_use": true,
+  "manual_trigger_only": true,
+  "automatic_invocation": false,
+  "executor_invoked": false,
+  "invocation_status": "NOT_YET_PERFORMED",
+  "source_modification": "NONE",
+  "budgets": {
+    "review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2,
+      "cycle_id": "RF01",
+      "cycle_usage_trigger": "FIRST_ACTUAL_SEMANTIC_RF01_MODIFICATION",
+      "rf01_allocated_for_execution_only": false,
+      "executable_now": false
+    },
+    "parent_initial_implementation": {
+      "limit": 1,
+      "used": 1,
+      "remaining": 0
+    },
+    "parent_implementation_corrections": {
+      "limit": 2,
+      "used": 2,
+      "remaining": 0,
+      "state": "EXHAUSTED"
+    },
+    "new_implementation_correction_grant": 0,
+    "automatic_RF02": false
+  },
+  "created_at": "2026-10-07T04:58:26Z",
+  "updated_at": "2026-10-07T04:58:26Z"
+}
