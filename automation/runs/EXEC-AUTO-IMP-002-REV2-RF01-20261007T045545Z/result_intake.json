@@ -1,0 +1,216 @@
+{
+  "schema_version": "automation.result_intake.v1",
+  "mechanical_intake": "PASS",
+  "status": "COMPLETED_PENDING_RE_REVIEW",
+  "semantic_acceptance": "NOT_PERFORMED",
+  "re_review": "NOT_PERFORMED",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
+  "correction_id": "AUTO-IMP-002-REV2-RF01",
+  "parent_work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "parent_execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "parent_authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "checked_master": "39214c8682805c171818f7cc9403b199d21a1fd8",
+  "invocation_master": "39214c8682805c171818f7cc9403b199d21a1fd8",
+  "invocation_commit": "2b6047b04e5a76240ab3e60a5b5889f33af173d0",
+  "budget_reconciliation_commit": "24b89c1281a4bc7b2ae5ace9d1d4c20d058280da",
+  "reentry_commit": "bd3878dda967366d8aefca4b0f3b0ad64df27815",
+  "actual_fresh_master_assembly_commit": "151fe096e4fa18bc88bd21be7fff4440f91920ad",
+  "implementation_commit": "967c45cd07d756a08c86098f7382557344648f31",
+  "evidence_commit": "6c129d34992c5a3f489bcd1b2d98a95f2136c494",
+  "branch": "auto/WO-AUTO-IMP-002-REV2-RF01-01",
+  "branch_tip": "6c129d34992c5a3f489bcd1b2d98a95f2136c494",
+  "evidence_files": [
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/claim.json",
+      "blob": "1e64cdb171b986f8959f63778e69dcbb00a34910",
+      "ref": "6c129d34992c5a3f489bcd1b2d98a95f2136c494"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/invocation.json",
+      "blob": "74425104a03a7fd2e76e3fb8b570d7fc42246cd5",
+      "ref": "6c129d34992c5a3f489bcd1b2d98a95f2136c494"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/completion.json",
+      "blob": "18ba7d04ec161a5482cb6b6825022bb045cdf633",
+      "ref": "6c129d34992c5a3f489bcd1b2d98a95f2136c494"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/execution_cost_actual.json",
+      "blob": "3993b3a1e4b03310fbef221fa8bdb3007340e054",
+      "ref": "6c129d34992c5a3f489bcd1b2d98a95f2136c494"
+    }
+  ],
+  "scope_digest": "bf9e862393f56a843f5b50518e3441c31924bacfdfd0daaf08d00196ea1aab44",
+  "exact_RF_semantic_scope": [
+    "automation/engine/repository_snapshot.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "final_effective_four_file_blobs": {
+    "automation/engine/repository_snapshot.py": "d286ff23b88c9b7daa7d21acf07dfc88d5567935",
+    "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+    "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63",
+    "tests/automation/test_repository_snapshot.py": "50951c7d8933f87b3eb80ca1828d92481790e730"
+  },
+  "effective_bundle_sha256": "68a905620d091d9edc2881caaf6e3b08b6a525588c28f03c837405d7cd5e5646",
+  "bundle_convention": "Ordinal path-sorted path+NUL+lowercase Git blob+LF UTF8 SHA256",
+  "independent_bundle_recomputation": "PASS",
+  "mechanical_proof": {
+    "mechanical_intake": "PASS",
+    "assembly_four_exact": true,
+    "RF_delta_exact_two": true,
+    "protected1152": true,
+    "protected_candidate_exact": true,
+    "invocation_precedes_source": true,
+    "invocation_first_commit": "2b6047b04e5a76240ab3e60a5b5889f33af173d0",
+    "completion_invocation_update_fields": [
+      "review_fix_used",
+      "review_fix_remaining",
+      "first_semantic_modification_at_utc",
+      "semantic_cycle"
+    ],
+    "completion_update": "BUDGET_AND_FIRST_SEMANTIC_MODIFICATION_ACCOUNTING_ONLY_ORIGINAL_INVOCATION_COMMIT_PRESERVED",
+    "evidence_delta": [
+      "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/completion.json",
+      "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/execution_cost_actual.json",
+      "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/invocation.json"
+    ],
+    "no_post_completion_source_delta": true
+  },
+  "tests": [
+    {
+      "phase": "parent_counterexamples",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -k rf01 -q --tb=short",
+      "exit_code": 1,
+      "failed": 5,
+      "seconds": 0.81,
+      "expected_failure": true,
+      "finding_ids": [
+        "F-01",
+        "F-02",
+        "F-03"
+      ]
+    },
+    {
+      "phase": "initial_impacted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -k \"rf01 or ready_positive\" -q --tb=short",
+      "exit_code": 0,
+      "passed": 6,
+      "seconds": 0.47
+    },
+    {
+      "phase": "expanded_impacted",
+      "exit_code": 1,
+      "passed": 27,
+      "failed": 2,
+      "seconds": 1.49,
+      "classification": "Test diagnostic-category expectation corrected; intended fail-closed behavior already present"
+    },
+    {
+      "phase": "stable_impacted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -k \"rf01 or ready_positive or raw_source or canonical_nested\" -q --tb=short",
+      "exit_code": 0,
+      "passed": 29,
+      "seconds": 1.17
+    },
+    {
+      "phase": "targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -q",
+      "exit_code": 0,
+      "passed": 103,
+      "seconds": 4.79
+    },
+    {
+      "phase": "cross_targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py tests/automation/test_orchestration.py tests/automation/test_execution_capacity.py -q",
+      "exit_code": 0,
+      "passed": 305,
+      "seconds": 7.98
+    },
+    {
+      "phase": "full_regression",
+      "command": "python -m pytest -p no:cacheprovider -q",
+      "exit_code": 0,
+      "passed": 1832,
+      "skipped": 8,
+      "seconds": 40.44,
+      "external_environments": "DISABLED"
+    }
+  ],
+  "counterexample_mapping": [
+    {
+      "case": "test_rf01_post_intake_counterexample",
+      "finding": "F-01",
+      "expected_failure": true
+    },
+    {
+      "case": "test_rf01_gate_identity_counterexample[missing_lane]",
+      "finding": "F-02",
+      "expected_failure": true
+    },
+    {
+      "case": "test_rf01_gate_identity_counterexample[missing_count]",
+      "finding": "F-02",
+      "expected_failure": true
+    },
+    {
+      "case": "test_rf01_gate_identity_counterexample[architecture]",
+      "finding": "F-03",
+      "expected_failure": true
+    },
+    {
+      "case": "test_rf01_gate_identity_counterexample[source]",
+      "finding": "F-03",
+      "expected_failure": true
+    }
+  ],
+  "diff_check": {
+    "result": "PASS",
+    "exit_code": 0
+  },
+  "tests_rerun_by_WORK": false,
+  "budget": {
+    "review_fix": {
+      "limit": 2,
+      "used": 1,
+      "remaining": 1,
+      "RF01": "CONSUMED_BY_COMPLETED_SEMANTIC_CORRECTION",
+      "executable_now": false,
+      "remaining_requires": "SUBSEQUENT_FRESH_BOUND_REVIEW_FIX_REQUIRED_AND_FRESH_EXACT_CHILD_AUTHORITY_LIFECYCLE"
+    },
+    "parent_implementation_corrections": "2/2_EXHAUSTED",
+    "new_implementation_correction_grant": 0,
+    "automatic_RF02": false
+  },
+  "current_budget_supersession": {
+    "prior_reconciliation_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/budget_projection_reconciliation.json",
+    "prior_reconciliation_commit": "24b89c1281a4bc7b2ae5ace9d1d4c20d058280da",
+    "prior_phase": "PRE_FIRST_INVOCATION_RF01_EXECUTABLE_USED0",
+    "new_phase": "POST_COMPLETED_RF01_USED1_REMAINING1_NOT_EXECUTABLE_PENDING_RE_REVIEW",
+    "evidence": "967c45cd07d756a08c86098f7382557344648f31",
+    "historical_phase_artifacts_unchanged": true,
+    "only_current_projection_advances": true
+  },
+  "authorization_state": "CONSUMED",
+  "redispatch": false,
+  "writer_owner": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "writer_state_at_intake": "HELD",
+  "no_concurrent_writer": "PASS_ONE_OWNER_TWO_ALIASES_ALL_OTHER_CANONICAL_LOCKS_RELEASED",
+  "writer_release_requires": "THIS_RESULT_INTAKE_DURABLY_PUBLISHED_FIRST",
+  "side_effects": {
+    "runtime_broker_db_migration_live_production_credentials": "NONE",
+    "resolver": "Read-only Git object adapter; no fetch/network/worktree fallback or mutations; routing delegated to accepted resolve_route",
+    "executor_git": "Authorized own branch commit/push and exact source branch object fetch only; no master mutation",
+    "data": "UNTOUCHED",
+    "status_only": "No candidate deep loading or authority/invocation/dispatch creation"
+  },
+  "historical_lineage": "HISTORICAL_EVIDENCE_ONLY",
+  "AUTO_IMP_003": "NOT_AUTHORIZED",
+  "controller": "NOT_ACTIVE",
+  "CONTROLLED_AUTO": "DISABLED",
+  "merge": "DENIED",
+  "acceptance": "NOT_PERFORMED",
+  "created_at": "2026-10-07T06:35:23Z"
+}
