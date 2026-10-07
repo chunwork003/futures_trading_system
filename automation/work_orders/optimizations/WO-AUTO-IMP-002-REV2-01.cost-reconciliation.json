@@ -1,0 +1,135 @@
+{
+  "schema_version": "automation.execution_cost_reconciliation.v2",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+  "forecast_git_blob": "1d9cec27f56c335fcd792c7654f5b4788866144e",
+  "actual_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/execution_cost_actual.json",
+  "local_token_evidence": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/local_token_usage.json",
+  "source_evidence_sha": "6ad6cff71454a6200e5e92efc61ed22fdf1d3d91",
+  "canonical_reconciler": {
+    "path": "scripts/execution_cost_reconcile.ps1",
+    "git_blob_sha": "4a3d006ff00609cce928cb11a33b942530aa6875",
+    "execution_exit_code": 0,
+    "input_adapter": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/execution_cost_reconcile.input.json",
+    "adapter_semantics": "Deterministic v2 actual -> unchanged canonical v1 script API; null exact metrics omitted from comparison, no percentage/token conversion",
+    "raw_result": {
+      "schema_version": "automation.execution_cost_reconciliation.v1",
+      "forecast_path": "C:/Users/CHUNs/.codex/visualizations/2026/10/05/01a10a3e-ccb0-7d82-8c33-2fdb65fc3822/intake-rev2/forecast.json",
+      "actual_path": "C:/Users/CHUNs/.codex/visualizations/2026/10/05/01a10a3e-ccb0-7d82-8c33-2fdb65fc3822/intake-rev2/actual-adapter.json",
+      "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+      "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+      "forecast_confidence": "LOW_PROVISIONAL",
+      "overall_classification": "NORMAL",
+      "dominant_cause": "WITHIN_EXPECTED_ENVELOPE",
+      "metric_comparisons": [
+        {
+          "metric": "actor_seconds",
+          "actual": 1072.718412,
+          "p50": 1200,
+          "p75": 2400,
+          "p90": 4200,
+          "actual_to_p50_ratio": 0.89393201,
+          "actual_to_p90_ratio": 0.2554091457142857,
+          "p50_absolute_percentage_error": 0.10606799000000004,
+          "classification": "NORMAL"
+        },
+        {
+          "metric": "targeted_seconds",
+          "actual": 4.62,
+          "p50": null,
+          "p75": null,
+          "p90": 180,
+          "actual_to_p50_ratio": null,
+          "actual_to_p90_ratio": 0.025666666666666667,
+          "p50_absolute_percentage_error": null,
+          "classification": "NORMAL"
+        },
+        {
+          "metric": "full_regression_seconds",
+          "actual": 46.56,
+          "p50": null,
+          "p75": null,
+          "p90": 300,
+          "actual_to_p50_ratio": null,
+          "actual_to_p90_ratio": 0.1552,
+          "p50_absolute_percentage_error": null,
+          "classification": "NORMAL"
+        }
+      ],
+      "cycle_breaches": [],
+      "recommendations": [],
+      "feedback_required_for_next_work_forecast": false,
+      "provider_interruption": {
+        "provider_limit_encountered": false,
+        "provider_pause_count": 0,
+        "provider_pause_seconds": 0,
+        "resume_count": 0,
+        "forecast_capacity_review_required": false
+      },
+      "forecast_capacity_review_required": false,
+      "provider_pause_is_source_defect": false,
+      "work_package_sizing_assessment": "NO_AUTOMATIC_SPLIT",
+      "split_authority_created": false,
+      "generated_at_utc": "2026-10-07T04:10:39.7608876+00:00"
+    }
+  },
+  "overall_classification": "NORMAL_FOR_AVAILABLE_TIMING_DIMENSIONS",
+  "token_forecast_accuracy": "NOT_AVAILABLE_NO_ATTRIBUTABLE_TOKEN_EVENTS",
+  "reported_total_forecast": {
+    "p50": 1800000,
+    "p75": 3500000,
+    "p90": 6000000,
+    "confidence": "LOW_PROVISIONAL",
+    "actual": null,
+    "p50_relation": "NOT_EVALUABLE",
+    "p75_relation": "NOT_EVALUABLE",
+    "p90_relation": "NOT_EVALUABLE"
+  },
+  "dominant_cause": "WITHIN_EXPECTED_TIMING_ENVELOPE; TOKEN_CONTEXT_DOMINANCE_NOT_DETERMINABLE",
+  "timing": {
+    "actor_seconds": 1072.718412,
+    "targeted_seconds": 4.62,
+    "cross_targeted_seconds": 6.99,
+    "full_regression_seconds": 46.56,
+    "cross_targeted_p90": 240,
+    "cross_targeted_actual_to_p90": 0.029125
+  },
+  "provider": {
+    "measurement": "PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY",
+    "primary_before": 9,
+    "primary_after": 20,
+    "primary_delta_pp": 11,
+    "weekly_before": 1,
+    "weekly_after": 3,
+    "weekly_delta_pp": 2,
+    "actual_denial": false,
+    "interruption": false,
+    "pause_count": 0,
+    "resume_count": 0
+  },
+  "correction_feedback": {
+    "implementation_corrections": 2,
+    "tool_retries": 4,
+    "evidenced_reasons": [
+      "Canonical WO nested scope digest and execution recheck provider/capacity bindings",
+      "Canonical WO textual next-package restriction and raw source interface proof handling"
+    ],
+    "classification": "IN_SCOPE_CANONICAL_BINDING_CONFORMANCE_IMPLEMENTATION_CORRECTIONS",
+    "fixture_contract_complexity": "Canonical real-WO nested/textual fields and proof representations required two conformance corrections; quantify separate correction/test cycles in future forecasts.",
+    "forecast_miss": "NO_TIMING_ENVELOPE_BREACH; TOKEN_ERROR_UNKNOWN",
+    "test_plan_cost": "One final targeted/cross/full; no extra full cycles",
+    "context_overhead": "UNKNOWN_NO_EXACT_USAGE",
+    "source_defect_inferred_from_cost": false
+  },
+  "recommendations": [
+    "Include real canonical nested and textual binding variants in minimum contract matrix before implementation",
+    "Preserve pointer-first bounded context and separate conformance correction overhead in future forecast"
+  ],
+  "work_package_sizing_assessment": "KEEP_COHESIVE_NO_AUTOMATIC_SPLIT",
+  "authority_effect": "NONE",
+  "new_correction_authorized": false,
+  "billing": "NOT_AVAILABLE",
+  "created_at": "2026-10-07T04:11:24Z",
+  "updated_at": "2026-10-07T04:11:24Z"
+}
