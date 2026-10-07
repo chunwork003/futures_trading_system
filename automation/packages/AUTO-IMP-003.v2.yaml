@@ -1,0 +1,194 @@
+{
+  "schema_version": "automation.work_package_plan.v1",
+  "work_package_id": "AUTO-IMP-003",
+  "work_package_revision": "2",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "planning_baseline_sha": "85a4542a44fcb86f084f119a805196f03ce6d50c",
+  "wave": "W1_FOUNDATION_SHADOW_PROGRAM_V2_CLEAN_REV2",
+  "title": "Authorization Lifecycle Resolver and State Transition Guard",
+  "risk": "HIGH",
+  "depends_on": [
+    "AUTO-IMP-001"
+  ],
+  "purpose": "Fresh pure exact-authority resolution and evidence-backed state transition guard under accepted ProgramV2 operational rev5; reuse existing routing/capacity/snapshot. No dispatcher or lifecycle persistence.",
+  "authorization": {
+    "implementation": "NOT_AUTHORIZED",
+    "execution": "NOT_AUTHORIZED",
+    "proposed_authorization_id": "AUTH-AUTO-IMP-003-REV2-01",
+    "work_order_id": "WO-AUTO-IMP-003-REV2-01",
+    "candidate_work_order_path": "automation/work_orders/WO-AUTO-IMP-003-REV2-01.candidate.yaml",
+    "preparation_path": "automation/work_orders/AUTO-IMP-003-REV2.authorization-prep.json",
+    "compilation_path": "automation/work_orders/planning/AUTO-IMP-003-REV2.compilation.json",
+    "scope_digest": "24471a220212a8b8d943cc23c4f668644ab16f381a3967320b3fc411d0cad81c",
+    "current_operational_program": {
+      "program_id": "AUTO-IMP-PROGRAM-V2",
+      "program_revision": "5",
+      "status": "ACCEPTED_MATERIALIZED",
+      "definition": {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.rev5.yaml",
+        "git_blob_sha": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+        "ref": "05d7cc77f715250c93ae43ef04522ba061d2fcd4"
+      },
+      "acceptance": {
+        "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-acceptance.json",
+        "git_blob_sha": "815a919cc896e8aaa0a8dcdd37df8227cdb420eb",
+        "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+      },
+      "operational_baseline": {
+        "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-baseline.json",
+        "git_blob_sha": "dee81fc53c154f962711cbfb0a7bc3778a3e81b6",
+        "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+      },
+      "supersession": {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/REV4_TO_REV5_OPERATIONAL_SUPERSESSION.json",
+        "git_blob_sha": "bca34a0f3782a09d1b41194944888728e17b22cc",
+        "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+      },
+      "controller": "NOT_ACTIVE",
+      "phase_snapshot_does_not_override_acceptance": true
+    },
+    "budget_proposal": {
+      "initial_implementation": 1,
+      "implementation_corrections": 2,
+      "conditional_review_fix": 2,
+      "status": "PROPOSED_ONLY_NOT_GRANTED",
+      "used": 0,
+      "inherited": 0,
+      "executable_now": false
+    },
+    "legacy_inheritance": false
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "planned_write_scope": [
+    "automation/engine/authorization.py",
+    "automation/engine/state_machine.py",
+    "tests/automation/test_authorization.py",
+    "tests/automation/test_state_machine.py"
+  ],
+  "protected_scope": [
+    "ALL_EXISTING_TRACKED_PATHS",
+    "automation/engine/contracts.py",
+    "automation/engine/repository_snapshot.py",
+    "automation/engine/orchestration.py",
+    "automation/engine/execution_capacity.py",
+    "automation/engine/yaml_io.py",
+    "automation/policies/**",
+    "automation/programs/**",
+    "automation/governance/**",
+    "automation/authorizations/**",
+    "automation/runs/**",
+    "automation/work_orders/**",
+    "automation/packages/**",
+    "automation/prompts/**",
+    "automation/skills/**",
+    "automation/specs/**",
+    "automation/telemetry/**",
+    "docs/**",
+    "scripts/**",
+    "tests/automation/test_contracts.py",
+    "tests/automation/test_repository_snapshot.py",
+    "tests/automation/test_orchestration.py",
+    "tests/automation/test_execution_capacity.py",
+    "data/**",
+    "ALL_OTHER_PATHS_OUTSIDE_EXACT_FOUR_NEW_FILE_SCOPE"
+  ],
+  "acceptance_tests": [
+    "Pure read-only authorization resolution consumes exact pinned RepositorySnapshot/provenance and existing AuthorizationRecord; typed/schema-valid data alone is not authority.",
+    "Resolve current authorization/lifecycle from durable exact evidence, keep immutable phase snapshots separate; unknown/missing/duplicate/ambiguous/incompatible identity fails closed, no last-record/timestamp-only authority.",
+    "NOT_AUTHORIZED/AUTHORIZED/RESERVED/CONSUMED/SUPERSEDED/REVOKED remain existing lifecycle states; no synthetic grant or reset. Superseded/revoked never executable; consumed redispatch denied.",
+    "Fresh first-manual-invocation eligibility after valid dispatch+CONSUMED but not yet invoked is distinct from resume: require exact same dispatch/writer/re-entry evidence, no invocation backfill; never label it resume.",
+    "Same already-invoked execution resume only with canonical invocation and complete exact lineage/revalidation; missing invocation STOP_NO_BACKFILL, no new authorization/reservation/dispatch/budget.",
+    "Single canonical writer and one executable identity; incomplete/zero/multiple evidence cannot inherit permissive defaults; competing ownership or current contradiction returns reconciliation.",
+    "Pure transition guard validates accepted ten-step order and evidence prerequisites; proposals cannot persist states, allocate, reserve, dispatch, consume, invoke or create authority.",
+    "Execution/auth/cost/provider/review/integration/acceptance axes remain orthogonal; RUNNING provider denial pauses same identity, recovery WAKE_ONLY, no new work bypass while unfinished.",
+    "Use existing orchestration.resolve_route for route/priority semantics and existing execution_capacity provider/admission/resume evaluators for capacity; no forked queue/rolling estimator/promotion algorithms.",
+    "Capacity2.2 PRIMARY_5H MANUAL P75/unknown ALLOW_WITH_WATCH/weekly advisory only; actual hard/rate/spend/ordinary denial wins; HUMAN_DIALOGUE fallback retains identical scope/authority/safety.",
+    "Program V2 rev5 exact operational binding/DAG foundation, architecture/policy proofs and accepted snapshot Git object validation remain upstream; no model/client/task/workspace capacity hard gate.",
+    "Review PASS != integration != acceptance. Queue/event/status/forecast/review result != authority; reviewer cannot authorize or dispatch; controller inactive and CONTROLLED_AUTO disabled.",
+    "Results frozen/deep read-only and deterministically serializable, no mutation of input evidence; no unsafe YAML bypass and no own worktree/network/provider/credential I/O.",
+    "Fixture-owned pinned revisions/evidence; no assertions against mutable live ROOT/HEAD. Current projections supersede only explicit phase fields with bound evidence, not by timestamp inference.",
+    "Exact four NEW files only; no historical source resurrection, legacy quota assumptions, consumed lineage or budget inheritance. No runtime/broker/DB/migration/LIVE/production/credential authority."
+  ],
+  "cost_forecast": {
+    "path": "automation/work_orders/forecasts/WO-AUTO-IMP-003-REV2-01.json",
+    "confidence": "LOW_PROVISIONAL",
+    "p50_reported_total_tokens": 2400000,
+    "p75_reported_total_tokens": 4800000,
+    "p90_reported_total_tokens": 8500000
+  },
+  "telemetry": {
+    "task_profile": {
+      "task_class": "PROGRAM_V2_AUTHORIZATION_LIFECYCLE_AND_TRANSITION_GUARD",
+      "change_type": "TWO_NEW_PURE_MODULES_WITH_FIXTURE_OWNED_TESTS",
+      "subsystem": "AUTOMATION_CONTROL_PLANE",
+      "functional_area": "EXACT_AUTHORITY_AND_LIFECYCLE_CONFORMANCE",
+      "engineering_goal": "Authorization Lifecycle Resolver and State Transition Guard under accepted Program V2 rev5",
+      "primary_symbols": [
+        "proposed resolve_authorization",
+        "proposed validate_transition",
+        "AuthorizationRecord",
+        "RepositorySnapshot",
+        "OrchestrationSnapshot",
+        "resolve_route",
+        "evaluate_policy_2_2_admission",
+        "evaluate_resume"
+      ],
+      "source_file_count": 2,
+      "test_file_count": 2,
+      "semantic_test_profile": "FAIL_CLOSED_LIFECYCLE_PROVENANCE_AND_FIRST_INVOCATION_RESUME_MATRIX",
+      "authority_boundary": "PLANNING_ONLY_OWNER_IMPLEMENTATION_GRANT_REQUIRED",
+      "packaging_decision": "KEEP_COHESIVE",
+      "cohesion_reason": "One exact authority/lifecycle evidence boundary and shared transition-counterexample test set; no quota-driven scope reduction or splitting."
+    },
+    "cost_contract": {
+      "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+      "git_blob_sha": "e2b0422f294ac718f06403b704a8f28607a5002f",
+      "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+    },
+    "work_accounting": {
+      "path": "automation/specs/work_cost_accounting.v2.yaml",
+      "git_blob_sha": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+      "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+    },
+    "local_tokens": "STRICT_EXACT_EXECUTION_WO_TIME_MARKER_BINDING; unavailable/ambiguous never manufactured",
+    "provider_percentages": "SHARED_ACCOUNT_PROXY_NOT_TASK_COST",
+    "billing": "NOT_AVAILABLE",
+    "actual_context": "RECORD_ACTUAL_POINTER_LOADS_NOT_PLANNING_PROFILE",
+    "provider_pause": "Same execution/preserved lineage; not source defect/correction budget; recovery wake/revalidation only"
+  },
+  "git_policy": {
+    "source_baseline_sha": "85a4542a44fcb86f084f119a805196f03ce6d50c",
+    "force_push": false,
+    "source_preimages": {
+      "automation/engine/authorization.py": {
+        "disposition": "NEW_PATH_ABSENT_IN_BOUND_MASTER",
+        "git_blob_sha": null
+      },
+      "automation/engine/state_machine.py": {
+        "disposition": "NEW_PATH_ABSENT_IN_BOUND_MASTER",
+        "git_blob_sha": null
+      },
+      "tests/automation/test_authorization.py": {
+        "disposition": "NEW_PATH_ABSENT_IN_BOUND_MASTER",
+        "git_blob_sha": null
+      },
+      "tests/automation/test_state_machine.py": {
+        "disposition": "NEW_PATH_ABSENT_IN_BOUND_MASTER",
+        "git_blob_sha": null
+      }
+    },
+    "source_write_this_run": false,
+    "exact_four_path_scope": true,
+    "existing_blobs_protected": true
+  },
+  "review_barrier": "ONE_FRESH_COHESIVE_REVIEW_BEFORE_WORK_ACCEPTANCE"
+}

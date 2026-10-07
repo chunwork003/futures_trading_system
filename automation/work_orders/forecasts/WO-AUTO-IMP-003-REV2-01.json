@@ -1,0 +1,267 @@
+{
+  "schema_version": "automation.execution_cost_forecast.v1",
+  "work_order_id": "WO-AUTO-IMP-003-REV2-01",
+  "proposed_authorization_id": "AUTH-AUTO-IMP-003-REV2-01",
+  "authorization_id": null,
+  "forecast_identity_revision": "1",
+  "package_revision": "2",
+  "program_revision": "5",
+  "scope_count": 4,
+  "scope_digest": "24471a220212a8b8d943cc23c4f668644ab16f381a3967320b3fc411d0cad81c",
+  "source_candidate_head_sha": "85a4542a44fcb86f084f119a805196f03ce6d50c",
+  "confidence": "LOW_PROVISIONAL",
+  "measurement_type": "PROXY_PLANNING_FORECAST_NOT_EXACT",
+  "forecast": {
+    "input_tokens": {
+      "p50": 2360000,
+      "p75": 4725000,
+      "p90": 8365000
+    },
+    "cached_input_tokens": {
+      "p50": 2110000,
+      "p75": 4275000,
+      "p90": 7615000
+    },
+    "uncached_input_tokens": {
+      "p50": 250000,
+      "p75": 450000,
+      "p90": 750000
+    },
+    "output_tokens": {
+      "p50": 40000,
+      "p75": 75000,
+      "p90": 135000
+    },
+    "reasoning_output_tokens": {
+      "p50": 15000,
+      "p75": 28000,
+      "p90": 50000
+    },
+    "reported_total_tokens": {
+      "p50": 2400000,
+      "p75": 4800000,
+      "p90": 8500000
+    },
+    "actor_seconds": {
+      "p50": 1800,
+      "p75": 3600,
+      "p90": 6000
+    },
+    "targeted_seconds": {
+      "p50": 20,
+      "p75": 60,
+      "p90": 180
+    },
+    "cross_targeted_seconds": {
+      "p50": 40,
+      "p75": 100,
+      "p90": 240
+    },
+    "full_regression_seconds": {
+      "p50": 90,
+      "p75": 180,
+      "p90": 420
+    },
+    "test_cycles": {
+      "counterexample_phase": 1,
+      "complete_targeted_passes_max": 1,
+      "cross_targeted_passes_max": 1,
+      "final_full_regression_passes_max": 1,
+      "correction_cycles_authorized": 0,
+      "review_fix_cycles_authorized": 0
+    }
+  },
+  "task_profile": {
+    "task_class": "PROGRAM_V2_AUTHORIZATION_LIFECYCLE_AND_TRANSITION_GUARD",
+    "change_type": "TWO_NEW_PURE_MODULES_WITH_FIXTURE_OWNED_TESTS",
+    "subsystem": "AUTOMATION_CONTROL_PLANE",
+    "functional_area": "EXACT_AUTHORITY_AND_LIFECYCLE_CONFORMANCE",
+    "engineering_goal": "Authorization Lifecycle Resolver and State Transition Guard under accepted Program V2 rev5",
+    "primary_symbols": [
+      "proposed resolve_authorization",
+      "proposed validate_transition",
+      "AuthorizationRecord",
+      "RepositorySnapshot",
+      "OrchestrationSnapshot",
+      "resolve_route",
+      "evaluate_policy_2_2_admission",
+      "evaluate_resume"
+    ],
+    "source_file_count": 2,
+    "test_file_count": 2,
+    "semantic_test_profile": "FAIL_CLOSED_LIFECYCLE_PROVENANCE_AND_FIRST_INVOCATION_RESUME_MATRIX",
+    "authority_boundary": "PLANNING_ONLY_OWNER_IMPLEMENTATION_GRANT_REQUIRED",
+    "packaging_decision": "KEEP_COHESIVE",
+    "cohesion_reason": "One exact authority/lifecycle evidence boundary and shared transition-counterexample test set; no quota-driven scope reduction or splitting."
+  },
+  "planned_context_profile": {
+    "pointer_first": true,
+    "primary_artifacts": [
+      {
+        "path": "automation/engine/contracts.py",
+        "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/repository_snapshot.py",
+        "git_blob_sha": "d286ff23b88c9b7daa7d21acf07dfc88d5567935",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/yaml_io.py",
+        "git_blob_sha": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/orchestration.py",
+        "git_blob_sha": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/execution_capacity.py",
+        "git_blob_sha": "987bfe3c80683bed689d7d4c7ff631bfd561b6f6",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_contracts.py",
+        "git_blob_sha": "9765fdf7212c722cb57ce79719c3070115867f63",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_repository_snapshot.py",
+        "git_blob_sha": "50951c7d8933f87b3eb80ca1828d92481790e730",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_orchestration.py",
+        "git_blob_sha": "958953e3fa6afb96bb085d9602d1ac633d146568",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_execution_capacity.py",
+        "git_blob_sha": "fb00b535626b2dab1f337b4fd42179dbe7964fcc",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/governance/master_manifest.v1.yaml",
+        "git_blob_sha": "89de89c47d23080af8369544a165e199856d2832",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "git_blob_sha": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/development_state_machine.v2.yaml",
+        "git_blob_sha": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/development_entry_protocol.v2.yaml",
+        "git_blob_sha": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+        "git_blob_sha": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/orchestration_control_policy.v1.yaml",
+        "git_blob_sha": "a0b755057de05cf854761a9bf76105da350b9f87",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/specs/context_loading_policy.v1.yaml",
+        "git_blob_sha": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/specs/work_cost_accounting.v2.yaml",
+        "git_blob_sha": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+        "git_blob_sha": "e2b0422f294ac718f06403b704a8f28607a5002f",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/specs/negative_assertions.v2.yaml",
+        "git_blob_sha": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.rev5.yaml",
+        "git_blob_sha": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+        "ref": "05d7cc77f715250c93ae43ef04522ba061d2fcd4"
+      },
+      {
+        "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-acceptance.json",
+        "git_blob_sha": "815a919cc896e8aaa0a8dcdd37df8227cdb420eb",
+        "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+      },
+      {
+        "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-baseline.json",
+        "git_blob_sha": "dee81fc53c154f962711cbfb0a7bc3778a3e81b6",
+        "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+      }
+    ],
+    "raw_transcripts": false,
+    "history": "NONE_DEFAULT; legacy003 specification compatibility summary only; durable finding/counterexample pointers if needed",
+    "context_token_count": null,
+    "measurement_type": "PROXY_NOT_EXACT_MODEL_USAGE",
+    "optimization": [
+      "TIGHTEN_POINTER_FIRST_CONTEXT",
+      "REMOVE_UNRELATED_HISTORY",
+      "RECALIBRATE_UNCACHED_INPUT_FORECAST"
+    ]
+  },
+  "supporting_evidence": [
+    {
+      "path": "automation/work_orders/optimizations/WO-AUTO-IMP-002-REV2-01.cost-reconciliation.json",
+      "git_blob_sha": "13489d645ff272f447e2ea41ffc1390dd8884a79",
+      "actor_seconds": 1072.718412,
+      "targeted_seconds": 4.62,
+      "cross_targeted_seconds": 6.99,
+      "full_regression_seconds": 46.56,
+      "local_exact_tokens": "NOT_AVAILABLE",
+      "comparability": "Engineering-time/control-plane fixture complexity supporting evidence only; 002 exact-token forecast accuracy not inferable; not same-class calibrated cost cohort"
+    },
+    {
+      "path": "automation/work_orders/optimizations/WO-AUTO-IMP-002-REV2-RF01-01.cost-reconciliation.json",
+      "git_blob_sha": "2a57e2c585883cd34de04fa221ca4afe6f37e4dc",
+      "local_exact_tokens": "NOT_AVAILABLE",
+      "comparability": "Boundary fixture/review lessons only; no exact-token or calibrated-capacity claim"
+    }
+  ],
+  "comparable_sample_ids": [],
+  "calibrated_cohort": false,
+  "uncertainty": "HIGH-risk authority/transition evidence matrix; no comparable exact-token cohort. Fresh engineering bands allow fixture design, contemporaneous invocation distinctions and context growth; not inherited 26k/38k/52k and not fitted to provider quota.",
+  "assumptions": [
+    "New lifecycle modules, existing route/capacity/snapshot reused unchanged.",
+    "Cached subset of input; reasoning subset of output; total=input+output; never double count.",
+    "No source I/O/dispatcher/schema/policy changes; if exact scope insufficient STOP_TO_OWNER.",
+    "No grants included; correction/review budgets require future exact Owner decision."
+  ],
+  "expected_dominant_cost_driver": "FRESH_CONTEXT_AND_LIFECYCLE_NEGATIVE_FIXTURE_COMPLEXITY",
+  "admission": {
+    "phase": "NOT_EVALUATED_NO_EXECUTION_AUTHORITY",
+    "future_manual_threshold": "PRIMARY_5H_VS_P75",
+    "p90": "ADVISORY_FOR_MANUAL",
+    "weekly_execution_gate": false,
+    "provider_percentage": "SHARED_ACCOUNT_PROXY_NOT_EXACT_TASK_TOKENS",
+    "controlled_auto": "DISABLED",
+    "billing": "NOT_AVAILABLE"
+  },
+  "work_orchestration_forecast": {
+    "reported_total_tokens": {
+      "p50": 200000,
+      "p75": 350000,
+      "p90": 600000
+    },
+    "measurement_type": "PROXY_WORK_PLANNING_SEPARATE_FROM_EXECUTOR"
+  },
+  "created_at": "2026-10-07T09:15:35Z"
+}

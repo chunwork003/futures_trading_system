@@ -1,0 +1,424 @@
+{
+  "schema_version": "automation.fresh_package_compilation.v1",
+  "package_id": "AUTO-IMP-003",
+  "package_revision": "2",
+  "work_order_id": "WO-AUTO-IMP-003-REV2-01",
+  "proposed_authorization_id": "AUTH-AUTO-IMP-003-REV2-01",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "current_operational_program_revision": "5",
+  "architecture": "1.2.2_ACTIVE",
+  "capacity_policy": "2.2_ACTIVE",
+  "status": "COMPILED_CANDIDATE_NOT_AUTHORIZED",
+  "source_baseline_sha": "85a4542a44fcb86f084f119a805196f03ce6d50c",
+  "control_plane_compilation_baseline_sha": "85a4542a44fcb86f084f119a805196f03ce6d50c",
+  "goal": "Authorization Lifecycle Resolver and State Transition Guard",
+  "risk": "HIGH",
+  "baseline_strategy": "FRESH_CURRENT_ACCEPTED_PROGRAM_V2_REV5_NO_LEGACY_AUTHORITY_OR_SOURCE_INHERITANCE",
+  "exact_write_scope": [
+    "automation/engine/authorization.py",
+    "automation/engine/state_machine.py",
+    "tests/automation/test_authorization.py",
+    "tests/automation/test_state_machine.py"
+  ],
+  "scope_count": 4,
+  "scope_digest": "24471a220212a8b8d943cc23c4f668644ab16f381a3967320b3fc411d0cad81c",
+  "scope_digest_convention": "SHA256 UTF8 ordered exact_write_scope joined LF; no trailing LF/BOM",
+  "source_preimages": {
+    "automation/engine/authorization.py": {
+      "disposition": "NEW_PATH_ABSENT_IN_BOUND_MASTER",
+      "git_blob_sha": null
+    },
+    "automation/engine/state_machine.py": {
+      "disposition": "NEW_PATH_ABSENT_IN_BOUND_MASTER",
+      "git_blob_sha": null
+    },
+    "tests/automation/test_authorization.py": {
+      "disposition": "NEW_PATH_ABSENT_IN_BOUND_MASTER",
+      "git_blob_sha": null
+    },
+    "tests/automation/test_state_machine.py": {
+      "disposition": "NEW_PATH_ABSENT_IN_BOUND_MASTER",
+      "git_blob_sha": null
+    }
+  },
+  "protected_scope": [
+    "ALL_EXISTING_TRACKED_PATHS",
+    "automation/engine/contracts.py",
+    "automation/engine/repository_snapshot.py",
+    "automation/engine/orchestration.py",
+    "automation/engine/execution_capacity.py",
+    "automation/engine/yaml_io.py",
+    "automation/policies/**",
+    "automation/programs/**",
+    "automation/governance/**",
+    "automation/authorizations/**",
+    "automation/runs/**",
+    "automation/work_orders/**",
+    "automation/packages/**",
+    "automation/prompts/**",
+    "automation/skills/**",
+    "automation/specs/**",
+    "automation/telemetry/**",
+    "docs/**",
+    "scripts/**",
+    "tests/automation/test_contracts.py",
+    "tests/automation/test_repository_snapshot.py",
+    "tests/automation/test_orchestration.py",
+    "tests/automation/test_execution_capacity.py",
+    "data/**",
+    "ALL_OTHER_PATHS_OUTSIDE_EXACT_FOUR_NEW_FILE_SCOPE"
+  ],
+  "module_boundary_decision": {
+    "fresh_inspection": "No authorization/state_machine modules or corresponding tests exist in bound current master. Scope matches legacy path names by independent current responsibility analysis, not restoration.",
+    "authorization_py": "Pure resolver over exact pinned RepositorySnapshot/AuthorizationRecord and bound current lifecycle/Owner evidence; no route or authority mutation; frozen deterministic resolution.",
+    "state_machine_py": "Pure evidence/ordering guard for existing authorization/execution transitions and orthogonal axes; proposal/denial only; same-invoked resume delegates existing evaluator; no persistence or lifecycle mutator.",
+    "reuse": [
+      {
+        "path": "automation/engine/contracts.py",
+        "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/repository_snapshot.py",
+        "git_blob_sha": "d286ff23b88c9b7daa7d21acf07dfc88d5567935",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/yaml_io.py",
+        "git_blob_sha": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/orchestration.py",
+        "git_blob_sha": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/execution_capacity.py",
+        "git_blob_sha": "987bfe3c80683bed689d7d4c7ff631bfd561b6f6",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_contracts.py",
+        "git_blob_sha": "9765fdf7212c722cb57ce79719c3070115867f63",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_repository_snapshot.py",
+        "git_blob_sha": "50951c7d8933f87b3eb80ca1828d92481790e730",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_orchestration.py",
+        "git_blob_sha": "958953e3fa6afb96bb085d9602d1ac633d146568",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_execution_capacity.py",
+        "git_blob_sha": "fb00b535626b2dab1f337b4fd42179dbe7964fcc",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      }
+    ],
+    "existing_source_semantics_modified": false,
+    "schema_change_required": false,
+    "algorithm_duplication": "No queue/route/rolling capacity/promotion/Git blob/YAML implementations forked."
+  },
+  "dependencies": {
+    "dag": [
+      "AUTO-IMP-001"
+    ],
+    "logical_dag_changed": false,
+    "dependency_graph_is_not_lane_order": true,
+    "operational_order": [
+      "AUTO-IMP-003",
+      "AUTO-IMP-004",
+      "AUTO-IMP-005",
+      "AUTO-IMP-006",
+      "AUTO-IMP-007",
+      "AUTO-IMP-008",
+      "AUTO-IMP-009"
+    ],
+    "foundation": {
+      "closure": {
+        "path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+        "git_blob_sha": "2e87cd18a170baffeeb78be346791f15bf9ac360",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      "status": "ACCEPTED_MATERIALIZED",
+      "current_blobs": [
+        {
+          "path": "automation/engine/contracts.py",
+          "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+          "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+        },
+        {
+          "path": "automation/engine/yaml_io.py",
+          "git_blob_sha": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+          "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+        },
+        {
+          "path": "tests/automation/test_contracts.py",
+          "git_blob_sha": "9765fdf7212c722cb57ce79719c3070115867f63",
+          "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+        }
+      ],
+      "source_binding": "Exact current accepted evolved interfaces, not old closure source preimages"
+    },
+    "program": {
+      "program_id": "AUTO-IMP-PROGRAM-V2",
+      "program_revision": "5",
+      "status": "ACCEPTED_MATERIALIZED",
+      "definition": {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.rev5.yaml",
+        "git_blob_sha": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+        "ref": "05d7cc77f715250c93ae43ef04522ba061d2fcd4"
+      },
+      "acceptance": {
+        "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-acceptance.json",
+        "git_blob_sha": "815a919cc896e8aaa0a8dcdd37df8227cdb420eb",
+        "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+      },
+      "operational_baseline": {
+        "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-baseline.json",
+        "git_blob_sha": "dee81fc53c154f962711cbfb0a7bc3778a3e81b6",
+        "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+      },
+      "supersession": {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/REV4_TO_REV5_OPERATIONAL_SUPERSESSION.json",
+        "git_blob_sha": "bca34a0f3782a09d1b41194944888728e17b22cc",
+        "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+      },
+      "controller": "NOT_ACTIVE",
+      "phase_snapshot_does_not_override_acceptance": true
+    },
+    "normative_bindings": [
+      {
+        "path": "automation/governance/master_manifest.v1.yaml",
+        "git_blob_sha": "89de89c47d23080af8369544a165e199856d2832",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "git_blob_sha": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/development_state_machine.v2.yaml",
+        "git_blob_sha": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/development_entry_protocol.v2.yaml",
+        "git_blob_sha": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+        "git_blob_sha": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/orchestration_control_policy.v1.yaml",
+        "git_blob_sha": "a0b755057de05cf854761a9bf76105da350b9f87",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/specs/context_loading_policy.v1.yaml",
+        "git_blob_sha": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/specs/work_cost_accounting.v2.yaml",
+        "git_blob_sha": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+        "git_blob_sha": "e2b0422f294ac718f06403b704a8f28607a5002f",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/specs/negative_assertions.v2.yaml",
+        "git_blob_sha": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      }
+    ],
+    "current_interfaces": [
+      {
+        "path": "automation/engine/contracts.py",
+        "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/repository_snapshot.py",
+        "git_blob_sha": "d286ff23b88c9b7daa7d21acf07dfc88d5567935",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/yaml_io.py",
+        "git_blob_sha": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/orchestration.py",
+        "git_blob_sha": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/execution_capacity.py",
+        "git_blob_sha": "987bfe3c80683bed689d7d4c7ff631bfd561b6f6",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_contracts.py",
+        "git_blob_sha": "9765fdf7212c722cb57ce79719c3070115867f63",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_repository_snapshot.py",
+        "git_blob_sha": "50951c7d8933f87b3eb80ca1828d92481790e730",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_orchestration.py",
+        "git_blob_sha": "958953e3fa6afb96bb085d9602d1ac633d146568",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_execution_capacity.py",
+        "git_blob_sha": "fb00b535626b2dab1f337b4fd42179dbe7964fcc",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      }
+    ]
+  },
+  "semantic_requirements": [
+    "Pure read-only authorization resolution consumes exact pinned RepositorySnapshot/provenance and existing AuthorizationRecord; typed/schema-valid data alone is not authority.",
+    "Resolve current authorization/lifecycle from durable exact evidence, keep immutable phase snapshots separate; unknown/missing/duplicate/ambiguous/incompatible identity fails closed, no last-record/timestamp-only authority.",
+    "NOT_AUTHORIZED/AUTHORIZED/RESERVED/CONSUMED/SUPERSEDED/REVOKED remain existing lifecycle states; no synthetic grant or reset. Superseded/revoked never executable; consumed redispatch denied.",
+    "Fresh first-manual-invocation eligibility after valid dispatch+CONSUMED but not yet invoked is distinct from resume: require exact same dispatch/writer/re-entry evidence, no invocation backfill; never label it resume.",
+    "Same already-invoked execution resume only with canonical invocation and complete exact lineage/revalidation; missing invocation STOP_NO_BACKFILL, no new authorization/reservation/dispatch/budget.",
+    "Single canonical writer and one executable identity; incomplete/zero/multiple evidence cannot inherit permissive defaults; competing ownership or current contradiction returns reconciliation.",
+    "Pure transition guard validates accepted ten-step order and evidence prerequisites; proposals cannot persist states, allocate, reserve, dispatch, consume, invoke or create authority.",
+    "Execution/auth/cost/provider/review/integration/acceptance axes remain orthogonal; RUNNING provider denial pauses same identity, recovery WAKE_ONLY, no new work bypass while unfinished.",
+    "Use existing orchestration.resolve_route for route/priority semantics and existing execution_capacity provider/admission/resume evaluators for capacity; no forked queue/rolling estimator/promotion algorithms.",
+    "Capacity2.2 PRIMARY_5H MANUAL P75/unknown ALLOW_WITH_WATCH/weekly advisory only; actual hard/rate/spend/ordinary denial wins; HUMAN_DIALOGUE fallback retains identical scope/authority/safety.",
+    "Program V2 rev5 exact operational binding/DAG foundation, architecture/policy proofs and accepted snapshot Git object validation remain upstream; no model/client/task/workspace capacity hard gate.",
+    "Review PASS != integration != acceptance. Queue/event/status/forecast/review result != authority; reviewer cannot authorize or dispatch; controller inactive and CONTROLLED_AUTO disabled.",
+    "Results frozen/deep read-only and deterministically serializable, no mutation of input evidence; no unsafe YAML bypass and no own worktree/network/provider/credential I/O.",
+    "Fixture-owned pinned revisions/evidence; no assertions against mutable live ROOT/HEAD. Current projections supersede only explicit phase fields with bound evidence, not by timestamp inference.",
+    "Exact four NEW files only; no historical source resurrection, legacy quota assumptions, consumed lineage or budget inheritance. No runtime/broker/DB/migration/LIVE/production/credential authority."
+  ],
+  "test_plan": {
+    "counterexample_first": "Build fixture-owned negatives against missing resolver/guard or specified invalid facts before implementation; expected failures are evidence, not budget consumption.",
+    "mandatory_cases": [
+      "duplicate/ambiguous auth binding; unknown state/schema; missing exact provenance",
+      "consumed redispatch; revoked/superseded authority; same-execution resume only with invocation proof",
+      "valid consumed-not-invoked first invocation distinguished from denied non-invoked resume",
+      "same WO/auth/reservation/dispatch/scope/branch/architecture changes fail closed",
+      "held writer wrong owner or >1 owner; absent/0/>1 executable count",
+      "missing gate evidence and skipped/reordered ten-step lifecycle blocked",
+      "historical phase snapshot vs current durable projection; same-timestamp contradictions require explicit supersession",
+      "RUNNING provider denial -> pause same identity; recovery wake-only; no extra budget/reservation/dispatch",
+      "MANUAL unknown capacity and weekly advisory preserved; hard provider denial wins; CONTROLLED_AUTO disabled",
+      "review/result PASS never acceptance/authority; status-only never dispatch/invoke; proposal authority_granted=false",
+      "rev5 lane + AUTO-IMP-001 DAG foundation; no invented dependency on002; no ProgramV1 authority/old quota inheritance",
+      "deep immutability/input unchanged/serialization roundtrip; no side effects; no actual repo HEAD dependency"
+    ],
+    "targeted": "python -m pytest -p no:cacheprovider tests/automation/test_authorization.py tests/automation/test_state_machine.py -q",
+    "cross_targeted": "python -m pytest -p no:cacheprovider tests/automation/test_authorization.py tests/automation/test_state_machine.py tests/automation/test_contracts.py tests/automation/test_repository_snapshot.py tests/automation/test_orchestration.py tests/automation/test_execution_capacity.py -q",
+    "full": "python -m pytest -p no:cacheprovider -q",
+    "order": "Impacted subset until clean -> one complete targeted -> one cross-targeted -> one final full when warranted -> git diff --check -> exact scope/protected Git blob proof",
+    "WORK_tests_now": "NO_IMPLEMENTATION_TEST_RUN; compilation contract and deterministic progression guards only"
+  },
+  "acceptance_criteria": [
+    "Exact four new-path implementation only; all existing tracked Git blobs unchanged.",
+    "One fresh bound independent cohesive semantic review PASS then separate WORK exact integration/acceptance; tests alone never accepted.",
+    "All counterexamples fail closed, explicit evidence mandatory, immutable deterministic serializable results.",
+    "No implementation/authority/controller/runtime side effects beyond future exact scoped grant."
+  ],
+  "review_plan": {
+    "type": "ONE_FRESH_COHESIVE_INDEPENDENT_GOVERNANCE_SEMANTIC_REVIEW",
+    "target": "COMPLETE_FOUR_FILE_CANDIDATE",
+    "allowed_verdicts": [
+      "PASS",
+      "REVIEW_FIX_REQUIRED",
+      "HUMAN_DECISION_REQUIRED"
+    ],
+    "coverage": [
+      "Pure read-only authorization resolution consumes exact pinned RepositorySnapshot/provenance and existing AuthorizationRecord; typed/schema-valid data alone is not authority.",
+      "Resolve current authorization/lifecycle from durable exact evidence, keep immutable phase snapshots separate; unknown/missing/duplicate/ambiguous/incompatible identity fails closed, no last-record/timestamp-only authority.",
+      "NOT_AUTHORIZED/AUTHORIZED/RESERVED/CONSUMED/SUPERSEDED/REVOKED remain existing lifecycle states; no synthetic grant or reset. Superseded/revoked never executable; consumed redispatch denied.",
+      "Fresh first-manual-invocation eligibility after valid dispatch+CONSUMED but not yet invoked is distinct from resume: require exact same dispatch/writer/re-entry evidence, no invocation backfill; never label it resume.",
+      "Same already-invoked execution resume only with canonical invocation and complete exact lineage/revalidation; missing invocation STOP_NO_BACKFILL, no new authorization/reservation/dispatch/budget.",
+      "Single canonical writer and one executable identity; incomplete/zero/multiple evidence cannot inherit permissive defaults; competing ownership or current contradiction returns reconciliation.",
+      "Pure transition guard validates accepted ten-step order and evidence prerequisites; proposals cannot persist states, allocate, reserve, dispatch, consume, invoke or create authority.",
+      "Execution/auth/cost/provider/review/integration/acceptance axes remain orthogonal; RUNNING provider denial pauses same identity, recovery WAKE_ONLY, no new work bypass while unfinished.",
+      "Use existing orchestration.resolve_route for route/priority semantics and existing execution_capacity provider/admission/resume evaluators for capacity; no forked queue/rolling estimator/promotion algorithms.",
+      "Capacity2.2 PRIMARY_5H MANUAL P75/unknown ALLOW_WITH_WATCH/weekly advisory only; actual hard/rate/spend/ordinary denial wins; HUMAN_DIALOGUE fallback retains identical scope/authority/safety.",
+      "Program V2 rev5 exact operational binding/DAG foundation, architecture/policy proofs and accepted snapshot Git object validation remain upstream; no model/client/task/workspace capacity hard gate.",
+      "Review PASS != integration != acceptance. Queue/event/status/forecast/review result != authority; reviewer cannot authorize or dispatch; controller inactive and CONTROLLED_AUTO disabled.",
+      "Results frozen/deep read-only and deterministically serializable, no mutation of input evidence; no unsafe YAML bypass and no own worktree/network/provider/credential I/O.",
+      "Fixture-owned pinned revisions/evidence; no assertions against mutable live ROOT/HEAD. Current projections supersede only explicit phase fields with bound evidence, not by timestamp inference.",
+      "Exact four NEW files only; no historical source resurrection, legacy quota assumptions, consumed lineage or budget inheritance. No runtime/broker/DB/migration/LIVE/production/credential authority."
+    ],
+    "reviewer_must_not": [
+      "authorize",
+      "modify source",
+      "merge",
+      "accept",
+      "activate controller",
+      "dispatch"
+    ]
+  },
+  "legacy_input": {
+    "path": "automation/packages/AUTO-IMP-003.yaml",
+    "git_blob_sha": "93d370db20c2f7062eac8aa1d764f764af3a057b",
+    "program": "AUTO-IMP-PROGRAM-V1",
+    "revision": "1",
+    "disposition": "HISTORICAL_SPECIFICATION_PLANNING_ONLY",
+    "compatibility_validation": "Purpose/high-risk lifecycle focus compatible; old quota admission/static26k38k52k not operational authority; current1.2.2 superseding lifecycle/resume rules determine design."
+  },
+  "inheritance": {
+    "authorization": false,
+    "execution": false,
+    "work_order": false,
+    "budget": false,
+    "source_assembly": false,
+    "quota_assumptions": false,
+    "prior_review_PASS": false
+  },
+  "authority_preparation_path": "automation/work_orders/AUTO-IMP-003-REV2.authorization-prep.json",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-003-REV2-01.json",
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "budget_proposal": {
+    "initial_implementation": 1,
+    "implementation_corrections": 2,
+    "conditional_review_fix": 2,
+    "status": "PROPOSED_ONLY_NOT_GRANTED",
+    "used": 0,
+    "inherited": 0,
+    "executable_now": false
+  },
+  "stop_conditions": [
+    "Any fifth semantic path",
+    "architecture/authority/lifecycle/policy redesign",
+    "source/HEAD/program/identity drift or contradictory current evidence",
+    "competing writer/execution",
+    "runtime/broker/DB/migration/LIVE/production/credentials expansion",
+    "need to amend accepted resolver/contracts/orchestration/capacity source",
+    "automatic authorization/dispatch/controller activation"
+  ],
+  "execution_authority": "NOT_AUTHORIZED",
+  "new_execution_id": null,
+  "handoff_ready": false,
+  "next_route": "HUMAN_AUTO_IMP_003_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION",
+  "created_at": "2026-10-07T09:15:35Z"
+}

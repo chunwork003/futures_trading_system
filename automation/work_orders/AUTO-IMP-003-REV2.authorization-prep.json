@@ -1,0 +1,234 @@
+{
+  "schema_version": "automation.authorization_preparation.v1",
+  "status": "NON_AUTHORITY_CANDIDATE_NOT_AUTHORIZED",
+  "work_order_id": "WO-AUTO-IMP-003-REV2-01",
+  "package_id": "AUTO-IMP-003",
+  "package_revision": "2",
+  "proposed_authorization_id": "AUTH-AUTO-IMP-003-REV2-01",
+  "proposed_authorization_schema": "automation.authorization.v1",
+  "source_baseline_sha": "85a4542a44fcb86f084f119a805196f03ce6d50c",
+  "control_plane_head": "85a4542a44fcb86f084f119a805196f03ce6d50c",
+  "exact_write_scope": [
+    "automation/engine/authorization.py",
+    "automation/engine/state_machine.py",
+    "tests/automation/test_authorization.py",
+    "tests/automation/test_state_machine.py"
+  ],
+  "scope_digest": "24471a220212a8b8d943cc23c4f668644ab16f381a3967320b3fc411d0cad81c",
+  "scope_count": 4,
+  "dependencies": {
+    "dag": [
+      "AUTO-IMP-001"
+    ],
+    "logical_dag_changed": false,
+    "dependency_graph_is_not_lane_order": true,
+    "operational_order": [
+      "AUTO-IMP-003",
+      "AUTO-IMP-004",
+      "AUTO-IMP-005",
+      "AUTO-IMP-006",
+      "AUTO-IMP-007",
+      "AUTO-IMP-008",
+      "AUTO-IMP-009"
+    ],
+    "foundation": {
+      "closure": {
+        "path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+        "git_blob_sha": "2e87cd18a170baffeeb78be346791f15bf9ac360",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      "status": "ACCEPTED_MATERIALIZED",
+      "current_blobs": [
+        {
+          "path": "automation/engine/contracts.py",
+          "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+          "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+        },
+        {
+          "path": "automation/engine/yaml_io.py",
+          "git_blob_sha": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+          "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+        },
+        {
+          "path": "tests/automation/test_contracts.py",
+          "git_blob_sha": "9765fdf7212c722cb57ce79719c3070115867f63",
+          "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+        }
+      ],
+      "source_binding": "Exact current accepted evolved interfaces, not old closure source preimages"
+    },
+    "program": {
+      "program_id": "AUTO-IMP-PROGRAM-V2",
+      "program_revision": "5",
+      "status": "ACCEPTED_MATERIALIZED",
+      "definition": {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.rev5.yaml",
+        "git_blob_sha": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+        "ref": "05d7cc77f715250c93ae43ef04522ba061d2fcd4"
+      },
+      "acceptance": {
+        "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-acceptance.json",
+        "git_blob_sha": "815a919cc896e8aaa0a8dcdd37df8227cdb420eb",
+        "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+      },
+      "operational_baseline": {
+        "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-baseline.json",
+        "git_blob_sha": "dee81fc53c154f962711cbfb0a7bc3778a3e81b6",
+        "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+      },
+      "supersession": {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/REV4_TO_REV5_OPERATIONAL_SUPERSESSION.json",
+        "git_blob_sha": "bca34a0f3782a09d1b41194944888728e17b22cc",
+        "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+      },
+      "controller": "NOT_ACTIVE",
+      "phase_snapshot_does_not_override_acceptance": true
+    },
+    "normative_bindings": [
+      {
+        "path": "automation/governance/master_manifest.v1.yaml",
+        "git_blob_sha": "89de89c47d23080af8369544a165e199856d2832",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "git_blob_sha": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/development_state_machine.v2.yaml",
+        "git_blob_sha": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/development_entry_protocol.v2.yaml",
+        "git_blob_sha": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+        "git_blob_sha": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/policies/orchestration_control_policy.v1.yaml",
+        "git_blob_sha": "a0b755057de05cf854761a9bf76105da350b9f87",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/specs/context_loading_policy.v1.yaml",
+        "git_blob_sha": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/specs/work_cost_accounting.v2.yaml",
+        "git_blob_sha": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+        "git_blob_sha": "e2b0422f294ac718f06403b704a8f28607a5002f",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/specs/negative_assertions.v2.yaml",
+        "git_blob_sha": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      }
+    ],
+    "current_interfaces": [
+      {
+        "path": "automation/engine/contracts.py",
+        "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/repository_snapshot.py",
+        "git_blob_sha": "d286ff23b88c9b7daa7d21acf07dfc88d5567935",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/yaml_io.py",
+        "git_blob_sha": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/orchestration.py",
+        "git_blob_sha": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "automation/engine/execution_capacity.py",
+        "git_blob_sha": "987bfe3c80683bed689d7d4c7ff631bfd561b6f6",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_contracts.py",
+        "git_blob_sha": "9765fdf7212c722cb57ce79719c3070115867f63",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_repository_snapshot.py",
+        "git_blob_sha": "50951c7d8933f87b3eb80ca1828d92481790e730",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_orchestration.py",
+        "git_blob_sha": "958953e3fa6afb96bb085d9602d1ac633d146568",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      },
+      {
+        "path": "tests/automation/test_execution_capacity.py",
+        "git_blob_sha": "fb00b535626b2dab1f337b4fd42179dbe7964fcc",
+        "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f"
+      }
+    ]
+  },
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-003-REV2-01.json",
+  "owner_operational_decision": {
+    "path": "automation/governance/decisions/OWNER-AUTO-IMP-003-OPERATIONAL-TRANSITION.json",
+    "commit": "d49f1034d024d48a2a88e021b12f008100d42b65",
+    "implementation_authority": "NOT_GRANTED"
+  },
+  "requires_before_real_authorization": [
+    "Explicit Human implementation Owner decision bound to exact scope/source/program/architecture",
+    "Exact current source/preimages/Program5/DAG compatibility",
+    "Explicit budget grant (proposal here grants none)",
+    "Fresh canonical provider/capacity then no unfinished work/writer for later lifecycle",
+    "Canonical single-use authorization/writer/execution/reservation/recheck/dispatch/consumption only in separately authorized run"
+  ],
+  "budget_proposal": {
+    "initial_implementation": 1,
+    "implementation_corrections": 2,
+    "conditional_review_fix": 2,
+    "status": "PROPOSED_ONLY_NOT_GRANTED",
+    "used": 0,
+    "inherited": 0,
+    "executable_now": false
+  },
+  "execution_authority": "NOT_AUTHORIZED",
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "creates_writer_execution_reservation_dispatch": false,
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "legacy_inheritance": {
+    "authorization": false,
+    "execution": false,
+    "work_order": false,
+    "budget": false,
+    "source_assembly": false,
+    "quota_assumptions": false,
+    "prior_review_PASS": false
+  },
+  "review_barrier": "ONE_FRESH_COHESIVE_REVIEW_BEFORE_WORK_ACCEPTANCE",
+  "next_route": "HUMAN_AUTO_IMP_003_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION",
+  "created_at": "2026-10-07T09:15:35Z"
+}
