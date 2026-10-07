@@ -8,12 +8,12 @@
   "architecture_active": "1.2.2",
   "architecture_status": "ACTIVE",
   "capacity_policy_active": "2.2",
-  "status": "AUTHORIZED",
+  "status": "RESERVED",
   "candidate_status": "PROMOTED_OWNER_AUTHORIZED",
   "handoff_ready": false,
-  "current_action": "STATE_TO_RESERVED",
-  "current_route": "STATE_TO_RESERVED",
-  "next_route": "STATE_TO_RESERVED",
+  "current_action": "RECHECK_LOCK_HEAD_AND_BINDING",
+  "current_route": "RECHECK_LOCK_HEAD_AND_BINDING",
+  "next_route": "RECHECK_LOCK_HEAD_AND_BINDING",
   "sole_blocker": null,
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml",
   "package_path": "automation/packages/AUTO-IMP-002.v2.yaml",
@@ -23,7 +23,7 @@
   "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
   "proposed_authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
   "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml",
-  "authorization_state": "AUTHORIZED",
+  "authorization_state": "RESERVED",
   "authority_basis": {
     "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
     "owner_decision_commit": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
@@ -235,7 +235,7 @@
   "prior_program_baseline": "ACCEPTED_MATERIALIZED_NO_AUTHORITY_TRANSFER",
   "work_cost_telemetry_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.compilation.work-cost.json",
   "created_at": "2026-10-07T02:53:21Z",
-  "updated_at": "2026-10-07T03:31:17Z",
+  "updated_at": "2026-10-07T03:31:48Z",
   "review_fix_executable_now": false,
   "budgets": {
     "initial_implementation": {
@@ -261,5 +261,6 @@
   "capacity_estimate_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.rolling-capacity.json",
   "writer_lock_path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml",
   "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/reservation.yaml",
-  "reservation_state": "CREATED"
+  "reservation_state": "RESERVED",
+  "reservation_commit": "838981dec6c9e3f91c2432099386a114c5b6575f"
 }
