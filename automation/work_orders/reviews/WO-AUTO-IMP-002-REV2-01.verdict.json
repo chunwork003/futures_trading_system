@@ -1,0 +1,63 @@
+{
+  "schema_version": "automation.independent_review_verdict.v1",
+  "review_id": "WO-AUTO-IMP-002-REV2-01-FRESH-COHESIVE",
+  "verdict_literal": "AUTO_IMP_002_REV2_COHESIVE_REVIEW_VERDICT = REVIEW_FIX_REQUIRED",
+  "verdict": "REVIEW_FIX_REQUIRED",
+  "review_fix_required": true,
+  "human_decision_required": false,
+  "review_source": "FRESH_INDEPENDENT_REVIEW_RESULT_SUPPLIED_BY_HUMAN_OWNER; WORK_MATERIALIZES_NOT_REVIEWS",
+  "reviewed_master": "9e89bcd0d30bac1fd758c8ad871efc66663e9555",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "implementation_sha": "370b107f6640012aa16bb3604b5e26bb4b125f35",
+  "evidence_sha": "6ad6cff71454a6200e5e92efc61ed22fdf1d3d91",
+  "result_intake_commit": "718266e01f5315457ba9c3e871f6f1ac638984f3",
+  "writer_release_commit": "dea3591a9e35944614845eb88d09fceabdb20890",
+  "semantic_blobs": {
+    "automation/engine/repository_snapshot.py": "1a18a8d30487e1da8a208ed048fdd65b1eb71401",
+    "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+    "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63",
+    "tests/automation/test_repository_snapshot.py": "39cce94f4eec7c5452a31a628bd1b02f49bc6565"
+  },
+  "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+  "effective_bundle_sha256": "a5a741380442eb5e77cf80a1b34575680dff7ca3bbb24b52729a2327b5c359e8",
+  "finding_ids": [
+    "F-01",
+    "F-02",
+    "F-03"
+  ],
+  "findings": [
+    {
+      "id": "F-01",
+      "review_fix_scope": true,
+      "title": "POST_INTAKE_LIFECYCLE_ROUTING",
+      "finding": "COMPLETED_PENDING_REVIEW always sets completion_pending_intake=true even after durable intake PASS and writer release",
+      "required": "Distinguish pre/post-intake with canonical durable intake/review evidence; post-intake uses accepted review route without candidate-only deep authority reads"
+    },
+    {
+      "id": "F-02",
+      "review_fix_scope": true,
+      "title": "UNPROVEN_ORCHESTRATION_GATE_SYNTHESIS",
+      "finding": "Hard-coded true lane/DAG/exact-authority/compatibility facts and implicit executable_identity_count=1 lack mechanical proof",
+      "required": "Repository-evidenced gate facts, missing evidence fails closed, explicit count==1 proof, delegate accepted orchestration.resolve_route without copied algorithms"
+    },
+    {
+      "id": "F-03",
+      "review_fix_scope": true,
+      "title": "FABRICATED_ARCHITECTURE_SOURCE_IDENTITY",
+      "finding": "Well-formed arbitrary architecture hash and consistently substituted nonexistent source SHA can pass string-only checks",
+      "required": "Bind architecture to accepted canonical architecture/policy evidence; resolve claimed source commit through read-only Git boundary, no fetch/network repair"
+    }
+  ],
+  "architecture_change": false,
+  "authority_redesign": false,
+  "lifecycle_redesign": false,
+  "side_effect_expansion": false,
+  "historical_source_resurrection": false,
+  "fifth_path_required": false,
+  "reviewer_authorizes_execution": false,
+  "reviewer_accepts_or_merges": false,
+  "created_at": "2026-10-07T04:48:22Z",
+  "updated_at": "2026-10-07T04:48:22Z"
+}
