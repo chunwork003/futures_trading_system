@@ -288,12 +288,12 @@
     "review remains independent"
   ],
   "next_package_restriction": "AUTO-IMP-003 NOT_AUTHORIZED; automatic next dispatch DENIED",
-  "current_route": "ONE_FRESH_COHESIVE_INDEPENDENT_AUTO_IMP_002_REV2_REVIEW",
-  "next_route": "ONE_FRESH_COHESIVE_INDEPENDENT_AUTO_IMP_002_REV2_REVIEW",
+  "current_route": "BOUND_RF01_CHILD_AUTHORITY_MATERIALIZED_NO_PARENT_REEXECUTION",
+  "next_route": "MANUAL_AUTO_IMP_002_REV2_RF01_CODEX_FIRST_INVOCATION",
   "execution_eligibility": "COMPLETED_PENDING_REVIEW",
   "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
   "created_at": "2026-10-07T02:53:21Z",
-  "updated_at": "2026-10-07T04:12:34Z",
+  "updated_at": "2026-10-07T05:03:50Z",
   "scope_count": 4,
   "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
   "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml",
@@ -341,7 +341,15 @@
   "result_intake_commit": "718266e01f5315457ba9c3e871f6f1ac638984f3",
   "review_packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-01.review.yaml",
   "semantic_acceptance": "NOT_PERFORMED",
-  "review_state": "NOT_PERFORMED_PACKET_PREPARED",
+  "review_state": "REVIEW_FIX_REQUIRED",
   "writer_state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
-  "active_execution_id": null
+  "active_execution_id": null,
+  "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-01.verdict.json",
+  "review_verdict_commit": "60fd8ea8e817d48bcc4cd4fa29ba3e2ba8155856",
+  "review_finding_ids": [
+    "F-01",
+    "F-02",
+    "F-03"
+  ],
+  "child_work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-RF01-01.yaml"
 }
