@@ -2,9 +2,9 @@
   "schema_version": "automation.package_operational_transition.v1",
   "from_package": "AUTO-IMP-002",
   "to_package": "AUTO-IMP-003",
-  "status": "OWNER_DECISION_REQUIRED",
-  "AUTO_IMP_002_TO_003_OPERATIONAL_TRANSITION": "OWNER_DECISION_REQUIRED",
-  "case": "G3",
+  "status": "PASS",
+  "AUTO_IMP_002_TO_003_OPERATIONAL_TRANSITION": "PASS",
+  "case": "OWNER_APPROVED_G3_RESOLUTION_WITH_EXACT_REV5_OPERATIONAL_SUCCESSOR",
   "acceptance": {
     "path": "automation/work_orders/AUTO-IMP-002-REV2.acceptance.json",
     "commit": "c3c86b79b669b9410337edd7de309d8a24e669ba",
@@ -37,12 +37,11 @@
     ]
   },
   "post_transition": {
-    "operational_lane_advancement_materialized": false,
-    "accepted_program_binding_unchanged": true,
-    "current_package": "AUTO-IMP-002_ACCEPTED_MATERIALIZED",
-    "next_operational_item_in_bound_program": "AUTO-IMP-002",
-    "proposed_next_operational_item": "AUTO-IMP-003",
-    "proposed_remaining_lane": [
+    "operational_lane_advancement_materialized": true,
+    "current_operational_program_revision": "5",
+    "current_package": "AUTO-IMP-002_ACCEPTED_MATERIALIZED_CLOSED",
+    "next_operational_item": "AUTO-IMP-003",
+    "remaining_lane": [
       "AUTO-IMP-003",
       "AUTO-IMP-004",
       "AUTO-IMP-005",
@@ -51,11 +50,10 @@
       "AUTO-IMP-008",
       "AUTO-IMP-009"
     ],
-    "current_operational_evidence_path": "automation/work_orders/CURRENT_CODEX.yaml",
-    "current_evidence_commit_resolution": "Containing current-projection reconciliation commit in master ancestry, verified by path Git blob; no circular self-SHA"
+    "source_or_DAG_semantics_changed": false
   },
   "blocker_path": "automation/work_orders/AUTO-IMP-003.operational-transition-blocker.json",
-  "dry_projection_path": "automation/work_orders/AUTO-IMP-002-TO-003.dry-projection.json",
+  "dry_projection_path": "automation/work_orders/AUTO-IMP-002-TO-003.REV5.dry-projection.json",
   "next_package_authority": "NOT_AUTHORIZED",
   "execution": false,
   "controller": "NOT_ACTIVE",
@@ -66,6 +64,47 @@
   ],
   "creates_authority": false,
   "automatic_next_dispatch": "DENIED",
-  "next_route": "HUMAN_AUTO_IMP_003_OPERATIONAL_TRANSITION_DECISION",
-  "created_at": "2026-10-07T08:30:55Z"
+  "next_route": "AUTO_IMP_003_FRESH_COMPILATION_AUTHORITY_PREPARATION",
+  "created_at": "2026-10-07T08:30:55Z",
+  "previous_transition_evidence": {
+    "path": "automation/work_orders/AUTO-IMP-002-TO-003.transition.json",
+    "git_blob_sha": "14121ed9c7f8b2c7532cd60d986d636810916aa8",
+    "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f",
+    "state": "OWNER_DECISION_REQUIRED_HISTORICAL"
+  },
+  "owner_decision": {
+    "path": "automation/governance/decisions/OWNER-AUTO-IMP-003-OPERATIONAL-TRANSITION.json",
+    "git_blob_sha": "4afaab214052218098bf3ad0c86989e193696aaf",
+    "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380",
+    "commit": "d49f1034d024d48a2a88e021b12f008100d42b65"
+  },
+  "current_operational_program": {
+    "program_id": "AUTO-IMP-PROGRAM-V2",
+    "program_revision": "5",
+    "status": "ACCEPTED_MATERIALIZED",
+    "definition": {
+      "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.rev5.yaml",
+      "git_blob_sha": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+      "ref": "05d7cc77f715250c93ae43ef04522ba061d2fcd4"
+    },
+    "acceptance": {
+      "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-acceptance.json",
+      "git_blob_sha": "815a919cc896e8aaa0a8dcdd37df8227cdb420eb",
+      "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+    },
+    "operational_baseline": {
+      "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-baseline.json",
+      "git_blob_sha": "dee81fc53c154f962711cbfb0a7bc3778a3e81b6",
+      "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+    },
+    "supersession": {
+      "path": "automation/programs/AUTO-IMP-PROGRAM-V2/REV4_TO_REV5_OPERATIONAL_SUPERSESSION.json",
+      "git_blob_sha": "bca34a0f3782a09d1b41194944888728e17b22cc",
+      "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+    },
+    "controller": "NOT_ACTIVE",
+    "phase_snapshot_does_not_override_acceptance": true
+  },
+  "resolution_path": "automation/work_orders/AUTO-IMP-003.operational-transition-resolution.json",
+  "updated_at": "2026-10-07T09:15:35Z"
 }

@@ -1,0 +1,38 @@
+{
+  "schema_version": "automation.operational_transition_dry_proof.v1",
+  "FUTURE_AUTO_IMP_003_LANE_COMPATIBILITY": "PASS",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "program_revision": "5",
+  "definition_blob": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+  "definition_commit": "05d7cc77f715250c93ae43ef04522ba061d2fcd4",
+  "operational_acceptance_commit": "95c5c9b0313b26cf8e16b46485909c23a276a380",
+  "checked_master": "95c5c9b0313b26cf8e16b46485909c23a276a380",
+  "mechanical_semantic_delta": [
+    "program_revision",
+    "implementation_strategy.next_operational_item",
+    "implementation_strategy.operational_lane_order"
+  ],
+  "all_other_program_semantics": "IDENTICAL",
+  "program_contract_validation": "PASS",
+  "resolver_blob": "d286ff23b88c9b7daa7d21acf07dfc88d5567935",
+  "orchestration_blob": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+  "current_lane_item_predicate": "PASS_AUTO_IMP_003_EQUALS_NEXT_EQUALS_LANE_HEAD",
+  "bound_operational_order": "PASS_EQUALS_REVISION5_REMAINING_LANE",
+  "logical_dependencies": [
+    "AUTO-IMP-001"
+  ],
+  "dependency_graph_is_not_lane_order": true,
+  "obsolete_current_lane_item_failure": "REMOVED_WITH_EXACT_SUCCESSOR_BINDING",
+  "route_proposal": "WORK_AUTHORIZATION_REQUIRED",
+  "EXECUTION_ALLOWED": false,
+  "AUTHORITY_GRANTED": false,
+  "INVOCATION_ALLOWED": false,
+  "real_authorization": null,
+  "execution": null,
+  "reservation": null,
+  "dispatch": null,
+  "writer": null,
+  "method": "Execute unchanged accepted _candidate lane/DAG AST statements on exact revision5 definition and explicit dependency fixture, then unchanged accepted orchestration.resolve_route with no authority; no source correction or independent semantic review",
+  "fresh_scope_digest": "24471a220212a8b8d943cc23c4f668644ab16f381a3967320b3fc411d0cad81c",
+  "scope_digest_convention": "SHA256 UTF8 ordered exact_write_scope joined LF; no trailing LF/BOM"
+}
