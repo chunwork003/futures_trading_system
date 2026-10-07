@@ -1,3 +1,19 @@
+# CURRENT — PROGRAM V2 OPERATIONAL REVISION 5 / AUTO-IMP-003 REV2 COMPILATION ONLY
+
+Architecture 1.2.2 ACTIVE；Capacity Policy 2.2 ACTIVE；Program V2 architecture baseline ACCEPTED_MATERIALIZED。Current operational successor revision 5 = ACCEPTED_MATERIALIZED，definition automation/programs/AUTO-IMP-PROGRAM-V2/program.rev5.yaml，Git blob c1f6eee06c7a34d2e4d070a80b0f5d69549f0663。Owner decision d49f1034d024d48a2a88e021b12f008100d42b65；operational acceptance 95c5c9b0313b26cf8e16b46485909c23a276a380；rev4 program.yaml 與歷史 architecture acceptance 保留不變，未重新解讀歷史 execution。
+
+AUTO-IMP-002 = ACCEPTED_MATERIALIZED / CLOSED；accepted bundle 68a905620d091d9edc2881caaf6e3b08b6a525588c28f03c837405d7cd5e5646。Implementation 2/2 EXHAUSTED；review-fix 1/2 used，unused1 RETIRED_UNUSED_ON_ACCEPTANCE / NON_EXECUTABLE / NON_TRANSFERABLE；RF02 NOT_AUTHORIZED。002 不重開。
+
+AUTO_IMP_002_TO_003_OPERATIONAL_TRANSITION = PASS；NEXT_OPERATIONAL_ITEM = AUTO-IMP-003；remaining lane 003 → 004 → 005 → 006 → 007 → 008 → 009。003 真正 DAG dependency 只有 AUTO-IMP-001；dependency_graph_is_not_lane_order = true。G3 已由 explicit Owner successor authority 解決，原 blocker 不修改。Resolution automation/work_orders/AUTO-IMP-003.operational-transition-resolution.json；dry compatibility automation/work_orders/AUTO-IMP-002-TO-003.REV5.dry-projection.json = PASS，unchanged resolver；無 authority 的 route 仍 WORK_AUTHORIZATION_REQUIRED，execution/invocation/authority grant 均 false。
+
+AUTO-IMP-003 revision2 = fresh compiled candidate NOT_AUTHORIZED。Package automation/packages/AUTO-IMP-003.v2.yaml；WO candidate automation/work_orders/WO-AUTO-IMP-003-REV2-01.candidate.yaml；compilation automation/work_orders/planning/AUTO-IMP-003-REV2.compilation.json；authority prep automation/work_orders/AUTO-IMP-003-REV2.authorization-prep.json；forecast automation/work_orders/forecasts/WO-AUTO-IMP-003-REV2-01.json。New four-file proposed scope: authorization.py、state_machine.py、test_authorization.py、test_state_machine.py；scope digest 24471a220212a8b8d943cc23c4f668644ab16f381a3967320b3fc411d0cad81c。HIGH risk；KEEP_COHESIVE；total-token forecast P50 2,400,000 / P75 4,800,000 / P90 8,500,000，LOW_PROVISIONAL。Legacy003 ProgramV1 revision1 僅為已核對 purpose/risk 的 planning/spec input，無 authority／execution／budget／quota inheritance。
+
+AUTO_IMP_003_IMPLEMENTATION_AUTHORITY = NOT_GRANTED；AUTHORIZATION = NOT_AUTHORIZED；ACTIVE_WRITER = NONE；ACTIVE_EXECUTION = NONE；CONTROLLER = NOT_ACTIVE；CONTROLLED_AUTO = DISABLED；automatic dispatch DENIED；runtime/broker/DB/migration/LIVE/production/credentials DENIED。No reservation、dispatch、CODEX handoff 或 invocation。Budget proposals 未授權。
+
+NEXT = HUMAN_AUTO_IMP_003_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION。未授權執行；等待 exact implementation Owner decision。
+
+## HISTORICAL CURRENT PROJECTIONS BELOW — audit only, superseded by current section above
+
 # CURRENT — AUTO-IMP-002 REV2 ACCEPTED_MATERIALIZED; 003 OPERATIONAL TRANSITION OWNER_DECISION_REQUIRED
 
 Architecture 1.2.2 ACTIVE；Capacity Policy 2.2 ACTIVE；Program V2 ACCEPTED_MATERIALIZED。AUTO-IMP-002 revision 2 已 exact reviewed source materialize 與 semantic acceptance ACCEPTED；F-01/F-02/F-03 CLOSED，fresh narrow re-review PASS / findings NONE。

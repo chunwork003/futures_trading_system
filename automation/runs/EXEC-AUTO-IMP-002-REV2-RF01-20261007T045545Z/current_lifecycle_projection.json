@@ -62,7 +62,7 @@
   "controlled_auto": "DISABLED",
   "AUTO_IMP_003": "NOT_AUTHORIZED",
   "created_at": "2026-10-07T05:01:35Z",
-  "updated_at": "2026-10-07T08:30:55Z",
+  "updated_at": "2026-10-07T09:15:35Z",
   "budget_projection_reconciliation": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/budget_projection_reconciliation.json",
   "budget_projection_reconciliation_commit": "24b89c1281a4bc7b2ae5ace9d1d4c20d058280da",
   "budget_projection_reconciliation_git_blob": "b1e541afd7daf5234a03288c860f15cad6578660",
@@ -158,11 +158,11 @@
   "capacity_route": "ALLOW_WITH_WATCH",
   "primary_safe_capacity": 23879800,
   "provider_pre_first_invocation_used_percent": 52,
-  "next_route": "HUMAN_AUTO_IMP_003_OPERATIONAL_TRANSITION_DECISION",
+  "next_route": "HUMAN_AUTO_IMP_003_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION",
   "status": "ACCEPTED_MATERIALIZED",
   "invocation_status": "COMPLETED",
-  "current_action": "HUMAN_AUTO_IMP_003_OPERATIONAL_TRANSITION_DECISION",
-  "current_route": "HUMAN_AUTO_IMP_003_OPERATIONAL_TRANSITION_DECISION",
+  "current_action": "HUMAN_AUTO_IMP_003_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION",
+  "current_route": "HUMAN_AUTO_IMP_003_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION",
   "execution_eligibility": "CLOSED_NOT_EXECUTABLE",
   "first_manual_invocation_authorized": false,
   "code_execution_authorized": false,
@@ -216,11 +216,42 @@
   "review_verdict_commit": "4335b03aaa9ac0b3be8c74df1b3a96f7d281d862",
   "review_fix_budget_disposition": "RETIRED_UNUSED_ON_ACCEPTANCE_NON_EXECUTABLE_NON_TRANSFERABLE",
   "operational_transition_path": "automation/work_orders/AUTO-IMP-002-TO-003.transition.json",
-  "operational_transition_commit": "8ea547b225b554cf09ed62777938a50bf3a0f4ad",
-  "operational_transition": "OWNER_DECISION_REQUIRED",
-  "next_operational_item_in_bound_program": "AUTO-IMP-002",
+  "operational_transition_commit": "85a4542a44fcb86f084f119a805196f03ce6d50c",
+  "operational_transition": "PASS",
+  "next_operational_item_in_bound_program": "AUTO-IMP-003",
   "proposed_next_operational_item": "AUTO-IMP-003",
   "current_execution_active": false,
   "review_status": "PASS_MATERIALIZED",
-  "budget_current_projection_supersession": "ACCEPTANCE_TERMINAL_RETIREMENT supersedes prior current-budget readiness only; immutable authorization/handoff/reservation/dispatch/claim/invocation histories unchanged"
+  "budget_current_projection_supersession": "ACCEPTANCE_TERMINAL_RETIREMENT supersedes prior current-budget readiness only; immutable authorization/handoff/reservation/dispatch/claim/invocation histories unchanged",
+  "current_operational_program_revision": "5",
+  "current_operational_program": {
+    "program_id": "AUTO-IMP-PROGRAM-V2",
+    "program_revision": "5",
+    "status": "ACCEPTED_MATERIALIZED",
+    "definition": {
+      "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.rev5.yaml",
+      "git_blob_sha": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+      "ref": "05d7cc77f715250c93ae43ef04522ba061d2fcd4"
+    },
+    "acceptance": {
+      "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-acceptance.json",
+      "git_blob_sha": "815a919cc896e8aaa0a8dcdd37df8227cdb420eb",
+      "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+    },
+    "operational_baseline": {
+      "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-baseline.json",
+      "git_blob_sha": "dee81fc53c154f962711cbfb0a7bc3778a3e81b6",
+      "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+    },
+    "supersession": {
+      "path": "automation/programs/AUTO-IMP-PROGRAM-V2/REV4_TO_REV5_OPERATIONAL_SUPERSESSION.json",
+      "git_blob_sha": "bca34a0f3782a09d1b41194944888728e17b22cc",
+      "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+    },
+    "controller": "NOT_ACTIVE",
+    "phase_snapshot_does_not_override_acceptance": true
+  },
+  "blocker_resolution_path": "automation/work_orders/AUTO-IMP-003.operational-transition-resolution.json",
+  "next_operational_item": "AUTO-IMP-003",
+  "historical_execution_program_binding_disposition": "REV4_PRESERVED_NOT_REINTERPRETED_THROUGH_REV5; rev5 current/future operational progression only"
 }

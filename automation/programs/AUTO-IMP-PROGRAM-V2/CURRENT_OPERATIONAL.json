@@ -1,0 +1,54 @@
+{
+  "schema_version": "automation.current_program_operational_projection.v1",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "current_operational_program_revision": "5",
+  "program": {
+    "program_id": "AUTO-IMP-PROGRAM-V2",
+    "program_revision": "5",
+    "status": "ACCEPTED_MATERIALIZED",
+    "definition": {
+      "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.rev5.yaml",
+      "git_blob_sha": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+      "ref": "05d7cc77f715250c93ae43ef04522ba061d2fcd4"
+    },
+    "acceptance": {
+      "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-acceptance.json",
+      "git_blob_sha": "815a919cc896e8aaa0a8dcdd37df8227cdb420eb",
+      "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+    },
+    "operational_baseline": {
+      "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-baseline.json",
+      "git_blob_sha": "dee81fc53c154f962711cbfb0a7bc3778a3e81b6",
+      "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+    },
+    "supersession": {
+      "path": "automation/programs/AUTO-IMP-PROGRAM-V2/REV4_TO_REV5_OPERATIONAL_SUPERSESSION.json",
+      "git_blob_sha": "bca34a0f3782a09d1b41194944888728e17b22cc",
+      "ref": "95c5c9b0313b26cf8e16b46485909c23a276a380"
+    },
+    "controller": "NOT_ACTIVE",
+    "phase_snapshot_does_not_override_acceptance": true
+  },
+  "accepted_head_closure": "AUTO-IMP-002_ACCEPTED_MATERIALIZED",
+  "next_operational_item": "AUTO-IMP-003",
+  "remaining_lane": [
+    "AUTO-IMP-003",
+    "AUTO-IMP-004",
+    "AUTO-IMP-005",
+    "AUTO-IMP-006",
+    "AUTO-IMP-007",
+    "AUTO-IMP-008",
+    "AUTO-IMP-009"
+  ],
+  "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-003-OPERATIONAL-TRANSITION.json",
+  "owner_decision_commit": "d49f1034d024d48a2a88e021b12f008100d42b65",
+  "reusable_rule_path": "automation/governance/decisions/PROGRAM-V2-ACCEPTED-HEAD-ADVANCEMENT-RULE.json",
+  "transition_path": "automation/work_orders/AUTO-IMP-002-TO-003.transition.json",
+  "transition_commit": "85a4542a44fcb86f084f119a805196f03ce6d50c",
+  "execution_authority": "NOT_AUTHORIZED",
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "projection_grants_authority": false,
+  "next_route": "HUMAN_AUTO_IMP_003_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION",
+  "updated_at": "2026-10-07T09:15:35Z"
+}
