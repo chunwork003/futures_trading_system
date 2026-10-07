@@ -1,7 +1,14 @@
+# RECONCILED SAME-EXECUTION FIRST MANUAL INVOCATION ENTRY
+
+Fresh origin/master first. Read automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/pre_first_invocation_reentry.json and automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/budget_projection_reconciliation.json before the original handoff snapshot.
+Reconciliation 24b89c1281a4bc7b2ae5ace9d1d4c20d058280da supersedes only current review_fix.executable_now in bound immutable phase snapshots; identity/CONSUMED/scope/limit/used/findings/writer/reservation/dispatch/side-effects stay unchanged. Do not infer ordering from timestamps.
+Current review-fix executable_now=true; used0/limit2,remaining2. First actual semantic RF01 modification consumes one slot. Parent implementation2/2 EXHAUSTED. Same execution EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z; same consumed authority AUTH-AUTO-IMP-002-REV2-RF01-01. No new identity/reservation/dispatch/consumption. No claim/invocation yet; no source changes.
+NEXT MANUAL_AUTO_IMP_002_REV2_RF01_CODEX_FIRST_INVOCATION_AFTER_RECONCILIATION. WORK STOP; no automatic CODEX. Actual manual executor must freshly revalidate all gates and publish its own contemporaneous claim/invocation before assembly/source work.
+
 # MANUAL RF01 CODEX HANDOFF — WO-AUTO-IMP-002-REV2-RF01-01
 
 READY_FOR_MANUAL_CODEX_TRIGGER. WORK does not invoke CODEX.
-NEXT MANUAL_AUTO_IMP_002_REV2_RF01_CODEX_FIRST_INVOCATION.
+NEXT MANUAL_AUTO_IMP_002_REV2_RF01_CODEX_FIRST_INVOCATION_AFTER_RECONCILIATION.
 
 Fresh origin/master CURRENT first. Exact handoff automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/handoff.yaml.
 Execution EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z; authority AUTH-AUTO-IMP-002-REV2-RF01-01 CONSUMED single-use; branch auto/WO-AUTO-IMP-002-REV2-RF01-01.

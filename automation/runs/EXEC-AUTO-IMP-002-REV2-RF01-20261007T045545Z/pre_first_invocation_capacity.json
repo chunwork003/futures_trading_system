@@ -1,0 +1,83 @@
+{
+  "schema_version": "automation.rolling_capacity_estimate.v2_2",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
+  "checked_master": "24b89c1281a4bc7b2ae5ace9d1d4c20d058280da",
+  "scope_digest": "bf9e862393f56a843f5b50518e3441c31924bacfdfd0daaf08d00196ea1aab44",
+  "policy": {
+    "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+    "git_blob_sha": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+    "ref": "24b89c1281a4bc7b2ae5ace9d1d4c20d058280da"
+  },
+  "forecast": {
+    "path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-RF01-01.json",
+    "git_blob_sha": "b8017952196e1323dab882cf4b09b34fa9e58e6d",
+    "ref": "24b89c1281a4bc7b2ae5ace9d1d4c20d058280da"
+  },
+  "cohort": {
+    "path": "automation/telemetry/cohorts/LOCAL_CODEX_ROLLING_CAPACITY_V2_1.json",
+    "git_blob_sha": "fa8f3dc312cd1af34b13c50498b524e0aa25e2da",
+    "ref": "24b89c1281a4bc7b2ae5ace9d1d4c20d058280da"
+  },
+  "evaluator": {
+    "path": "automation/engine/execution_capacity.py",
+    "git_blob_sha": "987bfe3c80683bed689d7d4c7ff631bfd561b6f6",
+    "method": "ACCEPTED_CANONICAL_2_2_EVALUATOR_ISOLATED_OPERATOR_COPY_GIT_BLOB_VERIFIED_NOT_LOCAL_REPO_IMPORT"
+  },
+  "provider_evidence_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/pre_first_invocation_provider.json",
+  "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+  "windows": {
+    "PRIMARY_5H": {
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "window_type": "PRIMARY_5H",
+      "usable_ratio_count": 5,
+      "considered_execution_ids": [
+        "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+        "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+        "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z"
+      ],
+      "safe_tokens_per_percentage_point": 508080.85714285716,
+      "safe_remaining_percentage_points": 47,
+      "safe_available_tokens": 23879800,
+      "confidence": "P25_5_PLUS",
+      "overlap_observed": true
+    },
+    "SECONDARY_WEEKLY": {
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "window_type": "SECONDARY_WEEKLY",
+      "usable_ratio_count": 4,
+      "considered_execution_ids": [
+        "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+        "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+        "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z"
+      ],
+      "safe_tokens_per_percentage_point": 173378,
+      "safe_remaining_percentage_points": 91,
+      "safe_available_tokens": 15777398,
+      "confidence": "MINIMUM_1_TO_4",
+      "overlap_observed": true
+    }
+  },
+  "provider_gate": {
+    "route": "PROVIDER_AVAILABLE",
+    "reason": "PROVIDER_REPORTED_AVAILABILITY",
+    "execution_allowed": false,
+    "authority_created": false,
+    "forecast_capacity_review_required": false
+  },
+  "gate": {
+    "route": "ALLOW_WITH_WATCH",
+    "reason": "PRIMARY_5H_AT_OR_ABOVE_P75",
+    "execution_allowed": false,
+    "authority_created": false,
+    "forecast_capacity_review_required": false
+  },
+  "manual_threshold_p75": 3200000,
+  "weekly_execution_gate": false,
+  "authority_created": false,
+  "created_at": "2026-10-07T06:04:13Z"
+}
