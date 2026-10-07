@@ -1,0 +1,126 @@
+{
+  "schema_version": "automation.operational_transition_blocker.v1",
+  "AUTO_IMP_003_OPERATIONAL_TRANSITION": "OWNER_DECISION_REQUIRED",
+  "classification": "G3_NO_EXISTING_AUTHORITY_FOR_BOUND_PROGRAM_OPERATIONAL_PHASE_ADVANCEMENT",
+  "AUTO_IMP_002": "ACCEPTED_MATERIALIZED_NOT_REOPENED",
+  "checked_master": "c3c86b79b669b9410337edd7de309d8a24e669ba",
+  "accepted_002": {
+    "path": "automation/work_orders/AUTO-IMP-002-REV2.acceptance.json",
+    "commit": "c3c86b79b669b9410337edd7de309d8a24e669ba",
+    "closure_path": "automation/work_orders/AUTO-IMP-002.closure.yaml"
+  },
+  "conflicting_fields": [
+    {
+      "artifact": {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+        "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+        "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+      },
+      "field": "implementation_strategy.next_operational_item",
+      "actual": "AUTO-IMP-002",
+      "requested_next": "AUTO-IMP-003"
+    },
+    {
+      "artifact": {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+        "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+        "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+      },
+      "field": "implementation_strategy.operational_lane_order[0]",
+      "actual": "AUTO-IMP-002",
+      "requested_remaining_lane_head": "AUTO-IMP-003"
+    }
+  ],
+  "resolver_requirement": {
+    "git_blob_sha": "d286ff23b88c9b7daa7d21acf07dfc88d5567935",
+    "materialization_commit": "48992888407f358b9d6bbe1fbf412245eadf2cee",
+    "predicate": "definition.implementation_strategy.next_operational_item == CURRENT.package_id == definition.implementation_strategy.operational_lane_order[0]",
+    "operational_order_binding": "dependency_bindings.operational_order == exact Program definition lane",
+    "mutable_queue_or_current_overlay_consumed_as_lane_authority": false
+  },
+  "authority_inspection": {
+    "G1": {
+      "result": "NOT_SUFFICIENT",
+      "canonical_queue_path": "automation/queues/CURRENT.yaml",
+      "existing_current_queue_artifact": false,
+      "accepted_queue_projection_permission": true,
+      "reason": "Non-authoritative queue projection allowed, but candidate adapter reads exact bound accepted Program definition, not queue/current override."
+    },
+    "G2": {
+      "result": "NO_EXISTING_EXPLICIT_PERMISSION_FOUND",
+      "accepted_program": {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+        "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+        "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+      },
+      "accepted_program_acceptance": {
+        "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.acceptance.json",
+        "git_blob_sha": "332568ca9e9d712117fbca7976bf1b198a5ed54a",
+        "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+      },
+      "integrated_operational_baseline": {
+        "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.integrated-operational-baseline.json",
+        "git_blob_sha": "efe4f1e29b67be20d8145839476aa688463adb16",
+        "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+      },
+      "owner_metadata_boundary": {
+        "path": "automation/governance/decisions/OWNER-ACCEPTANCE-CURRENT-METADATA-BOUNDARY-PROGRAM-V2.json",
+        "git_blob_sha": "f5df8d82090b7ede4f85ce8f300bee5cca1a83fa",
+        "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+      },
+      "orchestration_owner": {
+        "path": "automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json",
+        "git_blob_sha": "e7cbc0b4a5a017cec336e132ec8fb661fabc3f60",
+        "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+      },
+      "policy": {
+        "path": "automation/policies/orchestration_control_policy.v1.yaml",
+        "git_blob_sha": "a0b755057de05cf854761a9bf76105da350b9f87",
+        "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+      },
+      "manifest": {
+        "path": "automation/governance/master_manifest.v1.yaml",
+        "git_blob_sha": "89de89c47d23080af8369544a165e199856d2832",
+        "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+      },
+      "closure_precedent": {
+        "path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+        "git_blob_sha": "2e87cd18a170baffeeb78be346791f15bf9ac360",
+        "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+      },
+      "compilation": {
+        "path": "automation/work_orders/planning/AUTO-IMP-002-REV2.compilation.json",
+        "git_blob_sha": "d80341681876fa0878820a8e1140ed0474b68ccf",
+        "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+      },
+      "finding": "Accepted Program definition is one exact reviewed path; Owner boundary authorizes only two CURRENT docs exceptions. No accepted phase-revision/supersession mechanism grants WORK permission to replace operational Program binding. Closure precedent supplies planning next_route, not exact Program revision replacement authority."
+    }
+  },
+  "minimum_missing_governance_authority": "Explicit Owner permission for a new, separately bound Program V2 operational phase/revision to derive remaining lane from accepted package closures, supersede only operational next/head fields, and bind that operational revision for future candidate validation while preserving immutable accepted revision4/DAG/package definitions. Existing queue-planning permission alone does not satisfy accepted resolver's exact Program-definition lane gate.",
+  "current_run_not_permitted": "No unbound rewrite of program.yaml; no third exception to accepted Program source baseline; no resolver source modification; no implicit controller activation.",
+  "semantic_source_defect": false,
+  "architecture_redesign_required": false,
+  "implementation_correction_authorized": false,
+  "dry_projection_path": "automation/work_orders/AUTO-IMP-002-TO-003.dry-projection.json",
+  "logical_dependency": {
+    "package": "AUTO-IMP-003",
+    "depends_on": [
+      "AUTO-IMP-001"
+    ],
+    "foundation": {
+      "path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+      "git_blob_sha": "2e87cd18a170baffeeb78be346791f15bf9ac360",
+      "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+    },
+    "foundation_status": "ACCEPTED_MATERIALIZED",
+    "AUTO_IMP_002_is_dependency": false,
+    "dependency_graph_is_not_lane_order": true
+  },
+  "AUTO_IMP_003_authorization": "NOT_AUTHORIZED",
+  "active_execution": null,
+  "active_writer": null,
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "automatic_dispatch": "DENIED",
+  "created_at": "2026-10-07T08:30:55Z"
+}

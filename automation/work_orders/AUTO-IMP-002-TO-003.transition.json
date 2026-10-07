@@ -1,0 +1,71 @@
+{
+  "schema_version": "automation.package_operational_transition.v1",
+  "from_package": "AUTO-IMP-002",
+  "to_package": "AUTO-IMP-003",
+  "status": "OWNER_DECISION_REQUIRED",
+  "AUTO_IMP_002_TO_003_OPERATIONAL_TRANSITION": "OWNER_DECISION_REQUIRED",
+  "case": "G3",
+  "acceptance": {
+    "path": "automation/work_orders/AUTO-IMP-002-REV2.acceptance.json",
+    "commit": "c3c86b79b669b9410337edd7de309d8a24e669ba",
+    "status": "ACCEPTED_MATERIALIZED"
+  },
+  "closure": {
+    "path": "automation/work_orders/AUTO-IMP-002.closure.yaml",
+    "commit": "c3c86b79b669b9410337edd7de309d8a24e669ba"
+  },
+  "accepted_source_bundle": "68a905620d091d9edc2881caaf6e3b08b6a525588c28f03c837405d7cd5e5646",
+  "accepted_source_materialization_commit": "48992888407f358b9d6bbe1fbf412245eadf2cee",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "program_revision": "4",
+  "program_definition": {
+    "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+    "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+    "ref": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83"
+  },
+  "pre_transition": {
+    "next_operational_item": "AUTO-IMP-002",
+    "lane": [
+      "AUTO-IMP-002",
+      "AUTO-IMP-003",
+      "AUTO-IMP-004",
+      "AUTO-IMP-005",
+      "AUTO-IMP-006",
+      "AUTO-IMP-007",
+      "AUTO-IMP-008",
+      "AUTO-IMP-009"
+    ]
+  },
+  "post_transition": {
+    "operational_lane_advancement_materialized": false,
+    "accepted_program_binding_unchanged": true,
+    "current_package": "AUTO-IMP-002_ACCEPTED_MATERIALIZED",
+    "next_operational_item_in_bound_program": "AUTO-IMP-002",
+    "proposed_next_operational_item": "AUTO-IMP-003",
+    "proposed_remaining_lane": [
+      "AUTO-IMP-003",
+      "AUTO-IMP-004",
+      "AUTO-IMP-005",
+      "AUTO-IMP-006",
+      "AUTO-IMP-007",
+      "AUTO-IMP-008",
+      "AUTO-IMP-009"
+    ],
+    "current_operational_evidence_path": "automation/work_orders/CURRENT_CODEX.yaml",
+    "current_evidence_commit_resolution": "Containing current-projection reconciliation commit in master ancestry, verified by path Git blob; no circular self-SHA"
+  },
+  "blocker_path": "automation/work_orders/AUTO-IMP-003.operational-transition-blocker.json",
+  "dry_projection_path": "automation/work_orders/AUTO-IMP-002-TO-003.dry-projection.json",
+  "next_package_authority": "NOT_AUTHORIZED",
+  "execution": false,
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "dependency_graph_is_not_lane_order": true,
+  "logical_dependencies": [
+    "AUTO-IMP-001"
+  ],
+  "creates_authority": false,
+  "automatic_next_dispatch": "DENIED",
+  "next_route": "HUMAN_AUTO_IMP_003_OPERATIONAL_TRANSITION_DECISION",
+  "created_at": "2026-10-07T08:30:55Z"
+}

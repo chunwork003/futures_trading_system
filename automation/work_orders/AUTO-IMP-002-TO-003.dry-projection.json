@@ -1,0 +1,48 @@
+{
+  "schema_version": "automation.operational_transition_dry_proof.v1",
+  "result": "FAIL_CLOSED_EXPECTED_G3_BLOCKER_PROVEN",
+  "probe_kind": "NON_EXECUTABLE_READ_ONLY_EXACT_ACCEPTED_FUNCTIONS",
+  "checked_master": "c3c86b79b669b9410337edd7de309d8a24e669ba",
+  "source_materialization_commit": "48992888407f358b9d6bbe1fbf412245eadf2cee",
+  "resolver_blob": "d286ff23b88c9b7daa7d21acf07dfc88d5567935",
+  "orchestration_blob": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+  "program_blob": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "program_revision": "4",
+  "proposed_next_package": "AUTO-IMP-003",
+  "actual_program_next_item": "AUTO-IMP-002",
+  "actual_lane_head": "AUTO-IMP-002",
+  "candidate_lane_gate": {
+    "result": "FAIL_CLOSED",
+    "code": "EVIDENCE_MISSING_OR_CONTRADICTORY",
+    "detail": "current lane item"
+  },
+  "logical_dependencies": [
+    "AUTO-IMP-001"
+  ],
+  "foundation": {
+    "work_package_id": "AUTO-IMP-001",
+    "status": "ACCEPTED_MATERIALIZED",
+    "path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+    "blob": "2e87cd18a170baffeeb78be346791f15bf9ac360"
+  },
+  "dependency_graph_is_not_lane_order": true,
+  "synthetic_executable_identities": [],
+  "authorization": null,
+  "reservation": null,
+  "dispatch": null,
+  "execution": null,
+  "writer": null,
+  "route_proposal": {
+    "route": "NO_LEGAL_READY_WORK",
+    "execution_allowed": false,
+    "invocation_allowed": false,
+    "authority_granted": false,
+    "proposal_only": true,
+    "blocker": "OWNER_DECISION_REQUIRED_FOR_PROGRAM_OPERATIONAL_PHASE_ADVANCEMENT"
+  },
+  "semantics_changed": false,
+  "controller_activated": false,
+  "future_003_lane_compatibility": "NOT_ESTABLISHED_REQUIRES_EXPLICIT_GOVERNANCE_AUTHORITY",
+  "method": "Execute accepted _candidate lane/DAG AST statements unchanged, plus accepted orchestration.resolve_route with explicit non-executable dry facts; not semantic review or source regression rerun"
+}
