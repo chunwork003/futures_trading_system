@@ -1,3 +1,23 @@
+# CURRENT — Program V2 reviewed baseline ACCEPTED_MATERIALIZED
+
+Architecture 1.2.2 ACTIVE; Capacity Policy 2.2 ACTIVE, unchanged.
+Program V2/orchestration reviewed baseline ACCEPTED_MATERIALIZED under WORK acceptance, not controller activation.
+Cohesive independent review PASS; findings NONE. Implementation 85b94c92ccba4b4c569e3be846646902cb6348d2; evidence e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40.
+Immutable21-file reviewed bundle: 21cd40faa6f652e279d13c991812d7c269ea481490c22a421804fb0dce6eab9e.
+REVIEW_EVIDENCE_BASELINE != INTEGRATED_OPERATIONAL_BASELINE: 19 exact reviewed Git blobs plus these two Owner-authorized CURRENT projection metadata exceptions.
+Owner decision: automation/governance/decisions/OWNER-ACCEPTANCE-CURRENT-METADATA-BOUNDARY-PROGRAM-V2.json
+Acceptance: automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.acceptance.json
+Integrated operational manifest: automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.integrated-operational-baseline.json
+Logical WO WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 CLOSED_ACCEPTED. REV6 remains historical CONSUMED; actual CODEX invocation/completion, result intake PASS, exact tokens/cost, writer release and old HUMAN_DIALOGUE STOP_NO_BACKFILL history preserved.
+Writer RELEASED_AFTER_DURABLE_RESULT_INTAKE; no active writer/execution. Original implementation2/2 and separate REV6 exception1/1 exhausted; review-fix0/2 used,2 remaining NON_EXECUTABLE on PASS path.
+Controller operational activation NOT_ACTIVE. CONTROLLED_AUTO DISABLED. No executable CODEX handoff; automatic dispatch and automatic next package DENIED.
+AUTO-IMP-002 execution authority NOT_GRANTED_BY_REVIEW; IVF01Rev1 stale/recompile required; IVF01Rev2 NOT_AUTHORIZED preparation only. AUTO-IMP-003 NOT_AUTHORIZED.
+Next: AUTO-IMP-002 / IVF01 Rev2 exact authority compilation ONLY; no execution or authorization materialized by this acceptance.
+Current route: AUTO_IMP_002_IVF01_REV2_EXACT_AUTHORITY_COMPILATION
+Runtime/broker/DB/migration/LIVE/production/credentials DENIED.
+
+## Historical projections below — preserved for audit
+
 # CURRENT — Program V2 / REV6 cohesive review barrier
 
 Architecture 1.2.2 and Capacity Policy 2.2 ACTIVE. Program V2/orchestration remains IMPLEMENTED_PENDING_REVIEW, candidate NOT_ACCEPTED / controller NOT_ACTIVE.

@@ -13,12 +13,12 @@
     "next_mainline_gap_authorized": false,
     "program_review": "PENDING_COHESIVE_REVIEW",
     "review_required_before_wave_authorization": true,
-    "next_route": "MAIN_COHESIVE_IMPLEMENTATION_AFTER_FRESH_2.1_ADMISSION",
+    "next_route": "HUMAN_DIALOGUE_COHESIVE_IMPLEMENTATION_IN_PROGRESS",
     "automatic_rebind": false,
     "architecture_patch_decision": "automation/governance/decisions/EXECUTION-CAPACITY-FINAL-LIVENESS.owner.json",
     "capacity_policy": "automation/policies/execution_capacity_policy.v2_2.yaml",
     "policy_review_verdict": "automation/work_orders/reviews/EXECUTION-CAPACITY-FINAL-LIVENESS.verdict.json",
-    "implementation_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4"
+    "implementation_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5"
   },
   "implementation_strategy": {
     "pattern": "STRANGLER_DUAL_RUN",
@@ -53,7 +53,7 @@
       "section": "future_levels",
       "all_designs_defined": true,
       "activation": "EXTERNAL_EVIDENCE_AND_OWNER_ACTIVATION_ONLY",
-      "manual_controller_status": "PENDING_COHESIVE_IMPLEMENTATION_REVIEW_NOT_OPERATIONAL"
+      "manual_controller_status": "COHESIVE_IMPLEMENTATION_IN_PROGRESS_NOT_OPERATIONAL"
     },
     "rolling_capacity": {
       "primary_cost": "EXACT_LOCAL_REPORTED_TOKENS",
@@ -165,6 +165,24 @@
       "budget_renewal": "DENIED",
       "auto_dispatch": "DENIED",
       "next_package_authority": "NONE"
+    },
+    "supported_dispatch_modes": [
+      "MANUAL",
+      "CONTROLLED_AUTO"
+    ],
+    "supported_executor_modes": [
+      "HUMAN_DIALOGUE",
+      "CODEX"
+    ],
+    "permanent_manual_fallback": {
+      "owner_decision": "automation/governance/decisions/MANUAL-EXECUTOR-FALLBACK.owner.json",
+      "supported": true,
+      "codex_unavailable_does_not_block_project": true,
+      "human_dialogue_codex_capacity_gate": "NOT_APPLICABLE",
+      "human_observed_external_evidence": "ALLOWED_IF_EXPLICITLY_TYPED_AS_HUMAN_OBSERVED",
+      "same_execution_multi_executor": "DENIED",
+      "executor_switch": "ONLY_AT_DURABLE_CHECKPOINT_NO_CONCURRENT_WRITERS",
+      "authority_scope_review_safety": "SAME_ACROSS_EXECUTORS"
     }
   },
   "near_horizon_exact_packages": [

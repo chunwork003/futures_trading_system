@@ -5,6 +5,8 @@
 """
 from __future__ import annotations
 
+import math
+
 from dataclasses import dataclass, replace
 from typing import Literal
 from pydantic import model_validator
@@ -279,3 +281,273 @@ def ivf01_route(*, active_architecture: str, governance_review_pass: bool,
     if active_architecture == "1.2" and governance_review_pass and activation_materialized:
         return GateResult("ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED", "IVF01_REV1_NEVER_REUSED")
     return GateResult("BLOCKED", "IVF01_NO_EXECUTION_NO_WAIVER")
+
+
+# ---------------------------------------------------------------------------
+# Execution Capacity Policy 2.2 rolling estimator
+# ---------------------------------------------------------------------------
+
+ROLLING_POOL_IDENTITY = ("provider", "account", "limit_id")
+ROLLING_METADATA_ONLY = (
+    "workspace",
+    "model",
+    "executor_profile",
+    "provider_client_policy_version",
+    "task_class",
+)
+ROLLING_SAMPLE_LIMIT = 20
+ROLLING_SAFETY_PERCENTAGE_POINTS = 1.0
+
+
+class RollingCapacityObservation(AutomationContract):
+    """Policy 2.2 的單次 exact-token / provider-window observation。"""
+
+    execution_id: str
+    actor_end_utc: str
+    provider: str
+    account: str
+    limit_id: str
+    window_type: Literal["PRIMARY_5H", "SECONDARY_WEEKLY"]
+    exact_total_tokens: int
+    before_used_percent: float
+    after_used_percent: float
+    before_reset: str
+    after_reset: str
+    exact_binding_verified: bool
+    overlapping_usage: bool = False
+    metadata: FrozenSection
+
+
+@dataclass(frozen=True)
+class RollingCapacityEstimate:
+    """共享 provider percentage 的保守 token capacity estimate；永遠不是 exact quota。"""
+
+    measurement_type: str
+    window_type: str
+    usable_ratio_count: int
+    considered_execution_ids: tuple[str, ...]
+    safe_tokens_per_percentage_point: float | None
+    safe_remaining_percentage_points: float
+    safe_available_tokens: int | None
+    confidence: str
+    overlap_observed: bool
+
+
+def _rolling_ratio(observation: RollingCapacityObservation) -> float | None:
+    """只允許 exact binding + 同 reset + positive delta 產生 ratio。"""
+
+    if not observation.exact_binding_verified:
+        return None
+    if observation.exact_total_tokens < 0:
+        return None
+    if observation.before_reset != observation.after_reset:
+        return None
+
+    before = observation.before_used_percent
+    after = observation.after_used_percent
+    if not (0 <= before <= 100 and 0 <= after <= 100):
+        return None
+
+    delta = after - before
+    if delta <= 0:
+        # delta=0 與 reset crossing 都保留 exact token evidence，但不得進 ratio。
+        return None
+    return observation.exact_total_tokens / delta
+
+
+def _linear_p25(values: tuple[float, ...]) -> float:
+    ordered = tuple(sorted(values))
+    index = 0.25 * (len(ordered) - 1)
+    lower_index = int(index)
+    upper_index = min(lower_index + 1, len(ordered) - 1)
+    fraction = index - lower_index
+    return ordered[lower_index] + (
+        ordered[upper_index] - ordered[lower_index]
+    ) * fraction
+
+
+def estimate_rolling_capacity(
+    observations: tuple[RollingCapacityObservation, ...],
+    *,
+    provider: str,
+    account: str,
+    limit_id: str,
+    window_type: Literal["PRIMARY_5H", "SECONDARY_WEEKLY"],
+    current_used_percent: float,
+) -> RollingCapacityEstimate:
+    """依 Policy 2.2 last20/min/P25/1pp safety 建立 rolling estimate。
+
+    pool identity 僅 provider/account/limit_id；workspace/model/executor/client-policy/
+    task-class 都只是 metadata，不參與 pool 切分。
+    """
+
+    if not provider or not account or not limit_id:
+        raise ValueError("provider/account/limit_id are required")
+    if not 0 <= current_used_percent <= 100:
+        raise ValueError("current_used_percent must be within [0,100]")
+
+    matching = [
+        item
+        for item in observations
+        if item.provider == provider
+        and item.account == account
+        and item.limit_id == limit_id
+        and item.window_type == window_type
+    ]
+
+    # 同一 execution 在同一 pool/window 只能貢獻一次；較晚 observation 勝。
+    by_execution: dict[str, RollingCapacityObservation] = {}
+    for item in sorted(matching, key=lambda x: (x.actor_end_utc, x.execution_id)):
+        by_execution[item.execution_id] = item
+
+    usable: list[tuple[RollingCapacityObservation, float]] = []
+    for item in by_execution.values():
+        ratio = _rolling_ratio(item)
+        if ratio is not None:
+            usable.append((item, ratio))
+
+    usable.sort(key=lambda pair: (pair[0].actor_end_utc, pair[0].execution_id))
+    usable = usable[-ROLLING_SAMPLE_LIMIT:]
+
+    ratios = tuple(pair[1] for pair in usable)
+    safe_remaining = max(
+        0.0,
+        100.0 - current_used_percent - ROLLING_SAFETY_PERCENTAGE_POINTS,
+    )
+
+    if not ratios:
+        safe_per_pct = None
+        available = None
+        confidence = "UNKNOWN"
+    elif len(ratios) <= 4:
+        safe_per_pct = min(ratios)
+        available = math.floor(safe_per_pct * safe_remaining)
+        confidence = "MINIMUM_1_TO_4"
+    else:
+        safe_per_pct = _linear_p25(ratios)
+        available = math.floor(safe_per_pct * safe_remaining)
+        confidence = "P25_5_PLUS"
+
+    return RollingCapacityEstimate(
+        measurement_type="ROLLING_CAPACITY_ESTIMATE",
+        window_type=window_type,
+        usable_ratio_count=len(ratios),
+        considered_execution_ids=tuple(pair[0].execution_id for pair in usable),
+        safe_tokens_per_percentage_point=safe_per_pct,
+        safe_remaining_percentage_points=safe_remaining,
+        safe_available_tokens=available,
+        confidence=confidence,
+        overlap_observed=any(pair[0].overlapping_usage for pair in usable),
+    )
+
+
+def evaluate_policy_2_2_admission(
+    provider: ProviderEvidence,
+    forecast: DemandForecast,
+    primary_5h: RollingCapacityEstimate | None,
+    weekly: RollingCapacityEstimate | None,
+    *,
+    exact_authorized: bool,
+    dispatch_mode: Literal["MANUAL", "CONTROLLED_AUTO"],
+    executor_mode: Literal["CODEX", "HUMAN_DIALOGUE"] = "CODEX",
+    controlled_auto_promotion_ready: bool = False,
+) -> GateResult:
+    """Policy 2.2 admission；weekly 僅 advisory，HUMAN_DIALOGUE 不吃 Codex capacity gate。"""
+
+    if not exact_authorized:
+        return GateResult("STOP_TO_WORK", "EXACT_AUTHORITY_REQUIRED")
+
+    if executor_mode == "HUMAN_DIALOGUE":
+        return GateResult(
+            "ALLOW_WITH_WATCH",
+            "HUMAN_DIALOGUE_CODEX_CAPACITY_GATE_NOT_APPLICABLE",
+        )
+
+    availability = provider_gate(provider)
+    if availability.route != "PROVIDER_AVAILABLE":
+        return availability
+
+    # 只有明確 PRIMARY_5H estimate 可以進 statistical admission。
+    # SECONDARY_WEEKLY 永遠只是 planning/scheduling advisory。
+    primary = (
+        primary_5h
+        if primary_5h is not None and primary_5h.window_type == "PRIMARY_5H"
+        else None
+    )
+    _ = weekly
+
+    if dispatch_mode == "MANUAL":
+        if primary is None or primary.safe_available_tokens is None:
+            return GateResult("ALLOW_WITH_WATCH", "PRIMARY_5H_UNKNOWN_MANUAL")
+        if primary.safe_available_tokens >= forecast.p75:
+            return GateResult("ALLOW_WITH_WATCH", "PRIMARY_5H_AT_OR_ABOVE_P75")
+        return GateResult(
+            "WAIT_5H_CAPACITY",
+            "PRIMARY_5H_BELOW_P75",
+            forecast_capacity_review_required=True,
+        )
+
+    if not controlled_auto_promotion_ready:
+        return GateResult(
+            "CONTROLLED_AUTO_PROMOTION_REQUIRED",
+            "CONTROLLED_AUTO_PROMOTION_PROOFS_REQUIRED",
+        )
+    if primary is None or primary.safe_available_tokens is None:
+        return GateResult(
+            "CONTROLLED_AUTO_CAPACITY_NOT_ESTABLISHED",
+            "PRIMARY_5H_UNKNOWN_CONTROLLED_AUTO",
+        )
+    if primary.safe_available_tokens < forecast.p90:
+        return GateResult(
+            "WAIT_5H_CAPACITY",
+            "PRIMARY_5H_BELOW_P90",
+            forecast_capacity_review_required=True,
+        )
+    return GateResult(
+        "CONTROLLED_AUTO_CAPACITY_FIT",
+        "PRIMARY_5H_AT_OR_ABOVE_P90",
+    )
+
+
+@dataclass(frozen=True)
+class CapacityLivenessEvidence:
+    # WAIT_5H_CAPACITY 長時間統計阻塞的 optimization trigger evidence。
+
+    only_blocker: str
+    blocked_minutes: int
+    window_type: Literal["PRIMARY_5H", "SECONDARY_WEEKLY"]
+    primary_window_minutes: int
+    reset_boundary_crossed: bool
+    provider_continuously_available: bool
+    actual_denial_observed: bool
+    unchanged_work_scope_authority: bool
+    authorized_ready_and_noncapacity_gates_pass: bool
+
+
+def evaluate_capacity_liveness(
+    evidence: CapacityLivenessEvidence,
+) -> GateResult:
+    """只產生 optimization proposal；不得 override gate 或建立 authority。"""
+
+    eligible = all(
+        (
+            evidence.only_blocker == "WAIT_5H_CAPACITY",
+            evidence.window_type == "PRIMARY_5H",
+            evidence.primary_window_minutes >= 300,
+            evidence.blocked_minutes >= evidence.primary_window_minutes,
+            evidence.reset_boundary_crossed,
+            evidence.provider_continuously_available,
+            not evidence.actual_denial_observed,
+            evidence.unchanged_work_scope_authority,
+            evidence.authorized_ready_and_noncapacity_gates_pass,
+        )
+    )
+    if eligible:
+        return GateResult(
+            "CAPACITY_LIVENESS_OPTIMIZATION",
+            "COMPLETE_PRIMARY_5H_STATISTICAL_BLOCK_WITH_RESET",
+        )
+    return GateResult(
+        "NO_CAPACITY_LIVENESS_ACTION",
+        "LIVENESS_EVIDENCE_INCOMPLETE_OR_NONSTATISTICAL_BLOCK",
+    )

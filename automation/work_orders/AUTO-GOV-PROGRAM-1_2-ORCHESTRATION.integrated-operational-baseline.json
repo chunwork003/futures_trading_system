@@ -1,0 +1,153 @@
+{
+  "schema_version": "automation.integrated_operational_baseline.v1",
+  "baseline_type": "INTEGRATED_OPERATIONAL_BASELINE",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "reviewed_implementation_sha": "85b94c92ccba4b4c569e3be846646902cb6348d2",
+  "reviewed_evidence_sha": "e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40",
+  "immutable_reviewed_bundle_sha256": "21cd40faa6f652e279d13c991812d7c269ea481490c22a421804fb0dce6eab9e",
+  "relation": "REVIEW_EVIDENCE_BASELINE != INTEGRATED_OPERATIONAL_BASELINE",
+  "reviewed_snapshot_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/effective_candidate.json",
+  "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.verdict.json",
+  "review_verdict_commit": "29f3706ffa74ae7bd5ac40a4bce9d460afcda5aa",
+  "owner_decision_path": "automation/governance/decisions/OWNER-ACCEPTANCE-CURRENT-METADATA-BOUNDARY-PROGRAM-V2.json",
+  "owner_decision_commit": "9d25616bef18e17fa8a4f0fe407a137c5d96b4b4",
+  "acceptance_preflight_artifact": "automation/work_orders/optimizations/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.acceptance-preflight.OWNER-BOUNDARY.json",
+  "historical_blocked_preflight_path": "automation/work_orders/optimizations/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.acceptance-preflight.json",
+  "architecture": "1.2.2",
+  "capacity_policy": "2.2",
+  "entries": [
+    {
+      "logical_path": "automation/engine/contracts.py",
+      "reviewed_blob": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+      "final_master_blob": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/engine/execution_capacity.py",
+      "reviewed_blob": "987bfe3c80683bed689d7d4c7ff631bfd561b6f6",
+      "final_master_blob": "987bfe3c80683bed689d7d4c7ff631bfd561b6f6",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/engine/orchestration.py",
+      "reviewed_blob": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+      "final_master_blob": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/governance/master_manifest.v1.yaml",
+      "reviewed_blob": "89de89c47d23080af8369544a165e199856d2832",
+      "final_master_blob": "89de89c47d23080af8369544a165e199856d2832",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/policies/orchestration_control_policy.v1.yaml",
+      "reviewed_blob": "a0b755057de05cf854761a9bf76105da350b9f87",
+      "final_master_blob": "a0b755057de05cf854761a9bf76105da350b9f87",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml",
+      "reviewed_blob": "f4e3322776833b65e5170a5c81e2dd44855a3daf",
+      "final_master_blob": "f4e3322776833b65e5170a5c81e2dd44855a3daf",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+      "reviewed_blob": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+      "final_master_blob": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+      "reviewed_blob": "8d0a8e11bd93692459c1f8d57be36d10333cee5c",
+      "final_master_blob": "8d0a8e11bd93692459c1f8d57be36d10333cee5c",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+      "reviewed_blob": "7c94d4e31d2c0fc5a4aae85ed48638b53b5b265b",
+      "final_master_blob": "7c94d4e31d2c0fc5a4aae85ed48638b53b5b265b",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/skills/execution-cost-forecaster/SKILL.md",
+      "reviewed_blob": "c09f14b127417daf32e87c917f76a3e62e9216c8",
+      "final_master_blob": "c09f14b127417daf32e87c917f76a3e62e9216c8",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/skills/repo-reentry/SKILL.md",
+      "reviewed_blob": "b170a0eb3a28341eb5e87c3f07ed23ca36a48aeb",
+      "final_master_blob": "b170a0eb3a28341eb5e87c3f07ed23ca36a48aeb",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/skills/single-use-lifecycle-guard/SKILL.md",
+      "reviewed_blob": "75e04e1a364a94d633796510deef0b06c5b84a07",
+      "final_master_blob": "75e04e1a364a94d633796510deef0b06c5b84a07",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "automation/specs/context_loading_policy.v1.yaml",
+      "reviewed_blob": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+      "final_master_blob": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "docs/AI_AUTOMATION_OPERATING_MODEL.md",
+      "reviewed_blob": "41c9fa8305ecc3c8bff9c97a849f9d2579b68bcc",
+      "final_master_blob": "41c9fa8305ecc3c8bff9c97a849f9d2579b68bcc",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "docs/CURRENT_STATE.md",
+      "reviewed_blob": "a64c24a65abfa97e057a900b842d5dbb57b97e26",
+      "final_master_blob": "0fca72a01d5ea86bab3b3e6bfac31646e848f3af",
+      "disposition": "AUTHORIZED_CURRENT_PROJECTION_METADATA_EXCEPTION"
+    },
+    {
+      "logical_path": "docs/CURRENT_WORK.md",
+      "reviewed_blob": "3bc8b05a51a7356d36b61438aad8f229fcf36212",
+      "final_master_blob": "5385d17a536cd9af51ff5ebee4a48b9a4c5c7702",
+      "disposition": "AUTHORIZED_CURRENT_PROJECTION_METADATA_EXCEPTION"
+    },
+    {
+      "logical_path": "scripts/execution_cost_reconcile.ps1",
+      "reviewed_blob": "4a3d006ff00609cce928cb11a33b942530aa6875",
+      "final_master_blob": "4a3d006ff00609cce928cb11a33b942530aa6875",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "tests/automation/test_contracts.py",
+      "reviewed_blob": "65f48178384ed8b21287c0e152b700c133a8008f",
+      "final_master_blob": "65f48178384ed8b21287c0e152b700c133a8008f",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "tests/automation/test_execution_capacity.py",
+      "reviewed_blob": "fb00b535626b2dab1f337b4fd42179dbe7964fcc",
+      "final_master_blob": "fb00b535626b2dab1f337b4fd42179dbe7964fcc",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "tests/automation/test_execution_cost_reconcile.py",
+      "reviewed_blob": "6bf6f9eae983769b3116710e77b90861f6ef89d0",
+      "final_master_blob": "6bf6f9eae983769b3116710e77b90861f6ef89d0",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    },
+    {
+      "logical_path": "tests/automation/test_orchestration.py",
+      "reviewed_blob": "958953e3fa6afb96bb085d9602d1ac633d146568",
+      "final_master_blob": "958953e3fa6afb96bb085d9602d1ac633d146568",
+      "disposition": "EXACT_REVIEWED_BLOB"
+    }
+  ],
+  "exact_reviewed_count": 19,
+  "exception_count": 2,
+  "canonicalization": "SHA256_UTF8_CONCAT_SORTED_LOGICAL_PATH_ENTRIES: logical_path NUL reviewed_blob NUL final_master_blob NUL disposition LF; no BOM; operational hash excludes mutable timestamps and commit SHA",
+  "verified_prospective_git_tree": "923af16301fdcf05f97627480fbee4e9c89b8883",
+  "created_at": "2026-10-07T02:29:37Z",
+  "updated_at": "2026-10-07T02:32:01Z",
+  "integrated_operational_baseline_sha256": "4ffd86b2e81cc246c1bed2451cae69c31573abdf96615e46ac6ef097d052bebc"
+}

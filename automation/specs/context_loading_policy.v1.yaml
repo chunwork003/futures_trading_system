@@ -14,6 +14,15 @@ core_rules:
   normalized_summary_over_raw_transcript: true
   task_specific_context_only: true
   historical_context_on_demand_only: true
+  deterministic_profile_metadata:
+    preferred:
+      - git_blob_sha
+      - byte_count
+      - character_count
+      - line_count
+      - exact_pointer
+    unavailable_value: UNKNOWN
+    proxy_content_estimate_is_exact_usage: false
 
 cache_identity:
   key:
@@ -120,7 +129,7 @@ cost_rules:
     - byte_count
     - exact_pointer
   work_cost_accounting:
-    pointer: automation/specs/work_cost_accounting.v1.yaml
+    pointer: automation/specs/work_cost_accounting.v2.yaml
 
 anti_patterns:
   - LONG_STARTUP_PROMPT_WITH_PACKAGE_HISTORY
@@ -149,3 +158,17 @@ normal_loop:
 note: >
   Review, bug-fix, validation and optimization are pipeline phases or bounded
   work, not additional permanent AI roles.
+current_architecture:
+  version: '1.2.2'
+  capacity_policy: automation/policies/execution_capacity_policy.v2_2.yaml
+  orchestration_policy: automation/policies/orchestration_control_policy.v1.yaml
+  controller_status: CANDIDATE_PENDING_COHESIVE_REVIEW
+  source_status: CAPACITY_2_2_AND_ORCHESTRATION_CORE_MATERIALIZED_IN_CANDIDATE
+
+manual_executor_fallback:
+  owner_decision: automation/governance/decisions/MANUAL-EXECUTOR-FALLBACK.owner.json
+  permanent_supported_mode: true
+  human_dialogue_codex_capacity_gate: NOT_APPLICABLE
+  authority_scope_review_safety_same_as_codex: true
+  executor_switch_only_at_durable_checkpoint: true
+  same_execution_multi_executor: DENIED

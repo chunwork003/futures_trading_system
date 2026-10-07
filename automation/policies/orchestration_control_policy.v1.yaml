@@ -1,0 +1,150 @@
+schema_version: automation.orchestration_control_policy.v1
+policy_id: ORCHESTRATION_CONTROL
+policy_version: '1.0'
+status: CANDIDATE_PENDING_COHESIVE_REVIEW
+active: false
+authority:
+  active_master_architecture: '1.2.2'
+  owner_decision: automation/governance/decisions/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.owner.json
+  manual_fallback_owner_decision: automation/governance/decisions/MANUAL-EXECUTOR-FALLBACK.owner.json
+  implementation_authorization: AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5
+  grant_authority: false
+  activation: WORK_ACCEPTANCE_AFTER_ONE_COHESIVE_FRESH_INDEPENDENT_REVIEW_PASS
+  side_effects:
+    runtime: DENIED
+    broker: DENIED
+    db: DENIED
+    migration: DENIED
+    live: DENIED
+    production: DENIED
+    credentials: DENIED
+semantics:
+  implementation_api:
+    module: automation.engine.orchestration
+    pure_surfaces:
+      - dedupe_key
+      - project_queue
+      - resolve_route
+      - evaluate_promotion
+      - bounded_context_profile
+    io: NO_GITHUB_PROVIDER_EXECUTOR_SCHEDULER_SUBPROCESS_OR_LIFECYCLE_IO
+  queue:
+    states:
+      - OBSERVED
+      - BLOCKED
+      - WAITING
+      - ELIGIBLE_MANUAL
+      - ELIGIBLE_CONTROLLED_AUTO
+      - IN_PROGRESS
+      - COMPLETED
+      - SUPERSEDED
+    priority:
+      - SAFETY_GOVERNANCE
+      - RESUMABLE_UNFINISHED_EXECUTION
+      - PENDING_RESULT_REVIEW_INTEGRATION
+      - AUTHORIZED_NEW_WORK
+    at_most_one_executable_or_in_progress: true
+    blocked_lane_head_prevents_skip: true
+    queue_position_grants_authority: false
+    cas_required: true
+  events:
+    effect: WAKE_ONLY
+    authority_effect: NONE
+    direct_dispatch: DENIED
+    classes:
+      - MANUAL_CONTINUE
+      - REPOSITORY_CURRENT_CHANGED
+      - RESULT_AVAILABLE
+      - REVIEW_VERDICT_MATERIALIZED
+      - INTEGRATION_RESULT_MATERIALIZED
+      - PROVIDER_AVAILABILITY_RECOVERY
+      - SCHEDULED_TIMER_WAKE
+      - AUTHORIZATION_MATERIALIZED
+      - EXECUTION_PAUSED
+      - EXECUTION_COMPLETED
+  route:
+    categories:
+      - STOP_SAFETY_GOVERNANCE
+      - RECONCILIATION_REQUIRED
+      - RESUME_EXISTING_EXECUTION
+      - WAIT_PROVIDER_AVAILABLE
+      - WAIT_REVIEW
+      - WAIT_INTEGRATION
+      - WORK_RESULT_INTAKE
+      - WORK_AUTHORIZATION_REQUIRED
+      - WORK_CAPACITY_REVIEW
+      - READY_FOR_MANUAL_DISPATCH
+      - CONTROLLED_AUTO_DISPATCH_ELIGIBLE
+      - NO_LEGAL_READY_WORK
+    unknown_missing: FAIL_CLOSED_NO_DEFAULT_PASS
+    historical_snapshot_can_override_current: false
+  dispatch:
+    supported_modes:
+      - MANUAL
+      - CONTROLLED_AUTO
+    active_mode: MANUAL
+    controlled_auto: DISABLED
+    eligibility_is_invocation: false
+    automatic_dispatch: false
+    automatic_next_package: false
+  executor:
+    supported_modes:
+      - HUMAN_DIALOGUE
+      - CODEX
+    same_execution_multi_executor: DENIED
+    switch_rule: ONLY_AT_DURABLE_CHECKPOINT_NO_CONCURRENT_WRITERS
+    human_dialogue:
+      permanent_fallback: true
+      codex_unavailable_does_not_block_project: true
+      codex_capacity_gate: NOT_APPLICABLE
+      local_tests: ALLOWED
+      human_observed_external_evidence: ALLOWED_IF_EXPLICITLY_TYPED_AS_HUMAN_OBSERVED
+    codex:
+      capacity_policy: automation/policies/execution_capacity_policy.v2_2.yaml
+  controlled_auto_promotion:
+    weekly_execution_gate: false
+    primary_capacity_window: PRIMARY_5H
+    demand_threshold: PER_WO_TOTAL_P90
+    minimum_recent_accepted_manual_executions: 5
+    owner_activation_required: true
+    independent_controller_review_pass_required: true
+    exact_preexisting_authority_required: true
+    single_writer_required: true
+    zero_duplicate_dispatch_required: true
+    zero_fabricated_resume_required: true
+  operational_lane:
+    order:
+      - AUTO-IMP-002
+      - AUTO-IMP-003
+      - AUTO-IMP-004
+      - AUTO-IMP-005
+      - AUTO-IMP-006
+      - AUTO-IMP-007
+      - AUTO-IMP-008
+      - AUTO-IMP-009
+    logical_dag_unchanged: true
+    next_item: AUTO-IMP-002
+  current_candidate:
+    program: AUTO-IMP-PROGRAM-V2
+    controller_review: PENDING_COHESIVE_REVIEW
+    operational_activation: DENIED_BEFORE_REVIEW_PASS_AND_WORK_ACCEPTANCE
+    auto_imp_002_authorized: false
+    auto_imp_003_authorized: false
+invariants:
+  - EVENT != AUTHORITY
+  - WAKE != DISPATCH
+  - QUEUE_ENTRY != AUTHORITY
+  - QUEUE_POSITION != EXECUTION_PERMISSION
+  - AT_MOST_ONE_EXECUTABLE_OR_IN_PROGRESS_ITEM
+  - CONSUMED_DISPATCH_NEVER_REDISPATCH
+  - NON_INVOKED_CONSUMED_NEVER_SYNTHETIC_RESUME
+  - HUMAN_DIALOGUE_AND_CODEX_SHARE_AUTHORITY_SCOPE_REVIEW_SAFETY_BOUNDARIES
+  - CODEX_CAPACITY_GATE_NOT_APPLICABLE_TO_HUMAN_DIALOGUE
+  - RUNTIME_BROKER_DB_MIGRATION_LIVE_PRODUCTION_REMAIN_DENIED
+historical:
+  program_v1_immutable: true
+  architecture_1_0_1_1_immutable: true
+  consumed_authorizations_immutable: true
+  old_execution_and_review_evidence_immutable: true
+  current_manual_fallback_predecessor_execution: EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-20261006T115006Z
+  predecessor_disposition: EXECUTOR_UNAVAILABLE_BEFORE_FIRST_INVOCATION
