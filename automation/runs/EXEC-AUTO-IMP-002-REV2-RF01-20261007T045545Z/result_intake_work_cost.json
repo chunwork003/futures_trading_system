@@ -1,0 +1,273 @@
+{
+  "schema_version": "automation.work_cost_actual.v2",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "task_profile": {
+    "task_class": "WORK_RESULT_INTAKE_COST_NORMALIZATION_REVIEW_PREPARATION",
+    "change_type": "CONTROL_PLANE_METADATA_ONLY",
+    "subsystem": "AUTO_IMP_002_REV2_RF01",
+    "engineering_goal": "Mechanical intake, strict token finalization, cost reconciliation, durable writer release and one narrow full-candidate re-review barrier",
+    "source_file_count": 0,
+    "test_file_count": 0,
+    "authority_boundary": "NO_SOURCE_CHANGE_NO_REVIEW_NO_ACCEPTANCE_NO_RF02_NO_DISPATCH",
+    "packaging_decision": "KEEP_COHESIVE"
+  },
+  "context_profile": {
+    "artifacts_read": [
+      {
+        "path": "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+        "git_blob_sha": "7c94d4e31d2c0fc5a4aae85ed48638b53b5b265b",
+        "character_count": 10547,
+        "line_count": 207,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/specs/context_loading_policy.v1.yaml",
+        "git_blob_sha": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+        "character_count": 5173,
+        "line_count": 175,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "git_blob_sha": "8e3d62feead4a7bcf98bfdf396bc9d00553ec646",
+        "character_count": 17619,
+        "line_count": 382,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "git_blob_sha": "07aed07dbdd3c956d7dfde7e5cf7c30b7242ae04",
+        "character_count": 7214,
+        "line_count": 57,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/work_orders/WO-AUTO-IMP-002-REV2-RF01-01.yaml",
+        "git_blob_sha": "cf93625fc60ee668f45e8258ea8388bd3870dd2d",
+        "character_count": 12426,
+        "line_count": 264,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-RF01-01.v1.yaml",
+        "git_blob_sha": "2a4c840461e2e3b6c1d357b66209c27326efcd23",
+        "character_count": 21272,
+        "line_count": 480,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-RF01-01.json",
+        "git_blob_sha": "b8017952196e1323dab882cf4b09b34fa9e58e6d",
+        "character_count": 3889,
+        "line_count": 117,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/claim.json",
+        "git_blob_sha": "1e64cdb171b986f8959f63778e69dcbb00a34910",
+        "character_count": 2250,
+        "line_count": 55,
+        "type": "execution_evidence",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/invocation.json",
+        "git_blob_sha": "74425104a03a7fd2e76e3fb8b570d7fc42246cd5",
+        "character_count": 2379,
+        "line_count": 57,
+        "type": "execution_evidence",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/completion.json",
+        "git_blob_sha": "18ba7d04ec161a5482cb6b6825022bb045cdf633",
+        "character_count": 126168,
+        "line_count": 1310,
+        "type": "execution_evidence",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/execution_cost_actual.json",
+        "git_blob_sha": "3993b3a1e4b03310fbef221fa8bdb3007340e054",
+        "character_count": 9110,
+        "line_count": 281,
+        "type": "execution_evidence",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/writer_lock.yaml",
+        "git_blob_sha": "98070d4bf75d02450bc454a10a2bad64b0a0ab93",
+        "character_count": 1302,
+        "line_count": 28,
+        "type": "execution_evidence",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/reservation.yaml",
+        "git_blob_sha": "ab6b88e917772635dfdddc032119b0b4a887c106",
+        "character_count": 3164,
+        "line_count": 72,
+        "type": "execution_evidence",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/dispatch.yaml",
+        "git_blob_sha": "b84a78985f26cd4366556d24f40aed8ec14c0384",
+        "character_count": 2669,
+        "line_count": 65,
+        "type": "execution_evidence",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/budget_projection_reconciliation.json",
+        "git_blob_sha": "b1e541afd7daf5234a03288c860f15cad6578660",
+        "character_count": 15961,
+        "line_count": 360,
+        "type": "execution_evidence",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/pre_first_invocation_reentry.json",
+        "git_blob_sha": "32125e1474eb5d3d32811e31b3a8423f975f6e63",
+        "character_count": 15813,
+        "line_count": 344,
+        "type": "execution_evidence",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "git_blob_sha": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+        "character_count": 2046,
+        "line_count": 63,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/skills/single-use-lifecycle-guard/SKILL.md",
+        "git_blob_sha": "75e04e1a364a94d633796510deef0b06c5b84a07",
+        "character_count": 9651,
+        "line_count": 99,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "scripts/codex_session_token_usage.ps1",
+        "git_blob_sha": "5834edd880ec9c73781b220c1ee488027f98f77e",
+        "character_count": 10693,
+        "line_count": 331,
+        "type": "operator_tool",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "scripts/execution_cost_reconcile.ps1",
+        "git_blob_sha": "4a3d006ff00609cce928cb11a33b942530aa6875",
+        "character_count": 11204,
+        "line_count": 318,
+        "type": "operator_tool",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "docs/CURRENT_STATE.md",
+        "git_blob_sha": "4bcbf0cc9e53efc3eb2b6e7105fa2241728d8823",
+        "character_count": 80553,
+        "line_count": 1332,
+        "type": "current_projection",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "docs/CURRENT_WORK.md",
+        "git_blob_sha": "c6eb6091a6e3d9f0460e2b5d1d922338ab684581",
+        "character_count": 53034,
+        "line_count": 1022,
+        "type": "current_projection",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml",
+        "git_blob_sha": "a1c88f93057f772b518623684d04df83b09d09b7",
+        "character_count": 16424,
+        "line_count": 356,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/packages/AUTO-IMP-002.v2.yaml",
+        "git_blob_sha": "1932ee920c9b94f000891640a7a02475f831c8cb",
+        "character_count": 7080,
+        "line_count": 133,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-01.verdict.json",
+        "git_blob_sha": "3d745c756730e2fd4091bdb1f3a56180b2f295d7",
+        "character_count": 3238,
+        "line_count": 64,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      },
+      {
+        "path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-01.review.yaml",
+        "git_blob_sha": "2044595f5d05a17355e10d3e3695df5a21f4430f",
+        "character_count": 16440,
+        "line_count": 388,
+        "type": "governance_control_plane",
+        "byte_count": "UNKNOWN_NOT_MEASURED"
+      }
+    ],
+    "artifacts_by_type": {
+      "governance_control_plane": {
+        "artifact_count": 13,
+        "chars": 133019,
+        "lines": 2785
+      },
+      "execution_evidence": {
+        "artifact_count": 9,
+        "chars": 178816,
+        "lines": 2572
+      },
+      "operator_tool": {
+        "artifact_count": 2,
+        "chars": 21897,
+        "lines": 649
+      },
+      "current_projection": {
+        "artifact_count": 2,
+        "chars": 133587,
+        "lines": 2354
+      }
+    },
+    "raw_transcript_loaded": false,
+    "history_loaded": "EXACT_INVOCATION_AUTHORITY_AND_RECONCILIATION_PHASE_PROOF_ONLY",
+    "source_test_context": "RF01 test counterexample names/body excerpt only to bind 5 expected failures; no semantic review",
+    "git_tree_metadata_scan": true,
+    "whole_repository_source_scan": false,
+    "content_token_estimate": null,
+    "measurement": "DETERMINISTIC_ARTIFACT_CHARS_LINES_NOT_MODEL_USAGE"
+  },
+  "model_usage": {
+    "measurement_type": "UNKNOWN",
+    "total_tokens": null,
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "output_tokens": null
+  },
+  "billing": "NOT_AVAILABLE",
+  "semantic_budget_consumed_by_WORK": 0,
+  "review_fix_usage": "One already-completed CODEX RF01 cycle durably accounted; no second cycle",
+  "implementation_tests_run_by_WORK": false,
+  "operator_runs": {
+    "canonical_token_extractor": 1,
+    "canonical_reconciler": 1,
+    "bundle_recomputation": 1
+  },
+  "tooling_retries": 1,
+  "created_at": "2026-10-07T06:42:30Z"
+}
