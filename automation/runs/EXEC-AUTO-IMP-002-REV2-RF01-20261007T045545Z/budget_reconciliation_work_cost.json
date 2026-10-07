@@ -1,0 +1,65 @@
+{
+  "schema_version": "automation.work_cost_actual.v2",
+  "task_profile": {
+    "task_class": "CONTROL_PLANE_PROJECTION_RECONCILIATION",
+    "change_type": "METADATA_ONLY",
+    "subsystem": "AUTO_IMP_002_REV2_RF01_LIFECYCLE",
+    "engineering_goal": "Explicit current budget executability supersession and same-execution first invocation reentry",
+    "semantic_source_files_changed": 0,
+    "packaging": "KEEP_COHESIVE",
+    "authority_boundary": "NO_NEW_AUTHORITY_NO_REDISPATCH_NO_INVOCATION"
+  },
+  "context_profile": {
+    "raw_transcript_loaded": false,
+    "history_loaded": "EXACT_OWNER_PARENT_GRANT_CHILD_AUTHORIZED_RESERVED_CONSUMED_PHASE_PROOF_ONLY",
+    "artifact_source": "REMOTE_GITHUB_PINNED_GIT_BLOBS",
+    "historical_phase_artifacts": [
+      {
+        "path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-RF01-01.v1.yaml",
+        "git_blob_sha": "2a4c840461e2e3b6c1d357b66209c27326efcd23",
+        "observed_at_commit": "e8d83bc7ea08ec2a3f8554a5bb3f48bae12c441f",
+        "materialization_commit": "c16b9d6c2fd6a69ae2a6599b1efc8d997a3e6f04"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/handoff.yaml",
+        "git_blob_sha": "08bd710011731c44b1c0f1511e9a43701c0fc8ba",
+        "observed_at_commit": "e8d83bc7ea08ec2a3f8554a5bb3f48bae12c441f",
+        "materialization_commit": "255f8ac2593d71b042fcd108bc64a2cc1be1ec6e"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/reservation.yaml",
+        "git_blob_sha": "ab6b88e917772635dfdddc032119b0b4a887c106",
+        "observed_at_commit": "e8d83bc7ea08ec2a3f8554a5bb3f48bae12c441f",
+        "materialization_commit": "c16b9d6c2fd6a69ae2a6599b1efc8d997a3e6f04"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/dispatch.yaml",
+        "git_blob_sha": "b84a78985f26cd4366556d24f40aed8ec14c0384",
+        "observed_at_commit": "e8d83bc7ea08ec2a3f8554a5bb3f48bae12c441f",
+        "materialization_commit": "9e4de1a8e29f85647ea2168fbe6d53d704c0be28"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/pre_dispatch_recheck.json",
+        "git_blob_sha": "7fd43364925d5dcfb4fff3d5a6770834d7cf89ed",
+        "observed_at_commit": "e8d83bc7ea08ec2a3f8554a5bb3f48bae12c441f",
+        "materialization_commit": "3bef631227ab81de37143569ea925c5fc4d5e267"
+      }
+    ],
+    "source_context": "CANONICAL_PURE_CAPACITY_EVALUATOR_OPERATOR_COPY_GIT_BLOB_VERIFIED",
+    "whole_repo_source_scan": false
+  },
+  "model_usage": {
+    "measurement_type": "UNKNOWN",
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "output_tokens": null,
+    "total_tokens": null,
+    "exact_usage_available": false
+  },
+  "billing": "NOT_AVAILABLE",
+  "provider_percentages": "SHARED_ACCOUNT_PROXY_NOT_EXACT_TASK_TOKENS",
+  "budget_used": 0,
+  "implementation_tests_run": false,
+  "capacity_evaluator_runs": 2,
+  "created_at": "2026-10-07T06:05:54Z"
+}
