@@ -65,11 +65,20 @@ def load_yaml_mapping(path: str | Path) -> dict[str, object]:
     """以 safe_load 讀取單一 mapping document；不寫檔、不改變任何 authority。"""
 
     source = Path(path)
+    return load_yaml_mapping_bytes(source.read_bytes(), source=str(source))
+
+
+def load_yaml_mapping_bytes(data: bytes, *, source: str = "<Git blob>") -> dict[str, object]:
+    """解析已驗證的 raw Git bytes；解碼失敗不回傳部分 document，沿用同一 SafeLoader。"""
+    if type(data) is not bytes:
+        raise AutomationYamlError("automation YAML input must be bytes")
     try:
         loaded = yaml.load(
-            source.read_text(encoding="utf-8"),
+            data.decode("utf-8"),
             Loader=_UniqueKeySafeLoader,
         )
+    except UnicodeDecodeError as exc:
+        raise AutomationYamlError(f"invalid UTF-8 YAML document: {source}") from exc
     except _DuplicateMappingKeyError as exc:
         raise AutomationYamlError(f"duplicate YAML mapping key: {source}") from exc
     except yaml.YAMLError as exc:
@@ -113,4 +122,4 @@ def load_yaml_contract(
     return selected.model_validate(payload)
 
 
-__all__ = ["AutomationYamlError", "load_yaml_contract", "load_yaml_mapping"]
+__all__ = ["AutomationYamlError", "load_yaml_contract", "load_yaml_mapping", "load_yaml_mapping_bytes"]

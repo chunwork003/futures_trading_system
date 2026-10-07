@@ -335,3 +335,52 @@ def test_program_v2_orchestration_policy_loads_as_strict_contract() -> None:
 
     with pytest.raises(TypeError):
         loaded.semantics["dispatch"]["controlled_auto"] = "ENABLED"
+
+
+@pytest.mark.parametrize("data", [
+    b"a: 1\nb: [true, 2]\n",
+    b"base: &base {a: 1, b: 2}\nresult: {<<: *base, a: 3}\n",
+    b"x: &x {a: 1}\ny: *x\n",
+    b"x: &x [*x]\n",
+])
+def test_git_bytes_loader_path_parity(tmp_path, data):
+    from automation.engine.yaml_io import load_yaml_mapping_bytes, load_yaml_mapping
+    path = tmp_path / "parity.yaml"
+    path.write_bytes(data)
+    direct, file = load_yaml_mapping_bytes(data), load_yaml_mapping(path)
+    if data == b"x: &x [*x]\n":
+        assert direct["x"][0] is direct["x"] and file["x"][0] is file["x"]
+    else:
+        assert direct == file
+
+
+@pytest.mark.parametrize("data", [
+    b"a: 1\na: 2\n", b"x: {a: 1, a: 2}\n", b"x: !!set {a: null, a: null}\n",
+    b"x: !!python/object/apply:os.system ['echo unsafe']\n", b"x: 1\n\xff", b"[1, 2]\n",
+])
+def test_git_bytes_loader_fail_closed(data):
+    from automation.engine.yaml_io import load_yaml_mapping_bytes, AutomationYamlError
+    with pytest.raises(AutomationYamlError):
+        load_yaml_mapping_bytes(data)
+
+
+def test_git_bytes_loader_contract_remains_strict_frozen_plain_serializable(tmp_path):
+    from automation.engine.yaml_io import load_yaml_mapping_bytes, load_yaml_contract
+    data = b'''schema_version: automation.orchestration_control_policy.v1
+policy_id: FIXTURE
+policy_version: '1'
+status: CANDIDATE
+active: false
+authority: {grant: false}
+semantics: {nested: [{x: 1}]}
+invariants: [NO_AUTHORITY]
+historical: {}
+'''
+    path = tmp_path / "contract.yaml"; path.write_bytes(data)
+    record = OrchestrationControlPolicy.model_validate(load_yaml_mapping_bytes(data))
+    assert record == load_yaml_contract(path)
+    assert json.loads(record.model_dump_json()) == record.model_dump()
+    with pytest.raises(TypeError): record.semantics["nested"][0]["x"] = 2
+    payload = record.model_dump()
+    with pytest.raises(ValidationError): OrchestrationControlPolicy.model_validate({**payload, "unknown": 1})
+    with pytest.raises(ValidationError): OrchestrationControlPolicy.model_validate({**payload, "active": "false"})
