@@ -1,0 +1,207 @@
+{
+  "schema_version": "automation.package_acceptance.v1",
+  "package_id": "AUTO-IMP-002",
+  "package_revision": "2",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "review_fix_work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "status": "ACCEPTED_MATERIALIZED",
+  "semantic_acceptance": "ACCEPTED",
+  "AUTO_IMP_002_REV2_ACCEPTANCE_MATERIALIZATION": "PASS",
+  "authority": "WORK_ACCEPTANCE_OF_EXACT_REVIEWED_EFFECTIVE_CANDIDATE_UNDER_BOUND_INDEPENDENT_PASS",
+  "acceptance_preflight_master": "48992888407f358b9d6bbe1fbf412245eadf2cee",
+  "fresh_initial_master": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83",
+  "review_verdict": {
+    "path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-RF01-01.verdict.json",
+    "commit": "4335b03aaa9ac0b3be8c74df1b3a96f7d281d862",
+    "verdict": "PASS",
+    "review_id": "WO-AUTO-IMP-002-REV2-RF01-01-FRESH-NARROW",
+    "findings": [],
+    "finding_dispositions": {
+      "F-01": "CLOSED",
+      "F-02": "CLOSED",
+      "F-03": "CLOSED"
+    },
+    "preservation": "PASS"
+  },
+  "parent_implementation_sha": "370b107f6640012aa16bb3604b5e26bb4b125f35",
+  "parent_evidence_sha": "6ad6cff71454a6200e5e92efc61ed22fdf1d3d91",
+  "RF01_implementation_sha": "967c45cd07d756a08c86098f7382557344648f31",
+  "RF01_evidence_sha": "6c129d34992c5a3f489bcd1b2d98a95f2136c494",
+  "result_intake": {
+    "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/result_intake.json",
+    "git_blob_sha": "6f4047e435177eea77fa26eda10e81f95dc899a8",
+    "ref": "8712bbf2cfd412431e6d702b7755bf2af85d3046"
+  },
+  "writer_release": {
+    "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/writer_release.json",
+    "git_blob_sha": "a516285944dabe70819cc52416e62136062aa18e",
+    "ref": "77a65ba3854745d41d98978b20bc36735d290f35"
+  },
+  "source_materialization_commit": "48992888407f358b9d6bbe1fbf412245eadf2cee",
+  "source_materialization_type": "ACCEPTED_SOURCE_MATERIALIZATION_NOT_NEW_IMPLEMENTATION",
+  "exact_semantic_blobs": {
+    "automation/engine/repository_snapshot.py": "d286ff23b88c9b7daa7d21acf07dfc88d5567935",
+    "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+    "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63",
+    "tests/automation/test_repository_snapshot.py": "50951c7d8933f87b3eb80ca1828d92481790e730"
+  },
+  "effective_bundle_sha256": "68a905620d091d9edc2881caaf6e3b08b6a525588c28f03c837405d7cd5e5646",
+  "bundle_convention": "Ordinal path-sorted path+NUL+lowercase Git blob+LF UTF8 SHA256",
+  "integration_proof": {
+    "result": "PASS",
+    "pre_materialization_master": "cbd46da8ce7c2a3748aa8c259ac6185076e31a83",
+    "source_materialization_commit": "48992888407f358b9d6bbe1fbf412245eadf2cee",
+    "exact_blobs": {
+      "automation/engine/repository_snapshot.py": "d286ff23b88c9b7daa7d21acf07dfc88d5567935",
+      "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+      "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63",
+      "tests/automation/test_repository_snapshot.py": "50951c7d8933f87b3eb80ca1828d92481790e730"
+    },
+    "effective_bundle": "68a905620d091d9edc2881caaf6e3b08b6a525588c28f03c837405d7cd5e5646",
+    "delta": [
+      "automation/engine/yaml_io.py",
+      "tests/automation/test_contracts.py",
+      "automation/engine/repository_snapshot.py",
+      "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-RF01-01.verdict.json",
+      "tests/automation/test_repository_snapshot.py"
+    ],
+    "protected_other_paths_unchanged": true
+  },
+  "architecture": "1.2.2_ACTIVE_UNCHANGED",
+  "capacity_policy": "2.2_ACTIVE_UNCHANGED",
+  "accepted_program": {
+    "definition": {
+      "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+      "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    "acceptance": {
+      "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.acceptance.json",
+      "git_blob_sha": "332568ca9e9d712117fbca7976bf1b198a5ed54a",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    "operational_baseline": {
+      "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.integrated-operational-baseline.json",
+      "git_blob_sha": "efe4f1e29b67be20d8145839476aa688463adb16",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    "status": "ACCEPTED_MATERIALIZED",
+    "controller": "NOT_ACTIVE",
+    "phase_snapshot_does_not_override_acceptance": true
+  },
+  "budgets": {
+    "initial_implementation": {
+      "limit": 1,
+      "used": 1,
+      "remaining": 0,
+      "state": "EXHAUSTED",
+      "executable_now": false
+    },
+    "implementation_corrections": {
+      "limit": 2,
+      "used": 2,
+      "remaining": 0,
+      "state": "EXHAUSTED",
+      "executable_now": false
+    },
+    "review_fix": {
+      "limit": 2,
+      "used": 1,
+      "remaining": 1,
+      "state": "RETIRED_UNUSED_ON_ACCEPTANCE",
+      "unused_retired": 1,
+      "executable_now": false,
+      "transferable": false,
+      "disposition": "NON_EXECUTABLE_NON_TRANSFERABLE"
+    },
+    "RF01": "CONSUMED_BY_COMPLETED_SEMANTIC_CORRECTION_CLOSED_ON_ACCEPTANCE",
+    "RF02": "NOT_AUTHORIZED",
+    "latent_correction_authority": false
+  },
+  "authorization_disposition": {
+    "parent": "CONSUMED_HISTORICAL_SINGLE_USE_CLOSED_NON_EXECUTABLE",
+    "RF01": "CONSUMED_HISTORICAL_SINGLE_USE_CLOSED_NON_EXECUTABLE",
+    "consumed_authorization_blobs_preserved": true
+  },
+  "historical_lineage": "RF01_RF02_IC01_IVF01_HISTORICAL_EVIDENCE_ONLY_NOT_INHERITED",
+  "active_writer": null,
+  "active_execution": null,
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "AUTO_IMP_003": "NOT_AUTHORIZED",
+  "automatic_next_dispatch": "DENIED",
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "tests_rerun": false,
+  "tests_rerun_reason": "BYTE_EXACT_REVIEWED_GIT_BLOBS_PLUS_CONTROL_PLANE_METADATA; DETERMINISTIC_INTEGRATION_GUARDS_ONLY",
+  "reviewed_test_evidence": [
+    {
+      "phase": "parent_counterexamples",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -k rf01 -q --tb=short",
+      "exit_code": 1,
+      "failed": 5,
+      "seconds": 0.81,
+      "expected_failure": true,
+      "finding_ids": [
+        "F-01",
+        "F-02",
+        "F-03"
+      ]
+    },
+    {
+      "phase": "initial_impacted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -k \"rf01 or ready_positive\" -q --tb=short",
+      "exit_code": 0,
+      "passed": 6,
+      "seconds": 0.47
+    },
+    {
+      "phase": "expanded_impacted",
+      "exit_code": 1,
+      "passed": 27,
+      "failed": 2,
+      "seconds": 1.49,
+      "classification": "Test diagnostic-category expectation corrected; intended fail-closed behavior already present"
+    },
+    {
+      "phase": "stable_impacted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -k \"rf01 or ready_positive or raw_source or canonical_nested\" -q --tb=short",
+      "exit_code": 0,
+      "passed": 29,
+      "seconds": 1.17
+    },
+    {
+      "phase": "targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -q",
+      "exit_code": 0,
+      "passed": 103,
+      "seconds": 4.79
+    },
+    {
+      "phase": "cross_targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py tests/automation/test_orchestration.py tests/automation/test_execution_capacity.py -q",
+      "exit_code": 0,
+      "passed": 305,
+      "seconds": 7.98
+    },
+    {
+      "phase": "full_regression",
+      "command": "python -m pytest -p no:cacheprovider -q",
+      "exit_code": 0,
+      "passed": 1832,
+      "skipped": 8,
+      "seconds": 40.44,
+      "external_environments": "DISABLED"
+    }
+  ],
+  "package_closure_path": "automation/work_orders/AUTO-IMP-002.closure.yaml",
+  "operational_transition": "SEPARATE_GOVERNANCE_DISPOSITION_DOES_NOT_REOPEN_AUTO_IMP_002",
+  "created_at": "2026-10-07T08:30:55Z"
+}
