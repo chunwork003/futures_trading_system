@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "p00.tool_registry.v1"
+    },
+    "status": {
+      "const": "CANDIDATE_NON_AUTHORITY"
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "effect_class": {
+            "enum": [
+              "READ",
+              "CANDIDATE_WRITE",
+              "ISOLATED_LOCAL_EXECUTION",
+              "REMOTE_WRITE",
+              "EXECUTION_EFFECT",
+              "SCHEDULING_EFFECT"
+            ]
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "adapter": {
+            "type": "string",
+            "minLength": 1
+          },
+          "observed_status": {
+            "enum": [
+              "AVAILABLE_OBSERVED",
+              "IMPLEMENTED_PENDING_REVIEW",
+              "MISSING",
+              "NOT_ENABLED"
+            ]
+          },
+          "required_authority": {
+            "type": "string",
+            "minLength": 1
+          },
+          "credentials": {
+            "const": "HOST_MANAGED_NEVER_IN_CONTEXT"
+          },
+          "network": {
+            "enum": [
+              "NOT_IMPLIED",
+              "ONLY_EXPLICIT_ALLOWLIST"
+            ]
+          },
+          "failure_semantics": {
+            "const": "EXPLICIT_FAILURE_NO_SILENT_PROVIDER_FALLBACK"
+          },
+          "idempotency": {
+            "const": "READ_ONLY_OR_EXACT_EFFECT_RECEIPT"
+          },
+          "audit_fields": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "qualification": {
+            "const": "LOCAL_TESTS_DO_NOT_PROVE_EXTERNAL_CAPABILITY"
+          }
+        },
+        "required": [
+          "id",
+          "effect_class",
+          "inputs",
+          "outputs",
+          "adapter",
+          "observed_status",
+          "required_authority",
+          "credentials",
+          "network",
+          "failure_semantics",
+          "idempotency",
+          "audit_fields",
+          "qualification"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "tools"
+  ]
+}

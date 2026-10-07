@@ -1,7 +1,7 @@
 # V1 Domain Contracts — P00 Candidate
 
 Status: `FROZEN_CANDIDATE / NOT_ACCEPTED`。共通語意由 `V1_BASELINE.md` 定義；既有 accepted canonical contracts 優先，不重新定義相同 class。
-下列「新增」是 schema/spec，不代表 source 已實作。完整 API schema 另由 OpenAPI owner 管理。
+下列「新增」是 schema/spec，不代表 source 已實作。wire DTO 與 API schema owner 為 scripts/p00_build_contracts.py；generated OpenAPI 位於 contracts/，語意 owner 為 V1_API_ARCHITECTURE.md。
 
 ## Contract envelope
 
@@ -64,7 +64,7 @@ CapitalState採simulated account genesis與單一currency TWD第一個驗收場�
 ## Command / result behavior
 
 Research kinds：BACKTEST、PARAMETER_STUDY、OOS、WFO、MONTE_CARLO；comparison引用既有published artifacts，不隱式重跑。
-Workload limits由versioned serverconfig宣告(max bars/trials/concurrentjobs/artifactbytes)；超額422 WORKLOAD_LIMIT_EXCEEDED，不能由caller要求無界運算。P02 dependency/config freeze須給有限預設值及測試；缺失拒絕startup。
+Workload limits由versioned serverconfig宣告(max bars/trials/concurrentjobs/artifactbytes)；超額422 WORKLOAD_LIMIT_EXCEEDED，不能由caller要求無界運算。有限預設值 owner 為 contracts/workload_policy.v1.json；缺失拒絕startup。
 Result pages使用opaque cursor，cursor綁run_id、artifact_hash、sort/filter；limit default100/max1000；錯cursor400，舊artifact409。Decimal欄位字符串；non-finite research metrics null+reason。
 API error分類：INVALID_INPUT、UNAUTHENTICATED、FORBIDDEN、NOT_FOUND、REVISION_CONFLICT、IDEMPOTENCY_CONFLICT、UNQUALIFIED_DATA、READINESS_BLOCKED、WORKLOAD_LIMIT_EXCEEDED、DEPENDENCY_UNAVAILABLE、INTERNAL_ERROR。對外不暴露stack/native SDK/secrets。
 Transport timeout != domain failure；查operation/command receipt。不能把clientdisconnect變成已接受cancel。

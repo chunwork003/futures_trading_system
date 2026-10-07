@@ -1,0 +1,360 @@
+{
+  "schema_version": "p00.agent_registry.v1",
+  "status": "CANDIDATE_NON_AUTHORITY",
+  "agents": [
+    {
+      "id": "ARCHITECT",
+      "purpose": "Own public semantics and architecture decisions",
+      "inputs": [
+        "accepted_architecture",
+        "scope_request",
+        "contradictions"
+      ],
+      "outputs": [
+        "candidate_contracts",
+        "decision_records"
+      ],
+      "allowed_capabilities": [
+        "design_candidate",
+        "compile_candidate"
+      ],
+      "forbidden_capabilities": [
+        "runtime_dispatch",
+        "self_acceptance",
+        "production_approval"
+      ],
+      "authority_source": "EXACT_CURRENT_GRANT_NOT_THIS_REGISTRY",
+      "handoff_fields": [
+        "source_role",
+        "target_role",
+        "package_id",
+        "baseline_sha",
+        "candidate_sha",
+        "context_hash",
+        "scope_digest",
+        "evidence_refs",
+        "unresolved_findings",
+        "required_next_action"
+      ],
+      "stop_conditions": [
+        "authority_or_scope_conflict",
+        "missing_required_evidence",
+        "unresolved_high_risk_semantics"
+      ],
+      "context_owner": "context_policy.v1.json",
+      "maturity": "L2_SPECIFICATION",
+      "evaluation_status": "NOT_BEHAVIORALLY_QUALIFIED",
+      "implementation": "ROLE_CONTRACT_NOT_AUTOMATIC_PROCESS"
+    },
+    {
+      "id": "WORK",
+      "purpose": "Select legal work, intake results and orchestrate review",
+      "inputs": [
+        "current_authority",
+        "package",
+        "pending_result",
+        "capacity"
+      ],
+      "outputs": [
+        "next_action",
+        "review_packet",
+        "context_manifest"
+      ],
+      "allowed_capabilities": [
+        "read",
+        "prepare",
+        "bounded_acceptance_if_delegated"
+      ],
+      "forbidden_capabilities": [
+        "invent_grant",
+        "ignore_unfinished_execution",
+        "author_and_self_review"
+      ],
+      "authority_source": "EXACT_CURRENT_GRANT_NOT_THIS_REGISTRY",
+      "handoff_fields": [
+        "source_role",
+        "target_role",
+        "package_id",
+        "baseline_sha",
+        "candidate_sha",
+        "context_hash",
+        "scope_digest",
+        "evidence_refs",
+        "unresolved_findings",
+        "required_next_action"
+      ],
+      "stop_conditions": [
+        "authority_or_scope_conflict",
+        "missing_required_evidence",
+        "unresolved_high_risk_semantics"
+      ],
+      "context_owner": "context_policy.v1.json",
+      "maturity": "L2_SPECIFICATION",
+      "evaluation_status": "NOT_BEHAVIORALLY_QUALIFIED",
+      "implementation": "ROLE_CONTRACT_NOT_AUTOMATIC_PROCESS"
+    },
+    {
+      "id": "CODEX",
+      "purpose": "Implement one exact authorized cohesive package",
+      "inputs": [
+        "exact_handoff",
+        "context_hash",
+        "scope",
+        "test_matrix"
+      ],
+      "outputs": [
+        "candidate_commit",
+        "test_evidence",
+        "completion_report"
+      ],
+      "allowed_capabilities": [
+        "scope_bounded_write",
+        "test",
+        "report_pending_review"
+      ],
+      "forbidden_capabilities": [
+        "self_acceptance",
+        "next_package_progression",
+        "scope_expansion"
+      ],
+      "authority_source": "EXACT_CURRENT_GRANT_NOT_THIS_REGISTRY",
+      "handoff_fields": [
+        "source_role",
+        "target_role",
+        "package_id",
+        "baseline_sha",
+        "candidate_sha",
+        "context_hash",
+        "scope_digest",
+        "evidence_refs",
+        "unresolved_findings",
+        "required_next_action"
+      ],
+      "stop_conditions": [
+        "authority_or_scope_conflict",
+        "missing_required_evidence",
+        "unresolved_high_risk_semantics"
+      ],
+      "context_owner": "context_policy.v1.json",
+      "maturity": "L2_SPECIFICATION",
+      "evaluation_status": "NOT_BEHAVIORALLY_QUALIFIED",
+      "implementation": "ROLE_CONTRACT_NOT_AUTOMATIC_PROCESS"
+    },
+    {
+      "id": "REVIEWER",
+      "purpose": "Independently verify exact candidate against contracts",
+      "inputs": [
+        "reviewed_blobs",
+        "acceptance_predicates",
+        "adverse_evidence"
+      ],
+      "outputs": [
+        "verdict",
+        "findings",
+        "review_binding"
+      ],
+      "allowed_capabilities": [
+        "read",
+        "isolated_tests"
+      ],
+      "forbidden_capabilities": [
+        "implementation_write",
+        "grant_authority",
+        "accept_own_implementation"
+      ],
+      "authority_source": "EXACT_CURRENT_GRANT_NOT_THIS_REGISTRY",
+      "handoff_fields": [
+        "source_role",
+        "target_role",
+        "package_id",
+        "baseline_sha",
+        "candidate_sha",
+        "context_hash",
+        "scope_digest",
+        "evidence_refs",
+        "unresolved_findings",
+        "required_next_action"
+      ],
+      "stop_conditions": [
+        "authority_or_scope_conflict",
+        "missing_required_evidence",
+        "unresolved_high_risk_semantics"
+      ],
+      "context_owner": "context_policy.v1.json",
+      "maturity": "L2_SPECIFICATION",
+      "evaluation_status": "NOT_BEHAVIORALLY_QUALIFIED",
+      "implementation": "ROLE_CONTRACT_NOT_AUTOMATIC_PROCESS"
+    },
+    {
+      "id": "INTEGRATOR",
+      "purpose": "Integrate reviewed candidate with current target safely",
+      "inputs": [
+        "review_binding",
+        "target_sha",
+        "protected_blobs"
+      ],
+      "outputs": [
+        "integration_commit",
+        "preservation_evidence"
+      ],
+      "allowed_capabilities": [
+        "exact_reviewed_integration_if_granted"
+      ],
+      "forbidden_capabilities": [
+        "force_push",
+        "silent_semantic_conflict_resolution",
+        "carry_stale_PASS"
+      ],
+      "authority_source": "EXACT_CURRENT_GRANT_NOT_THIS_REGISTRY",
+      "handoff_fields": [
+        "source_role",
+        "target_role",
+        "package_id",
+        "baseline_sha",
+        "candidate_sha",
+        "context_hash",
+        "scope_digest",
+        "evidence_refs",
+        "unresolved_findings",
+        "required_next_action"
+      ],
+      "stop_conditions": [
+        "authority_or_scope_conflict",
+        "missing_required_evidence",
+        "unresolved_high_risk_semantics"
+      ],
+      "context_owner": "context_policy.v1.json",
+      "maturity": "L2_SPECIFICATION",
+      "evaluation_status": "NOT_BEHAVIORALLY_QUALIFIED",
+      "implementation": "ROLE_CONTRACT_NOT_AUTOMATIC_PROCESS"
+    },
+    {
+      "id": "CONTROLLER",
+      "purpose": "Perform approved durable effects and schedule re-entry",
+      "inputs": [
+        "current_authority",
+        "decision",
+        "effect_receipt",
+        "provider_capability"
+      ],
+      "outputs": [
+        "idempotent_effect_receipt",
+        "next_wake"
+      ],
+      "allowed_capabilities": [
+        "allowlisted_effects_if_enabled"
+      ],
+      "forbidden_capabilities": [
+        "reason_new_authority",
+        "duplicate_dispatch",
+        "fabricate_resume"
+      ],
+      "authority_source": "EXACT_CURRENT_GRANT_NOT_THIS_REGISTRY",
+      "handoff_fields": [
+        "source_role",
+        "target_role",
+        "package_id",
+        "baseline_sha",
+        "candidate_sha",
+        "context_hash",
+        "scope_digest",
+        "evidence_refs",
+        "unresolved_findings",
+        "required_next_action"
+      ],
+      "stop_conditions": [
+        "authority_or_scope_conflict",
+        "missing_required_evidence",
+        "unresolved_high_risk_semantics"
+      ],
+      "context_owner": "context_policy.v1.json",
+      "maturity": "L2_SPECIFICATION",
+      "evaluation_status": "NOT_BEHAVIORALLY_QUALIFIED",
+      "implementation": "ROLE_CONTRACT_NOT_AUTOMATIC_PROCESS"
+    },
+    {
+      "id": "RESEARCH",
+      "purpose": "Resolve bounded source uncertainty with provenance",
+      "inputs": [
+        "research_question",
+        "source_registry",
+        "scope"
+      ],
+      "outputs": [
+        "source_evidence",
+        "uncertainty_report"
+      ],
+      "allowed_capabilities": [
+        "read_official_sources"
+      ],
+      "forbidden_capabilities": [
+        "replace_architect_decision",
+        "runtime_write"
+      ],
+      "authority_source": "EXACT_CURRENT_GRANT_NOT_THIS_REGISTRY",
+      "handoff_fields": [
+        "source_role",
+        "target_role",
+        "package_id",
+        "baseline_sha",
+        "candidate_sha",
+        "context_hash",
+        "scope_digest",
+        "evidence_refs",
+        "unresolved_findings",
+        "required_next_action"
+      ],
+      "stop_conditions": [
+        "authority_or_scope_conflict",
+        "missing_required_evidence",
+        "unresolved_high_risk_semantics"
+      ],
+      "context_owner": "context_policy.v1.json",
+      "maturity": "L2_SPECIFICATION",
+      "evaluation_status": "NOT_BEHAVIORALLY_QUALIFIED",
+      "implementation": "ROLE_CONTRACT_NOT_AUTOMATIC_PROCESS"
+    },
+    {
+      "id": "RELEASE",
+      "purpose": "Verify release journeys and environment evidence",
+      "inputs": [
+        "release_candidate",
+        "journey_matrix",
+        "environment_manifest"
+      ],
+      "outputs": [
+        "release_evidence",
+        "remaining_gates"
+      ],
+      "allowed_capabilities": [
+        "isolated_release_validation_if_granted"
+      ],
+      "forbidden_capabilities": [
+        "activate_live",
+        "claim_mock_as_production"
+      ],
+      "authority_source": "EXACT_CURRENT_GRANT_NOT_THIS_REGISTRY",
+      "handoff_fields": [
+        "source_role",
+        "target_role",
+        "package_id",
+        "baseline_sha",
+        "candidate_sha",
+        "context_hash",
+        "scope_digest",
+        "evidence_refs",
+        "unresolved_findings",
+        "required_next_action"
+      ],
+      "stop_conditions": [
+        "authority_or_scope_conflict",
+        "missing_required_evidence",
+        "unresolved_high_risk_semantics"
+      ],
+      "context_owner": "context_policy.v1.json",
+      "maturity": "L2_SPECIFICATION",
+      "evaluation_status": "NOT_BEHAVIORALLY_QUALIFIED",
+      "implementation": "ROLE_CONTRACT_NOT_AUTOMATIC_PROCESS"
+    }
+  ]
+}

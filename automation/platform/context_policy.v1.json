@@ -1,0 +1,140 @@
+{
+  "schema_version": "p00.context_policy.v1",
+  "status": "CANDIDATE_NON_AUTHORITY",
+  "task_types": [
+    "ARCHITECT",
+    "WORK",
+    "CODEX",
+    "REVIEWER",
+    "INTEGRATOR"
+  ],
+  "required": [
+    "AGENTS.md",
+    "docs/CURRENT_STATE.md",
+    "docs/CURRENT_WORK.md",
+    "automation/governance/master_manifest.v1.yaml",
+    "automation/work_orders/CURRENT_CODEX.yaml",
+    "automation/work_orders/CURRENT_CODEX_TASK.md"
+  ],
+  "packages": {
+    "P00": {
+      "package_path": "docs/work/P00_BASELINE.md",
+      "mandatory": [
+        "docs/program/p00_status.v1.json",
+        "docs/program/current_truth.v1.json"
+      ],
+      "optional": [
+        "docs/program/P00_OWNER_REQUEST.md",
+        "docs/program/request_coverage.v1.json"
+      ],
+      "allowed_exact": [
+        "docs/work/P00_BASELINE.md"
+      ],
+      "allowed_prefixes": [
+        "docs/architecture/",
+        "docs/program/",
+        "automation/platform/",
+        "scripts/p00_",
+        "tests/platform/"
+      ]
+    }
+  },
+  "domains": {
+    "product": [
+      "docs/architecture/V1_BASELINE.md",
+      "docs/architecture/V1_CONTRACTS.md",
+      "docs/architecture/V1_STATE_MACHINES.md"
+    ],
+    "api": [
+      "docs/architecture/V1_API_ARCHITECTURE.md",
+      "docs/architecture/contracts/python.openapi.v1.json",
+      "docs/architecture/contracts/bff.openapi.v1.json",
+      "docs/architecture/contracts/workload_policy.v1.json"
+    ],
+    "program": [
+      "docs/program/V1_PROGRAM.md"
+    ],
+    "platform": [
+      "automation/platform/README.md",
+      "automation/platform/OPERATING_MODEL.md",
+      "automation/platform/skill_registry.v1.json",
+      "automation/platform/capability_inventory.v1.json",
+      "automation/platform/AI_CONTEXT_BOOTSTRAP.md",
+      "automation/platform/agent_registry.v1.json",
+      "automation/platform/tool_registry.v1.json",
+      "automation/platform/agent_registry.schema.v1.json",
+      "automation/platform/tool_registry.schema.v1.json",
+      "automation/platform/context_request.schema.v1.json"
+    ]
+  },
+  "path_domains": [
+    {
+      "prefix": "docs/architecture/",
+      "domains": [
+        "product",
+        "api"
+      ]
+    },
+    {
+      "prefix": "docs/program/",
+      "domains": [
+        "program"
+      ]
+    },
+    {
+      "prefix": "automation/platform/",
+      "domains": [
+        "platform"
+      ]
+    },
+    {
+      "prefix": "scripts/p00_",
+      "domains": [
+        "platform"
+      ]
+    },
+    {
+      "prefix": "tests/platform/",
+      "domains": [
+        "platform"
+      ]
+    },
+    {
+      "prefix": "scripts/p00_build_contracts.py",
+      "domains": [
+        "api",
+        "product"
+      ]
+    },
+    {
+      "prefix": "tests/platform/test_p00_contracts.py",
+      "domains": [
+        "api",
+        "product"
+      ]
+    },
+    {
+      "prefix": "docs/work/P00_BASELINE.md",
+      "domains": [
+        "product",
+        "program",
+        "platform"
+      ]
+    }
+  ],
+  "role_context": {
+    "ARCHITECT": [],
+    "WORK": [
+      "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md"
+    ],
+    "CODEX": [
+      "automation/prompts/CODEX_EXECUTOR_KERNEL.md"
+    ],
+    "REVIEWER": [
+      "automation/platform/OPERATING_MODEL.md"
+    ],
+    "INTEGRATOR": [
+      "automation/platform/OPERATING_MODEL.md"
+    ]
+  }
+}

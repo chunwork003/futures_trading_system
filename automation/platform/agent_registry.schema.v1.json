@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "p00.agent_registry.v1"
+    },
+    "status": {
+      "const": "CANDIDATE_NON_AUTHORITY"
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "enum": [
+              "ARCHITECT",
+              "WORK",
+              "CODEX",
+              "REVIEWER",
+              "INTEGRATOR",
+              "CONTROLLER",
+              "RESEARCH",
+              "RELEASE"
+            ]
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1
+          },
+          "inputs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "allowed_capabilities": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "forbidden_capabilities": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "authority_source": {
+            "const": "EXACT_CURRENT_GRANT_NOT_THIS_REGISTRY"
+          },
+          "handoff_fields": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "stop_conditions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "context_owner": {
+            "const": "context_policy.v1.json"
+          },
+          "maturity": {
+            "const": "L2_SPECIFICATION"
+          },
+          "evaluation_status": {
+            "const": "NOT_BEHAVIORALLY_QUALIFIED"
+          },
+          "implementation": {
+            "const": "ROLE_CONTRACT_NOT_AUTOMATIC_PROCESS"
+          }
+        },
+        "required": [
+          "id",
+          "purpose",
+          "inputs",
+          "outputs",
+          "allowed_capabilities",
+          "forbidden_capabilities",
+          "authority_source",
+          "handoff_fields",
+          "stop_conditions",
+          "context_owner",
+          "maturity",
+          "evaluation_status",
+          "implementation"
+        ]
+      },
+      "uniqueItems": true,
+      "minItems": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "agents"
+  ]
+}

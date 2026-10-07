@@ -8,4 +8,9 @@ Read `docs/work/P00_BASELINE.md`, then `docs/program/p00_status.v1.json` for con
 - `skill_registry.v1.json`: seven existing Skills, explicit lack of behavioral qualification and missing capability backlog.
 - `OPERATING_MODEL.md`: proposed responsibility, safety and ranking rules.
 
-Pending: typed agent/tool registries, deterministic context resolver, package schema/compiler, behavioral eval fixtures, telemetry definitions, progress ledger and current-projection migration validation. Until validated and independently accepted, these are not enabled automation capabilities.
+- `AI_CONTEXT_BOOTSTRAP.md`: bounded resume and source precedence; preserves existing current-state authority.
+- `context_policy.v1.json` / `scripts/p00_context.py`: exact Git context resolver, P00 only; no execution grant.
+- `agent_registry.v1.json` / `tool_registry.v1.json`: typed candidate logical roles and tool effects, with matching JSON Schemas.
+- `tests/platform/`: schema/isolation/negative Git fixtures; passing offline tests does not establish operational qualification.
+
+Pending: package schema/compiler, full golden-task behavioral evaluations, telemetry definitions, progress ledger and current-projection migration validation. Until independently accepted, these are not enabled automation capabilities. API candidate authoring and generated contracts are indexed by `docs/architecture/V1_API_ARCHITECTURE.md`.

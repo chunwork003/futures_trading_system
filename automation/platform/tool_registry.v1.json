@@ -1,0 +1,257 @@
+{
+  "schema_version": "p00.tool_registry.v1",
+  "status": "CANDIDATE_NON_AUTHORITY",
+  "tools": [
+    {
+      "id": "git_snapshot",
+      "effect_class": "READ",
+      "inputs": [
+        "exact_commit",
+        "relative_path"
+      ],
+      "outputs": [
+        "blob",
+        "sha256"
+      ],
+      "adapter": "Git CLI read-only cat-file/ls-tree",
+      "observed_status": "AVAILABLE_OBSERVED",
+      "required_authority": "NONE",
+      "credentials": "HOST_MANAGED_NEVER_IN_CONTEXT",
+      "network": "NOT_IMPLIED",
+      "failure_semantics": "EXPLICIT_FAILURE_NO_SILENT_PROVIDER_FALLBACK",
+      "idempotency": "READ_ONLY_OR_EXACT_EFFECT_RECEIPT",
+      "audit_fields": [
+        "tool_id",
+        "input_fingerprint",
+        "baseline_sha",
+        "exit_status",
+        "duration",
+        "evidence_ref"
+      ],
+      "qualification": "LOCAL_TESTS_DO_NOT_PROVE_EXTERNAL_CAPABILITY"
+    },
+    {
+      "id": "context_resolver",
+      "effect_class": "READ",
+      "inputs": [
+        "task_type",
+        "package_id",
+        "changed_paths",
+        "architecture_domains",
+        "baseline_sha"
+      ],
+      "outputs": [
+        "context_manifest",
+        "context_hash"
+      ],
+      "adapter": "scripts/p00_context.py",
+      "observed_status": "IMPLEMENTED_PENDING_REVIEW",
+      "required_authority": "NONE",
+      "credentials": "HOST_MANAGED_NEVER_IN_CONTEXT",
+      "network": "NOT_IMPLIED",
+      "failure_semantics": "EXPLICIT_FAILURE_NO_SILENT_PROVIDER_FALLBACK",
+      "idempotency": "READ_ONLY_OR_EXACT_EFFECT_RECEIPT",
+      "audit_fields": [
+        "tool_id",
+        "input_fingerprint",
+        "baseline_sha",
+        "exit_status",
+        "duration",
+        "evidence_ref"
+      ],
+      "qualification": "LOCAL_TESTS_DO_NOT_PROVE_EXTERNAL_CAPABILITY"
+    },
+    {
+      "id": "contract_generator",
+      "effect_class": "CANDIDATE_WRITE",
+      "inputs": [
+        "generator_revision"
+      ],
+      "outputs": [
+        "openapi_json"
+      ],
+      "adapter": "scripts/p00_build_contracts.py",
+      "observed_status": "IMPLEMENTED_PENDING_REVIEW",
+      "required_authority": "P00_ONLY",
+      "credentials": "HOST_MANAGED_NEVER_IN_CONTEXT",
+      "network": "NOT_IMPLIED",
+      "failure_semantics": "EXPLICIT_FAILURE_NO_SILENT_PROVIDER_FALLBACK",
+      "idempotency": "READ_ONLY_OR_EXACT_EFFECT_RECEIPT",
+      "audit_fields": [
+        "tool_id",
+        "input_fingerprint",
+        "baseline_sha",
+        "exit_status",
+        "duration",
+        "evidence_ref"
+      ],
+      "qualification": "LOCAL_TESTS_DO_NOT_PROVE_EXTERNAL_CAPABILITY"
+    },
+    {
+      "id": "schema_validator",
+      "effect_class": "READ",
+      "inputs": [
+        "schema",
+        "fixture"
+      ],
+      "outputs": [
+        "validation_errors"
+      ],
+      "adapter": "Python jsonschema Draft202012Validator",
+      "observed_status": "AVAILABLE_OBSERVED",
+      "required_authority": "NONE",
+      "credentials": "HOST_MANAGED_NEVER_IN_CONTEXT",
+      "network": "NOT_IMPLIED",
+      "failure_semantics": "EXPLICIT_FAILURE_NO_SILENT_PROVIDER_FALLBACK",
+      "idempotency": "READ_ONLY_OR_EXACT_EFFECT_RECEIPT",
+      "audit_fields": [
+        "tool_id",
+        "input_fingerprint",
+        "baseline_sha",
+        "exit_status",
+        "duration",
+        "evidence_ref"
+      ],
+      "qualification": "LOCAL_TESTS_DO_NOT_PROVE_EXTERNAL_CAPABILITY"
+    },
+    {
+      "id": "test_runner",
+      "effect_class": "ISOLATED_LOCAL_EXECUTION",
+      "inputs": [
+        "exact_test_paths",
+        "fixture_root"
+      ],
+      "outputs": [
+        "exit_code",
+        "test_report"
+      ],
+      "adapter": "python -B -m pytest",
+      "observed_status": "AVAILABLE_OBSERVED",
+      "required_authority": "EXACT_TEST_SCOPE",
+      "credentials": "HOST_MANAGED_NEVER_IN_CONTEXT",
+      "network": "NOT_IMPLIED",
+      "failure_semantics": "EXPLICIT_FAILURE_NO_SILENT_PROVIDER_FALLBACK",
+      "idempotency": "READ_ONLY_OR_EXACT_EFFECT_RECEIPT",
+      "audit_fields": [
+        "tool_id",
+        "input_fingerprint",
+        "baseline_sha",
+        "exit_status",
+        "duration",
+        "evidence_ref"
+      ],
+      "qualification": "LOCAL_TESTS_DO_NOT_PROVE_EXTERNAL_CAPABILITY"
+    },
+    {
+      "id": "git_publish",
+      "effect_class": "REMOTE_WRITE",
+      "inputs": [
+        "repository",
+        "branch",
+        "exact_commit"
+      ],
+      "outputs": [
+        "remote_sha"
+      ],
+      "adapter": "git push explicit remote branch",
+      "observed_status": "AVAILABLE_OBSERVED",
+      "required_authority": "EXPLICIT_DESTINATION_AND_CONTENT_APPROVAL",
+      "credentials": "HOST_MANAGED_NEVER_IN_CONTEXT",
+      "network": "ONLY_EXPLICIT_ALLOWLIST",
+      "failure_semantics": "EXPLICIT_FAILURE_NO_SILENT_PROVIDER_FALLBACK",
+      "idempotency": "READ_ONLY_OR_EXACT_EFFECT_RECEIPT",
+      "audit_fields": [
+        "tool_id",
+        "input_fingerprint",
+        "baseline_sha",
+        "exit_status",
+        "duration",
+        "evidence_ref"
+      ],
+      "qualification": "LOCAL_TESTS_DO_NOT_PROVE_EXTERNAL_CAPABILITY"
+    },
+    {
+      "id": "package_compiler",
+      "effect_class": "READ",
+      "inputs": [
+        "package_spec",
+        "context_manifest"
+      ],
+      "outputs": [
+        "compiled_candidate",
+        "not_ready_reasons"
+      ],
+      "adapter": "NOT_IMPLEMENTED",
+      "observed_status": "MISSING",
+      "required_authority": "NONE",
+      "credentials": "HOST_MANAGED_NEVER_IN_CONTEXT",
+      "network": "NOT_IMPLIED",
+      "failure_semantics": "EXPLICIT_FAILURE_NO_SILENT_PROVIDER_FALLBACK",
+      "idempotency": "READ_ONLY_OR_EXACT_EFFECT_RECEIPT",
+      "audit_fields": [
+        "tool_id",
+        "input_fingerprint",
+        "baseline_sha",
+        "exit_status",
+        "duration",
+        "evidence_ref"
+      ],
+      "qualification": "LOCAL_TESTS_DO_NOT_PROVE_EXTERNAL_CAPABILITY"
+    },
+    {
+      "id": "provider_dispatch",
+      "effect_class": "EXECUTION_EFFECT",
+      "inputs": [
+        "exact_invocation_authority",
+        "idempotency_key"
+      ],
+      "outputs": [
+        "invocation_receipt"
+      ],
+      "adapter": "ProviderAdapter.dispatch contract pending",
+      "observed_status": "NOT_ENABLED",
+      "required_authority": "ACCEPTED_LIFECYCLE_AND_EXACT_GRANT",
+      "credentials": "HOST_MANAGED_NEVER_IN_CONTEXT",
+      "network": "NOT_IMPLIED",
+      "failure_semantics": "EXPLICIT_FAILURE_NO_SILENT_PROVIDER_FALLBACK",
+      "idempotency": "READ_ONLY_OR_EXACT_EFFECT_RECEIPT",
+      "audit_fields": [
+        "tool_id",
+        "input_fingerprint",
+        "baseline_sha",
+        "exit_status",
+        "duration",
+        "evidence_ref"
+      ],
+      "qualification": "LOCAL_TESTS_DO_NOT_PROVE_EXTERNAL_CAPABILITY"
+    },
+    {
+      "id": "scheduler_wake",
+      "effect_class": "SCHEDULING_EFFECT",
+      "inputs": [
+        "next_wake",
+        "reason",
+        "decision_hash"
+      ],
+      "outputs": [
+        "wake_receipt"
+      ],
+      "adapter": "ProviderAdapter.schedule_wake contract pending",
+      "observed_status": "NOT_ENABLED",
+      "required_authority": "BOUNDED_SCHEDULER_GRANT",
+      "credentials": "HOST_MANAGED_NEVER_IN_CONTEXT",
+      "network": "NOT_IMPLIED",
+      "failure_semantics": "EXPLICIT_FAILURE_NO_SILENT_PROVIDER_FALLBACK",
+      "idempotency": "READ_ONLY_OR_EXACT_EFFECT_RECEIPT",
+      "audit_fields": [
+        "tool_id",
+        "input_fingerprint",
+        "baseline_sha",
+        "exit_status",
+        "duration",
+        "evidence_ref"
+      ],
+      "qualification": "LOCAL_TESTS_DO_NOT_PROVE_EXTERNAL_CAPABILITY"
+    }
+  ]
+}

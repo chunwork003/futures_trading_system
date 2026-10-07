@@ -1,0 +1,4938 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "V1 internal Python API — P00 candidate",
+    "version": "1.0.0-candidate"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "x-status": "CANDIDATE_NOT_ACCEPTED_NOT_IMPLEMENTED",
+  "servers": [
+    {
+      "url": "https://python.internal"
+    }
+  ],
+  "security": [
+    {
+      "ServiceToken": []
+    }
+  ],
+  "paths": {
+    "/api/v1/datasets": {
+      "get": {
+        "operationId": "listDatasets",
+        "summary": "listDatasets",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatasetManifestPage"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "items": [],
+                      "next_cursor": "example",
+                      "snapshot_ref": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Snapshot-bound opaque cursor, default 100/max 1000; fixed identity sort.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/strategies": {
+      "get": {
+        "operationId": "listStrategies",
+        "summary": "listStrategies",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StrategyDefinitionPage"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "items": [],
+                      "next_cursor": "example",
+                      "snapshot_ref": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Snapshot-bound opaque cursor, default 100/max 1000; fixed identity sort.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/research-runs": {
+      "post": {
+        "operationId": "createResearchRun",
+        "summary": "createResearchRun",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted command receipt; poll referenced operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "command_id": "example",
+                      "idempotency_key": "example",
+                      "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "resource_id": "example",
+                      "resource_revision": 1,
+                      "operation_id": "example",
+                      "outcome": "ACCEPTED",
+                      "recorded_at": "2026-01-01T00:00:00Z",
+                      "correlation_id": "example"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_WRITE",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "ATOMIC_RUN_COMMAND_OPERATION",
+          "async": true,
+          "idempotency": "actor + operationId + resource id (collection for create); durable original receipt replay before revision check",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "On lost response repeat identical key/payload/If-Match; never new key. 503/429 use bounded backoff.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Atomic command acceptance/rejection receipts; redact payload secrets."
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResearchRunRequest"
+              },
+              "examples": {
+                "synthetic": {
+                  "summary": "Shape-only synthetic input; references require authoritative resolution.",
+                  "value": {
+                    "bindings": {
+                      "dataset": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "strategies": [
+                        {
+                          "strategy_id": "example",
+                          "implementation_revision": "0000000000000000000000000000000000000000",
+                          "instance_id": "example",
+                          "config_ref": {
+                            "owner": "example-owner",
+                            "identity": "example-identity",
+                            "version": "v1",
+                            "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                          },
+                          "contract": {
+                            "instrument_id": 1,
+                            "contract_id": 1,
+                            "calendar_ref": {
+                              "owner": "example-owner",
+                              "identity": "example-identity",
+                              "version": "v1",
+                              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                            },
+                            "mapping_ref": {
+                              "owner": "example-owner",
+                              "identity": "example-identity",
+                              "version": "v1",
+                              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                            }
+                          },
+                          "timeframe": "example"
+                        }
+                      ],
+                      "decision_policy": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "risk_policy": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "cost_policy": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "margin_policy": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "code_sha": "0000000000000000000000000000000000000000",
+                      "dependency_lock_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "seed": 0,
+                      "rng_algorithm": "PCG64",
+                      "rng_version": "example"
+                    },
+                    "spec": {
+                      "kind": "BACKTEST"
+                    },
+                    "initial_capital": "100000",
+                    "currency": "TWD"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "listResearchRuns",
+        "summary": "listResearchRuns",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResearchRunPage"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "items": [],
+                      "next_cursor": "example",
+                      "snapshot_ref": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Snapshot-bound opaque cursor, default 100/max 1000; fixed identity sort.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/operations/{id}": {
+      "get": {
+        "operationId": "getOperation",
+        "summary": "getOperation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Operation"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "operation_id": "example",
+                      "kind": "RESEARCH",
+                      "resource_id": "example",
+                      "state": "QUEUED",
+                      "revision": 1,
+                      "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "command_id": "example",
+                      "current_attempt_id": "example",
+                      "created_at": "2026-01-01T00:00:00Z",
+                      "updated_at": "2026-01-01T00:00:00Z",
+                      "result_manifest_ids": [],
+                      "error": {
+                        "code": "READINESS_BLOCKED",
+                        "message": "Published results are not available.",
+                        "correlation_id": "correlation-example",
+                        "retryable": false,
+                        "operation_id": "operation-example",
+                        "current_revision": 1,
+                        "violations": []
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/operations/{id}/cancel": {
+      "post": {
+        "operationId": "cancelOperation",
+        "summary": "cancelOperation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/IfMatch"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted command receipt; poll referenced operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "command_id": "example",
+                      "idempotency_key": "example",
+                      "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "resource_id": "example",
+                      "resource_revision": 1,
+                      "operation_id": "example",
+                      "outcome": "ACCEPTED",
+                      "recorded_at": "2026-01-01T00:00:00Z",
+                      "correlation_id": "example"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_WRITE",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "COMMAND_RECEIPT_AND_OPERATION_CAS",
+          "async": true,
+          "idempotency": "actor + operationId + resource id (collection for create); durable original receipt replay before revision check",
+          "expected_revision": "REQUIRED_CAS",
+          "retry": "On lost response repeat identical key/payload/If-Match; never new key. 503/429 use bounded backoff.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Atomic command acceptance/rejection receipts; redact payload secrets."
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelRequest"
+              },
+              "examples": {
+                "synthetic": {
+                  "summary": "Shape-only synthetic input; references require authoritative resolution.",
+                  "value": {
+                    "reason": "Operator requested cancellation."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/research-runs/{id}/results": {
+      "get": {
+        "operationId": "getResearchResults",
+        "summary": "getResearchResults",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResearchResults"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "run_id": "example",
+                      "operation_revision": 1,
+                      "input_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "metrics": [],
+                      "artifacts": [],
+                      "constituent_run_ids": [],
+                      "assumptions_ref": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/simulation-sessions": {
+      "post": {
+        "operationId": "createSimulation",
+        "summary": "createSimulation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted command receipt; poll referenced operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "command_id": "example",
+                      "idempotency_key": "example",
+                      "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "resource_id": "example",
+                      "resource_revision": 1,
+                      "operation_id": "example",
+                      "outcome": "ACCEPTED",
+                      "recorded_at": "2026-01-01T00:00:00Z",
+                      "correlation_id": "example"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_WRITE",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "SYNTHETIC_GENESIS_AND_SESSION_AND_RECEIPT",
+          "async": true,
+          "idempotency": "actor + operationId + resource id (collection for create); durable original receipt replay before revision check",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "On lost response repeat identical key/payload/If-Match; never new key. 503/429 use bounded backoff.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Atomic command acceptance/rejection receipts; redact payload secrets."
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SimulationRequest"
+              },
+              "examples": {
+                "synthetic": {
+                  "summary": "Shape-only synthetic input; references require authoritative resolution.",
+                  "value": {
+                    "mode": "SIMULATED",
+                    "bindings": {
+                      "dataset": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "strategies": [
+                        {
+                          "strategy_id": "example",
+                          "implementation_revision": "0000000000000000000000000000000000000000",
+                          "instance_id": "example",
+                          "config_ref": {
+                            "owner": "example-owner",
+                            "identity": "example-identity",
+                            "version": "v1",
+                            "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                          },
+                          "contract": {
+                            "instrument_id": 1,
+                            "contract_id": 1,
+                            "calendar_ref": {
+                              "owner": "example-owner",
+                              "identity": "example-identity",
+                              "version": "v1",
+                              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                            },
+                            "mapping_ref": {
+                              "owner": "example-owner",
+                              "identity": "example-identity",
+                              "version": "v1",
+                              "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                            }
+                          },
+                          "timeframe": "example"
+                        }
+                      ],
+                      "decision_policy": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "risk_policy": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "cost_policy": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "margin_policy": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "code_sha": "0000000000000000000000000000000000000000",
+                      "dependency_lock_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "seed": 0,
+                      "rng_algorithm": "PCG64",
+                      "rng_version": "example"
+                    },
+                    "scenario_ref": {
+                      "owner": "example-owner",
+                      "identity": "example-identity",
+                      "version": "v1",
+                      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                    },
+                    "initial_capital": "100000",
+                    "currency": "TWD"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/simulation-sessions/{id}": {
+      "get": {
+        "operationId": "getSimulation",
+        "summary": "getSimulation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SimulationSession"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "session_id": "example",
+                      "mode": "SIMULATED",
+                      "synthetic_account_id": "example",
+                      "revision": 1,
+                      "request": {
+                        "mode": "SIMULATED",
+                        "bindings": {
+                          "dataset": {
+                            "owner": "example-owner",
+                            "identity": "example-identity",
+                            "version": "v1",
+                            "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                          },
+                          "strategies": [
+                            {
+                              "strategy_id": "example",
+                              "implementation_revision": "0000000000000000000000000000000000000000",
+                              "instance_id": "example",
+                              "config_ref": {
+                                "owner": "example-owner",
+                                "identity": "example-identity",
+                                "version": "v1",
+                                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                              },
+                              "contract": {
+                                "instrument_id": 1,
+                                "contract_id": 1,
+                                "calendar_ref": {
+                                  "owner": "example-owner",
+                                  "identity": "example-identity",
+                                  "version": "v1",
+                                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                                },
+                                "mapping_ref": {
+                                  "owner": "example-owner",
+                                  "identity": "example-identity",
+                                  "version": "v1",
+                                  "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                                }
+                              },
+                              "timeframe": "example"
+                            }
+                          ],
+                          "decision_policy": {
+                            "owner": "example-owner",
+                            "identity": "example-identity",
+                            "version": "v1",
+                            "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                          },
+                          "risk_policy": {
+                            "owner": "example-owner",
+                            "identity": "example-identity",
+                            "version": "v1",
+                            "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                          },
+                          "cost_policy": {
+                            "owner": "example-owner",
+                            "identity": "example-identity",
+                            "version": "v1",
+                            "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                          },
+                          "margin_policy": {
+                            "owner": "example-owner",
+                            "identity": "example-identity",
+                            "version": "v1",
+                            "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                          },
+                          "code_sha": "0000000000000000000000000000000000000000",
+                          "dependency_lock_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+                          "seed": 0,
+                          "rng_algorithm": "PCG64",
+                          "rng_version": "example"
+                        },
+                        "scenario_ref": {
+                          "owner": "example-owner",
+                          "identity": "example-identity",
+                          "version": "v1",
+                          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                        },
+                        "initial_capital": "100000",
+                        "currency": "TWD"
+                      },
+                      "risk_increase_blocked": false,
+                      "state": "CREATED",
+                      "clock_checkpoint": {
+                        "occurred_at": "2026-01-01T00:00:00Z",
+                        "event_index": 0
+                      },
+                      "created_at": "2026-01-01T00:00:00Z",
+                      "governing_refs": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/simulation-sessions/{id}/commands": {
+      "post": {
+        "operationId": "commandSimulation",
+        "summary": "commandSimulation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/IfMatch"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted command receipt; poll referenced operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "command_id": "example",
+                      "idempotency_key": "example",
+                      "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "resource_id": "example",
+                      "resource_revision": 1,
+                      "operation_id": "example",
+                      "outcome": "ACCEPTED",
+                      "recorded_at": "2026-01-01T00:00:00Z",
+                      "correlation_id": "example"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_WRITE",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "COMMAND_SESSION_CAS_AND_OPERATION",
+          "async": true,
+          "idempotency": "actor + operationId + resource id (collection for create); durable original receipt replay before revision check",
+          "expected_revision": "REQUIRED_CAS",
+          "retry": "On lost response repeat identical key/payload/If-Match; never new key. 503/429 use bounded backoff.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Atomic command acceptance/rejection receipts; redact payload secrets."
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SimulationCommand"
+              },
+              "examples": {
+                "synthetic": {
+                  "summary": "Shape-only synthetic input; references require authoritative resolution.",
+                  "value": {
+                    "command": "PAUSE",
+                    "reason": "Inspect the simulation."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/accounts/{id}/state": {
+      "get": {
+        "operationId": "getAccountState",
+        "summary": "getAccountState",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountState"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "account_id": "example",
+                      "environment": "SIMULATED",
+                      "revision": 1,
+                      "readiness": "HALT",
+                      "reason_codes": [],
+                      "expected": [],
+                      "actual": {
+                        "status": "KNOWN",
+                        "positions": [],
+                        "observation_ref": {
+                          "owner": "example-owner",
+                          "identity": "example-identity",
+                          "version": "v1",
+                          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                        },
+                        "completeness_ref": {
+                          "owner": "example-owner",
+                          "identity": "example-identity",
+                          "version": "v1",
+                          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                        }
+                      },
+                      "recovery_cut_ref": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "trading_authorization": "SIMULATED_ONLY"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/reconciliation-cases": {
+      "get": {
+        "operationId": "listReconciliationCases",
+        "summary": "listReconciliationCases",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReconciliationCasePage"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "items": [],
+                      "next_cursor": "example",
+                      "snapshot_ref": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Snapshot-bound opaque cursor, default 100/max 1000; fixed identity sort.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/audit": {
+      "get": {
+        "operationId": "listAudit",
+        "summary": "listAudit",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditEventPage"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "items": [],
+                      "next_cursor": "example",
+                      "snapshot_ref": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Snapshot-bound opaque cursor, default 100/max 1000; fixed identity sort.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/system/status": {
+      "get": {
+        "operationId": "getSystemStatus",
+        "summary": "getSystemStatus",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStatus"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "api_version": "v1",
+                      "build_sha": "0000000000000000000000000000000000000000",
+                      "mode": "SIMULATED_ONLY",
+                      "process_live": false,
+                      "service_ready": false,
+                      "dependencies": [],
+                      "workload_policy_ref": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "sampled_at": "2026-01-01T00:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/commands/{id}": {
+      "get": {
+        "operationId": "getCommandReceipt",
+        "summary": "getCommandReceipt",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "command_id": "example",
+                      "idempotency_key": "example",
+                      "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "resource_id": "example",
+                      "resource_revision": 1,
+                      "operation_id": "example",
+                      "outcome": "ACCEPTED",
+                      "recorded_at": "2026-01-01T00:00:00Z",
+                      "correlation_id": "example"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/dataset-imports": {
+      "post": {
+        "operationId": "importDataset",
+        "summary": "importDataset",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted command receipt; poll referenced operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "command_id": "example",
+                      "idempotency_key": "example",
+                      "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "resource_id": "example",
+                      "resource_revision": 1,
+                      "operation_id": "example",
+                      "outcome": "ACCEPTED",
+                      "recorded_at": "2026-01-01T00:00:00Z",
+                      "correlation_id": "example"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_WRITE",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "STAGED_FILE_AND_IMPORT_COMMAND_OPERATION",
+          "async": true,
+          "idempotency": "actor + operationId + resource id (collection for create); durable original receipt replay before revision check",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "On lost response repeat identical key/payload/If-Match; never new key. 503/429 use bounded backoff.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Atomic command acceptance/rejection receipts; redact payload secrets."
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/DatasetImportRequest"
+              },
+              "encoding": {
+                "metadata": {
+                  "contentType": "application/json"
+                },
+                "file": {
+                  "contentType": "text/csv"
+                }
+              },
+              "examples": {
+                "synthetic": {
+                  "summary": "Shape-only synthetic input; references require authoritative resolution.",
+                  "value": {
+                    "metadata": {
+                      "dataset_id": "example",
+                      "source_name": "example",
+                      "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "format": "CSV_V1",
+                      "calendar_ref": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "mapping_ref": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "quality_policy_ref": {
+                        "owner": "example-owner",
+                        "identity": "example-identity",
+                        "version": "v1",
+                        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                      },
+                      "parent_version_id": "example",
+                      "correction_reason": "example"
+                    },
+                    "file": "example"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/strategy-configs": {
+      "post": {
+        "operationId": "createStrategyConfig",
+        "summary": "createStrategyConfig",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "command_id": "example",
+                      "idempotency_key": "example",
+                      "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "resource_id": "example",
+                      "resource_revision": 1,
+                      "operation_id": "example",
+                      "outcome": "ACCEPTED",
+                      "recorded_at": "2026-01-01T00:00:00Z",
+                      "correlation_id": "example"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_WRITE",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "IMMUTABLE_CONFIG_AND_COMMAND_RECEIPT",
+          "async": false,
+          "idempotency": "actor + operationId + resource id (collection for create); durable original receipt replay before revision check",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "On lost response repeat identical key/payload/If-Match; never new key. 503/429 use bounded backoff.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Atomic command acceptance/rejection receipts; redact payload secrets."
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StrategyConfigRequest"
+              },
+              "examples": {
+                "synthetic": {
+                  "summary": "Shape-only synthetic input; references require authoritative resolution.",
+                  "value": {
+                    "strategy_id": "example",
+                    "implementation_revision": "0000000000000000000000000000000000000000",
+                    "config_schema_ref": {
+                      "owner": "example-owner",
+                      "identity": "example-identity",
+                      "version": "v1",
+                      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                    },
+                    "parameters": []
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/strategy-configs/{id}": {
+      "get": {
+        "operationId": "getStrategyConfig",
+        "summary": "getStrategyConfig",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StrategyConfigVersion"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "strategy_id": "example",
+                      "config_version": "example",
+                      "fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "request": {
+                        "strategy_id": "example",
+                        "implementation_revision": "0000000000000000000000000000000000000000",
+                        "config_schema_ref": {
+                          "owner": "example-owner",
+                          "identity": "example-identity",
+                          "version": "v1",
+                          "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+                        },
+                        "parameters": []
+                      },
+                      "created_at": "2026-01-01T00:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/configuration-catalog": {
+      "get": {
+        "operationId": "getConfigurationCatalog",
+        "summary": "getConfigurationCatalog",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigurationCatalog"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "strategies": [],
+                      "strategy_configs": [],
+                      "decision_policies": [],
+                      "risk_policies": [],
+                      "cost_policies": [],
+                      "margin_policies": [],
+                      "scenarios": [],
+                      "calendars": [],
+                      "contract_mappings": [],
+                      "quality_policies": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/reconciliation-cases/{id}/resolve": {
+      "post": {
+        "operationId": "resolveReconciliationCase",
+        "summary": "resolveReconciliationCase",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          },
+          {
+            "$ref": "#/components/parameters/IfMatch"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "command_id": "example",
+                      "idempotency_key": "example",
+                      "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "resource_id": "example",
+                      "resource_revision": 1,
+                      "operation_id": "example",
+                      "outcome": "ACCEPTED",
+                      "recorded_at": "2026-01-01T00:00:00Z",
+                      "correlation_id": "example"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_WRITE",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "ACCEPTED_CASE_VERSION_APPEND_AND_RECEIPT",
+          "async": false,
+          "idempotency": "actor + operationId + resource id (collection for create); durable original receipt replay before revision check",
+          "expected_revision": "REQUIRED_CAS",
+          "retry": "On lost response repeat identical key/payload/If-Match; never new key. 503/429 use bounded backoff.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Atomic command acceptance/rejection receipts; redact payload secrets."
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveCaseRequest"
+              },
+              "examples": {
+                "synthetic": {
+                  "summary": "Shape-only synthetic input; references require authoritative resolution.",
+                  "value": {
+                    "resolution_note": "example"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/artifacts/{id}/rows": {
+      "get": {
+        "operationId": "getArtifactRows",
+        "summary": "getArtifactRows",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Validated projection.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArtifactRows"
+                },
+                "examples": {
+                  "synthetic": {
+                    "summary": "Shape-only synthetic projection, not currentness evidence.",
+                    "value": {
+                      "artifact_id": "example",
+                      "artifact_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+                      "columns": [],
+                      "rows": [],
+                      "next_cursor": "example"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Snapshot-bound opaque cursor, default 100/max 1000; fixed identity sort.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    },
+    "/api/v1/artifacts/{id}/download": {
+      "get": {
+        "operationId": "downloadArtifact",
+        "summary": "downloadArtifact",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Published bytes, authorized by artifact identity; attachment filename server-derived; no path input or Range support.",
+            "headers": {
+              "ETag": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "Quoted SHA256 byte digest"
+              },
+              "Content-Disposition": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "const": "nosniff"
+                }
+              }
+            },
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "409": {
+            "$ref": "#/components/responses/409"
+          },
+          "422": {
+            "$ref": "#/components/responses/422"
+          },
+          "413": {
+            "$ref": "#/components/responses/413"
+          },
+          "429": {
+            "$ref": "#/components/responses/429"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          },
+          "503": {
+            "$ref": "#/components/responses/503"
+          }
+        },
+        "x-contract": {
+          "owner": "PYTHON",
+          "permission": "OPERATOR_READ",
+          "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
+          "transaction": "READ_ONLY_SNAPSHOT",
+          "async": false,
+          "idempotency": "READ_ONLY",
+          "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
+          "retry": "Safe bounded retry; cursor snapshot cannot be silently replaced.",
+          "cancellation": "Explicit operation cancel or session STOP only; disconnect is not cancellation.",
+          "pagination": "Bounded non-paginated projection.",
+          "audit": "Access telemetry with actor/correlation; not economic evidence."
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Identity": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+      },
+      "Revision": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "Decimal": {
+        "type": "string",
+        "pattern": "^(?:0|-?[1-9][0-9]*|-?(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+        "maxLength": 80
+      },
+      "EvidenceRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "owner": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "identity": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "owner",
+          "identity",
+          "version",
+          "sha256"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "INVALID_INPUT",
+              "UNAUTHENTICATED",
+              "FORBIDDEN",
+              "NOT_FOUND",
+              "REVISION_CONFLICT",
+              "IDEMPOTENCY_CONFLICT",
+              "UNQUALIFIED_DATA",
+              "READINESS_BLOCKED",
+              "WORKLOAD_LIMIT_EXCEEDED",
+              "DEPENDENCY_UNAVAILABLE",
+              "INTERNAL_ERROR",
+              "RATE_LIMITED"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          },
+          "correlation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "retryable": {
+            "type": "boolean"
+          },
+          "operation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "current_revision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "violations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 2048
+                },
+                "rule": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                }
+              },
+              "required": [
+                "field",
+                "rule"
+              ]
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "correlation_id",
+          "retryable",
+          "operation_id",
+          "current_revision",
+          "violations"
+        ]
+      },
+      "DatasetVersion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "dataset_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "version_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "semantic_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "parent_version_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "correction_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "ingested_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          }
+        },
+        "required": [
+          "dataset_id",
+          "version_id",
+          "semantic_hash",
+          "parent_version_id",
+          "correction_reason",
+          "ingested_at"
+        ]
+      },
+      "DatasetManifest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "dataset.v1"
+          },
+          "dataset_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "dataset_version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "canonical_content_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "source_manifest_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "calendar_version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "contract_mapping_version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "quality_policy_version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "partitions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "relative_path": {
+                  "type": "string",
+                  "pattern": "^partitions/[a-zA-Z0-9_-]+\\.parquet$"
+                },
+                "byte_hash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "row_count": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "first_open_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$"
+                },
+                "last_open_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "Z$"
+                }
+              },
+              "required": [
+                "relative_path",
+                "byte_hash",
+                "row_count",
+                "first_open_at",
+                "last_open_at"
+              ]
+            },
+            "maxItems": 10000
+          },
+          "coverage": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "start_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$"
+              },
+              "end_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$"
+              },
+              "required_bars": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "observed_bars": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "missing_bars": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "conflicting_bars": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "start_at",
+              "end_at",
+              "required_bars",
+              "observed_bars",
+              "missing_bars",
+              "conflicting_bars"
+            ]
+          },
+          "accepted_quality_report": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "schema_version",
+          "dataset_id",
+          "dataset_version",
+          "canonical_content_hash",
+          "source_manifest_hash",
+          "calendar_version",
+          "contract_mapping_version",
+          "quality_policy_version",
+          "partitions",
+          "coverage",
+          "accepted_quality_report"
+        ]
+      },
+      "ContractBinding": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "instrument_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "contract_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "calendar_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "mapping_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "instrument_id",
+          "contract_id",
+          "calendar_ref",
+          "mapping_ref"
+        ]
+      },
+      "StrategyDefinition": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "strategy_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "implementation_revision": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "config_schema_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "supported_timeframes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "maxItems": 20
+          },
+          "supported_modes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "BACKTEST",
+                "SIMULATED"
+              ]
+            },
+            "maxItems": 2
+          }
+        },
+        "required": [
+          "strategy_id",
+          "implementation_revision",
+          "config_schema_ref",
+          "supported_timeframes",
+          "supported_modes"
+        ]
+      },
+      "StrategyBinding": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "strategy_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "implementation_revision": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "instance_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "config_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "contract": {
+            "$ref": "#/components/schemas/ContractBinding"
+          },
+          "timeframe": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          }
+        },
+        "required": [
+          "strategy_id",
+          "implementation_revision",
+          "instance_id",
+          "config_ref",
+          "contract",
+          "timeframe"
+        ]
+      },
+      "RunBindings": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "dataset": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "strategies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StrategyBinding"
+            },
+            "maxItems": 20,
+            "minItems": 1
+          },
+          "decision_policy": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "risk_policy": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "cost_policy": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "margin_policy": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "code_sha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "dependency_lock_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4294967295
+          },
+          "rng_algorithm": {
+            "const": "PCG64"
+          },
+          "rng_version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          }
+        },
+        "required": [
+          "dataset",
+          "strategies",
+          "decision_policy",
+          "risk_policy",
+          "cost_policy",
+          "margin_policy",
+          "code_sha",
+          "dependency_lock_hash",
+          "seed",
+          "rng_algorithm",
+          "rng_version"
+        ]
+      },
+      "BacktestSpec": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "BACKTEST"
+          }
+        },
+        "required": [
+          "kind"
+        ]
+      },
+      "ParameterStudySpec": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "PARAMETER_STUDY"
+          },
+          "trial_config_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "kind",
+          "trial_config_refs"
+        ]
+      },
+      "OosSpec": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "OOS"
+          },
+          "training_end_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "test_start_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "test_end_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          }
+        },
+        "required": [
+          "kind",
+          "training_end_at",
+          "test_start_at",
+          "test_end_at"
+        ]
+      },
+      "WfoSpec": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "WFO"
+          },
+          "training_sessions": {
+            "type": "integer",
+            "minimum": 20,
+            "maximum": 1000
+          },
+          "test_sessions": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250
+          },
+          "step_sessions": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 250
+          },
+          "max_folds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "candidate_config_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 20,
+            "minItems": 1
+          },
+          "selection_metric": {
+            "const": "NET_RETURN"
+          },
+          "higher_is_better": {
+            "const": true
+          }
+        },
+        "required": [
+          "kind",
+          "training_sessions",
+          "test_sessions",
+          "step_sessions",
+          "max_folds",
+          "candidate_config_refs",
+          "selection_metric",
+          "higher_is_better"
+        ]
+      },
+      "MonteCarloSpec": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "MONTE_CARLO"
+          },
+          "source_artifact": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "method": {
+            "const": "TRADE_RETURN_BOOTSTRAP"
+          },
+          "paths": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          }
+        },
+        "required": [
+          "kind",
+          "source_artifact",
+          "method",
+          "paths"
+        ]
+      },
+      "ResearchSpec": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/BacktestSpec"
+          },
+          {
+            "$ref": "#/components/schemas/ParameterStudySpec"
+          },
+          {
+            "$ref": "#/components/schemas/OosSpec"
+          },
+          {
+            "$ref": "#/components/schemas/WfoSpec"
+          },
+          {
+            "$ref": "#/components/schemas/MonteCarloSpec"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "kind"
+        }
+      },
+      "ResearchRunRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "bindings": {
+            "$ref": "#/components/schemas/RunBindings"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/ResearchSpec"
+          },
+          "initial_capital": {
+            "type": "string",
+            "pattern": "^(?:[1-9][0-9]*|(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+            "maxLength": 80
+          },
+          "currency": {
+            "const": "TWD"
+          }
+        },
+        "required": [
+          "bindings",
+          "spec",
+          "initial_capital",
+          "currency"
+        ]
+      },
+      "ResearchRun": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "operation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "request": {
+            "$ref": "#/components/schemas/ResearchRunRequest"
+          },
+          "input_fingerprint": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "created_by": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          }
+        },
+        "required": [
+          "run_id",
+          "operation_id",
+          "request",
+          "input_fingerprint",
+          "created_by",
+          "created_at"
+        ]
+      },
+      "CommandReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "command_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "idempotency_key": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "request_fingerprint": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "resource_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "resource_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "operation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "ACCEPTED",
+              "ALREADY_TERMINAL"
+            ]
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "correlation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          }
+        },
+        "required": [
+          "command_id",
+          "idempotency_key",
+          "request_fingerprint",
+          "resource_id",
+          "resource_revision",
+          "operation_id",
+          "outcome",
+          "recorded_at",
+          "correlation_id"
+        ]
+      },
+      "Operation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "RESEARCH",
+              "SIMULATION_COMMAND",
+              "DATASET_IMPORT"
+            ]
+          },
+          "resource_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "QUEUED",
+              "RUNNING",
+              "CANCEL_REQUESTED",
+              "RETRY_WAIT",
+              "SUCCEEDED",
+              "FAILED",
+              "CANCELLED"
+            ]
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "request_fingerprint": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "command_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "current_attempt_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "result_manifest_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "maxItems": 100
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Error"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "operation_id",
+          "kind",
+          "resource_id",
+          "state",
+          "revision",
+          "request_fingerprint",
+          "command_id",
+          "current_attempt_id",
+          "created_at",
+          "updated_at",
+          "result_manifest_ids",
+          "error"
+        ]
+      },
+      "OperationAttempt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "attempt_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "operation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "attempt_no": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "worker_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "lease_generation": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "CLAIMED",
+              "RUNNING",
+              "SUCCEEDED",
+              "FAILED",
+              "CANCELLED",
+              "ABANDONED"
+            ]
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "finished_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "checkpoint_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EvidenceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "failure_code": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "attempt_id",
+          "operation_id",
+          "attempt_no",
+          "worker_id",
+          "lease_generation",
+          "state",
+          "started_at",
+          "finished_at",
+          "checkpoint_ref",
+          "failure_code"
+        ]
+      },
+      "WorkerLease": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "holder_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "generation": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "heartbeat_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          }
+        },
+        "required": [
+          "operation_id",
+          "holder_id",
+          "generation",
+          "expires_at",
+          "heartbeat_at"
+        ]
+      },
+      "ArtifactManifest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "artifact_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "schema_version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "media_type": {
+            "type": "string",
+            "enum": [
+              "application/json",
+              "application/vnd.apache.parquet",
+              "text/csv"
+            ]
+          },
+          "relative_uri": {
+            "type": "string",
+            "pattern": "^sha256/[0-9a-f]{64}$"
+          },
+          "byte_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "semantic_hash": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "producer_run_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "producer_attempt_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          }
+        },
+        "required": [
+          "artifact_id",
+          "version",
+          "schema_version",
+          "media_type",
+          "relative_uri",
+          "byte_hash",
+          "semantic_hash",
+          "size_bytes",
+          "producer_run_id",
+          "producer_attempt_id",
+          "created_at"
+        ]
+      },
+      "Metric": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              "value": {
+                "type": "string",
+                "pattern": "^(?:0|-?[1-9][0-9]*|-?(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+                "maxLength": 80
+              },
+              "reason_code": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "name",
+              "value",
+              "reason_code"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              "value": {
+                "type": "null"
+              },
+              "reason_code": {
+                "type": "string",
+                "enum": [
+                  "INSUFFICIENT_SAMPLE",
+                  "ZERO_DENOMINATOR",
+                  "ZERO_VARIANCE",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "value",
+              "reason_code"
+            ]
+          }
+        ]
+      },
+      "ResearchResults": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "operation_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "input_fingerprint": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Metric"
+            },
+            "maxItems": 100
+          },
+          "artifacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArtifactManifest"
+            },
+            "maxItems": 100
+          },
+          "constituent_run_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "maxItems": 400
+          },
+          "assumptions_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "run_id",
+          "operation_revision",
+          "input_fingerprint",
+          "metrics",
+          "artifacts",
+          "constituent_run_ids",
+          "assumptions_ref"
+        ]
+      },
+      "SimulationRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "mode": {
+            "const": "SIMULATED"
+          },
+          "bindings": {
+            "$ref": "#/components/schemas/RunBindings"
+          },
+          "scenario_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "initial_capital": {
+            "type": "string",
+            "pattern": "^(?:[1-9][0-9]*|(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+            "maxLength": 80
+          },
+          "currency": {
+            "const": "TWD"
+          }
+        },
+        "required": [
+          "mode",
+          "bindings",
+          "scenario_ref",
+          "initial_capital",
+          "currency"
+        ]
+      },
+      "SimulationSession": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "mode": {
+            "const": "SIMULATED"
+          },
+          "synthetic_account_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "request": {
+            "$ref": "#/components/schemas/SimulationRequest"
+          },
+          "risk_increase_blocked": {
+            "type": "boolean"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "CREATED",
+              "STARTING",
+              "RUNNING",
+              "PAUSING",
+              "PAUSED",
+              "RECOVERING",
+              "STOPPING",
+              "STOPPED",
+              "HALTED"
+            ]
+          },
+          "clock_checkpoint": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "occurred_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$"
+              },
+              "event_index": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "occurred_at",
+              "event_index"
+            ]
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "governing_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 20
+          }
+        },
+        "required": [
+          "session_id",
+          "mode",
+          "synthetic_account_id",
+          "revision",
+          "request",
+          "risk_increase_blocked",
+          "state",
+          "clock_checkpoint",
+          "created_at",
+          "governing_refs"
+        ]
+      },
+      "SimulationCommand": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "command": {
+            "type": "string",
+            "enum": [
+              "START",
+              "PAUSE",
+              "STOP",
+              "RECOVER",
+              "KILL",
+              "FORCE_FLAT"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "command",
+          "reason"
+        ]
+      },
+      "CancelRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "reason"
+        ]
+      },
+      "ImportMetadata": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "dataset_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "source_name": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "source_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "format": {
+            "const": "CSV_V1"
+          },
+          "calendar_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "mapping_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "quality_policy_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "parent_version_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "correction_reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "dataset_id",
+          "source_name",
+          "source_sha256",
+          "format",
+          "calendar_ref",
+          "mapping_ref",
+          "quality_policy_ref",
+          "parent_version_id",
+          "correction_reason"
+        ]
+      },
+      "DatasetImportRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/ImportMetadata"
+          },
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "description": "CSV bytes; stream maximum 256 MiB; never a path or URL."
+          }
+        },
+        "required": [
+          "metadata",
+          "file"
+        ]
+      },
+      "ParameterValue": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "INTEGER"
+              },
+              "value": {
+                "type": "integer",
+                "minimum": -2147483648,
+                "maximum": 2147483647
+              }
+            },
+            "required": [
+              "kind",
+              "value"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "DECIMAL"
+              },
+              "value": {
+                "type": "string",
+                "pattern": "^(?:0|-?[1-9][0-9]*|-?(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+                "maxLength": 80
+              }
+            },
+            "required": [
+              "kind",
+              "value"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "BOOLEAN"
+              },
+              "value": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "kind",
+              "value"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "TEXT"
+              },
+              "value": {
+                "type": "string",
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "kind",
+              "value"
+            ]
+          }
+        ]
+      },
+      "StrategyConfigRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "strategy_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "implementation_revision": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "config_schema_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                },
+                "value": {
+                  "$ref": "#/components/schemas/ParameterValue"
+                }
+              },
+              "required": [
+                "name",
+                "value"
+              ]
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "strategy_id",
+          "implementation_revision",
+          "config_schema_ref",
+          "parameters"
+        ]
+      },
+      "StrategyConfigVersion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "strategy_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "config_version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "fingerprint": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "request": {
+            "$ref": "#/components/schemas/StrategyConfigRequest"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          }
+        },
+        "required": [
+          "strategy_id",
+          "config_version",
+          "fingerprint",
+          "request",
+          "created_at"
+        ]
+      },
+      "ConfigurationCatalog": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "strategies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StrategyDefinition"
+            },
+            "maxItems": 100
+          },
+          "strategy_configs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 1000
+          },
+          "decision_policies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 100
+          },
+          "risk_policies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 100
+          },
+          "cost_policies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 100
+          },
+          "margin_policies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 100
+          },
+          "scenarios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 100
+          },
+          "calendars": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 100
+          },
+          "contract_mappings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 100
+          },
+          "quality_policies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "strategies",
+          "strategy_configs",
+          "decision_policies",
+          "risk_policies",
+          "cost_policies",
+          "margin_policies",
+          "scenarios",
+          "calendars",
+          "contract_mappings",
+          "quality_policies"
+        ]
+      },
+      "ResolveCaseRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "resolution_note": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "resolution_note"
+        ]
+      },
+      "ResultCell": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "DECIMAL"
+              },
+              "value": {
+                "type": "string",
+                "pattern": "^(?:0|-?[1-9][0-9]*|-?(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+                "maxLength": 80
+              }
+            },
+            "required": [
+              "kind",
+              "value"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "INTEGER"
+              },
+              "value": {
+                "type": "integer",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "kind",
+              "value"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "TEXT"
+              },
+              "value": {
+                "type": "string",
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "kind",
+              "value"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "INSTANT"
+              },
+              "value": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "Z$"
+              }
+            },
+            "required": [
+              "kind",
+              "value"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "BOOLEAN"
+              },
+              "value": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "kind",
+              "value"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "const": "UNKNOWN"
+              },
+              "reason_code": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              }
+            },
+            "required": [
+              "kind",
+              "reason_code"
+            ]
+          }
+        ]
+      },
+      "ArtifactRows": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "artifact_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "artifact_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                },
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "DECIMAL",
+                    "INTEGER",
+                    "TEXT",
+                    "INSTANT",
+                    "BOOLEAN"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "kind"
+              ]
+            },
+            "maxItems": 64
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "row_index": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "cells": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResultCell"
+                  },
+                  "maxItems": 64
+                }
+              },
+              "required": [
+                "row_index",
+                "cells"
+              ]
+            },
+            "maxItems": 1000
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "artifact_id",
+          "artifact_hash",
+          "columns",
+          "rows",
+          "next_cursor"
+        ]
+      },
+      "TargetPosition": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "TARGET"
+          },
+          "account_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "contract_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "net_quantity": {
+            "type": "integer",
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "evidence_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "kind",
+          "account_id",
+          "contract_id",
+          "net_quantity",
+          "evidence_ref"
+        ]
+      },
+      "ExpectedPosition": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "EXPECTED"
+          },
+          "account_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "contract_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "net_quantity": {
+            "type": "integer",
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "evidence_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "kind",
+          "account_id",
+          "contract_id",
+          "net_quantity",
+          "evidence_ref"
+        ]
+      },
+      "ActualPosition": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "ACTUAL"
+          },
+          "account_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "contract_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "net_quantity": {
+            "type": "integer",
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "evidence_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "kind",
+          "account_id",
+          "contract_id",
+          "net_quantity",
+          "evidence_ref"
+        ]
+      },
+      "Position": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/TargetPosition"
+          },
+          {
+            "$ref": "#/components/schemas/ExpectedPosition"
+          },
+          {
+            "$ref": "#/components/schemas/ActualPosition"
+          }
+        ]
+      },
+      "AccountState": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "account_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "environment": {
+            "const": "SIMULATED"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "readiness": {
+            "type": "string",
+            "enum": [
+              "HALT",
+              "REVIEW",
+              "READY"
+            ]
+          },
+          "reason_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "maxItems": 100
+          },
+          "expected": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExpectedPosition"
+            },
+            "maxItems": 100
+          },
+          "actual": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "KNOWN"
+                  },
+                  "positions": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ActualPosition"
+                    },
+                    "maxItems": 100
+                  },
+                  "observation_ref": {
+                    "$ref": "#/components/schemas/EvidenceRef"
+                  },
+                  "completeness_ref": {
+                    "$ref": "#/components/schemas/EvidenceRef"
+                  }
+                },
+                "required": [
+                  "status",
+                  "positions",
+                  "observation_ref",
+                  "completeness_ref"
+                ]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "status": {
+                    "const": "UNKNOWN"
+                  },
+                  "reason_code": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                  }
+                },
+                "required": [
+                  "status",
+                  "reason_code"
+                ]
+              }
+            ]
+          },
+          "recovery_cut_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EvidenceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "trading_authorization": {
+            "const": "SIMULATED_ONLY"
+          }
+        },
+        "required": [
+          "account_id",
+          "environment",
+          "revision",
+          "readiness",
+          "reason_codes",
+          "expected",
+          "actual",
+          "recovery_cut_ref",
+          "trading_authorization"
+        ]
+      },
+      "ReconciliationCase": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "case_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "account_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "HALT",
+              "REVIEW_REQUIRED",
+              "RESOLVED"
+            ]
+          },
+          "policy_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 100
+          },
+          "reason_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "maxItems": 100
+          },
+          "resolution_ref": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EvidenceRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "case_id",
+          "account_id",
+          "version",
+          "state",
+          "policy_ref",
+          "evidence_refs",
+          "reason_codes",
+          "resolution_ref"
+        ]
+      },
+      "AuditEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "audit_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "producer": {
+            "type": "string",
+            "enum": [
+              "PYTHON",
+              "APPLICATION"
+            ]
+          },
+          "actor_ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "action": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "resource_ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "occurred_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "correlation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "causation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "ACCEPTED",
+              "REJECTED",
+              "FAILED"
+            ]
+          },
+          "reason_code": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "context_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EvidenceRef"
+            },
+            "maxItems": 50
+          }
+        },
+        "required": [
+          "audit_id",
+          "producer",
+          "actor_ref",
+          "action",
+          "resource_ref",
+          "occurred_at",
+          "recorded_at",
+          "correlation_id",
+          "causation_id",
+          "outcome",
+          "reason_code",
+          "context_refs"
+        ]
+      },
+      "SystemStatus": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "api_version": {
+            "const": "v1"
+          },
+          "build_sha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+          },
+          "mode": {
+            "const": "SIMULATED_ONLY"
+          },
+          "process_live": {
+            "type": "boolean"
+          },
+          "service_ready": {
+            "type": "boolean"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                },
+                "state": {
+                  "type": "string",
+                  "enum": [
+                    "UP",
+                    "DOWN",
+                    "UNKNOWN"
+                  ]
+                },
+                "reason_code": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                }
+              },
+              "required": [
+                "name",
+                "state",
+                "reason_code"
+              ]
+            },
+            "maxItems": 20
+          },
+          "workload_policy_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "sampled_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          }
+        },
+        "required": [
+          "api_version",
+          "build_sha",
+          "mode",
+          "process_live",
+          "service_ready",
+          "dependencies",
+          "workload_policy_ref",
+          "sampled_at"
+        ]
+      },
+      "DatasetManifestPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DatasetManifest"
+            },
+            "maxItems": 1000
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "snapshot_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "snapshot_ref"
+        ]
+      },
+      "StrategyDefinitionPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StrategyDefinition"
+            },
+            "maxItems": 1000
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "snapshot_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "snapshot_ref"
+        ]
+      },
+      "ResearchRunPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResearchRun"
+            },
+            "maxItems": 1000
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "snapshot_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "snapshot_ref"
+        ]
+      },
+      "ReconciliationCasePage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReconciliationCase"
+            },
+            "maxItems": 1000
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "snapshot_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "snapshot_ref"
+        ]
+      },
+      "AuditEventPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuditEvent"
+            },
+            "maxItems": 1000
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "snapshot_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "snapshot_ref"
+        ]
+      }
+    },
+    "parameters": {
+      "Id": {
+        "name": "id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        }
+      },
+      "IdempotencyKey": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+        }
+      },
+      "IfMatch": {
+        "name": "If-Match",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "pattern": "^\"[1-9][0-9]*\"$"
+        },
+        "description": "Quoted positive revision, e.g. \"3\"; wildcard forbidden."
+      },
+      "Limit": {
+        "name": "limit",
+        "in": "query",
+        "schema": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000,
+          "default": 100
+        }
+      },
+      "Cursor": {
+        "name": "cursor",
+        "in": "query",
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        }
+      },
+      "Csrf": {
+        "name": "X-CSRF-Token",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "minLength": 32,
+          "maxLength": 512
+        }
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "INVALID_INPUT",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "UNAUTHENTICATED",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "FORBIDDEN",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "NOT_FOUND",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "409": {
+        "description": "REVISION_CONFLICT / IDEMPOTENCY_CONFLICT / READINESS_BLOCKED",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "INVALID_INPUT / UNQUALIFIED_DATA / WORKLOAD_LIMIT_EXCEEDED",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "413": {
+        "description": "WORKLOAD_LIMIT_EXCEEDED (body/file bytes)",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "429": {
+        "description": "RATE_LIMITED",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "INTERNAL_ERROR",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "503": {
+        "description": "DEPENDENCY_UNAVAILABLE",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ServiceToken": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Private service identity; actor context accepted only from authenticated BFF."
+      }
+    }
+  }
+}

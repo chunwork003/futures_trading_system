@@ -113,7 +113,7 @@ Shutdown：停止new claims/commands -> checkpoint/cancel policy -> durable leas
 `livez`=process；`readyz`=required service dependencies；account READY/cohortREADY/trading permission須分開顯示。
 UI必須显示mode、dataset/config versions、target/expected/actual、stale/reconnecting、operation state、reconciliation reason、audit correlation。Kill switch阻止新risk increase，force-flat是另一个已授权simulation command。
 六條journeys及完整preconditions/steps/evidence見 `../program/V1_PROGRAM.md`；只有6/6與independent acceptance才能稱V1 COMPLETE。
-Performance驗收採固定hardware/data/scenario manifest；P02建立基準並於review固定p95 API、UI load、worker memory上限。未測之前不得捏造數字或宣稱production performance。
+Performance驗收採固定hardware/data/scenario manifest；有限候選 targets 與 workload limits 已於 V1_API_ARCHITECTURE.md / contracts/workload_policy.v1.json 定義。P02驗證 targets，不自行補 public semantics；未測之前不得宣稱達標。
 
 ## 10. Safety / remaining design gates
 

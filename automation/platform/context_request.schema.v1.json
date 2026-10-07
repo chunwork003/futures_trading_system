@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "task_type": {
+      "enum": [
+        "ARCHITECT",
+        "WORK",
+        "CODEX",
+        "REVIEWER",
+        "INTEGRATOR"
+      ]
+    },
+    "package_id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9-]{0,63}$"
+    },
+    "changed_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "architecture_domains": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "baseline_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    }
+  },
+  "required": [
+    "task_type",
+    "package_id",
+    "changed_paths",
+    "architecture_domains",
+    "baseline_sha"
+  ]
+}

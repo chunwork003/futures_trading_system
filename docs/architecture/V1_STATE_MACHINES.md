@@ -20,7 +20,7 @@ RUNNING lost lease不能標成功或繼續發sideeffect；計算可終止，orph
 | Machine | States / transitions | Authority / side effects | Recovery / unknown / terminal |
 |---|---|---|---|
 | Strategy runtime | STOPPED→WARMING→READY→RUNNING；RUNNING→PAUSED/STOPPING/HALTED；PAUSED→WARMING；STOPPING→STOPPED；HALTED→WARMING only explicit recovery | E orchestrator consumes canonical observation/config；READY僅strategy local readiness，還須cohort/account/tradegate | warmup不足不emitintent；unknownstate=HALTED；checkpoint後resume，不能重emit已durable signal |
-| SimulationSession | CREATED→STARTING→RUNNING；RUNNING→PAUSING/STOPPING/RECOVERING/HALTED；PAUSING→PAUSED；PAUSED→STARTING/STOPPING；RECOVERING→PAUSED/HALTED；STOPPING→STOPPED；STARTING→HALTED on failure | Python sessionowner、single syntheticaccount fence；start經fullreadiness；stop不隱含forceflat | restart先RECOVERING，不autoRUNNING；STOPPED retainsread-onlyevidence，new session用newidentity |
+| SimulationSession | CREATED→STARTING/STOPPING；STARTING→RUNNING/STOPPING/HALTED；RUNNING→PAUSING/STOPPING/RECOVERING/HALTED；PAUSING→PAUSED/STOPPING；PAUSED→STARTING/STOPPING；RECOVERING→PAUSED/HALTED/STOPPING；HALTED→RECOVERING/STOPPING；STOPPING→STOPPED/HALTED | Python sessionowner、single syntheticaccount fence；start經fullreadiness；stop不隱含forceflat | restart先RECOVERING，不autoRUNNING；STOPPED retainsread-onlyevidence，new session用newidentity |
 | Order | exact existing PENDING/SUBMITTED/PARTIALLY_FILLED/FILLED/CANCELLED/REJECTED transition validator | canonical OrderEvent/Fill authority；禁止新增UNKNOWN/PENDING_CANCEL到既有enum作快捷方式 | eventsequence/provenance幫助resolve，broker未知由BrokerAction狀態表達；terminal corrections只依acceptedcontract |
 | Cancel command | REQUESTED→ACKNOWLEDGED/REJECTED/OUTCOME_UNKNOWN；OUTCOME_UNKNOWN→ACKNOWLEDGED/REJECTED after authoritative resolution | command/BrokerAction owner，cancelrequest不等於Order CANCELLED | samecommandretry先查status；不得retry成第二個newaction；fill/cancel競態依canonicalevents |
 | Reconciliation | existing HALT/REVIEW_REQUIRED/RESOLVED and accepted transitions | C13 caseversion+policy；appendreceipt，不overwritestate/economicposition | NULLscope failclosed；resolvedcase不提供全部READY；audit保留underlying evidence |
@@ -28,6 +28,7 @@ RUNNING lost lease不能標成功或繼續發sideeffect；計算可終止，orph
 | Recovery | captured localVALID/RESTORE_FAILURE -> trusted evidence -> reconciliation/strategy/cohort evaluation -> final fenced handoff | accepted recover_runtime/PGgate及ADR-002；保留既有status，不再建競爭enum | crash後freshcut；VALID!=broker-current；任何missingdependency不升級READY |
 
 Simulation pause：停止new risk-increasing decisions；pendingevents仍須drain/record。STOPPED要求沒有in-flightmutator並已checkpoint；可保留非零position供inspection，不能因STOPPED宣稱FLAT。force-flat需要explicitcommand、currentposition/capability/risk-reductionauthorization。
+risk_increase_blocked 是 durable orthogonal latch，不是 session lifecycle enum；KILL 與 START-clear 的 command semantics 見 V1_API_ARCHITECTURE.md。
 Kill switch可block OPEN/ADD，cancelexistingorders只依explicitpolicy；並不默默平倉。V1 defaults cancel pending risk-increasingorders，已接受fill仍入ledger。減倉command不因kill被認作開新風險，但仍經identity/readiness驗證。
 
 ## Development lifecycle（既有accepted語意保留）

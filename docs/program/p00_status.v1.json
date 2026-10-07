@@ -7,11 +7,12 @@
   "authority": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
   "runtime_dispatch_authorized": false,
   "completed_this_turn": [
-    "Fresh master rehydrate and source provenance index",
-    "Source capability inventory and seven existing shadow Skill registry",
-    "Candidate V1 scope/ownership/contracts/state machines",
-    "Candidate 13-package dependency roadmap and six release journeys",
-    "Candidate development operating model; cancellation CAS inconsistency repaired"
+    "Pushed explicitly approved initial 13-file checkpoint; remote branch confirmed",
+    "Materialized 22-operation/52-schema internal Python and BFF OpenAPI candidates, bounded workload profile and detailed API semantics",
+    "Implemented exact Git snapshot context resolver with active policy SHA256 checks and unsafe path/stale evidence rejection",
+    "Materialized typed agent/tool registries and candidate bootstrap",
+    "Separated original attachment hash from normalized Git blob provenance",
+    "Passed 59 platform tests; after API changes passed 32 impacted contract/registry tests; context 27-test suite unchanged"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -25,18 +26,35 @@
     "automation/platform/README.md",
     "automation/platform/OPERATING_MODEL.md",
     "automation/platform/capability_inventory.v1.json",
-    "automation/platform/skill_registry.v1.json"
+    "automation/platform/skill_registry.v1.json",
+    "docs/architecture/V1_API_ARCHITECTURE.md",
+    "docs/architecture/contracts/python.openapi.v1.json",
+    "docs/architecture/contracts/bff.openapi.v1.json",
+    "docs/architecture/contracts/workload_policy.v1.json",
+    "scripts/p00_build_contracts.py",
+    "scripts/p00_context.py",
+    "automation/platform/context_policy.v1.json",
+    "automation/platform/context_request.schema.v1.json",
+    "automation/platform/AI_CONTEXT_BOOTSTRAP.md",
+    "automation/platform/agent_registry.v1.json",
+    "automation/platform/agent_registry.schema.v1.json",
+    "automation/platform/tool_registry.v1.json",
+    "automation/platform/tool_registry.schema.v1.json",
+    "tests/platform/test_p00_contracts.py",
+    "tests/platform/test_p00_context.py",
+    "tests/platform/test_p00_registries.py",
+    "docs/program/P00_VALIDATION.md"
   ],
   "remaining": [
     {
       "id": "R01",
-      "work": "Complete machine-readable API/domain schemas, examples, error mapping, workload/performance bounds and outstanding public semantics",
-      "state": "NOT_COMPLETED"
+      "work": "Complete new trading-domain machine contracts (Signal/Decision/Risk/Capital/incremental state), map every existing canonical DTO to accepted source, resolve simulation genesis/command lifecycle and auth-handler contracts; semantic API review and conformance validation. API 22 operations and finite workload bounds now materialized.",
+      "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
       "id": "R02",
-      "work": "Typed agent/tool registries, bootstrap/context policy/resolver with exact hashes and forbidden-path negative fixtures",
-      "state": "NOT_COMPLETED"
+      "work": "Context resolver, typed agent/tool registries and bootstrap implemented/tested for P00. Remaining: real committed-snapshot smoke evidence, schema-bound handoffs, latest open delta/result pointer integration and per-package context expansion with compiler.",
+      "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
       "id": "R03",
@@ -69,18 +87,28 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "R01: read candidate V1_BASELINE/V1_CONTRACTS/V1_STATE_MACHINES and define complete OpenAPI/domain schemas plus concrete workload bounds; then R02–R08. Do not repeat completed full repository inventory; recheck only master drift/current authority.",
+  "next_continuation_point": "R01 domain/adapter closure: reconcile remaining Signal/Decision/Risk/Capital/IncrementalState schemas with accepted A–O/domain sources; settle simulation genesis/command lifecycle and exact auth-handler contract. Do not recreate completed API/registries/resolver. Then complete R02 handoff/pointers and R03 package compiler; R04–R08 remain.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_STAGED_DIFF_CHECK",
-    "protected_tracked_files": "PASS_AT_CHECKPOINT",
-    "platform_tests": "NOT_IMPLEMENTED_NOT_RUN",
+    "protected_tracked_files": "PENDING_FINAL_SCOPE_CHECK",
+    "platform_tests": "59_PASSED_FULL_SUITE_THEN_32_PASSED_IMPACTED_SUITE",
     "product_tests": "NOT_RUN_DOCS_ONLY",
-    "independent_review": "NOT_STARTED"
+    "independent_review": "NOT_STARTED",
+    "actual_active_policy_git_hashes": "PASS",
+    "generated_openapi": "REBUILD_CHECK_PENDING_FINAL",
+    "openapi_dedicated_validator": "NOT_AVAILABLE_NOT_RUN"
   },
   "release_journeys_passed": 0,
   "release_journeys_total": 6,
   "weighted_v1_completion": "UNCALIBRATED",
   "human_action_required": "NONE_TO_CONTINUE_P00",
-  "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION"
+  "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION",
+  "previous_checkpoint": "da09f7665ea286d18dc625268ae4b2e6f4acec10",
+  "remote_publication": {
+    "initial_checkpoint": "PUSHED_CONFIRMED",
+    "current_turn": "PENDING_COMMIT_AND_PUSH",
+    "branch": "architecture/p00-v1-baseline",
+    "master_unchanged_at_last_check": true
+  }
 }

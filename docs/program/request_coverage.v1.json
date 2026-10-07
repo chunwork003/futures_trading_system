@@ -75,23 +75,31 @@
     {
       "section": 10,
       "title": "Canonical Contracts",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL",
+      "evidence": [
+        "docs/architecture/V1_CONTRACTS.md",
+        "docs/architecture/contracts/python.openapi.v1.json"
+      ],
+      "note": "API DTOs exist; remaining canonical/new domain contracts and accepted-model adapter trace need reconciliation."
     },
     {
       "section": 11,
       "title": "Money / Time / Identity",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL",
+      "evidence": [
+        "docs/architecture/V1_API_ARCHITECTURE.md",
+        "tests/platform/test_p00_contracts.py"
+      ],
+      "note": "Money lexical and wire identity negative tests pass; domain runtime compatibility not yet verified."
     },
     {
       "section": 12,
       "title": "State Machines",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL",
+      "evidence": [
+        "docs/architecture/V1_STATE_MACHINES.md"
+      ],
+      "note": "Candidate transitions reconciled with command semantics; model-based runtime evidence pending."
     },
     {
       "section": 13,
@@ -103,9 +111,14 @@
     {
       "section": 14,
       "title": "API Contract",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "IMPLEMENTED_PENDING_REVIEW",
+      "evidence": [
+        "docs/architecture/V1_API_ARCHITECTURE.md",
+        "docs/architecture/contracts/python.openapi.v1.json",
+        "docs/architecture/contracts/bff.openapi.v1.json",
+        "tests/platform/test_p00_contracts.py"
+      ],
+      "note": "22 operations/52 schemas; local structural validation only, semantic review and full OpenAPI conformance tooling pending."
     },
     {
       "section": 15,
@@ -173,23 +186,31 @@
     {
       "section": 24,
       "title": "Source-of-truth Precedence",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL",
+      "evidence": [
+        "automation/platform/AI_CONTEXT_BOOTSTRAP.md"
+      ],
+      "note": "Precedence candidate documented; current projection migration pending."
     },
     {
       "section": 25,
       "title": "AI_CONTEXT_BOOTSTRAP",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "IMPLEMENTED_PENDING_REVIEW",
+      "evidence": [
+        "automation/platform/AI_CONTEXT_BOOTSTRAP.md"
+      ],
+      "note": "Candidate bootstrap exists; latest open delta machine integration incomplete."
     },
     {
       "section": 26,
       "title": "Progressive Context Loading",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "IMPLEMENTED_PENDING_REVIEW",
+      "evidence": [
+        "scripts/p00_context.py",
+        "automation/platform/context_policy.v1.json",
+        "tests/platform/test_p00_context.py"
+      ],
+      "note": "P00 only; deterministic exact Git snapshot resolver; never execution authority."
     },
     {
       "section": 27,
@@ -229,16 +250,21 @@
     {
       "section": 32,
       "title": "Agent Plane",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL",
+      "evidence": [
+        "automation/platform/agent_registry.v1.json"
+      ],
+      "note": "Eight logical role contracts; handoff schema/evaluation still pending."
     },
     {
       "section": 33,
       "title": "建議 Agent 架構",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "IMPLEMENTED_PENDING_REVIEW",
+      "evidence": [
+        "automation/platform/agent_registry.v1.json",
+        "automation/platform/agent_registry.schema.v1.json"
+      ],
+      "note": "Logical role registry, no running agents or operational qualification."
     },
     {
       "section": 34,
@@ -271,9 +297,12 @@
     {
       "section": 38,
       "title": "Tool Plane",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL",
+      "evidence": [
+        "automation/platform/tool_registry.v1.json",
+        "automation/platform/tool_registry.schema.v1.json"
+      ],
+      "note": "Typed bounded tool inventory; provider adapters not enabled."
     },
     {
       "section": 39,
@@ -362,9 +391,13 @@
     {
       "section": 51,
       "title": "Documentation as Code",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL",
+      "evidence": [
+        "tests/platform/test_p00_contracts.py",
+        "tests/platform/test_p00_context.py",
+        "tests/platform/test_p00_registries.py"
+      ],
+      "note": "Generation drift, local refs, schema and isolation tests; package DAG/weight/compiler checks pending."
     },
     {
       "section": 52,
