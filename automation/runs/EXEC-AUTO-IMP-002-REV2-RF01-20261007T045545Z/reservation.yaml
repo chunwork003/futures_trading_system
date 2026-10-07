@@ -1,0 +1,67 @@
+{
+  "schema_version": "automation.execution_reservation.v1",
+  "reservation_id": "RESERVATION-EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
+  "state": "CREATED",
+  "authorization_state": "AUTHORIZED",
+  "source_candidate_head_sha": "6380f2ffb62686d7e2543915804940d1855f8c90",
+  "control_plane_head": "4a2a3d96d3c9166684284ba826ea7d9f9c930ec3",
+  "source_assembly_path": "automation/work_orders/AUTO-IMP-002-REV2-RF01.source-assembly.json",
+  "parent_effective_bundle": "a5a741380442eb5e77cf80a1b34575680dff7ca3bbb24b52729a2327b5c359e8",
+  "scope_digest": "bf9e862393f56a843f5b50518e3441c31924bacfdfd0daaf08d00196ea1aab44",
+  "exact_write_scope": [
+    "automation/engine/repository_snapshot.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "protected_candidate_blobs": {
+    "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+    "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63"
+  },
+  "architecture": "1.2.2",
+  "capacity_policy": "2.2",
+  "executor_mode": "CODEX",
+  "executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+  "writer_owner": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "writer_lock_path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-RF01-01.writer-lock.yaml",
+  "writer_acquired_commit": "b513a07f60160f7858ba235a3a3751fcec52e78e",
+  "execution_allocation_commit": "4a2a3d96d3c9166684284ba826ea7d9f9c930ec3",
+  "authorization_commit": "e50d2a61666a18f12140dfeadd6dc0c8eae237fa",
+  "eligibility_commit": "62a6062c3a4c674a1b9233d15570cb732a0735fb",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-RF01-01.json",
+  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-RF01-01.provider-evidence.json",
+  "capacity_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-RF01-01.rolling-capacity.json",
+  "execution_branch": "auto/WO-AUTO-IMP-002-REV2-RF01-01",
+  "budgets": {
+    "review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2,
+      "cycle_id": "RF01",
+      "cycle_usage_trigger": "FIRST_ACTUAL_SEMANTIC_RF01_MODIFICATION",
+      "rf01_allocated_for_execution_only": false,
+      "executable_now": false
+    },
+    "parent_initial_implementation": {
+      "limit": 1,
+      "used": 1,
+      "remaining": 0
+    },
+    "parent_implementation_corrections": {
+      "limit": 2,
+      "used": 2,
+      "remaining": 0,
+      "state": "EXHAUSTED"
+    },
+    "new_implementation_correction_grant": 0,
+    "automatic_RF02": false
+  },
+  "dispatch_committed": false,
+  "executor_invoked": false,
+  "single_use": true,
+  "consumed_redispatch": "DENIED",
+  "parent_lifecycle_reused": false,
+  "created_at": "2026-10-07T04:56:25Z",
+  "updated_at": "2026-10-07T04:56:25Z"
+}
