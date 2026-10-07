@@ -1,0 +1,52 @@
+{
+  "schema_version": "automation.operational_advancement_rule.v1",
+  "rule": {
+    "name": "REUSABLE_ACCEPTED_HEAD_ADVANCEMENT_RULE",
+    "status": "APPROVED",
+    "applicable_heads": [
+      "AUTO-IMP-003",
+      "AUTO-IMP-004",
+      "AUTO-IMP-005",
+      "AUTO-IMP-006",
+      "AUTO-IMP-007",
+      "AUTO-IMP-008"
+    ],
+    "terminal_package": "AUTO-IMP-009",
+    "requires": [
+      "exact current bound Program operational head Pn",
+      "durable exact ACCEPTED_MATERIALIZED acceptance and closure of Pn",
+      "unambiguous exact predecessor definition/provenance/acceptance",
+      "fresh compatible master and unchanged architecture/control semantics",
+      "following package exists in predecessor remaining lane"
+    ],
+    "allowed": [
+      "create exactly one separately-bound successor revision",
+      "remove only exact accepted current head",
+      "next item becomes immediately following package",
+      "preserve remaining order/DAG/package/architecture/control semantics",
+      "create exact supersession provenance and revision-specific operational acceptance",
+      "materialize non-authority current operational projection"
+    ],
+    "denied": [
+      "skip package",
+      "remove multiple heads",
+      "edit DAG",
+      "edit package semantics",
+      "edit architecture/policy/resolver",
+      "activate controller",
+      "automatic dispatch",
+      "implementation or execution authority",
+      "inherit consumed authority or budget"
+    ],
+    "idempotency": "Same exact predecessor revision/blob and accepted-head closure may have exactly one current successor; existing matching successor is reused as evidence, ambiguity/conflict fails closed; no duplicate successor allocation",
+    "on_ambiguity": "STOP_RECONCILIATION_REQUIRED",
+    "terminal_behavior": "No successor with fabricated next item; ordinary advancement requires an actual following package"
+  },
+  "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-003-OPERATIONAL-TRANSITION.json",
+  "owner_decision_commit": "d49f1034d024d48a2a88e021b12f008100d42b65",
+  "authority_scope": "OPERATIONAL_PROGRESSION_ONLY",
+  "implementation_authority": "NONE",
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "created_at": "2026-10-07T09:15:35Z"
+}

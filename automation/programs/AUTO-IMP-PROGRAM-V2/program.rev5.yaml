@@ -1,0 +1,513 @@
+{
+  "schema_version": "automation.implementation_program.v1",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "program_revision": "5",
+  "status": "COMPILED_CANDIDATE_PENDING_COHESIVE_IMPLEMENTATION_AND_REVIEW",
+  "compiled_from_freeze_head": "e2de7e9c873a062429675ff6be3ed9d108e3ac4f",
+  "frozen_master_manifest_sha256": "f8e7c869045a55d8e65c84818d1b75520de963ee390f200e0a57c9b0ef99b5a7",
+  "master_architecture_version": "1.2.2",
+  "authority": {
+    "implementation_authorized": false,
+    "codex_execution_authorized": false,
+    "runtime_authorization": "NOT_AUTHORIZED",
+    "next_mainline_gap_authorized": false,
+    "program_review": "PENDING_COHESIVE_REVIEW",
+    "review_required_before_wave_authorization": true,
+    "next_route": "HUMAN_DIALOGUE_COHESIVE_IMPLEMENTATION_IN_PROGRESS",
+    "automatic_rebind": false,
+    "architecture_patch_decision": "automation/governance/decisions/EXECUTION-CAPACITY-FINAL-LIVENESS.owner.json",
+    "capacity_policy": "automation/policies/execution_capacity_policy.v2_2.yaml",
+    "policy_review_verdict": "automation/work_orders/reviews/EXECUTION-CAPACITY-FINAL-LIVENESS.verdict.json",
+    "implementation_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5"
+  },
+  "implementation_strategy": {
+    "pattern": "STRANGLER_DUAL_RUN",
+    "legacy_scripts_are_reference_fixtures": true,
+    "rewrite_existing_scheduler_first": false,
+    "shadow_before_controlled_dispatch": true,
+    "automated_codex_requires_measurable_execution_channel": true,
+    "one_runtime_writer": true,
+    "architecture_compilation": "EXPLICIT_SUCCESSOR_NOT_REBIND",
+    "active_dispatch_mode": "MANUAL",
+    "controlled_auto": "DISABLED",
+    "operational_lane_order": [
+      "AUTO-IMP-003",
+      "AUTO-IMP-004",
+      "AUTO-IMP-005",
+      "AUTO-IMP-006",
+      "AUTO-IMP-007",
+      "AUTO-IMP-008",
+      "AUTO-IMP-009"
+    ],
+    "next_operational_item": "AUTO-IMP-003",
+    "orchestration_policy": "automation/policies/orchestration_control_policy.v1.yaml",
+    "canonical_route_owner": "automation.engine.orchestration",
+    "dependency_graph_is_not_lane_order": true,
+    "forecast_contract": {
+      "path": "automation/policies/orchestration_control_policy.v1.yaml",
+      "section": "forecast"
+    },
+    "automation_levels": {
+      "path": "automation/policies/orchestration_control_policy.v1.yaml",
+      "section": "future_levels",
+      "all_designs_defined": true,
+      "activation": "EXTERNAL_EVIDENCE_AND_OWNER_ACTIVATION_ONLY",
+      "manual_controller_status": "COHESIVE_IMPLEMENTATION_IN_PROGRESS_NOT_OPERATIONAL"
+    },
+    "rolling_capacity": {
+      "primary_cost": "EXACT_LOCAL_REPORTED_TOKENS",
+      "provider_signal": "COARSE_SHARED_ACCOUNT_CAPACITY_SIGNAL",
+      "pool_identity": [
+        "provider",
+        "account",
+        "limit_id"
+      ],
+      "metadata_only": [
+        "workspace",
+        "model",
+        "executor_profile",
+        "provider_client_policy_version",
+        "task_class"
+      ],
+      "sample_limit": 20,
+      "sample_order": "actor_end_utc ASC, execution_id ASC; take last20 usable ratios; distinct executionID per pool/window",
+      "ratio": "exact_total_tokens / positive_provider_delta_percentage_points",
+      "ratio_prerequisites": "strict exact local binding; same provider/account/limit/window; both snapshots real and reset unchanged; before/after used in[0,100], after>before",
+      "delta0_or_reset_crossing": "RETAIN_EXACT_TOKENS_EXCLUDE_RATIO",
+      "overlap": "NOISY_SHARED_USAGE_RETAIN_RATIO_REDUCED_CONFIDENCE_NO_EXCLUSIVE_QUOTA_COST",
+      "count0": "UNKNOWN",
+      "count1_to4": "MINIMUM",
+      "count5_plus": "P25_LINEAR_INTERPOLATION_SORT_ASC_INDEX_0.25_TIMES_N_MINUS_1",
+      "safety": "safe_remaining_pct=max(0,100-used_pct-1);safe_available_tokens=floor(safe_tokens_per_pct*safe_remaining_pct)",
+      "measurement": "ROLLING_CAPACITY_ESTIMATE_NEVER_EXACT",
+      "window_evaluation": [
+        "PRIMARY_5H",
+        "SECONDARY_WEEKLY"
+      ],
+      "manual": "Exact authorized allrisk + actualproviderPASS: UNKNOWN5H=>ALLOW_WITH_WATCH;known5H>=P75=>ALLOW_WITH_WATCH;known5H<P75=>WAIT_5H_CAPACITY. Weekly never changes result.",
+      "controlled_auto": "ActualproviderPASS + usable5H safe>=P90 and explicitpromotionauthority; weeklystatisticalestimate neverblocks; UNKNOWN5H=>CONTROLLED_AUTO_CAPACITY_NOT_ESTABLISHED",
+      "forecast": "PER_WO_P50_P75_P90_TOTAL_PRIMARY; detailed dimensions telemetry; no forecast reduction to force fit",
+      "billing": "NOT_AVAILABLE_UNLESS_PROVIDER_EXACT_TASK_BILLING",
+      "feature_coefficient_gate": "NOT_REQUIRED",
+      "calibration_campaign": "SUPERSEDED_PRE_EXECUTION_BY_DYNAMIC_CAPACITY_POLICY",
+      "controlled_auto_promotion": [
+        "provider actual availability PASS",
+        "usable PRIMARY_5H rolling evidence and safe capacity >= perWO totalP90",
+        "at least5 recent successful accepted MANUAL executions under current orchestration controller with strict exact local token evidence",
+        "zero duplicate dispatch/fabricated resume/writer conflict",
+        "no unresolved HIGH/CRITICAL governance issue",
+        "exact preexisting authority/scope/lifecycle; one writer; no higher-priority unfinished work",
+        "independent orchestration review PASS",
+        "explicit Human Governance Owner CONTROLLED_AUTO activation",
+        "weekly data advisory only, never statistical admission blocker"
+      ],
+      "observation_window_type": "PRIMARY_5H execution gate, SECONDARY_WEEKLY advisory independent observations",
+      "statistical_execution_windows": [
+        "PRIMARY_5H"
+      ],
+      "weekly_execution_gate": false,
+      "weekly_role": "PLANNING_AND_SCHEDULING_SIGNAL_ONLY",
+      "manual_demand_threshold": "PER_WO_TOTAL_P75",
+      "p90_manual": "ADVISORY_WARNING_FORECAST_OPTIMIZATION_NOT_HARD_GATE",
+      "controlled_auto_demand_threshold": "PER_WO_TOTAL_P90"
+    },
+    "capacity_liveness": {
+      "event": "CAPACITY_LIVENESS_OPTIMIZATION",
+      "trigger_all": [
+        "authorized_ready_and_all_noncapacity_gates_PASS",
+        "fresh ordinaryUsageAllowed=true and no actual hard/rate/spend denial throughout recorded blocking interval",
+        "only blocker WAIT_5H_CAPACITY",
+        "blocked interval spans >= one complete provider PRIMARY_5H window (300 minutes when exposed) AND unchanged work/scope/authority plus observed reset boundary crossed"
+      ],
+      "evidence": "Retain block-start/provider snapshots/reset metadata; require positive evidence of complete-window duration and recovery snapshots. Missing continuity evidence does not fabricate trigger; reevaluate at later wake. Any actual denial or authority/scope change restarts statistical-only interval. Historical weekly-only blocking never counts.",
+      "evaluate": [
+        "recent exact token actuals",
+        "forecast vs actual error",
+        "recent5 vs recent20 behavior",
+        "stale/noisy samples",
+        "model efficiency metadata (not identity gate)",
+        "context replay ratio",
+        "tool/test retries and overhead",
+        "task size prediction"
+      ],
+      "objective": "MAXIMIZE_ACCEPTED_ENGINEERING_VALUE_PER_TIME_AND_TOKEN",
+      "not_objective": "SPREAD_QUOTA_EVENLY",
+      "outputs": "Deterministic optimization/forecast/queue proposals, evidence-bound recommendations; no authority creation, no dispatch, no consumed reset, no coefficient/probe requirement, no deliberate uniform-quota pacing",
+      "gate_override": "DENIED; no unsupported forecast reduction to force fit; rolling rule changes need Owner semantics, normal evidence-backed reforecast remains nonauthority feedback"
+    },
+    "bounded_correction": {
+      "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+      "owner_authority_path": "automation/governance/decisions/EXECUTION-CAPACITY-FINAL-LIVENESS.owner.json",
+      "implementation": {
+        "limit": 2,
+        "used": 0,
+        "remaining": 2,
+        "scope": "Same exact21 files, architecture/sideeffects unchanged, current invoked execution; ordinary implementation/test/serialization/route/docs/hash conformance defects",
+        "pref_fix_expected_failures_are_budget_use": false,
+        "tooling_retries_separate_telemetry": true,
+        "on_exhaustion": "STOP_TO_OWNER"
+      },
+      "review_fix": {
+        "limit": 2,
+        "used": 0,
+        "remaining": 2,
+        "grant": "OWNER_PREAUTHORIZED_CONDITIONAL_NOT_CURRENTLY_EXECUTABLE",
+        "required_verdict": "Bound independent REVIEW_FIX_REQUIRED of same logicalWO/effective candidate",
+        "every_finding": "IN_SCOPE_IMPLEMENTATION_CONFORMANCE_ONLY_NO_ARCHITECTURE_AUTHORITY_SIDE_EFFECT_EXPANSION",
+        "logical_work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+        "single_use_rule": "Each later fix exact child authorization/revision binds actual reviewer finding and candidate SHA under this existing Owner grant; fresh eligibility/writer/execution/reservation/dispatch; parent CONSUMED authority never reused. No executable authority over unknown future SHA now. MANUAL invocation only.",
+        "narrow_re_review": "Exact changed effective candidate plus preservation; targeted validation; at most one final full regression when warranted",
+        "on_exhaustion": "STOP_TO_OWNER"
+      },
+      "ordinary_defect_within_remaining_budget": "USE_BOUNDED_BUDGET_NO_NEW_OWNER_ROUND",
+      "scope_or_architecture_or_authority_or_sideeffect_change": "STOP_TO_OWNER",
+      "budget_renewal": "DENIED",
+      "auto_dispatch": "DENIED",
+      "next_package_authority": "NONE"
+    },
+    "supported_dispatch_modes": [
+      "MANUAL",
+      "CONTROLLED_AUTO"
+    ],
+    "supported_executor_modes": [
+      "HUMAN_DIALOGUE",
+      "CODEX"
+    ],
+    "permanent_manual_fallback": {
+      "owner_decision": "automation/governance/decisions/MANUAL-EXECUTOR-FALLBACK.owner.json",
+      "supported": true,
+      "codex_unavailable_does_not_block_project": true,
+      "human_dialogue_codex_capacity_gate": "NOT_APPLICABLE",
+      "human_observed_external_evidence": "ALLOWED_IF_EXPLICITLY_TYPED_AS_HUMAN_OBSERVED",
+      "same_execution_multi_executor": "DENIED",
+      "executor_switch": "ONLY_AT_DURABLE_CHECKPOINT_NO_CONCURRENT_WRITERS",
+      "authority_scope_review_safety": "SAME_ACROSS_EXECUTORS"
+    }
+  },
+  "near_horizon_exact_packages": [
+    {
+      "id": "AUTO-IMP-001",
+      "wave": "W1_FOUNDATION_SHADOW",
+      "status": "ACCEPTED_MATERIALIZED",
+      "depends_on": [],
+      "risk": "LOW",
+      "legacy_planning_hint": {
+        "classification": "LEGACY_PLANNING_HINT_NOT_ADMISSION_AUTHORITY",
+        "values": {
+          "forecast_p50_tokens": 18000,
+          "forecast_p75_tokens": 26000,
+          "forecast_p90_tokens": 36000,
+          "forecast_source": "CONSERVATIVE_STATIC_BOUND",
+          "quota_fit": "REQUIRES_FRESH_RUNTIME_SNAPSHOT"
+        }
+      },
+      "operational_forecast": "PER_WO_P50_P75_P90_DIMENSIONS_CONFIDENCE_CONTEXT_COHORT_PROVIDER_SEPARATION"
+    },
+    {
+      "id": "AUTO-IMP-002",
+      "wave": "W1_FOUNDATION_SHADOW",
+      "status": "NOT_AUTHORIZED",
+      "depends_on": [
+        "AUTO-IMP-001"
+      ],
+      "risk": "MEDIUM",
+      "legacy_planning_hint": {
+        "classification": "LEGACY_PLANNING_HINT_NOT_ADMISSION_AUTHORITY",
+        "values": {
+          "forecast_p50_tokens": 22000,
+          "forecast_p75_tokens": 32000,
+          "forecast_p90_tokens": 44000,
+          "forecast_source": "CONSERVATIVE_STATIC_BOUND",
+          "quota_fit": "REQUIRES_FRESH_RUNTIME_SNAPSHOT"
+        }
+      },
+      "operational_forecast": "PER_WO_P50_P75_P90_DIMENSIONS_CONFIDENCE_CONTEXT_COHORT_PROVIDER_SEPARATION"
+    },
+    {
+      "id": "AUTO-IMP-003",
+      "wave": "W1_FOUNDATION_SHADOW",
+      "status": "NOT_AUTHORIZED",
+      "depends_on": [
+        "AUTO-IMP-001"
+      ],
+      "risk": "HIGH",
+      "legacy_planning_hint": {
+        "classification": "LEGACY_PLANNING_HINT_NOT_ADMISSION_AUTHORITY",
+        "values": {
+          "forecast_p50_tokens": 26000,
+          "forecast_p75_tokens": 38000,
+          "forecast_p90_tokens": 52000,
+          "forecast_source": "CONSERVATIVE_STATIC_BOUND",
+          "quota_fit": "REQUIRES_FRESH_RUNTIME_SNAPSHOT"
+        }
+      },
+      "operational_forecast": "PER_WO_P50_P75_P90_DIMENSIONS_CONFIDENCE_CONTEXT_COHORT_PROVIDER_SEPARATION"
+    },
+    {
+      "id": "AUTO-IMP-004",
+      "wave": "W1_FOUNDATION_SHADOW",
+      "status": "NOT_AUTHORIZED",
+      "depends_on": [
+        "AUTO-IMP-001"
+      ],
+      "risk": "HIGH",
+      "legacy_planning_hint": {
+        "classification": "LEGACY_PLANNING_HINT_NOT_ADMISSION_AUTHORITY",
+        "values": {
+          "forecast_p50_tokens": 24000,
+          "forecast_p75_tokens": 36000,
+          "forecast_p90_tokens": 50000,
+          "forecast_source": "CONSERVATIVE_STATIC_BOUND",
+          "quota_fit": "REQUIRES_FRESH_RUNTIME_SNAPSHOT"
+        }
+      },
+      "operational_forecast": "PER_WO_P50_P75_P90_DIMENSIONS_CONFIDENCE_CONTEXT_COHORT_PROVIDER_SEPARATION"
+    },
+    {
+      "id": "AUTO-IMP-005",
+      "wave": "W1_FOUNDATION_SHADOW",
+      "status": "NOT_AUTHORIZED",
+      "depends_on": [
+        "AUTO-IMP-002",
+        "AUTO-IMP-003",
+        "AUTO-IMP-004"
+      ],
+      "risk": "MEDIUM",
+      "legacy_planning_hint": {
+        "classification": "LEGACY_PLANNING_HINT_NOT_ADMISSION_AUTHORITY",
+        "values": {
+          "forecast_p50_tokens": 16000,
+          "forecast_p75_tokens": 24000,
+          "forecast_p90_tokens": 34000,
+          "forecast_source": "CONSERVATIVE_STATIC_BOUND",
+          "quota_fit": "REQUIRES_FRESH_RUNTIME_SNAPSHOT"
+        }
+      },
+      "operational_forecast": "PER_WO_P50_P75_P90_DIMENSIONS_CONFIDENCE_CONTEXT_COHORT_PROVIDER_SEPARATION"
+    },
+    {
+      "id": "AUTO-IMP-006",
+      "wave": "W2_REPLAY_AND_DUAL_RUN",
+      "status": "NOT_AUTHORIZED",
+      "depends_on": [
+        "AUTO-IMP-005"
+      ],
+      "risk": "MEDIUM",
+      "legacy_planning_hint": {
+        "classification": "LEGACY_PLANNING_HINT_NOT_ADMISSION_AUTHORITY",
+        "values": {
+          "forecast_p50_tokens": 30000,
+          "forecast_p75_tokens": 44000,
+          "forecast_p90_tokens": 60000,
+          "forecast_source": "CONSERVATIVE_STATIC_BOUND",
+          "quota_fit": "REQUIRES_FRESH_RUNTIME_SNAPSHOT"
+        }
+      },
+      "operational_forecast": "PER_WO_P50_P75_P90_DIMENSIONS_CONFIDENCE_CONTEXT_COHORT_PROVIDER_SEPARATION"
+    },
+    {
+      "id": "AUTO-IMP-007",
+      "wave": "W2_REPLAY_AND_DUAL_RUN",
+      "status": "NOT_AUTHORIZED",
+      "depends_on": [
+        "AUTO-IMP-002",
+        "AUTO-IMP-003",
+        "AUTO-IMP-004",
+        "AUTO-IMP-006"
+      ],
+      "risk": "HIGH",
+      "legacy_planning_hint": {
+        "classification": "LEGACY_PLANNING_HINT_NOT_ADMISSION_AUTHORITY",
+        "values": {
+          "forecast_p50_tokens": 28000,
+          "forecast_p75_tokens": 42000,
+          "forecast_p90_tokens": 58000,
+          "forecast_source": "CONSERVATIVE_STATIC_BOUND",
+          "quota_fit": "REQUIRES_FRESH_RUNTIME_SNAPSHOT"
+        }
+      },
+      "operational_forecast": "PER_WO_P50_P75_P90_DIMENSIONS_CONFIDENCE_CONTEXT_COHORT_PROVIDER_SEPARATION"
+    },
+    {
+      "id": "AUTO-IMP-008",
+      "wave": "W2_REPLAY_AND_DUAL_RUN",
+      "status": "NOT_AUTHORIZED",
+      "depends_on": [
+        "AUTO-IMP-001",
+        "AUTO-IMP-003"
+      ],
+      "risk": "HIGH",
+      "legacy_planning_hint": {
+        "classification": "LEGACY_PLANNING_HINT_NOT_ADMISSION_AUTHORITY",
+        "values": {
+          "forecast_p50_tokens": 28000,
+          "forecast_p75_tokens": 42000,
+          "forecast_p90_tokens": 58000,
+          "forecast_source": "CONSERVATIVE_STATIC_BOUND",
+          "quota_fit": "REQUIRES_FRESH_RUNTIME_SNAPSHOT"
+        }
+      },
+      "operational_forecast": "PER_WO_P50_P75_P90_DIMENSIONS_CONFIDENCE_CONTEXT_COHORT_PROVIDER_SEPARATION"
+    },
+    {
+      "id": "AUTO-IMP-009",
+      "wave": "W3_CANONICAL_SHADOW_PREFLIGHT",
+      "status": "NOT_AUTHORIZED",
+      "depends_on": [
+        "AUTO-IMP-007",
+        "AUTO-IMP-008"
+      ],
+      "risk": "HIGH",
+      "legacy_planning_hint": {
+        "classification": "LEGACY_PLANNING_HINT_NOT_ADMISSION_AUTHORITY",
+        "values": {
+          "forecast_p50_tokens": 22000,
+          "forecast_p75_tokens": 34000,
+          "forecast_p90_tokens": 48000,
+          "forecast_source": "CONSERVATIVE_STATIC_BOUND",
+          "quota_fit": "REQUIRES_FRESH_RUNTIME_SNAPSHOT"
+        }
+      },
+      "operational_forecast": "PER_WO_P50_P75_P90_DIMENSIONS_CONFIDENCE_CONTEXT_COHORT_PROVIDER_SEPARATION"
+    }
+  ],
+  "dag": [
+    "AUTO-IMP-001 -> AUTO-IMP-002",
+    "AUTO-IMP-001 -> AUTO-IMP-003",
+    "AUTO-IMP-001 -> AUTO-IMP-004",
+    "AUTO-IMP-002 + AUTO-IMP-003 + AUTO-IMP-004 -> AUTO-IMP-005",
+    "AUTO-IMP-005 -> AUTO-IMP-006",
+    "AUTO-IMP-002 + AUTO-IMP-003 + AUTO-IMP-004 + AUTO-IMP-006 -> AUTO-IMP-007",
+    "AUTO-IMP-001 + AUTO-IMP-003 -> AUTO-IMP-008",
+    "AUTO-IMP-007 + AUTO-IMP-008 -> AUTO-IMP-009"
+  ],
+  "waves": {
+    "W1_FOUNDATION_SHADOW": {
+      "packages": [
+        "AUTO-IMP-001",
+        "AUTO-IMP-002",
+        "AUTO-IMP-003",
+        "AUTO-IMP-004",
+        "AUTO-IMP-005"
+      ],
+      "activation_effect": "NONE",
+      "reviewer_barrier": "WAVE_FINAL"
+    },
+    "W2_REPLAY_AND_DUAL_RUN": {
+      "packages": [
+        "AUTO-IMP-006",
+        "AUTO-IMP-007",
+        "AUTO-IMP-008"
+      ],
+      "activation_effect": "NONE",
+      "reviewer_barrier": "WAVE_FINAL"
+    },
+    "W3_CANONICAL_SHADOW_PREFLIGHT": {
+      "packages": [
+        "AUTO-IMP-009"
+      ],
+      "activation_effect": "SHADOW_ONLY",
+      "reviewer_barrier": "REQUIRED"
+    }
+  },
+  "deferred_milestones": [
+    {
+      "id": "M10_RESULT_INTAKE_CANONICAL_MIGRATION",
+      "prerequisite": "AUTO-IMP-009_ACCEPTED",
+      "design_status": "DEFINED_IN_ORCHESTRATION_PROMOTION_CONTRACT",
+      "deferral": "EVIDENCE_AND_EXPLICIT_OWNER_ACTIVATION_ONLY_NOT_FUTURE_DESIGN",
+      "promotion_contract_level": "SINGLE_LANE_MANUAL",
+      "required_evidence": "Exact per-level evidence+review+Owner activation in orchestration policy; existing strategic prerequisite retained; no authority from milestone"
+    },
+    {
+      "id": "M11_CONTROLLED_LEVEL_3A_2_SINGLE_USE_DISPATCH",
+      "prerequisite": "TELEMETRY_CHANNEL_QUALIFIED_AND_EXPLICIT_AUTHORIZATION",
+      "design_status": "DEFINED_IN_ORCHESTRATION_PROMOTION_CONTRACT",
+      "deferral": "EVIDENCE_AND_EXPLICIT_OWNER_ACTIVATION_ONLY_NOT_FUTURE_DESIGN",
+      "promotion_contract_level": "CONTROLLED_SINGLE_USE_AUTO",
+      "required_evidence": "Exact per-level evidence+review+Owner activation in orchestration policy; existing strategic prerequisite retained; no authority from milestone"
+    },
+    {
+      "id": "M12_STABILITY_COHORT_MINIMUM_5_RECENT_ACCEPTED_MANUAL_EXECUTIONS",
+      "prerequisite": "M11_ACCEPTED",
+      "design_status": "DEFINED_IN_ORCHESTRATION_PROMOTION_CONTRACT",
+      "deferral": "EVIDENCE_AND_EXPLICIT_OWNER_ACTIVATION_ONLY_NOT_FUTURE_DESIGN",
+      "promotion_contract_level": "CONTROLLED_SINGLE_USE_AUTO",
+      "required_evidence": "Recent accepted MANUAL executions under current controller, exact tokens, rolling exposed-window evidence; model/taskclass equality not required",
+      "historical_id_provenance": "M12_STABILITY_COHORT_2_TO_3_PACKAGES",
+      "minimum_accepted_exact_comparable": 5
+    },
+    {
+      "id": "M13_LEVEL_3B_QUEUE_DRIVEN",
+      "prerequisite": "STABILITY_CRITERIA_ACCEPTED",
+      "design_status": "DEFINED_IN_ORCHESTRATION_PROMOTION_CONTRACT",
+      "deferral": "EVIDENCE_AND_EXPLICIT_OWNER_ACTIVATION_ONLY_NOT_FUTURE_DESIGN",
+      "promotion_contract_level": "QUEUE_DRIVEN_AUTOMATION",
+      "required_evidence": "Exact per-level evidence+review+Owner activation in orchestration policy; existing strategic prerequisite retained; no authority from milestone"
+    },
+    {
+      "id": "M14_LEVEL_3C_PREAUTHORIZED_WAVE",
+      "prerequisite": "LEVEL_3B_ACCEPTED",
+      "design_status": "DEFINED_IN_ORCHESTRATION_PROMOTION_CONTRACT",
+      "deferral": "EVIDENCE_AND_EXPLICIT_OWNER_ACTIVATION_ONLY_NOT_FUTURE_DESIGN",
+      "promotion_contract_level": "PREAUTHORIZED_WAVE",
+      "required_evidence": "Exact per-level evidence+review+Owner activation in orchestration policy; existing strategic prerequisite retained; no authority from milestone"
+    },
+    {
+      "id": "M15_LEVEL_4_SHADOW",
+      "prerequisite": "LEVEL_3C_ACCEPTED",
+      "design_status": "DEFINED_IN_ORCHESTRATION_PROMOTION_CONTRACT",
+      "deferral": "EVIDENCE_AND_EXPLICIT_OWNER_ACTIVATION_ONLY_NOT_FUTURE_DESIGN",
+      "promotion_contract_level": "SHADOW_AUTONOMY",
+      "required_evidence": "Exact per-level evidence+review+Owner activation in orchestration policy; existing strategic prerequisite retained; no authority from milestone"
+    },
+    {
+      "id": "M16_LEVEL_4_CONTROLLED",
+      "prerequisite": "LEVEL_4_SHADOW_ACCEPTED",
+      "design_status": "DEFINED_IN_ORCHESTRATION_PROMOTION_CONTRACT",
+      "deferral": "EVIDENCE_AND_EXPLICIT_OWNER_ACTIVATION_ONLY_NOT_FUTURE_DESIGN",
+      "promotion_contract_level": "QUEUE_DRIVEN_AUTOMATION",
+      "required_evidence": "Exact per-level evidence+review+Owner activation in orchestration policy; existing strategic prerequisite retained; no authority from milestone"
+    },
+    {
+      "id": "M17_LEVEL_5_OBSERVE_ANALYZE",
+      "prerequisite": "LEVEL_4_CONTROLLED_ACCEPTED",
+      "design_status": "DEFINED_IN_ORCHESTRATION_PROMOTION_CONTRACT",
+      "deferral": "EVIDENCE_AND_EXPLICIT_OWNER_ACTIVATION_ONLY_NOT_FUTURE_DESIGN",
+      "promotion_contract_level": "SHADOW_AUTONOMY",
+      "required_evidence": "Exact per-level evidence+review+Owner activation in orchestration policy; existing strategic prerequisite retained; no authority from milestone"
+    },
+    {
+      "id": "M18_LEVEL_5_CONTROLLED_IMPROVEMENT",
+      "prerequisite": "LEVEL_5_GOVERNANCE_AUTHORIZATION",
+      "design_status": "DEFINED_IN_ORCHESTRATION_PROMOTION_CONTRACT",
+      "deferral": "EVIDENCE_AND_EXPLICIT_OWNER_ACTIVATION_ONLY_NOT_FUTURE_DESIGN",
+      "promotion_contract_level": "CONTROLLED_CONTINUOUS_IMPROVEMENT",
+      "required_evidence": "Exact per-level evidence+review+Owner activation in orchestration policy; existing strategic prerequisite retained; no authority from milestone"
+    }
+  ],
+  "hard_stops": [
+    "ARCHITECTURE_OR_BUSINESS_AMBIGUITY",
+    "AUTHORIZATION_DRIFT",
+    "SCOPE_EXPANSION",
+    "SIDE_EFFECT_EXPANSION",
+    "TELEMETRY_AMBIGUOUS_BINDING",
+    "QUOTA_POLICY_DRIFT",
+    "UNEXPECTED_REMOTE_DIVERGENCE",
+    "MORE_THAN_ONE_RUNTIME_WRITER",
+    "UNPROMOTED_OR_UNQUALIFIED_UNATTENDED_PATH",
+    "RUNTIME_OR_BROKER_OR_MIGRATION_OR_LIVE_SIDE_EFFECT"
+  ],
+  "authorization_compilation": {
+    "current_package": "AUTO-IMP-002",
+    "ivf01_rev1": "ARCHITECTURE_BASELINE_CHANGED_RECOMPILE_REQUIRED",
+    "ivf01_rev2": "PREPARATION_ONLY_NOT_AUTHORIZED",
+    "ivf01_flow_path": "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml",
+    "automatic_next_package_authorization": "DENIED",
+    "all_002_009_need_own_exact_authority": true,
+    "controller_review_barrier": "ONE_COHESIVE_FRESH_INDEPENDENT_REVIEW",
+    "current_controller_authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV4",
+    "capacity_campaign_disposition_path": "automation/work_orders/campaigns/CAPACITY_QUALIFICATION_CAMPAIGN_V1.supersession.json",
+    "after_controller_closure": "WORK_COMPILE_AUTO_IMP_002_IVF01_REV2_DEFINED_FLOW_NO_ARCHITECTURE_DISCUSSION"
+  }
+}
