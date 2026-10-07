@@ -1,0 +1,148 @@
+{
+  "schema_version": "automation.codex_work_order.v1",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "parent_work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "correction_id": "AUTO-IMP-002-REV2-RF01",
+  "package_id": "AUTO-IMP-002",
+  "package_revision": "2",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
+  "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-RF01-01.v1.yaml",
+  "status": "AUTHORIZED",
+  "handoff_ready": false,
+  "code_base_sha": "6380f2ffb62686d7e2543915804940d1855f8c90",
+  "control_plane_baseline_sha": "60fd8ea8e817d48bcc4cd4fa29ba3e2ba8155856",
+  "exact_goal": "Fix F-01 post-intake routing, F-02 mechanically proven candidate gates, F-03 canonical architecture/Git source identity inside one cohesive two-file conformance review-fix",
+  "exact_write_scope": [
+    "automation/engine/repository_snapshot.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "scope_count": 2,
+  "scope_digest": "bf9e862393f56a843f5b50518e3441c31924bacfdfd0daaf08d00196ea1aab44",
+  "scope": {
+    "exact_write_scope": [
+      "automation/engine/repository_snapshot.py",
+      "tests/automation/test_repository_snapshot.py"
+    ],
+    "scope_digest": "bf9e862393f56a843f5b50518e3441c31924bacfdfd0daaf08d00196ea1aab44",
+    "protected_candidate_blobs": {
+      "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+      "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63"
+    },
+    "all_other_paths_protected": true
+  },
+  "protected_scope": [
+    "ALL_PATHS_EXCEPT_EXACT_TWO_RF_SEMANTIC_PATHS",
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py"
+  ],
+  "authority_basis": {
+    "owner_decision": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
+    "owner_decision_commit": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
+    "conditional_budget_source": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml",
+    "verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-01.verdict.json",
+    "verdict_commit": "60fd8ea8e817d48bcc4cd4fa29ba3e2ba8155856",
+    "findings": [
+      "F-01",
+      "F-02",
+      "F-03"
+    ]
+  },
+  "source_assembly_path": "automation/work_orders/AUTO-IMP-002-REV2-RF01.source-assembly.json",
+  "parent_effective_bundle": "a5a741380442eb5e77cf80a1b34575680dff7ca3bbb24b52729a2327b5c359e8",
+  "planning_path": "automation/work_orders/planning/AUTO-IMP-002-REV2-RF01.compilation.json",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-RF01-01.json",
+  "tests": {
+    "targeted": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -q",
+    "cross_targeted": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py tests/automation/test_orchestration.py tests/automation/test_execution_capacity.py -q",
+    "full": "python -m pytest -p no:cacheprovider -q",
+    "diff": "git diff --check"
+  },
+  "test_matrix": {
+    "F01": [
+      "pre-intake completed -> WORK_RESULT_INTAKE",
+      "durable result-intake PASS/review-pending -> accepted independent review route",
+      "writer released/review pending never loops intake",
+      "no candidate-only deep authority reads"
+    ],
+    "F02": [
+      "missing lane/order evidence",
+      "wrong current lane item",
+      "missing/unsatisfied DAG proof",
+      "executable identity count absent/0/>1",
+      "missing exact authority proof",
+      "missing compatibility evidence",
+      "positive READY fixture explicitly proves every gate without defaults"
+    ],
+    "F03": [
+      "well-formed arbitrary and consistently forged architecture hash rejected",
+      "well-formed nonexistent source SHA rejected",
+      "consistently forged source SHA across CURRENT/WO/auth rejected",
+      "canonical accepted architecture/policy and existing read-only Git commit proof passes"
+    ]
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "budgets": {
+    "review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2,
+      "cycle_id": "RF01",
+      "cycle_usage_trigger": "FIRST_ACTUAL_SEMANTIC_RF01_MODIFICATION",
+      "rf01_allocated_for_execution_only": false,
+      "executable_now": false
+    },
+    "parent_initial_implementation": {
+      "limit": 1,
+      "used": 1,
+      "remaining": 0
+    },
+    "parent_implementation_corrections": {
+      "limit": 2,
+      "used": 2,
+      "remaining": 0,
+      "state": "EXHAUSTED"
+    },
+    "new_implementation_correction_grant": 0,
+    "automatic_RF02": false
+  },
+  "correction_budget_remaining": 0,
+  "review_fix_budget_remaining": 2,
+  "review_fix_executable_now": false,
+  "execution_branch": "auto/WO-AUTO-IMP-002-REV2-RF01-01",
+  "claim_rules": "FRESH_SINGLE_USE_RF01; contemporaneous own claim/invocation before semantic write; parent consumed redispatch denied",
+  "STOP_conditions": [
+    "third semantic path",
+    "architecture/authority/lifecycle semantic change",
+    "side-effect expansion",
+    "new unrelated defect",
+    "ambiguous invocation/writer/current evidence",
+    "scope/source/control-plane drift",
+    "parent consumed redispatch",
+    "unbound/automatic RF02"
+  ],
+  "completion_evidence_requirements": [
+    "exact own invocation/implementation/evidence binding",
+    "RF01 two semantic paths only vs assembled four-file baseline; assembly is exact not correction",
+    "two protected candidate blobs exact",
+    "all other source/current authority protected",
+    "required tests/diff and budget accounting",
+    "strict post-execution token extraction or explicit unavailability; raw provider proxies separate"
+  ],
+  "next_package_restriction": "AUTO-IMP-003 NOT_AUTHORIZED; controller NOT_ACTIVE; CONTROLLED_AUTO DISABLED; automatic next package DENIED",
+  "current_route": "RF01_FRESH_PRE_EXECUTION_ELIGIBILITY",
+  "next_route": "RF01_FRESH_PRE_EXECUTION_ELIGIBILITY",
+  "executor_mode": "CODEX",
+  "dispatch_mode": "MANUAL",
+  "executor_invoked": false,
+  "created_at": "2026-10-07T04:51:46Z",
+  "updated_at": "2026-10-07T04:51:46Z"
+}

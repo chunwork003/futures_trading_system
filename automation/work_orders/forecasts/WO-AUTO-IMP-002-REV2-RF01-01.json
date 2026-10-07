@@ -1,0 +1,116 @@
+{
+  "schema_version": "automation.execution_cost_forecast.v1",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
+  "source_candidate_head_sha": "6380f2ffb62686d7e2543915804940d1855f8c90",
+  "scope_digest": "bf9e862393f56a843f5b50518e3441c31924bacfdfd0daaf08d00196ea1aab44",
+  "scope_count": 2,
+  "confidence": "LOW_PROVISIONAL",
+  "measurement_type": "PROXY_PLANNING_FORECAST_NOT_EXACT",
+  "forecast": {
+    "input_tokens": {
+      "p50": 1580000,
+      "p75": 3160000,
+      "p90": 5430000
+    },
+    "cached_input_tokens": {
+      "p50": 1430000,
+      "p75": 2880000,
+      "p90": 4950000
+    },
+    "uncached_input_tokens": {
+      "p50": 150000,
+      "p75": 280000,
+      "p90": 480000
+    },
+    "output_tokens": {
+      "p50": 20000,
+      "p75": 40000,
+      "p90": 70000
+    },
+    "reasoning_output_tokens": {
+      "p50": 6000,
+      "p75": 12000,
+      "p90": 24000
+    },
+    "reported_total_tokens": {
+      "p50": 1600000,
+      "p75": 3200000,
+      "p90": 5500000
+    },
+    "actor_seconds": {
+      "p50": 900,
+      "p75": 1800,
+      "p90": 3600
+    },
+    "targeted_seconds": {
+      "p50": 10,
+      "p75": 40,
+      "p90": 100
+    },
+    "cross_targeted_seconds": {
+      "p50": 15,
+      "p75": 60,
+      "p90": 150
+    },
+    "full_regression_seconds": {
+      "p50": 60,
+      "p75": 150,
+      "p90": 300
+    }
+  },
+  "assumptions": [
+    "Three conformance findings cohesive in one snapshot subsystem; parent read-only adapter and accepted algorithms reused",
+    "Counterexample-first gate/identity fixtures may add context uncertainty; no forecast reduction to fit capacity",
+    "Parent tokens NOT_AVAILABLE, actor1072.718412,target4.62,cross6.99,full46.56 are supporting only; not exact same-class calibrated sample"
+  ],
+  "supporting_evidence": [
+    {
+      "path": "automation/work_orders/optimizations/WO-AUTO-IMP-002-REV2-01.cost-reconciliation.json",
+      "commit": "bd5f4f5a4e75ffbb61661515929421c2d42981a1",
+      "comparability": "SUPPORTING_PARENT_ONLY_NOT_CALIBRATED"
+    }
+  ],
+  "calibrated_cohort": false,
+  "task_profile": {
+    "task_class": "BOUND_COHESIVE_REVIEW_FIX",
+    "change_type": "CONFORMANCE_CORRECTION",
+    "subsystem": "AUTOMATION_REPOSITORY_SNAPSHOT",
+    "functional_area": "POST_INTAKE_ROUTING_AND_CANDIDATE_PROOF",
+    "engineering_goal": "Fix F-01 post-intake routing, F-02 mechanically proven candidate gates, F-03 canonical architecture/Git source identity inside one cohesive two-file conformance review-fix",
+    "primary_symbols": [
+      "resolve_repository_snapshot",
+      "_candidate"
+    ],
+    "behavior_dimensions": [
+      "lifecycle_route",
+      "lane_DAG_evidence",
+      "identity_count",
+      "authority_compatibility",
+      "architecture_bundle",
+      "source_commit"
+    ],
+    "source_file_count": 1,
+    "test_file_count": 1,
+    "authority_boundary": "OWNER_PREAUTHORIZED_CONDITIONAL_RF01_TWO_FILE_SCOPE",
+    "packaging_decision": "KEEP_COHESIVE"
+  },
+  "context_profile": {
+    "exact_pointers_first": true,
+    "raw_transcript_loaded": false,
+    "primary_artifacts": [
+      "automation/work_orders/WO-AUTO-IMP-002-REV2-RF01-01.yaml",
+      "automation/work_orders/planning/AUTO-IMP-002-REV2-RF01.compilation.json",
+      "automation/authorizations/AUTH-AUTO-IMP-002-REV2-RF01-01.v1.yaml",
+      "automation/work_orders/AUTO-IMP-002-REV2-RF01.source-assembly.json",
+      "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-01.verdict.json",
+      "automation/engine/repository_snapshot.py",
+      "tests/automation/test_repository_snapshot.py",
+      "automation/engine/orchestration.py"
+    ],
+    "history_loaded": "ONLY_EXACT_PARENT_PROOF_AND_CANONICAL_OWNER_BINDINGS; NO_RF_IC_IVF_SOURCE",
+    "content_token_estimate": "UNKNOWN_NOT_EXACT"
+  },
+  "created_at": "2026-10-07T04:51:46Z",
+  "updated_at": "2026-10-07T04:51:46Z"
+}

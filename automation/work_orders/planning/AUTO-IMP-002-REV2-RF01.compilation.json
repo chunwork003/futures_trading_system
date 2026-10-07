@@ -1,0 +1,154 @@
+{
+  "schema_version": "automation.work_order_compilation.v1",
+  "correction_id": "AUTO-IMP-002-REV2-RF01",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
+  "package_id": "AUTO-IMP-002",
+  "package_revision": "2",
+  "parent_work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "parent_execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "parent_authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "findings": [
+    {
+      "id": "F-01",
+      "review_fix_scope": true,
+      "title": "POST_INTAKE_LIFECYCLE_ROUTING",
+      "finding": "COMPLETED_PENDING_REVIEW always sets completion_pending_intake=true even after durable intake PASS and writer release",
+      "required": "Distinguish pre/post-intake with canonical durable intake/review evidence; post-intake uses accepted review route without candidate-only deep authority reads"
+    },
+    {
+      "id": "F-02",
+      "review_fix_scope": true,
+      "title": "UNPROVEN_ORCHESTRATION_GATE_SYNTHESIS",
+      "finding": "Hard-coded true lane/DAG/exact-authority/compatibility facts and implicit executable_identity_count=1 lack mechanical proof",
+      "required": "Repository-evidenced gate facts, missing evidence fails closed, explicit count==1 proof, delegate accepted orchestration.resolve_route without copied algorithms"
+    },
+    {
+      "id": "F-03",
+      "review_fix_scope": true,
+      "title": "FABRICATED_ARCHITECTURE_SOURCE_IDENTITY",
+      "finding": "Well-formed arbitrary architecture hash and consistently substituted nonexistent source SHA can pass string-only checks",
+      "required": "Bind architecture to accepted canonical architecture/policy evidence; resolve claimed source commit through read-only Git boundary, no fetch/network repair"
+    }
+  ],
+  "authority_basis": "EXISTING_OWNER_CONDITIONAL_REVIEW_FIX_2_PLUS_BOUND_FRESH_REVIEW_FIX_REQUIRED_NOT_NEW_HUMAN_GRANT",
+  "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
+  "owner_decision_commit": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
+  "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-01.verdict.json",
+  "review_verdict_commit": "60fd8ea8e817d48bcc4cd4fa29ba3e2ba8155856",
+  "source_assembly": {
+    "semantic_blobs": {
+      "automation/engine/repository_snapshot.py": "1a18a8d30487e1da8a208ed048fdd65b1eb71401",
+      "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+      "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63",
+      "tests/automation/test_repository_snapshot.py": "39cce94f4eec7c5452a31a628bd1b02f49bc6565"
+    },
+    "all_other_master_blobs_exact": true,
+    "master_base": "60fd8ea8e817d48bcc4cd4fa29ba3e2ba8155856",
+    "commit": "6380f2ffb62686d7e2543915804940d1855f8c90",
+    "tree": "e7b738794817771004c357d9a996f6ed8a25e747",
+    "branch": "codex/auto-imp-002-rev2-rf01-source-candidate",
+    "bundle_sha256": "a5a741380442eb5e77cf80a1b34575680dff7ca3bbb24b52729a2327b5c359e8",
+    "assembly_semantic_correction": false
+  },
+  "source_assembly_path": "automation/work_orders/AUTO-IMP-002-REV2-RF01.source-assembly.json",
+  "parent_bundle": "a5a741380442eb5e77cf80a1b34575680dff7ca3bbb24b52729a2327b5c359e8",
+  "exact_goal": "Fix F-01 post-intake routing, F-02 mechanically proven candidate gates, F-03 canonical architecture/Git source identity inside one cohesive two-file conformance review-fix",
+  "exact_write_scope": [
+    "automation/engine/repository_snapshot.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "scope_digest": "bf9e862393f56a843f5b50518e3441c31924bacfdfd0daaf08d00196ea1aab44",
+  "scope_digest_convention": "SHA256_UTF8_NEWLINE_JOIN_EXACT_ORDER_NO_TRAILING_NEWLINE",
+  "protected_candidate_blobs": {
+    "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+    "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63"
+  },
+  "all_other_semantic_paths_protected": true,
+  "architecture": "1.2.2",
+  "capacity_policy": "2.2",
+  "program": "AUTO-IMP-PROGRAM-V2 ACCEPTED_MATERIALIZED",
+  "historical_lineage": "RF01/RF02/IC01/IVF01 HISTORICAL_EVIDENCE_ONLY; current Rev2 parent candidate is permitted reviewed source, not historical source resurrection",
+  "no_parent_authorization_execution_reuse": true,
+  "budgets": {
+    "review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2,
+      "cycle_id": "RF01",
+      "cycle_usage_trigger": "FIRST_ACTUAL_SEMANTIC_RF01_MODIFICATION",
+      "rf01_allocated_for_execution_only": false,
+      "executable_now": false
+    },
+    "parent_initial_implementation": {
+      "limit": 1,
+      "used": 1,
+      "remaining": 0
+    },
+    "parent_implementation_corrections": {
+      "limit": 2,
+      "used": 2,
+      "remaining": 0,
+      "state": "EXHAUSTED"
+    },
+    "new_implementation_correction_grant": 0,
+    "automatic_RF02": false
+  },
+  "counterexample_first": true,
+  "test_matrix": {
+    "F01": [
+      "pre-intake completed -> WORK_RESULT_INTAKE",
+      "durable result-intake PASS/review-pending -> accepted independent review route",
+      "writer released/review pending never loops intake",
+      "no candidate-only deep authority reads"
+    ],
+    "F02": [
+      "missing lane/order evidence",
+      "wrong current lane item",
+      "missing/unsatisfied DAG proof",
+      "executable identity count absent/0/>1",
+      "missing exact authority proof",
+      "missing compatibility evidence",
+      "positive READY fixture explicitly proves every gate without defaults"
+    ],
+    "F03": [
+      "well-formed arbitrary and consistently forged architecture hash rejected",
+      "well-formed nonexistent source SHA rejected",
+      "consistently forged source SHA across CURRENT/WO/auth rejected",
+      "canonical accepted architecture/policy and existing read-only Git commit proof passes"
+    ]
+  },
+  "fixture_strategy": "Fixture-owned pinned commit/evidence; no mutable HEAD/ROOT expectation; read-only Git boundary no fetch/network repair",
+  "commands": {
+    "targeted": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -q",
+    "cross_targeted": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py tests/automation/test_orchestration.py tests/automation/test_execution_capacity.py -q",
+    "full": "python -m pytest -p no:cacheprovider -q",
+    "diff": "git diff --check"
+  },
+  "test_order": "deterministic F01/F02/F03 failing counterexamples on exact assembled parent first -> impacted until clean -> one targeted -> one cross -> one full -> diff/scope/protected proof",
+  "review_plan": "Fresh narrow independent re-review F01/F02/F03 and preservation over complete effective four-file Rev2 candidate plus exact RF01 two-file delta; review!=acceptance",
+  "STOP_conditions": [
+    "third semantic path",
+    "architecture/authority/lifecycle semantic change",
+    "side-effect expansion",
+    "new unrelated defect",
+    "ambiguous invocation/writer/current evidence",
+    "scope/source/control-plane drift",
+    "parent consumed redispatch",
+    "unbound/automatic RF02"
+  ],
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "AUTO_IMP_003": "NOT_AUTHORIZED",
+  "created_at": "2026-10-07T04:51:46Z",
+  "updated_at": "2026-10-07T04:51:46Z"
+}
