@@ -1,3 +1,19 @@
+# CURRENT — AUTO-IMP-002 REV2 ACCEPTED_MATERIALIZED; 003 OPERATIONAL TRANSITION OWNER_DECISION_REQUIRED
+
+Architecture 1.2.2 ACTIVE；Capacity Policy 2.2 ACTIVE；Program V2 ACCEPTED_MATERIALIZED。AUTO-IMP-002 revision 2 已 exact reviewed source materialize 與 semantic acceptance ACCEPTED；F-01/F-02/F-03 CLOSED，fresh narrow re-review PASS / findings NONE。
+
+Reviewer verdict 4335b03aaa9ac0b3be8c74df1b3a96f7d281d862；source materialization 48992888407f358b9d6bbe1fbf412245eadf2cee；acceptance / closure c3c86b79b669b9410337edd7de309d8a24e669ba。四檔 exact Git blobs 與 effective bundle 68a905620d091d9edc2881caaf6e3b08b6a525588c28f03c837405d7cd5e5646 一致。Acceptance: automation/work_orders/AUTO-IMP-002-REV2.acceptance.json；closure: automation/work_orders/AUTO-IMP-002.closure.yaml。
+
+ACTIVE_EXECUTION = NONE；ACTIVE_WRITER = NONE；parent / RF01 authorization 保留 CONSUMED historical single-use history，禁止 redispatch。Initial implementation 1/1 used，implementation corrections 2/2 EXHAUSTED。Review-fix 1/2 used，unused 1 = RETIRED_UNUSED_ON_ACCEPTANCE / NON_EXECUTABLE / NON_TRANSFERABLE；RF02 NOT_AUTHORIZED。
+
+002 已關閉，不因 lane issue 重開。Proposed next operational item = AUTO-IMP-003；003 真正 DAG dependency 只有 AUTO-IMP-001，NOT AUTO-IMP-002。Accepted Program revision 4 的 exact immutable definition 仍記錄 next_operational_item = AUTO-IMP-002 與 lane[0] = AUTO-IMP-002；accepted resolver 要求 exact Program-definition lane binding，現有 queue projection 權限不足以 supersede 該 binding。G3 blocker / dry proof 已 durable materialize，需 Owner 明確授權 bounded Program operational phase/revision progression mechanism，保留 DAG、package definitions、Architecture 與舊 reviewed blob；此為缺少 operational revision 權限，非 002 source defect。
+
+Transition: automation/work_orders/AUTO-IMP-002-TO-003.transition.json；blocker: automation/work_orders/AUTO-IMP-003.operational-transition-blocker.json；dry proof: automation/work_orders/AUTO-IMP-002-TO-003.dry-projection.json；transition evidence commit 8ea547b225b554cf09ed62777938a50bf3a0f4ad。AUTO_IMP_003_AUTHORIZATION = NOT_AUTHORIZED；AUTO_IMP_003_EXECUTION = false；CONTROLLER = NOT_ACTIVE；CONTROLLED_AUTO = DISABLED；automatic next dispatch DENIED；runtime / broker / DB / migration / LIVE / production / credentials DENIED。
+
+NEXT = HUMAN_AUTO_IMP_003_OPERATIONAL_TRANSITION_DECISION。No CODEX handoff、writer acquisition、execution allocation、reservation 或 dispatch。
+
+## HISTORICAL CURRENT PROJECTIONS BELOW — audit only, superseded by current section above
+
 # CURRENT — AUTO-IMP-002 REV2 RF01 COMPLETED_PENDING_RE_REVIEW
 
 Architecture1.2.2 ACTIVE; Capacity2.2 ACTIVE; Program V2 ACCEPTED_MATERIALIZED. RF01 execution EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z completed on branch; master source is not integrated. Mechanical intake PASS 8712bbf2cfd412431e6d702b7755bf2af85d3046; writer RELEASED_AFTER_DURABLE_RESULT_INTAKE 77a65ba3854745d41d98978b20bc36735d290f35; no active execution/writer. Authorization remains CONSUMED, no redispatch.

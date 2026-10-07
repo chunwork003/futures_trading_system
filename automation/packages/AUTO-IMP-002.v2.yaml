@@ -2,7 +2,7 @@
   "schema_version": "automation.work_package_plan.v1",
   "work_package_id": "AUTO-IMP-002",
   "work_package_revision": "2",
-  "status": "COMPLETED_PENDING_RE_REVIEW",
+  "status": "ACCEPTED_MATERIALIZED",
   "program_id": "AUTO-IMP-PROGRAM-V2",
   "planning_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
   "wave": "CLEAN_PROGRAM_V2_SUCCESSOR",
@@ -13,8 +13,8 @@
   ],
   "purpose": "Build a fresh read-only exact Git blob/pointer-first repository snapshot boundary under accepted Program V2; delegate route semantics to accepted orchestration engine; no historical AUTO-IMP-002 source/authority/execution/budget inheritance.",
   "authorization": {
-    "implementation": "CONSUMED_HISTORICAL_SINGLE_USE",
-    "execution": "PARENT_AND_RF01_COMPLETED_CONSUMED_NOT_EXECUTABLE",
+    "implementation": "CONSUMED_HISTORICAL_CLOSED_NON_EXECUTABLE",
+    "execution": "CLOSED_NOT_EXECUTABLE",
     "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
     "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml",
     "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
@@ -23,7 +23,80 @@
     "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
     "historical_lineage": "EVIDENCE_ONLY",
     "inherited_budget": 0,
-    "compilation_plan_path": "automation/work_orders/planning/AUTO-IMP-002-REV2.compilation.json"
+    "compilation_plan_path": "automation/work_orders/planning/AUTO-IMP-002-REV2.compilation.json",
+    "current_projection": {
+      "status": "ACCEPTED_MATERIALIZED",
+      "semantic_acceptance": "ACCEPTED",
+      "review_state": "PASS_MATERIALIZED",
+      "handoff_ready": false,
+      "active_execution_id": null,
+      "active_writer": null,
+      "writer_state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+      "code_execution_authorized": false,
+      "first_manual_invocation_authorized": false,
+      "reexecution_authorized": false,
+      "execution_eligibility": "CLOSED_NOT_EXECUTABLE",
+      "current_action": "HUMAN_AUTO_IMP_003_OPERATIONAL_TRANSITION_DECISION",
+      "current_route": "HUMAN_AUTO_IMP_003_OPERATIONAL_TRANSITION_DECISION",
+      "next_route": "HUMAN_AUTO_IMP_003_OPERATIONAL_TRANSITION_DECISION",
+      "acceptance_path": "automation/work_orders/AUTO-IMP-002-REV2.acceptance.json",
+      "acceptance_commit": "c3c86b79b669b9410337edd7de309d8a24e669ba",
+      "closure_path": "automation/work_orders/AUTO-IMP-002.closure.yaml",
+      "closure_commit": "c3c86b79b669b9410337edd7de309d8a24e669ba",
+      "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-RF01-01.verdict.json",
+      "review_verdict_commit": "4335b03aaa9ac0b3be8c74df1b3a96f7d281d862",
+      "review_fix_executable_now": false,
+      "canonical_review_fix_executable_now": false,
+      "review_fix_used": 1,
+      "review_fix_remaining": 1,
+      "review_fix_budget_remaining": 1,
+      "review_fix_budget_disposition": "RETIRED_UNUSED_ON_ACCEPTANCE_NON_EXECUTABLE_NON_TRANSFERABLE",
+      "RF02": "NOT_AUTHORIZED",
+      "controller_activation": "NOT_ACTIVE",
+      "controlled_auto": "DISABLED",
+      "auto_imp_003_authorized": false,
+      "automatic_dispatch": false,
+      "automatic_next_package": false,
+      "operational_transition_path": "automation/work_orders/AUTO-IMP-002-TO-003.transition.json",
+      "operational_transition_commit": "8ea547b225b554cf09ed62777938a50bf3a0f4ad",
+      "operational_transition": "OWNER_DECISION_REQUIRED",
+      "next_operational_item_in_bound_program": "AUTO-IMP-002",
+      "proposed_next_operational_item": "AUTO-IMP-003",
+      "updated_at": "2026-10-07T08:30:55Z",
+      "RF01": "CLOSED_ACCEPTED",
+      "budgets": {
+        "initial_implementation": {
+          "limit": 1,
+          "used": 1,
+          "remaining": 0,
+          "state": "EXHAUSTED",
+          "executable_now": false
+        },
+        "implementation_corrections": {
+          "limit": 2,
+          "used": 2,
+          "remaining": 0,
+          "state": "EXHAUSTED",
+          "executable_now": false
+        },
+        "review_fix": {
+          "limit": 2,
+          "used": 1,
+          "remaining": 1,
+          "state": "RETIRED_UNUSED_ON_ACCEPTANCE",
+          "unused_retired": 1,
+          "executable_now": false,
+          "transferable": false,
+          "disposition": "NON_EXECUTABLE_NON_TRANSFERABLE"
+        },
+        "RF01": "CONSUMED_BY_COMPLETED_SEMANTIC_CORRECTION_CLOSED_ON_ACCEPTANCE",
+        "RF02": "NOT_AUTHORIZED",
+        "latent_correction_authority": false
+      },
+      "acceptance": "ACCEPTED",
+      "source_materialization_commit": "48992888407f358b9d6bbe1fbf412245eadf2cee",
+      "effective_bundle_sha256": "68a905620d091d9edc2881caaf6e3b08b6a525588c28f03c837405d7cd5e5646"
+    }
   },
   "side_effect_envelope": {
     "runtime": "DENIED",
@@ -128,16 +201,5 @@
     "historical_source_materialization": false,
     "exact_write_scope_required": true
   },
-  "review_barrier": "FRESH_COHESIVE_INDEPENDENT_SEMANTIC_REVIEW_BEFORE_WORK_ACCEPTANCE",
-  "current_RF01_work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-RF01-01.yaml",
-  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-RF01-01.review.yaml",
-  "semantic_acceptance": "NOT_PERFORMED",
-  "active_execution_id": null,
-  "review_fix_budget": {
-    "limit": 2,
-    "used": 1,
-    "remaining": 1,
-    "executable_now": false
-  },
-  "current_route": "ONE_FRESH_NARROW_INDEPENDENT_AUTO_IMP_002_REV2_RF01_RE_REVIEW"
+  "review_barrier": "FRESH_COHESIVE_INDEPENDENT_SEMANTIC_REVIEW_BEFORE_WORK_ACCEPTANCE"
 }
