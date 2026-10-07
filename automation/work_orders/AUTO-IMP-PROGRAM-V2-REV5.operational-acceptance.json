@@ -1,0 +1,93 @@
+{
+  "schema_version": "automation.program_operational_acceptance.v1",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "program_revision": "5",
+  "status": "ACCEPTED_MATERIALIZED",
+  "PROGRAM_V2_OPERATIONAL_SUCCESSOR": "ACCEPTED_MATERIALIZED",
+  "acceptance_scope": "OPERATIONAL_PROGRESSION_ONLY",
+  "authority": "EXPLICIT_HUMAN_OWNER_OPERATIONAL_SUCCESSOR_GRANT",
+  "definition": {
+    "revision": "5",
+    "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.rev5.yaml",
+    "git_blob_sha": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+    "ref": "05d7cc77f715250c93ae43ef04522ba061d2fcd4"
+  },
+  "predecessor": {
+    "revision": "4",
+    "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+    "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+    "ref": "442fb81520e5eecc650fb24d08f4f2e862c3326f",
+    "disposition": "IMMUTABLE_ACCEPTED_HISTORICAL_BASELINE"
+  },
+  "owner_decision": {
+    "path": "automation/governance/decisions/OWNER-AUTO-IMP-003-OPERATIONAL-TRANSITION.json",
+    "git_blob_sha": "4afaab214052218098bf3ad0c86989e193696aaf",
+    "commit": "d49f1034d024d48a2a88e021b12f008100d42b65"
+  },
+  "accepted_head": {
+    "package_id": "AUTO-IMP-002",
+    "status": "ACCEPTED_MATERIALIZED",
+    "acceptance": {
+      "path": "automation/work_orders/AUTO-IMP-002-REV2.acceptance.json",
+      "git_blob_sha": "92dec38fee56cb92595a17e4e28a042e0596fa36",
+      "commit": "c3c86b79b669b9410337edd7de309d8a24e669ba"
+    },
+    "closure": {
+      "path": "automation/work_orders/AUTO-IMP-002.closure.yaml",
+      "git_blob_sha": "bab5dccdf0e17954e323e5c8a6b96947cfa7cd67",
+      "commit": "c3c86b79b669b9410337edd7de309d8a24e669ba"
+    },
+    "bundle": "68a905620d091d9edc2881caaf6e3b08b6a525588c28f03c837405d7cd5e5646"
+  },
+  "exact_lane_delta": {
+    "program_revision": {
+      "before": "4",
+      "after": "5"
+    },
+    "next_operational_item": {
+      "before": "AUTO-IMP-002",
+      "after": "AUTO-IMP-003"
+    },
+    "operational_lane_order": {
+      "before": [
+        "AUTO-IMP-002",
+        "AUTO-IMP-003",
+        "AUTO-IMP-004",
+        "AUTO-IMP-005",
+        "AUTO-IMP-006",
+        "AUTO-IMP-007",
+        "AUTO-IMP-008",
+        "AUTO-IMP-009"
+      ],
+      "after": [
+        "AUTO-IMP-003",
+        "AUTO-IMP-004",
+        "AUTO-IMP-005",
+        "AUTO-IMP-006",
+        "AUTO-IMP-007",
+        "AUTO-IMP-008",
+        "AUTO-IMP-009"
+      ]
+    }
+  },
+  "provenance_path": "automation/programs/AUTO-IMP-PROGRAM-V2/REV4_TO_REV5_OPERATIONAL_SUPERSESSION.json",
+  "operational_baseline_path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-baseline.json",
+  "historical_architecture_acceptance": {
+    "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.acceptance.json",
+    "git_blob_sha": "332568ca9e9d712117fbca7976bf1b198a5ed54a",
+    "preserved": true,
+    "not_reused_as_revision5_acceptance": true
+  },
+  "architecture": "1.2.2_UNCHANGED",
+  "capacity_policy": "2.2_UNCHANGED",
+  "dag": "UNCHANGED",
+  "package_semantics": "UNCHANGED",
+  "other_program_semantics": "IDENTICAL_TO_REVISION4",
+  "review_source_semantics_not_redesigned": true,
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "implementation_authority": "NONE",
+  "execution_authority": "NOT_GRANTED",
+  "no_writer_execution_reservation_dispatch": true,
+  "created_at": "2026-10-07T09:15:35Z"
+}
