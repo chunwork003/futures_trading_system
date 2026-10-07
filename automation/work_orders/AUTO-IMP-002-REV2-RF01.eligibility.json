@@ -1,0 +1,134 @@
+{
+  "schema_version": "automation.execution_eligibility.v1",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
+  "correction_id": "AUTO-IMP-002-REV2-RF01",
+  "status": "PASS_PRE_WRITER",
+  "control_plane_head": "e50d2a61666a18f12140dfeadd6dc0c8eae237fa",
+  "authorization_commit": "e50d2a61666a18f12140dfeadd6dc0c8eae237fa",
+  "source_candidate_head_sha": "6380f2ffb62686d7e2543915804940d1855f8c90",
+  "source_assembly": {
+    "semantic_blobs": {
+      "automation/engine/repository_snapshot.py": "1a18a8d30487e1da8a208ed048fdd65b1eb71401",
+      "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+      "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63",
+      "tests/automation/test_repository_snapshot.py": "39cce94f4eec7c5452a31a628bd1b02f49bc6565"
+    },
+    "all_other_master_blobs_exact": true,
+    "master_base": "60fd8ea8e817d48bcc4cd4fa29ba3e2ba8155856",
+    "commit": "6380f2ffb62686d7e2543915804940d1855f8c90",
+    "tree": "e7b738794817771004c357d9a996f6ed8a25e747",
+    "branch": "codex/auto-imp-002-rev2-rf01-source-candidate",
+    "bundle_sha256": "a5a741380442eb5e77cf80a1b34575680dff7ca3bbb24b52729a2327b5c359e8",
+    "assembly_semantic_correction": false
+  },
+  "scope_digest": "bf9e862393f56a843f5b50518e3441c31924bacfdfd0daaf08d00196ea1aab44",
+  "scope_count": 2,
+  "exact_scope": [
+    "automation/engine/repository_snapshot.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "parent_verdict_commit": "60fd8ea8e817d48bcc4cd4fa29ba3e2ba8155856",
+  "owner_conditional_review_fix_grant": "VERIFIED_BOUND_FRESH_REVIEW_FIX_REQUIRED_IN_SCOPE",
+  "parent_implementation_budget": "2/2_EXHAUSTED_NOT_REUSED",
+  "review_fix_budget": {
+    "limit": 2,
+    "used": 0,
+    "remaining": 2,
+    "metadata_compilation_consumption": 0
+  },
+  "writer_inventory": [
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
+      "sha": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
+      "sha": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-20261006T115006Z/writer_lock.yaml",
+      "sha": "d1b8fb3168bd243e03efe3eaac444d26ef2d403f",
+      "state": "RELEASED_PRE_FIRST_INVOCATION_EXECUTOR_UNAVAILABLE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_lock.yaml",
+      "sha": "da43c15e5ef293a05dd661561a439e6282d859f5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/writer_lock.yaml",
+      "sha": "b8b3c7f43475c7a377992f8638dd71bd59b04fc0",
+      "state": "RELEASED"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml",
+      "sha": "63023ef80205e6d8c496011d6fe52631b39f47ad",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/writer_lock.yaml",
+      "sha": "aa0e9f5373be47844e6ebcf95d8adc8b4e1d25ba",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/writer_lock.yaml",
+      "sha": "7e2406016fa31821d126c951170c75120d0e7ccf",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/writer_lock.yaml",
+      "sha": "e60cee543d88d4049b5a4edf7693e402b7ff9656",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.writer-lock.yaml",
+      "sha": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.writer-lock.yaml",
+      "sha": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.writer-lock.yaml",
+      "sha": "da43c15e5ef293a05dd661561a439e6282d859f5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml",
+      "sha": "aa0e9f5373be47844e6ebcf95d8adc8b4e1d25ba",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    }
+  ],
+  "no_concurrent_writer": "PASS",
+  "no_active_execution": "PASS_PARENT_COMPLETED_AND_RELEASED",
+  "no_higher_priority_unfinished_work": "PASS_CANONICAL_CURRENT_PARENT_REVIEW_FIX_IS_UNIQUE_CURRENT_CONTINUATION",
+  "no_parent_redispatch": true,
+  "source_control_plane_compatibility": "Assembly four reviewed blobs exact; controlled metadata descendants only; no current authority/source outside scope changed",
+  "architecture": "1.2.2 ACTIVE",
+  "capacity_policy": "2.2 ACTIVE",
+  "program": "ACCEPTED_MATERIALIZED",
+  "provider_gate": {
+    "route": "PROVIDER_AVAILABLE",
+    "reason": "PROVIDER_REPORTED_AVAILABILITY",
+    "execution_allowed": false,
+    "authority_created": false,
+    "forecast_capacity_review_required": false
+  },
+  "capacity_gate": {
+    "route": "ALLOW_WITH_WATCH",
+    "reason": "PRIMARY_5H_AT_OR_ABOVE_P75",
+    "execution_allowed": false,
+    "authority_created": false,
+    "forecast_capacity_review_required": false
+  },
+  "manual_p75": 3200000,
+  "code_execution_authorized": false,
+  "handoff_ready": false,
+  "created_at": "2026-10-07T04:54:39Z",
+  "updated_at": "2026-10-07T04:54:39Z"
+}
