@@ -1,0 +1,75 @@
+{
+  "schema_version": "automation.owner_decision.v1",
+  "decision_id": "OWNER-ACCEPTANCE-CURRENT-METADATA-BOUNDARY-PROGRAM-V2",
+  "decision": "APPROVED",
+  "decision_literal": "OWNER_ACCEPTANCE_CURRENT_METADATA_BOUNDARY_DECISION",
+  "authority": "HUMAN_GOVERNANCE_OWNER",
+  "source": "EXPLICIT_USER_DECISION_THIS_RUN",
+  "decision_baseline": "d65c2d2849f8c36dc563a1e6a851fe65feafe116",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "architecture": "1.2.2_ACTIVE_UNCHANGED",
+  "capacity_policy": "2.2_ACTIVE_UNCHANGED",
+  "relation": "REVIEW_EVIDENCE_BASELINE != INTEGRATED_OPERATIONAL_BASELINE",
+  "immutable_review": {
+    "implementation_sha": "85b94c92ccba4b4c569e3be846646902cb6348d2",
+    "evidence_sha": "e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40",
+    "scope_count": 21,
+    "bundle_sha256": "21cd40faa6f652e279d13c991812d7c269ea481490c22a421804fb0dce6eab9e",
+    "redefine_replace_regenerate": "DENIED"
+  },
+  "operational_boundary": {
+    "exact_reviewed_paths": 19,
+    "exceptions": [
+      "docs/CURRENT_STATE.md",
+      "docs/CURRENT_WORK.md"
+    ],
+    "exception_disposition": "AUTHORIZED_CURRENT_PROJECTION_METADATA_EXCEPTION",
+    "exceptions_must_preserve_or_advance_current_durable_truth": true,
+    "obsolete_REV5_READY_restore": "DENIED",
+    "third_exception": "DENIED"
+  },
+  "grants": {
+    "source_implementation": false,
+    "review_fix": false,
+    "codex": false,
+    "controller_activation": false,
+    "next_package_authority": false
+  },
+  "budgets": {
+    "original_implementation": {
+      "limit": 2,
+      "used": 2,
+      "remaining": 0
+    },
+    "REV6_exception": {
+      "limit": 1,
+      "used": 1,
+      "remaining": 0,
+      "status": "HISTORICAL_CONSUMED_EXHAUSTED"
+    },
+    "review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2,
+      "executable": false
+    }
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "stop": [
+    "THIRD_EXCEPTION",
+    "ANY_OF19_NOT_EXACT",
+    "METADATA_EXCEPTION_REQUIRES_SEMANTIC_AUTHORITY_EXPANSION",
+    "REVIEW_BUNDLE_OR_PASS_BINDING_DRIFT",
+    "IMPLICIT_CONTROLLER_OR_NEXT_PACKAGE_AUTHORITY"
+  ],
+  "created_at": "2026-10-07T02:29:37Z",
+  "updated_at": "2026-10-07T02:29:37Z"
+}
