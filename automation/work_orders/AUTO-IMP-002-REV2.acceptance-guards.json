@@ -1,0 +1,209 @@
+{
+  "schema_version": "automation.acceptance_materialization_guards.v1",
+  "AUTO_IMP_002_REV2_ACCEPTANCE_MATERIALIZATION": "PASS",
+  "AUTO_IMP_002": "ACCEPTED_MATERIALIZED",
+  "semantic_acceptance": "ACCEPTED",
+  "verified_master_before_guard": "8d1eec13280b99d6e8362103535c5265dc9a297b",
+  "review_verdict": {
+    "path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-RF01-01.verdict.json",
+    "commit": "4335b03aaa9ac0b3be8c74df1b3a96f7d281d862",
+    "git_blob_sha": "c0e563ba57089896a45ca78f76144ca811a6194e",
+    "verdict": "PASS",
+    "findings": [],
+    "F_01": "CLOSED",
+    "F_02": "CLOSED",
+    "F_03": "CLOSED",
+    "preservation": "PASS"
+  },
+  "source_materialization_commit": "48992888407f358b9d6bbe1fbf412245eadf2cee",
+  "acceptance_commit": "c3c86b79b669b9410337edd7de309d8a24e669ba",
+  "acceptance_path": "automation/work_orders/AUTO-IMP-002-REV2.acceptance.json",
+  "closure_path": "automation/work_orders/AUTO-IMP-002.closure.yaml",
+  "exact_final_four_blobs": {
+    "automation/engine/repository_snapshot.py": "d286ff23b88c9b7daa7d21acf07dfc88d5567935",
+    "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+    "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63",
+    "tests/automation/test_repository_snapshot.py": "50951c7d8933f87b3eb80ca1828d92481790e730"
+  },
+  "effective_bundle_sha256": "68a905620d091d9edc2881caaf6e3b08b6a525588c28f03c837405d7cd5e5646",
+  "bundle_convention": "Ordinal path-sorted path+NUL+lowercase Git blob+LF UTF8 SHA256",
+  "independent_raw_git_blob_and_bundle_recomputation": {
+    "verified_master": "8d1eec13280b99d6e8362103535c5265dc9a297b",
+    "exact_four_raw_blob_proof": "PASS",
+    "effective_bundle_sha256": "68a905620d091d9edc2881caaf6e3b08b6a525588c28f03c837405d7cd5e5646",
+    "metadata_final_blob_proof": "PASS",
+    "historical_doc_sections_preserved": "PASS",
+    "package_machine_contract": "PASS",
+    "git_diff_check": "PASS",
+    "no_active_writer_execution": "PASS",
+    "review_fix_terminal_retirement": "PASS",
+    "no_controller_next_package_authority": "PASS",
+    "implementation_regression_rerun": false
+  },
+  "changed_paths_since_fresh_baseline": [
+    "automation/engine/yaml_io.py",
+    "automation/packages/AUTO-IMP-002.v2.yaml",
+    "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/current_lifecycle_projection.json",
+    "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/current_lifecycle_projection.json",
+    "automation/work_orders/CURRENT_CODEX.yaml",
+    "automation/work_orders/CURRENT_CODEX_TASK.md",
+    "automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml",
+    "automation/work_orders/WO-AUTO-IMP-002-REV2-RF01-01.yaml",
+    "docs/CURRENT_STATE.md",
+    "docs/CURRENT_WORK.md",
+    "tests/automation/test_contracts.py",
+    "automation/engine/repository_snapshot.py",
+    "automation/work_orders/AUTO-IMP-002-REV2.acceptance.json",
+    "automation/work_orders/AUTO-IMP-002-TO-003.dry-projection.json",
+    "automation/work_orders/AUTO-IMP-002-TO-003.transition.json",
+    "automation/work_orders/AUTO-IMP-002.closure.yaml",
+    "automation/work_orders/AUTO-IMP-003.operational-transition-blocker.json",
+    "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-RF01-01.verdict.json",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "exact_allowed_delta": "PASS_NO_HIDDEN_THIRD_SEMANTIC_PATH",
+  "immutable_evidence_checked_count": 207,
+  "immutable_evidence_result": "PASS_ALL_AUTHORIZATION_RUN_PHASE_EVIDENCE_PROGRAM_POLICY_BLOBS_UNCHANGED_EXCEPT_DECLARED_MUTABLE_CURRENT_LIFECYCLE_PROJECTIONS",
+  "writer_inventory": [
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
+      "blob": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
+      "blob": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-20261006T115006Z/writer_lock.yaml",
+      "blob": "d1b8fb3168bd243e03efe3eaac444d26ef2d403f",
+      "state": "RELEASED_PRE_FIRST_INVOCATION_EXECUTOR_UNAVAILABLE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_lock.yaml",
+      "blob": "da43c15e5ef293a05dd661561a439e6282d859f5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/writer_lock.yaml",
+      "blob": "b8b3c7f43475c7a377992f8638dd71bd59b04fc0",
+      "state": "RELEASED"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml",
+      "blob": "63023ef80205e6d8c496011d6fe52631b39f47ad",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/writer_lock.yaml",
+      "blob": "aa0e9f5373be47844e6ebcf95d8adc8b4e1d25ba",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/writer_lock.yaml",
+      "blob": "080f90e3d00c5bdf2398d4b6528520e1df940cde",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/writer_lock.yaml",
+      "blob": "7e2406016fa31821d126c951170c75120d0e7ccf",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/writer_lock.yaml",
+      "blob": "e60cee543d88d4049b5a4edf7693e402b7ff9656",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.writer-lock.yaml",
+      "blob": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.writer-lock.yaml",
+      "blob": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.writer-lock.yaml",
+      "blob": "da43c15e5ef293a05dd661561a439e6282d859f5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml",
+      "blob": "aa0e9f5373be47844e6ebcf95d8adc8b4e1d25ba",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-RF01-01.writer-lock.yaml",
+      "blob": "080f90e3d00c5bdf2398d4b6528520e1df940cde",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    }
+  ],
+  "no_concurrent_writer": "PASS_ALL_15_INVENTORY_BLOBS_UNCHANGED_RELEASED",
+  "active_writer": null,
+  "active_execution": null,
+  "new_writer_execution_reservation_dispatch": false,
+  "authority_changes": "NONE",
+  "budgets": {
+    "initial_implementation": {
+      "limit": 1,
+      "used": 1,
+      "remaining": 0,
+      "state": "EXHAUSTED",
+      "executable_now": false
+    },
+    "implementation_corrections": {
+      "limit": 2,
+      "used": 2,
+      "remaining": 0,
+      "state": "EXHAUSTED",
+      "executable_now": false
+    },
+    "review_fix": {
+      "limit": 2,
+      "used": 1,
+      "remaining": 1,
+      "state": "RETIRED_UNUSED_ON_ACCEPTANCE",
+      "unused_retired": 1,
+      "executable_now": false,
+      "transferable": false,
+      "disposition": "NON_EXECUTABLE_NON_TRANSFERABLE"
+    },
+    "RF01": "CONSUMED_BY_COMPLETED_SEMANTIC_CORRECTION_CLOSED_ON_ACCEPTANCE",
+    "RF02": "NOT_AUTHORIZED",
+    "latent_correction_authority": false
+  },
+  "program_definition": {
+    "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+    "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+    "revision": "4",
+    "disposition": "IMMUTABLE_ACCEPTED_BINDING_PRESERVED"
+  },
+  "AUTO_IMP_002_TO_003_OPERATIONAL_TRANSITION": "OWNER_DECISION_REQUIRED",
+  "transition_case": "G3",
+  "transition_path": "automation/work_orders/AUTO-IMP-002-TO-003.transition.json",
+  "transition_commit": "8ea547b225b554cf09ed62777938a50bf3a0f4ad",
+  "transition_compatibility_proof_path": "automation/work_orders/AUTO-IMP-002-TO-003.dry-projection.json",
+  "blocker_path": "automation/work_orders/AUTO-IMP-003.operational-transition-blocker.json",
+  "logical_003_dependencies": [
+    "AUTO-IMP-001"
+  ],
+  "dependency_graph_is_not_lane_order": true,
+  "AUTO_IMP_003": "NOT_AUTHORIZED",
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "automatic_next_dispatch": "DENIED",
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "next_route": "HUMAN_AUTO_IMP_003_OPERATIONAL_TRANSITION_DECISION",
+  "created_at": "2026-10-07T08:42:06Z"
+}
