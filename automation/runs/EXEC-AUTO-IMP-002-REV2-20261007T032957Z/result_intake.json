@@ -1,0 +1,270 @@
+{
+  "schema_version": "automation.result_intake.v1",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "status": "COMPLETED_PENDING_REVIEW",
+  "mechanical_intake": "PASS",
+  "semantic_acceptance": "NOT_PERFORMED",
+  "review_status": "NOT_PERFORMED",
+  "master_before_intake": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+  "source_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "invocation_sha": "c77c7ef60438a1677959a0ac9d7ff659f5f209fd",
+  "implementation_sha": "370b107f6640012aa16bb3604b5e26bb4b125f35",
+  "evidence_sha": "6ad6cff71454a6200e5e92efc61ed22fdf1d3d91",
+  "execution_branch": "auto/WO-AUTO-IMP-002-REV2-01",
+  "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+  "exact_semantic_scope": [
+    "automation/engine/repository_snapshot.py",
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "semantic_blobs": {
+    "automation/engine/repository_snapshot.py": "1a18a8d30487e1da8a208ed048fdd65b1eb71401",
+    "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+    "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63",
+    "tests/automation/test_repository_snapshot.py": "39cce94f4eec7c5452a31a628bd1b02f49bc6565"
+  },
+  "mechanical_verification": {
+    "protected_count": 1110,
+    "protected_match": "PASS",
+    "all_baseline_protected_unchanged": "PASS",
+    "semantic_blobs": {
+      "automation/engine/repository_snapshot.py": "1a18a8d30487e1da8a208ed048fdd65b1eb71401",
+      "automation/engine/yaml_io.py": "3a93ac85db4522678569d8b8490f8bb68c0ffdd1",
+      "tests/automation/test_contracts.py": "9765fdf7212c722cb57ce79719c3070115867f63",
+      "tests/automation/test_repository_snapshot.py": "39cce94f4eec7c5452a31a628bd1b02f49bc6565"
+    },
+    "changes": [
+      "automation/engine/repository_snapshot.py",
+      "automation/engine/yaml_io.py",
+      "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/claim.json",
+      "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/completion.json",
+      "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/execution_cost_actual.json",
+      "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/invocation.json",
+      "tests/automation/test_contracts.py",
+      "tests/automation/test_repository_snapshot.py"
+    ],
+    "source_delta": [
+      "automation/engine/repository_snapshot.py",
+      "automation/engine/yaml_io.py",
+      "tests/automation/test_contracts.py",
+      "tests/automation/test_repository_snapshot.py"
+    ],
+    "branch_tip": "6ad6cff71454a6200e5e92efc61ed22fdf1d3d91",
+    "tests": [
+      {
+        "phase": "pre_fix_counterexample",
+        "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -q --tb=short",
+        "exit_code": 1,
+        "failed": 2,
+        "seconds": 0.43,
+        "expected_failure": true
+      },
+      {
+        "phase": "impacted_initial_subset",
+        "exit_code": 0,
+        "passed": 14,
+        "deselected": 98,
+        "seconds": 0.53
+      },
+      {
+        "phase": "impacted_initial_snapshot",
+        "exit_code": 0,
+        "passed": 72,
+        "seconds": 3.61
+      },
+      {
+        "phase": "correction_1_impacted",
+        "exit_code": 0,
+        "passed": 42,
+        "deselected": 31,
+        "seconds": 3.15
+      },
+      {
+        "phase": "correction_2_impacted",
+        "exit_code": 0,
+        "passed": 42,
+        "deselected": 35,
+        "seconds": 2.3
+      },
+      {
+        "phase": "targeted",
+        "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py -q",
+        "exit_code": 0,
+        "passed": 125,
+        "seconds": 4.62
+      },
+      {
+        "phase": "cross_targeted",
+        "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py tests/automation/test_orchestration.py tests/automation/test_execution_capacity.py -q",
+        "exit_code": 0,
+        "passed": 279,
+        "seconds": 6.99
+      },
+      {
+        "phase": "full_regression",
+        "command": "python -m pytest -p no:cacheprovider -q",
+        "exit_code": 0,
+        "passed": 1806,
+        "skipped": 8,
+        "seconds": 46.56,
+        "external_db_dsns": "DISABLED"
+      }
+    ]
+  },
+  "invocation_order": "master -> contemporaneous claim/invocation -> four-file implementation -> completion/cost evidence",
+  "authorization_state": "CONSUMED",
+  "redispatch": "DENIED",
+  "budget": {
+    "initial_implementation_used": 1,
+    "implementation_corrections_used": 2,
+    "implementation_corrections_limit": 2,
+    "conditional_review_fix_used": 0,
+    "conditional_review_fix_executable_now": false,
+    "correction_reasons": [
+      "Canonical WO nested scope digest and execution recheck provider/capacity bindings",
+      "Canonical WO textual next-package restriction and raw source interface proof handling"
+    ]
+  },
+  "implementation_correction_remaining": 0,
+  "implementation_correction_state": "EXHAUSTED",
+  "review_fix_remaining": 2,
+  "review_fix_executable_now": false,
+  "side_effect_proof": {
+    "snapshot_module": "Only read-only rev-parse/ls-tree/cat-file; no lazy fetch; routing delegated to accepted orchestration",
+    "tests": "Deterministic fixtures and disposable Git repositories; no external DB/broker/LIVE",
+    "executor_git_mutations": "Only authorized own execution branch commits/push; no master mutation",
+    "runtime_broker_db_migration_live_production_credentials": "NONE",
+    "preexisting_data": "UNTOUCHED"
+  },
+  "tests": [
+    {
+      "phase": "pre_fix_counterexample",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -q --tb=short",
+      "exit_code": 1,
+      "failed": 2,
+      "seconds": 0.43,
+      "expected_failure": true
+    },
+    {
+      "phase": "impacted_initial_subset",
+      "exit_code": 0,
+      "passed": 14,
+      "deselected": 98,
+      "seconds": 0.53
+    },
+    {
+      "phase": "impacted_initial_snapshot",
+      "exit_code": 0,
+      "passed": 72,
+      "seconds": 3.61
+    },
+    {
+      "phase": "correction_1_impacted",
+      "exit_code": 0,
+      "passed": 42,
+      "deselected": 31,
+      "seconds": 3.15
+    },
+    {
+      "phase": "correction_2_impacted",
+      "exit_code": 0,
+      "passed": 42,
+      "deselected": 35,
+      "seconds": 2.3
+    },
+    {
+      "phase": "targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py -q",
+      "exit_code": 0,
+      "passed": 125,
+      "seconds": 4.62
+    },
+    {
+      "phase": "cross_targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py tests/automation/test_orchestration.py tests/automation/test_execution_capacity.py -q",
+      "exit_code": 0,
+      "passed": 279,
+      "seconds": 6.99
+    },
+    {
+      "phase": "full_regression",
+      "command": "python -m pytest -p no:cacheprovider -q",
+      "exit_code": 0,
+      "passed": 1806,
+      "skipped": 8,
+      "seconds": 46.56,
+      "external_db_dsns": "DISABLED"
+    }
+  ],
+  "diff_check": {
+    "exit_code": 0,
+    "result": "PASS"
+  },
+  "no_second_execution": "PASS_ONE_EXACT_BRANCH_ONE_LIFECYCLE",
+  "writer_before_intake": "HELD_EXACT_EXECUTION_ONLY_TWO_ALIASES",
+  "writer_inventory": [
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
+      "git_blob_sha": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
+      "git_blob_sha": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-20261006T115006Z/writer_lock.yaml",
+      "git_blob_sha": "d1b8fb3168bd243e03efe3eaac444d26ef2d403f"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_lock.yaml",
+      "git_blob_sha": "da43c15e5ef293a05dd661561a439e6282d859f5"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/writer_lock.yaml",
+      "git_blob_sha": "b8b3c7f43475c7a377992f8638dd71bd59b04fc0"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml",
+      "git_blob_sha": "63023ef80205e6d8c496011d6fe52631b39f47ad"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/writer_lock.yaml",
+      "git_blob_sha": "e436c4e72fe1cd54d6221db3a9d477219ff54740"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/writer_lock.yaml",
+      "git_blob_sha": "7e2406016fa31821d126c951170c75120d0e7ccf"
+    },
+    {
+      "path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/writer_lock.yaml",
+      "git_blob_sha": "e60cee543d88d4049b5a4edf7693e402b7ff9656"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.writer-lock.yaml",
+      "git_blob_sha": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.writer-lock.yaml",
+      "git_blob_sha": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.writer-lock.yaml",
+      "git_blob_sha": "da43c15e5ef293a05dd661561a439e6282d859f5"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml",
+      "git_blob_sha": "e436c4e72fe1cd54d6221db3a9d477219ff54740"
+    }
+  ],
+  "source_tests_rerun": false,
+  "source_modification_by_work": false,
+  "merge": "DENIED",
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "AUTO_IMP_003": "NOT_AUTHORIZED",
+  "created_at": "2026-10-07T04:09:19Z",
+  "updated_at": "2026-10-07T04:09:19Z"
+}

@@ -1,0 +1,272 @@
+{
+  "schema_version": "automation.execution_cost_actual.v2",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "raw_provider_before_after": {
+    "before": {
+      "ordinaryUsageAllowed": true,
+      "rateLimits": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 9,
+          "windowDurationMins": 300,
+          "resetsAt": 1791361879
+        },
+        "secondary": {
+          "usedPercent": 1,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791948679
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      },
+      "rateLimitsByLimitId": {
+        "codex": {
+          "limitId": "codex",
+          "limitName": null,
+          "normalModelSlug": null,
+          "primary": {
+            "usedPercent": 9,
+            "windowDurationMins": 300,
+            "resetsAt": 1791361879
+          },
+          "secondary": {
+            "usedPercent": 1,
+            "windowDurationMins": 10080,
+            "resetsAt": 1791948679
+          },
+          "credits": {
+            "hasCredits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individualLimit": null,
+          "spendControlReached": false,
+          "planType": "plus",
+          "rateLimitReachedType": null
+        }
+      },
+      "rateLimitResetCredits": {
+        "availableCount": 1,
+        "credits": [
+          {
+            "id": "RateLimitResetCredit_771ee9c1c33c8191bb6446adef907c3b",
+            "resetType": "codexRateLimits",
+            "status": "available",
+            "grantedAt": 1790699427,
+            "expiresAt": 1793291427,
+            "title": "Full reset (Weekly + 5 hr)",
+            "description": "Thanks for using Codex! You've been granted one free rate limit reset."
+          }
+        ]
+      },
+      "accountId": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+      "rateLimitUpsell": null
+    },
+    "after": {
+      "ordinaryUsageAllowed": true,
+      "rateLimits": {
+        "limitId": "codex",
+        "limitName": null,
+        "normalModelSlug": null,
+        "primary": {
+          "usedPercent": 20,
+          "windowDurationMins": 300,
+          "resetsAt": 1791361879
+        },
+        "secondary": {
+          "usedPercent": 3,
+          "windowDurationMins": 10080,
+          "resetsAt": 1791948679
+        },
+        "credits": {
+          "hasCredits": false,
+          "unlimited": false,
+          "balance": "0"
+        },
+        "individualLimit": null,
+        "spendControlReached": false,
+        "planType": "plus",
+        "rateLimitReachedType": null
+      },
+      "rateLimitsByLimitId": {
+        "codex": {
+          "limitId": "codex",
+          "limitName": null,
+          "normalModelSlug": null,
+          "primary": {
+            "usedPercent": 20,
+            "windowDurationMins": 300,
+            "resetsAt": 1791361879
+          },
+          "secondary": {
+            "usedPercent": 3,
+            "windowDurationMins": 10080,
+            "resetsAt": 1791948679
+          },
+          "credits": {
+            "hasCredits": false,
+            "unlimited": false,
+            "balance": "0"
+          },
+          "individualLimit": null,
+          "spendControlReached": false,
+          "planType": "plus",
+          "rateLimitReachedType": null
+        }
+      },
+      "rateLimitResetCredits": {
+        "availableCount": 1,
+        "credits": [
+          {
+            "id": "RateLimitResetCredit_771ee9c1c33c8191bb6446adef907c3b",
+            "resetType": "codexRateLimits",
+            "status": "available",
+            "grantedAt": 1790699427,
+            "expiresAt": 1793291427,
+            "title": "Full reset (Weekly + 5 hr)",
+            "description": "Thanks for using Codex! You've been granted one free rate limit reset."
+          }
+        ]
+      },
+      "accountId": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+      "rateLimitUpsell": null
+    }
+  },
+  "provider_measurement": "PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY",
+  "local_token_status": "PENDING_EXTERNAL_EXTRACTION",
+  "billing_status": "NOT_AVAILABLE",
+  "actor_start": "2026-10-07T03:44:28.088788+00:00",
+  "actor_end": "2026-10-07T04:02:20.807200+00:00",
+  "actor_seconds": 1072.718412,
+  "test_cycles": [
+    {
+      "phase": "pre_fix_counterexample",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py -q --tb=short",
+      "exit_code": 1,
+      "failed": 2,
+      "seconds": 0.43,
+      "expected_failure": true
+    },
+    {
+      "phase": "impacted_initial_subset",
+      "exit_code": 0,
+      "passed": 14,
+      "deselected": 98,
+      "seconds": 0.53
+    },
+    {
+      "phase": "impacted_initial_snapshot",
+      "exit_code": 0,
+      "passed": 72,
+      "seconds": 3.61
+    },
+    {
+      "phase": "correction_1_impacted",
+      "exit_code": 0,
+      "passed": 42,
+      "deselected": 31,
+      "seconds": 3.15
+    },
+    {
+      "phase": "correction_2_impacted",
+      "exit_code": 0,
+      "passed": 42,
+      "deselected": 35,
+      "seconds": 2.3
+    },
+    {
+      "phase": "targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py -q",
+      "exit_code": 0,
+      "passed": 125,
+      "seconds": 4.62
+    },
+    {
+      "phase": "cross_targeted",
+      "command": "python -m pytest -p no:cacheprovider tests/automation/test_repository_snapshot.py tests/automation/test_contracts.py tests/automation/test_orchestration.py tests/automation/test_execution_capacity.py -q",
+      "exit_code": 0,
+      "passed": 279,
+      "seconds": 6.99
+    },
+    {
+      "phase": "full_regression",
+      "command": "python -m pytest -p no:cacheprovider -q",
+      "exit_code": 0,
+      "passed": 1806,
+      "skipped": 8,
+      "seconds": 46.56,
+      "external_db_dsns": "DISABLED"
+    }
+  ],
+  "targeted_seconds": 4.62,
+  "cross_targeted_seconds": 6.99,
+  "full_regression_seconds": 46.56,
+  "tool_retries": {
+    "count": 4,
+    "details": [
+      "YAML spec parsed as JSON then read with YAML",
+      "UTF-8 default text read retried explicitly",
+      "YAML closure parsed as JSON then read raw",
+      "scope guard retried to distinguish own metadata from semantic scope"
+    ],
+    "semantic_budget_effect": 0
+  },
+  "task_profile": {
+    "task_class": "CLEAN_SUCCESSOR_MANIFEST_REENTRY_IMPLEMENTATION",
+    "change_type": "NEW_READ_ONLY_SNAPSHOT_ADAPTER_PLUS_SAFE_BYTES_API",
+    "subsystem": "AUTOMATION_CONTROL_PLANE",
+    "functional_area": "GIT_BLOB_INTEGRITY_AND_REENTRY",
+    "engineering_goal": "Manifest Integrity and Unified Re-entry Snapshot Resolver on accepted Program V2 master",
+    "primary_symbols": [
+      "GitBlobReader",
+      "RepositorySnapshot",
+      "verify_manifest_bindings",
+      "resolve_repository_snapshot",
+      "orchestration.OrchestrationSnapshot",
+      "orchestration.resolve_route",
+      "yaml_io.load_yaml_mapping_bytes"
+    ],
+    "behavior_dimensions": [
+      "integrity",
+      "pointer_order",
+      "non_candidate_status",
+      "candidate_binding",
+      "immutability",
+      "authority_separation"
+    ],
+    "source_file_count": 2,
+    "test_file_count": 2,
+    "semantic_test_profile": "FAIL_CLOSED_NEGATIVE_MATRIX_AND_STABLE_FIXTURES",
+    "authority_boundary": "EXACT_REV2_OWNER_GRANTED_FOUR_FILE_MANUAL_CODEX_SINGLE_USE",
+    "packaging_decision": "KEEP_COHESIVE",
+    "cohesion_reason": "Same read boundary, authority boundary, shared safety tests and one acceptance gate; no splitting solely for token variance."
+  },
+  "actual_context_profile": {
+    "measurement": "ACTUAL_READ_PROFILE_NOT_PLANNING_ESTIMATE",
+    "canonical_control_plane": "Fresh origin/master AGENTS, CURRENT/task, auth, WO, handoff, lifecycle, compilation and forecast bindings; selected fields with full or bounded outputs",
+    "implementation_context": "Accepted yaml_io/contracts/orchestration/execution_capacity and relevant tests; exact Git proof objects referenced by CURRENT; deterministic fixture evidence",
+    "prior_history": "Historical context not used as current authority",
+    "exact_token_volume": "PENDING_EXTERNAL_EXTRACTION",
+    "raw_session_jsonl_loaded": false,
+    "whole_repository_source_scan": false,
+    "protected_tree_scan": "Git object identity metadata only"
+  },
+  "initial_implementation_used": 1,
+  "implementation_corrections_used": 2,
+  "implementation_corrections_limit": 2,
+  "review_fix_used": 0,
+  "provider_limit_encountered": false,
+  "provider_pause_count": 0,
+  "provider_pause_seconds": 0,
+  "resume_count": 0,
+  "forecast_capacity_review_required": false
+}
