@@ -8,7 +8,7 @@
   "program_id": "AUTO-IMP-PROGRAM-V2",
   "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
   "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-RF01-01.v1.yaml",
-  "status": "AUTHORIZED",
+  "status": "RESERVED",
   "handoff_ready": false,
   "code_base_sha": "6380f2ffb62686d7e2543915804940d1855f8c90",
   "control_plane_baseline_sha": "60fd8ea8e817d48bcc4cd4fa29ba3e2ba8155856",
@@ -138,11 +138,16 @@
     "strict post-execution token extraction or explicit unavailability; raw provider proxies separate"
   ],
   "next_package_restriction": "AUTO-IMP-003 NOT_AUTHORIZED; controller NOT_ACTIVE; CONTROLLED_AUTO DISABLED; automatic next package DENIED",
-  "current_route": "RF01_FRESH_PRE_EXECUTION_ELIGIBILITY",
-  "next_route": "RF01_FRESH_PRE_EXECUTION_ELIGIBILITY",
+  "current_route": "RECHECK_LOCK_HEAD_AND_BINDING",
+  "next_route": "RECHECK_LOCK_HEAD_AND_BINDING",
   "executor_mode": "CODEX",
   "dispatch_mode": "MANUAL",
   "executor_invoked": false,
   "created_at": "2026-10-07T04:51:46Z",
-  "updated_at": "2026-10-07T04:51:46Z"
+  "updated_at": "2026-10-07T04:56:43Z",
+  "authorization_state": "RESERVED",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/reservation.yaml",
+  "writer_owner": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "writer_state": "HELD"
 }
