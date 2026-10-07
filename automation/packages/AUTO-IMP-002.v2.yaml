@@ -2,7 +2,7 @@
   "schema_version": "automation.work_package_plan.v1",
   "work_package_id": "AUTO-IMP-002",
   "work_package_revision": "2",
-  "status": "AUTHORIZED",
+  "status": "COMPLETED_PENDING_RE_REVIEW",
   "program_id": "AUTO-IMP-PROGRAM-V2",
   "planning_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
   "wave": "CLEAN_PROGRAM_V2_SUCCESSOR",
@@ -13,8 +13,8 @@
   ],
   "purpose": "Build a fresh read-only exact Git blob/pointer-first repository snapshot boundary under accepted Program V2; delegate route semantics to accepted orchestration engine; no historical AUTO-IMP-002 source/authority/execution/budget inheritance.",
   "authorization": {
-    "implementation": "AUTHORIZED",
-    "execution": "PENDING_FRESH_ELIGIBILITY_NOT_EXECUTABLE_NOW",
+    "implementation": "CONSUMED_HISTORICAL_SINGLE_USE",
+    "execution": "PARENT_AND_RF01_COMPLETED_CONSUMED_NOT_EXECUTABLE",
     "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
     "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml",
     "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
@@ -128,5 +128,16 @@
     "historical_source_materialization": false,
     "exact_write_scope_required": true
   },
-  "review_barrier": "FRESH_COHESIVE_INDEPENDENT_SEMANTIC_REVIEW_BEFORE_WORK_ACCEPTANCE"
+  "review_barrier": "FRESH_COHESIVE_INDEPENDENT_SEMANTIC_REVIEW_BEFORE_WORK_ACCEPTANCE",
+  "current_RF01_work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-RF01-01.yaml",
+  "review_packet_path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-RF01-01.review.yaml",
+  "semantic_acceptance": "NOT_PERFORMED",
+  "active_execution_id": null,
+  "review_fix_budget": {
+    "limit": 2,
+    "used": 1,
+    "remaining": 1,
+    "executable_now": false
+  },
+  "current_route": "ONE_FRESH_NARROW_INDEPENDENT_AUTO_IMP_002_REV2_RF01_RE_REVIEW"
 }
