@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, replace
 import hashlib
+import json
 import math
 import os
 from pathlib import Path, PurePosixPath
@@ -343,6 +344,8 @@ def _candidate(a: _Assembly, c: Mapping[str, object], state: str) -> orchestrati
     _require(bool(wo_digests) and all(value == digest for value in wo_digests), "work order scope digest")
     _require(auth.get("source_candidate_head_sha") == c.get("code_base_sha") == wo.get("code_base_sha")
              and isinstance(c.get("code_base_sha"), str), "source baseline binding")
+    source = _exact_commit(c["code_base_sha"])
+    _require(a.reader.resolve_commit(source) == source, "source commit object")
     for doc in (c, auth, wo, package):
         _denied(doc)
     _require(c.get("auto_imp_003_authorized") is False, "AUTO-IMP-003 CURRENT")
@@ -383,6 +386,43 @@ def _candidate(a: _Assembly, c: Mapping[str, object], state: str) -> orchestrati
     _require(definition.get("program_id") == acceptance.get("program_id") == c.get("program_id"), "program identity")
     _require(definition.get("program_revision") == program.get("program_revision"), "program revision")
     _require(acceptance.get("status") == "ACCEPTED_MATERIALIZED", "materialized acceptance wins over phase snapshot")
+    # Adapter facts 必須來自 exact repository proofs，而非 OrchestrationSnapshot defaults。
+    strategy = _section(definition, "implementation_strategy")
+    lane = strategy.get("operational_lane_order")
+    _require(isinstance(lane, tuple) and bool(lane) and len(set(lane)) == len(lane), "lane order proof")
+    _require(strategy.get("next_operational_item") == c.get("package_id") == lane[0], "current lane item")
+    _require(deps.get("operational_order") == lane, "bound lane order")
+    _require(dag == (closure.get("work_package_id"),), "DAG prerequisite closure identity")
+    authority_proof = _section(c, "authority_proof")
+    _require(authority_proof.get("path") == c.get("authorization_path"), "exact authority proof path")
+    _require(_bound_proof(a, authority_proof) == auth, "exact authority proof")
+    architecture_proof = _section(c, "authority_compatibility_proof")
+    _require(architecture_proof.get("path") == "automation/governance/master_manifest.v1.yaml", "canonical architecture proof")
+    manifest = _bound_proof(a, architecture_proof)
+    activation = _section(manifest, "activation")
+    _require(manifest.get("status") == "ACTIVE" and activation.get("architecture_status") == "ACTIVE"
+             and activation.get("review_result") == "PASS", "accepted active architecture")
+    _require(manifest.get("manifest_id") == exact.get("architecture_id") and
+             manifest.get("master_architecture_version") == activation.get("architecture_version") ==
+             exact.get("architecture_revision"), "canonical architecture identity")
+    components = activation.get("bundle_components")
+    _require(isinstance(components, tuple) and bool(components), "architecture policy components")
+    entries = []
+    for component in components:
+        _require(isinstance(component, Mapping), "architecture component")
+        path = _path(component.get("path")); blob = a.blob(path)
+        _require(blob is not None and hashlib.sha256(blob.data).hexdigest() == component.get("sha256"), "architecture component hash")
+        entries.append({"path": path, "sha256": component["sha256"]})
+    _require(len({e["path"] for e in entries}) == len(entries), "duplicate architecture component")
+    _require(activation.get("bundle_hash_convention") == "SHA256_UTF8_COMPACT_SORTED_KEYS_JSON_LIST_SORTED_PATH_NO_TRAILING_NEWLINE", "architecture hash convention")
+    bundle = hashlib.sha256(json.dumps(sorted(entries, key=lambda e:e["path"]),
+        sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")).hexdigest()
+    _require(bundle == activation.get("bundle_hash") == exact.get("architecture_bundle_hash"), "canonical architecture bundle")
+    identities = c.get("executable_identities")
+    _require(isinstance(identities, tuple) and len(identities) == 1, "explicit executable identity inventory")
+    _require(type(c.get("executable_identity_count")) is int and c["executable_identity_count"] == len(identities), "explicit executable identity count")
+    _require(isinstance(identities[0], Mapping), "executable identity proof")
+    _same_identity(c, identities[0])
     for key in ("normative_bindings", "current_interfaces"):
         proofs = deps.get(key)
         _require(isinstance(proofs, tuple) and bool(proofs), key)
@@ -414,8 +454,13 @@ def _candidate(a: _Assembly, c: Mapping[str, object], state: str) -> orchestrati
     _require(capacity.get("scope_digest") == c.get("scope_digest"), "capacity scope")
     _same_identity(c, capacity)
     return orchestration.OrchestrationSnapshot(a.commit, (str(exact["architecture_bundle_hash"]),),
-        str(c["package_revision"]), 0, lane_item_ready=True, dag_prerequisites_satisfied=True,
-        exact_authority=True, authority_compatible=True, provider_available=available,
+        str(c["package_revision"]), 0,
+        lane_item_ready=strategy["next_operational_item"] == c["package_id"] == lane[0],
+        dag_prerequisites_satisfied=dag == (closure["work_package_id"],) and closure["status"] in {"CLOSED_ACCEPTED", "ACCEPTED", "ACCEPTED_MATERIALIZED"},
+        exact_authority=authority_proof["path"] == c["authorization_path"],
+        authority_compatible=bundle == activation["bundle_hash"] == exact["architecture_bundle_hash"],
+        provider_available=available,
+        executable_identity_count=len(identities),
         capacity_state="INSUFFICIENT" if route == "WAIT_5H_CAPACITY" else "UNKNOWN",
         dispatch_mode="MANUAL", executor_mode="CODEX", paused_execution_exists=resume,
         paused_executor_invoked=resume, paused_lineage_valid=resume)
@@ -443,9 +488,21 @@ def resolve_repository_snapshot(reader: GitBlobReader, ref: str, *, expected_com
         elif state in CANDIDATES or state in CONTINUATIONS:
             proposal = _candidate(assembly, current, state)
         else:
+            post_intake = False
+            if state == "COMPLETED_PENDING_REVIEW" and ("result_intake" in current or "result_intake_path" in current):
+                _require(current.get("result_intake") == "PASS", "current result intake")
+                intake = assembly.pointer(current, "result_intake_path")
+                writer = assembly.pointer(current, "writer_lock_path")
+                packet = assembly.pointer(current, "review_packet_path")
+                for doc in (intake, writer, packet):
+                    _same_identity(current, doc)
+                _require(intake.get("mechanical_intake") == "PASS" and intake.get("scope_digest") == current.get("scope_digest"), "durable intake proof")
+                _require(writer.get("state") == current.get("writer_state") == "RELEASED_AFTER_DURABLE_RESULT_INTAKE", "post-intake writer release")
+                _require(packet.get("status") == "PREPARED_REVIEW_NOT_PERFORMED" and current.get("review_state") == "NOT_PERFORMED_PACKET_PREPARED", "pending review packet")
+                post_intake = True
             proposal = replace(base,
-                completion_pending_intake=state == "COMPLETED_PENDING_REVIEW",
-                awaiting_review=state == "REVIEW_PENDING",
+                completion_pending_intake=state == "COMPLETED_PENDING_REVIEW" and not post_intake,
+                awaiting_review=state == "REVIEW_PENDING" or post_intake,
                 missing_required_identity=state in {"STOP", "HUMAN_DECISION_REQUIRED"})
         if reader.resolve_commit(ref) != commit:
             raise SnapshotError("REF_MOVED_REVALIDATION_REQUIRED", ref)

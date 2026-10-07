@@ -7,6 +7,45 @@ from dataclasses import replace
 import pytest
 
 
+def test_rf01_post_intake_counterexample():
+    from automation.engine.repository_snapshot import resolve_repository_snapshot
+    r = ready_fixture()
+    c = json.loads(r.files[CURRENT])
+    c.update(status="COMPLETED_PENDING_REVIEW", result_intake="PASS",
+             result_intake_path="automation/runs/EXEC/result_intake.json",
+             writer_state="RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+             review_state="NOT_PERFORMED_PACKET_PREPARED",
+             review_packet_path="automation/work_orders/reviews/packet.json")
+    r.files[CURRENT] = json.dumps(c).encode()
+    identity = {k:c[k] for k in ("execution_id", "authorization_id", "work_order_id")}
+    r.files[c["result_intake_path"]] = json.dumps(dict(identity, mechanical_intake="PASS", scope_digest=c["scope_digest"])).encode()
+    r.files[c["review_packet_path"]] = json.dumps(dict(identity, status="PREPARED_REVIEW_NOT_PERFORMED")).encode()
+    mutate(r, c["writer_lock_path"], ["state"], c["writer_state"])
+    result = resolve_repository_snapshot(r, COMMIT)
+    assert result.decision.route == "WAIT_REVIEW"
+    assert c["authorization_path"] not in result.snapshot.read_order
+
+
+@pytest.mark.parametrize("defect", ["missing_lane", "missing_count", "architecture", "source"])
+def test_rf01_gate_identity_counterexample(defect):
+    from automation.engine.repository_snapshot import resolve_repository_snapshot
+    r = ready_fixture()
+    if defect == "missing_lane":
+        # Parent fixture has no explicit lane/order proof.
+        mutate(r, "automation/programs/definition.yaml", ["implementation_strategy"], None, delete=True)
+    elif defect == "missing_count":
+        # Parent fixture has no explicit executable identity inventory.
+        mutate(r, CURRENT, ["executable_identity_count"], None, delete=True)
+    elif defect == "architecture":
+        mutate(r, "automation/authorizations/auth.yaml", ["exact_binding", "architecture_bundle_hash"], "b"*64)
+    else:
+        for p,k in [(CURRENT,"code_base_sha"),("automation/work_orders/wo.yaml","code_base_sha"),
+                    ("automation/authorizations/auth.yaml","source_candidate_head_sha")]:
+            mutate(r,p,[k],"2"*40)
+    result = resolve_repository_snapshot(r, COMMIT)
+    assert result.diagnostics and not result.decision.execution_allowed
+
+
 def test_minimum_raw_integrity_counterexample():
     from automation.engine.repository_snapshot import BlobBinding, verify_manifest_bindings
     reader = MemoryReader({"docs/a.yaml": b"value: 1\r\n"})
@@ -129,6 +168,35 @@ def ready_fixture():
         side_effect_envelope=effects, quota_gate=dict(provider_hard_block="STOP"), telemetry_gate={}, decision={},
         single_use_execution=dict(execution_id="EXEC"))
     # Break shared Python aliases so each mutation targets exactly one repository artifact.
+    reader.files = {p:encoded(o) for p,o in docs.items()}
+    # RF01 positive non-vacuity 明確提供 lane、DAG、authority、compatibility 與 identity inventory。
+    lane = ["PKG", "NEXT"]
+    docs["automation/programs/definition.yaml"]["implementation_strategy"] = dict(
+        operational_lane_order=lane, next_operational_item="PKG")
+    docs["automation/work_orders/closure.json"]["work_package_id"] = "FOUNDATION"
+    component_path = "automation/policies/normative.yaml"
+    entries = [dict(path=component_path, sha256=hashlib.sha256(encoded(docs[component_path])).hexdigest())]
+    bundle = hashlib.sha256(json.dumps(entries, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+    manifest = dict(schema_version="automation.master_manifest.v1", manifest_id="ARCH", manifest_version="1.0",
+        master_architecture_version="1.2.2", status="ACTIVE", materialization_baseline_sha=COMMIT,
+        superseded_authorization_candidates=[], activation=dict(architecture_status="ACTIVE", review_result="PASS",
+        architecture_version="1.2.2", bundle_components=entries, bundle_hash=bundle,
+        bundle_hash_convention="SHA256_UTF8_COMPACT_SORTED_KEYS_JSON_LIST_SORTED_PATH_NO_TRAILING_NEWLINE"))
+    for field in ("compiled_program", "compiled_authorization_candidate", "quota_policy_compatibility_rf", "freeze",
+                  "hash_integrity", "canonical_current_state", "governance_document", "agent_reentry", "policies", "negative_assertions"):
+        manifest[field] = {}
+    docs["automation/governance/master_manifest.v1.yaml"] = manifest
+    deps["operational_order"] = lane
+    auth = docs[paths["authorization_path"]]
+    auth["exact_binding"].update(architecture_id="ARCH", architecture_bundle_hash=bundle)
+    # Changed proof documents require updated exact Git blob identities.
+    reader.files = {p:encoded(o) for p,o in docs.items()}
+    program["definition"] = proof("automation/programs/definition.yaml")
+    deps["foundation"]["closure"] = proof("automation/work_orders/closure.json")
+    reader.files = {p:encoded(o) for p,o in docs.items()}
+    c.update(authority_proof=proof(paths["authorization_path"]),
+             authority_compatibility_proof=proof("automation/governance/master_manifest.v1.yaml"),
+             executable_identity_count=1, executable_identities=[identity])
     reader.files = {p:encoded(o) for p,o in docs.items()}
     reader.reads.clear()
     return reader
@@ -409,6 +477,7 @@ def test_raw_source_interface_proof_is_not_parsed_or_executed_as_yaml():
                    (CURRENT,["authority_basis","dependencies","current_interfaces"]),
                    ("automation/work_orders/wo.yaml",["authority_basis","dependencies","current_interfaces"])]:
         mutate(r,p,keys,[proof])
+    refresh_authority_proof(r)
     result=resolve_repository_snapshot(r,COMMIT)
     assert not result.diagnostics and result.decision.route=="READY_FOR_MANUAL_DISPATCH"
     assert path in result.snapshot.read_order and path not in result.snapshot.documents
@@ -421,3 +490,94 @@ def test_work_order_restriction_cannot_be_missing_or_weakened(restriction):
     if restriction is not None:obj["next_package_restriction"]=restriction
     r.files["automation/work_orders/wo.yaml"]=json.dumps(obj).encode()
     assert resolve_repository_snapshot(r,COMMIT).diagnostics
+
+
+def refresh_authority_proof(r):
+    path = "automation/authorizations/auth.yaml"
+    mutate(r, CURRENT, ["authority_proof"], dict(path=path, ref=COMMIT,
+        git_blob_sha=r.read_blob(COMMIT, path).object_id))
+
+
+@pytest.mark.parametrize("defect", ["lane_absent", "lane_wrong", "dag_absent", "dag_false",
+    "exact_authority_absent", "compatibility_absent", "count_absent", "count_zero", "count_multiple",
+    "inventory_absent", "inventory_duplicate", "inventory_wrong", "count_bool"])
+def test_rf01_explicit_gate_negative_matrix(defect):
+    from automation.engine.repository_snapshot import resolve_repository_snapshot
+    r = ready_fixture()
+    if defect.startswith("lane"):
+        d = json.loads(r.files["automation/programs/definition.yaml"])
+        if defect == "lane_absent": del d["implementation_strategy"]["operational_lane_order"]
+        else: d["implementation_strategy"]["next_operational_item"] = "NEXT"
+        r.files["automation/programs/definition.yaml"] = json.dumps(d).encode()
+        auth = json.loads(r.files["automation/authorizations/auth.yaml"])
+        auth["program_binding"]["definition"]["git_blob_sha"] = r.read_blob(COMMIT,"automation/programs/definition.yaml").object_id
+        r.files["automation/authorizations/auth.yaml"] = json.dumps(auth).encode()
+        refresh_authority_proof(r)
+    elif defect.startswith("dag"):
+        closure = json.loads(r.files["automation/work_orders/closure.json"])
+        if defect == "dag_false": closure["status"] = "BLOCKED"
+        else: del closure["work_package_id"]
+        r.files["automation/work_orders/closure.json"] = json.dumps(closure).encode()
+        proof = dict(path="automation/work_orders/closure.json", ref=COMMIT,
+            git_blob_sha=r.read_blob(COMMIT,"automation/work_orders/closure.json").object_id)
+        for p,keys in [(CURRENT,["authority_basis","dependencies","foundation","closure"]),
+            ("automation/work_orders/wo.yaml",["authority_basis","dependencies","foundation","closure"]),
+            ("automation/authorizations/auth.yaml",["package_binding","dependency_bindings","foundation","closure"])]:
+            mutate(r,p,keys,proof)
+        refresh_authority_proof(r)
+    elif defect in ("exact_authority_absent", "compatibility_absent"):
+        mutate(r,CURRENT,["authority_proof" if defect == "exact_authority_absent" else "authority_compatibility_proof"],None,delete=True)
+    elif defect.startswith("count"):
+        mutate(r,CURRENT,["executable_identity_count"],dict(count_zero=0,count_multiple=2,count_bool=True).get(defect),delete=defect=="count_absent")
+    else:
+        value = [] if defect == "inventory_absent" else [dict(work_order_id="OTHER",execution_id="EXEC",authorization_id="AUTH")]
+        if defect == "inventory_duplicate": value = json.loads(r.files[CURRENT])["executable_identities"]*2
+        mutate(r,CURRENT,["executable_identities"],value,delete=defect=="inventory_absent")
+    result = resolve_repository_snapshot(r,COMMIT)
+    assert result.diagnostics and not result.decision.execution_allowed
+
+
+@pytest.mark.parametrize("kind", ["arbitrary_hash", "consistent_architecture", "consistent_source"])
+def test_rf01_forged_identity_with_other_proofs_valid(kind):
+    from automation.engine.repository_snapshot import resolve_repository_snapshot
+    r = ready_fixture()
+    if kind == "consistent_source":
+        for p,key in [(CURRENT,"code_base_sha"),("automation/work_orders/wo.yaml","code_base_sha"),
+                      ("automation/authorizations/auth.yaml","source_candidate_head_sha")]:
+            mutate(r,p,[key],"2"*40)
+        expected = "MISSING_OR_AMBIGUOUS_REF"
+    else:
+        mutate(r,"automation/authorizations/auth.yaml",["exact_binding","architecture_bundle_hash"],"b"*64)
+        if kind == "consistent_architecture":
+            for p in (CURRENT,"automation/work_orders/wo.yaml"):
+                mutate(r,p,["architecture_active"],"9.9")
+                mutate(r,p,["authority_basis","architecture"],"9.9")
+            mutate(r,"automation/authorizations/auth.yaml",["exact_binding","architecture_revision"],"9.9")
+            mutate(r,"automation/authorizations/auth.yaml",["exact_binding","architecture_id"],"FORGED")
+        expected = "EVIDENCE_MISSING_OR_CONTRADICTORY"
+    refresh_authority_proof(r)
+    result=resolve_repository_snapshot(r,COMMIT)
+    assert result.diagnostics and result.diagnostics[0].code == expected
+    assert not result.decision.execution_allowed
+
+
+@pytest.mark.parametrize("defect", ["intake_missing", "intake_not_pass", "writer_held", "packet_missing", "wrong_identity"])
+def test_rf01_post_intake_missing_or_contradictory_proof(defect):
+    from automation.engine.repository_snapshot import resolve_repository_snapshot
+    r=ready_fixture(); c=json.loads(r.files[CURRENT])
+    c.update(status="COMPLETED_PENDING_REVIEW",result_intake="PASS",result_intake_path="automation/runs/EXEC/intake.json",
+        review_packet_path="automation/work_orders/reviews/packet.json",review_state="NOT_PERFORMED_PACKET_PREPARED",
+        writer_state="RELEASED_AFTER_DURABLE_RESULT_INTAKE")
+    identity={k:c[k] for k in ("execution_id","authorization_id","work_order_id")}
+    r.files[c["result_intake_path"]]=json.dumps(dict(identity,mechanical_intake="PASS",scope_digest=c["scope_digest"])).encode()
+    r.files[c["review_packet_path"]]=json.dumps(dict(identity,status="PREPARED_REVIEW_NOT_PERFORMED")).encode()
+    mutate(r,c["writer_lock_path"],["state"],c["writer_state"])
+    if defect=="intake_missing": del r.files[c["result_intake_path"]]
+    elif defect=="intake_not_pass": mutate(r,c["result_intake_path"],["mechanical_intake"],"FAIL")
+    elif defect=="writer_held": mutate(r,c["writer_lock_path"],["state"],"HELD")
+    elif defect=="packet_missing": del r.files[c["review_packet_path"]]
+    else: mutate(r,c["review_packet_path"],["execution_id"],"OTHER")
+    r.files[CURRENT]=json.dumps(c).encode()
+    result=resolve_repository_snapshot(r,COMMIT)
+    assert result.diagnostics and not result.decision.execution_allowed
+    assert c["authorization_path"] not in result.snapshot.read_order
