@@ -107,7 +107,7 @@
   "execution_branch": "auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
   "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
   "execution_eligibility": "COMPLETED_PENDING_REVIEW_NO_REEXECUTION",
-  "status": "COMPLETED_PENDING_REVIEW",
+  "status": "ACCEPTANCE_MATERIALIZATION_PENDING",
   "handoff_ready": false,
   "manual_trigger_only": true,
   "automatic_dispatch": false,
@@ -223,8 +223,8 @@
     "rev2": "NOT_AUTHORIZED_PREPARATION_ONLY",
     "flow_path": "automation/programs/AUTO-IMP-PROGRAM-V2/IVF01_REV2_FLOW.yaml"
   },
-  "current_route": "ONE_COHESIVE_FRESH_INDEPENDENT_PROGRAM_V2_REVIEW",
-  "sole_blocker": null,
+  "current_route": "RECONCILIATION_REQUIRED",
+  "sole_blocker": "EXACT_21_FINAL_BLOB_REQUIREMENT_CONFLICTS_WITH_CURRENT_GOVERNANCE_PRESERVATION",
   "active_dispatch_mode": "MANUAL",
   "controlled_auto": "DISABLED",
   "task_profile": {
@@ -260,7 +260,7 @@
   "KNOWN_AUTOMATION_ARCHITECTURE_DEBT": "NONE",
   "debt_semantics": "Completefinalcapacity/liveness/boundedcorrectionpolicy design; cohesive sourceimplementation and review remain lifecycle work, no architectureTODO",
   "created_at": "2026-10-06T08:24:37Z",
-  "updated_at": "2026-10-06T15:35:44Z",
+  "updated_at": "2026-10-07T02:08:38Z",
   "compilation_commit": "HISTORICAL_PREDECESSOR_COMPILATION_ONLY",
   "provider_evidence_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/pre_dispatch_recheck.json",
   "implementation_contract_amendments": [
@@ -362,7 +362,7 @@
   "handoff_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/handoff.yaml",
   "original_implementation_budget_remaining": 0,
   "additional_owner_exception_budget_remaining": 0,
-  "next_route": "ONE_COHESIVE_FRESH_INDEPENDENT_PROGRAM_V2_REVIEW",
+  "next_route": "RECONCILIATION_REQUIRED",
   "capacity_provider_evidence_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/pre_dispatch_recheck.json",
   "invocation_evidence_status": "CONTEMPORANEOUS_EXACT_INVOCATION_VERIFIED",
   "actual_implementation_head": "85b94c92ccba4b4c569e3be846646902cb6348d2",
@@ -373,7 +373,7 @@
   "semantic_acceptance": "NOT_PERFORMED",
   "writer_release_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_release.json",
   "intake_commit_sha": "f2f1032110bb5a40b0f1a84ef9e1ff2d9b5384e3",
-  "review_state": "REVIEW_PENDING",
+  "review_state": "REVIEW_PASS",
   "review_packet_path": "automation/work_orders/reviews/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.review.yaml",
   "effective_candidate_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/effective_candidate.json",
   "effective_candidate_bundle_sha256": "21cd40faa6f652e279d13c991812d7c269ea481490c22a421804fb0dce6eab9e",
@@ -384,5 +384,12 @@
   "telemetry_commit": "397e5011eb30b07e0c2519d56e28b65d1fda20e9",
   "current_lifecycle_projection_path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/review_barrier_projection.json",
   "code_execution_authorized": false,
-  "codex_reexecution": false
+  "codex_reexecution": false,
+  "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.verdict.json",
+  "review_verdict_commit": "29f3706ffa74ae7bd5ac40a4bce9d460afcda5aa",
+  "acceptance_materialization": "STOP_RECONCILIATION_REQUIRED",
+  "acceptance_preflight_path": "automation/work_orders/optimizations/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.acceptance-preflight.json",
+  "current_action": "RECONCILIATION_REQUIRED",
+  "controller_activation": "NOT_ACTIVE",
+  "review_fix_executable": false
 }

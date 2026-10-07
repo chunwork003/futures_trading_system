@@ -1,0 +1,94 @@
+{
+  "schema_version": "automation.acceptance_preflight.v1",
+  "work_order_id": "WO-AUTO-GOV-PROGRAM-1_2-ORCH-01",
+  "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+  "authorization_id": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+  "preflight_master": "29f3706ffa74ae7bd5ac40a4bce9d460afcda5aa",
+  "original_fresh_master": "e0ae0124b7da5d56788e2349865de5b22f61e88b",
+  "review_verdict_path": "automation/work_orders/reviews/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.REV6.verdict.json",
+  "review_verdict_commit": "29f3706ffa74ae7bd5ac40a4bce9d460afcda5aa",
+  "review_verdict": "PASS",
+  "reviewer_findings": "NONE",
+  "reviewer_pass_remains_valid": true,
+  "acceptance_materialization": "STOP_RECONCILIATION_REQUIRED",
+  "blocker": "EXACT_21_FINAL_BLOB_REQUIREMENT_CONFLICTS_WITH_CURRENT_GOVERNANCE_PRESERVATION",
+  "classification": "INTEGRATION_BOUNDARY_CURRENT_METADATA_CONFLICT_NOT_REVIEW_FIX_NOT_SOURCE_SEMANTIC_FAILURE",
+  "binding": {
+    "implementation_sha": "85b94c92ccba4b4c569e3be846646902cb6348d2",
+    "evidence_sha": "e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40",
+    "effective_bundle_sha256": "21cd40faa6f652e279d13c991812d7c269ea481490c22a421804fb0dce6eab9e",
+    "scope_count": 21
+  },
+  "checks": {
+    "reviewed21_git_blobs": "PASS",
+    "bundle_recomputation": "PASS",
+    "normative13_blobs": "PASS",
+    "architecture": "1.2.2_ACTIVE",
+    "capacity_policy": "2.2_ACTIVE",
+    "writer": "RELEASED_AFTER_DURABLE_RESULT_INTAKE",
+    "no_concurrent_canonical_writer": "PASS",
+    "active_execution": "NONE",
+    "current_execution": "COMPLETED_PENDING_REVIEW",
+    "semantic_acceptance": "NOT_PERFORMED",
+    "controller": "NOT_ACTIVE",
+    "controlled_auto": "DISABLED",
+    "next_package": "NOT_AUTHORIZED"
+  },
+  "conflicting_exact_blobs": [
+    {
+      "path": "docs/CURRENT_STATE.md",
+      "current_master_blob": "496e0e72d6baf0343c8bef8c4634e048ca17f8aa",
+      "reviewed_candidate_blob": "a64c24a65abfa97e057a900b842d5dbb57b97e26",
+      "reviewed_current_projection": {
+        "authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5",
+        "execution": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z",
+        "executor": "HUMAN_DIALOGUE",
+        "state": "READY_FOR_MANUAL_DIALOGUE_IMPLEMENTATION"
+      },
+      "fresh_current_projection": {
+        "authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+        "execution": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+        "state": "COMPLETED_PENDING_REVIEW",
+        "writer": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+      },
+      "consequence": "Copying exact reviewed blob restores obsolete CURRENT header; preserving/updating current content changes final reviewed21 bundle"
+    },
+    {
+      "path": "docs/CURRENT_WORK.md",
+      "current_master_blob": "215ddeb7f2e9c83bd2c8c619d71c354c1cd852da",
+      "reviewed_candidate_blob": "3bc8b05a51a7356d36b61438aad8f229fcf36212",
+      "reviewed_current_projection": {
+        "authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5",
+        "execution": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z",
+        "executor": "HUMAN_DIALOGUE",
+        "state": "READY_FOR_MANUAL_DIALOGUE_IMPLEMENTATION"
+      },
+      "fresh_current_projection": {
+        "authorization": "AUTH-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6",
+        "execution": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+        "state": "COMPLETED_PENDING_REVIEW",
+        "writer": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+      },
+      "consequence": "Copying exact reviewed blob restores obsolete CURRENT header; preserving/updating current content changes final reviewed21 bundle"
+    }
+  ],
+  "policy_basis": [
+    "Historical phase snapshots must not override current lifecycle projection",
+    "Contradictory CURRENT fails closed RECONCILIATION_REQUIRED",
+    "Exact final21 Git blob identity cannot coexist at same docs paths with fresh different CURRENT content"
+  ],
+  "required_single_boundary_decision": "Explicitly resolve exact-final21 requirement versus preservation/current metadata for the two CURRENT docs. Proposed bounded exception: retain/update current docs as projection metadata; keep exact21 reviewed snapshot and bundle immutable evidence; integrate remaining19 exact blobs. NOT_EXECUTABLE_UNTIL_EXPLICIT_OWNER_DECISION.",
+  "source_integration_performed": false,
+  "acceptance_artifact_created": false,
+  "tests_rerun": false,
+  "budgets_changed": false,
+  "review_fix_used": 0,
+  "review_fix_remaining": 2,
+  "review_fix_executable": false,
+  "writer_created": false,
+  "execution_created": false,
+  "controller_activation": false,
+  "next_package_authority_created": false,
+  "created_at": "2026-10-07T02:08:38Z",
+  "updated_at": "2026-10-07T02:08:38Z"
+}
