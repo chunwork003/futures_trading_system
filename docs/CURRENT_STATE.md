@@ -1,3 +1,12 @@
+# CURRENT — AUTO-IMP-002 revision 2 RESERVED / pre-dispatch recheck pending
+
+Architecture1.2.2 ACTIVE; Capacity2.2 ACTIVE; ProgramV2 ACCEPTED_MATERIALIZED. Work Order WO-AUTO-IMP-002-REV2-01; authorization AUTH-AUTO-IMP-002-REV2-01 RESERVED. Execution EXEC-AUTO-IMP-002-REV2-20261007T032957Z; one CODEX writer HELD by this exact execution; reservation automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/reservation.yaml RESERVED.
+Reservation creation 838981dec6c9e3f91c2432099386a114c5b6575f; RESERVED transition 24314d88713c958ec6097d8f8c8a3aa242c40419. Current mutable lifecycle: automation/work_orders/CURRENT_CODEX.yaml and exact referenced run artifacts. Authorizing package/WO snapshots retain initial AUTHORIZED phase identity; current lifecycle above is RESERVED, not yet executable.
+Handoff_ready=false; dispatch not committed, authority not consumed, invocation NOT_YET_PERFORMED; source unmodified. Current route RECHECK_LOCK_HEAD_AND_BINDING.
+Exact four paths/digest bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7; accepted source baseline b56494966f33c47ea7744c5c1fed271ad01b39f1. Budgets initial1; implementation corrections0/2; conditional review-fix0/2 not executable. Historical chains EVIDENCE_ONLY/no inheritance. AUTO-IMP-003 NOT_AUTHORIZED; controller NOT_ACTIVE; CONTROLLED_AUTO DISABLED; automatic next package DENIED; runtime/broker/DB/migration/LIVE/production/credentials DENIED.
+
+## Historical projections below — audit only; no current lifecycle authority
+
 # CURRENT — AUTO-IMP-002 revision 2 single-use lifecycle preparation
 
 Architecture1.2.2 ACTIVE; Capacity2.2 ACTIVE; ProgramV2 ACCEPTED_MATERIALIZED. WO WO-AUTO-IMP-002-REV2-01; authorization AUTH-AUTO-IMP-002-REV2-01 AUTHORIZED, no dispatch/consumption/invocation yet. Execution EXEC-AUTO-IMP-002-REV2-20261007T032957Z allocated; one writer HELD by exact execution; reservation CREATED awaiting RESERVED transition. Durable eligibility ddbe34c9e76a0f9704c86604726c7db6e52324b0 PASS; provider PASS, capacity ALLOW_WITH_WATCH. Exact4 scope/digest bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7; accepted source baseline b56494966f33c47ea7744c5c1fed271ad01b39f1. Handoff_ready=false; no CODEX invocation/source modification. Budgets initial1, implementation corrections0/2 used, review-fix0/2 used conditional not executable. Historical chains EVIDENCE_ONLY, no reuse. Controller NOT_ACTIVE; CONTROLLED_AUTO DISABLED; AUTO-IMP-003 NOT_AUTHORIZED; automatic next dispatch DENIED; runtime/broker/DB/migration/LIVE/production/credentials DENIED.
