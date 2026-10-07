@@ -1,0 +1,113 @@
+{
+  "schema_version": "automation.execution_cost_reconciliation.v1",
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-RF01-01.json",
+  "actual_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/execution_cost_actual.json",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "forecast_confidence": "LOW_PROVISIONAL",
+  "overall_classification": "NORMAL",
+  "dominant_cause": "WITHIN_EXPECTED_ENVELOPE",
+  "metric_comparisons": [
+    {
+      "metric": "actor_seconds",
+      "actual": 435.545296,
+      "p50": 900,
+      "p75": 1800,
+      "p90": 3600,
+      "actual_to_p50_ratio": 0.48393921777777776,
+      "actual_to_p90_ratio": 0.12098480444444444,
+      "p50_absolute_percentage_error": 0.5160607822222222,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "targeted_seconds",
+      "actual": 4.79,
+      "p50": null,
+      "p75": null,
+      "p90": 100,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.0479,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    },
+    {
+      "metric": "full_regression_seconds",
+      "actual": 40.44,
+      "p50": null,
+      "p75": null,
+      "p90": 300,
+      "actual_to_p50_ratio": null,
+      "actual_to_p90_ratio": 0.1348,
+      "p50_absolute_percentage_error": null,
+      "classification": "NORMAL"
+    }
+  ],
+  "cycle_breaches": [],
+  "recommendations": [],
+  "feedback_required_for_next_work_forecast": false,
+  "provider_interruption": {
+    "provider_limit_encountered": false,
+    "provider_pause_count": 0,
+    "provider_pause_seconds": 0,
+    "resume_count": 0,
+    "forecast_capacity_review_required": false
+  },
+  "forecast_capacity_review_required": false,
+  "provider_pause_is_source_defect": false,
+  "work_package_sizing_assessment": "NO_AUTOMATIC_SPLIT",
+  "split_authority_created": false,
+  "generated_at_utc": "2026-10-07T06:36:59.8755967+00:00",
+  "canonical_input_adapter": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/cost_reconciliation_input.v1.json",
+  "original_execution_evidence_sha": "6c129d34992c5a3f489bcd1b2d98a95f2136c494",
+  "reconciler": {
+    "path": "scripts/execution_cost_reconcile.ps1",
+    "git_blob_sha": "4a3d006ff00609cce928cb11a33b942530aa6875",
+    "ref": "39214c8682805c171818f7cc9403b199d21a1fd8",
+    "operator_copy_git_blob_verified": true,
+    "exit_code": 0
+  },
+  "classification_coverage": "AVAILABLE_ENGINEERING_TIME_DIMENSIONS_ONLY",
+  "token_forecast_accuracy": "NOT_CLASSIFIED_LOCAL_EXACT_USAGE_NOT_AVAILABLE",
+  "token_actual": null,
+  "local_token_usage_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/local_token_usage.json",
+  "provider_proxy": {
+    "primary_before": 56,
+    "primary_after": 63,
+    "delta_primary_pp": 7,
+    "weekly_before": 9,
+    "weekly_after": 10,
+    "delta_weekly_pp": 1,
+    "measurement": "PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY_NOT_EXCLUSIVE_TASK_COST",
+    "billing": "NOT_AVAILABLE",
+    "exact_token_conversion": "DENIED"
+  },
+  "cross_targeted": {
+    "actual_seconds": 7.98,
+    "p50": 15,
+    "p75": 60,
+    "p90": 150,
+    "classification": "NORMAL",
+    "below_p50": true
+  },
+  "engineering_cost_detail": {
+    "actor_seconds": 435.545296,
+    "counterexample_seconds": 0.81,
+    "impacted_runs": 3,
+    "impacted_seconds": 3.13,
+    "targeted_seconds": 4.79,
+    "cross_targeted_seconds": 7.98,
+    "full_seconds": 40.44,
+    "total_recorded_test_seconds": 57.15,
+    "tool_retry_count": 3,
+    "review_fix_cycle_used": 1,
+    "source_fixture_context_tool_time_breakdown": "UNKNOWN_UNPARTITIONED_ACTOR_TIME_NO_MODEL_USAGE_EVIDENCE"
+  },
+  "planning_feedback": {
+    "semantic_authority_created": false,
+    "source_defect_inferred_from_usage": false,
+    "new_correction_authorized": false,
+    "token_context_attribution": "UNKNOWN",
+    "lesson": "RF01 fixture diagnostic adjustment stayed cohesive with one review-fix cycle; no extra full-regression loop. Keep explicit evidence fixtures and pointer-first context. No token forecast recalibration without exact token actual.",
+    "automatic_split": false
+  }
+}

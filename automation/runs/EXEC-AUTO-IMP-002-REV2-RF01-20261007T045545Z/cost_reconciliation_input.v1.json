@@ -1,0 +1,40 @@
+{
+  "schema_version": "automation.execution_cost_actual.v1",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "actual": {
+    "reported_total_tokens": null,
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "uncached_input_tokens": null,
+    "output_tokens": null,
+    "reasoning_output_tokens": null,
+    "cached_input_ratio": null,
+    "actor_seconds": 435.545296,
+    "targeted_seconds": 4.79,
+    "cross_targeted_seconds": 7.98,
+    "full_regression_seconds": 40.44,
+    "five_hour_delta_pct": 7,
+    "weekly_delta_pct": 1,
+    "unexpected_retries": 3,
+    "test_cycles": {
+      "pre_fix_cases": 5,
+      "complete_targeted_passes": 1,
+      "cross_targeted_passes": 1,
+      "full_regression_passes": 1,
+      "impacted_runs": 3,
+      "impacted_expected_diagnostic_adjustment_failures": 2
+    },
+    "provider_limit_encountered": false,
+    "provider_pause_count": 0,
+    "resume_count": 0,
+    "provider_pause_seconds": 0,
+    "forecast_capacity_review_required": false
+  },
+  "adapter": {
+    "from_schema": "automation.execution_cost_actual.v2",
+    "canonical_normalized_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/execution_cost_actual.json",
+    "original_evidence_sha": "6c129d34992c5a3f489bcd1b2d98a95f2136c494",
+    "reason": "Canonical accepted reconciler input API is v1; deterministic field projection only, no parallel cost semantics or token estimation"
+  }
+}

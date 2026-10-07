@@ -142,7 +142,7 @@
     }
   },
   "provider_measurement": "PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY",
-  "local_token_status": "PENDING_EXTERNAL_EXTRACTION",
+  "local_token_status": "NOT_AVAILABLE",
   "billing_status": "NOT_AVAILABLE",
   "actor_start": "2026-10-07T06:18:01.250838+00:00",
   "actor_end": "2026-10-07T06:25:16.796134+00:00",
@@ -262,7 +262,7 @@
     "whole_repository_source_scan": false,
     "protected_identity_scan": "Git tree metadata only",
     "raw_session_jsonl_loaded": false,
-    "exact_local_tokens": "PENDING_EXTERNAL_EXTRACTION"
+    "exact_local_tokens": "NOT_AVAILABLE"
   },
   "review_fix_used": 1,
   "review_fix_remaining": 1,
@@ -276,5 +276,53 @@
     "primary_5h": 7,
     "secondary_weekly": 1,
     "attribution": "SHARED_PROXY_NOT_EXCLUSIVE_TASK_COST"
+  },
+  "original_execution_evidence": {
+    "commit": "6c129d34992c5a3f489bcd1b2d98a95f2136c494",
+    "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/execution_cost_actual.json",
+    "git_blob_sha": "3993b3a1e4b03310fbef221fa8bdb3007340e054",
+    "preserved_in_execution_branch": true
+  },
+  "local_token_usage_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/local_token_usage.json",
+  "local_token_attribution_status": "NOT_AVAILABLE_NO_TOKEN_COUNT_IN_ACTOR_WINDOW",
+  "actual": {
+    "reported_total_tokens": null,
+    "input_tokens": null,
+    "cached_input_tokens": null,
+    "uncached_input_tokens": null,
+    "output_tokens": null,
+    "reasoning_output_tokens": null,
+    "cached_input_ratio": null,
+    "actor_seconds": 435.545296,
+    "targeted_seconds": 4.79,
+    "cross_targeted_seconds": 7.98,
+    "full_regression_seconds": 40.44,
+    "five_hour_delta_pct": 7,
+    "weekly_delta_pct": 1,
+    "unexpected_retries": 3,
+    "test_cycles": {
+      "pre_fix_cases": 5,
+      "complete_targeted_passes": 1,
+      "cross_targeted_passes": 1,
+      "full_regression_passes": 1,
+      "impacted_runs": 3,
+      "impacted_expected_diagnostic_adjustment_failures": 2
+    },
+    "provider_limit_encountered": false,
+    "provider_pause_count": 0,
+    "resume_count": 0,
+    "provider_pause_seconds": 0,
+    "forecast_capacity_review_required": false
+  },
+  "normalization": {
+    "actor_window": "2026-10-07T06:18:01.250838+00:00 through 2026-10-07T06:25:16.796134+00:00",
+    "local_exact_usage": "NOT_AVAILABLE_NO_ESTIMATE",
+    "provider_proxy": "PROVIDER_REPORTED_SHARED_ACCOUNT_USAGE_PROXY_NOT_EXCLUSIVE_TASK_COST",
+    "billing": "NOT_AVAILABLE",
+    "review_fix_executable_now": false,
+    "remaining_review_fix_requires": "FRESH_BOUND_RE_REVIEW_FIX_REQUIRED",
+    "semantic_acceptance": "NOT_PERFORMED",
+    "normalized_by": "WORK",
+    "normalized_at": "2026-10-07T06:36:56Z"
   }
 }
