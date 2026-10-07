@@ -1,0 +1,91 @@
+{
+  "schema_version": "automation.rolling_capacity_evidence.v1",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "source_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "control_plane_head": "d9808efec1c2b48e94d295d9d76e28b16ace1f2b",
+  "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+  "policy_path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+  "policy_git_blob": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+  "evaluator": {
+    "path": "automation/engine/execution_capacity.py",
+    "git_blob": "987bfe3c80683bed689d7d4c7ff631bfd561b6f6",
+    "function": "estimate_rolling_capacity + evaluate_policy_2_2_admission",
+    "execution": "DETERMINISTIC_REMOTE_SOURCE_BYTES_ISOLATED_READ_ONLY_OPERATOR_EVALUATION"
+  },
+  "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+  "forecast_git_blob": "1d9cec27f56c335fcd792c7654f5b4788866144e",
+  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.provider-evidence.json",
+  "cohort_path": "automation/telemetry/cohorts/LOCAL_CODEX_ROLLING_CAPACITY_V2_1.json",
+  "cohort_git_blob": "fa8f3dc312cd1af34b13c50498b524e0aa25e2da",
+  "pool_identity": {
+    "provider": "openai",
+    "account": "bf93e20c-7925-4b58-a3e2-dba2cd28029c",
+    "limit_id": "codex"
+  },
+  "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+  "windows": {
+    "PRIMARY_5H": {
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "window_type": "PRIMARY_5H",
+      "usable_ratio_count": 5,
+      "considered_execution_ids": [
+        "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+        "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+        "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z"
+      ],
+      "safe_tokens_per_percentage_point": 508080.85714285716,
+      "safe_remaining_percentage_points": 68,
+      "safe_available_tokens": 34549498,
+      "confidence": "P25_5_PLUS",
+      "overlap_observed": true
+    },
+    "SECONDARY_WEEKLY": {
+      "measurement_type": "ROLLING_CAPACITY_ESTIMATE",
+      "window_type": "SECONDARY_WEEKLY",
+      "usable_ratio_count": 4,
+      "considered_execution_ids": [
+        "EXEC-AUTO-IMP-002-RF01-20261005T093900Z",
+        "EXEC-AUTO-IMP-002-RF02-20261005T125807Z",
+        "EXEC-AUTO-IMP-002-IC01-20261005T150733Z",
+        "EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z"
+      ],
+      "safe_tokens_per_percentage_point": 173378,
+      "safe_remaining_percentage_points": 33,
+      "safe_available_tokens": 5721474,
+      "confidence": "MINIMUM_1_TO_4",
+      "overlap_observed": true
+    }
+  },
+  "gate": {
+    "route": "ALLOW_WITH_WATCH",
+    "reason": "PRIMARY_5H_AT_OR_ABOVE_P75",
+    "execution_allowed": false,
+    "authority_created": false,
+    "forecast_capacity_review_required": false
+  },
+  "provider_gate": {
+    "route": "PROVIDER_AVAILABLE",
+    "reason": "PROVIDER_REPORTED_AVAILABILITY",
+    "execution_allowed": false,
+    "authority_created": false,
+    "forecast_capacity_review_required": false
+  },
+  "manual_threshold_p75": 3500000,
+  "p90_advisory": 6000000,
+  "weekly_execution_gate": false,
+  "exact_task_tokens_derived_from_percent": false,
+  "historical_sample_use": "Canonical pool-level statistical evidence only; no execution/authority/source/budget inheritance or reactivation.",
+  "additional_recent_observation_audit": [
+    {
+      "execution_id": "EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z",
+      "token_evidence_retained": true,
+      "ratio_added": false,
+      "reason": "Normalized before/after provider evidence omits account identity; exact selected 25->29 observations not mechanically bound to complete account-pool observations here. Do not substitute current account or use earlier 17% predispatch as actor baseline."
+    }
+  ],
+  "created_at": "2026-10-07T03:28:52Z",
+  "updated_at": "2026-10-07T03:28:52Z"
+}

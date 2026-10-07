@@ -1,0 +1,108 @@
+{
+  "schema_version": "automation.execution_eligibility.v1",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "execution_id": null,
+  "status": "PASS_PRE_WRITER_NO_INVOCATION",
+  "fresh_master_sha": "d9808efec1c2b48e94d295d9d76e28b16ace1f2b",
+  "source_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
+  "owner_decision_commit": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
+  "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml",
+  "authorization_commit": "d9808efec1c2b48e94d295d9d76e28b16ace1f2b",
+  "authorization_git_blob": "fe7ea9787c939a13488a33380a9030dd9855c063",
+  "authorization_state": "AUTHORIZED",
+  "package_path": "automation/packages/AUTO-IMP-002.v2.yaml",
+  "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml",
+  "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+  "exact_write_scope": [
+    "automation/engine/repository_snapshot.py",
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "source_preimages": [
+    {
+      "path": "automation/engine/repository_snapshot.py",
+      "git_blob_sha": null,
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    {
+      "path": "automation/engine/yaml_io.py",
+      "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    {
+      "path": "tests/automation/test_contracts.py",
+      "git_blob_sha": "65f48178384ed8b21287c0e152b700c133a8008f",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    {
+      "path": "tests/automation/test_repository_snapshot.py",
+      "git_blob_sha": null,
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    }
+  ],
+  "checks": {
+    "source_preimages": "PASS",
+    "source_compatibility": "PASS_CONTROLPLANE_ONLY_DESCENDANTS_OF_ACCEPTED_B564",
+    "exact_scope_digest": "PASS",
+    "package_work_order_bindings": "PASS",
+    "program_v2_acceptance": "PASS",
+    "auto_imp_001_dependency_closure": "PASS",
+    "accepted_program_v2_exact19": "PASS",
+    "current_projection": "CONSISTENT_AUTHORIZED_NOT_EXECUTABLE",
+    "higher_priority_unfinished_work": "NONE_CURRENT_PREVIOUS_WO_CLOSED_ACCEPTED",
+    "competing_active_execution": "NONE",
+    "canonical_writer": "NONE_ALL_ALIASES_RELEASED",
+    "execution_branch": "ABSENT",
+    "provider": "PASS",
+    "capacity": "ALLOW_WITH_WATCH",
+    "side_effects": "DENIED"
+  },
+  "canonical_writer_checks": [
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.writer-lock.yaml",
+      "git_blob": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.writer-lock.yaml",
+      "git_blob": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    },
+    {
+      "path": "automation/work_orders/executions/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.writer-lock.yaml",
+      "git_blob": "da43c15e5ef293a05dd661561a439e6282d859f5",
+      "state": "RELEASED_AFTER_DURABLE_RESULT_INTAKE"
+    }
+  ],
+  "remote_branch_inventory_count": 13,
+  "proposed_execution_branch": "auto/WO-AUTO-IMP-002-REV2-01",
+  "budgets": {
+    "initial_implementation": {
+      "limit": 1,
+      "used": 0,
+      "remaining": 1
+    },
+    "implementation_corrections": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2
+    },
+    "conditional_review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2,
+      "executable_now": false,
+      "requires": "BOUND_REVIEW_FIX_REQUIRED_IN_EXACT_SCOPE_NO_ARCHITECTURE_AUTHORITY_SIDE_EFFECT_EXPANSION"
+    }
+  },
+  "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.provider-evidence.json",
+  "capacity_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.rolling-capacity.json",
+  "ready_to_acquire_writer": true,
+  "handoff_ready": false,
+  "executor_invoked": false,
+  "created_at": "2026-10-07T03:28:52Z",
+  "updated_at": "2026-10-07T03:28:52Z"
+}
