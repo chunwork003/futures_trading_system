@@ -1,3 +1,17 @@
+# CURRENT — AUTO-IMP-002 REV2 RF01 READY_FOR_MANUAL_CODEX_TRIGGER
+
+Architecture1.2.2 ACTIVE; Capacity2.2 ACTIVE; ProgramV2 ACCEPTED_MATERIALIZED.
+Parent verdict REVIEW_FIX_REQUIRED F-01/F-02/F-03 at 60fd8ea8e817d48bcc4cd4fa29ba3e2ba8155856; parent consumed/released, implementation2/2 EXHAUSTED; no acceptance/merge.
+Child WO-AUTO-IMP-002-REV2-RF01-01; AUTH-AUTO-IMP-002-REV2-RF01-01 CONSUMED; execution EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z; writer HELD exact owner; reservation CONSUMED; dispatch committed; fresh recheck PASS.
+Source assembly 6380f2ffb62686d7e2543915804940d1855f8c90 / tree e7b738794817771004c357d9a996f6ed8a25e747: exact four parent reviewed blobs + pinned master control plane. Master source unchanged; no semantic correction by WORK. RF scope ONLY repository_snapshot.py and test_repository_snapshot.py; digest bf9e862393f56a843f5b50518e3441c31924bacfdfd0daaf08d00196ea1aab44; yaml_io/test_contracts protected candidate blobs exact.
+Review-fix0/2 used,2 remaining; first actual semantic RF01 change uses1/remaining1. No new initial/implementation grants or automatic RF02.
+Provider PASS; PRIMARY5H safe 29976770 vs MANUAL P75 3,200,000; weekly advisory. Fresh revalidate at actual invocation.
+Handoff automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/handoff.yaml and CURRENT_CODEX_TASK.md; handoff_ready=true; invocation NOT_YET_PERFORMED.
+AUTO-IMP-003 NOT_AUTHORIZED; controller NOT_ACTIVE; CONTROLLED_AUTO DISABLED; automatic next dispatch DENIED; unsafe side effects DENIED.
+NEXT MANUAL_AUTO_IMP_002_REV2_RF01_CODEX_FIRST_INVOCATION. WORK STOP.
+
+## Historical phase projections below — audit only
+
 # CURRENT — AUTO-IMP-002 revision 2 COMPLETED_PENDING_REVIEW
 
 Architecture 1.2.2 ACTIVE; Capacity Policy 2.2 ACTIVE; Program V2 ACCEPTED_MATERIALIZED.

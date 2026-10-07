@@ -1,0 +1,62 @@
+{
+  "schema_version": "automation.work_cost_accounting.v2",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-RF01-01",
+  "phase": "RF01_COMPILATION_AUTHORITY_PRE_EXECUTION",
+  "measurement_type": "PROXY",
+  "exact_usage": "UNKNOWN",
+  "exact_tokens": null,
+  "billing": "NOT_AVAILABLE",
+  "task_profile": {
+    "task_class": "BOUND_COHESIVE_REVIEW_FIX",
+    "change_type": "CONFORMANCE_CORRECTION",
+    "subsystem": "AUTOMATION_REPOSITORY_SNAPSHOT",
+    "functional_area": "POST_INTAKE_ROUTING_AND_CANDIDATE_PROOF",
+    "engineering_goal": "Fix F-01 post-intake routing, F-02 mechanically proven candidate gates, F-03 canonical architecture/Git source identity inside one cohesive two-file conformance review-fix",
+    "primary_symbols": [
+      "resolve_repository_snapshot",
+      "_candidate"
+    ],
+    "behavior_dimensions": [
+      "lifecycle_route",
+      "lane_DAG_evidence",
+      "identity_count",
+      "authority_compatibility",
+      "architecture_bundle",
+      "source_commit"
+    ],
+    "source_file_count": 1,
+    "test_file_count": 1,
+    "authority_boundary": "OWNER_PREAUTHORIZED_CONDITIONAL_RF01_TWO_FILE_SCOPE",
+    "packaging_decision": "KEEP_COHESIVE"
+  },
+  "context_profile": {
+    "exact_pointers_first": true,
+    "raw_transcript_loaded": false,
+    "primary_artifacts": [
+      "automation/work_orders/WO-AUTO-IMP-002-REV2-RF01-01.yaml",
+      "automation/work_orders/planning/AUTO-IMP-002-REV2-RF01.compilation.json",
+      "automation/authorizations/AUTH-AUTO-IMP-002-REV2-RF01-01.v1.yaml",
+      "automation/work_orders/AUTO-IMP-002-REV2-RF01.source-assembly.json",
+      "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-01.verdict.json",
+      "automation/engine/repository_snapshot.py",
+      "tests/automation/test_repository_snapshot.py",
+      "automation/engine/orchestration.py"
+    ],
+    "history_loaded": "ONLY_EXACT_PARENT_PROOF_AND_CANONICAL_OWNER_BINDINGS; NO_RF_IC_IVF_SOURCE",
+    "content_token_estimate": "UNKNOWN_NOT_EXACT"
+  },
+  "source_implementation_performed": false,
+  "exact_source_assembly_only": true,
+  "semantic_budget_consumed": 0,
+  "review_fix_used": 0,
+  "review_fix_remaining": 2,
+  "tooling_retries": 3,
+  "retries": [
+    "update_ref cannot create candidate branch; create_branch used",
+    "auto-review rejected inherited initial/implementation budget template; obsolete nested execution_policy removed before authorization publication",
+    "handoff script quoting syntax corrected before any mutation"
+  ],
+  "human_intervention_requested": 0,
+  "created_at": "2026-10-07T05:01:35Z",
+  "updated_at": "2026-10-07T05:01:35Z"
+}

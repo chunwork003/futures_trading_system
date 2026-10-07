@@ -10,11 +10,11 @@
   "architecture_active": "1.2.2",
   "architecture_status": "ACTIVE",
   "capacity_policy_active": "2.2",
-  "status": "RESERVED",
-  "handoff_ready": false,
-  "current_action": "FRESH_RF01_PRE_DISPATCH_RECHECK",
-  "current_route": "PUBLISH_MANUAL_RF01_HANDOFF",
-  "next_route": "PUBLISH_MANUAL_RF01_HANDOFF",
+  "status": "READY_FOR_CODEX",
+  "handoff_ready": true,
+  "current_action": "WAIT_FOR_EXPLICIT_MANUAL_CODEX_FIRST_INVOCATION",
+  "current_route": "READY_FOR_MANUAL_CODEX_TRIGGER",
+  "next_route": "MANUAL_AUTO_IMP_002_REV2_RF01_CODEX_FIRST_INVOCATION",
   "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-RF01-01.yaml",
   "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-RF01-01.v1.yaml",
   "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
@@ -192,7 +192,7 @@
   "executor_mode": "CODEX",
   "executor_invoked": false,
   "invocation_status": "NOT_YET_PERFORMED",
-  "code_execution_authorized": false,
+  "code_execution_authorized": true,
   "review_fix_authority": "RF01_OWNER_CONDITIONAL_ACTIVATED_BY_BOUND_VERDICT",
   "budgets": {
     "review_fix": {
@@ -201,8 +201,8 @@
       "remaining": 2,
       "cycle_id": "RF01",
       "cycle_usage_trigger": "FIRST_ACTUAL_SEMANTIC_RF01_MODIFICATION",
-      "rf01_allocated_for_execution_only": false,
-      "executable_now": false
+      "rf01_allocated_for_execution_only": true,
+      "executable_now": true
     },
     "parent_initial_implementation": {
       "limit": 1,
@@ -219,7 +219,7 @@
     "automatic_RF02": false
   },
   "review_fix_budget_remaining": 2,
-  "review_fix_executable_now": false,
+  "review_fix_executable_now": true,
   "correction_budget_remaining": 0,
   "parent_implementation_budget": "2/2_EXHAUSTED",
   "provider_gate": "PASS",
@@ -251,7 +251,7 @@
   "review_state": "PARENT_REVIEW_FIX_REQUIRED_RF01_NOT_YET_EXECUTED",
   "historical_lineage": "HISTORICAL_EVIDENCE_ONLY",
   "created_at": "2026-10-07T04:54:39Z",
-  "updated_at": "2026-10-07T04:59:03Z",
+  "updated_at": "2026-10-07T05:01:35Z",
   "writer_lock_path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-RF01-01.writer-lock.yaml",
   "writer_owner": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
   "current_execution_id": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
@@ -267,5 +267,25 @@
   "provider_pre_dispatch_used_percent": 40,
   "dispatch_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/dispatch.yaml",
   "pre_dispatch_recheck_commit": "3bef631227ab81de37143569ea925c5fc4d5e267",
-  "dispatch_commit": "9e4de1a8e29f85647ea2168fbe6d53d704c0be28"
+  "dispatch_commit": "9e4de1a8e29f85647ea2168fbe6d53d704c0be28",
+  "execution_eligibility": "READY_FOR_MANUAL_CODEX_TRIGGER",
+  "first_manual_invocation_authorized": true,
+  "first_invocation_only": true,
+  "handoff_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/handoff.yaml",
+  "consumed_commit": "c16b9d6c2fd6a69ae2a6599b1efc8d997a3e6f04",
+  "lifecycle_commits": {
+    "verdict": "60fd8ea8e817d48bcc4cd4fa29ba3e2ba8155856",
+    "compilation": "08e3416553cfd31d4ff025f0d5befd6355f2eb50",
+    "authorization": "e50d2a61666a18f12140dfeadd6dc0c8eae237fa",
+    "eligibility": "62a6062c3a4c674a1b9233d15570cb732a0735fb",
+    "writer_acquisition": "b513a07f60160f7858ba235a3a3751fcec52e78e",
+    "execution_allocation": "4a2a3d96d3c9166684284ba826ea7d9f9c930ec3",
+    "reservation": "3bfb487fbb41d72968dd54b3e981627c658d39e6",
+    "reserved": "2ca5c3a688117f19212c184bfaabc1f837e6acf2",
+    "pre_dispatch_recheck": "3bef631227ab81de37143569ea925c5fc4d5e267",
+    "dispatch": "9e4de1a8e29f85647ea2168fbe6d53d704c0be28",
+    "consumed": "c16b9d6c2fd6a69ae2a6599b1efc8d997a3e6f04"
+  },
+  "source_modification": "NONE_BY_WORK; EXACT_ASSEMBLY_BRANCH_ONLY_NO_CORRECTION_OR_MASTER_SOURCE_INTEGRATION",
+  "current_lifecycle_projection_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/current_lifecycle_projection.json"
 }
