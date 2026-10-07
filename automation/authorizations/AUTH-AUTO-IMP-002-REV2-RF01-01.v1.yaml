@@ -2,8 +2,8 @@
   "schema_version": "automation.authorization.v1",
   "authorization_id": "AUTH-AUTO-IMP-002-REV2-RF01-01",
   "authorization_revision": "1",
-  "document_status": "RESERVED_EFFECTIVE",
-  "authorization_state": "RESERVED",
+  "document_status": "CONSUMED_EFFECTIVE",
+  "authorization_state": "CONSUMED",
   "source_candidate_head_sha": "6380f2ffb62686d7e2543915804940d1855f8c90",
   "decision_evidence": {
     "authority": "EXISTING_HUMAN_OWNER_CONDITIONAL_REVIEW_FIX_GRANT",
@@ -356,14 +356,19 @@
     "execution_id": "EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z",
     "writer_acquired": true,
     "reservation_created": true,
-    "reservation_state": "RESERVED",
+    "reservation_state": "CONSUMED",
     "reservation_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/reservation.yaml",
     "reservation_commit_sha": "3bfb487fbb41d72968dd54b3e981627c658d39e6",
     "writer_acquired_commit_sha": "b513a07f60160f7858ba235a3a3751fcec52e78e",
     "allocation_commit_sha": "4a2a3d96d3c9166684284ba826ea7d9f9c930ec3",
-    "dispatch_committed": false,
+    "dispatch_committed": true,
     "executor_invoked": false,
-    "consumed": false
+    "consumed": true,
+    "dispatch_commit_sha": "9e4de1a8e29f85647ea2168fbe6d53d704c0be28",
+    "dispatch_path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/dispatch.yaml",
+    "pre_dispatch_recheck_commit_sha": "3bef631227ab81de37143569ea925c5fc4d5e267",
+    "consumed_at": "2026-10-07T04:59:03Z",
+    "invocation_status": "NOT_YET_PERFORMED_FIRST_MANUAL_TRIGGER_PENDING"
   },
   "correction_id": "AUTO-IMP-002-REV2-RF01",
   "parent_authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
@@ -470,5 +475,5 @@
     ]
   },
   "created_at": "2026-10-07T04:52:49Z",
-  "updated_at": "2026-10-07T04:56:43Z"
+  "updated_at": "2026-10-07T04:59:03Z"
 }
