@@ -35,6 +35,7 @@ Performance *targets*, measured on fixed release manifest: p95 non-compute API r
 ## Research semantic predicates (beyond JSON Schema)
 
 - Resolve every EvidenceRef by owner/identity/version/hash; mismatch rejects, no latest-version fallback. Config refs resolve registered config schemas; no arbitrary executable class/import expressions.
+- Wire timestamps are the RFC3339 UTC-Z subset with 0–6 fractional digits; hour 00–23, valid Gregorian date and seconds 00–59. Offset input, leap seconds and higher precision are rejected rather than silently normalized/truncated; source evidence may retain original timestamp outside this wire DTO.
 - initial_capital >0. All price/money decimal strings use normalized fixed-point, no exponent/negative zero/trailing fractional zero. Canonical zero is `0`; do not accept float as money.
 - Dataset version is accepted, quality-qualified, immutable; coverage and bar limits checked. All bindings must refer to compatible calendar/contract and timeframe.
 - OOS: training interval is dataset start inclusive to training_end exclusive; test_start ≥ training_end and test_end > test_start, within dataset coverage. Training chooses/calibrates only there; test receives frozen parameters, with past-only warmup and no test-data training.

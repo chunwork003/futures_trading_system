@@ -144,3 +144,15 @@ def test_stale_policy_in_mandatory_set_is_contradiction(repository):
     request["baseline_sha"] = commit(root)
     with pytest.raises(context.ContextError, match="CURRENT_STALE_CONTEXT_CONTRADICTION"):
         context.resolve(root, request)
+
+
+def test_large_context_is_reported_without_silent_truncation(repository):
+    root, request = repository
+    write(root, "docs/CURRENT_STATE.md", "x" * 150000)
+    request["baseline_sha"] = commit(root)
+    result = context.resolve(root, request)
+    assert result["context_budget"]["status"] == "OVER_TARGET_REQUIRES_COMPACTION"
+    assert result["context_budget"]["truncation_performed"] is False
+    assert result["execution_eligible"] is False
+    current = next(x for x in result["mandatory_context"] if x["path"] == "docs/CURRENT_STATE.md")
+    assert current["size_bytes"] == 150000

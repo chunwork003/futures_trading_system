@@ -22,3 +22,11 @@ Context fixtures establish deterministic selection/hash, inferred domain inclusi
 Dedicated OpenAPI specification validator is unavailable in the current environment; JSON Schema/reference checks are narrower. Synthetic examples prove shape only, not valid real object provenance. HTTP handlers, live DB transactions, lease race correctness, workload enforcement, container startup, UI journeys, broker behavior and production conformance have not been implemented or tested here. No product tests are rerun for this docs/offline-platform scope. No existing accepted runtime/policy source changed.
 
 P00 still requires domain/adapter closure, handoff/compiler/golden evaluations, automation remapping, weighted progress ledger, compact CURRENT migration, requirement coverage completion and independent review. Do not turn this partial checkpoint into READY_FOR_EXECUTION.
+
+## Actual repository smoke and discovered limits
+
+Exact candidate `0d3ca85946d85305071d0d5293b96bfe4d9ae005`: context hash `59ac86f6ff67ac686ee0488000a069bcd3a7274019f7b781caf5d0171be20739`, 23 mandatory / 2 optional files, 633847 mandatory bytes. Authority NONE_CONTEXT_ONLY; execution_eligible=false. This exceeds the 128 KiB planning target. Budget overflow is now reported explicitly; no source is silently omitted. R06 must implement reviewed compaction and selective contract loading before claiming fast bootstrap.
+
+The installed jsonschema lacks its optional date-time checker. Tests now register an explicit UTC parser and lexical constraints; new fixtures cover invalid Gregorian date, hour 24, offset/missing zone and excessive fractional precision. The first hour-24 negative fixture exposed Python 3.14 normalization; explicit 00–23 schema bounds fixed it. This is a candidate schema-validation defect, not an accepted runtime defect. Tool versions are recorded in tests/platform/requirements.txt; this is not a full product dependency lock.
+
+Final complete platform rerun after budget and timestamp corrections: **66 passed in 51.56 seconds** (`python -B -m pytest tests/platform -q -p no:cacheprovider --basetemp .tmp/p00-platform-release-check`). Generator check PASS. Authoritative remote master rechecked unchanged at `9b5ab5fdd98744a7db45ec9f14b64ef1f324920f`. Only P00 candidate docs/tooling/tests are changed; no accepted product runtime or active policy modifications.

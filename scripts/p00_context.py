@@ -143,7 +143,12 @@ def resolve(root, request):
         "evidence_refs": mandatory_refs + optional_refs,
         "limitations": ["Does not resolve current execution authorization or semantic conflicts.",
             "Caller must verify authoritative master drift; a valid context hash is not approval.",
+            "Caller must run the reviewed resolver code; this manifest does not attest its executing process.",
             "Legacy CURRENT histories remain in source until reviewed compact-projection migration."]}
+    mandatory_bytes = sum(item["size_bytes"] for item in mandatory_refs)
+    output["context_budget"] = {"mandatory_bytes": mandatory_bytes, "target_max_bytes": 131072,
+        "status": "WITHIN_TARGET" if mandatory_bytes <= 131072 else "OVER_TARGET_REQUIRES_COMPACTION",
+        "truncation_performed": False}
     output["context_hash"] = hashlib.sha256(canonical(output)).hexdigest()
     return output
 

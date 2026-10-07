@@ -57,7 +57,7 @@ Operator 透過 ASP.NET Identity password login + secure HttpOnly same-site cook
 ## 4. Money / time / identity
 
 - Operational price/money/margin：finite Decimal，拒絕 binary float；JSON fixed-point decimal string，不用 exponent；canonical zero = 0。Research calculation 可 float，但必須標示 approximation，不能回灌 operational truth。
-- Exchange timezone Asia/Taipei；持久化 instant UTC；wire RFC3339 帶 offset；session [open,close)。Trading date 由 versioned calendar 決定，不以 timestamp.date() 猜夜盤。
+- Exchange timezone Asia/Taipei；持久化 instant UTC；新增 API wire 採 RFC3339 UTC-Z / microsecond subset（既有 accepted source 時間語意不改）；session [open,close)。Trading date 由 versioned calendar 決定，不以 timestamp.date() 猜夜盤。
 - timestamp 不取代 sequence/revision；received_at 使用 accepted ADR 的 first durable acceptance，不因 replay 重設。
 - Canonical integer instrument/contract identities 重用 domain contract；broker code／dataset alias 不可當 execution identity。
 - Corrected data = new accepted revision + new DatasetVersion；舊 run inputs immutable。正在執行的 run pin 舊版本；不 silent switch。

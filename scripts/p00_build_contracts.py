@@ -36,7 +36,8 @@ def build():
     ident = {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"}
     digest = {"type": "string", "pattern": "^[0-9a-f]{64}$"}
     sha = {"type": "string", "pattern": "^[0-9a-f]{40}$"}
-    timestamp = {"type": "string", "format": "date-time", "pattern": "Z$"}
+    timestamp = {"type": "string", "format": "date-time",
+                 "pattern": r"^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](?:\.[0-9]{1,6})?Z$"}
     text = {"type": "string", "minLength": 1, "maxLength": 2048}
     rev = {"type": "integer", "minimum": 1}
     count = {"type": "integer", "minimum": 0, "maximum": 9007199254740991}

@@ -1,6 +1,7 @@
 """候選 DTO 形狀與雙層 API 隔離負例；不宣稱 runtime conformance。"""
 
 from copy import deepcopy
+from datetime import datetime
 import importlib.util
 import json
 from pathlib import Path
@@ -11,11 +12,21 @@ from jsonschema import Draft202012Validator, FormatChecker, ValidationError
 ROOT = Path(__file__).resolve().parents[2]
 SPEC = json.loads((ROOT / "docs/architecture/contracts/python.openapi.v1.json").read_text(encoding="utf-8"))
 BFF = json.loads((ROOT / "docs/architecture/contracts/bff.openapi.v1.json").read_text(encoding="utf-8"))
+FORMATS = FormatChecker()
+
+
+@FORMATS.checks("date-time", raises=(ValueError, TypeError))
+def utc_instant(value):
+    # jsonschema 的 optional RFC3339 dependency 不保證存在；明確測試 V1 UTC microsecond subset。
+    if not isinstance(value, str):
+        return True
+    datetime.fromisoformat(value)
+    return value.endswith("Z")
 
 
 def validate(name, value):
     schema = {"$ref": f"#/components/schemas/{name}", "components": SPEC["components"]}
-    Draft202012Validator(schema, format_checker=FormatChecker()).validate(value)
+    Draft202012Validator(schema, format_checker=FORMATS).validate(value)
 
 
 def request_example(path):
@@ -141,3 +152,12 @@ def test_profile_has_finite_consistent_aggregate_limits():
     for key, value in profile.items():
         if key.startswith("max_"):
             assert type(value) is int and 0 < value <= 2**40
+
+
+@pytest.mark.parametrize("instant", ["garbageZ", "2026-02-30T00:00:00Z", "2026-01-01T24:00:00Z",
+    "2026-01-01T00:00:00", "2026-01-01T00:00:00+08:00", "2026-01-01T00:00:00.1234567Z"])
+def test_invalid_or_noncanonical_instant_rejected(instant):
+    example = deepcopy(SPEC["paths"]["/api/v1/system/status"]["get"]["responses"]["200"]["content"]["application/json"]["examples"]["synthetic"]["value"])
+    example["sampled_at"] = instant
+    with pytest.raises(ValidationError):
+        validate("SystemStatus", example)
