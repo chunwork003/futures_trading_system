@@ -1,3 +1,18 @@
+# CURRENT — AUTO-IMP-002 revision 2 COMPLETED_PENDING_REVIEW
+
+Architecture 1.2.2 ACTIVE; Capacity Policy 2.2 ACTIVE; Program V2 ACCEPTED_MATERIALIZED.
+WO WO-AUTO-IMP-002-REV2-01; authorization AUTH-AUTO-IMP-002-REV2-01 remains CONSUMED historical single-use; redispatch/reexecution DENIED.
+Execution EXEC-AUTO-IMP-002-REV2-20261007T032957Z completed. Contemporaneous invocation c77c7ef60438a1677959a0ac9d7ff659f5f209fd; implementation 370b107f6640012aa16bb3604b5e26bb4b125f35; evidence 6ad6cff71454a6200e5e92efc61ed22fdf1d3d91. No active execution.
+WORK result intake PASS at 718266e01f5315457ba9c3e871f6f1ac638984f3; automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/result_intake.json. Writer RELEASED_AFTER_DURABLE_RESULT_INTAKE at dea3591a9e35944614845eb88d09fceabdb20890; automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/writer_release.json. No concurrent canonical writer PASS.
+Complete four-file candidate only on execution branch; master implementation source unchanged. Candidate automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/effective_candidate.json; bundle a5a741380442eb5e77cf80a1b34575680dff7ca3bbb24b52729a2327b5c359e8 (path/NUL/blob/LF SHA256). Exact scope digest bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7. Protected 1110 baseline blobs PASS. Tests: targeted125, cross279, full1806/8skipped; no WORK test rerun.
+Initial implementation1/1 used; implementation corrections2/2 used EXHAUSTED0 remaining. Conditional review-fix0/2 used,2 remaining NON_EXECUTABLE pending fresh bound REVIEW_FIX_REQUIRED. No budget reset/inheritance. Historical RF01/RF02/IC01/IVF01 remain HISTORICAL_EVIDENCE_ONLY.
+Canonical local token extraction NOT_AVAILABLE: no token_count event in the exact actor window. Token actual/forecast comparison UNKNOWN; billing NOT_AVAILABLE. Raw provider primary9->20%,weekly1->3% SHARED_ACCOUNT_USAGE_PROXY, not exclusive task cost; no interruption. Cost reconciliation NORMAL for available timing dimensions; no token-derived defect or split authority.
+Independent review NOT_PERFORMED; one fresh cohesive packet automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-01.review.yaml targets complete exact four semantic blobs at implementation above. Semantic acceptance NOT_PERFORMED; merge DENIED.
+Controller NOT_ACTIVE; CONTROLLED_AUTO DISABLED; AUTO-IMP-003 NOT_AUTHORIZED; automatic next dispatch DENIED; runtime/broker/DB/migration/LIVE/production/credentials DENIED. No executable handoff; handoff_ready=false.
+Current action WAIT_FOR_FRESH_COHESIVE_INDEPENDENT_SEMANTIC_REVIEW. Current/next route ONE_FRESH_COHESIVE_INDEPENDENT_AUTO_IMP_002_REV2_REVIEW. WORK STOP; do not invoke CODEX, review, accept or merge.
+
+## Historical phase projections below — immutable audit; no current execution authority
+
 # CURRENT — AUTO-IMP-002 revision 2 READY_FOR_MANUAL_CODEX_TRIGGER
 
 Architecture 1.2.2 ACTIVE; Capacity Policy 2.2 ACTIVE; Program V2 ACCEPTED_MATERIALIZED.

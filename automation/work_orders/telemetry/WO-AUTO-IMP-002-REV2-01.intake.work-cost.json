@@ -1,0 +1,353 @@
+{
+  "schema_version": "automation.work_cost_accounting.v2",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "execution_id": "EXEC-AUTO-IMP-002-REV2-20261007T032957Z",
+  "actor": "WORK",
+  "phase": "RESULT_INTAKE_COST_NORMALIZATION_REVIEW_PACKET",
+  "measurement_type": "PROXY",
+  "exact_model_usage": "UNKNOWN",
+  "exact_tokens": null,
+  "billing": "NOT_AVAILABLE",
+  "task_profile": {
+    "task_class": "MECHANICAL_INTAKE_AND_REVIEW_BARRIER_MATERIALIZATION",
+    "change_type": "CONTROL_PLANE_ONLY",
+    "subsystem": "AUTOMATION",
+    "engineering_goal": "Bind exact Rev2 result, release writer, finalize explicit telemetry and prepare independent review",
+    "source_file_count": 0,
+    "test_file_count": 0,
+    "review_target_source_test_count": 4,
+    "authority_boundary": "NO_IMPLEMENTATION_REVIEW_ACCEPTANCE_MERGE_ACTIVATION_OR_DISPATCH",
+    "packaging_decision": "KEEP_COHESIVE"
+  },
+  "context_profile": {
+    "artifacts_read": [
+      {
+        "path": "AGENTS.md",
+        "git_blob_sha": "8313abbbb441d91fdca7d892852e6d919e2d76b7",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 19154,
+        "lines": 370,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+        "git_blob_sha": "7c94d4e31d2c0fc5a4aae85ed48638b53b5b265b",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 10547,
+        "lines": 207,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/specs/context_loading_policy.v1.yaml",
+        "git_blob_sha": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 5173,
+        "lines": 175,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "git_blob_sha": "9fea84582286463ba71fcadb77a47f5c24da39f2",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 13173,
+        "lines": 297,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "git_blob_sha": "ee0e3c62bda69eea002571d84b0d6840c36161a4",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 4712,
+        "lines": 45,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml",
+        "git_blob_sha": "bc7ee6a93a28df0f925155d53d5ef4f4226d6511",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 16254,
+        "lines": 379,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml",
+        "git_blob_sha": "dbcac2ff64eadf8c80ccc072eb0b0e8ae3debc2d",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 15532,
+        "lines": 339,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "scripts/codex_session_token_usage.ps1",
+        "git_blob_sha": "5834edd880ec9c73781b220c1ee488027f98f77e",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 10693,
+        "lines": 331,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "scripts/execution_cost_reconcile.ps1",
+        "git_blob_sha": "4a3d006ff00609cce928cb11a33b942530aa6875",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 11204,
+        "lines": 318,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+        "git_blob_sha": "1d9cec27f56c335fcd792c7654f5b4788866144e",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 8612,
+        "lines": 225,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "git_blob_sha": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 2046,
+        "lines": 63,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+        "git_blob_sha": "e2b0422f294ac718f06403b704a8f28607a5002f",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 2061,
+        "lines": 62,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/specs/work_cost_accounting.v2.yaml",
+        "git_blob_sha": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1641,
+        "lines": 48,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "docs/CURRENT_STATE.md",
+        "git_blob_sha": "8ae0b3baa088cb059354f86824ccd0bddc05aeb6",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 76128,
+        "lines": 1303,
+        "loaded_amount": "RELEVANT_CURRENT_SECTION_ONLY",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "docs/CURRENT_WORK.md",
+        "git_blob_sha": "f8f8d7d95e812fa8fe366666b3547dbaef0c11b2",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 48609,
+        "lines": 993,
+        "loaded_amount": "RELEVANT_CURRENT_SECTION_ONLY",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-20261006T033804Z/writer_lock.yaml",
+        "git_blob_sha": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1166,
+        "lines": 25,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-EXEC-CAPACITY-V2-RF01-20261006T063605Z/writer_lock.yaml",
+        "git_blob_sha": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1283,
+        "lines": 26,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-20261006T115006Z/writer_lock.yaml",
+        "git_blob_sha": "d1b8fb3168bd243e03efe3eaac444d26ef2d403f",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1333,
+        "lines": 24,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-CODEX-20261006T145654Z/writer_lock.yaml",
+        "git_blob_sha": "da43c15e5ef293a05dd661561a439e6282d859f5",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1711,
+        "lines": 31,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-GOV-PROGRAM-1_2-ORCH-MANUAL-20261006T122032Z/writer_lock.yaml",
+        "git_blob_sha": "b8b3c7f43475c7a377992f8638dd71bd59b04fc0",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1247,
+        "lines": 27,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-IC01-20261005T150733Z/writer_lock.yaml",
+        "git_blob_sha": "63023ef80205e6d8c496011d6fe52631b39f47ad",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 757,
+        "lines": 20,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/writer_lock.yaml",
+        "git_blob_sha": "e436c4e72fe1cd54d6221db3a9d477219ff54740",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1267,
+        "lines": 28,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-RF01-20261005T093900Z/writer_lock.yaml",
+        "git_blob_sha": "7e2406016fa31821d126c951170c75120d0e7ccf",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 846,
+        "lines": 20,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-RF02-20261005T125807Z/writer_lock.yaml",
+        "git_blob_sha": "e60cee543d88d4049b5a4edf7693e402b7ff9656",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 882,
+        "lines": 21,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-01.writer-lock.yaml",
+        "git_blob_sha": "7cc1c7e41a6a23341a0019575f40d0a81fd2bea5",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1166,
+        "lines": 25,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/work_orders/executions/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01.writer-lock.yaml",
+        "git_blob_sha": "bbe3c86053ee3e949fed3c8cd4d7d3367ec1fdf0",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1283,
+        "lines": 26,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/work_orders/executions/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01.writer-lock.yaml",
+        "git_blob_sha": "da43c15e5ef293a05dd661561a439e6282d859f5",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1711,
+        "lines": 31,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/work_orders/executions/WO-AUTO-IMP-002-REV2-01.writer-lock.yaml",
+        "git_blob_sha": "e436c4e72fe1cd54d6221db3a9d477219ff54740",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1267,
+        "lines": 28,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/reservation.yaml",
+        "git_blob_sha": "44882993525e6165c4817893374b038a278b69fd",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 2658,
+        "lines": 63,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/dispatch.yaml",
+        "git_blob_sha": "4623fa63674850babb58679006cfa126289052b1",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 1816,
+        "lines": 38,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/current_lifecycle_projection.json",
+        "git_blob_sha": "5658e6a935007a1c5fab7b257560e9fb9c3d703b",
+        "ref": "0d4cb56ad759b299c2e216b063f96a34ed1cc2ed",
+        "characters": 2554,
+        "lines": 62,
+        "loaded_amount": "FULL_OR_BOUNDED_PROCEDURE_AND_IDENTITY_METADATA",
+        "bytes": "UNKNOWN_NO_BYTE_MEASUREMENT"
+      }
+    ],
+    "execution_evidence": [
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/claim.json",
+        "git_blob_sha": "aa37e35cda0eeaad4726ef69b005f736f74b646e",
+        "ref": "6ad6cff71454a6200e5e92efc61ed22fdf1d3d91",
+        "characters": 2281,
+        "lines": 51
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/invocation.json",
+        "git_blob_sha": "76523040e011795e53f7e080e6df2578f1f73059",
+        "ref": "6ad6cff71454a6200e5e92efc61ed22fdf1d3d91",
+        "characters": 2291,
+        "lines": 51
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/completion.json",
+        "git_blob_sha": "1303870a2b33b371f34ac3a3a56cd0ddcc80da84",
+        "ref": "6ad6cff71454a6200e5e92efc61ed22fdf1d3d91",
+        "characters": 118761,
+        "lines": 1244
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-20261007T032957Z/execution_cost_actual.json",
+        "git_blob_sha": "d945fb1d2a5ce0648f3c5fa7dca61fde22ed23af",
+        "ref": "6ad6cff71454a6200e5e92efc61ed22fdf1d3d91",
+        "characters": 8872,
+        "lines": 273
+      }
+    ],
+    "raw_transcript_loaded": false,
+    "raw_transcript_processed_only_by_deterministic_extractor": true,
+    "source_content_loaded": false,
+    "history_loaded": "Only exact writer state/provenance inventory; no historical source assembly",
+    "repository_tree_loaded": "Git blob metadata for exact protected verification; no whole-repository source-content scan",
+    "content_tokens_measurement": "UNKNOWN_NOT_EXACT"
+  },
+  "source_modification": false,
+  "implementation_tests_rerun": false,
+  "implementation_budget_consumed": 0,
+  "review_fix_budget_consumed": 0,
+  "tooling_retries": 2,
+  "tooling_retry_reasons": [
+    "GitHub encoded branch GET rejected; exact git/ref endpoint used",
+    "Mixed YAML/JSON writer inventory read resumed without JSON-only assumption"
+  ],
+  "telemetry_unavailability": "Matching session found, but no token_count event was available in the requested execution window.",
+  "created_at": "2026-10-07T04:12:34Z",
+  "updated_at": "2026-10-07T04:12:34Z"
+}
