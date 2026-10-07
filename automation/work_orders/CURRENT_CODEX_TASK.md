@@ -1,21 +1,3 @@
-# AUTO-IMP-002 revision 2 — planning only; NO CODEX EXECUTION
+# AUTO-IMP-002 revision 2 — AUTHORIZED; NOT READY TO INVOKE
 
-Current route: `HUMAN_AUTO_IMP_002_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION`.
-`handoff_ready=false`; `execution_authority=NOT_AUTHORIZED`; no writer/reservation/dispatch/execution ID. Do not claim, invoke CODEX, or resume an old AUTO-IMP-002 execution.
-
-- Baseline: `b56494966f33c47ea7744c5c1fed271ad01b39f1` (accepted Program V2 master).
-- Package candidate: `automation/packages/AUTO-IMP-002.v2.candidate.yaml`
-- Work Order candidate: `automation/work_orders/WO-AUTO-IMP-002-REV2-01.candidate.yaml`
-- Exact plan/interfaces/test/review/dependency pointers: `automation/work_orders/planning/AUTO-IMP-002-REV2.compilation.json`
-- Authority preparation: `automation/work_orders/AUTO-IMP-002-REV2.authorization-prep.json` (NON_AUTHORITY_CANDIDATE).
-- Forecast: `automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json`
-- Historical retirement: `automation/work_orders/reconciliations/AUTO-IMP-002.historical-lineage-retirement.json`
-- Owner strategy: `automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-FRESH-PROGRAM-V2-BASELINE.json`
-
-Proposed implementation paths (not writable until exact new authority):
-- `automation/engine/repository_snapshot.py`
-- `automation/engine/yaml_io.py`
-- `tests/automation/test_contracts.py`
-- `tests/automation/test_repository_snapshot.py`
-
-All historical AUTO-IMP-002 correction/auth/execution/source/budget lineage is EVIDENCE_ONLY. Program V2 accepted semantics remain; snapshot assembly delegates accepted orchestration route resolution. AUTO-IMP-003 not authorized; controller not active; CONTROLLED_AUTO disabled; unsafe side effects denied. STOP for Human revision2 implementation authorization decision.
+Current route FRESH_AUTHORITY_AND_ELIGIBILITY_REVALIDATION. No CODEX claim/source change permitted until complete lifecycle steps1-9 are durable. Authorization automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml; Work Order automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml; source baseline b56494966f33c47ea7744c5c1fed271ad01b39f1; exact four-file digest bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7. Owner decision automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json at c5b0e2b0238b131398c9541b1cc3c448960b2341. No invocation, writer, reservation or dispatch yet; handoff_ready=false. Historical chains EVIDENCE_ONLY; AUTO-IMP-003 not authorized; controller not active; CONTROLLED_AUTO disabled.

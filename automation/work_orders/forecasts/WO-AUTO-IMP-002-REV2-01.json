@@ -1,7 +1,7 @@
 {
   "schema_version": "automation.execution_cost_forecast.v1",
   "work_order_id": "WO-AUTO-IMP-002-REV2-01",
-  "authorization_id": null,
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
   "proposed_authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
   "forecast_identity_revision": "1",
   "package_revision": "2",
@@ -66,7 +66,9 @@
       "complete_targeted_passes_max": 1,
       "cross_targeted_passes_max": 1,
       "full_regression_passes_max": 1,
-      "correction_cycles_authorized": 0
+      "correction_cycles_authorized": 2,
+      "conditional_review_fix_cycles_authorized": 2,
+      "review_fix_executable_now": false
     }
   },
   "supporting_evidence": [
@@ -116,7 +118,7 @@
     "source_file_count": 2,
     "test_file_count": 2,
     "semantic_test_profile": "FAIL_CLOSED_NEGATIVE_MATRIX_AND_STABLE_FIXTURES",
-    "authority_boundary": "PLANNING_ONLY; future exact single-use implementation authority required",
+    "authority_boundary": "EXACT_REV2_OWNER_GRANTED_FOUR_FILE_MANUAL_CODEX_SINGLE_USE",
     "packaging_decision": "KEEP_COHESIVE",
     "cohesion_reason": "Same read boundary, authority boundary, shared safety tests and one acceptance gate; no splitting solely for token variance."
   },
@@ -215,5 +217,8 @@
     "independent_review": "Forecast separately at bound candidate; no authority granted."
   },
   "created_at": "2026-10-07T02:53:21Z",
-  "updated_at": "2026-10-07T02:53:21Z"
+  "updated_at": "2026-10-07T03:25:16Z",
+  "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
+  "owner_decision_commit": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
+  "control_plane_rebind_baseline": "c5b0e2b0238b131398c9541b1cc3c448960b2341"
 }

@@ -1,0 +1,361 @@
+{
+  "schema_version": "automation.authorization.v1",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "authorization_revision": "1",
+  "document_status": "AUTHORIZED_EFFECTIVE",
+  "authorization_state": "AUTHORIZED",
+  "source_candidate_head_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "decision_evidence": {
+    "authority": "HUMAN_GOVERNANCE_OWNER",
+    "decision": "OWNER_AUTO_IMP_002_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION = APPROVED",
+    "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
+    "owner_decision_commit": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
+    "owner_decision_master": "8622bff9c18f00ec7b216aaa84d7832476339131",
+    "control_plane_baseline_sha": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
+    "created_at": "2026-10-07T03:25:16Z",
+    "updated_at": "2026-10-07T03:25:16Z"
+  },
+  "exact_binding": {
+    "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+    "authorization_revision": "1",
+    "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+    "work_package_id": "AUTO-IMP-002",
+    "work_package_revision": "2",
+    "architecture_id": "DEVELOPMENT-AUTOMATION-MASTER",
+    "architecture_revision": "1.2.2",
+    "architecture_bundle_hash": "c10b7f2f2b2d73116d260a33dabdb1f9b20af3fc9b433e3b3fe17c9076465ea7",
+    "source_candidate_head_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+    "planning_baseline_sha": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
+    "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+    "scope_digest_convention": "SHA256_UTF8_NEWLINE_JOIN_EXACT_ORDER_NO_TRAILING_NEWLINE",
+    "allowed_executor_profile": "CODEX_SINGLE_EXECUTOR_MANUAL_TRIGGER_ONLY",
+    "side_effect_class": "READ_ONLY_AUTOMATION_RESOLVER_IMPLEMENTATION_NO_RUNTIME",
+    "implementation_correction_budget": 2,
+    "review_fix_budget": 2,
+    "review_barrier": "FRESH_COHESIVE_INDEPENDENT_SEMANTIC_REVIEW_BEFORE_WORK_ACCEPTANCE",
+    "work_order_git_blob_sha": "42af114f22401f5712b507d67b4031ceb2366542"
+  },
+  "program_binding": {
+    "definition": {
+      "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+      "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    "acceptance": {
+      "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.acceptance.json",
+      "git_blob_sha": "332568ca9e9d712117fbca7976bf1b198a5ed54a",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    "operational_baseline": {
+      "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.integrated-operational-baseline.json",
+      "git_blob_sha": "efe4f1e29b67be20d8145839476aa688463adb16",
+      "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+    },
+    "status": "ACCEPTED_MATERIALIZED",
+    "controller": "NOT_ACTIVE",
+    "phase_snapshot_does_not_override_acceptance": true,
+    "program_id": "AUTO-IMP-PROGRAM-V2",
+    "program_revision": "4",
+    "historical_phase_snapshot_not_current_authority": true
+  },
+  "package_binding": {
+    "path": "automation/packages/AUTO-IMP-002.v2.yaml",
+    "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml",
+    "work_package_id": "AUTO-IMP-002",
+    "work_package_revision": "2",
+    "planned_write_scope": [
+      "automation/engine/repository_snapshot.py",
+      "automation/engine/yaml_io.py",
+      "tests/automation/test_contracts.py",
+      "tests/automation/test_repository_snapshot.py"
+    ],
+    "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+    "protected_scope": [
+      "automation/engine/contracts.py",
+      "automation/engine/orchestration.py",
+      "automation/engine/execution_capacity.py",
+      "automation/authorizations/**",
+      "automation/governance/**",
+      "automation/policies/**",
+      "automation/programs/**",
+      "automation/packages/**",
+      "automation/prompts/**",
+      "automation/skills/**",
+      "automation/specs/**",
+      "automation/telemetry/**",
+      "automation/runs/**",
+      "automation/work_orders/**",
+      "docs/**",
+      "scripts/**",
+      "tests/automation/test_orchestration.py",
+      "tests/automation/test_execution_capacity.py",
+      "runtime/**",
+      "src/**",
+      "data/**",
+      "ALL_OTHER_PATHS_OUTSIDE_EXACT_FOUR_FILE_SOURCE_SCOPE"
+    ],
+    "source_preimages": [
+      {
+        "path": "automation/engine/repository_snapshot.py",
+        "git_blob_sha": null,
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "automation/engine/yaml_io.py",
+        "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "tests/automation/test_contracts.py",
+        "git_blob_sha": "65f48178384ed8b21287c0e152b700c133a8008f",
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      },
+      {
+        "path": "tests/automation/test_repository_snapshot.py",
+        "git_blob_sha": null,
+        "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+      }
+    ],
+    "dependency_bindings": {
+      "dag": [
+        "AUTO-IMP-001"
+      ],
+      "logical_dag_changed": false,
+      "operational_order": [
+        "AUTO-IMP-002",
+        "AUTO-IMP-003",
+        "AUTO-IMP-004",
+        "AUTO-IMP-005",
+        "AUTO-IMP-006",
+        "AUTO-IMP-007",
+        "AUTO-IMP-008",
+        "AUTO-IMP-009"
+      ],
+      "foundation": {
+        "closure": {
+          "path": "automation/work_orders/AUTO-IMP-001.closure.yaml",
+          "git_blob_sha": "2e87cd18a170baffeeb78be346791f15bf9ac360",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        "status": "ACCEPTED_MATERIALIZED",
+        "source_binding": "Current accepted master blobs; contracts/test_contracts evolved through accepted Program V2, not historical AUTO-IMP-001 closure blobs as current identity.",
+        "current_blobs": [
+          {
+            "path": "automation/engine/contracts.py",
+            "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+            "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+          },
+          {
+            "path": "automation/engine/yaml_io.py",
+            "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+            "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+          },
+          {
+            "path": "tests/automation/test_contracts.py",
+            "git_blob_sha": "65f48178384ed8b21287c0e152b700c133a8008f",
+            "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+          }
+        ]
+      },
+      "program": {
+        "definition": {
+          "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.yaml",
+          "git_blob_sha": "2583b1f6cfb18174febf20a11db3bc988e3088c2",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        "acceptance": {
+          "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.acceptance.json",
+          "git_blob_sha": "332568ca9e9d712117fbca7976bf1b198a5ed54a",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        "operational_baseline": {
+          "path": "automation/work_orders/AUTO-GOV-PROGRAM-1_2-ORCHESTRATION.integrated-operational-baseline.json",
+          "git_blob_sha": "efe4f1e29b67be20d8145839476aa688463adb16",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        "status": "ACCEPTED_MATERIALIZED",
+        "controller": "NOT_ACTIVE",
+        "phase_snapshot_does_not_override_acceptance": true
+      },
+      "normative_bindings": [
+        {
+          "path": "automation/governance/master_manifest.v1.yaml",
+          "git_blob_sha": "89de89c47d23080af8369544a165e199856d2832",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/policies/orchestration_control_policy.v1.yaml",
+          "git_blob_sha": "a0b755057de05cf854761a9bf76105da350b9f87",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+          "git_blob_sha": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+          "git_blob_sha": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/policies/development_state_machine.v2.yaml",
+          "git_blob_sha": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/policies/development_entry_protocol.v2.yaml",
+          "git_blob_sha": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/specs/context_loading_policy.v1.yaml",
+          "git_blob_sha": "946255b8b4ec2e00f5b0e265005d58e69336bc07",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/specs/work_cost_accounting.v2.yaml",
+          "git_blob_sha": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+          "git_blob_sha": "e2b0422f294ac718f06403b704a8f28607a5002f",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        }
+      ],
+      "current_interfaces": [
+        {
+          "path": "automation/engine/orchestration.py",
+          "git_blob_sha": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/engine/contracts.py",
+          "git_blob_sha": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "automation/engine/yaml_io.py",
+          "git_blob_sha": "a5e818221cddc6b175b9dacf75e98c1de4e45898",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        },
+        {
+          "path": "tests/automation/test_orchestration.py",
+          "git_blob_sha": "958953e3fa6afb96bb085d9602d1ac633d146568",
+          "ref": "b56494966f33c47ea7744c5c1fed271ad01b39f1"
+        }
+      ]
+    },
+    "risk": "MEDIUM",
+    "compilation_plan_path": "automation/work_orders/planning/AUTO-IMP-002-REV2.compilation.json",
+    "all_other_semantic_paths_protected": true,
+    "own_execution_metadata": [
+      "claim.json",
+      "invocation.json",
+      "completion.json",
+      "execution_cost_actual.json"
+    ],
+    "own_metadata_rule": "Only exact newly allocated run directory; no lifecycle/authority/protected artifact writes by executor.",
+    "git_blob_sha": "1932ee920c9b94f000891640a7a02475f831c8cb"
+  },
+  "execution_policy": {
+    "single_use": true,
+    "manual_trigger_only": true,
+    "executor_mode": "CODEX",
+    "automatic_dispatch": false,
+    "automatic_next_package": false,
+    "same_execution_multi_executor": "DENIED",
+    "historical_reuse": "DENIED",
+    "budgets": {
+      "initial_implementation": {
+        "limit": 1,
+        "used": 0,
+        "remaining": 1
+      },
+      "implementation_corrections": {
+        "limit": 2,
+        "used": 0,
+        "remaining": 2
+      },
+      "conditional_review_fix": {
+        "limit": 2,
+        "used": 0,
+        "remaining": 2,
+        "executable_now": false,
+        "requires": "BOUND_REVIEW_FIX_REQUIRED_IN_EXACT_SCOPE_NO_ARCHITECTURE_AUTHORITY_SIDE_EFFECT_EXPANSION"
+      }
+    },
+    "correction_non_consuming_events": [
+      "EXPECTED_PRE_FIX_FAILURES",
+      "TEST_RERUN_WITHOUT_SEMANTIC_MODIFICATION",
+      "TOOLING_ENVIRONMENT_RETRY",
+      "TELEMETRY_RETRY",
+      "METADATA_SERIALIZATION_RETRY"
+    ],
+    "correction_scope_or_architecture_authority_sideeffect_change": "STOP_TO_OWNER",
+    "historical_lineage": "HISTORICAL_EVIDENCE_ONLY",
+    "inheritance": {
+      "authorization": false,
+      "execution": false,
+      "source_baseline": false,
+      "source_assembly": false,
+      "quota_amendment": false,
+      "correction_budget": false,
+      "prior_review_pass": false
+    },
+    "baseline_rule": "Fresh origin/master controlplane plus exact accepted b564949 source preimages; branch from invocation fresh master only when source compatibility proven. No historical source assembly."
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "quota_gate": {
+    "policy_path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+    "policy_git_blob": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+    "provider_hard_block": "STOP",
+    "provider_enforced_limits_waived": false,
+    "manual_threshold": "P75_PRIMARY_5H",
+    "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+    "manual_unknown": "ALLOW_WITH_WATCH",
+    "manual_known_insufficient": "WAIT_5H_CAPACITY",
+    "weekly_execution_gate": false,
+    "percentage_to_exact_task_tokens": "DENIED",
+    "capacity_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.rolling-capacity.json",
+    "provider_evidence_path": "automation/work_orders/telemetry/WO-AUTO-IMP-002-REV2-01.provider-evidence.json",
+    "forecast_git_blob_sha": "1d9cec27f56c335fcd792c7654f5b4788866144e"
+  },
+  "telemetry_gate": {
+    "spec": "automation/specs/work_cost_accounting.v2.yaml",
+    "exact_local_tokens": "POST_EXECUTION_DETERMINISTIC_EXECUTION_WO_TIME_STRONG_MARKER_ATTRIBUTION",
+    "provider": "RAW_BEFORE_AFTER_SHARED_ACCOUNT_PROXY",
+    "billing": "NOT_AVAILABLE_UNLESS_EXPLICIT_EXACT_PROVIDER_BILLING",
+    "forecast_path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+    "task_profile": true,
+    "context_profile": true
+  },
+  "decision": {
+    "implementation": "APPROVED_EXACT_REV2_IMPLEMENTATION",
+    "execution": "PENDING_FRESH_LIFECYCLE_NOT_EXECUTABLE_NOW",
+    "controlled_auto": "DISABLED",
+    "controller_activation": "NOT_ACTIVE",
+    "AUTO_IMP_003": "NOT_AUTHORIZED",
+    "automatic_next_package": "DENIED",
+    "created_at": "2026-10-07T03:25:16Z",
+    "updated_at": "2026-10-07T03:25:16Z"
+  },
+  "single_use_execution": {
+    "execution_id": null,
+    "reservation_created": false,
+    "dispatch_committed": false,
+    "executor_invoked": false,
+    "writer_acquired": false,
+    "consumed": false,
+    "invocation_status": "NOT_YET_PERFORMED"
+  }
+}

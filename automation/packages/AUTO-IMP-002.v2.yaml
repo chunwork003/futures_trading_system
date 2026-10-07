@@ -1,0 +1,132 @@
+{
+  "schema_version": "automation.work_package_plan.v1",
+  "work_package_id": "AUTO-IMP-002",
+  "work_package_revision": "2",
+  "status": "AUTHORIZED",
+  "program_id": "AUTO-IMP-PROGRAM-V2",
+  "planning_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "wave": "CLEAN_PROGRAM_V2_SUCCESSOR",
+  "title": "Manifest Integrity and Unified Re-entry Snapshot Resolver",
+  "risk": "MEDIUM",
+  "depends_on": [
+    "AUTO-IMP-001"
+  ],
+  "purpose": "Build a fresh read-only exact Git blob/pointer-first repository snapshot boundary under accepted Program V2; delegate route semantics to accepted orchestration engine; no historical AUTO-IMP-002 source/authority/execution/budget inheritance.",
+  "authorization": {
+    "implementation": "AUTHORIZED",
+    "execution": "PENDING_FRESH_ELIGIBILITY_NOT_EXECUTABLE_NOW",
+    "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+    "authorization_path": "automation/authorizations/AUTH-AUTO-IMP-002-REV2-01.v1.yaml",
+    "owner_decision_path": "automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json",
+    "owner_decision_commit": "c5b0e2b0238b131398c9541b1cc3c448960b2341",
+    "work_order_path": "automation/work_orders/WO-AUTO-IMP-002-REV2-01.yaml",
+    "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+    "historical_lineage": "EVIDENCE_ONLY",
+    "inherited_budget": 0,
+    "compilation_plan_path": "automation/work_orders/planning/AUTO-IMP-002-REV2.compilation.json"
+  },
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "planned_write_scope": [
+    "automation/engine/repository_snapshot.py",
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "protected_scope": [
+    "automation/engine/contracts.py",
+    "automation/engine/orchestration.py",
+    "automation/engine/execution_capacity.py",
+    "automation/authorizations/**",
+    "automation/governance/**",
+    "automation/policies/**",
+    "automation/programs/**",
+    "automation/packages/**",
+    "automation/prompts/**",
+    "automation/skills/**",
+    "automation/specs/**",
+    "automation/telemetry/**",
+    "automation/runs/**",
+    "automation/work_orders/**",
+    "docs/**",
+    "scripts/**",
+    "tests/automation/test_orchestration.py",
+    "tests/automation/test_execution_capacity.py",
+    "runtime/**",
+    "src/**",
+    "data/**",
+    "ALL_OTHER_PATHS_OUTSIDE_EXACT_FOUR_FILE_SOURCE_SCOPE"
+  ],
+  "acceptance_tests": [
+    "Verify exact Git object identities and declared SHA-256 over raw blob bytes; no worktree/newline normalization.",
+    "Pin the complete snapshot and provenance to one caller-supplied freshly rehydrated authoritative commit. Ref movement must invalidate/revalidate, never mix reads across HEAD.",
+    "Repository-first/pointer-first: CURRENT_CODEX, optional CURRENT_CODEX_TASK, exact referenced artifacts; relevant CURRENT_STATE only for unresolved governance; historical context on ambiguity/failure/provenance only.",
+    "Read current lifecycle and status before candidate-only authorization/package/program/dependency deep bindings. Non-candidate status must return deterministic STOP/PENDING/status, never KeyError.",
+    "Only a genuine execution-candidate route loads complete required identity/revision/scope/profile/dependency/effect/provider bindings. Missing/duplicate/ambiguous/incompatible bindings fail closed.",
+    "Status-only never invokes, dispatches, reserves, consumes, creates authority or resumes an executor.",
+    "Use accepted orchestration.resolve_route(OrchestrationSnapshot) for routing; proposal != authority, invocation_allowed=false. No duplicate queue/priority/capacity/lifecycle algorithm.",
+    "Historical embedded CURRENT text, manifest candidate-phase snapshots and immutable Program phase snapshots cannot override canonical current lifecycle plus bound accepted evidence.",
+    "Strict unknown-schema/field handling follows existing contracts. Unsafe YAML and duplicate explicit/nested keys remain rejected; merge precedence and recursive/alias compatibility preserved.",
+    "All side effects denied; AUTO-IMP-003 remains NOT_AUTHORIZED; controller NOT_ACTIVE and CONTROLLED_AUTO DISABLED.",
+    "Read-only Git adapter permits only commit/blob inspection, no fetch/push/checkout/reset/merge/config mutations/provider/executor/DB/network I/O.",
+    "Exact contradictions return an explicit diagnostic with canonical STOP/reconciliation result; never repair authority, hashes, protected files or historical evidence.",
+    "Do not interpret permissive OrchestrationSnapshot default values as proven authority/provider/lifecycle facts. Candidate-required evidence must be present and validated explicitly; absent evidence fails closed."
+  ],
+  "cost_forecast": {
+    "path": "automation/work_orders/forecasts/WO-AUTO-IMP-002-REV2-01.json",
+    "confidence": "LOW_PROVISIONAL",
+    "p50_reported_total_tokens": 1800000,
+    "p75_reported_total_tokens": 3500000,
+    "p90_reported_total_tokens": 6000000
+  },
+  "telemetry": {
+    "spec": "automation/specs/work_cost_accounting.v2.yaml",
+    "task_profile": {
+      "task_class": "CLEAN_SUCCESSOR_MANIFEST_REENTRY_IMPLEMENTATION",
+      "change_type": "NEW_READ_ONLY_SNAPSHOT_ADAPTER_PLUS_SAFE_BYTES_API",
+      "subsystem": "AUTOMATION_CONTROL_PLANE",
+      "functional_area": "GIT_BLOB_INTEGRITY_AND_REENTRY",
+      "engineering_goal": "Manifest Integrity and Unified Re-entry Snapshot Resolver on accepted Program V2 master",
+      "primary_symbols": [
+        "GitBlobReader",
+        "RepositorySnapshot",
+        "verify_manifest_bindings",
+        "resolve_repository_snapshot",
+        "orchestration.OrchestrationSnapshot",
+        "orchestration.resolve_route",
+        "yaml_io.load_yaml_mapping_bytes"
+      ],
+      "behavior_dimensions": [
+        "integrity",
+        "pointer_order",
+        "non_candidate_status",
+        "candidate_binding",
+        "immutability",
+        "authority_separation"
+      ],
+      "source_file_count": 2,
+      "test_file_count": 2,
+      "semantic_test_profile": "FAIL_CLOSED_NEGATIVE_MATRIX_AND_STABLE_FIXTURES",
+      "authority_boundary": "PLANNING_ONLY; future exact single-use implementation authority required",
+      "packaging_decision": "KEEP_COHESIVE",
+      "cohesion_reason": "Same read boundary, authority boundary, shared safety tests and one acceptance gate; no splitting solely for token variance."
+    },
+    "local_token_usage": "STRICT_DETERMINISTIC_EXACT_BINDING_ONLY",
+    "provider_percentage": "SHARED_ACCOUNT_PROXY_NOT_TASK_COST",
+    "billing": "NOT_AVAILABLE"
+  },
+  "git_policy": {
+    "source_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+    "force_push": false,
+    "historical_source_materialization": false,
+    "exact_write_scope_required": true
+  },
+  "review_barrier": "FRESH_COHESIVE_INDEPENDENT_SEMANTIC_REVIEW_BEFORE_WORK_ACCEPTANCE"
+}

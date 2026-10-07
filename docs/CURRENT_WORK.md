@@ -1,3 +1,14 @@
+# CURRENT — AUTO-IMP-002 revision 2 AUTHORIZED; lifecycle preflight pending
+
+Architecture 1.2.2 ACTIVE; Capacity Policy 2.2 ACTIVE; Program V2 ACCEPTED_MATERIALIZED.
+Owner decision automation/governance/decisions/OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION.json at c5b0e2b0238b131398c9541b1cc3c448960b2341.
+Authorization AUTH-AUTO-IMP-002-REV2-01 AUTHORIZED / NOT_CONSUMED. Authorized != executable now; handoff_ready=false.
+Accepted source baseline b56494966f33c47ea7744c5c1fed271ad01b39f1; exact four paths/scope digest in canonical CURRENT. Fresh initial implementation1; implementation corrections0/2 used,2 remaining; conditional review-fix0/2 used,2 remaining NON_EXECUTABLE now.
+No new writer/execution/reservation/dispatch/invocation. Current route FRESH_AUTHORITY_AND_ELIGIBILITY_REVALIDATION.
+Historical AUTO-IMP-002 chains EVIDENCE_ONLY, no authority/execution/source/budget inheritance. AUTO-IMP-003 NOT_AUTHORIZED; controller NOT_ACTIVE; CONTROLLED_AUTO DISABLED; automatic next package DENIED. Runtime/broker/DB/migration/LIVE/production/credentials DENIED.
+
+## Historical phase projections below — preserved for audit, not current authority
+
 # CURRENT — AUTO-IMP-002 revision 2 clean successor compilation
 
 Architecture 1.2.2 ACTIVE; Capacity Policy 2.2 ACTIVE. Accepted Program V2 baseline remains ACCEPTED_MATERIALIZED.
