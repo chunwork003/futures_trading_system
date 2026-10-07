@@ -1,0 +1,76 @@
+{
+  "schema_version": "automation.owner_decision.v1",
+  "decision_id": "OWNER-AUTO-IMP-002-REV2-IMPLEMENTATION-AUTHORIZATION",
+  "verdict": "OWNER_AUTO_IMP_002_REV2_IMPLEMENTATION_AUTHORIZATION_DECISION = APPROVED",
+  "source": "EXPLICIT_HUMAN_GOVERNANCE_OWNER_DECISION",
+  "owner_decision_master": "8622bff9c18f00ec7b216aaa84d7832476339131",
+  "package_id": "AUTO-IMP-002",
+  "package_revision": "2",
+  "work_order_id": "WO-AUTO-IMP-002-REV2-01",
+  "authorization_id": "AUTH-AUTO-IMP-002-REV2-01",
+  "source_baseline_sha": "b56494966f33c47ea7744c5c1fed271ad01b39f1",
+  "architecture": "1.2.2_ACTIVE",
+  "capacity_policy": "2.2_ACTIVE",
+  "program": "AUTO-IMP-PROGRAM-V2_ACCEPTED_MATERIALIZED",
+  "scope_digest": "bb1c8b8600dc6d37cd6e72cedd263f206898a773b73c8127744c9c4a5b07a2c7",
+  "exact_write_scope": [
+    "automation/engine/repository_snapshot.py",
+    "automation/engine/yaml_io.py",
+    "tests/automation/test_contracts.py",
+    "tests/automation/test_repository_snapshot.py"
+  ],
+  "all_other_semantic_paths_protected": true,
+  "execution_mode": "MANUAL",
+  "executor_mode": "CODEX",
+  "budgets": {
+    "initial_implementation": 1,
+    "implementation_corrections": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2
+    },
+    "conditional_review_fix": {
+      "limit": 2,
+      "used": 0,
+      "remaining": 2,
+      "executable_now": false
+    }
+  },
+  "non_budget_events": [
+    "EXPECTED_PRE_FIX_FAILURES",
+    "TEST_RERUN_WITHOUT_SEMANTIC_MODIFICATION",
+    "TOOLING_ENVIRONMENT_RETRY",
+    "TELEMETRY_RETRY",
+    "METADATA_SERIALIZATION_RETRY"
+  ],
+  "historical_lineage": "HISTORICAL_EVIDENCE_ONLY",
+  "inheritance": {
+    "authorization": false,
+    "execution": false,
+    "source_baseline": false,
+    "source_assembly": false,
+    "quota_amendment": false,
+    "correction_budget": false,
+    "prior_review_pass": false
+  },
+  "restore_historical_manifest_reentry_source": false,
+  "required_lifecycle": "FRESH_AUTHORITY_ELIGIBILITY_WRITER_EXECUTION_RESERVATION_RESERVED_RECHECK_DISPATCH_CONSUMED_THEN_MANUAL_FIRST_INVOCATION",
+  "owner_approval_is_executable_now": false,
+  "automatic_codex_invocation": false,
+  "automatic_next_package": false,
+  "auto_imp_003": "NOT_AUTHORIZED",
+  "controller": "NOT_ACTIVE",
+  "controlled_auto": "DISABLED",
+  "side_effect_envelope": {
+    "runtime": "DENIED",
+    "broker": "DENIED",
+    "db": "DENIED",
+    "migration": "DENIED",
+    "live": "DENIED",
+    "production": "DENIED",
+    "credentials": "DENIED"
+  },
+  "review_barrier": "FRESH_COHESIVE_INDEPENDENT_SEMANTIC_REVIEW_BEFORE_WORK_ACCEPTANCE",
+  "created_at": "2026-10-07T03:23:56Z",
+  "updated_at": "2026-10-07T03:23:56Z"
+}
