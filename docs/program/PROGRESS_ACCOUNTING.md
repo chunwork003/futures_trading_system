@@ -44,3 +44,11 @@ ETA optimistic/base/conservative 保持 UNKNOWN，直到可取得同類 package 
 `accepted_core_reconciliation.v1.json` 現已綁定 exact master 的 freeze table、final/P7 closure 與 isolated W4R PG closure：C01–C25 + V06 共 **26 leaves、113 accepted scope weight**，每項對應現有 V1 delta deliverable 與仍未交付的整合邊界。113 不是 leaf 數，也不是新 V1 ledger 的 credit；原始 35/151 candidate 不 retroactively accepted，V01–V05／V07 與既有 isolated PG evidence 的範圍各自保留。`scripts/p00_historical_core.py` 驗證來源／權重／列號／delta links，不進行新 acceptance 或重跑歷史 runtime。
 
 R05 尚未閉合：完整歷史 requirement registry、其餘 accepted 能力對照、候選權重獨立審查、可信 evidence intake 與 invalidation、實測 throughput/ETA 仍缺。本 core reconciliation 是必要子集，不把 full historical coverage 改成 COMPLETE。完整產品 completion 保持 UNCALIBRATED。
+
+## R05 有界歷史來源／明列義務索引 checkpoint
+
+`historical_requirements.v1.json` 現已將22個明列來源固定至 exact candidate/master blobs：owner 0–90節／922文字區塊、143項明列 clauses、92 capability rows、603 blueprint leaves／2137歷史權重。六次 TRACEABILITY scope acceptance 為76 unique leaves／323原權重；其餘 ACCEPTED lifecycle labels 原樣保留，沒有補造全部歷史 intake。既有26／113 correction core 不與603／2137相加，新127 provisional delta 分母及空 gates不變。
+
+`HISTORICAL_REQUIREMENTS.md` 說明來源 universe、source／semantic coverage 差異、六旅程 alias、Skill 評估義務與10項明列未驗證 deliverable。`scripts/p00_requirements.py` 將索引對固定 Git sources 重建核對，拒絕遺漏、來源漂移、假接受與重複 credit；不驗收候選語意。request_coverage 的91項均增加 source pointer，原有完成度 dispositions保持不變。
+
+R05仍缺22檔外歷史來源的完整 scope closure、未拆解 prose／future clauses 的語意核對、獨立 baseline weight review、trusted intake／invalidation 與測量。source inventory 的有界 COMPLETE 不等於 full historical requirement COMPLETE；產品完成率與 ETA 保持 UNCALIBRATED／UNKNOWN。
