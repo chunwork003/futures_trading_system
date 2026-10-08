@@ -4864,6 +4864,219 @@
           "state_blob_hash"
         ]
       },
+      "EmaIncrementalCodec": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "codec_version": {
+            "const": "ema_close.v1"
+          },
+          "span": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          },
+          "processed_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "ema_hex": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^0x[01]\\.[0-9a-f]+p[+-][0-9]+$",
+                "maxLength": 32
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "last_observation_revision_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^mor1_[0-9a-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "governing_config_fingerprint": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "codec_version",
+          "span",
+          "processed_count",
+          "ema_hex",
+          "last_observation_revision_id",
+          "governing_config_fingerprint"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "processed_count": {
+                  "const": 0
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "ema_hex": {
+                  "type": "null"
+                },
+                "last_observation_revision_id": {
+                  "type": "null"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "ema_hex": {
+                  "type": "string"
+                },
+                "last_observation_revision_id": {
+                  "type": "string",
+                  "pattern": "^mor1_[0-9a-f]{64}$"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "TradingEvidenceEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "trading_evidence.v1"
+          },
+          "evidence_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "owner": {
+            "type": "string",
+            "enum": [
+              "E",
+              "G"
+            ]
+          },
+          "actor_ref": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](?:\\.[0-9]{1,6})?Z$"
+          },
+          "correlation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "causation_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "payload_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Signal"
+              },
+              {
+                "$ref": "#/components/schemas/Decision"
+              },
+              {
+                "$ref": "#/components/schemas/RiskDecision"
+              },
+              {
+                "$ref": "#/components/schemas/CapitalState"
+              },
+              {
+                "$ref": "#/components/schemas/IncrementalState"
+              }
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "evidence_id",
+          "owner",
+          "actor_ref",
+          "recorded_at",
+          "correlation_id",
+          "causation_id",
+          "payload_hash",
+          "payload"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "payload": {
+                  "properties": {
+                    "schema_version": {
+                      "enum": [
+                        "signal.v1",
+                        "incremental_state.v1"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "owner": {
+                  "const": "E"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "payload": {
+                  "properties": {
+                    "schema_version": {
+                      "enum": [
+                        "decision.v1",
+                        "risk_decision.v1",
+                        "capital.v1"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "owner": {
+                  "const": "G"
+                }
+              }
+            }
+          }
+        ]
+      },
       "AccountState": {
         "type": "object",
         "additionalProperties": false,

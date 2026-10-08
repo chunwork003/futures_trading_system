@@ -1,0 +1,11 @@
+{
+  "schema_version": "ema_close.fixture.v1",
+  "codec_version": "ema_close.v1",
+  "span": 3,
+  "closes": [10, 12, 11, 15, 14],
+  "expected_states": [10, 11, 11, 13, 13.5],
+  "expected_outputs": [null, null, 11, 13, 13.5],
+  "absolute_tolerance": 1e-12,
+  "relative_tolerance": 1e-12,
+  "qualification": "OFFLINE_SPEC_FIXTURE_NOT_RUNTIME_ACCEPTANCE"
+}

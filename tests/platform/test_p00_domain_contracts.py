@@ -111,3 +111,17 @@ def test_existing_priority_policy_is_order_independent_and_rejects_opposite_tie(
     for ordering in permutations(inputs):
         with pytest.raises(ValueError, match="equal priority conflict"):
             policy.resolve(ordering)
+
+
+def test_domain_envelope_cannot_change_semantic_owner_or_omit_provenance():
+    value = {"schema_version": "trading_evidence.v1", "evidence_id": "signal-1", "owner": "E",
+        "actor_ref": "simulation-worker", "recorded_at": "2026-01-01T00:00:00Z", "correlation_id": "corr-1",
+        "causation_id": None, "payload_hash": "0" * 64, "payload": signal()}
+    validate("TradingEvidenceEnvelope", value)
+    value["owner"] = "G"
+    with pytest.raises(ValidationError):
+        validate("TradingEvidenceEnvelope", value)
+    value["owner"] = "E"
+    del value["payload_hash"]
+    with pytest.raises(ValidationError):
+        validate("TradingEvidenceEnvelope", value)

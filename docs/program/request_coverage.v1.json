@@ -119,21 +119,27 @@
         "docs/architecture/contracts/bff.openapi.v1.json",
         "tests/platform/test_p00_contracts.py"
       ],
-      "note": "22 Python domain operations + 4 BFF-only auth operations; 60 schemas. Dedicated OpenAPI conformance tool and independent semantic review pending."
+      "note": "22 internal domain operations + 4 BFF-only auth operations; 62 schemas. Dedicated conformance and independent semantic review pending."
     },
     {
       "section": 15,
       "title": "Persistence / Transaction Architecture",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL_IMPLEMENTED_PENDING_REVIEW",
+      "evidence": [
+        "docs/architecture/V1_INCREMENTAL_PERSISTENCE.md",
+        "tests/platform/test_p00_incremental.py"
+      ],
+      "note": "First EMA codec and owner-specific envelope/store mapping defined; full integration/recovery evidence pending."
     },
     {
       "section": 16,
       "title": "Backtest / Runtime Convergence",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL_IMPLEMENTED_PENDING_REVIEW",
+      "evidence": [
+        "docs/architecture/V1_INCREMENTAL_PERSISTENCE.md",
+        "tests/platform/test_p00_incremental.py"
+      ],
+      "note": "First EMA codec and owner-specific envelope/store mapping defined; full integration/recovery evidence pending."
     },
     {
       "section": 17,
@@ -473,9 +479,13 @@
     {
       "section": 62,
       "title": "Package Compiler",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL_IMPLEMENTED_PENDING_REVIEW",
+      "evidence": [
+        "automation/platform/package.schema.v1.json",
+        "scripts/p00_compile.py",
+        "tests/platform/test_p00_compiler.py"
+      ],
+      "note": "Mechanical compiler only; semantic references/weights/actual P01-P02 specs and legal eligibility remain pending."
     },
     {
       "section": 63,

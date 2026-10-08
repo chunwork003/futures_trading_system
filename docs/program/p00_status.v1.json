@@ -7,15 +7,11 @@
   "authority": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
   "runtime_dispatch_authorized": false,
   "completed_this_turn": [
-    "Published explicitly approved 0d3ca85/4e7c81f commits to existing candidate branch",
-    "Reconciled strategy version identity and legacy symbol adapters against actual accepted source",
-    "Added five domain schemas: Signal, Decision, RiskDecision, CapitalState, IncrementalState; total API component schemas 57",
-    "Preserved actual higher-priority-wins / opposite-tie-reject conflict policy; separated desired target from staged proposed target",
-    "Pinned thirteen source/class/blob bindings and added domain schema/legacy-policy negative tests",
-    "Full platform suite 76 passed in 52.14 seconds; no product runtime or accepted policy changes",
-    "Defined reservation vs canonical account genesis, immutable receipt revision status and fenced cancellation/publication boundary",
-    "Added four BFF-only auth routes with login CSRF; Python service has no browser auth routes",
-    "Final complete platform regression including genesis/auth: 78 passed in 53.48 seconds; generated-contract drift check PASS"
+    "Verified local/remote candidate eca15ef and unchanged authoritative master",
+    "Defined EMA_CLOSE_V1 codec, warmup/hex checkpoint, duplicate/revision behavior and batch equivalence golden fixture",
+    "Defined owner-specific durable TradingEvidenceEnvelope mapping; existing canonical stores stay authoritative",
+    "Added mechanical package schema/compiler with context/scope/hash and design-gap checks; output never grants authority",
+    "Full platform suite 104 passed in 55.70 seconds; generated-contract drift check PASS"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -51,12 +47,19 @@
     "docs/architecture/V1_DOMAIN_ADAPTERS.md",
     "docs/architecture/contracts/domain_source_bindings.v1.json",
     "tests/platform/test_p00_domain_contracts.py",
-    "docs/architecture/V1_GENESIS_AUTH_CONTRACT.md"
+    "docs/architecture/V1_GENESIS_AUTH_CONTRACT.md",
+    "docs/architecture/V1_INCREMENTAL_PERSISTENCE.md",
+    "docs/architecture/contracts/ema_close.fixture.v1.json",
+    "tests/platform/test_p00_incremental.py",
+    "automation/platform/package.schema.v1.json",
+    "automation/platform/PACKAGE_COMPILER.md",
+    "scripts/p00_compile.py",
+    "tests/platform/test_p00_compiler.py"
   ],
   "remaining": [
     {
       "id": "R01",
-      "work": "Domain DTOs/source bindings and genesis/auth route contracts materialized. Remaining: exact first feature codec/equivalence fixtures, durable evidence envelope vs DTO persistence mapping, complete DTO adapter coverage, and independent semantic/API conformance review.",
+      "work": "First EMA codec/equivalence fixture and durable envelope/store ownership now defined. Remaining: complete DTO-to-store adapter coverage, explicit new readiness-evidence RecoveryCut participation and independent semantic/conformance review.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -66,8 +69,8 @@
     },
     {
       "id": "R03",
-      "work": "Package schema/compiler, exact P01/P02 candidate packages, pattern/generator/eval/KPI/telemetry contracts",
-      "state": "NOT_COMPLETED"
+      "work": "Mechanical package schema/compiler and eight negative tests implemented. Remaining: actual P01/P02 package specs, semantic reference validation, stable weights, reviewed compiler/context process provenance, templates/patterns/evals/KPIs/telemetry.",
+      "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
       "id": "R04",
@@ -86,7 +89,7 @@
     },
     {
       "id": "R07",
-      "work": "66 API/context/registry platform tests pass. Still need package/compiler/DAG/weight/conformance validators, semantic golden tasks and independent review packet; no independent acceptance yet.",
+      "work": "104 platform tests pass, including codec/envelope/compiler. Remaining semantic golden tasks, DAG/weight/conformance validation and independent review packet.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -95,12 +98,12 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "R01 final design closure: freeze first incremental feature codec/equivalence fixture; reconcile durable record envelope with new DTO persistence mapping and finish adapter coverage. Reuse V1_DOMAIN_ADAPTERS and V1_GENESIS_AUTH_CONTRACT; do not recreate source bindings, genesis/auth routes or API/resolver. Then complete R02 handoff/latest-delta pointers and R03 package compiler; R04–R08 remain.",
+  "next_continuation_point": "R02/R03: bind reviewed tool version and latest result/delta handoff, add semantic contract-reference and stable deliverable-ledger validation, then materialize real P01/P02 candidate packages. In parallel finish R01 complete DTO-to-store coverage/RecoveryCut participation review and R06 compact context projection; do not recreate the completed EMA codec, envelope or mechanical compiler.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_DIFF_CHECK",
     "protected_tracked_files": "PASS_ONLY_P00_CANDIDATE_SCOPE_CHANGED",
-    "platform_tests": "78_PASSED_FINAL_FULL_PLATFORM_SUITE_53.48_SECONDS",
+    "platform_tests": "104_PASSED_FINAL_FULL_PLATFORM_SUITE_55.70_SECONDS",
     "product_tests": "NOT_RUN_DOCS_ONLY",
     "independent_review": "NOT_STARTED",
     "actual_active_policy_git_hashes": "PASS",
@@ -120,13 +123,13 @@
   "weighted_v1_completion": "UNCALIBRATED",
   "human_action_required": "NONE_FOR_LOCAL_P00_CONTINUATION",
   "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION",
-  "previous_checkpoint": "4e7c81f57a0a4228956a941032fe95ca1b1cfb8e",
+  "previous_checkpoint": "eca15ef78b5e5c6c0cfb866badcfee81155316e4",
   "remote_publication": {
     "initial_checkpoint": "PUSHED_CONFIRMED",
-    "current_turn": "CHECK_REMOTE_HEAD_AT_REENTRY_FOR_LATER_GENESIS_AUTH_CHECKPOINT",
+    "current_turn": "VERIFY_CURRENT_BRANCH_PUBLICATION_AT_REENTRY",
     "branch": "architecture/p00-v1-baseline",
     "master_unchanged_at_last_check": true,
     "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
-    "last_verified_published_commit": "b482b4de8153803e94c00782596fd76c584e2309"
+    "last_verified_published_commit": "eca15ef78b5e5c6c0cfb866badcfee81155316e4"
   }
 }

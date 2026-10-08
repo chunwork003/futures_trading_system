@@ -219,6 +219,23 @@ def build():
         "feature_version_ref": ref("EvidenceRef"), "observation_revision_id": observation,
         "completed_bar_count": count, "required_warmup_bars": count,
         "warmup_status": enum("WARMING", "READY"), "state_blob_hash": digest})
+    schemas["EmaIncrementalCodec"] = obj({"codec_version": {"const": "ema_close.v1"},
+        "span": {"type": "integer", "minimum": 1, "maximum": 1000}, "processed_count": count,
+        "ema_hex": nullable({"type": "string", "pattern": r"^0x[01]\.[0-9a-f]+p[+-][0-9]+$", "maxLength": 32}),
+        "last_observation_revision_id": nullable(observation), "governing_config_fingerprint": digest})
+    schemas["EmaIncrementalCodec"]["allOf"] = [{
+        "if": {"properties": {"processed_count": {"const": 0}}},
+        "then": {"properties": {"ema_hex": {"type": "null"}, "last_observation_revision_id": {"type": "null"}}},
+        "else": {"properties": {"ema_hex": {"type": "string"}, "last_observation_revision_id": observation}}}]
+    schemas["TradingEvidenceEnvelope"] = obj({"schema_version": {"const": "trading_evidence.v1"},
+        "evidence_id": ident, "owner": enum("E", "G"), "actor_ref": ident, "recorded_at": timestamp,
+        "correlation_id": ident, "causation_id": nullable(ident), "payload_hash": digest,
+        "payload": {"oneOf": [ref(n) for n in ("Signal", "Decision", "RiskDecision", "CapitalState", "IncrementalState")]}})
+    schemas["TradingEvidenceEnvelope"]["allOf"] = [
+        {"if": {"properties": {"payload": {"properties": {"schema_version": {"enum": versions}}}}},
+         "then": {"properties": {"owner": {"const": owner}}}}
+        for owner, versions in (("E", ["signal.v1", "incremental_state.v1"]),
+                                ("G", ["decision.v1", "risk_decision.v1", "capital.v1"]))]
     schemas["AccountState"] = obj({"account_id": ident, "environment": {"const": "SIMULATED"}, "revision": rev,
         "readiness": enum("HALT", "REVIEW", "READY"), "reason_codes": array(ident, 100),
         "expected": array(ref("ExpectedPosition"), 100),
