@@ -286,7 +286,7 @@
                       "strategies": [
                         {
                           "strategy_id": "example",
-                          "implementation_revision": "0000000000000000000000000000000000000000",
+                          "implementation_revision": "example",
                           "instance_id": "example",
                           "config_ref": {
                             "owner": "example-owner",
@@ -824,7 +824,7 @@
                       "strategies": [
                         {
                           "strategy_id": "example",
-                          "implementation_revision": "0000000000000000000000000000000000000000",
+                          "implementation_revision": "example",
                           "instance_id": "example",
                           "config_ref": {
                             "owner": "example-owner",
@@ -934,7 +934,7 @@
                           "strategies": [
                             {
                               "strategy_id": "example",
-                              "implementation_revision": "0000000000000000000000000000000000000000",
+                              "implementation_revision": "example",
                               "instance_id": "example",
                               "config_ref": {
                                 "owner": "example-owner",
@@ -1827,7 +1827,7 @@
                   "summary": "Shape-only synthetic input; references require authoritative resolution.",
                   "value": {
                     "strategy_id": "example",
-                    "implementation_revision": "0000000000000000000000000000000000000000",
+                    "implementation_revision": "example",
                     "config_schema_ref": {
                       "owner": "example-owner",
                       "identity": "example-identity",
@@ -1869,7 +1869,7 @@
                       "fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
                       "request": {
                         "strategy_id": "example",
-                        "implementation_revision": "0000000000000000000000000000000000000000",
+                        "implementation_revision": "example",
                         "config_schema_ref": {
                           "owner": "example-owner",
                           "identity": "example-identity",
@@ -2645,7 +2645,7 @@
           },
           "implementation_revision": {
             "type": "string",
-            "pattern": "^[0-9a-f]{40}$"
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
           },
           "config_schema_ref": {
             "$ref": "#/components/schemas/EvidenceRef"
@@ -2688,7 +2688,7 @@
           },
           "implementation_revision": {
             "type": "string",
-            "pattern": "^[0-9a-f]{40}$"
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
           },
           "instance_id": {
             "type": "string",
@@ -3792,7 +3792,7 @@
           },
           "implementation_revision": {
             "type": "string",
-            "pattern": "^[0-9a-f]{40}$"
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
           },
           "config_schema_ref": {
             "$ref": "#/components/schemas/EvidenceRef"
@@ -4263,6 +4263,542 @@
           {
             "$ref": "#/components/schemas/ActualPosition"
           }
+        ]
+      },
+      "Signal": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "signal.v1"
+          },
+          "signal_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "strategy_instance_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "strategy_version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "config_version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "instrument_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "contract_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "observation_revision_id": {
+            "type": "string",
+            "pattern": "^mor1_[0-9a-f]{64}$"
+          },
+          "desired_net_quantity": {
+            "type": "integer",
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "previous_virtual_position_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "state_snapshot_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "correlation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          }
+        },
+        "required": [
+          "schema_version",
+          "signal_id",
+          "strategy_instance_id",
+          "strategy_version",
+          "config_version",
+          "instrument_id",
+          "contract_id",
+          "observation_revision_id",
+          "desired_net_quantity",
+          "previous_virtual_position_ref",
+          "state_snapshot_ref",
+          "correlation_id"
+        ]
+      },
+      "Decision": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "decision.v1"
+          },
+          "decision_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "account_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "instrument_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "contract_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "account_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "cohort_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "policy_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "recovery_cut_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "observation_revision_id": {
+            "type": "string",
+            "pattern": "^mor1_[0-9a-f]{64}$"
+          },
+          "signal_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "expected_net_quantity": {
+            "type": "integer",
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "desired_net_quantity": {
+            "type": "integer",
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "proposed_net_quantity": {
+            "type": "integer",
+            "minimum": -10000,
+            "maximum": 10000
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "HOLD",
+              "ADD",
+              "REDUCE",
+              "EXIT",
+              "ENTER"
+            ]
+          },
+          "attributions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "strategy_instance_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                },
+                "selected_net_quantity": {
+                  "type": "integer",
+                  "minimum": -10000,
+                  "maximum": 10000
+                },
+                "signal_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                }
+              },
+              "required": [
+                "strategy_instance_id",
+                "selected_net_quantity",
+                "signal_id"
+              ]
+            },
+            "maxItems": 20
+          },
+          "excluded_signals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "signal_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                },
+                "reason_code": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                }
+              },
+              "required": [
+                "signal_id",
+                "reason_code"
+              ]
+            },
+            "maxItems": 20
+          },
+          "correlation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          }
+        },
+        "required": [
+          "schema_version",
+          "decision_id",
+          "account_id",
+          "instrument_id",
+          "contract_id",
+          "account_revision",
+          "cohort_id",
+          "policy_ref",
+          "recovery_cut_ref",
+          "observation_revision_id",
+          "signal_ids",
+          "expected_net_quantity",
+          "desired_net_quantity",
+          "proposed_net_quantity",
+          "action",
+          "attributions",
+          "excluded_signals",
+          "correlation_id"
+        ]
+      },
+      "RiskDecision": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schema_version": {
+                "const": "risk_decision.v1"
+              },
+              "risk_decision_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              "decision_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              "account_revision": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "capital_revision": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "policy_ref": {
+                "$ref": "#/components/schemas/EvidenceRef"
+              },
+              "margin_ref": {
+                "$ref": "#/components/schemas/EvidenceRef"
+              },
+              "proposed_net_quantity": {
+                "type": "integer",
+                "minimum": -10000,
+                "maximum": 10000
+              },
+              "constraint_evidence": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EvidenceRef"
+                },
+                "maxItems": 100,
+                "minItems": 1
+              },
+              "reason_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                },
+                "maxItems": 100,
+                "minItems": 1
+              },
+              "outcome": {
+                "type": "string",
+                "enum": [
+                  "ALLOW",
+                  "REDUCE"
+                ]
+              },
+              "approved_net_quantity": {
+                "type": "integer",
+                "minimum": -10000,
+                "maximum": 10000
+              }
+            },
+            "required": [
+              "schema_version",
+              "risk_decision_id",
+              "decision_id",
+              "account_revision",
+              "capital_revision",
+              "policy_ref",
+              "margin_ref",
+              "proposed_net_quantity",
+              "constraint_evidence",
+              "reason_codes",
+              "outcome",
+              "approved_net_quantity"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schema_version": {
+                "const": "risk_decision.v1"
+              },
+              "risk_decision_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              "decision_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              "account_revision": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "capital_revision": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "policy_ref": {
+                "$ref": "#/components/schemas/EvidenceRef"
+              },
+              "margin_ref": {
+                "$ref": "#/components/schemas/EvidenceRef"
+              },
+              "proposed_net_quantity": {
+                "type": "integer",
+                "minimum": -10000,
+                "maximum": 10000
+              },
+              "constraint_evidence": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EvidenceRef"
+                },
+                "maxItems": 100,
+                "minItems": 1
+              },
+              "reason_codes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                },
+                "maxItems": 100,
+                "minItems": 1
+              },
+              "outcome": {
+                "const": "REJECT"
+              },
+              "approved_net_quantity": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "schema_version",
+              "risk_decision_id",
+              "decision_id",
+              "account_revision",
+              "capital_revision",
+              "policy_ref",
+              "margin_ref",
+              "proposed_net_quantity",
+              "constraint_evidence",
+              "reason_codes",
+              "outcome",
+              "approved_net_quantity"
+            ]
+          }
+        ]
+      },
+      "CapitalState": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "capital.v1"
+          },
+          "capital_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "account_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "account_revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "source": {
+            "const": "MANUAL"
+          },
+          "currency": {
+            "const": "TWD"
+          },
+          "initial_manual_capital": {
+            "type": "string",
+            "pattern": "^(?:[1-9][0-9]*|(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+            "maxLength": 80
+          },
+          "realized_pnl": {
+            "type": "string",
+            "pattern": "^(?:0|-?[1-9][0-9]*|-?(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+            "maxLength": 80
+          },
+          "unrealized_pnl": {
+            "type": "string",
+            "pattern": "^(?:0|-?[1-9][0-9]*|-?(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+            "maxLength": 80
+          },
+          "fees": {
+            "type": "string",
+            "pattern": "^(?:0|-?[1-9][0-9]*|-?(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+            "maxLength": 80
+          },
+          "reserved_margin": {
+            "type": "string",
+            "pattern": "^(?:0|-?[1-9][0-9]*|-?(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+            "maxLength": 80
+          },
+          "available_capital": {
+            "type": "string",
+            "pattern": "^(?:0|-?[1-9][0-9]*|-?(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+            "maxLength": 80
+          },
+          "account_checkpoint_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "mark_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "margin_policy_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "calculation_policy_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "schema_version",
+          "capital_id",
+          "account_id",
+          "account_revision",
+          "revision",
+          "source",
+          "currency",
+          "initial_manual_capital",
+          "realized_pnl",
+          "unrealized_pnl",
+          "fees",
+          "reserved_margin",
+          "available_capital",
+          "account_checkpoint_ref",
+          "mark_ref",
+          "margin_policy_ref",
+          "calculation_policy_ref"
+        ]
+      },
+      "IncrementalState": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "incremental_state.v1"
+          },
+          "strategy_instance_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "strategy_version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "config_version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "state_schema_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "strategy_snapshot_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "feature_version_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "observation_revision_id": {
+            "type": "string",
+            "pattern": "^mor1_[0-9a-f]{64}$"
+          },
+          "completed_bar_count": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "required_warmup_bars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "warmup_status": {
+            "type": "string",
+            "enum": [
+              "WARMING",
+              "READY"
+            ]
+          },
+          "state_blob_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "schema_version",
+          "strategy_instance_id",
+          "strategy_version",
+          "config_version",
+          "state_schema_version",
+          "strategy_snapshot_ref",
+          "feature_version_ref",
+          "observation_revision_id",
+          "completed_bar_count",
+          "required_warmup_bars",
+          "warmup_status",
+          "state_blob_hash"
         ]
       },
       "AccountState": {

@@ -1,0 +1,130 @@
+{
+  "schema_version": "p00.domain_source_bindings.v1",
+  "status": "CANDIDATE_NOT_ACCEPTED",
+  "bindings": [
+    {
+      "contract": "StrategyBinding",
+      "source_path": "strategy/instance.py",
+      "source_class": "StrategyInstance",
+      "relation": "WIRE_ADAPTER",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "3692c370ddd4f20e63d4d10c2ffcb03385c1c40d",
+      "sha256": "c1dd5705ec2bcb318b1034d6750798c9dea014ffdfbb118e74ff447ae414f0ef"
+    },
+    {
+      "contract": "IncrementalState",
+      "source_path": "persistence/strategy_state.py",
+      "source_class": "StrategyStateSnapshot",
+      "relation": "QUALIFICATION_ATTACHMENT_NOT_STATE_OWNER",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "8bdf906e09917c12e31db93e79b03a97fd7b7ffb",
+      "sha256": "3ae7695f8d10ac6f404e26981819c5162423e6bf1f8125995509fa7c366538d5"
+    },
+    {
+      "contract": "FeatureCodec",
+      "source_path": "strategy/state.py",
+      "source_class": "StatefulStrategy",
+      "relation": "EXISTING_PROTOCOL",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "60b9573f07f3a13a1154c8c3a9895864e96f8b98",
+      "sha256": "199cf9865b19aed88e39630ba9e1d56db13da7eabd20c7ae26b4793eb65610a5"
+    },
+    {
+      "contract": "Signal",
+      "source_path": "backtest/models.py",
+      "source_class": "Signal",
+      "relation": "LEGACY_ADAPTER_NOT_CANONICAL_OWNER",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "570f078bea5eb66ef6178f5891e37cac7a2e5ca4",
+      "sha256": "70e953e6304846dfb1b7df9b4e99d3d1b1bc43a46ecd16ac1f1a59c61aaf2054"
+    },
+    {
+      "contract": "Decision",
+      "source_path": "backtest/decision.py",
+      "source_class": "DecisionAction",
+      "relation": "EXISTING_ACTION_ENUM_NEW_PROVENANCE_RECORD",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "7e969cd7025dae94ae030bb53f3f5ae008895013",
+      "sha256": "bb01d3cc71afdc79d38d58924c9024771878aae48217ec3a50b8e79241ab34f8"
+    },
+    {
+      "contract": "TargetPosition",
+      "source_path": "backtest/target_position.py",
+      "source_class": "TargetAccountPosition",
+      "relation": "LEGACY_SYMBOL_MAPPING_REQUIRED",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "f72119b9ce175e40df9e64ed624141a7526cbff7",
+      "sha256": "1545fa5e2c6ef344ca994fab0cb67af1eeb966462b83eae6a7ef5e8655828ef5"
+    },
+    {
+      "contract": "StrategyVirtualPosition",
+      "source_path": "backtest/strategy_position.py",
+      "source_class": "StrategyVirtualPosition",
+      "relation": "LEGACY_SYMBOL_MAPPING_REQUIRED",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "bc8c8f692fe8e490999f9f0b9da921fceb930965",
+      "sha256": "03132c9356ca57344b0c59a4f79106050bc782a7c4c960c8ada869dfdc5b0550"
+    },
+    {
+      "contract": "PriorityPolicy",
+      "source_path": "backtest/strategy_priority_policy.py",
+      "source_class": "PriorityStrategyConflictPolicy",
+      "relation": "PRESERVE_HIGHER_WINS_OPPOSITE_TIE_REJECT",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "777e6f3fc5c50a3dbbe088089789ad1ad7bea39e",
+      "sha256": "85e2aa0d7846f0b2e5bd3c1ad9eb1cdd4065c93fe5496731c52bbd49baf16c22"
+    },
+    {
+      "contract": "OrderIntent",
+      "source_path": "trading/execution.py",
+      "source_class": "OrderIntent",
+      "relation": "EXISTING_CANONICAL_OWNER",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "66b4cc6a27b50ed30ed072f2c1d99ad0895f99fd",
+      "sha256": "498ed7afe438c01b358febddd5516a5a33e154993b7f46c31c86eab2bafeedba"
+    },
+    {
+      "contract": "Order",
+      "source_path": "trading/execution.py",
+      "source_class": "Order",
+      "relation": "EXISTING_CANONICAL_OWNER",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "66b4cc6a27b50ed30ed072f2c1d99ad0895f99fd",
+      "sha256": "498ed7afe438c01b358febddd5516a5a33e154993b7f46c31c86eab2bafeedba"
+    },
+    {
+      "contract": "Fill",
+      "source_path": "trading/execution.py",
+      "source_class": "Fill",
+      "relation": "EXISTING_CANONICAL_OWNER",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "66b4cc6a27b50ed30ed072f2c1d99ad0895f99fd",
+      "sha256": "498ed7afe438c01b358febddd5516a5a33e154993b7f46c31c86eab2bafeedba"
+    },
+    {
+      "contract": "ObservationRevision",
+      "source_path": "domain/market_observation.py",
+      "source_class": "MarketObservationRevisionId",
+      "relation": "EXISTING_CANONICAL_OWNER",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "b7059a78dc6480abb74be8644f3e37e35876b020",
+      "sha256": "048e1bae1aad3887285118bbe55bd1c899198ea19cd8b82dc17fc3fa8d2cd387"
+    },
+    {
+      "contract": "ReconciliationCase",
+      "source_path": "trading/reconciliation.py",
+      "source_class": "ReconciliationCase",
+      "relation": "EXISTING_CANONICAL_OWNER",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "649d7ba31a15c6916b5adc16e5df79967b9fdb40",
+      "sha256": "fa00bc8b10889d10570207f8020a8a208ab1d36420b96df4384de54eb9462390"
+    }
+  ],
+  "new_owners_not_yet_implemented": [
+    "canonical Signal",
+    "Decision provenance",
+    "RiskDecision",
+    "CapitalState",
+    "IncrementalState qualification"
+  ]
+}

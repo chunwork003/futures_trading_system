@@ -75,12 +75,13 @@
     {
       "section": 10,
       "title": "Canonical Contracts",
-      "coverage": "PARTIAL",
+      "coverage": "PARTIAL_IMPLEMENTED_PENDING_REVIEW",
       "evidence": [
-        "docs/architecture/V1_CONTRACTS.md",
-        "docs/architecture/contracts/python.openapi.v1.json"
+        "docs/architecture/V1_DOMAIN_ADAPTERS.md",
+        "docs/architecture/contracts/domain_source_bindings.v1.json",
+        "tests/platform/test_p00_domain_contracts.py"
       ],
-      "note": "API DTOs exist; remaining canonical/new domain contracts and accepted-model adapter trace need reconciliation."
+      "note": "Five new domain DTOs and 13 pinned source/class bindings; economic cross-record semantics and full adapter coverage still need review."
     },
     {
       "section": 11,
@@ -118,7 +119,7 @@
         "docs/architecture/contracts/bff.openapi.v1.json",
         "tests/platform/test_p00_contracts.py"
       ],
-      "note": "22 operations/52 schemas; local structural validation only, semantic review and full OpenAPI conformance tooling pending."
+      "note": "22 operations / 57 schemas; structural validation passes; exact auth handler and dedicated conformance validation pending."
     },
     {
       "section": 15,

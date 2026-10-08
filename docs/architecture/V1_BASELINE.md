@@ -78,9 +78,9 @@ Metrics freeze：net return = (ending_equity-starting_equity-net_external_flows)
 ## 6. Runtime / strategy / decision / risk
 
 Observation -> incremental feature/state -> StrategyInstances -> Signals -> proposed TargetPosition -> Risk/Capital -> approved TargetPosition -> OrderIntent -> OMS。
-Proposed/approved target 用同一 decision identity 下不同字段，不建立兩個競爭 owner。Strategy 不碰 broker/account repositories。
+Decision 保存 desired／staged proposed target；RiskDecision 以 decision_id 連結 immutable permission，approved target 為其欄位。UI joined projection 不另建競爭 owner。Strategy 不碰 broker/account repositories。
 同一 account/contract 的 cohort 必須使用完整 required membership、相同 observation frontier 與 governing versions；缺一項不能以其餘策略 silent 決策。
-V1 conflict policy 固定配置版本：同向合併；反向依明列 deterministic priority，tie 以 stable strategy_instance_id；未配置 policy 則 REJECT，而不是隨集合迭代次序。
+V1 conflict policy 固定配置版本：同向合併；反向保留既有 PriorityStrategyConflictPolicy：較大 priority 優先；最高 priority 反向平手拒絕，不以 instance ID 猜選；未配置 policy 則 REJECT，而不是隨集合迭代次序。
 CapitalSource=MANUAL；run/session genesis 明確資金，cross-strategy borrowing OFF。RiskDecision 保存 proposed/approved quantity、ALLOW/REDUCE/REJECT、每個 constraint/input/version/reason。
 Increase exposure 必須有新鮮完整 account/market evidence、margin/capital、max contracts、loss limit。Risk reduction 仍檢查 account/contract/position/currentness，不因稱為 close 就跳過全部 authority。
 Reverse 固定 EXIT -> confirmed FLAT -> re-evaluate -> ENTER。Partial close 未 FLAT 不進反向單。

@@ -64,10 +64,10 @@ def build():
             "accepted_quality_report": ref("EvidenceRef")}),
         "ContractBinding": obj({"instrument_id": rev, "contract_id": rev,
             "calendar_ref": ref("EvidenceRef"), "mapping_ref": ref("EvidenceRef")}),
-        "StrategyDefinition": obj({"strategy_id": ident, "implementation_revision": sha,
+        "StrategyDefinition": obj({"strategy_id": ident, "implementation_revision": ident,
             "config_schema_ref": ref("EvidenceRef"), "supported_timeframes": array(ident, 20),
             "supported_modes": array(enum("BACKTEST", "SIMULATED"), 2)}),
-        "StrategyBinding": obj({"strategy_id": ident, "implementation_revision": sha,
+        "StrategyBinding": obj({"strategy_id": ident, "implementation_revision": ident,
             "instance_id": ident, "config_ref": ref("EvidenceRef"), "contract": ref("ContractBinding"),
             "timeframe": ident}),
         "RunBindings": obj({"dataset": ref("EvidenceRef"), "strategies": {**array(ref("StrategyBinding"), 20), "minItems": 1},
@@ -146,7 +146,7 @@ def build():
         obj({"kind": {"const": "DECIMAL"}, "value": decimal}),
         obj({"kind": {"const": "BOOLEAN"}, "value": {"type": "boolean"}}),
         obj({"kind": {"const": "TEXT"}, "value": {"type": "string", "maxLength": 256}})]}
-    schemas["StrategyConfigRequest"] = obj({"strategy_id": ident, "implementation_revision": sha,
+    schemas["StrategyConfigRequest"] = obj({"strategy_id": ident, "implementation_revision": ident,
         "config_schema_ref": ref("EvidenceRef"),
         "parameters": array(obj({"name": ident, "value": ref("ParameterValue")}), 100)})
     schemas["StrategyConfigVersion"] = obj({"strategy_id": ident, "config_version": ident,
@@ -174,6 +174,45 @@ def build():
     for name, kind in (("TargetPosition", "TARGET"), ("ExpectedPosition", "EXPECTED"), ("ActualPosition", "ACTUAL")):
         schemas[name] = obj({"kind": {"const": kind}, **position_fields})
     schemas["Position"] = {"oneOf": [ref(x) for x in ("TargetPosition", "ExpectedPosition", "ActualPosition")]}
+    signed_quantity = {"type": "integer", "minimum": -10000, "maximum": 10000}
+    observation = {"type": "string", "pattern": "^mor1_[0-9a-f]{64}$"}
+    schemas["Signal"] = obj({"schema_version": {"const": "signal.v1"}, "signal_id": ident,
+        "strategy_instance_id": ident, "strategy_version": ident, "config_version": ident,
+        "instrument_id": rev, "contract_id": rev, "observation_revision_id": observation,
+        "desired_net_quantity": signed_quantity, "previous_virtual_position_ref": ref("EvidenceRef"),
+        "state_snapshot_ref": ref("EvidenceRef"), "correlation_id": ident})
+    schemas["Decision"] = obj({"schema_version": {"const": "decision.v1"}, "decision_id": ident,
+        "account_id": ident, "instrument_id": rev, "contract_id": rev, "account_revision": rev,
+        "cohort_id": ident, "policy_ref": ref("EvidenceRef"), "recovery_cut_ref": ref("EvidenceRef"),
+        "observation_revision_id": observation, "signal_ids": {**array(ident, 20), "minItems": 1, "uniqueItems": True},
+        "expected_net_quantity": signed_quantity, "desired_net_quantity": signed_quantity,
+        "proposed_net_quantity": signed_quantity,
+        "action": enum("HOLD", "ADD", "REDUCE", "EXIT", "ENTER"),
+        "attributions": array(obj({"strategy_instance_id": ident, "selected_net_quantity": signed_quantity,
+            "signal_id": ident}), 20),
+        "excluded_signals": array(obj({"signal_id": ident, "reason_code": ident}), 20), "correlation_id": ident})
+    risk_common = {"schema_version": {"const": "risk_decision.v1"}, "risk_decision_id": ident,
+        "decision_id": ident, "account_revision": rev, "capital_revision": rev,
+        "policy_ref": ref("EvidenceRef"), "margin_ref": ref("EvidenceRef"),
+        "proposed_net_quantity": signed_quantity,
+        "constraint_evidence": {**array(ref("EvidenceRef"), 100), "minItems": 1},
+        "reason_codes": {**array(ident, 100), "minItems": 1}}
+    schemas["RiskDecision"] = {"oneOf": [obj({**risk_common, "outcome": enum("ALLOW", "REDUCE"),
+        "approved_net_quantity": signed_quantity}), obj({**risk_common, "outcome": {"const": "REJECT"},
+        "approved_net_quantity": {"type": "null"}})]}
+    schemas["CapitalState"] = obj({"schema_version": {"const": "capital.v1"}, "capital_id": ident,
+        "account_id": ident, "account_revision": rev, "revision": rev, "source": {"const": "MANUAL"},
+        "currency": {"const": "TWD"}, "initial_manual_capital": deepcopy(schemas["ResearchRunRequest"]["properties"]["initial_capital"]),
+        "realized_pnl": decimal, "unrealized_pnl": decimal, "fees": decimal,
+        "reserved_margin": decimal, "available_capital": decimal,
+        "account_checkpoint_ref": ref("EvidenceRef"), "mark_ref": ref("EvidenceRef"),
+        "margin_policy_ref": ref("EvidenceRef"), "calculation_policy_ref": ref("EvidenceRef")})
+    schemas["IncrementalState"] = obj({"schema_version": {"const": "incremental_state.v1"},
+        "strategy_instance_id": ident, "strategy_version": ident, "config_version": ident,
+        "state_schema_version": rev, "strategy_snapshot_ref": ref("EvidenceRef"),
+        "feature_version_ref": ref("EvidenceRef"), "observation_revision_id": observation,
+        "completed_bar_count": count, "required_warmup_bars": count,
+        "warmup_status": enum("WARMING", "READY"), "state_blob_hash": digest})
     schemas["AccountState"] = obj({"account_id": ident, "environment": {"const": "SIMULATED"}, "revision": rev,
         "readiness": enum("HALT", "REVIEW", "READY"), "reason_codes": array(ident, 100),
         "expected": array(ref("ExpectedPosition"), 100),

@@ -7,14 +7,12 @@
   "authority": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
   "runtime_dispatch_authorized": false,
   "completed_this_turn": [
-    "Pushed explicitly approved initial 13-file checkpoint; remote branch confirmed",
-    "Materialized 22-operation/52-schema internal Python and BFF OpenAPI candidates, bounded workload profile and detailed API semantics",
-    "Implemented exact Git snapshot context resolver with active policy SHA256 checks and unsafe path/stale evidence rejection",
-    "Materialized typed agent/tool registries and candidate bootstrap",
-    "Separated original attachment hash from normalized Git blob provenance",
-    "Actual committed snapshot smoke passed, but 633847 mandatory bytes exceed 128 KiB target; resolver now reports budget overflow without truncation",
-    "Explicit timestamp checker added because optional date-time validation dependency was absent; negative fixtures reject invalid date/hour/offset/precision",
-    "Final full platform regression: 66 passed in 51.56 seconds; generation check and protected-scope verification pass"
+    "Published explicitly approved 0d3ca85/4e7c81f commits to existing candidate branch",
+    "Reconciled strategy version identity and legacy symbol adapters against actual accepted source",
+    "Added five domain schemas: Signal, Decision, RiskDecision, CapitalState, IncrementalState; total API component schemas 57",
+    "Preserved actual higher-priority-wins / opposite-tie-reject conflict policy; separated desired target from staged proposed target",
+    "Pinned thirteen source/class/blob bindings and added domain schema/legacy-policy negative tests",
+    "Full platform suite 76 passed in 52.14 seconds; no product runtime or accepted policy changes"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -46,12 +44,15 @@
     "tests/platform/test_p00_context.py",
     "tests/platform/test_p00_registries.py",
     "docs/program/P00_VALIDATION.md",
-    "tests/platform/requirements.txt"
+    "tests/platform/requirements.txt",
+    "docs/architecture/V1_DOMAIN_ADAPTERS.md",
+    "docs/architecture/contracts/domain_source_bindings.v1.json",
+    "tests/platform/test_p00_domain_contracts.py"
   ],
   "remaining": [
     {
       "id": "R01",
-      "work": "Complete new trading-domain machine contracts (Signal/Decision/Risk/Capital/incremental state), map every existing canonical DTO to accepted source, resolve simulation genesis/command lifecycle and auth-handler contracts; semantic API review and conformance validation. API 22 operations and finite workload bounds now materialized.",
+      "work": "Five new domain DTOs and thirteen accepted-source bindings now materialized; source priority/version/legacy target semantics reconciled. Remaining: exact first feature codec/equivalence fixture, simulation genesis/operation lifecycle and auth-handler contracts, semantic domain/API review and complete DTO adapter coverage.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -90,12 +91,12 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "R01 domain/adapter closure: reconcile remaining Signal/Decision/Risk/Capital/IncrementalState schemas with accepted A–O/domain sources; settle simulation genesis/command lifecycle and exact auth-handler contract. Do not recreate completed API/registries/resolver. Then complete R02 handoff/pointers and R03 package compiler; R04–R08 remain.",
+  "next_continuation_point": "R01 next: settle simulation genesis reservation vs session lifecycle and exact BFF auth-handler contract; then freeze first incremental feature codec/equivalence fixture and complete adapter coverage. Reuse the 57 schemas and 13 source bindings; do not recreate API/resolver/registries. Then R02 handoff/pointers and R03 compiler; R04–R08 remain.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_DIFF_CHECK",
     "protected_tracked_files": "PASS_ONLY_P00_CANDIDATE_SCOPE_CHANGED",
-    "platform_tests": "66_PASSED_FINAL_FULL_PLATFORM_SUITE_51.56_SECONDS",
+    "platform_tests": "76_PASSED_FINAL_FULL_PLATFORM_SUITE_52.14_SECONDS",
     "product_tests": "NOT_RUN_DOCS_ONLY",
     "independent_review": "NOT_STARTED",
     "actual_active_policy_git_hashes": "PASS",
@@ -107,19 +108,20 @@
       "mandatory_files": 23,
       "mandatory_bytes": 633847,
       "status": "PASS_EVIDENCE_BINDING_FAST_BOOTSTRAP_NOT_ACHIEVED"
-    }
+    },
+    "domain_source_bindings": "13_EXACT_GIT_BLOB_AND_CLASS_BINDINGS_PASS"
   },
   "release_journeys_passed": 0,
   "release_journeys_total": 6,
   "weighted_v1_completion": "UNCALIBRATED",
-  "human_action_required": "APPROVE_PUBLICATION_OF_CURRENT_P00_DELTA_ONLY; local P00 continuation remains authorized",
+  "human_action_required": "NONE_FOR_LOCAL_P00_CONTINUATION",
   "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION",
-  "previous_checkpoint": "da09f7665ea286d18dc625268ae4b2e6f4acec10",
+  "previous_checkpoint": "4e7c81f57a0a4228956a941032fe95ca1b1cfb8e",
   "remote_publication": {
     "initial_checkpoint": "PUSHED_CONFIRMED",
-    "current_turn": "BLOCKED_AUTO_REVIEW_NEW_PAYLOAD_APPROVAL_REQUIRED",
+    "current_turn": "LOCAL_CANDIDATE_DELTA_PENDING_PUBLICATION",
     "branch": "architecture/p00-v1-baseline",
     "master_unchanged_at_last_check": true,
-    "reason": "Approval reviewer limited previous authorization to original 13-file payload; new API/resolver/registry/test changes require explicit publication approval."
+    "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08"
   }
 }
