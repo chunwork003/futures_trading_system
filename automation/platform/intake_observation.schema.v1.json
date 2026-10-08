@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Candidate bounded intake observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "authority",
+    "execution_eligible",
+    "source_master",
+    "observations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "p00.intake_observation.v1"
+    },
+    "authority": {
+      "const": "NONE_PLANNING_ONLY"
+    },
+    "execution_eligible": {
+      "const": false
+    },
+    "source_master": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "observations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stop",
+        "active_execution",
+        "active_writer",
+        "pending_result",
+        "pending_review",
+        "pending_integration",
+        "pending_acceptance",
+        "latest_delta",
+        "last_accepted_result"
+      ],
+      "properties": {
+        "stop": {
+          "$ref": "#/$defs/observation"
+        },
+        "active_execution": {
+          "$ref": "#/$defs/observation"
+        },
+        "active_writer": {
+          "$ref": "#/$defs/observation"
+        },
+        "pending_result": {
+          "$ref": "#/$defs/observation"
+        },
+        "pending_review": {
+          "$ref": "#/$defs/observation"
+        },
+        "pending_integration": {
+          "$ref": "#/$defs/observation"
+        },
+        "pending_acceptance": {
+          "$ref": "#/$defs/observation"
+        },
+        "latest_delta": {
+          "$ref": "#/$defs/observation"
+        },
+        "last_accepted_result": {
+          "$ref": "#/$defs/observation"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "git_blob",
+        "sha256",
+        "json_pointer"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "git_blob": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "json_pointer": {
+          "type": "string",
+          "pattern": "^/"
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "knowledge",
+        "scope",
+        "items",
+        "evidence",
+        "reason"
+      ],
+      "properties": {
+        "knowledge": {
+          "enum": [
+            "UNKNOWN",
+            "NONE",
+            "PRESENT"
+          ]
+        },
+        "scope": {
+          "const": "CURRENT_PROGRAM"
+        },
+        "items": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reference"
+          }
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "knowledge": {
+                "const": "UNKNOWN"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "maxItems": 0
+              },
+              "evidence": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "knowledge": {
+                "const": "NONE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "maxItems": 0
+              },
+              "evidence": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "knowledge": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "minItems": 1
+              },
+              "evidence": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

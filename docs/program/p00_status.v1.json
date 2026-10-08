@@ -7,9 +7,10 @@
   "authority": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
   "runtime_dispatch_authorized": false,
   "completed_this_turn": [
-    "Added explicit P01 dataset schema closure and P02 all-endpoint reading profiles; exact original source remains linked",
-    "Added source-bound result reading index distinguishing accepted predecessor from historical P01/P02 NOT_READY compilations",
-    "22 targeted tests and194 full-platform tests passed; real Git snapshot selective packs and result reading verified, byte target remains unmet"
+    "Defined package-specific document reading obligations without silently reducing original mandatory context",
+    "Added nine-field tri-state intake schema and pure priority oracle; UNKNOWN never becomes empty/passed",
+    "Added exact-source bounded current observer; only current explicit execution/writer absence can be projected, no process attestation",
+    "16 targeted intake tests and210 full-platform tests passed in90.23 seconds; bounded source observation smoke pending"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -103,7 +104,12 @@
     "docs/program/context_packs/7477e51/P02.full-reading.metrics.json",
     "docs/program/context_packs/7477e51/P02.metrics.json",
     "docs/program/context_packs/7477e51/P02.pack.json",
-    "docs/program/context_packs/7477e51/result_reading.json"
+    "docs/program/context_packs/7477e51/result_reading.json",
+    "automation/platform/PACKAGE_READING_OBLIGATIONS.md",
+    "automation/platform/intake_observation.schema.v1.json",
+    "scripts/p00_intake.py",
+    "tests/platform/test_p00_intake.py",
+    "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md"
   ],
   "remaining": [
     {
@@ -133,7 +139,7 @@
     },
     {
       "id": "R06",
-      "work": "Explicit package-selective OpenAPI closure and exact result-reference reader implemented. Snapshot7477e51: P01 277695 bytes, P02 373879 bytes, both above128KiB. Full-source/projection comparison and real Git result reading PASS. Remaining domain-document selective loading, pending result/review/STOP discovery, independent projection review and authorized resolver migration; compiler gate unchanged.",
+      "work": "Schema closure, document loading obligations, tri-state intake observation, priority oracle and complete registry/receipt/CAS design authored. Current actual pending categories remain UNKNOWN; full A2 registry implementation/bootstrap acceptance and independent compiler projection migration remain separate. Both packs still exceed original128KiB gate. R06 not independently accepted.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -147,12 +153,12 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "R06: define package-specific domain-document loading obligations and complete explicit pending-result/review/STOP current intake; both selective packs remain oversized. Then R01 adapter/RecoveryCut coverage, R05 historical coverage/trusted progress intake and independent P00 review. No product execution.",
+  "next_continuation_point": "R01: complete DTO-to-store adapter and new readiness-evidence RecoveryCut coverage, then R05 historical requirement coverage and P00 independent review preparation. R06 registry/receipt/CAS authoring is defined; accepted bootstrap and A2 implementation remain future work, no fabricated NONE or controller activation. Oversized context migration still requires independent decision.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_DIFF_CHECK",
     "protected_tracked_files": "PASS_ONLY_P00_CANDIDATE_SCOPE_CHANGED",
-    "platform_tests": "194_PASSED_FULL_PLATFORM_SUITE_91.96_SECONDS",
+    "platform_tests": "210_PASSED_FULL_PLATFORM_SUITE_90.23_SECONDS",
     "product_tests": "NOT_RUN_DOCS_ONLY",
     "independent_review": "NOT_STARTED",
     "actual_active_policy_git_hashes": "PASS",
@@ -189,7 +195,7 @@
       "independent_review": "NOT_PERFORMED",
       "compiler_gate_changed": false
     },
-    "final_impacted_tests": "22_PASSED_CONTEXT_AND_RESULT_0.17_SECONDS",
+    "final_impacted_tests": "16_PASSED_INTAKE_SPEC_0.23_SECONDS",
     "real_reading_pack_reconstruction": "PASS_ALL_JSON_TEXT_AND_ARCHIVE_HASHES",
     "p01_revision5_compilation": {
       "snapshot": "6564594fdb12fbfb7cf5c3bfc12d1dcd1d460f60",
@@ -246,14 +252,14 @@
   "weighted_v1_completion": "UNCALIBRATED",
   "human_action_required": "NONE_FOR_LOCAL_P00_CONTINUATION",
   "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION",
-  "previous_checkpoint": "128470ba5aa5565aaf100b31bb55cc50f0829995",
+  "previous_checkpoint": "6daf5cbf47e18f687617275a4bcbfc381911f1b3",
   "remote_publication": {
     "initial_checkpoint": "PUSHED_CONFIRMED",
     "current_turn": "VERIFY_CURRENT_BRANCH_PUBLICATION_AT_REENTRY",
     "branch": "architecture/p00-v1-baseline",
     "master_unchanged_at_last_check": true,
     "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
-    "last_verified_published_commit": "128470ba5aa5565aaf100b31bb55cc50f0829995"
+    "last_verified_published_commit": "6daf5cbf47e18f687617275a4bcbfc381911f1b3"
   },
   "continuation_response_template": "目前總進度O/O(已完成數量/總共多少須完成數量)，下一步驟預計執行OO，請回覆「繼續」，使工作繼續執行",
   "continuation_response_rule": "Append the template to the normal reply when work remains; substitute actual counts and next action. Counts use R01-R08 closed workstreams only, never files/tests or partial completion. Identify P00 closure scope explicitly, not product completion. Preserve stable denominator unless scope changes are explicitly recorded.",

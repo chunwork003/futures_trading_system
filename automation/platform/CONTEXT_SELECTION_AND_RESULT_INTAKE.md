@@ -27,3 +27,16 @@ WORK 必須先處理 STOP／安全阻塞，再核對 unfinished execution（只�
 ## 遷移門檻
 
 先量測兩套件新 pack；再完成上述 current projection/intake 與負向 eval；獨立 reviewer 確認不可遺漏義務；最後另以精確授權修改 resolver/compiler 接受的閱讀來源。任何步驟尚缺均保留原 gate，不能靠縮小數字宣告 P01/P02 可執行。
+
+
+## 候選 observation / route oracle
+
+`intake_observation.schema.v1.json` 要求九種 observation 明示 UNKNOWN / NONE / PRESENT。NONE 必須有 source reference，PRESENT 必須有 exact item IDs；scope 固定 current program，禁止把單 package 空集合冒充全域無工作。schema 通過只證明形狀，不能驗證 evidence 真實性。
+
+`scripts/p00_intake.py` 在固定 Git snapshot 核對 current operational blob；現有來源只足以輸出 active execution/writer 的明確空 projection，且不宣稱作業系統無活動程序。stop、pending result/review/integration/acceptance、delta、accepted baseline registry 仍 UNKNOWN。AUTO-IMP-002 的已接受來源參考不等於完整 global registry。
+
+Pure route oracle 的優先序：STOP → execution lineage → writer → result → review → integration → acceptance → delta → accepted baseline。較高順位 UNKNOWN 會要求補證，不會越過去啟動新工作。execution PRESENT 只得到 REVALIDATE_EXECUTION_LINEAGE，不直接 resume；consumed/no invocation 仍須獨立 first-invocation 判定。全部明確空也只到 EVALUATE_AUTHORITY_AND_DEPENDENCIES。
+
+此工具是一輪觀測提案，不是具 receipt/cursor 的完整 control loop。READ_DELTA / READ_ACCEPTED_BASELINE 的完成 acknowledgement、revision CAS、冪等 intake receipt 與後續 progression 尚未實作；不能把已讀 PRESENT 改成 NONE 偽造 registry，也不能反覆執行當作 autonomous scheduling。`evidence_trust_verified=false`、`execution_eligible=false`、side_effects NONE 永遠保留。
+
+文件載入義務見 `PACKAGE_READING_OBLIGATIONS.md`。本輪沒有把 compiler 的完整包128KiB target 改成每批128KiB，也沒有移除原本必讀義務。
