@@ -2,7 +2,7 @@
   "schema_version": "p00.package.v1",
   "identity": {
     "package_id": "P01",
-    "revision": 2,
+    "revision": 3,
     "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
     "requirement_ids": [
       "OWNER-08",
@@ -68,7 +68,7 @@
       "RESEARCH_STRICT_1M_V1 quality/correction semantics follow docs/architecture/V1_DATASET_QUALITY.md; first policy is minute bars only, without narrowing accepted canonical MarketObservation capabilities."
     ],
     "public_semantic_gaps": [
-      "Quality semantics and correction precedence are defined in V1_DATASET_QUALITY.md; remaining exact ImportMetadata coverage/timeframe, import receipt/quality report DTOs and version-hash byte framing must be frozen and tested before execution."
+      "Coverage/quality-report/import-receipt wire schemas now defined; exact canonical row/key-set/version hash framing and golden vectors, CSV_V1/calendar adapter interfaces and complete publication/lookup evidence chain remain open."
     ]
   },
   "dependencies": {

@@ -1726,6 +1726,17 @@
                       "source_name": "example",
                       "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
                       "format": "CSV_V1",
+                      "coverage": {
+                        "timeframe": "1m",
+                        "start_at": "2026-01-01T00:00:00Z",
+                        "end_at": "2026-01-01T00:00:00Z",
+                        "contracts": [
+                          {
+                            "instrument_id": 1,
+                            "contract_id": 1
+                          }
+                        ]
+                      },
                       "calendar_ref": {
                         "owner": "example-owner",
                         "identity": "example-identity",
@@ -4019,6 +4030,422 @@
           "reason"
         ]
       },
+      "DatasetCoverageRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "timeframe": {
+            "const": "1m"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:00Z$"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:00Z$"
+          },
+          "contracts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "instrument_id": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "contract_id": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "instrument_id",
+                "contract_id"
+              ]
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "timeframe",
+          "start_at",
+          "end_at",
+          "contracts"
+        ]
+      },
+      "DatasetQualityReport": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "dataset.quality.v1"
+          },
+          "report_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/DatasetCoverageRequest"
+          },
+          "calendar_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "mapping_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "quality_policy_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "INVALID_INPUT",
+              "UNQUALIFIED_REFERENCE",
+              "CONFLICTING_CONTENT",
+              "INCOMPLETE_COVERAGE",
+              "QUALIFIED_RESEARCH"
+            ]
+          },
+          "counts": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "required_bars": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "observed_bars": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "missing_bars": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "duplicate_rows": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "conflicting_keys": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "out_of_session_keys": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "out_of_range_keys": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "required_bars",
+                  "observed_bars",
+                  "missing_bars",
+                  "duplicate_rows",
+                  "conflicting_keys",
+                  "out_of_session_keys",
+                  "out_of_range_keys"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expected_keys_hash": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "observed_keys_hash": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason_codes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+            },
+            "maxItems": 20,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "schema_version",
+          "report_id",
+          "coverage",
+          "calendar_ref",
+          "mapping_ref",
+          "quality_policy_ref",
+          "verdict",
+          "counts",
+          "expected_keys_hash",
+          "observed_keys_hash",
+          "reason_codes"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "verdict": {
+                  "enum": [
+                    "INVALID_INPUT",
+                    "UNQUALIFIED_REFERENCE"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "counts": {
+                  "type": "null"
+                },
+                "expected_keys_hash": {
+                  "type": "null"
+                },
+                "observed_keys_hash": {
+                  "type": "null"
+                },
+                "reason_codes": {
+                  "minItems": 1
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "counts": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "required_bars": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "observed_bars": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "missing_bars": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "duplicate_rows": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "conflicting_keys": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "out_of_session_keys": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "out_of_range_keys": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "required_bars",
+                    "observed_bars",
+                    "missing_bars",
+                    "duplicate_rows",
+                    "conflicting_keys",
+                    "out_of_session_keys",
+                    "out_of_range_keys"
+                  ]
+                },
+                "expected_keys_hash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "observed_keys_hash": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "verdict": {
+                  "const": "QUALIFIED_RESEARCH"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "reason_codes": {
+                  "maxItems": 0
+                },
+                "counts": {
+                  "properties": {
+                    "required_bars": {
+                      "minimum": 1
+                    },
+                    "observed_bars": {
+                      "minimum": 1
+                    },
+                    "missing_bars": {
+                      "const": 0
+                    },
+                    "conflicting_keys": {
+                      "const": 0
+                    },
+                    "out_of_session_keys": {
+                      "const": 0
+                    },
+                    "out_of_range_keys": {
+                      "const": 0
+                    }
+                  }
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "reason_codes": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ]
+      },
+      "DatasetImportReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "dataset.import-receipt.v1"
+          },
+          "receipt_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "operation_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "dataset_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "source_name": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "source_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "recorded_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](?:\\.[0-9]{1,6})?Z$"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "PUBLISHED",
+              "REUSED",
+              "REJECTED"
+            ]
+          },
+          "version_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "quality_report_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "schema_version",
+          "receipt_id",
+          "operation_id",
+          "dataset_id",
+          "source_name",
+          "source_sha256",
+          "recorded_at",
+          "outcome",
+          "version_id",
+          "quality_report_ref"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "outcome": {
+                  "const": "REJECTED"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "version_id": {
+                  "type": "null"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "version_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                }
+              }
+            }
+          }
+        ]
+      },
       "ImportMetadata": {
         "type": "object",
         "additionalProperties": false,
@@ -4037,6 +4464,9 @@
           },
           "format": {
             "const": "CSV_V1"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/DatasetCoverageRequest"
           },
           "calendar_ref": {
             "$ref": "#/components/schemas/EvidenceRef"
@@ -4076,6 +4506,7 @@
           "source_name",
           "source_sha256",
           "format",
+          "coverage",
           "calendar_ref",
           "mapping_ref",
           "quality_policy_ref",

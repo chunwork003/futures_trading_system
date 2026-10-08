@@ -58,3 +58,11 @@ Handoff artifact hashes bind the UTF-8 LF bytes stored in Git blobs, not arbitra
 P01 revision2 records research quality/correction decisions and ten required golden cases, and keeps concrete wire design gaps open. Those cases are specifications; product import tests have not been implemented or run. Final documentation/package-reference updates are checked separately below.
 
 Final impacted package/pack tests: 11 passed in 0.21 seconds. Contract generation drift check PASS. Actual source comparison reconstructs every JSON value/text document and validates both archived suffix hashes: PASS. Protected source scope PASS.
+
+## Dataset wire / continuation accounting checkpoint
+
+Added required ImportMetadata.coverage and DatasetCoverageRequest, DatasetQualityReport, DatasetImportReceipt. Negative tests reject invented zero counts for unknown reference coverage, missing coverage, duplicate contract selection, non-minute boundaries and rejected receipts claiming a version. Schema tests do not establish cross-record/reference validity, end > start or actual count/hash arithmetic; these are explicit semantic obligations in V1_DATASET_QUALITY.md.
+
+Dataset/API targeted suite: 42 passed in 0.69 seconds. Complete platform suite: **124 passed in 88.08 seconds**. Contract generation, diff whitespace, protected scope and progress accounting checks PASS. Product runtime and independent review were not executed.
+
+Continuation count now uses unchanged R01-R08 closure items: **0/8 fully closed; 5 partially materialized**. This counts P00 closure, not V1 product completion, tests or files. P01 revision3 remains NOT_READY with exact framing/CSV/calendar/publication gaps; historical compilation and reading packs are not silently refreshed to claim otherwise.

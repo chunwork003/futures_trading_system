@@ -51,6 +51,12 @@ Candidate 必須獨立通過完整品質驗證；不接受缺項 delta upload �
 | Q09 | 相同 rows，不同 reference hash 或 required range | 不得僅凭 content hash 宣稱相同 version |
 | Q10 | 空 required set 或自動零量補棒 | 空 coverage 拒絕；importer 不得產生 filler |
 
-## 尚待介面 closure
+## Wire candidate 與剩餘 closure
 
-目前 ImportMetadata 缺 explicit timeframe/required coverage；source_manifest_hash 也不足以表達 content dedup 後每次 import provenance。P00 必須在單一 OpenAPI authoring source 定義這些 wire fields、import receipt、QualityReport schema 與 exact version-hash framing，再跑 schema/golden consistency tests。上述是具體架構缺口，不是 P01 implementer 可自行猜測的 routine correction。本文件提供品質／更正語意決定，未授權 execution。
+單一 authoring source 已新增 DatasetCoverageRequest、DatasetQualityReport、DatasetImportReceipt，ImportMetadata.coverage 為 required。Coverage 固定 1m、整分鐘 UTC，contract 集合非空、不重複、最多100。Report 明示 verdict；INVALID_INPUT/UNQUALIFIED_REFERENCE 的 counts 與 key-set hashes 必須為 null 且附 reason，不能假造零。QUALIFIED_RESEARCH 必須 required/observed >0、missing/conflict/outside=0；exact duplicates 可保留。Receipt 的 REJECTED 要求 version_id=null；PUBLISHED/REUSED 則必須有 version_id。
+
+這些 schema 只證明 shape。服務還必須驗證 end > start、required=observed+missing、key-set fingerprints 與 counts 一致、reference 可解析、listed contract 與品質 policy 適用。不得把 JSON Schema 通過當成上述語意通過。
+
+無法解析的請求 envelope 直接 protocol INVALID_INPUT，不建立假造 dataset/coverage/receipt。已取得有效 metadata、但 CSV 內容錯誤時，才可產生具該 metadata 的 INVALID_INPUT report。既有非同步 CommandReceipt 仍為 HTTP 202 回應；DatasetImportReceipt 是 terminal operation 的 immutable evidence，不替換 command receipt 或建立第二個 operation state。每個 accepted import operation 恰有一份 terminal receipt；worker retry 不得多發布。PUBLISHED/REUSED 必須引用 QUALIFIED_RESEARCH report，REJECTED 必須引用非 qualified report。這些跨 record 約束須由 P03 的 transaction/publish contract 一併落實。
+
+尚待 P00 凍結：canonical row/key-set/version hash 的 exact byte framing 與 literal golden vectors；source manifest 與 per-import receipt 的完整 publication/lookup 引用鏈；CSV_V1 欄位與 calendar adapter 的具體介面；端到端 Q01-Q10 語意 fixtures。未完成前 P01 仍 NOT_READY，不交給 executor 自行補設計。

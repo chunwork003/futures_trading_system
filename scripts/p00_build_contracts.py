@@ -141,8 +141,41 @@ def build():
     schemas["SimulationCommand"] = obj({"command": enum("START", "PAUSE", "STOP", "RECOVER", "KILL", "FORCE_FLAT"),
         "reason": text})
     schemas["CancelRequest"] = obj({"reason": text})
+    # 匯入要求與品質 evidence 分離；caller 不得自行指定 QUALIFIED verdict。
+    minute = {**timestamp, "pattern": r"^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:00Z$"}
+    schemas["DatasetCoverageRequest"] = obj({"timeframe": {"const": "1m"},
+        "start_at": minute, "end_at": minute,
+        "contracts": {**array(obj({"instrument_id": rev, "contract_id": rev}), 100),
+                      "minItems": 1, "uniqueItems": True}})
+    quality_counts = obj({key: count for key in ("required_bars", "observed_bars", "missing_bars",
+        "duplicate_rows", "conflicting_keys", "out_of_session_keys", "out_of_range_keys")})
+    schemas["DatasetQualityReport"] = obj({"schema_version": {"const": "dataset.quality.v1"},
+        "report_id": ident, "coverage": ref("DatasetCoverageRequest"),
+        "calendar_ref": ref("EvidenceRef"), "mapping_ref": ref("EvidenceRef"),
+        "quality_policy_ref": ref("EvidenceRef"),
+        "verdict": enum("INVALID_INPUT", "UNQUALIFIED_REFERENCE", "CONFLICTING_CONTENT", "INCOMPLETE_COVERAGE", "QUALIFIED_RESEARCH"),
+        "counts": nullable(quality_counts), "expected_keys_hash": nullable(digest),
+        "observed_keys_hash": nullable(digest), "reason_codes": {**array(ident, 20), "uniqueItems": True}})
+    schemas["DatasetQualityReport"]["allOf"] = [
+        {"if": {"properties": {"verdict": {"enum": ["INVALID_INPUT", "UNQUALIFIED_REFERENCE"]}}},
+         "then": {"properties": {"counts": {"type": "null"}, "expected_keys_hash": {"type": "null"}, "observed_keys_hash": {"type": "null"}, "reason_codes": {"minItems": 1}}},
+         "else": {"properties": {"counts": quality_counts, "expected_keys_hash": digest, "observed_keys_hash": digest}}},
+        {"if": {"properties": {"verdict": {"const": "QUALIFIED_RESEARCH"}}},
+         "then": {"properties": {"reason_codes": {"maxItems": 0}, "counts": {"properties": {
+             "required_bars": {"minimum": 1}, "observed_bars": {"minimum": 1},
+             **{k: {"const": 0} for k in ("missing_bars", "conflicting_keys", "out_of_session_keys", "out_of_range_keys")}}}}},
+         "else": {"properties": {"reason_codes": {"minItems": 1}}}}]
+    schemas["DatasetImportReceipt"] = obj({"schema_version": {"const": "dataset.import-receipt.v1"},
+        "receipt_id": ident, "operation_id": ident, "dataset_id": ident,
+        "source_name": ident, "source_sha256": digest, "recorded_at": timestamp,
+        "outcome": enum("PUBLISHED", "REUSED", "REJECTED"), "version_id": nullable(ident),
+        "quality_report_ref": ref("EvidenceRef")})
+    schemas["DatasetImportReceipt"]["allOf"] = [{
+        "if": {"properties": {"outcome": {"const": "REJECTED"}}},
+        "then": {"properties": {"version_id": {"type": "null"}}},
+        "else": {"properties": {"version_id": ident}}}]
     schemas["ImportMetadata"] = obj({"dataset_id": ident, "source_name": ident, "source_sha256": digest,
-        "format": {"const": "CSV_V1"}, "calendar_ref": ref("EvidenceRef"), "mapping_ref": ref("EvidenceRef"),
+        "format": {"const": "CSV_V1"}, "coverage": ref("DatasetCoverageRequest"), "calendar_ref": ref("EvidenceRef"), "mapping_ref": ref("EvidenceRef"),
         "quality_policy_ref": ref("EvidenceRef"), "parent_version_id": nullable(ident),
         "correction_reason": nullable(text)})
     schemas["DatasetImportRequest"] = obj({"metadata": ref("ImportMetadata"),

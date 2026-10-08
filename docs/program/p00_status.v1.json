@@ -7,11 +7,11 @@
   "authority": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
   "runtime_dispatch_authorized": false,
   "completed_this_turn": [
-    "Revalidated remote master 9b5ab5f and candidate a9a8f1c; no active execution authority changed",
-    "Implemented source-bound non-authoritative reading pack with exact JSON roundtrip, shared schemas and explicit history references",
-    "Measured exact dbf6d41 planning snapshot: P01 740998 to 367502 bytes; P02 741858 to 368689 bytes. Both still exceed 128 KiB; compiler full-source gate unchanged",
-    "Defined first-minute-bar research quality and correction semantics with Q01-Q10 cases; identified missing coverage/timeframe/import-receipt/hash framing interfaces",
-    "Full platform suite 118 passed in 91.05 seconds before final documentation/package-reference updates"
+    "Revalidated unchanged authoritative master and published candidate 57e03f5",
+    "Added required explicit import coverage, quality-report and terminal import-receipt wire schemas from single authoring source",
+    "Added six dataset negative/positive schema tests; dataset and API targeted suite 42 passed",
+    "Updated requested continuation wording with stable R01-R08 closure counts; no partial credit",
+    "Full platform suite 124 passed in 88.08 seconds; generation/protected scope/progress accounting checks PASS"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -73,7 +73,8 @@
     "docs/program/context_packs/dbf6d41/P01.metrics.json",
     "docs/program/context_packs/dbf6d41/P01.pack.json",
     "docs/program/context_packs/dbf6d41/P02.metrics.json",
-    "docs/program/context_packs/dbf6d41/P02.pack.json"
+    "docs/program/context_packs/dbf6d41/P02.pack.json",
+    "tests/platform/test_p00_dataset_contracts.py"
   ],
   "remaining": [
     {
@@ -88,7 +89,7 @@
     },
     {
       "id": "R03",
-      "work": "P01 revision2 references defined strict minute-bar quality/correction semantics and Q01-Q10 cases. Still missing ImportMetadata explicit coverage/timeframe, import receipt/quality report DTOs and version-hash framing. P02 build/test-host contract, stable weights, patterns/evals/KPIs remain.",
+      "work": "P01 revision3 adds coverage/quality-report/import-receipt wire schemas and shape tests. Exact canonical hash framing/golden vectors, CSV/calendar adapter and publication/lookup chain remain open; P02 build/test-host, stable weights, patterns/evals/KPIs remain.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -117,12 +118,12 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "Close P01 wire design gaps recorded in V1_DATASET_QUALITY.md: explicit import timeframe/required coverage, import receipt, quality-report schema, canonical version hash framing and golden fixtures. Then package-selective schema closure and latest-result/delta intake for R06; P02 build/test-host, R01/R04/R05/coverage and independent review remain. Do not redo completed reading-pack implementation or prior exact snapshot metrics.",
+  "next_continuation_point": "Define P01 exact canonical row/key-set/version hash framing with literal golden vectors; specify CSV_V1 and calendar adapter interfaces and publication/lookup evidence chain. Keep existing coverage/report/receipt schemas and source-bound context tools; do not repeat prior work. Then remaining P02/R01/R04/R05/R06/review closure.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_DIFF_CHECK",
     "protected_tracked_files": "PASS_ONLY_P00_CANDIDATE_SCOPE_CHANGED",
-    "platform_tests": "118_PASSED_FULL_PLATFORM_SUITE_91.05_SECONDS_BEFORE_FINAL_DOC_PACKAGE_REFERENCE_UPDATES",
+    "platform_tests": "124_PASSED_FULL_PLATFORM_SUITE_88.08_SECONDS",
     "product_tests": "NOT_RUN_DOCS_ONLY",
     "independent_review": "NOT_STARTED",
     "actual_active_policy_git_hashes": "PASS",
@@ -159,7 +160,7 @@
       "independent_review": "NOT_PERFORMED",
       "compiler_gate_changed": false
     },
-    "final_impacted_tests": "11_PASSED_0.21_SECONDS",
+    "final_impacted_tests": "42_PASSED_DATASET_AND_API_TARGETED_0.69_SECONDS",
     "real_reading_pack_reconstruction": "PASS_ALL_JSON_TEXT_AND_ARCHIVE_HASHES"
   },
   "release_journeys_passed": 0,
@@ -167,15 +168,23 @@
   "weighted_v1_completion": "UNCALIBRATED",
   "human_action_required": "NONE_FOR_LOCAL_P00_CONTINUATION",
   "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION",
-  "previous_checkpoint": "a9a8f1cd0bb69b1db7439e15e982bae5c192304f",
+  "previous_checkpoint": "57e03f5cf42cf9257f75f9fb3c139bf61e8b8531",
   "remote_publication": {
     "initial_checkpoint": "PUSHED_CONFIRMED",
     "current_turn": "VERIFY_CURRENT_BRANCH_PUBLICATION_AT_REENTRY",
     "branch": "architecture/p00-v1-baseline",
     "master_unchanged_at_last_check": true,
     "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
-    "last_verified_published_commit": "a9a8f1cd0bb69b1db7439e15e982bae5c192304f"
+    "last_verified_published_commit": "57e03f5cf42cf9257f75f9fb3c139bf61e8b8531"
   },
-  "continuation_response_template": "尚有OO未完成，請回覆「繼續」，使工作繼續執行",
-  "continuation_response_rule": "Only when work remains because of single-conversation capacity limits; replace OO with concrete remaining items. Do not end with a bare continuation keyword or present incomplete work as complete."
+  "continuation_response_template": "目前總進度O/O(已完成數量/總共多少須完成數量)，下一步驟預計執行OO，請回覆「繼續」，使工作繼續執行",
+  "continuation_response_rule": "Append the template to the normal reply when work remains; substitute actual counts and next action. Counts use R01-R08 closed workstreams only, never files/tests or partial completion. Identify P00 closure scope explicitly, not product completion. Preserve stable denominator unless scope changes are explicitly recorded.",
+  "progress_accounting": {
+    "scope": "P00_R01_R08_CLOSURE",
+    "total": 8,
+    "completed": 0,
+    "partial": 5,
+    "completion_rule": "All stated work in the stream complete with required evidence/review; no credit for partial candidate materialization.",
+    "v1_product_completion": "NOT_REPRESENTED_BY_THIS_COUNT"
+  }
 }
