@@ -211,6 +211,7 @@
                       "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
                       "resource_id": "example",
                       "resource_revision": 1,
+                      "resource_revision_status": "COMMITTED",
                       "operation_id": "example",
                       "outcome": "ACCEPTED",
                       "recorded_at": "2026-01-01T00:00:00Z",
@@ -563,6 +564,7 @@
                       "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
                       "resource_id": "example",
                       "resource_revision": 1,
+                      "resource_revision_status": "COMMITTED",
                       "operation_id": "example",
                       "outcome": "ACCEPTED",
                       "recorded_at": "2026-01-01T00:00:00Z",
@@ -747,7 +749,8 @@
                       "idempotency_key": "example",
                       "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
                       "resource_id": "example",
-                      "resource_revision": 1,
+                      "resource_revision": null,
+                      "resource_revision_status": "RESERVED",
                       "operation_id": "example",
                       "outcome": "ACCEPTED",
                       "recorded_at": "2026-01-01T00:00:00Z",
@@ -793,7 +796,7 @@
           "owner": "PYTHON",
           "permission": "OPERATOR_WRITE",
           "authority": "SIMULATED_ONLY; reject broker/LIVE resources and unregistered input references",
-          "transaction": "SYNTHETIC_GENESIS_AND_SESSION_AND_RECEIPT",
+          "transaction": "RESERVATION_RECEIPT_OPERATION_THEN_FENCED_ATOMIC_GENESIS_PUBLICATION",
           "async": true,
           "idempotency": "actor + operationId + resource id (collection for create); durable original receipt replay before revision check",
           "expected_revision": "NOT_APPLICABLE_CREATE_OR_READ",
@@ -1092,6 +1095,7 @@
                       "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
                       "resource_id": "example",
                       "resource_revision": 1,
+                      "resource_revision_status": "COMMITTED",
                       "operation_id": "example",
                       "outcome": "ACCEPTED",
                       "recorded_at": "2026-01-01T00:00:00Z",
@@ -1545,6 +1549,7 @@
                       "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
                       "resource_id": "example",
                       "resource_revision": 1,
+                      "resource_revision_status": "COMMITTED",
                       "operation_id": "example",
                       "outcome": "ACCEPTED",
                       "recorded_at": "2026-01-01T00:00:00Z",
@@ -1627,6 +1632,7 @@
                       "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
                       "resource_id": "example",
                       "resource_revision": 1,
+                      "resource_revision_status": "COMMITTED",
                       "operation_id": "example",
                       "outcome": "ACCEPTED",
                       "recorded_at": "2026-01-01T00:00:00Z",
@@ -1761,6 +1767,7 @@
                       "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
                       "resource_id": "example",
                       "resource_revision": 1,
+                      "resource_revision_status": "COMMITTED",
                       "operation_id": "example",
                       "outcome": "ACCEPTED",
                       "recorded_at": "2026-01-01T00:00:00Z",
@@ -2042,6 +2049,7 @@
                       "request_fingerprint": "0000000000000000000000000000000000000000000000000000000000000000",
                       "resource_id": "example",
                       "resource_revision": 1,
+                      "resource_revision_status": "COMMITTED",
                       "operation_id": "example",
                       "outcome": "ACCEPTED",
                       "recorded_at": "2026-01-01T00:00:00Z",
@@ -3026,8 +3034,22 @@
             "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
           },
           "resource_revision": {
-            "type": "integer",
-            "minimum": 1
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "resource_revision_status": {
+            "type": "string",
+            "enum": [
+              "COMMITTED",
+              "RESERVED"
+            ]
           },
           "operation_id": {
             "anyOf": [
@@ -3063,10 +3085,50 @@
           "request_fingerprint",
           "resource_id",
           "resource_revision",
+          "resource_revision_status",
           "operation_id",
           "outcome",
           "recorded_at",
           "correlation_id"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "resource_revision_status": {
+                  "const": "COMMITTED"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "resource_revision": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "resource_revision_status": {
+                  "const": "RESERVED"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "resource_revision": {
+                  "type": "null"
+                },
+                "operation_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                }
+              }
+            }
+          }
         ]
       },
       "Operation": {
@@ -3082,6 +3144,7 @@
             "enum": [
               "RESEARCH",
               "SIMULATION_COMMAND",
+              "SIMULATION_GENESIS",
               "DATASET_IMPORT"
             ]
           },
@@ -5134,6 +5197,72 @@
           "dependencies",
           "workload_policy_ref",
           "sampled_at"
+        ]
+      },
+      "LoginRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "username",
+          "password"
+        ]
+      },
+      "OperatorSession": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "operator_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](?:\\.[0-9]{1,6})?Z$"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "OPERATOR_READ",
+                "OPERATOR_WRITE"
+              ]
+            },
+            "maxItems": 2
+          }
+        },
+        "required": [
+          "operator_id",
+          "expires_at",
+          "permissions"
+        ]
+      },
+      "CsrfToken": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "request_token": {
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 512
+          }
+        },
+        "required": [
+          "request_token"
         ]
       },
       "DatasetManifestPage": {

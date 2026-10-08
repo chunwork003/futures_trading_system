@@ -98,10 +98,16 @@ def build():
     schemas["ResearchRun"] = obj({"run_id": ident, "operation_id": ident, "request": ref("ResearchRunRequest"),
         "input_fingerprint": digest, "created_by": ident, "created_at": timestamp})
     schemas["CommandReceipt"] = obj({"command_id": ident, "idempotency_key": ident,
-        "request_fingerprint": digest, "resource_id": ident, "resource_revision": rev,
+        "request_fingerprint": digest, "resource_id": ident, "resource_revision": nullable(rev),
+        "resource_revision_status": enum("COMMITTED", "RESERVED"),
         "operation_id": nullable(ident), "outcome": enum("ACCEPTED", "ALREADY_TERMINAL"),
         "recorded_at": timestamp, "correlation_id": ident})
-    schemas["Operation"] = obj({"operation_id": ident, "kind": enum("RESEARCH", "SIMULATION_COMMAND", "DATASET_IMPORT"),
+    schemas["CommandReceipt"]["allOf"] = [
+        {"if": {"properties": {"resource_revision_status": {"const": "COMMITTED"}}},
+         "then": {"properties": {"resource_revision": rev}}},
+        {"if": {"properties": {"resource_revision_status": {"const": "RESERVED"}}},
+         "then": {"properties": {"resource_revision": {"type": "null"}, "operation_id": ident}}}]
+    schemas["Operation"] = obj({"operation_id": ident, "kind": enum("RESEARCH", "SIMULATION_COMMAND", "SIMULATION_GENESIS", "DATASET_IMPORT"),
         "resource_id": ident, "state": enum("QUEUED", "RUNNING", "CANCEL_REQUESTED", "RETRY_WAIT", "SUCCEEDED", "FAILED", "CANCELLED"),
         "revision": rev, "request_fingerprint": digest, "command_id": ident,
         "current_attempt_id": nullable(ident), "created_at": timestamp, "updated_at": timestamp,
@@ -232,6 +238,11 @@ def build():
         "mode": {"const": "SIMULATED_ONLY"}, "process_live": {"type": "boolean"}, "service_ready": {"type": "boolean"},
         "dependencies": array(obj({"name": ident, "state": enum("UP", "DOWN", "UNKNOWN"), "reason_code": ident}), 20),
         "workload_policy_ref": ref("EvidenceRef"), "sampled_at": timestamp})
+    schemas["LoginRequest"] = obj({"username": {"type": "string", "minLength": 1, "maxLength": 128},
+        "password": {"type": "string", "minLength": 1, "maxLength": 1024, "writeOnly": True}})
+    schemas["OperatorSession"] = obj({"operator_id": ident, "expires_at": timestamp,
+        "permissions": array(enum("OPERATOR_READ", "OPERATOR_WRITE"), 2)})
+    schemas["CsrfToken"] = obj({"request_token": {"type": "string", "minLength": 32, "maxLength": 512}})
     for singular in ("DatasetManifest", "StrategyDefinition", "ResearchRun", "ReconciliationCase", "AuditEvent"):
         schemas[singular + "Page"] = obj({"items": array(ref(singular)),
             "next_cursor": nullable({"type": "string", "minLength": 1, "maxLength": 4096}), "snapshot_ref": ref("EvidenceRef")})
@@ -287,7 +298,7 @@ def build():
     endpoint("/api/v1/operations/{id}", "get", "getOperation", "Operation")
     endpoint("/api/v1/operations/{id}/cancel", "post", "cancelOperation", "CommandReceipt", "CancelRequest", revision=True, transaction="COMMAND_RECEIPT_AND_OPERATION_CAS", async_=True)
     endpoint("/api/v1/research-runs/{id}/results", "get", "getResearchResults", "ResearchResults")
-    endpoint("/api/v1/simulation-sessions", "post", "createSimulation", "CommandReceipt", "SimulationRequest", transaction="SYNTHETIC_GENESIS_AND_SESSION_AND_RECEIPT", async_=True)
+    endpoint("/api/v1/simulation-sessions", "post", "createSimulation", "CommandReceipt", "SimulationRequest", transaction="RESERVATION_RECEIPT_OPERATION_THEN_FENCED_ATOMIC_GENESIS_PUBLICATION", async_=True)
     endpoint("/api/v1/simulation-sessions/{id}", "get", "getSimulation", "SimulationSession")
     endpoint("/api/v1/simulation-sessions/{id}/commands", "post", "commandSimulation", "CommandReceipt", "SimulationCommand", revision=True, transaction="COMMAND_SESSION_CAS_AND_OPERATION", async_=True)
     endpoint("/api/v1/accounts/{id}/state", "get", "getAccountState", "AccountState")
@@ -328,6 +339,29 @@ def build():
             operation["x-contract"]["owner"] = "APPLICATION_MEDIATION_PYTHON_DOMAIN_AUTHORITY"
             if method == "post":
                 operation["parameters"].append({"$ref": "#/components/parameters/Csrf"})
+    for path, method, operation_id, response_name, anonymous in (
+        ("/auth/csrf", "get", "getCsrf", "CsrfToken", True),
+        ("/auth/login", "post", "loginOperator", "OperatorSession", True),
+        ("/auth/session", "get", "getOperatorSession", "OperatorSession", False),
+        ("/auth/logout", "post", "logoutOperator", None, False)):
+        code = "204" if response_name is None else "200"
+        response = {"description": "Authentication outcome; Cache-Control no-store; cookies managed by ASP.NET Identity."}
+        if response_name:
+            response["content"] = {"application/json": {"schema": ref(response_name)}}
+        operation = {"operationId": operation_id, "summary": operation_id,
+            "security": [] if anonymous else [{"OperatorCookie": []}],
+            "parameters": [{"$ref": "#/components/parameters/Csrf"}] if method == "post" else [],
+            "responses": {code: response, **{s: {"$ref": "#/components/responses/" + s} for s in error_status}},
+            "x-contract": {"owner": "APPLICATION_IDENTITY", "transaction": "IDENTITY_SESSION_STORE",
+                "permission": "ANONYMOUS_SAME_ORIGIN" if anonymous else "AUTHENTICATED_OPERATOR",
+                "authority": "IDENTITY_ONLY_NOT_TRADING_PERMISSION", "idempotency": "NO_DOMAIN_COMMAND_RECEIPT_OR_PASSWORD_FINGERPRINT",
+                "expected_revision": "NOT_APPLICABLE", "async": False,
+                "retry": "Login is not automatically retried; logout after 401 clears local cookie state.",
+                "cancellation": "Client disconnect does not imply session revocation.", "pagination": "NONE",
+                "audit": "Outcome/actor/correlation only; never password, tokens or cookie values."}}
+        if path == "/auth/login":
+            operation["requestBody"] = {"required": True, "content": {"application/json": {"schema": ref("LoginRequest")}}}
+        bff["paths"][path] = {method: operation}
     # Synthetic shape examples are not evidence that referenced domain objects exist.
     examples = {
         "Error": {"code": "READINESS_BLOCKED", "message": "Published results are not available.",
@@ -372,6 +406,8 @@ def build():
             return "partitions/example.parquet"
         if schema.get("maxLength") == 80:
             return "100000"
+        if schema.get("minLength", 0) >= 32:
+            return "synthetic-not-a-valid-token-" + "0" * 32
         return "example"
 
     for document in (base, bff):
@@ -386,6 +422,10 @@ def build():
                         media = response["content"]["application/json"]
                         media["examples"] = {"synthetic": {"summary": "Shape-only synthetic projection, not currentness evidence.",
                                                            "value": example(media["schema"])}}
+    for document in (base, bff):
+        receipt = document["paths"]["/api/v1/simulation-sessions"]["post"]["responses"]["202"]["content"]["application/json"]["examples"]["synthetic"]["value"]
+        receipt["resource_revision_status"] = "RESERVED"
+        receipt["resource_revision"] = None
     return {"python.openapi.v1.json": base, "bff.openapi.v1.json": bff}
 
 

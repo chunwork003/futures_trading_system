@@ -40,4 +40,4 @@ Warmup is READY only when completed_bar_count >= required_warmup_bars and codec/
 
 Before P05/P06 execution: prove duplicate identity/different material rejection; absent prior virtual state; incomplete cohort; legacy mapping ambiguity; mixed frontier; rejected risk != flat; stale capital revision; opposite-direction staged exit; partial fill before FLAT; snapshot codec mismatch; history correction/rebuild. Schema tests alone cannot establish these causal/economic invariants.
 
-Still to finish in R01: exact feature codec first implementation, simulation genesis/operation transitions and auth-handler contracts. This document deliberately identifies unfinished public semantics rather than authorizing implementation to guess them.
+Still to finish in R01: exact feature codec first implementation, complete DTO adapter coverage and independent semantic review. Simulation genesis/operation transitions and auth-handler contracts are now specified in V1_GENESIS_AUTH_CONTRACT.md. This document deliberately identifies unfinished public semantics rather than authorizing implementation to guess them.

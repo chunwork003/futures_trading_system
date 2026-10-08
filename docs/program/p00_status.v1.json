@@ -12,7 +12,10 @@
     "Added five domain schemas: Signal, Decision, RiskDecision, CapitalState, IncrementalState; total API component schemas 57",
     "Preserved actual higher-priority-wins / opposite-tie-reject conflict policy; separated desired target from staged proposed target",
     "Pinned thirteen source/class/blob bindings and added domain schema/legacy-policy negative tests",
-    "Full platform suite 76 passed in 52.14 seconds; no product runtime or accepted policy changes"
+    "Full platform suite 76 passed in 52.14 seconds; no product runtime or accepted policy changes",
+    "Defined reservation vs canonical account genesis, immutable receipt revision status and fenced cancellation/publication boundary",
+    "Added four BFF-only auth routes with login CSRF; Python service has no browser auth routes",
+    "Final complete platform regression including genesis/auth: 78 passed in 53.48 seconds; generated-contract drift check PASS"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -47,12 +50,13 @@
     "tests/platform/requirements.txt",
     "docs/architecture/V1_DOMAIN_ADAPTERS.md",
     "docs/architecture/contracts/domain_source_bindings.v1.json",
-    "tests/platform/test_p00_domain_contracts.py"
+    "tests/platform/test_p00_domain_contracts.py",
+    "docs/architecture/V1_GENESIS_AUTH_CONTRACT.md"
   ],
   "remaining": [
     {
       "id": "R01",
-      "work": "Five new domain DTOs and thirteen accepted-source bindings now materialized; source priority/version/legacy target semantics reconciled. Remaining: exact first feature codec/equivalence fixture, simulation genesis/operation lifecycle and auth-handler contracts, semantic domain/API review and complete DTO adapter coverage.",
+      "work": "Domain DTOs/source bindings and genesis/auth route contracts materialized. Remaining: exact first feature codec/equivalence fixtures, durable evidence envelope vs DTO persistence mapping, complete DTO adapter coverage, and independent semantic/API conformance review.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -91,12 +95,12 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "R01 next: settle simulation genesis reservation vs session lifecycle and exact BFF auth-handler contract; then freeze first incremental feature codec/equivalence fixture and complete adapter coverage. Reuse the 57 schemas and 13 source bindings; do not recreate API/resolver/registries. Then R02 handoff/pointers and R03 compiler; R04–R08 remain.",
+  "next_continuation_point": "R01 final design closure: freeze first incremental feature codec/equivalence fixture; reconcile durable record envelope with new DTO persistence mapping and finish adapter coverage. Reuse V1_DOMAIN_ADAPTERS and V1_GENESIS_AUTH_CONTRACT; do not recreate source bindings, genesis/auth routes or API/resolver. Then complete R02 handoff/latest-delta pointers and R03 package compiler; R04–R08 remain.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_DIFF_CHECK",
     "protected_tracked_files": "PASS_ONLY_P00_CANDIDATE_SCOPE_CHANGED",
-    "platform_tests": "76_PASSED_FINAL_FULL_PLATFORM_SUITE_52.14_SECONDS",
+    "platform_tests": "78_PASSED_FINAL_FULL_PLATFORM_SUITE_53.48_SECONDS",
     "product_tests": "NOT_RUN_DOCS_ONLY",
     "independent_review": "NOT_STARTED",
     "actual_active_policy_git_hashes": "PASS",
@@ -119,9 +123,10 @@
   "previous_checkpoint": "4e7c81f57a0a4228956a941032fe95ca1b1cfb8e",
   "remote_publication": {
     "initial_checkpoint": "PUSHED_CONFIRMED",
-    "current_turn": "LOCAL_CANDIDATE_DELTA_PENDING_PUBLICATION",
+    "current_turn": "CHECK_REMOTE_HEAD_AT_REENTRY_FOR_LATER_GENESIS_AUTH_CHECKPOINT",
     "branch": "architecture/p00-v1-baseline",
     "master_unchanged_at_last_check": true,
-    "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08"
+    "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
+    "last_verified_published_commit": "b482b4de8153803e94c00782596fd76c584e2309"
   }
 }

@@ -161,3 +161,35 @@ def test_invalid_or_noncanonical_instant_rejected(instant):
     example["sampled_at"] = instant
     with pytest.raises(ValidationError):
         validate("SystemStatus", example)
+
+
+def test_reserved_genesis_receipt_has_no_fabricated_account_revision():
+    sample = deepcopy(SPEC["paths"]["/api/v1/simulation-sessions"]["post"]["responses"]["202"]["content"]["application/json"]["examples"]["synthetic"]["value"])
+    sample["resource_revision_status"] = "RESERVED"
+    sample["resource_revision"] = None
+    validate("CommandReceipt", sample)
+    sample["resource_revision"] = 1
+    with pytest.raises(ValidationError):
+        validate("CommandReceipt", sample)
+    sample["resource_revision"] = None
+    sample["operation_id"] = None
+    with pytest.raises(ValidationError):
+        validate("CommandReceipt", sample)
+
+
+def test_auth_routes_are_bff_only_and_login_still_requires_csrf():
+    for path in ("/auth/csrf", "/auth/login", "/auth/session", "/auth/logout"):
+        assert path in BFF["paths"] and path not in SPEC["paths"]
+    login = BFF["paths"]["/auth/login"]["post"]
+    assert login["security"] == []
+    assert {"$ref": "#/components/parameters/Csrf"} in login["parameters"]
+    assert {"$ref": "#/components/parameters/IdempotencyKey"} not in login["parameters"]
+    assert BFF["paths"]["/auth/session"]["get"]["security"] == [{"OperatorCookie": []}]
+    for path in BFF["paths"]:
+        if not path.startswith("/auth/"):
+            continue
+        for operation in BFF["paths"][path].values():
+            for response in operation["responses"].values():
+                if "application/json" in response.get("content", {}):
+                    media = response["content"]["application/json"]
+                    validate(media["schema"]["$ref"].split("/")[-1], media["examples"]["synthetic"]["value"])
