@@ -74,3 +74,9 @@ Canonical key/content/version frame rules and literal vectors now have an explic
 The test frame assembler is an offline specification oracle, not a product importer or independent implementation acceptance. CSV parsing, calendar snapshot port, real filesystem durability, publication/receipt DB fence and Q01-Q10 end-to-end semantics remain unimplemented/unverified. Literal test inputs are synthetic and do not assert actual exchange schedules. No accepted calendar or observation source was changed.
 
 P01 revision4 and P02 still have open gates. No lower-level execution tutorial or handoff was issued because design closure, P00 acceptance, exact authority and context budget are not all satisfied.
+
+## P01 snapshot / quality design checkpoint
+
+Five new closed snapshot/source/publication schemas and metadata-bound import receipts were generated from the single contract source. Q01-Q10 fixtures plus finite-set specification oracle and negative coverage/overlap/mapping/authority cases: targeted quality/dataset/API suite **60 passed in 0.99 seconds**. Complete platform suite: **147 passed in 92.50 seconds**. These are candidate contract/semantic consistency checks, not actual CSV importer, reference-provider qualification, filesystem crash testing or DB transaction conformance.
+
+P01 revision5 records no known authoring gap and remains pending independent semantic review. Product conformance is implementation acceptance; moving it there removes a circular pre-implementation requirement without granting execution. Cancellation/infrastructure failure does not fabricate domain rejection receipts. REUSED preserves the first source manifest while recording the new import metadata/report independently.

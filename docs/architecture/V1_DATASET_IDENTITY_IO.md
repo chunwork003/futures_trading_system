@@ -55,4 +55,10 @@ Dataset lookup 依 exact version_id 找 manifest、驗證 hashes 再讀 partitio
 
 ## 剩餘 gate
 
-以上完成候選介面定義，仍需 snapshot 型別 machine schema、Quality Q01-Q10 end-to-end fixtures、實際 filesystem durability conformance 與 independent semantic review。產品 implementation 不由本文件授權。
+Snapshot machine schemas 已由 scripts/p00_build_contracts.py 定義 DatasetCalendarSnapshot、DatasetMappingSnapshot、DatasetQualityPolicySnapshot；另有 DatasetSourceManifest、DatasetPublicationResult。Fixture 與有限集合 oracle 見 dataset_quality.fixture.v1.json / test_p00_dataset_quality_cases.py。這些提供候選語意與反例，未實作 importer。
+
+Machine snapshots 不含自身 sha256；外部 EvidenceRef 綁定其整份 compact UTF-8 JSON bytes（sort_keys、ensure_ascii=false、無額外空格、結尾LF）。消費端同時核對 owner/identity/version 與 hash。Reference snapshot 是 registry projection，不能建立新的 canonical contract/instrument owner。mapping entry 的 instrument_spec_ref/contract_spec_ref 必須解析既有型別並核對 IDs、tick_size 與有效區間；任何 unresolved/ref disagreement 一律拒絕。範圍、interval ordering/non-overlap、日期有效、mapping uniqueness、正 tick 與 calendar contract 集合的跨欄位約束由 consumer semantic validation 負責，schema 通過不取代它們。
+
+P01 design status 為 DEFINED_CANDIDATE_PENDING_INDEPENDENT_REVIEW。真正 CSV parser、port/provenance integration、Q01-Q10 產品 end-to-end、filesystem crash/concurrency 與 P03 DB conformance 是未來 implementation acceptance；不能循環地要求它們先完成才授權實作。實作前仍須 P00 baseline 獨立接受、明確 scope/grant、context gate 與 dependency checks。產品 implementation 不由本文件授權。
+
+PUBLISHED/REUSED 的 release acceptance 必測兩個 simultaneous publishers、rename 前後 crash、已存在但損壞 target、stale attempt、DB commit 前 crash。REUSED 比對 semantic version/material 與既有 byte integrity，不要求此次不同來源的 source manifest byte hash 等於首份來源；首份 manifest 不被覆寫。單機無法證明 filesystem durability 時不可標 durability PASS，可完成無此主張的功能測試並列環境 gate。

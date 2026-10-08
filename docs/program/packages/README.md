@@ -25,3 +25,5 @@ Latest operational result/handoff remains the accepted current pointers resolved
 `compilation/` 保存 planning snapshot `f04484cb3983a78f885a89e3e1c74f25a0289b71` 的 P01/P02 context、compiler output 與 planning-only handoff。兩包皆 `PACKAGE_NOT_READY`；不得將檔案存在解讀為可執行。Artifact SHA256 是 Git 儲存的 UTF-8 LF bytes；Windows checkout 的換行轉換不應用來判定歷史 artifact 損壞。
 
 這是固定 snapshot 的歷史結果；之後設計修訂須產生新的 compilation evidence，不得覆寫成當時已完成。新的 master 或 accepted result 應先 re-entry，再決定是否重編譯。
+
+P01 revision5：snapshot machine schema、Q01-Q10 合成規格案例與 publication/receipt 候選語意已定義，目前沒有已知 authoring gap，仍待獨立 semantic review。真正產品／filesystem／DB conformance 是 implementation acceptance，不是實作前要先完成的 gate。P02 設計缺口及共用 P00 acceptance/context/exact authorization gate 仍存在。先前 compilation 是歷史結果，不代表 revision5 current。

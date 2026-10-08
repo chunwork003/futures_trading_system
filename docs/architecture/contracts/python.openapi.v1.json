@@ -3750,6 +3750,343 @@
           "contracts"
         ]
       },
+      "DatasetCalendarSnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "owner": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "identity": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "schema_version": {
+            "const": "dataset.calendar-snapshot.v1"
+          },
+          "covered_range": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "start_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:00Z$"
+              },
+              "end_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:00Z$"
+              }
+            },
+            "required": [
+              "start_at",
+              "end_at"
+            ]
+          },
+          "contracts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "instrument_id": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "contract_id": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "instrument_id",
+                "contract_id"
+              ]
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "tradable_intervals": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "instrument_id": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "contract_id": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "start_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:00Z$"
+                },
+                "end_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:00Z$"
+                },
+                "trade_date": {
+                  "type": "string",
+                  "format": "date",
+                  "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                },
+                "session_ref": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                }
+              },
+              "required": [
+                "instrument_id",
+                "contract_id",
+                "start_at",
+                "end_at",
+                "trade_date",
+                "session_ref"
+              ]
+            },
+            "maxItems": 100000
+          }
+        },
+        "required": [
+          "owner",
+          "identity",
+          "version",
+          "schema_version",
+          "covered_range",
+          "contracts",
+          "tradable_intervals"
+        ]
+      },
+      "DatasetMappingSnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "owner": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "identity": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "schema_version": {
+            "const": "dataset.mapping-snapshot.v1"
+          },
+          "source_name": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "covered_range": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "start_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:00Z$"
+              },
+              "end_at": {
+                "type": "string",
+                "format": "date-time",
+                "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:00Z$"
+              }
+            },
+            "required": [
+              "start_at",
+              "end_at"
+            ]
+          },
+          "entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "source_code": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+                },
+                "instrument_id": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "contract_id": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "start_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:00Z$"
+                },
+                "end_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:00Z$"
+                },
+                "tick_size": {
+                  "type": "string",
+                  "pattern": "^(?:0|-?[1-9][0-9]*|-?(?:0|[1-9][0-9]*)\\.[0-9]*[1-9])$",
+                  "maxLength": 80
+                },
+                "instrument_spec_ref": {
+                  "$ref": "#/components/schemas/EvidenceRef"
+                },
+                "contract_spec_ref": {
+                  "$ref": "#/components/schemas/EvidenceRef"
+                }
+              },
+              "required": [
+                "source_code",
+                "instrument_id",
+                "contract_id",
+                "start_at",
+                "end_at",
+                "tick_size",
+                "instrument_spec_ref",
+                "contract_spec_ref"
+              ]
+            },
+            "maxItems": 10000,
+            "minItems": 1
+          }
+        },
+        "required": [
+          "owner",
+          "identity",
+          "version",
+          "schema_version",
+          "source_name",
+          "covered_range",
+          "entries"
+        ]
+      },
+      "DatasetQualityPolicySnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "owner": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "identity": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+          },
+          "schema_version": {
+            "const": "dataset.quality-policy.v1"
+          },
+          "policy": {
+            "const": "RESEARCH_STRICT_1M_V1"
+          },
+          "timeframe": {
+            "const": "1m"
+          },
+          "missing_bar_policy": {
+            "const": "REJECT"
+          },
+          "conflict_policy": {
+            "const": "REJECT"
+          },
+          "exact_duplicate_policy": {
+            "const": "DEDUP_WITH_AUDIT"
+          },
+          "correction_policy": {
+            "const": "COMPLETE_CHILD_SAME_REFERENCES"
+          }
+        },
+        "required": [
+          "owner",
+          "identity",
+          "version",
+          "schema_version",
+          "policy",
+          "timeframe",
+          "missing_bar_policy",
+          "conflict_policy",
+          "exact_duplicate_policy",
+          "correction_policy"
+        ]
+      },
+      "DatasetSourceManifest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "dataset.source.v1"
+          },
+          "source_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "metadata_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "quality_report_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          }
+        },
+        "required": [
+          "schema_version",
+          "source_sha256",
+          "metadata_ref",
+          "quality_report_ref"
+        ]
+      },
+      "DatasetPublicationResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schema_version": {
+            "const": "dataset.publication.v1"
+          },
+          "version_id": {
+            "type": "string",
+            "pattern": "^dv1_[0-9a-f]{64}$"
+          },
+          "manifest_byte_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "qualified_report_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "PUBLISHED",
+              "REUSED"
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "version_id",
+          "manifest_byte_hash",
+          "qualified_report_ref",
+          "outcome"
+        ]
+      },
       "DatasetQualityReport": {
         "type": "object",
         "additionalProperties": false,
@@ -4050,6 +4387,9 @@
             "type": "string",
             "pattern": "^[0-9a-f]{64}$"
           },
+          "metadata_ref": {
+            "$ref": "#/components/schemas/EvidenceRef"
+          },
           "recorded_at": {
             "type": "string",
             "format": "date-time",
@@ -4085,6 +4425,7 @@
           "dataset_id",
           "source_name",
           "source_sha256",
+          "metadata_ref",
           "recorded_at",
           "outcome",
           "version_id",

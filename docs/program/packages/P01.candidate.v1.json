@@ -2,7 +2,7 @@
   "schema_version": "p00.package.v1",
   "identity": {
     "package_id": "P01",
-    "revision": 4,
+    "revision": 5,
     "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
     "requirement_ids": [
       "OWNER-08",
@@ -66,11 +66,10 @@
       "Reuse accepted MarketObservation identity and versioned calendar interfaces through adapters.",
       "Preserve existing storage/readers and backtest imports; do not migrate existing data/ or accepted models.",
       "RESEARCH_STRICT_1M_V1 quality/correction semantics follow docs/architecture/V1_DATASET_QUALITY.md; first policy is minute bars only, without narrowing accepted canonical MarketObservation capabilities.",
-      "Exact dataset identity/CSV/reference/publication semantics follow docs/architecture/V1_DATASET_IDENTITY_IO.md; legacy calendar helpers do not establish pinned coverage."
+      "Exact dataset identity/CSV/reference/publication semantics follow docs/architecture/V1_DATASET_IDENTITY_IO.md; legacy calendar helpers do not establish pinned coverage.",
+      "Machine snapshot schemas and Q01-Q10 specification fixtures are defined candidates; actual importer/filesystem/DB conformance belongs to implementation acceptance, not a pre-implementation requirement."
     ],
-    "public_semantic_gaps": [
-      "Framing/literal vectors, CSV_V1, snapshot port and publication/lookup candidate contracts are defined in V1_DATASET_IDENTITY_IO.md. Snapshot machine schema, Q01-Q10 semantic fixtures and publication/receipt conformance remain before execution."
-    ]
+    "public_semantic_gaps": []
   },
   "dependencies": {
     "required_acceptances": [],
@@ -87,13 +86,16 @@
       "D01 identical CSV with reordered records yields same semantic dataset identity",
       "D02 night-session fixture has calendar trading date distinct from UTC date",
       "D03 explicit corrected child version preserves parent run reproducibility",
-      "Dataset identity literal frames in docs/architecture/contracts/dataset_identity.fixture.v1.json match canonical observation and version lineage; fixture is evidence, not a JSON Schema."
+      "Dataset identity literal frames in docs/architecture/contracts/dataset_identity.fixture.v1.json match canonical observation and version lineage; fixture is evidence, not a JSON Schema.",
+      "Q01-Q10 literal quality scenarios in docs/architecture/contracts/dataset_quality.fixture.v1.json; implement real parser/port end-to-end tests matching them, not reuse the specification oracle as product code."
     ],
     "counterexamples": [
       "D04 conflicting duplicate without correction policy rejects",
       "D05 unknown contract/calendar or insufficient coverage rejects",
       "D06 staging crash/hash mismatch never publishes visible dataset",
-      "D07 relative path traversal rejects"
+      "D07 relative path traversal rejects",
+      "Cancelled/infrastructure-failed operation must not fabricate DatasetImportReceipt quality outcome",
+      "Concurrent publishers and rename/DB boundary crashes never overwrite first source manifest or imply operation success"
     ],
     "targeted_tests": [
       "python -B -m pytest tests/unit/test_dataset_import.py tests/unit/test_dataset_manifest.py -q -p no:cacheprovider"
@@ -117,7 +119,8 @@
     "acceptance_checks": [
       "All D01-D07 fixtures linked to test results and exact candidate commit",
       "No canonical runtime authority or data/ writes",
-      "Independent review and integrated acceptance required; compiler success is not acceptance"
+      "Independent review and integrated acceptance required; compiler success is not acceptance",
+      "Candidate schema/fixture PASS is not product conformance; real CSV/reference/publication tests and filesystem environment evidence required for their respective claims"
     ],
     "stop_conditions": [
       "P00 baseline not independently accepted or exact package grant missing",

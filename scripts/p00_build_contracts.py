@@ -147,6 +147,35 @@ def build():
         "start_at": minute, "end_at": minute,
         "contracts": {**array(obj({"instrument_id": rev, "contract_id": rev}), 100),
                       "minItems": 1, "uniqueItems": True}})
+    # Snapshot 為 C owner 的 immutable adapter projection；self hash 由外部 EvidenceRef 綁定。
+    interval = obj({"start_at": minute, "end_at": minute})
+    contract_key = obj({"instrument_id": rev, "contract_id": rev})
+    snapshot_header = {"owner": ident, "identity": ident, "version": ident}
+    schemas["DatasetCalendarSnapshot"] = obj({**snapshot_header,
+        "schema_version": {"const": "dataset.calendar-snapshot.v1"},
+        "covered_range": interval,
+        "contracts": {**array(contract_key, 100), "minItems": 1, "uniqueItems": True},
+        "tradable_intervals": array(obj({**contract_key["properties"],
+            "start_at": minute, "end_at": minute, "trade_date": {"type": "string", "format": "date", "pattern": r"^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+            "session_ref": ident}), 100000)})
+    schemas["DatasetMappingSnapshot"] = obj({**snapshot_header,
+        "schema_version": {"const": "dataset.mapping-snapshot.v1"}, "source_name": ident,
+        "covered_range": interval,
+        "entries": {**array(obj({"source_code": ident, **contract_key["properties"],
+            "start_at": minute, "end_at": minute, "tick_size": decimal,
+            "instrument_spec_ref": ref("EvidenceRef"), "contract_spec_ref": ref("EvidenceRef")}), 10000), "minItems": 1}})
+    schemas["DatasetQualityPolicySnapshot"] = obj({**snapshot_header,
+        "schema_version": {"const": "dataset.quality-policy.v1"},
+        "policy": {"const": "RESEARCH_STRICT_1M_V1"}, "timeframe": {"const": "1m"},
+        "missing_bar_policy": {"const": "REJECT"}, "conflict_policy": {"const": "REJECT"},
+        "exact_duplicate_policy": {"const": "DEDUP_WITH_AUDIT"},
+        "correction_policy": {"const": "COMPLETE_CHILD_SAME_REFERENCES"}})
+    schemas["DatasetSourceManifest"] = obj({"schema_version": {"const": "dataset.source.v1"},
+        "source_sha256": digest, "metadata_ref": ref("EvidenceRef"), "quality_report_ref": ref("EvidenceRef")})
+    schemas["DatasetPublicationResult"] = obj({"schema_version": {"const": "dataset.publication.v1"},
+        "version_id": {"type": "string", "pattern": r"^dv1_[0-9a-f]{64}$"},
+        "manifest_byte_hash": digest, "qualified_report_ref": ref("EvidenceRef"),
+        "outcome": enum("PUBLISHED", "REUSED")})
     quality_counts = obj({key: count for key in ("required_bars", "observed_bars", "missing_bars",
         "duplicate_rows", "conflicting_keys", "out_of_session_keys", "out_of_range_keys")})
     schemas["DatasetQualityReport"] = obj({"schema_version": {"const": "dataset.quality.v1"},
@@ -167,7 +196,7 @@ def build():
          "else": {"properties": {"reason_codes": {"minItems": 1}}}}]
     schemas["DatasetImportReceipt"] = obj({"schema_version": {"const": "dataset.import-receipt.v1"},
         "receipt_id": ident, "operation_id": ident, "dataset_id": ident,
-        "source_name": ident, "source_sha256": digest, "recorded_at": timestamp,
+        "source_name": ident, "source_sha256": digest, "metadata_ref": ref("EvidenceRef"), "recorded_at": timestamp,
         "outcome": enum("PUBLISHED", "REUSED", "REJECTED"), "version_id": nullable(ident),
         "quality_report_ref": ref("EvidenceRef")})
     schemas["DatasetImportReceipt"]["allOf"] = [{

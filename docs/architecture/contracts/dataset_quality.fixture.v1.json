@@ -1,0 +1,1225 @@
+{
+  "schema_version": "dataset.quality-cases.v1",
+  "status": "SYNTHETIC_SPECIFICATION_ONLY",
+  "limitations": [
+    "Does not establish actual reference provenance, CSV parser conformance, publication durability or DB operation acceptance."
+  ],
+  "cases": [
+    {
+      "id": "Q01",
+      "input": {
+        "coverage": {
+          "timeframe": "1m",
+          "start_at": "2026-01-01T00:00:00Z",
+          "end_at": "2026-01-01T00:02:00Z",
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ]
+        },
+        "calendar": {
+          "schema_version": "dataset.calendar-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-calendar",
+          "version": "1",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ],
+          "tradable_intervals": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "trade_date": "2026-01-02",
+              "session_ref": "synthetic-night"
+            }
+          ]
+        },
+        "mapping": {
+          "schema_version": "dataset.mapping-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-mapping",
+          "version": "1",
+          "source_name": "fixture",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "entries": [
+            {
+              "source_code": "FIX",
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "tick_size": "1",
+              "instrument_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ]
+        },
+        "policy": {
+          "schema_version": "dataset.quality-policy.v1",
+          "owner": "B",
+          "identity": "strict",
+          "version": "1",
+          "policy": "RESEARCH_STRICT_1M_V1",
+          "timeframe": "1m",
+          "missing_bar_policy": "REJECT",
+          "conflict_policy": "REJECT",
+          "exact_duplicate_policy": "DEDUP_WITH_AUDIT",
+          "correction_policy": "COMPLETE_CHILD_SAME_REFERENCES"
+        },
+        "rows": [
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:01:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          },
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:00:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "100",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          }
+        ]
+      },
+      "expected": {
+        "verdict": "QUALIFIED_RESEARCH",
+        "counts": {
+          "required": 2,
+          "observed": 2,
+          "missing": 0,
+          "duplicates": 0,
+          "conflicts": 0
+        }
+      }
+    },
+    {
+      "id": "Q02",
+      "input": {
+        "coverage": {
+          "timeframe": "1m",
+          "start_at": "2026-01-01T00:00:00Z",
+          "end_at": "2026-01-01T00:02:00Z",
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ]
+        },
+        "calendar": {
+          "schema_version": "dataset.calendar-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-calendar",
+          "version": "1",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ],
+          "tradable_intervals": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "trade_date": "2026-01-02",
+              "session_ref": "synthetic-night"
+            }
+          ]
+        },
+        "mapping": {
+          "schema_version": "dataset.mapping-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-mapping",
+          "version": "1",
+          "source_name": "fixture",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "entries": [
+            {
+              "source_code": "FIX",
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "tick_size": "1",
+              "instrument_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ]
+        },
+        "policy": {
+          "schema_version": "dataset.quality-policy.v1",
+          "owner": "B",
+          "identity": "strict",
+          "version": "1",
+          "policy": "RESEARCH_STRICT_1M_V1",
+          "timeframe": "1m",
+          "missing_bar_policy": "REJECT",
+          "conflict_policy": "REJECT",
+          "exact_duplicate_policy": "DEDUP_WITH_AUDIT",
+          "correction_policy": "COMPLETE_CHILD_SAME_REFERENCES"
+        },
+        "rows": [
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:00:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "100",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          },
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:00:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "100",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          },
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:01:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          }
+        ]
+      },
+      "expected": {
+        "verdict": "QUALIFIED_RESEARCH",
+        "counts": {
+          "required": 2,
+          "observed": 2,
+          "missing": 0,
+          "duplicates": 1,
+          "conflicts": 0
+        }
+      }
+    },
+    {
+      "id": "Q03",
+      "input": {
+        "coverage": {
+          "timeframe": "1m",
+          "start_at": "2026-01-01T00:00:00Z",
+          "end_at": "2026-01-01T00:02:00Z",
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ]
+        },
+        "calendar": {
+          "schema_version": "dataset.calendar-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-calendar",
+          "version": "1",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ],
+          "tradable_intervals": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "trade_date": "2026-01-02",
+              "session_ref": "synthetic-night"
+            }
+          ]
+        },
+        "mapping": {
+          "schema_version": "dataset.mapping-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-mapping",
+          "version": "1",
+          "source_name": "fixture",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "entries": [
+            {
+              "source_code": "FIX",
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "tick_size": "1",
+              "instrument_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ]
+        },
+        "policy": {
+          "schema_version": "dataset.quality-policy.v1",
+          "owner": "B",
+          "identity": "strict",
+          "version": "1",
+          "policy": "RESEARCH_STRICT_1M_V1",
+          "timeframe": "1m",
+          "missing_bar_policy": "REJECT",
+          "conflict_policy": "REJECT",
+          "exact_duplicate_policy": "DEDUP_WITH_AUDIT",
+          "correction_policy": "COMPLETE_CHILD_SAME_REFERENCES"
+        },
+        "rows": [
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:01:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          }
+        ]
+      },
+      "expected": {
+        "verdict": "INCOMPLETE_COVERAGE",
+        "counts": {
+          "required": 2,
+          "observed": 1,
+          "missing": 1,
+          "duplicates": 0,
+          "conflicts": 0
+        }
+      }
+    },
+    {
+      "id": "Q04",
+      "input": {
+        "coverage": {
+          "timeframe": "1m",
+          "start_at": "2026-01-01T00:00:00Z",
+          "end_at": "2026-01-01T00:02:00Z",
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ]
+        },
+        "calendar": {
+          "schema_version": "dataset.calendar-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-calendar",
+          "version": "1",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ],
+          "tradable_intervals": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "trade_date": "2026-01-02",
+              "session_ref": "synthetic-night"
+            }
+          ]
+        },
+        "mapping": {
+          "schema_version": "dataset.mapping-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-mapping",
+          "version": "1",
+          "source_name": "fixture",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "entries": [
+            {
+              "source_code": "FIX",
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "tick_size": "1",
+              "instrument_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ]
+        },
+        "policy": {
+          "schema_version": "dataset.quality-policy.v1",
+          "owner": "B",
+          "identity": "strict",
+          "version": "1",
+          "policy": "RESEARCH_STRICT_1M_V1",
+          "timeframe": "1m",
+          "missing_bar_policy": "REJECT",
+          "conflict_policy": "REJECT",
+          "exact_duplicate_policy": "DEDUP_WITH_AUDIT",
+          "correction_policy": "COMPLETE_CHILD_SAME_REFERENCES"
+        },
+        "rows": [
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:00:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "100",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          },
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:00:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          },
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:01:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          }
+        ]
+      },
+      "expected": {
+        "verdict": "CONFLICTING_CONTENT",
+        "counts": {
+          "required": 2,
+          "observed": 1,
+          "missing": 1,
+          "duplicates": 0,
+          "conflicts": 1
+        }
+      }
+    },
+    {
+      "id": "Q05",
+      "input": {
+        "coverage": {
+          "timeframe": "1m",
+          "start_at": "2026-01-01T00:00:00Z",
+          "end_at": "2026-01-01T00:02:00Z",
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ]
+        },
+        "calendar": {
+          "schema_version": "dataset.calendar-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-calendar",
+          "version": "1",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:01:00Z"
+          },
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ],
+          "tradable_intervals": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "trade_date": "2026-01-02",
+              "session_ref": "synthetic-night"
+            }
+          ]
+        },
+        "mapping": {
+          "schema_version": "dataset.mapping-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-mapping",
+          "version": "1",
+          "source_name": "fixture",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "entries": [
+            {
+              "source_code": "FIX",
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "tick_size": "1",
+              "instrument_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ]
+        },
+        "policy": {
+          "schema_version": "dataset.quality-policy.v1",
+          "owner": "B",
+          "identity": "strict",
+          "version": "1",
+          "policy": "RESEARCH_STRICT_1M_V1",
+          "timeframe": "1m",
+          "missing_bar_policy": "REJECT",
+          "conflict_policy": "REJECT",
+          "exact_duplicate_policy": "DEDUP_WITH_AUDIT",
+          "correction_policy": "COMPLETE_CHILD_SAME_REFERENCES"
+        },
+        "rows": [
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:00:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "100",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          },
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:01:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          }
+        ]
+      },
+      "expected": {
+        "verdict": "UNQUALIFIED_REFERENCE",
+        "counts": null
+      }
+    },
+    {
+      "id": "Q06",
+      "input": {
+        "coverage": {
+          "timeframe": "1m",
+          "start_at": "2026-01-01T00:00:00Z",
+          "end_at": "2026-01-01T00:02:00Z",
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ]
+        },
+        "calendar": {
+          "schema_version": "dataset.calendar-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-calendar",
+          "version": "1",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ],
+          "tradable_intervals": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "trade_date": "2026-01-02",
+              "session_ref": "synthetic-night"
+            }
+          ]
+        },
+        "mapping": {
+          "schema_version": "dataset.mapping-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-mapping",
+          "version": "1",
+          "source_name": "fixture",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "entries": [
+            {
+              "source_code": "FIX",
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "tick_size": "1",
+              "instrument_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ]
+        },
+        "policy": {
+          "schema_version": "dataset.quality-policy.v1",
+          "owner": "B",
+          "identity": "strict",
+          "version": "1",
+          "policy": "RESEARCH_STRICT_1M_V1",
+          "timeframe": "1m",
+          "missing_bar_policy": "REJECT",
+          "conflict_policy": "REJECT",
+          "exact_duplicate_policy": "DEDUP_WITH_AUDIT",
+          "correction_policy": "COMPLETE_CHILD_SAME_REFERENCES"
+        },
+        "rows": [
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:00:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "100",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          },
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:01:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          }
+        ]
+      },
+      "expected": {
+        "verdict": "QUALIFIED_RESEARCH",
+        "counts": {
+          "required": 2,
+          "observed": 2,
+          "missing": 0,
+          "duplicates": 0,
+          "conflicts": 0
+        }
+      }
+    },
+    {
+      "id": "Q07",
+      "input": {
+        "coverage": {
+          "timeframe": "1m",
+          "start_at": "2026-01-01T00:00:00Z",
+          "end_at": "2026-01-01T00:02:00Z",
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ]
+        },
+        "calendar": {
+          "schema_version": "dataset.calendar-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-calendar",
+          "version": "1",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ],
+          "tradable_intervals": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "trade_date": "2026-01-02",
+              "session_ref": "synthetic-night"
+            }
+          ]
+        },
+        "mapping": {
+          "schema_version": "dataset.mapping-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-mapping",
+          "version": "1",
+          "source_name": "fixture",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "entries": [
+            {
+              "source_code": "FIX",
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "tick_size": "1",
+              "instrument_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ]
+        },
+        "policy": {
+          "schema_version": "dataset.quality-policy.v1",
+          "owner": "B",
+          "identity": "strict",
+          "version": "1",
+          "policy": "RESEARCH_STRICT_1M_V1",
+          "timeframe": "1m",
+          "missing_bar_policy": "REJECT",
+          "conflict_policy": "REJECT",
+          "exact_duplicate_policy": "DEDUP_WITH_AUDIT",
+          "correction_policy": "COMPLETE_CHILD_SAME_REFERENCES"
+        },
+        "rows": [
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:00:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          },
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:01:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          }
+        ],
+        "parent_version_id": "dv1_1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "expected": {
+        "verdict": "QUALIFIED_RESEARCH",
+        "counts": {
+          "required": 2,
+          "observed": 2,
+          "missing": 0,
+          "duplicates": 0,
+          "conflicts": 0
+        }
+      }
+    },
+    {
+      "id": "Q08",
+      "input": {
+        "coverage": {
+          "timeframe": "1m",
+          "start_at": "2026-01-01T00:00:00Z",
+          "end_at": "2026-01-01T00:02:00Z",
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ]
+        },
+        "calendar": {
+          "schema_version": "dataset.calendar-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-calendar",
+          "version": "1",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ],
+          "tradable_intervals": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "trade_date": "2026-01-02",
+              "session_ref": "synthetic-night"
+            }
+          ]
+        },
+        "mapping": {
+          "schema_version": "dataset.mapping-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-mapping",
+          "version": "1",
+          "source_name": "fixture",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "entries": [
+            {
+              "source_code": "FIX",
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "tick_size": "1",
+              "instrument_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ]
+        },
+        "policy": {
+          "schema_version": "dataset.quality-policy.v1",
+          "owner": "B",
+          "identity": "strict",
+          "version": "1",
+          "policy": "RESEARCH_STRICT_1M_V1",
+          "timeframe": "1m",
+          "missing_bar_policy": "REJECT",
+          "conflict_policy": "REJECT",
+          "exact_duplicate_policy": "DEDUP_WITH_AUDIT",
+          "correction_policy": "COMPLETE_CHILD_SAME_REFERENCES"
+        },
+        "rows": [
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:00:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "100",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          },
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:00:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          },
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:01:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          }
+        ],
+        "parent_version_id": "dv1_1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "expected": {
+        "verdict": "CONFLICTING_CONTENT",
+        "counts": {
+          "required": 2,
+          "observed": 1,
+          "missing": 1,
+          "duplicates": 0,
+          "conflicts": 1
+        }
+      }
+    },
+    {
+      "id": "Q09",
+      "input": {
+        "coverage": {
+          "timeframe": "1m",
+          "start_at": "2026-01-01T00:00:00Z",
+          "end_at": "2026-01-01T00:02:00Z",
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ]
+        },
+        "calendar": {
+          "schema_version": "dataset.calendar-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-calendar",
+          "version": "2",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ],
+          "tradable_intervals": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "trade_date": "2026-01-02",
+              "session_ref": "synthetic-night"
+            }
+          ]
+        },
+        "mapping": {
+          "schema_version": "dataset.mapping-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-mapping",
+          "version": "1",
+          "source_name": "fixture",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "entries": [
+            {
+              "source_code": "FIX",
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "tick_size": "1",
+              "instrument_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ]
+        },
+        "policy": {
+          "schema_version": "dataset.quality-policy.v1",
+          "owner": "B",
+          "identity": "strict",
+          "version": "1",
+          "policy": "RESEARCH_STRICT_1M_V1",
+          "timeframe": "1m",
+          "missing_bar_policy": "REJECT",
+          "conflict_policy": "REJECT",
+          "exact_duplicate_policy": "DEDUP_WITH_AUDIT",
+          "correction_policy": "COMPLETE_CHILD_SAME_REFERENCES"
+        },
+        "rows": [
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:00:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "100",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          },
+          {
+            "source_code": "FIX",
+            "bar_open_utc": "2026-01-01T00:01:00Z",
+            "open": "100",
+            "high": "102",
+            "low": "99",
+            "close": "101",
+            "volume": 2,
+            "amount": null,
+            "trade_count": null,
+            "tick_count": null
+          }
+        ]
+      },
+      "expected": {
+        "verdict": "QUALIFIED_RESEARCH",
+        "counts": {
+          "required": 2,
+          "observed": 2,
+          "missing": 0,
+          "duplicates": 0,
+          "conflicts": 0
+        }
+      }
+    },
+    {
+      "id": "Q10",
+      "input": {
+        "coverage": {
+          "timeframe": "1m",
+          "start_at": "2026-01-01T00:00:00Z",
+          "end_at": "2026-01-01T00:02:00Z",
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ]
+        },
+        "calendar": {
+          "schema_version": "dataset.calendar-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-calendar",
+          "version": "1",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ],
+          "tradable_intervals": []
+        },
+        "mapping": {
+          "schema_version": "dataset.mapping-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-mapping",
+          "version": "1",
+          "source_name": "fixture",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "entries": [
+            {
+              "source_code": "FIX",
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "tick_size": "1",
+              "instrument_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ]
+        },
+        "policy": {
+          "schema_version": "dataset.quality-policy.v1",
+          "owner": "B",
+          "identity": "strict",
+          "version": "1",
+          "policy": "RESEARCH_STRICT_1M_V1",
+          "timeframe": "1m",
+          "missing_bar_policy": "REJECT",
+          "conflict_policy": "REJECT",
+          "exact_duplicate_policy": "DEDUP_WITH_AUDIT",
+          "correction_policy": "COMPLETE_CHILD_SAME_REFERENCES"
+        },
+        "rows": []
+      },
+      "expected": {
+        "verdict": "INCOMPLETE_COVERAGE",
+        "counts": {
+          "required": 0,
+          "observed": 0,
+          "missing": 0,
+          "duplicates": 0,
+          "conflicts": 0
+        }
+      }
+    }
+  ]
+}

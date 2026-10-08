@@ -60,7 +60,7 @@ def test_import_requires_unambiguous_coverage(mutation):
 def test_rejected_receipt_cannot_claim_published_version():
     value = {"schema_version": "dataset.import-receipt.v1", "receipt_id": "i1", "operation_id": "op1",
              "dataset_id": "d1", "source_name": "csv", "source_sha256": "0" * 64,
-             "recorded_at": "2026-01-01T00:00:00Z", "outcome": "REJECTED",
+             "metadata_ref": REF, "recorded_at": "2026-01-01T00:00:00Z", "outcome": "REJECTED",
              "version_id": None, "quality_report_ref": REF}
     validate("DatasetImportReceipt", value)
     value["version_id"] = "dv1"

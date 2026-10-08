@@ -7,12 +7,12 @@
   "authority": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
   "runtime_dispatch_authorized": false,
   "completed_this_turn": [
-    "Revalidated unchanged master and candidate 31417c6; low-level execution remains unauthorized/not ready",
-    "Defined canonical key/content/version UTF-8 framing with literal vectors bound to accepted MarketObservation identity",
-    "Defined strict CSV_V1, immutable ReferenceSnapshotPort and file publication/operation receipt ownership; legacy calendar lookup does not prove coverage",
-    "Added five offline identity compatibility/framing tests; targeted suite passed",
-    "Preserved P00 closure accounting 0/8, five partial; no lower-level executor handoff issued",
-    "Full platform suite 129 passed in 89.94 seconds; generator, whitespace, protected scope and progress checks PASS"
+    "Revalidated unchanged master 9b5ab5f and candidate 84e1902",
+    "Defined closed calendar/mapping/quality-policy snapshots plus source-manifest/publication-result schemas; import receipt now binds metadata evidence",
+    "Materialized Q01-Q10 synthetic specification cases and finite-set oracle; 60 targeted tests passed",
+    "Resolved cancellation versus import receipt and first-publisher provenance versus REUSED semantics",
+    "P01 revision5 has no known authoring gaps, pending independent review; actual product conformance moved to implementation acceptance, not circular pre-execution gate",
+    "Full platform suite 147 passed in 92.50 seconds; generator and diff checks PASS"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -78,7 +78,9 @@
     "tests/platform/test_p00_dataset_contracts.py",
     "docs/architecture/V1_DATASET_IDENTITY_IO.md",
     "docs/architecture/contracts/dataset_identity.fixture.v1.json",
-    "tests/platform/test_p00_dataset_identity.py"
+    "tests/platform/test_p00_dataset_identity.py",
+    "docs/architecture/contracts/dataset_quality.fixture.v1.json",
+    "tests/platform/test_p00_dataset_quality_cases.py"
   ],
   "remaining": [
     {
@@ -93,7 +95,7 @@
     },
     {
       "id": "R03",
-      "work": "P01 revision4 defines wire coverage/report/receipt, canonical framing/literal vectors, CSV_V1, snapshot reference port and publication/lookup candidate contracts. Snapshot machine schema, Q01-Q10 semantic fixtures and publication/receipt conformance remain. P02 build/test-host, stable weights, patterns/evals/KPIs remain.",
+      "work": "P01 revision5 candidate design defined with snapshot schemas, hash/CSV/reference/publication contracts and Q01-Q10 specification fixtures; no known authoring gaps, independent semantic review pending. P02 build/test-host design, stable weights, patterns/evals/KPIs remain. Real product conformance is future implementation acceptance, not pre-execution design gate.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -122,12 +124,12 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "Close P01 ReferenceSnapshotPort machine schema and Q01-Q10 semantic golden scenarios, cross-record receipt/publication constraints; independently review candidate before any execution. Then P02 build/test-host and remaining R01/R04/R05/R06/review closure. Do not redo existing framing/CSV definitions or literal vectors.",
+  "next_continuation_point": "Proceed to P02 dependency/build matrix and isolated test-host identity/provider contracts; P01 candidate design is defined pending independent review, do not re-create its schemas/vectors. Finish package-selective context/latest-result intake, R01/R04/R05/coverage and review packet. P01 still requires P00 acceptance, context gate and exact authorization before implementation.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_DIFF_CHECK",
     "protected_tracked_files": "PASS_ONLY_P00_CANDIDATE_SCOPE_CHANGED",
-    "platform_tests": "129_PASSED_FULL_PLATFORM_SUITE_89.94_SECONDS",
+    "platform_tests": "147_PASSED_FULL_PLATFORM_SUITE_92.50_SECONDS",
     "product_tests": "NOT_RUN_DOCS_ONLY",
     "independent_review": "NOT_STARTED",
     "actual_active_policy_git_hashes": "PASS",
@@ -164,7 +166,7 @@
       "independent_review": "NOT_PERFORMED",
       "compiler_gate_changed": false
     },
-    "final_impacted_tests": "5_PASSED_IDENTITY_VECTORS_0.06_SECONDS",
+    "final_impacted_tests": "60_PASSED_QUALITY_DATASET_API_0.99_SECONDS",
     "real_reading_pack_reconstruction": "PASS_ALL_JSON_TEXT_AND_ARCHIVE_HASHES"
   },
   "release_journeys_passed": 0,
@@ -172,14 +174,14 @@
   "weighted_v1_completion": "UNCALIBRATED",
   "human_action_required": "NONE_FOR_LOCAL_P00_CONTINUATION",
   "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION",
-  "previous_checkpoint": "31417c6e55aa4ca3de5261d973b4cbbca95cf3d6",
+  "previous_checkpoint": "84e1902bc5c3f6cd0e938a9d477214d4c6a146a8",
   "remote_publication": {
     "initial_checkpoint": "PUSHED_CONFIRMED",
     "current_turn": "VERIFY_CURRENT_BRANCH_PUBLICATION_AT_REENTRY",
     "branch": "architecture/p00-v1-baseline",
     "master_unchanged_at_last_check": true,
     "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
-    "last_verified_published_commit": "31417c6e55aa4ca3de5261d973b4cbbca95cf3d6"
+    "last_verified_published_commit": "84e1902bc5c3f6cd0e938a9d477214d4c6a146a8"
   },
   "continuation_response_template": "目前總進度O/O(已完成數量/總共多少須完成數量)，下一步驟預計執行OO，請回覆「繼續」，使工作繼續執行",
   "continuation_response_rule": "Append the template to the normal reply when work remains; substitute actual counts and next action. Counts use R01-R08 closed workstreams only, never files/tests or partial completion. Identify P00 closure scope explicitly, not product completion. Preserve stable denominator unless scope changes are explicitly recorded.",
@@ -198,10 +200,10 @@
       "P02"
     ],
     "reasons": [
-      "OPEN_DESIGN_GAPS",
       "P00_NOT_INDEPENDENTLY_ACCEPTED",
       "EXACT_PACKAGE_GRANT_ABSENT",
-      "CONTEXT_BUDGET_UNRESOLVED"
+      "CONTEXT_BUDGET_UNRESOLVED",
+      "P02_DESIGN_GAPS_REMAIN"
     ],
     "tutorial_issued": false,
     "user_preference": "Provide a separate tutorial only when a concrete low-level executable package meets all gates."

@@ -23,7 +23,10 @@ def test_real_candidate_scope_matches_context_registration(name):
     assert policy["packages"][name]["allowed_prefixes"] == []
     assert package["authority"]["parent_wave_grant"] is None
     assert package["dependencies"]["required_packages"] == ["P00"]
-    assert package["design"]["public_semantic_gaps"]  # Not silently passed to an executor.
+    if name == "P02":
+        assert package["design"]["public_semantic_gaps"]
+    # Candidate design closure never manufactures P00 acceptance or a package grant.
+    assert package["dependencies"]["required_acceptances"] == []
 
 
 def test_handoff_cannot_be_relabelled_as_execution_grant():
