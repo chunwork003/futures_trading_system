@@ -2,7 +2,7 @@
   "schema_version": "p00.package.v1",
   "identity": {
     "package_id": "P01",
-    "revision": 3,
+    "revision": 4,
     "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
     "requirement_ids": [
       "OWNER-08",
@@ -65,10 +65,11 @@
     "compatibility_rules": [
       "Reuse accepted MarketObservation identity and versioned calendar interfaces through adapters.",
       "Preserve existing storage/readers and backtest imports; do not migrate existing data/ or accepted models.",
-      "RESEARCH_STRICT_1M_V1 quality/correction semantics follow docs/architecture/V1_DATASET_QUALITY.md; first policy is minute bars only, without narrowing accepted canonical MarketObservation capabilities."
+      "RESEARCH_STRICT_1M_V1 quality/correction semantics follow docs/architecture/V1_DATASET_QUALITY.md; first policy is minute bars only, without narrowing accepted canonical MarketObservation capabilities.",
+      "Exact dataset identity/CSV/reference/publication semantics follow docs/architecture/V1_DATASET_IDENTITY_IO.md; legacy calendar helpers do not establish pinned coverage."
     ],
     "public_semantic_gaps": [
-      "Coverage/quality-report/import-receipt wire schemas now defined; exact canonical row/key-set/version hash framing and golden vectors, CSV_V1/calendar adapter interfaces and complete publication/lookup evidence chain remain open."
+      "Framing/literal vectors, CSV_V1, snapshot port and publication/lookup candidate contracts are defined in V1_DATASET_IDENTITY_IO.md. Snapshot machine schema, Q01-Q10 semantic fixtures and publication/receipt conformance remain before execution."
     ]
   },
   "dependencies": {
@@ -85,7 +86,8 @@
     "positive_examples": [
       "D01 identical CSV with reordered records yields same semantic dataset identity",
       "D02 night-session fixture has calendar trading date distinct from UTC date",
-      "D03 explicit corrected child version preserves parent run reproducibility"
+      "D03 explicit corrected child version preserves parent run reproducibility",
+      "Dataset identity literal frames in docs/architecture/contracts/dataset_identity.fixture.v1.json match canonical observation and version lineage; fixture is evidence, not a JSON Schema."
     ],
     "counterexamples": [
       "D04 conflicting duplicate without correction policy rejects",

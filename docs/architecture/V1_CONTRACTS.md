@@ -27,8 +27,8 @@ Unknown != empty/zero/FLAT；nullable 欄位若表示未知必須同時有 reaso
 | IncrementalState | instance_id、state_schema_version、feature_version、observation_revision_frontier、warmup_status、state_blob_hash | E owner；K repository；只在safe checkpoint durable，history correction要求重建 |
 | Signal | signal_id、instance_id、observation_revision_id、config_version、intent、direction、requested_quantity、evidence_refs | E output/G input；immutable；不含broker side effect；重複identity異material拒絕 |
 
-Dataset canonical content hash：排序key=(instrument_id,contract_id,timeframe,bar_open_utc)，欄位順序按schema固定，decimal/time按domain lexical；逐record用length-prefixed UTF-8 framing形成SHA256。Storage byte hash獨立存在，Parquet壓縮器版本改變不應自動改economic dataset identity。
-重複同key同material可dedup並保留count報告；同key不同material不能依檔案順序選winner，需explicit correction/source-priority policy形成新version。
+Dataset hash framing 的 exact owner 為 V1_DATASET_IDENTITY_IO.md：按 canonical key 排序，以既有 mor1 revision 作為 row material commitment；key-set/content/version 三種 frame 分離。Decimal 與 observation revision 沿用 accepted domain，不重寫。Storage byte hash 獨立，Parquet 壓縮器改變不應改 economic content identity。
+同 key 同 revision 可 dedup；同 key 多 revision 的單次上傳一律拒絕，不按順序或 provider priority 選 winner。RESEARCH_STRICT_1M_V1 correction 使用明示 parent 的完整替代 snapshot；詳見 V1_DATASET_QUALITY.md。
 QualityReport須列required/observed intervals、missing/duplicate/conflict/out-of-session counts；COMPLETE不能從row_count>0推導。無calendar coverage時UNQUALIFIED。
 
 ## Decision / execution contracts

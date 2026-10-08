@@ -66,3 +66,11 @@ Added required ImportMetadata.coverage and DatasetCoverageRequest, DatasetQualit
 Dataset/API targeted suite: 42 passed in 0.69 seconds. Complete platform suite: **124 passed in 88.08 seconds**. Contract generation, diff whitespace, protected scope and progress accounting checks PASS. Product runtime and independent review were not executed.
 
 Continuation count now uses unchanged R01-R08 closure items: **0/8 fully closed; 5 partially materialized**. This counts P00 closure, not V1 product completion, tests or files. P01 revision3 remains NOT_READY with exact framing/CSV/calendar/publication gaps; historical compilation and reading packs are not silently refreshed to claim otherwise.
+
+## Dataset identity / I/O boundary checkpoint
+
+Canonical key/content/version frame rules and literal vectors now have an explicit owner in V1_DATASET_IDENTITY_IO.md. Five targeted tests passed in 0.06 seconds: accepted observation compatibility, reorder/dedup invariance, conflict rejection, parent/reference identity separation and UTF-8 byte framing. Full platform suite: **129 passed in 89.94 seconds**. Generation, whitespace, protected scope and P00 progress-accounting checks PASS.
+
+The test frame assembler is an offline specification oracle, not a product importer or independent implementation acceptance. CSV parsing, calendar snapshot port, real filesystem durability, publication/receipt DB fence and Q01-Q10 end-to-end semantics remain unimplemented/unverified. Literal test inputs are synthetic and do not assert actual exchange schedules. No accepted calendar or observation source was changed.
+
+P01 revision4 and P02 still have open gates. No lower-level execution tutorial or handoff was issued because design closure, P00 acceptance, exact authority and context budget are not all satisfied.

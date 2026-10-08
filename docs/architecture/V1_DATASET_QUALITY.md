@@ -32,7 +32,7 @@ Correction 是同一 dataset、同一 required key set 的完整替代 snapshot�
 
 Candidate 必須獨立通過完整品質驗證；不接受缺項 delta upload 從 parent 自動補列。不以 ingestion time、檔名順序、provider priority 或最高價格選 winner。可有多個明示 parent 的 child versions；不存在 mutable latest authority，research run 必須 pin exact version。即使有 correction metadata，上傳內容本身 unresolved duplicate conflict 仍拒絕。禁止原地覆寫與刪除 parent。
 
-相同 semantic inputs 重送應返回既有 immutable version。Raw source bytes、檔名、ingestion timestamp、duplicate counts 屬個別 import receipt，不屬 economic content identity。每次 receipt 保存自己的 source hash 與 report；重排上傳不得改寫第一份 published manifest。區分 canonical content hash（rows）與 version identity（dataset、content、required coverage、policy/reference hashes、明示 parent lineage）。Exact byte framing 與 import receipt DTO 尚待下節 closure，不交給 executor 猜測。
+相同 semantic inputs 重送應返回既有 immutable version。Raw source bytes、檔名、ingestion timestamp、duplicate counts 屬個別 import receipt，不屬 economic content identity。每次 receipt 保存自己的 source hash 與 report；重排上傳不得改寫第一份 published manifest。區分 canonical content hash（rows）與 version identity（dataset、content、required coverage、policy/reference hashes、明示 parent lineage）。Exact byte framing 見 V1_DATASET_IDENTITY_IO.md；import receipt DTO 已有候選 schema，尚待完整引用鏈與情境驗證。
 
 ## 必要 golden cases
 
@@ -59,4 +59,4 @@ Candidate 必須獨立通過完整品質驗證；不接受缺項 delta upload �
 
 無法解析的請求 envelope 直接 protocol INVALID_INPUT，不建立假造 dataset/coverage/receipt。已取得有效 metadata、但 CSV 內容錯誤時，才可產生具該 metadata 的 INVALID_INPUT report。既有非同步 CommandReceipt 仍為 HTTP 202 回應；DatasetImportReceipt 是 terminal operation 的 immutable evidence，不替換 command receipt 或建立第二個 operation state。每個 accepted import operation 恰有一份 terminal receipt；worker retry 不得多發布。PUBLISHED/REUSED 必須引用 QUALIFIED_RESEARCH report，REJECTED 必須引用非 qualified report。這些跨 record 約束須由 P03 的 transaction/publish contract 一併落實。
 
-尚待 P00 凍結：canonical row/key-set/version hash 的 exact byte framing 與 literal golden vectors；source manifest 與 per-import receipt 的完整 publication/lookup 引用鏈；CSV_V1 欄位與 calendar adapter 的具體介面；端到端 Q01-Q10 語意 fixtures。未完成前 P01 仍 NOT_READY，不交給 executor 自行補設計。
+V1_DATASET_IDENTITY_IO.md 已定義 framing、literal vectors、CSV_V1、calendar snapshot port 與 publication/lookup 候選引用鏈。尚待 snapshot machine schema、Q01-Q10 端到端語意 fixtures、publish/receipt conformance 與獨立 review；P01 仍 NOT_READY，不交給 executor 自行補設計。
