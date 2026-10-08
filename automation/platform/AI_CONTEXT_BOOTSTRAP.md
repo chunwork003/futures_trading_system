@@ -46,3 +46,11 @@ The isolated context tests create temporary Git repositories only under the chos
 ## Source versus planning snapshot
 
 `source_baseline_sha` is the proposed product baseline; `request.baseline_sha` is the later planning/tool snapshot. The resolver verifies ancestry and exact operational-pointer preservation. It binds its loaded source to the snapshot (CRLF transport only), while compiler CLI additionally binds compiler/schema source, regenerates context and checks registered candidate JSON values. This proves source/snapshot consistency, not independent review or secure-process attestation.
+
+## Candidate reading pack (R06)
+
+`scripts/p00_context_pack.py` regenerates context from the exact planning snapshot and verifies its own source binding. It emits complete JSON values in compact form and pools identical OpenAPI schemas by canonical SHA256. A reader can reconstruct every original JSON value with `expand_json`; all paths, security declarations, constraints and descriptions remain. Non-JSON YAML stays verbatim.
+
+Only CURRENT_STATE and CURRENT_WORK may use the exact existing `HISTORICAL CURRENT PROJECTIONS BELOW` marker. The current prefix is retained verbatim; the historical suffix has an explicit source Git blob, start line and text hash. The first explicit marker starts the whole history suffix; later markers remain inside that suffix. Missing markers or an empty current prefix fail closed. All AGENTS instructions and active policy fields remain present. Historical inquiry, lifecycle provenance, unresolved contradiction and relevant review require loading the full linked source. This is not a semantic summary.
+
+The reading pack is a candidate reading aid, not an authority projection or an executable handoff. The resolver/compiler still use full-source evidence and their existing byte-budget gate. Lower byte count alone cannot remove that gate. Latest result/delta intake and independent projection review remain necessary before any migration. Metrics measure exact compact UTF-8 output bytes, not guessed tokens; original evidence size is retained separately.
