@@ -114,3 +114,11 @@ Full platform suite **194 passed in91.96 seconds**; targeted context/result test
 Exact committed snapshot `7477e51` regenerated both packs. Same-snapshot full reading vs selective: P01 **432008 -> 277695 bytes**; P02 **399525 -> 373879 bytes**. Full raw mandatory sources are854168/805493 bytes. Both remain above131072-byte target. Every projected/full JSON value was compared against its exact source and selected closure: PASS. These are bytes, not token estimates.
 
 Actual result reader verified three pinned source records, current candidate equality and accepted predecessor blob on master. It remains `complete_current_intake=false`; pending result/review/STOP discovery, independent semantic review and compiler migration are not implemented. Historical compilations require current-context recompilation. P00 closure remains0/8,7 partial.
+
+## R06 intake observation / registry design checkpoint
+
+Added package-specific reading obligations, nine-field tri-state observation schema, side-effect-free priority oracle, and candidate registry ownership/coverage/CAS/receipt/read-acknowledgement contract. Original full-context byte gate remains unchanged; full A2 registry implementation and accepted bootstrap are not performed.
+
+Targeted intake tests **16 passed in0.23 seconds**. Full platform suite **210 passed in90.23 seconds**. Actual committed source observation at `8cd02b0`: current projection explicitly has no active execution/writer; all seven other categories remain UNKNOWN. Proposed route REHYDRATE_MISSING_EVIDENCE due to STOP coverage; no claim that a STOP exists, no authority/dispatch/resume. Saved source-bound evidence under context_packs/8cd02b0.
+
+Structural source checks do not establish exhaustive producer coverage, independent trust, process state or acceptance. R06 remains pending independent review and future accepted operational migration. These autonomous-dispatch limitations do not block separately authorized P00 design. Next focus returns to R01 semantic coverage. P00 closure0/8 with7 partial streams.

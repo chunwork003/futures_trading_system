@@ -10,7 +10,7 @@
     "Defined package-specific document reading obligations without silently reducing original mandatory context",
     "Added nine-field tri-state intake schema and pure priority oracle; UNKNOWN never becomes empty/passed",
     "Added exact-source bounded current observer; only current explicit execution/writer absence can be projected, no process attestation",
-    "16 targeted intake tests and210 full-platform tests passed in90.23 seconds; bounded source observation smoke pending"
+    "16 targeted and210 full-platform tests passed; real committed observation at8cd02b0 verifies active execution/writer NONE and seven UNKNOWN categories, proposes rehydrate only"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -109,7 +109,8 @@
     "automation/platform/intake_observation.schema.v1.json",
     "scripts/p00_intake.py",
     "tests/platform/test_p00_intake.py",
-    "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md"
+    "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md",
+    "docs/program/context_packs/8cd02b0/intake_observation.json"
   ],
   "remaining": [
     {
@@ -245,6 +246,18 @@
       "complete_current_intake": false,
       "independent_review": "NOT_PERFORMED",
       "compiler_gate_changed": false
+    },
+    "intake_observation": {
+      "snapshot": "8cd02b0",
+      "actual_git_source_check": "PASS",
+      "explicit_none": [
+        "active_execution",
+        "active_writer"
+      ],
+      "unknown_categories": 7,
+      "route": "REHYDRATE_MISSING_EVIDENCE",
+      "complete_current_intake": false,
+      "execution_eligible": false
     }
   },
   "release_journeys_passed": 0,
