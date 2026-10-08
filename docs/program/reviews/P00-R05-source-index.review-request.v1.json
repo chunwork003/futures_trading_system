@@ -1,0 +1,108 @@
+{
+  "schema_version": "p00.focused_review_request.v1",
+  "status": "PREPARED_NOT_DISPATCHED_NOT_REVIEWED",
+  "authority": "NONE_REVIEW_PACKET_ONLY",
+  "source_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "subject_candidate": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+  "subject_bundle": "24a04b62419613a9a7b7086f78f5fbd602cbbc67c39e49f51ac89a01e59568c3",
+  "artifacts": [
+    {
+      "path": "docs/program/HISTORICAL_REQUIREMENTS.md",
+      "subject_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+      "git_blob": "4fe5eb92067f0031e5e481669d00730cd4a900a8",
+      "sha256": "c5de124ac5e93885d01c42c4a2895671f81092db4096b31990e91e7ba6f0a50f"
+    },
+    {
+      "path": "docs/program/P00_VALIDATION.md",
+      "subject_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+      "git_blob": "2ddf8b741231369e610802c2b5511cb92cd591be",
+      "sha256": "f53a58912240ae2cc0c4a16e296ab11fb6868b23ee4297f3fd0a6c2c27e2ad8e"
+    },
+    {
+      "path": "docs/program/PROGRESS_ACCOUNTING.md",
+      "subject_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+      "git_blob": "357f1750284bd1addf8a0bdca2d5728341b090a6",
+      "sha256": "ad9d27891a11bd30dfeaf492bf60e06141121e42d4f2e979ab291d85cbf7c73f"
+    },
+    {
+      "path": "docs/program/current_truth.v1.json",
+      "subject_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+      "git_blob": "8073a145898ccfe5d69cd0d82e663e4c237e54c0",
+      "sha256": "69a53aa7907a7cfd97e2252f5673bf9f039ec301c14e9a1dc27668a0b0343454"
+    },
+    {
+      "path": "docs/program/historical_requirements.v1.json",
+      "subject_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+      "git_blob": "397879b37830c7827b649dea77aef60324742fe9",
+      "sha256": "4cd891fbb401dbbef17df7b412faab7e5b1529230e77e1a67780216be95dfc88"
+    },
+    {
+      "path": "docs/program/p00_status.v1.json",
+      "subject_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+      "git_blob": "54c6697038c38a66d847b1dc2fbbef8f6f61724b",
+      "sha256": "5880311fb2929257351e7878eead13a86196a181dda754e0b6b1260b25caee72"
+    },
+    {
+      "path": "docs/program/request_coverage.v1.json",
+      "subject_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+      "git_blob": "531b628b03e855e0a2950147fc4ad3d4b0764b7e",
+      "sha256": "cf43e127f0d529d1e2e4b5f5e558b63fcaf01ef15ca8485a5d3aafc01ada9144"
+    },
+    {
+      "path": "docs/work/P00_BASELINE.md",
+      "subject_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+      "git_blob": "2dbd4ec770c8f3dfd51ce3c08527d0cf8237e830",
+      "sha256": "d2510ed90ba1c08462d8e5c6acb3b5f953704c2bd82299cdde3db30a92c12740"
+    },
+    {
+      "path": "scripts/p00_requirements.py",
+      "subject_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+      "git_blob": "a59e97a108dfbec814270d2aac2eb49e6a903d48",
+      "sha256": "b84e3c31dcba64b201c8586d2e143525edf71f4b9dbb0e38065229919798abb8"
+    },
+    {
+      "path": "tests/platform/test_p00_requirements.py",
+      "subject_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+      "git_blob": "e8fb4fca24205e9cc82c0d9a6f460b398485d58b",
+      "sha256": "5bd694802cffe77d4869ed7256d6bf29db8cd7ca8fce7175c393109de8afa6e9"
+    }
+  ],
+  "scope": [
+    "R05_DECLARED_SOURCE_UNIVERSE_91_SECTIONS_143_EXPLICIT_CLAUSES",
+    "R05_92_CAPABILITY_603_LEAF_SOURCE_AND_DELTA_ROUTE_MAPPING",
+    "R05_RECORDED_ACCEPTANCE_BOUNDARIES_AND_ZERO_NEW_V1_CREDIT"
+  ],
+  "questions": [
+    "22-file source universe 與未捕捉歷史來源是否明確區分；所有 raw sections／blocks／table rows 的集合及 byte hashes 是否完整？",
+    "143明列 clauses 的義務種類、候選 remaining／evidence 是否保留32 musts、10 non-goals、22 reuse/gap evaluations 與45必交付項目；是否仍有未列 prose/future scope？",
+    "六旅程 Research/Comparison/Simulation/Failure/Recovery/Deployment 對應 J2/J3/J4/J5/J6/J1 的語意是否正確且完整？",
+    "603原始 leaves／2137 weight、269 ACCEPTED labels／852 weight、6 recorded scopes／76 unique leaves／323 weight、26／113 correction core 是否分開且無新 credit／漏項？",
+    "每個 capability 的 candidate delta links／broker/live scope 與10個尚未取得專責證據的交付項目是否保守、可供下一步施工設計？",
+    "被保留的歷史接受與 current-authority 差異是否需要更窄的 source/semantic reconciliation，而不是改寫 accepted baseline？"
+  ],
+  "required_counterexamples": [
+    "source/section/clause/block/table-row omission or forged source hash/line",
+    "mandatory-to-nongoal/evaluation-to-qualified silent reclassification",
+    "historical acceptance leaf expansion/fake explicit PASS/lifecycle promotion",
+    "range consumer loss, duplicate source/credit, altered provisional ledger",
+    "owner journey aliases duplicate or broker/LIVE gate promoted by candidate source index"
+  ],
+  "evidence_limits": [
+    "313 platform tests and77 targeted tests are author offline consistency checks, not independent semantic acceptance",
+    "Source inventory COMPLETE is bounded to22 declared files; full historical/prose/outside-universe semantic reconciliation remains INCOMPLETE",
+    "No trusted progress intake, exhaustive current pending-category registry, new actual PG/broker qualification, runtime implementation or dispatch performed",
+    "Existing afa1666 R01/R05 packet remains separately pinned and unsubmitted; this packet does not supersede immutable reviewed-source scopes",
+    "Local-only candidate; previous push rejected pending explicit final payload/destination/branch authorization"
+  ],
+  "expected_output": {
+    "reviewed_subject_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+    "independent_reviewer_identity": "REQUIRED_NOT_ASSIGNED",
+    "disposition": [
+      "PASS_FOR_DECLARED_SOURCE_DESIGN_SCOPE_ONLY",
+      "FINDINGS_REQUIRING_BOUNDED_CORRECTION",
+      "DESIGN_INCOMPLETENESS"
+    ],
+    "findings": "source/requirement/remaining/priority/handling; no self-acceptance"
+  },
+  "p00_final_baseline_approval_readiness": "NOT_READY"
+}
