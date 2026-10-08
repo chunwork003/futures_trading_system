@@ -12,7 +12,8 @@
     "Defined test-only composition roots, real authentication middleware with isolated test stores, artifact exclusion and ordinary-start fail-closed behavior",
     "Assigned durable application identity/session/key ring to P03, deployment environment qualification to P11",
     "P02 revision2 removes known authoring gaps; exact future scope expanded for locks and isolated test hosts, no execution authority granted",
-    "Full platform suite 147 passed in 94.98 seconds; generation/whitespace/protected scope checks PASS"
+    "Full platform suite 147 passed in 94.98 seconds; generation/whitespace/protected scope checks PASS",
+    "Actual P02 revision2 bound compilation removes PUBLIC_SEMANTIC_GAPS; context and P00 acceptance gates remain."
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -84,7 +85,9 @@
     "docs/program/packages/compilation/P01-r5-6564594/context.json",
     "docs/program/packages/compilation/P01-r5-6564594/compiled.json",
     "docs/architecture/V1_APPLICATION_BUILD_TESTHOST.md",
-    "docs/architecture/contracts/application_build_profile.v1.json"
+    "docs/architecture/contracts/application_build_profile.v1.json",
+    "docs/program/packages/compilation/P02-r2-fb28fd4/context.json",
+    "docs/program/packages/compilation/P02-r2-fb28fd4/compiled.json"
   ],
   "remaining": [
     {
@@ -180,6 +183,17 @@
         "DEPENDENCY_ACCEPTANCE_NOT_BOUND"
       ],
       "mandatory_bytes": 851023,
+      "independent_review": "NOT_PERFORMED",
+      "execution_eligible": false
+    },
+    "p02_revision2_compilation": {
+      "snapshot": "fb28fd49eb2a52fd3c7092f3cdac7144a0d969bf",
+      "status": "PACKAGE_NOT_READY",
+      "not_ready_reasons": [
+        "CONTEXT_COMPACTION_REQUIRED",
+        "DEPENDENCY_ACCEPTANCE_NOT_BOUND"
+      ],
+      "mandatory_bytes": 803810,
       "independent_review": "NOT_PERFORMED",
       "execution_eligible": false
     }
