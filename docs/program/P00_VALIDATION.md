@@ -50,3 +50,11 @@ Actual compilation binds planning snapshot `f04484cb3983a78f885a89e3e1c74f25a028
 The two OpenAPI documents contribute 374615 bytes; CURRENT_STATE and CURRENT_WORK contribute 148689 bytes. This identifies the main R06 compaction targets. Source-linked projections and selective schema closure must preserve authority and relevant semantics; merely removing these files is not an acceptable fix. No context was truncated. Durable manifests, compiled candidates and planning-only handoffs are in `docs/program/packages/compilation/`.
 
 Handoff artifact hashes bind the UTF-8 LF bytes stored in Git blobs, not arbitrary Windows checkout line endings. Reproduction requires the exact planning snapshot and matching tool sources; later current master must be rechecked independently. No P01/P02 execution, product acceptance, DB or broker conformance is established.
+
+## Context reading-pack checkpoint
+
+118 platform tests passed in 91.05 seconds. Actual source-bound generation at `dbf6d41` preserved full JSON values, security/constraints/descriptions and all AGENTS text; repeated history markers are retained in the suffix after the first explicit boundary. P01 reading bytes: 367502 (source 740998); P02: 368689 (source 741858). Both fail the 128 KiB size target. Compiler authority and full-source budget gate unchanged. Metrics and packs are historical revision1 evidence, not the later P01 revision2 specification.
+
+P01 revision2 records research quality/correction decisions and ten required golden cases, and keeps concrete wire design gaps open. Those cases are specifications; product import tests have not been implemented or run. Final documentation/package-reference updates are checked separately below.
+
+Final impacted package/pack tests: 11 passed in 0.21 seconds. Contract generation drift check PASS. Actual source comparison reconstructs every JSON value/text document and validates both archived suffix hashes: PASS. Protected source scope PASS.

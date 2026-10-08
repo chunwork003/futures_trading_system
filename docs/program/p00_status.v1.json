@@ -7,10 +7,11 @@
   "authority": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
   "runtime_dispatch_authorized": false,
   "completed_this_turn": [
-    "Bound executing resolver/compiler source to exact planning Git snapshot; preserved distinct accepted product baseline and protected operational pointers",
-    "Materialized exact P01/P02 candidate scope, acceptance fixtures, tests and explicit unresolved public semantics",
-    "Added planning/review-only handoff schema; actual snapshot compilation rejects both packages as NOT_READY without granting authority",
-    "Full platform suite: 110 passed in 87.56 seconds; real compilation at f04484cb3983a78f885a89e3e1c74f25a0289b71"
+    "Revalidated remote master 9b5ab5f and candidate a9a8f1c; no active execution authority changed",
+    "Implemented source-bound non-authoritative reading pack with exact JSON roundtrip, shared schemas and explicit history references",
+    "Measured exact dbf6d41 planning snapshot: P01 740998 to 367502 bytes; P02 741858 to 368689 bytes. Both still exceed 128 KiB; compiler full-source gate unchanged",
+    "Defined first-minute-bar research quality and correction semantics with Q01-Q10 cases; identified missing coverage/timeframe/import-receipt/hash framing interfaces",
+    "Full platform suite 118 passed in 91.05 seconds before final documentation/package-reference updates"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -64,7 +65,15 @@
     "docs/program/packages/compilation/P01.handoff.v1.json",
     "docs/program/packages/compilation/P02.compiled.v1.json",
     "docs/program/packages/compilation/P02.context.v1.json",
-    "docs/program/packages/compilation/P02.handoff.v1.json"
+    "docs/program/packages/compilation/P02.handoff.v1.json",
+    "scripts/p00_context_pack.py",
+    "tests/platform/test_p00_context_pack.py",
+    "docs/architecture/V1_DATASET_QUALITY.md",
+    "docs/program/context_packs/README.md",
+    "docs/program/context_packs/dbf6d41/P01.metrics.json",
+    "docs/program/context_packs/dbf6d41/P01.pack.json",
+    "docs/program/context_packs/dbf6d41/P02.metrics.json",
+    "docs/program/context_packs/dbf6d41/P02.pack.json"
   ],
   "remaining": [
     {
@@ -79,7 +88,7 @@
     },
     {
       "id": "R03",
-      "work": "Actual P01/P02 candidate packages and snapshot-bound semantic-reference validation implemented. Remaining: P01 exact quality policy and examples; P02 dependency/build/test-host boundaries; stable weights, semantic review, templates/patterns/evals/KPIs/telemetry.",
+      "work": "P01 revision2 references defined strict minute-bar quality/correction semantics and Q01-Q10 cases. Still missing ImportMetadata explicit coverage/timeframe, import receipt/quality report DTOs and version-hash framing. P02 build/test-host contract, stable weights, patterns/evals/KPIs remain.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -94,12 +103,12 @@
     },
     {
       "id": "R06",
-      "work": "Mandatory context measured 739245 bytes for P01 and 740105 for P02 at f04484c; 131072-byte target unmet. Implement reviewed compact CURRENT/navigation projection and selective contract closure while preserving source authority and resolver compatibility; no accepted policy mutation before tests.",
-      "state": "NOT_COMPLETED"
+      "work": "Candidate source-bound reading pack implemented and measured: ~50% byte reduction, but 367502/368689 bytes remain above 131072 target. Exact history references/JSON reconstruction tested. Remaining package-selective schema closure, latest-delta intake, independent projection review and approved resolver migration; full-source compiler gate unchanged.",
+      "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
       "id": "R07",
-      "work": "110 platform tests pass and two actual snapshot-bound package compilations correctly report NOT_READY. Remaining semantic golden tasks, DAG/weight/conformance validation and independent review packet.",
+      "work": "118 full-platform tests pass, including reading-pack preservation and explicit historical suffix handling. Actual two-package pack generation passed with size target unmet. Remaining semantic golden evaluations, DAG/weight conformance and independent review.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -108,12 +117,12 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "R06 compact context projection/selective schema closure using actual P01/P02 manifests; resolve P01 quality policy and P02 build/test-host semantics before recompilation. Then complete R01 RecoveryCut/adapter closure, R04 automation mapping, R05 weights, coverage and independent review. Do not redo completed tool binding, candidate package structure or snapshot smoke.",
+  "next_continuation_point": "Close P01 wire design gaps recorded in V1_DATASET_QUALITY.md: explicit import timeframe/required coverage, import receipt, quality-report schema, canonical version hash framing and golden fixtures. Then package-selective schema closure and latest-result/delta intake for R06; P02 build/test-host, R01/R04/R05/coverage and independent review remain. Do not redo completed reading-pack implementation or prior exact snapshot metrics.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_DIFF_CHECK",
     "protected_tracked_files": "PASS_ONLY_P00_CANDIDATE_SCOPE_CHANGED",
-    "platform_tests": "110_PASSED_FINAL_FULL_PLATFORM_SUITE_87.56_SECONDS",
+    "platform_tests": "118_PASSED_FULL_PLATFORM_SUITE_91.05_SECONDS_BEFORE_FINAL_DOC_PACKAGE_REFERENCE_UPDATES",
     "product_tests": "NOT_RUN_DOCS_ONLY",
     "independent_review": "NOT_STARTED",
     "actual_active_policy_git_hashes": "PASS",
@@ -138,21 +147,34 @@
       ],
       "evidence_directory": "docs/program/packages/compilation",
       "independent_review": "NOT_ASSERTED"
-    }
+    },
+    "reading_pack": {
+      "snapshot": "dbf6d41",
+      "P01_source_bytes": 740998,
+      "P01_reading_bytes": 367502,
+      "P02_source_bytes": 741858,
+      "P02_reading_bytes": 368689,
+      "target_bytes": 131072,
+      "size_target_met": false,
+      "independent_review": "NOT_PERFORMED",
+      "compiler_gate_changed": false
+    },
+    "final_impacted_tests": "11_PASSED_0.21_SECONDS",
+    "real_reading_pack_reconstruction": "PASS_ALL_JSON_TEXT_AND_ARCHIVE_HASHES"
   },
   "release_journeys_passed": 0,
   "release_journeys_total": 6,
   "weighted_v1_completion": "UNCALIBRATED",
   "human_action_required": "NONE_FOR_LOCAL_P00_CONTINUATION",
   "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION",
-  "previous_checkpoint": "afec4001adc154b50dcf9aafdbf240aeaa57635f",
+  "previous_checkpoint": "a9a8f1cd0bb69b1db7439e15e982bae5c192304f",
   "remote_publication": {
     "initial_checkpoint": "PUSHED_CONFIRMED",
     "current_turn": "VERIFY_CURRENT_BRANCH_PUBLICATION_AT_REENTRY",
     "branch": "architecture/p00-v1-baseline",
     "master_unchanged_at_last_check": true,
     "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
-    "last_verified_published_commit": "afec4001adc154b50dcf9aafdbf240aeaa57635f"
+    "last_verified_published_commit": "a9a8f1cd0bb69b1db7439e15e982bae5c192304f"
   },
   "continuation_response_template": "尚有OO未完成，請回覆「繼續」，使工作繼續執行",
   "continuation_response_rule": "Only when work remains because of single-conversation capacity limits; replace OO with concrete remaining items. Do not end with a bare continuation keyword or present incomplete work as complete."
