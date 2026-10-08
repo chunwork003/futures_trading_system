@@ -1,0 +1,946 @@
+{
+  "schema_version": "p00.dto_store_map.v1",
+  "status": "CANDIDATE_NOT_ACCEPTED",
+  "authority": "NONE_DESIGN_ONLY",
+  "source_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "schema_sources": [
+    "docs/architecture/contracts/python.openapi.v1.json",
+    "docs/architecture/contracts/bff.openapi.v1.json"
+  ],
+  "semantic_sources": [
+    "docs/architecture/V1_DTO_STORE_MAP.md",
+    "docs/architecture/V1_DECISION_RECOVERY_CUT.md",
+    "docs/architecture/V1_INCREMENTAL_PERSISTENCE.md"
+  ],
+  "groups": {
+    "values": {
+      "kind": "VALUE",
+      "semantic_owner": "CONTAINING_DOMAIN",
+      "store": "CONTAINING_RECORD_ONLY",
+      "identity": "Containing record identity; EvidenceRef includes exact version/hash",
+      "transaction": "Containing owner UoW; no independent generic store",
+      "restore": "Validate closed shape and exact source reference; Decimal money stays lexical exact",
+      "reject": "Unknown identity/material/reference or numeric zero substituted for missing source",
+      "implementation_package": "CONTAINING_PACKAGE",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "research_spec": {
+      "kind": "VALUE",
+      "semantic_owner": "RESEARCH",
+      "store": "research run immutable request",
+      "identity": "Pinned strategy/data/cost/code/lock/seed/spec fingerprint",
+      "transaction": "Run command acceptance UoW",
+      "restore": "Exact spec, bounded workload and leakage policy",
+      "reject": "Unsupported kind, floating inputs, nonfinite metric fabricated as zero",
+      "implementation_package": "P04/P10",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "dataset": {
+      "kind": "IMMUTABLE",
+      "semantic_owner": "DATA",
+      "store": "Immutable manifests/Parquet + research metadata index/receipts",
+      "identity": "Canonical key/content/version frames; source/calendar/mapping/quality policy refs",
+      "transaction": "Publish immutable files then fenced metadata/receipt UoW; no dangling published reference",
+      "restore": "Recompute bytes/material/scope/count closure; preserve REUSED source manifest",
+      "reject": "Hash/reference mismatch, incomplete coverage, changed same identity",
+      "implementation_package": "P01",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "reference_snapshot": {
+      "kind": "IMMUTABLE",
+      "semantic_owner": "REFERENCE_DOMAIN",
+      "store": "Versioned reference snapshots with exact provenance",
+      "identity": "Snapshot ID/version/hash and canonical scope; calendar/mapping are different authorities",
+      "transaction": "Owning reference publication; import pins immutable snapshot",
+      "restore": "Exact source snapshot/hash; no current reference silently substituted",
+      "reject": "Unavailable coverage, overlapping mapping, unverified source",
+      "implementation_package": "P01",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "dataset_inputs": {
+      "kind": "VALUE",
+      "semantic_owner": "DATA",
+      "store": "Accepted dataset import command/receipt material",
+      "identity": "Coverage end-exclusive range, contract set, import metadata and parent reference",
+      "transaction": "Dataset import owner UoW; no separate mutable coverage head",
+      "restore": "Validated input and accepted quality/report closure",
+      "reject": "Unknown count manufactured as zero, correction missing parent/reason",
+      "implementation_package": "P01",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "strategy_projection": {
+      "kind": "PROJECTION",
+      "semantic_owner": "E",
+      "store": "Existing StrategyInstance repository + versioned StrategyDefinition registry",
+      "identity": "strategy_instance_id/config_version/implementation_revision/instrument provenance",
+      "transaction": "No direct DTO write; constructor validation and registered artifact mapping",
+      "restore": "Exact registered code artifact, config fingerprint, timeframe/identity; accepted C17 resolution",
+      "reject": "Symbol ambiguity, implementation string replaced with current Git SHA",
+      "implementation_package": "P05",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "strategy_config": {
+      "kind": "IMMUTABLE",
+      "semantic_owner": "E",
+      "store": "Proposed immutable strategy config/artifact registration",
+      "identity": "strategy_id/config_version/fingerprint + request",
+      "transaction": "Append config; activation uses accepted governing transition, not silent held-state edit",
+      "restore": "Resolve exact schema/artifact/config under accepted current context",
+      "reject": "Duplicate ID different material or incompatible governing transition",
+      "implementation_package": "P05",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "research_run": {
+      "kind": "IMMUTABLE",
+      "semantic_owner": "RESEARCH",
+      "store": "research runs referencing durable operations",
+      "identity": "run_id/operation_id and immutable full input fingerprint",
+      "transaction": "Operation acceptance + run + command receipt one UoW",
+      "restore": "Resolve all pinned data/code/config/lock/artifacts; operation status projected",
+      "reject": "Mutable run inputs on retry, stale/missing artifact",
+      "implementation_package": "P03/P04",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "receipt": {
+      "kind": "IMMUTABLE",
+      "semantic_owner": "COMMAND_OWNER",
+      "store": "Owning command-idempotency receipts; genesis acceptance reservations",
+      "identity": "Authenticated actor/command/resource/key + request fingerprint",
+      "transaction": "Domain acceptance and receipt atomic; reserved genesis is explicit null revision",
+      "restore": "Return first accepted receipt; same key new payload conflicts",
+      "reject": "RESERVED receipt falsely COMMITTED, response loss treated as rejected command",
+      "implementation_package": "P03/P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "operation": {
+      "kind": "MUTABLE",
+      "semantic_owner": "RESEARCH_JOB",
+      "store": "research operations; terminal immutable, attempts separate",
+      "identity": "operation_id + integer revision CAS",
+      "transaction": "Job claim/cancel/publication UoW; no repository commit",
+      "restore": "Durable state/attempt/artifact closure; reclaim only via lease generation",
+      "reject": "Stale worker publish, terminal rewrite, cancellation after terminal success",
+      "implementation_package": "P03",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "attempt": {
+      "kind": "MUTABLE",
+      "semantic_owner": "RESEARCH_JOB",
+      "store": "research operation attempts",
+      "identity": "operation_id/attempt_no/attempt_id/lease generation",
+      "transaction": "Generation-fenced job UoW; final attempt immutable",
+      "restore": "Resolve exact current attempt and checkpoint; no input mutation on retry",
+      "reject": "Stale holder completion, duplicate attempt number different material",
+      "implementation_package": "P03",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "lease": {
+      "kind": "MUTABLE",
+      "semantic_owner": "RESEARCH_JOB",
+      "store": "research worker leases",
+      "identity": "operation_id + monotonic generation/holder/DB expiry",
+      "transaction": "DB-time claim/heartbeat CAS; stale process may still exist",
+      "restore": "Lease expiration permits reclaim only; validate generation on publication",
+      "reject": "Wall-clock process-death inference, stale generation",
+      "implementation_package": "P03",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "artifact": {
+      "kind": "IMMUTABLE",
+      "semantic_owner": "ARTIFACT_PRODUCER",
+      "store": "Immutable content-addressed files + research publication index",
+      "identity": "artifact_id/version/byte hash/producer attempt",
+      "transaction": "Lease-fenced publication UoW after file verification",
+      "restore": "Resolve exact published file/hash and run lineage",
+      "reject": "Missing bytes, path traversal, arbitrary URL, unpublished download",
+      "implementation_package": "P03/P04",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "simulation": {
+      "kind": "MUTABLE",
+      "semantic_owner": "SIMULATION",
+      "store": "Proposed session/control and genesis receipts; existing canonical account stores",
+      "identity": "session_id/revision + explicit synthetic BrokerAccount mapping",
+      "transaction": "Fenced session commands; canonical economic changes via existing account authority UoW",
+      "restore": "RECOVERING first; explicit validated resume; scenario/seed/clock/source closure",
+      "reject": "Missing genesis, stale state/kill, auto RUNNING after restore",
+      "implementation_package": "P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "positions": {
+      "kind": "PROJECTION",
+      "semantic_owner": "G/J/PROVIDER_BY_KIND",
+      "store": "Existing account head/checkpoint/expected snapshot/provider observations; target from Decision",
+      "identity": "Discriminator + canonical account/contract + exact owning evidence",
+      "transaction": "Read projection only; actual not copied from expected; canonical account writer sole economic authority",
+      "restore": "UNKNOWN retains reason; exact accepted revision/source; no position JSON PUT",
+      "reject": "Missing state inferred FLAT, copied expected presented as actual, historical READY reused",
+      "implementation_package": "P07/P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "case": {
+      "kind": "PROJECTION",
+      "semantic_owner": "J",
+      "store": "Existing ReconciliationCaseRepository/version/run owners",
+      "identity": "case_id/version/account scope and exact policy/evidence/resolution",
+      "transaction": "Accepted append/CAS semantics; legal resolve command never economic repair",
+      "restore": "Resolve latest accepted case/run references; RESOLVED not trading permission",
+      "reject": "Cross-account evidence, resolve grants READY, direct case JSON overwrite",
+      "implementation_package": "P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "signal": {
+      "kind": "IMMUTABLE",
+      "semantic_owner": "E",
+      "store": "Proposed trading.strategy_signals plus existing StrategyStateSnapshot/output receipt",
+      "identity": "signal_id and unique instance/config/strategy_version/contract/observation",
+      "transaction": "Snapshot + output receipt + Signal one UoW; new selection advances decision fence",
+      "restore": "Exact prior virtual state, accepted snapshot/observation/config; HOLD participates",
+      "reject": "Duplicate key different material, absent prior state, mixed frontier/member",
+      "implementation_package": "P05/P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "incremental": {
+      "kind": "VALUE",
+      "semantic_owner": "E",
+      "store": "Existing StrategyStateSnapshot.state_json explicit codec + proposed immutable qualification",
+      "identity": "qualification evidence_id + snapshot/codec/config/frontier; no parallel writable strategy state",
+      "transaction": "Complete observation/output snapshot UoW; current selection participates in decision fence",
+      "restore": "Hex exact roundtrip, count/warmup/frontier/schema/codec; qualification cannot replace snapshot",
+      "reject": "Missing snapshot, stale/history-corrected qualification, arbitrary pickle",
+      "implementation_package": "P05/P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "decision": {
+      "kind": "IMMUTABLE",
+      "semantic_owner": "G",
+      "store": "Proposed trading.decisions",
+      "identity": "decision_id; account/contract/cohort manifest/policy/observation/expected revision/input-cut hash",
+      "transaction": "Append complete selected/excluded cohort closure; no risk permission mutation",
+      "restore": "Selected sum=desired, opposite target stages EXIT=0; exact complete input cut",
+      "reject": "Incomplete cohort, opposite priority tie, decision reused after FLAT as entry permission",
+      "implementation_package": "P06/P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "risk": {
+      "kind": "IMMUTABLE",
+      "semantic_owner": "G",
+      "store": "Proposed trading.risk_decisions",
+      "identity": "risk_decision_id; decision/capital/policy/margin/input-cut hash",
+      "transaction": "Append input closure; permission separately revalidated at final submission",
+      "restore": "ALLOW=proposed, REDUCE policy-bounded, REJECT=null; account/contract scope agrees",
+      "reject": "REJECT becomes FLAT, changed capital/constraints, stale ALLOW",
+      "implementation_package": "P06/P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "capital": {
+      "kind": "IMMUTABLE",
+      "semantic_owner": "G",
+      "store": "Proposed trading.capital_projections; existing account ledger remains economic authority",
+      "identity": "capital_id; account checkpoint/mark/calculation/margin policy; revision alone not full key",
+      "transaction": "Append validated Decimal projection; current activation advances decision fence",
+      "restore": "Initial + realized + unrealized - fees - reserved; nonnegative costs; negative available preserved",
+      "reject": "UI balance write, missing mark/margin=0, same account revision different source reused",
+      "implementation_package": "P06/P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "envelope": {
+      "kind": "ENVELOPE",
+      "semantic_owner": "E_OR_G_BY_PAYLOAD",
+      "store": "Owner-specific immutable tables; no generic event store",
+      "identity": "evidence_id equals Signal/Decision/RiskDecision/CapitalState identity; qualification separate ID",
+      "transaction": "Append owning payload/envelope under same UoW; retain first durable recorded_at",
+      "restore": "Canonical payload hash/schema/owner/actor/causation closure; source refs independently resolved",
+      "reject": "Wrong owner/ID/hash, caller overrides first recorded_at, contradictory duplicate",
+      "implementation_package": "P05/P06/P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "audit": {
+      "kind": "IMMUTABLE",
+      "semantic_owner": "EVENT_PRODUCER",
+      "store": "Producer-owned audit stream; federated query envelope",
+      "identity": "audit_id/producer/resource/correlation/causation; no global timestamp order",
+      "transaction": "Owning command/effect UoW where atomic audit required",
+      "restore": "Exact source/action/outcome with redacted immutable context",
+      "reject": "Secrets, invented occurrence time, treating audit query as economic owner",
+      "implementation_package": "P03/P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "query": {
+      "kind": "PROJECTION",
+      "semantic_owner": "QUERY_OWNER",
+      "store": "Read-only projections of respective accepted stores/config/health",
+      "identity": "Exact source refs/versions; cursor bound artifact hash/sort/filter",
+      "transaction": "No mutable state from query; errors do not assert rollback without receipt evidence",
+      "restore": "Preserve unavailable reason, nullable unknown metric, bounded page",
+      "reject": "Fabricated zero/READY, unsigned caller actor, stale artifact cursor",
+      "implementation_package": "P02/P09",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "auth": {
+      "kind": "PROJECTION",
+      "semantic_owner": "ASP_NET_IDENTITY",
+      "store": "Application-owned identity/session/keyring; LoginRequest command, CsrfToken derived",
+      "identity": "Validated Identity/session/security-stamp/anti-CSRF projection; no browser authority",
+      "transaction": "Application auth transitions; credentials never saved in evidence/log",
+      "restore": "Durable Identity/session policy separately qualified; internal service auth distinct; CSRF derived by ASP.NET",
+      "reject": "Browser/header alone trusted authority, missing CSRF, password logged",
+      "implementation_package": "P02/P03",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "pages": {
+      "kind": "PROJECTION",
+      "semantic_owner": "CONTAINING_QUERY_OWNER",
+      "store": "No independent store; owning item source + opaque bounded cursor",
+      "identity": "Filter/source-bound cursor, stable ordering and exact item evidence",
+      "transaction": "Read-only query projection",
+      "restore": "Page item references resolve; cursor source/hash unchanged",
+      "reject": "Page list promoted to required cohort/coverage authority",
+      "implementation_package": "P02/P09",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "research_command": {
+      "kind": "COMMAND",
+      "semantic_owner": "RESEARCH_JOB",
+      "store": "Command receipt plus owning domain record; request is not SOR",
+      "identity": "Actor/command/resource/idempotency key + normalized payload fingerprint",
+      "transaction": "Authorize/validate then atomic receipt/domain acceptance; no client-timeout cancellation",
+      "restore": "Read accepted receipt; async operation separate from acceptance",
+      "reject": "Same key changed payload, stale revision, unresolved authority",
+      "implementation_package": "P03/P04",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "simulation_create_command": {
+      "kind": "COMMAND",
+      "semantic_owner": "SIMULATION",
+      "store": "Command receipt plus owning domain record; request is not SOR",
+      "identity": "Actor/command/resource/idempotency key + normalized payload fingerprint",
+      "transaction": "Authorize/validate then atomic receipt/domain acceptance; no client-timeout cancellation",
+      "restore": "Read accepted receipt; async operation separate from acceptance",
+      "reject": "Same key changed payload, stale revision, unresolved authority",
+      "implementation_package": "P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "simulation_control_command": {
+      "kind": "COMMAND",
+      "semantic_owner": "SIMULATION",
+      "store": "Command receipt plus owning domain record; request is not SOR",
+      "identity": "Actor/command/resource/idempotency key + normalized payload fingerprint",
+      "transaction": "Authorize/validate then atomic receipt/domain acceptance; no client-timeout cancellation",
+      "restore": "Read accepted receipt; async operation separate from acceptance",
+      "reject": "Same key changed payload, stale revision, unresolved authority",
+      "implementation_package": "P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "operation_cancel_command": {
+      "kind": "COMMAND",
+      "semantic_owner": "OPERATION_OWNER_BY_ACCEPTED_OPERATION_KIND",
+      "store": "Command receipt plus owning domain record; request is not SOR",
+      "identity": "Actor/command/resource/idempotency key + normalized payload fingerprint",
+      "transaction": "Authorize/validate then atomic receipt/domain acceptance; no client-timeout cancellation",
+      "restore": "Read accepted receipt; async operation separate from acceptance",
+      "reject": "Same key changed payload, stale revision, unresolved authority",
+      "implementation_package": "P03/P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "reconciliation_command": {
+      "kind": "COMMAND",
+      "semantic_owner": "J",
+      "store": "Command receipt plus owning domain record; request is not SOR",
+      "identity": "Actor/command/resource/idempotency key + normalized payload fingerprint",
+      "transaction": "Authorize/validate then atomic receipt/domain acceptance; no client-timeout cancellation",
+      "restore": "Read accepted receipt; async operation separate from acceptance",
+      "reject": "Same key changed payload, stale revision, unresolved authority",
+      "implementation_package": "P08",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "strategy_config_command": {
+      "kind": "COMMAND",
+      "semantic_owner": "E",
+      "store": "Command receipt plus owning domain record; request is not SOR",
+      "identity": "Actor/command/resource/idempotency key + normalized payload fingerprint",
+      "transaction": "Authorize/validate then atomic receipt/domain acceptance; no client-timeout cancellation",
+      "restore": "Read accepted receipt; async operation separate from acceptance",
+      "reject": "Same key changed payload, stale revision, unresolved authority",
+      "implementation_package": "P05",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "dataset_command": {
+      "kind": "COMMAND",
+      "semantic_owner": "DATA",
+      "store": "Command receipt plus owning domain record; request is not SOR",
+      "identity": "Actor/command/resource/idempotency key + normalized payload fingerprint",
+      "transaction": "Authorize/validate then atomic receipt/domain acceptance; no client-timeout cancellation",
+      "restore": "Read accepted receipt; async operation separate from acceptance",
+      "reject": "Same key changed payload, stale revision, unresolved authority",
+      "implementation_package": "P01",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    },
+    "login_command": {
+      "kind": "COMMAND",
+      "semantic_owner": "ASP_NET_IDENTITY",
+      "store": "No credential/request fingerprint storage; Identity account/security/session stores and sanitized auth audit only",
+      "identity": "Verified Identity username/auth outcome; no domain Idempotency-Key or command receipt",
+      "transaction": "ASP.NET Identity authentication/lockout/session transition; login CSRF and exact Origin required",
+      "restore": "Transport timeout queries existing session first; no automatic password replay",
+      "reject": "Invalid credentials/Origin/CSRF; no login payload/password hash in audit or durable command receipts",
+      "implementation_package": "P02/P03",
+      "adapter_state": "NOT_IMPLEMENTED_NOT_QUALIFIED"
+    }
+  },
+  "mappings": [
+    {
+      "schema": "AccountState",
+      "mapping_group": "positions",
+      "schema_sha256": "f003e8a2dd26d0992dc86bba22861c37df72abcaaaa2915e4e6e281cb21ad667"
+    },
+    {
+      "schema": "ActualPosition",
+      "mapping_group": "positions",
+      "schema_sha256": "f60986c1ecfa255fa7e2355b62218d7a9d4272607d250c3b92ce17e9f07347f9"
+    },
+    {
+      "schema": "ArtifactManifest",
+      "mapping_group": "artifact",
+      "schema_sha256": "689e095ffc5c57cd19c0b5bac45d898212b63299684283e6f52f6d1c80ed4a02"
+    },
+    {
+      "schema": "ArtifactRows",
+      "mapping_group": "query",
+      "schema_sha256": "56b9bcd0e17197df03fbb6f631ca10573788b39c9ac0f8791ba57e8452d59ced"
+    },
+    {
+      "schema": "AuditEvent",
+      "mapping_group": "audit",
+      "schema_sha256": "a2b81bb99bc7e650f7e6683d3f623eeb78c6399bc8895004a05891083b42c32b"
+    },
+    {
+      "schema": "AuditEventPage",
+      "mapping_group": "pages",
+      "schema_sha256": "a5fe655e21a165df693a3d0cdcc9395de50a5490cdf855763011f989e5e7315d"
+    },
+    {
+      "schema": "BacktestSpec",
+      "mapping_group": "research_spec",
+      "schema_sha256": "e84f7a309fc309b7d2a0002c4658b48b08c2730fb382658bf08bd89bf859df19"
+    },
+    {
+      "schema": "CancelRequest",
+      "mapping_group": "operation_cancel_command",
+      "schema_sha256": "ade6fadb216effce9ff881026c0b94abea8acdc90882878d89dbefdaa47243c2"
+    },
+    {
+      "schema": "CapitalState",
+      "mapping_group": "capital",
+      "schema_sha256": "0abb2a6f80e05e63cd6dd2295a2330c2766b47b5d7a51a629b87f05b667ac0e9"
+    },
+    {
+      "schema": "CommandReceipt",
+      "mapping_group": "receipt",
+      "schema_sha256": "042c940465575fd44575d567b50f81a9f6431086cd0265778b523b5308cfa85a"
+    },
+    {
+      "schema": "ConfigurationCatalog",
+      "mapping_group": "query",
+      "schema_sha256": "581992e988c2dd8ac2c4c87f63c999247af96b30f800e42455b32c5ab1e5e2e6"
+    },
+    {
+      "schema": "ContractBinding",
+      "mapping_group": "values",
+      "schema_sha256": "b9dbaec6ba642d470eb4260d00b66d11dedd2d634b4510fdf9675f601ea251ed"
+    },
+    {
+      "schema": "CsrfToken",
+      "mapping_group": "auth",
+      "schema_sha256": "029d3af946b1ba3678a02f84e3a9182a17034875fbdcb419299b9045310cb4dc"
+    },
+    {
+      "schema": "DatasetCalendarSnapshot",
+      "mapping_group": "reference_snapshot",
+      "schema_sha256": "3a28bfe989d03f975b2ee757cd6cfb21b6e57927c30ad860ceae4eae24f0a76e"
+    },
+    {
+      "schema": "DatasetCoverageRequest",
+      "mapping_group": "dataset_inputs",
+      "schema_sha256": "497f519f5c9586ffd13b9df35371f2a1ac5062bebf47239a55fdd825cbcfcf36"
+    },
+    {
+      "schema": "DatasetImportReceipt",
+      "mapping_group": "dataset",
+      "schema_sha256": "f233c3ffc361f72eb4fa7a490e54b171d2016031c17d8df4b41fce9c3053ccd7"
+    },
+    {
+      "schema": "DatasetImportRequest",
+      "mapping_group": "dataset_command",
+      "schema_sha256": "395f5a9151e46c6544c53c817eb0b3776ecdb91d30c9d17f186604d6262b9886"
+    },
+    {
+      "schema": "DatasetManifest",
+      "mapping_group": "dataset",
+      "schema_sha256": "9d305e88a282835a4949f65b86fe2111b6c31af2b97ca4f65b2336a9d2322b47"
+    },
+    {
+      "schema": "DatasetManifestPage",
+      "mapping_group": "pages",
+      "schema_sha256": "1219bcd25ac7464421f40a2bfc0f5d5ecb07e934042c99d9d92ac8c1c23a71e3"
+    },
+    {
+      "schema": "DatasetMappingSnapshot",
+      "mapping_group": "reference_snapshot",
+      "schema_sha256": "88711d9ce58a3cefde2284c9aefa20bad202260982b77c965fb0f45514e53529"
+    },
+    {
+      "schema": "DatasetPublicationResult",
+      "mapping_group": "dataset",
+      "schema_sha256": "39f6d413aa32b5bef6dcf1f28760fee3a634a0b4d201617534364444746e668f"
+    },
+    {
+      "schema": "DatasetQualityPolicySnapshot",
+      "mapping_group": "reference_snapshot",
+      "schema_sha256": "b85054eead797b2b4bc07a4c526b2ed1bf8eaf107eeea28ff8b368118448c1b7"
+    },
+    {
+      "schema": "DatasetQualityReport",
+      "mapping_group": "dataset",
+      "schema_sha256": "388c8f479a026baf84c40943efff72d0787f963395cf6cb5ce3240c52c335d2e"
+    },
+    {
+      "schema": "DatasetSourceManifest",
+      "mapping_group": "dataset",
+      "schema_sha256": "dfa3256a708503312afeccb6cdf704a00b5c4bb1b3c01406e9d3a6c950aeddf5"
+    },
+    {
+      "schema": "DatasetVersion",
+      "mapping_group": "dataset",
+      "schema_sha256": "209e4e8daa0e6d8872aa941bd01e02f4ca54d5fe5eab1a3940590f0f7500899b"
+    },
+    {
+      "schema": "Decimal",
+      "mapping_group": "values",
+      "schema_sha256": "fcbcbea1190db1b358b5430ce71a45c18dc3985f9f792504f3e7cddc25957525"
+    },
+    {
+      "schema": "Decision",
+      "mapping_group": "decision",
+      "schema_sha256": "dfdede83126d7195227cce11a08618e6e0f7222bd5227709089769f33bb0bcc3"
+    },
+    {
+      "schema": "EmaIncrementalCodec",
+      "mapping_group": "incremental",
+      "schema_sha256": "ef24c625fb17753283fb651d3945a6263ff728ff702f02611801507762394111"
+    },
+    {
+      "schema": "Error",
+      "mapping_group": "query",
+      "schema_sha256": "3c80144752c12baba8184ad78da01b0dc5282931324b14e7db75b55e76a94f2d"
+    },
+    {
+      "schema": "EvidenceRef",
+      "mapping_group": "values",
+      "schema_sha256": "7e55187b510aa527c2b770fe573c61c08ebb2504296d38623096d20e655e782b"
+    },
+    {
+      "schema": "ExpectedPosition",
+      "mapping_group": "positions",
+      "schema_sha256": "427acb12d6eff6f4eb46e10cd219ed52b530e2a8d53132fcfa01114716ead5dd"
+    },
+    {
+      "schema": "Identity",
+      "mapping_group": "values",
+      "schema_sha256": "ffa0d253e107c46b5488baebdf6bc176ac100d6afeb671f1d083a32442e7167f"
+    },
+    {
+      "schema": "ImportMetadata",
+      "mapping_group": "dataset_inputs",
+      "schema_sha256": "8e38af6c23cb5efb0613dca5a957694e7d71900cfd1bba4361e07fc2a0043caf"
+    },
+    {
+      "schema": "IncrementalState",
+      "mapping_group": "incremental",
+      "schema_sha256": "aff8b4d646ddcad29b501dc6b88c3857464b0a7a4d79275f51f038aeae91f32b"
+    },
+    {
+      "schema": "LoginRequest",
+      "mapping_group": "login_command",
+      "schema_sha256": "fe95048d35c131950ab1ee060bebf98ec9a822a011e8d13713644ee2e72c8a0c"
+    },
+    {
+      "schema": "Metric",
+      "mapping_group": "values",
+      "schema_sha256": "f8406fcb424115a9fe5c0733af1c7bb58da74e7f97849c16496c3c770e2b1044"
+    },
+    {
+      "schema": "MonteCarloSpec",
+      "mapping_group": "research_spec",
+      "schema_sha256": "c08979e50bff45f611fb14393c8df1ca6b7476bb08943c99fabcd86c91a14534"
+    },
+    {
+      "schema": "OosSpec",
+      "mapping_group": "research_spec",
+      "schema_sha256": "86d75b2d48b1a27b770dcb736d172792012199a98e5056440e6753bbb98a8472"
+    },
+    {
+      "schema": "Operation",
+      "mapping_group": "operation",
+      "schema_sha256": "c2260055580f9c70dd114d3c72d76a1a4fcf7329063c4d157c6dc394ae6be428"
+    },
+    {
+      "schema": "OperationAttempt",
+      "mapping_group": "attempt",
+      "schema_sha256": "115e9b4aefc4475f64b617ca09a29ed41b623bd1ac21326bb2f617545bf866fc"
+    },
+    {
+      "schema": "OperatorSession",
+      "mapping_group": "auth",
+      "schema_sha256": "f08897d1ba277dc8d5710c8988ada50e2d99abd27f5a43e49a97b7aff9012e16"
+    },
+    {
+      "schema": "ParameterStudySpec",
+      "mapping_group": "research_spec",
+      "schema_sha256": "69bbead9ade706f9daed93bf0b8f5ccfe6af7625c7194dcfd89a8e1bacc3cd93"
+    },
+    {
+      "schema": "ParameterValue",
+      "mapping_group": "values",
+      "schema_sha256": "cfe1f8054c089a66cda5a0bb06c79977b119c1bd011b092e6938930084a147ae"
+    },
+    {
+      "schema": "Position",
+      "mapping_group": "positions",
+      "schema_sha256": "c2837db78b19d32a0827094a28f843275635e72a71d59a1b71a8f38fd7d2111c"
+    },
+    {
+      "schema": "ReconciliationCase",
+      "mapping_group": "case",
+      "schema_sha256": "3d1836c0650e4d4f5d862d9956bb413cce9d0b3b4a10b19ffea7b5877451b52e"
+    },
+    {
+      "schema": "ReconciliationCasePage",
+      "mapping_group": "pages",
+      "schema_sha256": "a5cd267b425d4a21d59aad925cd22bfd552b3f12818e0e5f5bc28fbe9c194cb6"
+    },
+    {
+      "schema": "ResearchResults",
+      "mapping_group": "query",
+      "schema_sha256": "211f5bcd1a91b2a4110d989466e14e17fb40c5788eadd0817768dae9cd549e8b"
+    },
+    {
+      "schema": "ResearchRun",
+      "mapping_group": "research_run",
+      "schema_sha256": "fc2a2678efe0d8ead5c94219c17c2ea752a5c048dcff7bc0a3989322e606f06f"
+    },
+    {
+      "schema": "ResearchRunPage",
+      "mapping_group": "pages",
+      "schema_sha256": "88c6d1fc969d700e8d2b93dd60a6c68b98d5d215a5919b801508fb42d7e06bea"
+    },
+    {
+      "schema": "ResearchRunRequest",
+      "mapping_group": "research_command",
+      "schema_sha256": "2a299b12107e4d40cb611d6320cf16fcf85d9d6a245931b23e7d7a224f973800"
+    },
+    {
+      "schema": "ResearchSpec",
+      "mapping_group": "research_spec",
+      "schema_sha256": "a1d18faf1345985a498bf3c15b4dd9d2ceef28a6fbf0b07e38a7e816630c23aa"
+    },
+    {
+      "schema": "ResolveCaseRequest",
+      "mapping_group": "reconciliation_command",
+      "schema_sha256": "01fe12b9432f42e3b78055783f9655b733a099d4d9fcf240880b65fc3098a4e6"
+    },
+    {
+      "schema": "ResultCell",
+      "mapping_group": "values",
+      "schema_sha256": "968d8f1780b6696be9e539cb80ad041a41d75d0fc4f498037d0bfd363248dc28"
+    },
+    {
+      "schema": "Revision",
+      "mapping_group": "values",
+      "schema_sha256": "2a1379ebe9f4b632fbdf3732d4b86b26e9fbf2aa92cf2449dde7bf4dc122060f"
+    },
+    {
+      "schema": "RiskDecision",
+      "mapping_group": "risk",
+      "schema_sha256": "19d6b17718a417c00def62324901645af39bb4af57211c17050eba6790ee8351"
+    },
+    {
+      "schema": "RunBindings",
+      "mapping_group": "values",
+      "schema_sha256": "e35850b269c8621bf6154b35fe17bd4e7c1253c5ce47b11f0ecd49216a7fa5e8"
+    },
+    {
+      "schema": "Signal",
+      "mapping_group": "signal",
+      "schema_sha256": "f486223bba123e88569358672e7043bb98783652ab3d2db7784e0eca08cff880"
+    },
+    {
+      "schema": "SimulationCommand",
+      "mapping_group": "simulation_control_command",
+      "schema_sha256": "885082c69b008909eb036a9881adc21f97944166465ee61a22b1a56c3f9c5895"
+    },
+    {
+      "schema": "SimulationRequest",
+      "mapping_group": "simulation_create_command",
+      "schema_sha256": "2183279c3cd31b4add36772d290579baef9a543f665311961d30a0c607b31d77"
+    },
+    {
+      "schema": "SimulationSession",
+      "mapping_group": "simulation",
+      "schema_sha256": "a819ae38c24858992de87cad5971b1aac0f591ef920adaf840e44512cc1a77fd"
+    },
+    {
+      "schema": "StrategyBinding",
+      "mapping_group": "strategy_projection",
+      "schema_sha256": "8a0831015f2d8c5e9f7621fa3789b58a1118eb73900e4ca4efc66c54e9d4a579"
+    },
+    {
+      "schema": "StrategyConfigRequest",
+      "mapping_group": "strategy_config_command",
+      "schema_sha256": "2f6a8135c7f2d6268b4ed8cd183078ed1113d11e3f0a6526591c1f1fab66b14e"
+    },
+    {
+      "schema": "StrategyConfigVersion",
+      "mapping_group": "strategy_config",
+      "schema_sha256": "959282f24b28b0bdac56e0c2aa15343f1861aa4a6fbbc77ca2eaaed2e6992495"
+    },
+    {
+      "schema": "StrategyDefinition",
+      "mapping_group": "strategy_projection",
+      "schema_sha256": "51e57508bf582822198f0a7e78c42671e53d9e8a3331242d5c1668733ee4bc4c"
+    },
+    {
+      "schema": "StrategyDefinitionPage",
+      "mapping_group": "pages",
+      "schema_sha256": "41537e6033b37ff27d32ad546326ff3ab2648ed481d239a36853a629fd43f986"
+    },
+    {
+      "schema": "SystemStatus",
+      "mapping_group": "query",
+      "schema_sha256": "55328eeca8074739fba50418c962050885b3775a338a67beec2b4859c408a88e"
+    },
+    {
+      "schema": "TargetPosition",
+      "mapping_group": "positions",
+      "schema_sha256": "c135a8087255bc0e940fc9bfdb93cfccf057ccf44acd4722b00837665c7da622"
+    },
+    {
+      "schema": "TradingEvidenceEnvelope",
+      "mapping_group": "envelope",
+      "schema_sha256": "73b44709b9b771614df30026fdfaf0d0527ad44c48fec40881e20cf7b1d43530"
+    },
+    {
+      "schema": "WfoSpec",
+      "mapping_group": "research_spec",
+      "schema_sha256": "d45a099c166a2f0167a356aed430d0207f58113f387ca14ddd8718c684b5cb7c"
+    },
+    {
+      "schema": "WorkerLease",
+      "mapping_group": "lease",
+      "schema_sha256": "50b0322c079381a21957dc67b4eb1821582b17674c800eceafde7b551a46b650"
+    }
+  ],
+  "source_bindings": [
+    {
+      "source_path": "persistence/recovery.py",
+      "source_classes": [
+        "RecoveryCut",
+        "TrustedReadinessEvidenceBundle"
+      ],
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "0dea77243c15528c5947a7400ff97b0c3374fcf5",
+      "sha256": "90f6f2491bc187e4df9d24c9fd7ca4ba68c087038117dd2037ec571bdbfdbd8b"
+    },
+    {
+      "source_path": "persistence/postgres/recovery.py",
+      "source_classes": [
+        "PostgresTrustedReadinessEvidenceResolver",
+        "PostgresTrustedReadinessFinalizer"
+      ],
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "9a994454f399ba3ecbaf966f7458c9affa06bcbb",
+      "sha256": "236698d75835f77f81676b1c0df4dff8de3bfd130f4b2d8a39b8b399e7fd9b3c"
+    },
+    {
+      "source_path": "persistence/readiness_fence.py",
+      "source_classes": [
+        "RecoveryReadinessFenceRepository"
+      ],
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "989b0a1e83351f5c41c4a10b5028bd226e8fb450",
+      "sha256": "9b9284879310e716c978bd6cab9d5615d53bb6651ff8d1e9cdf8ac469b043812"
+    },
+    {
+      "source_path": "persistence/postgres/readiness_fence.py",
+      "source_classes": [
+        "PostgresRecoveryReadinessFenceRepository"
+      ],
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "b7cf2ddf045b2503fc16092819122842cba0cb3b",
+      "sha256": "581545b1b91cad04ccc9d184fcb6f45a04ea30ed5faa3e8fc5d161c6bb3e21fa"
+    },
+    {
+      "source_path": "persistence/strategy_recovery.py",
+      "source_classes": [
+        "DecisionCohortAuthorityProvider",
+        "StrategyGoverningTransitionRepository"
+      ],
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "2e97cdad4d2a074fcf12e1714b1c984f50c44833",
+      "sha256": "662499d526493d16b206dc83f472d886e3d712d61dd4ac4032dfcef761d4b8fb"
+    },
+    {
+      "source_path": "persistence/postgres/strategy_recovery.py",
+      "source_classes": [
+        "PostgresStrategyGoverningTransitionRepository"
+      ],
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "662fc30046aaa6257d26785604e16242b16b33a5",
+      "sha256": "a1c080db79dbb30e0084127c2707b9ee2d40dc3e7c6657b8f6d28d0ec75f2a8c"
+    },
+    {
+      "source_path": "persistence/postgres/uow.py",
+      "source_classes": [
+        "PostgresUnitOfWork"
+      ],
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "594c6dcc5a5c8c5448140cca0121eb116b757bbe",
+      "sha256": "ab692afad56be76f8c8ad1656b5eb7a71132742285ae1a8b80932e34b83896ad"
+    },
+    {
+      "source_path": "persistence/account.py",
+      "source_classes": [
+        "ExpectedPositionSnapshotRepository",
+        "BrokerPositionObservationRepository"
+      ],
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "a785bf3d8bee74c54a055e0cdaa6b5bf1d17415d",
+      "sha256": "b6ebed03c71087878d5eab0d737a5de464979f4600e4e7394b38a6624b15ede8"
+    },
+    {
+      "source_path": "persistence/execution.py",
+      "source_classes": [
+        "DurablePendingSubmissionService"
+      ],
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "29e5f7f2501b63de49d4e280da836d981f9c82b3",
+      "sha256": "f8f6402daa20ac929ee00462fdf56fb04bab4ddab4e02a3791026013be302bda"
+    },
+    {
+      "source_path": "persistence/reconciliation.py",
+      "source_classes": [
+        "ReconciliationCaseRepository"
+      ],
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "9bace67bebd028a0af9542eec168b977277e6e06",
+      "sha256": "a60d4900158b65fc50c71ccca16f496f050258fcf62f7be6aca95353b29be7fe"
+    },
+    {
+      "source_path": "trading/execution.py",
+      "source_classes": [
+        "OrderIntent",
+        "Order",
+        "Fill"
+      ],
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "66b4cc6a27b50ed30ed072f2c1d99ad0895f99fd",
+      "sha256": "498ed7afe438c01b358febddd5516a5a33e154993b7f46c31c86eab2bafeedba"
+    }
+  ],
+  "runtime_implemented": false,
+  "independent_review": "NOT_PERFORMED",
+  "new_record_field_sources": {
+    "Signal": {
+      "schema_version": "Literal signal.v1; consumer schema compatibility checked",
+      "signal_id": "Server immutable identity; unique accepted instance/config/version/contract/observation key",
+      "strategy_instance_id": "Accepted StrategyInstance and current governing context; implementation revision remains string",
+      "strategy_version": "Accepted StrategyInstance and current governing context; implementation revision remains string",
+      "config_version": "Accepted StrategyInstance and current governing context; implementation revision remains string",
+      "instrument_id": "Exact canonical listed-contract mapping; no legacy symbol inference",
+      "contract_id": "Exact canonical listed-contract mapping; no legacy symbol inference",
+      "observation_revision_id": "Accepted MarketObservationRevisionId after durable delivery acceptance",
+      "desired_net_quantity": "Strategy output plus prior committed virtual target; ENTER/HOLD/EXIT/REVERSE adapter",
+      "previous_virtual_position_ref": "Positive exact prior virtual position/genesis evidence; absence is UNKNOWN",
+      "state_snapshot_ref": "Existing StrategyStateSnapshot accepted in same completed output UoW",
+      "correlation_id": "Authenticated command/accepted observation causal chain"
+    },
+    "Decision": {
+      "schema_version": "Literal decision.v1",
+      "decision_id": "Server immutable identity bound unique full input closure",
+      "account_id": "Session registry resolves exact BrokerAccount; UI ID alone is not scope authority",
+      "instrument_id": "Signal/cohort/expected position exact canonical contract binding",
+      "contract_id": "Signal/cohort/expected position exact canonical contract binding",
+      "account_revision": "Accepted account head/checkpoint/expected snapshot closure",
+      "expected_net_quantity": "Accepted account head/checkpoint/expected snapshot closure",
+      "cohort_id": "Trusted DecisionCohortAuthorityProvider exact policy/membership; not runtime presence",
+      "policy_ref": "Trusted DecisionCohortAuthorityProvider exact policy/membership; not runtime presence",
+      "recovery_cut_ref": "Composite DecisionInputCut immutable reference including accepted account cut; old account cut alone is insufficient",
+      "observation_revision_id": "Same accepted observation frontier and exact required Signal references",
+      "signal_ids": "Same accepted observation frontier and exact required Signal references",
+      "desired_net_quantity": "Versioned cohort policy resolution; sum selected attribution=desired; retain excluded references/reasons",
+      "attributions": "Versioned cohort policy resolution; sum selected attribution=desired; retain excluded references/reasons",
+      "excluded_signals": "Versioned cohort policy resolution; sum selected attribution=desired; retain excluded references/reasons",
+      "proposed_net_quantity": "Expected-vs-desired staging; opposite direction EXIT with proposed zero",
+      "action": "Expected-vs-desired staging; opposite direction EXIT with proposed zero",
+      "correlation_id": "Input observation/command chain; no risk approval stored in Decision"
+    },
+    "RiskDecision": {
+      "schema_version": "Literal risk_decision.v1",
+      "risk_decision_id": "Server immutable identity bound decision/capital/policy/margin/input cut",
+      "decision_id": "Exact accepted immutable Decision; account/contract/cohort scope inherited and revalidated",
+      "proposed_net_quantity": "Exact accepted immutable Decision; account/contract/cohort scope inherited and revalidated",
+      "account_revision": "Same accepted account closure as Decision and CapitalState",
+      "capital_revision": "Exact capital_id/source projection referenced by constraint_evidence; revision alone not sufficient",
+      "policy_ref": "Exact versioned risk/reduction/cost/margin and capital/mark/composite-cut input closure",
+      "margin_ref": "Exact versioned risk/reduction/cost/margin and capital/mark/composite-cut input closure",
+      "constraint_evidence": "Exact versioned risk/reduction/cost/margin and capital/mark/composite-cut input closure",
+      "reason_codes": "Pure pinned risk policy result; ALLOW=proposed, REDUCE bounded, REJECT=null",
+      "outcome": "Pure pinned risk policy result; ALLOW=proposed, REDUCE bounded, REJECT=null",
+      "approved_net_quantity": "Pure pinned risk policy result; ALLOW=proposed, REDUCE bounded, REJECT=null"
+    },
+    "CapitalState": {
+      "schema_version": "Literal capital.v1",
+      "capital_id": "Server immutable identity bound complete projection input tuple",
+      "account_id": "Accepted canonical session/account/head/checkpoint/receipt closure",
+      "account_revision": "Accepted canonical session/account/head/checkpoint/receipt closure",
+      "account_checkpoint_ref": "Accepted canonical session/account/head/checkpoint/receipt closure",
+      "revision": "Owner-scoped capital selector revision; not AccountStateHead revision or replacement economic head",
+      "source": "Explicit simulated MANUAL TWD genesis provenance, exact Decimal initial value",
+      "currency": "Explicit simulated MANUAL TWD genesis provenance, exact Decimal initial value",
+      "initial_manual_capital": "Explicit simulated MANUAL TWD genesis provenance, exact Decimal initial value",
+      "realized_pnl": "Accepted canonical fill/account ledger + pinned cost/rounding policy",
+      "fees": "Accepted canonical fill/account ledger + pinned cost/rounding policy",
+      "unrealized_pnl": "Accepted position and independently source-qualified exact mark reference",
+      "mark_ref": "Accepted position and independently source-qualified exact mark reference",
+      "reserved_margin": "Accepted nonterminal exposure/reservations and exact margin reference/policy",
+      "margin_policy_ref": "Accepted nonterminal exposure/reservations and exact margin reference/policy",
+      "available_capital": "Pinned Decimal equation initial+realized+unrealized-fees-reserved; no clamp",
+      "calculation_policy_ref": "Pinned Decimal equation initial+realized+unrealized-fees-reserved; no clamp"
+    },
+    "IncrementalState": {
+      "schema_version": "Literal incremental_state.v1; immutable qualification envelope has separate ID",
+      "strategy_instance_id": "Existing StrategyInstance/current governing context and accepted snapshot schema",
+      "strategy_version": "Existing StrategyInstance/current governing context and accepted snapshot schema",
+      "config_version": "Existing StrategyInstance/current governing context and accepted snapshot schema",
+      "state_schema_version": "Existing StrategyInstance/current governing context and accepted snapshot schema",
+      "strategy_snapshot_ref": "Exact existing StrategyStateSnapshot; sole owner of persisted strategy state",
+      "feature_version_ref": "Registered explicit codec implementation/version/dependency qualification",
+      "observation_revision_id": "Snapshot processed accepted observation frontier/count; no step for duplicate/revised bars",
+      "completed_bar_count": "Snapshot processed accepted observation frontier/count; no step for duplicate/revised bars",
+      "required_warmup_bars": "Pinned strategy/feature policy; zero only if explicit compatible policy",
+      "warmup_status": "Count plus valid codec/snapshot/config/history continuity; READY is local qualification only",
+      "state_blob_hash": "Hash of normalized explicit codec state bytes in accepted snapshot; not arbitrary serialized object"
+    },
+    "TradingEvidenceEnvelope": {
+      "schema_version": "Literal trading_evidence.v1",
+      "evidence_id": "Owning payload stable ID; IncrementalState qualification gets separate immutable evidence ID",
+      "owner": "Signal/IncrementalState E; Decision/RiskDecision/CapitalState G",
+      "actor_ref": "Authenticated service/worker actor resolved by server, never client header alone",
+      "recorded_at": "First successful durable acceptance UTC; exact duplicate retains original value",
+      "correlation_id": "Accepted upstream causal chain; missing causation explicit null",
+      "causation_id": "Accepted upstream causal chain; missing causation explicit null",
+      "payload_hash": "SHA256 sorted-key compact finite JSON after validated wire normalization; exclude envelope",
+      "payload": "Validated typed owning DTO; hash equality does not replace source/ref/material closure"
+    }
+  }
+}

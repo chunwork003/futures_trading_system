@@ -24,8 +24,8 @@ Unknown != empty/zero/FLAT；nullable 欄位若表示未知必須同時有 reaso
 | StrategyVersion | strategy_id + implementation_revision + code artifact hash | E owner；immutable；recovery不得載入不相容implementation |
 | StrategyInstance | existing StrategyInstance完整欄位與instrument_binding_provenance | strategy/instance.py；existing repository；與config_version、policy_version分開 |
 | StrategyConfigVersion | strategy_id、config_version、canonical_config_json/fingerprint、schema_version | E owner；immutable；禁止持倉silent mutation，使用accepted governing transition |
-| IncrementalState | instance_id、state_schema_version、feature_version、observation_revision_frontier、warmup_status、state_blob_hash | E owner；K repository；只在safe checkpoint durable，history correction要求重建 |
-| Signal | signal_id、instance_id、observation_revision_id、config_version、intent、direction、requested_quantity、evidence_refs | E output/G input；immutable；不含broker side effect；重複identity異material拒絕 |
+| IncrementalState | strategy_instance_id、strategy_version、config_version、state_schema_version、strategy_snapshot_ref、feature_version_ref、observation_revision_id、completed_bar_count、required_warmup_bars、warmup_status、state_blob_hash | E qualification；state 仍由 existing StrategyStateSnapshot 擁有；history correction要求重建 |
+| Signal | signal_id、strategy_instance_id、strategy_version、config_version、instrument_id、contract_id、observation_revision_id、desired_net_quantity、previous_virtual_position_ref、state_snapshot_ref、correlation_id | E output/G input；signed desired virtual net target，不是 delta order；immutable；不含broker side effect |
 
 Dataset hash framing 的 exact owner 為 V1_DATASET_IDENTITY_IO.md：按 canonical key 排序，以既有 mor1 revision 作為 row material commitment；key-set/content/version 三種 frame 分離。Decimal 與 observation revision 沿用 accepted domain，不重寫。Storage byte hash 獨立，Parquet 壓縮器改變不應改 economic content identity。
 同 key 同 revision 可 dedup；同 key 多 revision 的單次上傳一律拒絕，不按順序或 provider priority 選 winner。RESEARCH_STRICT_1M_V1 correction 使用明示 parent 的完整替代 snapshot；詳見 V1_DATASET_QUALITY.md。
@@ -35,7 +35,7 @@ QualityReport須列required/observed intervals、missing/duplicate/conflict/out-
 
 | Contract | Required identity / material fields | Owner / persistence / recovery |
 |---|---|---|
-| Decision | decision_id、account、cohort/policy_version、input signal IDs、observation frontier、governing refs、proposed_target、approved_target、attribution、reason | trading decision；append-only trading decision table；同input identity retry不產生新economic intent |
+| Decision | decision_id、account_id/account_revision、instrument_id/contract_id、cohort_id/policy_ref、signal_ids、observation_revision_id、recovery_cut_ref、expected/desired/proposed_net_quantity、action、attributions/excluded_signals、correlation_id | G immutable proposal；approval 僅在 separate RiskDecision；同input identity retry不產生新economic intent |
 | RiskDecision | risk_decision_id、decision_id、account_revision、capital_revision、margin/reference version、constraints/input refs、ALLOW/REDUCE/REJECT、approved_quantity、reason_codes | trading risk；append-only；execution必須引用有效且適用current input的risk result |
 | CapitalState | capital_id、account/session、revision、currency、initial_manual_capital、realized_pnl、unrealized_pnl、fees、reserved_margin、available_capital、source refs | capital owner；revision snapshot，fills/mark refs可追溯；不接受UI直接改餘額 |
 | OrderIntent | existing OrderIntent + PositionEffect validation（OPEN/REDUCE/CLOSE） | trading/execution.py；保持accepted authority，不自行擴enum |
@@ -73,3 +73,5 @@ Transport timeout != domain failure；查operation/command receipt。不能把cl
 
 每個新增contract必須有valid example、unknown/missing identity、same-id/different-payload、version incompatibility、recovery/ref失效反例。
 Accepted existingmodel使用reference，不複製改名重寫。新DTO不改既有constructor語意；新consumer以adapter+golden equivalence測試逐步遷移。
+
+Shared DTO/store/field-source 全集由 V1_DTO_STORE_MAP.md 與 contracts/dto_store_map.v1.json 核對 generated wire schema；new readiness-input participation 的 exact owner 為 V1_DECISION_RECOVERY_CUT.md。這些候選規格仍需獨立審查與產品 adapter/DB conformance。

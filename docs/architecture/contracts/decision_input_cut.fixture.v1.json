@@ -1,0 +1,380 @@
+{
+  "status": "SYNTHETIC_SPECIFICATION_ONLY",
+  "authority": "NONE",
+  "trusted_manifest": {
+    "input_profile": "V1_SIMULATED_COMPLETE_INPUTS_V1",
+    "account": {
+      "broker": "SIMULATED",
+      "account_ref": "account-1"
+    },
+    "session_id": "session-1",
+    "cohort_id": "cohort-1",
+    "instrument_id": 1,
+    "contract_id": 1,
+    "policy_ref": {
+      "id": "policy-1",
+      "version": "1",
+      "payload_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "required_dependencies": [
+      {
+        "kind": "CAPITAL",
+        "key": "current"
+      },
+      {
+        "kind": "COHORT_POLICY",
+        "key": "current"
+      },
+      {
+        "kind": "COMPLETENESS",
+        "key": "strategy-1"
+      },
+      {
+        "kind": "COMPLETENESS",
+        "key": "strategy-2"
+      },
+      {
+        "kind": "MARGIN",
+        "key": "current"
+      },
+      {
+        "kind": "MARK",
+        "key": "current"
+      },
+      {
+        "kind": "OBSERVATION",
+        "key": "current"
+      },
+      {
+        "kind": "RISK_POLICY",
+        "key": "current"
+      },
+      {
+        "kind": "SESSION_CONTROL",
+        "key": "current"
+      },
+      {
+        "kind": "STRATEGY_CONTEXT",
+        "key": "strategy-1"
+      },
+      {
+        "kind": "STRATEGY_CONTEXT",
+        "key": "strategy-2"
+      },
+      {
+        "kind": "STRATEGY_OUTPUT",
+        "key": "strategy-1"
+      },
+      {
+        "kind": "STRATEGY_OUTPUT",
+        "key": "strategy-2"
+      }
+    ]
+  },
+  "captured_cut": {
+    "schema_version": "decision_input_cut.v1",
+    "input_profile": "V1_SIMULATED_COMPLETE_INPUTS_V1",
+    "account": {
+      "broker": "SIMULATED",
+      "account_ref": "account-1"
+    },
+    "session_id": "session-1",
+    "cohort_id": "cohort-1",
+    "instrument_id": 1,
+    "contract_id": 1,
+    "selection_revision": 4,
+    "base_account_cut": {
+      "account_revision": 7,
+      "recovery_generation": 2,
+      "ingress_version": 9,
+      "readiness_revision": 3,
+      "recovery_state": "INACTIVE",
+      "recovery_cut_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "trusted_bundle_fingerprint": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    "dependency_manifest_hash": "40b1aed7ee2090947af898d70ef648fd0de44f2b37f8c014eca87bba071dd90e",
+    "dependencies": [
+      {
+        "kind": "CAPITAL",
+        "key": "current",
+        "selector_revision": 1,
+        "record_id": "capital:current",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "74ef52674a74ef127d009b604b7c2267a21df42298186cde103f9f42696132d8"
+      },
+      {
+        "kind": "COHORT_POLICY",
+        "key": "current",
+        "selector_revision": 1,
+        "record_id": "cohort_policy:current",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "9df09dbb6551196a853cb2015f0ff5961ef622e9379c07e3cf8b0822487610bc"
+      },
+      {
+        "kind": "COMPLETENESS",
+        "key": "strategy-1",
+        "selector_revision": 1,
+        "record_id": "completeness:strategy-1",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "bfa50fbfbbaa37ed38bff9dc54c24d9084dbb5ace203d665748e2cfe0f37252c"
+      },
+      {
+        "kind": "COMPLETENESS",
+        "key": "strategy-2",
+        "selector_revision": 1,
+        "record_id": "completeness:strategy-2",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "8b1bb5f111c94fd0075aa08af51315d5ad89ab9b23b8a67d13b108cb18d1ac88"
+      },
+      {
+        "kind": "MARGIN",
+        "key": "current",
+        "selector_revision": 1,
+        "record_id": "margin:current",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "bf38d2c09672f730f552edeffd47aec70a4b13278350e4b464b042aa4faf8791"
+      },
+      {
+        "kind": "MARK",
+        "key": "current",
+        "selector_revision": 1,
+        "record_id": "mark:current",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "9f42551714448e0e7f38e1a378020d8bf64b7c7bb92bd13269547e43bfcda5b5"
+      },
+      {
+        "kind": "OBSERVATION",
+        "key": "current",
+        "selector_revision": 1,
+        "record_id": "observation:current",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "dcde21a914f8d16c15771608400aefda923d93811465ecfab9358f26185ced14"
+      },
+      {
+        "kind": "RISK_POLICY",
+        "key": "current",
+        "selector_revision": 1,
+        "record_id": "risk_policy:current",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "1e7286eefb45a05f0fcdc5d51014aba3aaeca1ec4bb7bd7681bba2885f2451c4"
+      },
+      {
+        "kind": "SESSION_CONTROL",
+        "key": "current",
+        "selector_revision": 1,
+        "record_id": "session_control:current",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "7f7ec4a67fa1f0704a0ed2b5bf6095db807f2998aea7eacbebe329d42a898608"
+      },
+      {
+        "kind": "STRATEGY_CONTEXT",
+        "key": "strategy-1",
+        "selector_revision": 1,
+        "record_id": "strategy_context:strategy-1",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "45fd8e53cf1b0510683a9e0b163a073f8f9f76e2676426f3f0dedd31fff3dec2"
+      },
+      {
+        "kind": "STRATEGY_CONTEXT",
+        "key": "strategy-2",
+        "selector_revision": 1,
+        "record_id": "strategy_context:strategy-2",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "f3e8ebefa4a93fb4896e9e4f6001f183d6a7df949994dc790a8ded370ecc3369"
+      },
+      {
+        "kind": "STRATEGY_OUTPUT",
+        "key": "strategy-1",
+        "selector_revision": 1,
+        "record_id": "strategy_output:strategy-1",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "1a4e8ea1e8d1c6300f619c6f15893aa3d4476284d73866398c1f6bedbfac8e29"
+      },
+      {
+        "kind": "STRATEGY_OUTPUT",
+        "key": "strategy-2",
+        "selector_revision": 1,
+        "record_id": "strategy_output:strategy-2",
+        "schema_version": "qualified_bundle.v1",
+        "payload_hash": "aef81a014862a729884c16a6721277d5e93114d885b347c4c1cef2c8e0267e41"
+      }
+    ]
+  },
+  "expected_unchanged_result": "CURRENT_INPUTS_ONLY_NOT_PERMISSION",
+  "mandatory_negative_cases": [
+    "MISSING_DEPENDENCY",
+    "EXTRA_DEPENDENCY",
+    "DUPLICATE_DEPENDENCY",
+    "MANIFEST_SUBSTITUTION",
+    "ACCOUNT_SCOPE",
+    "SESSION_SCOPE",
+    "COHORT_SCOPE",
+    "CONTRACT_SCOPE",
+    "PER_KIND_MATERIAL_MUTATION_SAME_ACCOUNT_REVISION",
+    "ABA_SELECTOR_REVISION",
+    "RECOVERY_STATE_CHANGE",
+    "MISSING_HEAD",
+    "UNKNOWN_DEPENDENCY",
+    "REORDER_NON_CANONICAL",
+    "FORGED_READY_FIELD",
+    "REVOKED_PERMISSION_WITH_UNCHANGED_RISK_PAYLOAD",
+    "FINAL_REFERENCE_SUBSTITUTION",
+    "PERMISSION_SELECTION_ABA"
+  ],
+  "actual_postgresql": "NOT_EXECUTED_NOT_VERIFIED",
+  "final_submission_witness": {
+    "schema_version": "final_submission_witness.v1",
+    "input_cut": {
+      "schema_version": "decision_input_cut.v1",
+      "input_profile": "V1_SIMULATED_COMPLETE_INPUTS_V1",
+      "account": {
+        "broker": "SIMULATED",
+        "account_ref": "account-1"
+      },
+      "session_id": "session-1",
+      "cohort_id": "cohort-1",
+      "instrument_id": 1,
+      "contract_id": 1,
+      "selection_revision": 4,
+      "base_account_cut": {
+        "account_revision": 7,
+        "recovery_generation": 2,
+        "ingress_version": 9,
+        "readiness_revision": 3,
+        "recovery_state": "INACTIVE",
+        "recovery_cut_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "trusted_bundle_fingerprint": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      },
+      "dependency_manifest_hash": "40b1aed7ee2090947af898d70ef648fd0de44f2b37f8c014eca87bba071dd90e",
+      "dependencies": [
+        {
+          "kind": "CAPITAL",
+          "key": "current",
+          "selector_revision": 1,
+          "record_id": "capital:current",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "74ef52674a74ef127d009b604b7c2267a21df42298186cde103f9f42696132d8"
+        },
+        {
+          "kind": "COHORT_POLICY",
+          "key": "current",
+          "selector_revision": 1,
+          "record_id": "cohort_policy:current",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "9df09dbb6551196a853cb2015f0ff5961ef622e9379c07e3cf8b0822487610bc"
+        },
+        {
+          "kind": "COMPLETENESS",
+          "key": "strategy-1",
+          "selector_revision": 1,
+          "record_id": "completeness:strategy-1",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "bfa50fbfbbaa37ed38bff9dc54c24d9084dbb5ace203d665748e2cfe0f37252c"
+        },
+        {
+          "kind": "COMPLETENESS",
+          "key": "strategy-2",
+          "selector_revision": 1,
+          "record_id": "completeness:strategy-2",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "8b1bb5f111c94fd0075aa08af51315d5ad89ab9b23b8a67d13b108cb18d1ac88"
+        },
+        {
+          "kind": "MARGIN",
+          "key": "current",
+          "selector_revision": 1,
+          "record_id": "margin:current",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "bf38d2c09672f730f552edeffd47aec70a4b13278350e4b464b042aa4faf8791"
+        },
+        {
+          "kind": "MARK",
+          "key": "current",
+          "selector_revision": 1,
+          "record_id": "mark:current",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "9f42551714448e0e7f38e1a378020d8bf64b7c7bb92bd13269547e43bfcda5b5"
+        },
+        {
+          "kind": "OBSERVATION",
+          "key": "current",
+          "selector_revision": 1,
+          "record_id": "observation:current",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "dcde21a914f8d16c15771608400aefda923d93811465ecfab9358f26185ced14"
+        },
+        {
+          "kind": "RISK_POLICY",
+          "key": "current",
+          "selector_revision": 1,
+          "record_id": "risk_policy:current",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "1e7286eefb45a05f0fcdc5d51014aba3aaeca1ec4bb7bd7681bba2885f2451c4"
+        },
+        {
+          "kind": "SESSION_CONTROL",
+          "key": "current",
+          "selector_revision": 1,
+          "record_id": "session_control:current",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "7f7ec4a67fa1f0704a0ed2b5bf6095db807f2998aea7eacbebe329d42a898608"
+        },
+        {
+          "kind": "STRATEGY_CONTEXT",
+          "key": "strategy-1",
+          "selector_revision": 1,
+          "record_id": "strategy_context:strategy-1",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "45fd8e53cf1b0510683a9e0b163a073f8f9f76e2676426f3f0dedd31fff3dec2"
+        },
+        {
+          "kind": "STRATEGY_CONTEXT",
+          "key": "strategy-2",
+          "selector_revision": 1,
+          "record_id": "strategy_context:strategy-2",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "f3e8ebefa4a93fb4896e9e4f6001f183d6a7df949994dc790a8ded370ecc3369"
+        },
+        {
+          "kind": "STRATEGY_OUTPUT",
+          "key": "strategy-1",
+          "selector_revision": 1,
+          "record_id": "strategy_output:strategy-1",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "1a4e8ea1e8d1c6300f619c6f15893aa3d4476284d73866398c1f6bedbfac8e29"
+        },
+        {
+          "kind": "STRATEGY_OUTPUT",
+          "key": "strategy-2",
+          "selector_revision": 1,
+          "record_id": "strategy_output:strategy-2",
+          "schema_version": "qualified_bundle.v1",
+          "payload_hash": "aef81a014862a729884c16a6721277d5e93114d885b347c4c1cef2c8e0267e41"
+        }
+      ]
+    },
+    "decision_ref": {
+      "id": "decision-1",
+      "schema_version": "decision.v1",
+      "payload_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    },
+    "risk_ref": {
+      "id": "risk-1",
+      "schema_version": "risk_decision.v1",
+      "payload_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    },
+    "trigger_ref": {
+      "id": "trigger-1",
+      "schema_version": "execution_trigger.v1",
+      "payload_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    },
+    "permission_selection": {
+      "selector_revision": 1,
+      "record_id": "grant-1",
+      "payload_hash": "1111111111111111111111111111111111111111111111111111111111111111",
+      "decision_id": "decision-1",
+      "risk_decision_id": "risk-1",
+      "disposition": "GRANTED"
+    }
+  }
+}

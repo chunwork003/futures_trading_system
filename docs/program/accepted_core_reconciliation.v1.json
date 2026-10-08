@@ -1,0 +1,512 @@
+{
+  "schema_version": "p00.accepted_core_reconciliation.v1",
+  "status": "CANDIDATE_SOURCE_RECONCILIATION_NOT_PRODUCT_ACCEPTANCE",
+  "authority": "NONE",
+  "source_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "accepted_runtime_head": "e4e238ccc3edb753c86e89368efe0645d6337f58",
+  "historical_scope": "GAP08_CORRECTION_CORE_ONLY",
+  "source_evidence": [
+    {
+      "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "12188794fe825200d8726c256e44d0bf909765f3",
+      "sha256": "e8b70427b62345770047962358ea29df8e2e88123cacd5c53f6baf7c34e7722d"
+    },
+    {
+      "path": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "77f855dfc165c17402c3f5c1d39f963c0c3ffb55",
+      "sha256": "d8453e4b3af6fa631d50cc73ec38ea25631c3bdd75ee394f98be4d47d9e530b8"
+    },
+    {
+      "path": "docs/work/GAP08_P7_REMAINDER_CLOSURE.md",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "abc5160279280313a2108caab8d206b85b2aed97",
+      "sha256": "72023872581366e7ab36afcf40049199af3569f7c8c5ba7b84260d9f7eeb9a50"
+    },
+    {
+      "path": "docs/work/GAP08_W4R_PG_CONCURRENCY_CLOSURE.md",
+      "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "git_blob": "b237c0f9680796ace71f341c137d8e080ea7e2c3",
+      "sha256": "423029f98f0d05cb79f77741783575dea71509711a60533bff8f5ba9561a5b76"
+    }
+  ],
+  "core": [
+    {
+      "id": "C01",
+      "name": "Expected State Authority Read Contract",
+      "accepted_scope_weight": 4,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 174,
+        "text": "| C01 | Expected State Authority Read Contract | CORRECTION + IMPLEMENTATION | 4 | V06 | PREFERRED |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P08-RECOVERY",
+        "P09-POSITIONS"
+      ],
+      "remaining_boundary": "Accepted expected-state authority; V1 query adapter and unknown presentation remain",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C02",
+      "name": "BrokerAccount Revision Head + Exact Checkpoint",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 175,
+        "text": "| C02 | BrokerAccount Revision Head + Exact Checkpoint | IMPLEMENTATION | 5 | V06,C01 | ALLOWED |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P08-DURABILITY",
+        "P08-RECOVERY"
+      ],
+      "remaining_boundary": "Accepted account head/checkpoint; V1 synthetic session/DB integration remains",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C03",
+      "name": "Expected-State Initialization Authority",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 176,
+        "text": "| C03 | Expected-State Initialization Authority | IMPLEMENTATION | 5 | C02,C04,C21 | ALLOWED |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P08-DURABILITY"
+      ],
+      "remaining_boundary": "Accepted initialization closure; simulated genesis atomic job/session publication remains",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C04",
+      "name": "Shared AccountAuthorityCommit Primitive",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 177,
+        "text": "| C04 | Shared AccountAuthorityCommit Primitive | IMPLEMENTATION | 5 | V06,C02 | PREFERRED |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P07-OMS",
+        "P08-DURABILITY"
+      ],
+      "remaining_boundary": "Accepted authority UoW; new evidence participants/selector fences remain",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C05",
+      "name": "Durable Initial PENDING + Causal Execution Boundary",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 178,
+        "text": "| C05 | Durable Initial PENDING + Causal Execution Boundary | CORRECTION + IMPLEMENTATION | 5 | C04,C08,C25 | ALLOWED |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P07-OMS",
+        "P08-DURABILITY"
+      ],
+      "remaining_boundary": "Accepted durable pending/causal boundary; composite Decision/Risk references remain",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C06",
+      "name": "BrokerActionAttempt / Resolution / No-Blind-Retry",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 179,
+        "text": "| C06 | BrokerActionAttempt / Resolution / No-Blind-Retry | IMPLEMENTATION | 5 | C04,C05 | ALLOWED |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P07-RACES",
+        "P08-RECOVERY"
+      ],
+      "remaining_boundary": "Accepted no-blind-retry safety; deterministic simulation/failure integration remains",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C07",
+      "name": "Broker Discovery Authority",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 180,
+        "text": "| C07 | Broker Discovery Authority | IMPLEMENTATION | 5 | C08 | EXTEND |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P07-EXCHANGE",
+        "P08-RECOVERY"
+      ],
+      "remaining_boundary": "Preserve discovery authority seam; simulated provider independent observations remain; real broker qualification separate",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C08",
+      "name": "Broker Client Correlation Identity",
+      "accepted_scope_weight": 4,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 181,
+        "text": "| C08 | Broker Client Correlation Identity | IMPLEMENTATION | 4 | V06 | EXTEND |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P07-OMS"
+      ],
+      "remaining_boundary": "Accepted correlation identity; simulation exact stable correlation remains",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C09",
+      "name": "Broker Report Inbox + Recovery Fence + Continuity",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 182,
+        "text": "| C09 | Broker Report Inbox + Recovery Fence + Continuity | IMPLEMENTATION | 5 | C02,C04,C07 | ALLOWED |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P08-RECOVERY"
+      ],
+      "remaining_boundary": "Accepted inbox/recovery/continuity; new account decision fence and synthetic ingress integration remain",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C10",
+      "name": "Broker Recovery Reconstruction + Fill Economics",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 183,
+        "text": "| C10 | Broker Recovery Reconstruction + Fill Economics | IMPLEMENTATION + CORRECTION | 5 | C04,C07,C09,C11 | ALLOWED |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P07-RACES",
+        "P08-RECOVERY"
+      ],
+      "remaining_boundary": "Accepted reconstruction/fill economics; actual new runtime crash/race integration remains",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C11",
+      "name": "Shioaji Status Mapping Correction",
+      "accepted_scope_weight": 2,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 184,
+        "text": "| C11 | Shioaji Status Mapping Correction | CORRECTION | 2 | none | SMALL_FIX |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P07-OMS"
+      ],
+      "remaining_boundary": "Preserve accepted Shioaji mapping; no real broker conformance or new simulator credit",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C12",
+      "name": "Coherent RecoveryCut + ExecutionStateLoader",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 185,
+        "text": "| C12 | Coherent RecoveryCut + ExecutionStateLoader | CORRECTION + IMPLEMENTATION | 5 | C01,C02,C04,C09,C13 | PREFERRED |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P08-RECOVERY"
+      ],
+      "remaining_boundary": "Accepted coherent account cut; complete new strategy/decision/capital currentness remains",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C13",
+      "name": "ReconciliationCase BrokerAccount Scope",
+      "accepted_scope_weight": 3,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 186,
+        "text": "| C13 | ReconciliationCase BrokerAccount Scope | CORRECTION | 3 | V06 | EXTEND |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P08-RECONCILIATION"
+      ],
+      "remaining_boundary": "Accepted account-scoped case authority; session/UI operation and synthetic mismatch integration remain",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C14",
+      "name": "ReconciliationRun Audit",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 187,
+        "text": "| C14 | ReconciliationRun Audit | IMPLEMENTATION | 5 | C12,C13 | EXTEND |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P08-RECONCILIATION",
+        "P09-AUDIT"
+      ],
+      "remaining_boundary": "Accepted run audit closure; composite inputs and operator projection remain",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C15",
+      "name": "BrokerAccount READY / REVIEW / HALT Aggregator",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 188,
+        "text": "| C15 | BrokerAccount READY / REVIEW / HALT Aggregator | CORRECTION + IMPLEMENTATION | 5 | C07,C09,C10,C12,C14 | EXTEND |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P08-RECOVERY",
+        "P09-CONTROL"
+      ],
+      "remaining_boundary": "Accepted trusted account readiness; new dependency fence plus safe operator controls remain",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C16",
+      "name": "Strategy Governing Identity + Canonical Binding",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 189,
+        "text": "| C16 | Strategy Governing Identity + Canonical Binding | IMPLEMENTATION + CORRECTION | 5 | V06 | EXTEND |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P05-ADAPTER"
+      ],
+      "remaining_boundary": "Accepted canonical strategy identity; wire/legacy adapter and code artifact qualification remain",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C17",
+      "name": "Strategy Governing Context Transition",
+      "accepted_scope_weight": 4,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 190,
+        "text": "| C17 | Strategy Governing Context Transition | IMPLEMENTATION | 4 | C16 | EXTEND |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P05-RESTART",
+        "P08-RECOVERY"
+      ],
+      "remaining_boundary": "Accepted governing transition authority; feature/config/current selector integration remains",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C18",
+      "name": "Strategy Recovery Frontier + Readiness Composition",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 191,
+        "text": "| C18 | Strategy Recovery Frontier + Readiness Composition | CORRECTION + IMPLEMENTATION | 5 | C15,C16,C17,C19,C20,C25 | ALLOWED |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P05-RESTART",
+        "P06-DECISION",
+        "P08-RECOVERY"
+      ],
+      "remaining_boundary": "Accepted strategy/cohort readiness composition; new Signal/qualification/complete policy provider integration remains",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C19",
+      "name": "K520 Applicability Fail-Closed Seam",
+      "accepted_scope_weight": 3,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 192,
+        "text": "| C19 | K520 Applicability Fail-Closed Seam | ENFORCEMENT | 3 | C16 | EXTEND |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P05-INCREMENTAL",
+        "P08-RECOVERY"
+      ],
+      "remaining_boundary": "Accepted K520 applicability fail-closed seam; full GAP-09 feature implementation not credited",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C20",
+      "name": "R14 Completeness Required Seam",
+      "accepted_scope_weight": 3,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 193,
+        "text": "| C20 | R14 Completeness Required Seam | ENFORCEMENT | 3 | C23 | EXTEND |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P01-QUALITY",
+        "P05-RESTART",
+        "P08-RECOVERY"
+      ],
+      "remaining_boundary": "Accepted completeness fail-closed seam; full data detector/reference producer qualification not credited",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C21",
+      "name": "Protected Action Authorization Enforcement Seam",
+      "accepted_scope_weight": 4,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 194,
+        "text": "| C21 | Protected Action Authorization Enforcement Seam | ENFORCEMENT | 4 | V06 | EXTEND |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P09-CONTROL"
+      ],
+      "remaining_boundary": "Accepted default-deny authorization seam; durable application identity/simulation command enforcement remains; LIVE not authorized",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C22",
+      "name": "Canonical Time Evidence Correction",
+      "accepted_scope_weight": 4,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 195,
+        "text": "| C22 | Canonical Time Evidence Correction | CORRECTION | 4 | V06 | EXTEND |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P05-ADAPTER",
+        "P09-AUDIT"
+      ],
+      "remaining_boundary": "Accepted distinct causal time evidence; simulation clock projection and API UTC adapter remain",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C23",
+      "name": "Canonical MarketObservation Identity + Revision",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 196,
+        "text": "| C23 | Canonical MarketObservation Identity + Revision | IMPLEMENTATION | 5 | C22 | NEW_PRIMITIVE |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P01-IMPORT",
+        "P05-ADAPTER"
+      ],
+      "remaining_boundary": "Accepted canonical observation identity; CSV/data-version compatibility adapter remains",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C24",
+      "name": "Operational MarketObservation Evidence + Acceptance",
+      "accepted_scope_weight": 5,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 197,
+        "text": "| C24 | Operational MarketObservation Evidence + Acceptance | IMPLEMENTATION | 5 | V06,C23 | NEW_PRIMITIVE |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P05-ADAPTER",
+        "P08-DURABILITY"
+      ],
+      "remaining_boundary": "Accepted observation acceptance/evidence repository; versioned dataset delivery integration remains",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "C25",
+      "name": "Durable-before-Strategy Delivery + Revision Reference Migration",
+      "accepted_scope_weight": 4,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 198,
+        "text": "| C25 | Durable-before-Strategy Delivery + Revision Reference Migration | IMPLEMENTATION + CORRECTION | 4 | C24 | ALLOWED |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P05-ADAPTER",
+        "P05-RESTART"
+      ],
+      "remaining_boundary": "Accepted durable-before-strategy delivery; new atomic Signal/output/qualification integration remains",
+      "new_v1_credit": 0
+    },
+    {
+      "id": "V06",
+      "name": "Repository Persistence Baseline Verification",
+      "accepted_scope_weight": 3,
+      "source_row": {
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "line": 555,
+        "text": "| V06 | Repository Persistence Baseline Verification | 3 | repository / DB design evidence |"
+      },
+      "acceptance_source": "docs/work/GAP08_FINAL_CLOSURE.md",
+      "historical_acceptance": "ACCEPTED_FOR_GAP08_SCOPE",
+      "v1_delta_deliverables": [
+        "P08-DURABILITY"
+      ],
+      "remaining_boundary": "Accepted repository design baseline; isolated W4R PG evidence separate, not new V1 deployment/actual V07 conformance",
+      "new_v1_credit": 0
+    }
+  ],
+  "totals": {
+    "leaf_count": 26,
+    "accepted_scope_weight": 113,
+    "new_v1_credit": 0
+  },
+  "excluded": {
+    "original_35_151_candidate": "NOT_RETROACTIVELY_ACCEPTED_NO_CREDIT",
+    "V01_V05": "SEPARATE_BROKER_VERIFICATION_WEIGHT_19_NOT_GRANTED",
+    "V07": "ACTUAL_ENVIRONMENT_CONFORMANCE_WEIGHT_4_NOT_EXECUTED_NOT_VERIFIED",
+    "isolated_W4R_PG": "ACCEPTED_LIMITED_EXISTING_TEST_SCOPE_NOT_ALL_V1_DB_DEPENDENCIES"
+  },
+  "full_historical_requirement_coverage": "INCOMPLETE",
+  "v1_weight_baseline_accepted": false,
+  "trusted_progress_intake": "NOT_IMPLEMENTED",
+  "product_completion": "UNCALIBRATED"
+}

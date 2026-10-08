@@ -68,20 +68,26 @@
     {
       "section": 9,
       "title": "Domain Ownership",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL_NOT_ACCEPTED",
+      "evidence": [
+        "docs/architecture/V1_DTO_STORE_MAP.md",
+        "docs/architecture/contracts/dto_store_map.v1.json"
+      ],
+      "note": "Complete shared DTO/store owners now indexed; domain-level source semantics and independent review still required."
     },
     {
       "section": 10,
       "title": "Canonical Contracts",
-      "coverage": "PARTIAL_IMPLEMENTED_PENDING_REVIEW",
+      "coverage": "PARTIAL_NOT_ACCEPTED",
       "evidence": [
         "docs/architecture/V1_DOMAIN_ADAPTERS.md",
         "docs/architecture/contracts/domain_source_bindings.v1.json",
-        "tests/platform/test_p00_domain_contracts.py"
+        "tests/platform/test_p00_domain_contracts.py",
+        "docs/architecture/V1_DTO_STORE_MAP.md",
+        "docs/architecture/contracts/dto_store_map.v1.json",
+        "tests/platform/test_p00_adapter_recovery_cut.py"
       ],
-      "note": "Five new domain DTOs and 13 pinned source/class bindings; economic cross-record semantics and full adapter coverage still need review."
+      "note": "70 shared DTO mappings and all80 new-record field sources authored; existing canonical Order/Fill/Intent preserved. Schema/source coverage is not actual adapter conformance."
     },
     {
       "section": 11,
@@ -124,29 +130,39 @@
     {
       "section": 15,
       "title": "Persistence / Transaction Architecture",
-      "coverage": "PARTIAL_IMPLEMENTED_PENDING_REVIEW",
+      "coverage": "PARTIAL_NOT_ACCEPTED",
       "evidence": [
         "docs/architecture/V1_INCREMENTAL_PERSISTENCE.md",
-        "tests/platform/test_p00_incremental.py"
+        "tests/platform/test_p00_incremental.py",
+        "docs/architecture/V1_DECISION_RECOVERY_CUT.md",
+        "docs/architecture/contracts/decision_input_cut.schema.v1.json",
+        "tests/platform/test_p00_adapter_recovery_cut.py"
       ],
-      "note": "First EMA codec and owner-specific envelope/store mapping defined; full integration/recovery evidence pending."
+      "note": "Composite DecisionInputCut and explicit current-selector/shared-fence design authored; actual new typed repositories, final permission witness, inactive-source adapter and PG/crash conformance remain implementation gates."
     },
     {
       "section": 16,
       "title": "Backtest / Runtime Convergence",
-      "coverage": "PARTIAL_IMPLEMENTED_PENDING_REVIEW",
+      "coverage": "PARTIAL_NOT_ACCEPTED",
       "evidence": [
         "docs/architecture/V1_INCREMENTAL_PERSISTENCE.md",
-        "tests/platform/test_p00_incremental.py"
+        "tests/platform/test_p00_incremental.py",
+        "docs/program/accepted_core_reconciliation.v1.json",
+        "scripts/p00_historical_core.py",
+        "tests/platform/test_p00_historical_core.py"
       ],
-      "note": "First EMA codec and owner-specific envelope/store mapping defined; full integration/recovery evidence pending."
+      "note": "26 accepted GAP08 leaves/113 weight reconciled as reuse inputs, never automatic new V1 credit; legacy compatibility and actual new integration remain."
     },
     {
       "section": 17,
       "title": "Strategy / Decision / Risk Architecture",
-      "coverage": "NOT_YET_VERIFIED",
-      "evidence": [],
-      "note": "逐項語意核對尚未完成；不得以候選文件存在判定完成。"
+      "coverage": "PARTIAL_NOT_ACCEPTED",
+      "evidence": [
+        "docs/architecture/V1_DOMAIN_ADAPTERS.md",
+        "docs/architecture/V1_DTO_STORE_MAP.md",
+        "docs/architecture/V1_DECISION_RECOVERY_CUT.md"
+      ],
+      "note": "Staged reversal, separate immutable risk permission, capital source closure and composite input-currentness candidate specified; permission revocation/final submission and actual semantics require independent review and implementation."
     },
     {
       "section": 18,
@@ -509,9 +525,12 @@
         "docs/program/PROGRESS_ACCOUNTING.md",
         "docs/program/program_baseline.v1.json",
         "scripts/p00_progress.py",
-        "tests/platform/test_p00_progress.py"
+        "tests/platform/test_p00_progress.py",
+        "docs/program/accepted_core_reconciliation.v1.json",
+        "scripts/p00_historical_core.py",
+        "tests/platform/test_p00_historical_core.py"
       ],
-      "note": "Candidate stable denominator and 40/20/20/20 specification authored; zero-evidence calculator rejects unsupported intake. Trusted evidence/invalidation implementation, full historical coverage and independent baseline review remain."
+      "note": "26 GAP08 accepted leaves/113 historical weight bound to exact closure/source table and V1 delta; new credit stays0. Full historical registry, independent baseline, trusted intake/invalidation and ETA remain."
     },
     {
       "section": 66,

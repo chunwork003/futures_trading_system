@@ -37,4 +37,4 @@ Missing referenced payload/hash/frontier/codec fails restore; exact duplicate is
 
 ## Remaining acceptance gates
 
-This closes the first-codec and envelope ownership design at candidate level. It does not implement persistence adapters or certify all existing DTO mappings. Semantic review must check complete RecoveryCut participation of new readiness-relevant records, transaction sizing and revision/fence integration against accepted K contracts. P05/P06/P08 packages must enumerate these integration assertions, not infer them from this fixture passing.
+This closes the first-codec and envelope ownership design at candidate level. V1_DTO_STORE_MAP.md and contracts/dto_store_map.v1.json now specify complete shared DTO/store and new-record field-source coverage. V1_DECISION_RECOVERY_CUT.md specifies composite currentness, producer/fence obligations and negative fixtures without changing accepted K contracts. Semantic review still must check source closure, transaction sizing, lock compatibility and revision/fence integration. P05/P06/P08 packages must enumerate actual adapter/DB integration assertions, not infer them from candidate fixtures passing.

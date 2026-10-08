@@ -1,0 +1,334 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p00:decision-input-cut:v1",
+  "title": "Candidate internal DecisionInputCut; no permission or trust attestation",
+  "$ref": "#/$defs/DecisionInputCut",
+  "$defs": {
+    "DecisionInputCut": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "input_profile",
+        "account",
+        "session_id",
+        "cohort_id",
+        "instrument_id",
+        "contract_id",
+        "selection_revision",
+        "base_account_cut",
+        "dependency_manifest_hash",
+        "dependencies"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "decision_input_cut.v1"
+        },
+        "input_profile": {
+          "const": "V1_SIMULATED_COMPLETE_INPUTS_V1"
+        },
+        "account": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "broker",
+            "account_ref"
+          ],
+          "properties": {
+            "broker": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+            },
+            "account_ref": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+            }
+          }
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+        },
+        "cohort_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+        },
+        "instrument_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "contract_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "selection_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "base_account_cut": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "account_revision",
+            "recovery_generation",
+            "ingress_version",
+            "readiness_revision",
+            "recovery_state",
+            "recovery_cut_fingerprint",
+            "trusted_bundle_fingerprint"
+          ],
+          "properties": {
+            "account_revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "recovery_generation": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "ingress_version": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "readiness_revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "recovery_state": {
+              "enum": [
+                "ACTIVE",
+                "INACTIVE"
+              ]
+            },
+            "recovery_cut_fingerprint": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "trusted_bundle_fingerprint": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "dependency_manifest_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "dependencies": {
+          "type": "array",
+          "minItems": 10,
+          "maxItems": 1000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "key",
+              "selector_revision",
+              "record_id",
+              "schema_version",
+              "payload_hash"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "COHORT_POLICY",
+                  "STRATEGY_CONTEXT",
+                  "STRATEGY_OUTPUT",
+                  "COMPLETENESS",
+                  "OBSERVATION",
+                  "CAPITAL",
+                  "MARK",
+                  "MARGIN",
+                  "RISK_POLICY",
+                  "SESSION_CONTROL"
+                ]
+              },
+              "key": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+              },
+              "selector_revision": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "record_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+              },
+              "schema_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+              },
+              "payload_hash": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          }
+        }
+      }
+    },
+    "FinalSubmissionWitness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "input_cut",
+        "decision_ref",
+        "risk_ref",
+        "trigger_ref",
+        "permission_selection"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "final_submission_witness.v1"
+        },
+        "input_cut": {
+          "$ref": "#/$defs/DecisionInputCut"
+        },
+        "decision_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "schema_version",
+            "payload_hash"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+            },
+            "schema_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+            },
+            "payload_hash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "risk_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "schema_version",
+            "payload_hash"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+            },
+            "schema_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+            },
+            "payload_hash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "trigger_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "schema_version",
+            "payload_hash"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+            },
+            "schema_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+            },
+            "payload_hash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "permission_selection": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "selector_revision",
+            "record_id",
+            "payload_hash",
+            "decision_id",
+            "risk_decision_id",
+            "disposition"
+          ],
+          "properties": {
+            "selector_revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "record_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+            },
+            "payload_hash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "decision_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+            },
+            "risk_decision_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+            },
+            "disposition": {
+              "enum": [
+                "GRANTED",
+                "REVOKED"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

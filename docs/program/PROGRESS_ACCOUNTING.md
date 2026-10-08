@@ -41,4 +41,6 @@ ETA optimistic/base/conservative 保持 UNKNOWN，直到可取得同類 package 
 
 執行 `python -B scripts/p00_progress.py docs/program/program_baseline.v1.json` 可重算目前候選數字；無檔案寫入、網路或執行 side effect。tests/platform/test_p00_progress.py 驗證分母守恆、重複 ID、循環依賴、假 evidence、虛構 ETA 等負向情境。
 
-R05 尚未閉合：完整歷史 requirement registry／accepted-core 對照、候選權重獨立審查、可信 evidence intake 與 invalidation、實測 throughput/ETA 仍缺。完整產品 completion 不在本次假裝給出數值。
+`accepted_core_reconciliation.v1.json` 現已綁定 exact master 的 freeze table、final/P7 closure 與 isolated W4R PG closure：C01–C25 + V06 共 **26 leaves、113 accepted scope weight**，每項對應現有 V1 delta deliverable 與仍未交付的整合邊界。113 不是 leaf 數，也不是新 V1 ledger 的 credit；原始 35/151 candidate 不 retroactively accepted，V01–V05／V07 與既有 isolated PG evidence 的範圍各自保留。`scripts/p00_historical_core.py` 驗證來源／權重／列號／delta links，不進行新 acceptance 或重跑歷史 runtime。
+
+R05 尚未閉合：完整歷史 requirement registry、其餘 accepted 能力對照、候選權重獨立審查、可信 evidence intake 與 invalidation、實測 throughput/ETA 仍缺。本 core reconciliation 是必要子集，不把 full historical coverage 改成 COMPLETE。完整產品 completion 保持 UNCALIBRATED。
