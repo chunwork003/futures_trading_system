@@ -14,3 +14,11 @@ Read `docs/work/P00_BASELINE.md`, then `docs/program/p00_status.v1.json` for con
 - `tests/platform/`: schema/isolation/negative Git fixtures; passing offline tests does not establish operational qualification.
 
 Pending: package schema/compiler, full golden-task behavioral evaluations, telemetry definitions, progress ledger and current-projection migration validation. Until independently accepted, these are not enabled automation capabilities. API candidate authoring and generated contracts are indexed by `docs/architecture/V1_API_ARCHITECTURE.md`.
+
+## R04 automation 候選索引
+
+- `AUTOMATION_MINIMUM_AND_SCHEDULER.md`：minimum-useful取捨、adaptive ranking/wake、delegation與activation界線。
+- `automation_mapping.v1.json`：003 Rev2～009每項source acceptance與CE/TEL/REENTRY來源綁定、處置與保留backlog。
+- `scheduler_proposal.schema.v1.json`：只可產生非執行proposal，不是accepted route owner／controller。
+
+原ProgramV2/Capacity2.2與blocked-lane-head規則保持不變；本候選不能授權scheduler activation。

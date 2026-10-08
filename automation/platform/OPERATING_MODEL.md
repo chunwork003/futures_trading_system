@@ -15,15 +15,13 @@ No Skill, registry, timer, quota reset, PASS report or source document independe
 5. Rank only eligible candidates; dispatch at most one exact package. Persist the decision inputs, reasons, idempotency key and next wake.
 6. Reforecast after completion, capacity/provider change, review result or blocker change. Time-triggered wake only starts re-entry.
 
-Candidate score uses normalized [0,1] versioned factors: benefit = 4×critical_path + 3×engineering_value + context_reuse + bounded_wait_age. Cost = expected_tokens/token_budget + expected_time/time_budget + 2×correction_risk. Score = benefit / max(cost,0.1). Ties: older legal-ready timestamp, then stable package ID. Hard gates never become weighted penalties. Missing cost/capacity means UNKNOWN, not free work; use conservative measured class bound or do not dispatch. Waiting age cannot override safety or result-first precedence.
-
-Wake at earliest meaningful event among result/review availability, lease revalidation, provider reset, external-blocker check and configured maximum idle interval. Clamp retry frequency, backoff unchanged blockers, and coalesce duplicate events. Exact bounds, provider adapters and persisted scheduler schema remain to be specified/tested before activation.
+Exact ranking, wake bounds, conditional delegation and policy conflict handling now belong to `AUTOMATION_MINIMUM_AND_SCHEDULER.md`; machine proposals use `scheduler_proposal.schema.v1.json`. Scores remain planning suggestions, never a competing route owner. Missing available capacity follows accepted Capacity2.2 (manual UNKNOWN can ALLOW_WITH_WATCH); missing forecast is a separate ranking uncertainty. Existing blocked-lane-head policy remains unchanged.
 
 ## Automation sequencing
 
-Do not require AUTO-IMP-003 through 009 all completed before product work. Proposed replacement grouping: A1 exact lifecycle and negative tests; A2 result/review/integration/acceptance; A3 controlled dispatch/wake/adaptive ranking. Map each existing package requirement before merging/deprecating anything; accepted components remain intact. This mapping is still pending, so current accepted program is not silently superseded.
+`automation_mapping.v1.json` binds each AUTO-IMP-003..009 source acceptance requirement to A1/A2/A3 or retained deferred replay work. Candidate decision is PAUSE_AUTO_IMP_003_AND_REPLAN. Do not complete all automation first: zero additional automation packages are prerequisites for separately authorized human-directed product work after baseline acceptance. A1 pure lifecycle, A2 intake/review progression, A3 shadow/ranking/wake plus separately authorized controller effects are interleaved with product value. No accepted source/program/grant is superseded by this candidate map.
 
-Product-first budget target: at least 80% accepted engineering effort toward V1 until measured automation savings justify change. This is a planning allocation, not an authorization bypass. Human-directed product packages can proceed after baseline/own authorization with zero new automation packages as prerequisite. A1–A3 can be interleaved where they remove observed bottlenecks.
+Product effort target remains >=80%; observe actual savings before changing allocation. See the mapping for Capacity2.2 adaptations, new requirements not present in legacy009, and retained full historical replay backlog.
 
 ## Reusable execution contract
 

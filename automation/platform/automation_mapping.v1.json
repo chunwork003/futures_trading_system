@@ -1,0 +1,480 @@
+{
+  "schema_version": "p00.automation_mapping.v1",
+  "status": "CANDIDATE_NOT_ACCEPTED",
+  "authority": "NONE_PLANNING_ONLY",
+  "execution_eligible": false,
+  "decision": "PAUSE_AUTO_IMP_003_AND_REPLAN",
+  "automation_packages_before_human_directed_product": 0,
+  "automation_groups_for_controlled_autonomy": [
+    "A1",
+    "A2",
+    "A3"
+  ],
+  "source_baseline": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "accepted_policy_override": false,
+  "items": [
+    {
+      "package_id": "AUTO-IMP-003",
+      "source_revision": "2",
+      "source_path": "automation/packages/AUTO-IMP-003.v2.yaml",
+      "source_baseline": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "source_git_blob": "b6dcc67e2ce8d2df503e05e2775dab371895dbbe",
+      "source_sha256": "87bfd3a7bcc6b6a614a02c81b3c6d8b360cd2eb8b8a5e7e140fd58c99a91898d",
+      "source_dependencies": [
+        "AUTO-IMP-001"
+      ],
+      "destination": "A1",
+      "disposition": "KEEP_COHESIVE_RECOMPILE",
+      "decision": "保留 exact authority/transition/first-invocation/resume；重新綁定 fresh baseline，不沿用舊四檔 authority 或 forecast。",
+      "implementation_credit": "NOT_ASSERTED_BY_MAPPING",
+      "acceptance_mapping": [
+        {
+          "source_index": 0,
+          "source_requirement": "Pure read-only authorization resolution consumes exact pinned RepositorySnapshot/provenance and existing AuthorizationRecord; typed/schema-valid data alone is not authority.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 1,
+          "source_requirement": "Resolve current authorization/lifecycle from durable exact evidence, keep immutable phase snapshots separate; unknown/missing/duplicate/ambiguous/incompatible identity fails closed, no last-record/timestamp-only authority.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 2,
+          "source_requirement": "NOT_AUTHORIZED/AUTHORIZED/RESERVED/CONSUMED/SUPERSEDED/REVOKED remain existing lifecycle states; no synthetic grant or reset. Superseded/revoked never executable; consumed redispatch denied.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 3,
+          "source_requirement": "Fresh first-manual-invocation eligibility after valid dispatch+CONSUMED but not yet invoked is distinct from resume: require exact same dispatch/writer/re-entry evidence, no invocation backfill; never label it resume.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 4,
+          "source_requirement": "Same already-invoked execution resume only with canonical invocation and complete exact lineage/revalidation; missing invocation STOP_NO_BACKFILL, no new authorization/reservation/dispatch/budget.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 5,
+          "source_requirement": "Single canonical writer and one executable identity; incomplete/zero/multiple evidence cannot inherit permissive defaults; competing ownership or current contradiction returns reconciliation.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 6,
+          "source_requirement": "Pure transition guard validates accepted ten-step order and evidence prerequisites; proposals cannot persist states, allocate, reserve, dispatch, consume, invoke or create authority.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 7,
+          "source_requirement": "Execution/auth/cost/provider/review/integration/acceptance axes remain orthogonal; RUNNING provider denial pauses same identity, recovery WAKE_ONLY, no new work bypass while unfinished.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 8,
+          "source_requirement": "Use existing orchestration.resolve_route for route/priority semantics and existing execution_capacity provider/admission/resume evaluators for capacity; no forked queue/rolling estimator/promotion algorithms.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 9,
+          "source_requirement": "Capacity2.2 PRIMARY_5H MANUAL P75/unknown ALLOW_WITH_WATCH/weekly advisory only; actual hard/rate/spend/ordinary denial wins; HUMAN_DIALOGUE fallback retains identical scope/authority/safety.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 10,
+          "source_requirement": "Program V2 rev5 exact operational binding/DAG foundation, architecture/policy proofs and accepted snapshot Git object validation remain upstream; no model/client/task/workspace capacity hard gate.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 11,
+          "source_requirement": "Review PASS != integration != acceptance. Queue/event/status/forecast/review result != authority; reviewer cannot authorize or dispatch; controller inactive and CONTROLLED_AUTO disabled.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 12,
+          "source_requirement": "Results frozen/deep read-only and deterministically serializable, no mutation of input evidence; no unsafe YAML bypass and no own worktree/network/provider/credential I/O.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 13,
+          "source_requirement": "Fixture-owned pinned revisions/evidence; no assertions against mutable live ROOT/HEAD. Current projections supersede only explicit phase fields with bound evidence, not by timestamp inference.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 14,
+          "source_requirement": "Exact four NEW files only; no historical source resurrection, legacy quota assumptions, consumed lineage or budget inheritance. No runtime/broker/DB/migration/LIVE/production/credential authority.",
+          "destination": "A1",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        }
+      ]
+    },
+    {
+      "package_id": "AUTO-IMP-004",
+      "source_revision": "1",
+      "source_path": "automation/packages/AUTO-IMP-004.yaml",
+      "source_baseline": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "source_git_blob": "d45ff80d321664eef0bb0c89caec0d4cabef8ba1",
+      "source_sha256": "5567c4dde90c873d384802f0b4125f7c7fcebc56215b5bbf78e173b4d9dc0e6d",
+      "source_dependencies": [
+        "AUTO-IMP-001"
+      ],
+      "destination": "A1",
+      "disposition": "REMOVE_DUPLICATE_IMPLEMENTATION_ADAPT_TESTS",
+      "decision": "復用 accepted execution_capacity.py；CE-06/P50/P90 需按 Capacity2.2 分 MODE，manual P75/unknown watch、controlled-auto P90；不恢復舊quota演算法。",
+      "implementation_credit": "NOT_ASSERTED_BY_MAPPING",
+      "acceptance_mapping": [
+        {
+          "source_index": 0,
+          "source_requirement": "CE-06",
+          "destination": "A1",
+          "treatment": "ADAPT_WITH_EXPLICIT_POLICY_DIFF",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 1,
+          "source_requirement": "CE-17",
+          "destination": "A1",
+          "treatment": "ADAPT_WITH_EXPLICIT_POLICY_DIFF",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 2,
+          "source_requirement": "CE-21",
+          "destination": "A1",
+          "treatment": "ADAPT_WITH_EXPLICIT_POLICY_DIFF",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 3,
+          "source_requirement": "P50 bypass denied",
+          "destination": "A1",
+          "treatment": "ADAPT_WITH_EXPLICIT_POLICY_DIFF",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 4,
+          "source_requirement": "reset timestamp not proof",
+          "destination": "A1",
+          "treatment": "ADAPT_WITH_EXPLICIT_POLICY_DIFF",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        }
+      ]
+    },
+    {
+      "package_id": "AUTO-IMP-005",
+      "source_revision": "1",
+      "source_path": "automation/packages/AUTO-IMP-005.yaml",
+      "source_baseline": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "source_git_blob": "c59090ab189d39377274dd6e5c6fb63804b99812",
+      "source_sha256": "94d8f0fcc7fb1f56579de5d9e4746388da1fd18e08a598cbb4a3033d5e2d388e",
+      "source_dependencies": [
+        "AUTO-IMP-002",
+        "AUTO-IMP-003",
+        "AUTO-IMP-004"
+      ],
+      "destination": "A1_A2_A3",
+      "disposition": "MERGE_TESTS_WITH_OWNING_BOUNDARIES",
+      "decision": "Assertion需求保留，依authority/intake/scheduling責任分配；避免獨立框架先做完才准產品開發。",
+      "implementation_credit": "NOT_ASSERTED_BY_MAPPING",
+      "acceptance_mapping": [
+        {
+          "source_index": 0,
+          "source_requirement": "CE-01/02/03/06/14/17/21",
+          "destination": "A1_A2_A3",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 1,
+          "source_requirement": "REENTRY-001..004",
+          "destination": "A1_A2_A3",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 2,
+          "source_requirement": "TEL-001..003 contract-only",
+          "destination": "A1_A2_A3",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        }
+      ]
+    },
+    {
+      "package_id": "AUTO-IMP-006",
+      "source_revision": "1",
+      "source_path": "automation/packages/AUTO-IMP-006.yaml",
+      "source_baseline": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "source_git_blob": "56d0d1d2211a00dfcb2de1c72ddb1002687373aa",
+      "source_sha256": "2aec4b29223d7b7126fa1d28c34854242e360178c3b3ab4aded1b6fddd751df3",
+      "source_dependencies": [
+        "AUTO-IMP-005"
+      ],
+      "destination": "A2_LATER",
+      "disposition": "DEFER_FULL_CAMPAIGN_RETAIN_TARGETED_FIXTURES",
+      "decision": "歷史不再可執行、PASS非acceptance先納A2；全量GAP08 replay延後，歷史policy與currentpolicy差异明列不偽造parity。",
+      "implementation_credit": "NOT_ASSERTED_BY_MAPPING",
+      "acceptance_mapping": [
+        {
+          "source_index": 0,
+          "source_requirement": "historical replay 100% semantic match",
+          "destination": "A2_LATER",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 1,
+          "source_requirement": "historic authorization not executable",
+          "destination": "A2_LATER",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 2,
+          "source_requirement": "review PASS not materialization",
+          "destination": "A2_LATER",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        }
+      ]
+    },
+    {
+      "package_id": "AUTO-IMP-007",
+      "source_revision": "1",
+      "source_path": "automation/packages/AUTO-IMP-007.yaml",
+      "source_baseline": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "source_git_blob": "7b735cd06457716b8a54750a07dd7af97d8834a8",
+      "source_sha256": "735b4fe4fe8cb50c9a1dfa5a9dfdfaf601946589d995c5b0102126a5ab7d19c3",
+      "source_dependencies": [
+        "AUTO-IMP-002",
+        "AUTO-IMP-003",
+        "AUTO-IMP-004",
+        "AUTO-IMP-006"
+      ],
+      "destination": "A3",
+      "disposition": "MERGE_SHADOW_COMPARISON",
+      "decision": "保留legacy fixture、fail-closed與no invocation；expected policy差异須approved mapping，不追求錯誤的逐字相同route。",
+      "implementation_credit": "NOT_ASSERTED_BY_MAPPING",
+      "acceptance_mapping": [
+        {
+          "source_index": 0,
+          "source_requirement": "legacy fixture parity",
+          "destination": "A3",
+          "treatment": "ADAPT_WITH_EXPLICIT_POLICY_DIFF",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 1,
+          "source_requirement": "new fail-closed cases",
+          "destination": "A3",
+          "treatment": "ADAPT_WITH_EXPLICIT_POLICY_DIFF",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 2,
+          "source_requirement": "no CODEX invocation",
+          "destination": "A3",
+          "treatment": "ADAPT_WITH_EXPLICIT_POLICY_DIFF",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        }
+      ]
+    },
+    {
+      "package_id": "AUTO-IMP-008",
+      "source_revision": "1",
+      "source_path": "automation/packages/AUTO-IMP-008.yaml",
+      "source_baseline": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "source_git_blob": "62b23c669d5d603ada10bb0643a7ea0ae34a081f",
+      "source_sha256": "a9f110d3eb845d6067374b5790f700f186e9ac6fb033c0919ed6580900ab04b3",
+      "source_dependencies": [
+        "AUTO-IMP-001",
+        "AUTO-IMP-003"
+      ],
+      "destination": "A2",
+      "disposition": "KEEP_INTAKE_CORE_MERGE_WORK_FLOW",
+      "decision": "保留execution/result身份與telemetry provenance；自動review/acceptance progression是新增平台需求，不假稱008已有。",
+      "implementation_credit": "NOT_ASSERTED_BY_MAPPING",
+      "acceptance_mapping": [
+        {
+          "source_index": 0,
+          "source_requirement": "ExecutionID binding",
+          "destination": "A2",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 1,
+          "source_requirement": "ambiguous telemetry STOP",
+          "destination": "A2",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 2,
+          "source_requirement": "manual token evidence rejected",
+          "destination": "A2",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 3,
+          "source_requirement": "existing intake compatibility",
+          "destination": "A2",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        }
+      ]
+    },
+    {
+      "package_id": "AUTO-IMP-009",
+      "source_revision": "1",
+      "source_path": "automation/packages/AUTO-IMP-009.yaml",
+      "source_baseline": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "source_git_blob": "02f225cea42f23a42c5dce881f8648bca0e810b2",
+      "source_sha256": "ac0e17e43e6ecbc50b29fdc71b9f47b90511de7c33bd4eb858b3dca23c1f2693",
+      "source_dependencies": [
+        "AUTO-IMP-007",
+        "AUTO-IMP-008"
+      ],
+      "destination": "A3",
+      "disposition": "MERGE_READONLY_PREFLIGHT",
+      "decision": "保留read-only CLI/one-writer/machine result；原包不含active scheduler/dispatcher，不把009完成當autonomy完成。",
+      "implementation_credit": "NOT_ASSERTED_BY_MAPPING",
+      "acceptance_mapping": [
+        {
+          "source_index": 0,
+          "source_requirement": "read-only side-effect envelope",
+          "destination": "A3",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 1,
+          "source_requirement": "one-writer invariant",
+          "destination": "A3",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 2,
+          "source_requirement": "no auto dispatch",
+          "destination": "A3",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        },
+        {
+          "source_index": 3,
+          "source_requirement": "machine-readable result",
+          "destination": "A3",
+          "treatment": "PRESERVE_REQUIREMENT",
+          "evidence_status": "NOT_QUALIFIED_BY_MAPPING"
+        }
+      ]
+    }
+  ],
+  "new_requirements_not_covered_by_003_009": [
+    "BOUNDED_WAVE_DELEGATION",
+    "FRESH_INDEPENDENT_REVIEW_ORCHESTRATION",
+    "INTEGRATION_AND_ACCEPTANCE_CAS",
+    "ADAPTIVE_RANKING_AND_DURABLE_WAKE",
+    "MEASURABLE_EXECUTION_CHANNEL_AND_CONTROLLER_EFFECTS"
+  ],
+  "preserved_backlog": [
+    "FULL_GAP08_HISTORICAL_REPLAY_CAMPAIGN",
+    "BROKER_AND_PRODUCTION_ACTIVATION_GATES"
+  ],
+  "notes": [
+    "Grouping does not define exact authorized source scopes. Future cohesive packages require fresh compilation/review/grants.",
+    "Current blocked-lane-head rule remains; independent-lane scheduling requires an explicitly accepted authority-model successor."
+  ],
+  "assertion_destinations": {
+    "CE-01": {
+      "destination": "A1",
+      "applicability": "UNCHANGED_NO_REDISPATCH"
+    },
+    "CE-02": {
+      "destination": "A1",
+      "applicability": "UNCHANGED_EXACT_REVISION"
+    },
+    "CE-03": {
+      "destination": "A1",
+      "applicability": "UNCHANGED_STALE_BUNDLE"
+    },
+    "CE-14": {
+      "destination": "A1",
+      "applicability": "UNCHANGED_SUPERSEDED_DENY"
+    },
+    "CE-06": {
+      "destination": "A1",
+      "applicability": "HISTORICAL_RESERVE_VECTOR_RETAINED_CURRENT_ADMISSION_USES_CAPACITY_2_2_BY_MODE"
+    },
+    "CE-17": {
+      "destination": "A1",
+      "applicability": "UNCHANGED_RESET_TIME_NOT_PROVIDER_EVIDENCE"
+    },
+    "CE-21": {
+      "destination": "A1",
+      "applicability": "UNCHANGED_FRESH_RERESOLUTION"
+    },
+    "TEL-001": {
+      "destination": "A2",
+      "applicability": "CONTROLLED_AUTO_REQUIRES_MEASURABLE_CHANNEL_DO_NOT_REMOVE_ACCEPTED_MANUAL_FALLBACK"
+    },
+    "TEL-002": {
+      "destination": "A2",
+      "applicability": "AMBIGUOUS_BINDING_CANNOT_SUPPLY_AUTOMATED_USAGE_AUTHORITY"
+    },
+    "TEL-003": {
+      "destination": "A2",
+      "applicability": "UNCHANGED_NO_FABRICATED_PRIMARY_TOKENS"
+    },
+    "REENTRY-001": {
+      "destination": "A3",
+      "applicability": "REUSE_CANONICAL_ROUTE_NO_NEW_GRANT"
+    },
+    "REENTRY-002": {
+      "destination": "A3",
+      "applicability": "UNCHANGED_UNRESOLVED_DECISION_STOPS_AFFECTED_WORK"
+    },
+    "REENTRY-003": {
+      "destination": "A3",
+      "applicability": "UNCHANGED_REHYDRATE_CURRENT"
+    },
+    "REENTRY-004": {
+      "destination": "A3",
+      "applicability": "UNCHANGED_STATUS_ONLY_NO_EXECUTION"
+    }
+  },
+  "assertion_source": {
+    "path": "automation/specs/negative_assertions.v1.yaml",
+    "sha256": "e3b6f790f0a5c84bfd54615902b9f88c401a703b576228c746dca29b2396dfd4",
+    "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f"
+  }
+}

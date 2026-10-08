@@ -90,3 +90,11 @@ Official Python/.NET/Node listings were read to select an exact candidate toolch
 P02 revision2 has no known authoring gaps and remains pending independent review/authority. Full platform suite: **147 passed in 94.98 seconds**. Contract generation, whitespace and protected scope checks PASS. These checks do not establish framework compatibility or test-host isolation in a running application; those are P02 implementation acceptance.
 
 Actual P02 revision2 compilation at `fb28fd49eb2a52fd3c7092f3cdac7144a0d969bf`: PACKAGE_NOT_READY, CONTEXT_COMPACTION_REQUIRED and DEPENDENCY_ACCEPTANCE_NOT_BOUND; mandatory bytes 803810. No PUBLIC_SEMANTIC_GAPS emitted. Independent review and execution authority remain absent.
+
+## R04 minimum-useful automation / scheduler checkpoint
+
+Mapped all 37 source package acceptance requirements (003 Rev2 through009) and all14 CE/TEL/REENTRY assertions to candidate destinations, with exact master Git blob/hash provenance. Capacity2.2/manual fallback and blocked-lane-head policy differences are explicit; no accepted engine/policy/program was changed. Original009 is shadow-only and does not cover active controller effects. Full historical replay is retained as deferred backlog.
+
+Full platform suite: **162 passed in96.11 seconds**. After adding explicit negative-assertion source coverage, final affected suite: **15 passed in0.74 seconds**. Tests reject missing hard gates, higher-priority work bypass, manual-watch promotion to auto and execution/side-effect claims. Rational-score vectors check the proposed formula only; they are not a competing scheduler.
+
+Candidate decision: PAUSE_AUTO_IMP_003_AND_REPLAN; zero extra automation prerequisites for separately authorized human-directed product work after P00 acceptance. A1/A2/A3 controlled-autonomy work remains unimplemented/unqualified. No scheduler changes, agent dispatch, effect adapter or acceptance were performed. R04 authoring is complete pending independent review; P00 closure remains0/8 with6 partial streams.
