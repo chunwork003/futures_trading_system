@@ -1,0 +1,79 @@
+{
+  "schema_version": "p00.checkpoint_evidence.v1",
+  "client_date": "2026-10-09",
+  "timezone": "Asia/Taipei",
+  "stage": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
+  "source_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "entry_candidate": "aa6c8f556e1653700f2be9205673bffb98a690a2",
+  "design_candidate": "afa1666bb0fe452dadac7b67e9627f3df1b832c2",
+  "branch": "architecture/p00-v1-baseline",
+  "candidate_artifact_count": 19,
+  "candidate_bundle": "c176ed234a27dede5bbe7e7fc2275d611b390ba6834c7676a0eeb33c95379627",
+  "review_packet": "docs/program/reviews/P00-R01-R05.review-request.v1.json",
+  "checks": {
+    "full_platform": {
+      "command": "python -B -m pytest tests/platform -q -p no:cacheprovider --basetemp .tmp/p00-r01-r05-full",
+      "passed": 266,
+      "seconds": 109.41,
+      "last_mapping_refinement_coverage": "FINAL_TARGETED_SUITE_AFTER_FULL_IMPORT"
+    },
+    "final_targeted": {
+      "command": "python -B -m pytest tests/platform/test_p00_adapter_recovery_cut.py tests/platform/test_p00_historical_core.py -q -p no:cacheprovider --basetemp .tmp/p00-r01-r05-final-targeted",
+      "passed": 56,
+      "seconds": 7.81
+    },
+    "dto_mapping": {
+      "schemas": 70,
+      "groups": 34,
+      "new_record_fields": 80,
+      "accepted_source_files": 11,
+      "status": "CANDIDATE_STRUCTURE_PASS"
+    },
+    "accepted_core": {
+      "leaves": 26,
+      "historical_weight": 113,
+      "new_v1_credit": 0,
+      "status": "EXACT_SOURCE_RECONCILIATION_PASS"
+    },
+    "active_policy_exact_git_hashes": "6_UNIQUE_ACTIVE_POLICIES_PASS",
+    "generated_openapi_drift": "PASS",
+    "diff_whitespace": "PASS",
+    "scope": "19_EXACT_P00_PATHS_PASS",
+    "protected_current_pointers": "UNCHANGED",
+    "request_sections": 91,
+    "full_historical_semantic_coverage": "INCOMPLETE"
+  },
+  "environment": {
+    "python": "3.14.2",
+    "pytest": "9.1.1",
+    "jsonschema": "4.26.0",
+    "polars": "1.44.1"
+  },
+  "publication": {
+    "status": "BLOCKED_BY_AUTOMATIC_APPROVAL_REVIEW",
+    "attempted_command": "git push origin architecture/p00-v1-baseline",
+    "attempt_outcome": "REJECTED_BEFORE_EXECUTION",
+    "remote_candidate_last_verified": "aa6c8f556e1653700f2be9205673bffb98a690a2",
+    "remote_master_last_verified": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+    "reason": "自動核准審查認定 GitHub egress／remote mutation，尚未有針對 payload、repository、branch 的明確推送核准。",
+    "resolution": "待使用者核准具體 candidate checkpoint 與 destination；不可繞過拒絕或假稱 PUSHED"
+  },
+  "review": "NOT_PERFORMED",
+  "P00_closure": {
+    "closed": 0,
+    "total": 8,
+    "partial": 7
+  },
+  "V1_journeys": {
+    "verified": 0,
+    "required": 6
+  },
+  "product_completion": "UNCALIBRATED",
+  "runtime_dispatch_authorized": false,
+  "next": "R05_FULL_HISTORICAL_REQUIREMENT_AND_ACCEPTED_CAPABILITY_COVERAGE",
+  "model": {
+    "recommended_next": "Sol6.1 High",
+    "switch_recommended": false,
+    "reason": "歷史需求與跨 owner governance/context 審查準備仍需較高 reasoning；無需為 routine authoring 升級XHigh"
+  }
+}
