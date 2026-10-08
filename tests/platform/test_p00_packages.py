@@ -23,8 +23,7 @@ def test_real_candidate_scope_matches_context_registration(name):
     assert policy["packages"][name]["allowed_prefixes"] == []
     assert package["authority"]["parent_wave_grant"] is None
     assert package["dependencies"]["required_packages"] == ["P00"]
-    if name == "P02":
-        assert package["design"]["public_semantic_gaps"]
+    assert package["design"]["status"] == "DEFINED_CANDIDATE"
     # Candidate design closure never manufactures P00 acceptance or a package grant.
     assert package["dependencies"]["required_acceptances"] == []
 

@@ -2,7 +2,7 @@
   "schema_version": "p00.package.v1",
   "identity": {
     "package_id": "P02",
-    "revision": 1,
+    "revision": 2,
     "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
     "requirement_ids": [
       "OWNER-13",
@@ -49,7 +49,23 @@
       "tests/browser/workspace.spec.ts",
       "tests/browser/playwright.config.ts",
       "tests/fixtures/workspace_contract_cases.json",
-      "docs/program/packages/P02_RESULT.md"
+      "docs/program/packages/P02_RESULT.md",
+      ".python-version",
+      ".node-version",
+      "global.json",
+      "requirements/service.in",
+      "requirements/service-win.lock",
+      "requirements/service-linux.lock",
+      "requirements/build-tools.lock",
+      "application/packages.lock.json",
+      "tests/application/packages.lock.json",
+      "tests/application/TestHost/TestHost.csproj",
+      "tests/application/TestHost/Program.cs",
+      "tests/application/TestHost/packages.lock.json",
+      "tests/service/fixture_provider.py",
+      "tests/service/host.py",
+      "tests/browser/run_hosts.py",
+      "docs/program/packages/P02_BUILD_RESOLUTION.json"
     ],
     "protected_scope": [
       "trading/execution.py",
@@ -74,7 +90,8 @@
       "O React workspace"
     ],
     "input_output_schemas": [
-      "docs/architecture/contracts/python.openapi.v1.json"
+      "docs/architecture/contracts/python.openapi.v1.json",
+      "docs/architecture/contracts/bff.openapi.v1.json"
     ],
     "state_transitions": [
       "docs/architecture/V1_STATE_MACHINES.md"
@@ -85,11 +102,10 @@
     "compatibility_rules": [
       "Use generated BFF/Python DTOs and exact CSRF/cookie/internal-service boundaries.",
       "No direct browser Python/DB access, no duplicated quant or recovery implementation.",
-      "P02 contract-harness journey is not J1/J2 release acceptance; P03/P04 supply usable durable research."
+      "P02 contract-harness journey is not J1/J2 release acceptance; P03/P04 supply usable durable research.",
+      "Build/test-host contract owner: docs/architecture/V1_APPLICATION_BUILD_TESTHOST.md; exact transitive locks are first authorized implementation outputs, replay must be locked. Test stores cannot activate through ordinary runtime settings."
     ],
-    "public_semantic_gaps": [
-      "Exact dependency lock/SDK/container build matrix and test-host identity adapter boundary must be specified before execution."
-    ]
+    "public_semantic_gaps": []
   },
   "dependencies": {
     "required_acceptances": [],
@@ -133,18 +149,21 @@
   },
   "completion": {
     "evidence_artifacts": [
-      "docs/program/packages/P02_RESULT.md"
+      "docs/program/packages/P02_RESULT.md",
+      "docs/program/packages/P02_BUILD_RESOLUTION.json"
     ],
     "acceptance_checks": [
       "U01-U08 exact test/browser evidence plus reviewed builds",
       "No real PG/broker credentials or production activation",
-      "Durable jobs not claimed complete; J1/J2 not credited by harness"
+      "Durable jobs not claimed complete; J1/J2 not credited by harness",
+      "Windows-x64 and Linux-glibc-x64 build/test evidence with exact tool/lock hashes; no claim for untested lanes",
+      "Ordinary published artifact excludes test hosts/providers and cannot activate fixtures through config/header input"
     ],
     "stop_conditions": [
       "P00 baseline not independently accepted or exact package grant missing",
       "Any unresolved public_semantic_gaps",
       "Test adapter can be enabled in ordinary deployment",
-      "New external dependency installation without approved lock/source policy",
+      "Dependency family/source or OS/architecture outside the frozen build-profile policy requires amendment; no global install without authorization",
       "API/public domain semantics change needs Architect amendment"
     ]
   }

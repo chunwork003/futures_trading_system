@@ -1,0 +1,33 @@
+{
+  "schema_version": "p00.application_build_profile.v1",
+  "status": "CANDIDATE_NOT_ACCEPTED",
+  "verified_on": "2026-10-09",
+  "execution_eligible": false,
+  "toolchain": {
+    "python": "3.14.8",
+    "python_mode": "GIL",
+    "dotnet_sdk": "10.0.401",
+    "dotnet_target": "net10.0",
+    "aspnet_runtime": "10.0.12",
+    "node": "24.21.0",
+    "npm": "BUNDLED_WITH_PINNED_NODE_RECORD_EXACT_AT_BUILD"
+  },
+  "lanes": [
+    "windows-x64",
+    "linux-glibc-x64"
+  ],
+  "dependency_resolution": "FIRST_AUTHORIZED_BUILD_COMPILE_THEN_LOCKED_REPLAY",
+  "package_hashes": "NOT_RESOLVED_NOT_FABRICATED",
+  "container_owner": "P11",
+  "durable_identity_owner": "P03_APPLICATION_SCHEMA",
+  "test_activation": "TEST_COMPOSITION_ROOT_ONLY",
+  "ordinary_missing_provider": "AUTH_FIRST_THEN_503_DEGRADED",
+  "production_imports_tests": false,
+  "browser_tls_bypass": false,
+  "builds_verified": false,
+  "sources": [
+    "https://www.python.org/downloads/",
+    "https://dotnet.microsoft.com/en-us/download/dotnet/10.0",
+    "https://nodejs.org/en/download"
+  ]
+}

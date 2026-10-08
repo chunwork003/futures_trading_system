@@ -82,3 +82,9 @@ Five new closed snapshot/source/publication schemas and metadata-bound import re
 P01 revision5 records no known authoring gap and remains pending independent semantic review. Product conformance is implementation acceptance; moving it there removes a circular pre-implementation requirement without granting execution. Cancellation/infrastructure failure does not fabricate domain rejection receipts. REUSED preserves the first source manifest while recording the new import metadata/report independently.
 
 Actual P01 revision5 compilation at `6564594fdb12fbfb7cf5c3bfc12d1dcd1d460f60`: PACKAGE_NOT_READY, reasons CONTEXT_COMPACTION_REQUIRED and DEPENDENCY_ACCEPTANCE_NOT_BOUND. PUBLIC_SEMANTIC_GAPS is no longer emitted. Full mandatory bytes 851023; source/snapshot consistency passes, independent semantic review is not asserted. Evidence is preserved under compilation/P01-r5-6564594.
+
+## P02 build / test-host design checkpoint — 2026-10-09
+
+Official Python/.NET/Node listings were read to select an exact candidate toolchain; sources and limitations are recorded in V1_APPLICATION_BUILD_TESTHOST.md. Dependency acquisition/locked replay, separate test-host locks and production artifact exclusion are specified; no dependency installation, actual cross-platform build, browser or container validation was performed. P03 now owns durable application identity/session integration so P04 can become usable before P11 deployment qualification.
+
+P02 revision2 has no known authoring gaps and remains pending independent review/authority. Full platform suite: **147 passed in 94.98 seconds**. Contract generation, whitespace and protected scope checks PASS. These checks do not establish framework compatibility or test-host isolation in a running application; those are P02 implementation acceptance.

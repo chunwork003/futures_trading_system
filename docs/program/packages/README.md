@@ -29,3 +29,5 @@ Latest operational result/handoff remains the accepted current pointers resolved
 P01 revision5：snapshot machine schema、Q01-Q10 合成規格案例與 publication/receipt 候選語意已定義，目前沒有已知 authoring gap，仍待獨立 semantic review。真正產品／filesystem／DB conformance 是 implementation acceptance，不是實作前要先完成的 gate。P02 設計缺口及共用 P00 acceptance/context/exact authorization gate 仍存在。先前 compilation 是歷史結果，不代表 revision5 current。
 
 最新 P01 revision5 編譯檢查點：`compilation/P01-r5-6564594/`，source-bound compiler 回傳 PACKAGE_NOT_READY；僅移除 PUBLIC_SEMANTIC_GAPS，context 與 P00 acceptance gate 仍未通過，另須 independent review 與 exact authorization。舊 revision1 compilation 保留，不覆寫。
+
+P02 revision2：建置矩陣、首次 dependency compile／locked replay、test-host隔離與身份／provider ownership已定義；沒有已知 authoring gap，仍待獨立review。Build artifacts與兩平台conformance由implementation提供，尚未實際建置。P03同時整合application-owned durable identity/session，P11負責部署環境。
