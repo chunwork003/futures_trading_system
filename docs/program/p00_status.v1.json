@@ -7,9 +7,9 @@
   "authority": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
   "runtime_dispatch_authorized": false,
   "completed_this_turn": [
-    "Materialized provisional known-V1-integration-delta ledger; preserved exact P01/P02 deliverable weights and excluded P00 design from runtime credit",
-    "Added read-only candidate accounting and denominator-conservation checks; rejects unverified non-empty evidence instead of manufacturing acceptance",
-    "18 targeted tests and full platform suite 180 passed in 92.22 seconds; generated contracts and protected source checks PASS; trusted evidence intake and full historical coverage remain open"
+    "Added explicit P01 dataset schema closure and P02 all-endpoint reading profiles; exact original source remains linked",
+    "Added source-bound result reading index distinguishing accepted predecessor from historical P01/P02 NOT_READY compilations",
+    "22 targeted tests passed; full platform suite194 passed in91.96 seconds; committed snapshot measurement pending"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -91,7 +91,12 @@
     "docs/program/program_baseline.v1.json",
     "docs/program/PROGRESS_ACCOUNTING.md",
     "scripts/p00_progress.py",
-    "tests/platform/test_p00_progress.py"
+    "tests/platform/test_p00_progress.py",
+    "automation/platform/context_selection.v1.json",
+    "automation/platform/result_reading_index.v1.json",
+    "automation/platform/CONTEXT_SELECTION_AND_RESULT_INTAKE.md",
+    "scripts/p00_result_context.py",
+    "tests/platform/test_p00_result_context.py"
   ],
   "remaining": [
     {
@@ -121,7 +126,7 @@
     },
     {
       "id": "R06",
-      "work": "Candidate source-bound reading pack implemented and measured: ~50% byte reduction, but 367502/368689 bytes remain above 131072 target. Exact history references/JSON reconstruction tested. Remaining package-selective schema closure, latest-delta intake, independent projection review and approved resolver migration; full-source compiler gate unchanged.",
+      "work": "Explicit package-selective OpenAPI closure and exact result-reference reader authored. Pending committed snapshot measurement, complete pending result/review/STOP discovery, independent projection review and authorized resolver migration; full-source compiler gate unchanged.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -135,12 +140,12 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "R06 package-selective context/latest-result intake; then remaining R01 adapter/RecoveryCut coverage and R05 historical coverage/trusted progress intake. P00 independent review and final owner coverage remain open. Do not activate controller, execute P01/P02, or self-accept baseline.",
+  "next_continuation_point": "Continue R06: qualify selected reading pack and finish explicit pending-result/review/STOP current intake before any compiler migration. Then R01 adapter/RecoveryCut coverage, R05 historical coverage/trusted progress intake and independent P00 review. No product execution.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_DIFF_CHECK",
     "protected_tracked_files": "PASS_ONLY_P00_CANDIDATE_SCOPE_CHANGED",
-    "platform_tests": "180_PASSED_FULL_PLATFORM_SUITE_92.22_SECONDS",
+    "platform_tests": "194_PASSED_FULL_PLATFORM_SUITE_91.96_SECONDS",
     "product_tests": "NOT_RUN_DOCS_ONLY",
     "independent_review": "NOT_STARTED",
     "actual_active_policy_git_hashes": "PASS",
@@ -177,7 +182,7 @@
       "independent_review": "NOT_PERFORMED",
       "compiler_gate_changed": false
     },
-    "final_impacted_tests": "18_PASSED_PROGRESS_ACCOUNTING_0.11_SECONDS",
+    "final_impacted_tests": "22_PASSED_CONTEXT_AND_RESULT_0.17_SECONDS",
     "real_reading_pack_reconstruction": "PASS_ALL_JSON_TEXT_AND_ARCHIVE_HASHES",
     "p01_revision5_compilation": {
       "snapshot": "6564594fdb12fbfb7cf5c3bfc12d1dcd1d460f60",
@@ -220,14 +225,14 @@
   "weighted_v1_completion": "UNCALIBRATED",
   "human_action_required": "NONE_FOR_LOCAL_P00_CONTINUATION",
   "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION",
-  "previous_checkpoint": "dfabcf2b7bd89ee9bbf7491c6362e404488b590e",
+  "previous_checkpoint": "128470ba5aa5565aaf100b31bb55cc50f0829995",
   "remote_publication": {
     "initial_checkpoint": "PUSHED_CONFIRMED",
     "current_turn": "VERIFY_CURRENT_BRANCH_PUBLICATION_AT_REENTRY",
     "branch": "architecture/p00-v1-baseline",
     "master_unchanged_at_last_check": true,
     "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
-    "last_verified_published_commit": "dfabcf2b7bd89ee9bbf7491c6362e404488b590e"
+    "last_verified_published_commit": "128470ba5aa5565aaf100b31bb55cc50f0829995"
   },
   "continuation_response_template": "目前總進度O/O(已完成數量/總共多少須完成數量)，下一步驟預計執行OO，請回覆「繼續」，使工作繼續執行",
   "continuation_response_rule": "Append the template to the normal reply when work remains; substitute actual counts and next action. Counts use R01-R08 closed workstreams only, never files/tests or partial completion. Identify P00 closure scope explicitly, not product completion. Preserve stable denominator unless scope changes are explicitly recorded.",

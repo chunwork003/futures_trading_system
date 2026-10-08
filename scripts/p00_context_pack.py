@@ -14,6 +14,64 @@ except ModuleNotFoundError:
 PACKER_PATH = "scripts/p00_context_pack.py"
 MARKER = "## HISTORICAL CURRENT PROJECTIONS BELOW — audit only, superseded by current section above"
 HISTORY_PATHS = {"docs/CURRENT_STATE.md", "docs/CURRENT_WORK.md"}
+SELECTION_PATH = "automation/platform/context_selection.v1.json"
+
+
+def project_openapi(value, selection):
+    """依明示 root 建立 schema closure；不以名稱猜測相依、不刪 root 的限制。"""
+    schemas = value["components"]["schemas"]
+    paths = selection["paths"]
+    roots = selection["schemas"]
+    if len(set(paths)) != len(paths) or len(set(roots)) != len(roots):
+        raise ValueError("DUPLICATE_SELECTION")
+    if set(paths) - value["paths"].keys() or set(roots) - schemas.keys():
+        raise ValueError("UNKNOWN_SELECTION_ROOT")
+    result = deepcopy(value)
+    result["paths"] = {p: deepcopy(value["paths"][p]) for p in paths}
+    result["components"].pop("schemas")
+    needed = set(roots)
+
+    def references(node):
+        if isinstance(node, dict):
+            if "$dynamicRef" in node or "$recursiveRef" in node:
+                raise ValueError("UNSUPPORTED_REFERENCE")
+            if "$ref" in node:
+                ref = node["$ref"]
+                prefix = "#/components/schemas/"
+                if not isinstance(ref, str) or not ref.startswith(prefix):
+                    if not isinstance(ref, str) or not ref.startswith("#/components/"):
+                        raise ValueError("UNSUPPORTED_REFERENCE")
+                    # 非 schema components 完整保留；核對目標存在，內容已在整體 traversal 內。
+                    target = result
+                    try:
+                        for part in ref[2:].split("/"):
+                            target = target[part.replace("~1", "/").replace("~0", "~")]
+                    except (KeyError, TypeError):
+                        raise ValueError("UNRESOLVED_COMPONENT_REFERENCE") from None
+                else:
+                    name = ref[len(prefix):]
+                    if name not in schemas:
+                        raise ValueError("UNRESOLVED_SCHEMA_REFERENCE")
+                    needed.add(name)
+            for item in node.values():
+                references(item)
+        elif isinstance(node, list):
+            for item in node:
+                references(item)
+
+    # 保留 info/security/servers/extensions 與非 schema components；其 refs 也需閉合。
+    references(result)
+    scanned = set()
+    while needed - scanned:
+        name = sorted(needed - scanned)[0]
+        references(schemas[name])
+        scanned.add(name)
+    result["components"]["schemas"] = {name: deepcopy(schemas[name]) for name in sorted(needed)}
+    return result, {"selected_paths": paths, "schema_roots": roots,
+                    "included_schemas": sorted(needed),
+                    "excluded_paths": sorted(set(value["paths"]) - set(paths)),
+                    "excluded_schemas": sorted(set(schemas) - needed),
+                    "full_source_load_rule": "Load full exact source when scope, dependencies, review or contradictions require excluded contracts."}
 
 
 def digest(raw):
@@ -72,16 +130,32 @@ def expand_json(document, pool):
     return value
 
 
-def build_pack(root, request):
+def build_pack(root, request, selective=False):
     context = resolve(root, request)
     snapshot = Snapshot(root, request["baseline_sha"])
     binding = bind_loaded_source(snapshot, PACKER_PATH, __file__)
     pool, documents = {}, []
+    selections = {}
+    selection_evidence = None
+    if selective:
+        policy = snapshot.read_json(SELECTION_PATH)
+        if policy["status"] != "CANDIDATE_READING_ONLY":
+            raise ValueError("INVALID_SELECTION_POLICY")
+        selections = policy["packages"][request["package_id"]]
+        selection_evidence = snapshot.read(SELECTION_PATH)[1]
+        mandatory_paths = {e["path"] for e in context["mandatory_context"]}
+        if set(selections) - mandatory_paths:
+            raise ValueError("SELECTION_OUTSIDE_CONTEXT")
     for evidence in context["mandatory_context"]:
         raw, actual = snapshot.read(evidence["path"])
         if actual != evidence:
             raise ValueError("SOURCE_EVIDENCE_MISMATCH")
-        documents.append({"source": actual, **encode_document(actual["path"], raw, pool)})
+        if actual["path"] in selections:
+            projected, selection = project_openapi(json.loads(raw), selections[actual["path"]])
+            documents.append({"source": actual, "projection": selection,
+                              **encode_document(actual["path"], canonical(projected), pool)})
+        else:
+            documents.append({"source": actual, **encode_document(actual["path"], raw, pool)})
     for document in documents:
         if document["format"] == "JSON":
             expand_json(document, pool)
@@ -89,6 +163,7 @@ def build_pack(root, request):
             "authority": "NONE_READING_AID_ONLY", "execution_eligible": False,
             "request": context["request"], "source_baseline_sha": context["source_baseline_sha"],
             "source_context_hash": context["context_hash"], "packer_binding": binding,
+            "selection_policy": selection_evidence,
             "documents": documents, "schema_pool": pool,
             "optional_context": context["optional_context"],
             "forbidden_stale_context": context["forbidden_stale_context"],
@@ -111,9 +186,10 @@ def main():
     parser.add_argument("--request", required=True)
     parser.add_argument("--output", required=True)
     parser.add_argument("--metrics", required=True)
+    parser.add_argument("--selective", action="store_true", help="候選明示 schema closure；不改 compiler gate")
     args = parser.parse_args()
     request = json.loads(Path(args.request).read_text(encoding="utf-8-sig"))
-    raw, metrics = build_pack(args.root, request)
+    raw, metrics = build_pack(args.root, request, selective=args.selective)
     Path(args.output).write_bytes(raw)
     Path(args.metrics).write_bytes(canonical(metrics) + b"\n")
 

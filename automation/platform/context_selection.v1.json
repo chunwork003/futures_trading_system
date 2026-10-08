@@ -1,0 +1,102 @@
+{
+  "schema_version": "p00.context_selection.v1",
+  "status": "CANDIDATE_READING_ONLY",
+  "packages": {
+    "P01": {
+      "docs/architecture/contracts/python.openapi.v1.json": {
+        "paths": [],
+        "schemas": [
+          "DatasetManifest",
+          "DatasetVersion",
+          "DatasetCoverageRequest",
+          "DatasetCalendarSnapshot",
+          "DatasetMappingSnapshot",
+          "DatasetQualityPolicySnapshot",
+          "DatasetSourceManifest",
+          "DatasetPublicationResult",
+          "DatasetQualityReport",
+          "DatasetImportReceipt",
+          "ImportMetadata",
+          "DatasetImportRequest",
+          "Error"
+        ]
+      },
+      "docs/architecture/contracts/bff.openapi.v1.json": {
+        "paths": [],
+        "schemas": [
+          "DatasetManifest",
+          "DatasetVersion",
+          "DatasetCoverageRequest",
+          "DatasetCalendarSnapshot",
+          "DatasetMappingSnapshot",
+          "DatasetQualityPolicySnapshot",
+          "DatasetSourceManifest",
+          "DatasetPublicationResult",
+          "DatasetQualityReport",
+          "DatasetImportReceipt",
+          "ImportMetadata",
+          "DatasetImportRequest",
+          "Error"
+        ]
+      }
+    },
+    "P02": {
+      "docs/architecture/contracts/python.openapi.v1.json": {
+        "paths": [
+          "/api/v1/datasets",
+          "/api/v1/strategies",
+          "/api/v1/research-runs",
+          "/api/v1/operations/{id}",
+          "/api/v1/operations/{id}/cancel",
+          "/api/v1/research-runs/{id}/results",
+          "/api/v1/simulation-sessions",
+          "/api/v1/simulation-sessions/{id}",
+          "/api/v1/simulation-sessions/{id}/commands",
+          "/api/v1/accounts/{id}/state",
+          "/api/v1/reconciliation-cases",
+          "/api/v1/audit",
+          "/api/v1/system/status",
+          "/api/v1/commands/{id}",
+          "/api/v1/dataset-imports",
+          "/api/v1/strategy-configs",
+          "/api/v1/strategy-configs/{id}",
+          "/api/v1/configuration-catalog",
+          "/api/v1/reconciliation-cases/{id}/resolve",
+          "/api/v1/artifacts/{id}/rows",
+          "/api/v1/artifacts/{id}/download"
+        ],
+        "schemas": []
+      },
+      "docs/architecture/contracts/bff.openapi.v1.json": {
+        "paths": [
+          "/api/v1/datasets",
+          "/api/v1/strategies",
+          "/api/v1/research-runs",
+          "/api/v1/operations/{id}",
+          "/api/v1/operations/{id}/cancel",
+          "/api/v1/research-runs/{id}/results",
+          "/api/v1/simulation-sessions",
+          "/api/v1/simulation-sessions/{id}",
+          "/api/v1/simulation-sessions/{id}/commands",
+          "/api/v1/accounts/{id}/state",
+          "/api/v1/reconciliation-cases",
+          "/api/v1/audit",
+          "/api/v1/system/status",
+          "/api/v1/commands/{id}",
+          "/api/v1/dataset-imports",
+          "/api/v1/strategy-configs",
+          "/api/v1/strategy-configs/{id}",
+          "/api/v1/configuration-catalog",
+          "/api/v1/reconciliation-cases/{id}/resolve",
+          "/api/v1/artifacts/{id}/rows",
+          "/api/v1/artifacts/{id}/download",
+          "/auth/csrf",
+          "/auth/login",
+          "/auth/session",
+          "/auth/logout"
+        ],
+        "schemas": []
+      }
+    }
+  }
+}
