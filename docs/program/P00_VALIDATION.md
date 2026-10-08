@@ -98,3 +98,11 @@ Mapped all 37 source package acceptance requirements (003 Rev2 through009) and a
 Full platform suite: **162 passed in96.11 seconds**. After adding explicit negative-assertion source coverage, final affected suite: **15 passed in0.74 seconds**. Tests reject missing hard gates, higher-priority work bypass, manual-watch promotion to auto and execution/side-effect claims. Rational-score vectors check the proposed formula only; they are not a competing scheduler.
 
 Candidate decision: PAUSE_AUTO_IMP_003_AND_REPLAN; zero extra automation prerequisites for separately authorized human-directed product work after P00 acceptance. A1/A2/A3 controlled-autonomy work remains unimplemented/unqualified. No scheduler changes, agent dispatch, effect adapter or acceptance were performed. R04 authoring is complete pending independent review; P00 closure remains0/8 with6 partial streams.
+
+## R05 candidate progress ledger checkpoint
+
+Known remaining V1 integration ledger: 127 provisional engineering weight points, P00 excluded from runtime credit, exact P01/P02 weights retained. 13 package groups pending acceptance; 9-node dependency critical-chain hypothesis is not duration CPM. P01-P12 planning effort sum 71-111 effective days excludes P00; calendar ETA remains UNKNOWN. No product completion percentage is inferred from zero delta credit.
+
+Targeted progress tests: **18 passed in 0.11 seconds**. Full platform suite: **180 passed in 92.22 seconds**. Generator drift and protected runtime/policy/state checks PASS. Candidate calculator rejects non-empty gate/acceptance/journey evidence and invalidations because trusted intake is not yet implemented. Split conservation and zero added correction weight are verified, not operational acceptance.
+
+R05 remains partial: historical requirement/accepted-core coverage, independent baseline weight review, trusted intake/invalidation and measured ETA remain open. P00 closure remains 0/8, now 7 partial streams. Owner sections65/66 record partial coverage only. Product runtime, CODEX dispatch and independent review were not executed.

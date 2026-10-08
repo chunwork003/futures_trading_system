@@ -1,0 +1,883 @@
+{
+  "schema_version": "p00.progress.v1",
+  "revision": 1,
+  "status": "CANDIDATE_NOT_FROZEN",
+  "authority": "NONE",
+  "source_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "scope": "KNOWN_V1_REMAINING_INTEGRATION_DELTA",
+  "historical_product_coverage": "INCOMPLETE",
+  "weight_basis": "PROVISIONAL_RELATIVE_ENGINEERING_JUDGMENT_NOT_DAYS",
+  "packages": [
+    {
+      "id": "P00",
+      "dependencies": [],
+      "kind": "DESIGN",
+      "effort_days": null,
+      "acceptance": null
+    },
+    {
+      "id": "P01",
+      "dependencies": [
+        "P00"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        6,
+        9
+      ],
+      "acceptance": null
+    },
+    {
+      "id": "P02",
+      "dependencies": [
+        "P00"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        5,
+        8
+      ],
+      "acceptance": null
+    },
+    {
+      "id": "P03",
+      "dependencies": [
+        "P02"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        8,
+        12
+      ],
+      "acceptance": null
+    },
+    {
+      "id": "P04",
+      "dependencies": [
+        "P01",
+        "P03"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        5,
+        8
+      ],
+      "acceptance": null
+    },
+    {
+      "id": "P05",
+      "dependencies": [
+        "P01"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        7,
+        11
+      ],
+      "acceptance": null
+    },
+    {
+      "id": "P06",
+      "dependencies": [
+        "P05"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        8,
+        12
+      ],
+      "acceptance": null
+    },
+    {
+      "id": "P07",
+      "dependencies": [
+        "P06"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        5,
+        8
+      ],
+      "acceptance": null
+    },
+    {
+      "id": "P08",
+      "dependencies": [
+        "P03",
+        "P07"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        8,
+        12
+      ],
+      "acceptance": null
+    },
+    {
+      "id": "P09",
+      "dependencies": [
+        "P08"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        5,
+        8
+      ],
+      "acceptance": null
+    },
+    {
+      "id": "P10",
+      "dependencies": [
+        "P04"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        3,
+        5
+      ],
+      "acceptance": null
+    },
+    {
+      "id": "P11",
+      "dependencies": [
+        "P09",
+        "P10"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        6,
+        10
+      ],
+      "acceptance": null
+    },
+    {
+      "id": "P12",
+      "dependencies": [
+        "P11"
+      ],
+      "kind": "ENGINEERING",
+      "effort_days": [
+        5,
+        8
+      ],
+      "acceptance": null
+    }
+  ],
+  "deliverables": [
+    {
+      "id": "P01-IMPORT",
+      "package": "P01",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P01-IMPORT",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P01-MANIFEST",
+      "package": "P01",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P01-MANIFEST",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P01-QUALITY",
+      "package": "P01",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P01-QUALITY",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P01-FIXTURES",
+      "package": "P01",
+      "weight": 2,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P01-FIXTURES",
+          "weight": 2
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P02-PYTHON-PORT",
+      "package": "P02",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P02-PYTHON-PORT",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P02-BFF",
+      "package": "P02",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P02-BFF",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P02-WORKSPACE",
+      "package": "P02",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P02-WORKSPACE",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P02-CONTRACT-TESTS",
+      "package": "P02",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P02-CONTRACT-TESTS",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P03-JOBS",
+      "package": "P03",
+      "weight": 5,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P03-JOBS",
+          "weight": 5
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P03-ARTIFACTS",
+      "package": "P03",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P03-ARTIFACTS",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P03-IDENTITY",
+      "package": "P03",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P03-IDENTITY",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P04-ENGINE",
+      "package": "P04",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P04-ENGINE",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P04-LINEAGE",
+      "package": "P04",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P04-LINEAGE",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P04-WORKSPACE",
+      "package": "P04",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P04-WORKSPACE",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P05-ADAPTER",
+      "package": "P05",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P05-ADAPTER",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P05-INCREMENTAL",
+      "package": "P05",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P05-INCREMENTAL",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P05-RESTART",
+      "package": "P05",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P05-RESTART",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P06-DECISION",
+      "package": "P06",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P06-DECISION",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P06-CAPITAL",
+      "package": "P06",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P06-CAPITAL",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P06-RISK",
+      "package": "P06",
+      "weight": 5,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P06-RISK",
+          "weight": 5
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P07-EXCHANGE",
+      "package": "P07",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P07-EXCHANGE",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P07-OMS",
+      "package": "P07",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P07-OMS",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P07-RACES",
+      "package": "P07",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P07-RACES",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P08-DURABILITY",
+      "package": "P08",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P08-DURABILITY",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P08-RECONCILIATION",
+      "package": "P08",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P08-RECONCILIATION",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P08-RECOVERY",
+      "package": "P08",
+      "weight": 5,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P08-RECOVERY",
+          "weight": 5
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P09-CONTROL",
+      "package": "P09",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P09-CONTROL",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P09-POSITIONS",
+      "package": "P09",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P09-POSITIONS",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P09-AUDIT",
+      "package": "P09",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P09-AUDIT",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P10-SWEEP",
+      "package": "P10",
+      "weight": 2,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P10-SWEEP",
+          "weight": 2
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P10-OOS-WFO",
+      "package": "P10",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P10-OOS-WFO",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P10-MONTE-CARLO",
+      "package": "P10",
+      "weight": 2,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P10-MONTE-CARLO",
+          "weight": 2
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P11-INSTALL",
+      "package": "P11",
+      "weight": 3,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P11-INSTALL",
+          "weight": 3
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P11-HEALTH",
+      "package": "P11",
+      "weight": 2,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P11-HEALTH",
+          "weight": 2
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P11-BACKUP-RESTORE",
+      "package": "P11",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P11-BACKUP-RESTORE",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P12-JOURNEYS",
+      "package": "P12",
+      "weight": 4,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P12-JOURNEYS",
+          "weight": 4
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    },
+    {
+      "id": "P12-RELEASE",
+      "package": "P12",
+      "weight": 2,
+      "contract_revision": 1,
+      "allocations": [
+        {
+          "id": "P12-RELEASE",
+          "weight": 2
+        }
+      ],
+      "gates": {
+        "implementation": null,
+        "targeted_tests": null,
+        "integration": null,
+        "independent_acceptance": null
+      }
+    }
+  ],
+  "corrections": [],
+  "invalidations": [],
+  "journeys": [
+    {
+      "id": "J1",
+      "evidence": null
+    },
+    {
+      "id": "J2",
+      "evidence": null
+    },
+    {
+      "id": "J3",
+      "evidence": null
+    },
+    {
+      "id": "J4",
+      "evidence": null
+    },
+    {
+      "id": "J5",
+      "evidence": null
+    },
+    {
+      "id": "J6",
+      "evidence": null
+    }
+  ],
+  "critical_chain_hypothesis": [
+    "P00",
+    "P01",
+    "P05",
+    "P06",
+    "P07",
+    "P08",
+    "P09",
+    "P11",
+    "P12"
+  ],
+  "eta": {
+    "optimistic": null,
+    "base": null,
+    "conservative": null
+  },
+  "automation": {
+    "assessment": "UNQUALIFIED",
+    "required_before_human_directed_product": 0,
+    "qualification_evidence": []
+  }
+}

@@ -7,12 +7,9 @@
   "authority": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
   "runtime_dispatch_authorized": false,
   "completed_this_turn": [
-    "Revalidated authoritative master and current automation lane; read all AUTO-IMP-003 Rev2 through 009 source requirements",
-    "Bound every source acceptance requirement to exact Git blobs and A1/A2/A3 or retained replay backlog",
-    "Defined minimum-useful automation strategy, adaptive ranking/wake/delegation spec and non-executable proposal schema",
-    "Recorded current-policy conflicts explicitly: Capacity2.2 by-mode admission, blocked-lane-head, 009 shadow-only vs new controller effects",
-    "15 targeted mapping/proposal/score tests passed; no accepted automation engine/policy/program modified",
-    "Full suite 162 passed in 96.11 seconds; final assertion-source binding suite 15 passed in 0.74 seconds; protected scope/progress/generator checks PASS"
+    "Materialized provisional known-V1-integration-delta ledger; preserved exact P01/P02 deliverable weights and excluded P00 design from runtime credit",
+    "Added read-only candidate accounting and denominator-conservation checks; rejects unverified non-empty evidence instead of manufacturing acceptance",
+    "18 targeted tests and full platform suite 180 passed in 92.22 seconds; generated contracts and protected source checks PASS; trusted evidence intake and full historical coverage remain open"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -90,7 +87,11 @@
     "automation/platform/automation_mapping.v1.json",
     "automation/platform/AUTOMATION_MINIMUM_AND_SCHEDULER.md",
     "automation/platform/scheduler_proposal.schema.v1.json",
-    "tests/platform/test_p00_automation_strategy.py"
+    "tests/platform/test_p00_automation_strategy.py",
+    "docs/program/program_baseline.v1.json",
+    "docs/program/PROGRESS_ACCOUNTING.md",
+    "scripts/p00_progress.py",
+    "tests/platform/test_p00_progress.py"
   ],
   "remaining": [
     {
@@ -115,8 +116,8 @@
     },
     {
       "id": "R05",
-      "work": "Stable weighted deliverable ledger and historical full-product requirement coverage; calibrated progress/ETA",
-      "state": "NOT_COMPLETED"
+      "work": "Provisional stable delta ledger and candidate-only DAG/weight/correction checks authored. Remaining full historical requirement and accepted-core coverage, independent weight review, trusted evidence/invalidation intake and measured throughput/ETA calibration; no official product percentage.",
+      "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
       "id": "R06",
@@ -125,7 +126,7 @@
     },
     {
       "id": "R07",
-      "work": "118 full-platform tests pass, including reading-pack preservation and explicit historical suffix handling. Actual two-package pack generation passed with size target unmet. Remaining semantic golden evaluations, DAG/weight conformance and independent review.",
+      "work": "180 full-platform tests pass including candidate DAG/weight/split/correction negatives. Remaining trusted progress-evidence intake conformance, semantic golden evaluations and independent review. No product runtime qualification asserted.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -134,12 +135,12 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "R05: materialize stable weighted deliverable ledger and deterministic P00/V1/product/automation accounting, preserve correction/split weight conservation and unknown ETA; then R06 package-selective context/latest-result intake and R01/coverage/independent review. R04 candidate mapping/schema is authored; do not implement or activate scheduler or rewrite accepted lane policy.",
+  "next_continuation_point": "R06 package-selective context/latest-result intake; then remaining R01 adapter/RecoveryCut coverage and R05 historical coverage/trusted progress intake. P00 independent review and final owner coverage remain open. Do not activate controller, execute P01/P02, or self-accept baseline.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_DIFF_CHECK",
     "protected_tracked_files": "PASS_ONLY_P00_CANDIDATE_SCOPE_CHANGED",
-    "platform_tests": "162_PASSED_FULL_PLATFORM_SUITE_96.11_SECONDS",
+    "platform_tests": "180_PASSED_FULL_PLATFORM_SUITE_92.22_SECONDS",
     "product_tests": "NOT_RUN_DOCS_ONLY",
     "independent_review": "NOT_STARTED",
     "actual_active_policy_git_hashes": "PASS",
@@ -176,7 +177,7 @@
       "independent_review": "NOT_PERFORMED",
       "compiler_gate_changed": false
     },
-    "final_impacted_tests": "15_PASSED_FINAL_ASSERTION_MAPPING_0.74_SECONDS",
+    "final_impacted_tests": "18_PASSED_PROGRESS_ACCOUNTING_0.11_SECONDS",
     "real_reading_pack_reconstruction": "PASS_ALL_JSON_TEXT_AND_ARCHIVE_HASHES",
     "p01_revision5_compilation": {
       "snapshot": "6564594fdb12fbfb7cf5c3bfc12d1dcd1d460f60",
@@ -206,6 +207,12 @@
       "source_bindings": "PASS",
       "authority": "NONE_PLANNING_ONLY",
       "controller_effects": "NOT_IMPLEMENTED_NOT_ACTIVATED"
+    },
+    "progress_ledger": {
+      "status": "CANDIDATE_ONLY",
+      "targeted_tests": "18_PASSED",
+      "official_product_completion": "UNCALIBRATED",
+      "trusted_evidence_intake": "NOT_IMPLEMENTED_FAIL_CLOSED"
     }
   },
   "release_journeys_passed": 0,
@@ -213,14 +220,14 @@
   "weighted_v1_completion": "UNCALIBRATED",
   "human_action_required": "NONE_FOR_LOCAL_P00_CONTINUATION",
   "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION",
-  "previous_checkpoint": "3b0e7f3d7b84c9f703ec2c1db294b18cc03e6202",
+  "previous_checkpoint": "dfabcf2b7bd89ee9bbf7491c6362e404488b590e",
   "remote_publication": {
     "initial_checkpoint": "PUSHED_CONFIRMED",
     "current_turn": "VERIFY_CURRENT_BRANCH_PUBLICATION_AT_REENTRY",
     "branch": "architecture/p00-v1-baseline",
     "master_unchanged_at_last_check": true,
     "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
-    "last_verified_published_commit": "3b0e7f3d7b84c9f703ec2c1db294b18cc03e6202"
+    "last_verified_published_commit": "dfabcf2b7bd89ee9bbf7491c6362e404488b590e"
   },
   "continuation_response_template": "目前總進度O/O(已完成數量/總共多少須完成數量)，下一步驟預計執行OO，請回覆「繼續」，使工作繼續執行",
   "continuation_response_rule": "Append the template to the normal reply when work remains; substitute actual counts and next action. Counts use R01-R08 closed workstreams only, never files/tests or partial completion. Identify P00 closure scope explicitly, not product completion. Preserve stable denominator unless scope changes are explicitly recorded.",
@@ -228,7 +235,7 @@
     "scope": "P00_R01_R08_CLOSURE",
     "total": 8,
     "completed": 0,
-    "partial": 6,
+    "partial": 7,
     "completion_rule": "All stated work in the stream complete with required evidence/review; no credit for partial candidate materialization.",
     "v1_product_completion": "NOT_REPRESENTED_BY_THIS_COUNT"
   },
