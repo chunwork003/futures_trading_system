@@ -49,3 +49,5 @@ CURRENT／ACTIVE 的精簡與 successor integration 必須在候選自洽、pres
 Public semantics 仍不完整：記錄精確 gap，延續 P00，不把它交給低階 executor。
 重大 authority contradiction／真實資金／LIVE／不可逆 external effect：停止受影響工作。
 每次結束保存 `p00_status.v1.json`；後續以 exact continuation 接續，不重做已完成 baseline inspection。
+
+使用者指定續作措辭：若因單次對話能力限制尚有未完成事項，使用「尚有OO未完成，請回覆「繼續」，使工作繼續執行」；OO 必須換成實際未完成工作，不得只留下「繼續」。

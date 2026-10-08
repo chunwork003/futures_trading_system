@@ -19,3 +19,9 @@ Weights are provisional decomposition units for these candidate outcomes, not ac
 Public semantic gaps, missing predecessor acceptance and over-budget context produce PACKAGE_NOT_READY. Input schema existence does not prove complete public semantics. Hashes do not certify that a process was trusted or independently reviewed; source-match evidence is never labeled Reviewer PASS.
 
 Latest operational result/handoff remains the accepted current pointers resolved from repository authority. The candidate handoff format does not silently replace the accepted intake format. Full latest-delta aggregation and reviewed-tool acceptance adapter remain R02 work.
+
+## 實際編譯檢查點
+
+`compilation/` 保存 planning snapshot `f04484cb3983a78f885a89e3e1c74f25a0289b71` 的 P01/P02 context、compiler output 與 planning-only handoff。兩包皆 `PACKAGE_NOT_READY`；不得將檔案存在解讀為可執行。Artifact SHA256 是 Git 儲存的 UTF-8 LF bytes；Windows checkout 的換行轉換不應用來判定歷史 artifact 損壞。
+
+這是固定 snapshot 的歷史結果；之後設計修訂須產生新的 compilation evidence，不得覆寫成當時已完成。新的 master 或 accepted result 應先 re-entry，再決定是否重編譯。

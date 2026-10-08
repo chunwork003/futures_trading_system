@@ -1,0 +1,31 @@
+{
+  "schema_version": "p00.handoff.v1",
+  "purpose": "PLANNING_ONLY",
+  "producer_role": "ARCHITECT",
+  "consumer_role": "WORK",
+  "package_id": "P01",
+  "source_baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "planning_snapshot_sha": "f04484cb3983a78f885a89e3e1c74f25a0289b71",
+  "context_hash": "9c2c94cf428d86e099247fab606eb20a18fc75c4d38e2faba97b357e5a870af7",
+  "package_hash": "51b866f8b6a1e71e7e28b33243a57f9150fd619a5f848ee4a823e083750a641f",
+  "scope_hash": "609cce82633348c4cd91ef9c3fe84b1f9c39ea50f3d5f47376792aa88ec60b03",
+  "compiler_source_blob": "15c131c9abe5fd5b4d99cfd3e08d14d8b8f6ad32",
+  "artifact_refs": [
+    {
+      "path": "docs/program/packages/compilation/P01.context.v1.json",
+      "sha256": "2880bea426becd11319047c549fa90b9606268f636e650c2b33c17b0273cfa28"
+    },
+    {
+      "path": "docs/program/packages/compilation/P01.compiled.v1.json",
+      "sha256": "d2a73c142da83c67dd6beb603753235b4dc8c549d9c3fa35f3de406bf071d85f"
+    }
+  ],
+  "unresolved_findings": [
+    "PUBLIC_SEMANTIC_GAPS",
+    "CONTEXT_COMPACTION_REQUIRED",
+    "DEPENDENCY_ACCEPTANCE_NOT_BOUND"
+  ],
+  "required_next_action": "Resolve explicit public semantics and compact context; obtain independent P00 acceptance and exact authority before execution.",
+  "authority": "NONE_PLANNING_OR_REVIEW_ONLY",
+  "execution_eligible": false
+}

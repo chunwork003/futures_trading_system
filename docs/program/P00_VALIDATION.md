@@ -40,3 +40,13 @@ Genesis/auth checkpoint: 22 internal domain operations, 4 BFF-only auth operatio
 ## Incremental codec / envelope / mechanical compiler checkpoint
 
 First EMA codec matches existing batch adjust=False/min_samples semantics, with literal golden outputs, every golden restart boundary and nontrivial streams at spans 1/20/60. Hex persistence preserves exact binary64 state; invalid codec/fresh-state shapes reject. TradingEvidenceEnvelope preserves E/G ownership and explicit immutable metadata while accepted stores remain unchanged. Mechanical package compiler binds context/hash/scope and reports missing design or oversized context; it never grants authority. Full platform suite: **104 passed in 55.70 seconds**. Generated-contract drift check PASS. Product runtime, real PG transaction conformance and independent architecture acceptance remain outside this evidence.
+
+## Source-bound compiler / P01-P02 checkpoint
+
+Full platform suite: **110 passed in 87.56 seconds**, using `python -B -m pytest tests/platform -q -p no:cacheprovider --basetemp .tmp/p00-bound-package-final`. Added tests reject loaded resolver drift, changed operational baseline, rehashed fabricated contexts and handoff relabeling as executable CODEX authority.
+
+Actual compilation binds planning snapshot `f04484cb3983a78f885a89e3e1c74f25a0289b71` to accepted source baseline `9b5ab5fdd98744a7db45ec9f14b64ef1f324920f`. Both P01 and P02 report `PACKAGE_NOT_READY`: public semantic gaps, context compaction required and dependency acceptance not bound. Mandatory context sizes are 739245 and 740105 bytes respectively. The exact resolver/compiler sources match the snapshot; independent review and process attestation remain NOT_ASSERTED.
+
+The two OpenAPI documents contribute 374615 bytes; CURRENT_STATE and CURRENT_WORK contribute 148689 bytes. This identifies the main R06 compaction targets. Source-linked projections and selective schema closure must preserve authority and relevant semantics; merely removing these files is not an acceptable fix. No context was truncated. Durable manifests, compiled candidates and planning-only handoffs are in `docs/program/packages/compilation/`.
+
+Handoff artifact hashes bind the UTF-8 LF bytes stored in Git blobs, not arbitrary Windows checkout line endings. Reproduction requires the exact planning snapshot and matching tool sources; later current master must be rechecked independently. No P01/P02 execution, product acceptance, DB or broker conformance is established.

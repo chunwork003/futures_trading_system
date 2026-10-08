@@ -43,7 +43,7 @@ flowchart LR
 
 Estimates are planning hypotheses, not measured velocity. One effective day means focused implementation/testing effort, not one calendar automation wake. Do not convert to calendar ETA before accepted throughput observations. Existing accepted components reduce implementation scope through reuse; they do not automatically credit new integration outcomes.
 
-P01/P02 are NOT_COMPILED until exact schemas, changed-file allowlist, acceptance fixture IDs, baseline bindings and authority are present. Tables are not executable work orders.
+P01/P02 now have exact candidate schemas, proposed file allowlists, acceptance fixture IDs and separate source/planning baseline bindings. Actual compilation at `f04484cb3983a78f885a89e3e1c74f25a0289b71` reports `PACKAGE_NOT_READY`: public semantic gaps, oversized context and absent P00 acceptance. See `docs/program/packages/compilation/`. Neither candidate nor this table is an executable work order.
 
 ## Six mandatory release journeys
 
