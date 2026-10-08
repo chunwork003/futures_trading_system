@@ -106,3 +106,11 @@ Known remaining V1 integration ledger: 127 provisional engineering weight points
 Targeted progress tests: **18 passed in 0.11 seconds**. Full platform suite: **180 passed in 92.22 seconds**. Generator drift and protected runtime/policy/state checks PASS. Candidate calculator rejects non-empty gate/acceptance/journey evidence and invalidations because trusted intake is not yet implemented. Split conservation and zero added correction weight are verified, not operational acceptance.
 
 R05 remains partial: historical requirement/accepted-core coverage, independent baseline weight review, trusted intake/invalidation and measured ETA remain open. P00 closure remains 0/8, now 7 partial streams. Owner sections65/66 record partial coverage only. Product runtime, CODEX dispatch and independent review were not executed.
+
+## R06 selective reading / result reference checkpoint
+
+Full platform suite **194 passed in91.96 seconds**; targeted context/result tests **22 passed in0.17 seconds**. Initial real-profile test exposed retained parameter references; resolver now verifies those references against fully retained non-schema components. Generator drift check PASS. No operational policy/compiler gate or product source changed.
+
+Exact committed snapshot `7477e51` regenerated both packs. Same-snapshot full reading vs selective: P01 **432008 -> 277695 bytes**; P02 **399525 -> 373879 bytes**. Full raw mandatory sources are854168/805493 bytes. Both remain above131072-byte target. Every projected/full JSON value was compared against its exact source and selected closure: PASS. These are bytes, not token estimates.
+
+Actual result reader verified three pinned source records, current candidate equality and accepted predecessor blob on master. It remains `complete_current_intake=false`; pending result/review/STOP discovery, independent semantic review and compiler migration are not implemented. Historical compilations require current-context recompilation. P00 closure remains0/8,7 partial.

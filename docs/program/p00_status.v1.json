@@ -9,7 +9,7 @@
   "completed_this_turn": [
     "Added explicit P01 dataset schema closure and P02 all-endpoint reading profiles; exact original source remains linked",
     "Added source-bound result reading index distinguishing accepted predecessor from historical P01/P02 NOT_READY compilations",
-    "22 targeted tests passed; full platform suite194 passed in91.96 seconds; committed snapshot measurement pending"
+    "22 targeted tests and194 full-platform tests passed; real Git snapshot selective packs and result reading verified, byte target remains unmet"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -96,7 +96,14 @@
     "automation/platform/result_reading_index.v1.json",
     "automation/platform/CONTEXT_SELECTION_AND_RESULT_INTAKE.md",
     "scripts/p00_result_context.py",
-    "tests/platform/test_p00_result_context.py"
+    "tests/platform/test_p00_result_context.py",
+    "docs/program/context_packs/7477e51/P01.full-reading.metrics.json",
+    "docs/program/context_packs/7477e51/P01.metrics.json",
+    "docs/program/context_packs/7477e51/P01.pack.json",
+    "docs/program/context_packs/7477e51/P02.full-reading.metrics.json",
+    "docs/program/context_packs/7477e51/P02.metrics.json",
+    "docs/program/context_packs/7477e51/P02.pack.json",
+    "docs/program/context_packs/7477e51/result_reading.json"
   ],
   "remaining": [
     {
@@ -126,7 +133,7 @@
     },
     {
       "id": "R06",
-      "work": "Explicit package-selective OpenAPI closure and exact result-reference reader authored. Pending committed snapshot measurement, complete pending result/review/STOP discovery, independent projection review and authorized resolver migration; full-source compiler gate unchanged.",
+      "work": "Explicit package-selective OpenAPI closure and exact result-reference reader implemented. Snapshot7477e51: P01 277695 bytes, P02 373879 bytes, both above128KiB. Full-source/projection comparison and real Git result reading PASS. Remaining domain-document selective loading, pending result/review/STOP discovery, independent projection review and authorized resolver migration; compiler gate unchanged.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -140,7 +147,7 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "Continue R06: qualify selected reading pack and finish explicit pending-result/review/STOP current intake before any compiler migration. Then R01 adapter/RecoveryCut coverage, R05 historical coverage/trusted progress intake and independent P00 review. No product execution.",
+  "next_continuation_point": "R06: define package-specific domain-document loading obligations and complete explicit pending-result/review/STOP current intake; both selective packs remain oversized. Then R01 adapter/RecoveryCut coverage, R05 historical coverage/trusted progress intake and independent P00 review. No product execution.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_DIFF_CHECK",
@@ -218,6 +225,20 @@
       "targeted_tests": "18_PASSED",
       "official_product_completion": "UNCALIBRATED",
       "trusted_evidence_intake": "NOT_IMPLEMENTED_FAIL_CLOSED"
+    },
+    "selective_reading": {
+      "snapshot": "7477e51",
+      "P01_full_reading_bytes": 432008,
+      "P01_selective_bytes": 277695,
+      "P02_full_reading_bytes": 399525,
+      "P02_selective_bytes": 373879,
+      "target_bytes": 131072,
+      "target_met": false,
+      "exact_projection_source_comparison": "PASS",
+      "exact_result_reading": "PASS",
+      "complete_current_intake": false,
+      "independent_review": "NOT_PERFORMED",
+      "compiler_gate_changed": false
     }
   },
   "release_journeys_passed": 0,
