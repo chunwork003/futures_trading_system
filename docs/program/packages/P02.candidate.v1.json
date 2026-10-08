@@ -1,0 +1,151 @@
+{
+  "schema_version": "p00.package.v1",
+  "identity": {
+    "package_id": "P02",
+    "revision": 1,
+    "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+    "requirement_ids": [
+      "OWNER-13",
+      "OWNER-14",
+      "OWNER-20",
+      "OWNER-21",
+      "OWNER-78"
+    ],
+    "deliverable_weights": {
+      "P02-PYTHON-PORT": 3,
+      "P02-BFF": 3,
+      "P02-WORKSPACE": 4,
+      "P02-CONTRACT-TESTS": 3
+    }
+  },
+  "authority": {
+    "parent_wave_grant": null,
+    "exact_scope": [
+      "service/__init__.py",
+      "service/app.py",
+      "service/contracts.py",
+      "service/ports.py",
+      "service/settings.py",
+      "pyproject.toml",
+      "application/Futures.Workspace.csproj",
+      "application/Program.cs",
+      "application/Contracts.cs",
+      "application/PythonClient.cs",
+      "application/IdentityConfiguration.cs",
+      "application/appsettings.json",
+      "web/package.json",
+      "web/package-lock.json",
+      "web/tsconfig.json",
+      "web/vite.config.ts",
+      "web/index.html",
+      "web/src/main.tsx",
+      "web/src/App.tsx",
+      "web/src/api.ts",
+      "web/src/styles.css",
+      "tests/service/test_api_contracts.py",
+      "tests/service/test_test_adapter_isolation.py",
+      "tests/application/Workspace.ContractTests.csproj",
+      "tests/application/ContractTests.cs",
+      "tests/browser/workspace.spec.ts",
+      "tests/browser/playwright.config.ts",
+      "tests/fixtures/workspace_contract_cases.json",
+      "docs/program/packages/P02_RESULT.md"
+    ],
+    "protected_scope": [
+      "trading/execution.py",
+      "trading/account.py",
+      "persistence/strategy_state.py",
+      "docs/CURRENT_STATE.md",
+      "automation/governance/master_manifest.v1.yaml"
+    ],
+    "allowed_side_effects": [
+      "READ",
+      "SCOPE_WRITE",
+      "LOCAL_TEST",
+      "GIT_COMMIT"
+    ],
+    "correction_budget": 2
+  },
+  "design": {
+    "status": "DEFINED_CANDIDATE",
+    "owners": [
+      "M Python HTTP/ports",
+      "N ASP.NET identity and mediation",
+      "O React workspace"
+    ],
+    "input_output_schemas": [
+      "docs/architecture/contracts/python.openapi.v1.json"
+    ],
+    "state_transitions": [
+      "docs/architecture/V1_STATE_MACHINES.md"
+    ],
+    "transaction_boundary": "Python owns research operation ports; ASP.NET owns identity/session ports; no competing production in-memory job store. P03 supplies durable research adapters.",
+    "idempotency_and_recovery": "Forward exact request/receipt/revision without BFF duplicate lifecycle. Fake provider is permitted only inside test host with isolated fixtures; ordinary startup missing persistence returns dependency-not-ready.",
+    "error_and_unknown_semantics": "UI renders unavailable/stale/pending/failed distinctly. Test fixture success cannot appear as production research success; server rejects broker/LIVE mode.",
+    "compatibility_rules": [
+      "Use generated BFF/Python DTOs and exact CSRF/cookie/internal-service boundaries.",
+      "No direct browser Python/DB access, no duplicated quant or recovery implementation.",
+      "P02 contract-harness journey is not J1/J2 release acceptance; P03/P04 supply usable durable research."
+    ],
+    "public_semantic_gaps": [
+      "Exact dependency lock/SDK/container build matrix and test-host identity adapter boundary must be specified before execution."
+    ]
+  },
+  "dependencies": {
+    "required_acceptances": [],
+    "required_packages": [
+      "P00"
+    ],
+    "external_gates": [],
+    "parallel_or_parked_work": [
+      "P01 data qualification is independent; P03 durable jobs follows this application boundary."
+    ]
+  },
+  "verification": {
+    "positive_examples": [
+      "U01 browser selects fixture dataset/strategy, submits test-host job, polls and renders published fixture result",
+      "U02 session expiry transitions UI to login without losing server operation reference",
+      "U03 production-mode missing durable provider reports 503 and degraded status"
+    ],
+    "counterexamples": [
+      "U04 spoofed actor header and missing login CSRF rejected",
+      "U05 cookie-only call to Python rejected",
+      "U06 test provider cannot activate under ordinary startup",
+      "U07 mutation timeout preserves key and expected revision",
+      "U08 LIVE/BROKER_PAPER denied server-side"
+    ],
+    "targeted_tests": [
+      "python -B -m pytest tests/service -q -p no:cacheprovider",
+      "dotnet test tests/application/Workspace.ContractTests.csproj"
+    ],
+    "integration_tests": [
+      "Playwright workspace contract suite via tests/browser/playwright.config.ts against isolated test host"
+    ],
+    "regression_impact_set": [
+      "API examples/error mapping/auth boundary; no product quant regression unless shared contract changes are explicitly authorized"
+    ],
+    "independent_review_scope": [
+      "test-only provider isolation and no fake runtime authority",
+      "credentials/CSRF/cookie/actor propagation",
+      "usable browser error and asynchronous workflow",
+      "Python/BFF ownership and dependency direction"
+    ]
+  },
+  "completion": {
+    "evidence_artifacts": [
+      "docs/program/packages/P02_RESULT.md"
+    ],
+    "acceptance_checks": [
+      "U01-U08 exact test/browser evidence plus reviewed builds",
+      "No real PG/broker credentials or production activation",
+      "Durable jobs not claimed complete; J1/J2 not credited by harness"
+    ],
+    "stop_conditions": [
+      "P00 baseline not independently accepted or exact package grant missing",
+      "Any unresolved public_semantic_gaps",
+      "Test adapter can be enabled in ordinary deployment",
+      "New external dependency installation without approved lock/source policy",
+      "API/public domain semantics change needs Architect amendment"
+    ]
+  }
+}

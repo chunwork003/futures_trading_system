@@ -38,6 +38,7 @@ def repository(tmp_path):
     git(tmp_path, "config", "user.name", "Fixture")
     git(tmp_path, "config", "core.autocrlf", "false")
     policy = json.loads((ROOT / context.POLICY).read_text(encoding="utf-8"))
+    policy.pop("source_baseline_sha", None)
     paths = set(policy["required"])
     for package in policy["packages"].values():
         paths.update([package["package_path"], *package["mandatory"], *package["optional"]])
@@ -46,6 +47,10 @@ def repository(tmp_path):
     for path in paths:
         write(tmp_path, path, "fixture\n")
     write(tmp_path, context.POLICY, policy)
+    write(tmp_path, context.RESOLVER_PATH, (ROOT / context.RESOLVER_PATH).read_text(encoding="utf-8"))
+    write(tmp_path, "scripts/p00_compile.py", (ROOT / "scripts/p00_compile.py").read_text(encoding="utf-8"))
+    write(tmp_path, "automation/platform/package.schema.v1.json",
+          json.loads((ROOT / "automation/platform/package.schema.v1.json").read_text(encoding="utf-8")))
     active = "automation/policies/fixture_active.json"
     write(tmp_path, active, "{\"active\":true}\n")
     expected = hashlib.sha256((tmp_path / active).read_bytes()).hexdigest()
@@ -82,7 +87,7 @@ def test_unsafe_changed_paths_rejected_before_context_selection(repository, path
 
 
 @pytest.mark.parametrize("field,value", [("baseline_sha", "HEAD"), ("baseline_sha", "a" * 39),
-    ("package_id", "P01"), ("task_type", "DISPATCH"), ("architecture_domains", ["missing"]),
+    ("package_id", "P99"), ("task_type", "DISPATCH"), ("architecture_domains", ["missing"]),
     ("changed_paths", ["trading/execution.py"]), ("changed_paths", "docs/test.md")])
 def test_unregistered_or_unbound_request_fails_closed(repository, field, value):
     root, request = repository
@@ -156,3 +161,43 @@ def test_large_context_is_reported_without_silent_truncation(repository):
     assert result["execution_eligible"] is False
     current = next(x for x in result["mandatory_context"] if x["path"] == "docs/CURRENT_STATE.md")
     assert current["size_bytes"] == 150000
+
+
+def test_different_loaded_resolver_is_rejected(repository):
+    root, request = repository
+    path = root / context.RESOLVER_PATH
+    path.write_text(path.read_text(encoding="utf-8") + "\n# changed tool\n", encoding="utf-8")
+    request["baseline_sha"] = commit(root)
+    with pytest.raises(context.ContextError, match="LOADED_TOOL_SOURCE_MISMATCH"):
+        context.resolve(root, request)
+
+
+def test_distinct_source_baseline_rejects_operational_drift(repository):
+    root, request = repository
+    policy = json.loads((root / context.POLICY).read_text(encoding="utf-8"))
+    policy["source_baseline_sha"] = request["baseline_sha"]
+    write(root, context.POLICY, policy)
+    request["baseline_sha"] = commit(root)
+    assert context.resolve(root, request)["source_baseline_sha"] == policy["source_baseline_sha"]
+    write(root, "docs/CURRENT_STATE.md", "unaccepted operational change")
+    request["baseline_sha"] = commit(root)
+    with pytest.raises(context.ContextError, match="OPERATIONAL_SOURCE_BASELINE_DRIFT"):
+        context.resolve(root, request)
+
+
+def test_bound_compiler_rehydrates_even_if_attacker_rehashes_context(repository):
+    from scripts.p00_compile import compile_bound
+    from test_p00_compiler import inputs
+    root, request = repository
+    manifest = context.resolve(root, request)
+    package, _ = inputs()
+    package["identity"]["baseline_sha"] = request["baseline_sha"]
+    package["authority"]["exact_scope"] = request["changed_paths"]
+    package["design"]["input_output_schemas"] = ["automation/platform/package.schema.v1.json"]
+    result = compile_bound(root, package, manifest)
+    assert result["provenance_validation"] == "SNAPSHOT_AND_LOADED_SOURCE_MATCH_REVIEW_NOT_ASSERTED"
+    assert result["execution_eligible"] is False
+    manifest["context_budget"]["mandatory_bytes"] += 1
+    manifest["context_hash"] = hashlib.sha256(context.canonical({k: v for k, v in manifest.items() if k != "context_hash"})).hexdigest()
+    with pytest.raises(ValueError, match="CONTEXT_REHYDRATION_MISMATCH"):
+        compile_bound(root, package, manifest)

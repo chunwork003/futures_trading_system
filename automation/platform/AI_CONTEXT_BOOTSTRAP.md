@@ -27,7 +27,7 @@ Stable architecture: `docs/architecture/`; program/deliverables/continuation: `d
 
 ## Current resolver coverage and limitations
 
-Input has exactly task_type/package_id/changed_paths/architecture_domains/baseline_sha. Output provides mandatory/optional/forbidden-stale references, raw Git blob SHA256, context_hash and execution_eligible=false. Changed paths infer additional domains. Only P00 is registered; P01/P02 fail closed until exact packages/context dependencies exist. Active policies are resolved through the manifest and verified byte-for-byte. Inactive policies are excluded from normal current context, but can be explicitly examined as historical evidence in a separate bounded audit.
+Input has exactly task_type/package_id/changed_paths/architecture_domains/baseline_sha. Output provides mandatory/optional/forbidden-stale references, raw Git blob SHA256, context_hash and execution_eligible=false. Changed paths infer additional domains. P00 and planning-only P01/P02 candidates are registered; P01/P02 use exact allowlists and remain non-executable while public semantics/acceptance gates are open. Active policies are resolved through the manifest and verified byte-for-byte. Inactive policies are excluded from normal current context, but can be explicitly examined as historical evidence in a separate bounded audit.
 
 The resolver reports a 128 KiB mandatory-context byte target; excess is flagged, never silently truncated. Real candidate snapshot measurement was about 634 KB, so fast bootstrap is NOT yet achieved. Legacy CURRENT files still contain historical sections, so their whole-file references currently cost more context. Compact projection migration is pending R06; this tool does not pretend that extracting a header resolves all lifecycle authority. It also does not automatically discover every latest open result/delta inside prose. WORK must perform accepted re-entry; deterministic machine pointer integration remains a compiler/re-entry gate.
 
@@ -42,3 +42,7 @@ git diff --check
 ```
 
 The isolated context tests create temporary Git repositories only under the chosen test directory. Python jsonschema and pytest are validation dependencies, not new product runtime dependencies. Passing these tests does not qualify production/live operation or independently accept this baseline.
+
+## Source versus planning snapshot
+
+`source_baseline_sha` is the proposed product baseline; `request.baseline_sha` is the later planning/tool snapshot. The resolver verifies ancestry and exact operational-pointer preservation. It binds its loaded source to the snapshot (CRLF transport only), while compiler CLI additionally binds compiler/schema source, regenerates context and checks registered candidate JSON values. This proves source/snapshot consistency, not independent review or secure-process attestation.

@@ -244,6 +244,14 @@
           },
           "minItems": 0,
           "uniqueItems": true
+        },
+        "required_packages": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^P[0-9]{2}$"
+          }
         }
       },
       "required": [

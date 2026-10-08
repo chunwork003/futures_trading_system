@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "p00.handoff.v1"
+    },
+    "purpose": {
+      "enum": [
+        "PLANNING_ONLY",
+        "INDEPENDENT_REVIEW_REQUEST"
+      ]
+    },
+    "producer_role": {
+      "enum": [
+        "ARCHITECT",
+        "WORK"
+      ]
+    },
+    "consumer_role": {
+      "enum": [
+        "WORK",
+        "REVIEWER"
+      ]
+    },
+    "package_id": {
+      "type": "string",
+      "pattern": "^P[0-9]{2}$"
+    },
+    "source_baseline_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "planning_snapshot_sha": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "context_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "package_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "scope_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "compiler_source_blob": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "artifact_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "path",
+          "sha256"
+        ]
+      }
+    },
+    "unresolved_findings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "required_next_action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority": {
+      "const": "NONE_PLANNING_OR_REVIEW_ONLY"
+    },
+    "execution_eligible": {
+      "const": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "purpose",
+    "producer_role",
+    "consumer_role",
+    "package_id",
+    "source_baseline_sha",
+    "planning_snapshot_sha",
+    "context_hash",
+    "package_hash",
+    "scope_hash",
+    "compiler_source_blob",
+    "artifact_refs",
+    "unresolved_findings",
+    "required_next_action",
+    "authority",
+    "execution_eligible"
+  ]
+}

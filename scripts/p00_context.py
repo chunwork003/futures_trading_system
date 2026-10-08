@@ -12,6 +12,7 @@ import subprocess
 
 POLICY = "automation/platform/context_policy.v1.json"
 MASTER_MANIFEST = "automation/governance/master_manifest.v1.yaml"
+RESOLVER_PATH = "scripts/p00_context.py"
 
 
 class ContextError(ValueError):
@@ -34,6 +35,15 @@ def safe_path(path):
 
 def canonical(value):
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+
+
+def bind_loaded_source(snapshot, path, loaded_file):
+    """僅容許 Git/Windows 換行轉換；不將 source match 冒充獨立 review。"""
+    raw, evidence = snapshot.read(path)
+    loaded = Path(loaded_file).read_bytes()
+    if raw.replace(b"\r\n", b"\n") != loaded.replace(b"\r\n", b"\n"):
+        raise ContextError(f"LOADED_TOOL_SOURCE_MISMATCH: {path}")
+    return {**evidence, "source_comparison": "EXACT_EXCEPT_CRLF_TRANSPORT", "review_status": "NOT_ASSERTED"}
 
 
 class Snapshot:
@@ -91,6 +101,10 @@ def resolve(root, request):
         raise ContextError("INVALID_CONTEXT_IDENTITY")
     snapshot = Snapshot(root, request["baseline_sha"])
     policy = snapshot.read_json(POLICY)
+    tool_binding = bind_loaded_source(snapshot, RESOLVER_PATH, __file__)
+    source_baseline = policy.get("source_baseline_sha") or snapshot.baseline
+    source = Snapshot(root, source_baseline)
+    snapshot.git("merge-base", "--is-ancestor", source_baseline, snapshot.baseline)
     if policy.get("schema_version") != "p00.context_policy.v1" or policy.get("status") != "CANDIDATE_NON_AUTHORITY":
         raise ContextError("UNSUPPORTED_CONTEXT_POLICY")
     if request["task_type"] not in policy["task_types"]:
@@ -109,7 +123,7 @@ def resolve(root, request):
                 domains.update(rule["domains"])
     if domains - policy["domains"].keys():
         raise ContextError("UNKNOWN_ARCHITECTURE_DOMAIN")
-    mandatory = {POLICY, MASTER_MANIFEST, package["package_path"], *policy["required"], *package["mandatory"],
+    mandatory = {POLICY, RESOLVER_PATH, MASTER_MANIFEST, package["package_path"], *policy["required"], *package["mandatory"],
                  *policy["role_context"][request["task_type"]]}
     for domain in domains:
         mandatory.update(policy["domains"][domain])
@@ -131,19 +145,26 @@ def resolve(root, request):
     forbidden_paths = {x["path"] for x in forbidden}
     if (mandatory | optional) & forbidden_paths:
         raise ContextError("CURRENT_STALE_CONTEXT_CONTRADICTION")
+    # 候選 specification 可變；operational authority pointers 必須維持施工 baseline 的 exact bytes。
+    for path in set(policy["required"]) | {MASTER_MANIFEST} | {
+        binding["path"] for binding in policies.values() if binding.get("active") is True
+    }:
+        if snapshot.read(path)[1]["git_blob"] != source.read(path)[1]["git_blob"]:
+            raise ContextError(f"OPERATIONAL_SOURCE_BASELINE_DRIFT: {path}")
     if not any(binding.get("active") is True for binding in policies.values()):
         raise ContextError("NO_ACTIVE_MACHINE_POLICY")
     mandatory_refs = [snapshot.read(p)[1] for p in sorted(mandatory)]
     optional_refs = [snapshot.read(p)[1] for p in sorted(optional)]
     normalized = {**request, "changed_paths": paths, "architecture_domains": sorted(domains)}
     output = {"schema_version": "p00.context_manifest.v1", "request": normalized,
+        "source_baseline_sha": source_baseline, "resolver_binding": tool_binding,
         "authority": "NONE_CONTEXT_ONLY", "execution_eligible": False,
         "mandatory_context": mandatory_refs, "optional_context": optional_refs,
         "forbidden_stale_context": sorted({x["path"]: x for x in forbidden}.values(), key=lambda x: x["path"]),
         "evidence_refs": mandatory_refs + optional_refs,
         "limitations": ["Does not resolve current execution authorization or semantic conflicts.",
             "Caller must verify authoritative master drift; a valid context hash is not approval.",
-            "Caller must run the reviewed resolver code; this manifest does not attest its executing process.",
+            "Loaded resolver source matches snapshot; independent review and process attestation are not asserted.",
             "Legacy CURRENT histories remain in source until reviewed compact-projection migration."]}
     mandatory_bytes = sum(item["size_bytes"] for item in mandatory_refs)
     output["context_budget"] = {"mandatory_bytes": mandatory_bytes, "target_max_bytes": 131072,

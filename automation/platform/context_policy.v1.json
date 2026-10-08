@@ -37,6 +37,86 @@
         "scripts/p00_",
         "tests/platform/"
       ]
+    },
+    "P01": {
+      "package_path": "docs/program/packages/P01.candidate.v1.json",
+      "mandatory": [
+        "docs/program/p00_status.v1.json",
+        "docs/program/V1_PROGRAM.md",
+        "docs/architecture/V1_BASELINE.md",
+        "docs/architecture/V1_CONTRACTS.md",
+        "docs/architecture/V1_STATE_MACHINES.md",
+        "docs/architecture/V1_API_ARCHITECTURE.md",
+        "docs/architecture/V1_GENESIS_AUTH_CONTRACT.md",
+        "docs/architecture/contracts/python.openapi.v1.json",
+        "docs/architecture/contracts/bff.openapi.v1.json",
+        "automation/platform/package.schema.v1.json"
+      ],
+      "optional": [
+        "docs/program/P00_OWNER_REQUEST.md"
+      ],
+      "allowed_exact": [
+        "storage/dataset_contracts.py",
+        "storage/dataset_import.py",
+        "storage/dataset_manifest.py",
+        "storage/dataset_quality.py",
+        "tests/unit/test_dataset_import.py",
+        "tests/unit/test_dataset_manifest.py",
+        "tests/integration/test_dataset_reproducibility.py",
+        "tests/fixtures/dataset_v1_cases.json",
+        "docs/program/packages/P01_RESULT.md"
+      ],
+      "allowed_prefixes": []
+    },
+    "P02": {
+      "package_path": "docs/program/packages/P02.candidate.v1.json",
+      "mandatory": [
+        "docs/program/p00_status.v1.json",
+        "docs/program/V1_PROGRAM.md",
+        "docs/architecture/V1_BASELINE.md",
+        "docs/architecture/V1_CONTRACTS.md",
+        "docs/architecture/V1_STATE_MACHINES.md",
+        "docs/architecture/V1_API_ARCHITECTURE.md",
+        "docs/architecture/V1_GENESIS_AUTH_CONTRACT.md",
+        "docs/architecture/contracts/python.openapi.v1.json",
+        "docs/architecture/contracts/bff.openapi.v1.json",
+        "automation/platform/package.schema.v1.json"
+      ],
+      "optional": [
+        "docs/program/P00_OWNER_REQUEST.md"
+      ],
+      "allowed_exact": [
+        "service/__init__.py",
+        "service/app.py",
+        "service/contracts.py",
+        "service/ports.py",
+        "service/settings.py",
+        "pyproject.toml",
+        "application/Futures.Workspace.csproj",
+        "application/Program.cs",
+        "application/Contracts.cs",
+        "application/PythonClient.cs",
+        "application/IdentityConfiguration.cs",
+        "application/appsettings.json",
+        "web/package.json",
+        "web/package-lock.json",
+        "web/tsconfig.json",
+        "web/vite.config.ts",
+        "web/index.html",
+        "web/src/main.tsx",
+        "web/src/App.tsx",
+        "web/src/api.ts",
+        "web/src/styles.css",
+        "tests/service/test_api_contracts.py",
+        "tests/service/test_test_adapter_isolation.py",
+        "tests/application/Workspace.ContractTests.csproj",
+        "tests/application/ContractTests.cs",
+        "tests/browser/workspace.spec.ts",
+        "tests/browser/playwright.config.ts",
+        "tests/fixtures/workspace_contract_cases.json",
+        "docs/program/packages/P02_RESULT.md"
+      ],
+      "allowed_prefixes": []
     }
   },
   "domains": {
@@ -143,5 +223,6 @@
     "INTEGRATOR": [
       "automation/platform/OPERATING_MODEL.md"
     ]
-  }
+  },
+  "source_baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f"
 }
