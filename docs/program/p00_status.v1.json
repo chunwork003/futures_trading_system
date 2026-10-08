@@ -12,7 +12,8 @@
     "Materialized Q01-Q10 synthetic specification cases and finite-set oracle; 60 targeted tests passed",
     "Resolved cancellation versus import receipt and first-publisher provenance versus REUSED semantics",
     "P01 revision5 has no known authoring gaps, pending independent review; actual product conformance moved to implementation acceptance, not circular pre-execution gate",
-    "Full platform suite 147 passed in 92.50 seconds; generator and diff checks PASS"
+    "Full platform suite 147 passed in 92.50 seconds; generator and diff checks PASS",
+    "Actual P01 revision5 source-bound compilation removes PUBLIC_SEMANTIC_GAPS; context and P00 acceptance gates remain. No execution granted."
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -80,7 +81,9 @@
     "docs/architecture/contracts/dataset_identity.fixture.v1.json",
     "tests/platform/test_p00_dataset_identity.py",
     "docs/architecture/contracts/dataset_quality.fixture.v1.json",
-    "tests/platform/test_p00_dataset_quality_cases.py"
+    "tests/platform/test_p00_dataset_quality_cases.py",
+    "docs/program/packages/compilation/P01-r5-6564594/context.json",
+    "docs/program/packages/compilation/P01-r5-6564594/compiled.json"
   ],
   "remaining": [
     {
@@ -167,7 +170,18 @@
       "compiler_gate_changed": false
     },
     "final_impacted_tests": "60_PASSED_QUALITY_DATASET_API_0.99_SECONDS",
-    "real_reading_pack_reconstruction": "PASS_ALL_JSON_TEXT_AND_ARCHIVE_HASHES"
+    "real_reading_pack_reconstruction": "PASS_ALL_JSON_TEXT_AND_ARCHIVE_HASHES",
+    "p01_revision5_compilation": {
+      "snapshot": "6564594fdb12fbfb7cf5c3bfc12d1dcd1d460f60",
+      "status": "PACKAGE_NOT_READY",
+      "not_ready_reasons": [
+        "CONTEXT_COMPACTION_REQUIRED",
+        "DEPENDENCY_ACCEPTANCE_NOT_BOUND"
+      ],
+      "mandatory_bytes": 851023,
+      "independent_review": "NOT_PERFORMED",
+      "execution_eligible": false
+    }
   },
   "release_journeys_passed": 0,
   "release_journeys_total": 6,

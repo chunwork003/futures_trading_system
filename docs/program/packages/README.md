@@ -27,3 +27,5 @@ Latest operational result/handoff remains the accepted current pointers resolved
 這是固定 snapshot 的歷史結果；之後設計修訂須產生新的 compilation evidence，不得覆寫成當時已完成。新的 master 或 accepted result 應先 re-entry，再決定是否重編譯。
 
 P01 revision5：snapshot machine schema、Q01-Q10 合成規格案例與 publication/receipt 候選語意已定義，目前沒有已知 authoring gap，仍待獨立 semantic review。真正產品／filesystem／DB conformance 是 implementation acceptance，不是實作前要先完成的 gate。P02 設計缺口及共用 P00 acceptance/context/exact authorization gate 仍存在。先前 compilation 是歷史結果，不代表 revision5 current。
+
+最新 P01 revision5 編譯檢查點：`compilation/P01-r5-6564594/`，source-bound compiler 回傳 PACKAGE_NOT_READY；僅移除 PUBLIC_SEMANTIC_GAPS，context 與 P00 acceptance gate 仍未通過，另須 independent review 與 exact authorization。舊 revision1 compilation 保留，不覆寫。
