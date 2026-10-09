@@ -1,0 +1,1020 @@
+{
+  "schema_version": "p00.intake_bootstrap_proposal.v1",
+  "id": "R06-TRUSTED-INTAKE-BOOTSTRAP-01",
+  "status": "ARCHITECTURE_PROPOSAL_NOT_READY_FOR_BOOTSTRAP",
+  "authority": "HUMAN_REQUESTED_P00_AUTHORING_ONLY",
+  "source_candidate": "58df21601efa8d1f867a97aff6393f081236e15c",
+  "source_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "scope": {
+    "operational_program_id": "AUTO-IMP-PROGRAM-V2",
+    "operational_program_revision": "5",
+    "program_definition_blob": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+    "lane": [
+      "AUTO-IMP-003",
+      "AUTO-IMP-004",
+      "AUTO-IMP-005",
+      "AUTO-IMP-006",
+      "AUTO-IMP-007",
+      "AUTO-IMP-008",
+      "AUTO-IMP-009"
+    ],
+    "lane_is_not_dependency_order": true,
+    "definition_embedded_authoring_status": "PRESERVED_OPERATIONAL_ACCEPTANCE_RESOLVED_FROM_EXACT_BASELINE_NOT_REWRITTEN",
+    "P00_authoring_namespace": "HUMAN_ARCHITECTURE_BRANCH_SEPARATE_FROM_PROGRAM_V2_EXECUTION_REGISTRY",
+    "writer": "WORK_CONTROL_PLANE_UNCHANGED_SINGLE_OWNER",
+    "future_implementation_owner": "A2_AFTER_EXACT_BOUNDED_AUTHORITY",
+    "controller_consumer": "A3_NON_AUTHORITY_NO_SELF_BOOTSTRAP",
+    "read_receipt_producer": "UNQUALIFIED_NO_ACCEPTED_IDENTITY_BINDING"
+  },
+  "source_evidence": {
+    "authoritative_master": [
+      {
+        "path": "automation/governance/master_manifest.v1.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "89de89c47d23080af8369544a165e199856d2832",
+        "sha256": "ad14b19c872f54c1a4110e612a080a8d298f381531d69939b172c3c4f64fe946",
+        "size_bytes": 50903
+      },
+      {
+        "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+        "sha256": "268b353d39461ccd629456cbe32cea6ded3bb1e617042584c7d52f27f46e8486",
+        "size_bytes": 2046
+      },
+      {
+        "path": "automation/policies/development_entry_protocol.v2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+        "sha256": "e722303a6c0821392418d2d2716892248ec8fae58c57524202d773c3e3ed9ab5",
+        "size_bytes": 1445
+      },
+      {
+        "path": "automation/policies/development_state_machine.v2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+        "sha256": "17c76e24fddc23db036a52771620e6fd848c1ca710e4fb8f7a1b82a3dd91b863",
+        "size_bytes": 1745
+      },
+      {
+        "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+        "sha256": "f72c1589007df1cd4bad2612de17427cd2399489fcb70ebe9641d83e4f30ee5a",
+        "size_bytes": 10331
+      },
+      {
+        "path": "automation/programs/AUTO-IMP-PROGRAM-V2/program.rev5.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+        "sha256": "680d85e1dd2a19898c0836e85dcd47fe05dd37d42b3fad8128c6d33ea37b1563",
+        "size_bytes": 23453
+      },
+      {
+        "path": "automation/prompts/CODEX_EXECUTOR_KERNEL.md",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "8d0a8e11bd93692459c1f8d57be36d10333cee5c",
+        "sha256": "116bc129f836f261dc07e2f62377afac5de999d3a65bcc78416b78979d657e8b",
+        "size_bytes": 9695
+      },
+      {
+        "path": "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "7c94d4e31d2c0fc5a4aae85ed48638b53b5b265b",
+        "sha256": "45e5d8ce63b61b93c73d85663cb54c216ec2810dcddb641ec0bc32a164038efa",
+        "size_bytes": 10557
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/result_intake.json",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "6f4047e435177eea77fa26eda10e81f95dc899a8",
+        "sha256": "6d0eeb2b62c4e03825b5050d4fc2487ab7c793529556c0fefd04da90d2ec8966",
+        "size_bytes": 8783
+      },
+      {
+        "path": "automation/runs/EXEC-AUTO-IMP-002-REV2-RF01-20261007T045545Z/writer_release.json",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "a516285944dabe70819cc52416e62136062aa18e",
+        "sha256": "fdabaa33706c94c0ebb58d83807b7c21dffe6e3e3b078d4f72d2d0f2f7acc7eb",
+        "size_bytes": 1390
+      },
+      {
+        "path": "automation/specs/negative_assertions.v2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+        "sha256": "4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344",
+        "size_bytes": 1496
+      },
+      {
+        "path": "automation/specs/work_cost_accounting.v2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+        "sha256": "a4ae5dfa602293dbe4721e3f0a4bc82960c52072ef8ac00535cb42432fa30a5a",
+        "size_bytes": 1641
+      },
+      {
+        "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "e2b0422f294ac718f06403b704a8f28607a5002f",
+        "sha256": "8772ed5eaa71cdeab124b8c667c58a915d1ad21ed861b01ffc3d0692ed5fe73a",
+        "size_bytes": 2061
+      },
+      {
+        "path": "automation/work_orders/AUTO-IMP-002-REV2.acceptance.json",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "92dec38fee56cb92595a17e4e28a042e0596fa36",
+        "sha256": "95cd1748eaed6684dcfdae6d2a2a84a328072fe94940c2d74f7b3f7fd064e0b8",
+        "size_bytes": 8317
+      },
+      {
+        "path": "automation/work_orders/AUTO-IMP-002.closure.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "bab5dccdf0e17954e323e5c8a6b96947cfa7cd67",
+        "sha256": "3698157eacf676f737448a3b6442baf704e80abd1f51826c0b013db613612fbf",
+        "size_bytes": 3278
+      },
+      {
+        "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-acceptance.json",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "815a919cc896e8aaa0a8dcdd37df8227cdb420eb",
+        "sha256": "5a8c3e8a4fb905b607a6d4a5afe448021389eb0be5961f69b2017fd4c1f05de8",
+        "size_bytes": 3354
+      },
+      {
+        "path": "automation/work_orders/AUTO-IMP-PROGRAM-V2-REV5.operational-baseline.json",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "dee81fc53c154f962711cbfb0a7bc3778a3e81b6",
+        "sha256": "70e7946c32f4899e6b209529e34eb32f4bf4868a20963d6dfa4b237f386b26dd",
+        "size_bytes": 2409
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+        "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+        "size_bytes": 12417
+      },
+      {
+        "path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "fb8c67d8d536c75ce852121a0dfe136b23d36223",
+        "sha256": "e3dc5d9d4461622e87d23bc99d4d63edfe5e04bf27a934ca3c5ee28848d9ac62",
+        "size_bytes": 1411
+      },
+      {
+        "path": "automation/work_orders/reviews/WO-AUTO-IMP-002-REV2-RF01-01.verdict.json",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "c0e563ba57089896a45ca78f76144ca811a6194e",
+        "sha256": "8689b16734c13f7ccc9b1681b30b91c59d0aaaeaa5c440cfc5add71301d29b98",
+        "size_bytes": 2649
+      },
+      {
+        "path": "docs/CURRENT_STATE.md",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "159b0253aacca4623b6124e476c4364180a18b63",
+        "sha256": "ea58de1edae20f2b32f8a67351cc70316eb6e41ef1ea8a7869aab4ab2f705ea3",
+        "size_bytes": 88326
+      },
+      {
+        "path": "docs/CURRENT_WORK.md",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "7eb8be3279abecd4410021bb8de11287989600c7",
+        "sha256": "e61697cccf92fab7c59f5efc46eb5af01cf8a2ac21d0139c2a38036d69e6ca8d",
+        "size_bytes": 60363
+      }
+    ],
+    "candidate_design": [
+      {
+        "path": "automation/platform/CONTEXT_READING_RECEIPTS.md",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "9ddc1e75fbe8e8f4ccb038442558dcfa9aa16ff9",
+        "sha256": "9135b54dd6b11dc67cd33fc81be65233098b217b60a40094812109a84867edff",
+        "size_bytes": 7676
+      },
+      {
+        "path": "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "0ce3b35e79273161e4504fb5397cdc5ca3cba338",
+        "sha256": "ac6040282afd02f7e8eee24c5112ccc8578e0d1549413e16f2925a1fba160f5e",
+        "size_bytes": 6145
+      },
+      {
+        "path": "automation/platform/context_reading_contract.v1.json",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "aa09d1d43107ef9283d99fcc1b8cba864b0afd7f",
+        "sha256": "ef62973a419a91df52ceac6a23429ddfa0ea0b239a8f7978109977e0e3b5c476",
+        "size_bytes": 3467
+      },
+      {
+        "path": "automation/platform/intake_observation.schema.v1.json",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "58d315ebedaea9be36fedcebc6751f5b18494121",
+        "sha256": "552d124b3d2b33239acb656f0621448c99e29002b2a6e4c1b2fbc61a57c0fe9f",
+        "size_bytes": 4340
+      },
+      {
+        "path": "automation/platform/reading_claim.schema.v1.json",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "8c1c2e2c7ce8b9945104ec4bf99ed9d28dba3211",
+        "sha256": "1e8a98070bf9d049d1a6fdc653a98ee4b0303b34edf2b98ffbdfca71f39fb166",
+        "size_bytes": 2353
+      },
+      {
+        "path": "automation/platform/source_reading_obligations.v1.json",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "e86553fc1a74ad502c84371ab104ce9a9b8de5d0",
+        "sha256": "2dc8894a6cfdb7641a5c5385c7ba1a6f2e4792384e5d837e5bdfa07022d7f387",
+        "size_bytes": 409399
+      },
+      {
+        "path": "docs/program/checkpoints/P00-reading-spec-eval-20261010.evidence.v1.json",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "c304ead3e53e36bc1c4100ec0398a5c349a79f70",
+        "sha256": "2e217de868956df3deddbaf1ae937c62eeb8196e84ffa1433ff7b8562a4a6939",
+        "size_bytes": 9818
+      },
+      {
+        "path": "docs/program/p00_status.v1.json",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "c7091c07539f1b552745bb900270a2f87aeebdba",
+        "sha256": "73c58cba0e1b0fc19dfead74c36efc306eb3fcd058ac1391ffda77b8bd0b63d2",
+        "size_bytes": 35329
+      },
+      {
+        "path": "docs/program/reading_evaluations/36f6c07/spec-evaluation.v1.json",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "8da88d9d912f982b495daec166ba269b684dd0f6",
+        "sha256": "f8468fc7f256cb3d4b7f95cb2ddb6faa81621ed4a7b77058255f2ab57cccb797",
+        "size_bytes": 41481
+      },
+      {
+        "path": "docs/program/reviews/P00-reading-spec-eval.review-request.v1.json",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "bde2c801e8d6bb6a6a933e8c2f8a70914e903ef5",
+        "sha256": "db84b96180a485d174423d4a10c07fb30252d896dfb722db6054350a2c58093b",
+        "size_bytes": 9015
+      },
+      {
+        "path": "scripts/p00_intake.py",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "ae8f62ad76a5b8631f0c9693c36e7e00f61afd53",
+        "sha256": "2f7cbf9809424ca71b2595376dbf658b2d74d5f3beebbbc4d8099f80841c2bf0",
+        "size_bytes": 4986
+      },
+      {
+        "path": "scripts/p00_reading.py",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "df80dd9db77f6503511d08d068651a2fd8faa4b4",
+        "sha256": "6874c4f70f6686146087b8a57e98626a6002a7e76d94283620a740fe68bfb8da",
+        "size_bytes": 12215
+      }
+    ],
+    "observation": {
+      "observation": {
+        "schema_version": "p00.intake_observation.v1",
+        "authority": "NONE_PLANNING_ONLY",
+        "execution_eligible": false,
+        "source_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "observations": {
+          "stop": {
+            "knowledge": "UNKNOWN",
+            "scope": "CURRENT_PROGRAM",
+            "items": [],
+            "evidence": [],
+            "reason": "NO_EXHAUSTIVE_CURRENT_REGISTRY_BINDING"
+          },
+          "active_execution": {
+            "knowledge": "NONE",
+            "scope": "CURRENT_PROGRAM",
+            "items": [],
+            "evidence": [
+              {
+                "path": "automation/work_orders/CURRENT_CODEX.yaml",
+                "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+                "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+                "json_pointer": "/execution_id"
+              },
+              {
+                "path": "automation/work_orders/CURRENT_CODEX.yaml",
+                "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+                "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+                "json_pointer": "/current_execution_id"
+              },
+              {
+                "path": "automation/work_orders/CURRENT_CODEX.yaml",
+                "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+                "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+                "json_pointer": "/active_execution_id"
+              }
+            ],
+            "reason": "EXPLICIT_EMPTY_BOUND_OPERATIONAL_PROJECTION_NOT_OS_PROCESS_ATTESTATION"
+          },
+          "active_writer": {
+            "knowledge": "NONE",
+            "scope": "CURRENT_PROGRAM",
+            "items": [],
+            "evidence": [
+              {
+                "path": "automation/work_orders/CURRENT_CODEX.yaml",
+                "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+                "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+                "json_pointer": "/active_writer"
+              },
+              {
+                "path": "automation/work_orders/CURRENT_CODEX.yaml",
+                "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+                "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+                "json_pointer": "/writer_owner"
+              },
+              {
+                "path": "automation/work_orders/CURRENT_CODEX.yaml",
+                "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+                "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+                "json_pointer": "/writer_state"
+              }
+            ],
+            "reason": "EXPLICIT_EMPTY_BOUND_OPERATIONAL_PROJECTION_NOT_OS_PROCESS_ATTESTATION"
+          },
+          "pending_result": {
+            "knowledge": "UNKNOWN",
+            "scope": "CURRENT_PROGRAM",
+            "items": [],
+            "evidence": [],
+            "reason": "NO_EXHAUSTIVE_CURRENT_REGISTRY_BINDING"
+          },
+          "pending_review": {
+            "knowledge": "UNKNOWN",
+            "scope": "CURRENT_PROGRAM",
+            "items": [],
+            "evidence": [],
+            "reason": "NO_EXHAUSTIVE_CURRENT_REGISTRY_BINDING"
+          },
+          "pending_integration": {
+            "knowledge": "UNKNOWN",
+            "scope": "CURRENT_PROGRAM",
+            "items": [],
+            "evidence": [],
+            "reason": "NO_EXHAUSTIVE_CURRENT_REGISTRY_BINDING"
+          },
+          "pending_acceptance": {
+            "knowledge": "UNKNOWN",
+            "scope": "CURRENT_PROGRAM",
+            "items": [],
+            "evidence": [],
+            "reason": "NO_EXHAUSTIVE_CURRENT_REGISTRY_BINDING"
+          },
+          "latest_delta": {
+            "knowledge": "UNKNOWN",
+            "scope": "CURRENT_PROGRAM",
+            "items": [],
+            "evidence": [],
+            "reason": "NO_EXHAUSTIVE_CURRENT_REGISTRY_BINDING"
+          },
+          "last_accepted_result": {
+            "knowledge": "UNKNOWN",
+            "scope": "CURRENT_PROGRAM",
+            "items": [],
+            "evidence": [],
+            "reason": "NO_EXHAUSTIVE_CURRENT_REGISTRY_BINDING"
+          }
+        }
+      },
+      "route": {
+        "proposal": "REHYDRATE_MISSING_EVIDENCE",
+        "reason": "stop",
+        "authority": "NONE_PLANNING_ONLY",
+        "execution_eligible": false,
+        "evidence_trust_verified": false,
+        "side_effects": "NONE"
+      },
+      "tool_binding": {
+        "path": "scripts/p00_intake.py",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "ae8f62ad76a5b8631f0c9693c36e7e00f61afd53",
+        "sha256": "2f7cbf9809424ca71b2595376dbf658b2d74d5f3beebbbc4d8099f80841c2bf0",
+        "size_bytes": 4986,
+        "source_comparison": "EXACT_EXCEPT_CRLF_TRANSPORT",
+        "review_status": "NOT_ASSERTED"
+      },
+      "schema_source": {
+        "path": "automation/platform/intake_observation.schema.v1.json",
+        "baseline_sha": "58df21601efa8d1f867a97aff6393f081236e15c",
+        "git_blob": "58d315ebedaea9be36fedcebc6751f5b18494121",
+        "sha256": "552d124b3d2b33239acb656f0621448c99e29002b2a6e4c1b2fbc61a57c0fe9f",
+        "size_bytes": 4340
+      },
+      "current_source": {
+        "path": "automation/work_orders/CURRENT_CODEX.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+        "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+        "size_bytes": 12417
+      },
+      "complete_current_intake": false,
+      "limitations": [
+        "Caller must obtain fresh remote master; this tool is offline.",
+        "Existing accepted WORK re-entry still required; missing registries remain UNKNOWN.",
+        "No invocation, resume, receipt, independent acceptance or OS writer attestation."
+      ]
+    },
+    "coverage_universe": "BOUNDED_CURRENT_POINTERS_AND_SELECTED_ACCEPTED_PREDECESSOR_NOT_EXHAUSTIVE",
+    "active_policy_refs": [
+      {
+        "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+        "sha256": "268b353d39461ccd629456cbe32cea6ded3bb1e617042584c7d52f27f46e8486",
+        "size_bytes": 2046
+      },
+      {
+        "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+        "sha256": "f72c1589007df1cd4bad2612de17427cd2399489fcb70ebe9641d83e4f30ee5a",
+        "size_bytes": 10331
+      },
+      {
+        "path": "automation/policies/development_state_machine.v2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+        "sha256": "17c76e24fddc23db036a52771620e6fd848c1ca710e4fb8f7a1b82a3dd91b863",
+        "size_bytes": 1745
+      },
+      {
+        "path": "automation/policies/development_entry_protocol.v2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+        "sha256": "e722303a6c0821392418d2d2716892248ec8fae58c57524202d773c3e3ed9ab5",
+        "size_bytes": 1445
+      },
+      {
+        "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "e2b0422f294ac718f06403b704a8f28607a5002f",
+        "sha256": "8772ed5eaa71cdeab124b8c667c58a915d1ad21ed861b01ffc3d0692ed5fe73a",
+        "size_bytes": 2061
+      },
+      {
+        "path": "automation/specs/work_cost_accounting.v2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+        "sha256": "a4ae5dfa602293dbe4721e3f0a4bc82960c52072ef8ac00535cb42432fa30a5a",
+        "size_bytes": 1641
+      },
+      {
+        "path": "automation/specs/negative_assertions.v2.yaml",
+        "baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "git_blob": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+        "sha256": "4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344",
+        "size_bytes": 1496
+      }
+    ],
+    "active_policy_hash_status": "7_DECLARED_ACTIVE_EXACT_RAW_HASHES_PASS_NOT_SEMANTIC_QUALIFICATION"
+  },
+  "producer_matrix": [
+    {
+      "candidate_role": "WORK_CONTROL",
+      "categories": [
+        "stop",
+        "active_execution",
+        "active_writer"
+      ],
+      "required_positive_evidence": "CURRENT_CODEX explicit projection + authoritative lifecycle/writer ledger heads",
+      "negative_assertion": "NONE is bound source projection only; process/global absence not attested",
+      "accepted_producer_identity": "UNBOUND",
+      "accepted_writer_capability": "NOT_GRANTED",
+      "producer_head": "UNBOUND",
+      "discovery_coverage": "INCOMPLETE",
+      "source_universe": "REQUIRES_INDEPENDENT_ACCEPTED_BOOTSTRAP_INVENTORY_NOT_DIRECTORY_GLOB"
+    },
+    {
+      "candidate_role": "EXECUTOR_RESULT",
+      "categories": [
+        "pending_result"
+      ],
+      "required_positive_evidence": "Exact invoked execution lineage, immutable raw result revision/head and intake disposition",
+      "negative_assertion": "Executor append is not global registry writer, result acceptance or writer release",
+      "accepted_producer_identity": "UNBOUND",
+      "accepted_writer_capability": "NOT_GRANTED",
+      "producer_head": "UNBOUND",
+      "discovery_coverage": "INCOMPLETE",
+      "source_universe": "REQUIRES_INDEPENDENT_ACCEPTED_BOOTSTRAP_INVENTORY_NOT_DIRECTORY_GLOB"
+    },
+    {
+      "candidate_role": "INDEPENDENT_REVIEWER",
+      "categories": [
+        "pending_review"
+      ],
+      "required_positive_evidence": "Exact review request/subject/scope, independent identity and verdict/head",
+      "negative_assertion": "PASS is not integration/acceptance; author packets are not independent verdicts",
+      "accepted_producer_identity": "UNBOUND",
+      "accepted_writer_capability": "NOT_GRANTED",
+      "producer_head": "UNBOUND",
+      "discovery_coverage": "INCOMPLETE",
+      "source_universe": "REQUIRES_INDEPENDENT_ACCEPTED_BOOTSTRAP_INVENTORY_NOT_DIRECTORY_GLOB"
+    },
+    {
+      "candidate_role": "WORK_INTEGRATOR",
+      "categories": [
+        "pending_integration"
+      ],
+      "required_positive_evidence": "Exact reviewed source blobs/destination/revision and integration disposition/head",
+      "negative_assertion": "Merged files cannot change reviewed subject or imply P00/product acceptance",
+      "accepted_producer_identity": "UNBOUND",
+      "accepted_writer_capability": "NOT_GRANTED",
+      "producer_head": "UNBOUND",
+      "discovery_coverage": "INCOMPLETE",
+      "source_universe": "REQUIRES_INDEPENDENT_ACCEPTED_BOOTSTRAP_INVENTORY_NOT_DIRECTORY_GLOB"
+    },
+    {
+      "candidate_role": "ACCEPTANCE_OWNER",
+      "categories": [
+        "pending_acceptance",
+        "last_accepted_result"
+      ],
+      "required_positive_evidence": "Exact review/integration/test/delegation/acceptance lineage and immutable head",
+      "negative_assertion": "Accepted002 preserved; delegation cannot expand to003/P00/activation",
+      "accepted_producer_identity": "UNBOUND",
+      "accepted_writer_capability": "NOT_GRANTED",
+      "producer_head": "UNBOUND",
+      "discovery_coverage": "INCOMPLETE",
+      "source_universe": "REQUIRES_INDEPENDENT_ACCEPTED_BOOTSTRAP_INVENTORY_NOT_DIRECTORY_GLOB"
+    },
+    {
+      "candidate_role": "WORK_DELTA",
+      "categories": [
+        "latest_delta"
+      ],
+      "required_positive_evidence": "Bound program/package/execution delta identities, generation head and complete outstanding set",
+      "negative_assertion": "Timestamp/branch recency is not authoritative latest delta; missing pointer UNKNOWN",
+      "accepted_producer_identity": "UNBOUND",
+      "accepted_writer_capability": "NOT_GRANTED",
+      "producer_head": "UNBOUND",
+      "discovery_coverage": "INCOMPLETE",
+      "source_universe": "REQUIRES_INDEPENDENT_ACCEPTED_BOOTSTRAP_INVENTORY_NOT_DIRECTORY_GLOB"
+    }
+  ],
+  "category_coverage": [
+    {
+      "category": "stop",
+      "current_bound_observation": "UNKNOWN",
+      "current_observation_scope": "EXACT_CURRENT_SOURCE_PROJECTION_NOT_GLOBAL_COVERAGE",
+      "proposed_global_coverage": "INCOMPLETE",
+      "global_knowledge_if_bootstrap_attempted": "UNKNOWN",
+      "required_producer_roles": [
+        "WORK_CONTROL"
+      ],
+      "required_positive_completeness": [
+        "Accepted STOP producers, every scope and governing policy version",
+        "Complete producer heads/no unobserved events cut",
+        "Outstanding effective STOP set; clear/revoke evidence remains immutable"
+      ],
+      "empty_set_to_NONE": "Only accepted bootstrap + complete producer universe/head cut + integrity/consistency PASS + exact empty set",
+      "current_evidence": [],
+      "missing_evidence": "NO_ACCEPTED_EXHAUSTIVE_CURRENT_REGISTRY_OR_PRODUCER_HEAD_UNIVERSE"
+    },
+    {
+      "category": "active_execution",
+      "current_bound_observation": "NONE",
+      "current_observation_scope": "EXACT_CURRENT_SOURCE_PROJECTION_NOT_GLOBAL_COVERAGE",
+      "proposed_global_coverage": "INCOMPLETE",
+      "global_knowledge_if_bootstrap_attempted": "UNKNOWN",
+      "required_producer_roles": [
+        "WORK_CONTROL"
+      ],
+      "required_positive_completeness": [
+        "All started execution/grant dispositions across governing/predecessor programs",
+        "Invocation/first-invocation/resume lineage and unfinished states",
+        "Retired/closed/consumed identities retained without reusing them"
+      ],
+      "empty_set_to_NONE": "Only accepted bootstrap + complete producer universe/head cut + integrity/consistency PASS + exact empty set",
+      "current_evidence": [
+        {
+          "path": "automation/work_orders/CURRENT_CODEX.yaml",
+          "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+          "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+          "json_pointer": "/execution_id"
+        },
+        {
+          "path": "automation/work_orders/CURRENT_CODEX.yaml",
+          "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+          "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+          "json_pointer": "/current_execution_id"
+        },
+        {
+          "path": "automation/work_orders/CURRENT_CODEX.yaml",
+          "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+          "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+          "json_pointer": "/active_execution_id"
+        }
+      ],
+      "missing_evidence": "NO_ACCEPTED_EXHAUSTIVE_CURRENT_REGISTRY_OR_PRODUCER_HEAD_UNIVERSE"
+    },
+    {
+      "category": "active_writer",
+      "current_bound_observation": "NONE",
+      "current_observation_scope": "EXACT_CURRENT_SOURCE_PROJECTION_NOT_GLOBAL_COVERAGE",
+      "proposed_global_coverage": "INCOMPLETE",
+      "global_knowledge_if_bootstrap_attempted": "UNKNOWN",
+      "required_producer_roles": [
+        "WORK_CONTROL"
+      ],
+      "required_positive_completeness": [
+        "Unique accepted writer ownership and durable release disposition",
+        "Writer registry head reconciled with all started executions",
+        "No OS/process absence inference from source null"
+      ],
+      "empty_set_to_NONE": "Only accepted bootstrap + complete producer universe/head cut + integrity/consistency PASS + exact empty set",
+      "current_evidence": [
+        {
+          "path": "automation/work_orders/CURRENT_CODEX.yaml",
+          "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+          "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+          "json_pointer": "/active_writer"
+        },
+        {
+          "path": "automation/work_orders/CURRENT_CODEX.yaml",
+          "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+          "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+          "json_pointer": "/writer_owner"
+        },
+        {
+          "path": "automation/work_orders/CURRENT_CODEX.yaml",
+          "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+          "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+          "json_pointer": "/writer_state"
+        }
+      ],
+      "missing_evidence": "NO_ACCEPTED_EXHAUSTIVE_CURRENT_REGISTRY_OR_PRODUCER_HEAD_UNIVERSE"
+    },
+    {
+      "category": "pending_result",
+      "current_bound_observation": "UNKNOWN",
+      "current_observation_scope": "EXACT_CURRENT_SOURCE_PROJECTION_NOT_GLOBAL_COVERAGE",
+      "proposed_global_coverage": "INCOMPLETE",
+      "global_knowledge_if_bootstrap_attempted": "UNKNOWN",
+      "required_producer_roles": [
+        "EXECUTOR_RESULT"
+      ],
+      "required_positive_completeness": [
+        "Every invoked producer/result revision and raw payload hash",
+        "Intake receipt/head and rejected/conflicting/raw-unintaken results",
+        "Writer release separately bound; cannot release from result existence"
+      ],
+      "empty_set_to_NONE": "Only accepted bootstrap + complete producer universe/head cut + integrity/consistency PASS + exact empty set",
+      "current_evidence": [],
+      "missing_evidence": "NO_ACCEPTED_EXHAUSTIVE_CURRENT_REGISTRY_OR_PRODUCER_HEAD_UNIVERSE"
+    },
+    {
+      "category": "pending_review",
+      "current_bound_observation": "UNKNOWN",
+      "current_observation_scope": "EXACT_CURRENT_SOURCE_PROJECTION_NOT_GLOBAL_COVERAGE",
+      "proposed_global_coverage": "INCOMPLETE",
+      "global_knowledge_if_bootstrap_attempted": "UNKNOWN",
+      "required_producer_roles": [
+        "INDEPENDENT_REVIEWER"
+      ],
+      "required_positive_completeness": [
+        "All requested/assigned/open/re-review identities and exact subjects",
+        "Independent reviewer producer identity/head and verdict dispositions",
+        "P00 prepared packets in separate human-authoring namespace, not ProgramV2 current verdicts"
+      ],
+      "empty_set_to_NONE": "Only accepted bootstrap + complete producer universe/head cut + integrity/consistency PASS + exact empty set",
+      "current_evidence": [],
+      "missing_evidence": "NO_ACCEPTED_EXHAUSTIVE_CURRENT_REGISTRY_OR_PRODUCER_HEAD_UNIVERSE"
+    },
+    {
+      "category": "pending_integration",
+      "current_bound_observation": "UNKNOWN",
+      "current_observation_scope": "EXACT_CURRENT_SOURCE_PROJECTION_NOT_GLOBAL_COVERAGE",
+      "proposed_global_coverage": "INCOMPLETE",
+      "global_knowledge_if_bootstrap_attempted": "UNKNOWN",
+      "required_producer_roles": [
+        "WORK_INTEGRATOR"
+      ],
+      "required_positive_completeness": [
+        "Every reviewed candidate requiring integration and destination proof",
+        "Reviewed exact blobs, source subject, destination head and integration outcome",
+        "Same reviewed scope, no silent semantic source change"
+      ],
+      "empty_set_to_NONE": "Only accepted bootstrap + complete producer universe/head cut + integrity/consistency PASS + exact empty set",
+      "current_evidence": [],
+      "missing_evidence": "NO_ACCEPTED_EXHAUSTIVE_CURRENT_REGISTRY_OR_PRODUCER_HEAD_UNIVERSE"
+    },
+    {
+      "category": "pending_acceptance",
+      "current_bound_observation": "UNKNOWN",
+      "current_observation_scope": "EXACT_CURRENT_SOURCE_PROJECTION_NOT_GLOBAL_COVERAGE",
+      "proposed_global_coverage": "INCOMPLETE",
+      "global_knowledge_if_bootstrap_attempted": "UNKNOWN",
+      "required_producer_roles": [
+        "ACCEPTANCE_OWNER"
+      ],
+      "required_positive_completeness": [
+        "All reviewed/integrated packages awaiting exact delegated acceptance",
+        "Explicit accept/reject/hold decision lineage and test source",
+        "Review/integration accepted only in their own scopes; no blanket new grant"
+      ],
+      "empty_set_to_NONE": "Only accepted bootstrap + complete producer universe/head cut + integrity/consistency PASS + exact empty set",
+      "current_evidence": [],
+      "missing_evidence": "NO_ACCEPTED_EXHAUSTIVE_CURRENT_REGISTRY_OR_PRODUCER_HEAD_UNIVERSE"
+    },
+    {
+      "category": "latest_delta",
+      "current_bound_observation": "UNKNOWN",
+      "current_observation_scope": "EXACT_CURRENT_SOURCE_PROJECTION_NOT_GLOBAL_COVERAGE",
+      "proposed_global_coverage": "INCOMPLETE",
+      "global_knowledge_if_bootstrap_attempted": "UNKNOWN",
+      "required_producer_roles": [
+        "WORK_DELTA"
+      ],
+      "required_positive_completeness": [
+        "All active work lineage delta producer heads",
+        "Per-consumer exact unread source set and successor invalidation",
+        "No timestamp-derived latest; known accepted baseline is not exhaustive delta"
+      ],
+      "empty_set_to_NONE": "Only accepted bootstrap + complete producer universe/head cut + integrity/consistency PASS + exact empty set",
+      "current_evidence": [],
+      "missing_evidence": "NO_ACCEPTED_EXHAUSTIVE_CURRENT_REGISTRY_OR_PRODUCER_HEAD_UNIVERSE"
+    },
+    {
+      "category": "last_accepted_result",
+      "current_bound_observation": "UNKNOWN",
+      "current_observation_scope": "EXACT_CURRENT_SOURCE_PROJECTION_NOT_GLOBAL_COVERAGE",
+      "proposed_global_coverage": "INCOMPLETE",
+      "global_knowledge_if_bootstrap_attempted": "UNKNOWN",
+      "required_producer_roles": [
+        "ACCEPTANCE_OWNER"
+      ],
+      "required_positive_completeness": [
+        "All applicable accepted result heads by exact program/package revisions",
+        "Acceptance review/integration/test/source hash chain",
+        "Accepted002 is positive bounded evidence, not global absence/completeness"
+      ],
+      "empty_set_to_NONE": "Only accepted bootstrap + complete producer universe/head cut + integrity/consistency PASS + exact empty set",
+      "current_evidence": [],
+      "missing_evidence": "NO_ACCEPTED_EXHAUSTIVE_CURRENT_REGISTRY_OR_PRODUCER_HEAD_UNIVERSE"
+    }
+  ],
+  "identity_and_cut": {
+    "item_identity": [
+      "program_id",
+      "program_revision",
+      "package_id",
+      "package_revision",
+      "work_order_id",
+      "execution_id",
+      "item_kind",
+      "result_revision"
+    ],
+    "null_rule": "Explicit null only when item_kind declares not applicable; absent/unknown never converted to null",
+    "revision_representation": "Preserve accepted source revision types/lexical, no silent string-to-integer identity conversion",
+    "snapshot_cut": [
+      "authoritative_master_sha",
+      "program_definition_blob",
+      "program_revision",
+      "registry_revision",
+      "registry_snapshot_hash",
+      "complete_producer_universe_hash",
+      "producer_heads",
+      "STOP_head",
+      "source_contract_revision",
+      "coverage_status_per_category"
+    ],
+    "source_reference": [
+      "path",
+      "baseline_sha",
+      "git_blob",
+      "raw_content_sha256",
+      "json_pointer_or_stable_section_id"
+    ],
+    "hash_basis": "Exact pinned raw Git bytes; canonical snapshot hash excludes its own hash field; timestamps are audit only"
+  },
+  "none_rule": {
+    "requires": [
+      "ACCEPTED_BOOTSTRAP_AUTHORITY_AND_REVIEW",
+      "EXACT_PROGRAM_SCOPE_AND_PRODUCER_UNIVERSE",
+      "ALL_REQUIRED_PRODUCER_HEADS_AT_ONE_COMPLETE_CUT",
+      "CATEGORY_COVERAGE_COMPLETE",
+      "EMPTY_SET_PROVEN",
+      "INTEGRITY_AND_CONSISTENCY_PASS"
+    ],
+    "missing_or_drift": "UNKNOWN_NO_DISPATCH",
+    "current_projection_NONE": "Preserved as projection evidence, never promoted to global COMPLETE"
+  },
+  "bootstrap_protocol": [
+    {
+      "step": "B01",
+      "state": "PROPOSED_NOT_AUTHORIZED",
+      "requirement": "Resolve exact master/program/source contracts and accepted predecessor lineage; no registry current pointer write"
+    },
+    {
+      "step": "B02",
+      "state": "BOUNDED_INVENTORY_WITH_EXCEPTIONS",
+      "requirement": "Independently enumerate accepted producer universe, started grants/executions and9 categories with raw sources; retain UNKNOWN and exceptions"
+    },
+    {
+      "step": "B03",
+      "state": "INDEPENDENT_REVIEW_REQUIRED",
+      "requirement": "Review identity/coverage/head/STOP cut, receipt compatibility and no historical backfill; author self-check is insufficient"
+    },
+    {
+      "step": "B04",
+      "state": "EXACT_OPERATIONAL_SUCCESSOR_GRANT_REQUIRED",
+      "requirement": "Owner binds exact proposal/source blobs/producer universe/expected current/master/program and future allowlist/backend/side effects; draft IDs never grant"
+    },
+    {
+      "step": "B05",
+      "state": "BOOTSTRAP_MATERIALIZATION_NOT_EXECUTED",
+      "requirement": "Only under B04 materialize immutable snapshot and guarded pointer using accepted single writer; no new executor invocation"
+    },
+    {
+      "step": "B06",
+      "state": "REGISTRY_ACCEPTANCE_SEPARATE",
+      "requirement": "Independent backend durability/currentness conformance and exact registry acceptance; incomplete categories remain UNKNOWN"
+    },
+    {
+      "step": "B07",
+      "state": "READ_ONLY_ORCHESTRATION_NO_AUTOMATIC_DISPATCH",
+      "requirement": "All source/dependency/writer/grant/capacity gates remain; controller activation separate explicit decision"
+    }
+  ],
+  "transition_and_CAS_requirements": {
+    "store": "Recommend existing repository-governed Git append/commit, backend durability contract still requires exact review/grant; no new competing DB",
+    "current_pointer_path": "UNDECIDED_NOT_CREATED_REQUIRES_EXACT_FUTURE_ALLOWLIST",
+    "expected_input": [
+      "registry_revision",
+      "snapshot_hash",
+      "program_revision",
+      "producer_head",
+      "STOP_head",
+      "result_identity",
+      "result_revision",
+      "raw_payload_hash"
+    ],
+    "receipt_key": [
+      "program_id",
+      "producer_id",
+      "result_identity",
+      "result_revision"
+    ],
+    "same_key_same_payload": "Return immutable original receipt after source/permission validation; no duplicate effect",
+    "same_key_different_payload": "CONFLICT_PRESERVE_HISTORY",
+    "atomic_unit": [
+      "immutable intake receipt",
+      "immutable successor snapshot",
+      "guarded current pointer"
+    ],
+    "head_or_STOP_drift": "Invalidate proposal and reread, no stale lease reuse",
+    "crash_rule": "No durability/concurrency assertion from Git commit shape or sequential fixtures; require actual accepted backend crash/CAS qualification",
+    "writer_release": "Only existing exact lifecycle release authority, never inferred from receipt alone",
+    "replay_order": "Authenticate exact producer/key; existing receipt first compares immutable accepted identity/payload and returns original receipt without new CAS or reinterpretation after head advance. Only absent receipt validates fresh expected cut/current head and CAS for a new intake. Replay never grants new dispatch/release authority."
+  },
+  "reader_trust_compatibility": {
+    "id": "RQ03-COMPAT-01",
+    "status": "BOUNDED_SUCCESSOR_DESIGN_REVIEW_REQUIRED",
+    "legacy_ack_key": [
+      "consumer_role",
+      "program_revision",
+      "source_item_id",
+      "exact_blob_hash"
+    ],
+    "claim_key": [
+      "consumer_with_task_session_epoch",
+      "plan_hash",
+      "obligation_id"
+    ],
+    "artifact_kinds": "Legacy read acknowledgement, unverified claim and future trusted read receipt remain distinct namespaces",
+    "proposed_validity_binding": [
+      "accepted_producer_identity_and_capability",
+      "verified_consumer_role_task_session_continuity_epoch",
+      "exact_program_source_scope_and_plan_hash",
+      "exact_payload_hash_and_obligation_closure",
+      "governing_registry_head_STOP_and_contract_revision"
+    ],
+    "legacy_compatibility": "Keep legacy records unchanged; coarse role-only ack never auto-promotes across task/session/epoch or into trusted reading",
+    "unverified_consumer_or_producer": "UNKNOWN_REREAD_NO_TRUSTED_ACK",
+    "acceptance_or_dispatch_from_read": "DENIED",
+    "decision_needed": "Qualify accepted receipt producer/consumer and explicit compatibility successor, not infer session/process attestation"
+  },
+  "adverse_evidence_requirements": [
+    {
+      "id": "BT01",
+      "case": "Missing producer or head despite claimed COMPLETE",
+      "expected": "UNKNOWN; cannot infer NONE",
+      "actual_backend_test": "NOT_RUN"
+    },
+    {
+      "id": "BT02",
+      "case": "New STOP or producer head after proposal read",
+      "expected": "Invalidate old proposal before side effect",
+      "actual_backend_test": "NOT_RUN"
+    },
+    {
+      "id": "BT03",
+      "case": "Two concurrent identical intake writers",
+      "expected": "One receipt/snapshot CAS effect, exact replay returns same receipt",
+      "actual_backend_test": "NOT_RUN"
+    },
+    {
+      "id": "BT04",
+      "case": "Same key different raw payload",
+      "expected": "CONFLICT no overwriting receipt/history",
+      "actual_backend_test": "NOT_RUN"
+    },
+    {
+      "id": "BT05",
+      "case": "Crash before/after atomic commit or pointer publication",
+      "expected": "Resolve only one committed unit; no duplicate authority consumption",
+      "actual_backend_test": "NOT_RUN"
+    },
+    {
+      "id": "BT06",
+      "case": "Old PASS reviewed subject differs from current candidate",
+      "expected": "Cannot integration/acceptance new subject",
+      "actual_backend_test": "NOT_RUN"
+    },
+    {
+      "id": "BT07",
+      "case": "Result exists but writer release missing",
+      "expected": "No other writer dispatch",
+      "actual_backend_test": "NOT_RUN"
+    },
+    {
+      "id": "BT08",
+      "case": "Consumed without invocation or retired unused slot",
+      "expected": "No fabricated resume/reuse/backfill",
+      "actual_backend_test": "NOT_RUN"
+    },
+    {
+      "id": "BT09",
+      "case": "Role-only old ack, changed consumer context/source/head",
+      "expected": "Reread; no trusted receipt promotion",
+      "actual_backend_test": "NOT_RUN"
+    },
+    {
+      "id": "BT10",
+      "case": "Known accepted002 head mistaken for exhaustive pending NONE",
+      "expected": "Preserve positive accepted predecessor; unrelated pending remain UNKNOWN",
+      "actual_backend_test": "NOT_RUN"
+    },
+    {
+      "id": "BT11",
+      "case": "Unknown model/consumer attestation or schema-only payload",
+      "expected": "No semantic/currentness trust claim",
+      "actual_backend_test": "NOT_RUN"
+    },
+    {
+      "id": "BT12",
+      "case": "Mock/spec tests or review PASS treated as activation grant",
+      "expected": "No bootstrap/controller/product authorization",
+      "actual_backend_test": "NOT_RUN"
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "T01",
+      "recommendation": "CANDIDATE_PREFERRED",
+      "option": "Append-only Git control-plane successor after exact bootstrap/source/producer coverage review and grant",
+      "limit": "Git shape not durability/currentness proof; no activation implied"
+    },
+    {
+      "id": "T02",
+      "recommendation": "READ_ONLY_INTERIM_CANDIDATE",
+      "option": "Preserve bounded incomplete evidence as review inventory with UNKNOWN; existing accepted re-entry remains",
+      "limit": "No trusted registry head and no autonomous eligibility"
+    },
+    {
+      "id": "T03",
+      "recommendation": "DEFERRED_SEPARATE_BACKEND_DECISION",
+      "option": "New DB intake backend only after explicit scope/transaction/backend authority",
+      "limit": "Not authorized; cannot compete with current Git owner"
+    }
+  ],
+  "grant_bindings_required": [
+    "exact_reviewed_proposal_and_source_hashes",
+    "accepted_producer_ids_capabilities_and_universe",
+    "exact_master_program_definition_revision_and_predecessor_preservation",
+    "exact_initial_snapshot_coverage_and_exception_set",
+    "receipt_consumer_trust_and_contract_successor",
+    "explicit_future_allowed_write_paths_backend_and_expected_current_head",
+    "crash_CAS_STOP_qualification_plan_and_acceptance_boundary",
+    "single_writer_and_controller_activation_exclusions"
+  ],
+  "current_bootstrap_grant": null,
+  "current_registry_created": false,
+  "current_receipts_created": false,
+  "current_pointer_modified": false,
+  "independent_review": "NOT_PERFORMED",
+  "coverage_complete": false,
+  "current_intake_complete": false,
+  "actual_reading_verified": false,
+  "context_gate": "NOT_PASSED_ORIGINAL_AGGREGATE131072_UNCHANGED",
+  "CSV_source02_decision": "NOT_RECEIVED_OR_APPLIED",
+  "product_authorization": "NOT_AUTHORIZED",
+  "acceptance": false,
+  "dispatch": false,
+  "controller_activation": false,
+  "schema_or_static_checks_not_trust": true,
+  "proposal_sha256": "4c83e7225abcb7cd59c91d47e235c1a280099aecb6bda102c88a02410d113c84"
+}

@@ -33,6 +33,8 @@ Status: `IN_PROGRESS / CANDIDATE_ONLY`。本文件是本輪 Architect 工作封�
 
 14. `automation/platform/READING_SPEC_EVALUATION.md`：repository-bound omission/continuity 規格矩陣，synthetic claims非trusted receipt；RQ04 actual model／durable race／semantic completeness仍未qualified。
 
+15. `docs/program/decisions/R06-intake-bootstrap.md`：trusted producer／9類coverage／head-STOP-CAS／reader trust successor候選；無bootstrap grant，不建立registry或改accepted pointers。
+
 ## Scope
 
 Allowed: `docs/architecture/`、`docs/program/`、本文件、`automation/platform/`、`scripts/p00_*`、`tests/platform/`；可在既有導航增加候選 pointer。
