@@ -58,3 +58,7 @@ The reading pack is a candidate reading aid, not an authority projection or an e
 ## Selective reading and result references
 
 See `CONTEXT_SELECTION_AND_RESULT_INTAKE.md` for candidate profiles, exclusion manifests and exact predecessor/compilation reading. `--selective` projections are explicitly partial API views; expand_json restores only the selected projection. The full-source compiler gate and current re-entry procedure remain unchanged. Complete current result/review/STOP intake is not implemented.
+
+## R06 reading claim compatibility 候選
+
+`CONTEXT_READING_RECEIPTS.md`／`context_reading_contract.v1.json`／`reading_claim.schema.v1.json`／`scripts/p00_reading.py`復用原resolver/packer建立mandatory representation與session/source綁定。所有claim仍UNVERIFIED，不產生trusted acknowledgement、current-intake completeness或compiler gate migration；RQ01–RQ06及原128KiB總source gate保持。

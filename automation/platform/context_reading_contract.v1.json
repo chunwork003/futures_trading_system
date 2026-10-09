@@ -1,0 +1,95 @@
+{
+  "schema_version": "p00.context_reading_contract.v1",
+  "status": "CANDIDATE_NON_AUTHORITY",
+  "owners": {
+    "context": "scripts/p00_context.py",
+    "representation": "scripts/p00_context_pack.py",
+    "reading_audit": "scripts/p00_reading.py",
+    "operational_intake": "EXISTING_WORK_REENTRY_UNCHANGED",
+    "future_durable_receipt": "A2_AFTER_EXACT_SUCCESSOR_AUTHORITY"
+  },
+  "budget": {
+    "target_max_bytes": 131072,
+    "basis": "ORIGINAL_TOTAL_MANDATORY_SOURCE_BYTES",
+    "compiler_migration": "NOT_PERFORMED",
+    "per_batch_reinterpretation": "DENIED",
+    "token_estimate": "NOT_AVAILABLE"
+  },
+  "claim": {
+    "schema": "automation/platform/reading_claim.schema.v1.json",
+    "trust": "UNVERIFIED_CALLER_CLAIM",
+    "key": [
+      "consumer",
+      "plan_hash",
+      "obligation_id"
+    ],
+    "same_key_same_content": "DEDUPLICATE",
+    "same_key_different_content": "CONFLICT",
+    "unknown_obligation": "REJECT",
+    "invalidation": [
+      "AUTHORITATIVE_MASTER_DRIFT",
+      "PLANNING_SNAPSHOT_CHANGE",
+      "PACKAGE_SCOPE_CHANGE",
+      "CONTEXT_HASH_CHANGE",
+      "REPRESENTATION_CHANGE",
+      "CONSUMER_ROLE_OR_TASK_CHANGE",
+      "SESSION_OR_CONTINUITY_EPOCH_CHANGE",
+      "UNRESOLVED_SOURCE_CONTRADICTION",
+      "REGISTRY_HEAD_OR_STOP_CHANGE"
+    ]
+  },
+  "qualification_route": [
+    {
+      "id": "RQ01",
+      "requirement": "Exact source/loaded-tool closure, complete mandatory representation and payload roundtrip",
+      "current_evidence": "OFFLINE_STRUCTURAL_CANDIDATE_ONLY"
+    },
+    {
+      "id": "RQ02",
+      "requirement": "Independent obligation-by-obligation source/projection semantic review, exclusions and adverse evidence",
+      "current_evidence": "NOT_PERFORMED"
+    },
+    {
+      "id": "RQ03",
+      "requirement": "Accepted receipt producer/consumer trust and durable registry bootstrap, positive coverage/currentness",
+      "current_evidence": "NOT_ESTABLISHED"
+    },
+    {
+      "id": "RQ04",
+      "requirement": "Representative reading omission, race, loss-of-context and review separation golden evaluations",
+      "current_evidence": "NOT_RUN"
+    },
+    {
+      "id": "RQ05",
+      "requirement": "Original aggregate 128KiB gate met, or explicit independently reviewed successor semantics without silent per-batch conversion",
+      "current_evidence": "ORIGINAL_GATE_OVER_TARGET"
+    },
+    {
+      "id": "RQ06",
+      "requirement": "Exact resolver/compiler migration grant and unchanged authority/intake/dependency/writer gates",
+      "current_evidence": "NOT_AUTHORIZED"
+    }
+  ],
+  "forbidden_inferences": [
+    "HASH_MATCH_IMPLIES_HUMAN_READ",
+    "CLAIM_IMPLIES_TRUSTED_ACK",
+    "ALL_CLAIMS_IMPLIES_SEMANTIC_COMPLETENESS",
+    "PACK_FITS_IMPLIES_ORIGINAL_GATE_PASS",
+    "SOURCE_NONE_IMPLIES_PROCESS_NONE",
+    "UNKNOWN_IMPLIES_NONE",
+    "REVIEW_PASS_IMPLIES_DISPATCH",
+    "SESSION_ID_IMPLIES_PROCESS_ATTESTATION"
+  ],
+  "source_findings": [
+    {
+      "id": "R06-SOURCE-01",
+      "priority": "P1",
+      "handling": "REVIEW_AT_CHECKPOINT",
+      "observed_snapshot": "28cdd2e4cab4639ee46f7de3032a340eb868f88a",
+      "finding": "Manifest negative_assertions active binding is verified by re-entry but absent from current resolver mandatory list",
+      "candidate_response": "Report exact unrepresented source; preserve resolver and compiler pending focused review/migration grant",
+      "product_defect": "NOT_ASSERTED",
+      "dispatch_gate": "STILL_NOT_ELIGIBLE"
+    }
+  ]
+}

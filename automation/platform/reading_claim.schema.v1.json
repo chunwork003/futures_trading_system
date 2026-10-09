@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:p00:reading-claim:v1",
+  "title": "P00 reading claim, never trusted acknowledgement",
+  "description": "呼叫端已讀聲明；schema 不證明實際閱讀、獨立 review 或 current registry receipt。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "consumer",
+    "plan_hash",
+    "obligation_id",
+    "payload_sha256"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "p00.reading_claim.v1"
+    },
+    "status": {
+      "const": "CLAIM_ONLY"
+    },
+    "consumer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "task_id",
+        "session_id",
+        "continuity_epoch"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "ARCHITECT",
+            "WORK",
+            "CODEX",
+            "REVIEWER",
+            "INTEGRATOR"
+          ]
+        },
+        "task_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "continuity_epoch": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "plan_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "obligation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "payload_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "$defs": {
+    "consumer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "task_id",
+        "session_id",
+        "continuity_epoch"
+      ],
+      "properties": {
+        "role": {
+          "enum": [
+            "ARCHITECT",
+            "WORK",
+            "CODEX",
+            "REVIEWER",
+            "INTEGRATOR"
+          ]
+        },
+        "task_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "continuity_epoch": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  }
+}

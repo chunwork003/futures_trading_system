@@ -35,3 +35,7 @@ P01 目前不可直接省略整份 API/state-machine 文件：其中包含 impor
 ## Review 後才能變更的項目
 
 允許 exact byte去重、明示歷史引用、已列 root 的 schema closure。尚不允許：用新摘要替換安全規則、跳過原始非 API 文件、移除既有 accepted policy、以 NONE 填補未追蹤的 pending 工作、縮減 reviewer adverse evidence。此表是載入計畫，不是已完成的 context gate qualification。
+
+## R06 reading claim compatibility 候選
+
+`CONTEXT_READING_RECEIPTS.md`／`context_reading_contract.v1.json`／`reading_claim.schema.v1.json`／`scripts/p00_reading.py`復用原resolver/packer建立mandatory representation與session/source綁定。所有claim仍UNVERIFIED，不產生trusted acknowledgement、current-intake completeness或compiler gate migration；RQ01–RQ06及原128KiB總source gate保持。

@@ -24,6 +24,8 @@ Status: `IN_PROGRESS / CANDIDATE_ONLY`。本文件是本輪 Architect 工作封�
 8. `docs/program/HISTORICAL_REQUIREMENTS.md`：R05有界來源／明列義務、歷史接受與尚缺交付；大型 machine index只作選擇性追溯，不加入 P01/P02必讀 pack。
 9. `docs/program/HISTORICAL_SEMANTIC_BRIDGE.md`：八份補充source／selected interpretations、年代差異與future non-waiver；不是第二個current authority或完整歷史closure。
 
+10. `automation/platform/CONTEXT_READING_RECEIPTS.md`：R06 source/session claim compatibility及RQ01–RQ06；negative assertions mandatory缺口保留待審，不修改原128KiB gate。
+
 ## Scope
 
 Allowed: `docs/architecture/`、`docs/program/`、本文件、`automation/platform/`、`scripts/p00_*`、`tests/platform/`；可在既有導航增加候選 pointer。

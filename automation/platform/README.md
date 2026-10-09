@@ -31,3 +31,7 @@ Package/compiler and progress-ledger prototypes are indexed by `PACKAGE_COMPILER
 - `engineering_system.fixture.v1.json`／`scripts/p00_engineering.py`：只檢查來源、shape、反例與spec算術；九類shape examples全是NOT_RUN，不是九類真實golden執行。
 
 本候選復用既有compiler／context／source index，不建立第二個controller。Authoring、工具資格、產品驗收與效果量測各自需要證據；完整歷史語意、R06原128KiB gate及獨立baseline review仍待完成。
+
+## R06 reading claim compatibility 候選
+
+`CONTEXT_READING_RECEIPTS.md`／`context_reading_contract.v1.json`／`reading_claim.schema.v1.json`／`scripts/p00_reading.py`復用原resolver/packer建立mandatory representation與session/source綁定。所有claim仍UNVERIFIED，不產生trusted acknowledgement、current-intake completeness或compiler gate migration；RQ01–RQ06及原128KiB總source gate保持。
