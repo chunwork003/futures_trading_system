@@ -58,3 +58,5 @@ Public semantics 仍不完整：記錄精確 gap，延續 P00，不把它交給�
 每次結束保存 `p00_status.v1.json`；後續以 exact continuation 接續，不重做已完成 baseline inspection。
 
 使用者指定續作措辭：原回覆內文增加「目前總進度O/O(已完成數量/總共多少須完成數量)，下一步驟預計執行OO，請回覆「繼續」，使工作繼續執行」。數字以 p00_status 的 R01～R08 完整結案項目為準；部分完成不計入 numerator，必須標示此為 P00 結案口徑，不冒充 V1 產品完成度。範圍改變時另記原因，不因 split/correction 任意變動分母。
+
+本輪最新使用者續接格式取代上列舊回覆句式，以p00_status.v1.json為current owner：「尚有【具體未完成項目】未完成，下一輪建議使用【Sol Medium／High／XHigh】；請回覆『繼續』，使工作繼續執行。」繼續本機authoring不等於publication／P00 acceptance／product grant。

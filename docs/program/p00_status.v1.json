@@ -161,7 +161,9 @@
     "automation/platform/SOURCE_READING_OBLIGATIONS.md",
     "automation/platform/source_reading_obligations.v1.json",
     "docs/program/publication/P00-entry-c10c657.manifest.v1.json",
-    "docs/program/publication/P00-entry-c10c657.manifest.md"
+    "docs/program/publication/P00-entry-c10c657.manifest.md",
+    "docs/program/reviews/P00-source-reading-map.review-request.v1.json",
+    "docs/program/checkpoints/P00-source-reading-map-20261010.evidence.v1.json"
   ],
   "remaining": [
     {
@@ -511,13 +513,17 @@
       "actual_reading_verified": false,
       "independent_review": "NOT_PERFORMED",
       "compiler_gate_changed": false,
-      "source_conflict": "R06-SOURCE-02_LEVEL3_PENDING_DECISION"
+      "source_conflict": "R06-SOURCE-02_LEVEL3_PENDING_DECISION",
+      "committed_source_reconstruction": "PASS_EXACT_SOURCE_STRUCTURAL_ONLY",
+      "tool_snapshot": "cf5aa0764c0bc23b6a00e3d8dfe7e05c1b8ee626",
+      "focused_review_artifacts": 32,
+      "subject_bundle": "c4da258f6fa1b3eeaa7fc51cd38fc1dd20086401c17735ea8e9601b0a4843795"
     }
   },
   "release_journeys_passed": 0,
   "release_journeys_total": 6,
   "weighted_v1_completion": "UNCALIBRATED",
-  "human_action_required": "EXPLICIT_GITHUB_PUSH_APPROVAL_FOR_REVIEWABLE_P00_CHECKPOINT; local P00 authoring authority remains available",
+  "human_action_required": "EXACT_PUBLICATION_MANIFEST_APPROVAL; SOURCE02_PUBLIC_CSV_ARCHITECTURE_DECISION; independent P00 review remains required",
   "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION",
   "previous_checkpoint": "c10c6570ef420e9aa23655942dddc5ae77a333c9",
   "remote_publication": {
@@ -527,7 +533,7 @@
     "master_unchanged_at_last_check": true,
     "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
     "last_verified_published_commit": "aa6c8f556e1653700f2be9205673bffb98a690a2",
-    "local_candidate_sha": "9106fbbba4199bca838cee794343296716a39df7",
+    "local_candidate_sha": "cf5aa0764c0bc23b6a00e3d8dfe7e05c1b8ee626",
     "attempted_command": "git push origin architecture/p00-v1-baseline",
     "remote_master_last_verified": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
     "payload": "Design candidate plus checkpoint/review/continuation metadata on existing architecture/p00-v1-baseline only",
@@ -537,10 +543,11 @@
     "entry_manifest": "docs/program/publication/P00-entry-c10c657.manifest.v1.json",
     "approval_status": "REQUIRED_NO_PUBLICATION_APPROVAL_RECEIVED",
     "final_approval_artifact_directory": "C:/Users/CHUNs/.codex/visualizations/2026/10/08/01a11dbc-7354-7b93-a393-703f65979a77/publication",
-    "self_reference_rule": "Final manifest generated after payload freeze outside repository; exact payload SHA and manifest digest need approval"
+    "self_reference_rule": "Final manifest generated after payload freeze outside repository; exact payload SHA and manifest digest need approval",
+    "final_manifest_status": "GENERATE_AFTER_FINAL_PAYLOAD_COMMIT_REQUIRES_EXACT_APPROVAL"
   },
-  "continuation_response_template": "目前總進度O/O(已完成數量/總共多少須完成數量)，下一步驟預計執行OO，請回覆「繼續」，使工作繼續執行",
-  "continuation_response_rule": "Append the template to the normal reply when work remains; substitute actual counts and next action. Counts use R01-R08 closed workstreams only, never files/tests or partial completion. Identify P00 closure scope explicitly, not product completion. Preserve stable denominator unless scope changes are explicitly recorded.",
+  "continuation_response_template": "尚有【具體未完成項目】未完成，下一輪建議使用【Sol Medium／High／XHigh】；請回覆『繼續』，使工作繼續執行。",
+  "continuation_response_rule": "Use newest direct human continuation template; specify concrete remaining items and recommend Sol High (Sol6.1 High), never imply continuation grants publication/acceptance/product authority.",
   "progress_accounting": {
     "scope": "P00_R01_R08_CLOSURE",
     "total": 8,
@@ -570,7 +577,7 @@
     "reason": "User explicitly maintains Sol6.1 High; source authority/public CSV conflict and context closure remain architecture work",
     "actual_model_switch": "NOT_PERFORMED"
   },
-  "current_task_status": "AUTHORING_VALIDATED_BOUND_COMMITTED_RECONSTRUCTION_PENDING",
+  "current_task_status": "LOCAL_COMMITTED_CHECKPOINT_COMPLETE_REVIEW_PENDING_NOT_ACCEPTED",
   "review_readiness": {
     "R01_R05_focused_design_review": "PACKET_PREPARED_NOT_DISPATCHED",
     "P00_final_baseline_review": "NOT_READY",
@@ -584,11 +591,36 @@
     "R05_source_index_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED",
     "engineering_system_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED",
     "historical_semantic_bridge_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED",
-    "R06_reading_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED"
+    "R06_reading_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED",
+    "R06_source_mapping_review": "PREPARED32_EXACT_ARTIFACTS_NOT_DISPATCHED"
   },
-  "current_candidate_sha": "9106fbbba4199bca838cee794343296716a39df7",
-  "current_checkpoint_evidence": "docs/program/checkpoints/P00-reading-receipts-20261010.evidence.v1.json",
-  "focused_review_packet": "docs/program/reviews/P00-reading-receipts.review-request.v1.json",
-  "previous_focused_review_packet": "docs/program/reviews/P00-historical-semantics.review-request.v1.json",
-  "current_turn_review_subject_bundle": "ea23296c7b20350d6fddf476b94b6dfd4cbefd195689f116c02a4b92daf02c85"
+  "current_candidate_sha": "cf5aa0764c0bc23b6a00e3d8dfe7e05c1b8ee626",
+  "current_checkpoint_evidence": "docs/program/checkpoints/P00-source-reading-map-20261010.evidence.v1.json",
+  "focused_review_packet": "docs/program/reviews/P00-source-reading-map.review-request.v1.json",
+  "previous_focused_review_packet": "docs/program/reviews/P00-reading-receipts.review-request.v1.json",
+  "current_turn_review_subject_bundle": "c4da258f6fa1b3eeaa7fc51cd38fc1dd20086401c17735ea8e9601b0a4843795",
+  "persistent_state_partition": {
+    "LOCAL_COMMITTED": "P00_CANDIDATE_SOURCE_AND_VALIDATION_CHECKPOINT",
+    "REMOTE_PUBLISHED": {
+      "head": "aa6c8f556e1653700f2be9205673bffb98a690a2",
+      "current_turn": false
+    },
+    "REVIEW_PENDING": {
+      "subject": "cf5aa0764c0bc23b6a00e3d8dfe7e05c1b8ee626",
+      "packet": "docs/program/reviews/P00-source-reading-map.review-request.v1.json",
+      "dispatch": false
+    },
+    "ACCEPTED": {
+      "P00": false,
+      "predecessor_runtime_and_automation_acceptance": "PRESERVED_NO_REOPEN"
+    },
+    "NOT_AUTHORIZED": [
+      "PUBLICATION_UNTIL_EXACT_APPROVAL",
+      "P01_P02_PRODUCT_IMPLEMENTATION",
+      "ACCEPTANCE_MERGE",
+      "CONTROLLER_ACTIVATION",
+      "CSV_SOURCE02_IMPLEMENTATION",
+      "COMPILER_OR_POLICY_MIGRATION"
+    ]
+  }
 }
