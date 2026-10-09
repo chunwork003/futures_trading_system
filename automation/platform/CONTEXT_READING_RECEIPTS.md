@@ -67,3 +67,5 @@ CLI傳入exactrequest、consumer JSON、observed master SHA，選填claims JSON�
 `python -B scripts/p00_reading.py --request <request.json> --consumer <consumer.json> --observed-master <40-char-SHA> [--claims <claims.json>]`
 
 RQ01結構輸出可以保存為候選evidence，但不得生成「實際已讀」receipts。新設計pending focused independent review，無remote publishing、runtime／DB／broker side effects。
+
+R06 source mapping：`SOURCE_READING_OBLIGATIONS.md`／`source_reading_obligations.v1.json`保存complete source fallback、positive/negative/protected及intake dependency；R06-SOURCE-02 CSV/header/BOM conflict為LEVEL3待決，不修改原contracts或product grant。

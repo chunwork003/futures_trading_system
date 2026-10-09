@@ -26,6 +26,9 @@ Status: `IN_PROGRESS / CANDIDATE_ONLY`。本文件是本輪 Architect 工作封�
 
 10. `automation/platform/CONTEXT_READING_RECEIPTS.md`：R06 source/session claim compatibility及RQ01–RQ06；negative assertions mandatory缺口保留待審，不修改原128KiB gate。
 
+11. `automation/platform/SOURCE_READING_OBLIGATIONS.md`：P01/P02 positive/negative/protected來源與context；CSV source02 LEVEL3待決，不更改原contracts。
+12. `docs/program/publication/P00-entry-c10c657.manifest.v1.json`：凍結entry publication inventory；final核准manifest在payload freeze後另存repository外，禁止推入尚未核准範圍。
+
 ## Scope
 
 Allowed: `docs/architecture/`、`docs/program/`、本文件、`automation/platform/`、`scripts/p00_*`、`tests/platform/`；可在既有導航增加候選 pointer。

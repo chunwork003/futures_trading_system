@@ -35,3 +35,5 @@ Package/compiler and progress-ledger prototypes are indexed by `PACKAGE_COMPILER
 ## R06 reading claim compatibility 候選
 
 `CONTEXT_READING_RECEIPTS.md`／`context_reading_contract.v1.json`／`reading_claim.schema.v1.json`／`scripts/p00_reading.py`復用原resolver/packer建立mandatory representation與session/source綁定。所有claim仍UNVERIFIED，不產生trusted acknowledgement、current-intake completeness或compiler gate migration；RQ01–RQ06及原128KiB總source gate保持。
+
+R06 source mapping：`SOURCE_READING_OBLIGATIONS.md`／`source_reading_obligations.v1.json`保存complete source fallback、positive/negative/protected及intake dependency；R06-SOURCE-02 CSV/header/BOM conflict為LEVEL3待決，不修改原contracts或product grant。

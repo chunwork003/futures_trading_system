@@ -7,11 +7,10 @@
   "authority": "HUMAN_REQUESTED_ARCHITECT_MATERIALIZATION",
   "runtime_dispatch_authorized": false,
   "completed_this_turn": [
-    "Fresh fetch origin/master unchanged9b5ab5f; entry28cdd2e is30 ahead master and8 ahead published candidate;7 active policy Git-byte hashes PASS",
-    "R06 source/session reading compatibility design, closed claim schema and source-bound pure oracle authored using existing resolver/packer",
-    "Recorded R06-SOURCE-01: negative assertions active manifest source absent from resolver mandatory; report unrepresented refs instead of changing accepted context gate",
-    "Targeted29 passed42.90s; full platform469 passed184.28s; original generators/source/core/semantic bridge/engineering checks PASS; no semantic acceptance or trusted acknowledgement",
-    "Bound exact9106fbb P01/P02 smoke:33/31 mandatory representations;0 reading claims; original911255/862580 bytes and selective323356/419540 bytes overtarget;1496-byte negative assertions unrepresented in both. No compiler migration."
+    "Fresh fetch verified fullc10c657 source, aa6c8f5 remote, master9b5ab5f unchanged; ordinary fast-forward10 commits/57 files entry manifest saved with full ancestry/per-commit/net blobs and raw hashes",
+    "R06 exact source-to-reading mapping48 sources/676 indexed units/51 critical obligations including13 active denials/7 invariants; full source fallback and28/93 schema plus0/46 endpoint values preserved",
+    "R06-SOURCE-02 recordedLEVEL3 CSV/header/BOM conflict with both exact sources and two proposals; original contracts/candidates/public_semantic_gaps unchanged, no implementation",
+    "Targeted publication/mapping21 passed23.14s; full platform490 passed207.56s; no accepted review/intake or push"
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -154,7 +153,15 @@
     "docs/program/checkpoints/P00-reading-receipts-20261010.evidence.v1.json",
     "docs/program/context_packs/9106fbb/P01.reading-audit.json",
     "docs/program/context_packs/9106fbb/P02.reading-audit.json",
-    "docs/program/context_packs/9106fbb/reading-smoke.json"
+    "docs/program/context_packs/9106fbb/reading-smoke.json",
+    "scripts/p00_publication.py",
+    "scripts/p00_reading_obligations.py",
+    "tests/platform/test_p00_publication.py",
+    "tests/platform/test_p00_reading_obligations.py",
+    "automation/platform/SOURCE_READING_OBLIGATIONS.md",
+    "automation/platform/source_reading_obligations.v1.json",
+    "docs/program/publication/P00-entry-c10c657.manifest.v1.json",
+    "docs/program/publication/P00-entry-c10c657.manifest.md"
   ],
   "remaining": [
     {
@@ -184,7 +191,7 @@
     },
     {
       "id": "R06",
-      "work": "Reading plan/closed claim schema/source-session compatibility and RQ01-RQ06 candidate route authored. R06-SOURCE-01 exposes manifest negative assertions absent from original mandatory list. All claims remain unverified; stable semantic source-to-obligation mapping, original aggregate128KiB, trusted receipt/current registry/bootstrap, representative qualification and independently authorized compiler migration remain unresolved. Seven pending categories UNKNOWN; no self-acceptance.",
+      "work": "Critical source-to-reading mapping and complete source fallback authored for P01/P02; source01 negative binding mapped as supplement, resolver unchanged. source02 CSV/header/BOM public semantics LEVEL3 requires exact decision/amendment. Original128KiB remains overtarget; trusted receipts/current registry bootstrap, representative omission/context-continuity qualification and independently authorized migration remain incomplete. Seven intake categories UNKNOWN.",
       "state": "PARTIAL_IMPLEMENTED_PENDING_REVIEW"
     },
     {
@@ -198,12 +205,12 @@
       "state": "NOT_COMPLETED"
     }
   ],
-  "next_continuation_point": "R06 bounded source-to-obligation semantic mapping for P01/P02 mandatory prose and manifest R06-SOURCE-01: stable exact section IDs, backward refs and omission counterexamples, preserve original aggregate128KiB and no per-batch conversion. Then R07 representative qualification/R08 final A-S; all prepared reviews still undispatched. Local P00 authoring only; remote publication requires exact approval; no product dispatch.",
+  "next_continuation_point": "Prepare exact R06-SOURCE-02 CSV/header/BOM compatibility decision and bounded amendment candidates for architecture review; do not pick semantics or implement products. Then qualify complete safety/source-to-reading closure, original aggregate128KiB solution and trusted receipt/current-intake successor. Review/publishing require exact independent/human decisions; final manifest approval never implies P00 acceptance, merge, activation or P01/P02 authorization.",
   "verification": {
     "json_parse": "PASS",
     "whitespace": "PASS_DIFF_CHECK",
     "protected_tracked_files": "PASS_ONLY_P00_CANDIDATE_SCOPE_CHANGED",
-    "platform_tests": "469_PASSED_184.28_SECONDS",
+    "platform_tests": "490_PASSED_207.56_SECONDS",
     "product_tests": "NOT_RUN_P00_DOCS_AND_OFFLINE_TOOLING_ONLY",
     "independent_review": "NOT_STARTED",
     "actual_active_policy_git_hashes": "7_MANIFEST_ACTIVE_EXACT_GIT_BLOB_HASHES_PASS",
@@ -476,6 +483,35 @@
       ],
       "review_artifacts": 22,
       "review_subject_bundle": "ea23296c7b20350d6fddf476b94b6dfd4cbefd195689f116c02a4b92daf02c85"
+    },
+    "source_reading_mapping": {
+      "source_snapshot": "c10c6570ef420e9aa23655942dddc5ae77a333c9",
+      "source_documents": 48,
+      "source_units": 676,
+      "critical_obligations": 51,
+      "negative_assertions": 13,
+      "protected_invariants": 7,
+      "P01_schema_values": 28,
+      "P02_schema_values": 93,
+      "P02_endpoint_paths": 46,
+      "targeted_tests": "21_PASSED_23.14_SECONDS",
+      "full_platform": "490_PASSED_207.56_SECONDS",
+      "original_target_bytes": 131072,
+      "original_source_bytes": {
+        "P01": 915209,
+        "P02": 866534
+      },
+      "selective_pack_bytes": {
+        "P01": 326281,
+        "P02": 422465
+      },
+      "extra_required_unique_source_bytes": 76040,
+      "current_intake_complete": false,
+      "unknown_categories": 7,
+      "actual_reading_verified": false,
+      "independent_review": "NOT_PERFORMED",
+      "compiler_gate_changed": false,
+      "source_conflict": "R06-SOURCE-02_LEVEL3_PENDING_DECISION"
     }
   },
   "release_journeys_passed": 0,
@@ -483,10 +519,10 @@
   "weighted_v1_completion": "UNCALIBRATED",
   "human_action_required": "EXPLICIT_GITHUB_PUSH_APPROVAL_FOR_REVIEWABLE_P00_CHECKPOINT; local P00 authoring authority remains available",
   "next_codex_action": "NONE_UNTIL_BASELINE_AND_EXACT_PACKAGE_AUTHORIZATION",
-  "previous_checkpoint": "28cdd2e4cab4639ee46f7de3032a340eb868f88a",
+  "previous_checkpoint": "c10c6570ef420e9aa23655942dddc5ae77a333c9",
   "remote_publication": {
     "initial_checkpoint": "PUSHED_CONFIRMED",
-    "current_turn": "NOT_ATTEMPTED_PREVIOUS_AUTOMATIC_APPROVAL_REJECTION_STILL_PENDING_EXPLICIT_PAYLOAD_DESTINATION_BRANCH_APPROVAL",
+    "current_turn": "MANIFEST_PREPARATION_ONLY_NO_PUSH_ATTEMPT",
     "branch": "architecture/p00-v1-baseline",
     "master_unchanged_at_last_check": true,
     "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
@@ -497,7 +533,11 @@
     "payload": "Design candidate plus checkpoint/review/continuation metadata on existing architecture/p00-v1-baseline only",
     "local_master_last_observed": "b36e9bc253a13a3a361b3861e607455658df524b",
     "local_master_behind_origin_master": 78,
-    "current_turn_payload": "R06 reading compatibility/source-gap candidate and exact checkpoint/review metadata only; no push approval inferred from continue"
+    "current_turn_payload": "Final exact committed publication payload to be measured after local P00 source-map checkpoint; no vague P00/file-count authorization",
+    "entry_manifest": "docs/program/publication/P00-entry-c10c657.manifest.v1.json",
+    "approval_status": "REQUIRED_NO_PUBLICATION_APPROVAL_RECEIVED",
+    "final_approval_artifact_directory": "C:/Users/CHUNs/.codex/visualizations/2026/10/08/01a11dbc-7354-7b93-a393-703f65979a77/publication",
+    "self_reference_rule": "Final manifest generated after payload freeze outside repository; exact payload SHA and manifest digest need approval"
   },
   "continuation_response_template": "目前總進度O/O(已完成數量/總共多少須完成數量)，下一步驟預計執行OO，請回覆「繼續」，使工作繼續執行",
   "continuation_response_rule": "Append the template to the normal reply when work remains; substitute actual counts and next action. Counts use R01-R08 closed workstreams only, never files/tests or partial completion. Identify P00 closure scope explicitly, not product completion. Preserve stable denominator unless scope changes are explicitly recorded.",
@@ -527,10 +567,10 @@
     "current": "Sol6.1 High",
     "next": "Sol6.1 High",
     "switch_recommended": false,
-    "reason": "R06 authority/reading completeness and source-to-obligation semantics remain architecture work; retain prior Sol6.1 High recommendation",
+    "reason": "User explicitly maintains Sol6.1 High; source authority/public CSV conflict and context closure remain architecture work",
     "actual_model_switch": "NOT_PERFORMED"
   },
-  "current_task_status": "CURRENT_LOCAL_CHECKPOINT_COMPLETE_PROGRAM_INCOMPLETE",
+  "current_task_status": "AUTHORING_VALIDATED_BOUND_COMMITTED_RECONSTRUCTION_PENDING",
   "review_readiness": {
     "R01_R05_focused_design_review": "PACKET_PREPARED_NOT_DISPATCHED",
     "P00_final_baseline_review": "NOT_READY",
