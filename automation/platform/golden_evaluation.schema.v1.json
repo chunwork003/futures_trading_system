@@ -1,0 +1,202 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mode",
+    "trial_id",
+    "task_family_id",
+    "input_snapshot",
+    "fixture_ref",
+    "oracle_ref",
+    "baseline",
+    "candidate",
+    "independent_review",
+    "qualification",
+    "acceptance_receipt",
+    "effectiveness",
+    "side_effects"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "p00.golden_evaluation.v1"
+    },
+    "mode": {
+      "const": "SHADOW_RESULT_CANDIDATE"
+    },
+    "trial_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+    },
+    "task_family_id": {
+      "enum": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G07",
+        "G08",
+        "G09"
+      ]
+    },
+    "input_snapshot": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "fixture_ref": {
+      "$ref": "#/$defs/source_ref"
+    },
+    "oracle_ref": {
+      "$ref": "#/$defs/source_ref"
+    },
+    "baseline": {
+      "$ref": "#/$defs/side"
+    },
+    "candidate": {
+      "$ref": "#/$defs/side"
+    },
+    "independent_review": {
+      "const": "NOT_PERFORMED"
+    },
+    "qualification": {
+      "const": "NOT_QUALIFIED"
+    },
+    "acceptance_receipt": {
+      "type": "null"
+    },
+    "effectiveness": {
+      "const": "UNKNOWN"
+    },
+    "side_effects": {
+      "const": "NONE"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "p00.golden_evaluation.schema.v1",
+  "$defs": {
+    "source_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "baseline_sha",
+        "git_blob",
+        "sha256",
+        "size_bytes"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "baseline_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "git_blob": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "declared_outcome",
+        "artifact_sha256"
+      ],
+      "properties": {
+        "case_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+        },
+        "declared_outcome": {
+          "enum": [
+            "DECLARED_PASS",
+            "DECLARED_FAIL",
+            "NOT_RUN",
+            "BLOCKED_ENVIRONMENT",
+            "TOOL_FAILURE"
+          ]
+        },
+        "artifact_sha256": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          ]
+        }
+      }
+    },
+    "side": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject_sha",
+        "model_provider_revision",
+        "environment_id",
+        "fixture_sha256",
+        "oracle_sha256",
+        "contract_revision",
+        "cases"
+      ],
+      "properties": {
+        "subject_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "model_provider_revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+        },
+        "environment_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+        },
+        "fixture_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "oracle_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "contract_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/case"
+          }
+        }
+      }
+    }
+  }
+}

@@ -13,7 +13,7 @@ Read `docs/work/P00_BASELINE.md`, then `docs/program/p00_status.v1.json` for con
 - `agent_registry.v1.json` / `tool_registry.v1.json`: typed candidate logical roles and tool effects, with matching JSON Schemas.
 - `tests/platform/`: schema/isolation/negative Git fixtures; passing offline tests does not establish operational qualification.
 
-Pending: package schema/compiler, full golden-task behavioral evaluations, telemetry definitions, progress ledger and current-projection migration validation. Until independently accepted, these are not enabled automation capabilities. API candidate authoring and generated contracts are indexed by `docs/architecture/V1_API_ARCHITECTURE.md`.
+Package/compiler and progress-ledger prototypes are indexed by `PACKAGE_COMPILER.md` and `docs/program/PROGRESS_ACCOUNTING.md`. Engineering-system candidate definitions are indexed below. Full golden-task behavioral evaluations, trusted telemetry/intake and current-projection migration validation remain pending. Until independently accepted, these are not enabled automation capabilities. API candidate authoring and generated contracts are indexed by `docs/architecture/V1_API_ARCHITECTURE.md`.
 
 ## R04 automation 候選索引
 
@@ -22,3 +22,12 @@ Pending: package schema/compiler, full golden-task behavioral evaluations, telem
 - `scheduler_proposal.schema.v1.json`：只可產生非執行proposal，不是accepted route owner／controller。
 
 原ProgramV2/Capacity2.2與blocked-lane-head規則保持不變；本候選不能授權scheduler activation。
+
+## R03／R07 engineering system 候選索引
+
+- `ENGINEERING_SYSTEM.md`／`engineering_system.v1.json`：原始十項必交付的template、generator、pattern、eval、golden、KPI、optimization、兩類telemetry與D0–D5 roadmap契約。
+- `engineering_observation.schema.v1.json`：未量測保留null，共享帳戶quota不轉作actor cost；actual actor tokens與accepted weight等待可信intake。
+- `golden_evaluation.schema.v1.json`：固定source／fixture／oracle／environment／case集合，self-declared outcome不產生qualification。
+- `engineering_system.fixture.v1.json`／`scripts/p00_engineering.py`：只檢查來源、shape、反例與spec算術；九類shape examples全是NOT_RUN，不是九類真實golden執行。
+
+本候選復用既有compiler／context／source index，不建立第二個controller。Authoring、工具資格、產品驗收與效果量測各自需要證據；完整歷史語意、R06原128KiB gate及獨立baseline review仍待完成。

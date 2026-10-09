@@ -53,3 +53,11 @@ flowchart LR
 執行 `python -B scripts/p00_requirements.py` 可從固定 Git blobs 重建、核對索引；沒有網路、DB、寫檔、dispatch 或 acceptance side effect。負例涵蓋缺 section／區塊／capability／leaf、錯 source hash／列號、範圍漏 consumer、改權重／promote lifecycle、偽造 PASS、加入接受欄位、GAP08 重複計入與 altered worktree ledger。
 
 下一步補齊10項缺交付／證據、未拆解 prose clauses、future scope 與22檔外其他歷史接受來源；對未取得範圍／producer closure 的項目保留 UNKNOWN。完成獨立 baseline weight review、可信 progress intake／invalidation 與實測 throughput／ETA 前，R05不能結案。新 registry 約1.13MB，作選擇性追溯索引，不加入 P01／P02 必讀 pack、不改128KiB gate、不重發歷史 compiled artifacts。
+
+## 工程制度專責候選補件 — 2026-10-09
+
+上列source index保留其原snapshot與十項缺專責證據的歷史判斷。後續專責candidate authoring已新增至`automation/platform/ENGINEERING_SYSTEM.md`與`engineering_system.v1.json`，涵蓋OWNER-084-DELIVERABLE-24/25/26/27/28/29/30/38/39/43。這是後續設計delta，不回寫舊snapshot的completion／qualification。
+
+Machine registry綁46份exact Git source refs，保留原九類golden、14項KPI、五項Skill／四項Agent metrics，並列template、generator、pattern、D0–D5責任與remaining gates。Closed schemas與synthetic fixtures只核對shape／來源／反例；九類代表性golden執行仍NOT_RUN，可信producer／acceptance intake與效果量測仍UNKNOWN。Source-index與本次專責候選各有獨立固定subject review packet；任何authoring PASS不能自行結案P00或增加V1 credit。
+
+下一個R05 authoring缺口是bounded supplemental ADR／GAP／歷史prose／future scope的原子語意bridge與outside-universe清單，不重做已保留的603-leaf／143-clause index。

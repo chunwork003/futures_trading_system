@@ -1,0 +1,759 @@
+{
+  "schema_version": "p00.engineering_fixtures.v1",
+  "provenance": "SYNTHETIC_SHAPE_AND_NEGATIVE_ORACLE_ONLY_NOT_NINE_REPRESENTATIVE_TASK_EXECUTIONS",
+  "observation": {
+    "schema_version": "p00.engineering_observation.v1",
+    "mode": "SPECIFICATION_ORACLE_ONLY",
+    "event_id": "SYNTHETIC-P00-OBS-01",
+    "event_type": "EXECUTION_MEASUREMENT",
+    "recorded_at": "2026-10-09T00:00:00Z",
+    "subject": {
+      "package_id": "P00",
+      "package_revision": 1,
+      "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+      "attempt_id": "SCHEMA-EXAMPLE-NOT-INVOCATION",
+      "execution_id": null,
+      "contract_revision": 1,
+      "environment_id": "OFFLINE-SCHEMA-EXAMPLE"
+    },
+    "producer": {
+      "role": "ARCHITECT",
+      "actor_id": "DECLARED-SYNTHETIC-ACTOR-NOT-QUALIFIED"
+    },
+    "measurements": [
+      {
+        "name": "ACTUAL_ACTOR_TOTAL_TOKENS",
+        "status": "NOT_AVAILABLE",
+        "value": null,
+        "unit": "TOKENS",
+        "scope": "UNKNOWN",
+        "source_ref": null,
+        "source_pointer": null
+      },
+      {
+        "name": "ACCOUNT_USAGE_PERCENT",
+        "status": "OBSERVED",
+        "value": "33",
+        "unit": "PERCENT",
+        "scope": "SHARED_ACCOUNT_PROXY",
+        "source_ref": {
+          "path": "docs/program/current_truth.v1.json",
+          "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+          "git_blob": "8073a145898ccfe5d69cd0d82e663e4c237e54c0",
+          "sha256": "69a53aa7907a7cfd97e2252f5673bf9f039ec301c14e9a1dc27668a0b0343454",
+          "size_bytes": 10898
+        },
+        "source_pointer": "/latest_p00_reentry/provider_observation_during_run/five_hour_used_percent"
+      }
+    ],
+    "acceptance_receipt": null,
+    "producer_qualification": "NOT_QUALIFIED",
+    "side_effects": "NONE"
+  },
+  "evaluation_shapes": [
+    {
+      "schema_version": "p00.golden_evaluation.v1",
+      "mode": "SHADOW_RESULT_CANDIDATE",
+      "trial_id": "G01-SYNTHETIC-SHAPE",
+      "task_family_id": "G01",
+      "input_snapshot": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+      "fixture_ref": {
+        "path": "docs/program/current_truth.v1.json",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "8073a145898ccfe5d69cd0d82e663e4c237e54c0",
+        "sha256": "69a53aa7907a7cfd97e2252f5673bf9f039ec301c14e9a1dc27668a0b0343454",
+        "size_bytes": 10898
+      },
+      "oracle_ref": {
+        "path": "tests/platform/test_p00_intake.py",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "c22dfeca698cea3f718f76ae2d8957a8d2bdf464",
+        "sha256": "63d030cf3e5f3a31894ff92cfd96cd493d6e572f30fa5f598b1aa7b1777f072d",
+        "size_bytes": 2509
+      },
+      "baseline": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "69a53aa7907a7cfd97e2252f5673bf9f039ec301c14e9a1dc27668a0b0343454",
+        "oracle_sha256": "63d030cf3e5f3a31894ff92cfd96cd493d6e572f30fa5f598b1aa7b1777f072d",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G01-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G01-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G01-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "candidate": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "69a53aa7907a7cfd97e2252f5673bf9f039ec301c14e9a1dc27668a0b0343454",
+        "oracle_sha256": "63d030cf3e5f3a31894ff92cfd96cd493d6e572f30fa5f598b1aa7b1777f072d",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G01-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G01-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G01-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "independent_review": "NOT_PERFORMED",
+      "qualification": "NOT_QUALIFIED",
+      "acceptance_receipt": null,
+      "effectiveness": "UNKNOWN",
+      "side_effects": "NONE"
+    },
+    {
+      "schema_version": "p00.golden_evaluation.v1",
+      "mode": "SHADOW_RESULT_CANDIDATE",
+      "trial_id": "G02-SYNTHETIC-SHAPE",
+      "task_family_id": "G02",
+      "input_snapshot": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+      "fixture_ref": {
+        "path": "docs/program/packages/P01.candidate.v1.json",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "543d226ed8958846dcb3b6e5cab89be888234c83",
+        "sha256": "bcd8424eeb281c5367aee28a13461f1c7dfada1779f31c44d552f9d68d553287",
+        "size_bytes": 6202
+      },
+      "oracle_ref": {
+        "path": "tests/platform/test_p00_packages.py",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "e3071bbeb4847de5ad527e8b3568eacb6e512c1a",
+        "sha256": "a9f2693e6e3e1b2b2c492ea6b9a37eef90ab36584a4d89658457937dd4ed0cf8",
+        "size_bytes": 2214
+      },
+      "baseline": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "bcd8424eeb281c5367aee28a13461f1c7dfada1779f31c44d552f9d68d553287",
+        "oracle_sha256": "a9f2693e6e3e1b2b2c492ea6b9a37eef90ab36584a4d89658457937dd4ed0cf8",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G02-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G02-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G02-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "candidate": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "bcd8424eeb281c5367aee28a13461f1c7dfada1779f31c44d552f9d68d553287",
+        "oracle_sha256": "a9f2693e6e3e1b2b2c492ea6b9a37eef90ab36584a4d89658457937dd4ed0cf8",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G02-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G02-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G02-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "independent_review": "NOT_PERFORMED",
+      "qualification": "NOT_QUALIFIED",
+      "acceptance_receipt": null,
+      "effectiveness": "UNKNOWN",
+      "side_effects": "NONE"
+    },
+    {
+      "schema_version": "p00.golden_evaluation.v1",
+      "mode": "SHADOW_RESULT_CANDIDATE",
+      "trial_id": "G03-SYNTHETIC-SHAPE",
+      "task_family_id": "G03",
+      "input_snapshot": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+      "fixture_ref": {
+        "path": "docs/architecture/contracts/bff.openapi.v1.json",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "b7273df92c21cda778b47a5981baadf12090dc87",
+        "sha256": "8dda4b483ee39d36732ddef0703d3f4cef9880fc18817996c39b8410d28c8eb1",
+        "size_bytes": 216252
+      },
+      "oracle_ref": {
+        "path": "tests/platform/test_p00_contracts.py",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "e04633b206320a7220f293060bfc6d7194ccd9f0",
+        "sha256": "7b964db4ff3e7aac39445f006ca5e40eef8a7bb94d9d1cfa7b8dd1e76ab0e9f6",
+        "size_bytes": 9226
+      },
+      "baseline": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "8dda4b483ee39d36732ddef0703d3f4cef9880fc18817996c39b8410d28c8eb1",
+        "oracle_sha256": "7b964db4ff3e7aac39445f006ca5e40eef8a7bb94d9d1cfa7b8dd1e76ab0e9f6",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G03-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G03-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G03-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "candidate": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "8dda4b483ee39d36732ddef0703d3f4cef9880fc18817996c39b8410d28c8eb1",
+        "oracle_sha256": "7b964db4ff3e7aac39445f006ca5e40eef8a7bb94d9d1cfa7b8dd1e76ab0e9f6",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G03-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G03-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G03-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "independent_review": "NOT_PERFORMED",
+      "qualification": "NOT_QUALIFIED",
+      "acceptance_receipt": null,
+      "effectiveness": "UNKNOWN",
+      "side_effects": "NONE"
+    },
+    {
+      "schema_version": "p00.golden_evaluation.v1",
+      "mode": "SHADOW_RESULT_CANDIDATE",
+      "trial_id": "G04-SYNTHETIC-SHAPE",
+      "task_family_id": "G04",
+      "input_snapshot": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+      "fixture_ref": {
+        "path": "docs/architecture/contracts/dataset_identity.fixture.v1.json",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "5c65e05f7423ffce910c4734de66e6918534cdd9",
+        "sha256": "5fa4633218227615afadd9883931bebc12d53b6a71fae8fc05fb18c03ebf1d0d",
+        "size_bytes": 4704
+      },
+      "oracle_ref": {
+        "path": "tests/platform/test_p00_dataset_identity.py",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "2d75198ee99bb52e9908db64c2080931a11709b6",
+        "sha256": "36c957ac465f9b5be1c34343e9c33f9a3d86705c392d15915aec59feb522c320",
+        "size_bytes": 3864
+      },
+      "baseline": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "5fa4633218227615afadd9883931bebc12d53b6a71fae8fc05fb18c03ebf1d0d",
+        "oracle_sha256": "36c957ac465f9b5be1c34343e9c33f9a3d86705c392d15915aec59feb522c320",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G04-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G04-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G04-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "candidate": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "5fa4633218227615afadd9883931bebc12d53b6a71fae8fc05fb18c03ebf1d0d",
+        "oracle_sha256": "36c957ac465f9b5be1c34343e9c33f9a3d86705c392d15915aec59feb522c320",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G04-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G04-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G04-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "independent_review": "NOT_PERFORMED",
+      "qualification": "NOT_QUALIFIED",
+      "acceptance_receipt": null,
+      "effectiveness": "UNKNOWN",
+      "side_effects": "NONE"
+    },
+    {
+      "schema_version": "p00.golden_evaluation.v1",
+      "mode": "SHADOW_RESULT_CANDIDATE",
+      "trial_id": "G05-SYNTHETIC-SHAPE",
+      "task_family_id": "G05",
+      "input_snapshot": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+      "fixture_ref": {
+        "path": "docs/architecture/V1_INCREMENTAL_PERSISTENCE.md",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "2b637ed5320d43754503a722a4b6573cc03ce9be",
+        "sha256": "a6f73f389ac54050543615cbc8141b846d7f6ac9d88a2a89792fe007117b4c6b",
+        "size_bytes": 7321
+      },
+      "oracle_ref": {
+        "path": "tests/platform/test_p00_domain_contracts.py",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "2402003c70cc483b16ce22e51d04f9e0176fade8",
+        "sha256": "6cb3465b5769d575e25ef389e5f9a620ca68c693a1ea676f928f43741226874e",
+        "size_bytes": 5925
+      },
+      "baseline": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "a6f73f389ac54050543615cbc8141b846d7f6ac9d88a2a89792fe007117b4c6b",
+        "oracle_sha256": "6cb3465b5769d575e25ef389e5f9a620ca68c693a1ea676f928f43741226874e",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G05-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G05-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G05-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G05-NEG-03",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "candidate": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "a6f73f389ac54050543615cbc8141b846d7f6ac9d88a2a89792fe007117b4c6b",
+        "oracle_sha256": "6cb3465b5769d575e25ef389e5f9a620ca68c693a1ea676f928f43741226874e",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G05-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G05-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G05-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G05-NEG-03",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "independent_review": "NOT_PERFORMED",
+      "qualification": "NOT_QUALIFIED",
+      "acceptance_receipt": null,
+      "effectiveness": "UNKNOWN",
+      "side_effects": "NONE"
+    },
+    {
+      "schema_version": "p00.golden_evaluation.v1",
+      "mode": "SHADOW_RESULT_CANDIDATE",
+      "trial_id": "G06-SYNTHETIC-SHAPE",
+      "task_family_id": "G06",
+      "input_snapshot": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+      "fixture_ref": {
+        "path": "docs/program/reviews/P00-R05-source-index.review-request.v1.json",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "e08eac43315238af046580fdc62d32b600c3fc1c",
+        "sha256": "46fc4d02b2e4b4b856d6134ad4e5dd46a3ba22ac2e32d2c24fc49554a9b2b9ef",
+        "size_bytes": 6007
+      },
+      "oracle_ref": {
+        "path": "tests/platform/test_p00_compiler.py",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "41ca873a55f45fb0f3cfac8a8ac4b35559c71cc3",
+        "sha256": "f38f61a1ae527d0bac462029765129080b5c2da22ee5cfeba8c2182e9240264a",
+        "size_bytes": 4691
+      },
+      "baseline": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "46fc4d02b2e4b4b856d6134ad4e5dd46a3ba22ac2e32d2c24fc49554a9b2b9ef",
+        "oracle_sha256": "f38f61a1ae527d0bac462029765129080b5c2da22ee5cfeba8c2182e9240264a",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G06-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G06-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G06-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "candidate": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "46fc4d02b2e4b4b856d6134ad4e5dd46a3ba22ac2e32d2c24fc49554a9b2b9ef",
+        "oracle_sha256": "f38f61a1ae527d0bac462029765129080b5c2da22ee5cfeba8c2182e9240264a",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G06-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G06-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G06-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "independent_review": "NOT_PERFORMED",
+      "qualification": "NOT_QUALIFIED",
+      "acceptance_receipt": null,
+      "effectiveness": "UNKNOWN",
+      "side_effects": "NONE"
+    },
+    {
+      "schema_version": "p00.golden_evaluation.v1",
+      "mode": "SHADOW_RESULT_CANDIDATE",
+      "trial_id": "G07-SYNTHETIC-SHAPE",
+      "task_family_id": "G07",
+      "input_snapshot": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+      "fixture_ref": {
+        "path": "docs/architecture/contracts/decision_input_cut.fixture.v1.json",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "5fa13bce93a5de2202eb2a6f189407652a905e28",
+        "sha256": "0a6b79b6a2db6e113c6ee7bdfba712108b8d7196715fc60fdac8cc746cc38994",
+        "size_bytes": 12785
+      },
+      "oracle_ref": {
+        "path": "tests/platform/test_p00_adapter_recovery_cut.py",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "e15ff2a73c42bf8520eae2a541c70086dc9d761d",
+        "sha256": "47f910937d6465fdbe34dea002db9c1a083e9f214be59343731827edbd140dfd",
+        "size_bytes": 10193
+      },
+      "baseline": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "0a6b79b6a2db6e113c6ee7bdfba712108b8d7196715fc60fdac8cc746cc38994",
+        "oracle_sha256": "47f910937d6465fdbe34dea002db9c1a083e9f214be59343731827edbd140dfd",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G07-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G07-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G07-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G07-NEG-03",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "candidate": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "0a6b79b6a2db6e113c6ee7bdfba712108b8d7196715fc60fdac8cc746cc38994",
+        "oracle_sha256": "47f910937d6465fdbe34dea002db9c1a083e9f214be59343731827edbd140dfd",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G07-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G07-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G07-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G07-NEG-03",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "independent_review": "NOT_PERFORMED",
+      "qualification": "NOT_QUALIFIED",
+      "acceptance_receipt": null,
+      "effectiveness": "UNKNOWN",
+      "side_effects": "NONE"
+    },
+    {
+      "schema_version": "p00.golden_evaluation.v1",
+      "mode": "SHADOW_RESULT_CANDIDATE",
+      "trial_id": "G08-SYNTHETIC-SHAPE",
+      "task_family_id": "G08",
+      "input_snapshot": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+      "fixture_ref": {
+        "path": "docs/architecture/contracts/python.openapi.v1.json",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "65181b3e01f2a95ff316f3e4cad037b7ebb0347a",
+        "sha256": "947889bc0e09e7c4449a7cb3afb2ce037a21738d08576411e31ab147bd6e10aa",
+        "size_bytes": 204713
+      },
+      "oracle_ref": {
+        "path": "tests/platform/test_p00_contracts.py",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "e04633b206320a7220f293060bfc6d7194ccd9f0",
+        "sha256": "7b964db4ff3e7aac39445f006ca5e40eef8a7bb94d9d1cfa7b8dd1e76ab0e9f6",
+        "size_bytes": 9226
+      },
+      "baseline": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "947889bc0e09e7c4449a7cb3afb2ce037a21738d08576411e31ab147bd6e10aa",
+        "oracle_sha256": "7b964db4ff3e7aac39445f006ca5e40eef8a7bb94d9d1cfa7b8dd1e76ab0e9f6",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G08-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G08-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G08-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "candidate": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "947889bc0e09e7c4449a7cb3afb2ce037a21738d08576411e31ab147bd6e10aa",
+        "oracle_sha256": "7b964db4ff3e7aac39445f006ca5e40eef8a7bb94d9d1cfa7b8dd1e76ab0e9f6",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G08-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G08-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G08-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "independent_review": "NOT_PERFORMED",
+      "qualification": "NOT_QUALIFIED",
+      "acceptance_receipt": null,
+      "effectiveness": "UNKNOWN",
+      "side_effects": "NONE"
+    },
+    {
+      "schema_version": "p00.golden_evaluation.v1",
+      "mode": "SHADOW_RESULT_CANDIDATE",
+      "trial_id": "G09-SYNTHETIC-SHAPE",
+      "task_family_id": "G09",
+      "input_snapshot": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+      "fixture_ref": {
+        "path": "docs/architecture/contracts/application_build_profile.v1.json",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "9e34c22fd111f3f244de0a1e37c1b530572a773f",
+        "sha256": "702c975dd86abdef18aa34a3f748ac3df88199a0d50166da5e5065d78a88a1f4",
+        "size_bytes": 1052
+      },
+      "oracle_ref": {
+        "path": "tests/platform/test_p00_packages.py",
+        "baseline_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "git_blob": "e3071bbeb4847de5ad527e8b3568eacb6e512c1a",
+        "sha256": "a9f2693e6e3e1b2b2c492ea6b9a37eef90ab36584a4d89658457937dd4ed0cf8",
+        "size_bytes": 2214
+      },
+      "baseline": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "702c975dd86abdef18aa34a3f748ac3df88199a0d50166da5e5065d78a88a1f4",
+        "oracle_sha256": "a9f2693e6e3e1b2b2c492ea6b9a37eef90ab36584a4d89658457937dd4ed0cf8",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G09-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G09-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G09-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "candidate": {
+        "subject_sha": "fd8ebd83f6885d66e376695de9e5d5e3cf331e11",
+        "model_provider_revision": "SCHEMA-EXAMPLE-NO-MODEL-RUN",
+        "environment_id": "UNPROVISIONED-REAL-TASK-ENVIRONMENT",
+        "fixture_sha256": "702c975dd86abdef18aa34a3f748ac3df88199a0d50166da5e5065d78a88a1f4",
+        "oracle_sha256": "a9f2693e6e3e1b2b2c492ea6b9a37eef90ab36584a4d89658457937dd4ed0cf8",
+        "contract_revision": 1,
+        "cases": [
+          {
+            "case_id": "G09-POS",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G09-NEG-01",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          },
+          {
+            "case_id": "G09-NEG-02",
+            "declared_outcome": "NOT_RUN",
+            "artifact_sha256": null
+          }
+        ]
+      },
+      "independent_review": "NOT_PERFORMED",
+      "qualification": "NOT_QUALIFIED",
+      "acceptance_receipt": null,
+      "effectiveness": "UNKNOWN",
+      "side_effects": "NONE"
+    }
+  ]
+}
