@@ -136,7 +136,9 @@
     "automation/platform/golden_evaluation.schema.v1.json",
     "automation/platform/engineering_system.fixture.v1.json",
     "scripts/p00_engineering.py",
-    "tests/platform/test_p00_engineering.py"
+    "tests/platform/test_p00_engineering.py",
+    "docs/program/reviews/P00-engineering-system.review-request.v1.json",
+    "docs/program/checkpoints/P00-engineering-system-20261009.evidence.v1.json"
   ],
   "remaining": [
     {
@@ -340,7 +342,9 @@
       "effectiveness": "UNKNOWN",
       "execution_eligible": false,
       "full_platform_tests": "387_PASSED_131.84_SECONDS"
-    }
+    },
+    "github_connector_branch_presence": "PASS_EXISTING_ARCHITECTURE_P00_BRANCH_READ_ONLY",
+    "bound_engineering_review": "PASS_14_BLOBS_10_ORIGINAL_CLAUSE_LINKS_NOT_DISPATCHED"
   },
   "release_journeys_passed": 0,
   "release_journeys_total": 6,
@@ -355,7 +359,7 @@
     "master_unchanged_at_last_check": true,
     "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
     "last_verified_published_commit": "aa6c8f556e1653700f2be9205673bffb98a690a2",
-    "local_candidate_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
+    "local_candidate_sha": "c3750af32f0297e48b146db1823dda8c421a26b8",
     "attempted_command": "git push origin architecture/p00-v1-baseline",
     "remote_master_last_verified": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
     "payload": "Design candidate plus checkpoint/review/continuation metadata on existing architecture/p00-v1-baseline only",
@@ -406,11 +410,11 @@
       "INDEPENDENT_REVIEW_NOT_PERFORMED"
     ],
     "R05_source_index_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED",
-    "engineering_system_review": "CANDIDATE_AUTHORING_COMPLETE_PACKET_BINDING_PENDING_LOCAL_SUBJECT_COMMIT"
+    "engineering_system_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED"
   },
-  "current_candidate_sha": "08a160ddb4280e9b76062bdd3dc5393bab906e71",
-  "current_checkpoint_evidence": "docs/program/checkpoints/P00-R05-source-index-20261009.evidence.v1.json",
-  "focused_review_packet": "docs/program/reviews/P00-R05-source-index.review-request.v1.json",
-  "previous_focused_review_packet": "docs/program/reviews/P00-R01-R05.review-request.v1.json",
-  "current_turn_review_subject_bundle": "24a04b62419613a9a7b7086f78f5fbd602cbbc67c39e49f51ac89a01e59568c3"
+  "current_candidate_sha": "c3750af32f0297e48b146db1823dda8c421a26b8",
+  "current_checkpoint_evidence": "docs/program/checkpoints/P00-engineering-system-20261009.evidence.v1.json",
+  "focused_review_packet": "docs/program/reviews/P00-engineering-system.review-request.v1.json",
+  "previous_focused_review_packet": "docs/program/reviews/P00-R05-source-index.review-request.v1.json",
+  "current_turn_review_subject_bundle": "e14c41d656170f9644153047c9d5300e96c8a41b4a1c4259ebc8041cab520771"
 }
