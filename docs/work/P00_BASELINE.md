@@ -68,3 +68,5 @@ Public semantics 仍不完整：記錄精確 gap，延續 P00，不把它交給�
 本輪最新使用者續接格式取代上列舊回覆句式，以p00_status.v1.json為current owner：「尚有【具體未完成項目】未完成，下一輪建議使用【Sol Medium／High／XHigh】；請回覆『繼續』，使工作繼續執行。」繼續本機authoring不等於publication／P00 acceptance／product grant。
 
 SOURCE01／CTX successor proposal navigation: `docs/program/decisions/R06-SOURCE-01.md`。Exact owner patch 僅保存與 in-memory check，未套用；tests／fixture compatibility successor 尚待精確封裝。Original131072 aggregate、CURRENT、negative source、compiler／policy 保持原狀；此 pointer 不授權 migration。
+
+Exact five-file SOURCE01 compatibility／full-byte CURRENT preservation successor: `docs/program/decisions/R06-SOURCE-01.compatibility.md`。Original owner/evaluator/test/code files remain unchanged; isolated fixture107tests does not qualify all migrated platform/model/backend/intake. CURRENT-only reduction still782400/733725 rawbytes beforemetadata; original131072 gate NOT_PASSED，no migration/adoption authority created.
