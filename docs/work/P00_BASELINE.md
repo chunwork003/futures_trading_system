@@ -22,6 +22,7 @@ Status: `IN_PROGRESS / CANDIDATE_ONLY`。本文件是本輪 Architect 工作封�
 6. `docs/program/V1_PROGRAM.md`：package DAG／驗收／進度規則。
 7. `automation/platform/README.md`：development platform spec／registry 導航。
 8. `docs/program/HISTORICAL_REQUIREMENTS.md`：R05有界來源／明列義務、歷史接受與尚缺交付；大型 machine index只作選擇性追溯，不加入 P01/P02必讀 pack。
+9. `docs/program/HISTORICAL_SEMANTIC_BRIDGE.md`：八份補充source／selected interpretations、年代差異與future non-waiver；不是第二個current authority或完整歷史closure。
 
 ## Scope
 

@@ -61,3 +61,9 @@ flowchart LR
 Machine registry綁46份exact Git source refs，保留原九類golden、14項KPI、五項Skill／四項Agent metrics，並列template、generator、pattern、D0–D5責任與remaining gates。Closed schemas與synthetic fixtures只核對shape／來源／反例；九類代表性golden執行仍NOT_RUN，可信producer／acceptance intake與效果量測仍UNKNOWN。Source-index與本次專責候選各有獨立固定subject review packet；任何authoring PASS不能自行結案P00或增加V1 credit。
 
 下一個R05 authoring缺口是bounded supplemental ADR／GAP／歷史prose／future scope的原子語意bridge與outside-universe清單，不重做已保留的603-leaf／143-clause index。
+
+## 有界 historical semantic bridge — 2026-10-10
+
+後續candidate `HISTORICAL_SEMANTIC_BRIDGE.md`／`historical_semantic_bridge.v1.json`另綁八份master來源、2443非空source blocks、62 selected source/proposal clauses與24 GAP source rows。四項歷史status reconciliation、四項candidate scope橋接與六項future non-waiver gates保留original35/151、corrected26/113與new127 provisional delta的不同範圍；未增加V1 credit。
+
+Primary22-source index保持原blob與原coverage dispositions，不把八份補充來源加算成新需求／leaf／權重分母。Bridge只取得author/source consistency；selected spans仍待independent semantic review，2803非空source行未被此次selected interpretation涵蓋，outside-universe仍UNKNOWN。這些行不是2803項需求。下一個R06設計必須保留此source／remaining鏈與原128KiB／read-intake gate，不能以本bridge索引PASS取得execution。
