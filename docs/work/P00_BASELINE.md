@@ -29,6 +29,8 @@ Status: `IN_PROGRESS / CANDIDATE_ONLY`。本文件是本輪 Architect 工作封�
 11. `automation/platform/SOURCE_READING_OBLIGATIONS.md`：P01/P02 positive/negative/protected來源與context；CSV source02 LEVEL3待決，不更改原contracts。
 12. `docs/program/publication/P00-entry-c10c657.manifest.v1.json`：凍結entry publication inventory；final核准manifest在payload freeze後另存repository外，禁止推入尚未核准範圍。
 
+13. `docs/program/decisions/R06-SOURCE-02.md`：CSV source02 的 exact A patch／B 八項語意決策與保存證據；未選定／未套用，architecture choice 不等於實作或 publication grant。
+
 ## Scope
 
 Allowed: `docs/architecture/`、`docs/program/`、本文件、`automation/platform/`、`scripts/p00_*`、`tests/platform/`；可在既有導航增加候選 pointer。

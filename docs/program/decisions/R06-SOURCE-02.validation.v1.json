@@ -1,0 +1,78 @@
+{
+  "schema_version": "p00.csv_decision_validation.v1",
+  "source_candidate": "79cbb122b0d6c8b4560c7b0584c8227952816c33",
+  "checks": {
+    "exact_seven_source_refs": "PASS",
+    "independent_unified_hunk_reconstruction": "PASS_ONE_PARAGRAPH_ONLY",
+    "proposed_file_raw_hash": "PASS",
+    "transport_tail_and_OHLC_preservation": "PASS",
+    "original_seven_sources_not_modified": "PASS_GIT_BYTES_CRLF_TRANSPORT_ONLY"
+  },
+  "candidate_patch_sha256": "af710160d2aef5743bc0735913949683d9cc41a0a666b8976d16d82f682ff480",
+  "candidate_json_sha256": "34613682b3420d4b955f9f30be71a963a067317d48498165bc7c53fa845b432d",
+  "context_measurement": {
+    "P01": {
+      "schema_version": "p00.context_pack_metrics.v1",
+      "pack_sha256": "9c631e946382904205f38328d3c119389ca1f4ca02995012f3112d438d56f153",
+      "source_context_hash": "3aabd0360275d6a45c54cf1e2adc1204b23abb08c5e39a94cca20e1341cc8c94",
+      "source_mandatory_bytes": 918116,
+      "reading_pack_bytes": 328687,
+      "target_max_bytes": 131072,
+      "size_target_met": false,
+      "execution_eligible": false,
+      "review": "NOT_PERFORMED",
+      "required_supplement_unique_bytes": 76311,
+      "raw_plus_supplement_bytes": 994427,
+      "original_gate": "NOT_PASSED"
+    },
+    "P02": {
+      "schema_version": "p00.context_pack_metrics.v1",
+      "pack_sha256": "ea369cfd024d1165d229b16144506ff3d02c38822c5840cb06038ad5844d074b",
+      "source_context_hash": "3c80089057d8b97d2d237e35fa4dc14a6e347f58b8a3d39d39c1679c10b4be02",
+      "source_mandatory_bytes": 869441,
+      "reading_pack_bytes": 424871,
+      "target_max_bytes": 131072,
+      "size_target_met": false,
+      "execution_eligible": false,
+      "review": "NOT_PERFORMED",
+      "required_supplement_unique_bytes": 76311,
+      "raw_plus_supplement_bytes": 945752,
+      "original_gate": "NOT_PASSED"
+    }
+  },
+  "intake_observation_sha256": "0335ecd7d73303d0bcb657235ad85c61ad2fdb78b64be7eee08be02dc8ac739d",
+  "intake_unknown_categories": [
+    "stop",
+    "pending_result",
+    "pending_review",
+    "pending_integration",
+    "pending_acceptance",
+    "latest_delta",
+    "last_accepted_result"
+  ],
+  "current_intake_complete": false,
+  "new_decision_bundle": "P00_REVIEW_INPUT_NOT_YET_IN_EXECUTOR_CONTEXT; successor context must explicitly bind after decision",
+  "patch_applied": false,
+  "parser_or_upload_product_validation": "NOT_RUN_NOT_IMPLEMENTED",
+  "independent_review": "NOT_PERFORMED",
+  "architecture_decision": "NOT_RECEIVED",
+  "acceptance": false,
+  "product_authorization": "NOT_AUTHORIZED",
+  "author_validation_repair": "First diagnostic script used wrong wrapper key; corrected to observation.observations, no repository source/tool repair",
+  "patch_format_whitespace": {
+    "default_git_diff_check": "FOUR_SINGLE_SPACE_UNIFIED_CONTEXT_MARKERS_AND_FINAL_CONTEXT_BLANK_WARNINGS",
+    "exact_lines": [
+      4,
+      6,
+      9,
+      11
+    ],
+    "reason": "Unified-diff context for blank original lines; preserve exact previously presented patch SHA, not document trailing text",
+    "independent_patch_reconstruction": "PASS",
+    "ordinary_docs_json_diff_check": "PASS_SEPARATE_CHECK_EXCLUDES_ONLY_THIS_PATCH"
+  },
+  "targeted_tests": "21_PASSED_21.85_SECONDS",
+  "full_platform_tests": "490_PASSED_195.34_SECONDS",
+  "generated_contract_drift": "PASS",
+  "protected_prior_sources_review_checkpoint_packages_tools_policies": "PASS_UNCHANGED_FROM79CBB_ENTRY"
+}

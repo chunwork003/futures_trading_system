@@ -1,0 +1,230 @@
+{
+  "schema_version": "p00.architecture_decision_candidate.v1",
+  "id": "R06-SOURCE-02",
+  "status": "DECISION_REQUIRED_CANDIDATE_NOT_APPLIED",
+  "priority": "P1",
+  "level": 3,
+  "handling": "HARD_BLOCK_AFFECTED_PUBLIC_CSV_SEMANTICS",
+  "source_candidate": "79cbb122b0d6c8b4560c7b0584c8227952816c33",
+  "source_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "authority": "HUMAN_REQUESTED_P00_ARCHITECT_MATERIALIZATION_NO_SEMANTIC_APPROVAL",
+  "affected_packages": [
+    "P01",
+    "P02_UPLOAD_BOUNDARY"
+  ],
+  "sources": [
+    {
+      "path": "docs/architecture/V1_API_ARCHITECTURE.md",
+      "baseline_sha": "79cbb122b0d6c8b4560c7b0584c8227952816c33",
+      "git_blob": "4d58efbe196b1816d78c75f4987f4564c91bb393",
+      "sha256": "6d971015ebba0fbdece974c6788cdb5f8178c709e83a377fc93ac8636e86ee12",
+      "size_bytes": 14821
+    },
+    {
+      "path": "docs/architecture/V1_DATASET_IDENTITY_IO.md",
+      "baseline_sha": "79cbb122b0d6c8b4560c7b0584c8227952816c33",
+      "git_blob": "3df838421e82ee285c82291db5d34ca84f8e064a",
+      "sha256": "41ca4a6179732c694aadad0316054f66207ebc47abd8c904b520212bea33bd33",
+      "size_bytes": 10120
+    },
+    {
+      "path": "docs/architecture/contracts/python.openapi.v1.json",
+      "baseline_sha": "79cbb122b0d6c8b4560c7b0584c8227952816c33",
+      "git_blob": "65181b3e01f2a95ff316f3e4cad037b7ebb0347a",
+      "sha256": "947889bc0e09e7c4449a7cb3afb2ce037a21738d08576411e31ab147bd6e10aa",
+      "size_bytes": 204713
+    },
+    {
+      "path": "docs/architecture/contracts/bff.openapi.v1.json",
+      "baseline_sha": "79cbb122b0d6c8b4560c7b0584c8227952816c33",
+      "git_blob": "b7273df92c21cda778b47a5981baadf12090dc87",
+      "sha256": "8dda4b483ee39d36732ddef0703d3f4cef9880fc18817996c39b8410d28c8eb1",
+      "size_bytes": 216252
+    },
+    {
+      "path": "docs/program/packages/P01.candidate.v1.json",
+      "baseline_sha": "79cbb122b0d6c8b4560c7b0584c8227952816c33",
+      "git_blob": "543d226ed8958846dcb3b6e5cab89be888234c83",
+      "sha256": "bcd8424eeb281c5367aee28a13461f1c7dfada1779f31c44d552f9d68d553287",
+      "size_bytes": 6202
+    },
+    {
+      "path": "docs/program/packages/P02.candidate.v1.json",
+      "baseline_sha": "79cbb122b0d6c8b4560c7b0584c8227952816c33",
+      "git_blob": "a9d0cb59971ac7fb51e3fcf85670302445867840",
+      "sha256": "cdacbe89a4e13e7611c77087f0721d82a647b83cbca73e47a76bbd98cf17ebf9",
+      "size_bytes": 6938
+    },
+    {
+      "path": "scripts/p00_build_contracts.py",
+      "baseline_sha": "79cbb122b0d6c8b4560c7b0584c8227952816c33",
+      "git_blob": "e48038b7364e7627c6bece87782de4e73150303e",
+      "sha256": "93cfae6f97c405301e7295044cce0979896a1c9ad2f95af7f08e7ee764292214",
+      "size_bytes": 41465
+    }
+  ],
+  "conflict": {
+    "API": {
+      "header": "instrument_id,contract_id,timeframe,bar_open_utc,open,high,low,close,volume",
+      "BOM": "FORBIDDEN"
+    },
+    "CSV_V1": {
+      "header": "source_code,bar_open_utc,open,high,low,close,volume,amount,trade_count,tick_count",
+      "BOM": "ONE_LEADING_ALLOWED"
+    },
+    "schema": "ImportMetadata.format const CSV_V1; file description does not resolve header/BOM disagreement",
+    "interpretation": "BOM could be intentional stricter HTTP admission but lacks explicit compatibility contract; header conflict cannot be resolved by precedence inference"
+  },
+  "option_A": {
+    "status": "EXACT_AMENDMENT_CANDIDATE_NOT_APPLIED",
+    "name": "HTTP 直接沿用既有 CSV_V1",
+    "target": "docs/architecture/V1_API_ARCHITECTURE.md",
+    "patch": "docs/program/decisions/R06-SOURCE-02.option-A.patch",
+    "before_paragraph": "Dataset import is multipart metadata(application/json) + file(text/csv), UTF-8 without BOM, RFC4180 header exactly `instrument_id,contract_id,timeframe,bar_open_utc,open,high,low,close,volume`. Timestamp is UTC Z, prices canonical decimals, volume nonnegative integer; high >= max(open,close), low <= min(open,close), high >= low. Caller supplies trusted reference revisions, not executable mappings. BFF/Python stream into staging with a 256 MiB file cap and independently verified SHA256; filename is ignored. One MiB ordinary JSON limit applies to metadata/other mutations, not the streamed file. No remote URL fetch or filesystem path import. Admission creates durable import operation only after complete verified upload; crash before acceptance leaves unreferenced staging file, cleaned after 7 days. Exact retry compares metadata + file hash; file byte differences with same key reject. Successful import atomically publishes qualified DatasetVersion/manifest; cancellation before publish retains no visible dataset. Parent/correction reason must both be present or both absent; a correction must reference the same dataset. CSV cannot directly establish canonical operational observation acceptance; the accepted adapter still validates reference/identity/provenance.",
+    "after_paragraph": "Dataset import is multipart metadata(application/json) + file(text/csv), with ImportMetadata.format = CSV_V1. The uploaded file follows the CSV_V1 contract in V1_DATASET_IDENTITY_IO.md: strict UTF-8, at most one BOM at the very beginning, RFC4180 comma/double-quote syntax and LF or CRLF; reject NUL, duplicate headers, extra/missing columns and empty data rows. Header order is exactly `source_code,bar_open_utc,open,high,low,close,volume,amount,trade_count,tick_count`. source_code is a nonempty opaque mapping key without surrounding whitespace; metadata source_name binds the pinned mapping namespace. Resolve instrument_id/contract_id through that exact mapping snapshot; do not accept direct identity columns, guess mappings or use mutable latest references. Timestamps are real Gregorian whole minutes `YYYY-MM-DDTHH:MM:00Z`, without local-time guessing. OHLC and nonempty amount follow the existing Decimal wire lexical; exponent/NaN/Infinity/float are forbidden. volume is a required nonnegative integer; empty amount/trade_count/tick_count means null and nonempty counts are nonnegative integers. high >= max(open,close), low <= min(open,close), high >= low. trade_date/session_ref come from the pinned calendar, not CSV. Caller supplies trusted reference revisions, not executable mappings. BFF/Python stream into staging with a 256 MiB file cap and independently verified SHA256; filename is ignored. One MiB ordinary JSON limit applies to metadata/other mutations, not the streamed file. No remote URL fetch or filesystem path import. Admission creates durable import operation only after complete verified upload; crash before acceptance leaves unreferenced staging file, cleaned after 7 days. Exact retry compares metadata + file hash; file byte differences with same key reject. Successful import atomically publishes qualified DatasetVersion/manifest; cancellation before publish retains no visible dataset. Parent/correction reason must both be present or both absent; a correction must reference the same dataset. CSV cannot directly establish canonical operational observation acceptance; the accepted adapter still validates reference/identity/provenance.",
+    "before_file_sha256": "6d971015ebba0fbdece974c6788cdb5f8178c709e83a377fc93ac8636e86ee12",
+    "after_file_sha256_if_applied": "54c6a2f344f0713628fe39bd0d3320ee284f1f19053fe6802952c8b65486daab",
+    "scope": "One paragraph only; IO, generators, DTOs, package candidates and accepted sources unchanged",
+    "compatibility": "Intentional public contract correction; nine-column clients rejected. External consumers UNKNOWN, no backwards-compatibility assertion",
+    "review_decisions": [
+      "Confirm CSV_V1 is the sole intended HTTP upload format",
+      "Confirm one leading BOM at HTTP boundary as well as P01 bytes",
+      "Approve exact paragraph replacement against pinned API bytes; approval is architecture only"
+    ],
+    "preserved_transport_tail_sha256": "dc15aa497b5d6c1d676c152aa03598a1e3b521a2b73b7919f2ac82522a610626",
+    "obligations": [
+      {
+        "id": "CSV_HEADER",
+        "positive": "CSV_V1 固定十欄；HTTP 與 P01 bytes 同一契約",
+        "negative_or_protected": "九欄舊 API header 應拒絕，不隱式轉換"
+      },
+      {
+        "id": "BOM",
+        "positive": "strict UTF-8，最多檔首一個 BOM",
+        "negative_or_protected": "雙 BOM、列中 BOM 不得當第二個檔首 BOM；hash 仍取原始 bytes"
+      },
+      {
+        "id": "IDENTITY",
+        "positive": "source_name + opaque source_code 由 pinned mapping 唯一解析",
+        "negative_or_protected": "零／多筆匹配、未知 namespace、直接 identity 欄不猜測"
+      },
+      {
+        "id": "TIME",
+        "positive": "真實 Gregorian 整分鐘 UTC Z",
+        "negative_or_protected": "offset、無效日期、非零秒及本機時區推測拒絕"
+      },
+      {
+        "id": "DECIMAL",
+        "positive": "沿用 Decimal lexical；amount 空字串 null",
+        "negative_or_protected": "float/exponent/NaN/Infinity 不容許；不自行另定 price format"
+      },
+      {
+        "id": "COUNTS",
+        "positive": "volume 必填；三個 optional value 空字串 null",
+        "negative_or_protected": "null 不填 0；負 count／volume 拒絕"
+      },
+      {
+        "id": "CALENDAR",
+        "positive": "trade_date/session_ref 來自 pinned calendar",
+        "negative_or_protected": "空 calendar／CSV 自報日曆不建立完整性"
+      },
+      {
+        "id": "OHLC",
+        "positive": "三個既有 high/low predicates 全部保留",
+        "negative_or_protected": "合法 Decimal 但 high < open 仍非有效列"
+      },
+      {
+        "id": "UPLOAD",
+        "positive": "256 MiB stream；metadata/ordinary JSON 1 MiB；filename ignored；SHA256",
+        "negative_or_protected": "chunk 不改 hash；BOM 差異仍有不同原始 bytes hash"
+      },
+      {
+        "id": "RETRY",
+        "positive": "key compares original metadata + file hash",
+        "negative_or_protected": "語意相同而 bytes 不同，不能冒充 exact retry"
+      },
+      {
+        "id": "TRANSACTION",
+        "positive": "verified upload 才 durable admission；orphan 7 days；atomic qualified publication；cancel/lineage",
+        "negative_or_protected": "file 或 shape pass 不等於成功 operation；parent/correction reason 必須成對"
+      },
+      {
+        "id": "AUTHORITY",
+        "positive": "canonical observation 仍由 accepted adapter 驗證",
+        "negative_or_protected": "CSV、hash、publication、review pass 都不授予交易／實作權限"
+      }
+    ]
+  },
+  "option_B": {
+    "status": "ALTERNATIVE_REQUIRES_SEMANTIC_INPUT_NOT_APPLY_READY",
+    "name": "雙格式以版本與顯式 adapter 隔離",
+    "patch": null,
+    "unresolved_decisions": [
+      {
+        "id": "FORMAT_VERSION",
+        "decision": "九欄格式的正式名稱／版本與 HTTP discriminator；不能和既有 CSV_V1 同名"
+      },
+      {
+        "id": "IDENTITY_MAPPING",
+        "decision": "直接 instrument/contract 與 source_code namespace 的互轉、歧義、有效區間及權責；沒有唯一映射就拒絕"
+      },
+      {
+        "id": "OPTIONAL_FIELDS",
+        "decision": "九欄沒有 amount/trade_count/tick_count 的 null／來源與 quality 行為；不可填零或虛構"
+      },
+      {
+        "id": "TIMEFRAME",
+        "decision": "直接 timeframe 是否僅允許1m，其他值如何拒絕；不得靜默聚合"
+      },
+      {
+        "id": "BOM_POLICY",
+        "decision": "各 HTTP 格式明確 BOM admission；不得把 stricter edge 規則當全域 P01 規則"
+      },
+      {
+        "id": "HASH_LINEAGE",
+        "decision": "原始 upload bytes/hash 與轉換後 bytes/hash、transform version/provenance 各自保存；重試比較原始 bytes"
+      },
+      {
+        "id": "OWNER_AND_SCOPE",
+        "decision": "adapter 應歸哪個後續 package、exact allowlist；不得越過 P01 bytes scope 或複製 domain owner"
+      },
+      {
+        "id": "COMPATIBILITY",
+        "decision": "是否存在需保留的九欄 client、deprecation/version migration；目前證據 UNKNOWN"
+      }
+    ],
+    "required_review_artifacts": [
+      "Exact versioned format contract and source-to-canonical mapping",
+      "Generator-owned discriminator/error/ref changes and exact generated diffs",
+      "Losslessness/null/identity/time/BOM/idempotency adverse fixtures",
+      "Bounded package/dependency/context changes after independent review"
+    ],
+    "qualification": "No default decisions, no fabricated conversion, no claim of ready amendment"
+  },
+  "recommendation": {
+    "option": "A",
+    "status": "RECOMMENDATION_ONLY_NOT_SELECTED",
+    "reason": "已命名 CSV_V1、P01 dedicated owner、固定1m/reference contracts 提供一致候選；A 不增加第二種 adapter/format owner。是否需要保留九欄 client 仍須決策，無證據不宣稱相容。"
+  },
+  "next_gate": "EXACT_HUMAN_ARCHITECTURE_DECISION_THEN_INDEPENDENT_REVIEW_AND_BOUNDED_DOC_AMENDMENT",
+  "context_gate": {
+    "target_max_bytes": 131072,
+    "compiler_gate_changed": false,
+    "mandatory_obligations_waived": false,
+    "status": "NOT_PASSED"
+  },
+  "state_partition": {
+    "LOCAL_COMMITTED": "CANDIDATE_AFTER_LOCAL_COMMIT",
+    "REMOTE_PUBLISHED": false,
+    "REVIEW_PENDING": true,
+    "ACCEPTED": false,
+    "NOT_AUTHORIZED": [
+      "APPLY_CSV_SEMANTICS_WITHOUT_DECISION",
+      "P01_P02_IMPLEMENTATION",
+      "PUBLICATION_WITHOUT_EXACT_MANIFEST_APPROVAL",
+      "MERGE",
+      "CONTROLLER_ACTIVATION",
+      "COMPILER_POLICY_MIGRATION"
+    ]
+  }
+}
