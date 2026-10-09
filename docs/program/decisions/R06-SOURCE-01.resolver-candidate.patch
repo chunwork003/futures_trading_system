@@ -1,0 +1,13 @@
+--- a/scripts/p00_context.py
++++ b/scripts/p00_context.py
+@@ -134,0 +135,4 @@
++    negative_binding = manifest.get("negative_assertions")
++    if not isinstance(negative_binding, dict) or negative_binding.get("active") is not True:
++        raise ContextError("MISSING_ACTIVE_NEGATIVE_ASSERTIONS_BINDING")
++    current_bindings = [*policies.values(), negative_binding]
+@@ -136 +140 @@
+-    for binding in policies.values():
++    for binding in current_bindings:
+@@ -150 +154 @@
+-        binding["path"] for binding in policies.values() if binding.get("active") is True
++        binding["path"] for binding in current_bindings if binding.get("active") is True
