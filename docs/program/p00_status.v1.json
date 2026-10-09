@@ -10,7 +10,8 @@
     "Fresh fetch origin/master unchanged9b5ab5f; entry28cdd2e is30 ahead master and8 ahead published candidate;7 active policy Git-byte hashes PASS",
     "R06 source/session reading compatibility design, closed claim schema and source-bound pure oracle authored using existing resolver/packer",
     "Recorded R06-SOURCE-01: negative assertions active manifest source absent from resolver mandatory; report unrepresented refs instead of changing accepted context gate",
-    "Targeted29 passed42.90s; full platform469 passed184.28s; original generators/source/core/semantic bridge/engineering checks PASS; no semantic acceptance or trusted acknowledgement"
+    "Targeted29 passed42.90s; full platform469 passed184.28s; original generators/source/core/semantic bridge/engineering checks PASS; no semantic acceptance or trusted acknowledgement",
+    "Bound exact9106fbb P01/P02 smoke:33/31 mandatory representations;0 reading claims; original911255/862580 bytes and selective323356/419540 bytes overtarget;1496-byte negative assertions unrepresented in both. No compiler migration."
   ],
   "materialized": [
     "docs/work/P00_BASELINE.md",
@@ -148,7 +149,12 @@
     "automation/platform/context_reading_contract.v1.json",
     "automation/platform/reading_claim.schema.v1.json",
     "scripts/p00_reading.py",
-    "tests/platform/test_p00_reading.py"
+    "tests/platform/test_p00_reading.py",
+    "docs/program/reviews/P00-reading-receipts.review-request.v1.json",
+    "docs/program/checkpoints/P00-reading-receipts-20261010.evidence.v1.json",
+    "docs/program/context_packs/9106fbb/P01.reading-audit.json",
+    "docs/program/context_packs/9106fbb/P02.reading-audit.json",
+    "docs/program/context_packs/9106fbb/reading-smoke.json"
   ],
   "remaining": [
     {
@@ -389,8 +395,87 @@
       "original_target_bytes": 131072,
       "current_intake_complete": false,
       "independent_review": "NOT_PERFORMED",
-      "bound_real_package_smoke": "PENDING_DESIGN_COMMIT",
-      "full_platform_tests": "469_PASSED_184.28_SECONDS"
+      "bound_real_package_smoke": "PASS_SOURCE_RECONSTRUCTION_ONLY_NOT_RECOMPILED_NOT_READ",
+      "full_platform_tests": "469_PASSED_184.28_SECONDS",
+      "snapshot": "9106fbbba4199bca838cee794343296716a39df7",
+      "packages": [
+        {
+          "package": "P01",
+          "path": "docs/program/context_packs/9106fbb/P01.reading-audit.json",
+          "plan_hash": "dd361c6746796ca6682992076c0f16e681718643b6b28a6c2f061fe61230143c",
+          "obligations": 33,
+          "original_budget": {
+            "mandatory_bytes": 911255,
+            "target_max_bytes": 131072,
+            "status": "OVER_TARGET_REQUIRES_COMPACTION"
+          },
+          "representation_bytes": 323356,
+          "carrier_metrics": {
+            "pack_bytes": 323356,
+            "plan_bytes": 26897,
+            "claim_bytes": 3,
+            "aggregate_bytes": 350256,
+            "target_max_bytes": 131072,
+            "compiler_gate_changed": false,
+            "basis": "OBSERVATION_ONLY_NOT_ORIGINAL_GATE_REPLACEMENT"
+          },
+          "governance_coverage": "UNREPRESENTED_DECLARED_GOVERNANCE_SOURCES",
+          "unrepresented_sources": [
+            {
+              "path": "automation/specs/negative_assertions.v2.yaml",
+              "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+              "git_blob": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+              "sha256": "4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344",
+              "size_bytes": 1496
+            }
+          ],
+          "claimed": 0,
+          "missing": 33,
+          "claim_trust": "UNVERIFIED_CALLER_CLAIMS",
+          "execution_eligible": false,
+          "actual_reading_verified": false,
+          "independent_review": "NOT_PERFORMED"
+        },
+        {
+          "package": "P02",
+          "path": "docs/program/context_packs/9106fbb/P02.reading-audit.json",
+          "plan_hash": "d0186f102c9878a0c49fe9bb98379e1042e0f8ec3d0a35d9e34baf77903b2f76",
+          "obligations": 31,
+          "original_budget": {
+            "mandatory_bytes": 862580,
+            "target_max_bytes": 131072,
+            "status": "OVER_TARGET_REQUIRES_COMPACTION"
+          },
+          "representation_bytes": 419540,
+          "carrier_metrics": {
+            "pack_bytes": 419540,
+            "plan_bytes": 26309,
+            "claim_bytes": 3,
+            "aggregate_bytes": 445852,
+            "target_max_bytes": 131072,
+            "compiler_gate_changed": false,
+            "basis": "OBSERVATION_ONLY_NOT_ORIGINAL_GATE_REPLACEMENT"
+          },
+          "governance_coverage": "UNREPRESENTED_DECLARED_GOVERNANCE_SOURCES",
+          "unrepresented_sources": [
+            {
+              "path": "automation/specs/negative_assertions.v2.yaml",
+              "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+              "git_blob": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+              "sha256": "4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344",
+              "size_bytes": 1496
+            }
+          ],
+          "claimed": 0,
+          "missing": 31,
+          "claim_trust": "UNVERIFIED_CALLER_CLAIMS",
+          "execution_eligible": false,
+          "actual_reading_verified": false,
+          "independent_review": "NOT_PERFORMED"
+        }
+      ],
+      "review_artifacts": 22,
+      "review_subject_bundle": "ea23296c7b20350d6fddf476b94b6dfd4cbefd195689f116c02a4b92daf02c85"
     }
   },
   "release_journeys_passed": 0,
@@ -406,7 +491,7 @@
     "master_unchanged_at_last_check": true,
     "approved_previous_payload": "4e7c81f_PUSHED_CONFIRMED_2026_10_08",
     "last_verified_published_commit": "aa6c8f556e1653700f2be9205673bffb98a690a2",
-    "local_candidate_sha": "3db5a658ff82a42c328ff67ff1c2a99bde2580aa",
+    "local_candidate_sha": "9106fbbba4199bca838cee794343296716a39df7",
     "attempted_command": "git push origin architecture/p00-v1-baseline",
     "remote_master_last_verified": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
     "payload": "Design candidate plus checkpoint/review/continuation metadata on existing architecture/p00-v1-baseline only",
@@ -445,7 +530,7 @@
     "reason": "R06 authority/reading completeness and source-to-obligation semantics remain architecture work; retain prior Sol6.1 High recommendation",
     "actual_model_switch": "NOT_PERFORMED"
   },
-  "current_task_status": "AUTHORING_VALIDATED_BOUND_SNAPSHOT_SMOKE_PENDING_LOCAL_COMMIT",
+  "current_task_status": "CURRENT_LOCAL_CHECKPOINT_COMPLETE_PROGRAM_INCOMPLETE",
   "review_readiness": {
     "R01_R05_focused_design_review": "PACKET_PREPARED_NOT_DISPATCHED",
     "P00_final_baseline_review": "NOT_READY",
@@ -458,11 +543,12 @@
     ],
     "R05_source_index_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED",
     "engineering_system_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED",
-    "historical_semantic_bridge_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED"
+    "historical_semantic_bridge_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED",
+    "R06_reading_review": "PACKET_PREPARED_EXACT_SUBJECT_NOT_DISPATCHED"
   },
-  "current_candidate_sha": "3db5a658ff82a42c328ff67ff1c2a99bde2580aa",
-  "current_checkpoint_evidence": "docs/program/checkpoints/P00-historical-semantics-20261010.evidence.v1.json",
-  "focused_review_packet": "docs/program/reviews/P00-historical-semantics.review-request.v1.json",
-  "previous_focused_review_packet": "docs/program/reviews/P00-engineering-system.review-request.v1.json",
-  "current_turn_review_subject_bundle": "a86b8dad6ec228efda118988751e1c8552447624953ce9b187e9203bef977315"
+  "current_candidate_sha": "9106fbbba4199bca838cee794343296716a39df7",
+  "current_checkpoint_evidence": "docs/program/checkpoints/P00-reading-receipts-20261010.evidence.v1.json",
+  "focused_review_packet": "docs/program/reviews/P00-reading-receipts.review-request.v1.json",
+  "previous_focused_review_packet": "docs/program/reviews/P00-historical-semantics.review-request.v1.json",
+  "current_turn_review_subject_bundle": "ea23296c7b20350d6fddf476b94b6dfd4cbefd195689f116c02a4b92daf02c85"
 }

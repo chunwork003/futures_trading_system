@@ -10,3 +10,7 @@ Metrics 的 pack_sha256 綁定 Git 中的 compact UTF-8 LF bytes；不是 Window
 
 
 `7477e51/` 保存 P01 revision5 / P02 revision2 的 selective profile 量測、實際 packs 與結果閱讀索引核對。`*.full-reading.metrics.json` 是同 snapshot 不做 endpoint/schema selection 的比較值。Selective pack 的 JSON projection 只能還原選取內容；excluded paths/schemas 及完整來源 hash 明示保留。兩包仍超標，不能用來解除 compiler gate。`result_reading.json` 不是完整 current intake 或執行授權。
+
+## R06 source/session audit — 9106fbb
+
+`9106fbb/reading-smoke.json` and P01/P02.reading-audit.json bind exact design snapshot and prior WORK profiles with current unchanged package scopes.33/31 mandatory representations,0 claims; active negative_assertions1496bytes unrepresented. Original aggregate and selective carrier still over128KiB. These are source-bound structural reading plans, not fresh compilations, trusted acknowledgements, current intake or readiness. New context/source/session changes require rebuilding before use.

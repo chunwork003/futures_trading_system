@@ -1,0 +1,173 @@
+{
+  "schema_version": "p00.reading_smoke.v1",
+  "status": "EXACT_SOURCE_STRUCTURAL_SMOKE_ONLY",
+  "planning_snapshot": "9106fbbba4199bca838cee794343296716a39df7",
+  "source_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "claims_generated": false,
+  "compiler_recompilation": "NOT_PERFORMED",
+  "compiler_gate_changed": false,
+  "actual_reading_verified": false,
+  "current_intake_complete": false,
+  "results": [
+    {
+      "package": "P01",
+      "path": "docs/program/context_packs/9106fbb/P01.reading-audit.json",
+      "request": {
+        "architecture_domains": [
+          "program"
+        ],
+        "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+        "changed_paths": [
+          "docs/program/packages/P01_RESULT.md",
+          "storage/dataset_contracts.py",
+          "storage/dataset_import.py",
+          "storage/dataset_manifest.py",
+          "storage/dataset_quality.py",
+          "tests/fixtures/dataset_v1_cases.json",
+          "tests/integration/test_dataset_reproducibility.py",
+          "tests/unit/test_dataset_import.py",
+          "tests/unit/test_dataset_manifest.py"
+        ],
+        "package_id": "P01",
+        "task_type": "WORK"
+      },
+      "consumer": {
+        "role": "WORK",
+        "task_id": "P00-R06-STRUCTURAL-SMOKE-P01",
+        "session_id": "P00-OFFLINE-20261010-NO-INVOCATION",
+        "continuity_epoch": 1
+      },
+      "plan_hash": "dd361c6746796ca6682992076c0f16e681718643b6b28a6c2f061fe61230143c",
+      "obligations": 33,
+      "original_budget": {
+        "mandatory_bytes": 911255,
+        "target_max_bytes": 131072,
+        "status": "OVER_TARGET_REQUIRES_COMPACTION"
+      },
+      "representation_bytes": 323356,
+      "carrier_metrics": {
+        "pack_bytes": 323356,
+        "plan_bytes": 26897,
+        "claim_bytes": 3,
+        "aggregate_bytes": 350256,
+        "target_max_bytes": 131072,
+        "compiler_gate_changed": false,
+        "basis": "OBSERVATION_ONLY_NOT_ORIGINAL_GATE_REPLACEMENT"
+      },
+      "governance_coverage": "UNREPRESENTED_DECLARED_GOVERNANCE_SOURCES",
+      "unrepresented_sources": [
+        {
+          "path": "automation/specs/negative_assertions.v2.yaml",
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+          "sha256": "4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344",
+          "size_bytes": 1496
+        }
+      ],
+      "claimed": 0,
+      "missing": 33,
+      "claim_trust": "UNVERIFIED_CALLER_CLAIMS",
+      "execution_eligible": false,
+      "actual_reading_verified": false,
+      "independent_review": "NOT_PERFORMED"
+    },
+    {
+      "package": "P02",
+      "path": "docs/program/context_packs/9106fbb/P02.reading-audit.json",
+      "request": {
+        "architecture_domains": [
+          "program"
+        ],
+        "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+        "changed_paths": [
+          ".node-version",
+          ".python-version",
+          "application/Contracts.cs",
+          "application/Futures.Workspace.csproj",
+          "application/IdentityConfiguration.cs",
+          "application/Program.cs",
+          "application/PythonClient.cs",
+          "application/appsettings.json",
+          "application/packages.lock.json",
+          "docs/program/packages/P02_BUILD_RESOLUTION.json",
+          "docs/program/packages/P02_RESULT.md",
+          "global.json",
+          "pyproject.toml",
+          "requirements/build-tools.lock",
+          "requirements/service-linux.lock",
+          "requirements/service-win.lock",
+          "requirements/service.in",
+          "service/__init__.py",
+          "service/app.py",
+          "service/contracts.py",
+          "service/ports.py",
+          "service/settings.py",
+          "tests/application/ContractTests.cs",
+          "tests/application/TestHost/Program.cs",
+          "tests/application/TestHost/TestHost.csproj",
+          "tests/application/TestHost/packages.lock.json",
+          "tests/application/Workspace.ContractTests.csproj",
+          "tests/application/packages.lock.json",
+          "tests/browser/playwright.config.ts",
+          "tests/browser/run_hosts.py",
+          "tests/browser/workspace.spec.ts",
+          "tests/fixtures/workspace_contract_cases.json",
+          "tests/service/fixture_provider.py",
+          "tests/service/host.py",
+          "tests/service/test_api_contracts.py",
+          "tests/service/test_test_adapter_isolation.py",
+          "web/index.html",
+          "web/package-lock.json",
+          "web/package.json",
+          "web/src/App.tsx",
+          "web/src/api.ts",
+          "web/src/main.tsx",
+          "web/src/styles.css",
+          "web/tsconfig.json",
+          "web/vite.config.ts"
+        ],
+        "package_id": "P02",
+        "task_type": "WORK"
+      },
+      "consumer": {
+        "role": "WORK",
+        "task_id": "P00-R06-STRUCTURAL-SMOKE-P02",
+        "session_id": "P00-OFFLINE-20261010-NO-INVOCATION",
+        "continuity_epoch": 1
+      },
+      "plan_hash": "d0186f102c9878a0c49fe9bb98379e1042e0f8ec3d0a35d9e34baf77903b2f76",
+      "obligations": 31,
+      "original_budget": {
+        "mandatory_bytes": 862580,
+        "target_max_bytes": 131072,
+        "status": "OVER_TARGET_REQUIRES_COMPACTION"
+      },
+      "representation_bytes": 419540,
+      "carrier_metrics": {
+        "pack_bytes": 419540,
+        "plan_bytes": 26309,
+        "claim_bytes": 3,
+        "aggregate_bytes": 445852,
+        "target_max_bytes": 131072,
+        "compiler_gate_changed": false,
+        "basis": "OBSERVATION_ONLY_NOT_ORIGINAL_GATE_REPLACEMENT"
+      },
+      "governance_coverage": "UNREPRESENTED_DECLARED_GOVERNANCE_SOURCES",
+      "unrepresented_sources": [
+        {
+          "path": "automation/specs/negative_assertions.v2.yaml",
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+          "sha256": "4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344",
+          "size_bytes": 1496
+        }
+      ],
+      "claimed": 0,
+      "missing": 31,
+      "claim_trust": "UNVERIFIED_CALLER_CLAIMS",
+      "execution_eligible": false,
+      "actual_reading_verified": false,
+      "independent_review": "NOT_PERFORMED"
+    }
+  ]
+}

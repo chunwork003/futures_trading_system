@@ -1,0 +1,949 @@
+{
+  "plan": {
+    "schema_version": "p00.reading_plan.v1",
+    "status": "CANDIDATE_NOT_QUALIFIED",
+    "authority": "NONE_READING_AUDIT_ONLY",
+    "execution_eligible": false,
+    "consumer": {
+      "role": "WORK",
+      "task_id": "P00-R06-STRUCTURAL-SMOKE-P01",
+      "session_id": "P00-OFFLINE-20261010-NO-INVOCATION",
+      "continuity_epoch": 1
+    },
+    "request": {
+      "architecture_domains": [
+        "program"
+      ],
+      "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+      "changed_paths": [
+        "docs/program/packages/P01_RESULT.md",
+        "storage/dataset_contracts.py",
+        "storage/dataset_import.py",
+        "storage/dataset_manifest.py",
+        "storage/dataset_quality.py",
+        "tests/fixtures/dataset_v1_cases.json",
+        "tests/integration/test_dataset_reproducibility.py",
+        "tests/unit/test_dataset_import.py",
+        "tests/unit/test_dataset_manifest.py"
+      ],
+      "package_id": "P01",
+      "task_type": "WORK"
+    },
+    "source_baseline_sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+    "source_context_hash": "128dada8c7f8e2bb1d1f3c7fc58e6bea871d29ea773059817f7a8f0e7936d7f7",
+    "pack_sha256": "4eb242de52369530326e9df03340168abaaf42f86e14ccb1ed11ddb05550858c",
+    "obligations": [
+      {
+        "id": "read:AGENTS.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "8313abbbb441d91fdca7d892852e6d919e2d76b7",
+          "path": "AGENTS.md",
+          "sha256": "3c1b30cf1b0691b25d454c89e6b0f4bcb5d5985cec696511668ce651cc008bb8",
+          "size_bytes": 21678
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "3c1b30cf1b0691b25d454c89e6b0f4bcb5d5985cec696511668ce651cc008bb8",
+        "payload_bytes": 21678,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/governance/master_manifest.v1.yaml",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "89de89c47d23080af8369544a165e199856d2832",
+          "path": "automation/governance/master_manifest.v1.yaml",
+          "sha256": "ad14b19c872f54c1a4110e612a080a8d298f381531d69939b172c3c4f64fe946",
+          "size_bytes": 50903
+        },
+        "mode": "FULL_JSON_VALUE",
+        "payload_sha256": "ceb4becb8db3483aef14a8d457e4e2d87ec92b34367ad911d979ee90ad30f445",
+        "payload_bytes": 20859,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/platform/context_policy.v1.json",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "c4e51a81d6c613e187b7e3f9a904995b565785a2",
+          "path": "automation/platform/context_policy.v1.json",
+          "sha256": "011b11b3fea4b64a2b82cab653df0d4af1e250be71bd91bcb45f67856749f83a",
+          "size_bytes": 8241
+        },
+        "mode": "FULL_JSON_VALUE",
+        "payload_sha256": "8e0bd48e498910c09c1f786415635c59f6f7f1a93263520306ac76d2cc644973",
+        "payload_bytes": 6345,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/platform/package.schema.v1.json",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "c21169f2991fc4828ef8e9ccf3b89e90ea38e016",
+          "path": "automation/platform/package.schema.v1.json",
+          "sha256": "792d3b16e346a4f5bc2c68d0113a862aa940ebdf30e748b39e46406c7a32523e",
+          "size_bytes": 8873
+        },
+        "mode": "FULL_JSON_VALUE",
+        "payload_sha256": "14f803b1a3c85f8a077be73fd3cd051605adba8b6d2372631119505746b60c28",
+        "payload_bytes": 4731,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/policies/authorization_lifecycle.v1_1.yaml",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+          "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+          "sha256": "268b353d39461ccd629456cbe32cea6ded3bb1e617042584c7d52f27f46e8486",
+          "size_bytes": 2046
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "268b353d39461ccd629456cbe32cea6ded3bb1e617042584c7d52f27f46e8486",
+        "payload_bytes": 2046,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/policies/development_entry_protocol.v2.yaml",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+          "path": "automation/policies/development_entry_protocol.v2.yaml",
+          "sha256": "e722303a6c0821392418d2d2716892248ec8fae58c57524202d773c3e3ed9ab5",
+          "size_bytes": 1445
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "e722303a6c0821392418d2d2716892248ec8fae58c57524202d773c3e3ed9ab5",
+        "payload_bytes": 1445,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/policies/development_state_machine.v2.yaml",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+          "path": "automation/policies/development_state_machine.v2.yaml",
+          "sha256": "17c76e24fddc23db036a52771620e6fd848c1ca710e4fb8f7a1b82a3dd91b863",
+          "size_bytes": 1745
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "17c76e24fddc23db036a52771620e6fd848c1ca710e4fb8f7a1b82a3dd91b863",
+        "payload_bytes": 1745,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/policies/execution_capacity_policy.v2_2.yaml",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+          "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+          "sha256": "f72c1589007df1cd4bad2612de17427cd2399489fcb70ebe9641d83e4f30ee5a",
+          "size_bytes": 10331
+        },
+        "mode": "FULL_JSON_VALUE",
+        "payload_sha256": "245fae8ef3914eb3fadb0673196c5729049ef9c180bec43734d180f7a2c1a876",
+        "payload_bytes": 8804,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "7c94d4e31d2c0fc5a4aae85ed48638b53b5b265b",
+          "path": "automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+          "sha256": "45e5d8ce63b61b93c73d85663cb54c216ec2810dcddb641ec0bc32a164038efa",
+          "size_bytes": 10557
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "45e5d8ce63b61b93c73d85663cb54c216ec2810dcddb641ec0bc32a164038efa",
+        "payload_bytes": 10557,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/specs/work_cost_accounting.v2.yaml",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+          "path": "automation/specs/work_cost_accounting.v2.yaml",
+          "sha256": "a4ae5dfa602293dbe4721e3f0a4bc82960c52072ef8ac00535cb42432fa30a5a",
+          "size_bytes": 1641
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "a4ae5dfa602293dbe4721e3f0a4bc82960c52072ef8ac00535cb42432fa30a5a",
+        "payload_bytes": 1641,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/telemetry/execution_cost_contract.v2.yaml",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "e2b0422f294ac718f06403b704a8f28607a5002f",
+          "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+          "sha256": "8772ed5eaa71cdeab124b8c667c58a915d1ad21ed861b01ffc3d0692ed5fe73a",
+          "size_bytes": 2061
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "8772ed5eaa71cdeab124b8c667c58a915d1ad21ed861b01ffc3d0692ed5fe73a",
+        "payload_bytes": 2061,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/work_orders/CURRENT_CODEX.yaml",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "130c48afb564874b600979979bcd623d1172d5b8",
+          "path": "automation/work_orders/CURRENT_CODEX.yaml",
+          "sha256": "8fe711645eaeb1d57dea2d0afd97baecab86bf265446319fa0fe10772919538b",
+          "size_bytes": 12417
+        },
+        "mode": "FULL_JSON_VALUE",
+        "payload_sha256": "5bc7489f95c6154920a7434beccfd452b8d0b936c399a1518446b2140a9d92bd",
+        "payload_bytes": 9998,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:automation/work_orders/CURRENT_CODEX_TASK.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "fb8c67d8d536c75ce852121a0dfe136b23d36223",
+          "path": "automation/work_orders/CURRENT_CODEX_TASK.md",
+          "sha256": "e3dc5d9d4461622e87d23bc99d4d63edfe5e04bf27a934ca3c5ee28848d9ac62",
+          "size_bytes": 1411
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "e3dc5d9d4461622e87d23bc99d4d63edfe5e04bf27a934ca3c5ee28848d9ac62",
+        "payload_bytes": 1411,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/CURRENT_STATE.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "159b0253aacca4623b6124e476c4364180a18b63",
+          "path": "docs/CURRENT_STATE.md",
+          "sha256": "ea58de1edae20f2b32f8a67351cc70316eb6e41ef1ea8a7869aab4ab2f705ea3",
+          "size_bytes": 88326
+        },
+        "mode": "CURRENT_SECTION_WITH_HISTORY_REFERENCE",
+        "payload_sha256": "7db7fbc6b077f898600f30608fed18476ae0b5f9b180a330d86d4d902ba0b4c2",
+        "payload_bytes": 2955,
+        "exclusions": {
+          "archive_start_line": 15,
+          "history_marker_count": 3,
+          "archive_text_sha256": "2232fb26f381ac0f69f02f34b916a1e095e7801d7e52760cd5f8d3aa58fb38d8",
+          "archive_load_rule": "Read full source for historical claims, unresolved contradictions, review or lifecycle provenance."
+        },
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/CURRENT_WORK.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "7eb8be3279abecd4410021bb8de11287989600c7",
+          "path": "docs/CURRENT_WORK.md",
+          "sha256": "e61697cccf92fab7c59f5efc46eb5af01cf8a2ac21d0139c2a38036d69e6ca8d",
+          "size_bytes": 60363
+        },
+        "mode": "CURRENT_SECTION_WITH_HISTORY_REFERENCE",
+        "payload_sha256": "7db7fbc6b077f898600f30608fed18476ae0b5f9b180a330d86d4d902ba0b4c2",
+        "payload_bytes": 2955,
+        "exclusions": {
+          "archive_start_line": 15,
+          "history_marker_count": 3,
+          "archive_text_sha256": "78a3391d65a4c750412be28a2df749accc1ae48770ba2a95ed531715d79cf1d5",
+          "archive_load_rule": "Read full source for historical claims, unresolved contradictions, review or lifecycle provenance."
+        },
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/architecture/V1_API_ARCHITECTURE.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "4d58efbe196b1816d78c75f4987f4564c91bb393",
+          "path": "docs/architecture/V1_API_ARCHITECTURE.md",
+          "sha256": "6d971015ebba0fbdece974c6788cdb5f8178c709e83a377fc93ac8636e86ee12",
+          "size_bytes": 14821
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "6d971015ebba0fbdece974c6788cdb5f8178c709e83a377fc93ac8636e86ee12",
+        "payload_bytes": 14821,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/architecture/V1_BASELINE.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "fafc6cee436c6c04242a1eb3b5e838140048baa2",
+          "path": "docs/architecture/V1_BASELINE.md",
+          "sha256": "fc1f39fadc6cd2eb6fc09673e1b59f9e82f7b047cca7f4897310580271bf121e",
+          "size_bytes": 15333
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "fc1f39fadc6cd2eb6fc09673e1b59f9e82f7b047cca7f4897310580271bf121e",
+        "payload_bytes": 15333,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/architecture/V1_CONTRACTS.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "1f92bef73591adccaedb9b3b73c86bf4cd71a29e",
+          "path": "docs/architecture/V1_CONTRACTS.md",
+          "sha256": "f64a4f6b539c1cde2d273ce38958fd4f7c7053d7b0559a1893d5cc4ac39c14ed",
+          "size_bytes": 11275
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "f64a4f6b539c1cde2d273ce38958fd4f7c7053d7b0559a1893d5cc4ac39c14ed",
+        "payload_bytes": 11275,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/architecture/V1_DATASET_IDENTITY_IO.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "3df838421e82ee285c82291db5d34ca84f8e064a",
+          "path": "docs/architecture/V1_DATASET_IDENTITY_IO.md",
+          "sha256": "41ca4a6179732c694aadad0316054f66207ebc47abd8c904b520212bea33bd33",
+          "size_bytes": 10120
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "41ca4a6179732c694aadad0316054f66207ebc47abd8c904b520212bea33bd33",
+        "payload_bytes": 10120,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/architecture/V1_DATASET_QUALITY.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "fa5bb1b138239f4b43792281cba125fdd5a1ed0c",
+          "path": "docs/architecture/V1_DATASET_QUALITY.md",
+          "sha256": "cc73b50a7a5d52d29af44d67baa7e2e5d4cb14f8b4d127ccc61649988f64b234",
+          "size_bytes": 8116
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "cc73b50a7a5d52d29af44d67baa7e2e5d4cb14f8b4d127ccc61649988f64b234",
+        "payload_bytes": 8116,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/architecture/V1_GENESIS_AUTH_CONTRACT.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "d14c4784bef1d716c3775d8efbcd6a812b1c463f",
+          "path": "docs/architecture/V1_GENESIS_AUTH_CONTRACT.md",
+          "sha256": "8e98a0d4eb4fe148faf2de28e7f2791d33b92f6260fe2d040022763d92a4e771",
+          "size_bytes": 5713
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "8e98a0d4eb4fe148faf2de28e7f2791d33b92f6260fe2d040022763d92a4e771",
+        "payload_bytes": 5713,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/architecture/V1_STATE_MACHINES.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "e648c5f3fa1d807536ee3978e1ae0ae97fd784c5",
+          "path": "docs/architecture/V1_STATE_MACHINES.md",
+          "sha256": "c244c3e8ded4cdee962088901e319c3e53d3d03da18b30763cf6cca3735de264",
+          "size_bytes": 7511
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "c244c3e8ded4cdee962088901e319c3e53d3d03da18b30763cf6cca3735de264",
+        "payload_bytes": 7511,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/architecture/contracts/bff.openapi.v1.json",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "b7273df92c21cda778b47a5981baadf12090dc87",
+          "path": "docs/architecture/contracts/bff.openapi.v1.json",
+          "sha256": "8dda4b483ee39d36732ddef0703d3f4cef9880fc18817996c39b8410d28c8eb1",
+          "size_bytes": 216252
+        },
+        "mode": "JSON_PROJECTION",
+        "payload_sha256": "2d65bcd69b721ff2c0a3ae45e424a5eac53341b64b10d802731239c25f54621e",
+        "payload_bytes": 19928,
+        "exclusions": {
+          "excluded_paths": [
+            "/api/v1/accounts/{id}/state",
+            "/api/v1/artifacts/{id}/download",
+            "/api/v1/artifacts/{id}/rows",
+            "/api/v1/audit",
+            "/api/v1/commands/{id}",
+            "/api/v1/configuration-catalog",
+            "/api/v1/dataset-imports",
+            "/api/v1/datasets",
+            "/api/v1/operations/{id}",
+            "/api/v1/operations/{id}/cancel",
+            "/api/v1/reconciliation-cases",
+            "/api/v1/reconciliation-cases/{id}/resolve",
+            "/api/v1/research-runs",
+            "/api/v1/research-runs/{id}/results",
+            "/api/v1/simulation-sessions",
+            "/api/v1/simulation-sessions/{id}",
+            "/api/v1/simulation-sessions/{id}/commands",
+            "/api/v1/strategies",
+            "/api/v1/strategy-configs",
+            "/api/v1/strategy-configs/{id}",
+            "/api/v1/system/status",
+            "/auth/csrf",
+            "/auth/login",
+            "/auth/logout",
+            "/auth/session"
+          ],
+          "excluded_schemas": [
+            "AccountState",
+            "ActualPosition",
+            "ArtifactManifest",
+            "ArtifactRows",
+            "AuditEvent",
+            "AuditEventPage",
+            "BacktestSpec",
+            "CancelRequest",
+            "CapitalState",
+            "CommandReceipt",
+            "ConfigurationCatalog",
+            "ContractBinding",
+            "CsrfToken",
+            "DatasetManifestPage",
+            "Decimal",
+            "Decision",
+            "EmaIncrementalCodec",
+            "ExpectedPosition",
+            "Identity",
+            "IncrementalState",
+            "LoginRequest",
+            "Metric",
+            "MonteCarloSpec",
+            "OosSpec",
+            "Operation",
+            "OperationAttempt",
+            "OperatorSession",
+            "ParameterStudySpec",
+            "ParameterValue",
+            "Position",
+            "ReconciliationCase",
+            "ReconciliationCasePage",
+            "ResearchResults",
+            "ResearchRun",
+            "ResearchRunPage",
+            "ResearchRunRequest",
+            "ResearchSpec",
+            "ResolveCaseRequest",
+            "ResultCell",
+            "Revision",
+            "RiskDecision",
+            "RunBindings",
+            "Signal",
+            "SimulationCommand",
+            "SimulationRequest",
+            "SimulationSession",
+            "StrategyBinding",
+            "StrategyConfigRequest",
+            "StrategyConfigVersion",
+            "StrategyDefinition",
+            "StrategyDefinitionPage",
+            "SystemStatus",
+            "TargetPosition",
+            "TradingEvidenceEnvelope",
+            "WfoSpec",
+            "WorkerLease"
+          ],
+          "full_source_load_rule": "Load full exact source when scope, dependencies, review or contradictions require excluded contracts.",
+          "included_schemas": [
+            "DatasetCalendarSnapshot",
+            "DatasetCoverageRequest",
+            "DatasetImportReceipt",
+            "DatasetImportRequest",
+            "DatasetManifest",
+            "DatasetMappingSnapshot",
+            "DatasetPublicationResult",
+            "DatasetQualityPolicySnapshot",
+            "DatasetQualityReport",
+            "DatasetSourceManifest",
+            "DatasetVersion",
+            "Error",
+            "EvidenceRef",
+            "ImportMetadata"
+          ],
+          "schema_roots": [
+            "DatasetManifest",
+            "DatasetVersion",
+            "DatasetCoverageRequest",
+            "DatasetCalendarSnapshot",
+            "DatasetMappingSnapshot",
+            "DatasetQualityPolicySnapshot",
+            "DatasetSourceManifest",
+            "DatasetPublicationResult",
+            "DatasetQualityReport",
+            "DatasetImportReceipt",
+            "ImportMetadata",
+            "DatasetImportRequest",
+            "Error"
+          ],
+          "selected_paths": []
+        },
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/architecture/contracts/dataset_identity.fixture.v1.json",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "5c65e05f7423ffce910c4734de66e6918534cdd9",
+          "path": "docs/architecture/contracts/dataset_identity.fixture.v1.json",
+          "sha256": "5fa4633218227615afadd9883931bebc12d53b6a71fae8fc05fb18c03ebf1d0d",
+          "size_bytes": 4704
+        },
+        "mode": "FULL_JSON_VALUE",
+        "payload_sha256": "1b55ef109984a912684938520188fa983987c880bf94faf90822a0ea0bf48510",
+        "payload_bytes": 3990,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/architecture/contracts/dataset_quality.fixture.v1.json",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "ddfc2d21722a0203e86217b5ac7896f61acf05bc",
+          "path": "docs/architecture/contracts/dataset_quality.fixture.v1.json",
+          "sha256": "c2cb0778c46bab148dbdee0a61f66b00059d446950cb1d5876ca8fed564763e6",
+          "size_bytes": 36460
+        },
+        "mode": "FULL_JSON_VALUE",
+        "payload_sha256": "6f65a717f0ef69d75e0408bb425536eeca145d914e29153f5589afa7229fd2a5",
+        "payload_bytes": 20822,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/architecture/contracts/python.openapi.v1.json",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "65181b3e01f2a95ff316f3e4cad037b7ebb0347a",
+          "path": "docs/architecture/contracts/python.openapi.v1.json",
+          "sha256": "947889bc0e09e7c4449a7cb3afb2ce037a21738d08576411e31ab147bd6e10aa",
+          "size_bytes": 204713
+        },
+        "mode": "JSON_PROJECTION",
+        "payload_sha256": "c78504264b299757eee64895762f08e7daea605d785eae443d0244ac14af51d6",
+        "payload_bytes": 19898,
+        "exclusions": {
+          "excluded_paths": [
+            "/api/v1/accounts/{id}/state",
+            "/api/v1/artifacts/{id}/download",
+            "/api/v1/artifacts/{id}/rows",
+            "/api/v1/audit",
+            "/api/v1/commands/{id}",
+            "/api/v1/configuration-catalog",
+            "/api/v1/dataset-imports",
+            "/api/v1/datasets",
+            "/api/v1/operations/{id}",
+            "/api/v1/operations/{id}/cancel",
+            "/api/v1/reconciliation-cases",
+            "/api/v1/reconciliation-cases/{id}/resolve",
+            "/api/v1/research-runs",
+            "/api/v1/research-runs/{id}/results",
+            "/api/v1/simulation-sessions",
+            "/api/v1/simulation-sessions/{id}",
+            "/api/v1/simulation-sessions/{id}/commands",
+            "/api/v1/strategies",
+            "/api/v1/strategy-configs",
+            "/api/v1/strategy-configs/{id}",
+            "/api/v1/system/status"
+          ],
+          "excluded_schemas": [
+            "AccountState",
+            "ActualPosition",
+            "ArtifactManifest",
+            "ArtifactRows",
+            "AuditEvent",
+            "AuditEventPage",
+            "BacktestSpec",
+            "CancelRequest",
+            "CapitalState",
+            "CommandReceipt",
+            "ConfigurationCatalog",
+            "ContractBinding",
+            "CsrfToken",
+            "DatasetManifestPage",
+            "Decimal",
+            "Decision",
+            "EmaIncrementalCodec",
+            "ExpectedPosition",
+            "Identity",
+            "IncrementalState",
+            "LoginRequest",
+            "Metric",
+            "MonteCarloSpec",
+            "OosSpec",
+            "Operation",
+            "OperationAttempt",
+            "OperatorSession",
+            "ParameterStudySpec",
+            "ParameterValue",
+            "Position",
+            "ReconciliationCase",
+            "ReconciliationCasePage",
+            "ResearchResults",
+            "ResearchRun",
+            "ResearchRunPage",
+            "ResearchRunRequest",
+            "ResearchSpec",
+            "ResolveCaseRequest",
+            "ResultCell",
+            "Revision",
+            "RiskDecision",
+            "RunBindings",
+            "Signal",
+            "SimulationCommand",
+            "SimulationRequest",
+            "SimulationSession",
+            "StrategyBinding",
+            "StrategyConfigRequest",
+            "StrategyConfigVersion",
+            "StrategyDefinition",
+            "StrategyDefinitionPage",
+            "SystemStatus",
+            "TargetPosition",
+            "TradingEvidenceEnvelope",
+            "WfoSpec",
+            "WorkerLease"
+          ],
+          "full_source_load_rule": "Load full exact source when scope, dependencies, review or contradictions require excluded contracts.",
+          "included_schemas": [
+            "DatasetCalendarSnapshot",
+            "DatasetCoverageRequest",
+            "DatasetImportReceipt",
+            "DatasetImportRequest",
+            "DatasetManifest",
+            "DatasetMappingSnapshot",
+            "DatasetPublicationResult",
+            "DatasetQualityPolicySnapshot",
+            "DatasetQualityReport",
+            "DatasetSourceManifest",
+            "DatasetVersion",
+            "Error",
+            "EvidenceRef",
+            "ImportMetadata"
+          ],
+          "schema_roots": [
+            "DatasetManifest",
+            "DatasetVersion",
+            "DatasetCoverageRequest",
+            "DatasetCalendarSnapshot",
+            "DatasetMappingSnapshot",
+            "DatasetQualityPolicySnapshot",
+            "DatasetSourceManifest",
+            "DatasetPublicationResult",
+            "DatasetQualityReport",
+            "DatasetImportReceipt",
+            "ImportMetadata",
+            "DatasetImportRequest",
+            "Error"
+          ],
+          "selected_paths": []
+        },
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/program/PROGRESS_ACCOUNTING.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "357f1750284bd1addf8a0bdca2d5728341b090a6",
+          "path": "docs/program/PROGRESS_ACCOUNTING.md",
+          "sha256": "ad9d27891a11bd30dfeaf492bf60e06141121e42d4f2e979ab291d85cbf7c73f",
+          "size_bytes": 7110
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "ad9d27891a11bd30dfeaf492bf60e06141121e42d4f2e979ab291d85cbf7c73f",
+        "payload_bytes": 7110,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/program/V1_PROGRAM.md",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "0f7fb467271249f30f27020d22bf2dddae7845ce",
+          "path": "docs/program/V1_PROGRAM.md",
+          "sha256": "13583dbf8ec9f3fc35280aeac0578a2f1b27aa0af9ba0cef8ca65c529a1c1093",
+          "size_bytes": 8704
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "13583dbf8ec9f3fc35280aeac0578a2f1b27aa0af9ba0cef8ca65c529a1c1093",
+        "payload_bytes": 8704,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/program/accepted_core_reconciliation.v1.json",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "24add38424055a7ae79fdd9f8f0e520123b35978",
+          "path": "docs/program/accepted_core_reconciliation.v1.json",
+          "sha256": "e1027644172bba342892d891ca50cc4a2c27857d59ee46945270def841aed118",
+          "size_bytes": 20428
+        },
+        "mode": "FULL_JSON_VALUE",
+        "payload_sha256": "bb9296795656ec696f5bdcad1a3a33169aa4683463b5e8e370447fcf140db7f3",
+        "payload_bytes": 16467,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/program/p00_status.v1.json",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "0e939c960790b11c04335ac9aee29438a10a7c75",
+          "path": "docs/program/p00_status.v1.json",
+          "sha256": "799023b23d35b8845f11000a809bd3905f9afc86f186bcf8eec3af855775284a",
+          "size_bytes": 24214
+        },
+        "mode": "FULL_JSON_VALUE",
+        "payload_sha256": "944e114610d48641472b5c94e0606477952b1871723cd6b8f2be2d2d4a337fed",
+        "payload_bytes": 21306,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/program/packages/P01.candidate.v1.json",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "543d226ed8958846dcb3b6e5cab89be888234c83",
+          "path": "docs/program/packages/P01.candidate.v1.json",
+          "sha256": "bcd8424eeb281c5367aee28a13461f1c7dfada1779f31c44d552f9d68d553287",
+          "size_bytes": 6202
+        },
+        "mode": "FULL_JSON_VALUE",
+        "payload_sha256": "6d83b9df7b6164e3e767aca601dd6b14337f146a12b532300908cc0583f537c2",
+        "payload_bytes": 5396,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:docs/program/program_baseline.v1.json",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "1e6e4e3eead7908d90736892631e9c36045ebebb",
+          "path": "docs/program/program_baseline.v1.json",
+          "sha256": "885ec630ef8279ea34cc05ae15bfc0213947e1c011a8695b7ff56abfc92974e5",
+          "size_bytes": 17487
+        },
+        "mode": "FULL_JSON_VALUE",
+        "payload_sha256": "0bc1d939a60a247251a83ca85e38e36b4a7dcf46b224a4c92342b24ad8c88d9a",
+        "payload_bytes": 10299,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      },
+      {
+        "id": "read:scripts/p00_context.py",
+        "source": {
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "88ceddfe9f2583adc2dfe7a267d7ecb4dc6b608a",
+          "path": "scripts/p00_context.py",
+          "sha256": "80788fd834e1d4dac6bd517475c211f1b1403e181f0ee5050565d06701fff8a3",
+          "size_bytes": 10054
+        },
+        "mode": "FULL_TEXT",
+        "payload_sha256": "80788fd834e1d4dac6bd517475c211f1b1403e181f0ee5050565d06701fff8a3",
+        "payload_bytes": 10054,
+        "exclusions": {},
+        "semantic_discharge": "NOT_REVIEWED"
+      }
+    ],
+    "original_budget": {
+      "mandatory_bytes": 911255,
+      "target_max_bytes": 131072,
+      "status": "OVER_TARGET_REQUIRES_COMPACTION"
+    },
+    "representation_bytes": 323356,
+    "representation_fits_target": false,
+    "source_validation": "REGENERATED_EXACT_SOURCE_REVIEW_NOT_ASSERTED",
+    "actual_reading_verified": false,
+    "semantic_qualification": "NOT_PERFORMED",
+    "current_intake_complete": false,
+    "plan_hash": "dd361c6746796ca6682992076c0f16e681718643b6b28a6c2f061fe61230143c",
+    "tool_binding": {
+      "path": "scripts/p00_reading.py",
+      "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+      "git_blob": "df80dd9db77f6503511d08d068651a2fd8faa4b4",
+      "sha256": "6874c4f70f6686146087b8a57e98626a6002a7e76d94283620a740fe68bfb8da",
+      "size_bytes": 12215,
+      "source_comparison": "EXACT_EXCEPT_CRLF_TRANSPORT",
+      "review_status": "NOT_ASSERTED"
+    },
+    "contract_binding": {
+      "path": "automation/platform/context_reading_contract.v1.json",
+      "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+      "git_blob": "aa09d1d43107ef9283d99fcc1b8cba864b0afd7f",
+      "sha256": "ef62973a419a91df52ceac6a23429ddfa0ea0b239a8f7978109977e0e3b5c476",
+      "size_bytes": 3467
+    },
+    "schema_binding": {
+      "path": "automation/platform/reading_claim.schema.v1.json",
+      "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+      "git_blob": "8c1c2e2c7ce8b9945104ec4bf99ed9d28dba3211",
+      "sha256": "1e8a98070bf9d049d1a6fdc653a98ee4b0303b34edf2b98ffbdfca71f39fb166",
+      "size_bytes": 2353
+    },
+    "master_observation": {
+      "sha": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "freshness": "CALLER_REPORTED_NOT_ATTESTED"
+    },
+    "governance_source_coverage": {
+      "status": "UNREPRESENTED_DECLARED_GOVERNANCE_SOURCES",
+      "declared_source_refs": [
+        {
+          "path": "automation/policies/authorization_lifecycle.v1_1.yaml",
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "ee7569bee3df4f628cc912e84db6ed36731b929b",
+          "sha256": "268b353d39461ccd629456cbe32cea6ded3bb1e617042584c7d52f27f46e8486",
+          "size_bytes": 2046
+        },
+        {
+          "path": "automation/policies/execution_capacity_policy.v2_2.yaml",
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "e455d24c90ba07cef8e00ca0de0eb4d803949014",
+          "sha256": "f72c1589007df1cd4bad2612de17427cd2399489fcb70ebe9641d83e4f30ee5a",
+          "size_bytes": 10331
+        },
+        {
+          "path": "automation/policies/development_state_machine.v2.yaml",
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "bdb3dae292564d40fbf54899281c21c6e05aff99",
+          "sha256": "17c76e24fddc23db036a52771620e6fd848c1ca710e4fb8f7a1b82a3dd91b863",
+          "size_bytes": 1745
+        },
+        {
+          "path": "automation/policies/development_entry_protocol.v2.yaml",
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "11e96da44ebd86bbe7f92b274691f6bd46faf3e2",
+          "sha256": "e722303a6c0821392418d2d2716892248ec8fae58c57524202d773c3e3ed9ab5",
+          "size_bytes": 1445
+        },
+        {
+          "path": "automation/telemetry/execution_cost_contract.v2.yaml",
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "e2b0422f294ac718f06403b704a8f28607a5002f",
+          "sha256": "8772ed5eaa71cdeab124b8c667c58a915d1ad21ed861b01ffc3d0692ed5fe73a",
+          "size_bytes": 2061
+        },
+        {
+          "path": "automation/specs/work_cost_accounting.v2.yaml",
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "f40b88fe7ed1996d92794ec0106eccfd18f465f4",
+          "sha256": "a4ae5dfa602293dbe4721e3f0a4bc82960c52072ef8ac00535cb42432fa30a5a",
+          "size_bytes": 1641
+        },
+        {
+          "path": "automation/specs/negative_assertions.v2.yaml",
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+          "sha256": "4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344",
+          "size_bytes": 1496
+        }
+      ],
+      "unrepresented_sources": [
+        {
+          "path": "automation/specs/negative_assertions.v2.yaml",
+          "baseline_sha": "9106fbbba4199bca838cee794343296716a39df7",
+          "git_blob": "d081e9be9f5686c67f01664648ead8b465e21fe8",
+          "sha256": "4062b92c624123663cf633e20e1bc4146a029f533b33078524aa5f323ba2d344",
+          "size_bytes": 1496
+        }
+      ],
+      "unrepresented_source_bytes": 1496,
+      "negative_assertions_binding": "SOURCE_HASH_VERIFIED",
+      "semantic_completeness": "NOT_ASSERTED",
+      "current_intake_complete": false
+    }
+  },
+  "audit": {
+    "schema_version": "p00.reading_audit.v1",
+    "plan_hash": "dd361c6746796ca6682992076c0f16e681718643b6b28a6c2f061fe61230143c",
+    "status": "MISSING_READING_CLAIMS",
+    "claimed": [],
+    "missing": [
+      "read:AGENTS.md",
+      "read:automation/governance/master_manifest.v1.yaml",
+      "read:automation/platform/context_policy.v1.json",
+      "read:automation/platform/package.schema.v1.json",
+      "read:automation/policies/authorization_lifecycle.v1_1.yaml",
+      "read:automation/policies/development_entry_protocol.v2.yaml",
+      "read:automation/policies/development_state_machine.v2.yaml",
+      "read:automation/policies/execution_capacity_policy.v2_2.yaml",
+      "read:automation/prompts/WORK_ORCHESTRATOR_KERNEL.md",
+      "read:automation/specs/work_cost_accounting.v2.yaml",
+      "read:automation/telemetry/execution_cost_contract.v2.yaml",
+      "read:automation/work_orders/CURRENT_CODEX.yaml",
+      "read:automation/work_orders/CURRENT_CODEX_TASK.md",
+      "read:docs/CURRENT_STATE.md",
+      "read:docs/CURRENT_WORK.md",
+      "read:docs/architecture/V1_API_ARCHITECTURE.md",
+      "read:docs/architecture/V1_BASELINE.md",
+      "read:docs/architecture/V1_CONTRACTS.md",
+      "read:docs/architecture/V1_DATASET_IDENTITY_IO.md",
+      "read:docs/architecture/V1_DATASET_QUALITY.md",
+      "read:docs/architecture/V1_GENESIS_AUTH_CONTRACT.md",
+      "read:docs/architecture/V1_STATE_MACHINES.md",
+      "read:docs/architecture/contracts/bff.openapi.v1.json",
+      "read:docs/architecture/contracts/dataset_identity.fixture.v1.json",
+      "read:docs/architecture/contracts/dataset_quality.fixture.v1.json",
+      "read:docs/architecture/contracts/python.openapi.v1.json",
+      "read:docs/program/PROGRESS_ACCOUNTING.md",
+      "read:docs/program/V1_PROGRAM.md",
+      "read:docs/program/accepted_core_reconciliation.v1.json",
+      "read:docs/program/p00_status.v1.json",
+      "read:docs/program/packages/P01.candidate.v1.json",
+      "read:docs/program/program_baseline.v1.json",
+      "read:scripts/p00_context.py"
+    ],
+    "duplicates": 0,
+    "trust": "UNVERIFIED_CALLER_CLAIMS",
+    "actual_reading_verified": false,
+    "semantic_qualification": "NOT_PERFORMED",
+    "current_intake_complete": false,
+    "execution_eligible": false,
+    "authority": "NONE_READING_AUDIT_ONLY",
+    "remaining_gates": [
+      "INDEPENDENT_OBLIGATION_SEMANTIC_REVIEW",
+      "TRUSTED_RECEIPT_AND_CURRENT_REGISTRY",
+      "REPRESENTATIVE_GOLDEN_EVALUATION",
+      "MANIFEST_SOURCE_COVERAGE",
+      "ORIGINAL_TOTAL_CONTEXT_BUDGET",
+      "EXACT_MIGRATION_GRANT",
+      "EXISTING_AUTHORITY_DEPENDENCY_WRITER_CAPACITY_GATES"
+    ]
+  },
+  "carrier_metrics": {
+    "pack_bytes": 323356,
+    "plan_bytes": 26897,
+    "claim_bytes": 3,
+    "aggregate_bytes": 350256,
+    "target_max_bytes": 131072,
+    "compiler_gate_changed": false,
+    "basis": "OBSERVATION_ONLY_NOT_ORIGINAL_GATE_REPLACEMENT"
+  }
+}
