@@ -1,5 +1,7 @@
 """真實 package 來源的 omission/continuity 規格評估；不能替代模型或durable race。"""
 import hashlib
+import subprocess
+from copy import deepcopy
 from pathlib import Path
 import pytest
 from scripts.p00_context import Snapshot, resolve, canonical
@@ -7,7 +9,9 @@ from scripts.p00_context_pack import build_pack
 from scripts.p00_reading import make_plan, governance_coverage
 from scripts.p00_reading_eval import exercise
 ROOT=Path(__file__).resolve().parents[2]
-BASE="36f6c0779227ea9a735d3650cad1d98ee8a2f19c"
+HISTORICAL_BASE="36f6c0779227ea9a735d3650cad1d98ee8a2f19c"
+# 測試先固定完整fixture/current HEAD；不使用HEAD作runtime execution authority。
+BASE=subprocess.check_output(["git", "-C", str(ROOT), "rev-parse", "HEAD"]).decode().strip()
 
 @pytest.fixture(scope="module",params=["P01","P02"])
 def evaluation(request):
@@ -34,8 +38,10 @@ def test_all_synthetic_claims_never_promote_trust_budget_or_race(evaluation):
     assert result["context_gate"].startswith("NOT_PASSED")
     assert result["semantic_qualification"]=="NOT_PERFORMED"
     assert any(c["id"]=="DURABLE_REGISTRY_STOP_RACE" for c in result["unexercised"])
-    missing=cases["ACTIVE_NEGATIVE_SOURCE_GAP"]["missing_sources"]
-    assert any(s["path"]=="automation/specs/negative_assertions.v2.yaml" for s in missing)
+    represented=cases["ACTIVE_NEGATIVE_SOURCE_REPRESENTED_NOT_QUALIFIED"]
+    assert represented["missing_sources"] == []
+    assert represented["semantic_completeness"] == "NOT_ASSERTED"
+    assert represented["outcome"] == "DECLARED_BINDING_REPRESENTED_NOT_SEMANTIC_OR_TRUST_QUALIFICATION"
 
 
 def test_independently_removed_safety_text_cannot_be_trusted_by_pure_plan(evaluation):
@@ -49,3 +55,25 @@ def test_independently_removed_safety_text_cannot_be_trusted_by_pure_plan(evalua
     assert plan["semantic_qualification"]=="NOT_PERFORMED"
     assert plan["actual_reading_verified"] is False
     assert hashlib.sha256(canonical(mutated)).hexdigest()!=hashlib.sha256(pack).hexdigest()
+
+
+
+def test_historical_source_owner_cannot_be_silently_rebound_to_successor():
+    snap = Snapshot(ROOT, HISTORICAL_BASE)
+    req = {"task_type":"WORK", "package_id":"P01", "changed_paths":snap.read_json("docs/program/packages/P01.candidate.v1.json")["authority"]["exact_scope"], "architecture_domains":["program"], "baseline_sha":HISTORICAL_BASE}
+    from scripts.p00_context import ContextError
+    with pytest.raises(ContextError, match="LOADED_TOOL_SOURCE_MISMATCH"):
+        resolve(ROOT, req)
+
+
+@pytest.mark.parametrize("change", ["unknown", "missing", "hash", "semantics", "intake"])
+def test_represented_source_coverage_contradictions_do_not_qualify(evaluation, change):
+    context, pack, consumer, schema, coverage = evaluation
+    altered = deepcopy(coverage)
+    if change == "unknown": altered["status"] = "NEGATIVE_ASSERTIONS_BINDING_UNKNOWN"
+    if change == "missing": altered["unrepresented_sources"] = [altered["declared_source_refs"][0]]
+    if change == "hash": altered["declared_source_refs"][0]["sha256"] = "0" * 64
+    if change == "semantics": altered["semantic_completeness"] = "QUALIFIED"
+    if change == "intake": altered["current_intake_complete"] = True
+    with pytest.raises(AssertionError, match="SOURCE01_"):
+        exercise(context, pack, consumer, schema, altered)

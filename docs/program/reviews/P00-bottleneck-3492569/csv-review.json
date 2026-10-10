@@ -1,0 +1,418 @@
+{
+  "schema_version": "p00.independent_csv_contract_review.v1",
+  "role": "FRESH_ISOLATED_INDEPENDENT_CONTRACT_REVIEWER",
+  "subject_commit": "34925695b83b4bc6e38af800ab5044079d37be7f",
+  "authoritative_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "remote_candidate_branch_head": "75ef4207aafaaabbf8bf130dea25f78726361626",
+  "live_remote_verification": "git ls-remote confirmed both exact heads; stale local master b36e9bc253a13a3a361b3861e607455658df524b not used as authority",
+  "authority_boundary": {
+    "candidate_source_writes": false,
+    "commit": false,
+    "push": false,
+    "master_mutation": false,
+    "patch_applied": false,
+    "acceptance": false,
+    "product_authorization": false,
+    "external_reviewer_report_only": true
+  },
+  "overall_verdict": "OWNER_DECISION_REQUIRED",
+  "unique_recommendation": {
+    "option": "A",
+    "verdict": "PASS_WITH_CONDITIONS",
+    "decision_state": "RECOMMENDATION_ONLY_NOT_SELECTED",
+    "reason": "單一十欄 CSV_V1、HTTP/bytes 共用 admission 與既有 pinned mapping/calendar/null/Decimal/mor1，避免新增沒有來源證據的九欄轉換 owner。Dedicated 文件仍是候選，推薦不構成其先行接受。",
+    "owner_must_approve": [
+      "十欄為唯一 CSV_V1；九欄拒絕且不提供隱式轉換",
+      "HTTP 與 P01 bytes 允許最多一個檔首 BOM",
+      "接受九欄 breaking change；consumer inventory 仍 UNKNOWN，或提供需保留九欄的實證後另走 B",
+      "exact API before/after/patch hashes 的 architecture amendment；另授 bounded integration scope"
+    ],
+    "B_assessment": "OWNER_DECISION_REQUIRED：可保留九欄，但必須另命名版本、discriminator 與 reviewed explicit adapter。不存在證據足以決定八項 public semantics；目前無可套用 patch。",
+    "migration_cost": {
+      "A": "一段文件修訂＋reading-source successor＋未來 P02/P03 validation/error/documentation 與 affected package/context 重編譯；generator 無 delta 已獨立核對。既有九欄 consumer 若存在必須更新，無相容性或工時保證。",
+      "B": "新增版本、generator discriminator/error/ref、adapter/provenance/retry 規則與双格式 adverse fixtures；維護與跨包成本高於 A，未量測 token/工時。"
+    }
+  },
+  "fresh_verification": {
+    "seven_pinned_sources": "PASS: each candidate Git blob, raw SHA256 and byte length matched R06-SOURCE-02 sources",
+    "upstream_blobs": "PASS: market_observation b7059a78dc6480abb74be8644f3e37e35876b020, contracts 3fe403063fdbaeb76283be3c69fb47a641adb04d, metadata c25ca45eccb3ba518a84d7e3eab90a4b4727b9ca equal master/candidate",
+    "physical_csv": "PASS: stdlib count API header=9, CSV_V1 header=10, TEN_NULL row=10. This is field-count evidence only.",
+    "raw_upload_hashes": {
+      "LF": "7bedd2813751ebf072c37e7aed8a69f24413613320b858c9555701d47db21775",
+      "ONE_BOM_LF": "d011246b106840bfe4388bcb8966f89383f471b6a9fb73055d6ae5dec6ce541e",
+      "CRLF": "a22f0ded770c530a4c2e2ca674dac5de67c58b04dc93c0de68a517a68e9bf6e1",
+      "distinct": true
+    },
+    "patch": {
+      "verdict": "PASS",
+      "sha256": "af710160d2aef5743bc0735913949683d9cc41a0a666b8976d16d82f682ff480",
+      "before_sha256": "6d971015ebba0fbdece974c6788cdb5f8178c709e83a377fc93ac8636e86ee12",
+      "after_sha256": "54c6a2f344f0713628fe39bd0d3320ee284f1f19053fe6802952c8b65486daab",
+      "unified_minus_plus_exact": true,
+      "outside_paragraph_byte_equal": true,
+      "transport_tail_byte_equal": true,
+      "transport_tail_sha256": "dc15aa497b5d6c1d676c152aa03598a1e3b521a2b73b7919f2ac82522a610626",
+      "preserved": "256MiB streaming, original SHA256, 1MiB ordinary JSON, no path/URL, durable admission after verified upload, orphan7days, original metadata+file hash retry, qualified atomic publication, cancel, paired same-dataset correction lineage, accepted canonical adapter authority; all three OHLC predicates retained."
+    },
+    "generator": "PASS: in-memory execution of exact pinned build() rendered both full OpenAPI documents identically to Git bytes; no generated files written.",
+    "security": "PASS: ServiceToken/private Python and OperatorCookie/BFF remain distinct; BFF POST Csrf retained; import OPERATOR_WRITE, SIMULATED_ONLY, audit/retry/cancel/error closure retained. All source bytes outside import paragraph unchanged.",
+    "product_parser_upload": "NOT_RUN_NOT_IMPLEMENTED; no CSV parser written, no HTTP/DB/filesystem qualification performed",
+    "author_tests": "Not adopted as independent proof. 21/490 and 11/507 reported platform suites cannot establish CSV product conformance."
+  },
+  "major_decisions": [
+    {
+      "id": "CSV-CONFLICT",
+      "verdict": "OWNER_DECISION_REQUIRED",
+      "finding": "format=CSV_V1 同時指向九欄無BOM及十欄可BOM；accepted domain未選physical wire。",
+      "correction": "Owner 明選 A 或完整定義 B；不可用檔名優先或舊 public_semantic_gaps=[] 消解。",
+      "role": "Owner/Architect",
+      "next_action": "批准 exact public semantics後只改授權來源。",
+      "refs": [
+        "API",
+        "IO",
+        "DOMAIN",
+        "SOURCE02",
+        "READING"
+      ],
+      "blocks_P00": "R06 final disposition and affected baseline completeness",
+      "blocks_P01_P02": "P01 CSV and P02 upload boundary",
+      "defer_A2_A3": "NO: public CSV semantics must resolve before affected product work; unrelated design review may proceed."
+    },
+    {
+      "id": "CSV-PRESERVATION",
+      "verdict": "PASS",
+      "finding": "A exact patch 完整保留 security/transport/lineage，無 canonical identity/mor1 演算法變更。",
+      "correction": "No semantic correction found in the exact patch; revalidate pins at future integration.",
+      "role": "Integrator/Reviewer",
+      "next_action": "Owner selected amendment only under new exact scope; PASS grants no acceptance.",
+      "refs": [
+        "PATCH",
+        "API",
+        "IO",
+        "GENERATOR",
+        "DOMAIN",
+        "METADATA"
+      ],
+      "blocks_P00": false,
+      "blocks_P01_P02": false,
+      "defer_A2_A3": "Actual operational backend conformance remains later gates."
+    },
+    {
+      "id": "CSV-WP-01",
+      "verdict": "REVIEW_FIX_REQUIRED",
+      "finding": "WP-CSV-A 有4個exact paths與抽象negative names，但未綁effective baseline、完整protected hashes、input fixture files/bytes/reference pins、acceptance oracle/commands、outputs、correction budget/cost/stop conditions。無法當成execution-ready package。",
+      "correction": "編譯一個 bounded docs/source-map amendment package；保存原review/validation為歷史，列新successor evidence/map路徑及exact source pins。限定source-bound/hash/generator validation；parser/upload/crash測試放P01/P02/P03，不作此docs包先決條件。",
+      "role": "Architect/WORK; separate Owner grant; independent correction reviewer",
+      "next_action": "Fill exact execution contract and affected package/context invalidation plan before any grant or invocation.",
+      "refs": [
+        "BOTTLENECK",
+        "OPERATING",
+        "P01",
+        "P00_SCOPE",
+        "READING"
+      ],
+      "blocks_P00": "Execution-ready successor claim; does not block discussion-only design review",
+      "blocks_P01_P02": "Amendment execution and later fresh affected compilation/grant",
+      "defer_A2_A3": "NO backend prerequisite for doc fix; effects/current-intake qualification remains separate."
+    },
+    {
+      "id": "CSV-FIXTURE-01",
+      "verdict": "PASS_WITH_CONDITIONS",
+      "finding": "TEN_NULL/TEN_BOM/TEN_CRLF與negative清單明示SPECIFICATION_ONLY，分類正確；尚缺完整bytes/reference snapshots及單一fault分離。NON_1M_OR_OFFSET_INVALID_DATE與EXPONENT_FLOAT_NAN_NEGATIVE_COUNT_BAD_OHLC混列，單一reject無法覆蓋各義務。",
+      "correction": "用完整literal base＋one-fault mutations＋expected rejection phase/field；OPTIONAL_EMPTY應為positive null-preservation。A無timeframe欄，5m反例應明綁metadata.coverage.timeframe，而非假設file欄。",
+      "role": "Architect for spec; P01/P02 executor for actual tests",
+      "next_action": "Pin synthetic Q01 refs and bytes as proposed fixtures; later run real owning boundary tests.",
+      "refs": [
+        "BOTTLENECK",
+        "IO",
+        "GENERATOR",
+        "QUALITY",
+        "FIXTURE_SOURCE",
+        "VALIDATION"
+      ],
+      "blocks_P00": "No product-runtime qualification required for design; exact WP execution claim needs fixture/oracle bindings",
+      "blocks_P01_P02": "Actual implementation acceptance until respective tests pass",
+      "defer_A2_A3": "CSV/parser qualification belongs P01/P02/P03, not A2/A3; intake/CAS/trusted reading remain A2/A3."
+    }
+  ],
+  "eight_pending_semantics": [
+    {
+      "id": "FORMAT_VERSION",
+      "verdict": "OWNER_DECISION_REQUIRED",
+      "A": "唯一CSV_V1十欄；九欄INVALID_INPUT/reject；不新增adapter。",
+      "B": "正式九欄版本與HTTP discriminator、error/ref/generator successor。",
+      "counterexample": "相同format=CSV_V1不能讓9/10欄都猜測成功。",
+      "refs": [
+        "SOURCE02",
+        "GENERATOR"
+      ]
+    },
+    {
+      "id": "IDENTITY_MAPPING",
+      "verdict": "PASS_WITH_CONDITIONS",
+      "A": "source_name/source_code/time 經exact mapping唯一解析；0/多筆或超期拒絕。",
+      "B": "明定直接IDs至canonical/reference/provenance如何驗證；若轉十欄，不得猜source_code inverse。",
+      "counterexample": "兩個source_code映射同一ID pair，反向source_code不唯一；直接IDs不能選近月。",
+      "refs": [
+        "IO",
+        "CONTRACT",
+        "DOMAIN"
+      ]
+    },
+    {
+      "id": "OPTIONAL_FIELDS",
+      "verdict": "PASS_WITH_CONDITIONS",
+      "A": "三optional空字串為None，保留與0不同的fingerprint。",
+      "B": "九欄缺少三optional時只能依明定來源/null規則，不虛構數值或lossless claims。",
+      "counterexample": "amount=None改0會改mor1，非無損轉換。",
+      "refs": [
+        "DOMAIN",
+        "IO",
+        "SOURCE02"
+      ]
+    },
+    {
+      "id": "TIMEFRAME",
+      "verdict": "PASS_WITH_CONDITIONS",
+      "A": "1m來自coverage/policy與整分鐘row；canonical domain本身較廣，不被縮減。",
+      "B": "九欄timeframe須明定僅1m或另版；不silent resample。",
+      "counterexample": "5m row不能塞入1m coverage；A反例的timeframe須在metadata。",
+      "refs": [
+        "IO",
+        "QUALITY",
+        "GENERATOR",
+        "DOMAIN"
+      ]
+    },
+    {
+      "id": "BOM_POLICY",
+      "verdict": "OWNER_DECISION_REQUIRED",
+      "A": "同HTTP/bytes最多一個檔首EFBBBF；雙BOM拒絕，中間BOM不得刪除或猜mapping。",
+      "B": "兩格式各自明定HTTP admission與adapter輸出，不反推global規則。",
+      "counterexample": "same key上傳有BOM和無BOM語意近似，raw hash不同仍conflict。",
+      "refs": [
+        "API",
+        "IO",
+        "SOURCE02"
+      ]
+    },
+    {
+      "id": "HASH_LINEAGE",
+      "verdict": "PASS_WITH_CONDITIONS",
+      "A": "raw bytes含BOM/newlines；semantic dataset/mor1與upload hash分離，retry比原metadata+file。",
+      "B": "原始及轉換hash各保存，transform版本/provenance明列。",
+      "counterexample": "BOM/LF normalization後hash不能替代first upload digest。",
+      "refs": [
+        "API",
+        "IO",
+        "METADATA",
+        "SOURCE02"
+      ]
+    },
+    {
+      "id": "OWNER_AND_SCOPE",
+      "verdict": "OWNER_DECISION_REQUIRED",
+      "A": "B owns bytes/ref adapter，C ownsrefs，P03 ownsdurable command/operation；docs amendment不執行parser。",
+      "B": "新增adapter exact package/allowlist/deps須另外review授權，不另造domain owner。",
+      "counterexample": "P01 filesystem rename成功不等於P03 DB operation成功。",
+      "refs": [
+        "IO",
+        "OPERATING",
+        "P01",
+        "SOURCE02"
+      ]
+    },
+    {
+      "id": "COMPATIBILITY",
+      "verdict": "OWNER_DECISION_REQUIRED",
+      "A": "接受九欄consumer breaking change；inventory UNKNOWN保留。",
+      "B": "只有有需保留client的實證才支付版本/adapter/deprecation成本。",
+      "counterexample": "legacy九欄client符合舊API但A必須拒絕；無inventory不能宣稱無consumer影響。",
+      "refs": [
+        "API",
+        "SOURCE02",
+        "BOTTLENECK"
+      ]
+    }
+  ],
+  "eight_semantics_gate": "PASS_WITH_CONDITIONS entries assess preservation only; all A clauses depend on formal A selection. If B selected all eight exact decisions require formal semantic approval. No missing B choice is silently defaulted.",
+  "fixture_recommendation": {
+    "status": "PROPOSED_LITERAL_SPEC_ONLY_NOT_PRODUCT_RESULTS",
+    "ten_column_utf8_LF": "source_code,bar_open_utc,open,high,low,close,volume,amount,trade_count,tick_count\nFIX,2026-01-01T00:00:00Z,100,102,99,100,2,,,\nFIX,2026-01-01T00:01:00Z,100,102,99,101,2,,,\n",
+    "ten_sha256": "cd74c63d65c63a340046ef4fd4bb118c50c20681cab7803f63f71acc0147e30e",
+    "nine_column_utf8_LF": "instrument_id,contract_id,timeframe,bar_open_utc,open,high,low,close,volume\n1,10,1m,2026-01-01T00:00:00Z,100,102,99,100,2\n1,10,1m,2026-01-01T00:01:00Z,100,102,99,101,2\n",
+    "nine_sha256": "d2278b3c4c5b1100c1cf4868b4da7aa10b8ca63c7c8df5f693963a184f911947",
+    "reference_pin": "Existing synthetic Q01 /input/calendar,/input/mapping,/input/coverage and dataset_identity rows at exact subject commit; C owner, source_name=fixture, source_code=FIX, IDs1/10, UTC range00:00..00:02 on2026-01-01, trade_date2026-01-02, synthetic-night. Pin raw Git blob hashes and EvidenceRef bytes in future package; no production provenance claimed.",
+    "positive": [
+      "A exact TEN noBOM/BOM/CRLF: same canonical rows/nulls/mor1, differing raw hashes",
+      "Quoted RFC4180 source_code FIX: unquote literal only; no identity guess",
+      "Nonempty amount/counts as independent literal extension; zero must remain distinct from null"
+    ],
+    "single_fault_negatives": [
+      "NINE header under A -> header rejection",
+      "EFBBBF twice prefix -> BOM/header rejection",
+      "EFBBBF before row or inside source_code -> no stripping; mapping/lexical rejection",
+      "invalid UTF8 byte FF -> decoding rejection",
+      "duplicate/missing/extra header or row columns -> structure rejection",
+      "NUL / empty data row -> lexical/structure rejection",
+      "unknown FIX_UNKNOWN / two matching FIX entries / expired matching interval -> reference rejection",
+      "mapping/calendar hash mismatch or coverage hole -> reference rejection",
+      "metadata.coverage.timeframe=5m -> metadata/policy rejection",
+      "timestamp offset / nonzero seconds /2026-02-30 each separate -> time rejection",
+      "open=1e2 /NaN /Infinity /100.0 each separate -> Decimal wire rejection",
+      "negative volume /negative trade_count /high<open each separate -> value rejection",
+      "same key BOM/LF/CRLF raw-byte difference -> IDEMPOTENCY_CONFLICT",
+      "parent without reason /reason without parent /different-dataset parent each separate -> lineage rejection"
+    ],
+    "doc_WP_oracle": "Exact patch before/after/tail/outside bytes; source-bound obligation preservation; deterministic generator equality and successor source-map hash validity. Fixture expected outcomes are contract assertions only until actual boundary implementation tests.",
+    "later_qualification": "P01 actual CSV/port/quality/publication; P02 HTTP/auth/stream/error; P03 atomic durable operation/retry/cancel/lineage/crash. Do not require these results to review P00 design."
+  },
+  "next_legal_action": "Owner正式選A、BOM、compatibility與exact amendment boundary；Architect/WORK補WP execution bindings；fresh narrow correction review；其後另行授integration。P00 acceptance/master整合/product grant不由此report建立。",
+  "source_refs": {
+    "API": "docs/architecture/V1_API_ARCHITECTURE.md:3,7-17,37-39,53",
+    "IO": "docs/architecture/V1_DATASET_IDENTITY_IO.md:3,7-29,37-44,48-64",
+    "DOMAIN": "domain/market_observation.py@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f:37-97,100-119,246-313,354-367,506-527,549-614",
+    "CONTRACT": "domain/contracts.py@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f:21-42",
+    "METADATA": "ingestion/metadata.py:6-16",
+    "GENERATOR": "scripts/p00_build_contracts.py:35-54,161-165,206-211,388-391,404-420,492-524",
+    "OWNER": "docs/program/P00_OWNER_REQUEST.md:25-33,47-61,174-180",
+    "OPERATING": "automation/platform/OPERATING_MODEL.md:5-7,22,28-38",
+    "SOURCE02": "docs/program/decisions/R06-SOURCE-02.decision-candidate.v1.json:15-94,95-203,209-227",
+    "PATCH": "docs/program/decisions/R06-SOURCE-02.option-A.patch:7-8",
+    "VALIDATION": "docs/program/decisions/R06-SOURCE-02.validation.v1.json:3-12,54-60,74-77",
+    "BOTTLENECK": "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:453-473,718-856,1011-1032",
+    "READING": "automation/platform/SOURCE_READING_OBLIGATIONS.md:9-11,23-40,99-105; automation/platform/source_reading_obligations.v1.json:5671-5679,8451-8472",
+    "P01": "docs/program/packages/P01.candidate.v1.json:23-47,65-72,84-112,119-130",
+    "P00_SCOPE": "docs/work/P00_BASELINE.md:10-12,29-32,41,44-52",
+    "FIXTURE_SOURCE": "docs/architecture/contracts/dataset_identity.fixture.v1.json:2-24,26-54; docs/architecture/contracts/dataset_quality.fixture.v1.json:2-6,9-63",
+    "QUALITY": "docs/architecture/V1_DATASET_QUALITY.md:7,13,56",
+    "BLUEPRINT": "docs/blueprint/B_DATA_PIPELINE.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f:5,24,46-70,74-90"
+  },
+  "unchanged_repository_observation": "git status --short before/after independent reads: only ?? data/; data not read or modified",
+  "limitation": "一般sandbox helper不能啟動，精確只讀命令經escalation。先前Q01補讀遭usage-limit review failure未執行的限制已 RESOLVED_BY_FRESH_READ：本次一次讀取exact349的兩份fixture Git blobs/raw hashes及Q01三個input pointers與dataset_identity rows。未重跑語義、tests或product qualification。",
+  "memory": "Quick keyword search returned no task-specific hits; no memory-derived findings used.",
+  "fixture_hash_binding": {
+    "status": "PASS_EXACT_SYNTHETIC_SOURCE_ONLY",
+    "sources": {
+      "docs/architecture/contracts/dataset_identity.fixture.v1.json": {
+        "commit": "34925695b83b4bc6e38af800ab5044079d37be7f",
+        "git_blob": "5c65e05f7423ffce910c4734de66e6918534cdd9",
+        "raw_sha256": "5fa4633218227615afadd9883931bebc12d53b6a71fae8fc05fb18c03ebf1d0d",
+        "size_bytes": 4704,
+        "fixture_status": "SYNTHETIC_CANDIDATE_NOT_AUTHORITY"
+      },
+      "docs/architecture/contracts/dataset_quality.fixture.v1.json": {
+        "commit": "34925695b83b4bc6e38af800ab5044079d37be7f",
+        "git_blob": "ddfc2d21722a0203e86217b5ac7896f61acf05bc",
+        "raw_sha256": "c2cb0778c46bab148dbdee0a61f66b00059d446950cb1d5876ca8fed564763e6",
+        "size_bytes": 36460,
+        "fixture_status": "SYNTHETIC_SPECIFICATION_ONLY"
+      }
+    },
+    "Q01_pointer_bindings": {
+      "/cases/0/input/calendar": {
+        "value_sha256_compact_sorted_UTF8_LF": "efa91ef181fe32adcbaf7ba45ff9cccb0e8f7fdd02251fa84e68bf9edf03d3a3",
+        "value": {
+          "schema_version": "dataset.calendar-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-calendar",
+          "version": "1",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ],
+          "tradable_intervals": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "trade_date": "2026-01-02",
+              "session_ref": "synthetic-night"
+            }
+          ]
+        }
+      },
+      "/cases/0/input/mapping": {
+        "value_sha256_compact_sorted_UTF8_LF": "793f3c8b7400829025f742c32bbfdc23ab6f2db923c840463c19b9b4a8d96754",
+        "value": {
+          "schema_version": "dataset.mapping-snapshot.v1",
+          "owner": "C",
+          "identity": "synthetic-mapping",
+          "version": "1",
+          "source_name": "fixture",
+          "covered_range": {
+            "start_at": "2026-01-01T00:00:00Z",
+            "end_at": "2026-01-01T00:02:00Z"
+          },
+          "entries": [
+            {
+              "source_code": "FIX",
+              "instrument_id": 1,
+              "contract_id": 10,
+              "start_at": "2026-01-01T00:00:00Z",
+              "end_at": "2026-01-01T00:02:00Z",
+              "tick_size": "1",
+              "instrument_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              "contract_spec_ref": {
+                "owner": "C",
+                "identity": "synthetic",
+                "version": "1",
+                "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ]
+        }
+      },
+      "/cases/0/input/coverage": {
+        "value_sha256_compact_sorted_UTF8_LF": "fb8505626d299c3f25fe088458ef63b8ae1b62e67dbd795a0a4775184418e6cc",
+        "value": {
+          "timeframe": "1m",
+          "start_at": "2026-01-01T00:00:00Z",
+          "end_at": "2026-01-01T00:02:00Z",
+          "contracts": [
+            {
+              "instrument_id": 1,
+              "contract_id": 10
+            }
+          ]
+        }
+      }
+    },
+    "dataset_identity_row_bindings": {
+      "/rows/0": {
+        "value_sha256_compact_sorted_UTF8_LF": "2f7e507bb92261e54ac1b37feb148e485f98dc0d59d23f5898f3a91f65349253",
+        "key": [
+          "1",
+          "10",
+          "1m",
+          "2026-01-01T00:00:00.000000Z"
+        ],
+        "revision_id": "mor1_3c313e013f8ab06898e97ec53cd54e475a80c3639481685cd437fcf4dd328a8d"
+      },
+      "/rows/1": {
+        "value_sha256_compact_sorted_UTF8_LF": "effa6579da92138a0710cef1d72c6c6a1037b88336c2a978d336e9c0b4f9d1c3",
+        "key": [
+          "1",
+          "10",
+          "1m",
+          "2026-01-01T00:01:00.000000Z"
+        ],
+        "revision_id": "mor1_6baefd9336622eb76b2496a31c343742ea461442030ea14e7adc9e16578c5adc"
+      }
+    },
+    "value_hash_rule": "SHA256(compact sorted-key ensure_ascii=false UTF8 JSON plus LF); raw source hash separately preserved",
+    "qualification": "No CSV parser/upload/runtime/provenance qualification; this only closes exact fixture source evidence."
+  }
+}

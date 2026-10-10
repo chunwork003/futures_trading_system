@@ -1,0 +1,454 @@
+{
+  "schema_version": "p00.independent_governance_review.v1",
+  "role": "Fresh isolated Independent Governance Reviewer",
+  "subject": {
+    "candidate": "34925695b83b4bc6e38af800ab5044079d37be7f",
+    "input": "6b717d5b7b9447272e5ff35b7715ad33ad6fb026",
+    "master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+    "remote_candidate": "75ef4207aafaaabbf8bf130dea25f78726361626"
+  },
+  "status": "REVIEW_FIX_REQUIRED",
+  "summary": "可繼續固定 subjects 的 P00 設計審查；closure successor 與 standing publication 不可採用或啟用。原 gate FAIL、R01–R08=0/8。這是審查結果，非 acceptance 或任何 grant。",
+  "independence": {
+    "author_PASS_is_acceptance": false,
+    "candidate_writes": false,
+    "git_writes": false,
+    "data_read": false,
+    "model_switch": false,
+    "review_artifact": "candidate 外部保存"
+  },
+  "live_checks": [
+    "git ls-remote 獨立確認兩個 exact refs；remote master9b5、candidate75ef不變。",
+    "CURRENT/manifest/lifecycle/engine 相對 master 的 git diff --quiet exit0；accepted authority 未修改。",
+    "Python -B 直接呼叫 build_manifest frozen6b；current349 HEAD 拋 SOURCE_BRANCH_OR_HEAD_MISMATCH（publication.py67–69）。",
+    "349 external manifest 的基本 builder 欄位可重建；新增 supplemental evidence 正確指向新 bottleneck evidence，另外含 ancestry/context 補件。作者測試摘要仍不當作獨立 qualification。",
+    "本輪 default shell helper 失敗、精確唯讀 escalation 成功；未嘗試 push，不能聲稱本輪 unattended push 被工具拒絕。"
+  ],
+  "findings": [
+    {
+      "id": "GOV-F01",
+      "priority": "P1",
+      "status": "REVIEW_FIX_REQUIRED",
+      "title": "Closure 改為 additive clarification 並逐項固定 exceptions",
+      "sources": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:475-487",
+        "docs/work/P00_BASELINE.md:44-52",
+        "docs/program/P00_OWNER_REQUEST.md:174-180",
+        "docs/program/HISTORICAL_REQUIREMENTS.md:49-55"
+      ],
+      "finding": "單一 clause 替換 BASELINE44–52，沒有逐條保留 domain/state/API/deployment/journey 的決定與反例、L3 eval 限制、schema/hash/DAG/weight checks、P01/P02 不得 READY 等 predicates。22+8 universe freeze 未列 exact exception IDs、受影響 package、owner 與關閉條件；不能用概括 UNKNOWN exception 完成 Owner0–90。",
+      "correction": "保留原六條 acceptance，僅新增 design/tool/execution/promotion 區分。每項 exception 綁 exact source clause、reason、owner、affected package、closure gate、contradiction STOP；Owner 決定 bounded universe／例外。8分母與127權重不變，未決 public semantics 不默認後延。",
+      "responsible_role": "Architect 修精確 successor；Owner 決定 scope/exception；Reviewer 核對 preservation",
+      "next_action": "先修 clause/disposition，focused re-review；其他固定 design review 可繼續。",
+      "blocks_P00": true,
+      "blocks_P00_design_review": false,
+      "blocks_P01_P02": true,
+      "defer_A2_A3": "backend/telemetry qualification 後置；設計、負例與 public semantics 不可略過"
+    },
+    {
+      "id": "GOV-F02",
+      "priority": "P1",
+      "status": "REVIEW_FIX_REQUIRED",
+      "title": "STOP/revoke 與 in-flight push 缺正式排序契約",
+      "sources": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:686-697",
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:991-1006",
+        "automation/engine/orchestration.py:199-235"
+      ],
+      "finding": "Git advertised OID／server old-OID CAS 只處理遠端 ref 競態，不原子綁 WORK grant/revoke/STOP head。Owner 在 preflight/hook 後撤銷時，候選沒定義已開始 effect 可否完成、linearization cutoff 或強制 server 拒絕機制。",
+      "correction": "明定 intent reservation、lease/fence、最後 trusted authority recheck 與 effect cutoff。若允許已開始合法 push 完成，明示 revoke 阻止後續 effects 並記錄在途 outcome；若須立即阻止，另有 server-side trusted enforcement。覆蓋 STOP/revoke 在 preflight/hook/server 接受前後及 timeout/crash。",
+      "responsible_role": "Governance Architect、WORK store owner、Publisher implementer；Owner 決定在途撤銷語意",
+      "next_action": "補 action state/transition/race matrix，再 disposable bare-remote qualification。",
+      "blocks_P00": "若 publication 為 design 必交付須 disposition；可明確 defer 此未來功能",
+      "blocks_P01_P02": false,
+      "blocks_standing_activation": true,
+      "defer_A2_A3": "可 defer，不能宣稱已資格化"
+    },
+    {
+      "id": "GOV-F03",
+      "priority": "P1",
+      "status": "REVIEW_FIX_REQUIRED",
+      "title": "Policy 生效後 master ancestry／activation rebinding 未封裝",
+      "sources": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:673-690",
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:957-978",
+        "scripts/p00_publication.py:74-93"
+      ],
+      "finding": "standing 固定 base6b/master9b 且 master drift 撤 eligibility；policy WP 改 accepted manifest/lifecycle/contracts/snapshot，生效後 master 移動。Builder 要求新 origin/master 為 payload 祖先、逐 parent edge/full-master delta在P00 scope；standing 又禁 merge/rebase/protected 變更。沒有 separate integration exception／新 exact bindings，不能從此固定 grant 直接啟用。這是候選 activation 路徑缺口，非已證 accepted-engine runtime cycle。",
+      "correction": "分開 payload/source baseline、effective authority snapshot、fresh observed master。Owner 另給一次性 exact policy integration/candidate synchronization/rebind grant，列新 base/master、同步方式與 protected equivalence／例外；integration receipt 後才生成 standing grant/not_before。Standing 不能自行改 master 或豁免 drift。",
+      "responsible_role": "Governance Architect、Integrator 提案；Owner exact integration/rebind authority；WORK fresh re-entry",
+      "next_action": "改 activation dependencies／binding schema，再獨立 review。",
+      "blocks_P00": false,
+      "blocks_P01_P02": false,
+      "blocks_standing_activation": true,
+      "blocks_existing_two_commit_request": false,
+      "defer_A2_A3": "可 defer"
+    },
+    {
+      "id": "GOV-F04",
+      "priority": "P1",
+      "status": "REVIEW_FIX_REQUIRED",
+      "title": "Durable publication plane／trusted adapter 的 exact scope 不完整",
+      "sources": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:664-715",
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:957-1008",
+        "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md:7-27",
+        "automation/engine/contracts.py:113-131",
+        "automation/engine/orchestration.py:154-235"
+      ],
+      "finding": "現 engine pure/read-only，沒有 publication intent/outcome/current-pointer CAS store。policy八檔與adapter四檔未指定 canonical WORK store/interface/backend owner、ledger/current/revoke/STOP paths、trusted hook/scanner/rules/install inventory、mutable path registry與immutable evidence pins。只有scripts不能憑現有store完成預約、fence、budget reconciliation；提案也承認缺adapter/coverage須BLOCKED。",
+      "correction": "先定唯一 authority plane 的 bounded store/action contract與exact files／setup inventory：identity/schema、expected-head CAS、reserve→effect→outcome→budget/current提交、lease/fence、crash/idempotency、mutable/immutable inventory與hook/scanner pins。unique touched-file limits 按全部 parent-edge union，不按net file_count。改accepted語意須新exact successor/grant；不能重用 CONSUMED。若後置，明列 standing lane DEFERRED_UNTIL_STORE_QUALIFIED。",
+      "responsible_role": "WORK control-plane owner、Governance Architect 完成design/scope；Owner protected/setup grant；Publisher implementer",
+      "next_action": "補完整依賴／acceptance inventory，或 defer standing lane；不授權目前不完整 WPs。",
+      "blocks_P00": "可選future能力明確defer即可；不得宣稱ready",
+      "blocks_P01_P02": false,
+      "blocks_standing_activation": true,
+      "defer_A2_A3": "後續 implementation/qualification，不作 human P00 設計 review 前置"
+    }
+  ],
+  "decisions": [
+    {
+      "subject": "四條證據軸分開",
+      "status": "PASS_WITH_CONDITIONS",
+      "condition": "方向合理；GOV-F01修正＋Owner exact例外決定後才materialize；不自動關R01–R08。"
+    },
+    {
+      "subject": "22+8 bounded universe",
+      "status": "OWNER_DECISION_REQUIRED",
+      "condition": "保留 Owner0–90/FinalA–S coverage、exact exceptions、ARCHITECTURE/ROADMAP authority；不是完整歷史不存在證明。"
+    },
+    {
+      "subject": "V2 no-effects prototype 治理邊界",
+      "status": "PASS_WITH_CONDITIONS",
+      "condition": "僅供固定 design review；完整 graph semantics 與 actual injection 未在本review資格化；不能用於executor/publisher。"
+    },
+    {
+      "subject": "standing publication policy",
+      "status": "REVIEW_FIX_REQUIRED",
+      "condition": "主體CHUN、期限7日、limits/refs/protected已列候選；GOV-F02-F04修正前無grant/activation。"
+    },
+    {
+      "subject": "frozen6b兩commit/prefix request",
+      "status": "PASS_WITH_CONDITIONS",
+      "condition": "可送 Owner exact payload/manifest approval；舊75ef approval不含6b或349。新prefix verifier須獨立review/exactgrant，不切換/reset/rebase branch。"
+    },
+    {
+      "subject": "CSV A/B",
+      "status": "OWNER_DECISION_REQUIRED",
+      "condition": "兩candidate physical format矛盾；accepted domain未決header/BOM。Owner/Architect選格式、BOM與legacy相容性後independent semantic review。"
+    }
+  ],
+  "roots": [
+    {
+      "id": "RC01",
+      "status": "PASS_WITH_CONDITIONS",
+      "owner": "Context Architect",
+      "disposition": "aggregate／stage representation 問題可查；full fallback與unclassified仍為intended-profile qualification gate。",
+      "sources": [
+        "scripts/p00_context.py:126-173",
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:537-555"
+      ]
+    },
+    {
+      "id": "RC02",
+      "status": "PASS",
+      "owner": "Context Architect + WORK",
+      "disposition": "正常 V1 compiler fail，不是 engine bug；reviewed successor/profile qualification後才migration。",
+      "sources": [
+        "scripts/p00_compile.py:47-67"
+      ]
+    },
+    {
+      "id": "RC03",
+      "status": "PASS_WITH_CONDITIONS",
+      "owner": "WORK review coordinator",
+      "disposition": "多個固定 packets 尚未dispatch，流程缺口成立；本review不取代它們的semantic review。",
+      "sources": [
+        "docs/program/p00_status.v1.json:786-806"
+      ]
+    },
+    {
+      "id": "RC04",
+      "status": "PASS_WITH_CONDITIONS",
+      "owner": "Governance Architect + Owner",
+      "disposition": "候選 design/backend gate 依賴衝突可區分；不是已證accepted-enginecycle；以GOV-F01處理。",
+      "sources": [
+        "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md:39",
+        "automation/platform/CONTEXT_READING_RECEIPTS.md:57-61"
+      ]
+    },
+    {
+      "id": "RC05",
+      "status": "OWNER_DECISION_REQUIRED",
+      "owner": "Owner + Requirements Architect",
+      "disposition": "outside-universe UNKNOWN 可查；直接定性 architecture error 過強。需scope/exception決定，不能證明未知歷史不存在。",
+      "sources": [
+        "docs/program/HISTORICAL_REQUIREMENTS.md:49-55",
+        "docs/work/P00_BASELINE.md:46"
+      ]
+    },
+    {
+      "id": "RC06",
+      "status": "PASS_WITH_CONDITIONS",
+      "owner": "Context tooling implementer",
+      "disposition": "resolver loop僅policies，top-level active negative不在loop；SOURCE01需focusedreview/exactmigration，513作者PASS不是authority。",
+      "sources": [
+        "scripts/p00_context.py:131-154",
+        "automation/governance/master_manifest.v1.yaml:223-237"
+      ]
+    },
+    {
+      "id": "RC07",
+      "status": "PASS_WITH_CONDITIONS",
+      "owner": "Context Architect + A2 producer owner",
+      "disposition": "carrier SHA改變可失效plan；semantic version separation僅design，reuse需trusted continuity，callerclaim無資格。",
+      "sources": [
+        "scripts/p00_context.py:158-173",
+        "automation/platform/CONTEXT_READING_RECEIPTS.md:31-43"
+      ]
+    },
+    {
+      "id": "RC08",
+      "status": "OWNER_DECISION_REQUIRED",
+      "owner": "Product Architect + Owner",
+      "disposition": "CSV physical header/BOM需明確choice；不能從accepted mor1內容或檔名推定。",
+      "sources": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:718-856"
+      ]
+    },
+    {
+      "id": "RC09",
+      "status": "PASS_WITH_CONDITIONS",
+      "owner": "Owner + WORK publication intake",
+      "disposition": "75ef exact approval不包含之後 commits；continuation不創standinggrant；GOV-F02-F04前不能activate。",
+      "sources": [
+        "docs/program/publication/P00-75ef4207aafaaabbf8bf130dea25f78726361626.approval-binding.v1.json:4-35"
+      ]
+    },
+    {
+      "id": "RC10",
+      "status": "PASS_WITH_CONDITIONS",
+      "owner": "Host/tool setup owner",
+      "disposition": "repositorygrant/toolapproval兩層；本輪唯讀escalation成功，無本輪pushrejection；unattended support未qualified。",
+      "sources": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:697-715"
+      ]
+    },
+    {
+      "id": "RC11",
+      "status": "PASS",
+      "owner": "Model routing/evaluation owner",
+      "disposition": "模型不足不是已建立根因；bytes/grant/review缺口不由XHigh解決。推薦reasoningeffort不是效能測量。",
+      "sources": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:408-418"
+      ]
+    },
+    {
+      "id": "RC12",
+      "status": "PASS_WITH_CONDITIONS",
+      "owner": "Owning product/platform package owner",
+      "disposition": "PG/browser/build/trusted reading等後續realqualification，不阻 human P00 design review；fixture≠conformance。",
+      "sources": [
+        "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md:39",
+        "automation/platform/CONTEXT_READING_RECEIPTS.md:57-61"
+      ]
+    },
+    {
+      "id": "RC13",
+      "status": "PASS_WITH_CONDITIONS",
+      "owner": "Publication tooling owner",
+      "disposition": "mutableHEAD條件已獨立重現；original builder conservative boundary合理。新prefix verifier另review/grant，不擴舊approval。",
+      "sources": [
+        "scripts/p00_publication.py:64-83",
+        "scripts/p00_publication.py:134-135"
+      ]
+    }
+  ],
+  "R01_R08": [
+    {
+      "id": "R01",
+      "P00_design": "DTO/store/writer/lock/inactive-account source/permission trust exact disposition",
+      "mechanical": "已有mapping/source witnesses，僅structural",
+      "review": "完整R01獨立semanticreview未完成",
+      "later_qualification": "actual adapters/PGcrash/concurrency→P05/P06/P08",
+      "future": "production/broker另authority",
+      "Owner_decision": "未決permission/source closure決定或exactscope-defer",
+      "source": "docs/program/p00_status.v1.json:215-217"
+    },
+    {
+      "id": "R02",
+      "P00_design": "resolver/compiler/loaded-tool/source/schema/latestdelta responsibility",
+      "mechanical": "snapshotcompile存在，originalbudgetFAIL",
+      "review": "tool/source review未結案",
+      "later_qualification": "specific profile actual process/injection＋latest accepted pointer integration",
+      "future": "additionalpackage expansion按owningstage",
+      "Owner_decision": "effectivecontextsuccessor/exactmigrationgrant",
+      "source": "docs/program/p00_status.v1.json:220-222"
+    },
+    {
+      "id": "R03",
+      "P00_design": "P01r5/P02r2/template/generator/pattern/D0-D5 design",
+      "mechanical": "candidatecompile/sourcechecks非build",
+      "review": "semantic/template/tool review未完成",
+      "later_qualification": "owningP01/P02 implementation",
+      "future": "stable reuse須outcomes",
+      "Owner_decision": "CSV與分stagebaseline例外",
+      "source": "docs/program/p00_status.v1.json:225-227"
+    },
+    {
+      "id": "R04",
+      "P00_design": "A1/A2/A3 mapping/minimumstrategy/scheduler/publicgates",
+      "mechanical": "schema/negativefixtures非realcontroller",
+      "review": "policy successor review未完成",
+      "later_qualification": "A2/A3 race/crash/control",
+      "future": "controlleractivation另grant",
+      "Owner_decision": "acceptedProgram不自動supersede；新policy/standing authority",
+      "source": "docs/program/p00_status.v1.json:230-232"
+    },
+    {
+      "id": "R05",
+      "P00_design": "22+8 scope/source clauses/127weight/retained gaps",
+      "mechanical": "91sections/143clauses/603leaves/26-113保留，無新增credit",
+      "review": "selectedclauses與weightbaseline未獨立完成",
+      "later_qualification": "trustedprogress/intake/invalidation/throughputETA→A2/D4/D5",
+      "future": "新歷史矛盾trigger scopechange，不假 universalclosure",
+      "Owner_decision": "exactuniverse/exceptions GOV-F01",
+      "source": "docs/program/p00_status.v1.json:235-237"
+    },
+    {
+      "id": "R06",
+      "P00_design": "SOURCE01/02/V2 graph/safety/readingtrust/RQ contracts",
+      "mechanical": "offline observations/作者11或507 PASS不是qualification；原128KiB FAIL",
+      "review": "SOURCE01/CSV/graph/legacytrust各focusedreview",
+      "later_qualification": "specific-profile actual injection/continuity；trustedCAS→A2",
+      "future": "executor/publisherprofiles未做；globalcoverageUNKNOWN",
+      "Owner_decision": "CSV/V2/compilermigration/bootstrap各exactgrant",
+      "source": "docs/program/p00_status.v1.json:240-242"
+    },
+    {
+      "id": "R07",
+      "P00_design": "evaluation/golden/KPI/telemetry/optimization contracts＋negatives",
+      "mechanical": "74tests/九examples僅shape/source",
+      "review": "semanticreview仍必要",
+      "later_qualification": "九類actualgolden/modeltasks/trustedintake/costpopulation→A2/A3/D4/D5",
+      "future": "efficiency/modelrouting不能未測宣稱",
+      "Owner_decision": "design acceptance與maturity promotion分開",
+      "source": "docs/program/p00_status.v1.json:245-247"
+    },
+    {
+      "id": "R08",
+      "P00_design": "Owner0–90/FinalA–S coverage＋exactremaining/exception",
+      "mechanical": "document count不結案",
+      "review": "fresh final baseline review未完成",
+      "later_qualification": "execution/release不能由P00acceptance替代",
+      "future": "releasejourneys仍0/6",
+      "Owner_decision": "exact P00 materialization後另P01/P02grant",
+      "source": "docs/program/p00_status.v1.json:250-255"
+    }
+  ],
+  "seven_WPs": [
+    {
+      "id": "WP-BOUNDARY",
+      "status": "REVIEW_FIX_REQUIRED",
+      "scope_fix": "GOV-F01 additive predicates/exact exception table/decision evidence path；四檔proposal非完整executor package",
+      "acceptance": "old predicates全保留、no implied closure、contradiction STOP",
+      "combine": "可與CSV-A作一次candidate baseline integration；語意decision仍各別review",
+      "model": "High；重大scope unresolved用XHigh",
+      "source": "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:860-878"
+    },
+    {
+      "id": "WP-SOURCE01",
+      "status": "PASS_WITH_CONDITIONS",
+      "scope_fix": "五檔 exact fix可review；source/ref compatibility＋newgrant必要",
+      "acceptance": "active negative完整、inactive/tampered/source mismatch denial、representation≠qualification",
+      "combine": "可與後續Gate migration同整合package；先保留獨立SOURCE01review，不重做同類513fixtures",
+      "model": "High；固定fixturesMedium",
+      "source": "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:881-900"
+    },
+    {
+      "id": "WP-CONTEXT-V2",
+      "status": "REVIEW_FIX_REQUIRED",
+      "scope_fix": "五檔沒有actual injection harness/trusted epoch producer/AuthoritySnapshot owner；bounded intended profiles與sourceunits須明列",
+      "acceptance": "全部 relevant obligation disposition、safety/error/ref oracle＋specificprofilequalification",
+      "combine": "已獨立semantic adoption後可與Gate migration合一cohesiveimplementation；不略semanticbarrier",
+      "model": "High；cross-layer semantics review XHigh",
+      "source": "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:903-924"
+    },
+    {
+      "id": "WP-GATE-MIGRATION",
+      "status": "PASS_WITH_CONDITIONS",
+      "scope_fix": "12檔僅proposal；必綁effectivesuccessor/profilequalification/sourcehashes",
+      "acceptance": "小pack不得flipV1；unaccepted/wrongprofile/staleepoch/STOP/overbudget deny；freshintake/authority仍必要",
+      "combine": "可與reviewedV2/SOURCE01 implementation合併減重複integration",
+      "model": "High",
+      "source": "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:927-954"
+    },
+    {
+      "id": "WP-PUBLICATION-POLICY",
+      "status": "REVIEW_FIX_REQUIRED",
+      "scope_fix": "八檔含acceptedauthority，GOV-F03/F04補successor/integration/store contract，不改oldsingle-use或重用CONSUMED",
+      "acceptance": "forgery/type/revoke/expiry/STOP/budgetrace＋effectiveauthority ancestry",
+      "combine": "與Adapter同effect boundary，可cohesivepackage但design/adoption/qualification各barrier；非P00/P01/P02前置",
+      "model": "XHigh處理authority設計；reviewedimplementationHigh",
+      "source": "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:957-980"
+    },
+    {
+      "id": "WP-PUBLISHER-ADAPTER",
+      "status": "REVIEW_FIX_REQUIRED",
+      "scope_fix": "四檔缺canonicalstore/hook/scanner/setup inventory，GOV-F02-F04；不能exactexecute",
+      "acceptance": "bare-remote race/revoke/writer/crash/timeout/idempotentcounts/prefixexclusion＋peredge protected/secretproof",
+      "combine": "與Policy整合；Windowsinstall/network/credentialsetup須separatehuman grant",
+      "model": "High；revoke cutoff decision XHigh",
+      "source": "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:983-1008"
+    },
+    {
+      "id": "WP-CSV-A",
+      "status": "OWNER_DECISION_REQUIRED",
+      "scope_fix": "四檔不能rewrite舊pinneddecision/validation/map；明列successorartifactpaths/exactApatch；parser不在scope",
+      "acceptance": "contract/patch/generator/fixture specifications一致；不能宣稱parser負例已run",
+      "combine": "可與Boundary candidateintegration合併；format/BOM另semanticreview",
+      "model": "High；若版本adapter重大decision用XHigh",
+      "source": "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:1011-1032"
+    }
+  ],
+  "Owner_matrix": [
+    {
+      "decision": "closure/universe/exceptions",
+      "status": "OWNER_DECISION_REQUIRED",
+      "action": "GOV-F01修成可核對exactamendment，再Ownerdecision",
+      "blocks": "P00acceptance與依賴它的P01/P02"
+    },
+    {
+      "decision": "CSV A/B/BOM/legacy compatibility",
+      "status": "OWNER_DECISION_REQUIRED",
+      "action": "exactchoice＋independentsemanticsreview",
+      "blocks": "受CSV影響的P01/P02 readiness"
+    },
+    {
+      "decision": "V2 effective successor/profile gate",
+      "status": "OWNER_DECISION_REQUIRED",
+      "action": "graphreview/profilequalification/exactmigrationgrant",
+      "blocks": "resolver/compiler與effects-bearinginvocation"
+    },
+    {
+      "decision": "standing capability/revoke/activation/store/setup",
+      "status": "REVIEW_FIX_REQUIRED",
+      "action": "GOV-F02-F04補具體契約，或defer整lane",
+      "blocks": "standingpublicationactivation"
+    },
+    {
+      "decision": "frozen6b publication",
+      "status": "OWNER_DECISION_REQUIRED",
+      "action": "只綁exact6b＋manifest012cf99b，不含349；newverifier另review",
+      "blocks": "兩commit push"
+    },
+    {
+      "decision": "P00 acceptance/product/controller",
+      "status": "BLOCKED",
+      "action": "finalreview/integration/Ownermaterialization，再另productgrant/allgates；controllerqualification後置",
+      "blocks": "acceptance/dispatch/activation"
+    }
+  ],
+  "next_action": "作者僅修GOV-F01-F04精確候選或明列standing能力defer；fixed subjects不重建，R01–R08保持0/8。對changed bindings做focused re-review；既有SOURCE01/CSV/V2/domain design review可繼續。無P01/P02施工、acceptance、merge、push或activation。",
+  "memory": "quick registry lookup only；current repository evidence已重新核對，memory不是權威或reviewPASS來源。"
+}

@@ -48,11 +48,11 @@ python -B -m pytest tests/platform/test_p00_context_v2_probe.py -q -p no:cachepr
 
 ## Closure 與 CSV 決策
 
-Bundle提供三段exact replacement clauses，供Owner核准P00 review universe／design-vs-backend／RQ gate boundary。既有規範不被自行改寫，R01–R08不因此PASS。R01/R03/R04/R05/R07設計已有focused review入口；R06 SOURCE01、CSV及V2分段審查；R08最後審baseline。
+Bundle提供三段候選附加澄清，原七項Acceptance與歷史／RQ條款保持原文。三項exception有exact原始clause/hash、責任、package與closure gate，仍待Owner核准；見P00-bounded-correction.v1.json。既有規範不被自行改寫，R01–R08不因此PASS。R01/R03/R04/R05/R07設計已有focused review入口；R06 SOURCE01、CSV及V2分段審查；R08最後審baseline。
 
 Accepted upstream `domain/market_observation.py` 在master與candidate為同一blob，規定exact Decimal、canonical identity/mor1及nullable content，**沒有決定CSV physical header/BOM**。Dedicated CSV文件與API都標candidate，不能按檔名自行宣告其中已接受。
 
-推薦A（未選定）：HTTP和bytes同一十欄CSV_V1，容許一個檔首BOM。既有exact一段patch可直接供語意review；保留原upload byte hash、retry、mapping/calendar、null、atomic publication及256MiB等契約。九欄client若存在會拒絕，consumer inventory UNKNOWN。B須明定format/version、identity mapping、optional fields、timeframe、BOM、hash lineage、owner/scope、compatibility八項，不提供猜測adapter。Bundle附positive/negative fixture規格與migration impact，沒有parser測試或正式契約rewrite。
+Owner本輪已選定A（exact一段patch已套用，待narrow re-review）：HTTP和bytes同一十欄CSV_V1，容許一個檔首BOM。既有exact一段patch可直接供語意review；保留原upload byte hash、retry、mapping/calendar、null、atomic publication及256MiB等契約。九欄client若存在會拒絕，consumer inventory UNKNOWN。B須明定format/version、identity mapping、optional fields、timeframe、BOM、hash lineage、owner/scope、compatibility八項，不提供猜測adapter。Bundle附positive/negative fixture規格與migration impact，沒有parser測試或正式契約rewrite。
 
 ## Publication 的具體界線
 
@@ -75,3 +75,5 @@ Repository grant不等於Codex工具批准；[官方approval文件](https://lear
 
 
 驗證：final targeted **11 passed**；full platform **507 passed**；generated contracts保持一致。驗證後僅將新增重要comment轉為繁體中文，AST完全相同；tested／final source hashes分別保存在evidence。原SOURCE01的513 fixture不重跑、不改寫。
+
+本次原始診斷量測／publication request 屬3492569之前的歷史snapshot；本輪Human decisions、3492569發布收據與correction進度以P00-bounded-correction.v1.json及新continuation為準。原source pins、測量與0/8保持不變。

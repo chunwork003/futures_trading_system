@@ -54,7 +54,10 @@ def repository(tmp_path):
     active = "automation/policies/fixture_active.json"
     write(tmp_path, active, "{\"active\":true}\n")
     expected = hashlib.sha256((tmp_path / active).read_bytes()).hexdigest()
-    write(tmp_path, context.MASTER_MANIFEST, {"policies": {
+    negative = "automation/specs/negative_assertions.fixture.json"
+    write(tmp_path, negative, "deny")
+    write(tmp_path, context.MASTER_MANIFEST, {"negative_assertions": {
+        "path": negative, "active": True, "sha256": hashlib.sha256(b"deny").hexdigest()}, "policies": {
         "active": {"path": active, "active": True, "sha256": expected},
         "old": {"path": "automation/policies/fixture_old.json", "active": False}}})
     baseline = commit(tmp_path)
@@ -201,3 +204,50 @@ def test_bound_compiler_rehydrates_even_if_attacker_rehashes_context(repository)
     manifest["context_hash"] = hashlib.sha256(context.canonical({k: v for k, v in manifest.items() if k != "context_hash"})).hexdigest()
     with pytest.raises(ValueError, match="CONTEXT_REHYDRATION_MISMATCH"):
         compile_bound(root, package, manifest)
+
+
+@pytest.mark.parametrize("change,reason", [
+    ("missing", "MISSING_ACTIVE_NEGATIVE_ASSERTIONS_BINDING"),
+    ("inactive", "MISSING_ACTIVE_NEGATIVE_ASSERTIONS_BINDING"),
+    ("hash", "ACTIVE_POLICY_HASH_MISMATCH"),
+    ("unsafe", "FORBIDDEN_REPOSITORY_PATH")])
+def test_negative_binding_missing_inactive_hash_or_unsafe_fails_closed(repository, change, reason):
+    root, request = repository
+    manifest = json.loads((root / context.MASTER_MANIFEST).read_text(encoding="utf-8"))
+    if change == "missing": del manifest["negative_assertions"]
+    if change == "inactive": manifest["negative_assertions"]["active"] = False
+    if change == "hash": manifest["negative_assertions"]["sha256"] = "0" * 64
+    if change == "unsafe": manifest["negative_assertions"]["path"] = "data/forbidden.json"
+    write(root, context.MASTER_MANIFEST, manifest)
+    request["baseline_sha"] = commit(root)
+    with pytest.raises(context.ContextError, match=reason): context.resolve(root, request)
+
+
+def test_negative_required_once_even_if_manifest_alias_and_dirty_worktree(repository):
+    root, request = repository
+    manifest = json.loads((root / context.MASTER_MANIFEST).read_text(encoding="utf-8"))
+    negative = manifest["negative_assertions"]
+    manifest["policies"]["negative_alias"] = deepcopy(negative)
+    write(root, context.MASTER_MANIFEST, manifest)
+    request["baseline_sha"] = commit(root)
+    result = context.resolve(root, request)
+    assert sum(x["path"] == negative["path"] for x in result["mandatory_context"]) == 1
+    write(root, negative["path"], "dirty contradictory override")
+    assert context.resolve(root, request) == result
+    assert result["execution_eligible"] is False
+
+
+def test_negative_valid_hash_drift_still_rejected_against_source_baseline(repository):
+    root, request = repository
+    policy = json.loads((root / context.POLICY).read_text(encoding="utf-8"))
+    policy["source_baseline_sha"] = request["baseline_sha"]
+    write(root, context.POLICY, policy)
+    request["baseline_sha"] = commit(root)
+    manifest = json.loads((root / context.MASTER_MANIFEST).read_text(encoding="utf-8"))
+    value = "changed negative policy"
+    write(root, manifest["negative_assertions"]["path"], value)
+    manifest["negative_assertions"]["sha256"] = hashlib.sha256(value.encode()).hexdigest()
+    write(root, context.MASTER_MANIFEST, manifest)
+    request["baseline_sha"] = commit(root)
+    with pytest.raises(context.ContextError, match="OPERATIONAL_SOURCE_BASELINE_DRIFT"):
+        context.resolve(root, request)

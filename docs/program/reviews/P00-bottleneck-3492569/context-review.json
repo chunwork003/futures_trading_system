@@ -1,0 +1,173 @@
+{
+  "schema_version": "independent.context_review.v1",
+  "role": "Fresh Independent Reviewer / context_independent_review",
+  "review_verdict": "PASS_WITH_CONDITIONS",
+  "operational_disposition": "OWNER_DECISION_REQUIRED",
+  "acceptance": "NOT_PERFORMED",
+  "independence": "Pinned sources and independent reproductions assessed; author PASS claims were not reviewer proof. No repository mutation, commit, push or self-acceptance.",
+  "subject": {
+    "candidate_head": "34925695b83b4bc6e38af800ab5044079d37be7f",
+    "origin_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+    "remote_candidate_supplied_by_parent": "75ef4207aafaaabbf8bf130dea25f78726361626",
+    "probe_input": "6b717d5b7b9447272e5ff35b7715ad33ad6fb026",
+    "loaded_probe_sha256": "ebe401d7cad86524d1295cdcfe5695893838612f9ef88b9e8742753e021b4d71"
+  },
+  "scope": "RC01/RC02/RC04/RC06/RC07/RC11/RC12; context/compiler/representation/qualification; Source01 five-file patch; related boundary/context/gate WPs. Publication protocol and CSV choice outside this semantic review.",
+  "independent_evidence": {
+    "tests": {
+      "command": "python -B -X utf8 -m pytest tests/platform/test_p00_context_v2_probe.py tests/platform/test_p00_context_pack.py tests/platform/test_p00_compiler.py -q -p no:cacheprovider --basetemp <absolute outside-review>/context-pytest",
+      "result": "35 passed in 66.41s",
+      "rerun_on_resume": false
+    },
+    "capsules": {
+      "command": "python -B -X utf8 scripts/p00_context_v2_probe.py --baseline 6b717d5b7b9447272e5ff35b7715ad33ad6fb026 --profile CONTRACT_REVIEW_NO_EFFECTS --output-dir <absolute outside-review>/context-capsules",
+      "bytes": {
+        "P01.CSV": 109210,
+        "P01.IDENTITY": 111596,
+        "P01.QUALITY": 115877,
+        "P02.AUTH": 118745,
+        "P02.IMPORT": 124924,
+        "P02.OPERATION": 122272
+      },
+      "result": "All six SHA256 values match candidate metrics. actual_injected_bytes/token_count remain null; original_gate FAIL_UNCHANGED."
+    },
+    "source01": {
+      "command": "git apply --check --unidiff-zero docs/program/decisions/R06-SOURCE-01.compatibility-candidate.patch",
+      "result": "Exit 0; check only, not applied. All five-file hunks statically reviewed. Author 513 fixture PASS is not my test result."
+    },
+    "legacy_counterexample": {
+      "reproduction": "Snapshot(6b717d); build_graph and resolve WORK exact P01/P02 scope; compile_candidate with existing package.schema.v1.json",
+      "P01_bytes": 930223,
+      "P02_bytes": 881548,
+      "negative_in_legacy": false,
+      "compiler_status": "PACKAGE_NOT_READY",
+      "reasons": [
+        "CONTEXT_COMPACTION_REQUIRED",
+        "DEPENDENCY_ACCEPTANCE_NOT_BOUND"
+      ],
+      "coverage_example": "V1_CONTRACTS.md:52-63 Research / application contracts retained but no graph node in either package; complete selected semantic coverage is not established."
+    },
+    "repository_end_state_at_completed_checks": "Only preexisting ?? data/"
+  },
+  "root_dispositions": {
+    "RC01": "Confirmed V1 aggregate representation exceeds target; six smaller V2 representations reproducible, not complete obligation discharge.",
+    "RC02": "Confirmed compiler conservatively uses original source-budget gate. No compiler defect or gate bypass demonstrated.",
+    "RC04": "Candidate dependency conflict confirmed: human P00 design is allowed with UNKNOWN intake/backend, while R05/final readiness includes actual qualification. Accepted-engine runtime cycle not proven; separate design/tool/execution/promotion axes are acceptable successor direction.",
+    "RC06": "Confirmed preexisting omission of active top-level negative source. Exact five-file patch addresses inclusion and coupled evaluator without trust/budget promotion.",
+    "RC07": "Carrier changes invalidate old planning/context by design. Stable semantic IDs/value versions and trusted continuity are proposed; no current trusted reusable epoch exists.",
+    "RC11": "No model capability defect established; independent byte arithmetic reproduces failure irrespective of model.",
+    "RC12": "Backend/model/browser qualification remains operationally open; it need not block separately authorized design review."
+  },
+  "conditions": [
+    {
+      "id": "CTX-01",
+      "kind": "VERIFIED_PREEXISTING_GAP_WITH_EXACT_REMEDY",
+      "status": "PASS_WITH_CONDITIONS",
+      "sources": [
+        "scripts/p00_context.py:126-153",
+        "automation/platform/context_reading_contract.v1.json:83-93",
+        "docs/program/decisions/R06-SOURCE-01.compatibility-candidate.patch:3-36"
+      ],
+      "finding": "Active negative source absent from original mandatory context. Source01 adds active/hash/path/source-baseline checks and represented-but-not-qualified evaluator branch; old meanings and compilation gate preserved.",
+      "required_correction": "Adopt only existing reviewed five-file delta under fresh exact migration grant; verify before blobs/effective after hashes. No extra rewrite required for this identified gap.",
+      "role": "Owner exact grant; bounded Integrator/CODEX; WORK source/lineage check",
+      "blocks_P00": "Unconditional R06 closure under unchanged route; does not block design review or explicit design-only disposition.",
+      "blocks_P01_P02": true,
+      "defer_A2_A3": "Trusted reading/backend qualification remains separate."
+    },
+    {
+      "id": "CTX-02",
+      "kind": "DISCLOSED_PROTOTYPE_LIMITATION",
+      "status": "PASS_WITH_CONDITIONS",
+      "sources": [
+        "scripts/p00_context_v2_probe.py:90-106",
+        "scripts/p00_context_v2_probe.py:157-164",
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:540-555",
+        "automation/platform/SOURCE_READING_OBLIGATIONS.md:9-11"
+      ],
+      "finding": "Oracle reloads exact source but reconstructs the same selected RULES/stage expectation. It catches projection tampering, not relevant unselected obligations. Selected endpoint security/errors/ref values and all 13 negatives/7 invariants survive tested profile. Complete graph is explicitly not claimed.",
+      "required_correction": "Before adoption classify every mandatory source unit/reverse dependency for exact stage/profile with independently justified exclusions; UNKNOWN loads full source or blocks. Bind graph/profile IDs, versions and hashes. Over-budget fallback STOP or newly reviewed stage; no silent PASS.",
+      "role": "Architect coverage; independent semantic Reviewer; Owner enactment",
+      "blocks_P00": "Not inactive prototype review; blocks complete-graph/tool-qualification claims.",
+      "blocks_P01_P02": true,
+      "defer_A2_A3": "A2 backend not prerequisite for design/source-unit review."
+    },
+    {
+      "id": "CTX-03",
+      "kind": "QUALIFICATION_AND_AUTHORITY_BOUNDARY",
+      "status": "OWNER_DECISION_REQUIRED",
+      "sources": [
+        "scripts/p00_context_v2_probe.py:118-164",
+        "automation/platform/CONTEXT_READING_RECEIPTS.md:39-43",
+        "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md:31-39",
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:644-645"
+      ],
+      "finding": "No-effects profile defers WORK/current CODEX/capacity/cost. Authority/execution NONE/false; STOP is caller flag in offline oracle. Actual head race, context retention/epoch and injection trust unestablished, appropriately disclosed.",
+      "required_correction": "Exact successor enactment plus profile-specific real injection/reading/context-loss evidence before operational use. Fresh authority/head/scope/STOP re-entry before effects. Reuse requires trusted epoch; executor/publisher profiles require complete preflight/dependency/writer/capacity/intake. No hash/session/caller inference.",
+      "role": "Owner; existing WORK gate; independent tool qualification Reviewer",
+      "blocks_P00": "No backend prerequisite for explicit design-only disposition; no original-gate waiver.",
+      "blocks_P01_P02": true,
+      "defer_A2_A3": "Durable receipt registry/CAS, producer trust, crash/race and promotion remain separately granted A2/A3; fresh no-reuse design review need not build backend."
+    },
+    {
+      "id": "CTX-04",
+      "kind": "EXACT_MATERIALIZATION_CONDITION_NOT_CURRENT_PRODUCT_DEFECT",
+      "status": "OWNER_DECISION_REQUIRED",
+      "sources": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:475-487",
+        "docs/work/P00_BASELINE.md:44-52",
+        "automation/platform/CONTEXT_READING_RECEIPTS.md:57-61"
+      ],
+      "finding": "Replacement-clause direction separates design/tool/execution/promotion correctly. Materializing whole cited ranges must retain original enumerated structural and adverse-reading obligations. RQ03/RQ04 deferral cannot qualify an actual no-effects reader without that profile evaluation.",
+      "required_correction": "Append bounded amendment or explicitly bind unchanged predecessor requirements/counterexamples and per-stream exceptions. Original byte semantics stay until reviewed successor effective. R01-R08 remain 0/8 until individual reviewed dispositions; no automatic credit.",
+      "role": "Owner/Architect bounded amendment; independent governance review",
+      "blocks_P00": "Unconditional ambiguous amendment adoption, not further design review.",
+      "blocks_P01_P02": true,
+      "defer_A2_A3": "Measured throughput/ETA, trusted receipts and controller evidence later operational gates."
+    }
+  ],
+  "work_packages": [
+    {
+      "id": "WP-BOUNDARY",
+      "status": "OWNER_DECISION_REQUIRED",
+      "scope": "Four listed files appropriate; append amendment or bind retained obligations/dispositions; accepted runtime policies untouched."
+    },
+    {
+      "id": "WP-SOURCE01",
+      "status": "PASS_WITH_CONDITIONS",
+      "scope": "Five paths match patch/evaluator coupling; exact grant and before/after recheck; no V2 activation."
+    },
+    {
+      "id": "WP-CONTEXT-V2",
+      "status": "PASS_WITH_CONDITIONS",
+      "scope": "Five paths appropriate for inactive authoring; full unit/reverse-ref disposition and separate profiles still required. No second authority engine."
+    },
+    {
+      "id": "WP-GATE-MIGRATION",
+      "status": "OWNER_DECISION_REQUIRED",
+      "scope": "Twelve paths encompass coupled migration; grant only after reviewed/enacted/qualified V2 exact profile. Historical compiled outputs and unrelated accepted sources protected."
+    },
+    {
+      "id": "WP-PUBLICATION-POLICY",
+      "status": "OWNER_DECISION_REQUIRED",
+      "review_coverage": "Publication policy merits outside this review; context cannot create grant."
+    },
+    {
+      "id": "WP-PUBLISHER-ADAPTER",
+      "status": "OWNER_DECISION_REQUIRED",
+      "review_coverage": "Protocol outside this review; no-effects capsule cannot be used as qualified effects profile."
+    },
+    {
+      "id": "WP-CSV-A",
+      "status": "OWNER_DECISION_REQUIRED",
+      "review_coverage": "CSV choice outside this review; ambiguity remains adverse evidence; affected graph units rebind after choice without changing old reports."
+    }
+  ],
+  "cohesion": {
+    "possible_merge": "SOURCE01 and GATE share five paths/test family. One technical integration only after separate Source01 disposition, effective qualified V2 binding and one explicit union grant; retain phase evidence and verify new effective source hashes.",
+    "keep_barrier": "Context V2 definition/qualification and gate activation must retain independent review/Owner barrier; cohesive planning/review can share packet, activation separately gated.",
+    "boundary": "BOUNDARY and V2 architectural direction may be one cohesive Owner decision; source tool adoption remains exact subsequent scope."
+  },
+  "next_action": "Owner bounded closure/source-universe/RQ decision and focused individual dispositions, then exact Source01 adoption and inactive complete V2 profile authoring. No P01/P02 execution, acceptance, controller activation or original gate PASS granted by review.",
+  "repository_read_only": true
+}

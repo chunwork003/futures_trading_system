@@ -1,0 +1,101 @@
+{
+  "schema_version": "p00.review_input_transport_binding.v1",
+  "review_report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+  "review_report_raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+  "review_subject": "34925695b83b4bc6e38af800ab5044079d37be7f",
+  "rule": "Reviewer bound actual Windows worktree raw bytes; Git blobs use LF transport. Both hashes recorded; no semantic or code delta permitted. Historic report immutable.",
+  "corrected_sources": [
+    {
+      "path": "automation/platform/source_reading_obligations.csv-a.delta.v1.json",
+      "reviewed_raw_sha256": "b7543c020e71311bf0efc967fc1ecdd02a2cc0a0b9ab9b0fd52a1cbe0ce2781e",
+      "normalized_lf_sha256": "17498bf8b16d070a019fad7dc7573326077e8c1911574885911b737c3ca7866d",
+      "expected_git_blob": "519615d3759aa74b833f0d165c3c58ce7d3bb38a",
+      "transport_only": true
+    },
+    {
+      "path": "docs/architecture/V1_API_ARCHITECTURE.md",
+      "reviewed_raw_sha256": "d61d1bc9d78a99cb76f30d23a50d1a22078bf9b0a6ac0f756f17d9c669aa42a8",
+      "normalized_lf_sha256": "54c6a2f344f0713628fe39bd0d3320ee284f1f19053fe6802952c8b65486daab",
+      "expected_git_blob": "d4172ee4062f7062af03cc8f169c7d25c5c40fc8",
+      "transport_only": true
+    },
+    {
+      "path": "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json",
+      "reviewed_raw_sha256": "41955ec220936bbe92c1b7f6cc32f55b470acab6fc8a4f579ea68b2e6a8bfa9e",
+      "normalized_lf_sha256": "1bb4e40efefcb5dd5ca84fcba7cf4ec2d344f7444c16bae8aa7f95b7a68c944e",
+      "expected_git_blob": "deb80010ef82c791307ea916eb18a5a8e8438474",
+      "transport_only": true
+    },
+    {
+      "path": "docs/program/decisions/P00-bottleneck-resolution.md",
+      "reviewed_raw_sha256": "ba44877786d9514971aebe0328864e9f957425ef6f0f9c29dc915725993efa6d",
+      "normalized_lf_sha256": "92b3330b388bb53a4df6a0db1ec762c6ecf013ec9cf52f533952175eade04e19",
+      "expected_git_blob": "898f408eb1b0e7cdc2547d00a36c677bfc509f85",
+      "transport_only": true
+    },
+    {
+      "path": "docs/program/decisions/P00-bounded-correction.v1.json",
+      "reviewed_raw_sha256": "759f751e26603b72e9727fba9221a16b8b34c2f1aaed9b934f166ae4f9fc1a15",
+      "normalized_lf_sha256": "1a8193beb0f7f6ef9a2770a8c5b0f3e50e894e375896ac4a990fabae6f9223e1",
+      "expected_git_blob": "25eb3701e1f5ab788ab95b78d1bb96ac1c46958b",
+      "transport_only": true
+    },
+    {
+      "path": "scripts/p00_context.py",
+      "reviewed_raw_sha256": "6cd6cf534dc62970ad17061492d1a37f6c23cfa9c8975cc6776ce22bbc4d26f3",
+      "normalized_lf_sha256": "97cb315a24522ffc71bc099493d1cc2d4bad79bcb3e2e3008bc27f2f8b64cacd",
+      "expected_git_blob": "2ca90355d7da53dd77879a45d3d21a632bd26fe6",
+      "transport_only": true
+    },
+    {
+      "path": "scripts/p00_reading_eval.py",
+      "reviewed_raw_sha256": "be1b2a51e1ae31166dd536acea20570a93d209a0ddf5f913fe046c431a5810da",
+      "normalized_lf_sha256": "731f2c2624ab65905214d6140bfb32b7d203a547917c70edee4c7a0672762913",
+      "expected_git_blob": "4d465be2a5590870ce507334ab3a76c7cbe64738",
+      "transport_only": true
+    },
+    {
+      "path": "scripts/p00_review_fix.py",
+      "reviewed_raw_sha256": "21a00b741b656919b50f881fccb0c2c15a87c59e4079469fa49d7ce3da5c2bcc",
+      "normalized_lf_sha256": "65cdd19e19cb2fd357dc3c242b7bd2b758c473f2079f691801c355be9098886f",
+      "expected_git_blob": "dad102d85116875a96672e36a27c54bf7736ad51",
+      "transport_only": true
+    },
+    {
+      "path": "tests/platform/test_p00_context.py",
+      "reviewed_raw_sha256": "4f1de8dc6f0a4e53cd40bbbcbd598ae9403a5391dc9860136430eae3c6bfd443",
+      "normalized_lf_sha256": "82707bab08cbe12f19a95e6942a4ed79d178fa592e7ca56154411862a7700051",
+      "expected_git_blob": "b1d671296e78e9d7b10dbdf121dcf08deb1b6716",
+      "transport_only": true
+    },
+    {
+      "path": "tests/platform/test_p00_context_v2_probe.py",
+      "reviewed_raw_sha256": "878e057c997fe74550bd0fcdb30225be3c5751d60e2e466c05eb26cef65f0852",
+      "normalized_lf_sha256": "9c4504dddebda07eb9eabdb46d14a4b3f6f0a28fea33f2991c3adcde062da633",
+      "expected_git_blob": "368f8f7cc4b51df98370ba4a9c5fea7b30c6bf14",
+      "transport_only": true
+    },
+    {
+      "path": "tests/platform/test_p00_reading.py",
+      "reviewed_raw_sha256": "f3c95cc9c6b229b641d1228657886d7866051825b52d83c66b0e2d16b65cedfc",
+      "normalized_lf_sha256": "96d0ac79b65835d8783182618cd40260ecf49015aee144aea04f0d9267ad314e",
+      "expected_git_blob": "c7fb286a0199fd0fc93f44f8e039d621d10d3692",
+      "transport_only": true
+    },
+    {
+      "path": "tests/platform/test_p00_reading_eval.py",
+      "reviewed_raw_sha256": "4306a2fa14eb238b94e541612a710ba3d35f00e3aa2260e88d50d22f9deed9c7",
+      "normalized_lf_sha256": "56e8103083a71fe9fceb93745a0ee778c0099e740aade1a86fa77528cde6f5c6",
+      "expected_git_blob": "b215ceda41c856442cd6aadf87b947f5a920bb38",
+      "transport_only": true
+    },
+    {
+      "path": "tests/platform/test_p00_review_fix.py",
+      "reviewed_raw_sha256": "b95e202647d0d4d7c26edc3b259447825f500d2839f6f1d8717a484a8d4600c6",
+      "normalized_lf_sha256": "037a7b0bea0e82dd95d630708d3fa253be1e9f3a8c484fe719cd998c8b46033e",
+      "expected_git_blob": "030fbe205fdd66db6eba100e4d41305c87ede1df",
+      "transport_only": true
+    }
+  ],
+  "acceptance": false
+}

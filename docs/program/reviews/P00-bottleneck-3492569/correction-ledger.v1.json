@@ -1,0 +1,390 @@
+{
+  "schema_version": "p00.finding_correction_ledger.v1",
+  "reviewed_subject": "34925695b83b4bc6e38af800ab5044079d37be7f",
+  "candidate_defect_closure_is_not_acceptance": true,
+  "findings": [
+    {
+      "FINDING_ID": "GOV-F01",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/governance-review.json",
+        "pointer": "/findings/0",
+        "source_evidence": [
+          "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:475-487",
+          "docs/work/P00_BASELINE.md:44-52",
+          "docs/program/P00_OWNER_REQUEST.md:174-180",
+          "docs/program/HISTORICAL_REQUIREMENTS.md:49-55"
+        ]
+      },
+      "EXACT_CORRECTION": "Removed replacement clauses; original seven predicates and historical/RQ sources unchanged. Three non-effective exception IDs bind exact clauses/hashes/roles/packages/closure and contradiction STOP.",
+      "CHANGED_FILES": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json",
+        "docs/program/decisions/P00-bottleneck-resolution.md",
+        "docs/program/decisions/P00-bounded-correction.v1.json",
+        "scripts/p00_review_fix.py",
+        "tests/platform/test_p00_review_fix.py"
+      ],
+      "TEST_EVIDENCE": "docs/program/checkpoints/P00-bounded-correction.tests.v1.json",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Human Owner decides exact EX-HIST-UNIVERSE/EX-R05-MEASURED/EX-RQ-DESIGN-ORDER and bounded source universe; independent scope/coverage/weight review before any P00 closure.",
+      "STATUS": "OWNER_DECISION_REQUIRED",
+      "RESPONSIBLE_ROLE": "Architect 修精確 successor；Owner 決定 scope/exception；Reviewer 核對 preservation",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/0",
+        "verdict": "PASS_WITH_CONDITIONS",
+        "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+        "formal_finding_state": "OWNER_DECISION_REQUIRED"
+      }
+    },
+    {
+      "FINDING_ID": "GOV-F02",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/governance-review.json",
+        "pointer": "/findings/1",
+        "source_evidence": [
+          "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:686-697",
+          "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:991-1006",
+          "automation/engine/orchestration.py:199-235"
+        ]
+      },
+      "EXACT_CORRECTION": "No implementation: original independent finding retained; no accepted policy or public-semantic authority invented.",
+      "CHANGED_FILES": [],
+      "TEST_EVIDENCE": "NOT_RUN_UNCHANGED_SCOPE",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Governance/WORK/Publisher owners define effect-cutoff state and race matrix under exact new scope, or explicitly defer standing lane; independently qualify before activation.",
+      "STATUS": "REVIEW_FIX_REQUIRED",
+      "RESPONSIBLE_ROLE": "Governance Architect、WORK store owner、Publisher implementer；Owner 決定在途撤銷語意",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/1",
+        "verdict": "REVIEW_FIX_REQUIRED",
+        "candidate_defect_status": "UNCHANGED_OPEN",
+        "formal_finding_state": "REVIEW_FIX_REQUIRED"
+      }
+    },
+    {
+      "FINDING_ID": "GOV-F03",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/governance-review.json",
+        "pointer": "/findings/2",
+        "source_evidence": [
+          "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:673-690",
+          "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:957-978",
+          "scripts/p00_publication.py:74-93"
+        ]
+      },
+      "EXACT_CORRECTION": "No implementation: original independent finding retained; no accepted policy or public-semantic authority invented.",
+      "CHANGED_FILES": [],
+      "TEST_EVIDENCE": "NOT_RUN_UNCHANGED_SCOPE",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Owner separately grants exact policy integration/synchronization/rebind only after reviewed contract and new baseline pins; no reuse of consumed grants.",
+      "STATUS": "REVIEW_FIX_REQUIRED",
+      "RESPONSIBLE_ROLE": "Governance Architect、Integrator 提案；Owner exact integration/rebind authority；WORK fresh re-entry",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/2",
+        "verdict": "REVIEW_FIX_REQUIRED",
+        "candidate_defect_status": "UNCHANGED_OPEN",
+        "formal_finding_state": "REVIEW_FIX_REQUIRED"
+      }
+    },
+    {
+      "FINDING_ID": "GOV-F04",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/governance-review.json",
+        "pointer": "/findings/3",
+        "source_evidence": [
+          "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:664-715",
+          "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:957-1008",
+          "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md:7-27",
+          "automation/engine/contracts.py:113-131",
+          "automation/engine/orchestration.py:154-235"
+        ]
+      },
+      "EXACT_CORRECTION": "No implementation: original independent finding retained; no accepted policy or public-semantic authority invented.",
+      "CHANGED_FILES": [],
+      "TEST_EVIDENCE": "NOT_RUN_UNCHANGED_SCOPE",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Specify bounded canonical store/action/setup inventory and exact grants, or explicitly defer standing lane until qualified; no activation now.",
+      "STATUS": "REVIEW_FIX_REQUIRED",
+      "RESPONSIBLE_ROLE": "WORK control-plane owner、Governance Architect 完成design/scope；Owner protected/setup grant；Publisher implementer",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/3",
+        "verdict": "REVIEW_FIX_REQUIRED",
+        "candidate_defect_status": "UNCHANGED_OPEN",
+        "formal_finding_state": "REVIEW_FIX_REQUIRED"
+      }
+    },
+    {
+      "FINDING_ID": "CTX-01",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/context-review.json",
+        "pointer": "/conditions/0",
+        "source_evidence": [
+          "scripts/p00_context.py:126-153",
+          "automation/platform/context_reading_contract.v1.json:83-93",
+          "docs/program/decisions/R06-SOURCE-01.compatibility-candidate.patch:3-36"
+        ]
+      },
+      "EXACT_CORRECTION": "Applied existing exact five-file compatibility patch under direct Human grant; represented top-level active negative source is not trusted reading. Probe test uses isolated same-snapshot fixture with original ancestry.",
+      "CHANGED_FILES": [
+        "scripts/p00_context.py",
+        "scripts/p00_reading_eval.py",
+        "tests/platform/test_p00_context.py",
+        "tests/platform/test_p00_reading.py",
+        "tests/platform/test_p00_reading_eval.py",
+        "tests/platform/test_p00_context_v2_probe.py",
+        "docs/program/decisions/P00-bounded-correction.v1.json"
+      ],
+      "TEST_EVIDENCE": "docs/program/checkpoints/P00-bounded-correction.tests.v1.json",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Complete required short-path full platform regression on final isolated committed snapshot, then preserve exact before/after integration evidence. Keep V2/compiler activation and actual reading qualification separately gated.",
+      "STATUS": "QUALIFICATION_PENDING",
+      "RESPONSIBLE_ROLE": "Owner exact grant; bounded Integrator/CODEX; WORK source/lineage check",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/4",
+        "verdict": "PASS_WITH_CONDITIONS",
+        "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+        "formal_finding_state": "QUALIFICATION_PENDING"
+      }
+    },
+    {
+      "FINDING_ID": "CTX-02",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/context-review.json",
+        "pointer": "/conditions/1",
+        "source_evidence": [
+          "scripts/p00_context_v2_probe.py:90-106",
+          "scripts/p00_context_v2_probe.py:157-164",
+          "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:540-555",
+          "automation/platform/SOURCE_READING_OBLIGATIONS.md:9-11"
+        ]
+      },
+      "EXACT_CORRECTION": "No implementation: original independent finding retained; no accepted policy or public-semantic authority invented.",
+      "CHANGED_FILES": [],
+      "TEST_EVIDENCE": "NOT_RUN_UNCHANGED_SCOPE",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Complete source-unit/reverse-ref disposition and independent intended-profile coverage review; UNKNOWN requires full-source fallback or STOP. Owner enactment remains separate.",
+      "STATUS": "OWNER_DECISION_REQUIRED",
+      "RESPONSIBLE_ROLE": "Architect coverage; independent semantic Reviewer; Owner enactment",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/5",
+        "verdict": "OWNER_DECISION_REQUIRED",
+        "candidate_defect_status": "UNCHANGED_OPEN",
+        "formal_finding_state": "OWNER_DECISION_REQUIRED"
+      }
+    },
+    {
+      "FINDING_ID": "CTX-03",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/context-review.json",
+        "pointer": "/conditions/2",
+        "source_evidence": [
+          "scripts/p00_context_v2_probe.py:118-164",
+          "automation/platform/CONTEXT_READING_RECEIPTS.md:39-43",
+          "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md:31-39",
+          "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:644-645"
+        ]
+      },
+      "EXACT_CORRECTION": "No implementation: original independent finding retained; no accepted policy or public-semantic authority invented.",
+      "CHANGED_FILES": [],
+      "TEST_EVIDENCE": "NOT_RUN_UNCHANGED_SCOPE",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Obtain exact successor/profile decision and real injection/context-loss/continuity evidence before operational use; no effects-profile readiness from offline checks.",
+      "STATUS": "OWNER_DECISION_REQUIRED",
+      "RESPONSIBLE_ROLE": "Owner; existing WORK gate; independent tool qualification Reviewer",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/6",
+        "verdict": "OWNER_DECISION_REQUIRED",
+        "candidate_defect_status": "UNCHANGED_OPEN",
+        "formal_finding_state": "OWNER_DECISION_REQUIRED"
+      }
+    },
+    {
+      "FINDING_ID": "CTX-04",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/context-review.json",
+        "pointer": "/conditions/3",
+        "source_evidence": [
+          "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:475-487",
+          "docs/work/P00_BASELINE.md:44-52",
+          "automation/platform/CONTEXT_READING_RECEIPTS.md:57-61"
+        ]
+      },
+      "EXACT_CORRECTION": "Additive candidate successor only; original Acceptance/PACKAGE_READING/RQ wording and128KiB preserved.",
+      "CHANGED_FILES": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json",
+        "docs/program/decisions/P00-bounded-correction.v1.json",
+        "scripts/p00_review_fix.py",
+        "tests/platform/test_p00_review_fix.py"
+      ],
+      "TEST_EVIDENCE": "docs/program/checkpoints/P00-bounded-correction.tests.v1.json",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Owner must expressly enact any exact exception/successor; until then original gates/predicates apply without waiver.",
+      "STATUS": "OWNER_DECISION_REQUIRED",
+      "RESPONSIBLE_ROLE": "Owner/Architect bounded amendment; independent governance review",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/7",
+        "verdict": "PASS_WITH_CONDITIONS",
+        "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+        "formal_finding_state": "OWNER_DECISION_REQUIRED"
+      }
+    },
+    {
+      "FINDING_ID": "CSV-CONFLICT",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/csv-review.json",
+        "pointer": "/major_decisions/0",
+        "source_evidence": [
+          "API",
+          "IO",
+          "DOMAIN",
+          "SOURCE02",
+          "READING"
+        ]
+      },
+      "EXACT_CORRECTION": "Direct Human selected A/no nine adapter; exact previously reviewed one-paragraph patch applied.",
+      "CHANGED_FILES": [
+        "docs/architecture/V1_API_ARCHITECTURE.md",
+        "docs/program/decisions/P00-bounded-correction.v1.json",
+        "automation/platform/source_reading_obligations.csv-a.delta.v1.json"
+      ],
+      "TEST_EVIDENCE": "docs/program/checkpoints/P00-bounded-correction.tests.v1.json",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Preserve this exact candidate amendment and consumer UNKNOWN evidence; affected P01/P02 compilation/implementation requires accepted baseline and separate grant.",
+      "STATUS": "CANDIDATE_ONLY_NOT_ACCEPTED",
+      "RESPONSIBLE_ROLE": "Owner/Architect",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/8",
+        "verdict": "PASS",
+        "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+        "formal_finding_state": "CANDIDATE_ONLY_NOT_ACCEPTED"
+      }
+    },
+    {
+      "FINDING_ID": "CSV-PRESERVATION",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/csv-review.json",
+        "pointer": "/major_decisions/1",
+        "source_evidence": [
+          "PATCH",
+          "API",
+          "IO",
+          "GENERATOR",
+          "DOMAIN",
+          "METADATA"
+        ]
+      },
+      "EXACT_CORRECTION": "No implementation: original independent finding retained; no accepted policy or public-semantic authority invented.",
+      "CHANGED_FILES": [],
+      "TEST_EVIDENCE": "NOT_RUN_UNCHANGED_SCOPE",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Preserve original SOURCE02 reports/map byte-exact and these approved patch pins; future integration rechecks exact bytes.",
+      "STATUS": "CANDIDATE_ONLY_NOT_ACCEPTED",
+      "RESPONSIBLE_ROLE": "Integrator/Reviewer",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/9",
+        "verdict": "PASS",
+        "candidate_defect_status": "ORIGINAL_PASS_RETAINED",
+        "formal_finding_state": "CANDIDATE_ONLY_NOT_ACCEPTED"
+      }
+    },
+    {
+      "FINDING_ID": "CSV-WP-01",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/csv-review.json",
+        "pointer": "/major_decisions/2",
+        "source_evidence": [
+          "BOTTLENECK",
+          "OPERATING",
+          "P01",
+          "P00_SCOPE",
+          "READING"
+        ]
+      },
+      "EXACT_CORRECTION": "Bound exact five-path CSV correction WP, before/after/protected/fixture raw pins, original literal fixture pointers, commands/output/correction/cost/stops. Historical reports/map remain immutable.",
+      "CHANGED_FILES": [
+        "docs/program/decisions/P00-bounded-correction.v1.json",
+        "automation/platform/source_reading_obligations.csv-a.delta.v1.json",
+        "scripts/p00_review_fix.py",
+        "tests/platform/test_p00_review_fix.py"
+      ],
+      "TEST_EVIDENCE": "docs/program/checkpoints/P00-bounded-correction.tests.v1.json",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Finish full platform regression with bounded Windows-safe temp path and preserve results; no parser/HTTP implementation under this WP.",
+      "STATUS": "CANDIDATE_ONLY_NOT_ACCEPTED",
+      "RESPONSIBLE_ROLE": "Architect/WORK; separate Owner grant; independent correction reviewer",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/10",
+        "verdict": "PASS_WITH_CONDITIONS",
+        "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+        "formal_finding_state": "CANDIDATE_ONLY_NOT_ACCEPTED"
+      }
+    },
+    {
+      "FINDING_ID": "CSV-FIXTURE-01",
+      "ORIGINAL_EVIDENCE": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/csv-review.json",
+        "pointer": "/major_decisions/3",
+        "source_evidence": [
+          "BOTTLENECK",
+          "IO",
+          "GENERATOR",
+          "QUALITY",
+          "FIXTURE_SOURCE",
+          "VALIDATION"
+        ]
+      },
+      "EXACT_CORRECTION": "Adopt source-bound reviewer literal TEN/NINE/Q01 specs; optional-empty remains positive null != zero, metadata5m distinct, separate single faults.",
+      "CHANGED_FILES": [
+        "docs/program/decisions/P00-bounded-correction.v1.json"
+      ],
+      "TEST_EVIDENCE": "docs/program/checkpoints/P00-bounded-correction.tests.v1.json",
+      "REGRESSION_IMPACT": "Original policies/compiler/intake/history remain unchanged; source01 adds mandatory negative representation; CSV A rejects nine as explicitly chosen.",
+      "READY_FOR_RE_REVIEW": false,
+      "BLOCKED_REASON": "Run actual boundary tests in separately authorized P01/P02/P03 packages; keep current literals/Q01 synthetic status.",
+      "STATUS": "QUALIFICATION_PENDING",
+      "RESPONSIBLE_ROLE": "Architect for spec; P01/P02 executor for actual tests",
+      "INDEPENDENT_RE_REVIEW": {
+        "report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+        "raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+        "pointer": "/findings/11",
+        "verdict": "PASS_WITH_CONDITIONS",
+        "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+        "formal_finding_state": "QUALIFICATION_PENDING"
+      }
+    }
+  ],
+  "independent_re_review": "COMPLETED_PASS_WITH_CONDITIONS_NOT_ACCEPTANCE",
+  "P00_ACCEPTED_WORKSTREAMS": "0/8"
+}

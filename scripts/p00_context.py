@@ -132,8 +132,12 @@ def resolve(root, request):
     policies = manifest.get("policies")
     if not isinstance(policies, dict) or not policies:
         raise ContextError("MISSING_MACHINE_POLICIES")
+    negative_binding = manifest.get("negative_assertions")
+    if not isinstance(negative_binding, dict) or negative_binding.get("active") is not True:
+        raise ContextError("MISSING_ACTIVE_NEGATIVE_ASSERTIONS_BINDING")
+    current_bindings = [*policies.values(), negative_binding]
     forbidden = []
-    for binding in policies.values():
+    for binding in current_bindings:
         path = safe_path(binding["path"])
         if binding.get("active") is True:
             actual = snapshot.read(path)[1]
@@ -147,7 +151,7 @@ def resolve(root, request):
         raise ContextError("CURRENT_STALE_CONTEXT_CONTRADICTION")
     # 候選 specification 可變；operational authority pointers 必須維持施工 baseline 的 exact bytes。
     for path in set(policy["required"]) | {MASTER_MANIFEST} | {
-        binding["path"] for binding in policies.values() if binding.get("active") is True
+        binding["path"] for binding in current_bindings if binding.get("active") is True
     }:
         if snapshot.read(path)[1]["git_blob"] != source.read(path)[1]["git_blob"]:
             raise ContextError(f"OPERATIONAL_SOURCE_BASELINE_DRIFT: {path}")

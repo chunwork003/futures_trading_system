@@ -1,0 +1,41 @@
+{
+  "schema_version": "p00.csv_source_obligation_delta.v1",
+  "status": "HUMAN_A_SELECTED_CANDIDATE_INTEGRATION_PENDING_RE_REVIEW_NOT_READING_QUALIFIED",
+  "predecessor": {
+    "path": "automation/platform/source_reading_obligations.v1.json",
+    "baseline_sha": "34925695b83b4bc6e38af800ab5044079d37be7f",
+    "git_blob": "e86553fc1a74ad502c84371ab104ce9a9b8de5d0",
+    "sha256": "2dc8894a6cfdb7641a5c5385c7ba1a6f2e4792384e5d837e5bdfa07022d7f387"
+  },
+  "historical_finding": "R06-SOURCE-02",
+  "review_subject": "34925695b83b4bc6e38af800ab5044079d37be7f",
+  "decision": "docs/program/decisions/P00-bounded-correction.v1.json#/OWNER_DECISION_MATRIX/0",
+  "affected_source_before": {
+    "path": "docs/architecture/V1_API_ARCHITECTURE.md",
+    "baseline_sha": "34925695b83b4bc6e38af800ab5044079d37be7f",
+    "git_blob": "4d58efbe196b1816d78c75f4987f4564c91bb393",
+    "sha256": "6d971015ebba0fbdece974c6788cdb5f8178c709e83a377fc93ac8636e86ee12"
+  },
+  "affected_source_after_normalized_lf_sha256": "54c6a2f344f0713628fe39bd0d3320ee284f1f19053fe6802952c8b65486daab",
+  "affected_obligation_ids": [
+    "COMMON-RECEIPT",
+    "COMMON-ERROR",
+    "COMMON-SHAPE",
+    "COMMON-SYSTEM-AUTH",
+    "P01-FRAME",
+    "P01-CSV",
+    "P01-REF",
+    "P01-FILE",
+    "P02-WORKLOAD"
+  ],
+  "preserved_source_units": [
+    "section:094e3ed80ceff0db6b48",
+    "section:be483ef64908dea198a7"
+  ],
+  "semantic_delta": "API CSV paragraph now same ten-column CSV_V1/at-most-one-leading-BOM as IO; historical source-map findings remain immutable, not current adoption authority.",
+  "full_source_fallback": true,
+  "negative_assertions": "All original 13 negative assertions/7 invariants retained; no gate/receipt/acceptance promotion.",
+  "actual_reading_verified": false,
+  "compiler_gate_changed": false,
+  "implementation": "P01/P02_NOT_AUTHORIZED"
+}

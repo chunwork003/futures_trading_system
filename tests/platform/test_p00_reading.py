@@ -166,8 +166,12 @@ def test_bound_source_reconstruction_rejects_forged_and_stale_claims(repository)
     first = reading.inspect_bound(root, request, consumer, [], request["baseline_sha"])
     plan = first["plan"]
     assert plan["source_validation"] == "REGENERATED_EXACT_SOURCE_REVIEW_NOT_ASSERTED"
-    assert plan["governance_source_coverage"]["status"] == "UNREPRESENTED_DECLARED_GOVERNANCE_SOURCES"
-    assert plan["governance_source_coverage"]["unrepresented_sources"][0]["path"] == negative_path
+    assert plan["governance_source_coverage"]["status"] == "DECLARED_BINDINGS_REPRESENTED_NOT_QUALIFIED"
+    assert plan["governance_source_coverage"]["unrepresented_sources"] == []
+    assert any(o["source"]["path"] == negative_path for o in plan["obligations"])
+    assert plan["governance_source_coverage"]["semantic_completeness"] == "NOT_ASSERTED"
+    assert first["audit"]["actual_reading_verified"] is False
+    assert first["audit"]["current_intake_complete"] is False
     assert first["audit"]["missing"]
     assert first["carrier_metrics"]["compiler_gate_changed"] is False
     claim = {"schema_version": "p00.reading_claim.v1", "status": "CLAIM_ONLY", "consumer": consumer,

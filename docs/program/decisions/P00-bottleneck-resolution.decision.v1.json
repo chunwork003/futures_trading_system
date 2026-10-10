@@ -475,15 +475,32 @@
     "bounded_amendment": [
       {
         "target": "docs/work/P00_BASELINE.md:44-52",
-        "replacement_clause": "P00 architecture review assesses the frozen Owner requirement/source universe, required design contracts and explicit exceptions. It does not require future product/runtime or A2/A3 operational conformance. Design acceptance, tool qualification, execution readiness and controller promotion remain separate evidence axes. R01-R08 are not closed by this clause; each requires an independently reviewed scope/evidence disposition and Owner materialization. No denominator/weight change."
+        "operation": "APPEND_CLARIFICATION_ONLY",
+        "preserve_original_verbatim": true,
+        "proposed_additional_clause": "All original clauses remain required and unchanged. No source-universe freeze or exception takes effect before exact Human Owner decision and independent review. Design review may assess candidate contracts separately from later runtime evidence; this ordering grants no acceptance, qualification or execution. Unknown/public semantics remain blockers for affected packages. Original aggregate128KiB gate remains unchanged.",
+        "exception_ids": [],
+        "status": "OWNER_DECISION_REQUIRED_NOT_ENACTED"
       },
       {
         "target": "docs/program/HISTORICAL_REQUIREMENTS.md:49-55",
-        "replacement_clause": "Freeze the declared 22-source universe and the existing eight-source supplemental bridge for this bounded P00 review, preserve accepted predecessor authority and all pending source gaps as explicitly reviewed exceptions. Additional historical evidence becomes a scope-change/contradiction trigger, not an unbounded requirement to discover every past request before any design review. UNKNOWN remains UNKNOWN. Measured throughput/ETA and trusted progress producer qualification are later A2/D4/D5 execution gates; their contracts and negative tests remain P00 design obligations."
+        "operation": "APPEND_CLARIFICATION_ONLY",
+        "preserve_original_verbatim": true,
+        "proposed_additional_clause": "All original clauses remain required and unchanged. No source-universe freeze or exception takes effect before exact Human Owner decision and independent review. Design review may assess candidate contracts separately from later runtime evidence; this ordering grants no acceptance, qualification or execution. Unknown/public semantics remain blockers for affected packages. Original aggregate128KiB gate remains unchanged.",
+        "exception_ids": [
+          "EX-HIST-UNIVERSE",
+          "EX-R05-MEASURED"
+        ],
+        "status": "OWNER_DECISION_REQUIRED_NOT_ENACTED"
       },
       {
         "target": "automation/platform/CONTEXT_READING_RECEIPTS.md:55-61",
-        "replacement_clause": "RQ01/RQ02 and the V2 architecture/coverage counterexamples may be independently reviewed before A2 backend exists. RQ03/RQ04 still block operational use of trusted receipts or a qualified effects-bearing invocation. No-effects design review does not discharge them. RQ05 successor definition requires formal review and Owner enactment; RQ06 resolver/compiler gate migration requires exact authorization and qualification for the specific invocation profile. V1 aggregate gate remains unchanged until that successor becomes effective."
+        "operation": "APPEND_CLARIFICATION_ONLY",
+        "preserve_original_verbatim": true,
+        "proposed_additional_clause": "All original clauses remain required and unchanged. No source-universe freeze or exception takes effect before exact Human Owner decision and independent review. Design review may assess candidate contracts separately from later runtime evidence; this ordering grants no acceptance, qualification or execution. Unknown/public semantics remain blockers for affected packages. Original aggregate128KiB gate remains unchanged.",
+        "exception_ids": [
+          "EX-RQ-DESIGN-ORDER"
+        ],
+        "status": "OWNER_DECISION_REQUIRED_NOT_ENACTED"
       }
     ],
     "no_more_expansion": [
@@ -532,7 +549,8 @@
         "review_now": "Owner requirement/sourcecoverage andclosureboundarydecision only",
         "not_claimed": "finalacceptancewhilepublicsemantics/reviewpending"
       }
-    ]
+    ],
+    "exact_exception_registry": "docs/program/decisions/P00-bounded-correction.v1.json#/closure_exceptions"
   },
   "CONTEXT_V2_ARCHITECTURE_DECISION_CANDIDATE": {
     "status": "CANDIDATE_NOT_EFFECTIVE",
@@ -716,7 +734,7 @@
     }
   },
   "CSV_SOURCE_BOUND_DECISION": {
-    "status": "OWNER_AND_INDEPENDENT_REVIEW_REQUIRED_NOT_APPLIED",
+    "status": "HUMAN_SELECTED_A_EXACT_CANDIDATE_PATCH_APPLIED_PENDING_RE_REVIEW",
     "accepted_upstream": {
       "path": "domain/market_observation.py",
       "master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
@@ -737,7 +755,7 @@
       "schema": "ImportMetadata.format const CSV_V1; file description does not resolve header/BOM disagreement",
       "interpretation": "BOM could be intentional stricter HTTP admission but lacks explicit compatibility contract; header conflict cannot be resolved by precedence inference"
     },
-    "recommendation": "A: sole ten-column CSV_V1 atbytes andHTTP boundary,oneleadingBOM allowed;NOT_SELECTED",
+    "recommendation": "A: HUMAN_SELECTED_TEN_COLUMNS_ONE_LEADING_BOM_NO_NINE_CONVERSION",
     "exact_existing_amendment": {
       "path": "docs/architecture/V1_API_ARCHITECTURE.md",
       "patch": "docs/program/decisions/R06-SOURCE-02.option-A.patch",
@@ -853,7 +871,9 @@
         "expected": "IDEMPOTENCY_CONFLICT_ORIGINAL_BYTES"
       }
     ],
-    "fixture_status": "SPECIFICATION_ONLY_NOT_PARSER_OR_RUNTIME_TEST_RESULTS"
+    "fixture_status": "SPECIFICATION_ONLY_NOT_PARSER_OR_RUNTIME_TEST_RESULTS",
+    "owner_decision_binding": "docs/program/decisions/P00-bounded-correction.v1.json#/OWNER_DECISION_MATRIX/0",
+    "eight_decisions_status": "OPTION_B_NOT_SELECTED; HISTORICAL_EIGHT_REQUIREMENTS_PRESERVED_NOT_ADAPTER_AUTHORITY"
   },
   "EXACT_IMPLEMENTATION_WORK_PACKAGES": [
     {
@@ -1186,5 +1206,6 @@
     "https://learn.chatgpt.com/docs/agent-approvals-security",
     "https://git-scm.com/docs/githooks",
     "https://git-scm.com/docs/git-push"
-  ]
+  ],
+  "bounded_correction_successor": "docs/program/decisions/P00-bounded-correction.v1.json"
 }

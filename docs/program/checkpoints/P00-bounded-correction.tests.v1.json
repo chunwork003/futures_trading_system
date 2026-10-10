@@ -1,0 +1,148 @@
+{
+  "schema_version": "p00.bounded_correction_test_evidence.v1",
+  "recorded_at": "2026-10-10T03:24:52.849754+00:00",
+  "original_reviewed_subject": "34925695b83b4bc6e38af800ab5044079d37be7f",
+  "full_platform_tests": {
+    "command": "python -B -m pytest tests/platform -q -p no:cacheprovider --basetemp=D:/00_Learn/量化交易/Code/futures_trading_system/.tmp/p00-cf-final",
+    "result": "539 passed in 389.92s",
+    "exit_code": 0,
+    "fixture": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\08\\01a11dbc-7354-7b93-a393-703f65979a77\\review\\correction-3492569-fixture",
+    "snapshot": "c64c4a5d074285e433582d2eeda4491cb8fca9be",
+    "tool_session_id": 96546,
+    "source_rule": "Final code/API/decision/delta bytes equal root under allowed CRLF transport; original Git ancestry and source_baseline retained.",
+    "not_claimed": "Product/runtime/model/backend conformance or architecture acceptance"
+  },
+  "targeted_tests": {
+    "final_oracle": "15 passed in14.49s",
+    "probe_and_prior_oracle": "20 passed in90.64s",
+    "fresh_reviewer": "15 final oracle;66 SOURCE01 context/reading;11 probe verified, pinned original report"
+  },
+  "failed_attempts_preserved": [
+    {
+      "result": "67 passed/16 setup errors,dirtyHEAD loaded resolver rejected old source",
+      "resolution": "Exact SOURCE01 patch unchanged; verified current bytes in same-world committed fixture, not gate bypass"
+    },
+    {
+      "result": "533 cases:530 passed/3 publication fixture failures",
+      "snapshot": "b72d1f45e2127d4eed757c248362e738c4932834",
+      "cause": "Git range failed to stat: Filename too long (181-char fixture root +82-char RANGE)",
+      "independent_reproduction": "sameobjects ordinaryrev-list rc128; commandlocal core.longpaths=true rc0; no globalconfig change",
+      "resolution": "short absolute basetemp in final run"
+    },
+    {
+      "result": "Wrong fixture sync source directory; interrupted before valid full completion",
+      "resolution": "Explicit root path; separately verified and committed c64 snapshot before final pytest"
+    }
+  ],
+  "tested_source_bindings": [
+    {
+      "path": "scripts/p00_context.py",
+      "tested_git_blob": "2ca90355d7da53dd77879a45d3d21a632bd26fe6",
+      "tested_normalized_lf_sha256": "97cb315a24522ffc71bc099493d1cc2d4bad79bcb3e2e3008bc27f2f8b64cacd",
+      "root_raw_sha256": "6cd6cf534dc62970ad17061492d1a37f6c23cfa9c8975cc6776ce22bbc4d26f3",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    },
+    {
+      "path": "scripts/p00_reading_eval.py",
+      "tested_git_blob": "4d465be2a5590870ce507334ab3a76c7cbe64738",
+      "tested_normalized_lf_sha256": "731f2c2624ab65905214d6140bfb32b7d203a547917c70edee4c7a0672762913",
+      "root_raw_sha256": "be1b2a51e1ae31166dd536acea20570a93d209a0ddf5f913fe046c431a5810da",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    },
+    {
+      "path": "scripts/p00_review_fix.py",
+      "tested_git_blob": "dad102d85116875a96672e36a27c54bf7736ad51",
+      "tested_normalized_lf_sha256": "65cdd19e19cb2fd357dc3c242b7bd2b758c473f2079f691801c355be9098886f",
+      "root_raw_sha256": "21a00b741b656919b50f881fccb0c2c15a87c59e4079469fa49d7ce3da5c2bcc",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    },
+    {
+      "path": "tests/platform/test_p00_context.py",
+      "tested_git_blob": "b1d671296e78e9d7b10dbdf121dcf08deb1b6716",
+      "tested_normalized_lf_sha256": "82707bab08cbe12f19a95e6942a4ed79d178fa592e7ca56154411862a7700051",
+      "root_raw_sha256": "4f1de8dc6f0a4e53cd40bbbcbd598ae9403a5391dc9860136430eae3c6bfd443",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    },
+    {
+      "path": "tests/platform/test_p00_context_v2_probe.py",
+      "tested_git_blob": "368f8f7cc4b51df98370ba4a9c5fea7b30c6bf14",
+      "tested_normalized_lf_sha256": "9c4504dddebda07eb9eabdb46d14a4b3f6f0a28fea33f2991c3adcde062da633",
+      "root_raw_sha256": "878e057c997fe74550bd0fcdb30225be3c5751d60e2e466c05eb26cef65f0852",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    },
+    {
+      "path": "tests/platform/test_p00_reading.py",
+      "tested_git_blob": "c7fb286a0199fd0fc93f44f8e039d621d10d3692",
+      "tested_normalized_lf_sha256": "96d0ac79b65835d8783182618cd40260ecf49015aee144aea04f0d9267ad314e",
+      "root_raw_sha256": "f3c95cc9c6b229b641d1228657886d7866051825b52d83c66b0e2d16b65cedfc",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    },
+    {
+      "path": "tests/platform/test_p00_reading_eval.py",
+      "tested_git_blob": "b215ceda41c856442cd6aadf87b947f5a920bb38",
+      "tested_normalized_lf_sha256": "56e8103083a71fe9fceb93745a0ee778c0099e740aade1a86fa77528cde6f5c6",
+      "root_raw_sha256": "4306a2fa14eb238b94e541612a710ba3d35f00e3aa2260e88d50d22f9deed9c7",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    },
+    {
+      "path": "tests/platform/test_p00_review_fix.py",
+      "tested_git_blob": "030fbe205fdd66db6eba100e4d41305c87ede1df",
+      "tested_normalized_lf_sha256": "037a7b0bea0e82dd95d630708d3fa253be1e9f3a8c484fe719cd998c8b46033e",
+      "root_raw_sha256": "b95e202647d0d4d7c26edc3b259447825f500d2839f6f1d8717a484a8d4600c6",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    },
+    {
+      "path": "docs/architecture/V1_API_ARCHITECTURE.md",
+      "tested_git_blob": "d4172ee4062f7062af03cc8f169c7d25c5c40fc8",
+      "tested_normalized_lf_sha256": "54c6a2f344f0713628fe39bd0d3320ee284f1f19053fe6802952c8b65486daab",
+      "root_raw_sha256": "d61d1bc9d78a99cb76f30d23a50d1a22078bf9b0a6ac0f756f17d9c669aa42a8",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    },
+    {
+      "path": "docs/program/decisions/P00-bounded-correction.v1.json",
+      "tested_git_blob": "25eb3701e1f5ab788ab95b78d1bb96ac1c46958b",
+      "tested_normalized_lf_sha256": "1a8193beb0f7f6ef9a2770a8c5b0f3e50e894e375896ac4a990fabae6f9223e1",
+      "root_raw_sha256": "759f751e26603b72e9727fba9221a16b8b34c2f1aaed9b934f166ae4f9fc1a15",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    },
+    {
+      "path": "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json",
+      "tested_git_blob": "deb80010ef82c791307ea916eb18a5a8e8438474",
+      "tested_normalized_lf_sha256": "1bb4e40efefcb5dd5ca84fcba7cf4ec2d344f7444c16bae8aa7f95b7a68c944e",
+      "root_raw_sha256": "41955ec220936bbe92c1b7f6cc32f55b470acab6fc8a4f579ea68b2e6a8bfa9e",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    },
+    {
+      "path": "automation/platform/source_reading_obligations.csv-a.delta.v1.json",
+      "tested_git_blob": "519615d3759aa74b833f0d165c3c58ce7d3bb38a",
+      "tested_normalized_lf_sha256": "17498bf8b16d070a019fad7dc7573326077e8c1911574885911b737c3ca7866d",
+      "root_raw_sha256": "b7543c020e71311bf0efc967fc1ecdd02a2cc0a0b9ab9b0fd52a1cbe0ce2781e",
+      "match": "EXACT_EXCEPT_CRLF_TRANSPORT"
+    }
+  ],
+  "post_test_metadata_only": [
+    "Permanent reviewer copy/hash transport binding",
+    "Finding ledger and publication receipt",
+    "p00_status added continuation/review pointers; unchanged workstream counts/authority/weights",
+    "This evidence file"
+  ],
+  "generated_contract_check": "P00_CONTRACT_GENERATION_CHECK_PASS",
+  "baseline_consistency": {
+    "command": "python -B scripts/p00_progress.py docs/program/program_baseline.v1.json",
+    "provisional_weight": 127,
+    "credit": 0,
+    "release_journeys": "0/6",
+    "packages": 13,
+    "authority": "NONE",
+    "execution_eligible": false
+  },
+  "diff_check": "PASS",
+  "protected_scope": "NO_PRODUCT_DATA_ACCEPTED_POLICY_ENGINE_MASTER_DELTA",
+  "fresh_reviewer_report": "docs/program/reviews/P00-bottleneck-3492569/correction-review.v1.json",
+  "reviewer_report_raw_sha256": "97d36b0464f5c3a340c468ea36fc6d1d8733fcfabb6755fdf7446eb2d4b3a317",
+  "reviewer_full_test_condition": "Final short-path regression completed after original reviewer report; original report bytes unchanged",
+  "reading_qualification": false,
+  "trusted_intake": false,
+  "original128KiB_gate": "FAIL_UNCHANGED",
+  "acceptance": false
+}

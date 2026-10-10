@@ -1,0 +1,769 @@
+{
+  "schema_version": "p00.fresh_independent_bounded_correction_review.v1",
+  "reviewer_role": "FRESH_ISOLATED_INDEPENDENT_REVIEWER",
+  "recorded_at": "2026-10-10T03:18:30.965698+00:00",
+  "review_subject": "34925695b83b4bc6e38af800ab5044079d37be7f",
+  "authoritative_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "remote_refs_independently_verified": {
+    "candidate": "34925695b83b4bc6e38af800ab5044079d37be7f",
+    "master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f"
+  },
+  "stale_local_master_not_authority": "b36e9bc253a13a3a361b3861e607455658df524b",
+  "narrow_correction_verdict": "PASS_WITH_CONDITIONS",
+  "remaining_formal_findings_verdict": "REVIEW_FIX_REQUIRED",
+  "acceptance": false,
+  "execution_authority": false,
+  "standing_grant": false,
+  "closure_exceptions_effective": false,
+  "product_or_runtime_grant": false,
+  "independence": {
+    "candidate_writes": false,
+    "accepted_authority_writes": false,
+    "commit": false,
+    "push": false,
+    "data_read": false,
+    "author_PASS_used_as_reviewer_proof": false,
+    "only_report_write": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\08\\01a11dbc-7354-7b93-a393-703f65979a77\\review\\P00-3492569.correction-review.v1.json"
+  },
+  "scope": "Actual bounded corrections only; no repeat full baseline architecture review. All12 original findings assessed against exact original reports and final source hashes.",
+  "findings": [
+    {
+      "finding_id": "GOV-F01",
+      "verdict": "PASS_WITH_CONDITIONS",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/governance-review.json",
+        "sha256": "74c3517c9634060614564723741c3af9f87e106471db8ab2e283fcb109aa7e02",
+        "pointer": "/findings/0"
+      },
+      "exact_original_source_refs": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:475-487",
+        "docs/work/P00_BASELINE.md:44-52",
+        "docs/program/P00_OWNER_REQUEST.md:174-180",
+        "docs/program/HISTORICAL_REQUIREMENTS.md:49-55"
+      ],
+      "corrected_source_hash_refs": {
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json": "41955ec220936bbe92c1b7f6cc32f55b470acab6fc8a4f579ea68b2e6a8bfa9e",
+        "docs/program/decisions/P00-bottleneck-resolution.md": "ba44877786d9514971aebe0328864e9f957425ef6f0f9c29dc915725993efa6d",
+        "docs/program/decisions/P00-bounded-correction.v1.json": "759f751e26603b72e9727fba9221a16b8b34c2f1aaed9b934f166ae4f9fc1a15",
+        "scripts/p00_review_fix.py": "21a00b741b656919b50f881fccb0c2c15a87c59e4079469fa49d7ce3da5c2bcc",
+        "tests/platform/test_p00_review_fix.py": "b95e202647d0d4d7c26edc3b259447825f500d2839f6f1d8717a484a8d4600c6"
+      },
+      "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+      "formal_finding_state": "OWNER_DECISION_REQUIRED",
+      "assessment": "APPEND_CLARIFICATION_ONLY replaces the candidate replacement operation. All seven original acceptance predicates, exact historical/RQ sources and 22+8 reference bytes survive. Three clause-bound exceptions have reason/responsible role/packages/closure/contradiction STOP and remain PROPOSED_NOT_EFFECTIVE. Candidate preservation defect is closed; original formal closure finding remains Owner-pending.",
+      "required_next_action": "Human Owner decides exact EX-HIST-UNIVERSE/EX-R05-MEASURED/EX-RQ-DESIGN-ORDER and bounded source universe; independent scope/coverage/weight review before any P00 closure.",
+      "responsible_role": "Architect 修精確 successor；Owner 決定 scope/exception；Reviewer 核對 preservation"
+    },
+    {
+      "finding_id": "GOV-F02",
+      "verdict": "REVIEW_FIX_REQUIRED",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/governance-review.json",
+        "sha256": "74c3517c9634060614564723741c3af9f87e106471db8ab2e283fcb109aa7e02",
+        "pointer": "/findings/1"
+      },
+      "exact_original_source_refs": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:686-697",
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:991-1006",
+        "automation/engine/orchestration.py:199-235"
+      ],
+      "corrected_source_hash_refs": {},
+      "candidate_defect_status": "UNCHANGED_OPEN",
+      "formal_finding_state": "REVIEW_FIX_REQUIRED",
+      "assessment": "No correction attempted. In-flight effect cutoff, trusted reservation/fence/revoke ordering and race/crash proof remain undefined. Ordinary exact Human publication does not grant standing authority.",
+      "required_next_action": "Governance/WORK/Publisher owners define effect-cutoff state and race matrix under exact new scope, or explicitly defer standing lane; independently qualify before activation.",
+      "responsible_role": "Governance Architect、WORK store owner、Publisher implementer；Owner 決定在途撤銷語意"
+    },
+    {
+      "finding_id": "GOV-F03",
+      "verdict": "REVIEW_FIX_REQUIRED",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/governance-review.json",
+        "sha256": "74c3517c9634060614564723741c3af9f87e106471db8ab2e283fcb109aa7e02",
+        "pointer": "/findings/2"
+      },
+      "exact_original_source_refs": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:673-690",
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:957-978",
+        "scripts/p00_publication.py:74-93"
+      ],
+      "corrected_source_hash_refs": {},
+      "candidate_defect_status": "UNCHANGED_OPEN",
+      "formal_finding_state": "REVIEW_FIX_REQUIRED",
+      "assessment": "No correction attempted. Effective authority integration, master synchronization/rebind and separate one-time grant remain absent; old payload pins cannot authorize future master drift.",
+      "required_next_action": "Owner separately grants exact policy integration/synchronization/rebind only after reviewed contract and new baseline pins; no reuse of consumed grants.",
+      "responsible_role": "Governance Architect、Integrator 提案；Owner exact integration/rebind authority；WORK fresh re-entry"
+    },
+    {
+      "finding_id": "GOV-F04",
+      "verdict": "REVIEW_FIX_REQUIRED",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/governance-review.json",
+        "sha256": "74c3517c9634060614564723741c3af9f87e106471db8ab2e283fcb109aa7e02",
+        "pointer": "/findings/3"
+      },
+      "exact_original_source_refs": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:664-715",
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:957-1008",
+        "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md:7-27",
+        "automation/engine/contracts.py:113-131",
+        "automation/engine/orchestration.py:154-235"
+      ],
+      "corrected_source_hash_refs": {},
+      "candidate_defect_status": "UNCHANGED_OPEN",
+      "formal_finding_state": "REVIEW_FIX_REQUIRED",
+      "assessment": "No correction attempted. Canonical store/CAS/action/ledger/current/revoke/STOP and trusted hook/scanner/setup inventory remain incomplete. Standing activation remains blocked; explicit future defer is an available Owner disposition.",
+      "required_next_action": "Specify bounded canonical store/action/setup inventory and exact grants, or explicitly defer standing lane until qualified; no activation now.",
+      "responsible_role": "WORK control-plane owner、Governance Architect 完成design/scope；Owner protected/setup grant；Publisher implementer"
+    },
+    {
+      "finding_id": "CTX-01",
+      "verdict": "PASS_WITH_CONDITIONS",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/context-review.json",
+        "sha256": "7ab262bef2aba4113e28fcf625a082e3567665bf98a0fa894baf5444108da850",
+        "pointer": "/conditions/0"
+      },
+      "exact_original_source_refs": [
+        "scripts/p00_context.py:126-153",
+        "automation/platform/context_reading_contract.v1.json:83-93",
+        "docs/program/decisions/R06-SOURCE-01.compatibility-candidate.patch:3-36"
+      ],
+      "corrected_source_hash_refs": {
+        "scripts/p00_context.py": "6cd6cf534dc62970ad17061492d1a37f6c23cfa9c8975cc6776ce22bbc4d26f3",
+        "scripts/p00_reading_eval.py": "be1b2a51e1ae31166dd536acea20570a93d209a0ddf5f913fe046c431a5810da",
+        "tests/platform/test_p00_context.py": "4f1de8dc6f0a4e53cd40bbbcbd598ae9403a5391dc9860136430eae3c6bfd443",
+        "tests/platform/test_p00_reading.py": "f3c95cc9c6b229b641d1228657886d7866051825b52d83c66b0e2d16b65cedfc",
+        "tests/platform/test_p00_reading_eval.py": "4306a2fa14eb238b94e541612a710ba3d35f00e3aa2260e88d50d22f9deed9c7",
+        "tests/platform/test_p00_context_v2_probe.py": "878e057c997fe74550bd0fcdb30225be3c5751d60e2e466c05eb26cef65f0852",
+        "docs/program/decisions/P00-bounded-correction.v1.json": "759f751e26603b72e9727fba9221a16b8b34c2f1aaed9b934f166ae4f9fc1a15"
+      },
+      "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+      "formal_finding_state": "QUALIFICATION_PENDING",
+      "assessment": "Exact original five-file patch reconstructed independently and equals current bytes except CRLF transport. Active negative assertion path/hash/source-baseline inclusion and represented-not-qualified branch are tested. Same-snapshot isolated probe fixture retains original349 ancestry and unchanged loaded-tool gate. The omission defect is closed; whole integration regression and operational qualification remain separate gates.",
+      "required_next_action": "Complete required short-path full platform regression on final isolated committed snapshot, then preserve exact before/after integration evidence. Keep V2/compiler activation and actual reading qualification separately gated.",
+      "responsible_role": "Owner exact grant; bounded Integrator/CODEX; WORK source/lineage check"
+    },
+    {
+      "finding_id": "CTX-02",
+      "verdict": "OWNER_DECISION_REQUIRED",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/context-review.json",
+        "sha256": "7ab262bef2aba4113e28fcf625a082e3567665bf98a0fa894baf5444108da850",
+        "pointer": "/conditions/1"
+      },
+      "exact_original_source_refs": [
+        "scripts/p00_context_v2_probe.py:90-106",
+        "scripts/p00_context_v2_probe.py:157-164",
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:540-555",
+        "automation/platform/SOURCE_READING_OBLIGATIONS.md:9-11"
+      ],
+      "corrected_source_hash_refs": {},
+      "candidate_defect_status": "UNCHANGED_OPEN",
+      "formal_finding_state": "OWNER_DECISION_REQUIRED",
+      "assessment": "Inactive prototype retains disclosed selected-obligation limitation. Every mandatory source unit/reverse dependency and independently justified exclusion is not yet classified; complete-graph/adoption claims remain blocked.",
+      "required_next_action": "Complete source-unit/reverse-ref disposition and independent intended-profile coverage review; UNKNOWN requires full-source fallback or STOP. Owner enactment remains separate.",
+      "responsible_role": "Architect coverage; independent semantic Reviewer; Owner enactment"
+    },
+    {
+      "finding_id": "CTX-03",
+      "verdict": "OWNER_DECISION_REQUIRED",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/context-review.json",
+        "sha256": "7ab262bef2aba4113e28fcf625a082e3567665bf98a0fa894baf5444108da850",
+        "pointer": "/conditions/2"
+      },
+      "exact_original_source_refs": [
+        "scripts/p00_context_v2_probe.py:118-164",
+        "automation/platform/CONTEXT_READING_RECEIPTS.md:39-43",
+        "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md:31-39",
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:644-645"
+      ],
+      "corrected_source_hash_refs": {},
+      "candidate_defect_status": "UNCHANGED_OPEN",
+      "formal_finding_state": "OWNER_DECISION_REQUIRED",
+      "assessment": "No actual profile-specific injection/context-retention/trusted epoch or durable reading evidence supplied. Offline caller STOP and projection hashes are not actual authority/currentness or operational qualification.",
+      "required_next_action": "Obtain exact successor/profile decision and real injection/context-loss/continuity evidence before operational use; no effects-profile readiness from offline checks.",
+      "responsible_role": "Owner; existing WORK gate; independent tool qualification Reviewer"
+    },
+    {
+      "finding_id": "CTX-04",
+      "verdict": "PASS_WITH_CONDITIONS",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/context-review.json",
+        "sha256": "7ab262bef2aba4113e28fcf625a082e3567665bf98a0fa894baf5444108da850",
+        "pointer": "/conditions/3"
+      },
+      "exact_original_source_refs": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:475-487",
+        "docs/work/P00_BASELINE.md:44-52",
+        "automation/platform/CONTEXT_READING_RECEIPTS.md:57-61"
+      ],
+      "corrected_source_hash_refs": {
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json": "41955ec220936bbe92c1b7f6cc32f55b470acab6fc8a4f579ea68b2e6a8bfa9e",
+        "docs/program/decisions/P00-bounded-correction.v1.json": "759f751e26603b72e9727fba9221a16b8b34c2f1aaed9b934f166ae4f9fc1a15",
+        "scripts/p00_review_fix.py": "21a00b741b656919b50f881fccb0c2c15a87c59e4079469fa49d7ce3da5c2bcc",
+        "tests/platform/test_p00_review_fix.py": "b95e202647d0d4d7c26edc3b259447825f500d2839f6f1d8717a484a8d4600c6"
+      },
+      "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+      "formal_finding_state": "OWNER_DECISION_REQUIRED",
+      "assessment": "Additive candidate amendment preserves original acceptance, historical/RQ/PACKAGE_READING and aggregate128KiB semantics. No exception is effective and R01-R08 remain0/8. Candidate replacement ambiguity is closed; enactment remains Owner-pending.",
+      "required_next_action": "Owner must expressly enact any exact exception/successor; until then original gates/predicates apply without waiver.",
+      "responsible_role": "Owner/Architect bounded amendment; independent governance review"
+    },
+    {
+      "finding_id": "CSV-CONFLICT",
+      "verdict": "PASS",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/csv-review.json",
+        "sha256": "1d8c59c1de84957d81e012efeff2bb2929fcbb0d9ff9f27b5d965e24e89703fe",
+        "pointer": "/major_decisions/0"
+      },
+      "exact_original_source_refs": [
+        "docs/architecture/V1_API_ARCHITECTURE.md:3,7-17,37-39,53",
+        "docs/architecture/V1_DATASET_IDENTITY_IO.md:3,7-29,37-44,48-64",
+        "domain/market_observation.py@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f:37-97,100-119,246-313,354-367,506-527,549-614",
+        "docs/program/decisions/R06-SOURCE-02.decision-candidate.v1.json:15-94,95-203,209-227",
+        "automation/platform/SOURCE_READING_OBLIGATIONS.md:9-11,23-40,99-105; automation/platform/source_reading_obligations.v1.json:5671-5679,8451-8472"
+      ],
+      "corrected_source_hash_refs": {
+        "docs/architecture/V1_API_ARCHITECTURE.md": "d61d1bc9d78a99cb76f30d23a50d1a22078bf9b0a6ac0f756f17d9c669aa42a8",
+        "docs/program/decisions/P00-bounded-correction.v1.json": "759f751e26603b72e9727fba9221a16b8b34c2f1aaed9b934f166ae4f9fc1a15",
+        "automation/platform/source_reading_obligations.csv-a.delta.v1.json": "b7543c020e71311bf0efc967fc1ecdd02a2cc0a0b9ab9b0fd52a1cbe0ce2781e"
+      },
+      "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+      "formal_finding_state": "CANDIDATE_ONLY_NOT_ACCEPTED",
+      "assessment": "Direct Human A choice as supplied in the reviewer task explicitly covers ten-column CSV_V1, at-most-one file-start BOM, rejection of nine columns/no implicit conversion and compatibility cost. Only original exact one-paragraph OptionA patch is integrated. Conflict is resolved for this candidate; P00 acceptance/product grant is absent.",
+      "required_next_action": "Preserve this exact candidate amendment and consumer UNKNOWN evidence; affected P01/P02 compilation/implementation requires accepted baseline and separate grant.",
+      "responsible_role": "Owner/Architect"
+    },
+    {
+      "finding_id": "CSV-PRESERVATION",
+      "verdict": "PASS",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/csv-review.json",
+        "sha256": "1d8c59c1de84957d81e012efeff2bb2929fcbb0d9ff9f27b5d965e24e89703fe",
+        "pointer": "/major_decisions/1"
+      },
+      "exact_original_source_refs": [
+        "docs/program/decisions/R06-SOURCE-02.option-A.patch:7-8",
+        "docs/architecture/V1_API_ARCHITECTURE.md:3,7-17,37-39,53",
+        "docs/architecture/V1_DATASET_IDENTITY_IO.md:3,7-29,37-44,48-64",
+        "scripts/p00_build_contracts.py:35-54,161-165,206-211,388-391,404-420,492-524",
+        "domain/market_observation.py@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f:37-97,100-119,246-313,354-367,506-527,549-614",
+        "ingestion/metadata.py:6-16"
+      ],
+      "corrected_source_hash_refs": {},
+      "candidate_defect_status": "ORIGINAL_PASS_RETAINED",
+      "formal_finding_state": "CANDIDATE_ONLY_NOT_ACCEPTED",
+      "assessment": "Exact OptionA patch reconstruction proves all bytes outside its one paragraph unchanged. All security/transport/raw hash/retry/admission/cancel/lineage/accepted canonical adapter semantics are retained. Generator --check independently passes; no mor1/domain or generated-contract delta.",
+      "required_next_action": "Preserve original SOURCE02 reports/map byte-exact and these approved patch pins; future integration rechecks exact bytes.",
+      "responsible_role": "Integrator/Reviewer"
+    },
+    {
+      "finding_id": "CSV-WP-01",
+      "verdict": "PASS_WITH_CONDITIONS",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/csv-review.json",
+        "sha256": "1d8c59c1de84957d81e012efeff2bb2929fcbb0d9ff9f27b5d965e24e89703fe",
+        "pointer": "/major_decisions/2"
+      },
+      "exact_original_source_refs": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:453-473,718-856,1011-1032",
+        "automation/platform/OPERATING_MODEL.md:5-7,22,28-38",
+        "docs/program/packages/P01.candidate.v1.json:23-47,65-72,84-112,119-130",
+        "docs/work/P00_BASELINE.md:10-12,29-32,41,44-52",
+        "automation/platform/SOURCE_READING_OBLIGATIONS.md:9-11,23-40,99-105; automation/platform/source_reading_obligations.v1.json:5671-5679,8451-8472"
+      ],
+      "corrected_source_hash_refs": {
+        "docs/program/decisions/P00-bounded-correction.v1.json": "759f751e26603b72e9727fba9221a16b8b34c2f1aaed9b934f166ae4f9fc1a15",
+        "automation/platform/source_reading_obligations.csv-a.delta.v1.json": "b7543c020e71311bf0efc967fc1ecdd02a2cc0a0b9ab9b0fd52a1cbe0ce2781e",
+        "scripts/p00_review_fix.py": "21a00b741b656919b50f881fccb0c2c15a87c59e4079469fa49d7ce3da5c2bcc",
+        "tests/platform/test_p00_review_fix.py": "b95e202647d0d4d7c26edc3b259447825f500d2839f6f1d8717a484a8d4600c6"
+      },
+      "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+      "formal_finding_state": "CANDIDATE_ONLY_NOT_ACCEPTED",
+      "assessment": "Five-path docs/tool WP now binds349 baseline, approved before/after patch, protected/source/fixture pins, original reviewer literals/Q01 pointer values, oracle/commands/outputs/budget/cost/stops. Final executable oracle additionally checks source pins, delta obligations/after hash and literal/Q01/identity hashes; six tamper negatives pass. Candidate package-description defect is closed; full platform regression remains a separate required gate.",
+      "required_next_action": "Finish full platform regression with bounded Windows-safe temp path and preserve results; no parser/HTTP implementation under this WP.",
+      "responsible_role": "Architect/WORK; separate Owner grant; independent correction reviewer"
+    },
+    {
+      "finding_id": "CSV-FIXTURE-01",
+      "verdict": "PASS_WITH_CONDITIONS",
+      "original_report": {
+        "path": "docs/program/reviews/P00-bottleneck-3492569/csv-review.json",
+        "sha256": "1d8c59c1de84957d81e012efeff2bb2929fcbb0d9ff9f27b5d965e24e89703fe",
+        "pointer": "/major_decisions/3"
+      },
+      "exact_original_source_refs": [
+        "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json:453-473,718-856,1011-1032",
+        "docs/architecture/V1_DATASET_IDENTITY_IO.md:3,7-29,37-44,48-64",
+        "scripts/p00_build_contracts.py:35-54,161-165,206-211,388-391,404-420,492-524",
+        "docs/architecture/V1_DATASET_QUALITY.md:7,13,56",
+        "docs/architecture/contracts/dataset_identity.fixture.v1.json:2-24,26-54; docs/architecture/contracts/dataset_quality.fixture.v1.json:2-6,9-63",
+        "docs/program/decisions/R06-SOURCE-02.validation.v1.json:3-12,54-60,74-77"
+      ],
+      "corrected_source_hash_refs": {
+        "docs/program/decisions/P00-bounded-correction.v1.json": "759f751e26603b72e9727fba9221a16b8b34c2f1aaed9b934f166ae4f9fc1a15"
+      },
+      "candidate_defect_status": "CLOSED_BOUNDED_CORRECTION",
+      "formal_finding_state": "QUALIFICATION_PENDING",
+      "assessment": "Original reviewer TEN/NINE literals and exact synthetic Q01/identity source/pointer hashes verified independently. Single-fault negative specifications, optional-empty positive NULL != zero and metadata.coverage.timeframe5m remain correctly classified. This closes specification-binding deficit, not actual P01/P02/P03 parser/upload/crash qualification.",
+      "required_next_action": "Run actual boundary tests in separately authorized P01/P02/P03 packages; keep current literals/Q01 synthetic status.",
+      "responsible_role": "Architect for spec; P01/P02 executor for actual tests"
+    }
+  ],
+  "source_hash_catalog": {
+    "AGENTS.md": {
+      "worktree_raw_sha256": "d9a581261f9e61ccc39224de06fd7be3e918a90069887a91d054d49a9813e664",
+      "worktree_normalized_lf_sha256": "3c1b30cf1b0691b25d454c89e6b0f4bcb5d5985cec696511668ce651cc008bb8",
+      "size_bytes": 22047,
+      "original349_git_blob": "8313abbbb441d91fdca7d892852e6d919e2d76b7",
+      "original349_raw_sha256": "3c1b30cf1b0691b25d454c89e6b0f4bcb5d5985cec696511668ce651cc008bb8",
+      "unchanged_except_crlf": true
+    },
+    "automation/engine/contracts.py": {
+      "worktree_raw_sha256": "bae4e97904662c83945571d62b0dd395cfa5b8525ccfb48486dad9c55ff59937",
+      "worktree_normalized_lf_sha256": "6df2bc18fffe49f0bb725462320aaf8eee40fa24e20743e0faad9f4cb51876af",
+      "size_bytes": 11809,
+      "original349_git_blob": "bc5ed699a1450b61d3d05b75754541d9f6148558",
+      "original349_raw_sha256": "6df2bc18fffe49f0bb725462320aaf8eee40fa24e20743e0faad9f4cb51876af",
+      "unchanged_except_crlf": true
+    },
+    "automation/engine/orchestration.py": {
+      "worktree_raw_sha256": "cc9c83ec5943e0a3eead5d17a77080f38d7fcbca57288eaeab5a550f6ea8aa78",
+      "worktree_normalized_lf_sha256": "df40e284e051bdac13ce77115f175480b076cbdf4f721b864d04203011f6b82d",
+      "size_bytes": 15224,
+      "original349_git_blob": "bca5446ce8057c444fa7f9977361b96b90d6cc4c",
+      "original349_raw_sha256": "df40e284e051bdac13ce77115f175480b076cbdf4f721b864d04203011f6b82d",
+      "unchanged_except_crlf": true
+    },
+    "automation/governance/master_manifest.v1.yaml": {
+      "worktree_raw_sha256": "8e727b9c548895d482939aad8922517fc4427209d3c395f80f463020b3cf08da",
+      "worktree_normalized_lf_sha256": "ad14b19c872f54c1a4110e612a080a8d298f381531d69939b172c3c4f64fe946",
+      "size_bytes": 51427,
+      "original349_git_blob": "89de89c47d23080af8369544a165e199856d2832",
+      "original349_raw_sha256": "ad14b19c872f54c1a4110e612a080a8d298f381531d69939b172c3c4f64fe946",
+      "unchanged_except_crlf": true
+    },
+    "automation/platform/CONTEXT_READING_RECEIPTS.md": {
+      "worktree_raw_sha256": "17be02ccd13d584555c01b9608435bb2334bbd7cd6d37e58370ec45765645fb3",
+      "worktree_normalized_lf_sha256": "9135b54dd6b11dc67cd33fc81be65233098b217b60a40094812109a84867edff",
+      "size_bytes": 7747,
+      "original349_git_blob": "9ddc1e75fbe8e8f4ccb038442558dcfa9aa16ff9",
+      "original349_raw_sha256": "9135b54dd6b11dc67cd33fc81be65233098b217b60a40094812109a84867edff",
+      "unchanged_except_crlf": true
+    },
+    "automation/platform/CURRENT_INTAKE_REGISTRY_CONTRACT.md": {
+      "worktree_raw_sha256": "fd3cbcaa3bcdfb094023dfbdeeef767a25506e65830d957f641e8aef9a6fd00d",
+      "worktree_normalized_lf_sha256": "ac6040282afd02f7e8eee24c5112ccc8578e0d1549413e16f2925a1fba160f5e",
+      "size_bytes": 6197,
+      "original349_git_blob": "0ce3b35e79273161e4504fb5397cdc5ca3cba338",
+      "original349_raw_sha256": "ac6040282afd02f7e8eee24c5112ccc8578e0d1549413e16f2925a1fba160f5e",
+      "unchanged_except_crlf": true
+    },
+    "automation/platform/PACKAGE_READING_OBLIGATIONS.md": {
+      "worktree_raw_sha256": "3083f719ffc052ba2385f554a67a89320596ee5a26a33a448f2e2263dbd2f8cc",
+      "worktree_normalized_lf_sha256": "fe2aff0be3a7fda598a7e6ef52fb517980f396a6cebe5b261579fc2657b4748f",
+      "size_bytes": 3839,
+      "original349_git_blob": "25e510adca96173c9f5f84033394d801c2d226e3",
+      "original349_raw_sha256": "fe2aff0be3a7fda598a7e6ef52fb517980f396a6cebe5b261579fc2657b4748f",
+      "unchanged_except_crlf": true
+    },
+    "automation/platform/SOURCE_READING_OBLIGATIONS.md": {
+      "worktree_raw_sha256": "9ee70f716ea033d827064ad6f316ce70037d9339bd086a8104b7469d6344c2c9",
+      "worktree_normalized_lf_sha256": "2c99319bb90f6a34ee4d0e21ea6a50aaaed8cd86ed5cbc0705425d0d1cd24a00",
+      "size_bytes": 17234,
+      "original349_git_blob": "9a7e753f36b4dacfc392e1df50f2de72524ec00a",
+      "original349_raw_sha256": "2c99319bb90f6a34ee4d0e21ea6a50aaaed8cd86ed5cbc0705425d0d1cd24a00",
+      "unchanged_except_crlf": true
+    },
+    "automation/platform/context_policy.v1.json": {
+      "worktree_raw_sha256": "a30f894700293271051cff628a85e55365b5641593889492e6de47bc2fa7ee12",
+      "worktree_normalized_lf_sha256": "011b11b3fea4b64a2b82cab653df0d4af1e250be71bd91bcb45f67856749f83a",
+      "size_bytes": 8499,
+      "original349_git_blob": "c4e51a81d6c613e187b7e3f9a904995b565785a2",
+      "original349_raw_sha256": "011b11b3fea4b64a2b82cab653df0d4af1e250be71bd91bcb45f67856749f83a",
+      "unchanged_except_crlf": true
+    },
+    "automation/platform/context_reading_contract.v1.json": {
+      "worktree_raw_sha256": "133a7314369ab05b5216490961c0530beb37c1b0a57af34ae3f6fa42523b349f",
+      "worktree_normalized_lf_sha256": "ef62973a419a91df52ceac6a23429ddfa0ea0b239a8f7978109977e0e3b5c476",
+      "size_bytes": 3562,
+      "original349_git_blob": "aa09d1d43107ef9283d99fcc1b8cba864b0afd7f",
+      "original349_raw_sha256": "ef62973a419a91df52ceac6a23429ddfa0ea0b239a8f7978109977e0e3b5c476",
+      "unchanged_except_crlf": true
+    },
+    "automation/platform/source_reading_obligations.csv-a.delta.v1.json": {
+      "worktree_raw_sha256": "b7543c020e71311bf0efc967fc1ecdd02a2cc0a0b9ab9b0fd52a1cbe0ce2781e",
+      "worktree_normalized_lf_sha256": "17498bf8b16d070a019fad7dc7573326077e8c1911574885911b737c3ca7866d",
+      "size_bytes": 1873
+    },
+    "automation/platform/source_reading_obligations.v1.json": {
+      "worktree_raw_sha256": "e420f9b5409705bb6bea473376aa0e78480ff835239cdae13484f961fc1428ca",
+      "worktree_normalized_lf_sha256": "2dc8894a6cfdb7641a5c5385c7ba1a6f2e4792384e5d837e5bdfa07022d7f387",
+      "size_bytes": 418123,
+      "original349_git_blob": "e86553fc1a74ad502c84371ab104ce9a9b8de5d0",
+      "original349_raw_sha256": "2dc8894a6cfdb7641a5c5385c7ba1a6f2e4792384e5d837e5bdfa07022d7f387",
+      "unchanged_except_crlf": true
+    },
+    "docs/CURRENT_STATE.md": {
+      "worktree_raw_sha256": "3f5659a2af902b3804a29fb3b3842e18c62eac0f889d37c1fcacf9f57f2225d9",
+      "worktree_normalized_lf_sha256": "ea58de1edae20f2b32f8a67351cc70316eb6e41ef1ea8a7869aab4ab2f705ea3",
+      "size_bytes": 89697,
+      "original349_git_blob": "159b0253aacca4623b6124e476c4364180a18b63",
+      "original349_raw_sha256": "ea58de1edae20f2b32f8a67351cc70316eb6e41ef1ea8a7869aab4ab2f705ea3",
+      "unchanged_except_crlf": true
+    },
+    "docs/CURRENT_WORK.md": {
+      "worktree_raw_sha256": "e8914e73dd32fe42186d977ca9ea47e09fe2545cb52ffb0a074dc23c7ae03a6b",
+      "worktree_normalized_lf_sha256": "e61697cccf92fab7c59f5efc46eb5af01cf8a2ac21d0139c2a38036d69e6ca8d",
+      "size_bytes": 61424,
+      "original349_git_blob": "7eb8be3279abecd4410021bb8de11287989600c7",
+      "original349_raw_sha256": "e61697cccf92fab7c59f5efc46eb5af01cf8a2ac21d0139c2a38036d69e6ca8d",
+      "unchanged_except_crlf": true
+    },
+    "docs/architecture/V1_API_ARCHITECTURE.md": {
+      "worktree_raw_sha256": "d61d1bc9d78a99cb76f30d23a50d1a22078bf9b0a6ac0f756f17d9c669aa42a8",
+      "worktree_normalized_lf_sha256": "54c6a2f344f0713628fe39bd0d3320ee284f1f19053fe6802952c8b65486daab",
+      "size_bytes": 15785,
+      "original349_git_blob": "4d58efbe196b1816d78c75f4987f4564c91bb393",
+      "original349_raw_sha256": "6d971015ebba0fbdece974c6788cdb5f8178c709e83a377fc93ac8636e86ee12",
+      "unchanged_except_crlf": false
+    },
+    "docs/architecture/V1_DATASET_IDENTITY_IO.md": {
+      "worktree_raw_sha256": "2d16b04d4729727f019ab71cb5398b4fc8f83a5df3739178c11a3010beb6ecf6",
+      "worktree_normalized_lf_sha256": "41ca4a6179732c694aadad0316054f66207ebc47abd8c904b520212bea33bd33",
+      "size_bytes": 10184,
+      "original349_git_blob": "3df838421e82ee285c82291db5d34ca84f8e064a",
+      "original349_raw_sha256": "41ca4a6179732c694aadad0316054f66207ebc47abd8c904b520212bea33bd33",
+      "unchanged_except_crlf": true
+    },
+    "docs/architecture/contracts/dataset_identity.fixture.v1.json": {
+      "worktree_raw_sha256": "bcf621ee41217a918e52fbb04abd833d81523c6fc1ae833e8f70402a1c4826df",
+      "worktree_normalized_lf_sha256": "5fa4633218227615afadd9883931bebc12d53b6a71fae8fc05fb18c03ebf1d0d",
+      "size_bytes": 4820,
+      "original349_git_blob": "5c65e05f7423ffce910c4734de66e6918534cdd9",
+      "original349_raw_sha256": "5fa4633218227615afadd9883931bebc12d53b6a71fae8fc05fb18c03ebf1d0d",
+      "unchanged_except_crlf": true
+    },
+    "docs/architecture/contracts/dataset_quality.fixture.v1.json": {
+      "worktree_raw_sha256": "b281774aec4694061434f93a8f370ef1fa3f5f0552c1fb5120a00327225140b0",
+      "worktree_normalized_lf_sha256": "c2cb0778c46bab148dbdee0a61f66b00059d446950cb1d5876ca8fed564763e6",
+      "size_bytes": 37685,
+      "original349_git_blob": "ddfc2d21722a0203e86217b5ac7896f61acf05bc",
+      "original349_raw_sha256": "c2cb0778c46bab148dbdee0a61f66b00059d446950cb1d5876ca8fed564763e6",
+      "unchanged_except_crlf": true
+    },
+    "docs/program/HISTORICAL_REQUIREMENTS.md": {
+      "worktree_raw_sha256": "fbfdf0df1060549bc4bf323e6f08da85fc9bed8e6bf748ab78d362b060043cec",
+      "worktree_normalized_lf_sha256": "fd08424e4a301f86294c8e1df4c0e32d29d25df1aba51d17949b9f17ad69f3bc",
+      "size_bytes": 8536,
+      "original349_git_blob": "30556578105f745690a92854e512085d9946423a",
+      "original349_raw_sha256": "fd08424e4a301f86294c8e1df4c0e32d29d25df1aba51d17949b9f17ad69f3bc",
+      "unchanged_except_crlf": true
+    },
+    "docs/program/P00_OWNER_REQUEST.md": {
+      "worktree_raw_sha256": "5f37fbb5100a9e10c7e7901df9f85e53636a959d19681eca28e9f1cfe30f90b4",
+      "worktree_normalized_lf_sha256": "455433ac60f278a070a966b733c2a79f4444b4aa4702a5a29e4c615064febe14",
+      "size_bytes": 47998,
+      "original349_git_blob": "b6351bb0e64c2ce2c93c5fdeec132482cef4f319",
+      "original349_raw_sha256": "455433ac60f278a070a966b733c2a79f4444b4aa4702a5a29e4c615064febe14",
+      "unchanged_except_crlf": true
+    },
+    "docs/program/decisions/P00-bottleneck-resolution.decision.v1.json": {
+      "worktree_raw_sha256": "41955ec220936bbe92c1b7f6cc32f55b470acab6fc8a4f579ea68b2e6a8bfa9e",
+      "worktree_normalized_lf_sha256": "1bb4e40efefcb5dd5ca84fcba7cf4ec2d344f7444c16bae8aa7f95b7a68c944e",
+      "size_bytes": 71410,
+      "original349_git_blob": "dc49595a56846c069b30665f3aea79c6d0fba496",
+      "original349_raw_sha256": "02571b88932ffa0cf2e67978a16ccdcef4e4ea9a2d14cbc651e291fde0d8ccfd",
+      "unchanged_except_crlf": false
+    },
+    "docs/program/decisions/P00-bottleneck-resolution.md": {
+      "worktree_raw_sha256": "ba44877786d9514971aebe0328864e9f957425ef6f0f9c29dc915725993efa6d",
+      "worktree_normalized_lf_sha256": "92b3330b388bb53a4df6a0db1ec762c6ecf013ec9cf52f533952175eade04e19",
+      "size_bytes": 9585,
+      "original349_git_blob": "b8772ff3a14210372de71387ae45f2b9d1a73808",
+      "original349_raw_sha256": "0dc4adbd08e9eafb86bec02ab148013442581a838e92b17d18cd00f668560b68",
+      "unchanged_except_crlf": false
+    },
+    "docs/program/decisions/P00-bounded-correction.v1.json": {
+      "worktree_raw_sha256": "759f751e26603b72e9727fba9221a16b8b34c2f1aaed9b934f166ae4f9fc1a15",
+      "worktree_normalized_lf_sha256": "1a8193beb0f7f6ef9a2770a8c5b0f3e50e894e375896ac4a990fabae6f9223e1",
+      "size_bytes": 28616
+    },
+    "docs/program/decisions/R06-SOURCE-02.option-A.patch": {
+      "worktree_raw_sha256": "af710160d2aef5743bc0735913949683d9cc41a0a666b8976d16d82f682ff480",
+      "worktree_normalized_lf_sha256": "af710160d2aef5743bc0735913949683d9cc41a0a666b8976d16d82f682ff480",
+      "size_bytes": 5048,
+      "original349_git_blob": "28fa85b90fb01ce98b0ce0d37cf8e3a03e3a6e1a",
+      "original349_raw_sha256": "af710160d2aef5743bc0735913949683d9cc41a0a666b8976d16d82f682ff480",
+      "unchanged_except_crlf": true
+    },
+    "docs/program/decisions/R06-SOURCE-02.validation.v1.json": {
+      "worktree_raw_sha256": "1a2d449d10cbc59da3c1aee2759286cde459bb11954b2a9a751da841194fbd28",
+      "worktree_normalized_lf_sha256": "1a2d449d10cbc59da3c1aee2759286cde459bb11954b2a9a751da841194fbd28",
+      "size_bytes": 3423,
+      "original349_git_blob": "aa4c7645f5f52aa59e646bdff34daf6d0a420942",
+      "original349_raw_sha256": "1a2d449d10cbc59da3c1aee2759286cde459bb11954b2a9a751da841194fbd28",
+      "unchanged_except_crlf": true
+    },
+    "docs/program/historical_requirements.v1.json": {
+      "worktree_raw_sha256": "59816b5df4637407f53e4f9598fecae7187e4479c87c0b579e6a0ba8dcc46866",
+      "worktree_normalized_lf_sha256": "4cd891fbb401dbbef17df7b412faab7e5b1529230e77e1a67780216be95dfc88",
+      "size_bytes": 1129469,
+      "original349_git_blob": "397879b37830c7827b649dea77aef60324742fe9",
+      "original349_raw_sha256": "4cd891fbb401dbbef17df7b412faab7e5b1529230e77e1a67780216be95dfc88",
+      "unchanged_except_crlf": true
+    },
+    "docs/program/historical_semantic_bridge.v1.json": {
+      "worktree_raw_sha256": "1e798d16c7776b341578837ae636d629b263c2e7b8bd535839b9260818bdaac6",
+      "worktree_normalized_lf_sha256": "9d839cb72d2d6bfe85cc28840f8e855dc113b169f7a8e7175a2c7d3db8da9627",
+      "size_bytes": 663501,
+      "original349_git_blob": "4c7364a6cb9d628a1b9c21455d1b6a81f3d337bc",
+      "original349_raw_sha256": "9d839cb72d2d6bfe85cc28840f8e855dc113b169f7a8e7175a2c7d3db8da9627",
+      "unchanged_except_crlf": true
+    },
+    "docs/program/program_baseline.v1.json": {
+      "worktree_raw_sha256": "84989389b76bbddccbd5ad5a54e9e3205471ff878efc093e433c663a99b19815",
+      "worktree_normalized_lf_sha256": "885ec630ef8279ea34cc05ae15bfc0213947e1c011a8695b7ff56abfc92974e5",
+      "size_bytes": 18370,
+      "original349_git_blob": "1e6e4e3eead7908d90736892631e9c36045ebebb",
+      "original349_raw_sha256": "885ec630ef8279ea34cc05ae15bfc0213947e1c011a8695b7ff56abfc92974e5",
+      "unchanged_except_crlf": true
+    },
+    "docs/program/reviews/P00-bottleneck-3492569/context-review.json": {
+      "worktree_raw_sha256": "7ab262bef2aba4113e28fcf625a082e3567665bf98a0fa894baf5444108da850",
+      "worktree_normalized_lf_sha256": "4ab8b710a7d63ef4c1ee27d1bbe10c13bff28069e0c4787d66ee6292c459d70d",
+      "size_bytes": 12201
+    },
+    "docs/program/reviews/P00-bottleneck-3492569/correction-ledger.v1.json": {
+      "worktree_raw_sha256": "75c465dfca6cc630d272d568ada99c700a78429a4bf534cff0a2bed5dd47845d",
+      "worktree_normalized_lf_sha256": "4565143eb9e791dc3c56e977343da04d4a108e02c98a9d98a4fdb44748962cac",
+      "size_bytes": 17646
+    },
+    "docs/program/reviews/P00-bottleneck-3492569/csv-review.json": {
+      "worktree_raw_sha256": "1d8c59c1de84957d81e012efeff2bb2929fcbb0d9ff9f27b5d965e24e89703fe",
+      "worktree_normalized_lf_sha256": "1b4ac3f8265be4927cc86bd8954d5d1fffc7cc0fdf819ee51763bb83792553e7",
+      "size_bytes": 23252
+    },
+    "docs/program/reviews/P00-bottleneck-3492569/governance-review.json": {
+      "worktree_raw_sha256": "74c3517c9634060614564723741c3af9f87e106471db8ab2e283fcb109aa7e02",
+      "worktree_normalized_lf_sha256": "983ee92aeadf934ab5828d0dc5aa602066c5d3583664c462c733c70f068322b7",
+      "size_bytes": 25107
+    },
+    "docs/program/reviews/P00-bottleneck-3492569/review-binding.v1.json": {
+      "worktree_raw_sha256": "8d8ee17e383a2655a7391ea2dd3b19b1dc752f096f35d09b12e46b4d2310eb3c",
+      "worktree_normalized_lf_sha256": "3ffa9a1ee54a97019bead6d16356eed1d43b551d7d03a236f2665c91593fcd94",
+      "size_bytes": 1012
+    },
+    "docs/work/P00_BASELINE.md": {
+      "worktree_raw_sha256": "3b3b1e6fbc63ad617047e5a00e10f2b5612bb0c8091004b8944949627d59ea4a",
+      "worktree_normalized_lf_sha256": "3b3b1e6fbc63ad617047e5a00e10f2b5612bb0c8091004b8944949627d59ea4a",
+      "size_bytes": 6971,
+      "original349_git_blob": "f39acdac1dc30c58c5e70e3d1eb57861cd396656",
+      "original349_raw_sha256": "3b3b1e6fbc63ad617047e5a00e10f2b5612bb0c8091004b8944949627d59ea4a",
+      "unchanged_except_crlf": true
+    },
+    "domain/market_observation.py": {
+      "worktree_raw_sha256": "048e1bae1aad3887285118bbe55bd1c899198ea19cd8b82dc17fc3fa8d2cd387",
+      "worktree_normalized_lf_sha256": "048e1bae1aad3887285118bbe55bd1c899198ea19cd8b82dc17fc3fa8d2cd387",
+      "size_bytes": 17384,
+      "original349_git_blob": "b7059a78dc6480abb74be8644f3e37e35876b020",
+      "original349_raw_sha256": "048e1bae1aad3887285118bbe55bd1c899198ea19cd8b82dc17fc3fa8d2cd387",
+      "unchanged_except_crlf": true
+    },
+    "scripts/p00_build_contracts.py": {
+      "worktree_raw_sha256": "56eefe173fcce3418a55c62784a8bb4b51d5e00aa667c82f1911aadc6813f270",
+      "worktree_normalized_lf_sha256": "93cfae6f97c405301e7295044cce0979896a1c9ad2f95af7f08e7ee764292214",
+      "size_bytes": 41993,
+      "original349_git_blob": "e48038b7364e7627c6bece87782de4e73150303e",
+      "original349_raw_sha256": "93cfae6f97c405301e7295044cce0979896a1c9ad2f95af7f08e7ee764292214",
+      "unchanged_except_crlf": true
+    },
+    "scripts/p00_compile.py": {
+      "worktree_raw_sha256": "53aeb550928ba69bbafebb0e7a558cab91b1a13e3199483b8ecfd1517f462ae1",
+      "worktree_normalized_lf_sha256": "53aeb550928ba69bbafebb0e7a558cab91b1a13e3199483b8ecfd1517f462ae1",
+      "size_bytes": 6145,
+      "original349_git_blob": "15c131c9abe5fd5b4d99cfd3e08d14d8b8f6ad32",
+      "original349_raw_sha256": "53aeb550928ba69bbafebb0e7a558cab91b1a13e3199483b8ecfd1517f462ae1",
+      "unchanged_except_crlf": true
+    },
+    "scripts/p00_context.py": {
+      "worktree_raw_sha256": "6cd6cf534dc62970ad17061492d1a37f6c23cfa9c8975cc6776ce22bbc4d26f3",
+      "worktree_normalized_lf_sha256": "97cb315a24522ffc71bc099493d1cc2d4bad79bcb3e2e3008bc27f2f8b64cacd",
+      "size_bytes": 10535,
+      "original349_git_blob": "88ceddfe9f2583adc2dfe7a267d7ecb4dc6b608a",
+      "original349_raw_sha256": "80788fd834e1d4dac6bd517475c211f1b1403e181f0ee5050565d06701fff8a3",
+      "unchanged_except_crlf": false
+    },
+    "scripts/p00_context_v2_probe.py": {
+      "worktree_raw_sha256": "ebe401d7cad86524d1295cdcfe5695893838612f9ef88b9e8742753e021b4d71",
+      "worktree_normalized_lf_sha256": "ebe401d7cad86524d1295cdcfe5695893838612f9ef88b9e8742753e021b4d71",
+      "size_bytes": 12961,
+      "original349_git_blob": "e4ef0a6e5c7d616e9068318f1a23a41cd43adee1",
+      "original349_raw_sha256": "ebe401d7cad86524d1295cdcfe5695893838612f9ef88b9e8742753e021b4d71",
+      "unchanged_except_crlf": true
+    },
+    "scripts/p00_publication.py": {
+      "worktree_raw_sha256": "a528905e7baf304e0b55dade01eb6063aa0dbceecb08a36bff96b7d86c9744cd",
+      "worktree_normalized_lf_sha256": "1089657717b77711e172321611edd9b1013466e3e0a737813644cb74b18a5ee9",
+      "size_bytes": 10942,
+      "original349_git_blob": "12969bba2de3614221df8289bc4521deabdda3f9",
+      "original349_raw_sha256": "1089657717b77711e172321611edd9b1013466e3e0a737813644cb74b18a5ee9",
+      "unchanged_except_crlf": true
+    },
+    "scripts/p00_reading_eval.py": {
+      "worktree_raw_sha256": "be1b2a51e1ae31166dd536acea20570a93d209a0ddf5f913fe046c431a5810da",
+      "worktree_normalized_lf_sha256": "731f2c2624ab65905214d6140bfb32b7d203a547917c70edee4c7a0672762913",
+      "size_bytes": 11292,
+      "original349_git_blob": "962961fac17169a0b1983cdb03293ab783f095d0",
+      "original349_raw_sha256": "963979146e1df4dc75051fc4f49b5f6db5ae11e297d90adc669b0a3c513d02c8",
+      "unchanged_except_crlf": false
+    },
+    "scripts/p00_review_fix.py": {
+      "worktree_raw_sha256": "21a00b741b656919b50f881fccb0c2c15a87c59e4079469fa49d7ce3da5c2bcc",
+      "worktree_normalized_lf_sha256": "65cdd19e19cb2fd357dc3c242b7bd2b758c473f2079f691801c355be9098886f",
+      "size_bytes": 8780
+    },
+    "tests/platform/test_p00_context.py": {
+      "worktree_raw_sha256": "4f1de8dc6f0a4e53cd40bbbcbd598ae9403a5391dc9860136430eae3c6bfd443",
+      "worktree_normalized_lf_sha256": "82707bab08cbe12f19a95e6942a4ed79d178fa592e7ca56154411862a7700051",
+      "size_bytes": 12603,
+      "original349_git_blob": "ba78440404eccfb201433261f7033fde6b06ea52",
+      "original349_raw_sha256": "4ab84adbd5169c9a41fcb9cd0bb06b580e92f665c894c8abdc806ed630ab4f95",
+      "unchanged_except_crlf": false
+    },
+    "tests/platform/test_p00_context_v2_probe.py": {
+      "worktree_raw_sha256": "878e057c997fe74550bd0fcdb30225be3c5751d60e2e466c05eb26cef65f0852",
+      "worktree_normalized_lf_sha256": "9c4504dddebda07eb9eabdb46d14a4b3f6f0a28fea33f2991c3adcde062da633",
+      "size_bytes": 6677,
+      "original349_git_blob": "968d32b0a109c9ffed8d4556c1bb5ba9b6deba22",
+      "original349_raw_sha256": "cac9dd4ff9d6a3065ae3012ea913101e26a4cfcc263e847f14433a187319ac5f",
+      "unchanged_except_crlf": false
+    },
+    "tests/platform/test_p00_reading.py": {
+      "worktree_raw_sha256": "f3c95cc9c6b229b641d1228657886d7866051825b52d83c66b0e2d16b65cedfc",
+      "worktree_normalized_lf_sha256": "96d0ac79b65835d8783182618cd40260ecf49015aee144aea04f0d9267ad314e",
+      "size_bytes": 10786,
+      "original349_git_blob": "1516c99ca9384106ba7576c18d936010b069ecf9",
+      "original349_raw_sha256": "da58aaf2db5bab8e0183b3fe018a17f2b045f6f9b1f9ee57a3559594a20390f7",
+      "unchanged_except_crlf": false
+    },
+    "tests/platform/test_p00_reading_eval.py": {
+      "worktree_raw_sha256": "4306a2fa14eb238b94e541612a710ba3d35f00e3aa2260e88d50d22f9deed9c7",
+      "worktree_normalized_lf_sha256": "56e8103083a71fe9fceb93745a0ee778c0099e740aade1a86fa77528cde6f5c6",
+      "size_bytes": 4902,
+      "original349_git_blob": "85e67d9ff20cf1947ed67170fb9ae90249cd6833",
+      "original349_raw_sha256": "44f85a0393438733ab9abf03f5e5b288340760cb49963d0eb1490bdeb95653bc",
+      "unchanged_except_crlf": false
+    },
+    "tests/platform/test_p00_review_fix.py": {
+      "worktree_raw_sha256": "b95e202647d0d4d7c26edc3b259447825f500d2839f6f1d8717a484a8d4600c6",
+      "worktree_normalized_lf_sha256": "037a7b0bea0e82dd95d630708d3fa253be1e9f3a8c484fe719cd998c8b46033e",
+      "size_bytes": 3080
+    }
+  },
+  "independent_verification": {
+    "exact_patch_clause_and_csv_oracle": "PASS_FINAL21a00b741b656919b50f881fccb0c2c15a87c59e4079469fa49d7ce3da5c2bcc",
+    "final_oracle_tests": {
+      "command": "python -B -X utf8 -m pytest tests/platform/test_p00_review_fix.py -q -p no:cacheprovider --basetemp <external>/independent-final-oracle-pytest",
+      "result": "15 passed in13.97s",
+      "scope": "9 clause/patch preservation cases and6 CSV fixture/source/delta tamper cases"
+    },
+    "source01_targeted": {
+      "command": "python -B -X utf8 -m pytest tests/platform/test_p00_context.py tests/platform/test_p00_reading.py -q -p no:cacheprovider --basetemp <external>/independent-source01-pytest",
+      "result": "66 passed in133.29s"
+    },
+    "probe_fixture_and_initial_oracle": {
+      "result": "20 passed in92.16s",
+      "scope": "11 isolated probe cases plus initial9 oracle cases; final15 oracle rerun separately; counts not summed"
+    },
+    "generator": "P00_CONTRACT_GENERATION_CHECK_PASS",
+    "program_baseline": {
+      "weight": 127,
+      "credit": 0,
+      "journeys": "0/6",
+      "packages_remaining": 13,
+      "authority": "NONE"
+    },
+    "original_reports": "BYTE_EXACT_HASH_AND_LENGTH_PASS",
+    "frozen_universe_references": "ORIGINAL_GIT_BLOB_RAW_HASH_AND_WORKTREE_PRESERVATION_PASS",
+    "protected_accepted_authority_diff": "EMPTY_VS_EXACT_MASTER9b5",
+    "git_diff_check": "PASS",
+    "long_path_full_regression": {
+      "full_suite_count": "AUTHOR_REPORTED_530_PASS_3_FAIL_NOT_MY_FULL_RUN",
+      "independent_environment_reproductions": [
+        {
+          "fixture_path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\08\\01a11dbc-7354-7b93-a393-703f65979a77\\review\\correction-3492569-fixture\\.tmp\\p00-bounded-full-platform\\test_precise_parent_chain_adm_0",
+          "fixture_path_length": 181,
+          "exact_range": "2c4eecd1d03928b122c1d8e69fc193bba0b4cfa0..b358e997da1f0027656cb1b1484b3c1dcb52c9d6",
+          "results": [
+            {
+              "commandlocal_longpaths": false,
+              "exit_code": 128,
+              "stdout": "",
+              "stderr": "fatal: failed to stat '2c4eecd1d03928b122c1d8e69fc193bba0b4cfa0..b358e997da1f0027656cb1b1484b3c1dcb52c9d6': Filename too long"
+            },
+            {
+              "commandlocal_longpaths": true,
+              "exit_code": 0,
+              "stdout": "b358e997da1f0027656cb1b1484b3c1dcb52c9d6",
+              "stderr": ""
+            }
+          ]
+        },
+        {
+          "fixture_path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\08\\01a11dbc-7354-7b93-a393-703f65979a77\\review\\correction-3492569-fixture\\.tmp\\p00-bounded-full-platform\\test_protected_change_then_rev0",
+          "fixture_path_length": 181,
+          "exact_range": "741dcf8e1b4e7989a653d4a10375b2dd979583ab..533996a3e8fb7436737e656b43cdb89c05c651b8",
+          "results": [
+            {
+              "commandlocal_longpaths": false,
+              "exit_code": 128,
+              "stdout": "",
+              "stderr": "fatal: failed to stat '741dcf8e1b4e7989a653d4a10375b2dd979583ab..533996a3e8fb7436737e656b43cdb89c05c651b8': Filename too long"
+            },
+            {
+              "commandlocal_longpaths": true,
+              "exit_code": 0,
+              "stdout": "26845346a284fc491e4accfcfec9fbc62c0d51cd\n37c9fd1b5d69b796d4806d942707be9e322cb9aa\n533996a3e8fb7436737e656b43cdb89c05c651b8",
+              "stderr": ""
+            }
+          ]
+        },
+        {
+          "fixture_path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\08\\01a11dbc-7354-7b93-a393-703f65979a77\\review\\correction-3492569-fixture\\.tmp\\p00-bounded-full-platform\\test_uncommitted_authoring_is_0",
+          "fixture_path_length": 181,
+          "exact_range": "bf4d0ad5f4b1816bc2be328438e587fcfb57d778..173f271f65d7706dbdfad23ae9a188098ac9e75f",
+          "results": [
+            {
+              "commandlocal_longpaths": false,
+              "exit_code": 128,
+              "stdout": "",
+              "stderr": "fatal: failed to stat 'bf4d0ad5f4b1816bc2be328438e587fcfb57d778..173f271f65d7706dbdfad23ae9a188098ac9e75f': Filename too long"
+            },
+            {
+              "commandlocal_longpaths": true,
+              "exit_code": 0,
+              "stdout": "173f271f65d7706dbdfad23ae9a188098ac9e75f",
+              "stderr": ""
+            }
+          ]
+        }
+      ],
+      "classification": "WINDOWS_LONG_PATH_LIMIT_VERIFIED_SAME_OBJECTS_COMMANDLOCAL_CONFIG_ONLY",
+      "persistent_git_config_changed": false,
+      "short_path_final_snapshot_full_regression": "PENDING_REQUIRED_GATE_NOT_ASSERTED"
+    }
+  },
+  "stop_and_limits": [
+    "Original128KiB aggregate remains FAIL_UNCHANGED; no V2/compiler successor activation.",
+    "R01_R08 remains0/8; provisional127 weight grants no credit; releasejourneys0/6.",
+    "Owner must decide exact closure exceptions and universe; GOV-F02-F04 and CTX-02/03 remain open.",
+    "Complete final short-path isolated committed-snapshot full platform regression; narrow reviewer PASS does not waive this gate.",
+    "Any extra delta outside SOURCE01 exact five files or OptionA exact paragraph requires affected-scope STOP and fresh exact grant.",
+    "No parser/HTTP/PG/broker/model injection/trusted receipt/runtime conformance claimed."
+  ],
+  "next_route": "Preserve byte-exact independent report; complete remaining regression gate; Human exact closure disposition and independent coverage qualification; no acceptance/merge/dispatch/standing activation."
+}

@@ -70,10 +70,22 @@ def exercise(context, pack_raw, consumer, schema, coverage):
     stale = deepcopy(pack); stale["source_context_hash"]="f"*64
     check("PACK_CONTEXT_CHANGED", lambda:reading.make_plan(context,canonical(stale),consumer,schema), "PACK_CONTEXT_MISMATCH", True)
     check("CLAIM_FAKE_AUTHORITY", lambda:audit([{**claims[0],"execution_eligible":True}]), "SCHEMA_REJECT", True)
-    # source01 已明確缺少 negative assertions：規格 run 不得把它升格 represented/qualified。
-    if coverage["status"] != "UNREPRESENTED_DECLARED_GOVERNANCE_SOURCES" or not any(r["path"]=="automation/specs/negative_assertions.v2.yaml" for r in coverage["unrepresented_sources"]):
-        raise AssertionError("SOURCE01_EXPECTED_UNRESOLVED_BINDING_CHANGED_REVIEW_REQUIRED")
-    rows.append({"id":"ACTIVE_NEGATIVE_SOURCE_GAP", "outcome":"KNOWN_SOURCE_GAP_STILL_OPEN", "missing_sources":coverage["unrepresented_sources"],"semantic_completeness":"NOT_ASSERTED"})
+    # 原 gap 報告不改寫；successor representation 仍非語意／閱讀／intake qualification。
+    negative_path = "automation/specs/negative_assertions.v2.yaml"
+    if coverage["status"] == "UNREPRESENTED_DECLARED_GOVERNANCE_SOURCES":
+        if not any(r["path"] == negative_path for r in coverage["unrepresented_sources"]):
+            raise AssertionError("SOURCE01_EXPECTED_UNRESOLVED_BINDING_CHANGED_REVIEW_REQUIRED")
+        rows.append({"id":"ACTIVE_NEGATIVE_SOURCE_GAP", "outcome":"KNOWN_SOURCE_GAP_STILL_OPEN", "missing_sources":coverage["unrepresented_sources"],"semantic_completeness":"NOT_ASSERTED"})
+    elif coverage["status"] == "DECLARED_BINDINGS_REPRESENTED_NOT_QUALIFIED":
+        declared = {r["path"]: r for r in coverage["declared_source_refs"]}
+        mandatory = {r["path"]: r for r in context["mandatory_context"]}
+        if (coverage["unrepresented_sources"] or coverage["negative_assertions_binding"] != "SOURCE_HASH_VERIFIED"
+                or coverage["semantic_completeness"] != "NOT_ASSERTED" or coverage["current_intake_complete"] is not False
+                or negative_path not in declared or any(canonical(r) != canonical(mandatory.get(p)) for p, r in declared.items())):
+            raise AssertionError("SOURCE01_REPRESENTATION_CONTRADICTION")
+        rows.append({"id":"ACTIVE_NEGATIVE_SOURCE_REPRESENTED_NOT_QUALIFIED", "outcome":"DECLARED_BINDING_REPRESENTED_NOT_SEMANTIC_OR_TRUST_QUALIFICATION", "missing_sources":[],"semantic_completeness":"NOT_ASSERTED"})
+    else:
+        raise AssertionError("SOURCE01_UNKNOWN_COVERAGE_REVIEW_REQUIRED")
     rows.append({"id":"ORIGINAL_AGGREGATE_BUDGET", "outcome":"ORIGINAL_GATE_STILL_OVER_TARGET", "original_bytes":plan["original_budget"]["mandatory_bytes"], "pack_bytes":len(pack_raw), "target":131072})
     if plan["original_budget"]["status"]!="OVER_TARGET_REQUIRES_COMPACTION":
         raise AssertionError("BASELINE_BUDGET_CHANGED_REVIEW_REQUIRED")
