@@ -1,0 +1,172 @@
+{
+  "schema_version": "p00.bottleneck_evidence.v1",
+  "status": "AUTHOR_OFFLINE_VALIDATION_NOT_ACCEPTANCE",
+  "source_candidate": "6b717d5b7b9447272e5ff35b7715ad33ad6fb026",
+  "source_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "fresh_remote": "75ef4207aafaaabbf8bf130dea25f78726361626",
+  "fresh_authority": "currentnoneexecution/writer;master unchanged;runtime/product/controllerdenied",
+  "original_context": {
+    "P01_mandatory": 930223,
+    "P02_mandatory": 881548,
+    "P01_selective": 339165,
+    "P02_selective": 435349,
+    "gate": "FAIL"
+  },
+  "metrics": [
+    {
+      "stage": "P01.CSV",
+      "retained_source_bytes": 945540,
+      "original_mandatory_bytes": 930223,
+      "full_control_capsule_bytes": 151231,
+      "no_effects_review_capsule_bytes": 109210,
+      "capsule_sha256": "8dd01408b1be0452483e17563f072b16137a2a91744668e271a3b1e2958f3891",
+      "target_max_bytes": 131072,
+      "no_effects_review_stage_under_target": true,
+      "actual_injected_bytes": null,
+      "token_count": null,
+      "reading_qualification": "NOT_RUN",
+      "original_aggregate_gate": "FAIL_UNCHANGED"
+    },
+    {
+      "stage": "P01.IDENTITY",
+      "retained_source_bytes": 945540,
+      "original_mandatory_bytes": 930223,
+      "full_control_capsule_bytes": 153857,
+      "no_effects_review_capsule_bytes": 111596,
+      "capsule_sha256": "3668447ef1a66ee08fa4d9cb7204c34d25072546e23fba5b08e47ccdaaeaa45c",
+      "target_max_bytes": 131072,
+      "no_effects_review_stage_under_target": true,
+      "actual_injected_bytes": null,
+      "token_count": null,
+      "reading_qualification": "NOT_RUN",
+      "original_aggregate_gate": "FAIL_UNCHANGED"
+    },
+    {
+      "stage": "P01.QUALITY",
+      "retained_source_bytes": 945540,
+      "original_mandatory_bytes": 930223,
+      "full_control_capsule_bytes": 158622,
+      "no_effects_review_capsule_bytes": 115877,
+      "capsule_sha256": "1dfb8baf4300848e991d42add5adac377d74de16a24ce565d533bae61a3fa98c",
+      "target_max_bytes": 131072,
+      "no_effects_review_stage_under_target": true,
+      "actual_injected_bytes": null,
+      "token_count": null,
+      "reading_qualification": "NOT_RUN",
+      "original_aggregate_gate": "FAIL_UNCHANGED"
+    },
+    {
+      "stage": "P02.AUTH",
+      "retained_source_bytes": 906985,
+      "original_mandatory_bytes": 881548,
+      "full_control_capsule_bytes": 157185,
+      "no_effects_review_capsule_bytes": 118745,
+      "capsule_sha256": "d0f8fc1e9410f22458e38c86dc994e64e60aef6bb399ebf41c7fa51031f01c1a",
+      "target_max_bytes": 131072,
+      "no_effects_review_stage_under_target": true,
+      "actual_injected_bytes": null,
+      "token_count": null,
+      "reading_qualification": "NOT_RUN",
+      "original_aggregate_gate": "FAIL_UNCHANGED"
+    },
+    {
+      "stage": "P02.IMPORT",
+      "retained_source_bytes": 906985,
+      "original_mandatory_bytes": 881548,
+      "full_control_capsule_bytes": 166613,
+      "no_effects_review_capsule_bytes": 124924,
+      "capsule_sha256": "9c9ebabc722e2493a5333de44a74955623eff7b7c3cfa24f94b2532db1fa824f",
+      "target_max_bytes": 131072,
+      "no_effects_review_stage_under_target": true,
+      "actual_injected_bytes": null,
+      "token_count": null,
+      "reading_qualification": "NOT_RUN",
+      "original_aggregate_gate": "FAIL_UNCHANGED"
+    },
+    {
+      "stage": "P02.OPERATION",
+      "retained_source_bytes": 906985,
+      "original_mandatory_bytes": 881548,
+      "full_control_capsule_bytes": 163672,
+      "no_effects_review_capsule_bytes": 122272,
+      "capsule_sha256": "078920136b3e63edadd1f08d97c5330de37b2ddc55c55f9cc7b3d06d07a2d1c9",
+      "target_max_bytes": 131072,
+      "no_effects_review_stage_under_target": true,
+      "actual_injected_bytes": null,
+      "token_count": null,
+      "reading_qualification": "NOT_RUN",
+      "original_aggregate_gate": "FAIL_UNCHANGED"
+    }
+  ],
+  "prototype_scope": "sixnoeffectscontractreviewstages;futureexecutor/publisherprofile NOT_IMPLEMENTED_NOT_QUALIFIED",
+  "trials": [
+    {
+      "profile": "FULL_CONTROL",
+      "initial_five_stage_range": [
+        151039,
+        178547
+      ],
+      "finding": "stagepartitionalone insufficient"
+    },
+    {
+      "profile": "NO_EFFECTS_REVIEW_WITH_COMBINED_IMPORT_OPERATION",
+      "P02_IMPORT": 135815,
+      "finding": "P02 combinedstage stillover128KiB"
+    },
+    {
+      "profile": "NO_EFFECTS_REVIEW_SPLIT_IMPORT_OPERATION",
+      "final_range": [
+        109210,
+        124924
+      ]
+    }
+  ],
+  "targeted_tests": {
+    "command": "python -B -m pytest tests/platform/test_p00_context_v2_probe.py -q -p no:cacheprovider",
+    "result": "11 passed in 63.55s",
+    "code_sha256": "f71c2d0e422c783057cbbd2caa93036c411c3e43935689b188257859e7f9d104",
+    "test_sha256": "7380077850bbf36c1f3a2d2cb159e4c176c11a200e24cc52ea68b41675a75a48"
+  },
+  "full_platform_tests": {
+    "command": "python -B -m pytest tests/platform -q -p no:cacheprovider",
+    "result": "507 passed in 258.14s",
+    "tested_probe_sha256": "f71c2d0e422c783057cbbd2caa93036c411c3e43935689b188257859e7f9d104",
+    "test_source_unchanged_after_validation": false,
+    "post_validation_delta": "Traditional Chinese comment translation and EOF blank-line cleanup only; AST equivalence recorded, no behavioral delta."
+  },
+  "generated_contract_check": "P00_CONTRACT_GENERATION_CHECK_PASS",
+  "diff_and_scope": "PASS_SIX_P00_FILES_ONLY_ACCEPTED_AND_PRODUCT_SOURCES_UNCHANGED_DATA_EXCLUDED",
+  "pending_publication": "separate2commitmanifestcanonical012cf99b...verified;newworkexcluded",
+  "formal_blockers_closed": 0,
+  "reproduction": "python -B scripts/p00_context_v2_probe.py --baseline 6b717d5b7b9447272e5ff35b7715ad33ad6fb026 --profile CONTRACT_REVIEW_NO_EFFECTS --output-dir .tmp/p00-bottleneck-final-capsules",
+  "actual_injected_bytes": null,
+  "model_token_budget": null,
+  "trusted_reading_receipts": "NOT_CREATED",
+  "original_gate_changed": false,
+  "runtime_conformance": "NOT_ASSERTED",
+  "post_validation_comment_translation": {
+    "change": "Important added comment translated to Traditional Chinese only",
+    "ast_equal": true,
+    "tested_before_sha256": "f71c2d0e422c783057cbbd2caa93036c411c3e43935689b188257859e7f9d104",
+    "final_after_sha256": "ebe401d7cad86524d1295cdcfe5695893838612f9ef88b9e8742753e021b4d71",
+    "capsule_values_unchanged": true
+  },
+  "experimental_tool_binding": "New prototype code is separately bound by tested/final source hashes; input Git snapshot6b717d remains immutable. This is not a qualified legacy reading plan or trusted invocation.",
+  "final_format_cleanup": [
+    {
+      "path": "scripts/p00_context_v2_probe.py",
+      "before_sha256": "b0250774755dbeeb4c4a1eb097bf29d90e91b0c1aa967fdfd0431469b94e8a7f",
+      "final_sha256": "ebe401d7cad86524d1295cdcfe5695893838612f9ef88b9e8742753e021b4d71",
+      "ast_equal": true,
+      "change": "EOF blank-line cleanup only"
+    },
+    {
+      "path": "tests/platform/test_p00_context_v2_probe.py",
+      "before_sha256": "7380077850bbf36c1f3a2d2cb159e4c176c11a200e24cc52ea68b41675a75a48",
+      "final_sha256": "cac9dd4ff9d6a3065ae3012ea913101e26a4cfcc263e847f14433a187319ac5f",
+      "ast_equal": true,
+      "change": "EOF blank-line cleanup only"
+    }
+  ],
+  "author_checkpoint_utc": "2026-10-10 00:10:42 UTC"
+}
