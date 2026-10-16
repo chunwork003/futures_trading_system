@@ -1,0 +1,2073 @@
+{
+  "format_role": "EXECUTOR_READABLE_SOURCE_BOUND_OPERATION_SPEC_NOT_EXECUTION_AUTHORITY",
+  "operation_id": "savePortfolioResearch",
+  "producer": {
+    "owner": "F_RESEARCH",
+    "unit": "MA05-U02",
+    "unit_id": "ee90d221-1760-4f91-b1c1-15315ab6e72b",
+    "package": "PK07"
+  },
+  "contract_source": {
+    "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+    "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+    "bytes": 245079
+  },
+  "source_pointer": "#/endpoints/24",
+  "full_api_contract_source": {
+    "operation_id": "savePortfolioResearch",
+    "method": "POST",
+    "path": "/api/v2/portfolio-research",
+    "chapter": "MA05",
+    "owner": "F_RESEARCH",
+    "page": "UI13",
+    "role": "RESEARCH_AUTHOR",
+    "request_payload_fields": {
+      "definition": {
+        "type": "PortfolioResearchDraft",
+        "required": true
+      },
+      "source_refs": {
+        "type": "ContractRef[]",
+        "required": true
+      }
+    },
+    "response_model": "PortfolioResearchDefinition",
+    "response_envelope": "OperationReceipt",
+    "side_effect": "SCOPED_COMMAND_SUBJECT_TO_EXISTING_GRANT",
+    "idempotency": "scope + command_id + recomputed hash; same hash receipt/different hash409",
+    "invariant": "original preserved；trigger candidate not approved",
+    "runtime_status": "NOT_IMPLEMENTED_OR_NOT_VERIFIED_BY_THIS_REVIEW",
+    "response_cardinality": "ONE",
+    "response_item_model": "PortfolioResearchDefinition",
+    "command_result_binding": "OperationReceipt.result_ref points to ONE named response_item_model; pending/unknown has no fabricated business result",
+    "query_enum_rule": "All enum selectors have TYPE_VARIANTS bindings; unknown semantic enum denied",
+    "error_model": "ErrorEnvelope",
+    "error_disposition_table": "ERROR_RETRY_DISPOSITION_TABLE.json",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation_contract": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "failure_contract": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "dto_version": "MA-DTO-v6",
+    "error_protocol_version": "architecture.transport_error.v2",
+    "dto_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "full_compilation_input_row": {
+    "operation_id": "savePortfolioResearch",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+      "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+      "bytes": 245079
+    },
+    "source_pointer": "#/endpoints/24",
+    "chapter": "MA05",
+    "domain_contract_owner": "F_RESEARCH",
+    "producer_unit_alias": "MA05-U02",
+    "producer_unit_id": "ee90d221-1760-4f91-b1c1-15315ab6e72b",
+    "producer_package": "PK07",
+    "consumer_units": [
+      {
+        "unit_alias": "MA05-U02",
+        "mode": "IMPLEMENT_OWNER_USECASE_OR_EXACT_SCOPED_REUSE_ADAPTER",
+        "input_model": "ApiRequest_savePortfolioResearch",
+        "output_model": "PortfolioResearchDefinition",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/25/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U01",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_savePortfolioResearch",
+        "output_model": "PortfolioResearchDefinition",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/54/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U02",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_savePortfolioResearch",
+        "output_model": "PortfolioResearchDefinition",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/55/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U06",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_savePortfolioResearch",
+        "output_model": "PortfolioResearchDefinition",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/59/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA15-U02",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_savePortfolioResearch",
+        "output_model": "PortfolioResearchDefinition",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/85/input_output/secondary_io"
+      }
+    ],
+    "ui_consumers": [
+      {
+        "page_id": "UI13",
+        "route": "/lab/bond-rate",
+        "action_pointers": [
+          "#/pages/12/actions/1"
+        ],
+        "ui_states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "request_model_or_fields": {
+          "definition": {
+            "required": true,
+            "type": "PortfolioResearchDraft"
+          },
+          "source_refs": {
+            "required": true,
+            "type": "ContractRef[]"
+          }
+        }
+      }
+    ],
+    "frontend_integration_package": "PK11",
+    "method": "POST",
+    "route": "/api/v2/portfolio-research",
+    "dto_version": "MA-DTO-v6",
+    "request_model": "ApiRequest_savePortfolioResearch",
+    "request_fields": {
+      "definition": {
+        "type": "PortfolioResearchDraft",
+        "required": true
+      },
+      "source_refs": {
+        "type": "ContractRef[]",
+        "required": true
+      }
+    },
+    "response_model": "PortfolioResearchDefinition",
+    "response_envelope": "OperationReceipt",
+    "cardinality": "ONE",
+    "error_model": "ErrorEnvelope",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "role_is_not_authority": true,
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "scope + command_id + recomputed hash; same hash receipt/different hash409",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect.",
+    "existing_oracle_case_refs": [
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/72",
+        "case_id": "WIRE-savePortfolioResearch-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/73",
+        "case_id": "WIRE-savePortfolioResearch-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/74",
+        "case_id": "WIRE-savePortfolioResearch-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      }
+    ],
+    "effective_v9_operation_companion": {
+      "companion": {
+        "path": "source_closure_v9/operations/savePortfolioResearch.v9.json",
+        "raw_bytes_sha256": "938f90cc53eff534096744fb78f40c5fbb676376d1bd748da91f88d6e6d011c9"
+      },
+      "contract_entity_id": "eec1773d-24bf-5f4d-8bb0-cb5e283820fb",
+      "contract_revision_id": "521d3f4c-990d-5612-8f7c-2b022f2e3944",
+      "operation_id": "savePortfolioResearch"
+    },
+    "required_mock_design": [
+      "Read exact producer contract/Model/Type/Error table and v9 Unit companion; use effective successor/adapter selection, not legacy positive wire payload as current.",
+      "Plan accepted success body, error/rejection, empty-complete vs UNKNOWN/PARTIAL, pending/unknown receipt, retry/CAS/conflict and re-entry states required by this operation.",
+      "Keep fixture actor/project/account/environment/permission/cut/version fixed; mock command does not approve strategy, financial effect, runtime admission or execution.",
+      "Keep request/response semantics identical across React→ASP.NET BFF→Python API→Core→Persistence; mock replaces an isolated producer boundary, not authorization layers.",
+      "Contract tests must verify producer and consumer against independent named expected oracles, not regenerate expected from actual mock result."
+    ],
+    "mock_runtime_result": "NOT_RUN",
+    "execution_dependency": "EXACT_AUTHORIZED_WORK_ORDER + qualified producer result or explicitly scoped reuse proof + current compiler/profile/writer/capacity",
+    "missing_executable_details": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here."
+  },
+  "effective_v9_companion": {
+    "actual_pair_catalog": {
+      "path": "source_closure_v9/ACTUAL_SUPPLIED_PAIR_CATALOG.v9.json",
+      "raw_bytes_sha256": "598693c9ab0bb23c206b1b831185e2e7d21bef176664717b6493022fd1ae7cfc"
+    },
+    "authority_effect": "NONE",
+    "case_refs": [
+      {
+        "case_canonical_sha256": "5e8a29f9ed3dca254615c8fb8efa20817351ad00630c19764653a808f49c291d",
+        "case_id": "C7-POSITIVE-savePortfolioResearch",
+        "pointer": "#/cases/11",
+        "source": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        }
+      }
+    ],
+    "consumers": [
+      {
+        "input_model": "ApiRequest_savePortfolioResearch",
+        "mode": "IMPLEMENT_OWNER_USECASE_OR_EXACT_SCOPED_REUSE_ADAPTER",
+        "output_model": "PortfolioResearchDefinition",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/25/input_output/secondary_io",
+        "unit_alias": "MA05-U02"
+      },
+      {
+        "input_model": "ApiRequest_savePortfolioResearch",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "output_model": "PortfolioResearchDefinition",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/54/input_output/secondary_io",
+        "unit_alias": "MA10-U01"
+      },
+      {
+        "input_model": "ApiRequest_savePortfolioResearch",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "output_model": "PortfolioResearchDefinition",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/55/input_output/secondary_io",
+        "unit_alias": "MA10-U02"
+      },
+      {
+        "input_model": "ApiRequest_savePortfolioResearch",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "output_model": "PortfolioResearchDefinition",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/59/input_output/secondary_io",
+        "unit_alias": "MA10-U06"
+      },
+      {
+        "input_model": "ApiRequest_savePortfolioResearch",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "output_model": "PortfolioResearchDefinition",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/85/input_output/secondary_io",
+        "unit_alias": "MA15-U02"
+      }
+    ],
+    "contract_entity_id": "eec1773d-24bf-5f4d-8bb0-cb5e283820fb",
+    "contract_revision_id": "521d3f4c-990d-5612-8f7c-2b022f2e3944",
+    "dto_profile": "MA-DTO-v6",
+    "execution_authorized": false,
+    "expected_pair_spec": {
+      "path": "source_closure_v9/EXPECTED_REQUIRED_PAIRS.v9.json",
+      "raw_bytes_sha256": "86c09e275595a3c996cea79f15e8200df25a53cf7ddf78ffb49eab7cb306250e"
+    },
+    "operation_id": "savePortfolioResearch",
+    "producer": {
+      "owner": "F_RESEARCH",
+      "unit_alias": "MA05-U02"
+    },
+    "request_model": "ApiRequest_savePortfolioResearch",
+    "required_descendants": [
+      {
+        "canonical_sha256": "61ef87f92a9b8efa70d8d3e1875c3c286e7cad5a6e7653dca28bdab49a277c99",
+        "contract_ref": {
+          "entity_id": "c8debadb-77bd-5681-bf32-2f4b1eec4d68",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "f06cdd96-0c50-532c-99e9-dd891b699939",
+          "source_hash": "93e0757b8af84310239ade35b6d7ef225e160518cdb08b55cbf1133e1cb954ba"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/portfolio-research",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "8c25c2d91dd45276cdcdc09e8b92452caac98e5b0d30f6d2be3d6d3d1178cf17",
+        "contract_ref": {
+          "entity_id": "bb84c8a8-46e6-5ab7-b334-edd5ab0ff251",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "30e3f309-490c-5b52-92d5-6d089b8b1281",
+          "source_hash": "55de7960a7ced37cb0757be45f0175eda0c0b2ac6e99e434f59dc53195f8313b"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/savePortfolioResearch-response",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "f738d5edaea643e72d8c67e089bad20dd1b85f193005a0c9cf07863f09e6954d",
+        "contract_ref": {
+          "entity_id": "6fc29299-f532-50c8-b4db-c402f2bf630e",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "BODY_CAPTURE_OWNER",
+          "revision_id": "39f6dca3-b297-5ae6-8077-48d8ff05adac",
+          "source_hash": "17a88b72e4517503978a49f86fb45cbcd52a56194e95cb437e0f4e9e74f6e468"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/cases/11/result_body_readback/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "f738d5edaea643e72d8c67e089bad20dd1b85f193005a0c9cf07863f09e6954d",
+        "contract_ref": {
+          "entity_id": "6fc29299-f532-50c8-b4db-c402f2bf630e",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "BODY_CAPTURE_OWNER",
+          "revision_id": "39f6dca3-b297-5ae6-8077-48d8ff05adac",
+          "source_hash": "17a88b72e4517503978a49f86fb45cbcd52a56194e95cb437e0f4e9e74f6e468"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/cases/12/result_body_readback/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "366ffa2f99c22f7c22634f08b990ec2b60f5eb1a5b898d1c03c708479db10879",
+        "contract_ref": {
+          "entity_id": "ba31c3b9-04c9-5ff9-b828-c42b1174cdc9",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "1ea41a98-234d-580c-94f4-e80436c7af2f",
+          "source_hash": "bfc61c9aa084d57e4aa2ee3b3c4108f223606fb44a4150bd713352836529f6b5"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/portfolio-research",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "0f533331b7beec831dbb4ade168bada39decb34623121ecbd1bdc417d49822a0",
+        "contract_ref": {
+          "entity_id": "79a7462a-2def-5770-b09e-126ed33feaeb",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "6f23e5ae-d8dc-5fc3-9127-34d752cd1cde",
+          "source_hash": "97387f47943367269a87d5c827805f98388f5f416b11057bfd90a4ddcbb295e6"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/savePortfolioResearch-response",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "a54ac9d0d6407ac3aa8d292448eb13045bbe2e262e9d97c0daf58c90a474e347",
+        "contract_ref": {
+          "entity_id": "72656736-c102-5dd7-acbc-b014e25f2238",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "182e983b-fe96-548a-baf5-440ab60c1aee",
+          "source_hash": "aad6e328f8f2832bc7b97a2618dc00f2833332e5ad4ea01be21ce81e1e307e22"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/portfolio-research",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "80f611e1380d5962292574023427302316caeb8367d04bcb7a8146aad0fefd46",
+        "contract_ref": {
+          "entity_id": "3b46c2d5-e672-5d16-8986-53ff86c2114b",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "3b7b6a2b-0db0-5716-9e1f-4c538d0b372d",
+          "source_hash": "47eba49a28ec00df4d00525182c9c5b4806370acc5c3fe327684cd04708e5688"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/savePortfolioResearch-response",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "aef6677bb7fcaadd6603350d628defd11cc90726cf5911882c6d8a27efcb2fc8",
+        "contract_ref": {
+          "entity_id": "feda02ac-374e-503f-8bb4-837ce7cf8378",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "7b7ed0f1-a290-5be1-87e3-44aaf165ce43",
+          "source_hash": "d3d81c7ad1fed19b1036f89cb331004f2f705daa5e80de46b0bbd47633bcea66"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/portfolio-research",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "1041154bd409d6a546c0bc7b86166e74722456811f8b5ce6e022764612194227",
+        "contract_ref": {
+          "entity_id": "97edca42-46f2-5108-b8c7-c43cd6271f1f",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "de2d48bf-21b5-5094-b3e0-cbb18c0d95aa",
+          "source_hash": "55de7960a7ced37cb0757be45f0175eda0c0b2ac6e99e434f59dc53195f8313b"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/savePortfolioResearch-response",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "f738d5edaea643e72d8c67e089bad20dd1b85f193005a0c9cf07863f09e6954d",
+        "contract_ref": {
+          "entity_id": "6fc29299-f532-50c8-b4db-c402f2bf630e",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "BODY_CAPTURE_OWNER",
+          "revision_id": "39f6dca3-b297-5ae6-8077-48d8ff05adac",
+          "source_hash": "17a88b72e4517503978a49f86fb45cbcd52a56194e95cb437e0f4e9e74f6e468"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/portfolio-research",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "e140ae496a29ed0137fcfd33bf8095b0fb3660a451cc83af61a030619f173927",
+        "contract_ref": {
+          "entity_id": "eecd470d-35d7-5258-9e75-9cca39577f6e",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "BODY_CAPTURE_OWNER",
+          "revision_id": "9d39adfa-8de3-5f82-80ea-cf24f0513a5a",
+          "source_hash": "7e50cde22fbe85a3989cdcd98b0bdfd177daecc4abd87f7b7d09ad3bb356953d"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/savePortfolioResearch-response",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      }
+    ],
+    "required_pair_ids": [
+      "04e5a5c5-60a8-53ec-9b68-9c3d4ebbc561",
+      "063e8794-cb3b-504d-8c79-a2727ced7b10",
+      "1c8bd260-61fb-52c1-bbe2-8c37d0cdd7f7",
+      "1d957897-4961-55d9-b644-e3ebe1fd57ba",
+      "1f2d86ba-a17d-5ba5-bf7d-629f4e854622",
+      "22a4f1c5-a67c-541f-948b-bc95cf8b7ece",
+      "2434c791-ec81-5c6c-8c0b-d4ffda9d6622",
+      "2c1913bd-4864-5473-b0b7-a10342ec1490",
+      "327e84c6-d23e-5a4c-b7d7-213c9690bf4e",
+      "68ebac31-ea77-5c8a-995c-ca610a5c7fc6",
+      "85108faa-e953-5228-a77d-70089d4847cc",
+      "93abb785-97d8-5fe6-b176-c48eb25d7458",
+      "9480f9fb-09ba-523f-b4de-decc4cfe56ae",
+      "9660cd30-0f29-5311-81e6-91d3ef981dfb",
+      "a44ed441-0ff9-52e2-871f-75813cb736db",
+      "ad684c6e-abf7-5272-bcf7-3d9dc4fdd975",
+      "adb7017d-ecc5-5f26-965d-e1376df464ee",
+      "cccf580e-94fe-54f0-bece-9db52d653019",
+      "cd1b41dc-bb67-5e02-a981-6b0667fd8366",
+      "cf1c329f-8898-5f53-98e1-410d2124ce0c",
+      "d9c952c7-41f2-5c86-91db-e89e2d84b4b3",
+      "e3978bd1-0a5c-56eb-9a42-0c14edd89621",
+      "f4eca6a5-164d-550a-ab40-ad1832215141"
+    ],
+    "response_model": "PortfolioResearchDefinition",
+    "subject": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+  },
+  "v9_companion_applicability": "EXACT_V9_OPERATION_COMPANION",
+  "request": {
+    "model": "ApiRequest_savePortfolioResearch",
+    "fields": {
+      "definition": {
+        "type": "PortfolioResearchDraft",
+        "required": true
+      },
+      "source_refs": {
+        "type": "ContractRef[]",
+        "required": true
+      }
+    },
+    "version": "MA-DTO-v6"
+  },
+  "response": {
+    "model": "PortfolioResearchDefinition",
+    "envelope": "OperationReceipt",
+    "cardinality": "ONE"
+  },
+  "named_model_closure": [
+    "AllocationWeight",
+    "ApiRequest_savePortfolioResearch",
+    "CashFlowLeg",
+    "ContractRef",
+    "ErrorEnvelope",
+    "FieldViolation",
+    "OperationReceipt",
+    "PortfolioResearchDefinition",
+    "PortfolioResearchDraft"
+  ],
+  "model_definitions_selector": "MODEL_TYPE_SOURCE_SPECIFICATION.json#/definition_lookup/<name>",
+  "auth_validation_idempotency_unknown": {
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "scope + command_id + recomputed hash; same hash receipt/different hash409",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "producer_consumer_mock_test_matrix": {
+    "React": "Only display/user intent/typed client and declared page states; no independent business rules or direct SQL/Broker",
+    "ASP_NET_BFF": "Existing auth/session/CSRF/workflow/proxy adapter; preserve exact wire fields/errors/receipt/versions; no alternate Quant rules",
+    "Python_API": "Validate exact DTO/auth/resource/cut/source and delegate sole domain owner; no accepted result from mock",
+    "Quant_Core": "F_RESEARCH owns invariants and effect boundary per source",
+    "Persistence": "Existing port/UoW/canonical ownership; real migration/DB/Restore separately gated",
+    "expected_mock_source": "Named source oracle cases below; do not derive expected from mock output",
+    "mock_states": [
+      "source-defined success",
+      "typed rejected error",
+      "complete-empty versus UNKNOWN/PARTIAL",
+      "pending/unknown OperationReceipt",
+      "exact same-key/same-body retry versus conflict",
+      "version/profile/auth/CAS/stale-source rejection where applicable"
+    ],
+    "compare_layers": [
+      "Python producer contract result",
+      "BFF preserved transport/error result",
+      "React consumer state and receipt readback"
+    ],
+    "actual_test_status": "NOT_RUN"
+  },
+  "exact_oracle_cases": [
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/72",
+        "case_id": "WIRE-savePortfolioResearch-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-savePortfolioResearch-POSITIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "savePortfolioResearch",
+            "method": "POST",
+            "path": "/api/v2/portfolio-research",
+            "path_values": {},
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "9b610d3d-e047-5ed8-bacd-46e58a29ab38",
+                "revision_id": "eb14f6dd-9806-5d1d-ad7b-dd2ab5fa7585",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "42e4d729dccb1abcb5e3b18fd4a20f756a31f9c41b3cb2fc5964998bac9e7072"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "definition": {
+                "instrument_refs": [
+                  {
+                    "entity_id": "ecde813f-abde-514f-8045-d96bddd9cc8f",
+                    "revision_id": "e6a176ec-65b5-5c48-acb8-54b8f8f4ce3b",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "db569f67962b4bddf85206a62d68a3f41cd2a1c33814c3d97fb985d562265ac9"
+                  }
+                ],
+                "weights": [],
+                "transition_policy_ref": {
+                  "entity_id": "6c656f5c-bd9d-56d0-98a3-c8589a1d46fd",
+                  "revision_id": "c04b1643-a94a-591d-a9b8-b064d5aff2a8",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "fad718c1eaf2f0b37fb7aaf6ddd7b0cf25c9d9720c300c34c818c693b8320363"
+                },
+                "costs_policy_ref": {
+                  "entity_id": "2a9b8fde-4e79-5311-960f-e92c49ce0a36",
+                  "revision_id": "f9d7a5a9-36bc-592d-a3ce-9fff10248cf0",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "6ebda08833b182025d9a3c51b7f6b9501ba7a129f31f451dd41af40655e6f6f6"
+                },
+                "cashflow_policy_ref": {
+                  "entity_id": "6f7776f6-9ff8-54f8-923c-34ff97f6c449",
+                  "revision_id": "2d5233a6-0cdb-5856-b874-c06c28af2676",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "b9a3063da12e1e817809827d4c94b48ebbf7b94d98d61b6e9a384475a27516af"
+                },
+                "scenario_refs": [
+                  {
+                    "entity_id": "09ea598f-86bd-5177-9c20-8596dfea8e4b",
+                    "revision_id": "07702895-af08-570e-90d3-bc38769ab849",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "8e51b95d6ccebf80b7428422fcfada872bc22b573df5d512d6eab80994553a0c"
+                  }
+                ],
+                "original_source_ref": {
+                  "entity_id": "364eb78d-e8fd-575e-b084-83b53c84998b",
+                  "revision_id": "a9300ffa-a941-57c4-b86e-30089bb00676",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "c02c663287880e2b925f4282bbe281de15b7d64765d576306ea3dd2b5f7e34ce"
+                }
+              },
+              "source_refs": [
+                {
+                  "entity_id": "050a5537-1970-5a38-afba-e98a4703af64",
+                  "revision_id": "25ed497e-f6b7-515b-8976-838c6a5c9248",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "43bfc7bbee0a7ff9a5ce6d3814eace7cfd86fa172c548a4537deb404279f6854"
+                }
+              ]
+            },
+            "command_envelope": {
+              "command_id": "57d13d0b-0162-5f24-9995-0d4fd0bbab46",
+              "payload_hash_domain": "canonical-json-sha256-v1",
+              "payload_hash": "630fb4ad784bc3338e9900e16bc822d314916c7577d4db56309506a1c8f30ead",
+              "resource_scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              },
+              "expected_generation": 4,
+              "subject_refs": [
+                {
+                  "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                  "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                }
+              ],
+              "payload": {
+                "definition": {
+                  "instrument_refs": [
+                    {
+                      "entity_id": "ecde813f-abde-514f-8045-d96bddd9cc8f",
+                      "revision_id": "e6a176ec-65b5-5c48-acb8-54b8f8f4ce3b",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "db569f67962b4bddf85206a62d68a3f41cd2a1c33814c3d97fb985d562265ac9"
+                    }
+                  ],
+                  "weights": [],
+                  "transition_policy_ref": {
+                    "entity_id": "6c656f5c-bd9d-56d0-98a3-c8589a1d46fd",
+                    "revision_id": "c04b1643-a94a-591d-a9b8-b064d5aff2a8",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "fad718c1eaf2f0b37fb7aaf6ddd7b0cf25c9d9720c300c34c818c693b8320363"
+                  },
+                  "costs_policy_ref": {
+                    "entity_id": "2a9b8fde-4e79-5311-960f-e92c49ce0a36",
+                    "revision_id": "f9d7a5a9-36bc-592d-a3ce-9fff10248cf0",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "6ebda08833b182025d9a3c51b7f6b9501ba7a129f31f451dd41af40655e6f6f6"
+                  },
+                  "cashflow_policy_ref": {
+                    "entity_id": "6f7776f6-9ff8-54f8-923c-34ff97f6c449",
+                    "revision_id": "2d5233a6-0cdb-5856-b874-c06c28af2676",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "b9a3063da12e1e817809827d4c94b48ebbf7b94d98d61b6e9a384475a27516af"
+                  },
+                  "scenario_refs": [
+                    {
+                      "entity_id": "09ea598f-86bd-5177-9c20-8596dfea8e4b",
+                      "revision_id": "07702895-af08-570e-90d3-bc38769ab849",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "8e51b95d6ccebf80b7428422fcfada872bc22b573df5d512d6eab80994553a0c"
+                    }
+                  ],
+                  "original_source_ref": {
+                    "entity_id": "364eb78d-e8fd-575e-b084-83b53c84998b",
+                    "revision_id": "a9300ffa-a941-57c4-b86e-30089bb00676",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "c02c663287880e2b925f4282bbe281de15b7d64765d576306ea3dd2b5f7e34ce"
+                  }
+                },
+                "source_refs": [
+                  {
+                    "entity_id": "050a5537-1970-5a38-afba-e98a4703af64",
+                    "revision_id": "25ed497e-f6b7-515b-8976-838c6a5c9248",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "43bfc7bbee0a7ff9a5ce6d3814eace7cfd86fa172c548a4537deb404279f6854"
+                  }
+                ]
+              }
+            },
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_scope": "exact fixture project/account/environment",
+            "current_generation": 4,
+            "causal_snapshot_ref": {
+              "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+              "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+              "owner": "FIXTURE_ONLY",
+              "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+              "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+            },
+            "producer_output_model": "PortfolioResearchDefinition"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/24",
+          "input_model": "ApiRequest_savePortfolioResearch",
+          "response_model": "PortfolioResearchDefinition",
+          "response_envelope": "OperationReceipt",
+          "response_cardinality": "ONE"
+        },
+        "mutation": null,
+        "interleaving": [],
+        "expected_model": "PortfolioResearchDefinition",
+        "expected_domain_model_if_hold": null,
+        "expected_observations": {
+          "response_model": "PortfolioResearchDefinition",
+          "cardinality": "ONE",
+          "exact_scope": true,
+          "domain_invariant": "original preserved；trigger candidate not approved",
+          "source_snapshot_unchanged": true
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA05-U02",
+        "consumer_units": [
+          "MA10-U02",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/73",
+        "case_id": "WIRE-savePortfolioResearch-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-savePortfolioResearch-NEGATIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "savePortfolioResearch",
+            "method": "POST",
+            "path": "/api/v2/portfolio-research",
+            "path_values": {},
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "9b610d3d-e047-5ed8-bacd-46e58a29ab38",
+                "revision_id": "eb14f6dd-9806-5d1d-ad7b-dd2ab5fa7585",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "42e4d729dccb1abcb5e3b18fd4a20f756a31f9c41b3cb2fc5964998bac9e7072"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "definition": {
+                "instrument_refs": [
+                  {
+                    "entity_id": "ecde813f-abde-514f-8045-d96bddd9cc8f",
+                    "revision_id": "e6a176ec-65b5-5c48-acb8-54b8f8f4ce3b",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "db569f67962b4bddf85206a62d68a3f41cd2a1c33814c3d97fb985d562265ac9"
+                  }
+                ],
+                "weights": [],
+                "transition_policy_ref": {
+                  "entity_id": "6c656f5c-bd9d-56d0-98a3-c8589a1d46fd",
+                  "revision_id": "c04b1643-a94a-591d-a9b8-b064d5aff2a8",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "fad718c1eaf2f0b37fb7aaf6ddd7b0cf25c9d9720c300c34c818c693b8320363"
+                },
+                "costs_policy_ref": {
+                  "entity_id": "2a9b8fde-4e79-5311-960f-e92c49ce0a36",
+                  "revision_id": "f9d7a5a9-36bc-592d-a3ce-9fff10248cf0",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "6ebda08833b182025d9a3c51b7f6b9501ba7a129f31f451dd41af40655e6f6f6"
+                },
+                "cashflow_policy_ref": {
+                  "entity_id": "6f7776f6-9ff8-54f8-923c-34ff97f6c449",
+                  "revision_id": "2d5233a6-0cdb-5856-b874-c06c28af2676",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "b9a3063da12e1e817809827d4c94b48ebbf7b94d98d61b6e9a384475a27516af"
+                },
+                "scenario_refs": [
+                  {
+                    "entity_id": "09ea598f-86bd-5177-9c20-8596dfea8e4b",
+                    "revision_id": "07702895-af08-570e-90d3-bc38769ab849",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "8e51b95d6ccebf80b7428422fcfada872bc22b573df5d512d6eab80994553a0c"
+                  }
+                ],
+                "original_source_ref": {
+                  "entity_id": "364eb78d-e8fd-575e-b084-83b53c84998b",
+                  "revision_id": "a9300ffa-a941-57c4-b86e-30089bb00676",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "c02c663287880e2b925f4282bbe281de15b7d64765d576306ea3dd2b5f7e34ce"
+                }
+              },
+              "source_refs": [
+                {
+                  "entity_id": "050a5537-1970-5a38-afba-e98a4703af64",
+                  "revision_id": "25ed497e-f6b7-515b-8976-838c6a5c9248",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "43bfc7bbee0a7ff9a5ce6d3814eace7cfd86fa172c548a4537deb404279f6854"
+                }
+              ]
+            },
+            "command_envelope": {
+              "command_id": "57d13d0b-0162-5f24-9995-0d4fd0bbab46",
+              "payload_hash_domain": "canonical-json-sha256-v1",
+              "payload_hash": "630fb4ad784bc3338e9900e16bc822d314916c7577d4db56309506a1c8f30ead",
+              "resource_scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              },
+              "expected_generation": 4,
+              "subject_refs": [
+                {
+                  "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                  "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                }
+              ],
+              "payload": {
+                "definition": {
+                  "instrument_refs": [
+                    {
+                      "entity_id": "ecde813f-abde-514f-8045-d96bddd9cc8f",
+                      "revision_id": "e6a176ec-65b5-5c48-acb8-54b8f8f4ce3b",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "db569f67962b4bddf85206a62d68a3f41cd2a1c33814c3d97fb985d562265ac9"
+                    }
+                  ],
+                  "weights": [],
+                  "transition_policy_ref": {
+                    "entity_id": "6c656f5c-bd9d-56d0-98a3-c8589a1d46fd",
+                    "revision_id": "c04b1643-a94a-591d-a9b8-b064d5aff2a8",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "fad718c1eaf2f0b37fb7aaf6ddd7b0cf25c9d9720c300c34c818c693b8320363"
+                  },
+                  "costs_policy_ref": {
+                    "entity_id": "2a9b8fde-4e79-5311-960f-e92c49ce0a36",
+                    "revision_id": "f9d7a5a9-36bc-592d-a3ce-9fff10248cf0",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "6ebda08833b182025d9a3c51b7f6b9501ba7a129f31f451dd41af40655e6f6f6"
+                  },
+                  "cashflow_policy_ref": {
+                    "entity_id": "6f7776f6-9ff8-54f8-923c-34ff97f6c449",
+                    "revision_id": "2d5233a6-0cdb-5856-b874-c06c28af2676",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "b9a3063da12e1e817809827d4c94b48ebbf7b94d98d61b6e9a384475a27516af"
+                  },
+                  "scenario_refs": [
+                    {
+                      "entity_id": "09ea598f-86bd-5177-9c20-8596dfea8e4b",
+                      "revision_id": "07702895-af08-570e-90d3-bc38769ab849",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "8e51b95d6ccebf80b7428422fcfada872bc22b573df5d512d6eab80994553a0c"
+                    }
+                  ],
+                  "original_source_ref": {
+                    "entity_id": "364eb78d-e8fd-575e-b084-83b53c84998b",
+                    "revision_id": "a9300ffa-a941-57c4-b86e-30089bb00676",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "c02c663287880e2b925f4282bbe281de15b7d64765d576306ea3dd2b5f7e34ce"
+                  }
+                },
+                "source_refs": [
+                  {
+                    "entity_id": "050a5537-1970-5a38-afba-e98a4703af64",
+                    "revision_id": "25ed497e-f6b7-515b-8976-838c6a5c9248",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "43bfc7bbee0a7ff9a5ce6d3814eace7cfd86fa172c548a4537deb404279f6854"
+                  }
+                ]
+              }
+            },
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_scope": "exact fixture project/account/environment",
+            "current_generation": 4,
+            "causal_snapshot_ref": {
+              "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+              "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+              "owner": "FIXTURE_ONLY",
+              "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+              "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+            },
+            "producer_output_model": "PortfolioResearchDefinition"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/24",
+          "mutation_operations": [
+            {
+              "op": "set",
+              "path": "/wire/authenticated_context_fixture/scope/project_id",
+              "value": "576faf85-1a50-5403-be04-1308b8cf248b"
+            }
+          ],
+          "after_mutation_recompute_command_hash": true,
+          "input_model": "ApiRequest_savePortfolioResearch",
+          "response_model": "PortfolioResearchDefinition",
+          "response_envelope": "OperationReceipt",
+          "response_cardinality": "ONE"
+        },
+        "mutation": "request resource scope differs from authenticated project/account/environment",
+        "interleaving": [],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "PortfolioResearchDefinition",
+        "expected_observations": {
+          "http": 403,
+          "disclosed_private_fields": 0,
+          "side_effects": 0
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA05-U02",
+        "consumer_units": [
+          "MA10-U02",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/74",
+        "case_id": "WIRE-savePortfolioResearch-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-savePortfolioResearch-RACE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "savePortfolioResearch",
+            "method": "POST",
+            "path": "/api/v2/portfolio-research",
+            "path_values": {},
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "9b610d3d-e047-5ed8-bacd-46e58a29ab38",
+                "revision_id": "eb14f6dd-9806-5d1d-ad7b-dd2ab5fa7585",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "42e4d729dccb1abcb5e3b18fd4a20f756a31f9c41b3cb2fc5964998bac9e7072"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "definition": {
+                "instrument_refs": [
+                  {
+                    "entity_id": "ecde813f-abde-514f-8045-d96bddd9cc8f",
+                    "revision_id": "e6a176ec-65b5-5c48-acb8-54b8f8f4ce3b",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "db569f67962b4bddf85206a62d68a3f41cd2a1c33814c3d97fb985d562265ac9"
+                  }
+                ],
+                "weights": [],
+                "transition_policy_ref": {
+                  "entity_id": "6c656f5c-bd9d-56d0-98a3-c8589a1d46fd",
+                  "revision_id": "c04b1643-a94a-591d-a9b8-b064d5aff2a8",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "fad718c1eaf2f0b37fb7aaf6ddd7b0cf25c9d9720c300c34c818c693b8320363"
+                },
+                "costs_policy_ref": {
+                  "entity_id": "2a9b8fde-4e79-5311-960f-e92c49ce0a36",
+                  "revision_id": "f9d7a5a9-36bc-592d-a3ce-9fff10248cf0",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "6ebda08833b182025d9a3c51b7f6b9501ba7a129f31f451dd41af40655e6f6f6"
+                },
+                "cashflow_policy_ref": {
+                  "entity_id": "6f7776f6-9ff8-54f8-923c-34ff97f6c449",
+                  "revision_id": "2d5233a6-0cdb-5856-b874-c06c28af2676",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "b9a3063da12e1e817809827d4c94b48ebbf7b94d98d61b6e9a384475a27516af"
+                },
+                "scenario_refs": [
+                  {
+                    "entity_id": "09ea598f-86bd-5177-9c20-8596dfea8e4b",
+                    "revision_id": "07702895-af08-570e-90d3-bc38769ab849",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "8e51b95d6ccebf80b7428422fcfada872bc22b573df5d512d6eab80994553a0c"
+                  }
+                ],
+                "original_source_ref": {
+                  "entity_id": "364eb78d-e8fd-575e-b084-83b53c84998b",
+                  "revision_id": "a9300ffa-a941-57c4-b86e-30089bb00676",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "c02c663287880e2b925f4282bbe281de15b7d64765d576306ea3dd2b5f7e34ce"
+                }
+              },
+              "source_refs": [
+                {
+                  "entity_id": "050a5537-1970-5a38-afba-e98a4703af64",
+                  "revision_id": "25ed497e-f6b7-515b-8976-838c6a5c9248",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "43bfc7bbee0a7ff9a5ce6d3814eace7cfd86fa172c548a4537deb404279f6854"
+                }
+              ]
+            },
+            "command_envelope": {
+              "command_id": "57d13d0b-0162-5f24-9995-0d4fd0bbab46",
+              "payload_hash_domain": "canonical-json-sha256-v1",
+              "payload_hash": "630fb4ad784bc3338e9900e16bc822d314916c7577d4db56309506a1c8f30ead",
+              "resource_scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              },
+              "expected_generation": 4,
+              "subject_refs": [
+                {
+                  "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                  "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                }
+              ],
+              "payload": {
+                "definition": {
+                  "instrument_refs": [
+                    {
+                      "entity_id": "ecde813f-abde-514f-8045-d96bddd9cc8f",
+                      "revision_id": "e6a176ec-65b5-5c48-acb8-54b8f8f4ce3b",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "db569f67962b4bddf85206a62d68a3f41cd2a1c33814c3d97fb985d562265ac9"
+                    }
+                  ],
+                  "weights": [],
+                  "transition_policy_ref": {
+                    "entity_id": "6c656f5c-bd9d-56d0-98a3-c8589a1d46fd",
+                    "revision_id": "c04b1643-a94a-591d-a9b8-b064d5aff2a8",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "fad718c1eaf2f0b37fb7aaf6ddd7b0cf25c9d9720c300c34c818c693b8320363"
+                  },
+                  "costs_policy_ref": {
+                    "entity_id": "2a9b8fde-4e79-5311-960f-e92c49ce0a36",
+                    "revision_id": "f9d7a5a9-36bc-592d-a3ce-9fff10248cf0",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "6ebda08833b182025d9a3c51b7f6b9501ba7a129f31f451dd41af40655e6f6f6"
+                  },
+                  "cashflow_policy_ref": {
+                    "entity_id": "6f7776f6-9ff8-54f8-923c-34ff97f6c449",
+                    "revision_id": "2d5233a6-0cdb-5856-b874-c06c28af2676",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "b9a3063da12e1e817809827d4c94b48ebbf7b94d98d61b6e9a384475a27516af"
+                  },
+                  "scenario_refs": [
+                    {
+                      "entity_id": "09ea598f-86bd-5177-9c20-8596dfea8e4b",
+                      "revision_id": "07702895-af08-570e-90d3-bc38769ab849",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "8e51b95d6ccebf80b7428422fcfada872bc22b573df5d512d6eab80994553a0c"
+                    }
+                  ],
+                  "original_source_ref": {
+                    "entity_id": "364eb78d-e8fd-575e-b084-83b53c84998b",
+                    "revision_id": "a9300ffa-a941-57c4-b86e-30089bb00676",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "c02c663287880e2b925f4282bbe281de15b7d64765d576306ea3dd2b5f7e34ce"
+                  }
+                },
+                "source_refs": [
+                  {
+                    "entity_id": "050a5537-1970-5a38-afba-e98a4703af64",
+                    "revision_id": "25ed497e-f6b7-515b-8976-838c6a5c9248",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "43bfc7bbee0a7ff9a5ce6d3814eace7cfd86fa172c548a4537deb404279f6854"
+                  }
+                ]
+              }
+            },
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_scope": "exact fixture project/account/environment",
+            "current_generation": 4,
+            "causal_snapshot_ref": {
+              "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+              "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+              "owner": "FIXTURE_ONLY",
+              "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+              "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+            },
+            "producer_output_model": "PortfolioResearchDefinition"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/24",
+          "actors": [
+            {
+              "actor_id": "A",
+              "request": {
+                "operation_id": "savePortfolioResearch",
+                "method": "POST",
+                "path": "/api/v2/portfolio-research",
+                "path_values": {},
+                "authenticated_context_fixture": {
+                  "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+                  "policy_receipt_ref": {
+                    "entity_id": "9b610d3d-e047-5ed8-bacd-46e58a29ab38",
+                    "revision_id": "eb14f6dd-9806-5d1d-ad7b-dd2ab5fa7585",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "42e4d729dccb1abcb5e3b18fd4a20f756a31f9c41b3cb2fc5964998bac9e7072"
+                  },
+                  "scope": {
+                    "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                    "environment": "LAB",
+                    "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                    "group_id": null
+                  }
+                },
+                "request_payload": {
+                  "definition": {
+                    "instrument_refs": [
+                      {
+                        "entity_id": "ecde813f-abde-514f-8045-d96bddd9cc8f",
+                        "revision_id": "e6a176ec-65b5-5c48-acb8-54b8f8f4ce3b",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "db569f67962b4bddf85206a62d68a3f41cd2a1c33814c3d97fb985d562265ac9"
+                      }
+                    ],
+                    "weights": [],
+                    "transition_policy_ref": {
+                      "entity_id": "6c656f5c-bd9d-56d0-98a3-c8589a1d46fd",
+                      "revision_id": "c04b1643-a94a-591d-a9b8-b064d5aff2a8",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "fad718c1eaf2f0b37fb7aaf6ddd7b0cf25c9d9720c300c34c818c693b8320363"
+                    },
+                    "costs_policy_ref": {
+                      "entity_id": "2a9b8fde-4e79-5311-960f-e92c49ce0a36",
+                      "revision_id": "f9d7a5a9-36bc-592d-a3ce-9fff10248cf0",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "6ebda08833b182025d9a3c51b7f6b9501ba7a129f31f451dd41af40655e6f6f6"
+                    },
+                    "cashflow_policy_ref": {
+                      "entity_id": "6f7776f6-9ff8-54f8-923c-34ff97f6c449",
+                      "revision_id": "2d5233a6-0cdb-5856-b874-c06c28af2676",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "b9a3063da12e1e817809827d4c94b48ebbf7b94d98d61b6e9a384475a27516af"
+                    },
+                    "scenario_refs": [
+                      {
+                        "entity_id": "09ea598f-86bd-5177-9c20-8596dfea8e4b",
+                        "revision_id": "07702895-af08-570e-90d3-bc38769ab849",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "8e51b95d6ccebf80b7428422fcfada872bc22b573df5d512d6eab80994553a0c"
+                      }
+                    ],
+                    "original_source_ref": {
+                      "entity_id": "364eb78d-e8fd-575e-b084-83b53c84998b",
+                      "revision_id": "a9300ffa-a941-57c4-b86e-30089bb00676",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "c02c663287880e2b925f4282bbe281de15b7d64765d576306ea3dd2b5f7e34ce"
+                    }
+                  },
+                  "source_refs": [
+                    {
+                      "entity_id": "050a5537-1970-5a38-afba-e98a4703af64",
+                      "revision_id": "25ed497e-f6b7-515b-8976-838c6a5c9248",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "43bfc7bbee0a7ff9a5ce6d3814eace7cfd86fa172c548a4537deb404279f6854"
+                    }
+                  ]
+                },
+                "command_envelope": {
+                  "command_id": "57d13d0b-0162-5f24-9995-0d4fd0bbab46",
+                  "payload_hash_domain": "canonical-json-sha256-v1",
+                  "payload_hash": "630fb4ad784bc3338e9900e16bc822d314916c7577d4db56309506a1c8f30ead",
+                  "resource_scope": {
+                    "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                    "environment": "LAB",
+                    "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                    "group_id": null
+                  },
+                  "expected_generation": 4,
+                  "subject_refs": [
+                    {
+                      "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                      "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                    }
+                  ],
+                  "payload": {
+                    "definition": {
+                      "instrument_refs": [
+                        {
+                          "entity_id": "ecde813f-abde-514f-8045-d96bddd9cc8f",
+                          "revision_id": "e6a176ec-65b5-5c48-acb8-54b8f8f4ce3b",
+                          "owner": "FIXTURE_ONLY",
+                          "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                          "source_hash": "db569f67962b4bddf85206a62d68a3f41cd2a1c33814c3d97fb985d562265ac9"
+                        }
+                      ],
+                      "weights": [],
+                      "transition_policy_ref": {
+                        "entity_id": "6c656f5c-bd9d-56d0-98a3-c8589a1d46fd",
+                        "revision_id": "c04b1643-a94a-591d-a9b8-b064d5aff2a8",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "fad718c1eaf2f0b37fb7aaf6ddd7b0cf25c9d9720c300c34c818c693b8320363"
+                      },
+                      "costs_policy_ref": {
+                        "entity_id": "2a9b8fde-4e79-5311-960f-e92c49ce0a36",
+                        "revision_id": "f9d7a5a9-36bc-592d-a3ce-9fff10248cf0",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "6ebda08833b182025d9a3c51b7f6b9501ba7a129f31f451dd41af40655e6f6f6"
+                      },
+                      "cashflow_policy_ref": {
+                        "entity_id": "6f7776f6-9ff8-54f8-923c-34ff97f6c449",
+                        "revision_id": "2d5233a6-0cdb-5856-b874-c06c28af2676",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "b9a3063da12e1e817809827d4c94b48ebbf7b94d98d61b6e9a384475a27516af"
+                      },
+                      "scenario_refs": [
+                        {
+                          "entity_id": "09ea598f-86bd-5177-9c20-8596dfea8e4b",
+                          "revision_id": "07702895-af08-570e-90d3-bc38769ab849",
+                          "owner": "FIXTURE_ONLY",
+                          "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                          "source_hash": "8e51b95d6ccebf80b7428422fcfada872bc22b573df5d512d6eab80994553a0c"
+                        }
+                      ],
+                      "original_source_ref": {
+                        "entity_id": "364eb78d-e8fd-575e-b084-83b53c84998b",
+                        "revision_id": "a9300ffa-a941-57c4-b86e-30089bb00676",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "c02c663287880e2b925f4282bbe281de15b7d64765d576306ea3dd2b5f7e34ce"
+                      }
+                    },
+                    "source_refs": [
+                      {
+                        "entity_id": "050a5537-1970-5a38-afba-e98a4703af64",
+                        "revision_id": "25ed497e-f6b7-515b-8976-838c6a5c9248",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "43bfc7bbee0a7ff9a5ce6d3814eace7cfd86fa172c548a4537deb404279f6854"
+                      }
+                    ]
+                  }
+                },
+                "dto_profile": "candidate.5",
+                "dto_header": {
+                  "X-MA-DTO-Version": "candidate.5"
+                }
+              }
+            },
+            {
+              "actor_id": "B",
+              "source_event_ref": {
+                "entity_id": "c8cac8d9-a7c0-5bb0-a3c7-f427b36db579",
+                "revision_id": "ed08fcbe-def2-5e2f-957a-133afc10f90d",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "dcde6c4e9ecd70ff101d6b0a020565c9440a0c951b7af6dc3abe41013747589f"
+              },
+              "generation_before": 4,
+              "generation_after": 5,
+              "frontier_before": 12,
+              "frontier_after": 13
+            }
+          ],
+          "schedule": [
+            {
+              "at": 1,
+              "actor": "A",
+              "action": "read exact initial-world source/ref/generation/frontier"
+            },
+            {
+              "at": 2,
+              "actor": "B",
+              "action": "append immutable successor or race same command according to named interleaving",
+              "named_event": [
+                "source head advances after read snapshot, or duplicate same command_id/same recomputed digest after reply loss"
+              ]
+            },
+            {
+              "at": 3,
+              "actor": "A",
+              "action": "attempt exact original generation/frontier commit or read next snapshot page"
+            }
+          ],
+          "input_model": "ApiRequest_savePortfolioResearch",
+          "response_model": "PortfolioResearchDefinition",
+          "response_envelope": "OperationReceipt",
+          "response_cardinality": "ONE"
+        },
+        "mutation": null,
+        "interleaving": [
+          "source head advances after read snapshot, or duplicate same command_id/same recomputed digest after reply loss"
+        ],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "PortfolioResearchDefinition",
+        "expected_observations": {
+          "read_snapshot_stable": true,
+          "same_command_commit_count_max": 1,
+          "different_digest_http": 409
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA05-U02",
+        "consumer_units": [
+          "MA10-U02",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    }
+  ],
+  "additional_required_cases_if_not_in_legacy": "Use current v9 case_refs/required descendants and explicit adapter profile; legacy fixtures not universal current payload positives",
+  "qualification": {
+    "source_assembly": "PENDING",
+    "context_profile": "PENDING_APPLICABILITY",
+    "WO_Grant_Writer_Budget": "NOT_AUTHORIZED",
+    "runtime": "APPLICABLE_NAMED_GATE_ONLY"
+  },
+  "unresolved_implementation_binding": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here.",
+  "implementation_not_authorized": true,
+  "v9_case_sources": [
+    {
+      "ref": {
+        "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+        "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47",
+        "pointer": "#/cases/11"
+      },
+      "source_row": {
+        "business_result_body": {
+          "cashflow_assumptions": [],
+          "cost_policy_ref": {
+            "entity_id": "e991fd04-af47-5fc9-80f5-38a7da6ddd50",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "F_RESEARCH",
+            "revision_id": "abd66dbe-e1fc-572e-8b23-80c3359bb746",
+            "source_hash": "28c7069bb6531185e6f4bcc6abeaa0232ab9740847eafd1d7049dd0a23f02187"
+          },
+          "instrument_refs": [
+            {
+              "entity_id": "ebe8f8cd-c135-5f97-a777-e116b7cf2c25",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "A_ASSET",
+              "revision_id": "23e612af-0077-5aca-92d1-1f168c062140",
+              "source_hash": "0870ea9acefa271c5947cff13fbae638d3cecabcb9b5748b7a70bca11ac2c067"
+            }
+          ],
+          "ref": {
+            "entity_id": "1a6c3f68-0d4c-57df-abe1-55660d6e3e03",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "F_RESEARCH",
+            "revision_id": "5df15cc0-9146-56e1-b8dd-2a74659d2765",
+            "source_hash": "d3d81c7ad1fed19b1036f89cb331004f2f705daa5e80de46b0bbd47633bcea66"
+          },
+          "source_refs": [
+            {
+              "entity_id": "0cc3072a-37ab-53e3-9f5b-f5b81c660f94",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "F_RESEARCH",
+              "revision_id": "06195266-9e78-51ff-93a3-d8b3d9f3e30e",
+              "source_hash": "81a91ee5ce980717a7b7530958e8d1ace109bb123f7dc96120be82a13460420c"
+            },
+            {
+              "entity_id": "58810477-9b8c-5502-adf6-5689bf4a5bf3",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "F_RESEARCH",
+              "revision_id": "b1c74139-f08b-5055-a2ed-51e5eb24aec6",
+              "source_hash": "94e2a4e849efdfd6ce5291554adc61bd4d50e3688e4117349d62d614017c3085"
+            }
+          ],
+          "transition_policy_ref": {
+            "entity_id": "8e9674c1-4ce3-597a-9b42-ac6eb8e87b83",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "F_RESEARCH",
+            "revision_id": "16d868d8-56ae-5494-8e2c-4b04caffa61e",
+            "source_hash": "15a6efb2d1057f75d2b8ab974cb67b541f6e1a84727bffc43c822cf4a9c131f7"
+          },
+          "weight_constraints": [
+            {
+              "currency": "TWD",
+              "instrument_ref": {
+                "entity_id": "ebe8f8cd-c135-5f97-a777-e116b7cf2c25",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "A_ASSET",
+                "revision_id": "23e612af-0077-5aca-92d1-1f168c062140",
+                "source_hash": "0870ea9acefa271c5947cff13fbae638d3cecabcb9b5748b7a70bca11ac2c067"
+              },
+              "weight": "1"
+            }
+          ]
+        },
+        "business_result_body_canonical_sha256": "93e0757b8af84310239ade35b6d7ef225e160518cdb08b55cbf1133e1cb954ba",
+        "business_result_label": "portfolio-research",
+        "business_result_model": "PortfolioResearchDefinition",
+        "business_result_ref": {
+          "entity_id": "1a6c3f68-0d4c-57df-abe1-55660d6e3e03",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "F_RESEARCH",
+          "revision_id": "5df15cc0-9146-56e1-b8dd-2a74659d2765",
+          "source_hash": "d3d81c7ad1fed19b1036f89cb331004f2f705daa5e80de46b0bbd47633bcea66"
+        },
+        "case_id": "C7-POSITIVE-savePortfolioResearch",
+        "command_envelope": {
+          "command_id": "e4ad615d-41a4-56b4-828f-068871f3bd2c",
+          "expected_generation": 0,
+          "payload": {
+            "definition": {
+              "cashflow_policy_ref": {
+                "entity_id": "58810477-9b8c-5502-adf6-5689bf4a5bf3",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "b1c74139-f08b-5055-a2ed-51e5eb24aec6",
+                "source_hash": "94e2a4e849efdfd6ce5291554adc61bd4d50e3688e4117349d62d614017c3085"
+              },
+              "costs_policy_ref": {
+                "entity_id": "e991fd04-af47-5fc9-80f5-38a7da6ddd50",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "abd66dbe-e1fc-572e-8b23-80c3359bb746",
+                "source_hash": "28c7069bb6531185e6f4bcc6abeaa0232ab9740847eafd1d7049dd0a23f02187"
+              },
+              "instrument_refs": [
+                {
+                  "entity_id": "ebe8f8cd-c135-5f97-a777-e116b7cf2c25",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "A_ASSET",
+                  "revision_id": "23e612af-0077-5aca-92d1-1f168c062140",
+                  "source_hash": "0870ea9acefa271c5947cff13fbae638d3cecabcb9b5748b7a70bca11ac2c067"
+                }
+              ],
+              "original_source_ref": {
+                "entity_id": "0cc3072a-37ab-53e3-9f5b-f5b81c660f94",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "06195266-9e78-51ff-93a3-d8b3d9f3e30e",
+                "source_hash": "81a91ee5ce980717a7b7530958e8d1ace109bb123f7dc96120be82a13460420c"
+              },
+              "scenario_refs": [],
+              "transition_policy_ref": {
+                "entity_id": "8e9674c1-4ce3-597a-9b42-ac6eb8e87b83",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "16d868d8-56ae-5494-8e2c-4b04caffa61e",
+                "source_hash": "15a6efb2d1057f75d2b8ab974cb67b541f6e1a84727bffc43c822cf4a9c131f7"
+              },
+              "weights": [
+                {
+                  "currency": "TWD",
+                  "instrument_ref": {
+                    "entity_id": "ebe8f8cd-c135-5f97-a777-e116b7cf2c25",
+                    "hash_domain": "raw-bytes-sha256-v1",
+                    "owner": "A_ASSET",
+                    "revision_id": "23e612af-0077-5aca-92d1-1f168c062140",
+                    "source_hash": "0870ea9acefa271c5947cff13fbae638d3cecabcb9b5748b7a70bca11ac2c067"
+                  },
+                  "weight": "1"
+                }
+              ]
+            },
+            "source_refs": [
+              {
+                "entity_id": "0cc3072a-37ab-53e3-9f5b-f5b81c660f94",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "06195266-9e78-51ff-93a3-d8b3d9f3e30e",
+                "source_hash": "81a91ee5ce980717a7b7530958e8d1ace109bb123f7dc96120be82a13460420c"
+              },
+              {
+                "entity_id": "58810477-9b8c-5502-adf6-5689bf4a5bf3",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "b1c74139-f08b-5055-a2ed-51e5eb24aec6",
+                "source_hash": "94e2a4e849efdfd6ce5291554adc61bd4d50e3688e4117349d62d614017c3085"
+              }
+            ]
+          },
+          "payload_hash": "470ba448ca80b9d71f5df1122cedda12aa63006126c618b01446a10487a55cd2",
+          "payload_hash_domain": "ma-canonical-json-sha256-v1",
+          "resource_scope": {
+            "account_id": null,
+            "environment": "LAB",
+            "group_id": null,
+            "project_id": "89d1b768-da99-56e4-96c4-307aa2725fc3"
+          },
+          "subject_refs": [
+            {
+              "entity_id": "ebe8f8cd-c135-5f97-a777-e116b7cf2c25",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "A_ASSET",
+              "revision_id": "23e612af-0077-5aca-92d1-1f168c062140",
+              "source_hash": "0870ea9acefa271c5947cff13fbae638d3cecabcb9b5748b7a70bca11ac2c067"
+            },
+            {
+              "entity_id": "8e9674c1-4ce3-597a-9b42-ac6eb8e87b83",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "F_RESEARCH",
+              "revision_id": "16d868d8-56ae-5494-8e2c-4b04caffa61e",
+              "source_hash": "15a6efb2d1057f75d2b8ab974cb67b541f6e1a84727bffc43c822cf4a9c131f7"
+            },
+            {
+              "entity_id": "e991fd04-af47-5fc9-80f5-38a7da6ddd50",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "F_RESEARCH",
+              "revision_id": "abd66dbe-e1fc-572e-8b23-80c3359bb746",
+              "source_hash": "28c7069bb6531185e6f4bcc6abeaa0232ab9740847eafd1d7049dd0a23f02187"
+            },
+            {
+              "entity_id": "58810477-9b8c-5502-adf6-5689bf4a5bf3",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "F_RESEARCH",
+              "revision_id": "b1c74139-f08b-5055-a2ed-51e5eb24aec6",
+              "source_hash": "94e2a4e849efdfd6ce5291554adc61bd4d50e3688e4117349d62d614017c3085"
+            },
+            {
+              "entity_id": "0cc3072a-37ab-53e3-9f5b-f5b81c660f94",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "F_RESEARCH",
+              "revision_id": "06195266-9e78-51ff-93a3-d8b3d9f3e30e",
+              "source_hash": "81a91ee5ce980717a7b7530958e8d1ace109bb123f7dc96120be82a13460420c"
+            }
+          ]
+        },
+        "command_envelope_payload_exact": true,
+        "expected_http_status": 200,
+        "expected_response": {
+          "command_id": "e4ad615d-41a4-56b4-828f-068871f3bd2c",
+          "operation_id": "7e551254-7427-5b81-af13-afa86f19ffa4",
+          "payload_hash": "470ba448ca80b9d71f5df1122cedda12aa63006126c618b01446a10487a55cd2",
+          "reasons": [
+            "SOURCE_DESIGN_ONLY_SYNTHETIC_EXPECTED_TRANSITION"
+          ],
+          "receipt_ref": {
+            "entity_id": "9201fb21-6b8a-5819-b7be-cd27818e5822",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "F_RESEARCH",
+            "revision_id": "5eec206a-1cf9-5f3f-832e-96063c8092dd",
+            "source_hash": "e27bb09bbcdd9e74fd4c10fac7451796e9f5dac651efbc7bc1fb30d2a3f7d35f"
+          },
+          "result_ref": {
+            "entity_id": "1a6c3f68-0d4c-57df-abe1-55660d6e3e03",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "F_RESEARCH",
+            "revision_id": "5df15cc0-9146-56e1-b8dd-2a74659d2765",
+            "source_hash": "d3d81c7ad1fed19b1036f89cb331004f2f705daa5e80de46b0bbd47633bcea66"
+          },
+          "state": "SUCCEEDED"
+        },
+        "expected_response_canonical_sha256": "55de7960a7ced37cb0757be45f0175eda0c0b2ac6e99e434f59dc53195f8313b",
+        "expected_response_canonical_utf8": "{\"command_id\":\"e4ad615d-41a4-56b4-828f-068871f3bd2c\",\"operation_id\":\"7e551254-7427-5b81-af13-afa86f19ffa4\",\"payload_hash\":\"470ba448ca80b9d71f5df1122cedda12aa63006126c618b01446a10487a55cd2\",\"reasons\":[\"SOURCE_DESIGN_ONLY_SYNTHETIC_EXPECTED_TRANSITION\"],\"receipt_ref\":{\"entity_id\":\"9201fb21-6b8a-5819-b7be-cd27818e5822\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"F_RESEARCH\",\"revision_id\":\"5eec206a-1cf9-5f3f-832e-96063c8092dd\",\"source_hash\":\"e27bb09bbcdd9e74fd4c10fac7451796e9f5dac651efbc7bc1fb30d2a3f7d35f\"},\"result_ref\":{\"entity_id\":\"1a6c3f68-0d4c-57df-abe1-55660d6e3e03\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"F_RESEARCH\",\"revision_id\":\"5df15cc0-9146-56e1-b8dd-2a74659d2765\",\"source_hash\":\"d3d81c7ad1fed19b1036f89cb331004f2f705daa5e80de46b0bbd47633bcea66\"},\"state\":\"SUCCEEDED\"}",
+        "expected_response_ref": {
+          "entity_id": "8c03e5c0-42ae-558c-bd53-1a88ad82ffcc",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "EFFECT_OWNER",
+          "revision_id": "4a79cb4a-9a55-5154-ab16-3c02734519b7",
+          "source_hash": "55de7960a7ced37cb0757be45f0175eda0c0b2ac6e99e434f59dc53195f8313b"
+        },
+        "immutable_read_snapshot_ref": {
+          "entity_id": "9efb8614-b29d-5a5f-97bd-af73a16177be",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "PROJECTION_OWNER",
+          "revision_id": "1c31e833-a16a-5d09-9f52-df85085957f0",
+          "source_hash": "41378cb6363f7dc566999197e7e7c34b5527297d42fde52d9f1fc456965ab067"
+        },
+        "notes": [
+          "Finite operation-specific source/body values; no runtime verification claimed."
+        ],
+        "operation_id": "savePortfolioResearch",
+        "operation_scope_source_ref": {
+          "entity_id": "ac7fb6ef-0fc9-56f5-9ec9-3c0f3992f09e",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "EXISTING_AUTHORIZATION_OWNER",
+          "revision_id": "cd4c97a4-b95f-56af-b2a2-53e7cc431370",
+          "source_hash": "173fbd5abbedbefe23299cdca1e2603de8bd4791c588031fb60b35e598506823"
+        },
+        "qualification": "SOURCE_DESIGN_ONLY_SYNTHETIC_NOT_EXECUTED",
+        "request_payload_canonical_sha256": "470ba448ca80b9d71f5df1122cedda12aa63006126c618b01446a10487a55cd2",
+        "request_payload_canonical_utf8": "{\"definition\":{\"cashflow_policy_ref\":{\"entity_id\":\"58810477-9b8c-5502-adf6-5689bf4a5bf3\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"F_RESEARCH\",\"revision_id\":\"b1c74139-f08b-5055-a2ed-51e5eb24aec6\",\"source_hash\":\"94e2a4e849efdfd6ce5291554adc61bd4d50e3688e4117349d62d614017c3085\"},\"costs_policy_ref\":{\"entity_id\":\"e991fd04-af47-5fc9-80f5-38a7da6ddd50\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"F_RESEARCH\",\"revision_id\":\"abd66dbe-e1fc-572e-8b23-80c3359bb746\",\"source_hash\":\"28c7069bb6531185e6f4bcc6abeaa0232ab9740847eafd1d7049dd0a23f02187\"},\"instrument_refs\":[{\"entity_id\":\"ebe8f8cd-c135-5f97-a777-e116b7cf2c25\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"A_ASSET\",\"revision_id\":\"23e612af-0077-5aca-92d1-1f168c062140\",\"source_hash\":\"0870ea9acefa271c5947cff13fbae638d3cecabcb9b5748b7a70bca11ac2c067\"}],\"original_source_ref\":{\"entity_id\":\"0cc3072a-37ab-53e3-9f5b-f5b81c660f94\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"F_RESEARCH\",\"revision_id\":\"06195266-9e78-51ff-93a3-d8b3d9f3e30e\",\"source_hash\":\"81a91ee5ce980717a7b7530958e8d1ace109bb123f7dc96120be82a13460420c\"},\"scenario_refs\":[],\"transition_policy_ref\":{\"entity_id\":\"8e9674c1-4ce3-597a-9b42-ac6eb8e87b83\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"F_RESEARCH\",\"revision_id\":\"16d868d8-56ae-5494-8e2c-4b04caffa61e\",\"source_hash\":\"15a6efb2d1057f75d2b8ab974cb67b541f6e1a84727bffc43c822cf4a9c131f7\"},\"weights\":[{\"currency\":\"TWD\",\"instrument_ref\":{\"entity_id\":\"ebe8f8cd-c135-5f97-a777-e116b7cf2c25\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"A_ASSET\",\"revision_id\":\"23e612af-0077-5aca-92d1-1f168c062140\",\"source_hash\":\"0870ea9acefa271c5947cff13fbae638d3cecabcb9b5748b7a70bca11ac2c067\"},\"weight\":\"1\"}]},\"source_refs\":[{\"entity_id\":\"0cc3072a-37ab-53e3-9f5b-f5b81c660f94\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"F_RESEARCH\",\"revision_id\":\"06195266-9e78-51ff-93a3-d8b3d9f3e30e\",\"source_hash\":\"81a91ee5ce980717a7b7530958e8d1ace109bb123f7dc96120be82a13460420c\"},{\"entity_id\":\"58810477-9b8c-5502-adf6-5689bf4a5bf3\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"F_RESEARCH\",\"revision_id\":\"b1c74139-f08b-5055-a2ed-51e5eb24aec6\",\"source_hash\":\"94e2a4e849efdfd6ce5291554adc61bd4d50e3688e4117349d62d614017c3085\"}]}",
+        "request_ref": {
+          "entity_id": "e88b4f90-2a7d-5caa-bf22-113fea8e4b8e",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "PROJECTION_OWNER",
+          "revision_id": "3449bf78-bac5-5dcc-8d28-d51e2ae6ec51",
+          "source_hash": "470ba448ca80b9d71f5df1122cedda12aa63006126c618b01446a10487a55cd2"
+        },
+        "result_body_readback": {
+          "as_of": "2026-10-14T00:00:00Z",
+          "authorization_receipt_ref": {
+            "entity_id": "95c4c907-f67d-5690-9656-50b8639e0da2",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "EXISTING_AUTHORIZATION_OWNER",
+            "revision_id": "4964f7a8-1937-57a1-a642-2abbf9bd6c25",
+            "source_hash": "2e4099ab621a0c86671fe22aa20103f7ecc8a2236e190308c09ecbc2d5481c9b"
+          },
+          "availability": "AVAILABLE",
+          "binding": {
+            "body_type": "PortfolioResearchDefinition",
+            "catalog_ref": {
+              "entity_id": "7f32c461-fbcb-5065-a94c-bb6f40f3ada8",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "revision_id": "a953ef0b-ed54-5628-a88a-37638d96bdc3",
+              "source_hash": "463cd565fdf976e959335d511074a5cf16ae7c496972796bbb71ea97d749a3e3"
+            },
+            "closure_binding_refs": [],
+            "content_artifact_ref": {
+              "entity_id": "c8debadb-77bd-5681-bf32-2f4b1eec4d68",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "ARTIFACT_WRITER",
+              "revision_id": "f06cdd96-0c50-532c-99e9-dd891b699939",
+              "source_hash": "93e0757b8af84310239ade35b6d7ef225e160518cdb08b55cbf1133e1cb954ba"
+            },
+            "content_byte_hash": "93e0757b8af84310239ade35b6d7ef225e160518cdb08b55cbf1133e1cb954ba",
+            "content_byte_hash_domain": "raw-bytes-sha256-v1",
+            "content_byte_size": 1885,
+            "content_capture_receipt_ref": {
+              "entity_id": "ba31c3b9-04c9-5ff9-b828-c42b1174cdc9",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "ARTIFACT_PROVIDER",
+              "revision_id": "1ea41a98-234d-580c-94f4-e80436c7af2f",
+              "source_hash": "bfc61c9aa084d57e4aa2ee3b3c4108f223606fb44a4150bd713352836529f6b5"
+            },
+            "dto_version": "MA-DTO-v6",
+            "model_semantic_hash": "f5bae74e3df89e301eb8686d34d9babe84bff71a980d32d2ab3b44d9ca907ded",
+            "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+            "ref": {
+              "entity_id": "6fc29299-f532-50c8-b4db-c402f2bf630e",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "BODY_CAPTURE_OWNER",
+              "revision_id": "39f6dca3-b297-5ae6-8077-48d8ff05adac",
+              "source_hash": "17a88b72e4517503978a49f86fb45cbcd52a56194e95cb437e0f4e9e74f6e468"
+            },
+            "resource_scope": {
+              "account_id": null,
+              "environment": "LAB",
+              "group_id": null,
+              "project_id": "89d1b768-da99-56e4-96c4-307aa2725fc3"
+            },
+            "schema_ref": {
+              "entity_id": "bc5f1742-0439-5be5-a493-e4b4236266ec",
+              "hash_domain": "ma-body-schema-sha256-v1",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "revision_id": "5a460e34-25e5-562c-9c55-da5c06dad248",
+              "source_hash": "336715ca501ed1858397cfccc06b05c8b369d62df3be77a2135c0ee50971cf2c"
+            },
+            "serializer_id": "ma.closed-body.PortfolioResearchDefinition.MA-DTO-v6",
+            "source_bindings": [
+              {
+                "binding_role": "SUBMITTED_DRAFT_INPUT",
+                "raw_byte_hash": "d3d81c7ad1fed19b1036f89cb331004f2f705daa5e80de46b0bbd47633bcea66",
+                "raw_hash_domain": "raw-bytes-sha256-v1",
+                "row_selector": null,
+                "source_artifact_ref": {
+                  "entity_id": "feda02ac-374e-503f-8bb4-837ce7cf8378",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "ARTIFACT_WRITER",
+                  "revision_id": "7b7ed0f1-a290-5be1-87e3-44aaf165ce43",
+                  "source_hash": "d3d81c7ad1fed19b1036f89cb331004f2f705daa5e80de46b0bbd47633bcea66"
+                },
+                "source_capture_receipt_ref": {
+                  "entity_id": "72656736-c102-5dd7-acbc-b014e25f2238",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "ARTIFACT_PROVIDER",
+                  "revision_id": "182e983b-fe96-548a-baf5-440ab60c1aee",
+                  "source_hash": "aad6e328f8f2832bc7b97a2618dc00f2833332e5ad4ea01be21ce81e1e307e22"
+                },
+                "source_ref": {
+                  "entity_id": "6e9022b7-c71b-5fd3-93ae-76aa657ade76",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "F_RESEARCH",
+                  "revision_id": "8ba2972b-9f14-5413-b5f8-2105fcf656b7",
+                  "source_hash": "d3d81c7ad1fed19b1036f89cb331004f2f705daa5e80de46b0bbd47633bcea66"
+                },
+                "source_schema_ref": {
+                  "entity_id": "312a66be-a482-56da-9bae-ad1a7d4d4381",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "F_RESEARCH",
+                  "revision_id": "6118acc4-f81d-51cf-8531-b053ba0e894c",
+                  "source_hash": "bb37b930e21efd9498080090c45b36f6cf42c363002275114d77ee2a72b1245a"
+                }
+              }
+            ],
+            "subject_ref": {
+              "entity_id": "1a6c3f68-0d4c-57df-abe1-55660d6e3e03",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "F_RESEARCH",
+              "revision_id": "5df15cc0-9146-56e1-b8dd-2a74659d2765",
+              "source_hash": "d3d81c7ad1fed19b1036f89cb331004f2f705daa5e80de46b0bbd47633bcea66"
+            }
+          },
+          "capture_state": "CAPTURED_VERIFIED",
+          "coverage": {
+            "completeness": "COMPLETE",
+            "covered_window": "FINITE_SOURCE_ROWS",
+            "empty_proof_ref": null,
+            "frontier": "C7:1",
+            "requested_scope": "portfolio-research",
+            "requested_window": "FINITE_SOURCE_ROWS",
+            "success": true
+          },
+          "integrity": "VERIFIED",
+          "missing": [],
+          "payload": {
+            "cashflow_assumptions": [],
+            "cost_policy_ref": {
+              "entity_id": "e991fd04-af47-5fc9-80f5-38a7da6ddd50",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "F_RESEARCH",
+              "revision_id": "abd66dbe-e1fc-572e-8b23-80c3359bb746",
+              "source_hash": "28c7069bb6531185e6f4bcc6abeaa0232ab9740847eafd1d7049dd0a23f02187"
+            },
+            "instrument_refs": [
+              {
+                "entity_id": "ebe8f8cd-c135-5f97-a777-e116b7cf2c25",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "A_ASSET",
+                "revision_id": "23e612af-0077-5aca-92d1-1f168c062140",
+                "source_hash": "0870ea9acefa271c5947cff13fbae638d3cecabcb9b5748b7a70bca11ac2c067"
+              }
+            ],
+            "ref": {
+              "entity_id": "1a6c3f68-0d4c-57df-abe1-55660d6e3e03",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "F_RESEARCH",
+              "revision_id": "5df15cc0-9146-56e1-b8dd-2a74659d2765",
+              "source_hash": "d3d81c7ad1fed19b1036f89cb331004f2f705daa5e80de46b0bbd47633bcea66"
+            },
+            "source_refs": [
+              {
+                "entity_id": "0cc3072a-37ab-53e3-9f5b-f5b81c660f94",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "06195266-9e78-51ff-93a3-d8b3d9f3e30e",
+                "source_hash": "81a91ee5ce980717a7b7530958e8d1ace109bb123f7dc96120be82a13460420c"
+              },
+              {
+                "entity_id": "58810477-9b8c-5502-adf6-5689bf4a5bf3",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "b1c74139-f08b-5055-a2ed-51e5eb24aec6",
+                "source_hash": "94e2a4e849efdfd6ce5291554adc61bd4d50e3688e4117349d62d614017c3085"
+              }
+            ],
+            "transition_policy_ref": {
+              "entity_id": "8e9674c1-4ce3-597a-9b42-ac6eb8e87b83",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "F_RESEARCH",
+              "revision_id": "16d868d8-56ae-5494-8e2c-4b04caffa61e",
+              "source_hash": "15a6efb2d1057f75d2b8ab974cb67b541f6e1a84727bffc43c822cf4a9c131f7"
+            },
+            "weight_constraints": [
+              {
+                "currency": "TWD",
+                "instrument_ref": {
+                  "entity_id": "ebe8f8cd-c135-5f97-a777-e116b7cf2c25",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "A_ASSET",
+                  "revision_id": "23e612af-0077-5aca-92d1-1f168c062140",
+                  "source_hash": "0870ea9acefa271c5947cff13fbae638d3cecabcb9b5748b7a70bca11ac2c067"
+                },
+                "weight": "1"
+              }
+            ]
+          },
+          "protection_a": {
+            "receipt_refs": [],
+            "state": "NOT_REQUESTED"
+          },
+          "protection_b": {
+            "receipt_refs": [],
+            "state": "NOT_REQUESTED"
+          },
+          "requested_subject_ref": {
+            "entity_id": "1a6c3f68-0d4c-57df-abe1-55660d6e3e03",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "F_RESEARCH",
+            "revision_id": "5df15cc0-9146-56e1-b8dd-2a74659d2765",
+            "source_hash": "d3d81c7ad1fed19b1036f89cb331004f2f705daa5e80de46b0bbd47633bcea66"
+          },
+          "resource_scope": {
+            "account_id": null,
+            "environment": "LAB",
+            "group_id": null,
+            "project_id": "89d1b768-da99-56e4-96c4-307aa2725fc3"
+          },
+          "snapshot_ref": {
+            "entity_id": "9efb8614-b29d-5a5f-97bd-af73a16177be",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "PROJECTION_OWNER",
+            "revision_id": "1c31e833-a16a-5d09-9f52-df85085957f0",
+            "source_hash": "41378cb6363f7dc566999197e7e7c34b5527297d42fde52d9f1fc456965ab067"
+          },
+          "sql_index_state": "NOT_INDEXED"
+        },
+        "scope_ref": {
+          "entity_id": "053b52e3-ad3f-5ef5-820a-a9b4ea11106f",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "F_RESEARCH",
+          "revision_id": "86eb4807-9279-5583-a005-01a02da36d9d",
+          "source_hash": "26ef913f023507307ad0e8bab4e36de2d75e8771c450a849111e926e01385ebe"
+        },
+        "source_profile": "MA-DTO-v6",
+        "state_after_ref": {
+          "entity_id": "eb991215-2e59-5ef2-a498-435c94a1fc82",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "F_RESEARCH",
+          "revision_id": "5ad646f0-3c9b-55fd-8c53-fc609f529603",
+          "source_hash": "24374f3bdcb91a37e7f66926b82871df0dde9a0d0c8cc3ca15533ab2ed54cdc8"
+        },
+        "state_before_ref": {
+          "entity_id": "35a011b9-2ff3-5f51-9c29-45613d0b6416",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "F_RESEARCH",
+          "revision_id": "b6f0e9ce-a7db-5e5a-8979-7cb9a9bb6a92",
+          "source_hash": "abf0e853e87afe40c8d777bce4ea25893eb8628be12009543e96d75a7840d400"
+        },
+        "wire_request": {
+          "authenticated_actor_id": "0908155a-029b-5b33-8e0b-e9846e99808e",
+          "headers": {
+            "X-MA-DTO-Version": "MA-DTO-v6"
+          },
+          "method": "POST",
+          "path": "/api/v2/portfolio-research",
+          "path_params": {},
+          "request_payload": {
+            "definition": {
+              "cashflow_policy_ref": {
+                "entity_id": "58810477-9b8c-5502-adf6-5689bf4a5bf3",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "b1c74139-f08b-5055-a2ed-51e5eb24aec6",
+                "source_hash": "94e2a4e849efdfd6ce5291554adc61bd4d50e3688e4117349d62d614017c3085"
+              },
+              "costs_policy_ref": {
+                "entity_id": "e991fd04-af47-5fc9-80f5-38a7da6ddd50",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "abd66dbe-e1fc-572e-8b23-80c3359bb746",
+                "source_hash": "28c7069bb6531185e6f4bcc6abeaa0232ab9740847eafd1d7049dd0a23f02187"
+              },
+              "instrument_refs": [
+                {
+                  "entity_id": "ebe8f8cd-c135-5f97-a777-e116b7cf2c25",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "A_ASSET",
+                  "revision_id": "23e612af-0077-5aca-92d1-1f168c062140",
+                  "source_hash": "0870ea9acefa271c5947cff13fbae638d3cecabcb9b5748b7a70bca11ac2c067"
+                }
+              ],
+              "original_source_ref": {
+                "entity_id": "0cc3072a-37ab-53e3-9f5b-f5b81c660f94",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "06195266-9e78-51ff-93a3-d8b3d9f3e30e",
+                "source_hash": "81a91ee5ce980717a7b7530958e8d1ace109bb123f7dc96120be82a13460420c"
+              },
+              "scenario_refs": [],
+              "transition_policy_ref": {
+                "entity_id": "8e9674c1-4ce3-597a-9b42-ac6eb8e87b83",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "16d868d8-56ae-5494-8e2c-4b04caffa61e",
+                "source_hash": "15a6efb2d1057f75d2b8ab974cb67b541f6e1a84727bffc43c822cf4a9c131f7"
+              },
+              "weights": [
+                {
+                  "currency": "TWD",
+                  "instrument_ref": {
+                    "entity_id": "ebe8f8cd-c135-5f97-a777-e116b7cf2c25",
+                    "hash_domain": "raw-bytes-sha256-v1",
+                    "owner": "A_ASSET",
+                    "revision_id": "23e612af-0077-5aca-92d1-1f168c062140",
+                    "source_hash": "0870ea9acefa271c5947cff13fbae638d3cecabcb9b5748b7a70bca11ac2c067"
+                  },
+                  "weight": "1"
+                }
+              ]
+            },
+            "source_refs": [
+              {
+                "entity_id": "0cc3072a-37ab-53e3-9f5b-f5b81c660f94",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "06195266-9e78-51ff-93a3-d8b3d9f3e30e",
+                "source_hash": "81a91ee5ce980717a7b7530958e8d1ace109bb123f7dc96120be82a13460420c"
+              },
+              {
+                "entity_id": "58810477-9b8c-5502-adf6-5689bf4a5bf3",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "F_RESEARCH",
+                "revision_id": "b1c74139-f08b-5055-a2ed-51e5eb24aec6",
+                "source_hash": "94e2a4e849efdfd6ce5291554adc61bd4d50e3688e4117349d62d614017c3085"
+              }
+            ]
+          },
+          "resource_scope": {
+            "account_id": null,
+            "environment": "LAB",
+            "group_id": null,
+            "project_id": "89d1b768-da99-56e4-96c4-307aa2725fc3"
+          }
+        },
+        "world_id": "MA-ARCH-REVIEW-v7-CYCLE03"
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    }
+  ]
+}

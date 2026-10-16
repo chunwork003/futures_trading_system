@@ -1,0 +1,1727 @@
+[
+  {
+    "name": "RegistryProposalRequestV5",
+    "schema_ref": {
+      "entity_id": "84b5c486-2c9a-5a4a-8a05-e3bd72616f47",
+      "revision_id": "92d4267b-2366-55b3-aea7-990b0ef9d213",
+      "owner": "N_APPLICATION_BODY_CATALOG",
+      "hash_domain": "ma-body-schema-sha256-v1",
+      "source_hash": "9e1996d402bfb82651b756fbc1fab09c911f89249166f0be430f9320ce7b789a"
+    },
+    "schema_contract": {
+      "RegistryProposalRequestV5": {
+        "name": "RegistryProposalRequestV5",
+        "fields": {
+          "base_snapshot_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "base_graph_heads": {
+            "type": "RegistryGraphHead[]",
+            "required": true
+          },
+          "body_submissions": {
+            "type": "RegistryDraftBodySubmissionV5[]",
+            "required": true
+          },
+          "changes": {
+            "type": "RegistryChangeV5[]",
+            "required": true
+          },
+          "source_refs": {
+            "type": "ContractRef[]",
+            "required": true
+          }
+        },
+        "invariant": "CommandEnvelope same scope/command/recomputedpayloadhash；所有connected graph heads固定。先capture durable/journal，後同existing SQL writer/UoW記candidate+operation receipt+outbox；跨store與SQL不宣稱原子。Capture後SQL失敗為INDEX_FAILED、journal保留、query同command，無formal head effect。",
+        "contract_revision": "candidate.5"
+      },
+      "ContractRef": {
+        "name": "ContractRef",
+        "chapter": "MA01",
+        "owner": "ALL",
+        "fields": {
+          "entity_id": {
+            "type": "uuid",
+            "required": true
+          },
+          "revision_id": {
+            "type": "uuid",
+            "required": true
+          },
+          "owner": {
+            "type": "string",
+            "required": true
+          },
+          "hash_domain": {
+            "type": "string",
+            "required": true
+          },
+          "source_hash": {
+            "type": "hash",
+            "required": true
+          }
+        },
+        "invariant": "引用精確版本，禁止 latest"
+      },
+      "RegistryGraphHead": {
+        "name": "RegistryGraphHead",
+        "fields": {
+          "scope_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "snapshot_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "generation": {
+            "type": "int",
+            "required": true
+          },
+          "closure_hash": {
+            "type": "hash",
+            "required": true
+          },
+          "completeness": {
+            "type": "enum",
+            "required": true
+          }
+        },
+        "invariant": "Generation >=0; full connected scope closure, imported endpoint revisions and source hash fixed; INCOMPLETE/UNKNOWN rejects activation."
+      },
+      "RegistryGraphHead.completeness": {
+        "values": [
+          "COMPLETE",
+          "INCOMPLETE",
+          "UNKNOWN"
+        ]
+      },
+      "RegistryDraftBodySubmissionV5": {
+        "name": "RegistryDraftBodySubmissionV5",
+        "fields": {
+          "local_body_key": {
+            "type": "uuid",
+            "required": true
+          },
+          "body_type": {
+            "type": "enum",
+            "required": true
+          },
+          "write_mode": {
+            "type": "enum",
+            "required": true
+          },
+          "target_entity_ref": {
+            "type": "ContractRef?",
+            "required": false
+          },
+          "prior_revision_ref": {
+            "type": "ContractRef?",
+            "required": false
+          },
+          "expected_generation": {
+            "type": "int?",
+            "required": false
+          },
+          "body": {
+            "type": "RegistryDraftBodyPayloadV5",
+            "required": true
+          },
+          "source_bindings": {
+            "type": "BodySourceBindingV5[]",
+            "required": true
+          }
+        },
+        "invariant": "Local key為command內stable slot；CREATE_NEW_DRAFT才配置新永久ID/revision；UPDATE_EXISTING_DRAFT必existing entity/exact prior revision/generation CAS且只配置新revision，不重發entity。Import/Git-rebuild永遠保存supplied永久IDs/revisions，不使用此allocator。Allocation與commandID/hash/slot mapping在原owner staging SQL transaction原子保存；capture於其後。Input source_bindings只准existing ORIGINAL_SOURCE_RECORD/OWNER_DECISION_BYTES且驗grant/rawhash/membership；SUBMITTED_DRAFT_INPUT/SERVER_PRODUCED_CANONICAL_BODY只能server產生，client不能自稱。MODEL/LLM不能授approval。",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryDraftBodySubmissionV5.body_type": {
+        "values": [
+          "RegistryEntityDraftV5",
+          "RegistryEntityRevisionDraftV5",
+          "RelationRevisionDraftV5",
+          "CodeAssignmentDraftV5",
+          "LegacyAliasDraftV5",
+          "CodeAllocationDraftV5",
+          "CodeAllocationRetirementDraftV5"
+        ]
+      },
+      "RegistryDraftBodySubmissionV5.write_mode": {
+        "values": [
+          "CREATE_NEW_DRAFT",
+          "UPDATE_EXISTING_DRAFT"
+        ]
+      },
+      "RegistryDraftBodyPayloadV5": {
+        "name": "RegistryDraftBodyPayloadV5",
+        "selector": "RegistryDraftBodySubmissionV5.body_type",
+        "cases": {
+          "RegistryEntityDraftV5": "RegistryEntityDraftV5",
+          "RegistryEntityRevisionDraftV5": "RegistryEntityRevisionDraftV5",
+          "RelationRevisionDraftV5": "RelationRevisionDraftV5",
+          "CodeAssignmentDraftV5": "CodeAssignmentDraftV5",
+          "LegacyAliasDraftV5": "LegacyAliasDraftV5",
+          "CodeAllocationDraftV5": "CodeAllocationDraftV5",
+          "CodeAllocationRetirementDraftV5": "CodeAllocationRetirementDraftV5"
+        },
+        "unknown_case": "DENY"
+      },
+      "RegistryEntityDraftV5": {
+        "name": "RegistryEntityDraftV5",
+        "fields": {
+          "project_owner": {
+            "type": "uuid",
+            "required": true
+          },
+          "kind": {
+            "type": "enum",
+            "required": true
+          },
+          "semantic_payload_ref": {
+            "type": "BodyRefInputV5",
+            "required": true
+          },
+          "created_source_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "retirement_ref": {
+            "type": "BodyRefInputV5?",
+            "required": false
+          }
+        },
+        "invariant": "Server-owned new ref omitted; local references accepted only for declared FK fields. Same original domain semantics including allocation permanence, relation validity, scope/FK/cycle/source policy.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryEntityDraftV5.kind": {
+        "values": [
+          "ACCEPTANCE_RECEIPT",
+          "ARTIFACT",
+          "CAPABILITY",
+          "CATALOG",
+          "CODE_ALLOCATION",
+          "CODE_ASSIGNMENT",
+          "CODE_POLICY",
+          "CONTRACT",
+          "DELIVERABLE",
+          "EVIDENCE",
+          "FEATURE",
+          "GAP",
+          "LEGACY_ALIAS",
+          "PHASE",
+          "REGISTRY_SNAPSHOT",
+          "RELATION",
+          "REQUIREMENT",
+          "SOURCE",
+          "TASK",
+          "WORK_ORDER"
+        ]
+      },
+      "BodyRefInputV5": {
+        "name": "BodyRefInputV5",
+        "fields": {
+          "kind": {
+            "type": "enum",
+            "required": true
+          },
+          "existing_ref": {
+            "type": "ContractRef?",
+            "required": false
+          },
+          "local_body_key": {
+            "type": "uuid?",
+            "required": false
+          }
+        },
+        "invariant": "EXISTING_EXACT只existing_ref；LOCAL_DRAFT只local_body_key且限同compound request的具名FK paths。Server先一次分配新IDs，驗所有typedFK及closedgraph；來源/catalog/policy/authority refs不能LOCAL。",
+        "contract_revision": "candidate.5"
+      },
+      "BodyRefInputV5.kind": {
+        "values": [
+          "EXISTING_EXACT",
+          "LOCAL_DRAFT"
+        ]
+      },
+      "RegistryEntityRevisionDraftV5": {
+        "name": "RegistryEntityRevisionDraftV5",
+        "fields": {
+          "entity_ref": {
+            "type": "BodyRefInputV5",
+            "required": true
+          },
+          "entity_kind": {
+            "type": "enum",
+            "required": true
+          },
+          "prior_revision_ref": {
+            "type": "BodyRefInputV5?",
+            "required": false
+          },
+          "source_bindings": {
+            "type": "BodySourceBindingV5[]",
+            "required": true
+          },
+          "payload_type": {
+            "type": "enum",
+            "required": true
+          },
+          "semantic_payload": {
+            "type": "RegistrySemanticPayloadV5",
+            "required": true
+          }
+        },
+        "invariant": "Server-owned new ref omitted; local references accepted only for declared FK fields. Same original domain semantics including allocation permanence, relation validity, scope/FK/cycle/source policy.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryEntityRevisionDraftV5.entity_kind": {
+        "values": [
+          "ACCEPTANCE_RECEIPT",
+          "ARTIFACT",
+          "CAPABILITY",
+          "CATALOG",
+          "CODE_ALLOCATION",
+          "CODE_ASSIGNMENT",
+          "CODE_POLICY",
+          "CONTRACT",
+          "DELIVERABLE",
+          "EVIDENCE",
+          "FEATURE",
+          "GAP",
+          "LEGACY_ALIAS",
+          "PHASE",
+          "REGISTRY_SNAPSHOT",
+          "RELATION",
+          "REQUIREMENT",
+          "SOURCE",
+          "TASK",
+          "WORK_ORDER"
+        ]
+      },
+      "BodySourceBindingV5": {
+        "name": "BodySourceBindingV5",
+        "fields": {
+          "source_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "source_artifact_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "source_capture_receipt_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "raw_byte_hash": {
+            "type": "hash",
+            "required": true
+          },
+          "raw_hash_domain": {
+            "type": "enum",
+            "required": true
+          },
+          "row_selector": {
+            "type": "SourceRowSelectorV5?",
+            "required": false
+          },
+          "source_schema_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "binding_role": {
+            "type": "enum",
+            "required": true
+          }
+        },
+        "invariant": "來源指向已捕捉完整原始 bytes；row selector只解析具名catalog准許的JSON pointer；不可提供OS路徑、URL或自由反序列化類型。",
+        "contract_revision": "candidate.5"
+      },
+      "BodySourceBindingV5.raw_hash_domain": {
+        "values": [
+          "raw-bytes-sha256-v1"
+        ]
+      },
+      "SourceRowSelectorV5": {
+        "name": "SourceRowSelectorV5",
+        "fields": {
+          "catalog_entry_id": {
+            "type": "uuid",
+            "required": true
+          },
+          "json_pointer": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "invariant": "Server catalog已固定source artifact/schema/准許pointer family；selector在該catalog範圍內且精確一列，0列MISSING、多列AMBIGUOUS；不從文字猜kind。",
+        "contract_revision": "candidate.5"
+      },
+      "BodySourceBindingV5.binding_role": {
+        "values": [
+          "ORIGINAL_SOURCE_RECORD",
+          "OWNER_DECISION_BYTES",
+          "SUBMITTED_DRAFT_INPUT",
+          "SERVER_PRODUCED_CANONICAL_BODY"
+        ]
+      },
+      "RegistryEntityRevisionDraftV5.payload_type": {
+        "values": [
+          "RegistryFeatureSourceRowV5",
+          "RegistryRequirementSourceRowV5",
+          "RegistryHistoricalSourceRowV5",
+          "RegistryDeliverableSourceRowV5",
+          "RegistryPhaseSourceRowV5",
+          "RegistryAcceptedCoreSourceRowV5",
+          "RegistryDesignDeliverableSourceRowV5",
+          "ExecutionUnitPlan"
+        ]
+      },
+      "RegistrySemanticPayloadV5": {
+        "name": "RegistrySemanticPayloadV5",
+        "selector": "RegistryEntityRevisionV5.payload_type",
+        "cases": {
+          "RegistryFeatureSourceRowV5": "RegistryFeatureSourceRowV5",
+          "RegistryRequirementSourceRowV5": "RegistryRequirementSourceRowV5",
+          "RegistryHistoricalSourceRowV5": "RegistryHistoricalSourceRowV5",
+          "RegistryDeliverableSourceRowV5": "RegistryDeliverableSourceRowV5",
+          "RegistryPhaseSourceRowV5": "RegistryPhaseSourceRowV5",
+          "RegistryAcceptedCoreSourceRowV5": "RegistryAcceptedCoreSourceRowV5",
+          "RegistryDesignDeliverableSourceRowV5": "RegistryDesignDeliverableSourceRowV5",
+          "ExecutionUnitPlan": "ExecutionUnitPlan"
+        },
+        "unknown_case": "UNSUPPORTED_SCHEMA_NO_BODY"
+      },
+      "RegistryFeatureSourceRowV5": {
+        "name": "RegistryFeatureSourceRowV5",
+        "fields": {
+          "accepted": {
+            "type": "bool",
+            "required": true
+          },
+          "alias": {
+            "type": "string",
+            "required": true
+          },
+          "catalog_scope": {
+            "type": "string",
+            "required": true
+          },
+          "entity_id": {
+            "type": "string",
+            "required": true
+          },
+          "kind": {
+            "type": "string",
+            "required": true
+          },
+          "owner": {
+            "type": "string",
+            "required": true
+          },
+          "requirement_id": {
+            "type": "string",
+            "required": false
+          },
+          "revision_id": {
+            "type": "string",
+            "required": true
+          },
+          "source_id": {
+            "type": "string",
+            "required": false
+          },
+          "source_key": {
+            "type": "string",
+            "required": false
+          },
+          "title": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryRequirementSourceRowV5": {
+        "name": "RegistryRequirementSourceRowV5",
+        "fields": {
+          "ACCEPTANCE_GATE": {
+            "type": "string",
+            "required": true
+          },
+          "DEPENDENCY": {
+            "type": "string[]",
+            "required": true
+          },
+          "DESIGN_STATUS": {
+            "type": "string",
+            "required": true
+          },
+          "ENTITY_ID": {
+            "type": "string",
+            "required": true
+          },
+          "IMPLEMENTATION_STATUS": {
+            "type": "string",
+            "required": true
+          },
+          "OWNER": {
+            "type": "string",
+            "required": true
+          },
+          "RELEASE_SCOPE": {
+            "type": "string",
+            "required": true
+          },
+          "REUSE_OR_DELTA": {
+            "type": "string",
+            "required": true
+          },
+          "SOURCE": {
+            "type": "RegistryRequirementSourceRowV5SOURCE",
+            "required": true
+          },
+          "SOURCE_PREDECESSOR": {
+            "type": "RegistryRequirementSourceRowV5SOURCEPREDECESSOR",
+            "required": false
+          },
+          "chapter_refs": {
+            "type": "string[]",
+            "required": true
+          },
+          "code": {
+            "type": "RegistryRequirementSourceRowV5Code",
+            "required": true
+          },
+          "feature_id": {
+            "type": "string",
+            "required": true
+          },
+          "first_usable_slice": {
+            "type": "string",
+            "required": true
+          },
+          "formal_credit": {
+            "type": "int",
+            "required": true
+          },
+          "legacy_alias": {
+            "type": "string",
+            "required": true
+          },
+          "prior_revision_id": {
+            "type": "string",
+            "required": true
+          },
+          "release_binding": {
+            "type": "string",
+            "required": false
+          },
+          "revision_id": {
+            "type": "string",
+            "required": true
+          },
+          "title": {
+            "type": "string",
+            "required": true
+          },
+          "unit_ids": {
+            "type": "string[]",
+            "required": true
+          },
+          "unit_mapping_semantics": {
+            "type": "string",
+            "required": true
+          },
+          "scope_change_source": {
+            "type": "RequirementScopeChangeSourceV5?",
+            "required": false
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryRequirementSourceRowV5SOURCE": {
+        "name": "RegistryRequirementSourceRowV5SOURCE",
+        "fields": {
+          "binding_level": {
+            "type": "string",
+            "required": true
+          },
+          "clause_locator": {
+            "type": "string",
+            "required": true
+          },
+          "commit": {
+            "type": "string",
+            "required": false
+          },
+          "path": {
+            "type": "string",
+            "required": false
+          },
+          "professional_inference": {
+            "type": "string",
+            "required": false
+          },
+          "raw_bytes_sha256": {
+            "type": "string",
+            "required": true
+          },
+          "source_id": {
+            "type": "string",
+            "required": true
+          },
+          "source_key": {
+            "type": "string",
+            "required": true
+          },
+          "source_line_numbers": {
+            "type": "int[]",
+            "required": false
+          },
+          "supporting_source_key": {
+            "type": "string",
+            "required": false
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryRequirementSourceRowV5SOURCEPREDECESSOR": {
+        "name": "RegistryRequirementSourceRowV5SOURCEPREDECESSOR",
+        "fields": {
+          "binding_level": {
+            "type": "string",
+            "required": true
+          },
+          "clause_locator": {
+            "type": "string",
+            "required": true
+          },
+          "raw_bytes_sha256": {
+            "type": "string",
+            "required": true
+          },
+          "source_id": {
+            "type": "string",
+            "required": true
+          },
+          "source_key": {
+            "type": "string",
+            "required": true
+          },
+          "source_line_numbers": {
+            "type": "int[]",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryRequirementSourceRowV5Code": {
+        "name": "RegistryRequirementSourceRowV5Code",
+        "fields": {
+          "catalog_scope": {
+            "type": "string",
+            "required": true
+          },
+          "code_type": {
+            "type": "string",
+            "required": true
+          },
+          "namespace": {
+            "type": "string",
+            "required": true
+          },
+          "segments": {
+            "type": "RegistryRequirementSourceRowV5CodeSegmentsItem[]",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryRequirementSourceRowV5CodeSegmentsItem": {
+        "name": "RegistryRequirementSourceRowV5CodeSegmentsItem",
+        "fields": {
+          "format_width": {
+            "type": "int",
+            "required": false
+          },
+          "number": {
+            "type": "int",
+            "required": false
+          },
+          "ordinal": {
+            "type": "int",
+            "required": true
+          },
+          "semantic_type": {
+            "type": "string",
+            "required": true
+          },
+          "token": {
+            "type": "string",
+            "required": false
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RequirementScopeChangeSourceV5": {
+        "name": "RequirementScopeChangeSourceV5",
+        "fields": {
+          "subject": {
+            "type": "string",
+            "required": true
+          },
+          "reason": {
+            "type": "string",
+            "required": true
+          },
+          "formal_adoption": {
+            "type": "bool",
+            "required": true
+          }
+        },
+        "invariant": "Source-bound candidate scope repair provenance. formal_adoption is false here; not an Owner adoption receipt."
+      },
+      "RegistryHistoricalSourceRowV5": {
+        "name": "RegistryHistoricalSourceRowV5",
+        "fields": {
+          "ACCEPTANCE_GATE": {
+            "type": "string",
+            "required": true
+          },
+          "DESIGN_STATUS": {
+            "type": "string",
+            "required": true
+          },
+          "ENTITY_ID": {
+            "type": "string",
+            "required": true
+          },
+          "IMPLEMENTATION_STATUS": {
+            "type": "string",
+            "required": true
+          },
+          "OWNER": {
+            "type": "string",
+            "required": true
+          },
+          "RELEASE_SCOPE": {
+            "type": "string",
+            "required": true
+          },
+          "REUSE_OR_DELTA": {
+            "type": "string",
+            "required": true
+          },
+          "SOURCE": {
+            "type": "RegistryHistoricalSourceRowV5SOURCE",
+            "required": true
+          },
+          "catalog_scope": {
+            "type": "string",
+            "required": true
+          },
+          "chapter_refs": {
+            "type": "string[]",
+            "required": true
+          },
+          "formal_credit": {
+            "type": "int",
+            "required": true
+          },
+          "historical_lifecycle_label": {
+            "type": "string",
+            "required": false
+          },
+          "historical_status": {
+            "type": "string",
+            "required": false
+          },
+          "kind": {
+            "type": "string",
+            "required": true
+          },
+          "legacy_alias": {
+            "type": "string",
+            "required": true
+          },
+          "name": {
+            "type": "string",
+            "required": true
+          },
+          "revision_id": {
+            "type": "string",
+            "required": true
+          },
+          "weight": {
+            "type": "int",
+            "required": false
+          },
+          "weight_universe": {
+            "type": "string",
+            "required": false
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryHistoricalSourceRowV5SOURCE": {
+        "name": "RegistryHistoricalSourceRowV5SOURCE",
+        "fields": {
+          "first_line": {
+            "type": "int",
+            "required": true
+          },
+          "last_line": {
+            "type": "int",
+            "required": true
+          },
+          "path": {
+            "type": "string",
+            "required": true
+          },
+          "sha256": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryDeliverableSourceRowV5": {
+        "name": "RegistryDeliverableSourceRowV5",
+        "fields": {
+          "ENTITY_ID": {
+            "type": "string",
+            "required": true
+          },
+          "alias": {
+            "type": "string",
+            "required": true
+          },
+          "allocations": {
+            "type": "RegistryDeliverableSourceRowV5AllocationsItem[]",
+            "required": true
+          },
+          "gates": {
+            "type": "RegistryDeliverableSourceRowV5Gates",
+            "required": true
+          },
+          "kind": {
+            "type": "string",
+            "required": true
+          },
+          "package": {
+            "type": "string",
+            "required": true
+          },
+          "revision_id": {
+            "type": "string",
+            "required": true
+          },
+          "source": {
+            "type": "string",
+            "required": true
+          },
+          "status": {
+            "type": "string",
+            "required": true
+          },
+          "weight": {
+            "type": "int",
+            "required": true
+          },
+          "weight_universe": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryDeliverableSourceRowV5AllocationsItem": {
+        "name": "RegistryDeliverableSourceRowV5AllocationsItem",
+        "fields": {
+          "id": {
+            "type": "string",
+            "required": true
+          },
+          "weight": {
+            "type": "int",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryDeliverableSourceRowV5Gates": {
+        "name": "RegistryDeliverableSourceRowV5Gates",
+        "fields": {
+          "implementation": {
+            "type": "RegistryDeliverableSourceRowV5GatesImplementation",
+            "required": true
+          },
+          "independent_acceptance": {
+            "type": "RegistryDeliverableSourceRowV5GatesIndependentAcceptance",
+            "required": true
+          },
+          "integration": {
+            "type": "RegistryDeliverableSourceRowV5GatesIntegration",
+            "required": true
+          },
+          "targeted_tests": {
+            "type": "RegistryDeliverableSourceRowV5GatesTargetedTests",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryDeliverableSourceRowV5GatesImplementation": {
+        "name": "RegistryDeliverableSourceRowV5GatesImplementation",
+        "fields": {},
+        "wire_scalar_schema": {
+          "type": "null"
+        },
+        "invariant": "Frozen source explicit-null slot; non-null requires named successor schema."
+      },
+      "RegistryDeliverableSourceRowV5GatesIndependentAcceptance": {
+        "name": "RegistryDeliverableSourceRowV5GatesIndependentAcceptance",
+        "fields": {},
+        "wire_scalar_schema": {
+          "type": "null"
+        },
+        "invariant": "Frozen source explicit-null slot; non-null requires named successor schema."
+      },
+      "RegistryDeliverableSourceRowV5GatesIntegration": {
+        "name": "RegistryDeliverableSourceRowV5GatesIntegration",
+        "fields": {},
+        "wire_scalar_schema": {
+          "type": "null"
+        },
+        "invariant": "Frozen source explicit-null slot; non-null requires named successor schema."
+      },
+      "RegistryDeliverableSourceRowV5GatesTargetedTests": {
+        "name": "RegistryDeliverableSourceRowV5GatesTargetedTests",
+        "fields": {},
+        "wire_scalar_schema": {
+          "type": "null"
+        },
+        "invariant": "Frozen source explicit-null slot; non-null requires named successor schema."
+      },
+      "RegistryPhaseSourceRowV5": {
+        "name": "RegistryPhaseSourceRowV5",
+        "fields": {
+          "alias": {
+            "type": "string",
+            "required": true
+          },
+          "catalog_scope": {
+            "type": "string",
+            "required": true
+          },
+          "dependencies": {
+            "type": "string[]",
+            "required": true
+          },
+          "entity_id": {
+            "type": "string",
+            "required": true
+          },
+          "kind": {
+            "type": "string",
+            "required": true
+          },
+          "revision_id": {
+            "type": "string",
+            "required": true
+          },
+          "source": {
+            "type": "string",
+            "required": true
+          },
+          "status": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryAcceptedCoreSourceRowV5": {
+        "name": "RegistryAcceptedCoreSourceRowV5",
+        "fields": {
+          "ENTITY_ID": {
+            "type": "string",
+            "required": true
+          },
+          "accepted_source": {
+            "type": "string",
+            "required": true
+          },
+          "catalog_scope": {
+            "type": "string",
+            "required": true
+          },
+          "legacy_alias": {
+            "type": "string",
+            "required": true
+          },
+          "new_product_credit": {
+            "type": "int",
+            "required": true
+          },
+          "original_scope_status": {
+            "type": "string",
+            "required": true
+          },
+          "reconciliation_source_binding": {
+            "type": "RegistryAcceptedCoreSourceRowV5ReconciliationSourceBinding",
+            "required": true
+          },
+          "remaining_boundary": {
+            "type": "string",
+            "required": true
+          },
+          "revision_id": {
+            "type": "string",
+            "required": true
+          },
+          "source": {
+            "type": "RegistryAcceptedCoreSourceRowV5Source",
+            "required": true
+          },
+          "v1_delta_deliverables": {
+            "type": "string[]",
+            "required": true
+          },
+          "weight": {
+            "type": "int",
+            "required": true
+          },
+          "weight_universe": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryAcceptedCoreSourceRowV5ReconciliationSourceBinding": {
+        "name": "RegistryAcceptedCoreSourceRowV5ReconciliationSourceBinding",
+        "fields": {
+          "commit": {
+            "type": "string",
+            "required": true
+          },
+          "git_blob_sha1": {
+            "type": "string",
+            "required": true
+          },
+          "path": {
+            "type": "string",
+            "required": true
+          },
+          "raw_bytes_sha256": {
+            "type": "string",
+            "required": true
+          },
+          "source_id": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryAcceptedCoreSourceRowV5Source": {
+        "name": "RegistryAcceptedCoreSourceRowV5Source",
+        "fields": {
+          "commit": {
+            "type": "string",
+            "required": true
+          },
+          "git_blob_sha1": {
+            "type": "string",
+            "required": true
+          },
+          "line": {
+            "type": "int",
+            "required": true
+          },
+          "path": {
+            "type": "string",
+            "required": true
+          },
+          "raw_bytes_sha256": {
+            "type": "string",
+            "required": true
+          },
+          "source_id": {
+            "type": "string",
+            "required": true
+          },
+          "text": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryDesignDeliverableSourceRowV5": {
+        "name": "RegistryDesignDeliverableSourceRowV5",
+        "fields": {
+          "alias": {
+            "type": "string",
+            "required": true
+          },
+          "catalog_scope": {
+            "type": "string",
+            "required": true
+          },
+          "chapter_id": {
+            "type": "string",
+            "required": true
+          },
+          "counting_weight": {
+            "type": "int",
+            "required": true
+          },
+          "entity_id": {
+            "type": "string",
+            "required": true
+          },
+          "kind": {
+            "type": "string",
+            "required": true
+          },
+          "owner": {
+            "type": "string",
+            "required": true
+          },
+          "revision_id": {
+            "type": "string",
+            "required": true
+          },
+          "source_key": {
+            "type": "string",
+            "required": true
+          },
+          "status": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "invariant": "Exact named frozen source-row schema; every nested field explicit. Legacy row is provenance/display, not current lifecycle/Acceptance authority.",
+        "contract_revision": "candidate.5"
+      },
+      "ExecutionUnitPlan": {
+        "name": "ExecutionUnitPlan",
+        "chapter": "MA14",
+        "owner": "EXISTING_WORK",
+        "fields": {
+          "unit_id": {
+            "type": "uuid",
+            "required": true
+          },
+          "feature_id": {
+            "type": "uuid",
+            "required": true
+          },
+          "plan_content_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "source_revision_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "compiler_adapter_ref": {
+            "type": "ContractRef",
+            "required": true
+          }
+        },
+        "invariant": "Plan artifact validated by EXECUTION_UNIT_PLAN_SCHEMA; not compiled ExecutionUnit DTO or returned evidence"
+      },
+      "RelationRevisionDraftV5": {
+        "name": "RelationRevisionDraftV5",
+        "fields": {
+          "relation_kind": {
+            "type": "enum",
+            "required": true
+          },
+          "from_ref": {
+            "type": "BodyRefInputV5",
+            "required": true
+          },
+          "to_ref": {
+            "type": "BodyRefInputV5",
+            "required": true
+          },
+          "qualifier": {
+            "type": "RelationQualifier",
+            "required": true
+          },
+          "effective_interval": {
+            "type": "EffectiveInterval?",
+            "required": false
+          },
+          "source_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "validity": {
+            "type": "RegistryRelationValidityDraftV5",
+            "required": true
+          }
+        },
+        "invariant": "Server-owned new ref omitted; local references accepted only for declared FK fields. Same original domain semantics including allocation permanence, relation validity, scope/FK/cycle/source policy.",
+        "contract_revision": "candidate.5"
+      },
+      "RelationRevisionDraftV5.relation_kind": {
+        "values": [
+          "PRODUCT_PARENT",
+          "WORK_PARENT",
+          "CAPABILITY_MAP",
+          "PHASE_MAP",
+          "IMPLEMENTS",
+          "REUSES",
+          "QUALIFIES",
+          "ACCEPTANCE_APPLIES_TO",
+          "DEPENDS_ON",
+          "SATISFIES",
+          "ADDRESSES_GAP",
+          "SPECIFIES",
+          "CODE_IMPLEMENTATION",
+          "EVIDENCE_FOR",
+          "DERIVED_FROM",
+          "SUPERSEDES",
+          "SPLIT_INTO",
+          "MERGED_INTO"
+        ]
+      },
+      "RelationQualifier": {
+        "name": "RelationQualifier",
+        "fields": {
+          "scope_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "required_gate": {
+            "type": "string?",
+            "required": false
+          },
+          "allocation_weight": {
+            "type": "decimal?",
+            "required": false
+          },
+          "mapping_semantics": {
+            "type": "string?",
+            "required": false
+          },
+          "scope_kind": {
+            "type": "enum",
+            "required": true
+          },
+          "source_scope_key": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "invariant": "Exact typed scope contract + original scope key; UNIT_PLAN_DEPENDENCY and P_PHASE_DEPENDENCY not interchangeable eligibility; full connected graph cycle validation regardless local scope.",
+        "prior_contract_semantic_sha256": "172d24b3a9141b2ef0230e51b471909d3c54d1d533dabbe699b5e06b648f67dd",
+        "contract_revision": "candidate.4"
+      },
+      "RelationQualifier.scope_kind": {
+        "values": [
+          "PRODUCT_TREE",
+          "ENGINEERING_WBS",
+          "HISTORICAL_CAPABILITY_MAPPING",
+          "PHASE_PRODUCT_MAPPING",
+          "UNIT_FEATURE_MAPPING",
+          "UNIT_PLAN_DEPENDENCY",
+          "P_PHASE_DEPENDENCY",
+          "LINEAGE",
+          "REFERENCE_TRACEABILITY"
+        ]
+      },
+      "EffectiveInterval": {
+        "name": "EffectiveInterval",
+        "fields": {
+          "from": {
+            "type": "instant",
+            "required": true
+          },
+          "to": {
+            "type": "instant?",
+            "required": false
+          }
+        },
+        "invariant": "to>from，valid interval scoped nooverlap"
+      },
+      "RegistryRelationValidityDraftV5": {
+        "name": "RegistryRelationValidityDraftV5",
+        "fields": {
+          "kind": {
+            "type": "enum",
+            "required": true
+          },
+          "governing_snapshot": {
+            "type": "RegistrySnapshotInputV5",
+            "required": true
+          },
+          "effective_interval": {
+            "type": "EffectiveInterval?",
+            "required": false
+          }
+        },
+        "invariant": "Original RelationValidity semantics unchanged. SOURCE_SNAPSHOT no dates; TEMPORAL realsourceinterval. Resolve proposed snapshot reference from prepared original input source hash, not a recursive snapshot-membership digest. Membership digest/model semantic hash checked separately through immutable BodyBinding.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryRelationValidityDraftV5.kind": {
+        "values": [
+          "SOURCE_SNAPSHOT",
+          "TEMPORAL"
+        ]
+      },
+      "RegistrySnapshotInputV5": {
+        "name": "RegistrySnapshotInputV5",
+        "fields": {
+          "kind": {
+            "type": "enum",
+            "required": true
+          },
+          "snapshot_ref": {
+            "type": "ContractRef?",
+            "required": false
+          }
+        },
+        "invariant": "EXISTING_SOURCE_SNAPSHOT requires exact snapshot_ref. PROPOSED_CANDIDATE_SNAPSHOT forbids clientref and uses samecommand prepared snapshot identity. Newrelation endpoints must be in selected exact snapshot membership; absent endpoint never assumed valid.",
+        "contract_revision": "candidate.5"
+      },
+      "RegistrySnapshotInputV5.kind": {
+        "values": [
+          "EXISTING_SOURCE_SNAPSHOT",
+          "PROPOSED_CANDIDATE_SNAPSHOT"
+        ]
+      },
+      "CodeAssignmentDraftV5": {
+        "name": "CodeAssignmentDraftV5",
+        "fields": {
+          "entity_ref": {
+            "type": "BodyRefInputV5",
+            "required": true
+          },
+          "catalog_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "namespace": {
+            "type": "string",
+            "required": true
+          },
+          "code_type": {
+            "type": "string",
+            "required": true
+          },
+          "segments": {
+            "type": "CodeSegment[]",
+            "required": true,
+            "min_items": 1,
+            "cardinality_rule": "Exact immutable membership; empty only when semantic branch permits and explicit complete-empty proof exists; no omitted collection."
+          },
+          "format_policy_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "effective_interval": {
+            "type": "EffectiveInterval?",
+            "required": false
+          },
+          "validity": {
+            "type": "CodeValidity",
+            "required": true
+          },
+          "allocation_ref": {
+            "type": "BodyRefInputV5",
+            "required": true
+          }
+        },
+        "invariant": "Server-owned new ref omitted; local references accepted only for declared FK fields. Same original domain semantics including allocation permanence, relation validity, scope/FK/cycle/source policy.",
+        "contract_revision": "candidate.5"
+      },
+      "CodeSegment": {
+        "name": "CodeSegment",
+        "fields": {
+          "ordinal": {
+            "type": "int",
+            "required": true
+          },
+          "semantic_type": {
+            "type": "string",
+            "required": true
+          },
+          "value_type": {
+            "type": "string",
+            "required": true
+          },
+          "numeric_value": {
+            "type": "int?",
+            "required": false
+          },
+          "token_value": {
+            "type": "string?",
+            "required": false
+          },
+          "format_width": {
+            "type": "int?",
+            "required": false
+          }
+        },
+        "invariant": "numeric/token互斥；grammar验证"
+      },
+      "CodeValidity": {
+        "name": "CodeValidity",
+        "fields": {
+          "kind": {
+            "type": "enum",
+            "required": true
+          },
+          "source_snapshot_ref": {
+            "type": "ContractRef?",
+            "required": false
+          },
+          "effective_interval": {
+            "type": "EffectiveInterval?",
+            "required": false
+          }
+        },
+        "invariant": "SOURCE_SNAPSHOT requires exact source snapshot and no invented temporal interval; TEMPORAL requires interval and governing snapshot. Draft source-snapshot validity is not acceptance/currentness."
+      },
+      "CodeValidity.kind": {
+        "values": [
+          "SOURCE_SNAPSHOT",
+          "TEMPORAL"
+        ]
+      },
+      "LegacyAliasDraftV5": {
+        "name": "LegacyAliasDraftV5",
+        "fields": {
+          "raw_text": {
+            "type": "string",
+            "required": true
+          },
+          "context": {
+            "type": "string",
+            "required": true
+          },
+          "catalog_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "source_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "target_ref": {
+            "type": "BodyRefInputV5",
+            "required": true
+          },
+          "effective_interval": {
+            "type": "EffectiveInterval?",
+            "required": false
+          },
+          "validity": {
+            "type": "CodeValidity",
+            "required": true
+          },
+          "allocation_ref": {
+            "type": "BodyRefInputV5?",
+            "required": false
+          }
+        },
+        "invariant": "Server-owned new ref omitted; local references accepted only for declared FK fields. Same original domain semantics including allocation permanence, relation validity, scope/FK/cycle/source policy.",
+        "contract_revision": "candidate.5"
+      },
+      "CodeAllocationDraftV5": {
+        "name": "CodeAllocationDraftV5",
+        "fields": {
+          "semantic_key": {
+            "type": "CanonicalCodeKey",
+            "required": true
+          },
+          "allocated_entity_id": {
+            "type": "uuid",
+            "required": true
+          },
+          "initial_entity_revision_ref": {
+            "type": "BodyRefInputV5",
+            "required": true
+          },
+          "source_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "state": {
+            "type": "enum",
+            "required": true
+          },
+          "retirement_receipt_ref": {
+            "type": "BodyRefInputV5?",
+            "required": false
+          }
+        },
+        "invariant": "Server-owned new ref omitted; local references accepted only for declared FK fields. Same original domain semantics including allocation permanence, relation validity, scope/FK/cycle/source policy.",
+        "contract_revision": "candidate.5"
+      },
+      "CanonicalCodeKey": {
+        "name": "CanonicalCodeKey",
+        "fields": {
+          "catalog_entity_id": {
+            "type": "uuid",
+            "required": true
+          },
+          "entity_kind": {
+            "type": "enum",
+            "required": true
+          },
+          "namespace": {
+            "type": "string",
+            "required": true
+          },
+          "code_family": {
+            "type": "string",
+            "required": true
+          },
+          "segments": {
+            "type": "CanonicalCodeSegment[]",
+            "required": true,
+            "min_items": 1,
+            "cardinality_rule": "Exact immutable membership; empty only when semantic branch permits and explicit complete-empty proof exists; no omitted collection."
+          }
+        },
+        "invariant": "Immutable source-scoped catalog ID plus kind, namespace, stable code family and semantic typed vector; catalog revision and presentation width do not reopen allocation."
+      },
+      "CanonicalCodeKey.entity_kind": {
+        "values": [
+          "REQUIREMENT",
+          "FEATURE",
+          "CAPABILITY",
+          "DELIVERABLE",
+          "PHASE",
+          "WORK_ORDER",
+          "TASK",
+          "GAP",
+          "ARTIFACT",
+          "EVIDENCE",
+          "ACCEPTANCE_RECEIPT",
+          "CONTRACT",
+          "SOURCE"
+        ]
+      },
+      "CanonicalCodeSegment": {
+        "name": "CanonicalCodeSegment",
+        "fields": {
+          "ordinal": {
+            "type": "int",
+            "required": true
+          },
+          "semantic_type": {
+            "type": "string",
+            "required": true
+          },
+          "value_type": {
+            "type": "enum",
+            "required": true
+          },
+          "numeric_value": {
+            "type": "int?",
+            "required": false
+          },
+          "token_value": {
+            "type": "string?",
+            "required": false
+          }
+        },
+        "invariant": "0-based contiguous ordinal; NUMBER requires numeric_value and forbids token_value; TOKEN inverse; no width/separator/format revision enters semantic allocation identity."
+      },
+      "CanonicalCodeSegment.value_type": {
+        "values": [
+          "NUMBER",
+          "TOKEN"
+        ]
+      },
+      "CodeAllocationDraftV5.state": {
+        "values": [
+          "ALLOCATED",
+          "RETIRED_RESERVED"
+        ]
+      },
+      "CodeAllocationRetirementDraftV5": {
+        "name": "CodeAllocationRetirementDraftV5",
+        "fields": {
+          "allocation_ref": {
+            "type": "BodyRefInputV5",
+            "required": true
+          },
+          "entity_id": {
+            "type": "uuid",
+            "required": true
+          },
+          "source_decision_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "recorded_frontier": {
+            "type": "StreamFrontier",
+            "required": true
+          }
+        },
+        "invariant": "Server-owned new ref omitted; local references accepted only for declared FK fields. Same original domain semantics including allocation permanence, relation validity, scope/FK/cycle/source policy.",
+        "contract_revision": "candidate.5"
+      },
+      "StreamFrontier": {
+        "name": "StreamFrontier",
+        "fields": {
+          "stream_id": {
+            "type": "string",
+            "required": true
+          },
+          "committed_contiguous_sequence": {
+            "type": "string",
+            "required": true
+          },
+          "event_set_hash": {
+            "type": "hash",
+            "required": true
+          },
+          "coverage": {
+            "type": "Coverage",
+            "required": true
+          }
+        },
+        "invariant": "Allocated sequence MAX is not contiguous committed frontier"
+      },
+      "Coverage": {
+        "name": "Coverage",
+        "chapter": "MA03",
+        "owner": "SOURCE_OWNER",
+        "fields": {
+          "requested_scope": {
+            "type": "string",
+            "required": true
+          },
+          "requested_window": {
+            "type": "string",
+            "required": true
+          },
+          "covered_window": {
+            "type": "string",
+            "required": true
+          },
+          "completeness": {
+            "type": "enum",
+            "required": true
+          },
+          "success": {
+            "type": "bool",
+            "required": true
+          },
+          "empty_proof_ref": {
+            "type": "ContractRef?",
+            "required": false
+          },
+          "frontier": {
+            "type": "string",
+            "required": true
+          }
+        },
+        "invariant": "完整空集合需可信 proof"
+      },
+      "Coverage.completeness": {
+        "values": [
+          "COMPLETE",
+          "PARTIAL",
+          "UNKNOWN",
+          "FAILED"
+        ]
+      },
+      "RegistryChangeV5": {
+        "name": "RegistryChangeV5",
+        "fields": {
+          "entity_kind": {
+            "type": "enum",
+            "required": true
+          },
+          "operation": {
+            "type": "enum",
+            "required": true
+          },
+          "target_ref": {
+            "type": "ContractRef?",
+            "required": false
+          },
+          "new_body_key": {
+            "type": "uuid?",
+            "required": false
+          },
+          "captured_revision_binding_ref": {
+            "type": "ContractRef?",
+            "required": false
+          },
+          "relation_body_keys": {
+            "type": "uuid[]",
+            "required": true
+          }
+        },
+        "invariant": "new_body_key或captured_revision_binding_ref恰一選；bare未capture new_revision_ref不合法。server capture全部new bodies驗證後，產原RegistryChange.new_revision_ref；existing binding必scope/body/schema/source/member完全符合。MOVE/SPLIT/MERGE以typed new relation bodies表達且全圖CAS；RETIRE仍保歷史body。",
+        "contract_revision": "candidate.5"
+      },
+      "RegistryChangeV5.entity_kind": {
+        "values": [
+          "ACCEPTANCE_RECEIPT",
+          "ARTIFACT",
+          "CAPABILITY",
+          "CATALOG",
+          "CODE_ALLOCATION",
+          "CODE_ASSIGNMENT",
+          "CODE_POLICY",
+          "CONTRACT",
+          "DELIVERABLE",
+          "EVIDENCE",
+          "FEATURE",
+          "GAP",
+          "LEGACY_ALIAS",
+          "PHASE",
+          "REGISTRY_SNAPSHOT",
+          "RELATION",
+          "REQUIREMENT",
+          "SOURCE",
+          "TASK",
+          "WORK_ORDER"
+        ]
+      },
+      "RegistryChangeV5.operation": {
+        "values": [
+          "CREATE",
+          "REVISE",
+          "MOVE",
+          "SPLIT",
+          "MERGE",
+          "RETIRE"
+        ]
+      }
+    },
+    "allowed_pointer_family": "/proposal/body_submissions/{server-validated-index}/body",
+    "slot_identity": "local_body_key must equal prepared command slot; pointer resolved by server, not supplied path",
+    "source_role": "SUBMITTED_DRAFT_INPUT_SERVER_ONLY",
+    "authority_effect": "NO_FORMAL_ACCEPTANCE"
+  }
+]

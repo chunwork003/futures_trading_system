@@ -1,0 +1,581 @@
+{
+  "format_role": "EXECUTOR_READABLE_SOURCE_BOUND_OPERATION_SPEC_NOT_EXECUTION_AUTHORITY",
+  "operation_id": "getOrder",
+  "producer": {
+    "owner": "H_OMS",
+    "unit": "MA08-U01",
+    "unit_id": "f4f4e882-c4ab-472e-be9c-4de313d024d5",
+    "package": "PK09"
+  },
+  "contract_source": {
+    "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+    "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+    "bytes": 245079
+  },
+  "source_pointer": "#/endpoints/39",
+  "full_api_contract_source": {
+    "operation_id": "getOrder",
+    "method": "GET",
+    "path": "/api/v2/orders/{id}",
+    "chapter": "MA08",
+    "owner": "H_OMS",
+    "page": "UI09",
+    "role": "VIEWER",
+    "request_payload_fields": {},
+    "response_model": "OrderAttempt",
+    "response_envelope": "ReadEnvelope",
+    "side_effect": "READ_ONLY",
+    "idempotency": "snapshot-bound safe query",
+    "invariant": "current projection+eventhistory",
+    "runtime_status": "NOT_IMPLEMENTED_OR_NOT_VERIFIED_BY_THIS_REVIEW",
+    "response_cardinality": "ONE",
+    "response_item_model": "OrderAttempt",
+    "command_result_binding": null,
+    "query_enum_rule": "All enum selectors have TYPE_VARIANTS bindings; unknown semantic enum denied",
+    "error_model": "ErrorEnvelope",
+    "error_disposition_table": "ERROR_RETRY_DISPOSITION_TABLE.json",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation_contract": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "failure_contract": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "dto_version": "MA-DTO-v6",
+    "error_protocol_version": "architecture.transport_error.v2",
+    "dto_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "full_compilation_input_row": {
+    "operation_id": "getOrder",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+      "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+      "bytes": 245079
+    },
+    "source_pointer": "#/endpoints/39",
+    "chapter": "MA08",
+    "domain_contract_owner": "H_OMS",
+    "producer_unit_alias": "MA08-U01",
+    "producer_unit_id": "f4f4e882-c4ab-472e-be9c-4de313d024d5",
+    "producer_package": "PK09",
+    "consumer_units": [
+      {
+        "unit_alias": "MA08-U01",
+        "mode": "IMPLEMENT_OWNER_USECASE_OR_EXACT_SCOPED_REUSE_ADAPTER",
+        "input_model": "ApiRequest_getOrder",
+        "output_model": "OrderAttempt",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/42/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U01",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_getOrder",
+        "output_model": "OrderAttempt",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/54/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U04",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_getOrder",
+        "output_model": "OrderAttempt",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/57/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U06",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_getOrder",
+        "output_model": "OrderAttempt",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/59/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA15-U02",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_getOrder",
+        "output_model": "OrderAttempt",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/85/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA15-U03",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_getOrder",
+        "output_model": "OrderAttempt",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/86/input_output/secondary_io"
+      }
+    ],
+    "ui_consumers": [
+      {
+        "page_id": "UI09",
+        "route": "/orders",
+        "action_pointers": [
+          "#/pages/8/actions/1"
+        ],
+        "ui_states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "request_model_or_fields": {}
+      }
+    ],
+    "frontend_integration_package": "PK11",
+    "method": "GET",
+    "route": "/api/v2/orders/{id}",
+    "dto_version": "MA-DTO-v6",
+    "request_model": "ApiRequest_getOrder",
+    "request_fields": {},
+    "response_model": "OrderAttempt",
+    "response_envelope": "ReadEnvelope",
+    "cardinality": "ONE",
+    "error_model": "ErrorEnvelope",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "role_is_not_authority": true,
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "snapshot-bound safe query",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect.",
+    "existing_oracle_case_refs": [
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/117",
+        "case_id": "WIRE-getOrder-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/118",
+        "case_id": "WIRE-getOrder-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/119",
+        "case_id": "WIRE-getOrder-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      }
+    ],
+    "effective_v9_operation_companion": null,
+    "required_mock_design": [
+      "Read exact producer contract/Model/Type/Error table and v9 Unit companion; use effective successor/adapter selection, not legacy positive wire payload as current.",
+      "Plan accepted success body, error/rejection, empty-complete vs UNKNOWN/PARTIAL, pending/unknown receipt, retry/CAS/conflict and re-entry states required by this operation.",
+      "Keep fixture actor/project/account/environment/permission/cut/version fixed; mock command does not approve strategy, financial effect, runtime admission or execution.",
+      "Keep request/response semantics identical across React→ASP.NET BFF→Python API→Core→Persistence; mock replaces an isolated producer boundary, not authorization layers.",
+      "Contract tests must verify producer and consumer against independent named expected oracles, not regenerate expected from actual mock result."
+    ],
+    "mock_runtime_result": "NOT_RUN",
+    "execution_dependency": "EXACT_AUTHORIZED_WORK_ORDER + qualified producer result or explicitly scoped reuse proof + current compiler/profile/writer/capacity",
+    "missing_executable_details": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here."
+  },
+  "effective_v9_companion": null,
+  "v9_companion_applicability": "NOT_IN_43_SPECIAL_SOURCE_PAIR_OPERATIONS; retain exact base API + Unit companion; not missing by filename",
+  "request": {
+    "model": "ApiRequest_getOrder",
+    "fields": {},
+    "version": "MA-DTO-v6"
+  },
+  "response": {
+    "model": "OrderAttempt",
+    "envelope": "ReadEnvelope",
+    "cardinality": "ONE"
+  },
+  "named_model_closure": [
+    "ApiRequest_getOrder",
+    "ContractRef",
+    "Coverage",
+    "ErrorEnvelope",
+    "FieldViolation",
+    "OrderAttempt",
+    "ProjectionDataByOperation",
+    "ReadEnvelope",
+    "ResourceScope"
+  ],
+  "model_definitions_selector": "MODEL_TYPE_SOURCE_SPECIFICATION.json#/definition_lookup/<name>",
+  "auth_validation_idempotency_unknown": {
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "snapshot-bound safe query",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "producer_consumer_mock_test_matrix": {
+    "React": "Only display/user intent/typed client and declared page states; no independent business rules or direct SQL/Broker",
+    "ASP_NET_BFF": "Existing auth/session/CSRF/workflow/proxy adapter; preserve exact wire fields/errors/receipt/versions; no alternate Quant rules",
+    "Python_API": "Validate exact DTO/auth/resource/cut/source and delegate sole domain owner; no accepted result from mock",
+    "Quant_Core": "H_OMS owns invariants and effect boundary per source",
+    "Persistence": "Existing port/UoW/canonical ownership; real migration/DB/Restore separately gated",
+    "expected_mock_source": "Named source oracle cases below; do not derive expected from mock output",
+    "mock_states": [
+      "source-defined success",
+      "typed rejected error",
+      "complete-empty versus UNKNOWN/PARTIAL",
+      "pending/unknown OperationReceipt",
+      "exact same-key/same-body retry versus conflict",
+      "version/profile/auth/CAS/stale-source rejection where applicable"
+    ],
+    "compare_layers": [
+      "Python producer contract result",
+      "BFF preserved transport/error result",
+      "React consumer state and receipt readback"
+    ],
+    "actual_test_status": "NOT_RUN"
+  },
+  "exact_oracle_cases": [
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/117",
+        "case_id": "WIRE-getOrder-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-getOrder-POSITIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "getOrder",
+            "method": "GET",
+            "path": "/api/v2/orders/{id}",
+            "path_values": {
+              "id": "8666a982-7381-5232-8957-bb7eae6fed23"
+            },
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "28391f8d-9bab-5787-b3c9-02d6ead839f6",
+                "revision_id": "69e4f33a-aa0f-56c9-aa86-cccd780ea4e1",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "48edadaa5cc5310181b4e4b633e155d82df27e963e2683718c1cb9602718fffc"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {},
+            "command_envelope": null,
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_scope": "exact fixture project/account/environment",
+            "current_generation": 4,
+            "causal_snapshot_ref": {
+              "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+              "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+              "owner": "FIXTURE_ONLY",
+              "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+              "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+            },
+            "producer_output_model": "OrderAttempt"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/39",
+          "input_model": "ApiRequest_getOrder",
+          "response_model": "OrderAttempt",
+          "response_envelope": "ReadEnvelope",
+          "response_cardinality": "ONE"
+        },
+        "mutation": null,
+        "interleaving": [],
+        "expected_model": "OrderAttempt",
+        "expected_domain_model_if_hold": null,
+        "expected_observations": {
+          "response_model": "OrderAttempt",
+          "cardinality": "ONE",
+          "exact_scope": true,
+          "domain_invariant": "current projection+eventhistory",
+          "source_snapshot_unchanged": true
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA08-U01",
+        "consumer_units": [
+          "MA10-U04",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/118",
+        "case_id": "WIRE-getOrder-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-getOrder-NEGATIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "getOrder",
+            "method": "GET",
+            "path": "/api/v2/orders/{id}",
+            "path_values": {
+              "id": "8666a982-7381-5232-8957-bb7eae6fed23"
+            },
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "28391f8d-9bab-5787-b3c9-02d6ead839f6",
+                "revision_id": "69e4f33a-aa0f-56c9-aa86-cccd780ea4e1",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "48edadaa5cc5310181b4e4b633e155d82df27e963e2683718c1cb9602718fffc"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {},
+            "command_envelope": null,
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_scope": "exact fixture project/account/environment",
+            "current_generation": 4,
+            "causal_snapshot_ref": {
+              "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+              "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+              "owner": "FIXTURE_ONLY",
+              "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+              "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+            },
+            "producer_output_model": "OrderAttempt"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/39",
+          "mutation_operations": [
+            {
+              "op": "set",
+              "path": "/wire/authenticated_context_fixture/scope/project_id",
+              "value": "576faf85-1a50-5403-be04-1308b8cf248b"
+            }
+          ],
+          "after_mutation_recompute_command_hash": true,
+          "input_model": "ApiRequest_getOrder",
+          "response_model": "OrderAttempt",
+          "response_envelope": "ReadEnvelope",
+          "response_cardinality": "ONE"
+        },
+        "mutation": "request resource scope differs from authenticated project/account/environment",
+        "interleaving": [],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "OrderAttempt",
+        "expected_observations": {
+          "http": 403,
+          "disclosed_private_fields": 0,
+          "side_effects": 0
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA08-U01",
+        "consumer_units": [
+          "MA10-U04",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/119",
+        "case_id": "WIRE-getOrder-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-getOrder-RACE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "getOrder",
+            "method": "GET",
+            "path": "/api/v2/orders/{id}",
+            "path_values": {
+              "id": "8666a982-7381-5232-8957-bb7eae6fed23"
+            },
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "28391f8d-9bab-5787-b3c9-02d6ead839f6",
+                "revision_id": "69e4f33a-aa0f-56c9-aa86-cccd780ea4e1",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "48edadaa5cc5310181b4e4b633e155d82df27e963e2683718c1cb9602718fffc"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {},
+            "command_envelope": null,
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_scope": "exact fixture project/account/environment",
+            "current_generation": 4,
+            "causal_snapshot_ref": {
+              "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+              "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+              "owner": "FIXTURE_ONLY",
+              "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+              "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+            },
+            "producer_output_model": "OrderAttempt"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/39",
+          "actors": [
+            {
+              "actor_id": "A",
+              "request": {
+                "operation_id": "getOrder",
+                "method": "GET",
+                "path": "/api/v2/orders/{id}",
+                "path_values": {
+                  "id": "8666a982-7381-5232-8957-bb7eae6fed23"
+                },
+                "authenticated_context_fixture": {
+                  "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+                  "policy_receipt_ref": {
+                    "entity_id": "28391f8d-9bab-5787-b3c9-02d6ead839f6",
+                    "revision_id": "69e4f33a-aa0f-56c9-aa86-cccd780ea4e1",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "48edadaa5cc5310181b4e4b633e155d82df27e963e2683718c1cb9602718fffc"
+                  },
+                  "scope": {
+                    "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                    "environment": "LAB",
+                    "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                    "group_id": null
+                  }
+                },
+                "request_payload": {},
+                "command_envelope": null,
+                "dto_profile": "candidate.5",
+                "dto_header": {
+                  "X-MA-DTO-Version": "candidate.5"
+                }
+              }
+            },
+            {
+              "actor_id": "B",
+              "source_event_ref": {
+                "entity_id": "7b5f3a67-932e-5106-ac6a-d11a0952b834",
+                "revision_id": "2f839211-924f-5e88-8de4-117cb3db998f",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "6308ffefbb6047c2e98ff7ec7757cf4d96e5130baf8ddae449ef95dd86cd9913"
+              },
+              "generation_before": 4,
+              "generation_after": 5,
+              "frontier_before": 12,
+              "frontier_after": 13
+            }
+          ],
+          "schedule": [
+            {
+              "at": 1,
+              "actor": "A",
+              "action": "read exact initial-world source/ref/generation/frontier"
+            },
+            {
+              "at": 2,
+              "actor": "B",
+              "action": "append immutable successor or race same command according to named interleaving",
+              "named_event": [
+                "source head advances after read snapshot, or duplicate same command_id/same recomputed digest after reply loss"
+              ]
+            },
+            {
+              "at": 3,
+              "actor": "A",
+              "action": "attempt exact original generation/frontier commit or read next snapshot page"
+            }
+          ],
+          "input_model": "ApiRequest_getOrder",
+          "response_model": "OrderAttempt",
+          "response_envelope": "ReadEnvelope",
+          "response_cardinality": "ONE"
+        },
+        "mutation": null,
+        "interleaving": [
+          "source head advances after read snapshot, or duplicate same command_id/same recomputed digest after reply loss"
+        ],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "OrderAttempt",
+        "expected_observations": {
+          "read_snapshot_stable": true,
+          "same_command_commit_count_max": 1,
+          "different_digest_http": 409
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA08-U01",
+        "consumer_units": [
+          "MA10-U04",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    }
+  ],
+  "additional_required_cases_if_not_in_legacy": "Use current v9 case_refs/required descendants and explicit adapter profile; legacy fixtures not universal current payload positives",
+  "qualification": {
+    "source_assembly": "PENDING",
+    "context_profile": "PENDING_APPLICABILITY",
+    "WO_Grant_Writer_Budget": "NOT_AUTHORIZED",
+    "runtime": "APPLICABLE_NAMED_GATE_ONLY"
+  },
+  "unresolved_implementation_binding": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here.",
+  "implementation_not_authorized": true
+}

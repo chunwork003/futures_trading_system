@@ -1,0 +1,338 @@
+{
+  "schema_version": "architecture.release_slice.candidate.v1",
+  "revision": "candidate.5",
+  "entity_id": "d02d183a-96e0-55a4-9d6e-a6feb61015af",
+  "revision_id": "e59cd0c0-9d28-5f36-a277-db874b1512ab",
+  "name": "B3_PERSONAL_FUTURES_FULL_STRATEGY_LAB_V1",
+  "authority_effect": "NONE",
+  "owner_source": {
+    "source_id": "725663f7-c2a7-5eed-b13c-92ca3fc44201",
+    "kind": "PRIVATE_OWNER_CAPTURE",
+    "path": "private_source_capture/OWNER_RCG_CORRECTION_20261012.md",
+    "raw_bytes_sha256": "a0c518328ba6567a31aa85baf8af51dd3f7df5151ec90a6d44b305c5f0b3e83e",
+    "bytes": 1656,
+    "authority": "DIRECT_HUMAN_BOUNDED_DESIGN_DIRECTION_NOT_ACCEPTANCE",
+    "capture_completeness": "SELECTED_VERBATIM_CLAUSES_NOT_FULL_MESSAGE_EXPORT",
+    "runtime_evidence": "NONE"
+  },
+  "required_requirement_refs": [
+    {
+      "entity_id": "bace0928-f15e-43e3-bfb8-57fe830b592a",
+      "revision_id": "8d421118-efed-5d35-b2a8-cb9bb7300839",
+      "feature_id": "4c0fc6c0-84db-4bc0-9ab5-41c45e263f94",
+      "code": "REQ-MA-017",
+      "title": "多來源market data與license/provenance",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "DATA_QUALIFICATION"
+    },
+    {
+      "entity_id": "00bba01a-2301-4c04-a1aa-b0642739fef4",
+      "revision_id": "0361f493-e210-5b72-bdfb-60fb69bd5f2e",
+      "feature_id": "f574bc34-580d-451d-931e-97f100c5a0a5",
+      "code": "REQ-MA-018",
+      "title": "版本化Raw/Parquet/dataset/snapshot",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "DATA_QUALIFICATION"
+    },
+    {
+      "entity_id": "15e5ea54-b0af-46d5-89d0-3fff2aab1fdd",
+      "revision_id": "d7ca8468-f678-55be-8a25-c677f5cd3ebf",
+      "feature_id": "d5f0f7c3-7bd3-4334-9169-9ebe031b85d8",
+      "code": "REQ-MA-019",
+      "title": "quality/completeness/explicitempty/failclosed",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "DATA_COMPLETENESS_QUALIFICATION"
+    },
+    {
+      "entity_id": "4fb37b79-fb2c-4311-b4ae-88c6d5983fb6",
+      "revision_id": "bf35f7d8-82a8-589b-9763-1c837830ddb0",
+      "feature_id": "87e4492a-94df-4ca5-9db0-034b3db7bec8",
+      "code": "REQ-MA-020",
+      "title": "realtime/replay/latecorrection與point-in-time",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "FEED_QUALIFICATION"
+    },
+    {
+      "entity_id": "c6592d09-7e66-4e06-abac-a13f4629c725",
+      "revision_id": "b79587e7-a1d4-59e7-8ab3-8a1634aab82d",
+      "feature_id": "88a389c4-3701-4626-9f48-5bb733e78137",
+      "code": "REQ-MA-021",
+      "title": "外部Python Inbox AST-only分析人工歸檔",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "INBOX_QUALIFICATION"
+    },
+    {
+      "entity_id": "d1754e6f-ae8e-44de-866c-1c9b95d56e58",
+      "revision_id": "9c1347fb-514c-52e8-aab0-9061620584bd",
+      "feature_id": "1b55782b-b9c4-48ad-bd29-c14d6b64a49a",
+      "code": "REQ-MA-022",
+      "title": "Feature Library／typed Builder",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "BUILDER_QUALIFICATION"
+    },
+    {
+      "entity_id": "4c3809ce-bd5e-4363-901a-a3bf14577b83",
+      "revision_id": "9a920c47-6c7f-581c-8494-8667f99e4111",
+      "feature_id": "16bd0f42-648d-446e-8e8f-8521ca5b207b",
+      "code": "REQ-MA-023",
+      "title": "不可變Graph／GeneratedCode／Snapshot",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "SNAPSHOT_QUALIFICATION"
+    },
+    {
+      "entity_id": "50e0251f-77f1-4b75-a488-354feb0994d7",
+      "revision_id": "b2a49c8a-e84c-51bd-8d41-dbfb11974c80",
+      "feature_id": "4143cd2e-00b9-46b1-9bd7-813df995aa51",
+      "code": "REQ-MA-024",
+      "title": "ResearchBranch／S001 lineage",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "RESEARCH_IDENTITY_QUALIFICATION"
+    },
+    {
+      "entity_id": "84c3295d-5beb-4c6d-9f85-cd160d0b23a4",
+      "revision_id": "5bfb8d96-13a2-5a1f-94b4-b649597a9b4e",
+      "feature_id": "8a78a734-ac5b-408b-992b-202b68482cd3",
+      "code": "REQ-MA-025",
+      "title": "Single／Multi backtest",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "RESEARCH_QUALIFICATION"
+    },
+    {
+      "entity_id": "d45feeeb-bd28-484d-af7c-7846c06da494",
+      "revision_id": "3eae0f3d-5b58-52c7-9909-2e5ec7076c24",
+      "feature_id": "5b36fb7a-b636-4482-864f-c863efe6328f",
+      "code": "REQ-MA-026",
+      "title": "OOS漏資料／WFO fold隔離",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "RESEARCH_METHOD_QUALIFICATION"
+    },
+    {
+      "entity_id": "0e087dbe-a508-4326-a058-ccab4c81f168",
+      "revision_id": "b753c7fe-005f-59ba-b48f-e5a08d7ae5fb",
+      "feature_id": "bf4554e6-d36f-469d-b2e4-1d867066f6b2",
+      "code": "REQ-MA-027",
+      "title": "Monte Carlo／Benchmark／Ablation",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "RESEARCH_METHOD_QUALIFICATION"
+    },
+    {
+      "entity_id": "8d502ef2-2df1-491c-b895-d6bd208ce0cb",
+      "revision_id": "28c677ed-f425-5111-9a6f-13f58bba1eb7",
+      "feature_id": "efc58f03-590d-4c19-ac36-cf64a24fb905",
+      "code": "REQ-MA-028",
+      "title": "六策略同畫面與不限歷史保存",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "COMPARISON_QUALIFICATION"
+    },
+    {
+      "entity_id": "4ac72343-8f82-4348-bc61-d44db03dd880",
+      "revision_id": "9d4ced7d-12e7-5054-aec1-a5ed8cb66901",
+      "feature_id": "f68ce1c5-cddf-4a66-ab98-1e54d62605b5",
+      "code": "REQ-MA-029",
+      "title": "完整研究結果／parameters／metrics版本",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "RESEARCH_ARTIFACT_QUALIFICATION"
+    },
+    {
+      "entity_id": "7804b273-2673-4689-8d19-e0ccf0081df5",
+      "revision_id": "b71b11b7-34b9-5446-abd7-47a73143964b",
+      "feature_id": "19ff1fae-f877-4c84-9811-cd40d94ebee9",
+      "code": "REQ-MA-030",
+      "title": "人工LibraryApproval／Deployment分離",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "LIBRARY_ADOPTION"
+    },
+    {
+      "entity_id": "b3ce66d1-a91a-4b86-9762-81928e373052",
+      "revision_id": "23633aae-a15a-5d08-b476-521b6c131ea8",
+      "feature_id": "adbd3566-0d0e-4fd6-ba88-6c0e15d596b5",
+      "code": "REQ-MA-031",
+      "title": "受限AI Research LocalLM建議與source追溯",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "AI_ANALYST_QUALIFICATION"
+    },
+    {
+      "entity_id": "f09b760e-011f-41ef-a8b2-f3da6537f690",
+      "revision_id": "85ab2b60-9668-5635-9692-72c09bba8f49",
+      "feature_id": "51e634f0-0664-47ca-9e49-43a8a13ef7dd",
+      "code": "REQ-MA-037",
+      "title": "FinancialAccount與Operator登入identity分開",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "FINANCIAL_IDENTITY_ADOPTION"
+    },
+    {
+      "entity_id": "447fb24f-3c39-4a25-89be-de617631c15d",
+      "revision_id": "6b7653a7-c320-5152-865c-27eef56912bb",
+      "feature_id": "ddeeb388-64e4-4d9b-af71-2dad5b44e2f4",
+      "code": "REQ-MA-038",
+      "title": "CrossAssetPortfolio／Capital／Accounting",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "ACCOUNTING_QUALIFICATION"
+    },
+    {
+      "entity_id": "6265a2d6-973f-41c6-b574-0a99e31f7f7a",
+      "revision_id": "4835f4a3-f029-5873-9332-4e7a5132693f",
+      "feature_id": "08da3329-67f0-42f1-83fb-f23a6be6b0a7",
+      "code": "REQ-MA-039",
+      "title": "單帳戶多策略Group／Deployment Origin",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "GROUP_ATTRIBUTION_QUALIFICATION"
+    },
+    {
+      "entity_id": "ec2a5c64-26ad-411b-bd17-fd18b9df5fa0",
+      "revision_id": "be4df4d2-7c68-50c3-9ea1-bc13bd4957a5",
+      "feature_id": "669fb682-6acc-4ef8-bf2c-b5a3576f0334",
+      "code": "REQ-MA-040",
+      "title": "ManualBudget／ActualCapital分離",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "BUDGET_QUALIFICATION"
+    },
+    {
+      "entity_id": "c5cced07-8e6c-412c-a195-e443316ef516",
+      "revision_id": "ddd56cec-1718-5a76-8c1d-e343fa49370d",
+      "feature_id": "489a415a-ca79-47a3-8409-4623c4654e20",
+      "code": "REQ-MA-041",
+      "title": "共享resource／reservation不能重占資金",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "CAPITAL_CONCURRENCY_QUALIFICATION"
+    },
+    {
+      "entity_id": "32b1ba27-414b-48de-91b0-bb386c25955c",
+      "revision_id": "8b9c0284-434f-5cf6-8222-a08bda6c1863",
+      "feature_id": "67e0cfa1-aa85-4e15-af1d-2616da02c384",
+      "code": "REQ-MA-042",
+      "title": "immutableIntent／Fill／VirtualPosition歸屬",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "ECONOMIC_UOW_QUALIFICATION"
+    },
+    {
+      "entity_id": "1a9a6fb8-3084-4a8e-81c9-a042d496201e",
+      "revision_id": "535817a1-5c62-5835-8f88-52486313cd67",
+      "feature_id": "b6a901bc-91c4-4d85-9490-27f4f3cd5bff",
+      "code": "REQ-MA-043",
+      "title": "cashflows／settledpending／fees／multicurrencyjournal",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "ACCOUNTING_QUALIFICATION"
+    },
+    {
+      "entity_id": "94ba0986-72a8-4fc2-a737-442ce413590a",
+      "revision_id": "7db0a201-6453-559b-b29c-fc9ab737e62a",
+      "feature_id": "763459c1-3fa1-43f3-8b2c-ccab4ced6687",
+      "code": "REQ-MA-044",
+      "title": "既有MultiStrategyDecisionLayer唯一物理決策",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "ACCEPTED_OWNER_PRESERVATION"
+    },
+    {
+      "entity_id": "f8f9d34a-f2e6-4cbe-91bb-7fdc66a9489a",
+      "revision_id": "07219111-63e2-5ead-a3c3-9270dfeaa84a",
+      "feature_id": "139ef9df-360f-480b-a9d3-2fcc2bab21e7",
+      "code": "REQ-MA-045",
+      "title": "禁止groupinternalmatch／autooffset／借庫存",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "GROUP_RISK_QUALIFICATION"
+    },
+    {
+      "entity_id": "4b8e47a8-349a-48bf-9f24-953ed9d0c38a",
+      "revision_id": "3e48c481-e510-5bc6-b1e7-eb54c6175b8d",
+      "feature_id": "8e481cf5-6f09-4a5b-a619-d8b816c6bb2d",
+      "code": "REQ-MA-046",
+      "title": "AssetRisk／exposure／margin／Greeks／credit",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "RISK_QUALIFICATION"
+    },
+    {
+      "entity_id": "dfc9b536-05c2-4403-87fa-fd653689ace3",
+      "revision_id": "7d24ef63-0239-59a3-a49c-75fcef015480",
+      "feature_id": "d77fdd4c-78d6-41da-a95f-159a24a82300",
+      "code": "REQ-MA-047",
+      "title": "完整DecisionCut／FinalWitness／freshRisk",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "RISK_CURRENTNESS_QUALIFICATION"
+    },
+    {
+      "entity_id": "347acf7f-6c28-4ebc-8e49-8eadf6150c88",
+      "revision_id": "1d8cdc36-49db-50ec-958c-f5937c5394eb",
+      "feature_id": "28e1712c-5eb8-4d64-bf0f-1f086fe7f963",
+      "code": "REQ-MA-049",
+      "title": "STANDARD simulation／publishedfixedrelease",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "PAPER_QUALIFICATION"
+    },
+    {
+      "entity_id": "6f15a45f-5383-4616-9aec-51819d7d9e95",
+      "revision_id": "e17b6bb9-6203-57c8-b9b5-ff8e10a83c34",
+      "feature_id": "4f87bf0e-72ce-4613-b3a2-5b7c8ab662a7",
+      "code": "REQ-MA-051",
+      "title": "Orderstate／dedup／cancelpartialrace／unknownoutcome",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "OMS_QUALIFICATION"
+    },
+    {
+      "entity_id": "201703d1-fd85-4b55-b66a-8d7ad9d0788c",
+      "revision_id": "9d047637-5d2a-5117-a22e-35b8c7cce8ad",
+      "feature_id": "71c9b4dd-a0b0-4f0d-a6e2-46d104db5092",
+      "code": "REQ-MA-052",
+      "title": "Reconnect／Reconciliation／RecoveryHold／FreshReentry",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "RECOVERY_QUALIFICATION"
+    },
+    {
+      "entity_id": "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87",
+      "revision_id": "6ea100e7-b3af-5021-8e7b-259cad6dad3e",
+      "feature_id": "4d25b575-bf50-4cf3-96d2-ee858d460bbf",
+      "code": "REQ-MA-057",
+      "title": "全19頁布局互動／空值錯誤權限",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "UI_JOURNEY_QUALIFICATION"
+    },
+    {
+      "entity_id": "090d764d-c672-4b20-a581-b93db2c54dc8",
+      "revision_id": "7e2a7e43-3ffb-564a-95ba-c3b36e5a3c7b",
+      "feature_id": "e0110a1d-79b1-4bb0-bdcc-831eae303894",
+      "code": "REQ-MA-058",
+      "title": "React/BFF/Python分層／typedwireAPI",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "UI_BFF_CONTRACT_QUALIFICATION"
+    },
+    {
+      "entity_id": "f488c65a-452a-499b-a8c9-a4bb59ce159d",
+      "revision_id": "0ad3dcb2-0742-56e5-9165-e940bb14a526",
+      "feature_id": "e2f7a46c-0611-402e-ae67-181dda92a026",
+      "code": "REQ-MA-059",
+      "title": "source/cut/operationreceipt／realtimegapresume",
+      "qualification_scope": "B3_FUTURES_CORE_OR_FULL_LAB;other_asset_fullproduct_obligations_retained",
+      "gate": "UI_STREAM_QUALIFICATION"
+    }
+  ],
+  "full_lab_must_include": [
+    "PythonSourceInbox/AST/HumanArchive",
+    "Feature/Rule/Substrategy/SafetyBuilder",
+    "S001branch/source/code/snapshotlineage",
+    "single/multistrategyBacktest",
+    "OOS/WFO/MonteCarlo/Benchmark/Ablation",
+    "sixComparison/unlimitedHistory",
+    "AIAnalyst/LocalResearchProvider/source/trials",
+    "manualLibrary/exceptionpermanentwarning",
+    "LABSTANDARD/quality/replay",
+    "PAPERSTANDARD/admission/SimulationSession",
+    "singleaccountgroups/atomicManualBudget/ActualCapital",
+    "Order/Fill/VirtualOrigin/Audit/Recovery"
+  ],
+  "original_product_required": "Original92Capabilities/V1J1-J6retain exact accepted scope; compatible futures qualification slices, no implicitfullotherassetqualification",
+  "additional_required_design_inputs": [
+    "P00C3/C5/C6",
+    "exactsourceDelta/Registry/Policyadoption",
+    "BackupGitOnly/PrivateCapturecontracts",
+    "singleWORKcompiler"
+  ],
+  "future_not_promoted": [
+    "S14/S15 researchlineage",
+    "NAS/Cloud/PITRruntime",
+    "LIVEactivation/credentials",
+    "nonfuturesassetactualadmission"
+  ],
+  "history_weight_rule": "603/2137;26/113;37/127 kept separate; no new adopted denominator;Nmaps/tasks0extraweight",
+  "formal_release_ready": false,
+  "prior_revision_id": "8a5295ec-5a48-5b1a-a708-421631fd3962"
+}

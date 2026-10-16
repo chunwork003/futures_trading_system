@@ -1,0 +1,191 @@
+{
+  "format_role": "EXECUTOR_READABLE_UI_SOURCE_SPEC_NOT_DESIGN_REPLACEMENT",
+  "exact_ui_input": {
+    "page_id": "UI03",
+    "name": "Market",
+    "route": "/market",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UI_PAGE_CONTRACTS.json",
+      "raw_bytes_sha256": "ab18284229f7968456fb9b006ade182404ee3f37b385093ce015a58ca87e0536",
+      "bytes": 196438
+    },
+    "source_pointer": "#/pages/2",
+    "primary_ui_package": "PK11",
+    "operation_ids": [
+      "listInstruments",
+      "getInstrumentRevision",
+      "getMarketRule"
+    ],
+    "consumer_units": [
+      "MA02-U01",
+      "MA02-U05",
+      "MA10-U01",
+      "MA10-U02",
+      "MA15-U02"
+    ],
+    "required_mock_design": "Exact API/DTO/wire error/state/permission contracts; empty vs UNKNOWN, cancel vs completed effect, rejected conflict and restart receipt state; no browser cache as authority.",
+    "visual_acceptance": "FUTURE_HUMAN_BROWSER_CHECK_NOT_RUN",
+    "actual_build_and_integration": "NOT_RUN"
+  },
+  "exact_page_contract": {
+    "actions": [
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "D_DOMAIN",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "listInstruments",
+        "request_model_or_fields": {
+          "kind": {
+            "required": false,
+            "type": "enum?"
+          },
+          "page": {
+            "required": false,
+            "type": "CursorRequest"
+          },
+          "query": {
+            "required": false,
+            "type": "string?"
+          },
+          "venue_ref": {
+            "required": false,
+            "type": "ContractRef?"
+          }
+        },
+        "response_model": "InstrumentRevision",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA02-U01",
+          "MA10-U01",
+          "MA10-U02",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "D_DOMAIN",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getInstrumentRevision",
+        "request_model_or_fields": {},
+        "response_model": "InstrumentRevision",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA02-U01",
+          "MA10-U01",
+          "MA10-U02",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "C_REFERENCE",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getMarketRule",
+        "request_model_or_fields": {
+          "revision": {
+            "required": true,
+            "type": "uuid"
+          }
+        },
+        "response_model": "MarketRuleRevision",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA02-U05",
+          "MA10-U01",
+          "MA10-U02",
+          "MA15-U02"
+        ]
+      }
+    ],
+    "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+    "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+    "implementation_grant": false,
+    "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+    "name": "Market",
+    "page_id": "UI03",
+    "revision": "candidate.7",
+    "route": "/market",
+    "runtime": "NOT_RUN",
+    "schema_revision": "candidate.7",
+    "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+    "transport_binding": {
+      "candidate_subject": "MA-ARCH-REVIEW-v7-CYCLE03",
+      "outgoing_header": "X-MA-DTO-Version",
+      "revision_is_not_wire_alias": true,
+      "runtime": "NOT_RUN",
+      "wire_profile": "MA-DTO-v6"
+    }
+  },
+  "single_source_operations": [
+    {
+      "operation_id": "listInstruments",
+      "producer": {
+        "owner": "D_DOMAIN",
+        "unit": "MA02-U01",
+        "unit_id": "69b6baec-4e0d-42df-ab4f-5900e97f48b6",
+        "package": "PK02"
+      },
+      "spec": "../operations/listInstruments.json"
+    },
+    {
+      "operation_id": "getInstrumentRevision",
+      "producer": {
+        "owner": "D_DOMAIN",
+        "unit": "MA02-U01",
+        "unit_id": "69b6baec-4e0d-42df-ab4f-5900e97f48b6",
+        "package": "PK02"
+      },
+      "spec": "../operations/getInstrumentRevision.json"
+    },
+    {
+      "operation_id": "getMarketRule",
+      "producer": {
+        "owner": "C_REFERENCE",
+        "unit": "MA02-U05",
+        "unit_id": "bb7fcd6e-af41-43e9-aeb4-81fc14571315",
+        "package": "PK02"
+      },
+      "spec": "../operations/getMarketRule.json"
+    }
+  ],
+  "implementation_boundary": "React → ASP.NET BFF → Python API → Quant Core → Persistence; mock substitutes declared producer boundary only",
+  "visual_gate": "Human browser check after authorized implementation, NOT_RUN",
+  "phase_fix_policy": "Cosmetic/UI detail may be batched within exact grant; auth/error/receipt/version/data-integrity/Capital/Order/Fill drift blocks affected journey immediately",
+  "implementation_not_authorized": true
+}

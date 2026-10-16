@@ -1,0 +1,1032 @@
+{
+  "schema_version": "architecture.event_contracts.v1",
+  "revision": "candidate.4",
+  "authority_effect": "NONE",
+  "envelope": "EventEnvelope",
+  "rules": [
+    "Durable producer/outbox then at-least-once delivery; receiver unique(scope,event_id)/payloadhash and receipt.",
+    "Unknown producer/schema/hash conflict quarantines; no implicit acceptance or dispatch.",
+    "Event scope account/environment/project immutable; ordering per authoritative stream/cut, not wallclock.",
+    "Untrusted native callback cannot impersonate accepted canonical event; producer receipt exact."
+  ],
+  "events": [
+    {
+      "type": "InstrumentRevisionPublished",
+      "chapter": "MA02",
+      "producer": "C_REFERENCE",
+      "consumers": [
+        "B_DATA",
+        "E_RESEARCH",
+        "G_RISK"
+      ],
+      "payload_fields": {
+        "instrument_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "rule_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "MarketRulePublished",
+      "chapter": "MA02",
+      "producer": "C_REFERENCE",
+      "consumers": [
+        "B_DATA",
+        "G_RISK",
+        "I_ADAPTER"
+      ],
+      "payload_fields": {
+        "market_rule_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "effective_interval": {
+          "type": "EffectiveInterval",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "CorporateActionConfirmed",
+      "chapter": "MA02",
+      "producer": "C_REFERENCE",
+      "consumers": [
+        "J_ACCOUNT",
+        "F_RESEARCH"
+      ],
+      "payload_fields": {
+        "action_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "confirmation_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "RawCaptured",
+      "chapter": "MA03",
+      "producer": "B_DATA",
+      "consumers": [
+        "ARTIFACT_PROVIDER",
+        "F_RESEARCH"
+      ],
+      "payload_fields": {
+        "raw_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "capture_receipt_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "DatasetRevisionPublished",
+      "chapter": "MA03",
+      "producer": "B_DATA",
+      "consumers": [
+        "F_RESEARCH"
+      ],
+      "payload_fields": {
+        "dataset_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "coverage": {
+          "type": "Coverage",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "QualityFlagRaised",
+      "chapter": "MA03",
+      "producer": "B_DATA",
+      "consumers": [
+        "G_RISK",
+        "H_OMS",
+        "N_APPLICATION"
+      ],
+      "payload_fields": {
+        "observation_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "reason": {
+          "type": "string",
+          "required": true
+        },
+        "completeness": {
+          "type": "Coverage",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "FeedGapDetected",
+      "chapter": "MA03",
+      "producer": "B_DATA",
+      "consumers": [
+        "G_RISK",
+        "H_OMS"
+      ],
+      "payload_fields": {
+        "feed_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "missing_range": {
+          "type": "string",
+          "required": true
+        },
+        "receipt_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "SnapshotReady",
+      "chapter": "MA03",
+      "producer": "B_DATA",
+      "consumers": [
+        "F_RESEARCH"
+      ],
+      "payload_fields": {
+        "snapshot_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "manifest_hash": {
+          "type": "hash",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "SourceCaptured",
+      "chapter": "MA04",
+      "producer": "E_RESEARCH",
+      "consumers": [
+        "F_RESEARCH"
+      ],
+      "payload_fields": {
+        "source_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "content_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "disposition_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "GraphSealed",
+      "chapter": "MA04",
+      "producer": "E_STRATEGY",
+      "consumers": [
+        "F_RESEARCH"
+      ],
+      "payload_fields": {
+        "graph_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "generated_code_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "ResearchRunCompleted",
+      "chapter": "MA04",
+      "producer": "F_RESEARCH",
+      "consumers": [
+        "E_LIBRARY",
+        "N_APPLICATION"
+      ],
+      "payload_fields": {
+        "run_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "result_refs": {
+          "type": "ContractRef[]",
+          "required": true
+        },
+        "metrics": {
+          "type": "ResearchMetric[]",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "LibraryReleaseApproved",
+      "chapter": "MA04",
+      "producer": "E_LIBRARY",
+      "consumers": [
+        "L_SAFETY"
+      ],
+      "payload_fields": {
+        "release_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "exact_subject_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "human_approval_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "DeploymentAdmissionRequested",
+      "chapter": "MA08",
+      "producer": "L_SAFETY",
+      "consumers": [
+        "G_RISK"
+      ],
+      "payload_fields": {
+        "deployment_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "qualification_refs": {
+          "type": "ContractRef[]",
+          "required": true
+        },
+        "human_grant_ref": {
+          "type": "ContractRef?",
+          "required": false
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "BudgetRevised",
+      "chapter": "MA06",
+      "producer": "G_CAPITAL",
+      "consumers": [
+        "G_RISK",
+        "J_ACCOUNT"
+      ],
+      "payload_fields": {
+        "budget_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "prior_ref": {
+          "type": "ContractRef?",
+          "required": false
+        },
+        "owner_receipt_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "CapitalReserved",
+      "chapter": "MA06",
+      "producer": "G_CAPITAL",
+      "consumers": [
+        "H_OMS"
+      ],
+      "payload_fields": {
+        "reservation_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "cut_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "fence": {
+          "type": "int",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "FillEconomicsCommitted",
+      "chapter": "MA06",
+      "producer": "J_ACCOUNT",
+      "consumers": [
+        "K_RECOVERY",
+        "N_APPLICATION"
+      ],
+      "payload_fields": {
+        "fill_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "account_cut_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "economic_event_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "origin": {
+          "type": "EconomicOrigin",
+          "required": true
+        },
+        "legacy_origin_ref": {
+          "type": "ContractRef?",
+          "required": false
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME",
+      "contract_revision": "candidate.4",
+      "predecessor_contract": "v3 EVENT_CATALOG exact source retained in immutable prior bundle",
+      "invariant": "Only fill kinds ASSIGNED or EXTERNAL_UNASSIGNED; ASSIGNED legacyorigin matchesbinding, external legacy absent. SYSTEM_ACCOUNT non-fill economic event uses SettlementApplied or corresponding system event; never fake strategy/group. economic_event_ref must resolve same immutable origin/source/scope in J account transaction.",
+      "compatibility_rule": "Keep prior accepted/existing event serializer immutable; candidate4 producer/outbox/K,N consumers exactrevision negotiated; old external unsupported quarantined, no reapply economy to transform event",
+      "prior_contract_semantic_sha256": "ee57db73d7ee2c6dabd8212dbc0ee751ded8670e0956d5d7d789c6ce148329d9"
+    },
+    {
+      "type": "SettlementApplied",
+      "chapter": "MA06",
+      "producer": "J_ACCOUNT",
+      "consumers": [
+        "G_RISK",
+        "N_APPLICATION"
+      ],
+      "payload_fields": {
+        "event_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "ledger_entry_refs": {
+          "type": "ContractRef[]",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "AttributionCorrectionRecorded",
+      "chapter": "MA06",
+      "producer": "J_ACCOUNT",
+      "consumers": [
+        "N_APPLICATION"
+      ],
+      "payload_fields": {
+        "prior_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "correction_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "owner_receipt_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "RiskDecisionRecorded",
+      "chapter": "MA07",
+      "producer": "G_RISK",
+      "consumers": [
+        "H_OMS",
+        "N_APPLICATION"
+      ],
+      "payload_fields": {
+        "decision_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "cut_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "RiskInputInvalidated",
+      "chapter": "MA07",
+      "producer": "G_RISK",
+      "consumers": [
+        "H_OMS"
+      ],
+      "payload_fields": {
+        "affected_decision_refs": {
+          "type": "ContractRef[]",
+          "required": true
+        },
+        "changed_dependency_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "KillSwitchTransitioned",
+      "chapter": "MA07",
+      "producer": "G_RISK",
+      "consumers": [
+        "H_OMS",
+        "L_SAFETY"
+      ],
+      "payload_fields": {
+        "policy_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "receipt_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "action": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "SendIntentPrepared",
+      "chapter": "MA08",
+      "producer": "H_OMS",
+      "consumers": [
+        "I_ADAPTER",
+        "K_RECOVERY"
+      ],
+      "payload_fields": {
+        "intent_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "attempt_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "witness_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "SubmissionOutcomeObserved",
+      "chapter": "MA09",
+      "producer": "I_ADAPTER",
+      "consumers": [
+        "H_OMS"
+      ],
+      "payload_fields": {
+        "attempt_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "observation_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "outcome": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "OrderEventAccepted",
+      "chapter": "MA08",
+      "producer": "H_OMS",
+      "consumers": [
+        "J_ACCOUNT",
+        "K_RECOVERY"
+      ],
+      "payload_fields": {
+        "order_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "broker_event_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "receipt_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "ReconciliationRunRecorded",
+      "chapter": "MA08",
+      "producer": "J_RECONCILIATION",
+      "consumers": [
+        "K_RECOVERY",
+        "G_RISK"
+      ],
+      "payload_fields": {
+        "run_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "expected_cut_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "observation_refs": {
+          "type": "ContractRef[]",
+          "required": true
+        },
+        "coverage": {
+          "type": "Coverage",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "RecoveryHoldEntered",
+      "chapter": "MA08",
+      "producer": "K_RECOVERY",
+      "consumers": [
+        "L_SAFETY",
+        "H_OMS"
+      ],
+      "payload_fields": {
+        "recovery_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "epoch": {
+          "type": "int",
+          "required": true
+        },
+        "reasons": {
+          "type": "string[]",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "FreshAdmissionGranted",
+      "chapter": "MA08",
+      "producer": "L_SAFETY",
+      "consumers": [
+        "G_RISK",
+        "H_OMS"
+      ],
+      "payload_fields": {
+        "admission_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "current_cut_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "human_grant_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "epoch": {
+          "type": "int",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "RegistrySnapshotFrozen",
+      "chapter": "MA11",
+      "producer": "REGISTRY_WRITER",
+      "consumers": [
+        "EXISTING_REVIEW_OWNER"
+      ],
+      "payload_fields": {
+        "snapshot_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "validation_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "PublicationOutcomeRecorded",
+      "chapter": "MA12",
+      "producer": "AUTHORIZED_PUBLISHER",
+      "consumers": [
+        "PROJECTION_IMPORTER",
+        "EXISTING_WORK"
+      ],
+      "payload_fields": {
+        "intent_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "outcome": {
+          "type": "string",
+          "required": true
+        },
+        "published_commit": {
+          "type": "string?",
+          "required": false
+        },
+        "reconciliation_ref": {
+          "type": "ContractRef?",
+          "required": false
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "ProjectionReconciled",
+      "chapter": "MA12",
+      "producer": "PROJECTION_IMPORTER",
+      "consumers": [
+        "EXISTING_WORK",
+        "N_APPLICATION"
+      ],
+      "payload_fields": {
+        "receipt_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "snapshot_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "ArtifactCaptured",
+      "chapter": "MA13",
+      "producer": "ARTIFACT_WRITER",
+      "consumers": [
+        "ARTIFACT_PROVIDER",
+        "EXISTING_WORK"
+      ],
+      "payload_fields": {
+        "artifact_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "capture_receipt_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "ProtectionVerified",
+      "chapter": "MA13",
+      "producer": "STORAGE_OWNER",
+      "consumers": [
+        "EXISTING_WORK"
+      ],
+      "payload_fields": {
+        "backup_set_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "provider_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "protection_receipt_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "ConfigRevisionValidated",
+      "chapter": "MA16",
+      "producer": "N_APPLICATION",
+      "consumers": [
+        "L_SAFETY"
+      ],
+      "payload_fields": {
+        "config_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "compatibility_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "ServiceHealthChanged",
+      "chapter": "MA16",
+      "producer": "O_OPERATIONS",
+      "consumers": [
+        "N_APPLICATION"
+      ],
+      "payload_fields": {
+        "deployment_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "health_type": {
+          "type": "string",
+          "required": true
+        },
+        "disposition": {
+          "type": "string",
+          "required": true
+        },
+        "reasons": {
+          "type": "string[]",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "BudgetAllocationCommitted",
+      "chapter": "MA06",
+      "producer": "G_CAPITAL_EXISTING_ACCOUNT_UOW",
+      "consumers": [
+        "G_RISK",
+        "N_APPLICATION",
+        "K_RECOVERY"
+      ],
+      "payload_fields": {
+        "account_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "receipt_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "allocation_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "policy_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "prior_allocation_ref": {
+          "type": "ContractRef?",
+          "required": false
+        }
+      },
+      "idempotency": "event_id+scope+payloadhash; replay projection only",
+      "authority_effect": "NO_CASH_MOVEMENT_NO_TRADING_GRANT",
+      "evidence_level": "DESIGN_NOT_RUNTIME",
+      "invariant": "Sametransaction as revisions/head/receipt; no partially emitted allocation groups"
+    },
+    {
+      "type": "SourceAnalysisCompleted",
+      "chapter": "MA04",
+      "producer": "E_RESEARCH",
+      "consumers": [
+        "N_APPLICATION",
+        "E_FEATURE"
+      ],
+      "payload_fields": {
+        "analysis_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "source_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "original_byte_hash": {
+          "type": "hash",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash; same ID different hash CONFLICT",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "SourceArchiveCompleted",
+      "chapter": "MA04",
+      "producer": "E_RESEARCH",
+      "consumers": [
+        "N_APPLICATION",
+        "E_FEATURE",
+        "ARTIFACT_PROVIDER"
+      ],
+      "payload_fields": {
+        "archive_receipt_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "source_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "archive_content_ref": {
+          "type": "ContractRef",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash; same ID different hash CONFLICT",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "AnalystRunCompleted",
+      "chapter": "MA04",
+      "producer": "F_RESEARCH",
+      "consumers": [
+        "N_APPLICATION",
+        "E_STRATEGY"
+      ],
+      "payload_fields": {
+        "analyst_run_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "suggestion_refs": {
+          "type": "ContractRef[]",
+          "required": true
+        },
+        "outcome": {
+          "type": "enum",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash; same ID different hash CONFLICT",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "SimulationObservationRecorded",
+      "chapter": "MA04",
+      "producer": "F_RESEARCH",
+      "consumers": [
+        "N_APPLICATION",
+        "E_LIBRARY"
+      ],
+      "payload_fields": {
+        "observation_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "simulation_account_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "quality": {
+          "type": "enum",
+          "required": true
+        },
+        "frontier": {
+          "type": "int",
+          "required": true
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash; same ID different hash CONFLICT",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    },
+    {
+      "type": "ResearchBranchCreated",
+      "chapter": "MA04",
+      "producer": "E_STRATEGY",
+      "consumers": [
+        "F_RESEARCH",
+        "N_APPLICATION"
+      ],
+      "payload_fields": {
+        "branch_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "root_strategy_ref": {
+          "type": "ContractRef",
+          "required": true
+        },
+        "parent_snapshot_ref": {
+          "type": "ContractRef?",
+          "required": false
+        }
+      },
+      "idempotency": "event_id + scope + canonical payload hash; same ID different hash CONFLICT",
+      "authority_effect": "REFERENCE_EXISTING_BOUND_RECEIPT_ONLY",
+      "evidence_level": "DESIGN_CONTRACT_NOT_RUNTIME"
+    }
+  ],
+  "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+}

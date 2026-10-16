@@ -1,0 +1,276 @@
+{
+  "schema_version": "architecture.transport_error.v2",
+  "revision": "candidate.5",
+  "review_subject": "MA-ARCH-REVIEW-v5-CYCLE01",
+  "envelope": "ErrorEnvelope",
+  "outgoing_protocol_version": "architecture.transport_error.v2",
+  "vocabulary_rule": "All95 original operation IDs retained. Outgoing candidate.5 errors use API_CATALOG.errors canonical codes. Alias decoding requires explicit incoming version, never HTTP-only guessing.",
+  "rows": [
+    {
+      "http_status": 401,
+      "code": "AUTHENTICATION_REQUIRED",
+      "branches": [
+        {
+          "condition": "PRE_INVOCATION_DENIAL",
+          "retry": "REAUTHENTICATE",
+          "effect": "NO_EFFECT_PROVEN",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        },
+        {
+          "condition": "PRE_READ_DENIAL",
+          "retry": "DO_NOT_RETRY",
+          "effect": "NOT_APPLICABLE",
+          "rule": "Read-only request rejected before source selection; no mutation invocation occurs. Authorization must not reveal private existence; these read branches do not establish command NO_EFFECT."
+        }
+      ]
+    },
+    {
+      "http_status": 403,
+      "code": "RESOURCE_SCOPE_DENIED",
+      "branches": [
+        {
+          "condition": "PRE_INVOCATION_DENIAL",
+          "retry": "DO_NOT_RETRY",
+          "effect": "NO_EFFECT_PROVEN",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        },
+        {
+          "condition": "PRE_READ_DENIAL",
+          "retry": "DO_NOT_RETRY",
+          "effect": "NOT_APPLICABLE",
+          "rule": "Read-only request rejected before source selection; no mutation invocation occurs. Authorization must not reveal private existence; these read branches do not establish command NO_EFFECT."
+        }
+      ]
+    },
+    {
+      "http_status": 404,
+      "code": "RESOURCE_NOT_FOUND",
+      "branches": [
+        {
+          "condition": "AUTHORIZED_READ_MISSING",
+          "retry": "DO_NOT_RETRY",
+          "effect": "NOT_APPLICABLE",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        },
+        {
+          "condition": "PRE_INVOCATION_COMMAND_MISSING",
+          "retry": "DO_NOT_RETRY",
+          "effect": "NO_EFFECT_PROVEN",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        }
+      ]
+    },
+    {
+      "http_status": 409,
+      "code": "CAS_OR_HASH_OR_ALIAS_CONFLICT",
+      "branches": [
+        {
+          "condition": "READ_SNAPSHOT_CONFLICT",
+          "retry": "RESNAPSHOT",
+          "effect": "NOT_APPLICABLE",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        },
+        {
+          "condition": "NEW_COMMAND_STALE_CAS",
+          "retry": "REFRESH_SUBJECT",
+          "effect": "NO_EFFECT_PROVEN",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        },
+        {
+          "condition": "EXISTING_COMMAND_HASH_CONFLICT_COMMITTED",
+          "retry": "QUERY_RECEIPT",
+          "effect": "EFFECT_COMMITTED",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        },
+        {
+          "condition": "EXISTING_COMMAND_HASH_CONFLICT_UNKNOWN",
+          "retry": "QUERY_RECEIPT",
+          "effect": "UNKNOWN",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        }
+      ]
+    },
+    {
+      "http_status": 422,
+      "code": "SEMANTIC_VALIDATION_FAILED",
+      "branches": [
+        {
+          "condition": "PRE_INVOCATION_VALIDATION",
+          "retry": "DO_NOT_RETRY",
+          "effect": "NO_EFFECT_PROVEN",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        },
+        {
+          "condition": "PRE_READ_VALIDATION",
+          "retry": "DO_NOT_RETRY",
+          "effect": "NOT_APPLICABLE",
+          "rule": "Read-only request rejected before source selection; no mutation invocation occurs. Authorization must not reveal private existence; these read branches do not establish command NO_EFFECT."
+        }
+      ]
+    },
+    {
+      "http_status": 429,
+      "code": "RATE_LIMITED",
+      "branches": [
+        {
+          "condition": "READ_RATE_DENIAL",
+          "retry": "RETRY_SAFE_READ",
+          "effect": "NOT_APPLICABLE",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        },
+        {
+          "condition": "COMMAND_PRE_INVOCATION_PROVEN",
+          "retry": "QUERY_RECEIPT",
+          "effect": "NO_EFFECT_PROVEN",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        },
+        {
+          "condition": "COMMAND_OUTCOME_UNCERTAIN",
+          "retry": "QUERY_RECEIPT",
+          "effect": "UNKNOWN",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        }
+      ]
+    },
+    {
+      "http_status": 503,
+      "code": "DEPENDENCY_UNAVAILABLE_WITH_RECEIPT_WHEN_EFFECT_POSSIBLE",
+      "branches": [
+        {
+          "condition": "READ_DEPENDENCY_UNAVAILABLE",
+          "retry": "WAIT_DEPENDENCY",
+          "effect": "NOT_APPLICABLE",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        },
+        {
+          "condition": "COMMAND_OUTCOME_UNCERTAIN",
+          "retry": "QUERY_RECEIPT",
+          "effect": "UNKNOWN",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        },
+        {
+          "condition": "COMMAND_COMMITTED_ACK_UNCERTAIN",
+          "retry": "QUERY_RECEIPT",
+          "effect": "EFFECT_COMMITTED",
+          "rule": "Server must prove this branch from invocation journal/receipt and exact scope; command UNKNOWN never blind resend. Refresh/reauth does not broaden Human consent."
+        }
+      ]
+    }
+  ],
+  "legacy_aliases": [
+    {
+      "input_protocol_version": "architecture.transport_error.v1.api_catalog",
+      "http_status": 401,
+      "input_code": "AUTHENTICATION_REQUIRED",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "AUTHENTICATION_REQUIRED",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.disposition_table",
+      "http_status": 401,
+      "input_code": "AUTHENTICATION_REQUIRED",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "AUTHENTICATION_REQUIRED",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.api_catalog",
+      "http_status": 403,
+      "input_code": "RESOURCE_SCOPE_DENIED",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "RESOURCE_SCOPE_DENIED",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.disposition_table",
+      "http_status": 403,
+      "input_code": "RESOURCE_DENIED",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "RESOURCE_SCOPE_DENIED",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.api_catalog",
+      "http_status": 404,
+      "input_code": "RESOURCE_NOT_FOUND",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "RESOURCE_NOT_FOUND",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.disposition_table",
+      "http_status": 404,
+      "input_code": "RESOURCE_OR_REVISION_MISSING",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "RESOURCE_NOT_FOUND",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.api_catalog",
+      "http_status": 409,
+      "input_code": "CAS_OR_HASH_OR_ALIAS_CONFLICT",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "CAS_OR_HASH_OR_ALIAS_CONFLICT",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.disposition_table",
+      "http_status": 409,
+      "input_code": "CAS_OR_HASH_OR_CURSOR_CONFLICT",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "CAS_OR_HASH_OR_ALIAS_CONFLICT",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.api_catalog",
+      "http_status": 422,
+      "input_code": "SEMANTIC_VALIDATION_FAILED",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "SEMANTIC_VALIDATION_FAILED",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.disposition_table",
+      "http_status": 422,
+      "input_code": "SEMANTIC_VALIDATION_FAILED",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "SEMANTIC_VALIDATION_FAILED",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.api_catalog",
+      "http_status": 429,
+      "input_code": "RATE_LIMITED",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "RATE_LIMITED",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.disposition_table",
+      "http_status": 429,
+      "input_code": "CAPACITY_OR_RATE_DENIED",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "RATE_LIMITED",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.api_catalog",
+      "http_status": 503,
+      "input_code": "DEPENDENCY_UNAVAILABLE_WITH_RECEIPT_WHEN_EFFECT_POSSIBLE",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "DEPENDENCY_UNAVAILABLE_WITH_RECEIPT_WHEN_EFFECT_POSSIBLE",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    },
+    {
+      "input_protocol_version": "architecture.transport_error.v1.disposition_table",
+      "http_status": 503,
+      "input_code": "DEPENDENCY_OR_OUTCOME_UNKNOWN",
+      "canonical_protocol_version": "architecture.transport_error.v2",
+      "canonical_code": "DEPENDENCY_UNAVAILABLE_WITH_RECEIPT_WHEN_EFFECT_POSSIBLE",
+      "retry_effect_rule": "Preserve evidence-bound effect/retry; legacy code does not manufacture NO_EFFECT. Missing fields for command normalize UNKNOWN/QUERY_RECEIPT; read normalize NOT_APPLICABLE with safe read branch only."
+    }
+  ],
+  "client_unknown_code": "DO_NOT_RETRY; generic safe message; for any known command ID QUERY_RECEIPT on lawful exact receipt endpoint before any authorized continuation. No guessed success or blind resend.",
+  "runtime": "NOT_RUN"
+}

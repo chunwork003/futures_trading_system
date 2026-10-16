@@ -1,0 +1,4151 @@
+{
+  "schema_version": "architecture.ui_page_contracts.v1",
+  "revision": "candidate.5",
+  "page_count": 19,
+  "pages": [
+    {
+      "page_id": "UI01",
+      "name": "Dashboard",
+      "route": "/dashboard",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "getAccountCapital",
+          "request_model_or_fields": {
+            "cut_ref": {
+              "type": "ContractRef?",
+              "required": false
+            }
+          },
+          "response_model": "AccountCut",
+          "role": "VIEWER",
+          "domain_owner": "J_ACCOUNT",
+          "unit_consumers": [
+            "MA06-U06",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getHealth",
+          "request_model_or_fields": {
+            "deployment_ref": {
+              "type": "ContractRef?",
+              "required": false
+            }
+          },
+          "response_model": "ServiceHealthProjection",
+          "role": "VIEWER",
+          "domain_owner": "O_OPERATIONS",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02",
+            "MA16-U04"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getDashboard",
+          "request_model_or_fields": {
+            "account_cut_ref": {
+              "type": "ContractRef?",
+              "required": false
+            }
+          },
+          "response_model": "DashboardProjection",
+          "role": "VIEWER",
+          "domain_owner": "N_APPLICATION",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI02",
+      "name": "Chart",
+      "route": "/chart",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "listDatasets",
+          "request_model_or_fields": {
+            "series_kind": {
+              "type": "enum?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "DatasetRevision",
+          "role": "VIEWER",
+          "domain_owner": "B_DATA",
+          "unit_consumers": [
+            "MA03-U04",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "sealDatasetSnapshot",
+          "request_model_or_fields": {
+            "dataset_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            },
+            "selection": {
+              "type": "DatasetSelection",
+              "required": true
+            }
+          },
+          "response_model": "DatasetSnapshot",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "B_DATA",
+          "unit_consumers": [
+            "MA03-U04",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getDatasetSnapshot",
+          "request_model_or_fields": {
+            "revision": {
+              "type": "uuid",
+              "required": true
+            }
+          },
+          "response_model": "DatasetSnapshot",
+          "role": "VIEWER",
+          "domain_owner": "B_DATA",
+          "unit_consumers": [
+            "MA03-U04",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "queryObservations",
+          "request_model_or_fields": {
+            "snapshot_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "instrument_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "start": {
+              "type": "instant",
+              "required": true
+            },
+            "end": {
+              "type": "instant",
+              "required": true
+            },
+            "fields": {
+              "type": "string[]",
+              "required": true
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "PricingObservation",
+          "role": "VIEWER",
+          "domain_owner": "B_DATA",
+          "unit_consumers": [
+            "MA03-U02",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "queryMarketBars",
+          "request_model_or_fields": {
+            "query": {
+              "type": "BarQuery",
+              "required": true
+            },
+            "page": {
+              "type": "CursorRequest?",
+              "required": false
+            }
+          },
+          "response_model": "CanonicalMarketBarDto",
+          "role": "VIEWER",
+          "domain_owner": "B_DATA",
+          "unit_consumers": [
+            "MA03-U02",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI03",
+      "name": "Market",
+      "route": "/market",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "listInstruments",
+          "request_model_or_fields": {
+            "kind": {
+              "type": "enum?",
+              "required": false
+            },
+            "venue_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "query": {
+              "type": "string?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "InstrumentRevision",
+          "role": "VIEWER",
+          "domain_owner": "D_DOMAIN",
+          "unit_consumers": [
+            "MA02-U01",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getInstrumentRevision",
+          "request_model_or_fields": {},
+          "response_model": "InstrumentRevision",
+          "role": "VIEWER",
+          "domain_owner": "D_DOMAIN",
+          "unit_consumers": [
+            "MA02-U01",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getMarketRule",
+          "request_model_or_fields": {
+            "revision": {
+              "type": "uuid",
+              "required": true
+            }
+          },
+          "response_model": "MarketRuleRevision",
+          "role": "VIEWER",
+          "domain_owner": "C_REFERENCE",
+          "unit_consumers": [
+            "MA02-U05",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI04",
+      "name": "Strategy Builder",
+      "route": "/lab/builder",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "captureInbox",
+          "request_model_or_fields": {
+            "upload_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "source_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "licence_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "SourceInboxItem",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_RESEARCH",
+          "unit_consumers": [
+            "MA04-U01",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "dispositionInbox",
+          "request_model_or_fields": {
+            "source_revision": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "decision": {
+              "type": "enum",
+              "required": true
+            },
+            "human_receipt_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "archive_plan_ref": {
+              "type": "ContractRef?",
+              "required": false
+            }
+          },
+          "response_model": "SourceInboxItem",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_RESEARCH",
+          "unit_consumers": [
+            "MA04-U01",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "listFeatures",
+          "request_model_or_fields": {
+            "port_type": {
+              "type": "string?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "FeatureDefinitionRevision",
+          "role": "VIEWER",
+          "domain_owner": "E_FEATURE",
+          "unit_consumers": [
+            "MA04-U02",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "saveFeatureDraft",
+          "request_model_or_fields": {
+            "feature_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "definition": {
+              "type": "FeatureDefinitionDraft",
+              "required": true
+            }
+          },
+          "response_model": "FeatureDefinitionRevision",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_FEATURE",
+          "unit_consumers": [
+            "MA04-U02",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "saveGraphDraft",
+          "request_model_or_fields": {
+            "root_strategy_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "branch_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "graph": {
+              "type": "StrategyGraphDraft",
+              "required": true
+            }
+          },
+          "response_model": "StrategyGraphRevision",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U01",
+            "MA04-U02",
+            "MA04-U03",
+            "MA04-U04",
+            "MA04-U05",
+            "MA04-U06",
+            "MA10-U01",
+            "MA10-U03",
+            "MA10-U06"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getOperation",
+              "dto_version": "candidate.5",
+              "discovery": "path id from server OperationReceipt.operation_id; result_body=NONE captures latest lifecycle receipt at explicit readcut",
+              "body_read": "After committed exact result_ref discovered, result_body=REQUIRED+expected_result_ref+read_snapshot_ref from receipt ReadEnvelope",
+              "response_model": "OperationReadbackV5",
+              "cardinality": "ONE",
+              "permission": "existing operation receipt read + exact result/source/body read; recheck at boundary"
+            }
+          ]
+        },
+        {
+          "operation_id": "generateCode",
+          "request_model_or_fields": {
+            "graph_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "generator_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "dependency_lock_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "GeneratedCodeRevision",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U01",
+            "MA04-U02",
+            "MA04-U03",
+            "MA04-U04",
+            "MA04-U05",
+            "MA04-U06",
+            "MA10-U01",
+            "MA10-U03",
+            "MA10-U06"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getOperation",
+              "dto_version": "candidate.5",
+              "discovery": "path id from server OperationReceipt.operation_id; result_body=NONE captures latest lifecycle receipt at explicit readcut",
+              "body_read": "After committed exact result_ref discovered, result_body=REQUIRED+expected_result_ref+read_snapshot_ref from receipt ReadEnvelope",
+              "response_model": "OperationReadbackV5",
+              "cardinality": "ONE",
+              "permission": "existing operation receipt read + exact result/source/body read; recheck at boundary"
+            }
+          ]
+        },
+        {
+          "operation_id": "listGraphDrafts",
+          "request_model_or_fields": {
+            "branch_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": true
+            }
+          },
+          "response_model": "GraphDraftView",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U02",
+            "MA04-U03",
+            "MA10-U03",
+            "MA10-U06",
+            "MA15-U03"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getGraphDraft",
+              "dto_version": "candidate.5",
+              "request": "EXACT_REVISION with selected GraphDraftView.graph_ref and source ReadEnvelope.snapshot_ref",
+              "response_model": "GraphDraftReadbackV5",
+              "cardinality": "ONE"
+            }
+          ]
+        },
+        {
+          "operation_id": "getGraphDraft",
+          "request_model_or_fields": {
+            "selection": {
+              "type": "GraphDraftSelectionV5",
+              "required": true
+            }
+          },
+          "response_model": "GraphDraftReadbackV5",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U02",
+            "MA04-U03",
+            "MA10-U03",
+            "MA10-U06",
+            "MA15-U03"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getArtifactContent",
+              "dto_version": "candidate.5",
+              "request": "BODY mode only exact known TypedBodyBindingV5.content_artifact_ref path+subject/schema/snapshot; no domainID/artifactID guess",
+              "response_model": "ArtifactContentReadV5",
+              "cardinality": "ONE",
+              "permission": "every body/source read separately resource-scoped"
+            }
+          ]
+        },
+        {
+          "operation_id": "analyzeInboxSource",
+          "request_model_or_fields": {
+            "request": {
+              "type": "SourceAnalysisRequest",
+              "required": true
+            }
+          },
+          "response_model": "SourceAnalysisReport",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_RESEARCH",
+          "unit_consumers": [
+            "MA04-U01",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getSourceAnalysis",
+          "request_model_or_fields": {},
+          "response_model": "SourceAnalysisReport",
+          "role": "VIEWER",
+          "domain_owner": "E_RESEARCH",
+          "unit_consumers": [
+            "MA04-U01",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "createArchivePlan",
+          "request_model_or_fields": {
+            "request": {
+              "type": "ArchivePlanRequest",
+              "required": true
+            }
+          },
+          "response_model": "ArchivePlan",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_RESEARCH",
+          "unit_consumers": [
+            "MA04-U01",
+            "MA10-U03",
+            "MA10-U06",
+            "MA15-U03"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getOperation",
+              "dto_version": "candidate.5",
+              "discovery": "path id from server OperationReceipt.operation_id; result_body=NONE captures latest lifecycle receipt at explicit readcut",
+              "body_read": "After committed exact result_ref discovered, result_body=REQUIRED+expected_result_ref+read_snapshot_ref from receipt ReadEnvelope",
+              "response_model": "OperationReadbackV5",
+              "cardinality": "ONE",
+              "permission": "existing operation receipt read + exact result/source/body read; recheck at boundary"
+            }
+          ]
+        },
+        {
+          "operation_id": "executeArchivePlan",
+          "request_model_or_fields": {
+            "request": {
+              "type": "ArchiveExecuteRequestV5",
+              "required": true
+            }
+          },
+          "response_model": "ArchiveOperationReceipt",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_RESEARCH",
+          "unit_consumers": [
+            "MA04-U01",
+            "MA10-U03",
+            "MA10-U06",
+            "MA15-U03"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getOperation",
+              "dto_version": "candidate.5",
+              "discovery": "path id from server OperationReceipt.operation_id; result_body=NONE captures latest lifecycle receipt at explicit readcut",
+              "body_read": "After committed exact result_ref discovered, result_body=REQUIRED+expected_result_ref+read_snapshot_ref from receipt ReadEnvelope",
+              "response_model": "OperationReadbackV5",
+              "cardinality": "ONE",
+              "permission": "existing operation receipt read + exact result/source/body read; recheck at boundary"
+            }
+          ]
+        },
+        {
+          "operation_id": "getArchiveOperation",
+          "request_model_or_fields": {},
+          "response_model": "ArchiveOperationReceipt",
+          "role": "VIEWER",
+          "domain_owner": "E_RESEARCH",
+          "unit_consumers": [
+            "MA04-U01",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "applyBuilderEdit",
+          "request_model_or_fields": {
+            "edit": {
+              "type": "BuilderEditCommand",
+              "required": true
+            }
+          },
+          "response_model": "StrategyGraphRevision",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U02",
+            "MA10-U03",
+            "MA10-U06",
+            "MA15-U03"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getOperation",
+              "dto_version": "candidate.5",
+              "discovery": "path id from server OperationReceipt.operation_id; result_body=NONE captures latest lifecycle receipt at explicit readcut",
+              "body_read": "After committed exact result_ref discovered, result_body=REQUIRED+expected_result_ref+read_snapshot_ref from receipt ReadEnvelope",
+              "response_model": "OperationReadbackV5",
+              "cardinality": "ONE",
+              "permission": "existing operation receipt read + exact result/source/body read; recheck at boundary"
+            }
+          ]
+        },
+        {
+          "operation_id": "createResearchBranch",
+          "request_model_or_fields": {
+            "request": {
+              "type": "BranchCreateRequest",
+              "required": true
+            }
+          },
+          "response_model": "ResearchBranch",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U03",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "cloneResearchBranch",
+          "request_model_or_fields": {
+            "request": {
+              "type": "BranchCloneRequest",
+              "required": true
+            }
+          },
+          "response_model": "ResearchBranch",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U03",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "listResearchBranches",
+          "request_model_or_fields": {
+            "root_strategy_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "include_archived": {
+              "type": "bool?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "ResearchBranch",
+          "role": "VIEWER",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U03",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getResearchBranch",
+          "request_model_or_fields": {},
+          "response_model": "ResearchBranch",
+          "role": "VIEWER",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U03",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "archiveResearchBranch",
+          "request_model_or_fields": {
+            "request": {
+              "type": "BranchArchiveRequest",
+              "required": true
+            }
+          },
+          "response_model": "ResearchBranch",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U03",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getResearchBranchHistory",
+          "request_model_or_fields": {
+            "through_sequence": {
+              "type": "int?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "ResearchBranchHistoryEntry",
+          "role": "VIEWER",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U03",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "saveManualCodeRevision",
+          "request_model_or_fields": {
+            "branch_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "base_code_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "new_code_content_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "dependency_lock_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "analysis_report_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "GeneratedCodeRevision",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U03",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI05",
+      "name": "Research",
+      "route": "/lab/research",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "sealResearchSnapshot",
+          "request_model_or_fields": {
+            "graph_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "code_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "feature_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            },
+            "dataset_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            },
+            "config_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "engine_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "profile_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            },
+            "branch_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "ResearchSnapshot",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U03",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "createResearchRun",
+          "request_model_or_fields": {
+            "snapshot_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "method": {
+              "type": "ResearchMethodConfig",
+              "required": true
+            },
+            "seed": {
+              "type": "int?",
+              "required": false
+            }
+          },
+          "response_model": "ResearchRun",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getResearchRun",
+          "request_model_or_fields": {},
+          "response_model": "ResearchRun",
+          "role": "VIEWER",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "cancelResearchRun",
+          "request_model_or_fields": {
+            "run_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "reason": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "response_model": "ResearchRun",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "listResearchRuns",
+          "request_model_or_fields": {
+            "branch_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "snapshot_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": true
+            }
+          },
+          "response_model": "ResearchRun",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "startAnalystRun",
+          "request_model_or_fields": {
+            "request": {
+              "type": "AnalystRequest",
+              "required": true
+            }
+          },
+          "response_model": "AnalystRun",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U06",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getAnalystRun",
+          "request_model_or_fields": {},
+          "response_model": "AnalystRun",
+          "role": "VIEWER",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U06",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "cancelAnalystRun",
+          "request_model_or_fields": {
+            "run_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "reason": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "response_model": "AnalystRun",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U06",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "applyAnalystSuggestion",
+          "request_model_or_fields": {
+            "request": {
+              "type": "AnalystApplyRequest",
+              "required": true
+            }
+          },
+          "response_model": "ResearchBranch",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U06",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI06",
+      "name": "Comparison",
+      "route": "/lab/comparison",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "saveComparison",
+          "request_model_or_fields": {
+            "run_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            },
+            "alignment": {
+              "type": "ComparisonPolicy",
+              "required": true
+            },
+            "metric_policy_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "ResearchComparison",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U05",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "listComparisons",
+          "request_model_or_fields": {
+            "branch_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "ResearchComparison",
+          "role": "VIEWER",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U05",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getResearchRun",
+          "request_model_or_fields": {},
+          "response_model": "ResearchRun",
+          "role": "VIEWER",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "listResearchRuns",
+          "request_model_or_fields": {
+            "branch_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "snapshot_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": true
+            }
+          },
+          "response_model": "ResearchRun",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "listResearchBranches",
+          "request_model_or_fields": {
+            "root_strategy_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "include_archived": {
+              "type": "bool?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "ResearchBranch",
+          "role": "VIEWER",
+          "domain_owner": "E_STRATEGY",
+          "unit_consumers": [
+            "MA04-U03",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI07",
+      "name": "Simulation",
+      "route": "/paper/simulation",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "startSimulation",
+          "request_model_or_fields": {
+            "deployment_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "snapshot_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "config": {
+              "type": "SimulationConfig",
+              "required": true
+            }
+          },
+          "response_model": "SimulationSession",
+          "role": "TRADING_OPERATOR_PAPER",
+          "domain_owner": "H_OMS",
+          "unit_consumers": [
+            "MA08-U03",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getSimulation",
+          "request_model_or_fields": {
+            "session_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "SimulationSession",
+          "role": "PAPER_OPERATOR",
+          "domain_owner": "L_SAFETY",
+          "unit_consumers": [
+            "MA08-U03",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "pauseSimulation",
+          "request_model_or_fields": {
+            "session_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "expected_frontier": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "response_model": "SimulationSession",
+          "role": "PAPER_OPERATOR",
+          "domain_owner": "L_SAFETY",
+          "unit_consumers": [
+            "MA08-U03",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "resumeSimulation",
+          "request_model_or_fields": {
+            "session_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "pause_receipt_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "expected_frontier": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "response_model": "SimulationSession",
+          "role": "PAPER_OPERATOR",
+          "domain_owner": "L_SAFETY",
+          "unit_consumers": [
+            "MA08-U03",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "replaySimulation",
+          "request_model_or_fields": {
+            "source_session_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "snapshot_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "config": {
+              "type": "SimulationConfig",
+              "required": true
+            }
+          },
+          "response_model": "SimulationSession",
+          "role": "PAPER_OPERATOR",
+          "domain_owner": "L_SAFETY",
+          "unit_consumers": [
+            "MA08-U03",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "createLabSimulation",
+          "request_model_or_fields": {
+            "request": {
+              "type": "ResearchSimulationRequest",
+              "required": true
+            }
+          },
+          "response_model": "ResearchSimulationAccount",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getLabSimulation",
+          "request_model_or_fields": {},
+          "response_model": "ResearchSimulationAccount",
+          "role": "VIEWER",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "listLabSimulationObservations",
+          "request_model_or_fields": {
+            "source_quality": {
+              "type": "enum?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "SimulationObservation",
+          "role": "VIEWER",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getLabSimulationCounters",
+          "request_model_or_fields": {},
+          "response_model": "SimulationQualificationCounters",
+          "role": "VIEWER",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U03",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "recoverLabSimulation",
+          "request_model_or_fields": {
+            "request": {
+              "type": "SimulationRecoveryRequest",
+              "required": true
+            }
+          },
+          "response_model": "ResearchSimulationAccount",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI08",
+      "name": "Portfolio",
+      "route": "/portfolio",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "getPortfolios",
+          "request_model_or_fields": {
+            "valuation_cut_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "ValuationResult",
+          "role": "VIEWER",
+          "domain_owner": "J_ACCOUNT",
+          "unit_consumers": [
+            "MA06-U06",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "listGroups",
+          "request_model_or_fields": {
+            "account_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "StrategyGroup",
+          "role": "VIEWER",
+          "domain_owner": "G_CAPITAL",
+          "unit_consumers": [
+            "MA06-U01",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "saveGroup",
+          "request_model_or_fields": {
+            "account_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "name": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "response_model": "StrategyGroup",
+          "role": "TRADING_OPERATOR",
+          "domain_owner": "G_CAPITAL",
+          "unit_consumers": [
+            "MA06-U01",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "reviseBudget",
+          "request_model_or_fields": {
+            "confirmation": {
+              "type": "BudgetAllocationConfirmV5",
+              "required": true
+            }
+          },
+          "response_model": "BudgetAllocationReceipt",
+          "role": "RISK_APPROVER",
+          "domain_owner": "G_CAPITAL",
+          "unit_consumers": [
+            "MA06-U01",
+            "MA06-U02",
+            "MA06-U03",
+            "MA06-U04",
+            "MA06-U05",
+            "MA06-U06",
+            "MA10-U01",
+            "MA10-U02",
+            "MA10-U06"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": {
+            "resolver_owner": "CC02_ROOT_INTEGRATION",
+            "requires_exact_typed_body_readback": true,
+            "model": "BudgetAllocationReceipt",
+            "rule": "OperationReceipt untouched; body readback uses exact receipt result_ref, expected model/revision/hash/account/env; missing private bytes explicit unavailable, never latest or cash change."
+          },
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getOperation",
+              "dto_version": "candidate.5",
+              "discovery": "path id from server OperationReceipt.operation_id; result_body=NONE captures latest lifecycle receipt at explicit readcut",
+              "body_read": "After committed exact result_ref discovered, result_body=REQUIRED+expected_result_ref+read_snapshot_ref from receipt ReadEnvelope",
+              "response_model": "OperationReadbackV5",
+              "cardinality": "ONE",
+              "permission": "existing operation receipt read + exact result/source/body read; recheck at boundary"
+            }
+          ]
+        },
+        {
+          "operation_id": "queryAttribution",
+          "request_model_or_fields": {
+            "cut_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "group_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "AttributionRecord",
+          "role": "VIEWER",
+          "domain_owner": "J_ACCOUNT",
+          "unit_consumers": [
+            "MA06-U04",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "previewBudgetAllocation",
+          "request_model_or_fields": {
+            "proposal": {
+              "type": "BudgetAllocationProposal",
+              "required": true
+            }
+          },
+          "response_model": "BudgetAllocationPreview",
+          "role": "RISK_APPROVER",
+          "domain_owner": "G_CAPITAL",
+          "unit_consumers": [
+            "MA06-U02",
+            "MA06-U03",
+            "MA06-U06",
+            "MA10-U04",
+            "MA10-U06",
+            "MA15-U03"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": {
+            "resolver_owner": "CC02_ROOT_INTEGRATION",
+            "requires_exact_typed_body_readback": true,
+            "model": "BudgetAllocationPreview",
+            "rule": "OperationReceipt untouched; body readback uses exact receipt result_ref, expected model/revision/hash/account/env; missing private bytes explicit unavailable, never latest or cash change."
+          },
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getOperation",
+              "dto_version": "candidate.5",
+              "discovery": "path id from server OperationReceipt.operation_id; result_body=NONE captures latest lifecycle receipt at explicit readcut",
+              "body_read": "After committed exact result_ref discovered, result_body=REQUIRED+expected_result_ref+read_snapshot_ref from receipt ReadEnvelope",
+              "response_model": "OperationReadbackV5",
+              "cardinality": "ONE",
+              "permission": "existing operation receipt read + exact result/source/body read; recheck at boundary"
+            }
+          ]
+        },
+        {
+          "operation_id": "confirmBudgetAllocation",
+          "request_model_or_fields": {
+            "confirmation": {
+              "type": "BudgetAllocationConfirmV5",
+              "required": true
+            }
+          },
+          "response_model": "BudgetAllocationReceipt",
+          "role": "RISK_APPROVER",
+          "domain_owner": "G_CAPITAL",
+          "unit_consumers": [
+            "MA06-U02",
+            "MA06-U03",
+            "MA06-U06",
+            "MA10-U04",
+            "MA10-U06",
+            "MA15-U03"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": {
+            "resolver_owner": "CC02_ROOT_INTEGRATION",
+            "requires_exact_typed_body_readback": true,
+            "model": "BudgetAllocationReceipt",
+            "rule": "OperationReceipt untouched; body readback uses exact receipt result_ref, expected model/revision/hash/account/env; missing private bytes explicit unavailable, never latest or cash change."
+          },
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getOperation",
+              "dto_version": "candidate.5",
+              "discovery": "path id from server OperationReceipt.operation_id; result_body=NONE captures latest lifecycle receipt at explicit readcut",
+              "body_read": "After committed exact result_ref discovered, result_body=REQUIRED+expected_result_ref+read_snapshot_ref from receipt ReadEnvelope",
+              "response_model": "OperationReadbackV5",
+              "cardinality": "ONE",
+              "permission": "existing operation receipt read + exact result/source/body read; recheck at boundary"
+            }
+          ]
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI09",
+      "name": "Orders",
+      "route": "/orders",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "createOrderIntent",
+          "request_model_or_fields": {
+            "proposal_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "deployment_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "requested_mechanics": {
+              "type": "OrderMechanics",
+              "required": true
+            }
+          },
+          "response_model": "OrderAttempt",
+          "role": "TRADING_OPERATOR",
+          "domain_owner": "H_OMS",
+          "unit_consumers": [
+            "MA08-U01",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getOrder",
+          "request_model_or_fields": {},
+          "response_model": "OrderAttempt",
+          "role": "VIEWER",
+          "domain_owner": "H_OMS",
+          "unit_consumers": [
+            "MA08-U01",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "cancelOrder",
+          "request_model_or_fields": {
+            "order_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "authority_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "reason": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "response_model": "OperationReceipt",
+          "role": "TRADING_OPERATOR",
+          "domain_owner": "H_OMS",
+          "unit_consumers": [
+            "MA08-U01",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "amendOrder",
+          "request_model_or_fields": {
+            "order_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "change": {
+              "type": "OrderAmendment",
+              "required": true
+            },
+            "authority_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "OperationReceipt",
+          "role": "TRADING_OPERATOR",
+          "domain_owner": "H_OMS",
+          "unit_consumers": [
+            "MA08-U01",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "listOrders",
+          "request_model_or_fields": {
+            "deployment_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": true
+            }
+          },
+          "response_model": "OrderAttempt",
+          "role": "VIEWER",
+          "domain_owner": "H_OMS",
+          "unit_consumers": [
+            "MA08-U01",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI10",
+      "name": "Positions",
+      "route": "/positions",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "queryPositions",
+          "request_model_or_fields": {
+            "cut_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "group_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "view": {
+              "type": "enum",
+              "required": true
+            }
+          },
+          "response_model": "PositionsProjection",
+          "role": "VIEWER",
+          "domain_owner": "J_ACCOUNT",
+          "unit_consumers": [
+            "MA06-U06",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "listReconciliation",
+          "request_model_or_fields": {
+            "account_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "state": {
+              "type": "enum?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "ReconciliationCase",
+          "role": "VIEWER",
+          "domain_owner": "J_RECONCILIATION",
+          "unit_consumers": [
+            "MA08-U04",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI11",
+      "name": "Risk",
+      "route": "/risk",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "previewRisk",
+          "request_model_or_fields": {
+            "proposal_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "cut_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "policy_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "RiskDecision",
+          "role": "TRADING_OPERATOR",
+          "domain_owner": "G_RISK",
+          "unit_consumers": [
+            "MA07-U02",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getRiskDecision",
+          "request_model_or_fields": {
+            "revision": {
+              "type": "uuid",
+              "required": true
+            }
+          },
+          "response_model": "RiskDecision",
+          "role": "VIEWER",
+          "domain_owner": "G_RISK",
+          "unit_consumers": [
+            "MA07-U02",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "changeRiskControl",
+          "request_model_or_fields": {
+            "action": {
+              "type": "enum",
+              "required": true
+            },
+            "policy_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "authority_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "reason": {
+              "type": "string",
+              "required": true
+            }
+          },
+          "response_model": "OperationReceipt",
+          "role": "RISK_APPROVER",
+          "domain_owner": "G_RISK",
+          "unit_consumers": [
+            "MA07-U05",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getRecoveryStatus",
+          "request_model_or_fields": {
+            "account_ref": {
+              "type": "ContractRef?",
+              "required": false
+            }
+          },
+          "response_model": "RecoveryStatus",
+          "role": "VIEWER",
+          "domain_owner": "K_RECOVERY",
+          "unit_consumers": [
+            "MA08-U04",
+            "MA10-U01",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI12",
+      "name": "Cash Flow",
+      "route": "/cashflows",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "queryCashFlows",
+          "request_model_or_fields": {
+            "cut_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "currency": {
+              "type": "currency?",
+              "required": false
+            },
+            "value_date_start": {
+              "type": "date?",
+              "required": false
+            },
+            "value_date_end": {
+              "type": "date?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "LedgerEntry",
+          "role": "VIEWER",
+          "domain_owner": "J_ACCOUNT",
+          "unit_consumers": [
+            "MA06-U05",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI13",
+      "name": "Bond/Rate Lab",
+      "route": "/lab/bond-rate",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "listPortfolioResearch",
+          "request_model_or_fields": {
+            "source_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "PortfolioResearchDefinition",
+          "role": "VIEWER",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA05-U02",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "savePortfolioResearch",
+          "request_model_or_fields": {
+            "definition": {
+              "type": "PortfolioResearchDraft",
+              "required": true
+            },
+            "source_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            }
+          },
+          "response_model": "PortfolioResearchDefinition",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA05-U02",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "queryMacroSnapshots",
+          "request_model_or_fields": {
+            "as_known_at": {
+              "type": "instant",
+              "required": true
+            },
+            "series_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "MacroSnapshot",
+          "role": "VIEWER",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA05-U03",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "createScenarioRun",
+          "request_model_or_fields": {
+            "snapshot_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "scenario_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "portfolio_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "ResearchRun",
+          "role": "RESEARCH_AUTHOR",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA05-U04",
+            "MA10-U01",
+            "MA10-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI14",
+      "name": "Artifact/History",
+      "route": "/artifacts",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "listArtifacts",
+          "request_model_or_fields": {
+            "subject_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "ArtifactAvailability",
+          "role": "VIEWER",
+          "domain_owner": "ARTIFACT_PROVIDER",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA13-U01",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getArtifactContent",
+          "request_model_or_fields": {
+            "read_mode": {
+              "type": "enum",
+              "required": true
+            },
+            "revision": {
+              "type": "uuid",
+              "required": true
+            },
+            "body_request": {
+              "type": "TypedArtifactBodyRequestV5?",
+              "required": false
+            }
+          },
+          "response_model": "ArtifactContentReadV5",
+          "role": "SCOPED_ARTIFACT_READER",
+          "domain_owner": "ARTIFACT_PROVIDER",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA10-U06",
+            "MA13-U01",
+            "MA13-U02",
+            "MA13-U03",
+            "MA13-U04",
+            "MA13-U05",
+            "MA13-U06"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": []
+        },
+        {
+          "operation_id": "getArtifactBytes",
+          "request_model_or_fields": {
+            "descriptor_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "BinaryContentMetadata",
+          "role": "SCOPED_ARTIFACT_READER",
+          "domain_owner": "ARTIFACT_PROVIDER",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA13-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI15",
+      "name": "URMS",
+      "route": "/engineering/registry",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "getRegistry",
+          "request_model_or_fields": {
+            "snapshot_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "query": {
+              "type": "RegistryBodyQueryV5",
+              "required": true
+            }
+          },
+          "response_model": "RegistryBodyReadPageV5",
+          "role": "VIEWER",
+          "domain_owner": "PROJECTION_IMPORTER",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA10-U06",
+            "MA11-U01",
+            "MA11-U02",
+            "MA11-U03",
+            "MA11-U04",
+            "MA11-U05",
+            "MA11-U06"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getArtifactContent",
+              "dto_version": "candidate.5",
+              "request": "BODY mode only exact known TypedBodyBindingV5.content_artifact_ref path+subject/schema/snapshot; no domainID/artifactID guess",
+              "response_model": "ArtifactContentReadV5",
+              "cardinality": "ONE",
+              "permission": "every body/source read separately resource-scoped"
+            }
+          ]
+        },
+        {
+          "operation_id": "proposeRegistry",
+          "request_model_or_fields": {
+            "proposal": {
+              "type": "RegistryProposalRequestV5",
+              "required": true
+            }
+          },
+          "response_model": "RegistryProposalResultV5",
+          "role": "ENGINEERING_EDITOR",
+          "domain_owner": "REGISTRY_WRITER",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA10-U06",
+            "MA11-U01",
+            "MA11-U02",
+            "MA11-U03",
+            "MA11-U04",
+            "MA11-U05",
+            "MA11-U06"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getOperation",
+              "dto_version": "candidate.5",
+              "discovery": "path id from server OperationReceipt.operation_id; result_body=NONE captures latest lifecycle receipt at explicit readcut",
+              "body_read": "After committed exact result_ref discovered, result_body=REQUIRED+expected_result_ref+read_snapshot_ref from receipt ReadEnvelope",
+              "response_model": "OperationReadbackV5",
+              "cardinality": "ONE",
+              "permission": "existing operation receipt read + exact result/source/body read; recheck at boundary"
+            }
+          ]
+        },
+        {
+          "operation_id": "getAlias",
+          "request_model_or_fields": {
+            "raw_text": {
+              "type": "string",
+              "required": true
+            },
+            "catalog_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "source_context": {
+              "type": "string",
+              "required": true
+            },
+            "selection": {
+              "type": "AliasResolutionSelector",
+              "required": true
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "LegacyAlias",
+          "role": "VIEWER",
+          "domain_owner": "REGISTRY_WRITER",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA11-U02",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI16",
+      "name": "Automation/Progress",
+      "route": "/engineering/work",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "getEngineeringStatus",
+          "request_model_or_fields": {
+            "program_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "EngineeringStatusProjection",
+          "role": "ENGINEERING_READER",
+          "domain_owner": "EXISTING_WORK",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA14-U06",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "proposePlanning",
+          "request_model_or_fields": {
+            "unit_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            },
+            "proposed_profiles": {
+              "type": "ContractRef[]",
+              "required": true
+            },
+            "assumptions": {
+              "type": "PlanningAssumptions",
+              "required": true
+            }
+          },
+          "response_model": "PlanningCandidate",
+          "role": "ENGINEERING_EDITOR",
+          "domain_owner": "EXISTING_WORK",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA14-U06",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI17",
+      "name": "Settings",
+      "route": "/settings",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "getBrokerCapabilities",
+          "request_model_or_fields": {
+            "provider": {
+              "type": "string",
+              "required": true
+            },
+            "operation": {
+              "type": "string?",
+              "required": false
+            },
+            "instrument_kind": {
+              "type": "enum?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "CapabilityRevision",
+          "role": "VIEWER",
+          "domain_owner": "I_ADAPTER",
+          "unit_consumers": [
+            "MA09-U01",
+            "MA10-U01",
+            "MA10-U05",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getConfig",
+          "request_model_or_fields": {
+            "config_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "ConfigRevision",
+          "role": "RESOURCE_ADMIN",
+          "domain_owner": "N_APPLICATION",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA15-U02",
+            "MA16-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "saveConfigCandidate",
+          "request_model_or_fields": {
+            "base_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "values": {
+              "type": "ConfigValues",
+              "required": true
+            },
+            "policy_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            }
+          },
+          "response_model": "ConfigRevision",
+          "role": "RESOURCE_ADMIN",
+          "domain_owner": "N_APPLICATION",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA15-U02",
+            "MA16-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getBackupCatalog",
+          "request_model_or_fields": {
+            "set_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "BackupSetManifest",
+          "role": "RESTORE_OPERATOR",
+          "domain_owner": "STORAGE_OWNER",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA13-U05",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI18",
+      "name": "Audit",
+      "route": "/audit",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "getAudit",
+          "request_model_or_fields": {
+            "subject_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "correlation_id": {
+              "type": "uuid?",
+              "required": false
+            },
+            "frontier": {
+              "type": "string?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "EventEnvelope",
+          "role": "AUDITOR",
+          "domain_owner": "EVENT_PRODUCER",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA15-U02",
+            "MA16-U04"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getOperation",
+          "request_model_or_fields": {
+            "result_body": {
+              "type": "enum",
+              "required": true
+            },
+            "expected_result_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "read_snapshot_ref": {
+              "type": "ContractRef?",
+              "required": false
+            }
+          },
+          "response_model": "OperationReadbackV5",
+          "role": "SCOPED_OPERATION_READER",
+          "domain_owner": "EFFECT_OWNER",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA10-U06",
+            "MA12-U01",
+            "MA12-U02",
+            "MA12-U03",
+            "MA12-U04",
+            "MA12-U05",
+            "MA12-U06"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": []
+        },
+        {
+          "operation_id": "getReviewSubject",
+          "request_model_or_fields": {
+            "revision": {
+              "type": "uuid",
+              "required": true
+            },
+            "read_snapshot_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": true
+            }
+          },
+          "response_model": "ReviewSubjectReadbackV5",
+          "role": "REVIEWER",
+          "domain_owner": "EXISTING_REVIEW_OWNER",
+          "unit_consumers": [
+            "MA10-U01",
+            "MA10-U05",
+            "MA10-U06",
+            "MA12-U01",
+            "MA12-U02",
+            "MA12-U03",
+            "MA12-U04",
+            "MA12-U05",
+            "MA12-U06"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+            "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+            "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+          "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+          "secondary_operation_bindings": [
+            {
+              "operation_id": "getArtifactContent",
+              "dto_version": "candidate.5",
+              "request": "BODY mode only exact known TypedBodyBindingV5.content_artifact_ref path+subject/schema/snapshot; no domainID/artifactID guess",
+              "response_model": "ArtifactContentReadV5",
+              "cardinality": "ONE",
+              "permission": "every body/source read separately resource-scoped"
+            }
+          ]
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    },
+    {
+      "page_id": "UI19",
+      "name": "Library/Deployment",
+      "route": "/library-deployments",
+      "revision": "candidate.5",
+      "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+      "actions": [
+        {
+          "operation_id": "approveLibraryRelease",
+          "request_model_or_fields": {
+            "strategy_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "snapshot_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "review_subject_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "qualification_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            },
+            "human_approval_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "approval_kind": {
+              "type": "enum",
+              "required": true
+            },
+            "exception_approval_ref": {
+              "type": "ContractRef?",
+              "required": false
+            }
+          },
+          "response_model": "LibraryRelease",
+          "role": "LIBRARY_APPROVER",
+          "domain_owner": "E_LIBRARY",
+          "unit_consumers": [
+            "MA04-U05",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "listLibraryReleases",
+          "request_model_or_fields": {
+            "strategy_ref": {
+              "type": "ContractRef?",
+              "required": false
+            },
+            "page": {
+              "type": "CursorRequest",
+              "required": false
+            }
+          },
+          "response_model": "LibraryRelease",
+          "role": "VIEWER",
+          "domain_owner": "E_LIBRARY",
+          "unit_consumers": [
+            "MA04-U05",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "requestDeploymentAdmission",
+          "request_model_or_fields": {
+            "release_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "config_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "policy_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "qualification_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            },
+            "human_grant_ref": {
+              "type": "ContractRef?",
+              "required": false
+            }
+          },
+          "response_model": "Deployment",
+          "role": "TRADING_OPERATOR",
+          "domain_owner": "L_SAFETY",
+          "unit_consumers": [
+            "MA07-U04",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "approveLibraryException",
+          "request_model_or_fields": {
+            "exact_subject_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "strategy_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "snapshot_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "unmet_qualification_refs": {
+              "type": "ContractRef[]",
+              "required": true
+            },
+            "reason": {
+              "type": "string",
+              "required": true
+            },
+            "human_approval_receipt_ref": {
+              "type": "ContractRef",
+              "required": true
+            },
+            "warning_acknowledgement_ref": {
+              "type": "ContractRef",
+              "required": true
+            }
+          },
+          "response_model": "LibraryExceptionApproval",
+          "role": "LIBRARY_APPROVER",
+          "domain_owner": "E_LIBRARY",
+          "unit_consumers": [
+            "MA04-U05",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getAnalystRun",
+          "request_model_or_fields": {},
+          "response_model": "AnalystRun",
+          "role": "VIEWER",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U06",
+            "MA10-U01",
+            "MA10-U03",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        },
+        {
+          "operation_id": "getLabSimulationCounters",
+          "request_model_or_fields": {},
+          "response_model": "SimulationQualificationCounters",
+          "role": "VIEWER",
+          "domain_owner": "F_RESEARCH",
+          "unit_consumers": [
+            "MA04-U04",
+            "MA10-U01",
+            "MA10-U03",
+            "MA10-U04",
+            "MA15-U02"
+          ],
+          "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+          "states": {
+            "pending": "operationreceiptref retained",
+            "unknown": "queryoperationreceipt;nofakesuccess",
+            "failure": "ErrorEnvelope typedretry",
+            "conflict": "reloadexacthead/presentdiff;noautoapproval",
+            "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+            "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+            "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+            "empty": "Coverageprovedcompleteemptyonly"
+          },
+          "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+          "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+          "source": "Exact source/model DTO and own domain source; no browser-cache authority"
+        }
+      ],
+      "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+      "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+      "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+      "runtime": "NOT_RUN",
+      "implementation_grant": false
+    }
+  ],
+  "authority_effect": "NONE"
+}

@@ -1,0 +1,1166 @@
+{
+  "schema_version": "architecture.source_coverage_crosswalk.v1",
+  "revision": "candidate.4",
+  "authority_effect": "NONE",
+  "original_milestones": [
+    {
+      "entity_id": "1d96bed8-74e6-44bf-bb5d-a30fd79ce1d4",
+      "revision_id": "c5e02b37-1074-4662-a69b-cb342f5e5bfa",
+      "alias": "M0",
+      "source_line": 31,
+      "name": "Governance / Architecture",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "f472aa5c-dd89-4e12-87de-a61e3ff6e57c",
+      "revision_id": "4b70379d-a794-48c4-8415-3aaf6aac29b3",
+      "alias": "M1",
+      "source_line": 47,
+      "name": "Historical Data / Research Foundation",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "0bac92fd-1e5e-4e2a-a88f-dcd540905a49",
+      "revision_id": "dda6a390-48d3-416a-b370-93106c4f4afb",
+      "alias": "M2",
+      "source_line": 79,
+      "name": "Trading Core Foundation",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "3d962fc8-d558-421e-9305-476e7b0ea313",
+      "revision_id": "23e48c55-9f3b-46e9-882e-9efebec8b443",
+      "alias": "M3",
+      "source_line": 100,
+      "name": "Canonical Futures Specification",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "0fadc705-0197-4b5a-8a7d-6598fee8c242",
+      "revision_id": "c8e8621d-7981-4d8f-92ff-68b7655100d9",
+      "alias": "M4",
+      "source_line": 123,
+      "name": "Broker Account / Position Sync Foundation",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "7ee9ba15-7947-4e9a-a416-dcede778817c",
+      "revision_id": "210f1c9a-0273-4e56-b121-8ade44867d5b",
+      "alias": "M5",
+      "source_line": 155,
+      "name": "Explicit Execution Semantics + Reconciliation",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "0a84dd87-b0b2-4e36-acee-1d6b7b142f41",
+      "revision_id": "29637a15-3fb7-4599-b05e-90bff9b95637",
+      "alias": "M6",
+      "source_line": 204,
+      "name": "Persistence / Recovery / Provenance",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "f9cc9774-5f7e-44e3-a993-c83b53298f9d",
+      "revision_id": "b9e16053-597d-4d37-8b34-618793d363ad",
+      "alias": "M7",
+      "source_line": 244,
+      "name": "Incremental Feature / Market State",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "edade2fc-56b7-4be9-8511-37b0fc8011ab",
+      "revision_id": "f4fc8940-39fe-4e19-971a-57a170f27c84",
+      "alias": "M8",
+      "source_line": 261,
+      "name": "Simulation / Live Safety",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "08ac034d-0f78-4393-aaf8-059e22667acc",
+      "revision_id": "56163008-a379-4d8e-8234-2cef7a6266f1",
+      "alias": "M9",
+      "source_line": 283,
+      "name": "Python Service Boundary",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "0ca66bd6-1ba1-44b7-afd0-2f84ffb7d8fe",
+      "revision_id": "c6569df6-0e95-48e6-acee-0e3e7379519b",
+      "alias": "M10",
+      "source_line": 298,
+      "name": "ASP.NET Core Application",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "4aee7b5f-a519-4861-933d-1ca43a832e29",
+      "revision_id": "bcba1387-eaff-4b97-831f-04910605f6b9",
+      "alias": "M11",
+      "source_line": 317,
+      "name": "React Workspace",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    },
+    {
+      "entity_id": "3553a7a2-61b7-4151-933d-e824469c313c",
+      "revision_id": "4a3b3e6b-a9ea-41d9-a86a-ee4f862088d3",
+      "alias": "M12",
+      "source_line": 333,
+      "name": "Full V1 Integration / Readiness",
+      "source": "docs/ROADMAP.md@9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+      "catalog_scope": "ORIGINAL_M_ROADMAP",
+      "mapping_rule": "N:M source bound; not auto-equal new P phase"
+    }
+  ],
+  "candidate_P_phases": [
+    {
+      "alias": "P00",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "331bb954-05f9-4bce-bdc0-7aefa6da1f89",
+      "revision_id": "aeac33d6-a3eb-467b-8c34-63cca3a19e94",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P01",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P00"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "b8b8c786-c0bc-4fc4-8a53-39557f9a94ff",
+      "revision_id": "1c72befc-4a3a-4959-8ee3-2689d64f91af",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P02",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P00"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "5a8e55fa-7319-4a65-a213-2563ee81859c",
+      "revision_id": "a4ac73b5-6254-4098-a121-1e4679808113",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P03",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P02"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "64c8b2f1-9718-477e-ba41-902e9f5c3019",
+      "revision_id": "3bb4aa61-ee41-40b7-b7bc-391be8648cb5",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P04",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P01",
+        "P03"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "2219b157-90ee-4863-9650-38b166a459b6",
+      "revision_id": "1cb4ab80-c83b-40a8-8d3d-3f4147db8888",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P05",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P01"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "8accdf2a-1b61-4dda-b223-ddd539eb8f38",
+      "revision_id": "68eedb9b-4936-4c7a-8e24-a40946a6fd4a",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P06",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P05"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "98f0d6e8-0f59-4636-9ae1-430bb2c61d4e",
+      "revision_id": "d0db18be-575d-40b6-b29b-90e65b2e9dbf",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P07",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P06"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "030ba722-f85f-4af6-beb8-00b5d03242fe",
+      "revision_id": "46ee92f9-478d-41ea-aff2-d79964ca1375",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P08",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P03",
+        "P07"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "bf3ec93e-9bd9-48ea-9127-e5f26b62a9db",
+      "revision_id": "98735332-1ae8-4aad-adee-ac092b200ac2",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P09",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P08"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "f72662fe-a1f8-43e4-8950-6f3c6a27c3fd",
+      "revision_id": "2b3dc5fc-ac22-4b77-a1d7-233d223305bd",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P10",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P04"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "1545a131-c9c5-4f41-ab9b-9296c47b84c7",
+      "revision_id": "db506730-bf9d-4124-8b13-81e1b929ae50",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P11",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P09",
+        "P10"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "65175481-5004-492d-9bc5-7f1c9d545180",
+      "revision_id": "2c406810-7eaa-4b74-bdef-784e8bd8c344",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    },
+    {
+      "alias": "P12",
+      "source": "docs/program/program_baseline.v1.json",
+      "dependencies": [
+        "P11"
+      ],
+      "status": "CANDIDATE_NOT_FROZEN",
+      "entity_id": "702a13ee-dd20-458f-9ff1-5b1c2a5a6141",
+      "revision_id": "fd256cb8-6b23-4764-aa3a-14d00dde5186",
+      "kind": "PHASE",
+      "catalog_scope": "MA_ARCH_CANDIDATE_1"
+    }
+  ],
+  "gap_register_inventory": [
+    {
+      "entity_id": "466f67c6-15f5-42e6-a3b9-0b766c69d7db",
+      "revision_id": "02ecf6b7-02d1-46c4-b61e-350d42031a72",
+      "alias": "GAP-ACCOUNT-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 86,
+      "source_row_sha256": "eb1fc970c047ada9d1d0ed43f6384c7e0f10f1391fb3f2a9c6be82cbbb322c27",
+      "raw_source_fields": [
+        "GAP-ACCOUNT-001",
+        "P1",
+        "REVIEW_AT_CHECKPOINT",
+        "No",
+        "Broker Account / Position Sync",
+        "CLOSED"
+      ],
+      "candidate_chapter_mapping": [
+        "MA06"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "8de291c5-c6f2-4136-83da-d2129ce592ad",
+      "revision_id": "2728f0b4-a4af-4cad-a90b-7825c2caa060",
+      "alias": "GAP-RECON-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 87,
+      "source_row_sha256": "fd930c71a81e06722ce6ed406b9741cfd85bba09cee6932f3af5cc4ba475408b",
+      "raw_source_fields": [
+        "GAP-RECON-001",
+        "P1",
+        "REVIEW_AT_CHECKPOINT",
+        "No",
+        "Reconciliation / startup readiness",
+        "CLOSED"
+      ],
+      "candidate_chapter_mapping": [
+        "MA08"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "da627bac-a85b-4744-988a-bf2c845de32a",
+      "revision_id": "8d1cf09e-89d5-40bf-b42c-be2b3fde7328",
+      "alias": "GAP-BROKER-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 88,
+      "source_row_sha256": "dd18cd2eeafb0d573b220952903b9b98d08818b638fd0dc24e6d37a7f1abd24a",
+      "raw_source_fields": [
+        "GAP-BROKER-001",
+        "P1",
+        "REVIEW_AT_CHECKPOINT",
+        "No",
+        "Explicit OrderIntent / PositionEffect",
+        "CLOSED"
+      ],
+      "candidate_chapter_mapping": [
+        "MA09"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "df25041e-07b1-4325-8873-820e3c7530dd",
+      "revision_id": "62f2abd7-9a0a-4f62-94ce-80e51d745db6",
+      "alias": "GAP-BROKER-002",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 89,
+      "source_row_sha256": "dc6e007862b05c9df53b2a3d33d34c600543e1afb71f8cdd6acf3a059dd10fec",
+      "raw_source_fields": [
+        "GAP-BROKER-002",
+        "P2",
+        "REVIEW_AT_CHECKPOINT",
+        "No",
+        "Capability matrix / mapping semantics",
+        "CLOSED"
+      ],
+      "candidate_chapter_mapping": [
+        "MA09"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "c63821d1-778e-4572-88f2-74e029a81138",
+      "revision_id": "2b72722a-0e54-4499-ac3f-493119e06933",
+      "alias": "GAP-08",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 90,
+      "source_row_sha256": "1e4a76d787e5f87a5a23b520710817d7f2797fbc6944a21f9169c59db45abecb",
+      "raw_source_fields": [
+        "GAP-08",
+        "P1",
+        "REVIEW_AT_CHECKPOINT",
+        "No",
+        "Trading State Persistence / Recovery",
+        "CLOSED / CORRECTION_CORE_113_OF_113_ACCEPTED / PARENT_CLOSURE_APPROVED"
+      ],
+      "candidate_chapter_mapping": [
+        "MA13"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "055287b8-a4af-4803-949b-47003e765cfa",
+      "revision_id": "8af2b5a6-4f52-4197-b224-499fe7743265",
+      "alias": "GAP-PERSIST-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 91,
+      "source_row_sha256": "ca30978d0924e97c6a14774c0308990f36c16e9d4fa6bf341b7cd6d196c9cbc6",
+      "raw_source_fields": [
+        "GAP-PERSIST-001",
+        "P1",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "Decision / Risk Provenance",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA06"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "127949e7-91e0-4320-a17e-c1e008178f92",
+      "revision_id": "c812a694-b793-477a-8748-96ef6d82d9d5",
+      "alias": "GAP-09",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 92,
+      "source_row_sha256": "ff08c74f5d75420b15f78ec525354a0f6266be10c9e7885707432ff21462a443",
+      "raw_source_fields": [
+        "GAP-09",
+        "P1",
+        "REVIEW_AT_CHECKPOINT",
+        "No",
+        "Incremental Feature / Market State",
+        "PENDING"
+      ],
+      "candidate_chapter_mapping": [
+        "MA04"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "7d70c89f-8480-4e2a-8ed9-423fd90e74c0",
+      "revision_id": "97e0fadc-6862-45c3-88a1-e72cedae7bf9",
+      "alias": "GAP-DATA-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 93,
+      "source_row_sha256": "c76ce086a2ef91bf9552b2e44232214ccddbaf6645676e4d545f2a81875f2a87",
+      "raw_source_fields": [
+        "GAP-DATA-001",
+        "P1",
+        "RECORD_AND_CONTINUE",
+        "No; Production Live blocker later",
+        "Operational market-data completeness / gap detection",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA03"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "84f0297e-f032-421b-b34c-4542aa7a12ca",
+      "revision_id": "f2a67c30-28e6-45a6-a902-afc414726058",
+      "alias": "GAP-SIM-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 94,
+      "source_row_sha256": "921765543a370100c853772c23c6ead9136f590b9ee0e4ad28c63bc9be183a84",
+      "raw_source_fields": [
+        "GAP-SIM-001",
+        "P2",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "SimulationBroker / fault injection",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA08"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "9fe4ab6b-54d5-4f9f-b479-ead88981aa03",
+      "revision_id": "de04a80e-6dfd-463b-8107-b2e6d9fd2249",
+      "alias": "GAP-LIVE-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 95,
+      "source_row_sha256": "00f2754337a04520705f2c3b06fdaae019d76f21f4e8c1b5804bf05eb48f7d2b",
+      "raw_source_fields": [
+        "GAP-LIVE-001",
+        "P0",
+        "HARD_BLOCK",
+        "Production Live",
+        "LIVE_AUTO authorization / runtime safety",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA08"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "3584514d-8665-4e97-961b-5f733111cafa",
+      "revision_id": "f78d9e22-167a-413d-af9f-c20287a0b0cb",
+      "alias": "GAP-APP-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 96,
+      "source_row_sha256": "8e27dae43c7ed5eab3e622ff7dfb09a2066a37addd149a60ea4e7913c27b464f",
+      "raw_source_fields": [
+        "GAP-APP-001",
+        "P1",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "ASP.NET Core Application/API",
+        "PLANNED"
+      ],
+      "candidate_chapter_mapping": [
+        "MA10"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "7dd93d5c-8a07-4385-a00c-d4b7e9180de2",
+      "revision_id": "1583e446-8b1e-4aeb-b7b5-2e13e869e83d",
+      "alias": "GAP-WEB-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 97,
+      "source_row_sha256": "1535b6ae71532cc17bf96dabefe96485195e75021d418824a4831baf3045fc59",
+      "raw_source_fields": [
+        "GAP-WEB-001",
+        "P1",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "React Workspace",
+        "PLANNED"
+      ],
+      "candidate_chapter_mapping": [
+        "MA10"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "43877820-9c8c-4741-9bdf-e1df94b550db",
+      "revision_id": "9e5b616a-66b1-4a8b-a72c-5265f7ab3b83",
+      "alias": "GAP-REVIEW-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 98,
+      "source_row_sha256": "a4cf80de2273cf3b9515e75bd9ffb4bb1cf632705439781e3ec323690f32305f",
+      "raw_source_fields": [
+        "GAP-REVIEW-001",
+        "P2",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "Review / audit",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA01"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "20fabb3e-654e-4257-a4f8-5e8a1d35dced",
+      "revision_id": "bd704aef-3c84-4fde-8bfe-05115e91df6d",
+      "alias": "GAP-ARCH-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 106,
+      "source_row_sha256": "3325884b04cd714ac74c6aa0c9744cbff3a05d496b8184127a95223b665c2577",
+      "raw_source_fields": [
+        "GAP-ARCH-001",
+        "P2",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "Backtest/trading/broker ownership migration",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA01"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "fb2f144c-994d-4260-8937-001100fe3339",
+      "revision_id": "9e6a2fe8-be4b-4e83-a156-01a377d7b782",
+      "alias": "GAP-ARCH-002",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 107,
+      "source_row_sha256": "ed0427955a41330a3171ce763da5354d21138af15729babf683c80fa4304b8b4",
+      "raw_source_fields": [
+        "GAP-ARCH-002",
+        "P2",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "domain/backtest model duplication",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA01"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "0219b613-2957-48ba-9560-c3da8201730a",
+      "revision_id": "94b96ce3-976b-4b46-b18c-7a33b58e4a48",
+      "alias": "GAP-ARCH-003",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 108,
+      "source_row_sha256": "c5e694acac95cdc83f3a275b2fa0e0cbe388da5610e4f8b8bc973566adeb5006",
+      "raw_source_fields": [
+        "GAP-ARCH-003",
+        "P2",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "strategy/strategies duplication",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA01"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "4d2ebded-e150-4307-8d63-1c5740a9ffbe",
+      "revision_id": "9fbac695-f37c-4900-b518-0c1e9dd7f96a",
+      "alias": "GAP-07-TIME-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 109,
+      "source_row_sha256": "38bd059497abd8b4d6ba9b7a25d23f007bfaecc978bc603326a36f3b88270944",
+      "raw_source_fields": [
+        "GAP-07-TIME-001",
+        "P1",
+        "RECORD_AND_CONTINUE",
+        "No; Live blocker later",
+        "timezone-aware boundary",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA01"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "a62ae63a-75cd-4acc-aeca-741e691f45e0",
+      "revision_id": "c6c81bc8-c017-4b44-ad08-3aba555d0f63",
+      "alias": "GAP-07-SESSION-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 110,
+      "source_row_sha256": "1b73d7a38268d7aef87fde15bb56fdf003ae5d3e62ee9fef3de31d17bcb5b44e",
+      "raw_source_fields": [
+        "GAP-07-SESSION-001",
+        "P2",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "duplicated session rules",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA01"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "6cd9eeaf-7055-4733-8f92-f96d3ada10b8",
+      "revision_id": "3021e7b7-6be9-48a8-8f55-c28465bd2710",
+      "alias": "GAP-07-SESSION-EXPIRY",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 111,
+      "source_row_sha256": "fd5daba04bb2755d00ba5f8011aa1918d97381dfc9f18ef9f6ea1c7a0a833ba8",
+      "raw_source_fields": [
+        "GAP-07-SESSION-EXPIRY",
+        "P1",
+        "RECORD_AND_CONTINUE",
+        "No; Live blocker later",
+        "expiry-day session consolidation",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA01"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "44b850d6-3966-44c6-a1fa-5f66a3bcb71c",
+      "revision_id": "67e336d5-bca8-401d-a8fd-ff83aa7a7980",
+      "alias": "GAP-07-MARGIN-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 112,
+      "source_row_sha256": "343e46248e7d01b114a02f5fd0cfb5f5f75bffc41406b7ae172f7b7b4cd95271",
+      "raw_source_fields": [
+        "GAP-07-MARGIN-001",
+        "P2",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "DuckDB refinement / broker actual margin",
+        "PARTIAL"
+      ],
+      "candidate_chapter_mapping": [
+        "MA06"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "95241d7c-c5f4-4b54-b060-8ec46a8c6331",
+      "revision_id": "af3c80de-0505-4012-9316-cd4d71817c8c",
+      "alias": "GAP-REPO-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 120,
+      "source_row_sha256": "3ae99eca98445f17e56758884066e2b77dfcf21ac7dbac3a0ea14252364fa12c",
+      "raw_source_fields": [
+        "GAP-REPO-001",
+        "P2",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "GitHub default main vs dev master",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA01"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "746c3f52-6ecc-4a10-a476-5f5527fcb913",
+      "revision_id": "c7d7d0fa-90a8-43a0-a49b-f1add34f9763",
+      "alias": "GAP-REPO-002",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 121,
+      "source_row_sha256": "06441a41c08ce4ff81ff83a75a1bf49642b96c60e28e4adc8f0d0207f067e5c0",
+      "raw_source_fields": [
+        "GAP-REPO-002",
+        "P2",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "local data governance",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA01"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "f054283d-8e45-4b34-b7dc-9b4219d14c26",
+      "revision_id": "f08911dd-5575-4c74-993a-e0a7ae7733e6",
+      "alias": "GAP-ENV-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 122,
+      "source_row_sha256": "ffd1ef195267d359dd631b9cc09546bbf20bfa9dd4c441268b428309313b2c70",
+      "raw_source_fields": [
+        "GAP-ENV-001",
+        "P2",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "pytest cache/temp warning",
+        "OPEN"
+      ],
+      "candidate_chapter_mapping": [
+        "MA01"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    },
+    {
+      "entity_id": "58d3505f-084e-45f0-ad93-31e02c326416",
+      "revision_id": "d8547259-24a1-4f24-9c2a-fb98ccc49421",
+      "alias": "GAP-DOC-001",
+      "source_path": "docs/GAP_REGISTER.md",
+      "source_commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "source_line": 123,
+      "source_row_sha256": "c03f656869fbfb092de6c98be7506ce8690723ef8ed49fc8c80426272f86b972",
+      "raw_source_fields": [
+        "GAP-DOC-001",
+        "P2",
+        "RECORD_AND_CONTINUE",
+        "No",
+        "stale supplemental docs",
+        "PARTIAL"
+      ],
+      "candidate_chapter_mapping": [
+        "MA01"
+      ],
+      "mapping_status": "PROPOSED_SOURCE_TRIAGE_NOT_FORMAL_REASSIGNMENT",
+      "owner_rule": "Original GAP/domain owner retained; companion chapter owner only design responder",
+      "accepted_status_not_changed": true
+    }
+  ],
+  "original_lab_waves": [
+    {
+      "entity_id": "c8d3c595-155d-46fc-abc4-d64d5a8b2fd7",
+      "revision_id": "4ba106a2-75ac-42b6-905e-ffdd383e2285",
+      "alias": "LAB-01",
+      "code": {
+        "namespace": "LAB",
+        "code_type": "ORIGINAL_RESEARCH_WAVE",
+        "catalog_scope": "LAB_REV2_ORIGINAL_WAVES",
+        "segments": [
+          {
+            "semantic_type": "wave_number",
+            "number": 1,
+            "format_width": 2
+          }
+        ]
+      },
+      "name": "Inventory/Catalog/AST",
+      "source_key": "LAB_REV2_MD",
+      "candidate_chapters": [
+        "MA04",
+        "MA06",
+        "MA08"
+      ],
+      "later_product_code_rule": "Same raw LAB-02/LAB-03 in new product catalog has distinct entity ID/meaning; ambiguous bare lookup denied",
+      "acceptance": "No full V1 qualification inferred from PoC wave"
+    },
+    {
+      "entity_id": "a8f2cf63-52e8-49b8-9bab-2c70ae008c86",
+      "revision_id": "c819fd99-07d7-4067-ab4f-aa3c569e9539",
+      "alias": "LAB-02",
+      "code": {
+        "namespace": "LAB",
+        "code_type": "ORIGINAL_RESEARCH_WAVE",
+        "catalog_scope": "LAB_REV2_ORIGINAL_WAVES",
+        "segments": [
+          {
+            "semantic_type": "wave_number",
+            "number": 2,
+            "format_width": 2
+          }
+        ]
+      },
+      "name": "React PoC/Library Draft/S001/six comparisons",
+      "source_key": "LAB_REV2_MD",
+      "candidate_chapters": [
+        "MA04",
+        "MA06",
+        "MA08"
+      ],
+      "later_product_code_rule": "Same raw LAB-02/LAB-03 in new product catalog has distinct entity ID/meaning; ambiguous bare lookup denied",
+      "acceptance": "No full V1 qualification inferred from PoC wave"
+    },
+    {
+      "entity_id": "bc5dd7bd-5d9b-4a90-b54c-b57d588770ac",
+      "revision_id": "8da7e80a-2cbc-4082-b6b9-b48c4e556f69",
+      "alias": "LAB-03",
+      "code": {
+        "namespace": "LAB",
+        "code_type": "ORIGINAL_RESEARCH_WAVE",
+        "catalog_scope": "LAB_REV2_ORIGINAL_WAVES",
+        "segments": [
+          {
+            "semantic_type": "wave_number",
+            "number": 3,
+            "format_width": 2
+          }
+        ]
+      },
+      "name": "Snapshot/results/comparison restore",
+      "source_key": "LAB_REV2_MD",
+      "candidate_chapters": [
+        "MA04",
+        "MA06",
+        "MA08"
+      ],
+      "later_product_code_rule": "Same raw LAB-02/LAB-03 in new product catalog has distinct entity ID/meaning; ambiguous bare lookup denied",
+      "acceptance": "No full V1 qualification inferred from PoC wave"
+    },
+    {
+      "entity_id": "7633fc61-89c1-453d-ad54-b29089804e75",
+      "revision_id": "731f9048-b299-40db-9164-3f0a85ea739c",
+      "alias": "LAB-04",
+      "code": {
+        "namespace": "LAB",
+        "code_type": "ORIGINAL_RESEARCH_WAVE",
+        "catalog_scope": "LAB_REV2_ORIGINAL_WAVES",
+        "segments": [
+          {
+            "semantic_type": "wave_number",
+            "number": 4,
+            "format_width": 2
+          }
+        ]
+      },
+      "name": "Isolated offline backtest/ablation/OOS",
+      "source_key": "LAB_REV2_MD",
+      "candidate_chapters": [
+        "MA04",
+        "MA06",
+        "MA08"
+      ],
+      "later_product_code_rule": "Same raw LAB-02/LAB-03 in new product catalog has distinct entity ID/meaning; ambiguous bare lookup denied",
+      "acceptance": "No full V1 qualification inferred from PoC wave"
+    },
+    {
+      "entity_id": "2e595e3d-5344-4a71-822d-f8288fe3ce60",
+      "revision_id": "837ef914-be17-4724-960f-f1f47de8a319",
+      "alias": "LAB-05",
+      "code": {
+        "namespace": "LAB",
+        "code_type": "ORIGINAL_RESEARCH_WAVE",
+        "catalog_scope": "LAB_REV2_ORIGINAL_WAVES",
+        "segments": [
+          {
+            "semantic_type": "wave_number",
+            "number": 5,
+            "format_width": 2
+          }
+        ]
+      },
+      "name": "Bounded AI Analyst",
+      "source_key": "LAB_REV2_MD",
+      "candidate_chapters": [
+        "MA04",
+        "MA06",
+        "MA08"
+      ],
+      "later_product_code_rule": "Same raw LAB-02/LAB-03 in new product catalog has distinct entity ID/meaning; ambiguous bare lookup denied",
+      "acceptance": "No full V1 qualification inferred from PoC wave"
+    },
+    {
+      "entity_id": "7103a33b-908a-4dc0-a9aa-1d804f679f84",
+      "revision_id": "2334875d-bbe0-4c37-aa2c-2aa0e25b03c2",
+      "alias": "LAB-06",
+      "code": {
+        "namespace": "LAB",
+        "code_type": "ORIGINAL_RESEARCH_WAVE",
+        "catalog_scope": "LAB_REV2_ORIGINAL_WAVES",
+        "segments": [
+          {
+            "semantic_type": "wave_number",
+            "number": 6,
+            "format_width": 2
+          }
+        ]
+      },
+      "name": "Isolated simulation/replay/quality",
+      "source_key": "LAB_REV2_MD",
+      "candidate_chapters": [
+        "MA04",
+        "MA06",
+        "MA08"
+      ],
+      "later_product_code_rule": "Same raw LAB-02/LAB-03 in new product catalog has distinct entity ID/meaning; ambiguous bare lookup denied",
+      "acceptance": "No full V1 qualification inferred from PoC wave"
+    },
+    {
+      "entity_id": "11aff6f6-94fa-400d-8eec-26229fcdabcf",
+      "revision_id": "031dc60c-45a7-4db5-bf5e-93081c96f22e",
+      "alias": "LAB-07",
+      "code": {
+        "namespace": "LAB",
+        "code_type": "ORIGINAL_RESEARCH_WAVE",
+        "catalog_scope": "LAB_REV2_ORIGINAL_WAVES",
+        "segments": [
+          {
+            "semantic_type": "wave_number",
+            "number": 7,
+            "format_width": 2
+          }
+        ]
+      },
+      "name": "Mock group budget UI",
+      "source_key": "LAB_REV2_MD",
+      "candidate_chapters": [
+        "MA04",
+        "MA06",
+        "MA08"
+      ],
+      "later_product_code_rule": "Same raw LAB-02/LAB-03 in new product catalog has distinct entity ID/meaning; ambiguous bare lookup denied",
+      "acceptance": "No full V1 qualification inferred from PoC wave"
+    },
+    {
+      "entity_id": "5110de0d-1e0c-4c2d-858b-9f88d00deb0f",
+      "revision_id": "471faee2-c8e8-431e-b88c-0fbec34d2268",
+      "alias": "LAB-08",
+      "code": {
+        "namespace": "LAB",
+        "code_type": "ORIGINAL_RESEARCH_WAVE",
+        "catalog_scope": "LAB_REV2_ORIGINAL_WAVES",
+        "segments": [
+          {
+            "semantic_type": "wave_number",
+            "number": 8,
+            "format_width": 2
+          }
+        ]
+      },
+      "name": "Qualified selective formal port",
+      "source_key": "LAB_REV2_MD",
+      "candidate_chapters": [
+        "MA04",
+        "MA06",
+        "MA08"
+      ],
+      "later_product_code_rule": "Same raw LAB-02/LAB-03 in new product catalog has distinct entity ID/meaning; ambiguous bare lookup denied",
+      "acceptance": "No full V1 qualification inferred from PoC wave"
+    }
+  ],
+  "p00_streams": [
+    {
+      "entity_id": "9af392b6-d7cc-42b2-a6e2-2d6acf3ad6ce",
+      "revision_id": "46d1cb75-2749-4782-9210-d9160c5d5207",
+      "alias": "R01",
+      "source": "docs/program/p00_status.v1.json@2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "design_status": "BOUNDED_DESIGN_ACCEPTED",
+      "stream_closed": false,
+      "closure_route": "C3_R02_R06 -> C5_R08_ORIGINAL91 -> C6_HUMAN_EXACT_ADOPTION"
+    },
+    {
+      "entity_id": "0ba7e86c-d805-4ddd-bcb9-5496e2defa8d",
+      "revision_id": "35cd2105-4f99-453e-9915-8d24c72f1b0c",
+      "alias": "R02",
+      "source": "docs/program/p00_status.v1.json@2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "design_status": "QUALIFICATION_ADOPTION_PENDING",
+      "stream_closed": false,
+      "closure_route": "C3_R02_R06 -> C5_R08_ORIGINAL91 -> C6_HUMAN_EXACT_ADOPTION"
+    },
+    {
+      "entity_id": "5eb308bd-f04c-4871-a094-53cfbfdc5aba",
+      "revision_id": "80b2e049-da46-4347-9b34-9fb87a446863",
+      "alias": "R03",
+      "source": "docs/program/p00_status.v1.json@2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "design_status": "BOUNDED_DESIGN_ACCEPTED",
+      "stream_closed": false,
+      "closure_route": "C3_R02_R06 -> C5_R08_ORIGINAL91 -> C6_HUMAN_EXACT_ADOPTION"
+    },
+    {
+      "entity_id": "2c629b36-d5c4-41d5-bd4f-0cf86b155b6c",
+      "revision_id": "4c136a28-71c9-4bed-b3e8-2835791c06ec",
+      "alias": "R04",
+      "source": "docs/program/p00_status.v1.json@2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "design_status": "BOUNDED_DESIGN_ACCEPTED",
+      "stream_closed": false,
+      "closure_route": "C3_R02_R06 -> C5_R08_ORIGINAL91 -> C6_HUMAN_EXACT_ADOPTION"
+    },
+    {
+      "entity_id": "3e0bbdfd-3603-48be-8417-39f95505305a",
+      "revision_id": "c4357700-6c22-4815-a518-2364dda068fe",
+      "alias": "R05",
+      "source": "docs/program/p00_status.v1.json@2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "design_status": "BOUNDED_DESIGN_ACCEPTED",
+      "stream_closed": false,
+      "closure_route": "C3_R02_R06 -> C5_R08_ORIGINAL91 -> C6_HUMAN_EXACT_ADOPTION"
+    },
+    {
+      "entity_id": "31178302-36cd-4033-a7fc-ec3db1ccea4c",
+      "revision_id": "10442fef-8229-4577-b318-cdd320fcd8d3",
+      "alias": "R06",
+      "source": "docs/program/p00_status.v1.json@2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "design_status": "QUALIFICATION_ADOPTION_PENDING",
+      "stream_closed": false,
+      "closure_route": "C3_R02_R06 -> C5_R08_ORIGINAL91 -> C6_HUMAN_EXACT_ADOPTION"
+    },
+    {
+      "entity_id": "0c57a67a-e449-4ae2-a374-d66a76fc3505",
+      "revision_id": "e6a39cc8-2610-417e-ac16-8d893f03862c",
+      "alias": "R07",
+      "source": "docs/program/p00_status.v1.json@2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "design_status": "BOUNDED_DESIGN_ACCEPTED",
+      "stream_closed": false,
+      "closure_route": "C3_R02_R06 -> C5_R08_ORIGINAL91 -> C6_HUMAN_EXACT_ADOPTION"
+    },
+    {
+      "entity_id": "b55d3fff-56a9-4d2f-9544-0db9b66d9883",
+      "revision_id": "1115749c-88da-4a65-bffb-29ebea3c92f5",
+      "alias": "R08",
+      "source": "docs/program/p00_status.v1.json@2634717b1443eb95fa0fde4d5d987347ef2160e8",
+      "design_status": "FINAL_BASELINE_REVIEW_PENDING",
+      "stream_closed": false,
+      "closure_route": "C3_R02_R06 -> C5_R08_ORIGINAL91 -> C6_HUMAN_EXACT_ADOPTION"
+    }
+  ],
+  "automation_source": "automation/programs/AUTO-IMP-PROGRAM-V2/program.rev5.yaml",
+  "automation_current": "AUTO-IMP-002 CLOSED; AUTO-IMP-003 REV2 NOT_AUTHORIZED; Controller OFF",
+  "sql_preflight_current": "RF01 COMPLETED_PENDING_RE_REVIEW; source-only author tests not URMS runtime qualification",
+  "accepted_core": {
+    "leaf_count": 26,
+    "weight": 113,
+    "source": "docs/program/accepted_core_reconciliation.v1.json",
+    "new_credit": 0,
+    "exact_source_bindings": [
+      {
+        "source_id": "c29d806f-1ed2-4100-8ca1-22785898ec34",
+        "path": "docs/work/GAP08_CORRECTION_FREEZE.md",
+        "commit": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "raw_bytes_sha256": "e8b70427b62345770047962358ea29df8e2e88123cacd5c53f6baf7c34e7722d",
+        "git_blob_sha1": "12188794fe825200d8726c256e44d0bf909765f3"
+      },
+      {
+        "source_id": "2130dd18-a043-40b2-829b-36b6f68bbc83",
+        "path": "docs/program/accepted_core_reconciliation.v1.json",
+        "commit": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+        "raw_bytes_sha256": "e1027644172bba342892d891ca50cc4a2c27857d59ee46945270def841aed118",
+        "git_blob_sha1": "24add38424055a7ae79fdd9f8f0e520123b35978"
+      }
+    ],
+    "source_verification": "26 rows exact source bytes and row text verified; aggregate bounded GAP08 acceptance preserved, no P08/new credit"
+  },
+  "requirements_semantic_line_locator_pending": [],
+  "coverage_rule": "Inventory/mapping is candidate source coverage; independent semantic coverage/adoption still required",
+  "latest_owner_delta": "OWNER_RCG_CORRECTION_20261012",
+  "release_slice": "B3_RELEASE_SLICE.json",
+  "original_source_universe_unchanged": true,
+  "normalized_review_findings_preserved": "private_source_capture/RCG_REVIEW_INPUTS/S1_S9_FINDING_LEDGER.json"
+}

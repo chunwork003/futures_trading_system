@@ -1,0 +1,1492 @@
+{
+  "authority_effect": "NONE",
+  "canonical_logical_path": "docs/architecture/multi_asset/source_closure_v9/EXPECTED_REQUIRED_PAIRS.v9.json",
+  "canonical_raw_sha256": "86c09e275595a3c996cea79f15e8200df25a53cf7ddf78ffb49eab7cb306250e",
+  "kind": "NONAUTHORITATIVE_READABLE_QUERY_PROJECTION_NOT_CANONICAL_OR_COMPILER_INPUT",
+  "operation_id": "analyzeInboxSource",
+  "pair_count": 26,
+  "pairs": [
+    {
+      "canonical_pointer": "#/pairs/1222",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "48c2209c-9477-5c62-8003-6766abb017ce",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "0a215f8b-3e11-588c-9766-3467a333abc9"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "0bcdf64d-3a34-50da-9f93-4dcc8efd47d0",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-inbox-received.json",
+        "raw_bytes_sha256": "d0608702ec320c928b37eeb0429b4b35bdfa9aae4816887d67b6d359658fefa3"
+      },
+      "schema_ref": {
+        "entity_id": "1fd05096-e3c4-59d8-83d5-e6ba03de1b3c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "e730f910-9664-5933-9aee-1cc732339cf6",
+        "source_hash": "d0608702ec320c928b37eeb0429b4b35bdfa9aae4816887d67b6d359658fefa3"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-inbox-received.json",
+        "raw_bytes_sha256": "5a6fc28a8ad7c74a066c9b57be43e5d2c98f94c6f363cdd17f43cfce6699579a"
+      },
+      "source_ref": {
+        "entity_id": "675cb1a3-fa63-5b25-b1d4-193f91ffb950",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "f73bc021-f4b1-5e08-a1e0-23e16fc1b451",
+        "source_hash": "5a6fc28a8ad7c74a066c9b57be43e5d2c98f94c6f363cdd17f43cfce6699579a"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1223",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "0e982b84-7df7-5a7b-8da6-8afd9c3b06a4",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "dc56dd1c-d42b-5ed7-9a86-4ffbd3298afb"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "119e9e22-8d40-5f1c-b8d5-d6be05879c56",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-state-before-analyzeInboxSource.json",
+        "raw_bytes_sha256": "f89f7cf1d8cf51bc6c9e9760e0b7a03cf73da0d9d3fe6e05eb457d95e6fb6eee"
+      },
+      "schema_ref": {
+        "entity_id": "8348b45a-4980-593e-875c-faf5ef5d433a",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "8870e39e-d51b-53bf-a451-b222fa1052c5",
+        "source_hash": "f89f7cf1d8cf51bc6c9e9760e0b7a03cf73da0d9d3fe6e05eb457d95e6fb6eee"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/state-before-analyzeInboxSource.json",
+        "raw_bytes_sha256": "a995c4ff98c46f8e6b11e6a2bab91e1a605975ceb2bf40c430ed89de47623343"
+      },
+      "source_ref": {
+        "entity_id": "ef5dddcc-77d2-53ec-aeb4-b395d110f2f9",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "5c85c6b9-ae00-5ca9-9441-acf9b05af8ed",
+        "source_hash": "a995c4ff98c46f8e6b11e6a2bab91e1a605975ceb2bf40c430ed89de47623343"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1224",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "e3082a60-8004-5602-a8ac-1d0b17766804",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "bc3360fa-a608-564a-bbd7-e66f9cc9a517"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "184f826f-324b-5c55-b3dc-b5ec1c51b796",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-authenticated-reader.json",
+        "raw_bytes_sha256": "7d2fc2c7059a807be31a4c589901c9a9e94401bb99d1de226906629022c836c4"
+      },
+      "schema_ref": {
+        "entity_id": "a54f0eb4-2744-51df-b9f5-f230c9194ce5",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "e5e47b03-dda3-5231-bd5b-b4fcada9bb92",
+        "source_hash": "7d2fc2c7059a807be31a4c589901c9a9e94401bb99d1de226906629022c836c4"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/authenticated-reader.json",
+        "raw_bytes_sha256": "2e4099ab621a0c86671fe22aa20103f7ecc8a2236e190308c09ecbc2d5481c9b"
+      },
+      "source_ref": {
+        "entity_id": "95c4c907-f67d-5690-9656-50b8639e0da2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "4964f7a8-1937-57a1-a642-2abbf9bd6c25",
+        "source_hash": "2e4099ab621a0c86671fe22aa20103f7ecc8a2236e190308c09ecbc2d5481c9b"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1225",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "7fdb7f7e-20d1-50b5-86b9-fabec9e6933c",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "0f315a46-6584-5c03-a648-7e31ee403e51"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "227e9e08-557b-5d61-8c46-3a69976ac2f1",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-finite-read-snapshot.json",
+        "raw_bytes_sha256": "ab879b74722b7b57cd82380dfedfe6fe570950c78c96108e29b157e548d7cdc5"
+      },
+      "schema_ref": {
+        "entity_id": "4c8c35c7-72be-54b4-b65b-4e64466d3a75",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "2f9bb29c-9362-59dd-b1f3-5209d442c87d",
+        "source_hash": "ab879b74722b7b57cd82380dfedfe6fe570950c78c96108e29b157e548d7cdc5"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/finite-read-snapshot.json",
+        "raw_bytes_sha256": "41378cb6363f7dc566999197e7e7c34b5527297d42fde52d9f1fc456965ab067"
+      },
+      "source_ref": {
+        "entity_id": "9efb8614-b29d-5a5f-97bd-af73a16177be",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "1c31e833-a16a-5d09-9f52-df85085957f0",
+        "source_hash": "41378cb6363f7dc566999197e7e7c34b5527297d42fde52d9f1fc456965ab067"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1226",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "5c89261d-b64c-5223-89d8-1ce78f103408",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "e2237634-268b-544d-a6c5-16b6336cab52"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "3b231136-a725-5a52-bdf7-b652c19cc924",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-analyzeInboxSource-response.json",
+        "raw_bytes_sha256": "8c746c195d6c7c1e156eabb0cbbfc824a45959d636c9561ee6168ae06d4be299"
+      },
+      "schema_ref": {
+        "entity_id": "8ca2bdcb-5e99-528a-beeb-a6c2eb4a1de3",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EFFECT_OWNER",
+        "revision_id": "346f934f-0711-5eed-bde4-84112d334e4c",
+        "source_hash": "8c746c195d6c7c1e156eabb0cbbfc824a45959d636c9561ee6168ae06d4be299"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-analyzeInboxSource-response.json",
+        "raw_bytes_sha256": "720e5c65f0b21f440671267b1359a424af41cb8231474d6ecb6b5d71439a1653"
+      },
+      "source_ref": {
+        "entity_id": "3fd499c6-97fb-5114-8900-d659a9965cbc",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EFFECT_OWNER",
+        "revision_id": "b57e833f-1e33-50ae-a9a8-124bda7db713",
+        "source_hash": "720e5c65f0b21f440671267b1359a424af41cb8231474d6ecb6b5d71439a1653"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1227",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "133d176e-0d8b-5601-aa74-e385b11e0bcf",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "36736f5f-d4c9-589e-87af-42f346fc8561"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "424a2039-e6c0-5ab0-98dc-7288e5cc2ead",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-analyzeInboxSource-response.json",
+        "raw_bytes_sha256": "9a6dddfa5801730da6d7bea8a6cc92b2519ebaa3092d150faf4ef89e7edbf6cb"
+      },
+      "schema_ref": {
+        "entity_id": "f6c24398-d949-58bc-bda6-20b5d43f5436",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "7cf0c010-9741-5f64-9e76-8971b2eae619",
+        "source_hash": "9a6dddfa5801730da6d7bea8a6cc92b2519ebaa3092d150faf4ef89e7edbf6cb"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-analyzeInboxSource-response.json",
+        "raw_bytes_sha256": "2c900a77a2fd67cd64b9a4949d96875256dbc4d810c9676e0209203f6e84e2b9"
+      },
+      "source_ref": {
+        "entity_id": "aac40dac-d654-5923-939b-9992a6a84741",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "73fe63ba-7842-5aaf-945c-8ee0bc71f71b",
+        "source_hash": "2c900a77a2fd67cd64b9a4949d96875256dbc4d810c9676e0209203f6e84e2b9"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1228",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "82e21ed0-3f9a-5f64-a4e4-b226ded2d0d9",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "d560d106-2a90-5546-998d-33efcf85ed07"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "428b7b46-0a11-52f9-99c1-4df0efb57a84",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-inbox-original-code.json",
+        "raw_bytes_sha256": "949c1f9b57ef9cced44926cd01c5f28e5fc9e7975f3431e255c75cf95e810ed6"
+      },
+      "schema_ref": {
+        "entity_id": "7943a4ce-ba5a-5eff-80c9-999c5acc5057",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "49bbe305-bfe8-505a-8c49-21f100cee9aa",
+        "source_hash": "949c1f9b57ef9cced44926cd01c5f28e5fc9e7975f3431e255c75cf95e810ed6"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/inbox-original-code.bin",
+        "raw_bytes_sha256": "3f3b6b2f39395f0b9e6e00aed9bada7e482d0df6dbdf6cd10d1be1f2becfb2ba"
+      },
+      "source_ref": {
+        "entity_id": "0b834a90-b07d-5f5a-a87b-891eb833d171",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "d37dc26a-3c4d-5c26-8491-6673d49dee74",
+        "source_hash": "3f3b6b2f39395f0b9e6e00aed9bada7e482d0df6dbdf6cd10d1be1f2becfb2ba"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1229",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "32887983-2f69-5b01-8dbe-bb4629523977",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "a130395f-e708-5042-a5e5-20c7d99c0f13"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "4ae4cfed-b61d-5afe-baa2-adbd6e55201b",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-ast-resource-budget.json",
+        "raw_bytes_sha256": "f00819a6cc8ba8e6f3ec7e415ab0853929013646d6cc68bc07ed573299e5dcc8"
+      },
+      "schema_ref": {
+        "entity_id": "5388db23-d239-5972-a3f9-972d43d49586",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "c63b9c39-b591-5614-8822-e21f152d080b",
+        "source_hash": "f00819a6cc8ba8e6f3ec7e415ab0853929013646d6cc68bc07ed573299e5dcc8"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/ast-resource-budget.json",
+        "raw_bytes_sha256": "7fb1be5d0a1e1d960e72710839ec6002621c88fd76f0d88f94859fc5f8a2897a"
+      },
+      "source_ref": {
+        "entity_id": "e08e9681-0950-563c-81ae-05ce210a213b",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "afbcfa75-ef47-56b5-9562-2faa72db3717",
+        "source_hash": "7fb1be5d0a1e1d960e72710839ec6002621c88fd76f0d88f94859fc5f8a2897a"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1230",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "c84bbd2f-9af4-57e6-887c-8feed201e1db",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "1b84fed8-47a9-5670-8ce4-e322b25e0904"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "4f103f9f-2d49-57ae-a824-ede5e41f12f3",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-scope-analyzeInboxSource.json",
+        "raw_bytes_sha256": "07a9139563085310146012c19031074ba06c6000b3ed0bd1c735b12aecf8a5f4"
+      },
+      "schema_ref": {
+        "entity_id": "be1bf13d-cf6e-5029-a84d-3006ee616f5b",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "728375b6-7c46-5feb-9029-505aa29c4b22",
+        "source_hash": "07a9139563085310146012c19031074ba06c6000b3ed0bd1c735b12aecf8a5f4"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/scope-analyzeInboxSource.json",
+        "raw_bytes_sha256": "26ef913f023507307ad0e8bab4e36de2d75e8771c450a849111e926e01385ebe"
+      },
+      "source_ref": {
+        "entity_id": "285ba1ed-2886-5f53-95a8-b49d23f2a9b2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "ac84f9b9-ad04-523c-9ed9-ef76e7f0f6e7",
+        "source_hash": "26ef913f023507307ad0e8bab4e36de2d75e8771c450a849111e926e01385ebe"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1231",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "b147f08a-bd7c-5e53-bef9-3053709dc27c",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "b6b786c0-a5b4-531a-a007-5e91f729581e"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "5a52a288-44f5-5556-9096-68049ea02b7e",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-inbox-licence.json",
+        "raw_bytes_sha256": "14b34bfe1df2e9fbb8b2cb668aef322c0b7735d105f003a11be1d8b5c2592f4b"
+      },
+      "schema_ref": {
+        "entity_id": "8ee023ed-91b0-51d6-95c0-ad15003114e2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "4212f143-cf7b-5319-a9b3-ba1c2a985fd0",
+        "source_hash": "14b34bfe1df2e9fbb8b2cb668aef322c0b7735d105f003a11be1d8b5c2592f4b"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/inbox-licence.json",
+        "raw_bytes_sha256": "9ff659f70047b6ccf1e1b3259eefe83383db55e23577c03689ed75dc3f78f8f0"
+      },
+      "source_ref": {
+        "entity_id": "21605bd2-be99-599d-961a-665057343641",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "3d913db0-72b9-5b43-bb99-f08ab7c48f97",
+        "source_hash": "9ff659f70047b6ccf1e1b3259eefe83383db55e23577c03689ed75dc3f78f8f0"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1232",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "ec8fb26c-2d41-508a-adff-e13d0f49c78c",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "463a931d-f66b-599f-a797-8a42a0343e6f"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "670aa8fe-976b-5a1c-a7ea-106f3aea1489",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-inbox-received.json",
+        "raw_bytes_sha256": "a375aa007c7a9838f872a9c444b9c142bbbf0b5f51248c2c50ce582a9f603518"
+      },
+      "schema_ref": {
+        "entity_id": "55b961f5-1b30-55ca-8ac8-99db02b4b2ad",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "33489686-29e5-550f-b393-23f1ff613176",
+        "source_hash": "a375aa007c7a9838f872a9c444b9c142bbbf0b5f51248c2c50ce582a9f603518"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-inbox-received.json",
+        "raw_bytes_sha256": "c04929abcd9f05b300b0e0652b543675c81a9a37922809d5df6b0a0aced9e463"
+      },
+      "source_ref": {
+        "entity_id": "934876fa-4375-5163-9b61-cedd081a1ed4",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "88cf0d9d-9706-55f8-95e1-b0a305e8817c",
+        "source_hash": "c04929abcd9f05b300b0e0652b543675c81a9a37922809d5df6b0a0aced9e463"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1233",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "fc14af52-0cd9-5e5d-b0e7-038db8996416",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "6a64e723-30d0-53f5-81de-915ce86cbf21"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "6f589889-4974-55e1-9878-e314d8f3814a",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-inbox-origin-metadata.json",
+        "raw_bytes_sha256": "e2bbf74d55d492241c136d1a79f005d184ca2e7443a75529cabfaa979cfa507b"
+      },
+      "schema_ref": {
+        "entity_id": "2f25ac25-e5e3-58ef-b6ec-ce0085ae5cb8",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "cb2ed954-6e63-50be-8e5b-dd55fcf4f628",
+        "source_hash": "e2bbf74d55d492241c136d1a79f005d184ca2e7443a75529cabfaa979cfa507b"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/inbox-origin-metadata.json",
+        "raw_bytes_sha256": "84dabfe33ddbded4ada9e2d2aa5ba908e6276ca24d22c000d915307e2e8d9eb1"
+      },
+      "source_ref": {
+        "entity_id": "d4c6cba4-92a9-5f12-9681-6e5606bd537b",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "f5846c54-eb3a-5cc4-a70c-5a7e726ad657",
+        "source_hash": "84dabfe33ddbded4ada9e2d2aa5ba908e6276ca24d22c000d915307e2e8d9eb1"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1234",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "be9673f3-9ebf-5268-8459-30a12c6416cb",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "a6f0ac92-c2e9-546c-8234-d56a98d8570b"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "79d8719d-086b-5637-8eb5-bcfe528e7caf",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-analyzeInboxSource-request.json",
+        "raw_bytes_sha256": "54487f78729e73c95a36d369d4b1a2ae4292e9df59219c27dae5eda1a6851838"
+      },
+      "schema_ref": {
+        "entity_id": "d572595a-0b6c-5e13-b25d-8804ca1f1287",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "c89b6024-7353-5d0f-a645-79572306dc8d",
+        "source_hash": "54487f78729e73c95a36d369d4b1a2ae4292e9df59219c27dae5eda1a6851838"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-analyzeInboxSource-request.json",
+        "raw_bytes_sha256": "3c69749ba594a61a21debb5087cc64cf9dfa3eb2db97b8bcabe1e17c6533976a"
+      },
+      "source_ref": {
+        "entity_id": "15698146-15bb-5627-9fae-043242819c00",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "95bf2a62-9889-5f8f-b93b-1a40c695ab59",
+        "source_hash": "3c69749ba594a61a21debb5087cc64cf9dfa3eb2db97b8bcabe1e17c6533976a"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1235",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "99119c66-3e6a-5892-be0d-40c94ca69c08",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "4b8d0bec-09d3-5d9f-a8cf-3cd11823147f"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "8894a824-0b6d-5b5b-82cb-2c7218a93e9d",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-state-after-analyzeInboxSource.json",
+        "raw_bytes_sha256": "82c2842ef7967fa0290f4e86150c42a36c1148d295b86b7632aa297325500f31"
+      },
+      "schema_ref": {
+        "entity_id": "8c0fbb7c-1ab6-57f4-a7e4-12d3fe796d50",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "35610ad5-8fb9-5bb5-bbc3-bd9109b7fc48",
+        "source_hash": "82c2842ef7967fa0290f4e86150c42a36c1148d295b86b7632aa297325500f31"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/state-after-analyzeInboxSource.json",
+        "raw_bytes_sha256": "8c659129b7ebff91a432ae866f80db00f07729fe70a9ba0a6c193e71667b7936"
+      },
+      "source_ref": {
+        "entity_id": "8c535238-5c41-5ee6-9a5e-510b4d7eedcd",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "56c6d910-afd7-5b6f-b151-6032e34789e2",
+        "source_hash": "8c659129b7ebff91a432ae866f80db00f07729fe70a9ba0a6c193e71667b7936"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1236",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "49544892-ebc2-5867-b808-ce5c66e73aea",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "173042a4-819a-5896-98cb-4b6a0e23d9e4"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "98fdefc3-ce54-5d23-86b4-b359f4634b85",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-ast-tool-profile.json",
+        "raw_bytes_sha256": "635e99eb058be7c47eba395dd3a7d7158167c5a6241299f6cea97399d5cec2f1"
+      },
+      "schema_ref": {
+        "entity_id": "634e4717-782c-559d-b796-bdd75170b24c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "69392075-5fe2-53a5-badc-8343a5cd5601",
+        "source_hash": "635e99eb058be7c47eba395dd3a7d7158167c5a6241299f6cea97399d5cec2f1"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/ast-tool-profile.json",
+        "raw_bytes_sha256": "6627825856533b9634c3c2a5c22d7060d0631c7d2a4482272a17329b713c4847"
+      },
+      "source_ref": {
+        "entity_id": "fd6bf4e4-6965-551c-adcc-76b135526d36",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "28d1665a-3c4c-53d7-9994-9190aca7b400",
+        "source_hash": "6627825856533b9634c3c2a5c22d7060d0631c7d2a4482272a17329b713c4847"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1237",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "c2af4b0b-c99a-5aa6-bf97-c706b529c827",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "63e9700c-7506-597f-86b9-984165374532"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "a26ebb76-861d-51d3-acc5-34d2c90937ec",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-owner-receipt-analyzeInboxSource.json",
+        "raw_bytes_sha256": "b15fc7e0ab4d4e35439e7a7cef98c806ebdf2813a68850eb6b407b8197568e6c"
+      },
+      "schema_ref": {
+        "entity_id": "467a95b0-f077-5fb2-8be5-47bde4343181",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "adb565a2-c0c2-58b2-a29b-a564822374e5",
+        "source_hash": "b15fc7e0ab4d4e35439e7a7cef98c806ebdf2813a68850eb6b407b8197568e6c"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/owner-receipt-analyzeInboxSource.json",
+        "raw_bytes_sha256": "d9824675df3edf731654d45e6f3b1b933b6526813b54a7034a9830a774b6ebdb"
+      },
+      "source_ref": {
+        "entity_id": "fe6c721d-2793-5ad7-8ac8-e2110fc2a11b",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "61fc158f-d8a4-50dd-830a-59e28a8e244a",
+        "source_hash": "d9824675df3edf731654d45e6f3b1b933b6526813b54a7034a9830a774b6ebdb"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1238",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "034e7400-ab0f-55a1-aef3-8cef677fdc17",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "8058dc0a-8e76-5049-b882-5cde6f61638f"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "a41db4fd-5fd4-54cc-ac9a-8f28fa3801d8",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-source-analysis.json",
+        "raw_bytes_sha256": "b8538d8191b51613add76956960d50f64f935acf41e1e557699ae88ac1429dd7"
+      },
+      "schema_ref": {
+        "entity_id": "e0f22617-3b30-5630-ab84-590261c0321c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "e8e42c67-efe8-5ef0-9580-b97841ddb433",
+        "source_hash": "b8538d8191b51613add76956960d50f64f935acf41e1e557699ae88ac1429dd7"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-source-analysis.json",
+        "raw_bytes_sha256": "8978e1e6c5bb2be52e55e59ea69d347ac7370f84874ff2cecf7a23b99355cef8"
+      },
+      "source_ref": {
+        "entity_id": "f02508ab-76f4-5675-a566-a69c8c0b6044",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "fcb3ec1b-f399-5a7f-9e14-661c35d8cf91",
+        "source_hash": "8978e1e6c5bb2be52e55e59ea69d347ac7370f84874ff2cecf7a23b99355cef8"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1239",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "6c6e9d95-3a75-5bfb-9b5c-5670d6da03f8",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "cd49b4bc-6778-5abf-8ff3-f4950f6133d7"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "a5d2cfcf-51af-50c3-adba-9e26c136aa51",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-source-analysis.json",
+        "raw_bytes_sha256": "6fe610d00884e61fdd8d22dc00e68af29d5860ade9b7b35f1f540ddbc44134b0"
+      },
+      "schema_ref": {
+        "entity_id": "4cc73953-0cd5-5a24-878a-f3cd4d793d18",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "922710ba-85cd-5eea-b9f6-aed6c2857693",
+        "source_hash": "6fe610d00884e61fdd8d22dc00e68af29d5860ade9b7b35f1f540ddbc44134b0"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-source-analysis.json",
+        "raw_bytes_sha256": "27a7536c3bba1bcd9f47f8e231b68a5b159046829382668821f95fc65ef4cd5b"
+      },
+      "source_ref": {
+        "entity_id": "638b2a13-f9c3-51b1-9518-03ff2359e45c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "f9ed8d00-ad3d-5488-a6ab-683ceeba6d33",
+        "source_hash": "27a7536c3bba1bcd9f47f8e231b68a5b159046829382668821f95fc65ef4cd5b"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1240",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "166d3a66-beb7-5642-9264-8224585364f0",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "8971c2c6-05e3-5fce-ad82-2ad0c438685f"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "a8da8bca-1467-5dd4-91a6-065aa718fb17",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-inbox-received.json",
+        "raw_bytes_sha256": "15d2cbc047512c7b9c1211b840ad153c9816c1d12fee1e1a6d6c3ed6f1aab638"
+      },
+      "schema_ref": {
+        "entity_id": "ade0710d-59c7-55fe-ab69-f83448e4c4ee",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "88037679-4c4e-5841-9b3e-78a721294f3e",
+        "source_hash": "15d2cbc047512c7b9c1211b840ad153c9816c1d12fee1e1a6d6c3ed6f1aab638"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-inbox-received.json",
+        "raw_bytes_sha256": "e57b7c0d2ac74d53723576e9a437d9b979e7f9f1d0542f82703b61927ad7c8b7"
+      },
+      "source_ref": {
+        "entity_id": "53158c21-8535-5bfe-805a-c395188a045b",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "01d3e22b-670c-5001-8349-bfe558cfbb3a",
+        "source_hash": "e57b7c0d2ac74d53723576e9a437d9b979e7f9f1d0542f82703b61927ad7c8b7"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1241",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "ad6e9c12-3783-5ecd-8be5-a61e30684ce0",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "cf56def7-5fa5-553c-af90-d7c7d5a347f5"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "ccbe139b-bf88-5917-8433-de3562d25fe6",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-source-analysis.json",
+        "raw_bytes_sha256": "c8e8f575efb6b8c05186c0499e7459ead444417ff43d7e1ddd12f10344c978f2"
+      },
+      "schema_ref": {
+        "entity_id": "30eea94b-7a46-5065-a90f-4af34ecd0204",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "eefcde2a-66d2-58bb-a297-423f09ac7e3d",
+        "source_hash": "c8e8f575efb6b8c05186c0499e7459ead444417ff43d7e1ddd12f10344c978f2"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-source-analysis.json",
+        "raw_bytes_sha256": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+      },
+      "source_ref": {
+        "entity_id": "6066f104-e8b5-500e-ac25-9b3337a24791",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "09ff5a22-5b62-53f5-bebe-a3521b9b6615",
+        "source_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1242",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "c5213af9-6165-567e-bb49-16a7984aa443",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "1eca4489-94f4-57cf-93cb-77186f5b9621"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "da947cf8-cd7b-5a90-b569-44b7e569553b",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-analyzeInboxSource-response.json",
+        "raw_bytes_sha256": "433768281807734e82e3fb4ebdea8dfe4a4f60557d5165c4d66b9eb776c981f2"
+      },
+      "schema_ref": {
+        "entity_id": "a30ee370-4c65-57d5-bddf-5a33cc3aba6e",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "3d38ed55-8745-5e81-a0d8-a2752fdcc9ac",
+        "source_hash": "433768281807734e82e3fb4ebdea8dfe4a4f60557d5165c4d66b9eb776c981f2"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-analyzeInboxSource-response.json",
+        "raw_bytes_sha256": "f49a71ac222d02169eb3c228434904eccce7e25b4490300910f372586bb8c06e"
+      },
+      "source_ref": {
+        "entity_id": "62cc72cd-587d-56c2-a726-7c491768d422",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "5ff65116-ed54-529f-87a7-4f3b43081914",
+        "source_hash": "f49a71ac222d02169eb3c228434904eccce7e25b4490300910f372586bb8c06e"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1243",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "05122c1a-5376-52c3-848a-82e22f58a6fe",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "cf8d79af-b11a-5924-895e-6c1fbb7fd8b6"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "ddcb1aeb-b767-565f-836f-09a800cbd843",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-artifact-provider.json",
+        "raw_bytes_sha256": "048804371df75d20ba10edad5a600738a4d8daaa99f519a751b9ea4b10ad6e2c"
+      },
+      "schema_ref": {
+        "entity_id": "fc5a4843-fdaf-5114-9197-8d83cf14b1c4",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "9b4c0725-85f6-56b8-b933-44f211926e0c",
+        "source_hash": "048804371df75d20ba10edad5a600738a4d8daaa99f519a751b9ea4b10ad6e2c"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/artifact-provider.json",
+        "raw_bytes_sha256": "313bdbff36dd02ef6a4c3a3e2ada01cb47254bd7fc87b77cd0dbf0dfeeb44d77"
+      },
+      "source_ref": {
+        "entity_id": "35e3c50b-0507-5cc2-b1cb-79d042ee3eb8",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "9f318058-fb73-54b0-a896-066a90382456",
+        "source_hash": "313bdbff36dd02ef6a4c3a3e2ada01cb47254bd7fc87b77cd0dbf0dfeeb44d77"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1244",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "639821e5-c5e1-527e-9a45-8a42f47f4fec",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "a757f7b0-3915-5a0a-b937-0b49bc00ec7e"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "df19ef45-6e1c-5758-baca-be37b5d2157d",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-operation-permission-analyzeInboxSource.json",
+        "raw_bytes_sha256": "77d56e708d492af8331832507c286ccea4f7fab636a918161b4e97f413c63446"
+      },
+      "schema_ref": {
+        "entity_id": "801c3f5c-df30-5e37-aae2-9275c0401b4f",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "31eabc94-5915-58d8-8a51-a68ecb401ab4",
+        "source_hash": "77d56e708d492af8331832507c286ccea4f7fab636a918161b4e97f413c63446"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/operation-permission-analyzeInboxSource.json",
+        "raw_bytes_sha256": "45f63f607d6c3e3f96aa03bd99201860afa5e926e23c44b5c2c645dc9683399a"
+      },
+      "source_ref": {
+        "entity_id": "53b36053-1f4d-58d6-b630-e020a023b3ee",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "abd876bb-9b71-5eb4-8f66-bb377ada4fe2",
+        "source_hash": "45f63f607d6c3e3f96aa03bd99201860afa5e926e23c44b5c2c645dc9683399a"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1245",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "c0ae2871-2603-5443-a0f8-8737f9037e1c",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "e6fabc2d-1a00-5515-953d-e8afe56706d8"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "e6d5c665-4d14-5421-9d2b-cd915f9efa96",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-body-catalog-origin.json",
+        "raw_bytes_sha256": "cd847d91f4d64a1a255c5199b44e08bc45c6135f4eb8f04bcd685728e01b51ae"
+      },
+      "schema_ref": {
+        "entity_id": "2a5870dd-209d-545d-bdd0-5f4549c02c29",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "N_APPLICATION_BODY_CATALOG",
+        "revision_id": "77a77d44-bf9f-5b0b-8a0b-c96f7faa7317",
+        "source_hash": "cd847d91f4d64a1a255c5199b44e08bc45c6135f4eb8f04bcd685728e01b51ae"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/body-catalog-origin.json",
+        "raw_bytes_sha256": "463cd565fdf976e959335d511074a5cf16ae7c496972796bbb71ea97d749a3e3"
+      },
+      "source_ref": {
+        "entity_id": "7f32c461-fbcb-5065-a94c-bb6f40f3ada8",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "N_APPLICATION_BODY_CATALOG",
+        "revision_id": "a953ef0b-ed54-5628-a88a-37638d96bdc3",
+        "source_hash": "463cd565fdf976e959335d511074a5cf16ae7c496972796bbb71ea97d749a3e3"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1246",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "8020a9c3-0776-5664-bc7a-0b9d780dc86e",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "a746a4b8-a9e1-5c4d-99eb-2f04c47a866a"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "f2419076-a37f-56c2-9a74-9a26d87d61a9",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-artifact-durability.json",
+        "raw_bytes_sha256": "e163bbf1fec241bac01f785eb7737bacf54da8fab815eb36b28957ef0e040e9e"
+      },
+      "schema_ref": {
+        "entity_id": "03ff84c7-b11c-5a9b-ad65-51d74eb14221",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "ad98c5d2-16cf-5cb9-a16b-4982d3f4711f",
+        "source_hash": "e163bbf1fec241bac01f785eb7737bacf54da8fab815eb36b28957ef0e040e9e"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/artifact-durability.json",
+        "raw_bytes_sha256": "b2c02fc8e82641fe9610963d98254b604510a866d35521d14a0c86fcf92a337c"
+      },
+      "source_ref": {
+        "entity_id": "054f3afb-141e-5af5-aa47-56cde51833fb",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "eaf95e0f-919e-5e98-af1d-bb76b3b404ec",
+        "source_hash": "b2c02fc8e82641fe9610963d98254b604510a866d35521d14a0c86fcf92a337c"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/1247",
+      "case_id": "C7-POSITIVE-analyzeInboxSource",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "b632a52e-c007-50db-947c-1d07c07da375",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "1c25a9f4-c19d-53ec-b5cc-e1dcd88bc7d7"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "analyzeInboxSource",
+      "pair_id": "f4c93f4e-98d7-53c0-aa3e-9038a5f8e6b2",
+      "producer": {
+        "owner": "E_RESEARCH",
+        "unit_alias": "MA04-U01"
+      },
+      "required_unit_aliases": [
+        "MA04-U01",
+        "MA10-U01",
+        "MA10-U03",
+        "MA10-U06",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-comparison-catalog.json",
+        "raw_bytes_sha256": "9b83e1be392a7d8e84bfdf6d6aaa84dec1290484dc11a9f8c9b1befd9dc5e893"
+      },
+      "schema_ref": {
+        "entity_id": "ae8a32d4-6739-52c9-a4e3-3791caa7bbc4",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "e825490c-2493-5737-bd02-9b6d0a74b7a1",
+        "source_hash": "9b83e1be392a7d8e84bfdf6d6aaa84dec1290484dc11a9f8c9b1befd9dc5e893"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-comparison-catalog.json",
+        "raw_bytes_sha256": "630fb812302005599f52a2abba34ac43dcad55b80f53c09cf7f57790e6972718"
+      },
+      "source_ref": {
+        "entity_id": "72c5e60c-47d2-51f9-a9a8-900f54136c17",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "E_RESEARCH",
+        "revision_id": "06b224b7-9af1-58fd-aae0-0ab119310535",
+        "source_hash": "630fb812302005599f52a2abba34ac43dcad55b80f53c09cf7f57790e6972718"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    }
+  ]
+}

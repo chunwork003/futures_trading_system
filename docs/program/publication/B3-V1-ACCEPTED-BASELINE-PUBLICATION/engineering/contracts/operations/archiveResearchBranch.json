@@ -1,0 +1,756 @@
+{
+  "format_role": "EXECUTOR_READABLE_SOURCE_BOUND_OPERATION_SPEC_NOT_EXECUTION_AUTHORITY",
+  "operation_id": "archiveResearchBranch",
+  "producer": {
+    "owner": "E_STRATEGY",
+    "unit": "MA04-U03",
+    "unit_id": "9e7f20fa-f68c-45a0-8ed0-e841d9a543da",
+    "package": "PK06"
+  },
+  "contract_source": {
+    "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+    "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+    "bytes": 245079
+  },
+  "source_pointer": "#/endpoints/92",
+  "full_api_contract_source": {
+    "operation_id": "archiveResearchBranch",
+    "method": "POST",
+    "path": "/api/v2/research-branches/{id}/archive",
+    "chapter": "MA04",
+    "owner": "E_STRATEGY",
+    "page": "UI04",
+    "role": "RESEARCH_AUTHOR",
+    "request_payload_fields": {
+      "request": {
+        "type": "BranchArchiveRequest",
+        "required": true
+      }
+    },
+    "response_model": "ResearchBranch",
+    "response_envelope": "OperationReceipt",
+    "side_effect": "SCOPED_COMMAND_SUBJECT_TO_EXISTING_GRANT",
+    "idempotency": "scope + command_id + recomputed canonical payload hash; identical replay returns same receipt; differing hash409",
+    "invariant": "logical archive CAS；不刪capture、snapshot、run、releasedreferences",
+    "runtime_status": "NOT_IMPLEMENTED_OR_NOT_VERIFIED_BY_THIS_REVIEW",
+    "response_cardinality": "ONE",
+    "response_item_model": "ResearchBranch",
+    "command_result_binding": "OperationReceipt.result_ref points to ONE named response_item_model; pending/unknown has no fabricated business result",
+    "query_enum_rule": "All enum selectors have TYPE_VARIANTS bindings; unknown semantic enum denied",
+    "error_model": "ErrorEnvelope",
+    "error_disposition_table": "ERROR_RETRY_DISPOSITION_TABLE.json",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation_contract": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "failure_contract": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "dto_version": "MA-DTO-v6",
+    "error_protocol_version": "architecture.transport_error.v2",
+    "dto_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "full_compilation_input_row": {
+    "operation_id": "archiveResearchBranch",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+      "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+      "bytes": 245079
+    },
+    "source_pointer": "#/endpoints/92",
+    "chapter": "MA04",
+    "domain_contract_owner": "E_STRATEGY",
+    "producer_unit_alias": "MA04-U03",
+    "producer_unit_id": "9e7f20fa-f68c-45a0-8ed0-e841d9a543da",
+    "producer_package": "PK06",
+    "consumer_units": [
+      {
+        "unit_alias": "MA04-U03",
+        "mode": "IMPLEMENT_OWNER_USECASE_OR_EXACT_SCOPED_REUSE_ADAPTER",
+        "input_model": "ApiRequest_archiveResearchBranch",
+        "output_model": "ResearchBranch",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/20/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U01",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_archiveResearchBranch",
+        "output_model": "ResearchBranch",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/54/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U03",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_archiveResearchBranch",
+        "output_model": "ResearchBranch",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/56/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U06",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_archiveResearchBranch",
+        "output_model": "ResearchBranch",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/59/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA15-U02",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_archiveResearchBranch",
+        "output_model": "ResearchBranch",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/85/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA15-U03",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_archiveResearchBranch",
+        "output_model": "ResearchBranch",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/86/input_output/secondary_io"
+      }
+    ],
+    "ui_consumers": [
+      {
+        "page_id": "UI04",
+        "route": "/lab/builder",
+        "action_pointers": [
+          "#/pages/3/actions/18"
+        ],
+        "ui_states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "request_model_or_fields": {
+          "request": {
+            "required": true,
+            "type": "BranchArchiveRequest"
+          }
+        }
+      }
+    ],
+    "frontend_integration_package": "PK11",
+    "method": "POST",
+    "route": "/api/v2/research-branches/{id}/archive",
+    "dto_version": "MA-DTO-v6",
+    "request_model": "ApiRequest_archiveResearchBranch",
+    "request_fields": {
+      "request": {
+        "type": "BranchArchiveRequest",
+        "required": true
+      }
+    },
+    "response_model": "ResearchBranch",
+    "response_envelope": "OperationReceipt",
+    "cardinality": "ONE",
+    "error_model": "ErrorEnvelope",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "role_is_not_authority": true,
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "scope + command_id + recomputed canonical payload hash; identical replay returns same receipt; differing hash409",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect.",
+    "existing_oracle_case_refs": [
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/276",
+        "case_id": "WIRE-archiveResearchBranch-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/277",
+        "case_id": "WIRE-archiveResearchBranch-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/278",
+        "case_id": "WIRE-archiveResearchBranch-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      }
+    ],
+    "effective_v9_operation_companion": null,
+    "required_mock_design": [
+      "Read exact producer contract/Model/Type/Error table and v9 Unit companion; use effective successor/adapter selection, not legacy positive wire payload as current.",
+      "Plan accepted success body, error/rejection, empty-complete vs UNKNOWN/PARTIAL, pending/unknown receipt, retry/CAS/conflict and re-entry states required by this operation.",
+      "Keep fixture actor/project/account/environment/permission/cut/version fixed; mock command does not approve strategy, financial effect, runtime admission or execution.",
+      "Keep request/response semantics identical across React→ASP.NET BFF→Python API→Core→Persistence; mock replaces an isolated producer boundary, not authorization layers.",
+      "Contract tests must verify producer and consumer against independent named expected oracles, not regenerate expected from actual mock result."
+    ],
+    "mock_runtime_result": "NOT_RUN",
+    "execution_dependency": "EXACT_AUTHORIZED_WORK_ORDER + qualified producer result or explicitly scoped reuse proof + current compiler/profile/writer/capacity",
+    "missing_executable_details": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here."
+  },
+  "effective_v9_companion": null,
+  "v9_companion_applicability": "NOT_IN_43_SPECIAL_SOURCE_PAIR_OPERATIONS; retain exact base API + Unit companion; not missing by filename",
+  "request": {
+    "model": "ApiRequest_archiveResearchBranch",
+    "fields": {
+      "request": {
+        "type": "BranchArchiveRequest",
+        "required": true
+      }
+    },
+    "version": "MA-DTO-v6"
+  },
+  "response": {
+    "model": "ResearchBranch",
+    "envelope": "OperationReceipt",
+    "cardinality": "ONE"
+  },
+  "named_model_closure": [
+    "ApiRequest_archiveResearchBranch",
+    "BranchArchiveRequest",
+    "ContractRef",
+    "ErrorEnvelope",
+    "FieldViolation",
+    "OperationReceipt",
+    "ResearchBranch"
+  ],
+  "model_definitions_selector": "MODEL_TYPE_SOURCE_SPECIFICATION.json#/definition_lookup/<name>",
+  "auth_validation_idempotency_unknown": {
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "scope + command_id + recomputed canonical payload hash; identical replay returns same receipt; differing hash409",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "producer_consumer_mock_test_matrix": {
+    "React": "Only display/user intent/typed client and declared page states; no independent business rules or direct SQL/Broker",
+    "ASP_NET_BFF": "Existing auth/session/CSRF/workflow/proxy adapter; preserve exact wire fields/errors/receipt/versions; no alternate Quant rules",
+    "Python_API": "Validate exact DTO/auth/resource/cut/source and delegate sole domain owner; no accepted result from mock",
+    "Quant_Core": "E_STRATEGY owns invariants and effect boundary per source",
+    "Persistence": "Existing port/UoW/canonical ownership; real migration/DB/Restore separately gated",
+    "expected_mock_source": "Named source oracle cases below; do not derive expected from mock output",
+    "mock_states": [
+      "source-defined success",
+      "typed rejected error",
+      "complete-empty versus UNKNOWN/PARTIAL",
+      "pending/unknown OperationReceipt",
+      "exact same-key/same-body retry versus conflict",
+      "version/profile/auth/CAS/stale-source rejection where applicable"
+    ],
+    "compare_layers": [
+      "Python producer contract result",
+      "BFF preserved transport/error result",
+      "React consumer state and receipt readback"
+    ],
+    "actual_test_status": "NOT_RUN"
+  },
+  "exact_oracle_cases": [
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/276",
+        "case_id": "WIRE-archiveResearchBranch-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-archiveResearchBranch-POSITIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "archiveResearchBranch",
+            "method": "POST",
+            "path": "/api/v2/research-branches/{id}/archive",
+            "path_values": {
+              "id": "a72ca0aa-f1f0-5760-a2c2-cfe9fea37c7f"
+            },
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "0e6a3140-4ac4-52ed-9948-eb103122f37c",
+                "revision_id": "c6eb4612-7f9f-526b-8323-c9de3b3a526c",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "af7cc2ec354eeedd1b8713efc08a3968f7e755bd6be78b9950eb686b103334b2"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "request": {
+                "branch_ref": {
+                  "entity_id": "fbefe6c0-1ee8-58f6-854f-57899a93c0d5",
+                  "revision_id": "1c5db13a-2f7a-588f-b04e-e42a3b476aba",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "a2905dc1e6024551565039a34393e2f2eeda07e1880d172a771e0be961abef50"
+                },
+                "expected_branch_generation": 4,
+                "reason": "retain immutable history"
+              }
+            },
+            "command_envelope": {
+              "command_id": "10a86a96-3c2a-5832-b183-83e310c00db0",
+              "payload_hash_domain": "canonical-json-sha256-v1",
+              "payload_hash": "da97740aaee3e1cbfc67eb0f3023b27e1f79940f4d2dd01e354c8f306758f4ba",
+              "resource_scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              },
+              "expected_generation": 4,
+              "subject_refs": [
+                {
+                  "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                  "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                }
+              ],
+              "payload": {
+                "request": {
+                  "branch_ref": {
+                    "entity_id": "fbefe6c0-1ee8-58f6-854f-57899a93c0d5",
+                    "revision_id": "1c5db13a-2f7a-588f-b04e-e42a3b476aba",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "a2905dc1e6024551565039a34393e2f2eeda07e1880d172a771e0be961abef50"
+                  },
+                  "expected_branch_generation": 4,
+                  "reason": "retain immutable history"
+                }
+              }
+            },
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "branch_generation": 4,
+            "snapshots_count": 3,
+            "run_count": 8
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/92",
+          "input_model": "ApiRequest_archiveResearchBranch",
+          "response_model": "ResearchBranch",
+          "response_envelope": "OperationReceipt",
+          "response_cardinality": "ONE"
+        },
+        "mutation": null,
+        "interleaving": [],
+        "expected_model": "ResearchBranch",
+        "expected_domain_model_if_hold": null,
+        "expected_observations": {
+          "state": "ARCHIVED",
+          "snapshots_count": 3,
+          "run_count": 8,
+          "history_retained": true
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA04-U03",
+        "consumer_units": [
+          "MA10-U03",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/277",
+        "case_id": "WIRE-archiveResearchBranch-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-archiveResearchBranch-NEGATIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "archiveResearchBranch",
+            "method": "POST",
+            "path": "/api/v2/research-branches/{id}/archive",
+            "path_values": {
+              "id": "a72ca0aa-f1f0-5760-a2c2-cfe9fea37c7f"
+            },
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "0e6a3140-4ac4-52ed-9948-eb103122f37c",
+                "revision_id": "c6eb4612-7f9f-526b-8323-c9de3b3a526c",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "af7cc2ec354eeedd1b8713efc08a3968f7e755bd6be78b9950eb686b103334b2"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "request": {
+                "branch_ref": {
+                  "entity_id": "fbefe6c0-1ee8-58f6-854f-57899a93c0d5",
+                  "revision_id": "1c5db13a-2f7a-588f-b04e-e42a3b476aba",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "a2905dc1e6024551565039a34393e2f2eeda07e1880d172a771e0be961abef50"
+                },
+                "expected_branch_generation": 4,
+                "reason": "retain immutable history"
+              }
+            },
+            "command_envelope": {
+              "command_id": "10a86a96-3c2a-5832-b183-83e310c00db0",
+              "payload_hash_domain": "canonical-json-sha256-v1",
+              "payload_hash": "da97740aaee3e1cbfc67eb0f3023b27e1f79940f4d2dd01e354c8f306758f4ba",
+              "resource_scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              },
+              "expected_generation": 4,
+              "subject_refs": [
+                {
+                  "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                  "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                }
+              ],
+              "payload": {
+                "request": {
+                  "branch_ref": {
+                    "entity_id": "fbefe6c0-1ee8-58f6-854f-57899a93c0d5",
+                    "revision_id": "1c5db13a-2f7a-588f-b04e-e42a3b476aba",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "a2905dc1e6024551565039a34393e2f2eeda07e1880d172a771e0be961abef50"
+                  },
+                  "expected_branch_generation": 4,
+                  "reason": "retain immutable history"
+                }
+              }
+            },
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "branch_generation": 4,
+            "snapshots_count": 3,
+            "run_count": 8
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/92",
+          "mutation_operations": [
+            {
+              "op": "set",
+              "path": "/wire/request_payload/request/expected_branch_generation",
+              "value": 3
+            }
+          ],
+          "after_mutation_recompute_command_hash": true,
+          "input_model": "ApiRequest_archiveResearchBranch",
+          "response_model": "ResearchBranch",
+          "response_envelope": "OperationReceipt",
+          "response_cardinality": "ONE"
+        },
+        "mutation": "archive expected generation3 against current4",
+        "interleaving": [],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "ResearchBranch",
+        "expected_observations": {
+          "http": 409,
+          "state": "EDITING"
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA04-U03",
+        "consumer_units": [
+          "MA10-U03",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/278",
+        "case_id": "WIRE-archiveResearchBranch-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-archiveResearchBranch-RACE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "archiveResearchBranch",
+            "method": "POST",
+            "path": "/api/v2/research-branches/{id}/archive",
+            "path_values": {
+              "id": "a72ca0aa-f1f0-5760-a2c2-cfe9fea37c7f"
+            },
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "0e6a3140-4ac4-52ed-9948-eb103122f37c",
+                "revision_id": "c6eb4612-7f9f-526b-8323-c9de3b3a526c",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "af7cc2ec354eeedd1b8713efc08a3968f7e755bd6be78b9950eb686b103334b2"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "request": {
+                "branch_ref": {
+                  "entity_id": "fbefe6c0-1ee8-58f6-854f-57899a93c0d5",
+                  "revision_id": "1c5db13a-2f7a-588f-b04e-e42a3b476aba",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "a2905dc1e6024551565039a34393e2f2eeda07e1880d172a771e0be961abef50"
+                },
+                "expected_branch_generation": 4,
+                "reason": "retain immutable history"
+              }
+            },
+            "command_envelope": {
+              "command_id": "10a86a96-3c2a-5832-b183-83e310c00db0",
+              "payload_hash_domain": "canonical-json-sha256-v1",
+              "payload_hash": "da97740aaee3e1cbfc67eb0f3023b27e1f79940f4d2dd01e354c8f306758f4ba",
+              "resource_scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              },
+              "expected_generation": 4,
+              "subject_refs": [
+                {
+                  "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                  "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                }
+              ],
+              "payload": {
+                "request": {
+                  "branch_ref": {
+                    "entity_id": "fbefe6c0-1ee8-58f6-854f-57899a93c0d5",
+                    "revision_id": "1c5db13a-2f7a-588f-b04e-e42a3b476aba",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "a2905dc1e6024551565039a34393e2f2eeda07e1880d172a771e0be961abef50"
+                  },
+                  "expected_branch_generation": 4,
+                  "reason": "retain immutable history"
+                }
+              }
+            },
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "branch_generation": 4,
+            "snapshots_count": 3,
+            "run_count": 8
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/92",
+          "actors": [
+            {
+              "actor_id": "A",
+              "request": {
+                "operation_id": "archiveResearchBranch",
+                "method": "POST",
+                "path": "/api/v2/research-branches/{id}/archive",
+                "path_values": {
+                  "id": "a72ca0aa-f1f0-5760-a2c2-cfe9fea37c7f"
+                },
+                "authenticated_context_fixture": {
+                  "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+                  "policy_receipt_ref": {
+                    "entity_id": "0e6a3140-4ac4-52ed-9948-eb103122f37c",
+                    "revision_id": "c6eb4612-7f9f-526b-8323-c9de3b3a526c",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "af7cc2ec354eeedd1b8713efc08a3968f7e755bd6be78b9950eb686b103334b2"
+                  },
+                  "scope": {
+                    "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                    "environment": "LAB",
+                    "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                    "group_id": null
+                  }
+                },
+                "request_payload": {
+                  "request": {
+                    "branch_ref": {
+                      "entity_id": "fbefe6c0-1ee8-58f6-854f-57899a93c0d5",
+                      "revision_id": "1c5db13a-2f7a-588f-b04e-e42a3b476aba",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "a2905dc1e6024551565039a34393e2f2eeda07e1880d172a771e0be961abef50"
+                    },
+                    "expected_branch_generation": 4,
+                    "reason": "retain immutable history"
+                  }
+                },
+                "command_envelope": {
+                  "command_id": "10a86a96-3c2a-5832-b183-83e310c00db0",
+                  "payload_hash_domain": "canonical-json-sha256-v1",
+                  "payload_hash": "da97740aaee3e1cbfc67eb0f3023b27e1f79940f4d2dd01e354c8f306758f4ba",
+                  "resource_scope": {
+                    "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                    "environment": "LAB",
+                    "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                    "group_id": null
+                  },
+                  "expected_generation": 4,
+                  "subject_refs": [
+                    {
+                      "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                      "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                    }
+                  ],
+                  "payload": {
+                    "request": {
+                      "branch_ref": {
+                        "entity_id": "fbefe6c0-1ee8-58f6-854f-57899a93c0d5",
+                        "revision_id": "1c5db13a-2f7a-588f-b04e-e42a3b476aba",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "a2905dc1e6024551565039a34393e2f2eeda07e1880d172a771e0be961abef50"
+                      },
+                      "expected_branch_generation": 4,
+                      "reason": "retain immutable history"
+                    }
+                  }
+                },
+                "dto_profile": "candidate.5",
+                "dto_header": {
+                  "X-MA-DTO-Version": "candidate.5"
+                }
+              }
+            },
+            {
+              "actor_id": "B",
+              "source_event_ref": {
+                "entity_id": "903042d8-7d2d-5332-8ab6-b04a380b32e4",
+                "revision_id": "4c708136-e2ff-5bdc-b67b-d827de2b256c",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "d3ffc255cf6bac5fc31b27acff3dac63028d968e35e57efb9e6612d2098e1360"
+              },
+              "generation_before": 4,
+              "generation_after": 5,
+              "frontier_before": 12,
+              "frontier_after": 13
+            }
+          ],
+          "schedule": [
+            {
+              "at": 1,
+              "actor": "A",
+              "action": "read exact initial-world source/ref/generation/frontier"
+            },
+            {
+              "at": 2,
+              "actor": "B",
+              "action": "append immutable successor or race same command according to named interleaving",
+              "named_event": [
+                "archive races code save at generation4"
+              ]
+            },
+            {
+              "at": 3,
+              "actor": "A",
+              "action": "attempt exact original generation/frontier commit or read next snapshot page"
+            }
+          ],
+          "input_model": "ApiRequest_archiveResearchBranch",
+          "response_model": "ResearchBranch",
+          "response_envelope": "OperationReceipt",
+          "response_cardinality": "ONE"
+        },
+        "mutation": null,
+        "interleaving": [
+          "archive races code save at generation4"
+        ],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "ResearchBranch",
+        "expected_observations": {
+          "winner_count": 1,
+          "loser_http": 409,
+          "history_append_count": 1
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA04-U03",
+        "consumer_units": [
+          "MA10-U03",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    }
+  ],
+  "additional_required_cases_if_not_in_legacy": "Use current v9 case_refs/required descendants and explicit adapter profile; legacy fixtures not universal current payload positives",
+  "qualification": {
+    "source_assembly": "PENDING",
+    "context_profile": "PENDING_APPLICABILITY",
+    "WO_Grant_Writer_Budget": "NOT_AUTHORIZED",
+    "runtime": "APPLICABLE_NAMED_GATE_ONLY"
+  },
+  "unresolved_implementation_binding": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here.",
+  "implementation_not_authorized": true
+}

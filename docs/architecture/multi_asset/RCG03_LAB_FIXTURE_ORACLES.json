@@ -1,0 +1,3509 @@
+{
+  "schema_version": "rcg03.lab.fixture_oracles.v1",
+  "revision": "candidate.4",
+  "authority_effect": "AUTHOR_SPECIFICATION_VALIDATION_ONLY_NOT_RUNTIME_OR_ACCEPTANCE",
+  "cases": [
+    {
+      "case_id": "LAB-ARCHIVE-P01",
+      "kind": "POSITIVE",
+      "finding_ids": [
+        "PRODUCT-S4-01"
+      ],
+      "operation": "analyzeInboxSource",
+      "fixture_model": "SourceAnalysisRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "source_ref": {
+          "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+          "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+        },
+        "tool_profile_ref": {
+          "entity_id": "d445d8b8-bb35-58c0-a2fa-314d09d4d330",
+          "revision_id": "7c1c1423-8adf-5564-8522-a1253932ec87",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "c843051730ab181622f70ed1f441c31a92d3b78b01143ee0d54776f8f6d295a7"
+        },
+        "comparison_catalog_ref": {
+          "entity_id": "86879c65-5d2f-5383-80cc-5824bd7f89a2",
+          "revision_id": "2dffb303-e771-5ce6-bf97-8e813ec1963e",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "396345588bed0a9948bc0bef3fc6be0b364227cac169a3420f3607821c6ece5c"
+        },
+        "resource_budget_ref": {
+          "entity_id": "e106ab40-4a89-5c8e-825c-16263a03c46c",
+          "revision_id": "0759cf5f-4dd6-53af-908e-34b46c3dc122",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "495617763caa3aef76d19e10390281afcfebca6496d806281f289362275ef70c"
+        }
+      },
+      "preconditions": [
+        "immutable original synthetic bytes present; AST only"
+      ],
+      "expected": {
+        "http": 200,
+        "result_model": "SourceAnalysisReport",
+        "status": "ANALYZED",
+        "import_count": 0,
+        "exec_count": 0
+      },
+      "assertions": [
+        {
+          "path": "effect.import_count",
+          "operator": "EQ",
+          "value": 0
+        },
+        {
+          "path": "effect.exec_count",
+          "operator": "EQ",
+          "value": 0
+        },
+        {
+          "path": "result.original_byte_hash",
+          "operator": "EQ",
+          "value": "92980950ff8f43a05ddf584fb7b58baff82d5dfb650605fb02cd012205fddf0b"
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/source-inbox/{id}/analyses",
+        "response_item_model": "SourceAnalysisReport",
+        "request_payload_fields": {
+          "request": {
+            "type": "SourceAnalysisRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "source_ref": {
+            "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+            "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+          },
+          "tool_profile_ref": {
+            "entity_id": "d445d8b8-bb35-58c0-a2fa-314d09d4d330",
+            "revision_id": "7c1c1423-8adf-5564-8522-a1253932ec87",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "c843051730ab181622f70ed1f441c31a92d3b78b01143ee0d54776f8f6d295a7"
+          },
+          "comparison_catalog_ref": {
+            "entity_id": "86879c65-5d2f-5383-80cc-5824bd7f89a2",
+            "revision_id": "2dffb303-e771-5ce6-bf97-8e813ec1963e",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "396345588bed0a9948bc0bef3fc6be0b364227cac169a3420f3607821c6ece5c"
+          },
+          "resource_budget_ref": {
+            "entity_id": "e106ab40-4a89-5c8e-825c-16263a03c46c",
+            "revision_id": "0759cf5f-4dd6-53af-908e-34b46c3dc122",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "495617763caa3aef76d19e10390281afcfebca6496d806281f289362275ef70c"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "LAB-ARCHIVE-P02",
+      "kind": "POSITIVE",
+      "finding_ids": [
+        "PRODUCT-S4-01"
+      ],
+      "operation": "executeArchivePlan",
+      "fixture_model": "ArchiveExecuteRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "plan_ref": {
+          "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+          "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+        },
+        "human_decision_receipt_ref": {
+          "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+          "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+        },
+        "expected_source_ref": {
+          "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+          "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+        },
+        "expected_target_generation": 7
+      },
+      "preconditions": [
+        "Human decision exact plan matches",
+        "target generation=7",
+        "preflight READY_FOR_HUMAN"
+      ],
+      "expected": {
+        "http": 200,
+        "state": "VERIFIED_ARCHIVED",
+        "cleanup_state": "COMPLETE",
+        "original_capture_available": true
+      },
+      "assertions": [
+        {
+          "path": "result.verified_byte_hash",
+          "operator": "EQ",
+          "value": "92980950ff8f43a05ddf584fb7b58baff82d5dfb650605fb02cd012205fddf0b"
+        },
+        {
+          "path": "state.target.create_mode",
+          "operator": "EQ",
+          "value": "CreateNew"
+        },
+        {
+          "path": "state.original_capture_available",
+          "operator": "EQ",
+          "value": true
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/archive-plans/{id}/execute",
+        "response_item_model": "ArchiveOperationReceipt",
+        "request_payload_fields": {
+          "request": {
+            "type": "ArchiveExecuteRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "plan_ref": {
+            "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+            "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+          },
+          "human_decision_receipt_ref": {
+            "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+            "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+            "owner": "HUMAN",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+          },
+          "expected_source_ref": {
+            "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+            "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+          },
+          "expected_target_generation": 7
+        }
+      }
+    },
+    {
+      "case_id": "LAB-ARCHIVE-N01",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-01"
+      ],
+      "operation": "executeArchivePlan",
+      "fixture_model": "ArchiveExecuteRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "plan_ref": {
+          "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+          "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+        },
+        "human_decision_receipt_ref": {
+          "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+          "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+        },
+        "expected_source_ref": {
+          "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+          "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+        },
+        "expected_target_generation": 7
+      },
+      "preconditions": [
+        "target same filename has different bytes/hash"
+      ],
+      "expected": {
+        "http": 409,
+        "error": "HASH_CONFLICT",
+        "original_retained": true,
+        "target_overwrites": 0
+      },
+      "assertions": [
+        {
+          "path": "effect.target_overwrites",
+          "operator": "EQ",
+          "value": 0
+        },
+        {
+          "path": "state.inbox_original_retained",
+          "operator": "EQ",
+          "value": true
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/archive-plans/{id}/execute",
+        "response_item_model": "ArchiveOperationReceipt",
+        "request_payload_fields": {
+          "request": {
+            "type": "ArchiveExecuteRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "plan_ref": {
+            "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+            "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+          },
+          "human_decision_receipt_ref": {
+            "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+            "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+            "owner": "HUMAN",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+          },
+          "expected_source_ref": {
+            "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+            "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+          },
+          "expected_target_generation": 7
+        }
+      }
+    },
+    {
+      "case_id": "LAB-ARCHIVE-N02",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-01"
+      ],
+      "operation": "createArchivePlan",
+      "fixture_model": "ArchivePlanRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "source_ref": {
+          "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+          "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+        },
+        "analysis_ref": {
+          "entity_id": "174a8343-3883-59d8-aa57-af07453e8a57",
+          "revision_id": "eb96ce33-f88b-5c9e-8a0e-e0481d436035",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "27992a97f60e0e9479ccd66b7dc9446b34eeae47d65ae8c6e9a94de3c3b3121b"
+        },
+        "target_provider_ref": {
+          "entity_id": "30d99864-a94a-5e2c-8fab-2322f72d6c7e",
+          "revision_id": "8f6c989b-f0c5-5626-99a1-ff4a1be70624",
+          "owner": "ARTIFACT_PROVIDER",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "50a691aa62f56d4d53535b0354d6fa55280aa4af86b972b596142fb7bcc3d8a6"
+        },
+        "target_category": "indicator/trend",
+        "normalized_filename": "../outside.py",
+        "action": "MOVE_AFTER_VERIFIED_COPY",
+        "retain_inbox_source": false,
+        "licence_decision_ref": {
+          "entity_id": "837500d0-80d0-5f7a-8b60-f43214fc9c9a",
+          "revision_id": "695b8846-e18c-50f9-8a4c-1a0c9993cddf",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "24237946c2e108ce8d6e27aa926fd6b48c4bead5cf08590b9221bfc4e3f30a0a"
+        }
+      },
+      "preconditions": [
+        "provider resolved path would escape allowlist"
+      ],
+      "expected": {
+        "http": 422,
+        "error": "INVALID_PATH",
+        "writes": 0
+      },
+      "assertions": [
+        {
+          "path": "effect.writes",
+          "operator": "EQ",
+          "value": 0
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/source-inbox/{id}/archive-plans",
+        "response_item_model": "ArchivePlan",
+        "request_payload_fields": {
+          "request": {
+            "type": "ArchivePlanRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "source_ref": {
+            "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+            "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+          },
+          "analysis_ref": {
+            "entity_id": "174a8343-3883-59d8-aa57-af07453e8a57",
+            "revision_id": "eb96ce33-f88b-5c9e-8a0e-e0481d436035",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "27992a97f60e0e9479ccd66b7dc9446b34eeae47d65ae8c6e9a94de3c3b3121b"
+          },
+          "target_provider_ref": {
+            "entity_id": "30d99864-a94a-5e2c-8fab-2322f72d6c7e",
+            "revision_id": "8f6c989b-f0c5-5626-99a1-ff4a1be70624",
+            "owner": "ARTIFACT_PROVIDER",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "50a691aa62f56d4d53535b0354d6fa55280aa4af86b972b596142fb7bcc3d8a6"
+          },
+          "target_category": "indicator/trend",
+          "normalized_filename": "../outside.py",
+          "action": "MOVE_AFTER_VERIFIED_COPY",
+          "retain_inbox_source": false,
+          "licence_decision_ref": {
+            "entity_id": "837500d0-80d0-5f7a-8b60-f43214fc9c9a",
+            "revision_id": "695b8846-e18c-50f9-8a4c-1a0c9993cddf",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "24237946c2e108ce8d6e27aa926fd6b48c4bead5cf08590b9221bfc4e3f30a0a"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "LAB-ARCHIVE-N03",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-01"
+      ],
+      "operation": "executeArchivePlan",
+      "fixture_model": "ArchiveExecuteRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "plan_ref": {
+          "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+          "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+        },
+        "human_decision_receipt_ref": {
+          "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+          "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+        },
+        "expected_source_ref": {
+          "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+          "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+        },
+        "expected_target_generation": 7
+      },
+      "preconditions": [
+        "license UNKNOWN and attempted non-isolated Feature execution approval"
+      ],
+      "expected": {
+        "http": 422,
+        "error": "LICENSE_OR_SAFETY_UNQUALIFIED",
+        "archive_state": "QUARANTINED",
+        "feature_qualification": false
+      },
+      "assertions": [
+        {
+          "path": "authority.feature_qualification",
+          "operator": "EQ",
+          "value": false
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/archive-plans/{id}/execute",
+        "response_item_model": "ArchiveOperationReceipt",
+        "request_payload_fields": {
+          "request": {
+            "type": "ArchiveExecuteRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "plan_ref": {
+            "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+            "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+          },
+          "human_decision_receipt_ref": {
+            "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+            "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+            "owner": "HUMAN",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+          },
+          "expected_source_ref": {
+            "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+            "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+          },
+          "expected_target_generation": 7
+        }
+      }
+    },
+    {
+      "case_id": "LAB-ARCHIVE-C01",
+      "kind": "CONCURRENCY",
+      "finding_ids": [
+        "PRODUCT-S4-01"
+      ],
+      "operation": "executeArchivePlan",
+      "fixture_model": "ArchiveExecuteRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "plan_ref": {
+          "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+          "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+        },
+        "human_decision_receipt_ref": {
+          "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+          "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+        },
+        "expected_source_ref": {
+          "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+          "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+        },
+        "expected_target_generation": 7
+      },
+      "preconditions": [
+        "two writers expect same generation 7"
+      ],
+      "expected": {
+        "winner_count": 1,
+        "loser_http": 409,
+        "overwrites": 0
+      },
+      "assertions": [
+        {
+          "path": "effect.successful_target_create_count",
+          "operator": "EQ",
+          "value": 1
+        },
+        {
+          "path": "effect.overwrites",
+          "operator": "EQ",
+          "value": 0
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/archive-plans/{id}/execute",
+        "response_item_model": "ArchiveOperationReceipt",
+        "request_payload_fields": {
+          "request": {
+            "type": "ArchiveExecuteRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "plan_ref": {
+            "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+            "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+          },
+          "human_decision_receipt_ref": {
+            "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+            "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+            "owner": "HUMAN",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+          },
+          "expected_source_ref": {
+            "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+            "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+          },
+          "expected_target_generation": 7
+        }
+      }
+    },
+    {
+      "case_id": "LAB-ARCHIVE-R01",
+      "kind": "RECOVERY",
+      "finding_ids": [
+        "PRODUCT-S4-01"
+      ],
+      "operation": "getArchiveOperation",
+      "fixture_model": "ArchiveExecuteRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "plan_ref": {
+          "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+          "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+        },
+        "human_decision_receipt_ref": {
+          "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+          "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+        },
+        "expected_source_ref": {
+          "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+          "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+        },
+        "expected_target_generation": 7
+      },
+      "preconditions": [
+        "crash after durable verified target but before client confirmation; journal ownership and exacthash prove result"
+      ],
+      "expected": {
+        "state": "VERIFIED_ARCHIVED",
+        "repeat_copy_count": 0,
+        "original_capture_available": true
+      },
+      "assertions": [
+        {
+          "path": "effect.repeat_copy_count",
+          "operator": "EQ",
+          "value": 0
+        },
+        {
+          "path": "state.original_capture_available",
+          "operator": "EQ",
+          "value": true
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "GET",
+        "path": "/api/v2/archive-operations/{id}",
+        "response_item_model": "ArchiveOperationReceipt",
+        "request_payload_fields": {}
+      },
+      "request_payload": {}
+    },
+    {
+      "case_id": "LAB-ARCHIVE-R02",
+      "kind": "RECOVERY",
+      "finding_ids": [
+        "PRODUCT-S4-01"
+      ],
+      "operation": "getArchiveOperation",
+      "fixture_model": "ArchiveExecuteRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "plan_ref": {
+          "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+          "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+        },
+        "human_decision_receipt_ref": {
+          "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+          "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+        },
+        "expected_source_ref": {
+          "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+          "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+        },
+        "expected_target_generation": 7
+      },
+      "preconditions": [
+        "target bytes unavailable and effect cannot be proven; never infer no-effect"
+      ],
+      "expected": {
+        "state": "UNKNOWN_NEEDS_RECOVERY",
+        "cleanup_attempts": 0
+      },
+      "assertions": [
+        {
+          "path": "effect.cleanup_attempts",
+          "operator": "EQ",
+          "value": 0
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "GET",
+        "path": "/api/v2/archive-operations/{id}",
+        "response_item_model": "ArchiveOperationReceipt",
+        "request_payload_fields": {}
+      },
+      "request_payload": {}
+    },
+    {
+      "case_id": "LAB-ARCHIVE-P03",
+      "kind": "POSITIVE",
+      "finding_ids": [
+        "PRODUCT-S4-01"
+      ],
+      "operation": "executeArchivePlan",
+      "fixture_model": "ArchiveExecuteRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "plan_ref": {
+          "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+          "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+        },
+        "human_decision_receipt_ref": {
+          "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+          "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+        },
+        "expected_source_ref": {
+          "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+          "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+        },
+        "expected_target_generation": 7
+      },
+      "preconditions": [
+        "Human approved exactbyte duplicate relation; both source/licence lineage retained"
+      ],
+      "expected": {
+        "state": "DUPLICATE_RECORDED",
+        "new_archive_master_count": 0,
+        "source_ids_retained": 2
+      },
+      "assertions": [
+        {
+          "path": "effect.new_archive_master_count",
+          "operator": "EQ",
+          "value": 0
+        },
+        {
+          "path": "identity.source_ids_retained",
+          "operator": "EQ",
+          "value": 2
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/archive-plans/{id}/execute",
+        "response_item_model": "ArchiveOperationReceipt",
+        "request_payload_fields": {
+          "request": {
+            "type": "ArchiveExecuteRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "plan_ref": {
+            "entity_id": "cf110b57-6415-597e-9ad6-ad579f56f71c",
+            "revision_id": "525727b7-4b64-59f5-b9a4-b54628742956",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+          },
+          "human_decision_receipt_ref": {
+            "entity_id": "baacb7a9-10b9-5b50-80a8-ed5462b92090",
+            "revision_id": "2880483b-8066-512a-aa9f-487f14da7a4b",
+            "owner": "HUMAN",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+          },
+          "expected_source_ref": {
+            "entity_id": "164bbe59-b7a9-5a06-a277-b1bb56945065",
+            "revision_id": "33b4c4eb-e0d2-5ce0-8cfe-e954f9bbd09d",
+            "owner": "E_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+          },
+          "expected_target_generation": 7
+        }
+      }
+    },
+    {
+      "case_id": "LAB-BUILDER-P01",
+      "kind": "POSITIVE",
+      "finding_ids": [
+        "PRODUCT-S4-02"
+      ],
+      "operation": "applyBuilderEdit",
+      "fixture_model": "BuilderEditCommand",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "graph_ref": {
+          "entity_id": "b572f95a-e402-51e6-9087-9fae5b2d6031",
+          "revision_id": "0587a414-9d6c-508a-93d1-5ff861fa2c9c",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b5c9c778f8dd9662e53c0ce03f32e895364319e122f563ceeab7f3bfae831595"
+        },
+        "expected_branch_generation": 3,
+        "action": "DISABLE_NODE",
+        "node_id": "ad80e52b-59fa-59c1-95ce-a021bcb6bc61"
+      },
+      "preconditions": [
+        "one optional pure FEATURE disabled; consumers and full DAG still valid"
+      ],
+      "expected": {
+        "new_graph_revision": true,
+        "minimum_roles": [
+          "ENTRY",
+          "EXIT",
+          "STRATEGY_RISK"
+        ],
+        "emitted_trading_commands": 0
+      },
+      "assertions": [
+        {
+          "path": "effect.emitted_trading_commands",
+          "operator": "EQ",
+          "value": 0
+        },
+        {
+          "path": "graph.effective_optional_node_count",
+          "operator": "EQ",
+          "value": 0
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/strategy-drafts/{id}/edits",
+        "response_item_model": "StrategyGraphRevision",
+        "request_payload_fields": {
+          "edit": {
+            "type": "BuilderEditCommand",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "edit": {
+          "branch_ref": {
+            "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+            "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+          },
+          "graph_ref": {
+            "entity_id": "b572f95a-e402-51e6-9087-9fae5b2d6031",
+            "revision_id": "0587a414-9d6c-508a-93d1-5ff861fa2c9c",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "b5c9c778f8dd9662e53c0ce03f32e895364319e122f563ceeab7f3bfae831595"
+          },
+          "expected_branch_generation": 3,
+          "action": "DISABLE_NODE",
+          "node_id": "ad80e52b-59fa-59c1-95ce-a021bcb6bc61"
+        }
+      }
+    },
+    {
+      "case_id": "LAB-BUILDER-N01",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-02"
+      ],
+      "operation": "applyBuilderEdit",
+      "fixture_model": "BuilderEditCommand",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "graph_ref": {
+          "entity_id": "b572f95a-e402-51e6-9087-9fae5b2d6031",
+          "revision_id": "0587a414-9d6c-508a-93d1-5ff861fa2c9c",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b5c9c778f8dd9662e53c0ce03f32e895364319e122f563ceeab7f3bfae831595"
+        },
+        "expected_branch_generation": 3,
+        "action": "DISABLE_NODE",
+        "node_id": "da1f79d5-6acf-5840-a45e-15072a983313"
+      },
+      "preconditions": [
+        "node_kind SAFETY non_disableable true"
+      ],
+      "expected": {
+        "http": 422,
+        "error": "NON_DISABLEABLE_SAFETY",
+        "graph_unchanged": true
+      },
+      "assertions": [
+        {
+          "path": "state.graph_revision_unchanged",
+          "operator": "EQ",
+          "value": true
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/strategy-drafts/{id}/edits",
+        "response_item_model": "StrategyGraphRevision",
+        "request_payload_fields": {
+          "edit": {
+            "type": "BuilderEditCommand",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "edit": {
+          "branch_ref": {
+            "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+            "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+          },
+          "graph_ref": {
+            "entity_id": "b572f95a-e402-51e6-9087-9fae5b2d6031",
+            "revision_id": "0587a414-9d6c-508a-93d1-5ff861fa2c9c",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "b5c9c778f8dd9662e53c0ce03f32e895364319e122f563ceeab7f3bfae831595"
+          },
+          "expected_branch_generation": 3,
+          "action": "DISABLE_NODE",
+          "node_id": "da1f79d5-6acf-5840-a45e-15072a983313"
+        }
+      }
+    },
+    {
+      "case_id": "LAB-BUILDER-N02",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-02"
+      ],
+      "operation": "applyBuilderEdit",
+      "fixture_model": "BuilderEditCommand",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "graph_ref": {
+          "entity_id": "b572f95a-e402-51e6-9087-9fae5b2d6031",
+          "revision_id": "0587a414-9d6c-508a-93d1-5ff861fa2c9c",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b5c9c778f8dd9662e53c0ce03f32e895364319e122f563ceeab7f3bfae831595"
+        },
+        "expected_branch_generation": 3,
+        "action": "DISABLE_NODE",
+        "node_id": "820ec67c-53a8-5959-a731-83c203bd3165"
+      },
+      "preconditions": [
+        "last enabled ENTRY across complete nested graph"
+      ],
+      "expected": {
+        "http": 422,
+        "error": "LAST_REQUIRED_RULE",
+        "graph_unchanged": true
+      },
+      "assertions": [
+        {
+          "path": "state.graph_revision_unchanged",
+          "operator": "EQ",
+          "value": true
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/strategy-drafts/{id}/edits",
+        "response_item_model": "StrategyGraphRevision",
+        "request_payload_fields": {
+          "edit": {
+            "type": "BuilderEditCommand",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "edit": {
+          "branch_ref": {
+            "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+            "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+          },
+          "graph_ref": {
+            "entity_id": "b572f95a-e402-51e6-9087-9fae5b2d6031",
+            "revision_id": "0587a414-9d6c-508a-93d1-5ff861fa2c9c",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "b5c9c778f8dd9662e53c0ce03f32e895364319e122f563ceeab7f3bfae831595"
+          },
+          "expected_branch_generation": 3,
+          "action": "DISABLE_NODE",
+          "node_id": "820ec67c-53a8-5959-a731-83c203bd3165"
+        }
+      }
+    },
+    {
+      "case_id": "LAB-BUILDER-C01",
+      "kind": "CONCURRENCY",
+      "finding_ids": [
+        "PRODUCT-S4-02"
+      ],
+      "operation": "applyBuilderEdit",
+      "fixture_model": "BuilderEditCommand",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "graph_ref": {
+          "entity_id": "b572f95a-e402-51e6-9087-9fae5b2d6031",
+          "revision_id": "0587a414-9d6c-508a-93d1-5ff861fa2c9c",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b5c9c778f8dd9662e53c0ce03f32e895364319e122f563ceeab7f3bfae831595"
+        },
+        "expected_branch_generation": 3,
+        "action": "DISABLE_NODE",
+        "node_id": "ad80e52b-59fa-59c1-95ce-a021bcb6bc61"
+      },
+      "preconditions": [
+        "two writers read generation3; new revision and branch head atomic"
+      ],
+      "expected": {
+        "winner_count": 1,
+        "loser_http": 409,
+        "branch_generation": 4
+      },
+      "assertions": [
+        {
+          "path": "effect.successful_revision_count",
+          "operator": "EQ",
+          "value": 1
+        },
+        {
+          "path": "state.branch_generation",
+          "operator": "EQ",
+          "value": 4
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/strategy-drafts/{id}/edits",
+        "response_item_model": "StrategyGraphRevision",
+        "request_payload_fields": {
+          "edit": {
+            "type": "BuilderEditCommand",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "edit": {
+          "branch_ref": {
+            "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+            "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+          },
+          "graph_ref": {
+            "entity_id": "b572f95a-e402-51e6-9087-9fae5b2d6031",
+            "revision_id": "0587a414-9d6c-508a-93d1-5ff861fa2c9c",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "b5c9c778f8dd9662e53c0ce03f32e895364319e122f563ceeab7f3bfae831595"
+          },
+          "expected_branch_generation": 3,
+          "action": "DISABLE_NODE",
+          "node_id": "ad80e52b-59fa-59c1-95ce-a021bcb6bc61"
+        }
+      }
+    },
+    {
+      "case_id": "LAB-BUILDER-N03",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-02"
+      ],
+      "operation": "applyBuilderEdit",
+      "fixture_model": "BuilderEditCommand",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "graph_ref": {
+          "entity_id": "b572f95a-e402-51e6-9087-9fae5b2d6031",
+          "revision_id": "0587a414-9d6c-508a-93d1-5ff861fa2c9c",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "b5c9c778f8dd9662e53c0ce03f32e895364319e122f563ceeab7f3bfae831595"
+        },
+        "expected_branch_generation": 3,
+        "action": "DISABLE_NODE",
+        "node_id": "ad80e52b-59fa-59c1-95ce-a021bcb6bc61"
+      },
+      "preconditions": [
+        "Substrategy expansion introduces edge to own ancestor"
+      ],
+      "expected": {
+        "http": 422,
+        "error": "GRAPH_CYCLE",
+        "source_graph_unchanged": true
+      },
+      "assertions": [
+        {
+          "path": "state.graph_revision_unchanged",
+          "operator": "EQ",
+          "value": true
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/strategy-drafts/{id}/edits",
+        "response_item_model": "StrategyGraphRevision",
+        "request_payload_fields": {
+          "edit": {
+            "type": "BuilderEditCommand",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "edit": {
+          "branch_ref": {
+            "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+            "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+          },
+          "graph_ref": {
+            "entity_id": "b572f95a-e402-51e6-9087-9fae5b2d6031",
+            "revision_id": "0587a414-9d6c-508a-93d1-5ff861fa2c9c",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "b5c9c778f8dd9662e53c0ce03f32e895364319e122f563ceeab7f3bfae831595"
+          },
+          "expected_branch_generation": 3,
+          "action": "DISABLE_NODE",
+          "node_id": "ad80e52b-59fa-59c1-95ce-a021bcb6bc61"
+        }
+      }
+    },
+    {
+      "case_id": "LAB-AI-P01",
+      "kind": "POSITIVE",
+      "finding_ids": [
+        "PRODUCT-S4-03"
+      ],
+      "operation": "startAnalystRun",
+      "fixture_model": "AnalystRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "baseline_snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "baseline_run_ref": {
+          "entity_id": "44726b7f-15a2-5acc-b07f-5c4ae8cdbb6f",
+          "revision_id": "08675283-f9c5-5b05-bbb5-b5d8e9785965",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e4786429c3f050c94001d3277345fcabd89e7e088d2ab27d20bcb66d7404be7b"
+        },
+        "benchmark_ref": {
+          "entity_id": "d2c59907-fc6d-55a8-a9ec-61bc7d700e6d",
+          "revision_id": "56f15a5f-9a20-52e2-b884-2344e32f465c",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "175d1c9a8845bffdfaf6d5f5ed882098ccf2f5b248b0d70dd88f52966e0669b2"
+        },
+        "selection": {
+          "scope_kind": "WHOLE_STRATEGY",
+          "node_ids": [],
+          "parameter_names": []
+        },
+        "validation_plan_ref": {
+          "entity_id": "d436e2a7-0769-58d2-85c6-c6356d08601c",
+          "revision_id": "dd177d6c-fe82-59a1-9a31-a504e81ff195",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "f88d9c836cf2a6b2d06ef232e2c18f0e01b0ca132f4723905de4087b67db27a5"
+        },
+        "provider_profile_ref": {
+          "entity_id": "c0652795-25c6-52b0-8d14-45e10c2d0412",
+          "revision_id": "7d23b56e-50c1-511d-a4bf-5f08a8d8d825",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8d50ffdb7d98e59867e592dd7cace59acf93d60b635663dd889813d904b1a48d"
+        },
+        "prompt_template_ref": {
+          "entity_id": "bf52907d-2c9c-5d16-a3dd-45d7f0847b7a",
+          "revision_id": "4f3cc240-5998-569b-ae7a-db0225613e9e",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e56e0a5a70c0eae5878a9fd96be2c0016f566b21e654a17044bdbdfe8ef07720"
+        },
+        "budget": {
+          "requested_trials": 3,
+          "max_trials": 5,
+          "max_wall_seconds": 600,
+          "max_cpu_seconds": 1800,
+          "max_tokens": 12000,
+          "max_cost": "1.50",
+          "cost_currency": "USD"
+        },
+        "requested_by_receipt_ref": {
+          "entity_id": "61d8343e-1507-52f3-adc7-eea329586d00",
+          "revision_id": "0c934e01-cd50-521c-b42e-424afce5d8a7",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "0e307136f477cae871255f1c41edabc1a6ae7470170a6453f0a5df6a40a9b222"
+        }
+      },
+      "preconditions": [
+        "qualified researchprovider; policy-bounded budget; source/leakage validation before trials"
+      ],
+      "expected": {
+        "state": "QUEUED",
+        "max_trials": 5,
+        "automatic_publications": 0
+      },
+      "assertions": [
+        {
+          "path": "effect.automatic_publications",
+          "operator": "EQ",
+          "value": 0
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/analyst-runs",
+        "response_item_model": "AnalystRun",
+        "request_payload_fields": {
+          "request": {
+            "type": "AnalystRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "branch_ref": {
+            "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+            "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+          },
+          "baseline_snapshot_ref": {
+            "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+            "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+          },
+          "baseline_run_ref": {
+            "entity_id": "44726b7f-15a2-5acc-b07f-5c4ae8cdbb6f",
+            "revision_id": "08675283-f9c5-5b05-bbb5-b5d8e9785965",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "e4786429c3f050c94001d3277345fcabd89e7e088d2ab27d20bcb66d7404be7b"
+          },
+          "benchmark_ref": {
+            "entity_id": "d2c59907-fc6d-55a8-a9ec-61bc7d700e6d",
+            "revision_id": "56f15a5f-9a20-52e2-b884-2344e32f465c",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "175d1c9a8845bffdfaf6d5f5ed882098ccf2f5b248b0d70dd88f52966e0669b2"
+          },
+          "selection": {
+            "scope_kind": "WHOLE_STRATEGY",
+            "node_ids": [],
+            "parameter_names": []
+          },
+          "validation_plan_ref": {
+            "entity_id": "d436e2a7-0769-58d2-85c6-c6356d08601c",
+            "revision_id": "dd177d6c-fe82-59a1-9a31-a504e81ff195",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "f88d9c836cf2a6b2d06ef232e2c18f0e01b0ca132f4723905de4087b67db27a5"
+          },
+          "provider_profile_ref": {
+            "entity_id": "c0652795-25c6-52b0-8d14-45e10c2d0412",
+            "revision_id": "7d23b56e-50c1-511d-a4bf-5f08a8d8d825",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8d50ffdb7d98e59867e592dd7cace59acf93d60b635663dd889813d904b1a48d"
+          },
+          "prompt_template_ref": {
+            "entity_id": "bf52907d-2c9c-5d16-a3dd-45d7f0847b7a",
+            "revision_id": "4f3cc240-5998-569b-ae7a-db0225613e9e",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "e56e0a5a70c0eae5878a9fd96be2c0016f566b21e654a17044bdbdfe8ef07720"
+          },
+          "budget": {
+            "requested_trials": 3,
+            "max_trials": 5,
+            "max_wall_seconds": 600,
+            "max_cpu_seconds": 1800,
+            "max_tokens": 12000,
+            "max_cost": "1.50",
+            "cost_currency": "USD"
+          },
+          "requested_by_receipt_ref": {
+            "entity_id": "61d8343e-1507-52f3-adc7-eea329586d00",
+            "revision_id": "0c934e01-cd50-521c-b42e-424afce5d8a7",
+            "owner": "HUMAN",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "0e307136f477cae871255f1c41edabc1a6ae7470170a6453f0a5df6a40a9b222"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "LAB-AI-N01",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-03"
+      ],
+      "operation": "startAnalystRun",
+      "fixture_model": "AnalystRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "baseline_snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "baseline_run_ref": {
+          "entity_id": "44726b7f-15a2-5acc-b07f-5c4ae8cdbb6f",
+          "revision_id": "08675283-f9c5-5b05-bbb5-b5d8e9785965",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e4786429c3f050c94001d3277345fcabd89e7e088d2ab27d20bcb66d7404be7b"
+        },
+        "benchmark_ref": {
+          "entity_id": "d2c59907-fc6d-55a8-a9ec-61bc7d700e6d",
+          "revision_id": "56f15a5f-9a20-52e2-b884-2344e32f465c",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "175d1c9a8845bffdfaf6d5f5ed882098ccf2f5b248b0d70dd88f52966e0669b2"
+        },
+        "selection": {
+          "scope_kind": "WHOLE_STRATEGY",
+          "node_ids": [],
+          "parameter_names": []
+        },
+        "validation_plan_ref": {
+          "entity_id": "d436e2a7-0769-58d2-85c6-c6356d08601c",
+          "revision_id": "dd177d6c-fe82-59a1-9a31-a504e81ff195",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "f88d9c836cf2a6b2d06ef232e2c18f0e01b0ca132f4723905de4087b67db27a5"
+        },
+        "provider_profile_ref": {
+          "entity_id": "c0652795-25c6-52b0-8d14-45e10c2d0412",
+          "revision_id": "7d23b56e-50c1-511d-a4bf-5f08a8d8d825",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8d50ffdb7d98e59867e592dd7cace59acf93d60b635663dd889813d904b1a48d"
+        },
+        "prompt_template_ref": {
+          "entity_id": "bf52907d-2c9c-5d16-a3dd-45d7f0847b7a",
+          "revision_id": "4f3cc240-5998-569b-ae7a-db0225613e9e",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e56e0a5a70c0eae5878a9fd96be2c0016f566b21e654a17044bdbdfe8ef07720"
+        },
+        "budget": {
+          "requested_trials": 6,
+          "max_trials": 5,
+          "max_wall_seconds": 600,
+          "max_cpu_seconds": 1800,
+          "max_tokens": 12000,
+          "max_cost": "1.50",
+          "cost_currency": "USD"
+        },
+        "requested_by_receipt_ref": {
+          "entity_id": "61d8343e-1507-52f3-adc7-eea329586d00",
+          "revision_id": "0c934e01-cd50-521c-b42e-424afce5d8a7",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "0e307136f477cae871255f1c41edabc1a6ae7470170a6453f0a5df6a40a9b222"
+        }
+      },
+      "preconditions": [],
+      "expected": {
+        "http": 422,
+        "error": "FINITE_TRIAL_BUDGET_EXCEEDED",
+        "provider_calls": 0
+      },
+      "assertions": [
+        {
+          "path": "effect.provider_calls",
+          "operator": "EQ",
+          "value": 0
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/analyst-runs",
+        "response_item_model": "AnalystRun",
+        "request_payload_fields": {
+          "request": {
+            "type": "AnalystRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "branch_ref": {
+            "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+            "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+          },
+          "baseline_snapshot_ref": {
+            "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+            "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+          },
+          "baseline_run_ref": {
+            "entity_id": "44726b7f-15a2-5acc-b07f-5c4ae8cdbb6f",
+            "revision_id": "08675283-f9c5-5b05-bbb5-b5d8e9785965",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "e4786429c3f050c94001d3277345fcabd89e7e088d2ab27d20bcb66d7404be7b"
+          },
+          "benchmark_ref": {
+            "entity_id": "d2c59907-fc6d-55a8-a9ec-61bc7d700e6d",
+            "revision_id": "56f15a5f-9a20-52e2-b884-2344e32f465c",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "175d1c9a8845bffdfaf6d5f5ed882098ccf2f5b248b0d70dd88f52966e0669b2"
+          },
+          "selection": {
+            "scope_kind": "WHOLE_STRATEGY",
+            "node_ids": [],
+            "parameter_names": []
+          },
+          "validation_plan_ref": {
+            "entity_id": "d436e2a7-0769-58d2-85c6-c6356d08601c",
+            "revision_id": "dd177d6c-fe82-59a1-9a31-a504e81ff195",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "f88d9c836cf2a6b2d06ef232e2c18f0e01b0ca132f4723905de4087b67db27a5"
+          },
+          "provider_profile_ref": {
+            "entity_id": "c0652795-25c6-52b0-8d14-45e10c2d0412",
+            "revision_id": "7d23b56e-50c1-511d-a4bf-5f08a8d8d825",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8d50ffdb7d98e59867e592dd7cace59acf93d60b635663dd889813d904b1a48d"
+          },
+          "prompt_template_ref": {
+            "entity_id": "bf52907d-2c9c-5d16-a3dd-45d7f0847b7a",
+            "revision_id": "4f3cc240-5998-569b-ae7a-db0225613e9e",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "e56e0a5a70c0eae5878a9fd96be2c0016f566b21e654a17044bdbdfe8ef07720"
+          },
+          "budget": {
+            "requested_trials": 6,
+            "max_trials": 5,
+            "max_wall_seconds": 600,
+            "max_cpu_seconds": 1800,
+            "max_tokens": 12000,
+            "max_cost": "1.50",
+            "cost_currency": "USD"
+          },
+          "requested_by_receipt_ref": {
+            "entity_id": "61d8343e-1507-52f3-adc7-eea329586d00",
+            "revision_id": "0c934e01-cd50-521c-b42e-424afce5d8a7",
+            "owner": "HUMAN",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "0e307136f477cae871255f1c41edabc1a6ae7470170a6453f0a5df6a40a9b222"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "LAB-AI-P02",
+      "kind": "POSITIVE",
+      "finding_ids": [
+        "PRODUCT-S4-03"
+      ],
+      "operation": "getAnalystRun",
+      "fixture_model": "AnalystRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "baseline_snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "baseline_run_ref": {
+          "entity_id": "44726b7f-15a2-5acc-b07f-5c4ae8cdbb6f",
+          "revision_id": "08675283-f9c5-5b05-bbb5-b5d8e9785965",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e4786429c3f050c94001d3277345fcabd89e7e088d2ab27d20bcb66d7404be7b"
+        },
+        "benchmark_ref": {
+          "entity_id": "d2c59907-fc6d-55a8-a9ec-61bc7d700e6d",
+          "revision_id": "56f15a5f-9a20-52e2-b884-2344e32f465c",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "175d1c9a8845bffdfaf6d5f5ed882098ccf2f5b248b0d70dd88f52966e0669b2"
+        },
+        "selection": {
+          "scope_kind": "WHOLE_STRATEGY",
+          "node_ids": [],
+          "parameter_names": []
+        },
+        "validation_plan_ref": {
+          "entity_id": "d436e2a7-0769-58d2-85c6-c6356d08601c",
+          "revision_id": "dd177d6c-fe82-59a1-9a31-a504e81ff195",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "f88d9c836cf2a6b2d06ef232e2c18f0e01b0ca132f4723905de4087b67db27a5"
+        },
+        "provider_profile_ref": {
+          "entity_id": "c0652795-25c6-52b0-8d14-45e10c2d0412",
+          "revision_id": "7d23b56e-50c1-511d-a4bf-5f08a8d8d825",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8d50ffdb7d98e59867e592dd7cace59acf93d60b635663dd889813d904b1a48d"
+        },
+        "prompt_template_ref": {
+          "entity_id": "bf52907d-2c9c-5d16-a3dd-45d7f0847b7a",
+          "revision_id": "4f3cc240-5998-569b-ae7a-db0225613e9e",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e56e0a5a70c0eae5878a9fd96be2c0016f566b21e654a17044bdbdfe8ef07720"
+        },
+        "budget": {
+          "requested_trials": 3,
+          "max_trials": 5,
+          "max_wall_seconds": 600,
+          "max_cpu_seconds": 1800,
+          "max_tokens": 12000,
+          "max_cost": "1.50",
+          "cost_currency": "USD"
+        },
+        "requested_by_receipt_ref": {
+          "entity_id": "61d8343e-1507-52f3-adc7-eea329586d00",
+          "revision_id": "0c934e01-cd50-521c-b42e-424afce5d8a7",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "0e307136f477cae871255f1c41edabc1a6ae7470170a6453f0a5df6a40a9b222"
+        }
+      },
+      "preconditions": [
+        "all bounded trials fail fixed improvement gate; 1–2 directions only"
+      ],
+      "expected": {
+        "state": "COMPLETED",
+        "outcome": "NO_VALIDATED_IMPROVEMENT",
+        "unverified_direction_count": 2,
+        "validated_improvement_count": 0
+      },
+      "assertions": [
+        {
+          "path": "result.validated_improvement_count",
+          "operator": "EQ",
+          "value": 0
+        },
+        {
+          "path": "result.direction_statuses",
+          "operator": "ALL_EQ",
+          "value": "UNVERIFIED"
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "GET",
+        "path": "/api/v2/analyst-runs/{id}",
+        "response_item_model": "AnalystRun",
+        "request_payload_fields": {}
+      },
+      "request_payload": {}
+    },
+    {
+      "case_id": "LAB-AI-C01",
+      "kind": "CONCURRENCY",
+      "finding_ids": [
+        "PRODUCT-S4-03"
+      ],
+      "operation": "cancelAnalystRun",
+      "fixture_model": "AnalystRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "baseline_snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "baseline_run_ref": {
+          "entity_id": "44726b7f-15a2-5acc-b07f-5c4ae8cdbb6f",
+          "revision_id": "08675283-f9c5-5b05-bbb5-b5d8e9785965",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e4786429c3f050c94001d3277345fcabd89e7e088d2ab27d20bcb66d7404be7b"
+        },
+        "benchmark_ref": {
+          "entity_id": "d2c59907-fc6d-55a8-a9ec-61bc7d700e6d",
+          "revision_id": "56f15a5f-9a20-52e2-b884-2344e32f465c",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "175d1c9a8845bffdfaf6d5f5ed882098ccf2f5b248b0d70dd88f52966e0669b2"
+        },
+        "selection": {
+          "scope_kind": "WHOLE_STRATEGY",
+          "node_ids": [],
+          "parameter_names": []
+        },
+        "validation_plan_ref": {
+          "entity_id": "d436e2a7-0769-58d2-85c6-c6356d08601c",
+          "revision_id": "dd177d6c-fe82-59a1-9a31-a504e81ff195",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "f88d9c836cf2a6b2d06ef232e2c18f0e01b0ca132f4723905de4087b67db27a5"
+        },
+        "provider_profile_ref": {
+          "entity_id": "c0652795-25c6-52b0-8d14-45e10c2d0412",
+          "revision_id": "7d23b56e-50c1-511d-a4bf-5f08a8d8d825",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8d50ffdb7d98e59867e592dd7cace59acf93d60b635663dd889813d904b1a48d"
+        },
+        "prompt_template_ref": {
+          "entity_id": "bf52907d-2c9c-5d16-a3dd-45d7f0847b7a",
+          "revision_id": "4f3cc240-5998-569b-ae7a-db0225613e9e",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e56e0a5a70c0eae5878a9fd96be2c0016f566b21e654a17044bdbdfe8ef07720"
+        },
+        "budget": {
+          "requested_trials": 3,
+          "max_trials": 5,
+          "max_wall_seconds": 600,
+          "max_cpu_seconds": 1800,
+          "max_tokens": 12000,
+          "max_cost": "1.50",
+          "cost_currency": "USD"
+        },
+        "requested_by_receipt_ref": {
+          "entity_id": "61d8343e-1507-52f3-adc7-eea329586d00",
+          "revision_id": "0c934e01-cd50-521c-b42e-424afce5d8a7",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "0e307136f477cae871255f1c41edabc1a6ae7470170a6453f0a5df6a40a9b222"
+        }
+      },
+      "preconditions": [
+        "cancel sequence41 accepted before completion42; lateprovider result retained but not auto-adopted"
+      ],
+      "expected": {
+        "state": "CANCELLED",
+        "outcome": "CANCELLED_NOT_QUALIFIED",
+        "trial_artifacts_retained": true
+      },
+      "assertions": [
+        {
+          "path": "state.trial_artifacts_retained",
+          "operator": "EQ",
+          "value": true
+        },
+        {
+          "path": "authority.job_qualified",
+          "operator": "EQ",
+          "value": false
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/analyst-runs/{id}/cancel",
+        "response_item_model": "AnalystRun",
+        "request_payload_fields": {
+          "run_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "reason": {
+            "type": "string",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "run_ref": {
+          "entity_id": "5d8b5d88-80a6-5ff6-a852-d3ccb6cee835",
+          "revision_id": "d14baf1e-612f-54aa-9e01-dd6f3b213f1a",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "747c2a6aa4adb096d9098ea8b5804923b050f1e141d8b8ae6b501d8b4df6c4c2"
+        },
+        "reason": "Human requested cancellation"
+      }
+    },
+    {
+      "case_id": "LAB-AI-C02",
+      "kind": "CONCURRENCY",
+      "finding_ids": [
+        "PRODUCT-S4-03"
+      ],
+      "operation": "cancelAnalystRun",
+      "fixture_model": "AnalystRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "baseline_snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "baseline_run_ref": {
+          "entity_id": "44726b7f-15a2-5acc-b07f-5c4ae8cdbb6f",
+          "revision_id": "08675283-f9c5-5b05-bbb5-b5d8e9785965",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e4786429c3f050c94001d3277345fcabd89e7e088d2ab27d20bcb66d7404be7b"
+        },
+        "benchmark_ref": {
+          "entity_id": "d2c59907-fc6d-55a8-a9ec-61bc7d700e6d",
+          "revision_id": "56f15a5f-9a20-52e2-b884-2344e32f465c",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "175d1c9a8845bffdfaf6d5f5ed882098ccf2f5b248b0d70dd88f52966e0669b2"
+        },
+        "selection": {
+          "scope_kind": "WHOLE_STRATEGY",
+          "node_ids": [],
+          "parameter_names": []
+        },
+        "validation_plan_ref": {
+          "entity_id": "d436e2a7-0769-58d2-85c6-c6356d08601c",
+          "revision_id": "dd177d6c-fe82-59a1-9a31-a504e81ff195",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "f88d9c836cf2a6b2d06ef232e2c18f0e01b0ca132f4723905de4087b67db27a5"
+        },
+        "provider_profile_ref": {
+          "entity_id": "c0652795-25c6-52b0-8d14-45e10c2d0412",
+          "revision_id": "7d23b56e-50c1-511d-a4bf-5f08a8d8d825",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8d50ffdb7d98e59867e592dd7cace59acf93d60b635663dd889813d904b1a48d"
+        },
+        "prompt_template_ref": {
+          "entity_id": "bf52907d-2c9c-5d16-a3dd-45d7f0847b7a",
+          "revision_id": "4f3cc240-5998-569b-ae7a-db0225613e9e",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e56e0a5a70c0eae5878a9fd96be2c0016f566b21e654a17044bdbdfe8ef07720"
+        },
+        "budget": {
+          "requested_trials": 3,
+          "max_trials": 5,
+          "max_wall_seconds": 600,
+          "max_cpu_seconds": 1800,
+          "max_tokens": 12000,
+          "max_cost": "1.50",
+          "cost_currency": "USD"
+        },
+        "requested_by_receipt_ref": {
+          "entity_id": "61d8343e-1507-52f3-adc7-eea329586d00",
+          "revision_id": "0c934e01-cd50-521c-b42e-424afce5d8a7",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "0e307136f477cae871255f1c41edabc1a6ae7470170a6453f0a5df6a40a9b222"
+        }
+      },
+      "preconditions": [
+        "completion sequence41 durable before cancel42"
+      ],
+      "expected": {
+        "state": "COMPLETED",
+        "cancel_effect": "ALREADY_TERMINAL",
+        "terminal_overwrites": 0
+      },
+      "assertions": [
+        {
+          "path": "effect.terminal_overwrites",
+          "operator": "EQ",
+          "value": 0
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/analyst-runs/{id}/cancel",
+        "response_item_model": "AnalystRun",
+        "request_payload_fields": {
+          "run_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "reason": {
+            "type": "string",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "run_ref": {
+          "entity_id": "5d8b5d88-80a6-5ff6-a852-d3ccb6cee835",
+          "revision_id": "d14baf1e-612f-54aa-9e01-dd6f3b213f1a",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "747c2a6aa4adb096d9098ea8b5804923b050f1e141d8b8ae6b501d8b4df6c4c2"
+        },
+        "reason": "Human requested cancellation"
+      }
+    },
+    {
+      "case_id": "LAB-AI-P03",
+      "kind": "POSITIVE",
+      "finding_ids": [
+        "PRODUCT-S4-03",
+        "PRODUCT-S4-06"
+      ],
+      "operation": "applyAnalystSuggestion",
+      "fixture_model": "AnalystApplyRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "analyst_run_ref": {
+          "entity_id": "5d8b5d88-80a6-5ff6-a852-d3ccb6cee835",
+          "revision_id": "d14baf1e-612f-54aa-9e01-dd6f3b213f1a",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "747c2a6aa4adb096d9098ea8b5804923b050f1e141d8b8ae6b501d8b4df6c4c2"
+        },
+        "suggestion_ref": {
+          "entity_id": "c874ca1a-74e6-5cda-a007-e6706ccd05b3",
+          "revision_id": "838f9f4f-3c8f-581e-bf7e-d6fa9c23545c",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "813ec1ea07c784b86dcc0162357f05c31138802b6319da9bf03387211be97ffc"
+        },
+        "human_selection_receipt_ref": {
+          "entity_id": "595fb74a-29b0-59dd-bc28-e7abedf6fdc1",
+          "revision_id": "c230a462-7a20-51b1-8830-5ccde7b7afb9",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "9a77bcc49ad9a4eca7aa13f0fe378ad8cf4d24b0c62d1cf5f25a855b843e412f"
+        },
+        "parent_branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "expected_root_generation": 1,
+        "intent": "Selected research revision, no runtime authority"
+      },
+      "preconditions": [
+        "valid exactproposal; Human selects fixed snapshot/validationstatus"
+      ],
+      "expected": {
+        "new_branch": true,
+        "original_release_unchanged": true,
+        "deployment_mutations": 0
+      },
+      "assertions": [
+        {
+          "path": "effect.deployment_mutations",
+          "operator": "EQ",
+          "value": 0
+        },
+        {
+          "path": "state.original_release_unchanged",
+          "operator": "EQ",
+          "value": true
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/analyst-runs/{id}/selections",
+        "response_item_model": "ResearchBranch",
+        "request_payload_fields": {
+          "request": {
+            "type": "AnalystApplyRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "analyst_run_ref": {
+            "entity_id": "5d8b5d88-80a6-5ff6-a852-d3ccb6cee835",
+            "revision_id": "d14baf1e-612f-54aa-9e01-dd6f3b213f1a",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "747c2a6aa4adb096d9098ea8b5804923b050f1e141d8b8ae6b501d8b4df6c4c2"
+          },
+          "suggestion_ref": {
+            "entity_id": "c874ca1a-74e6-5cda-a007-e6706ccd05b3",
+            "revision_id": "838f9f4f-3c8f-581e-bf7e-d6fa9c23545c",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "813ec1ea07c784b86dcc0162357f05c31138802b6319da9bf03387211be97ffc"
+          },
+          "human_selection_receipt_ref": {
+            "entity_id": "595fb74a-29b0-59dd-bc28-e7abedf6fdc1",
+            "revision_id": "c230a462-7a20-51b1-8830-5ccde7b7afb9",
+            "owner": "HUMAN",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "9a77bcc49ad9a4eca7aa13f0fe378ad8cf4d24b0c62d1cf5f25a855b843e412f"
+          },
+          "parent_branch_ref": {
+            "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+            "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+          },
+          "expected_root_generation": 1,
+          "intent": "Selected research revision, no runtime authority"
+        }
+      }
+    },
+    {
+      "case_id": "LAB-AI-R01",
+      "kind": "RECOVERY",
+      "finding_ids": [
+        "PRODUCT-S4-03"
+      ],
+      "operation": "getAnalystRun",
+      "fixture_model": "AnalystRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "baseline_snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "baseline_run_ref": {
+          "entity_id": "44726b7f-15a2-5acc-b07f-5c4ae8cdbb6f",
+          "revision_id": "08675283-f9c5-5b05-bbb5-b5d8e9785965",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e4786429c3f050c94001d3277345fcabd89e7e088d2ab27d20bcb66d7404be7b"
+        },
+        "benchmark_ref": {
+          "entity_id": "d2c59907-fc6d-55a8-a9ec-61bc7d700e6d",
+          "revision_id": "56f15a5f-9a20-52e2-b884-2344e32f465c",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "175d1c9a8845bffdfaf6d5f5ed882098ccf2f5b248b0d70dd88f52966e0669b2"
+        },
+        "selection": {
+          "scope_kind": "WHOLE_STRATEGY",
+          "node_ids": [],
+          "parameter_names": []
+        },
+        "validation_plan_ref": {
+          "entity_id": "d436e2a7-0769-58d2-85c6-c6356d08601c",
+          "revision_id": "dd177d6c-fe82-59a1-9a31-a504e81ff195",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "f88d9c836cf2a6b2d06ef232e2c18f0e01b0ca132f4723905de4087b67db27a5"
+        },
+        "provider_profile_ref": {
+          "entity_id": "c0652795-25c6-52b0-8d14-45e10c2d0412",
+          "revision_id": "7d23b56e-50c1-511d-a4bf-5f08a8d8d825",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8d50ffdb7d98e59867e592dd7cace59acf93d60b635663dd889813d904b1a48d"
+        },
+        "prompt_template_ref": {
+          "entity_id": "bf52907d-2c9c-5d16-a3dd-45d7f0847b7a",
+          "revision_id": "4f3cc240-5998-569b-ae7a-db0225613e9e",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e56e0a5a70c0eae5878a9fd96be2c0016f566b21e654a17044bdbdfe8ef07720"
+        },
+        "budget": {
+          "requested_trials": 3,
+          "max_trials": 5,
+          "max_wall_seconds": 600,
+          "max_cpu_seconds": 1800,
+          "max_tokens": 12000,
+          "max_cost": "1.50",
+          "cost_currency": "USD"
+        },
+        "requested_by_receipt_ref": {
+          "entity_id": "61d8343e-1507-52f3-adc7-eea329586d00",
+          "revision_id": "0c934e01-cd50-521c-b42e-424afce5d8a7",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "0e307136f477cae871255f1c41edabc1a6ae7470170a6453f0a5df6a40a9b222"
+        }
+      },
+      "preconditions": [
+        "provider call may have started; no trusted outcome after crash"
+      ],
+      "expected": {
+        "state": "RECOVERY_HOLD",
+        "duplicate_provider_submissions": 0
+      },
+      "assertions": [
+        {
+          "path": "effect.duplicate_provider_submissions",
+          "operator": "EQ",
+          "value": 0
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "GET",
+        "path": "/api/v2/analyst-runs/{id}",
+        "response_item_model": "AnalystRun",
+        "request_payload_fields": {}
+      },
+      "request_payload": {}
+    },
+    {
+      "case_id": "LAB-LIBRARY-P01",
+      "kind": "POSITIVE",
+      "finding_ids": [
+        "PRODUCT-S4-04"
+      ],
+      "operation": "approveLibraryException",
+      "fixture_model": "LibraryExceptionRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "exact_subject_ref": {
+          "entity_id": "5a92080f-8443-527f-80cf-62d216f0ddd8",
+          "revision_id": "8d516839-884b-52f2-ae6b-e8595834ca25",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "aacece9aa3b163d4493fac5bb50409e528909244781e6ee03ca624beb426057e"
+        },
+        "strategy_ref": {
+          "entity_id": "ea91d771-19a4-52c1-9b49-1f89593ed8af",
+          "revision_id": "97de6f1c-99b5-5db8-a765-6ede873cdfd5",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "84af23cda95960316d2ee7f74163e38532012d89de9ffa1dd4190091e0537711"
+        },
+        "snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "unmet_qualification_refs": [
+          {
+            "entity_id": "612ec548-5ab3-5d71-ad0b-a421dac757a7",
+            "revision_id": "3648ff83-8c4a-51df-9d3d-d3538c62fb62",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8cbc20a5b75c4e448b5f04351f2cff931d580c787b453e774f3974ec2f66cef5"
+          }
+        ],
+        "reason": "Human accepts research library without completed STANDARD simulation",
+        "human_approval_receipt_ref": {
+          "entity_id": "d34007ad-c8ff-5790-9ee1-ae129e087d22",
+          "revision_id": "f8097407-617d-5afa-b09d-3b78528a2e9e",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "a99d0fc7ad9d50bc4998167e7c99d1125d487bcbd79d20157039599b9636c44e"
+        },
+        "warning_acknowledgement_ref": {
+          "entity_id": "617c344b-3741-5961-8a90-2affc0ee4869",
+          "revision_id": "6115954e-3d1b-5ac4-95c7-d12c937a6b0e",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "89ad2262deb634e580cf3fe2105647e848e167fb415b51965144b36bab0fa875"
+        }
+      },
+      "preconditions": [
+        "source safety/license/exactbytes complete; only STANDARD unmet"
+      ],
+      "expected": {
+        "approval_kind": "EXCEPTION_UNSIMULATED",
+        "warning_permanent": true,
+        "runtime_authority": false
+      },
+      "assertions": [
+        {
+          "path": "result.warning.permanent",
+          "operator": "EQ",
+          "value": true
+        },
+        {
+          "path": "authority.runtime_authority",
+          "operator": "EQ",
+          "value": false
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/library-exception-approvals",
+        "response_item_model": "LibraryExceptionApproval",
+        "request_payload_fields": {
+          "exact_subject_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "strategy_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "snapshot_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "unmet_qualification_refs": {
+            "type": "ContractRef[]",
+            "required": true
+          },
+          "reason": {
+            "type": "string",
+            "required": true
+          },
+          "human_approval_receipt_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "warning_acknowledgement_ref": {
+            "type": "ContractRef",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "exact_subject_ref": {
+          "entity_id": "5a92080f-8443-527f-80cf-62d216f0ddd8",
+          "revision_id": "8d516839-884b-52f2-ae6b-e8595834ca25",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "aacece9aa3b163d4493fac5bb50409e528909244781e6ee03ca624beb426057e"
+        },
+        "strategy_ref": {
+          "entity_id": "ea91d771-19a4-52c1-9b49-1f89593ed8af",
+          "revision_id": "97de6f1c-99b5-5db8-a765-6ede873cdfd5",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "84af23cda95960316d2ee7f74163e38532012d89de9ffa1dd4190091e0537711"
+        },
+        "snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "unmet_qualification_refs": [
+          {
+            "entity_id": "612ec548-5ab3-5d71-ad0b-a421dac757a7",
+            "revision_id": "3648ff83-8c4a-51df-9d3d-d3538c62fb62",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8cbc20a5b75c4e448b5f04351f2cff931d580c787b453e774f3974ec2f66cef5"
+          }
+        ],
+        "reason": "Human accepts research library without completed STANDARD simulation",
+        "human_approval_receipt_ref": {
+          "entity_id": "d34007ad-c8ff-5790-9ee1-ae129e087d22",
+          "revision_id": "f8097407-617d-5afa-b09d-3b78528a2e9e",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "a99d0fc7ad9d50bc4998167e7c99d1125d487bcbd79d20157039599b9636c44e"
+        },
+        "warning_acknowledgement_ref": {
+          "entity_id": "617c344b-3741-5961-8a90-2affc0ee4869",
+          "revision_id": "6115954e-3d1b-5ac4-95c7-d12c937a6b0e",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "89ad2262deb634e580cf3fe2105647e848e167fb415b51965144b36bab0fa875"
+        }
+      }
+    },
+    {
+      "case_id": "LAB-LIBRARY-N01",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-04"
+      ],
+      "operation": "approveLibraryRelease",
+      "fixture_model": "LibraryExceptionApproval",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "exact_subject_ref": {
+          "entity_id": "5a92080f-8443-527f-80cf-62d216f0ddd8",
+          "revision_id": "8d516839-884b-52f2-ae6b-e8595834ca25",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "aacece9aa3b163d4493fac5bb50409e528909244781e6ee03ca624beb426057e"
+        },
+        "strategy_ref": {
+          "entity_id": "ea91d771-19a4-52c1-9b49-1f89593ed8af",
+          "revision_id": "97de6f1c-99b5-5db8-a765-6ede873cdfd5",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "84af23cda95960316d2ee7f74163e38532012d89de9ffa1dd4190091e0537711"
+        },
+        "snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "unmet_qualification_refs": [
+          {
+            "entity_id": "612ec548-5ab3-5d71-ad0b-a421dac757a7",
+            "revision_id": "3648ff83-8c4a-51df-9d3d-d3538c62fb62",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8cbc20a5b75c4e448b5f04351f2cff931d580c787b453e774f3974ec2f66cef5"
+          }
+        ],
+        "reason": "Human accepts research library without completed STANDARD simulation",
+        "human_approval_receipt_ref": {
+          "entity_id": "d34007ad-c8ff-5790-9ee1-ae129e087d22",
+          "revision_id": "f8097407-617d-5afa-b09d-3b78528a2e9e",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "a99d0fc7ad9d50bc4998167e7c99d1125d487bcbd79d20157039599b9636c44e"
+        },
+        "warning_acknowledgement_ref": {
+          "entity_id": "617c344b-3741-5961-8a90-2affc0ee4869",
+          "revision_id": "6115954e-3d1b-5ac4-95c7-d12c937a6b0e",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "89ad2262deb634e580cf3fe2105647e848e167fb415b51965144b36bab0fa875"
+        }
+      },
+      "preconditions": [
+        "exceptionapproval different snapshot or missing permanent warning"
+      ],
+      "expected": {
+        "http": 422,
+        "error": "EXACT_EXCEPTION_OR_WARNING_MISSING"
+      },
+      "assertions": [
+        {
+          "path": "effect.release_created",
+          "operator": "EQ",
+          "value": false
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/library-releases",
+        "response_item_model": "LibraryRelease",
+        "request_payload_fields": {
+          "strategy_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "snapshot_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "review_subject_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "qualification_refs": {
+            "type": "ContractRef[]",
+            "required": true
+          },
+          "human_approval_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "approval_kind": {
+            "type": "enum",
+            "required": true
+          },
+          "exception_approval_ref": {
+            "type": "ContractRef?",
+            "required": false
+          }
+        }
+      },
+      "request_payload": {
+        "strategy_ref": {
+          "entity_id": "ea91d771-19a4-52c1-9b49-1f89593ed8af",
+          "revision_id": "97de6f1c-99b5-5db8-a765-6ede873cdfd5",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "84af23cda95960316d2ee7f74163e38532012d89de9ffa1dd4190091e0537711"
+        },
+        "snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "review_subject_ref": {
+          "entity_id": "5a92080f-8443-527f-80cf-62d216f0ddd8",
+          "revision_id": "8d516839-884b-52f2-ae6b-e8595834ca25",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "aacece9aa3b163d4493fac5bb50409e528909244781e6ee03ca624beb426057e"
+        },
+        "qualification_refs": [],
+        "human_approval_ref": {
+          "entity_id": "d34007ad-c8ff-5790-9ee1-ae129e087d22",
+          "revision_id": "f8097407-617d-5afa-b09d-3b78528a2e9e",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "a99d0fc7ad9d50bc4998167e7c99d1125d487bcbd79d20157039599b9636c44e"
+        },
+        "approval_kind": "EXCEPTION_UNSIMULATED"
+      }
+    },
+    {
+      "case_id": "LAB-LIBRARY-N02",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-04"
+      ],
+      "operation": "requestRuntimeAdmission",
+      "fixture_model": "LibraryExceptionApproval",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "exact_subject_ref": {
+          "entity_id": "5a92080f-8443-527f-80cf-62d216f0ddd8",
+          "revision_id": "8d516839-884b-52f2-ae6b-e8595834ca25",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "aacece9aa3b163d4493fac5bb50409e528909244781e6ee03ca624beb426057e"
+        },
+        "strategy_ref": {
+          "entity_id": "ea91d771-19a4-52c1-9b49-1f89593ed8af",
+          "revision_id": "97de6f1c-99b5-5db8-a765-6ede873cdfd5",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "84af23cda95960316d2ee7f74163e38532012d89de9ffa1dd4190091e0537711"
+        },
+        "snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "unmet_qualification_refs": [
+          {
+            "entity_id": "612ec548-5ab3-5d71-ad0b-a421dac757a7",
+            "revision_id": "3648ff83-8c4a-51df-9d3d-d3538c62fb62",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8cbc20a5b75c4e448b5f04351f2cff931d580c787b453e774f3974ec2f66cef5"
+          }
+        ],
+        "reason": "Human accepts research library without completed STANDARD simulation",
+        "human_approval_receipt_ref": {
+          "entity_id": "d34007ad-c8ff-5790-9ee1-ae129e087d22",
+          "revision_id": "f8097407-617d-5afa-b09d-3b78528a2e9e",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "a99d0fc7ad9d50bc4998167e7c99d1125d487bcbd79d20157039599b9636c44e"
+        },
+        "warning_acknowledgement_ref": {
+          "entity_id": "617c344b-3741-5961-8a90-2affc0ee4869",
+          "revision_id": "6115954e-3d1b-5ac4-95c7-d12c937a6b0e",
+          "owner": "HUMAN",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "89ad2262deb634e580cf3fe2105647e848e167fb415b51965144b36bab0fa875"
+        }
+      },
+      "preconditions": [
+        "warning acknowledged but no environment/account/runtime qualification"
+      ],
+      "expected": {
+        "http": 403,
+        "error": "RUNTIME_QUALIFICATION_REQUIRED",
+        "admitted": false
+      },
+      "assertions": [
+        {
+          "path": "authority.admitted",
+          "operator": "EQ",
+          "value": false
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "kind": "DOMAIN_RULE_OR_OTHER_OWNER_NEGATIVE_SEAM",
+        "no_direct_API_claim": true
+      }
+    },
+    {
+      "case_id": "LAB-SIM-P01",
+      "kind": "POSITIVE",
+      "finding_ids": [
+        "PRODUCT-S4-05"
+      ],
+      "operation": "createLabSimulation",
+      "fixture_model": "ResearchSimulationRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "initial_capital": "100000.00",
+        "capital_currency": "TWD",
+        "config": {
+          "mode": "STANDARD",
+          "seed": 17,
+          "dataset_ref": {
+            "entity_id": "88d56072-7dbd-50ad-8104-425586067353",
+            "revision_id": "e96c8f8c-7842-5363-94d8-7caf80c338bb",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "a8d317a091ed2bd407b108a82b80ea2cd06a1c45a517ee5d3af12872845ab595"
+          },
+          "fill_model_ref": {
+            "entity_id": "f19cba7d-18e9-5dc4-8dd2-44033794e818",
+            "revision_id": "9f5385dd-2a13-542d-a89f-24f78b8859a5",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "ef01fb787cf81b6f61626624b310325ca2aaca001f874381a772e34c9ab47d1a"
+          },
+          "slippage_policy_ref": {
+            "entity_id": "6a5487c6-c815-505d-9f17-b9fd48c4fab8",
+            "revision_id": "f01385a6-ed15-5d81-946c-8954366b76cc",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "dc85814bf11fe38fc37866c0916f4151cf536da40074a9d9553e8b9934ef58d7"
+          },
+          "cost_policy_ref": {
+            "entity_id": "ede05ead-a515-57e0-9b0c-9a1a8c86beb6",
+            "revision_id": "c0b4cb80-a88e-5d9f-b484-9bb557f0287d",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "6d4b9dc99f54bbdbb456a629303483c91b3a259199875e32c07f8117bc0e3dd2"
+          },
+          "clock_policy_ref": {
+            "entity_id": "ded7d84a-0112-55ac-8ac7-976a71cc6e1c",
+            "revision_id": "2e4bb484-563b-517f-8b99-835a18ebebab",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "6a3658820f573a46ab2e12f3653a9a71c504dcbb84cd6244f220f0e742f837c4"
+          }
+        },
+        "mode": "HISTORICAL_REPLAY",
+        "source_profile_ref": {
+          "entity_id": "684729eb-c339-507e-ad97-f33f98b545aa",
+          "revision_id": "8baf3934-2969-5a48-b9c9-b351a3f38918",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "c339a3580c94e80e2f1e4c233d1992fa2f2eea0a0b53521412cf087c1df39ec4"
+        },
+        "qualification_profile_ref": {
+          "entity_id": "9cc6d84c-311e-5130-b7b0-54563b135cf2",
+          "revision_id": "2cadbc6b-c37a-50d5-9bb6-98127cfda41f",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8c09a99aec5eb2cf9f237f62602abd699f0574a61c5581138a1e6454590e2273"
+        }
+      },
+      "preconditions": [],
+      "expected": {
+        "environment": "LAB",
+        "actual_broker_account_writes": 0,
+        "initial_capital": "100000.00"
+      },
+      "assertions": [
+        {
+          "path": "effect.actual_broker_account_writes",
+          "operator": "EQ",
+          "value": 0
+        },
+        {
+          "path": "result.scope.environment",
+          "operator": "EQ",
+          "value": "LAB"
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/lab-simulation-accounts",
+        "response_item_model": "ResearchSimulationAccount",
+        "request_payload_fields": {
+          "request": {
+            "type": "ResearchSimulationRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "snapshot_ref": {
+            "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+            "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+          },
+          "branch_ref": {
+            "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+            "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+          },
+          "initial_capital": "100000.00",
+          "capital_currency": "TWD",
+          "config": {
+            "mode": "STANDARD",
+            "seed": 17,
+            "dataset_ref": {
+              "entity_id": "88d56072-7dbd-50ad-8104-425586067353",
+              "revision_id": "e96c8f8c-7842-5363-94d8-7caf80c338bb",
+              "owner": "F_RESEARCH",
+              "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+              "source_hash": "a8d317a091ed2bd407b108a82b80ea2cd06a1c45a517ee5d3af12872845ab595"
+            },
+            "fill_model_ref": {
+              "entity_id": "f19cba7d-18e9-5dc4-8dd2-44033794e818",
+              "revision_id": "9f5385dd-2a13-542d-a89f-24f78b8859a5",
+              "owner": "F_RESEARCH",
+              "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+              "source_hash": "ef01fb787cf81b6f61626624b310325ca2aaca001f874381a772e34c9ab47d1a"
+            },
+            "slippage_policy_ref": {
+              "entity_id": "6a5487c6-c815-505d-9f17-b9fd48c4fab8",
+              "revision_id": "f01385a6-ed15-5d81-946c-8954366b76cc",
+              "owner": "F_RESEARCH",
+              "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+              "source_hash": "dc85814bf11fe38fc37866c0916f4151cf536da40074a9d9553e8b9934ef58d7"
+            },
+            "cost_policy_ref": {
+              "entity_id": "ede05ead-a515-57e0-9b0c-9a1a8c86beb6",
+              "revision_id": "c0b4cb80-a88e-5d9f-b484-9bb557f0287d",
+              "owner": "F_RESEARCH",
+              "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+              "source_hash": "6d4b9dc99f54bbdbb456a629303483c91b3a259199875e32c07f8117bc0e3dd2"
+            },
+            "clock_policy_ref": {
+              "entity_id": "ded7d84a-0112-55ac-8ac7-976a71cc6e1c",
+              "revision_id": "2e4bb484-563b-517f-8b99-835a18ebebab",
+              "owner": "F_RESEARCH",
+              "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+              "source_hash": "6a3658820f573a46ab2e12f3653a9a71c504dcbb84cd6244f220f0e742f837c4"
+            }
+          },
+          "mode": "HISTORICAL_REPLAY",
+          "source_profile_ref": {
+            "entity_id": "684729eb-c339-507e-ad97-f33f98b545aa",
+            "revision_id": "8baf3934-2969-5a48-b9c9-b351a3f38918",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "c339a3580c94e80e2f1e4c233d1992fa2f2eea0a0b53521412cf087c1df39ec4"
+          },
+          "qualification_profile_ref": {
+            "entity_id": "9cc6d84c-311e-5130-b7b0-54563b135cf2",
+            "revision_id": "2cadbc6b-c37a-50d5-9bb6-98127cfda41f",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8c09a99aec5eb2cf9f237f62602abd699f0574a61c5581138a1e6454590e2273"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "LAB-SIM-N01",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-05"
+      ],
+      "operation": "aggregateSimulationCounters",
+      "fixture_model": "SimulationObservation",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "ref": {
+          "entity_id": "799b2635-f251-5b33-9e57-23a4db62d8a1",
+          "revision_id": "2f4e102e-724c-545d-9004-3c530e3e8266",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e848e7ba777f0347471f78730916edf113f022f2a5f53c59297d48442ffb5477"
+        },
+        "simulation_account_ref": {
+          "entity_id": "b49779d7-1302-5e65-9f97-5194ff1a3ab1",
+          "revision_id": "a74d312e-c584-51a6-a8e5-a896de98bc9a",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ac994ed85ac24ed1443b4487ebedc377261054fce20e79cf8aaf247d6df56a35"
+        },
+        "snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "source_event_refs": [
+          {
+            "entity_id": "c8f71d10-40cc-57cc-8764-8c8f299c74d6",
+            "revision_id": "ce0e9bec-7299-5d6c-921e-54f9236183db",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "24eae3dbaf95dd1dfa6d2ddfee9cd0bce3e7f40d741bd83ea69032551b05ed70"
+          }
+        ],
+        "source_quality": "RECONSTRUCTED_ESTIMATED",
+        "source_coverage_ref": {
+          "entity_id": "efa4be8a-7a88-50d1-bfe4-066a17ab2bfc",
+          "revision_id": "0570754b-7135-5dc4-8ec1-865308f6807f",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "adfeaf56846f2ea939abb740b918104a05d0376591c039791baf0cf28dcff360"
+        },
+        "occurred_at": "2026-10-01T02:30:00Z",
+        "recorded_at": "2026-10-01T03:00:00Z",
+        "fill_quality": "RECONSTRUCTED_ESTIMATED",
+        "estimated_fill": true,
+        "reconstruction_method_ref": {
+          "entity_id": "b5f8803a-a1cb-5ad0-905c-75efb432090a",
+          "revision_id": "82e0919f-e845-5dfa-8f02-390eb8794064",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "4b7fef019bd3fa23f26c78929e5feda0412dbe759ec13dc3295d6d93d88022f7"
+        },
+        "order_fill_ref": {
+          "entity_id": "3029924e-7665-5ff8-bce3-fde5d4c72ee5",
+          "revision_id": "1c1a827f-dc3d-598a-b2e4-185a7f3d9324",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "2325314b532c2282d13f3bc4aaf58ebf0dc7127b1ca474635ff8cc60e9e3bf08"
+        },
+        "effective_sequence": 12,
+        "qualification_eligible": false,
+        "reason": "reconstructed after disconnected interval; not forward observed"
+      },
+      "preconditions": [],
+      "expected": {
+        "reconstructed_estimated_delta": 1,
+        "observed_forward_delta": 0
+      },
+      "assertions": [
+        {
+          "path": "counter.observed_forward_delta",
+          "operator": "EQ",
+          "value": 0
+        },
+        {
+          "path": "counter.reconstructed_estimated_delta",
+          "operator": "EQ",
+          "value": 1
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "kind": "DOMAIN_RULE_OR_OTHER_OWNER_NEGATIVE_SEAM",
+        "no_direct_API_claim": true
+      }
+    },
+    {
+      "case_id": "LAB-SIM-N02",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-05"
+      ],
+      "operation": "aggregateSimulationCounters",
+      "fixture_model": "SimulationObservation",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "ref": {
+          "entity_id": "799b2635-f251-5b33-9e57-23a4db62d8a1",
+          "revision_id": "2f4e102e-724c-545d-9004-3c530e3e8266",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "e848e7ba777f0347471f78730916edf113f022f2a5f53c59297d48442ffb5477"
+        },
+        "simulation_account_ref": {
+          "entity_id": "b49779d7-1302-5e65-9f97-5194ff1a3ab1",
+          "revision_id": "a74d312e-c584-51a6-a8e5-a896de98bc9a",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ac994ed85ac24ed1443b4487ebedc377261054fce20e79cf8aaf247d6df56a35"
+        },
+        "snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "source_event_refs": [
+          {
+            "entity_id": "c8f71d10-40cc-57cc-8764-8c8f299c74d6",
+            "revision_id": "ce0e9bec-7299-5d6c-921e-54f9236183db",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "24eae3dbaf95dd1dfa6d2ddfee9cd0bce3e7f40d741bd83ea69032551b05ed70"
+          }
+        ],
+        "source_quality": "OBSERVED",
+        "source_coverage_ref": {
+          "entity_id": "efa4be8a-7a88-50d1-bfe4-066a17ab2bfc",
+          "revision_id": "0570754b-7135-5dc4-8ec1-865308f6807f",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "adfeaf56846f2ea939abb740b918104a05d0376591c039791baf0cf28dcff360"
+        },
+        "occurred_at": "2026-10-01T02:30:00Z",
+        "recorded_at": "2026-10-01T03:00:00Z",
+        "fill_quality": "STANDARD_MODEL_FROM_OBSERVED",
+        "estimated_fill": false,
+        "reconstruction_method_ref": {
+          "entity_id": "b5f8803a-a1cb-5ad0-905c-75efb432090a",
+          "revision_id": "82e0919f-e845-5dfa-8f02-390eb8794064",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "4b7fef019bd3fa23f26c78929e5feda0412dbe759ec13dc3295d6d93d88022f7"
+        },
+        "order_fill_ref": {
+          "entity_id": "3029924e-7665-5ff8-bce3-fde5d4c72ee5",
+          "revision_id": "1c1a827f-dc3d-598a-b2e4-185a7f3d9324",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "2325314b532c2282d13f3bc4aaf58ebf0dc7127b1ca474635ff8cc60e9e3bf08"
+        },
+        "effective_sequence": 12,
+        "qualification_eligible": false,
+        "reason": "reconstructed after disconnected interval; not forward observed"
+      },
+      "preconditions": [
+        "run mode HISTORICAL_REPLAY even if original market event was observed"
+      ],
+      "expected": {
+        "replay_delta": 1,
+        "observed_forward_delta": 0
+      },
+      "assertions": [
+        {
+          "path": "counter.observed_forward_delta",
+          "operator": "EQ",
+          "value": 0
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "kind": "DOMAIN_RULE_OR_OTHER_OWNER_NEGATIVE_SEAM",
+        "no_direct_API_claim": true
+      }
+    },
+    {
+      "case_id": "LAB-SIM-R01",
+      "kind": "RECOVERY",
+      "finding_ids": [
+        "PRODUCT-S4-05"
+      ],
+      "operation": "recoverLabSimulation",
+      "fixture_model": "SimulationRecoveryRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "simulation_account_ref": {
+          "entity_id": "b49779d7-1302-5e65-9f97-5194ff1a3ab1",
+          "revision_id": "a74d312e-c584-51a6-a8e5-a896de98bc9a",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ac994ed85ac24ed1443b4487ebedc377261054fce20e79cf8aaf247d6df56a35"
+        },
+        "expected_frontier": 12,
+        "mode": "FORK_REPLAY",
+        "new_snapshot_ref": {
+          "entity_id": "c31a8b57-6cbe-59e5-8a9e-ad30c253e430",
+          "revision_id": "50d0c5db-1adb-5345-b76a-a17da8b38671",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "7c3b2a258ad276d0a634ab6cfcd32e33e2b4186547cfc087c854c05416f6227d"
+        }
+      },
+      "preconditions": [
+        "snapshot/config changed after crash; cannot hotresume original"
+      ],
+      "expected": {
+        "distinct_account": true,
+        "original_observations_unchanged": true,
+        "old_authority_reactivated": false
+      },
+      "assertions": [
+        {
+          "path": "state.original_observations_unchanged",
+          "operator": "EQ",
+          "value": true
+        },
+        {
+          "path": "authority.old_authority_reactivated",
+          "operator": "EQ",
+          "value": false
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/lab-simulation-accounts/{id}/recovery",
+        "response_item_model": "ResearchSimulationAccount",
+        "request_payload_fields": {
+          "request": {
+            "type": "SimulationRecoveryRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "simulation_account_ref": {
+            "entity_id": "b49779d7-1302-5e65-9f97-5194ff1a3ab1",
+            "revision_id": "a74d312e-c584-51a6-a8e5-a896de98bc9a",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "ac994ed85ac24ed1443b4487ebedc377261054fce20e79cf8aaf247d6df56a35"
+          },
+          "expected_frontier": 12,
+          "mode": "FORK_REPLAY",
+          "new_snapshot_ref": {
+            "entity_id": "c31a8b57-6cbe-59e5-8a9e-ad30c253e430",
+            "revision_id": "50d0c5db-1adb-5345-b76a-a17da8b38671",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "7c3b2a258ad276d0a634ab6cfcd32e33e2b4186547cfc087c854c05416f6227d"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "LAB-BRANCH-P01",
+      "kind": "POSITIVE",
+      "finding_ids": [
+        "PRODUCT-S4-06"
+      ],
+      "operation": "createResearchBranch",
+      "fixture_model": "BranchCreateRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "root_name": "S001 Research",
+        "intent": "Original research baseline",
+        "expected_root_generation": 0
+      },
+      "preconditions": [
+        "fresh root scope; first constructor does not require preexisting graph"
+      ],
+      "expected": {
+        "root_created": true,
+        "branch_alias": "S001-01",
+        "parent_count": 0,
+        "head_graph_present": false
+      },
+      "assertions": [
+        {
+          "path": "result.parent_count",
+          "operator": "EQ",
+          "value": 0
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/research-branches",
+        "response_item_model": "ResearchBranch",
+        "request_payload_fields": {
+          "request": {
+            "type": "BranchCreateRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "root_name": "S001 Research",
+          "intent": "Original research baseline",
+          "expected_root_generation": 0
+        }
+      }
+    },
+    {
+      "case_id": "LAB-BRANCH-C01",
+      "kind": "CONCURRENCY",
+      "finding_ids": [
+        "PRODUCT-S4-06"
+      ],
+      "operation": "cloneResearchBranch",
+      "fixture_model": "BranchCloneRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "parent_branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "parent_snapshot_ref": {
+          "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+          "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+        },
+        "intent": "Derived S001 research",
+        "expected_root_generation": 1
+      },
+      "preconditions": [
+        "two clones use same root generation; original alias never reassigned"
+      ],
+      "expected": {
+        "success_count": 1,
+        "other_http": 409,
+        "alias": "S001-02",
+        "parent_count": 1
+      },
+      "assertions": [
+        {
+          "path": "effect.success_count",
+          "operator": "EQ",
+          "value": 1
+        },
+        {
+          "path": "result.parent_count",
+          "operator": "EQ",
+          "value": 1
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/research-branches/{id}/clones",
+        "response_item_model": "ResearchBranch",
+        "request_payload_fields": {
+          "request": {
+            "type": "BranchCloneRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "parent_branch_ref": {
+            "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+            "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+          },
+          "parent_snapshot_ref": {
+            "entity_id": "3014f424-fd3d-5a33-80d8-3b14b9dead25",
+            "revision_id": "7d378e5f-fad6-5e76-abb6-2a20305f62e1",
+            "owner": "F_RESEARCH",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+          },
+          "intent": "Derived S001 research",
+          "expected_root_generation": 1
+        }
+      }
+    },
+    {
+      "case_id": "LAB-BRANCH-P02",
+      "kind": "POSITIVE",
+      "finding_ids": [
+        "PRODUCT-S4-06"
+      ],
+      "operation": "archiveResearchBranch",
+      "fixture_model": "BranchArchiveRequest",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "expected_branch_generation": 3,
+        "reason": "Preserve published snapshots and original research evidence"
+      },
+      "preconditions": [
+        "branch referenced by snapshot/run/evidence"
+      ],
+      "expected": {
+        "state": "ARCHIVED",
+        "deleted_snapshots": 0,
+        "history_readable": true
+      },
+      "assertions": [
+        {
+          "path": "effect.deleted_snapshots",
+          "operator": "EQ",
+          "value": 0
+        },
+        {
+          "path": "result.history_readable",
+          "operator": "EQ",
+          "value": true
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/research-branches/{id}/archive",
+        "response_item_model": "ResearchBranch",
+        "request_payload_fields": {
+          "request": {
+            "type": "BranchArchiveRequest",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "request": {
+          "branch_ref": {
+            "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+            "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+            "owner": "E_STRATEGY",
+            "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+            "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+          },
+          "expected_branch_generation": 3,
+          "reason": "Preserve published snapshots and original research evidence"
+        }
+      }
+    },
+    {
+      "case_id": "LAB-BRANCH-N01",
+      "kind": "NEGATIVE",
+      "finding_ids": [
+        "PRODUCT-S4-06"
+      ],
+      "operation": "saveManualCodeRevision",
+      "fixture_model": "ResearchBranch",
+      "fixture_model_role": "Scenario state/input closure; exact wire request_payload separately bound below",
+      "given": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "base_code_ref": {
+          "entity_id": "d7fed77f-7256-59d1-8a87-17d1d11bbfcf",
+          "revision_id": "0a0ebbc4-3ebd-5596-b1a4-c28eb9628edd",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "a6dc3af4f543246d9d8240102df1633bb78450b511b3ccecbf6f893049be5589"
+        },
+        "new_code_content_ref": {
+          "entity_id": "6422d29f-15d6-53b0-a81e-c4a3cbb0b96d",
+          "revision_id": "5f4320fa-bc23-5871-99de-0ca3f294359b",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "6697fb3c1b4c67dd30702296a33f59933a7b675576a773a67137573d648dfe32"
+        },
+        "dependency_lock_ref": {
+          "entity_id": "e3b343a0-d734-56ce-8c62-2cf3fe197774",
+          "revision_id": "d8e55e44-c1b5-5481-9edb-4f42055d7fec",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "dfdbdbc657ee8215b5cd102c981987269cbbe7d0d57fea82628f3541b3e32f78"
+        },
+        "analysis_report_ref": {
+          "entity_id": "174a8343-3883-59d8-aa57-af07453e8a57",
+          "revision_id": "eb96ce33-f88b-5c9e-8a0e-e0481d436035",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "27992a97f60e0e9479ccd66b7dc9446b34eeae47d65ae8c6e9a94de3c3b3121b"
+        }
+      },
+      "preconditions": [
+        "manualcode structurally non-equivalent to original graph"
+      ],
+      "expected": {
+        "code_graph_status": "CODE_DIVERGED_RESEARCH_ONLY",
+        "old_graph_overwritten": false
+      },
+      "assertions": [
+        {
+          "path": "effect.old_graph_overwritten",
+          "operator": "EQ",
+          "value": false
+        }
+      ],
+      "evidence_level": "SYNTHETIC_SPECIFICATION_ORACLE_NOT_RUNTIME",
+      "runtime_status": "NOT_RUN",
+      "wire_operation_binding": {
+        "method": "POST",
+        "path": "/api/v2/research-branches/{id}/manual-code",
+        "response_item_model": "GeneratedCodeRevision",
+        "request_payload_fields": {
+          "branch_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "base_code_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "new_code_content_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "dependency_lock_ref": {
+            "type": "ContractRef",
+            "required": true
+          },
+          "analysis_report_ref": {
+            "type": "ContractRef",
+            "required": true
+          }
+        }
+      },
+      "request_payload": {
+        "branch_ref": {
+          "entity_id": "b3b670c6-7d30-55a0-abe2-d6a552826add",
+          "revision_id": "ccba9307-48d1-5ccb-8210-a1547e57c5e3",
+          "owner": "E_STRATEGY",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+        },
+        "base_code_ref": {
+          "entity_id": "d7fed77f-7256-59d1-8a87-17d1d11bbfcf",
+          "revision_id": "0a0ebbc4-3ebd-5596-b1a4-c28eb9628edd",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "a6dc3af4f543246d9d8240102df1633bb78450b511b3ccecbf6f893049be5589"
+        },
+        "new_code_content_ref": {
+          "entity_id": "6422d29f-15d6-53b0-a81e-c4a3cbb0b96d",
+          "revision_id": "5f4320fa-bc23-5871-99de-0ca3f294359b",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "6697fb3c1b4c67dd30702296a33f59933a7b675576a773a67137573d648dfe32"
+        },
+        "dependency_lock_ref": {
+          "entity_id": "e3b343a0-d734-56ce-8c62-2cf3fe197774",
+          "revision_id": "d8e55e44-c1b5-5481-9edb-4f42055d7fec",
+          "owner": "F_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "dfdbdbc657ee8215b5cd102c981987269cbbe7d0d57fea82628f3541b3e32f78"
+        },
+        "analysis_report_ref": {
+          "entity_id": "174a8343-3883-59d8-aa57-af07453e8a57",
+          "revision_id": "eb96ce33-f88b-5c9e-8a0e-e0481d436035",
+          "owner": "E_RESEARCH",
+          "hash_domain": "RCG03_SYNTHETIC_FIXTURE_UTF8_V1",
+          "source_hash": "27992a97f60e0e9479ccd66b7dc9446b34eeae47d65ae8c6e9a94de3c3b3121b"
+        }
+      }
+    }
+  ],
+  "synthetic_ref_content_catalog": {
+    "inbox-source": {
+      "canonical_utf8": "{\"owner\":\"E_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"inbox-source\"}",
+      "raw_bytes_sha256": "c912375489505cfb67f0df9ee424d5365c6fc162e24a3479f4ded588ef0dc761"
+    },
+    "ast-analysis": {
+      "canonical_utf8": "{\"owner\":\"E_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"ast-analysis\"}",
+      "raw_bytes_sha256": "27992a97f60e0e9479ccd66b7dc9446b34eeae47d65ae8c6e9a94de3c3b3121b"
+    },
+    "original-code-bytes": {
+      "canonical_utf8": "{\"owner\":\"ARTIFACT_PROVIDER\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"original-code-bytes\"}",
+      "raw_bytes_sha256": "92980950ff8f43a05ddf584fb7b58baff82d5dfb650605fb02cd012205fddf0b"
+    },
+    "draft-graph": {
+      "canonical_utf8": "{\"owner\":\"E_STRATEGY\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"draft-graph\"}",
+      "raw_bytes_sha256": "b5c9c778f8dd9662e53c0ce03f32e895364319e122f563ceeab7f3bfae831595"
+    },
+    "branch-01": {
+      "canonical_utf8": "{\"owner\":\"E_STRATEGY\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"branch-01\"}",
+      "raw_bytes_sha256": "8fb21ee531482405de64438abb0e90d2c77b06753071e64674d2a8b25ad70909"
+    },
+    "research-root": {
+      "canonical_utf8": "{\"owner\":\"E_STRATEGY\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"research-root\"}",
+      "raw_bytes_sha256": "bc5f9b00dca227417965df0776780bd93ae669778ffeef7da2d3f609adc0f09a"
+    },
+    "snapshot-01": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"snapshot-01\"}",
+      "raw_bytes_sha256": "ecfc0a4f30d107efed8c038789be37e0c2bb1b424b7f21767b8d410d71187a84"
+    },
+    "human-source-plan": {
+      "canonical_utf8": "{\"owner\":\"HUMAN\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"human-source-plan\"}",
+      "raw_bytes_sha256": "b4c2f323841206117dfdcbe350d271766c31fe17a694880ca15bee009a0eba26"
+    },
+    "archive-plan": {
+      "canonical_utf8": "{\"owner\":\"E_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"archive-plan\"}",
+      "raw_bytes_sha256": "dabd903b0bedc5d19285ab6305c9635243fdce41b788ab30fe4822d3b5547e08"
+    },
+    "ast-tool-profile": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"ast-tool-profile\"}",
+      "raw_bytes_sha256": "c843051730ab181622f70ed1f441c31a92d3b78b01143ee0d54776f8f6d295a7"
+    },
+    "feature-catalog": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"feature-catalog\"}",
+      "raw_bytes_sha256": "396345588bed0a9948bc0bef3fc6be0b364227cac169a3420f3607821c6ece5c"
+    },
+    "bounded-parser-budget": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"bounded-parser-budget\"}",
+      "raw_bytes_sha256": "495617763caa3aef76d19e10390281afcfebca6496d806281f289362275ef70c"
+    },
+    "archive-provider": {
+      "canonical_utf8": "{\"owner\":\"ARTIFACT_PROVIDER\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"archive-provider\"}",
+      "raw_bytes_sha256": "50a691aa62f56d4d53535b0354d6fa55280aa4af86b972b596142fb7bcc3d8a6"
+    },
+    "known-licence-decision": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"known-licence-decision\"}",
+      "raw_bytes_sha256": "24237946c2e108ce8d6e27aa926fd6b48c4bead5cf08590b9221bfc4e3f30a0a"
+    },
+    "baseline-run": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"baseline-run\"}",
+      "raw_bytes_sha256": "e4786429c3f050c94001d3277345fcabd89e7e088d2ab27d20bcb66d7404be7b"
+    },
+    "benchmark": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"benchmark\"}",
+      "raw_bytes_sha256": "175d1c9a8845bffdfaf6d5f5ed882098ccf2f5b248b0d70dd88f52966e0669b2"
+    },
+    "validation-plan": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"validation-plan\"}",
+      "raw_bytes_sha256": "f88d9c836cf2a6b2d06ef232e2c18f0e01b0ca132f4723905de4087b67db27a5"
+    },
+    "research-provider": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"research-provider\"}",
+      "raw_bytes_sha256": "8d50ffdb7d98e59867e592dd7cace59acf93d60b635663dd889813d904b1a48d"
+    },
+    "analyst-prompt": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"analyst-prompt\"}",
+      "raw_bytes_sha256": "e56e0a5a70c0eae5878a9fd96be2c0016f566b21e654a17044bdbdfe8ef07720"
+    },
+    "human-trigger": {
+      "canonical_utf8": "{\"owner\":\"HUMAN\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"human-trigger\"}",
+      "raw_bytes_sha256": "0e307136f477cae871255f1c41edabc1a6ae7470170a6453f0a5df6a40a9b222"
+    },
+    "analyst-run": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"analyst-run\"}",
+      "raw_bytes_sha256": "747c2a6aa4adb096d9098ea8b5804923b050f1e141d8b8ae6b501d8b4df6c4c2"
+    },
+    "selected-suggestion": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"selected-suggestion\"}",
+      "raw_bytes_sha256": "813ec1ea07c784b86dcc0162357f05c31138802b6319da9bf03387211be97ffc"
+    },
+    "human-selection": {
+      "canonical_utf8": "{\"owner\":\"HUMAN\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"human-selection\"}",
+      "raw_bytes_sha256": "9a77bcc49ad9a4eca7aa13f0fe378ad8cf4d24b0c62d1cf5f25a855b843e412f"
+    },
+    "unsimulated-release-subject": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"unsimulated-release-subject\"}",
+      "raw_bytes_sha256": "aacece9aa3b163d4493fac5bb50409e528909244781e6ee03ca624beb426057e"
+    },
+    "strategy-definition": {
+      "canonical_utf8": "{\"owner\":\"E_STRATEGY\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"strategy-definition\"}",
+      "raw_bytes_sha256": "84af23cda95960316d2ee7f74163e38532012d89de9ffa1dd4190091e0537711"
+    },
+    "required-standard-profile": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"required-standard-profile\"}",
+      "raw_bytes_sha256": "8cbc20a5b75c4e448b5f04351f2cff931d580c787b453e774f3974ec2f66cef5"
+    },
+    "library-exception-human": {
+      "canonical_utf8": "{\"owner\":\"HUMAN\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"library-exception-human\"}",
+      "raw_bytes_sha256": "a99d0fc7ad9d50bc4998167e7c99d1125d487bcbd79d20157039599b9636c44e"
+    },
+    "warning-ack": {
+      "canonical_utf8": "{\"owner\":\"HUMAN\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"warning-ack\"}",
+      "raw_bytes_sha256": "89ad2262deb634e580cf3fe2105647e848e167fb415b51965144b36bab0fa875"
+    },
+    "synthetic-market-dataset": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"synthetic-market-dataset\"}",
+      "raw_bytes_sha256": "a8d317a091ed2bd407b108a82b80ea2cd06a1c45a517ee5d3af12872845ab595"
+    },
+    "standard-fillmodel": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"standard-fillmodel\"}",
+      "raw_bytes_sha256": "ef01fb787cf81b6f61626624b310325ca2aaca001f874381a772e34c9ab47d1a"
+    },
+    "slippage-policy": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"slippage-policy\"}",
+      "raw_bytes_sha256": "dc85814bf11fe38fc37866c0916f4151cf536da40074a9d9553e8b9934ef58d7"
+    },
+    "cost-policy": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"cost-policy\"}",
+      "raw_bytes_sha256": "6d4b9dc99f54bbdbb456a629303483c91b3a259199875e32c07f8117bc0e3dd2"
+    },
+    "clock-policy": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"clock-policy\"}",
+      "raw_bytes_sha256": "6a3658820f573a46ab2e12f3653a9a71c504dcbb84cd6244f220f0e742f837c4"
+    },
+    "historical-source": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"historical-source\"}",
+      "raw_bytes_sha256": "c339a3580c94e80e2f1e4c233d1992fa2f2eea0a0b53521412cf087c1df39ec4"
+    },
+    "candidate-standard-profile": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"candidate-standard-profile\"}",
+      "raw_bytes_sha256": "8c09a99aec5eb2cf9f237f62602abd699f0574a61c5581138a1e6454590e2273"
+    },
+    "reconstructed-observation": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"reconstructed-observation\"}",
+      "raw_bytes_sha256": "e848e7ba777f0347471f78730916edf113f022f2a5f53c59297d48442ffb5477"
+    },
+    "lab-sim-account": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"lab-sim-account\"}",
+      "raw_bytes_sha256": "ac994ed85ac24ed1443b4487ebedc377261054fce20e79cf8aaf247d6df56a35"
+    },
+    "replayed-market-event": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"replayed-market-event\"}",
+      "raw_bytes_sha256": "24eae3dbaf95dd1dfa6d2ddfee9cd0bce3e7f40d741bd83ea69032551b05ed70"
+    },
+    "gap-coverage": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"gap-coverage\"}",
+      "raw_bytes_sha256": "adfeaf56846f2ea939abb740b918104a05d0376591c039791baf0cf28dcff360"
+    },
+    "reconstruction-model": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"reconstruction-model\"}",
+      "raw_bytes_sha256": "4b7fef019bd3fa23f26c78929e5feda0412dbe759ec13dc3295d6d93d88022f7"
+    },
+    "virtual-fill": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"virtual-fill\"}",
+      "raw_bytes_sha256": "2325314b532c2282d13f3bc4aaf58ebf0dc7127b1ca474635ff8cc60e9e3bf08"
+    },
+    "new-snapshot": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"new-snapshot\"}",
+      "raw_bytes_sha256": "7c3b2a258ad276d0a634ab6cfcd32e33e2b4186547cfc087c854c05416f6227d"
+    },
+    "generated-code": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"generated-code\"}",
+      "raw_bytes_sha256": "a6dc3af4f543246d9d8240102df1633bb78450b511b3ccecbf6f893049be5589"
+    },
+    "manual-code": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"manual-code\"}",
+      "raw_bytes_sha256": "6697fb3c1b4c67dd30702296a33f59933a7b675576a773a67137573d648dfe32"
+    },
+    "lock": {
+      "canonical_utf8": "{\"owner\":\"F_RESEARCH\",\"status\":\"SYNTHETIC_SPECIFICATION_NOT_REAL_EVIDENCE\",\"synthetic_name\":\"lock\"}",
+      "raw_bytes_sha256": "dfdbdbc657ee8215b5cd102c981987269cbbe7d0d57fea82628f3541b3e32f78"
+    }
+  },
+  "fixture_policy": "Exact synthetic bytes and fixed conditions; values are example configuration, not approved production thresholds; assertions evaluated by future existing unit implementation test adapter, not product invoked now."
+}

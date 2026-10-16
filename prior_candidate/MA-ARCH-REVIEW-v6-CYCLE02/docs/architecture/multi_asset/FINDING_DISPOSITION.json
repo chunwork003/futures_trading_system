@@ -1,0 +1,1009 @@
+{
+  "schema_version": "architecture.finding_disposition.v1",
+  "revision": "candidate.1",
+  "findings": [
+    {
+      "finding_id": "F2-01",
+      "group": "CG1",
+      "original_binding": {
+        "finding_id": "F2-01",
+        "root_cause_group": "CG1",
+        "source_review_step": 2,
+        "source_message": "msg_0b37d3f822adfd8b016aca5238dd0c81919486f76e34796471",
+        "source_capture": "private:review-conversation/STEP_2.original-review-message.md",
+        "source_line": 139,
+        "original_source_excerpt": "| **F2-01：金融身份混接登入身份。** C：[historical index:28737](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/historical_requirements.v1.json:28737)；M：[J Blueprint:50](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/blueprint/J_ACCOUNT_RECONCILIATION.md:50)；C：[P03 定義:33](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/V1_PROGRAM.md:33) | J01 的 internal capital bucket／allocation 被連到 `P03-IDENTITY`。登入／session 完成不代表 financial account 完成 | V1 single-capital 切片連 P06-CAPITAL／P08；operator auth 另作依賴關聯；保留後續 allocation | **阻塞該 semantic crosswalk 凍結**；可帶入 STEP 3 |",
+        "design_subjects": [
+          "MA01",
+          "MA04",
+          "MA06",
+          "MA07",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F2-02",
+      "group": "CG1",
+      "original_binding": {
+        "finding_id": "F2-02",
+        "root_cause_group": "CG1",
+        "source_review_step": 2,
+        "source_message": "msg_0b37d3f822adfd8b016aca5238dd0c81919486f76e34796471",
+        "source_capture": "private:review-conversation/STEP_2.original-review-message.md",
+        "source_line": 140,
+        "original_source_excerpt": "| **F2-02：三項必交付缺 Capability 反向映射。** C：index [K07:28996](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/historical_requirements.v1.json:28996)、[L07:29146](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/historical_requirements.v1.json:29146)；M：[K backup／restore:119](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/blueprint/K_PERSISTENCE_RECOVERY.md:119) | 有 P11 backup／restore，但從 K910／K920／L970 無法追到其工程交付；後續 coverage 查詢可能漏列 | 補 typed links 至既有 P03-ARTIFACTS、P11-HEALTH、P11-BACKUP-RESTORE；不新增權重 | **阻塞完整 traceability 承諾**；無須 Owner 決普通映射細節 |",
+        "design_subjects": [
+          "MA01",
+          "MA04",
+          "MA06",
+          "MA07",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F2-03",
+      "group": "CG1",
+      "original_binding": {
+        "finding_id": "F2-03",
+        "root_cause_group": "CG1",
+        "source_review_step": 2,
+        "source_message": "msg_0b37d3f822adfd8b016aca5238dd0c81919486f76e34796471",
+        "source_capture": "private:review-conversation/STEP_2.original-review-message.md",
+        "source_line": 141,
+        "original_source_excerpt": "| **F2-03：關聯未區分重用、實作、qualification。** C：index [I01～I06:28617](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/historical_requirements.v1.json:28617)、[A04:27696](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/historical_requirements.v1.json:27696) | I 全連 P07-OMS、A04 只連 P12-RELEASE。可能把 simulation PASS 當 broker PASS，或 release evidence 當 Controller 完成 | 保留現有 boundary 文字，增加關聯用途／驗收範圍；真券商與 AUTO promotion 仍由原 Owner 管理 | **阻塞以這些未分型 links 驅動完成度**；沒有證據顯示已發生假接受 |",
+        "design_subjects": [
+          "MA01",
+          "MA04",
+          "MA06",
+          "MA07",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F2-04",
+      "group": "CG1",
+      "original_binding": {
+        "finding_id": "F2-04",
+        "root_cause_group": "CG1",
+        "source_review_step": 2,
+        "source_message": "msg_0b37d3f822adfd8b016aca5238dd0c81919486f76e34796471",
+        "source_capture": "private:review-conversation/STEP_2.original-review-message.md",
+        "source_line": 142,
+        "original_source_excerpt": "| **F2-04：正式 M12 與新 credentialless V1 尚待正式採納橋接。** M：[ROADMAP:339](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/ROADMAP.md:339)；C：[Owner request:166](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/P00_OWNER_REQUEST.md:166) | 舊 M12 要求 Shioaji connectivity／broker disconnect；新 V1 必須無真 credentials 完整驗收。直接沿用兩者會造成錯誤 release gate | 正式採納時明列 simulation release 與 broker／production gates 的關係，保留原來源與未來義務 | **阻塞新正式 release baseline**；Owner 的 credentialless 意圖已明確，無須重問 |",
+        "design_subjects": [
+          "MA01",
+          "MA04",
+          "MA06",
+          "MA07",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F2-05",
+      "group": "CG1",
+      "original_binding": {
+        "finding_id": "F2-05",
+        "root_cause_group": "CG1",
+        "source_review_step": 2,
+        "source_message": "msg_0b37d3f822adfd8b016aca5238dd0c81919486f76e34796471",
+        "source_capture": "private:review-conversation/STEP_2.original-review-message.md",
+        "source_line": 143,
+        "original_source_excerpt": "| **F2-05：LAB 新增 scope 缺原始決策；URMS 未納原 delta。** C：[baseline:4](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/program_baseline.v1.json:4)；附件：[LAB 限定:172](</C:/Users/CHUNs/Downloads/ALL架構/FTS_P00_URMS_Architecture_and_Prompts_20261010/FTS_URMS_Architecture_Package_20261010/02_MASTER_ROADMAP_AND_FEATURE_MAP.md:172>)；本輪直接 URMS 要求 | 一般 comparison 不代表六欄 Builder；StrategyRegistry 不代表人工發布。沿 127 宣稱全部涵蓋會漏工與低估 | 恢復／確認 LAB scope；URMS 增加有來源的設計與平台 delta；既有重疊只計一次 | **阻塞完整新增 scope freeze／估算**；不阻塞已明確需求的 identity 審核 |",
+        "design_subjects": [
+          "MA01",
+          "MA04",
+          "MA06",
+          "MA07",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F2-07",
+      "group": "CG1",
+      "original_binding": {
+        "finding_id": "F2-07",
+        "root_cause_group": "CG1",
+        "source_review_step": 2,
+        "source_message": "msg_0b37d3f822adfd8b016aca5238dd0c81919486f76e34796471",
+        "source_capture": "private:review-conversation/STEP_2.original-review-message.md",
+        "source_line": 145,
+        "original_source_excerpt": "| **F2-07：多對多映射有可重現的重複計分風險。** C：historical index blob `397879b37830c7827b649dea77aef60324742fe9`；[計分守恆:29](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/PROGRESS_ACCOUNTING.md:29) | 603 unique leaves 為 2137 weight；沿 717 關聯逐列加總會變成 **2541，多 404**。這是反例，尚非既有 calculator 已犯錯的證据 | 信用由唯一 baseline deliverable／allocation 決定；mapping edges 不持有另一份功能信用 | **阻塞錯誤聚合規則採納**；不增加 Progress Engine |",
+        "design_subjects": [
+          "MA01",
+          "MA04",
+          "MA06",
+          "MA07",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F3-08",
+      "group": "CG1",
+      "original_binding": {
+        "finding_id": "F3-08",
+        "root_cause_group": "CG1",
+        "source_review_step": 3,
+        "source_message": "msg_0b37d3f822adfd8b016acae3a4c76081919c69aac1afc28f21",
+        "source_capture": "private:review-conversation/STEP_3.original-review-message.md",
+        "source_line": 390,
+        "original_source_excerpt": "| **F3-08 CROSSWALK_AND_CREDIT_INVARIANTS** | C Historical Index：27625、29510；C Baseline：330、762、780 | 三項反向映射不足；717邊可放大權重。補 coverage obligation；計分綁既有唯一 subject／allocation Owner |",
+        "design_subjects": [
+          "MA01",
+          "MA04",
+          "MA06",
+          "MA07",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F6-03",
+      "group": "CG1",
+      "original_binding": {
+        "finding_id": "F6-03",
+        "root_cause_group": "CG1",
+        "source_review_step": 6,
+        "source_message": "msg_0b37d3f822adfd8b016acb14364dbc81918298578e8d15666a",
+        "source_capture": "private:review-conversation/STEP_6.original-review-message.md",
+        "source_line": 112,
+        "original_source_excerpt": "| **F6-03 — 新 Scope 尚未接上版本化 package。** [package schema:13](/D:/00_Learn/量化交易/Code/futures_trading_system/automation/platform/package.schema.v1.json:13)、[handoff schema:9](/D:/00_Learn/量化交易/Code/futures_trading_system/automation/platform/handoff.schema.v1.json:9)、[accounting:31](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/PROGRESS_ACCOUNTING.md:31) | 將 LAB／AUTO 改名成 Pxx，或直接加入 closed schema，會失去來源身份／破壞舊 receipts；泛稱 P04 已涵蓋全部 LAB 亦會漏掉新增義務 | Source-Bound Delta＋typed companion binding：Registry snapshot、entity revision、deliverable、artifact、package revision/hash。由 R03／WORK Compiler Owner 設計有界 adapter | 新 Scope adoption、受影響正式 packages；不阻塞既有隔離原型 |",
+        "design_subjects": [
+          "MA01",
+          "MA04",
+          "MA06",
+          "MA07",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F6-04",
+      "group": "CG1",
+      "original_binding": {
+        "finding_id": "F6-04",
+        "root_cause_group": "CG1",
+        "source_review_step": 6,
+        "source_message": "msg_0b37d3f822adfd8b016acb14364dbc81918298578e8d15666a",
+        "source_capture": "private:review-conversation/STEP_6.original-review-message.md",
+        "source_line": 113,
+        "original_source_excerpt": "| **F6-04 — Lab 研究物件與發布語義橋不足。** LAB Rev2:106、158；[V1_CONTRACTS:56](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/architecture/V1_CONTRACTS.md:56) | generated code 已改卻引用舊 graph；執行中 Draft 被修改；Research Artifact `published` 被當成正式策略庫批准或交易准入 | 固定 graph／code／snapshot compatibility、run inputs、結果 lineage；分開研究產物發布、人工 Library Approval、Runtime Admission。由既有 Strategy／Research／Artifact／Simulation Owners 補齊 | 新 LAB 正式研究／模擬整合及人工發布 |",
+        "design_subjects": [
+          "MA01",
+          "MA04",
+          "MA06",
+          "MA07",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F6-05",
+      "group": "CG1",
+      "original_binding": {
+        "finding_id": "F6-05",
+        "root_cause_group": "CG1",
+        "source_review_step": 6,
+        "source_message": "msg_0b37d3f822adfd8b016acb14364dbc81918298578e8d15666a",
+        "source_capture": "private:review-conversation/STEP_6.original-review-message.md",
+        "source_line": 114,
+        "original_source_excerpt": "| **F6-05 — Group／Deployment／Budget 與 canonical core 尚缺歸屬橋。** LAB Rev2:23、31、38、62；[V1_BASELINE:80](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/architecture/V1_BASELINE.md:80) | 以 `(account,symbol)` 聚合後遺失群組 Order／Fill origin；把 equity 自動當 budget；兩群組重複占用購買力或產生未授權內部互抵 | 明訂 Group／Deployment／StrategyInstance／Budget revision／OrderIntent／Fill／VirtualPosition／account observation 映射與資源保留。由 Decision／Risk／Capital／OMS／Account Owners 補 compatibility addendum | 新 LAB 群組正式整合；**不據此宣稱既有 PriorityPolicy 錯誤或重開 R01** |",
+        "design_subjects": [
+          "MA01",
+          "MA04",
+          "MA06",
+          "MA07",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F6-08",
+      "group": "CG1",
+      "original_binding": {
+        "finding_id": "F6-08",
+        "root_cause_group": "CG1",
+        "source_review_step": 6,
+        "source_message": "msg_0b37d3f822adfd8b016acb14364dbc81918298578e8d15666a",
+        "source_capture": "private:review-conversation/STEP_6.original-review-message.md",
+        "source_line": 117,
+        "original_source_excerpt": "| **F6-08 — R08 尚無完整語意閉合 verdict。** [request coverage:1511](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/request_coverage.v1.json:1511)、[P00 predicates:46](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/work/P00_BASELINE.md:46) | 22-file inventory COMPLETE 被當成全部需求已接受；外部 LAB／URMS 新來源也被自動算入舊 universe | 原 91 rows／A–S dispositions 加 exact overlap／Delta／remaining；fresh independent final review。由 R08 Architect 整合、Reviewer 複核、Human 採納 | 完整 P00 acceptance |",
+        "design_subjects": [
+          "MA01",
+          "MA04",
+          "MA06",
+          "MA07",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F2-08",
+      "group": "CG2",
+      "original_binding": {
+        "finding_id": "F2-08",
+        "root_cause_group": "CG2",
+        "source_review_step": 2,
+        "source_message": "msg_0b37d3f822adfd8b016aca5238dd0c81919486f76e34796471",
+        "source_capture": "private:review-conversation/STEP_2.original-review-message.md",
+        "source_line": 146,
+        "original_source_excerpt": "| **F2-08：裸編碼跨集合碰撞。** M：[Capability C01:151](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/V1_CAPABILITY_MAP.md:151)；C：[correction C01:36](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/accepted_core_reconciliation.v1.json:36) | `C01` 同時指 Calendar capability 與 correction contract；新 P08 也不同於舊 P8 broker gate。匯入後若只按字串合併會破壞引用 | 保留 entity kind、來源集合／scope、永久身份與 contextual aliases | **STEP 3 必須解決**；本步不建立 SQL 表 |",
+        "design_subjects": [
+          "MA02",
+          "MA11"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F3-01",
+      "group": "CG2",
+      "original_binding": {
+        "finding_id": "F3-01",
+        "root_cause_group": "CG2",
+        "source_review_step": 3,
+        "source_message": "msg_0b37d3f822adfd8b016acae3a4c76081919c69aac1afc28f21",
+        "source_capture": "private:review-conversation/STEP_3.original-review-message.md",
+        "source_line": 383,
+        "original_source_excerpt": "| **F3-01 LAB_ALIAS_MEANING_DRIFT** | LAB Rev2：147–154；U02：160–165；上述 raw hashes | LAB-03 舊 snapshot wave 被解成新 Builder feature。先完成 concept crosswalk，分離 wave／feature ID；不得直接 seed |",
+        "design_subjects": [
+          "MA02",
+          "MA11"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F3-02",
+      "group": "CG2",
+      "original_binding": {
+        "finding_id": "F3-02",
+        "root_cause_group": "CG2",
+        "source_review_step": 3,
+        "source_message": "msg_0b37d3f822adfd8b016acae3a4c76081919c69aac1afc28f21",
+        "source_capture": "private:review-conversation/STEP_3.original-review-message.md",
+        "source_line": 384,
+        "original_source_excerpt": "| **F3-02 CODE_SCOPE_AND_FORMAT_ESCAPE** | M Capability Map：151；M Correction Freeze：174；U03：44 | 同專案 C01 碰撞；換 format version 又配置相同公開碼。加入 catalog／kind context，跨格式永久保留配置 |",
+        "design_subjects": [
+          "MA02",
+          "MA11"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F3-03",
+      "group": "CG2",
+      "original_binding": {
+        "finding_id": "F3-03",
+        "root_cause_group": "CG2",
+        "source_review_step": 3,
+        "source_message": "msg_0b37d3f822adfd8b016acae3a4c76081919c69aac1afc28f21",
+        "source_capture": "private:review-conversation/STEP_3.original-review-message.md",
+        "source_line": 385,
+        "original_source_excerpt": "| **F3-03 REVISION_CLOSURE_UNDEFINED** | U03：30、48–51 | edge 只存 UUID，舊 accepted graph 隨最新內容改變。固定 snapshot membership，endpoint 複合 FK |",
+        "design_subjects": [
+          "MA02",
+          "MA11"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F3-05",
+      "group": "CG2",
+      "original_binding": {
+        "finding_id": "F3-05",
+        "root_cause_group": "CG2",
+        "source_review_step": 3,
+        "source_message": "msg_0b37d3f822adfd8b016acae3a4c76081919c69aac1afc28f21",
+        "source_capture": "private:review-conversation/STEP_3.original-review-message.md",
+        "source_line": 387,
+        "original_source_excerpt": "| **F3-05 CONCURRENT_GRAPH_WRITE_GAP** | U03：54 | 兩 writer 各自看見無環，合併成環。統一 graph-scope guard、重讀、CAS、final-batch validation |",
+        "design_subjects": [
+          "MA02",
+          "MA11"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F3-06",
+      "group": "CG2",
+      "original_binding": {
+        "finding_id": "F3-06",
+        "root_cause_group": "CG2",
+        "source_review_step": 3,
+        "source_message": "msg_0b37d3f822adfd8b016acae3a4c76081919c69aac1afc28f21",
+        "source_capture": "private:review-conversation/STEP_3.original-review-message.md",
+        "source_line": 388,
+        "original_source_excerpt": "| **F3-06 DEPENDENCY_SCOPE_UNDEFINED** | U03：50 | 分 type／分 project 各自無環，聯集有環。定義 cycle group 與完整 graph closure |",
+        "design_subjects": [
+          "MA02",
+          "MA11"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F3-07",
+      "group": "CG2",
+      "original_binding": {
+        "finding_id": "F3-07",
+        "root_cause_group": "CG2",
+        "source_review_step": 3,
+        "source_message": "msg_0b37d3f822adfd8b016acae3a4c76081919c69aac1afc28f21",
+        "source_capture": "private:review-conversation/STEP_3.original-review-message.md",
+        "source_line": 389,
+        "original_source_excerpt": "| **F3-07 REBUILD_IDENTITY_CONTRACT_MISSING** | U03：62、79；候選 Decision Register D05／D08 | SQL 清空後重新配置 UUID，歷史引用失效。Git 保存正式 IDs／revisions／relationships／refs，import 不重發 |",
+        "design_subjects": [
+          "MA02",
+          "MA11"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F4-07",
+      "group": "CG2",
+      "original_binding": {
+        "finding_id": "F4-07",
+        "root_cause_group": "CG2",
+        "source_review_step": 4,
+        "source_message": "msg_0b37d3f822adfd8b016acae75355e08191a7644d574db3f6f7",
+        "source_capture": "private:review-conversation/STEP_4.original-review-message.md",
+        "source_line": 309,
+        "original_source_excerpt": "| **F4-07 FORMAL_REBUILD_CLOSURE_UNPROVEN** | U03：79；資料包04：59、67；承接 F3 | 正式關係只留 SQL，或清空後重發／合併身份 | Git 完整正式閉包、保留原 ID／alias/context、coverage 驗證 |",
+        "design_subjects": [
+          "MA02",
+          "MA11"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F3-04",
+      "group": "CG3",
+      "original_binding": {
+        "finding_id": "F3-04",
+        "root_cause_group": "CG3",
+        "source_review_step": 3,
+        "source_message": "msg_0b37d3f822adfd8b016acae3a4c76081919c69aac1afc28f21",
+        "source_capture": "private:review-conversation/STEP_3.original-review-message.md",
+        "source_line": 386,
+        "original_source_excerpt": "| **F3-04 DRAFT_ACCEPTED_CONTEXT_COLLAPSE** | U03：24、89–95 | 原地翻 status 或複製接受，失去 reviewed subject。Content revision 可重用，Registry context／採納閉包須分開 |",
+        "design_subjects": [
+          "MA12"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F4-01",
+      "group": "CG3",
+      "original_binding": {
+        "finding_id": "F4-01",
+        "root_cause_group": "CG3",
+        "source_review_step": 4,
+        "source_message": "msg_0b37d3f822adfd8b016acae75355e08191a7644d574db3f6f7",
+        "source_capture": "private:review-conversation/STEP_4.original-review-message.md",
+        "source_line": 303,
+        "original_source_excerpt": "| **F4-01 ADOPTION_PUBLICATION_GATE_UNDEFINED** | U03：70–78；M state machine：60；M 002 acceptance：11、40–41 | Git integration／SQL status 被當正式採納 | 區分 source integration、原 adoption、formal publication；沿用既有 Owner |",
+        "design_subjects": [
+          "MA12"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F4-02",
+      "group": "CG3",
+      "original_binding": {
+        "finding_id": "F4-02",
+        "root_cause_group": "CG3",
+        "source_review_step": 4,
+        "source_message": "msg_0b37d3f822adfd8b016acae75355e08191a7644d574db3f6f7",
+        "source_capture": "private:review-conversation/STEP_4.original-review-message.md",
+        "source_line": 304,
+        "original_source_excerpt": "| **F4-02 REVIEW_CLOSURE_AND_IMPACT_INCOMPLETE** | U03：68、92；C R05：21–25；R07 receipt：102、107–108 | body 不變、新依賴卻沿用舊 PASS；或無關修改全部失效 | Exact subject＋完整相關集合＋bounded compatibility；原 receipt 不改 |",
+        "design_subjects": [
+          "MA12"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F4-03",
+      "group": "CG3",
+      "original_binding": {
+        "finding_id": "F4-03",
+        "root_cause_group": "CG3",
+        "source_review_step": 4,
+        "source_message": "msg_0b37d3f822adfd8b016acae75355e08191a7644d574db3f6f7",
+        "source_capture": "private:review-conversation/STEP_4.original-review-message.md",
+        "source_line": 305,
+        "original_source_excerpt": "| **F4-03 PUBLICATION_UNKNOWN_OUTCOME_UNDEFINED** | U03：76–77 | local commit／ack lost 被當成功或失敗，造成誤發布／重送 | Durable intent、unknown outcome、canonical remote reconciliation |",
+        "design_subjects": [
+          "MA12"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F4-04",
+      "group": "CG3",
+      "original_binding": {
+        "finding_id": "F4-04",
+        "root_cause_group": "CG3",
+        "source_review_step": 4,
+        "source_message": "msg_0b37d3f822adfd8b016acae75355e08191a7644d574db3f6f7",
+        "source_capture": "private:review-conversation/STEP_4.original-review-message.md",
+        "source_line": 306,
+        "original_source_excerpt": "| **F4-04 PROJECTION_FRONTIER_AND_RECEIPT_UNDEFINED** | U03：72、77；C Intake：23–27 | 舊事件倒退 Current、半套 graph 可見、SQL ack lost 重複套用 | Staging、雙基準 CAS、atomic projection／receipt、as-of witness |",
+        "design_subjects": [
+          "MA12"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F4-08",
+      "group": "CG4",
+      "original_binding": {
+        "finding_id": "F4-08",
+        "root_cause_group": "CG4",
+        "source_review_step": 4,
+        "source_message": "msg_0b37d3f822adfd8b016acae75355e08191a7644d574db3f6f7",
+        "source_capture": "private:review-conversation/STEP_4.original-review-message.md",
+        "source_line": 310,
+        "original_source_excerpt": "| **F4-08 TRUSTED_APPLICABILITY_NOT_QUALIFIED** | R07 receipt：69–70、107–108；C R05：25 | 合法 JSON／hash 被當 producer 權限，任意撤 credit／接受結果 | 既有 A2／R05 trusted intake qualification；adapter 只提案 |",
+        "design_subjects": [
+          "MA01",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F6-01",
+      "group": "CG4",
+      "original_binding": {
+        "finding_id": "F6-01",
+        "root_cause_group": "CG4",
+        "source_review_step": 6,
+        "source_message": "msg_0b37d3f822adfd8b016acb14364dbc81918298578e8d15666a",
+        "source_capture": "private:review-conversation/STEP_6.original-review-message.md",
+        "source_line": 110,
+        "original_source_excerpt": "| **F6-01 — Current projection 混入舊狀態。** [p00_status:301](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/p00_status.v1.json:301)、[current_truth:269](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/current_truth.v1.json:269) | R07 receipt 已接受，summary 仍寫 Owner pending；WORK 可能重做已完成設計。舊 P01／P02 rev1 診斷也可能被誤認為最新版 | current／historical 投影明訂 subject、as-of、supersession 與 receipt precedence；保留原證據。由既有 current-state／WORK integration Owner 處理 | Current-context adoption、fresh handoff／route |",
+        "design_subjects": [
+          "MA01",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F6-02",
+      "group": "CG4",
+      "original_binding": {
+        "finding_id": "F6-02",
+        "root_cause_group": "CG4",
+        "source_review_step": 6,
+        "source_message": "msg_0b37d3f822adfd8b016acb14364dbc81918298578e8d15666a",
+        "source_capture": "private:review-conversation/STEP_6.original-review-message.md",
+        "source_line": 111,
+        "original_source_excerpt": "| **F6-02 — R02／R06 尚缺獨立 coverage 與 reading trust。** [qualification check:87](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/reviews/P00-closure-d2bd7e9/R06-qualification.check.v1.json:87)；check subject=`cf7a226…`，blob=`a91abef…` | builder 與 oracle 同漏一條規則仍可能通過；caller 回報 hash 不能證明實際注入／讀取。施工端將被迫自行選擇哪些契約可省略 | 獨立逐單元 disposition／reverse exclusions；限定一個 no-effects intended profile 取 injection／continuity 證據。UNKNOWN 回原來源或 STOP。既有 Resolver／Compiler Owner 與 Independent Reviewer | R02／R06 qualification、context successor、相應 dispatch |",
+        "design_subjects": [
+          "MA01",
+          "MA14",
+          "MA15"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F4-05",
+      "group": "CG5",
+      "original_binding": {
+        "finding_id": "F4-05",
+        "root_cause_group": "CG5",
+        "source_review_step": 4,
+        "source_message": "msg_0b37d3f822adfd8b016acae75355e08191a7644d574db3f6f7",
+        "source_capture": "private:review-conversation/STEP_4.original-review-message.md",
+        "source_line": 307,
+        "original_source_excerpt": "| **F4-05 ARTIFACT_PUBLICATION_AND_AVAILABILITY_GAP** | U03：61–62；C ArtifactManifest：61；Baseline：73 | pathname 被改寫、檔案未完成就被引用、hash mismatch 仍稱 restored | 不可變 object／manifest、same-ID conflict、分離 availability／integrity |",
+        "design_subjects": [
+          "MA04",
+          "MA13"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F5-02",
+      "group": "CG5",
+      "original_binding": {
+        "finding_id": "F5-02",
+        "root_cause_group": "CG5",
+        "source_review_step": 5,
+        "source_message": "msg_0b37d3f822adfd8b016acaecd17b288191bc44464f0fcc5331",
+        "source_capture": "private:review-conversation/STEP_5.original-review-message.md",
+        "source_line": 361,
+        "original_source_excerpt": "| **F5-02：私人歷史及 Artifact Closure 不完整** | U04 L21～24、39、49；LAB2 L70～74；LAB3 L28、53，各前列 SHA256 | 六欄 UI 當六筆保留上限；只留摘要或重跑 LLM；漏掉未索引私人 Draft | Exact Revisions、來源 Inventory、不可變 bytes、引用 Hold；阻塞完整私人歷史聲明 |",
+        "design_subjects": [
+          "MA04",
+          "MA13"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F6-06",
+      "group": "CG5",
+      "original_binding": {
+        "finding_id": "F6-06",
+        "root_cause_group": "CG5",
+        "source_review_step": 6,
+        "source_message": "msg_0b37d3f822adfd8b016acb14364dbc81918298578e8d15666a",
+        "source_capture": "private:review-conversation/STEP_6.original-review-message.md",
+        "source_line": 115,
+        "original_source_excerpt": "| **F6-06 — Critical data 保存成功／保護成功尚未分開。** 儲存候選 U04:20、43；本次 Owner 新增條件 | 決策已進 SQL，daily dump 前系統碟損壞；DB 內 outbox 一同遺失，原文無法恢復。hash 存在也補不回內容 | immutable 原文＋durable capture receipt＋重要事件 A／B 保護狀態；分開 capture、SQL index、replication。由 Artifact／Storage Owner 與既有 Intake adapter Owner 定義 | 重要私人資料保存介面與保護宣告；實作前契約 Gate |",
+        "design_subjects": [
+          "MA04",
+          "MA13"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F2-06",
+      "group": "CG6",
+      "original_binding": {
+        "finding_id": "F2-06",
+        "root_cause_group": "CG6",
+        "source_review_step": 2,
+        "source_message": "msg_0b37d3f822adfd8b016aca5238dd0c81919486f76e34796471",
+        "source_capture": "private:review-conversation/STEP_2.original-review-message.md",
+        "source_line": 144,
+        "original_source_excerpt": "| **F2-06：產品 restore 與工程私有歷史 restore 覆蓋不同。** C：[V1 backup:107](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/architecture/V1_BASELINE.md:107)、[J6:57](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/V1_PROGRAM.md:57)；Owner URMS §1.9～10 | J6 恢復 simulation／研究資料成功，仍可能遺失私有規格、LLM 版本與未同步 SQL 歷史 | 分列兩種還原驗收範圍；A／B 備份覆蓋相應私有資料，重用基礎能力 | **阻塞「完整工程還原」宣稱**；細節留 STEP 5 |",
+        "design_subjects": [
+          "MA13",
+          "MA16"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F4-06",
+      "group": "CG6",
+      "original_binding": {
+        "finding_id": "F4-06",
+        "root_cause_group": "CG6",
+        "source_review_step": 4,
+        "source_message": "msg_0b37d3f822adfd8b016acae75355e08191a7644d574db3f6f7",
+        "source_capture": "private:review-conversation/STEP_4.original-review-message.md",
+        "source_line": 308,
+        "original_source_excerpt": "| **F4-06 EXPORT_AND_PROVIDER_SECURITY_UNDEFINED** | U03：69、79、94；資料包05：56 | metadata 洩漏、path／reparse／TOCTOU 越界 | 版本化欄位與來源 allowlist、safe diagnostics、provider-specific contract |",
+        "design_subjects": [
+          "MA13",
+          "MA16"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F5-01",
+      "group": "CG6",
+      "original_binding": {
+        "finding_id": "F5-01",
+        "root_cause_group": "CG6",
+        "source_review_step": 5,
+        "source_message": "msg_0b37d3f822adfd8b016acaecd17b288191bc44464f0fcc5331",
+        "source_capture": "private:review-conversation/STEP_5.original-review-message.md",
+        "source_line": 360,
+        "original_source_excerpt": "| **F5-01：Frontier 未精確綁定 Dump Cut** | U04 L43～44、53，前列 SHA256 | 事後查最新 Frontier；相同最大 Event ID 掩蓋不同提交集合 | 同 SQL Snapshot 捕捉 Dump／Heads／Coverage／Artifact 清單；阻塞一致 Full Restore 契約 |",
+        "design_subjects": [
+          "MA13",
+          "MA16"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F5-03",
+      "group": "CG6",
+      "original_binding": {
+        "finding_id": "F5-03",
+        "root_cause_group": "CG6",
+        "source_review_step": 5,
+        "source_message": "msg_0b37d3f822adfd8b016acaecd17b288191bc44464f0fcc5331",
+        "source_capture": "private:review-conversation/STEP_5.original-review-message.md",
+        "source_line": 362,
+        "original_source_excerpt": "| **F5-03：B 獨立還原與清理保護未封閉** | U04 L45、47～49、69～70；VB L106，C | B 依賴 A 的 Base／Chunks；為新備份刪最後可用集合 | B 內閉包、獨立 Promotion／Catalog、跨版本引用保護與容量 Admission；阻塞長期保存契約 |",
+        "design_subjects": [
+          "MA13",
+          "MA16"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F5-04",
+      "group": "CG6",
+      "original_binding": {
+        "finding_id": "F5-04",
+        "root_cause_group": "CG6",
+        "source_review_step": 5,
+        "source_message": "msg_0b37d3f822adfd8b016acaecd17b288191bc44464f0fcc5331",
+        "source_capture": "private:review-conversation/STEP_5.original-review-message.md",
+        "source_line": 363,
+        "original_source_excerpt": "| **F5-04：Catalog／Manifest 信任與遺失恢復不足** | U04 L45、53、72 | Manifest 與內容一起被改；只剩 Dump 卻宣稱同 Cut 完整 | Sealed Manifest、外部驗證 Receipt、可信副本、Reconstructed／Unknown 規則；阻塞可信 Restore 聲明 |",
+        "design_subjects": [
+          "MA13",
+          "MA16"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F5-05",
+      "group": "CG6",
+      "original_binding": {
+        "finding_id": "F5-05",
+        "root_cause_group": "CG6",
+        "source_review_step": 5,
+        "source_message": "msg_0b37d3f822adfd8b016acaecd17b288191bc44464f0fcc5331",
+        "source_capture": "private:review-conversation/STEP_5.original-review-message.md",
+        "source_line": 364,
+        "original_source_excerpt": "| **F5-05：环境相容與 Restore Target 尚未收斂** | U04 L46、59～63、72；VP L57，C；官方 PG 文件 | 缺 Extension／Role 或還原到既有 DB | Versioned Environment／Role Map、Compatibility Gate、新隔離 Target；阻塞實際 Drill 授權與資格 |",
+        "design_subjects": [
+          "MA13",
+          "MA16"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F5-06",
+      "group": "CG6",
+      "original_binding": {
+        "finding_id": "F5-06",
+        "root_cause_group": "CG6",
+        "source_review_step": 5,
+        "source_message": "msg_0b37d3f822adfd8b016acaecd17b288191bc44464f0fcc5331",
+        "source_capture": "private:review-conversation/STEP_5.original-review-message.md",
+        "source_line": 365,
+        "original_source_excerpt": "| **F5-06：還原可能復活舊執行／未知發布** | U04 L60～61、68；VP L57，C；延續 F4 | 舊 Lease／Generation／Outbox 被自動續跑或重送 | Recovery Hold、新 Instance Fence、Canonical-first Reconciliation、既有 Fresh Re-entry；阻塞恢復後操作啟用 |",
+        "design_subjects": [
+          "MA13",
+          "MA16"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F5-07",
+      "group": "CG6",
+      "original_binding": {
+        "finding_id": "F5-07",
+        "root_cause_group": "CG6",
+        "source_review_step": 5,
+        "source_message": "msg_0b37d3f822adfd8b016acaecd17b288191bc44464f0fcc5331",
+        "source_capture": "private:review-conversation/STEP_5.original-review-message.md",
+        "source_line": 366,
+        "original_source_excerpt": "| **F5-07：工程 RPO 與產品零損失要求混淆** | U04 L28；VB L107；VP L41、57，C | 以四小時 Artifact 或每日工程 Dump 宣稱完整恢復／經濟提交不遺失 | 分開目標與故障範圍；依完整 Cut 計 RPO、實際 Drill 計 RTO；阻塞 SLA／產品 Restore Qualification |",
+        "design_subjects": [
+          "MA13",
+          "MA16"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F5-08",
+      "group": "CG6",
+      "original_binding": {
+        "finding_id": "F5-08",
+        "root_cause_group": "CG6",
+        "source_review_step": 5,
+        "source_message": "msg_0b37d3f822adfd8b016acaecd17b288191bc44464f0fcc5331",
+        "source_capture": "private:review-conversation/STEP_5.original-review-message.md",
+        "source_line": 367,
+        "original_source_excerpt": "| **F5-08：Storage／Key／整機故障域未具環境證據** | U04 L25、48、71、76～79 | Drive Letter 重派寫錯卷；Key 隨主機遺失；A／B 同時受污染 | Provider／Volume 身份、最小權限、路徑 Gate、獨立 Key Recovery；實際證據留後續授權取得 |",
+        "design_subjects": [
+          "MA13",
+          "MA16"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    },
+    {
+      "finding_id": "F6-07",
+      "group": "CG6",
+      "original_binding": {
+        "finding_id": "F6-07",
+        "root_cause_group": "CG6",
+        "source_review_step": 6,
+        "source_message": "msg_0b37d3f822adfd8b016acb14364dbc81918298578e8d15666a",
+        "source_capture": "private:review-conversation/STEP_6.original-review-message.md",
+        "source_line": 116,
+        "original_source_excerpt": "| **F6-07 — Product／Engineering Restore profiles 尚未完整分開。** [V1_PROGRAM:57](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/V1_PROGRAM.md:57)、[V1_CONTRACTS:61](/D:/00_Learn/量化交易/Code/futures_trading_system/docs/architecture/V1_CONTRACTS.md:61)、U04:59 | 模擬 DB restore 通過就宣稱私人 LLM／規格完整恢復；Artifact 可下載就宣稱工程歷史備份完成 | 補三個 reverse routes；分 Product Recovery、Git-only Registry Rebuild、Full Private、Historical Restore 的 coverage／proof。由 P11 Operations／Recovery 與 URMS Artifact Owners 定義 | 各自 restore acceptance；不是所有 P01／P02 的共同 Runtime 前置 |",
+        "design_subjects": [
+          "MA13",
+          "MA16"
+        ],
+        "disposition": "DESIGN_CORRECTION_REQUIRED_NOT_ACCEPTED",
+        "independent_re_review_required": true,
+        "acceptance_effect": "NONE"
+      },
+      "candidate_disposition": "CORRECTION_CONTRACT_SPECIFIED_NOT_INDEPENDENTLY_CLOSED",
+      "review_required": true,
+      "Human_new_decision": "Only if new scope/risk conflict; ordinary implementation fields autonomous",
+      "authority_effect": "NONE"
+    }
+  ],
+  "closure_status": "NO_ORIGINAL_FINDING_SELF_CLOSED"
+}

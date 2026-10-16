@@ -1,0 +1,3393 @@
+{
+  "all95": 95,
+  "positive_world_count": 95,
+  "remaining_positive_gaps": [],
+  "reviewer_action": "Do not mark CC04-ORACLE-03 closed from this partial source-world author evidence; Root may add separately verified finite domain worlds then update exact coverage.",
+  "rows": [
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listInstruments-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listInstruments-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listInstruments",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-listInstruments",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA02-U01",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getInstrumentRevision-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getInstrumentRevision-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getInstrumentRevision",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-getInstrumentRevision",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA02-U01",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getMarketRule-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getMarketRule-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getMarketRule",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-getMarketRule",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA02-U05",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listDatasets-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listDatasets-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listDatasets",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-listDatasets",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA03-U04",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-sealDatasetSnapshot-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-sealDatasetSnapshot-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "sealDatasetSnapshot",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-sealDatasetSnapshot",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA03-U04",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getDatasetSnapshot-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getDatasetSnapshot-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getDatasetSnapshot",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-getDatasetSnapshot",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA03-U04",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-queryObservations-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-queryObservations-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "queryObservations",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-queryObservations",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA03-U02",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-captureInbox-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-captureInbox-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "captureInbox",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-captureInbox",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/15",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-captureInbox",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U01",
+        "required_input_model": "ApiRequest_captureInbox",
+        "required_output_model": "SourceInboxItem",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/7",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-dispositionInbox-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-dispositionInbox-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "dispositionInbox",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-dispositionInbox",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/19",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-dispositionInbox",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U01",
+        "required_input_model": "ApiRequest_dispositionInbox",
+        "required_output_model": "SourceInboxItem",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/8",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listFeatures-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listFeatures-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listFeatures",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-listFeatures",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA04-U02",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-saveFeatureDraft-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-saveFeatureDraft-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "saveFeatureDraft",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-saveFeatureDraft",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA04-U02",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-saveGraphDraft-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-saveGraphDraft-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "saveGraphDraft",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-saveGraphDraft",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA04-U02",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-generateCode-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-generateCode-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "generateCode",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-generateCode",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA04-U03",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-sealResearchSnapshot-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-sealResearchSnapshot-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "sealResearchSnapshot",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-sealResearchSnapshot",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA04-U03",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-createResearchRun-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-createResearchRun-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "createResearchRun",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-createResearchRun",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/1",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-createResearchRun",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U04",
+        "required_input_model": "ApiRequest_createResearchRun",
+        "required_output_model": "ResearchRun",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/14",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getResearchRun-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getResearchRun-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getResearchRun",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getResearchRun",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/2",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getResearchRun",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U04",
+        "required_input_model": "ApiRequest_getResearchRun",
+        "required_output_model": "ResearchRun",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/15",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-cancelResearchRun-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-cancelResearchRun-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "cancelResearchRun",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-cancelResearchRun",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/3",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-cancelResearchRun",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U04",
+        "required_input_model": "ApiRequest_cancelResearchRun",
+        "required_output_model": "ResearchRun",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/16",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-saveComparison-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-saveComparison-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "saveComparison",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-saveComparison",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U05",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/5",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-saveComparison",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U05",
+        "required_input_model": "ApiRequest_saveComparison",
+        "required_output_model": "ResearchComparison",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/17",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listComparisons-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listComparisons-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listComparisons",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-listComparisons",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U05",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/6",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-listComparisons",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U05",
+        "required_input_model": "ApiRequest_listComparisons",
+        "required_output_model": "ResearchComparison",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/18",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-approveLibraryRelease-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-approveLibraryRelease-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "approveLibraryRelease",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-approveLibraryRelease",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U05",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/8",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-approveLibraryRelease",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U05",
+        "required_input_model": "ApiRequest_approveLibraryRelease",
+        "required_output_model": "LibraryRelease",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/19",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listLibraryReleases-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listLibraryReleases-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listLibraryReleases",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-listLibraryReleases",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U05",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/9",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-listLibraryReleases",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U05",
+        "required_input_model": "ApiRequest_listLibraryReleases",
+        "required_output_model": "LibraryRelease",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/20",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-requestDeploymentAdmission-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-requestDeploymentAdmission-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "requestDeploymentAdmission",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-requestDeploymentAdmission",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA07-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/10",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-requestDeploymentAdmission",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA07-U04",
+        "required_input_model": "ApiRequest_requestDeploymentAdmission",
+        "required_output_model": "Deployment",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/21",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-startSimulation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-startSimulation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "startSimulation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-WIRE-startSimulation-EXPECTED",
+      "positive_status": "LITERAL_MODEL_EXPECTED_NOT_EXECUTED",
+      "producer_unit": "MA08-U03"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listPortfolioResearch-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listPortfolioResearch-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listPortfolioResearch",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-listPortfolioResearch",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA05-U02",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/12",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-listPortfolioResearch",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA05-U02",
+        "required_input_model": "ApiRequest_listPortfolioResearch",
+        "required_output_model": "PortfolioResearchDefinition",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/23",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-savePortfolioResearch-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-savePortfolioResearch-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "savePortfolioResearch",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-savePortfolioResearch",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA05-U02",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/11",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-savePortfolioResearch",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA05-U02",
+        "required_input_model": "ApiRequest_savePortfolioResearch",
+        "required_output_model": "PortfolioResearchDefinition",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/24",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-queryMacroSnapshots-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-queryMacroSnapshots-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "queryMacroSnapshots",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-queryMacroSnapshots",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA05-U03",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/13",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-queryMacroSnapshots",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA05-U03",
+        "required_input_model": "ApiRequest_queryMacroSnapshots",
+        "required_output_model": "MacroSnapshot",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/25",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-createScenarioRun-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-createScenarioRun-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "createScenarioRun",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-createScenarioRun",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA05-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/14",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-createScenarioRun",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA05-U04",
+        "required_input_model": "ApiRequest_createScenarioRun",
+        "required_output_model": "ResearchRun",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/26",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getAccountCapital-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getAccountCapital-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getAccountCapital",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getAccountCapital",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA06-U06",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/35",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getAccountCapital",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA06-U06",
+        "required_input_model": "ApiRequest_getAccountCapital",
+        "required_output_model": "AccountCut",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/27",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getPortfolios-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getPortfolios-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getPortfolios",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getPortfolios",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA06-U06",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/44",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-getPortfolios",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA06-U06",
+        "required_input_model": "ApiRequest_getPortfolios",
+        "required_output_model": "ValuationResult",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/28",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listGroups-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listGroups-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listGroups",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-listGroups",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA06-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/37",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-listGroups",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA06-U01",
+        "required_input_model": "ApiRequest_listGroups",
+        "required_output_model": "StrategyGroup",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/29",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-saveGroup-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-saveGroup-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "saveGroup",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-saveGroup",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA06-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/36",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-saveGroup",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA06-U01",
+        "required_input_model": "ApiRequest_saveGroup",
+        "required_output_model": "StrategyGroup",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/30",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-reviseBudget-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-reviseBudget-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "reviseBudget",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-reviseBudget",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA06-U02",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/40",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-reviseBudget",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA06-U02",
+        "required_input_model": "ApiRequest_reviseBudget",
+        "required_output_model": "BudgetAllocationReceipt",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/31",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-queryPositions-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-queryPositions-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "queryPositions",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-queryPositions",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA06-U06",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/41",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-queryPositions",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA06-U06",
+        "required_input_model": "ApiRequest_queryPositions",
+        "required_output_model": "PositionsProjection",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/32",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-queryCashFlows-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-queryCashFlows-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "queryCashFlows",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-queryCashFlows",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA06-U05",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/42",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-queryCashFlows",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA06-U05",
+        "required_input_model": "ApiRequest_queryCashFlows",
+        "required_output_model": "LedgerEntry",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/33",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-queryAttribution-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-queryAttribution-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "queryAttribution",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-queryAttribution",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA06-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/43",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-queryAttribution",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA06-U04",
+        "required_input_model": "ApiRequest_queryAttribution",
+        "required_output_model": "AttributionRecord",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/34",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-previewRisk-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-previewRisk-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "previewRisk",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-previewRisk",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA07-U02",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/45",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-previewRisk",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA07-U02",
+        "required_input_model": "ApiRequest_previewRisk",
+        "required_output_model": "RiskDecision",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/35",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getRiskDecision-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getRiskDecision-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getRiskDecision",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getRiskDecision",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA07-U02",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/46",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getRiskDecision",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA07-U02",
+        "required_input_model": "ApiRequest_getRiskDecision",
+        "required_output_model": "RiskDecision",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/36",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-changeRiskControl-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-changeRiskControl-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "changeRiskControl",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-changeRiskControl",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA07-U05",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/47",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-changeRiskControl",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA07-U05",
+        "required_input_model": "ApiRequest_changeRiskControl",
+        "required_output_model": "OperationReceipt",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/37",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-createOrderIntent-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-createOrderIntent-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "createOrderIntent",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-createOrderIntent",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA08-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/48",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-createOrderIntent",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA08-U01",
+        "required_input_model": "ApiRequest_createOrderIntent",
+        "required_output_model": "OrderAttempt",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/38",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getOrder-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getOrder-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getOrder",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getOrder",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA08-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/49",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getOrder",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA08-U01",
+        "required_input_model": "ApiRequest_getOrder",
+        "required_output_model": "OrderAttempt",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/39",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-cancelOrder-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-cancelOrder-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "cancelOrder",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-cancelOrder",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA08-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/52",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-cancelOrder",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA08-U01",
+        "required_input_model": "ApiRequest_cancelOrder",
+        "required_output_model": "OperationReceipt",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/40",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-amendOrder-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-amendOrder-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "amendOrder",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-amendOrder",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA08-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/51",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-amendOrder",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA08-U01",
+        "required_input_model": "ApiRequest_amendOrder",
+        "required_output_model": "OperationReceipt",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/41",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listReconciliation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listReconciliation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listReconciliation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-listReconciliation",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA08-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/53",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-listReconciliation",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA08-U04",
+        "required_input_model": "ApiRequest_listReconciliation",
+        "required_output_model": "ReconciliationCase",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/42",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getRecoveryStatus-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getRecoveryStatus-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getRecoveryStatus",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getRecoveryStatus",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA08-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/54",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getRecoveryStatus",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA08-U04",
+        "required_input_model": "ApiRequest_getRecoveryStatus",
+        "required_output_model": "RecoveryStatus",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/43",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getBrokerCapabilities-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getBrokerCapabilities-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getBrokerCapabilities",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getBrokerCapabilities",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA09-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/55",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-getBrokerCapabilities",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA09-U01",
+        "required_input_model": "ApiRequest_getBrokerCapabilities",
+        "required_output_model": "CapabilityRevision",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/44",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listArtifacts-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listArtifacts-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listArtifacts",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-listArtifacts",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA13-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/62",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-listArtifacts",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA13-U01",
+        "required_input_model": "ApiRequest_listArtifacts",
+        "required_output_model": "ArtifactAvailability",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/45",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getArtifactContent-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getArtifactContent-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getArtifactContent",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-WIRE-getArtifactContent-EXPECTED",
+      "positive_status": "LITERAL_MODEL_EXPECTED_NOT_EXECUTED",
+      "producer_unit": "MA13-U01"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getRegistry-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getRegistry-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getRegistry",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getRegistry",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA11-U03",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/57",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getRegistry",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA11-U03",
+        "required_input_model": "ApiRequest_getRegistry",
+        "required_output_model": "RegistryBodyReadPageV5",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/47",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-proposeRegistry-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-proposeRegistry-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "proposeRegistry",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-proposeRegistry",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA11-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/56",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-proposeRegistry",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA11-U04",
+        "required_input_model": "ApiRequest_proposeRegistry",
+        "required_output_model": "RegistryProposalResultV5",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/48",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getAlias-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getAlias-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getAlias",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getAlias",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA11-U02",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/58",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-getAlias",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA11-U02",
+        "required_input_model": "ApiRequest_getAlias",
+        "required_output_model": "LegacyAlias",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/49",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getEngineeringStatus-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getEngineeringStatus-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getEngineeringStatus",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getEngineeringStatus",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA14-U06",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/60",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getEngineeringStatus",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA14-U06",
+        "required_input_model": "ApiRequest_getEngineeringStatus",
+        "required_output_model": "EngineeringStatusProjection",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/50",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-proposePlanning-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-proposePlanning-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "proposePlanning",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-proposePlanning",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA14-U06",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/61",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-proposePlanning",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA14-U06",
+        "required_input_model": "ApiRequest_proposePlanning",
+        "required_output_model": "PlanningCandidate",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/51",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getConfig-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getConfig-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getConfig",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-getConfig",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA16-U02",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-saveConfigCandidate-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-saveConfigCandidate-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "saveConfigCandidate",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-saveConfigCandidate",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA16-U02",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/63",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-saveConfigCandidate",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA16-U02",
+        "required_input_model": "ApiRequest_saveConfigCandidate",
+        "required_output_model": "ConfigRevision",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/53",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getHealth-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getHealth-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getHealth",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getHealth",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA16-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/64",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getHealth",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA16-U04",
+        "required_input_model": "ApiRequest_getHealth",
+        "required_output_model": "ServiceHealthProjection",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/54",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getBackupCatalog-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getBackupCatalog-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getBackupCatalog",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getBackupCatalog",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA13-U05",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/66",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-getBackupCatalog",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA13-U05",
+        "required_input_model": "ApiRequest_getBackupCatalog",
+        "required_output_model": "BackupSetManifest",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/55",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getAudit-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getAudit-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getAudit",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getAudit",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA16-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/65",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-getAudit",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA16-U04",
+        "required_input_model": "ApiRequest_getAudit",
+        "required_output_model": "EventEnvelope",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/56",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getOperation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getOperation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getOperation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-getOperation",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA12-U04",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getReviewSubject-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getReviewSubject-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getReviewSubject",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getReviewSubject",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA12-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/59",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getReviewSubject",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA12-U01",
+        "required_input_model": "ApiRequest_getReviewSubject",
+        "required_output_model": "ReviewSubjectReadbackV5",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/58",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getDashboard-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getDashboard-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getDashboard",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-WIRE-getDashboard-EXPECTED",
+      "positive_status": "LITERAL_MODEL_EXPECTED_NOT_EXECUTED",
+      "producer_unit": "MA10-U02"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getSimulation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getSimulation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getSimulation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-WIRE-getSimulation-EXPECTED",
+      "positive_status": "LITERAL_MODEL_EXPECTED_NOT_EXECUTED",
+      "producer_unit": "MA08-U03"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-pauseSimulation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-pauseSimulation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "pauseSimulation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-WIRE-pauseSimulation-EXPECTED",
+      "positive_status": "LITERAL_MODEL_EXPECTED_NOT_EXECUTED",
+      "producer_unit": "MA08-U03"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-resumeSimulation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-resumeSimulation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "resumeSimulation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-WIRE-resumeSimulation-EXPECTED",
+      "positive_status": "LITERAL_MODEL_EXPECTED_NOT_EXECUTED",
+      "producer_unit": "MA08-U03"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-replaySimulation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-replaySimulation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "replaySimulation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-WIRE-replaySimulation-EXPECTED",
+      "positive_status": "LITERAL_MODEL_EXPECTED_NOT_EXECUTED",
+      "producer_unit": "MA08-U03"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getArtifactBytes-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getArtifactBytes-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getArtifactBytes",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-WIRE-getArtifactBytes-EXPECTED",
+      "positive_status": "LITERAL_MODEL_EXPECTED_NOT_EXECUTED",
+      "producer_unit": "MA13-U02"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-previewBudgetAllocation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-previewBudgetAllocation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "previewBudgetAllocation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-previewBudgetAllocation",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA06-U02",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/38",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-previewBudgetAllocation",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA06-U02",
+        "required_input_model": "ApiRequest_previewBudgetAllocation",
+        "required_output_model": "BudgetAllocationPreview",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/65",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-confirmBudgetAllocation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-confirmBudgetAllocation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "confirmBudgetAllocation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-confirmBudgetAllocation",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA06-U02",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/39",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-confirmBudgetAllocation",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA06-U02",
+        "required_input_model": "ApiRequest_confirmBudgetAllocation",
+        "required_output_model": "BudgetAllocationReceipt",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/66",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-queryMarketBars-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-queryMarketBars-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "queryMarketBars",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-queryMarketBars",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA03-U02",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/0",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-queryMarketBars",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA03-U02",
+        "required_input_model": "ApiRequest_queryMarketBars",
+        "required_output_model": "CanonicalMarketBarDto",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/67",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listGraphDrafts-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listGraphDrafts-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listGraphDrafts",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-listGraphDrafts",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA04-U02",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getGraphDraft-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getGraphDraft-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getGraphDraft",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-getGraphDraft",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA04-U02",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listResearchRuns-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listResearchRuns-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listResearchRuns",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-listResearchRuns",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/4",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-listResearchRuns",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U04",
+        "required_input_model": "ApiRequest_listResearchRuns",
+        "required_output_model": "ResearchRun",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/70",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listOrders-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listOrders-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listOrders",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-listOrders",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA08-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/50",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-listOrders",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA08-U01",
+        "required_input_model": "ApiRequest_listOrders",
+        "required_output_model": "OrderAttempt",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/71",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-analyzeInboxSource-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-analyzeInboxSource-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "analyzeInboxSource",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-analyzeInboxSource",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/16",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-analyzeInboxSource",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U01",
+        "required_input_model": "ApiRequest_analyzeInboxSource",
+        "required_output_model": "SourceAnalysisReport",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/72",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getSourceAnalysis-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getSourceAnalysis-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getSourceAnalysis",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getSourceAnalysis",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/17",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getSourceAnalysis",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U01",
+        "required_input_model": "ApiRequest_getSourceAnalysis",
+        "required_output_model": "SourceAnalysisReport",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/73",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-createArchivePlan-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-createArchivePlan-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "createArchivePlan",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-createArchivePlan",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/18",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-createArchivePlan",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U01",
+        "required_input_model": "ApiRequest_createArchivePlan",
+        "required_output_model": "ArchivePlan",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/74",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-executeArchivePlan-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-executeArchivePlan-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "executeArchivePlan",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-executeArchivePlan",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/20",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-executeArchivePlan",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U01",
+        "required_input_model": "ApiRequest_executeArchivePlan",
+        "required_output_model": "ArchiveOperationReceipt",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/75",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getArchiveOperation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getArchiveOperation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getArchiveOperation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getArchiveOperation",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U01",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/21",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getArchiveOperation",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U01",
+        "required_input_model": "ApiRequest_getArchiveOperation",
+        "required_output_model": "ArchiveOperationReceipt",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/76",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-applyBuilderEdit-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-applyBuilderEdit-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "applyBuilderEdit",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-applyBuilderEdit",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA04-U02",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-startAnalystRun-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-startAnalystRun-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "startAnalystRun",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-startAnalystRun",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U06",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/22",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-startAnalystRun",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U06",
+        "required_input_model": "ApiRequest_startAnalystRun",
+        "required_output_model": "AnalystRun",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/78",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getAnalystRun-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getAnalystRun-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getAnalystRun",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getAnalystRun",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U06",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/23",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getAnalystRun",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U06",
+        "required_input_model": "ApiRequest_getAnalystRun",
+        "required_output_model": "AnalystRun",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/79",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-cancelAnalystRun-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-cancelAnalystRun-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "cancelAnalystRun",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-cancelAnalystRun",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U06",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/24",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-cancelAnalystRun",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U06",
+        "required_input_model": "ApiRequest_cancelAnalystRun",
+        "required_output_model": "AnalystRun",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/80",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-applyAnalystSuggestion-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-applyAnalystSuggestion-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "applyAnalystSuggestion",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-applyAnalystSuggestion",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U06",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/25",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-applyAnalystSuggestion",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U06",
+        "required_input_model": "ApiRequest_applyAnalystSuggestion",
+        "required_output_model": "ResearchBranch",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/81",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-approveLibraryException-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-approveLibraryException-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "approveLibraryException",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-approveLibraryException",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U05",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/7",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-approveLibraryException",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U05",
+        "required_input_model": "ApiRequest_approveLibraryException",
+        "required_output_model": "LibraryExceptionApproval",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/82",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-createLabSimulation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-createLabSimulation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "createLabSimulation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-createLabSimulation",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/26",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-createLabSimulation",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U04",
+        "required_input_model": "ApiRequest_createLabSimulation",
+        "required_output_model": "ResearchSimulationAccount",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/83",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getLabSimulation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getLabSimulation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getLabSimulation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getLabSimulation",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/27",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getLabSimulation",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U04",
+        "required_input_model": "ApiRequest_getLabSimulation",
+        "required_output_model": "ResearchSimulationAccount",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/84",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listLabSimulationObservations-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listLabSimulationObservations-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listLabSimulationObservations",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-listLabSimulationObservations",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/28",
+      "prior_gap_preserved": {
+        "cardinality": "PAGED_MANY",
+        "gap_id": "C6-POSITIVE-WORLD-listLabSimulationObservations",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U04",
+        "required_input_model": "ApiRequest_listLabSimulationObservations",
+        "required_output_model": "SimulationObservation",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/85",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getLabSimulationCounters-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getLabSimulationCounters-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getLabSimulationCounters",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-getLabSimulationCounters",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/29",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-getLabSimulationCounters",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U04",
+        "required_input_model": "ApiRequest_getLabSimulationCounters",
+        "required_output_model": "SimulationQualificationCounters",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/86",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-recoverLabSimulation-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-recoverLabSimulation-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "recoverLabSimulation",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-recoverLabSimulation",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U04",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/30",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-recoverLabSimulation",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U04",
+        "required_input_model": "ApiRequest_recoverLabSimulation",
+        "required_output_model": "ResearchSimulationAccount",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/87",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-createResearchBranch-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-createResearchBranch-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "createResearchBranch",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-createResearchBranch",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U03",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/31",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-createResearchBranch",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U03",
+        "required_input_model": "ApiRequest_createResearchBranch",
+        "required_output_model": "ResearchBranch",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/88",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-cloneResearchBranch-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-cloneResearchBranch-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "cloneResearchBranch",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-cloneResearchBranch",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U03",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/32",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-cloneResearchBranch",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U03",
+        "required_input_model": "ApiRequest_cloneResearchBranch",
+        "required_output_model": "ResearchBranch",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/89",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-listResearchBranches-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-listResearchBranches-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "listResearchBranches",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-listResearchBranches",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA04-U03",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getResearchBranch-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getResearchBranch-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getResearchBranch",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-getResearchBranch",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA04-U03",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-archiveResearchBranch-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-archiveResearchBranch-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "archiveResearchBranch",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-archiveResearchBranch",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U03",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/33",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-archiveResearchBranch",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U03",
+        "required_input_model": "ApiRequest_archiveResearchBranch",
+        "required_output_model": "ResearchBranch",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/92",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-getResearchBranchHistory-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-getResearchBranchHistory-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "getResearchBranchHistory",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C6-POSITIVE-FINITE-getResearchBranchHistory",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_DESIGN_VECTOR_PENDING_REVIEW",
+      "producer_unit": "MA04-U03",
+      "positive_world": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json"
+    },
+    {
+      "canonical_wire_profile": "MA-DTO-v6",
+      "concrete_boundary_case_ids": [
+        "C6-WIRE-saveManualCodeRevision-SOURCE-TOKEN-REJECT",
+        "C6-WIRE-saveManualCodeRevision-READDRIFT-OR-UNKNOWN"
+      ],
+      "gap": null,
+      "operation_id": "saveManualCodeRevision",
+      "permanent_operation_preserved": true,
+      "positive_case_id": "C7-POSITIVE-saveManualCodeRevision",
+      "positive_status": "CONCRETE_FINITE_AUTHOR_SOURCE_VECTOR_PENDING_INDEPENDENT_REVIEW",
+      "producer_unit": "MA04-U03",
+      "positive_world": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+      "positive_world_pointer": "#/cases/34",
+      "prior_gap_preserved": {
+        "cardinality": "ONE",
+        "gap_id": "C6-POSITIVE-WORLD-saveManualCodeRevision",
+        "minimum_missing": "Finite source-owner initial state and exact typed business result/body/closure matching operation request, producer plan/source/schema/account/environment/profile/cut. Boundary error cases do not substitute a business positive.",
+        "producer_unit": "MA04-U03",
+        "required_input_model": "ApiRequest_saveManualCodeRevision",
+        "required_output_model": "GeneratedCodeRevision",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/94",
+        "specific_reason": "Existing CYCLE01 named assembler/ref pool has no authoritative finite body values for this operation; no default/empty fabricated result supplied",
+        "status": "NOT_CLOSED"
+      },
+      "runtime_qualification": "NOT_RUN"
+    }
+  ],
+  "schema": "OPERATION_VALUE_COVERAGE_V6",
+  "synthetic_schema_finalization": {
+    "authority": "NOT_GRANTED",
+    "catalogs": [
+      "ENGINEERING_BODY_VALUE_CATALOG.candidate.v6.json",
+      "WIRE95_BODY_VALUE_CATALOG.candidate.v6.json"
+    ],
+    "final_contracts_raw_sha256": {
+      "MODEL_CATALOG.json": "4d93edda12b8fb32b20c8bf2b09e25fe971888b5a06f8c2b22477860214cf11e",
+      "TYPE_VARIANTS.json": "06f7790f5360d8bb6696abf84fbd6335605afdeac108c1843c332a94d4427469"
+    },
+    "legacy_fixed_raw_plan": "CYCLE01 exact literal source remains candidate.5 bytes; compatibility only for source-model adapter exercise; current successor plan compile requires fresh qualified dependencies",
+    "runtime": "NOT_RUN",
+    "wire_profile": "MA-DTO-v6"
+  },
+  "operation_world_coverage": {
+    "schema": "ma.author.final.95coverage.v6",
+    "permanent_api_operation_count": 95,
+    "new_concrete_positive_vectors": 20,
+    "preserved_prior_expected_operations": 8,
+    "combined_distinct_expected_positive_operations": 28,
+    "remaining_positive_world_count": 67,
+    "recoverable_partial_operations": [
+      "proposeRegistry",
+      "getRegistry",
+      "previewBudgetAllocation",
+      "confirmBudgetAllocation",
+      "reviseBudget",
+      "getAccountCapital"
+    ],
+    "rows": [
+      {
+        "operation_id": "listInstruments",
+        "producer_unit": "MA02-U01",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-listInstruments",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getInstrumentRevision",
+        "producer_unit": "MA02-U01",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-getInstrumentRevision",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getMarketRule",
+        "producer_unit": "MA02-U05",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-getMarketRule",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listDatasets",
+        "producer_unit": "MA03-U04",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-listDatasets",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "sealDatasetSnapshot",
+        "producer_unit": "MA03-U04",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-sealDatasetSnapshot",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getDatasetSnapshot",
+        "producer_unit": "MA03-U04",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-getDatasetSnapshot",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "queryObservations",
+        "producer_unit": "MA03-U02",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-queryObservations",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "captureInbox",
+        "producer_unit": "MA04-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_captureInbox",
+        "required_output_model": "SourceInboxItem",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/7",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "dispositionInbox",
+        "producer_unit": "MA04-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_dispositionInbox",
+        "required_output_model": "SourceInboxItem",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/8",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listFeatures",
+        "producer_unit": "MA04-U02",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-listFeatures",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "saveFeatureDraft",
+        "producer_unit": "MA04-U02",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-saveFeatureDraft",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "saveGraphDraft",
+        "producer_unit": "MA04-U02",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-saveGraphDraft",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "generateCode",
+        "producer_unit": "MA04-U03",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-generateCode",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "sealResearchSnapshot",
+        "producer_unit": "MA04-U03",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-sealResearchSnapshot",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "createResearchRun",
+        "producer_unit": "MA04-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_createResearchRun",
+        "required_output_model": "ResearchRun",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/14",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getResearchRun",
+        "producer_unit": "MA04-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getResearchRun",
+        "required_output_model": "ResearchRun",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/15",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "cancelResearchRun",
+        "producer_unit": "MA04-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_cancelResearchRun",
+        "required_output_model": "ResearchRun",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/16",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "saveComparison",
+        "producer_unit": "MA04-U05",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_saveComparison",
+        "required_output_model": "ResearchComparison",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/17",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listComparisons",
+        "producer_unit": "MA04-U05",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_listComparisons",
+        "required_output_model": "ResearchComparison",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/18",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "approveLibraryRelease",
+        "producer_unit": "MA04-U05",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_approveLibraryRelease",
+        "required_output_model": "LibraryRelease",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/19",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listLibraryReleases",
+        "producer_unit": "MA04-U05",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_listLibraryReleases",
+        "required_output_model": "LibraryRelease",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/20",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "requestDeploymentAdmission",
+        "producer_unit": "MA07-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_requestDeploymentAdmission",
+        "required_output_model": "Deployment",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/21",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "startSimulation",
+        "producer_unit": "MA08-U03",
+        "status": "PRIOR8_AUTHOR_EXPECTED_WORLD_PRESERVED_NOT_REAUTHORED",
+        "case_id": "C6-WIRE-startSimulation-EXPECTED",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listPortfolioResearch",
+        "producer_unit": "MA05-U02",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_listPortfolioResearch",
+        "required_output_model": "PortfolioResearchDefinition",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/23",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "savePortfolioResearch",
+        "producer_unit": "MA05-U02",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_savePortfolioResearch",
+        "required_output_model": "PortfolioResearchDefinition",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/24",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "queryMacroSnapshots",
+        "producer_unit": "MA05-U03",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_queryMacroSnapshots",
+        "required_output_model": "MacroSnapshot",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/25",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "createScenarioRun",
+        "producer_unit": "MA05-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_createScenarioRun",
+        "required_output_model": "ResearchRun",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/26",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getAccountCapital",
+        "producer_unit": "MA06-U06",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getAccountCapital",
+        "required_output_model": "AccountCut",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/27",
+        "specific_gaps": [
+          "Complete finite J source-owned cut/head/recovery/cash/reservation/order provenance plus exact read snapshot are absent from the original named tokens"
+        ],
+        "recoverable_partial_bridge": true,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getPortfolios",
+        "producer_unit": "MA06-U06",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getPortfolios",
+        "required_output_model": "ValuationResult",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/28",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listGroups",
+        "producer_unit": "MA06-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_listGroups",
+        "required_output_model": "StrategyGroup",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/29",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "saveGroup",
+        "producer_unit": "MA06-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_saveGroup",
+        "required_output_model": "StrategyGroup",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/30",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "reviseBudget",
+        "producer_unit": "MA06-U02",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_reviseBudget",
+        "required_output_model": "BudgetAllocationReceipt",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/31",
+        "specific_gaps": [
+          "Concrete J account/head/recovery/cash/order/reservation source records for baseline AccountCut7 and returned cut8",
+          "Exact G prior budget/allocation policy and the two group/deployment/budget source bodies",
+          "Concrete Human manual source confirmation and owner decision bound to the final displayed preview body/schema/snapshot",
+          "Qualified finite asset/resource profile/adoption source for KNOWN actual_equity110/executable_capital70; golden labels alone are not provenance",
+          "The original SYNTHETIC_REFERENCE_TOKEN_SHA256_NOT_LIVE_EVIDENCE refs require a typed source adapter with actual records and exact mapping before complete coverage"
+        ],
+        "recoverable_partial_bridge": true,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "queryPositions",
+        "producer_unit": "MA06-U06",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_queryPositions",
+        "required_output_model": "PositionsProjection",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/32",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "queryCashFlows",
+        "producer_unit": "MA06-U05",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_queryCashFlows",
+        "required_output_model": "LedgerEntry",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/33",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "queryAttribution",
+        "producer_unit": "MA06-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_queryAttribution",
+        "required_output_model": "AttributionRecord",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/34",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "previewRisk",
+        "producer_unit": "MA07-U02",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_previewRisk",
+        "required_output_model": "RiskDecision",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/35",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getRiskDecision",
+        "producer_unit": "MA07-U02",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getRiskDecision",
+        "required_output_model": "RiskDecision",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/36",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "changeRiskControl",
+        "producer_unit": "MA07-U05",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_changeRiskControl",
+        "required_output_model": "OperationReceipt",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/37",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "createOrderIntent",
+        "producer_unit": "MA08-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_createOrderIntent",
+        "required_output_model": "OrderAttempt",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/38",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getOrder",
+        "producer_unit": "MA08-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getOrder",
+        "required_output_model": "OrderAttempt",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/39",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "cancelOrder",
+        "producer_unit": "MA08-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_cancelOrder",
+        "required_output_model": "OperationReceipt",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/40",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "amendOrder",
+        "producer_unit": "MA08-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_amendOrder",
+        "required_output_model": "OperationReceipt",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/41",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listReconciliation",
+        "producer_unit": "MA08-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_listReconciliation",
+        "required_output_model": "ReconciliationCase",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/42",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getRecoveryStatus",
+        "producer_unit": "MA08-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getRecoveryStatus",
+        "required_output_model": "RecoveryStatus",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/43",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getBrokerCapabilities",
+        "producer_unit": "MA09-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getBrokerCapabilities",
+        "required_output_model": "CapabilityRevision",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/44",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listArtifacts",
+        "producer_unit": "MA13-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_listArtifacts",
+        "required_output_model": "ArtifactAvailability",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/45",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getArtifactContent",
+        "producer_unit": "MA13-U01",
+        "status": "PRIOR8_AUTHOR_EXPECTED_WORLD_PRESERVED_NOT_REAUTHORED",
+        "case_id": "C6-WIRE-getArtifactContent-EXPECTED",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getRegistry",
+        "producer_unit": "MA11-U03",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getRegistry",
+        "required_output_model": "RegistryBodyReadPageV5",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/47",
+        "specific_gaps": [
+          "snapshot_binding and membership_proof_ref require concrete finite owner capture/import records, not guessed ContractRef",
+          "All previous proposeRegistry source/cut/catalog/policy gaps remain"
+        ],
+        "recoverable_partial_bridge": true,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "proposeRegistry",
+        "producer_unit": "MA11-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_proposeRegistry",
+        "required_output_model": "RegistryProposalResultV5",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/48",
+        "specific_gaps": [
+          "Concrete CodeCatalogRevision and CodePolicyRevision bodies for fixture ref(12)/ref(13)",
+          "Complete original RegistrySnapshot base membership and connected scope source corresponding to generation7/head closure_hash",
+          "Actual finite source-owned exact source CaptureReceipt/provenance for default ref(11), provider/verification/profile/authorization ref(400)",
+          "Candidate snapshot typed binding with complete owner/source membership closure",
+          "Known immutable body source records matching each original fixture_ref token hash"
+        ],
+        "recoverable_partial_bridge": true,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getAlias",
+        "producer_unit": "MA11-U02",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getAlias",
+        "required_output_model": "LegacyAlias",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/49",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getEngineeringStatus",
+        "producer_unit": "MA14-U06",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getEngineeringStatus",
+        "required_output_model": "EngineeringStatusProjection",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/50",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "proposePlanning",
+        "producer_unit": "MA14-U06",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_proposePlanning",
+        "required_output_model": "PlanningCandidate",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/51",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getConfig",
+        "producer_unit": "MA16-U02",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-getConfig",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "saveConfigCandidate",
+        "producer_unit": "MA16-U02",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_saveConfigCandidate",
+        "required_output_model": "ConfigRevision",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/53",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getHealth",
+        "producer_unit": "MA16-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getHealth",
+        "required_output_model": "ServiceHealthProjection",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/54",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getBackupCatalog",
+        "producer_unit": "MA13-U05",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getBackupCatalog",
+        "required_output_model": "BackupSetManifest",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/55",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getAudit",
+        "producer_unit": "MA16-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getAudit",
+        "required_output_model": "EventEnvelope",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/56",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getOperation",
+        "producer_unit": "MA12-U04",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-getOperation",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getReviewSubject",
+        "producer_unit": "MA12-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getReviewSubject",
+        "required_output_model": "ReviewSubjectReadbackV5",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/58",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getDashboard",
+        "producer_unit": "MA10-U02",
+        "status": "PRIOR8_AUTHOR_EXPECTED_WORLD_PRESERVED_NOT_REAUTHORED",
+        "case_id": "C6-WIRE-getDashboard-EXPECTED",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getSimulation",
+        "producer_unit": "MA08-U03",
+        "status": "PRIOR8_AUTHOR_EXPECTED_WORLD_PRESERVED_NOT_REAUTHORED",
+        "case_id": "C6-WIRE-getSimulation-EXPECTED",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "pauseSimulation",
+        "producer_unit": "MA08-U03",
+        "status": "PRIOR8_AUTHOR_EXPECTED_WORLD_PRESERVED_NOT_REAUTHORED",
+        "case_id": "C6-WIRE-pauseSimulation-EXPECTED",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "resumeSimulation",
+        "producer_unit": "MA08-U03",
+        "status": "PRIOR8_AUTHOR_EXPECTED_WORLD_PRESERVED_NOT_REAUTHORED",
+        "case_id": "C6-WIRE-resumeSimulation-EXPECTED",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "replaySimulation",
+        "producer_unit": "MA08-U03",
+        "status": "PRIOR8_AUTHOR_EXPECTED_WORLD_PRESERVED_NOT_REAUTHORED",
+        "case_id": "C6-WIRE-replaySimulation-EXPECTED",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getArtifactBytes",
+        "producer_unit": "MA13-U02",
+        "status": "PRIOR8_AUTHOR_EXPECTED_WORLD_PRESERVED_NOT_REAUTHORED",
+        "case_id": "C6-WIRE-getArtifactBytes-EXPECTED",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "previewBudgetAllocation",
+        "producer_unit": "MA06-U02",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_previewBudgetAllocation",
+        "required_output_model": "BudgetAllocationPreview",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/65",
+        "specific_gaps": [
+          "Concrete J account/head/recovery/cash/order/reservation source records for baseline AccountCut7 and returned cut8",
+          "Exact G prior budget/allocation policy and the two group/deployment/budget source bodies",
+          "Concrete Human manual source confirmation and owner decision bound to the final displayed preview body/schema/snapshot",
+          "Qualified finite asset/resource profile/adoption source for KNOWN actual_equity110/executable_capital70; golden labels alone are not provenance",
+          "The original SYNTHETIC_REFERENCE_TOKEN_SHA256_NOT_LIVE_EVIDENCE refs require a typed source adapter with actual records and exact mapping before complete coverage"
+        ],
+        "recoverable_partial_bridge": true,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "confirmBudgetAllocation",
+        "producer_unit": "MA06-U02",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_confirmBudgetAllocation",
+        "required_output_model": "BudgetAllocationReceipt",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/66",
+        "specific_gaps": [
+          "Concrete J account/head/recovery/cash/order/reservation source records for baseline AccountCut7 and returned cut8",
+          "Exact G prior budget/allocation policy and the two group/deployment/budget source bodies",
+          "Concrete Human manual source confirmation and owner decision bound to the final displayed preview body/schema/snapshot",
+          "Qualified finite asset/resource profile/adoption source for KNOWN actual_equity110/executable_capital70; golden labels alone are not provenance",
+          "The original SYNTHETIC_REFERENCE_TOKEN_SHA256_NOT_LIVE_EVIDENCE refs require a typed source adapter with actual records and exact mapping before complete coverage"
+        ],
+        "recoverable_partial_bridge": true,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "queryMarketBars",
+        "producer_unit": "MA03-U02",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_queryMarketBars",
+        "required_output_model": "CanonicalMarketBarDto",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/67",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listGraphDrafts",
+        "producer_unit": "MA04-U02",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-listGraphDrafts",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getGraphDraft",
+        "producer_unit": "MA04-U02",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-getGraphDraft",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listResearchRuns",
+        "producer_unit": "MA04-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_listResearchRuns",
+        "required_output_model": "ResearchRun",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/70",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listOrders",
+        "producer_unit": "MA08-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_listOrders",
+        "required_output_model": "OrderAttempt",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/71",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "analyzeInboxSource",
+        "producer_unit": "MA04-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_analyzeInboxSource",
+        "required_output_model": "SourceAnalysisReport",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/72",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getSourceAnalysis",
+        "producer_unit": "MA04-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getSourceAnalysis",
+        "required_output_model": "SourceAnalysisReport",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/73",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "createArchivePlan",
+        "producer_unit": "MA04-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_createArchivePlan",
+        "required_output_model": "ArchivePlan",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/74",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "executeArchivePlan",
+        "producer_unit": "MA04-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_executeArchivePlan",
+        "required_output_model": "ArchiveOperationReceipt",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/75",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getArchiveOperation",
+        "producer_unit": "MA04-U01",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getArchiveOperation",
+        "required_output_model": "ArchiveOperationReceipt",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/76",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "applyBuilderEdit",
+        "producer_unit": "MA04-U02",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-applyBuilderEdit",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "startAnalystRun",
+        "producer_unit": "MA04-U06",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_startAnalystRun",
+        "required_output_model": "AnalystRun",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/78",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getAnalystRun",
+        "producer_unit": "MA04-U06",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getAnalystRun",
+        "required_output_model": "AnalystRun",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/79",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "cancelAnalystRun",
+        "producer_unit": "MA04-U06",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_cancelAnalystRun",
+        "required_output_model": "AnalystRun",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/80",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "applyAnalystSuggestion",
+        "producer_unit": "MA04-U06",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_applyAnalystSuggestion",
+        "required_output_model": "ResearchBranch",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/81",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "approveLibraryException",
+        "producer_unit": "MA04-U05",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_approveLibraryException",
+        "required_output_model": "LibraryExceptionApproval",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/82",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "createLabSimulation",
+        "producer_unit": "MA04-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_createLabSimulation",
+        "required_output_model": "ResearchSimulationAccount",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/83",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getLabSimulation",
+        "producer_unit": "MA04-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getLabSimulation",
+        "required_output_model": "ResearchSimulationAccount",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/84",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listLabSimulationObservations",
+        "producer_unit": "MA04-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_listLabSimulationObservations",
+        "required_output_model": "SimulationObservation",
+        "response_cardinality": "PAGED_MANY",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/85",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getLabSimulationCounters",
+        "producer_unit": "MA04-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_getLabSimulationCounters",
+        "required_output_model": "SimulationQualificationCounters",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/86",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "recoverLabSimulation",
+        "producer_unit": "MA04-U04",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_recoverLabSimulation",
+        "required_output_model": "ResearchSimulationAccount",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/87",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "createResearchBranch",
+        "producer_unit": "MA04-U03",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_createResearchBranch",
+        "required_output_model": "ResearchBranch",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/88",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "cloneResearchBranch",
+        "producer_unit": "MA04-U03",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_cloneResearchBranch",
+        "required_output_model": "ResearchBranch",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/89",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "listResearchBranches",
+        "producer_unit": "MA04-U03",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-listResearchBranches",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getResearchBranch",
+        "producer_unit": "MA04-U03",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-getResearchBranch",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "archiveResearchBranch",
+        "producer_unit": "MA04-U03",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_archiveResearchBranch",
+        "required_output_model": "ResearchBranch",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/92",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "getResearchBranchHistory",
+        "producer_unit": "MA04-U03",
+        "status": "NEW_CONCRETE_AUTHOR_POSITIVE_VECTOR_PENDING_FRESH_REVIEW",
+        "case_id": "C6-POSITIVE-FINITE-getResearchBranchHistory",
+        "actual_runtime_evidence": null
+      },
+      {
+        "operation_id": "saveManualCodeRevision",
+        "producer_unit": "MA04-U03",
+        "status": "REMAINING_POSITIVE_WORLD_NOT_CLOSED",
+        "required_input_model": "ApiRequest_saveManualCodeRevision",
+        "required_output_model": "GeneratedCodeRevision",
+        "response_cardinality": "ONE",
+        "source_api_pointer": "API_CATALOG.json#/endpoints/94",
+        "specific_gaps": [
+          "No complete finite original-owner initial state/result/typed body/source/capture/scope/profile/cut projection authored for this operation. Boundary error cases and named former reference pools remain insufficient."
+        ],
+        "recoverable_partial_bridge": false,
+        "actual_runtime_evidence": null
+      }
+    ],
+    "authority_effect": "NONE",
+    "independent_review": "PENDING",
+    "actual_runtime_evidence": null,
+    "selfPASS": false,
+    "state_rule": "Counts describe author expected value availability only; Root and a genuinely fresh Independent Reviewer decide closure, specification readiness and adoption. No runtime qualification, acceptance, next-unit dispatch or authority is inferred."
+  },
+  "remaining_positive_count": 0,
+  "author_count_rule": "28 prior source conditions +67 current complete finite vectors; content availability is not independent semantic closure, Runtime qualification or adoption.",
+  "candidate_subject": "MA-ARCH-REVIEW-v7-CYCLE03"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "registry.source_wire_bindings.candidate.v1",
+  "revision": "candidate.4",
+  "authority_effect": "NONE",
+  "source_manifest_binding": {
+    "entity_id": "182e6e4a-accb-4282-a3c9-23df5ec9508c",
+    "revision_id": "46ab5374-8f41-4e65-be5d-000b8f1b1258",
+    "owner": "SOURCE_MANIFEST_OWNER",
+    "hash_domain": "raw-bytes-sha256-v1",
+    "source_hash": "77e15019b43d4fefb91271224ff6995ca2026489785eaffc3f99df2416894cb4",
+    "relative_path": "prior_candidate/MA-ARCH-REVIEW-v3/SOURCE_MANIFEST.json"
+  },
+  "source_snapshot_bindings": [
+    {
+      "entity_id": "40671279-ab47-4a7b-8233-dd0a440a27f3",
+      "revision_id": "314ad05c-e8fd-40d5-85a9-b3882e032caf",
+      "source_snapshot_key": "MA_ARCH_CANDIDATE_1",
+      "capture_kind": "EXACT_CAPTURED_SOURCE_RECORD_SET",
+      "raw_file_bindings": [
+        {
+          "relative_path": "prior_candidate/MA-ARCH-REVIEW-v3/CODE_ALIAS_REGISTRY.candidate.v1.json",
+          "raw_sha256": "347152933b3854e204c5b004f7668bbef97fba011b32536924ac5f16ef19c6f9"
+        },
+        {
+          "relative_path": "prior_candidate/MA-ARCH-REVIEW-v3/GIT_REGISTRY_REBUILD.candidate.v1.json",
+          "raw_sha256": "586033f7fefae4295321213d7ab203606973723b7b0b8dea234f4848ff344b1a"
+        }
+      ],
+      "original_registry_snapshot_ref": null,
+      "coverage_rule": "Exact rows bearing this original source label in frozen v3; not a claim of original full snapshot, event time or adoption.",
+      "content_hash_domain": "ma-canonical-json-sha256-v1",
+      "content_sha256": "41b03437cc5592164757e17f0004c676dfd2c32cdd8cfb3304a3daa49163b8ac"
+    },
+    {
+      "entity_id": "2eb2e17d-c87f-461f-b03e-9dc1cc894449",
+      "revision_id": "66969b68-68a0-4cf5-9900-a6754935e9a4",
+      "source_snapshot_key": "MA_ARCH_CANDIDATE_3",
+      "capture_kind": "EXACT_CAPTURED_SOURCE_RECORD_SET",
+      "raw_file_bindings": [
+        {
+          "relative_path": "prior_candidate/MA-ARCH-REVIEW-v3/CODE_ALIAS_REGISTRY.candidate.v1.json",
+          "raw_sha256": "347152933b3854e204c5b004f7668bbef97fba011b32536924ac5f16ef19c6f9"
+        },
+        {
+          "relative_path": "prior_candidate/MA-ARCH-REVIEW-v3/GIT_REGISTRY_REBUILD.candidate.v1.json",
+          "raw_sha256": "586033f7fefae4295321213d7ab203606973723b7b0b8dea234f4848ff344b1a"
+        }
+      ],
+      "original_registry_snapshot_ref": null,
+      "coverage_rule": "Exact rows bearing this original source label in frozen v3; not a claim of original full snapshot, event time or adoption.",
+      "content_hash_domain": "ma-canonical-json-sha256-v1",
+      "content_sha256": "aa97af09df20c082e126ae7f5fb9fa4ce3e1978c88cfe04f6b5eea15bc630bb4"
+    }
+  ],
+  "whole_registry_snapshot_hash_rule": "Use fixed entity/relation/code/alias/allocation member identities, revisions and hashes; exclude own ref/hash, derived heads, receipts appended after seal; do not recursively hash reference graph.",
+  "prior_raw_files_immutable": true
+}

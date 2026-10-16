@@ -1,0 +1,623 @@
+{
+  "schema_version": "architecture.crosschapter_contracts.v1",
+  "revision": "candidate.4",
+  "authority_effect": "NONE",
+  "contracts": [
+    {
+      "contract_id": "1e3fdffd-f741-40c7-9e1a-4a14e1831952",
+      "revision_id": "34b5820e-7e08-59db-a7b6-fb6a4476644e",
+      "alias": "domain-data",
+      "owner": "D_DOMAIN",
+      "producer": "MA02",
+      "consumers": [
+        "MA03",
+        "MA04",
+        "MA06",
+        "MA07",
+        "MA09"
+      ],
+      "model_names": [
+        "InstrumentRevision",
+        "ListingRevision",
+        "ProductTerms",
+        "MarketRuleRevision"
+      ],
+      "model_semantic_sha256": "da92273300d8114977eb2d3259f76b2682c39ed626127bd1793a09faf541c0ba",
+      "source_chapter": "02_ASSET_DOMAIN.md",
+      "source_chapter_raw_sha256": "1ae53791652c8ba11d52a7843a83323e1fba1579771a6147264bb6f269899fb8",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "ASSET_PROFILE_QUALIFICATION",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "AssetTermsByKind",
+        "BondTerms",
+        "CashTerms",
+        "ContractRef",
+        "ETFTerms",
+        "EquityTerms",
+        "FXTerms",
+        "FundTerms",
+        "FuturesTerms",
+        "InstrumentRevision",
+        "ListingRevision",
+        "LotPolicy",
+        "MarketRuleRevision",
+        "Money",
+        "OptionTerms",
+        "ProductTerms",
+        "TickBand"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "34b5820e-7e08-59db-a7b6-fb6a4476644e",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    },
+    {
+      "contract_id": "ae8376e2-f28a-4acb-927f-0073b6248256",
+      "revision_id": "a9363bc6-c0ce-52a2-87d0-3582ca0c09cb",
+      "alias": "snapshot-research",
+      "owner": "B_DATA",
+      "producer": "MA03",
+      "consumers": [
+        "MA04",
+        "MA05"
+      ],
+      "model_names": [
+        "DatasetSnapshot",
+        "Coverage"
+      ],
+      "model_semantic_sha256": "ff78538eabdb474ee78b8160e4a254cf093e93c1e74b980d6dc50c4bd3623b2c",
+      "source_chapter": "03_MARKET_DATA.md",
+      "source_chapter_raw_sha256": "605c1347c3d4b3a8f866d1c0199587634c2c91c3020cfeabfff39f8cbf8235d6",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "POINT_IN_TIME_DATA_QUALIFICATION",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "ContractRef",
+        "Coverage",
+        "DatasetSelection",
+        "DatasetSnapshot"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "a9363bc6-c0ce-52a2-87d0-3582ca0c09cb",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    },
+    {
+      "contract_id": "006d63c1-8807-4eda-bb1e-558375590029",
+      "revision_id": "013a3917-54bd-5806-a415-680d38ff892a",
+      "alias": "release-admission",
+      "owner": "E_LIBRARY",
+      "producer": "MA04",
+      "consumers": [
+        "MA08",
+        "MA07"
+      ],
+      "model_names": [
+        "LibraryRelease",
+        "Deployment"
+      ],
+      "model_semantic_sha256": "7e1a7b69a177f498541048300beba138391163c6c32982339a250fbb00f431f5",
+      "source_chapter": "04_RESEARCH_STRATEGY_LAB.md",
+      "source_chapter_raw_sha256": "6214e2a9d6dcab2f8764af68da33875353d559c3f3d96a3598d5480391fc5063",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "LIBRARY_AND_RUNTIME_ADMISSION",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "ContractRef",
+        "Deployment",
+        "LibraryRelease",
+        "QualificationWarning",
+        "ResourceScope"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "013a3917-54bd-5806-a415-680d38ff892a",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    },
+    {
+      "contract_id": "e927ca26-2cc8-4b8a-9c57-44838c7d7478",
+      "revision_id": "1bdabc0e-10bf-5c4e-bcd4-9a2572d86cf8",
+      "alias": "account-risk",
+      "owner": "J_ACCOUNT",
+      "producer": "MA06",
+      "consumers": [
+        "MA07",
+        "MA08"
+      ],
+      "model_names": [
+        "AccountAllocationSet",
+        "AccountCut",
+        "BudgetAllocationPreview",
+        "BudgetAllocationReceipt",
+        "CapitalReservation",
+        "EconomicOrigin",
+        "FinancialAccount",
+        "ReservationTransitionReceipt"
+      ],
+      "model_semantic_sha256": "6621500f8bac5ed806670853d9a73c67e1dae4d45d8ad6144d2df6eb11e21593",
+      "source_chapter": "06_PORTFOLIO_CAPITAL_ACCOUNTING.md",
+      "source_chapter_raw_sha256": "f75ed650d99edde064eaf0a82356fa4f95338ed1726a85fa78bc7f24bda9dd5d",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "MONEY_TWO_CONNECTION_CRASH_QUALIFICATION",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "AccountAllocationSet",
+        "AccountBudgetPolicyDraft",
+        "AccountCut",
+        "BudgetAllocationPreview",
+        "BudgetAllocationProposal",
+        "BudgetAllocationReceipt",
+        "CapitalReservation",
+        "ContractRef",
+        "EconomicOrigin",
+        "FinancialAccount",
+        "GroupStrategyAllocation",
+        "Money",
+        "ReservationTransitionReceipt",
+        "ResourceAvailabilityByGroup",
+        "ResourceScope",
+        "StrategyBudgetAllocation"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "1bdabc0e-10bf-5c4e-bcd4-9a2572d86cf8",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    },
+    {
+      "contract_id": "037b7745-753f-4b2e-aa9f-e0857482f08a",
+      "revision_id": "bf17391f-ecc6-5024-a394-68971e6a7ff3",
+      "alias": "risk-submission",
+      "owner": "G_DECISION",
+      "producer": "MA07",
+      "consumers": [
+        "MA08",
+        "MA09"
+      ],
+      "model_names": [
+        "DecisionInputCut",
+        "RiskDecision",
+        "FinalSubmissionWitness",
+        "ReservationTransitionReceipt",
+        "SubmissionTransitionReceipt",
+        "AccountExecutorLeaseWitness"
+      ],
+      "model_semantic_sha256": "cd0855b7187d4d7d984f6b3dc9f30aafe2b8803b9ee7b93b3945842b77e0b72b",
+      "source_chapter": "07_DECISION_RISK.md",
+      "source_chapter_raw_sha256": "2342b98630af515aef6f14db668bad1d9e55aee98cf6f5da6115b3cb62356f5f",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "FINAL_SUBMISSION_CUT_QUALIFICATION",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "AccountExecutorLeaseWitness",
+        "ContractRef",
+        "DecisionInputCut",
+        "FinalSubmissionWitness",
+        "ReservationTransitionReceipt",
+        "ResourceScope",
+        "RiskAction",
+        "RiskActionPayload",
+        "RiskDecision",
+        "RiskGuard",
+        "RiskValidity",
+        "SubmissionTransitionReceipt"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "bf17391f-ecc6-5024-a394-68971e6a7ff3",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    },
+    {
+      "contract_id": "44af0978-5e0a-439d-9366-2dcff2f953dc",
+      "revision_id": "709c002f-9605-5a9f-83e0-15a95bd3c538",
+      "alias": "broker-economics",
+      "owner": "I_ADAPTER",
+      "producer": "MA09",
+      "consumers": [
+        "MA08",
+        "MA06"
+      ],
+      "model_names": [
+        "BrokerObservation",
+        "FillV2",
+        "ExternalFillProvenance",
+        "OriginBinding",
+        "SettlementObligation",
+        "LedgerPolicyRevision",
+        "InventoryLotRevision",
+        "EntitlementSnapshot"
+      ],
+      "model_semantic_sha256": "072e4e104638027cb0d09a3528d9288e28aab60eb1dc038f2844f7c3a484da21",
+      "source_chapter": "09_BROKER_SHIOAJI.md",
+      "source_chapter_raw_sha256": "cdfa2b7103e4167b4bd5ea33cb000238ea6e50dce9944d152cbdcfeb27b8cf7a",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "BROKER_ECONOMIC_IDENTITY_QUALIFICATION",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "BrokerObservation",
+        "ContractRef",
+        "Coverage",
+        "EconomicOrigin",
+        "EffectiveInterval",
+        "EntitlementSnapshot",
+        "EnumPayload",
+        "ExternalFillProvenance",
+        "FillV2",
+        "InventoryLotRevision",
+        "InventoryLotSelection",
+        "LedgerPolicyRevision",
+        "LedgerPostingRule",
+        "Money",
+        "OriginBinding",
+        "ParameterValue",
+        "QuantityLeg",
+        "ResourceScope",
+        "SettlementMoneyLeg",
+        "SettlementObligation"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "709c002f-9605-5a9f-83e0-15a95bd3c538",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    },
+    {
+      "contract_id": "090ce350-e3b9-4f58-92f8-d75cabdb9570",
+      "revision_id": "4c2b4950-f6ed-52cc-b233-d8095d6413f6",
+      "alias": "recovery-admission",
+      "owner": "K_RECOVERY",
+      "producer": "MA08",
+      "consumers": [
+        "MA07",
+        "MA16"
+      ],
+      "model_names": [
+        "RecoveryStatus",
+        "ReconciliationCase"
+      ],
+      "model_semantic_sha256": "81ef4d837ade44c06ed0998beaceb3cfdf37f89757a9ad6fad4956443f03d623",
+      "source_chapter": "08_OMS_PAPER_LIVE.md",
+      "source_chapter_raw_sha256": "27dfd8a0afb7c752b44ee08bf10fdc8d935a9b11984d3e067c1aad78c30fa852",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "FRESH_REENTRY_QUALIFICATION",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "ContractRef",
+        "Difference",
+        "ReconciliationCase",
+        "RecoveryStatus",
+        "ResourceScope"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "4c2b4950-f6ed-52cc-b233-d8095d6413f6",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    },
+    {
+      "contract_id": "50b5a04f-f024-4eb0-86a4-899c690870cb",
+      "revision_id": "9ddd98ed-2c0a-5c24-8114-b106212eb70d",
+      "alias": "registry-publication",
+      "owner": "REGISTRY_WRITER",
+      "producer": "MA11",
+      "consumers": [
+        "MA12",
+        "MA14"
+      ],
+      "model_names": [
+        "CodeAllocation",
+        "CodeAssignment",
+        "LegacyAlias",
+        "RegistrySnapshot",
+        "RelationRevision",
+        "SourceSnapshotBinding"
+      ],
+      "model_semantic_sha256": "fb4fb6e44347294f12acb11d8109bd4ef882c1570e4662fe980d91681c5405d6",
+      "source_chapter": "11_URMS_IDENTITY_RELATIONS.md",
+      "source_chapter_raw_sha256": "857903ee620d08ca143125b07114fc440248f2271a9e286d5c8039ad5b5da349",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "EXACT_REGISTRY_ADOPTION",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "CanonicalCodeKey",
+        "CanonicalCodeSegment",
+        "CodeAllocation",
+        "CodeAssignment",
+        "CodeSegment",
+        "CodeValidity",
+        "ContractRef",
+        "Coverage",
+        "EffectiveInterval",
+        "LegacyAlias",
+        "RegistrySnapshot",
+        "RegistrySourceBinding",
+        "RelationQualifier",
+        "RelationRevision",
+        "RelationValidity",
+        "SourceSnapshotBinding"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "9ddd98ed-2c0a-5c24-8114-b106212eb70d",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    },
+    {
+      "contract_id": "2a77a21e-1698-4fc0-9b0e-07eedf1cfd1b",
+      "revision_id": "93133840-6e7f-5e56-adbb-e99a3e053089",
+      "alias": "publication-projection",
+      "owner": "EXISTING_REVIEW_OWNER",
+      "producer": "MA12",
+      "consumers": [
+        "MA11",
+        "MA13"
+      ],
+      "model_names": [
+        "ReviewSubject",
+        "PublicationIntent",
+        "ProjectionReceipt"
+      ],
+      "model_semantic_sha256": "02eb9b8d35d4c7a2f1954116fef6f3e2e6c877e4fa4a735d2542b00820078748",
+      "source_chapter": "12_PUBLICATION_AUTHORITY.md",
+      "source_chapter_raw_sha256": "f0445f8eca1ff44c6ce7f1060c303940a1dca9995b8fe47638f5f90085bd559b",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "GIT_SQL_CRASH_RECONCILIATION_QUALIFICATION",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "CompatibilityImpact",
+        "ContractRef",
+        "Coverage",
+        "ProjectionReceipt",
+        "PublicationIntent",
+        "RegistryGraphHead",
+        "ReviewExclusion",
+        "ReviewSubject",
+        "SourceHashEntry",
+        "StreamFrontier"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "93133840-6e7f-5e56-adbb-e99a3e053089",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    },
+    {
+      "contract_id": "a7f0d381-3ef5-411e-8f09-f1a6e129e3c9",
+      "revision_id": "d179fd80-735e-542b-958a-2605e1ba0272",
+      "alias": "capture-backup",
+      "owner": "ARTIFACT_PROVIDER",
+      "producer": "MA13",
+      "consumers": [
+        "MA04",
+        "MA05",
+        "MA12",
+        "MA16"
+      ],
+      "model_names": [
+        "BackupCut",
+        "BackupInventoryClosure",
+        "BackupSetManifest",
+        "CaptureReceipt",
+        "ExternalCaptureJournalCut",
+        "ExternalCatalogRecord",
+        "OwnerInventorySnapshot",
+        "ProtectionReceipt",
+        "RestoreRequest"
+      ],
+      "model_semantic_sha256": "e22f55846337c7ca80d63a474c5db59ef27caca7d17fc1104b24ce5de48ee5d6",
+      "source_chapter": "13_STORAGE_RECOVERY_SECURITY.md",
+      "source_chapter_raw_sha256": "d4ed1a953485dc3bb8b1058b10752ae78ef45ee5e019f5a3f6fc6827794a11b2",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "PRIVATE_FULL_HISTORICAL_RESTORE_QUALIFICATION",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "BackupCoverageEntry",
+        "BackupCoverageOrigin",
+        "BackupCut",
+        "BackupInventoryClosure",
+        "BackupSetManifest",
+        "CaptureReceipt",
+        "ContractRef",
+        "Coverage",
+        "ExternalCaptureJournalCut",
+        "ExternalCatalogRecord",
+        "InventoryCoverageIssue",
+        "OwnerInventorySnapshot",
+        "PostgresBackupProfile",
+        "PrivateInventoryEntry",
+        "ProtectionReceipt",
+        "RestoreRequest",
+        "StreamFrontier"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "d179fd80-735e-542b-958a-2605e1ba0272",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    },
+    {
+      "contract_id": "5a77c8c6-1426-4257-8171-1dc9fac5224c",
+      "revision_id": "a0fc94ac-f0de-5f6f-8e12-a2ed530fa6eb",
+      "alias": "UI-projections",
+      "owner": "J_ACCOUNT",
+      "producer": "MA10",
+      "consumers": [
+        "MA16"
+      ],
+      "model_names": [
+        "PositionsProjection",
+        "DashboardProjection",
+        "ReadModelEvent",
+        "SubscriptionCursor"
+      ],
+      "model_semantic_sha256": "911ed7520a080b765af0087508aca789142d6cff84168ce7b8951aa71aeb1aa4",
+      "source_chapter": "10_WEB_UI_API.md",
+      "source_chapter_raw_sha256": "98b92a8216458687c42e8df6cdcd115e029c62b0c001f898b8b3d57892ba6f3a",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "BFF_UI_CONTRACT_AND_SIX_JOURNEYS",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "BrokerObservation",
+        "ContractRef",
+        "Coverage",
+        "DashboardProjection",
+        "DashboardWidget",
+        "EnumPayload",
+        "Money",
+        "ParameterValue",
+        "PositionsProjection",
+        "ReadModelEvent",
+        "ResourceScope",
+        "SubscriptionCursor",
+        "VirtualPosition"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "a0fc94ac-f0de-5f6f-8e12-a2ed530fa6eb",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    },
+    {
+      "contract_id": "b1885d43-b979-4159-bd2d-90904cea761e",
+      "revision_id": "f583b28b-8235-50d0-b736-60704ce8bba0",
+      "alias": "execution-result",
+      "owner": "EXISTING_WORK",
+      "producer": "MA14",
+      "consumers": [
+        "MA11",
+        "MA12"
+      ],
+      "model_names": [
+        "CostRecord",
+        "ExecutionUnit",
+        "ExecutionUnitPlan",
+        "ExecutionUnitPlanArtifact",
+        "PlanningCandidate",
+        "RequiredEvidenceContract",
+        "UnitExecutionResult"
+      ],
+      "model_semantic_sha256": "7ae87908c833e297b7f30172f8d0ddb2f5940f500582839baf55a9d2c05ba303",
+      "source_chapter": "14_ENGINEERING_EXECUTION.md",
+      "source_chapter_raw_sha256": "e21a61be56b9f378361b5a9b39b907aa125d56fb45aadc87c49644b4cc2e76c2",
+      "error_codes": [
+        "MISSING_REQUIRED_INPUT",
+        "STALE_CUT",
+        "CONFLICT",
+        "UNSUPPORTED",
+        "UNKNOWN"
+      ],
+      "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+      "qualification_gate": "EXISTING_COMPILER_ADAPTER_AND_INTAKE_QUALIFICATION",
+      "qualification_status": "NOT_RUN",
+      "model_closure_names": [
+        "ArtifactHashBinding",
+        "ContractRef",
+        "CostActual",
+        "CostEstimate",
+        "CostRecord",
+        "ExecutionUnit",
+        "ExecutionUnitPlan",
+        "ExecutionUnitPlanArtifact",
+        "ExpectedEvidence",
+        "ModelCapabilityRequirement",
+        "Money",
+        "PlanAllowedChanges",
+        "PlanChapterBinding",
+        "PlanDependency",
+        "PlanFixtureBinding",
+        "PlanIO",
+        "PlanInterfaceContract",
+        "PlanModelCapabilityRequirement",
+        "PlanProtectedBlob",
+        "PlanProtectedContracts",
+        "PlanSchemaBinding",
+        "PlanSecondaryIO",
+        "PlanSourceBinding",
+        "PlanTestCase",
+        "PlanTypedWireFixtureRef",
+        "PlanningAssumptions",
+        "PlanningCandidate",
+        "RequiredEvidenceContract",
+        "UnitDependency",
+        "UnitExecutionResult",
+        "UnitIO",
+        "UnitTest"
+      ],
+      "model_hash_domain": "ma-canonical-json-sha256-v1",
+      "prior_revision_id": "f583b28b-8235-50d0-b736-60704ce8bba0",
+      "independent_re_review": "PENDING",
+      "review_subject": "MA-ARCH-REVIEW-v4-RCG01-06"
+    }
+  ]
+}

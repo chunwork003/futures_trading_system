@@ -1,0 +1,306 @@
+{
+  "schema_version": "architecture.typed_relation_rules.v1",
+  "revision": "candidate.4",
+  "authority_effect": "NONE",
+  "endpoint_revision_required": true,
+  "closure_scope": "Complete effective active proposed RegistrySnapshot incl cross-project imported dependencies; absent required closure => UNKNOWN/HOLD.",
+  "rules": [
+    {
+      "kind": "PRODUCT_PARENT",
+      "from_kinds": [
+        "FEATURE"
+      ],
+      "to_kinds": [
+        "FEATURE"
+      ],
+      "cardinality": "ONE_PARENT_PER_SNAPSHOT_TREE",
+      "cycle_scope": "PRODUCT_TREE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "WORK_PARENT",
+      "from_kinds": [
+        "PHASE",
+        "DELIVERABLE",
+        "WORK_ORDER",
+        "TASK"
+      ],
+      "to_kinds": [
+        "PHASE",
+        "DELIVERABLE",
+        "WORK_ORDER",
+        "TASK"
+      ],
+      "cardinality": "ONE_PARENT_PER_SNAPSHOT_WBS",
+      "cycle_scope": "ENGINEERING_TREE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "CAPABILITY_MAP",
+      "from_kinds": [
+        "DELIVERABLE"
+      ],
+      "to_kinds": [
+        "CAPABILITY"
+      ],
+      "cardinality": "N_TO_M_NO_CREDIT",
+      "cycle_scope": "NONE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "PHASE_MAP",
+      "from_kinds": [
+        "FEATURE",
+        "CAPABILITY"
+      ],
+      "to_kinds": [
+        "PHASE",
+        "DELIVERABLE"
+      ],
+      "cardinality": "N_TO_M_NO_DUPLICATED_FEATURE_ID",
+      "cycle_scope": "NONE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "DEPENDS_ON",
+      "from_kinds": [
+        "FEATURE",
+        "CAPABILITY",
+        "DELIVERABLE",
+        "WORK_ORDER",
+        "TASK",
+        "CONTRACT",
+        "PHASE"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "CAPABILITY",
+        "DELIVERABLE",
+        "WORK_ORDER",
+        "TASK",
+        "CONTRACT",
+        "PHASE"
+      ],
+      "cardinality": "N_TO_M",
+      "cycle_scope": "COMPLETE_DEPENDENCY_DAG",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER",
+      "qualifier_rule": "Exact WORK plan deps and source-bound PHASE deps are separate graph scopes; no phase/task cross-scope eligibility inferred. Cross-scope edges require explicit owner contract; full connected closure checked, not only local subset."
+    },
+    {
+      "kind": "SATISFIES",
+      "from_kinds": [
+        "FEATURE",
+        "DELIVERABLE"
+      ],
+      "to_kinds": [
+        "REQUIREMENT"
+      ],
+      "cardinality": "N_TO_M",
+      "cycle_scope": "NONE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "IMPLEMENTS",
+      "from_kinds": [
+        "DELIVERABLE",
+        "WORK_ORDER",
+        "TASK",
+        "CONTRACT"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "CAPABILITY",
+        "CONTRACT"
+      ],
+      "cardinality": "N_TO_M_IMPLEMENTATION_ONLY_NOT_ACCEPTANCE",
+      "cycle_scope": "NONE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "REUSES",
+      "from_kinds": [
+        "FEATURE",
+        "DELIVERABLE",
+        "CONTRACT"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "CAPABILITY",
+        "CONTRACT"
+      ],
+      "cardinality": "N_TO_M_NO_IMPLICIT_ACCEPTANCE",
+      "cycle_scope": "NONE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "QUALIFIES",
+      "from_kinds": [
+        "EVIDENCE"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "CAPABILITY",
+        "DELIVERABLE",
+        "CONTRACT"
+      ],
+      "cardinality": "EXACT_SUBJECT_LEVEL",
+      "cycle_scope": "NONE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "ACCEPTANCE_APPLIES_TO",
+      "from_kinds": [
+        "ACCEPTANCE_RECEIPT"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "CAPABILITY",
+        "DELIVERABLE",
+        "CONTRACT"
+      ],
+      "cardinality": "EXACT_SCOPE_REVIEWED_REVISION",
+      "cycle_scope": "NONE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "ADDRESSES_GAP",
+      "from_kinds": [
+        "FEATURE",
+        "DELIVERABLE",
+        "TASK"
+      ],
+      "to_kinds": [
+        "GAP"
+      ],
+      "cardinality": "N_TO_M",
+      "cycle_scope": "NONE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "SPECIFIES",
+      "from_kinds": [
+        "ARTIFACT",
+        "CONTRACT"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "CAPABILITY",
+        "DELIVERABLE"
+      ],
+      "cardinality": "N_TO_M",
+      "cycle_scope": "NONE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "CODE_IMPLEMENTATION",
+      "from_kinds": [
+        "CONTRACT"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "CAPABILITY"
+      ],
+      "cardinality": "N_TO_M_NO_IMPLICIT_ACCEPTANCE",
+      "cycle_scope": "NONE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "EVIDENCE_FOR",
+      "from_kinds": [
+        "EVIDENCE"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "DELIVERABLE",
+        "WORK_ORDER",
+        "CONTRACT"
+      ],
+      "cardinality": "EXACT_REVISION_CLOSURE",
+      "cycle_scope": "NONE",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "DERIVED_FROM",
+      "from_kinds": [
+        "FEATURE",
+        "ARTIFACT",
+        "CONTRACT"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "ARTIFACT",
+        "CONTRACT"
+      ],
+      "cardinality": "N_TO_M",
+      "cycle_scope": "LINEAGE_DAG",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "SUPERSEDES",
+      "from_kinds": [
+        "FEATURE",
+        "ARTIFACT",
+        "CONTRACT"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "ARTIFACT",
+        "CONTRACT"
+      ],
+      "cardinality": "EXACT_OLD_REVISION_PRESERVED",
+      "cycle_scope": "LINEAGE_DAG",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "SPLIT_INTO",
+      "from_kinds": [
+        "FEATURE",
+        "DELIVERABLE"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "DELIVERABLE"
+      ],
+      "cardinality": "ONE_TO_MANY_NEW_TARGET_IDS",
+      "cycle_scope": "LINEAGE_DAG",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    },
+    {
+      "kind": "MERGED_INTO",
+      "from_kinds": [
+        "FEATURE",
+        "DELIVERABLE"
+      ],
+      "to_kinds": [
+        "FEATURE",
+        "DELIVERABLE"
+      ],
+      "cardinality": "MANY_TO_NEW_ID",
+      "cycle_scope": "LINEAGE_DAG",
+      "counting_weight": "ZERO_UNLESS_EXPLICIT_SINGLE_UNIVERSE_LEAF_ALLOCATION_CONTRACT",
+      "owner": "EXISTING_REGISTRY_AND_DOMAIN_OWNER"
+    }
+  ],
+  "single_parent_rule": "Roots must be explicitly declared; parent kind/ownership/tree scope checked under serializable transaction/CAS. Cross-tree reuse is mapping not second parent.",
+  "temporal_rule": "Immutable relation revisions; [from,to) only when real temporal source available; SOURCE_SNAPSHOT retains original labels/provenance without timestamps. Accepted snapshot never overwritten.",
+  "validity_contract": "RelationValidity.kind: SOURCE_SNAPSHOT forbids instants; TEMPORAL requires real source-bound interval. Governing snapshot exact membership pins both endpoint revisions.",
+  "endpoint_binding": "Composite FK to exact governing snapshot member: from/to entity + revision, never latest.",
+  "generation_contract": "CAS across all connected ProductTree/WorkTree/Dependency/Lineage scopes and imported heads; invalid/unknown closure refuses entire batch."
+}

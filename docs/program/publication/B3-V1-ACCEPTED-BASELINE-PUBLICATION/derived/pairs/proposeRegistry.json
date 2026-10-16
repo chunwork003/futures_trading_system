@@ -1,0 +1,2290 @@
+{
+  "authority_effect": "NONE",
+  "canonical_logical_path": "docs/architecture/multi_asset/source_closure_v9/EXPECTED_REQUIRED_PAIRS.v9.json",
+  "canonical_raw_sha256": "86c09e275595a3c996cea79f15e8200df25a53cf7ddf78ffb49eab7cb306250e",
+  "kind": "NONAUTHORITATIVE_READABLE_QUERY_PROJECTION_NOT_CANONICAL_OR_COMPILER_INPUT",
+  "operation_id": "proposeRegistry",
+  "pair_count": 38,
+  "pairs": [
+    {
+      "canonical_pointer": "#/pairs/3061",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "5c6df4b4-ec7e-5527-bfbb-6224ea157669",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "72be6447-66ba-509f-8e2b-a2a28b13f353"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "04aedf01-3350-526c-acda-219f7237a309",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-input-capture-entity-original.json",
+        "raw_bytes_sha256": "0ccedb517da1dd70e64a9f928a73712cf8f291e425819fd19d3667192c7859c5"
+      },
+      "schema_ref": {
+        "entity_id": "5f7b9e2c-e367-545a-8b98-ef764e03500a",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "f3015e13-90d0-5b43-8d60-09ad56b6fa1a",
+        "source_hash": "0ccedb517da1dd70e64a9f928a73712cf8f291e425819fd19d3667192c7859c5"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-input-capture-entity-original.json",
+        "raw_bytes_sha256": "1aa0fb32abaa617f921f5bbc77ba709adef3acde329757872334ff7ea979f55b"
+      },
+      "source_ref": {
+        "entity_id": "113c6155-56f5-583e-9fb4-6a1b03a6bde7",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "84767cf8-59a8-5d95-a45c-850f67b1fa90",
+        "source_hash": "1aa0fb32abaa617f921f5bbc77ba709adef3acde329757872334ff7ea979f55b"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3062",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "4fe7ec85-8091-5f8e-8623-f88ee12e6314",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "9943ac71-1eef-55e3-b196-bd281d586691"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "0955e6f0-20b5-5763-9a5a-1becd2fd2ca8",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-candidate-semantic-input.json",
+        "raw_bytes_sha256": "02e30e88485185ae45e4933b25a6695e8b4057e3040a38f68742f8be96945eff"
+      },
+      "schema_ref": {
+        "entity_id": "87215846-fa36-5c66-8759-81610ec4b638",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "47ca0c9c-d5e0-5d65-8773-58ac3b504958",
+        "source_hash": "02e30e88485185ae45e4933b25a6695e8b4057e3040a38f68742f8be96945eff"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-candidate-semantic-input.json",
+        "raw_bytes_sha256": "a6b8b1b8e7db70b1576fc564cc3f34d3dd3209ad47dc16f9c1dff59270b6da7a"
+      },
+      "source_ref": {
+        "entity_id": "e02fcfad-2bda-5d16-93a4-8cece2d9e674",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "05f15f7b-6ade-5dab-bce1-b7551a3c1c96",
+        "source_hash": "a6b8b1b8e7db70b1576fc564cc3f34d3dd3209ad47dc16f9c1dff59270b6da7a"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3063",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "97fad5d1-04f5-5252-8b02-6ef6c6a53674",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "727f4227-ba84-5388-87bb-794c4839cf06"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "27bd9e84-3219-59c8-af31-23b37e526066",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-artifact-durability.json",
+        "raw_bytes_sha256": "e163bbf1fec241bac01f785eb7737bacf54da8fab815eb36b28957ef0e040e9e"
+      },
+      "schema_ref": {
+        "entity_id": "03ff84c7-b11c-5a9b-ad65-51d74eb14221",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "ad98c5d2-16cf-5cb9-a16b-4982d3f4711f",
+        "source_hash": "e163bbf1fec241bac01f785eb7737bacf54da8fab815eb36b28957ef0e040e9e"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/artifact-durability.json",
+        "raw_bytes_sha256": "b2c02fc8e82641fe9610963d98254b604510a866d35521d14a0c86fcf92a337c"
+      },
+      "source_ref": {
+        "entity_id": "054f3afb-141e-5af5-aa47-56cde51833fb",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "eaf95e0f-919e-5e98-af1d-bb76b3b404ec",
+        "source_hash": "b2c02fc8e82641fe9610963d98254b604510a866d35521d14a0c86fcf92a337c"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3064",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "6aa73ba5-7733-55c9-a2e9-51171aea6c24",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "c9613849-9202-54d0-93c8-3612449e1cd8"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "2ccb5e23-4b93-567f-8bcd-fca07b0ae44c",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-authenticated-reader.json",
+        "raw_bytes_sha256": "7d2fc2c7059a807be31a4c589901c9a9e94401bb99d1de226906629022c836c4"
+      },
+      "schema_ref": {
+        "entity_id": "a54f0eb4-2744-51df-b9f5-f230c9194ce5",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "e5e47b03-dda3-5231-bd5b-b4fcada9bb92",
+        "source_hash": "7d2fc2c7059a807be31a4c589901c9a9e94401bb99d1de226906629022c836c4"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/authenticated-reader.json",
+        "raw_bytes_sha256": "2e4099ab621a0c86671fe22aa20103f7ecc8a2236e190308c09ecbc2d5481c9b"
+      },
+      "source_ref": {
+        "entity_id": "95c4c907-f67d-5690-9656-50b8639e0da2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "4964f7a8-1937-57a1-a642-2abbf9bd6c25",
+        "source_hash": "2e4099ab621a0c86671fe22aa20103f7ecc8a2236e190308c09ecbc2d5481c9b"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3065",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "6c564ee3-4f50-5171-b2ea-e65d1f2681d5",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "33f281a4-9496-5484-a6ef-5f7238e52fb7"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "333b8e26-0e1c-56a0-8028-2db25b8b6def",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-scope-proposeRegistry.json",
+        "raw_bytes_sha256": "07a9139563085310146012c19031074ba06c6000b3ed0bd1c735b12aecf8a5f4"
+      },
+      "schema_ref": {
+        "entity_id": "f037dbb3-6cfe-5c94-b981-4421f8927979",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "55a61471-70fc-58af-a199-94fea01caa9d",
+        "source_hash": "07a9139563085310146012c19031074ba06c6000b3ed0bd1c735b12aecf8a5f4"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/scope-proposeRegistry.json",
+        "raw_bytes_sha256": "26ef913f023507307ad0e8bab4e36de2d75e8771c450a849111e926e01385ebe"
+      },
+      "source_ref": {
+        "entity_id": "1ce317c7-df18-5c95-af0f-d057debd143a",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "1e132830-8678-5cbc-b3b2-a6542e80b7f1",
+        "source_hash": "26ef913f023507307ad0e8bab4e36de2d75e8771c450a849111e926e01385ebe"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3066",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "46932f9c-c29d-5f0b-8b9e-4855682c3c5c",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "dea49a32-8bc1-571c-80d0-77f0c9f87dfa"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "3479a071-a94c-5bef-bb78-e9087e18b799",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-proposeRegistry-response.json",
+        "raw_bytes_sha256": "28779d33a166ce827edb553bfe3f201bbec7482e5956e38533f92be3af24fbf8"
+      },
+      "schema_ref": {
+        "entity_id": "996a27a9-607d-5db4-80dd-9118077e51b2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "e588d54a-3d67-513e-9b3a-ff6295749225",
+        "source_hash": "28779d33a166ce827edb553bfe3f201bbec7482e5956e38533f92be3af24fbf8"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-proposeRegistry-response.json",
+        "raw_bytes_sha256": "ed5094b321df2ed0c17e8459b1c0c64052d4c79ed4698e3b7972113c3fa25899"
+      },
+      "source_ref": {
+        "entity_id": "0a22606c-c7ec-5018-97a3-5eaeed1797c4",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "1f5c1672-51fb-59da-b8e0-c84a5e259d5c",
+        "source_hash": "ed5094b321df2ed0c17e8459b1c0c64052d4c79ed4698e3b7972113c3fa25899"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3067",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "9f61711e-c5ae-5710-8d34-3041e9157ce4",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "e36c6663-581c-5411-afd9-3f118aac884c"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "36bf48d3-f36f-5041-864c-444d7e63e6c1",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-proposeRegistry-response.json",
+        "raw_bytes_sha256": "523f6988951e8950d950cc35aeac8cbd64645cc9684a65f156473bc6e9ccc774"
+      },
+      "schema_ref": {
+        "entity_id": "2c28a7ad-f36d-5cc2-927d-fbb97d70d706",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "56e9aeae-b834-577a-8cfc-c85638ccf224",
+        "source_hash": "523f6988951e8950d950cc35aeac8cbd64645cc9684a65f156473bc6e9ccc774"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-proposeRegistry-response.json",
+        "raw_bytes_sha256": "655a131f41bdba0860e9380151c4cde6648ca545fab874e1d85560ca7753172f"
+      },
+      "source_ref": {
+        "entity_id": "ebe0af3c-0442-5f0a-ba4d-96ca1c16d86a",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "4595738c-ef9d-572c-a9f1-c5a9a3d5bf0d",
+        "source_hash": "655a131f41bdba0860e9380151c4cde6648ca545fab874e1d85560ca7753172f"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3068",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "50888006-7ab7-5db4-858a-f07c3dd0103c",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "e2eec155-b0e8-507e-9e1a-63e8defad8c4"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "39d77e5b-0b89-5872-8bc2-20622d9fd8a3",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-owner-receipt-proposeRegistry.json",
+        "raw_bytes_sha256": "5126fcd5956d789e64d56b9930d2979f6909d43428d7a646ae7c3b4f5f6f4c0f"
+      },
+      "schema_ref": {
+        "entity_id": "6a680c11-2550-5b30-8e7d-1046c3511a79",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "7e37c148-9350-55dd-ac78-a3b25340385e",
+        "source_hash": "5126fcd5956d789e64d56b9930d2979f6909d43428d7a646ae7c3b4f5f6f4c0f"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/owner-receipt-proposeRegistry.json",
+        "raw_bytes_sha256": "8a0d545c8fd7371bddc6be935f0f9721408244afcfa8047fdbbbc9b1b2507755"
+      },
+      "source_ref": {
+        "entity_id": "7b2e05ed-c131-5be4-bbca-9c2513f424a3",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "f48ff0c9-8255-506f-81cd-95f2c0f34e99",
+        "source_hash": "8a0d545c8fd7371bddc6be935f0f9721408244afcfa8047fdbbbc9b1b2507755"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3069",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "4a8ed6d8-45a1-5c6c-b669-2d7a1301f14b",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "533edc8e-4250-515c-b944-9e6f43205e63"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "3f53ba49-2c16-5746-bddf-5ae8e3d674ae",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-registry-base-snapshot.json",
+        "raw_bytes_sha256": "4f0ef93692960f4c37365b2a04826d96527251c6faf704c9323597ad01f7ea73"
+      },
+      "schema_ref": {
+        "entity_id": "a173c8d7-1536-59c7-a606-d145e7aad402",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "d248ca6d-f40c-5011-89ba-83b7b00ae574",
+        "source_hash": "4f0ef93692960f4c37365b2a04826d96527251c6faf704c9323597ad01f7ea73"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-registry-base-snapshot.json",
+        "raw_bytes_sha256": "b4c8eead246c5c19ebfd7ef47b95e9899e625e13b4c8aab95f26dba644dd4c95"
+      },
+      "source_ref": {
+        "entity_id": "4b01195c-15ee-5305-ad82-b146e435d21f",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "fca97c72-f7b8-50c4-9e10-8683e7ce51bf",
+        "source_hash": "b4c8eead246c5c19ebfd7ef47b95e9899e625e13b4c8aab95f26dba644dd4c95"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3070",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "7e587b29-7ada-50cf-a613-2829eb94867f",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "69603fef-e0e1-5a2b-af8d-94fcce5b4c82"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "437a2628-4db4-548c-8378-4d68f9bc159e",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "a0c7c6d8b49af7e82a82e3b3d999835dbe1194329d0c6a9390cb152be3a156b7"
+      },
+      "schema_ref": {
+        "entity_id": "f3f2ca6d-a09a-5ac1-99ff-a0a0eb4f2347",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "20f8f724-c83c-531e-8fc7-3768efd5aab0",
+        "source_hash": "a0c7c6d8b49af7e82a82e3b3d999835dbe1194329d0c6a9390cb152be3a156b7"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "4c3c3a079a33add1c94b863252d8e96229c96867aab574c465852acd1c7c114a"
+      },
+      "source_ref": {
+        "entity_id": "2ebf12d9-fced-5ac0-b799-e41512ea8e63",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "894a20c7-2c02-551c-83d5-628874590aa6",
+        "source_hash": "4c3c3a079a33add1c94b863252d8e96229c96867aab574c465852acd1c7c114a"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3071",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "3709e960-0c18-5113-bc89-ba4d72c8dae7",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "3c740530-3e7c-5ac6-aa14-8b497e01666b"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "451d89eb-9395-5f07-994d-5b892cdde921",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-registry-proposal-result.json",
+        "raw_bytes_sha256": "25af7c095c900a58a9f0499f78fc4456f8271ddb4d79791fe4abb4c3ee924a0a"
+      },
+      "schema_ref": {
+        "entity_id": "f7763a74-e846-58e9-b4fd-3b220fb9a9c2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "4b43af30-589a-59fa-bc5a-e329ff7fe76b",
+        "source_hash": "25af7c095c900a58a9f0499f78fc4456f8271ddb4d79791fe4abb4c3ee924a0a"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-registry-proposal-result.json",
+        "raw_bytes_sha256": "f78eabd8a34a23f69215de2406aa58a91331b9f2d4d7d50c6faf259622905e93"
+      },
+      "source_ref": {
+        "entity_id": "6c593b37-e130-5a75-947c-71559a50089c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "6a6eb1d8-8c8e-54b2-8cfc-34d773e23505",
+        "source_hash": "f78eabd8a34a23f69215de2406aa58a91331b9f2d4d7d50c6faf259622905e93"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3072",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "deda5614-e307-5754-8b9c-6bf708ab40cd",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "06e446de-a758-5624-a9cb-3a96060175b9"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "476600b3-6dc6-5ea7-9bb0-c5a7419a30e7",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-registry-review-subject.json",
+        "raw_bytes_sha256": "a89c7d41eece74a6924d64ab288b5f8d92f913c1655ca5503d1f30aae28b29f6"
+      },
+      "schema_ref": {
+        "entity_id": "7cf6dae5-4ba4-53e2-b1bb-eefc76b20bf9",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_REVIEW_OWNER",
+        "revision_id": "0b518492-a57f-56af-8c4f-8939e37bcf98",
+        "source_hash": "a89c7d41eece74a6924d64ab288b5f8d92f913c1655ca5503d1f30aae28b29f6"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-registry-review-subject.json",
+        "raw_bytes_sha256": "9a23b4f7ff4e69f0682a24254a84a580a43d7539fc44753b24a4bb1a3762a304"
+      },
+      "source_ref": {
+        "entity_id": "8928dba7-5279-57b3-b255-768e7d2ac106",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_REVIEW_OWNER",
+        "revision_id": "813f8e5f-cd1e-5a6a-bcb8-8fc1da93fb4b",
+        "source_hash": "9a23b4f7ff4e69f0682a24254a84a580a43d7539fc44753b24a4bb1a3762a304"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3073",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "6d423c56-1ec1-55a3-8701-6bd15ac2dfd2",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "eb5bc9d0-be02-59fc-b2f7-8c07195255f4"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "4c18b87c-721d-5dea-bf4e-04deea12b4e9",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-artifact-provider.json",
+        "raw_bytes_sha256": "048804371df75d20ba10edad5a600738a4d8daaa99f519a751b9ea4b10ad6e2c"
+      },
+      "schema_ref": {
+        "entity_id": "fc5a4843-fdaf-5114-9197-8d83cf14b1c4",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "9b4c0725-85f6-56b8-b933-44f211926e0c",
+        "source_hash": "048804371df75d20ba10edad5a600738a4d8daaa99f519a751b9ea4b10ad6e2c"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/artifact-provider.json",
+        "raw_bytes_sha256": "313bdbff36dd02ef6a4c3a3e2ada01cb47254bd7fc87b77cd0dbf0dfeeb44d77"
+      },
+      "source_ref": {
+        "entity_id": "35e3c50b-0507-5cc2-b1cb-79d042ee3eb8",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "9f318058-fb73-54b0-a896-066a90382456",
+        "source_hash": "313bdbff36dd02ef6a4c3a3e2ada01cb47254bd7fc87b77cd0dbf0dfeeb44d77"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3074",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "42916ab8-4049-5571-b078-8cba4b9769b4",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "e09e0e31-7eeb-56bb-ad16-d3992cfdbedc"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "55c90e9f-740a-5773-a79a-8295b81bc413",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-operation-permission-proposeRegistry.json",
+        "raw_bytes_sha256": "0f4f0d30ce1eb33e7fbca412d827a55f0beb1ef27989b1e4f5da9e46fa79909b"
+      },
+      "schema_ref": {
+        "entity_id": "4df2e962-c50d-5370-85fb-a1708199f7fa",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "fde0f54e-4120-5384-854b-22091b77a6fe",
+        "source_hash": "0f4f0d30ce1eb33e7fbca412d827a55f0beb1ef27989b1e4f5da9e46fa79909b"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/operation-permission-proposeRegistry.json",
+        "raw_bytes_sha256": "c6e736bfda44c0ff3a4fe82f1166e0137369d29fcb9ebe3f67382d588e854583"
+      },
+      "source_ref": {
+        "entity_id": "c4018e36-41e1-56ec-9de7-742e49b624bc",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "4b207070-b0e9-5d69-81b5-53608e721c72",
+        "source_hash": "c6e736bfda44c0ff3a4fe82f1166e0137369d29fcb9ebe3f67382d588e854583"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3075",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "e27dc408-7bc6-5456-9431-9e559f416092",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "2d95cbcc-bc34-5db1-a6e4-8b423627ae68"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "5ac64658-8683-5bc1-b3ab-d923ecf8cca9",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-proposeRegistry-request.json",
+        "raw_bytes_sha256": "081070c11baccad6e2a1c5de3f71b337abe1f84a04af6a9625b2223ede0fa9a7"
+      },
+      "schema_ref": {
+        "entity_id": "fa0c08f5-6e1b-58bf-9a97-c96451b5ca8b",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "b5f1331d-0e5a-5771-8081-95c8241cb3a2",
+        "source_hash": "081070c11baccad6e2a1c5de3f71b337abe1f84a04af6a9625b2223ede0fa9a7"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-proposeRegistry-request.json",
+        "raw_bytes_sha256": "e77a66faf4d356a5ba1f120cb36586583d7793a919f2da58bf916a3c17d92630"
+      },
+      "source_ref": {
+        "entity_id": "25b16920-b4b4-53c6-be3f-72f5be3f6cdc",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "33af94a9-2e71-5ada-beec-170ca98d98f4",
+        "source_hash": "e77a66faf4d356a5ba1f120cb36586583d7793a919f2da58bf916a3c17d92630"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3076",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "daca33d5-6666-5894-b194-dfecec09a67a",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "39980d9d-7420-5daa-983d-b350ffd6ca85"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "68a29413-9cb3-5379-ab53-f9201b395665",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "3841dc743a9e1ba2808c705815759e52c4ddfc34cfa0cc3606e08bccb0180e01"
+      },
+      "schema_ref": {
+        "entity_id": "4241865f-5cef-5a69-bb2e-f72778954fbb",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "cb3c0ce7-a442-5d3f-bdcc-25ae88d93b76",
+        "source_hash": "3841dc743a9e1ba2808c705815759e52c4ddfc34cfa0cc3606e08bccb0180e01"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "7d5fb758ed35cd6a7845ef6e3a44b903ca9f18d0a3eed86370248360bcab515a"
+      },
+      "source_ref": {
+        "entity_id": "bfc2a5b7-e206-5b01-8a6a-086a39c20edf",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "1bd0621f-de5b-56e7-9376-872c91fdfcc3",
+        "source_hash": "7d5fb758ed35cd6a7845ef6e3a44b903ca9f18d0a3eed86370248360bcab515a"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3077",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "8ff43490-39df-5cdd-bbcb-5100ce6c386d",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "da3f4574-6b29-5398-9de7-d1f53b3ba9c0"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "6ff2e1d6-cd97-51ad-81ab-0b457a2cfe90",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-finite-read-snapshot.json",
+        "raw_bytes_sha256": "ab879b74722b7b57cd82380dfedfe6fe570950c78c96108e29b157e548d7cdc5"
+      },
+      "schema_ref": {
+        "entity_id": "4c8c35c7-72be-54b4-b65b-4e64466d3a75",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "2f9bb29c-9362-59dd-b1f3-5209d442c87d",
+        "source_hash": "ab879b74722b7b57cd82380dfedfe6fe570950c78c96108e29b157e548d7cdc5"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/finite-read-snapshot.json",
+        "raw_bytes_sha256": "41378cb6363f7dc566999197e7e7c34b5527297d42fde52d9f1fc456965ab067"
+      },
+      "source_ref": {
+        "entity_id": "9efb8614-b29d-5a5f-97bd-af73a16177be",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "1c31e833-a16a-5d09-9f52-df85085957f0",
+        "source_hash": "41378cb6363f7dc566999197e7e7c34b5527297d42fde52d9f1fc456965ab067"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3078",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "932ffbd8-cae3-5aeb-bb12-2f8b4bda7bb0",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "9c528f59-f1ad-5ce9-89bb-e97c8ea9821c"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "77cf5b27-757c-58e5-b79b-4cf9157a3bac",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-base-membership-proof.json",
+        "raw_bytes_sha256": "17d26be6ddafab30b087c4edfb0640285a1941c2c0d6550844ddb6c8dd8ce8b8"
+      },
+      "schema_ref": {
+        "entity_id": "41a92b2f-03a2-5dfc-9420-dd628f112bfd",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "9c5e0abf-5cdf-5f72-9bf5-94e7edaf5147",
+        "source_hash": "17d26be6ddafab30b087c4edfb0640285a1941c2c0d6550844ddb6c8dd8ce8b8"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-base-membership-proof.json",
+        "raw_bytes_sha256": "62a657220be3bb0452f40c279011191e8b6e7bdf4e556ea8f01ce68937a9366c"
+      },
+      "source_ref": {
+        "entity_id": "5e139423-6b82-5b42-814d-124e8e688697",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "077bcb39-1f5c-5ac6-89da-a7237f02a15f",
+        "source_hash": "62a657220be3bb0452f40c279011191e8b6e7bdf4e556ea8f01ce68937a9366c"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3079",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "60926993-d89f-5c8e-97c8-bcaf3d13d067",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "886eca90-f912-5b5a-adfa-c7763cfe7365"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "817e4597-553c-56f1-86d6-bcc475c4f453",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-registry-feature-revision.json",
+        "raw_bytes_sha256": "03e1dc64d54cd1de87b8b74d88228e67dcff42ad82511adb730ff95652077305"
+      },
+      "schema_ref": {
+        "entity_id": "7524ef67-89d2-577a-b1ad-8fcaae006e44",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "825ab8ca-ee4f-5575-8ce9-1d47f5f2601a",
+        "source_hash": "03e1dc64d54cd1de87b8b74d88228e67dcff42ad82511adb730ff95652077305"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-registry-feature-revision.json",
+        "raw_bytes_sha256": "b04de3fb1a58a28e559fdb594516c0f26408edd6d3477927b7b241e0adfc62a2"
+      },
+      "source_ref": {
+        "entity_id": "d6b293d0-d3dc-573e-aeae-df5c34dc2392",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "0e022139-b9f8-533f-b652-e13f3df09c36",
+        "source_hash": "b04de3fb1a58a28e559fdb594516c0f26408edd6d3477927b7b241e0adfc62a2"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3080",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "42c99024-9fbd-5f58-a477-339a9d26346f",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "a5592014-15f0-5ec5-a806-c86cb95b36f8"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "89b2de90-616f-5ad2-a09e-f41cec1a401d",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-new-feature-source.json",
+        "raw_bytes_sha256": "b8db5462613ec03b25bf57565564769e22a37d6c2b5ac58983ef72b84c3629ae"
+      },
+      "schema_ref": {
+        "entity_id": "99027f9d-dc2a-5d8a-b59e-2030b1bf99f2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "38e3b195-034d-5dd5-bb22-6765a45c6a53",
+        "source_hash": "b8db5462613ec03b25bf57565564769e22a37d6c2b5ac58983ef72b84c3629ae"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-new-feature-source.json",
+        "raw_bytes_sha256": "dc7ff14f365062199d07dfe6e47385eec55b733b7c72b30c44e82489f5a443ef"
+      },
+      "source_ref": {
+        "entity_id": "e9afa664-a675-5b50-ba5a-84be8c4f3c98",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "494a5592-b1ab-5065-ad8b-8281c77e2c94",
+        "source_hash": "dc7ff14f365062199d07dfe6e47385eec55b733b7c72b30c44e82489f5a443ef"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3081",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "b1b95a7e-1d40-53fb-82de-b4ba1008422a",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "a1ed4c15-0793-538b-8c2e-f6cbb0e7ace1"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "9bb73cb6-3770-5c7e-b0c0-94f7e69aac00",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-registry-feature-revision.json",
+        "raw_bytes_sha256": "c81d2af77e764a6f718624919d801ad27dcb07be0965b4ee921ec1205085357e"
+      },
+      "schema_ref": {
+        "entity_id": "ce74e603-2bee-547a-a16d-95f85f081b3d",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "b13d54dc-1875-5f58-af93-bddd0874ddb0",
+        "source_hash": "c81d2af77e764a6f718624919d801ad27dcb07be0965b4ee921ec1205085357e"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-registry-feature-revision.json",
+        "raw_bytes_sha256": "19fc0fa840c10305571430dfa744ffe49bc51f784726e3f58e71e261eb364b5c"
+      },
+      "source_ref": {
+        "entity_id": "7e0ad42b-77cf-585f-a1e4-a6d00b1e6e8c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "f0d7c678-a9d5-580d-a3bd-5dd0fe611686",
+        "source_hash": "19fc0fa840c10305571430dfa744ffe49bc51f784726e3f58e71e261eb364b5c"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3082",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "c68b7638-fb6d-5638-9473-38ea5089dd71",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "418fba9e-821e-5e1b-b78b-ea73b0e17555"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "a55aa56a-73b3-5760-b2b7-dfbf36964115",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-registry-review-subject.json",
+        "raw_bytes_sha256": "76019675db04b2a2f5781ce9f39e2249d2d2da0265634572eda22a2433d532c1"
+      },
+      "schema_ref": {
+        "entity_id": "eac2d7b1-668d-5c17-8a28-ac30230300b1",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "92afc5d9-7cc5-509f-af2c-bbc6a909a096",
+        "source_hash": "76019675db04b2a2f5781ce9f39e2249d2d2da0265634572eda22a2433d532c1"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-registry-review-subject.json",
+        "raw_bytes_sha256": "0f784ea85114b4ed9ef4d3ac8efbbc0d264f9c0ea5517bcf7530209fafd65140"
+      },
+      "source_ref": {
+        "entity_id": "80eeacb5-35b7-5f1a-b67e-2ea109e43ce0",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "37a301ff-85f9-584d-894d-3bcef6a0d73e",
+        "source_hash": "0f784ea85114b4ed9ef4d3ac8efbbc0d264f9c0ea5517bcf7530209fafd65140"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3083",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "6e599c62-16ca-5c87-b989-731a78245b83",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "417ddf0a-929c-5d36-bd71-8c63f4004961"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "aa86b3d9-dea6-57f0-94a1-bb57786dcc7f",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-input-capture-feature-semantic.json",
+        "raw_bytes_sha256": "89c27b68c012f0f4d3ca7ca57ba7f76cd66753497f8db3e7b0305a016b91ee70"
+      },
+      "schema_ref": {
+        "entity_id": "2dbe4a82-a56d-5a3f-9585-6763e76cbcbf",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "ab06f661-f405-51de-b74b-b4fc5e108ff4",
+        "source_hash": "89c27b68c012f0f4d3ca7ca57ba7f76cd66753497f8db3e7b0305a016b91ee70"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-input-capture-feature-semantic.json",
+        "raw_bytes_sha256": "4d436906fcdae9b7bdb859af4bce64abaf9fadbc4e010fb7d60b0ab84a14d1b1"
+      },
+      "source_ref": {
+        "entity_id": "71e8bbc1-bd2d-5398-9fe3-2ee174ddb9f0",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "f3a00a4a-734c-57c2-a131-301f33716ee2",
+        "source_hash": "4d436906fcdae9b7bdb859af4bce64abaf9fadbc4e010fb7d60b0ab84a14d1b1"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3084",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "2f4b9595-5448-5c60-8a19-b4416c9cce14",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "53f971ea-2478-5e3a-9906-b1026fba09dd"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "ac7e4d9a-432f-5434-b7de-2a8e69eb80ab",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-state-before-proposeRegistry.json",
+        "raw_bytes_sha256": "ea30e7c8641b303e9ba33ad8f581617b0a3076e984b9158e780e94b49e35f5ad"
+      },
+      "schema_ref": {
+        "entity_id": "a7aae764-5d92-5f42-99b1-e2acecaf48ed",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "780e4388-f734-589e-ad1b-ced8ee6a44d7",
+        "source_hash": "ea30e7c8641b303e9ba33ad8f581617b0a3076e984b9158e780e94b49e35f5ad"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/state-before-proposeRegistry.json",
+        "raw_bytes_sha256": "31e819f6d3c50864dd9341a8cd8f8dddf658f23f77412ed9683f73bf9f8a1e34"
+      },
+      "source_ref": {
+        "entity_id": "1358259c-bd9e-5648-914e-62dcd1df88fd",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "4b49f7f7-cbff-5062-9f16-1f8c0659d840",
+        "source_hash": "31e819f6d3c50864dd9341a8cd8f8dddf658f23f77412ed9683f73bf9f8a1e34"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3085",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "d806f266-4cf4-5c1c-9dfb-94cd3db6dc7b",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "b10c5ac5-eb85-5861-a919-5127eb81a8bd"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "b4bf3587-91bb-5cb3-b6e6-d84a23008c7e",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-registry-feature-entity.json",
+        "raw_bytes_sha256": "d163a3bb9ab4459d1de7b252b065ae46051b2b86b31d3e871a6e72d2dcf70c9c"
+      },
+      "schema_ref": {
+        "entity_id": "db90187f-1694-5164-87d1-100c109c4be2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "53e89aeb-d240-59ff-8074-526fe93d58d4",
+        "source_hash": "d163a3bb9ab4459d1de7b252b065ae46051b2b86b31d3e871a6e72d2dcf70c9c"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-registry-feature-entity.json",
+        "raw_bytes_sha256": "d90ac77720884aa70831e01cadd158c1a431ce8d5051c79a6f7d34d291733834"
+      },
+      "source_ref": {
+        "entity_id": "caf0204a-7115-5e87-b482-e718d3f98474",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "f2335f18-4068-568b-b16b-7f7b7c281118",
+        "source_hash": "d90ac77720884aa70831e01cadd158c1a431ce8d5051c79a6f7d34d291733834"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3086",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "8402e918-d419-50c5-9b50-d8b520f95f7c",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "f9a05eae-685b-50d0-810f-2cbafab8c05e"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "bd109e3a-9267-555f-8024-fd285001d6cb",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-product-scope.json",
+        "raw_bytes_sha256": "543394abfcb2b8fe16aa344653dc2785f6a72295ac52d7947652324bea0373e9"
+      },
+      "schema_ref": {
+        "entity_id": "77644f69-8c2e-516d-8f7b-ef2f35b6e2f3",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "eed81c6f-5cac-5693-a7d9-c25bed26653d",
+        "source_hash": "543394abfcb2b8fe16aa344653dc2785f6a72295ac52d7947652324bea0373e9"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-product-scope.json",
+        "raw_bytes_sha256": "e5f5eeac8764059359d4c874fd8a5e49802d43e78b2ad8f9328c50e31a8eb297"
+      },
+      "source_ref": {
+        "entity_id": "6786b746-dbd9-5f4d-b7a3-8ecb2ad4da80",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "b87c6f46-7363-599f-b4ba-225371c4b403",
+        "source_hash": "e5f5eeac8764059359d4c874fd8a5e49802d43e78b2ad8f9328c50e31a8eb297"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3087",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "6e24f6e9-d80c-5567-801f-312113477cb2",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "866a5001-fa4e-599c-874e-d6b329dc4212"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "c37bb78a-7aaf-5ba2-ac2b-b4f624589aa8",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-registry-feature-entity.json",
+        "raw_bytes_sha256": "a8a8b27126777f24b1b886a401df9707861a50ab953b30eccbd0e98645ab003b"
+      },
+      "schema_ref": {
+        "entity_id": "cf464c94-f981-5ac7-9ba9-02dc731ea339",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "f37bcd67-8afd-5e9a-8041-e4ea069131f4",
+        "source_hash": "a8a8b27126777f24b1b886a401df9707861a50ab953b30eccbd0e98645ab003b"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-registry-feature-entity.json",
+        "raw_bytes_sha256": "6c117eda1fd8312202b4f4fb0d0b05ea10b8d1037328c7800b6cb4c580a708f5"
+      },
+      "source_ref": {
+        "entity_id": "092cdf04-a647-5b0c-9426-b70a22b46b4d",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "4b1ef730-8a9e-507c-b2aa-9ae6019318b1",
+        "source_hash": "6c117eda1fd8312202b4f4fb0d0b05ea10b8d1037328c7800b6cb4c580a708f5"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3088",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "0fa13ac3-8f41-53bc-b916-5739790906c8",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "39f079b7-ec6d-55a8-a721-daa995a43446"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "ca663b42-8339-56dc-9056-12a4ca37f85d",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-registry-review-subject.json",
+        "raw_bytes_sha256": "f87e208b8b7d9426bbbb518c34ffd448f88ec903302072f9923027db741a1d3b"
+      },
+      "schema_ref": {
+        "entity_id": "b479e1ac-25b8-5f1a-a636-2acf4a2940fa",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "c560067f-5cd9-5eb6-b403-e5ca905fa885",
+        "source_hash": "f87e208b8b7d9426bbbb518c34ffd448f88ec903302072f9923027db741a1d3b"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-registry-review-subject.json",
+        "raw_bytes_sha256": "39dde6f0b5e8aa7705bf09726a7a97bab66de6a872e9f9354426343d84459b87"
+      },
+      "source_ref": {
+        "entity_id": "8d116f03-bdac-5a49-97a3-5b87f70c2e76",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "16857dae-c24f-5337-924a-16928abfba47",
+        "source_hash": "39dde6f0b5e8aa7705bf09726a7a97bab66de6a872e9f9354426343d84459b87"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3089",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "391477f1-f3fd-54c0-927c-276cab375b89",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "61080d26-2c50-51e4-a944-919a503ac7b3"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "d37b9698-a63d-521b-9593-10a3f16f1672",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-revision-submitted-draft.json",
+        "raw_bytes_sha256": "4d3d07acf6548410653fd18e7e57ce4858daa3511169027546a796761ee08d88"
+      },
+      "schema_ref": {
+        "entity_id": "0dc1ab6a-930c-5c7f-9904-1026b02b0d08",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "6e617077-f5ab-5e13-a260-e43a47faa703",
+        "source_hash": "4d3d07acf6548410653fd18e7e57ce4858daa3511169027546a796761ee08d88"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-revision-submitted-draft.json",
+        "raw_bytes_sha256": "fc2272d05fd91f10db63708086d225161dc97c0ec83e674f99f4ac8e65a44a13"
+      },
+      "source_ref": {
+        "entity_id": "b15a03b1-d797-55f4-935d-9e1fbcecb54c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "c96a7d1b-88bc-5128-b991-9e8e4e2c2c18",
+        "source_hash": "fc2272d05fd91f10db63708086d225161dc97c0ec83e674f99f4ac8e65a44a13"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3090",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "efbfae86-b9da-5046-9c67-0e6308039016",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "e3bf8759-15c4-5644-b1cd-8458cda3e6e0"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "d5522634-c626-5900-9d81-b97ad5112344",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-registry-proposal-result.json",
+        "raw_bytes_sha256": "88f25e83cab8f185f6753cce74635f3ad74e6c5e3fed01c0e982a804a1f6e4af"
+      },
+      "schema_ref": {
+        "entity_id": "455c678e-42cc-5e10-9665-06236543721c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "a383bcda-9966-595a-9cd3-2416bdc9f8c9",
+        "source_hash": "88f25e83cab8f185f6753cce74635f3ad74e6c5e3fed01c0e982a804a1f6e4af"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-registry-proposal-result.json",
+        "raw_bytes_sha256": "c5c5156d02e3d90ae130e9d10b29886d5565db2389ef68289389b210aead9382"
+      },
+      "source_ref": {
+        "entity_id": "b69be345-9a07-501a-bdd2-f7fa06c0171b",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "f8a3a8ef-1349-5802-834b-f987fb45513f",
+        "source_hash": "c5c5156d02e3d90ae130e9d10b29886d5565db2389ef68289389b210aead9382"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3091",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "ba4b3af2-0b39-527d-b925-f1d21e4865d9",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "9d75dbd9-8b0e-552a-a0f8-01f4525d00b1"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "da0d042b-9d78-580d-a008-807f9678f607",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-entity-submitted-draft.json",
+        "raw_bytes_sha256": "0780470e13dfa49adfe9c7957e6ba245cbee51c712ef8c8f856044c010913a7b"
+      },
+      "schema_ref": {
+        "entity_id": "5f56ee12-eb7f-5e8e-b595-f85871af73c7",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "a293751c-aa0d-5ab4-be6e-1eb34a08a275",
+        "source_hash": "0780470e13dfa49adfe9c7957e6ba245cbee51c712ef8c8f856044c010913a7b"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-entity-submitted-draft.json",
+        "raw_bytes_sha256": "1c0e8133631e57964b3dd7ec8d896199ff47b03516b716153fc9c9e1e633a1a2"
+      },
+      "source_ref": {
+        "entity_id": "212903a4-def4-54df-8981-f7445a89848e",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "3c732090-eb0c-523e-b1bc-999477377ef0",
+        "source_hash": "1c0e8133631e57964b3dd7ec8d896199ff47b03516b716153fc9c9e1e633a1a2"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3092",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "a83c2fbf-91b4-57d6-a3df-e82ba5483fc5",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "71bb40ad-1c9e-53e1-88e3-1b0fddc65a7c"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "dc614b7a-e70f-58dc-95af-82eb6d21a7ca",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-registry-base-snapshot.json",
+        "raw_bytes_sha256": "29b734dc339953dffc980f5028f536ea0d791214de4d4dfa23e87b5f62d8f4c5"
+      },
+      "schema_ref": {
+        "entity_id": "0c1f1c2e-0114-5be0-a4b9-00601e531088",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "4b77f705-f267-5db9-a450-a5c00b014dfa",
+        "source_hash": "29b734dc339953dffc980f5028f536ea0d791214de4d4dfa23e87b5f62d8f4c5"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-registry-base-snapshot.json",
+        "raw_bytes_sha256": "f2f7d0146c0b31338cda0ca41c4c9af68bf0b6a261f71c764934b3cc56ee922c"
+      },
+      "source_ref": {
+        "entity_id": "49279a2c-8ce8-53fd-b1cf-8bc1876acc42",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "a37184e2-6469-5aac-ae4a-34f4d7f33bfd",
+        "source_hash": "f2f7d0146c0b31338cda0ca41c4c9af68bf0b6a261f71c764934b3cc56ee922c"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3093",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "e9b5f35f-567f-55c2-a8fd-2cbaf2ecd404",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "a9e0a5be-3f24-5236-bb5b-9586a2b15aaf"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "e333d4cb-6acf-5721-a408-2f02e2d1dd8c",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-state-after-proposeRegistry.json",
+        "raw_bytes_sha256": "2d5b458cefefc60e6f2dc8703cc77b50071dd157ea58aa2ae1ae74c31fa38998"
+      },
+      "schema_ref": {
+        "entity_id": "7e3f5706-108e-5fe5-b39e-1bf5931c8039",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "55c18ff9-9222-50cc-8324-9c90eab3cf55",
+        "source_hash": "2d5b458cefefc60e6f2dc8703cc77b50071dd157ea58aa2ae1ae74c31fa38998"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/state-after-proposeRegistry.json",
+        "raw_bytes_sha256": "afaca506b790b5e169cef20883b1b7bd604b155208fc18de746abf2637c17981"
+      },
+      "source_ref": {
+        "entity_id": "945e14b4-6630-5460-af49-09bda03140cd",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "a54a25a6-acf8-59b0-8d20-43b848258fbd",
+        "source_hash": "afaca506b790b5e169cef20883b1b7bd604b155208fc18de746abf2637c17981"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3094",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "0e380c33-a74a-5377-bba8-60ed44746f5b",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "9346af5b-1ece-5e69-9c67-52ac232f9926"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "ec969a30-af07-50f8-b641-28f6840121c4",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-registry-proposal-result.json",
+        "raw_bytes_sha256": "744392065aec2089c688e57e0e769391f107074e47e7b11703a2a3573664382f"
+      },
+      "schema_ref": {
+        "entity_id": "14690b9e-30e0-581f-9ea6-de304ca94c65",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "2fc2213c-a45e-5b4c-b2d0-f1f6c531b425",
+        "source_hash": "744392065aec2089c688e57e0e769391f107074e47e7b11703a2a3573664382f"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-registry-proposal-result.json",
+        "raw_bytes_sha256": "086ef9250843fec91874c5b5d653e101f444ea377b8ac2af05d3f83f1bbae65f"
+      },
+      "source_ref": {
+        "entity_id": "051ecbb6-e0b3-5fb4-a310-cc418a1553eb",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "1038386d-6ac1-5577-aeaa-f3d33705b345",
+        "source_hash": "086ef9250843fec91874c5b5d653e101f444ea377b8ac2af05d3f83f1bbae65f"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3095",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "bf609528-eb69-584c-bb7b-7bd9e797bd2f",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "e012fea5-f568-56f1-b84d-eee297867f83"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "f02c7a06-9334-5119-97c6-067f452101fd",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-body-catalog-origin.json",
+        "raw_bytes_sha256": "cd847d91f4d64a1a255c5199b44e08bc45c6135f4eb8f04bcd685728e01b51ae"
+      },
+      "schema_ref": {
+        "entity_id": "2a5870dd-209d-545d-bdd0-5f4549c02c29",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "N_APPLICATION_BODY_CATALOG",
+        "revision_id": "77a77d44-bf9f-5b0b-8a0b-c96f7faa7317",
+        "source_hash": "cd847d91f4d64a1a255c5199b44e08bc45c6135f4eb8f04bcd685728e01b51ae"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/body-catalog-origin.json",
+        "raw_bytes_sha256": "463cd565fdf976e959335d511074a5cf16ae7c496972796bbb71ea97d749a3e3"
+      },
+      "source_ref": {
+        "entity_id": "7f32c461-fbcb-5065-a94c-bb6f40f3ada8",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "N_APPLICATION_BODY_CATALOG",
+        "revision_id": "a953ef0b-ed54-5628-a88a-37638d96bdc3",
+        "source_hash": "463cd565fdf976e959335d511074a5cf16ae7c496972796bbb71ea97d749a3e3"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3096",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "5e50746d-bd71-5f81-9670-ea9d609ad8e1",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "184351ca-1387-5b79-a830-37e8b1b13601"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "f892fe85-fed5-5218-a32f-48457d47ac3d",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "95ae2b9cfe22e40a578ad9170ed8e5aaaae3b9c4f0343ca3b58a2b8e2d79becd"
+      },
+      "schema_ref": {
+        "entity_id": "9dd840f8-6d9a-5560-b92c-b0d266007837",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "7b26b3a9-eeef-54f6-a992-d9c914dcb648",
+        "source_hash": "95ae2b9cfe22e40a578ad9170ed8e5aaaae3b9c4f0343ca3b58a2b8e2d79becd"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "0e3256b7ee456d659ba5011a71e44519b45bf77dc1138bdfd3228c633e28ed74"
+      },
+      "source_ref": {
+        "entity_id": "4d7f0798-9fcd-5719-bf24-c8661779b4e9",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "1c64d8e6-00d9-5ec2-bffe-8354da8f0cff",
+        "source_hash": "0e3256b7ee456d659ba5011a71e44519b45bf77dc1138bdfd3228c633e28ed74"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3097",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "b1d6603d-5335-57e8-9432-2af9caa97f89",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "8e364a0b-0c56-59c1-aa73-24459ecb3456"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "f98e79ac-17b7-598f-8ad3-80b19fe2c0be",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-registry-base-snapshot.json",
+        "raw_bytes_sha256": "3b60d79158d510f99f3d030d8f4c87197aa4dc931a2f1ffecd962010a2997602"
+      },
+      "schema_ref": {
+        "entity_id": "0636abda-7156-5beb-86bd-64a115ae3daa",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "c5eae942-5678-5eec-ba2e-37fa73dadf14",
+        "source_hash": "3b60d79158d510f99f3d030d8f4c87197aa4dc931a2f1ffecd962010a2997602"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-registry-base-snapshot.json",
+        "raw_bytes_sha256": "119db1b6d1ffb2df6f7f8c4268c05f4a7407920aab231b87f78a4b9fa2f24039"
+      },
+      "source_ref": {
+        "entity_id": "d3f39d06-0205-575e-bdb3-66b23894e49b",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "89bf9450-9b01-52c4-97e5-be3cc3ebe46f",
+        "source_hash": "119db1b6d1ffb2df6f7f8c4268c05f4a7407920aab231b87f78a4b9fa2f24039"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3098",
+      "case_id": "C7-POSITIVE-proposeRegistry",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "148e2bf4-e3aa-5968-ae5e-3d3bbdd3dea8",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "ad875cc4-c59f-57e4-bd79-da073faf04cf"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "proposeRegistry",
+      "pair_id": "fba999ff-afbd-59db-80ba-d00695da0a09",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit_alias": "MA11-U04"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA11-U02",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U03",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-proposeRegistry-response.json",
+        "raw_bytes_sha256": "a6f798589590ae690afc600638f70fe734a129a6131a886d508b1f79a91123fe"
+      },
+      "schema_ref": {
+        "entity_id": "ed9b6215-1b04-5430-8796-c5c044080578",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EFFECT_OWNER",
+        "revision_id": "c8511a7f-2abb-5568-b172-68c8d73c68f6",
+        "source_hash": "a6f798589590ae690afc600638f70fe734a129a6131a886d508b1f79a91123fe"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-proposeRegistry-response.json",
+        "raw_bytes_sha256": "9037b85907b5de696c92a3702f486723d50dd907f7f34c91b65350891aee9584"
+      },
+      "source_ref": {
+        "entity_id": "707ca315-5c45-56cd-85c4-25ba78e57868",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EFFECT_OWNER",
+        "revision_id": "044bebf2-7492-5b78-89b1-1100266e9cc3",
+        "source_hash": "9037b85907b5de696c92a3702f486723d50dd907f7f34c91b65350891aee9584"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    }
+  ]
+}

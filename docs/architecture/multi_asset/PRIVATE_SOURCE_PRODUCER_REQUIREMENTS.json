@@ -1,0 +1,138 @@
+{
+  "schema_version": "architecture.private_producer_coverage_requirements.v1",
+  "revision": "candidate.4",
+  "authority_effect": "NONE",
+  "status": "COVERAGE_REQUIREMENTS_NOT_ACTUAL_INVENTORY",
+  "source": "Original STEP5 L191 + S6-COV-01 + current Owner A+/private preservation scope",
+  "entries": [
+    {
+      "producer_scope_key": "URMS_DRAFT_WORK_HISTORY",
+      "owner": "Existing Registry Writer",
+      "chapter": "MA11",
+      "scope": "Saved Draft/Tasks/revisions/relations and source history, including private payload outside SQL",
+      "inventory_required": true,
+      "required_at_cut": [
+        "exact OwnerInventorySnapshot",
+        "contiguous ExternalCaptureJournalCut",
+        "immutable captured content membership or explicit required gap",
+        "registered producer membership revision/attestation"
+      ],
+      "unknown_or_no_reply": "COVERAGE_UNKNOWN_OR_PARTIAL_NOT_FULL_PRIVATE_COMPLETE"
+    },
+    {
+      "producer_scope_key": "ARCHITECTURE_PRIVATE_SPECIFICATIONS",
+      "owner": "Principal Architect / O Artifact Owner",
+      "chapter": "MA12",
+      "scope": "Detailed private specs/architecture revisions/original source references",
+      "inventory_required": true,
+      "required_at_cut": [
+        "exact OwnerInventorySnapshot",
+        "contiguous ExternalCaptureJournalCut",
+        "immutable captured content membership or explicit required gap",
+        "registered producer membership revision/attestation"
+      ],
+      "unknown_or_no_reply": "COVERAGE_UNKNOWN_OR_PARTIAL_NOT_FULL_PRIVATE_COMPLETE"
+    },
+    {
+      "producer_scope_key": "HUMAN_OWNER_DECISIONS",
+      "owner": "Existing Human Decision Capture / O Artifact Owner",
+      "chapter": "MA12",
+      "scope": "Exact saved Human decisions and immutable receipts, no chat summary replacement",
+      "inventory_required": true,
+      "required_at_cut": [
+        "exact OwnerInventorySnapshot",
+        "contiguous ExternalCaptureJournalCut",
+        "immutable captured content membership or explicit required gap",
+        "registered producer membership revision/attestation"
+      ],
+      "unknown_or_no_reply": "COVERAGE_UNKNOWN_OR_PARTIAL_NOT_FULL_PRIVATE_COMPLETE"
+    },
+    {
+      "producer_scope_key": "INDEPENDENT_REVIEW_EVIDENCE",
+      "owner": "Existing Independent Reviewer / WORK Intake",
+      "chapter": "MA12",
+      "scope": "Exact review subjects/evidence/verdicts; existing acceptance Owner unchanged",
+      "inventory_required": true,
+      "required_at_cut": [
+        "exact OwnerInventorySnapshot",
+        "contiguous ExternalCaptureJournalCut",
+        "immutable captured content membership or explicit required gap",
+        "registered producer membership revision/attestation"
+      ],
+      "unknown_or_no_reply": "COVERAGE_UNKNOWN_OR_PARTIAL_NOT_FULL_PRIVATE_COMPLETE"
+    },
+    {
+      "producer_scope_key": "LLM_SAVED_CONVERSATIONS_AND_OUTPUTS",
+      "owner": "Existing private Artifact Owner / WORK Intake",
+      "chapter": "MA13",
+      "scope": "Saved prompts/messages/results/workfiles; unknown full chat coverage explicitly partial",
+      "inventory_required": true,
+      "required_at_cut": [
+        "exact OwnerInventorySnapshot",
+        "contiguous ExternalCaptureJournalCut",
+        "immutable captured content membership or explicit required gap",
+        "registered producer membership revision/attestation"
+      ],
+      "unknown_or_no_reply": "COVERAGE_UNKNOWN_OR_PARTIAL_NOT_FULL_PRIVATE_COMPLETE"
+    },
+    {
+      "producer_scope_key": "WORK_CODEX_RESULTS",
+      "owner": "Existing WORK Result Intake",
+      "chapter": "MA14",
+      "scope": "Saved WOs/results/diffs/tests/costs/STOP context, no second lifecycle Owner",
+      "inventory_required": true,
+      "required_at_cut": [
+        "exact OwnerInventorySnapshot",
+        "contiguous ExternalCaptureJournalCut",
+        "immutable captured content membership or explicit required gap",
+        "registered producer membership revision/attestation"
+      ],
+      "unknown_or_no_reply": "COVERAGE_UNKNOWN_OR_PARTIAL_NOT_FULL_PRIVATE_COMPLETE"
+    },
+    {
+      "producer_scope_key": "LAB_STRATEGY_RESEARCH_SOURCES_RESULTS",
+      "owner": "Existing E Research / F Backtest Owners",
+      "chapter": "MA04",
+      "scope": "AST Inbox originals/archive/code/graph/snapshot/ResearchRun results/AI logs",
+      "inventory_required": true,
+      "required_at_cut": [
+        "exact OwnerInventorySnapshot",
+        "contiguous ExternalCaptureJournalCut",
+        "immutable captured content membership or explicit required gap",
+        "registered producer membership revision/attestation"
+      ],
+      "unknown_or_no_reply": "COVERAGE_UNKNOWN_OR_PARTIAL_NOT_FULL_PRIVATE_COMPLETE"
+    },
+    {
+      "producer_scope_key": "MARKET_PRIVATE_SOURCE_DATA",
+      "owner": "Existing B/C Market Data Owners",
+      "chapter": "MA03",
+      "scope": "Licence/source classified raw/private irreacquirable market data vs derived caches",
+      "inventory_required": true,
+      "required_at_cut": [
+        "exact OwnerInventorySnapshot",
+        "contiguous ExternalCaptureJournalCut",
+        "immutable captured content membership or explicit required gap",
+        "registered producer membership revision/attestation"
+      ],
+      "unknown_or_no_reply": "COVERAGE_UNKNOWN_OR_PARTIAL_NOT_FULL_PRIVATE_COMPLETE"
+    },
+    {
+      "producer_scope_key": "PRIVATE_OPERATING_CONFIGURATION",
+      "owner": "Existing O Operations / Security",
+      "chapter": "MA16",
+      "scope": "Saved roles/permissions/reconfigure info; secrets only independent approved provider/escrow, not plaintext general inventory",
+      "inventory_required": true,
+      "required_at_cut": [
+        "exact OwnerInventorySnapshot",
+        "contiguous ExternalCaptureJournalCut",
+        "immutable captured content membership or explicit required gap",
+        "registered producer membership revision/attestation"
+      ],
+      "unknown_or_no_reply": "COVERAGE_UNKNOWN_OR_PARTIAL_NOT_FULL_PRIVATE_COMPLETE"
+    }
+  ],
+  "unregistered_producer_rule": "New producer with private saved content requires Source-bound Owner membership successor; not silently treated empty.",
+  "secrets_rule": "No secrets/raw trading data accessed by this candidate correction; later secret-provider inventory only key handles/recovery policy, separate trusted escrow.",
+  "scope_exclusion_rule": "Required private scope exclusion keeps PARTIAL unless separately adopted named restore CoverageProfile successor; original FullPrivate not retrospectively COMPLETE."
+}

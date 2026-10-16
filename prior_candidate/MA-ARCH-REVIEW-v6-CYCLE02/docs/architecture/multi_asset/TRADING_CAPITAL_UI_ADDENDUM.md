@@ -1,0 +1,33 @@
+# Trading / Capital / UI Versioned Consumer Addendum — candidate.4
+
+本文件是原J/G/H/K/M/N/O契約的有界companion，不修改R01 accepted DecisionCut/FinalWitness、ADR或closed schemas。RCG04修正是來源／設計層；所有真實SQL、Broker、PAPER、UI皆NOT_RUN。
+
+## EconomicOrigin durable event
+
+J_ACCOUNT在原economic UoW內一次寫EconomicEvent+ledger/position/attribution+outbox。FillEconomicsCommitted candidate.4攜帶exact EconomicOrigin及EconomicEvent ref。ASSIGNED必沿原intent/group/deployment/release，不因現在deployment或改budget重標。EXTERNAL_UNASSIGNED只有ExternalFillProvenance與account suspense，legacy_origin_ref缺席，不補第一group；允許外部nativefill不等允許假OriginBinding。SYSTEM_ACCOUNT非成交，使用SettlementApplied/原system event類型。
+
+K/N讀economic_event_ref時verifyref/owner/rawsemantic/hash/scope且event origin equal；mismatch隔離CONFLICT，不能重跑economicapply。v3 event留原bytes；v4adapter只用已存exact provenance映射，舊receipt不足則MISSING/UNKNOWN不猜。timeout查J receipt；投影failreplayoutbox但不再入帳。
+
+## Whole account manual allocation
+
+AccountBudgetPolicyRevision.reference_amount為人工規劃基準，不是bankdeposit、equity或settledcash。AccountAllocationSet是全account/group/deployment集合。所有money同currency，group與strategy百分比/amount經exactrounding policy計算；sum groups+unallocated=reference；每strategy sum<=group；無重複group/strategy，scope同account/environment。
+
+PreviewBudgetAllocation固定policy/proposalhash、全部expected account/allocation heads、AccountCut與reservation frontier。只形成不可變preview，列available/uncertain/reserved/deficit，不改錢。45/45基準90→Human參照99則一次49.5/49.5；不是向真帳戶注資9。Confirm包含exactpreview+hash+Humanreceipt+expectedgenerations，既有account-scopedUoW/CAS再次驗證completecut、reservation與安全可轉額，append policy/allocation/group/strategy budget revisions、heads、commandreceipt、outbox一次commit。
+
+ReviseBudget是同confirm的v2兼容門面，不能單group write繞completepreview。Concurrentreserve或任何recoverycritical dependency變動使previewSTALE/409，需重新preview。Policy降到既有encumbrance以下可記deficit/warning但只能依明確policy拒新entry，不liquidate舊position；transfer只使用safe_transferable，不借他group lots或UNKNOWN資源。SQLcommit前失敗全NO_EFFECT；aftercommitackunknown查receipt，同command同hash返回同receipt，異hashCONFLICT。所有historicalfill/attribution保持原來源。
+
+## Chart and cold re-entry
+
+queryObservations保留原pricing observation語義；UI02candles改用queryMarketBars/CanonicalMarketBarDto。DTO沿用originalCanonicalMarketBar sourcebridge，不改其核心constructor。窗[endexclusive]、known_asof、calendar/tradingdate/interval、dataset/sourcebar/seriespolicy、adjusted/raw/continuousbanner完整。OHLC由該causalwindow來源生成，H>=max(O,C)、L<=min(O,C)；source不足不製造bar，coveragepartial/empty有證據；volume未知null附unit。continuous只researchdisplay，不能成trade listing。
+
+UI04coldload listResearchBranches+listGraphDrafts→getGraphDraft→branch/ref/headgeneration→saveGraphDraft CAS。UI05listResearchRuns→getResearchRun/result，UI06從同scopedcatalog選最多六history不限制總保存；UI09listOrders→getOrder→receiptquery，UNKNOWN仍列、不猜notplaced。browsercache是顯示便利，不能作唯一producer或truth；back/cancel/offline/reload先讀serverhead/operationreceipt。UI14 download consumer綁getArtifactContent/getArtifactBytes及MA13-U02 exactBinarystreamclient，hash錯不顯恢復成功。
+
+## Error / cursor / realtime
+
+ErrorEnvelope含code/message_zh_tw/correlation/FieldViolation/retry_disposition/effect_known/operation_ref。401 REAUTHENTICATE/NO_EFFECT_PROVEN（只有server證明）；403 DO_NOT_RETRY；409 REFRESH_SUBJECT；422 DO_NOT_RETRY；429只對read RETRY_SAFE_READ，command先QUERY_RECEIPT；503command QUERY_RECEIPT/UNKNOWN，非economicread WAIT_DEPENDENCY。permission每次server檢查，error不含secret/private內容。Confirmedwrite禁止optimisticfake success。
+
+CursorRequest.limit1..200；cursor opaque signed，綁auth scope/filterhash/sort/schema/snapshot/expiry。firstrequest無cursor則snapshotserver選定並回ref；continuation必同snapshot/query，不符409CURSOR_CONFLICT，不過濾舊cursor當新集合。coverage empty只有provedfullqueryrange。StreamSubscribe/Resume以StreamSubscriptionRequest/Result；topics allowlist、snapshot/sequence/contract版本、Authn+Authz於subscribe及delivery。gap或cursor過期RESNAPSHOT_REQUIRED，明示新readsnapshot後resume；revoked AUTH_REVOKED停止傳輸；none of streamstate等trading authority。SignalR只existingprojectionchannel，不建新controller。
+
+## Gate and test obligations
+
+Budget/economic真實two-connectionUoW/cut/crash只後續TQ；DTO/Python/.NET/TSgoldenbytes與19pagesE2E另qualification；PAPER只admittedLibraryRelease+Deployment+SimulationSession，LAB以ResearchRun/ResearchSimulation不取runtimeadmission。Shioajiunsupported及nointernalmatch原契約保留。所有新interfaces採納前需exactversionproducer/consumer一致，沒有影響的accepted R01/R05/R07不重審。

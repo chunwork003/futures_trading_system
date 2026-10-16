@@ -1,0 +1,466 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ma.registry.exact-legacy-hash-domain-adapter.schema.v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "subject",
+    "status",
+    "authority_effect",
+    "current_domain",
+    "current_formula",
+    "legacy_effective_domain",
+    "legacy_formula",
+    "lookup_rule",
+    "failure_states",
+    "source_witnesses",
+    "bindings",
+    "current_bindings",
+    "new_c2_history_prefix_witnesses",
+    "no_hash_cycle",
+    "review_input_binding",
+    "carrier_scope",
+    "public_git_export_authority",
+    "formal_export_boundary",
+    "unresolved_archive_nested_witnesses",
+    "source_lookup_revision"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "ma.registry.exact-legacy-hash-domain-adapter.v2"
+    },
+    "subject": {
+      "const": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    "status": {
+      "const": "IMMUTABLE_CANDIDATE_SOURCE_ONLY_PENDING_INDEPENDENT_REVIEW"
+    },
+    "authority_effect": {
+      "const": "NONE"
+    },
+    "current_domain": {
+      "const": "ma-canonical-json-sha256-v1"
+    },
+    "current_formula": {
+      "const": "SHA256(UTF8(domain)+LF+canonical_json_bytes(payload))"
+    },
+    "legacy_effective_domain": {
+      "const": "ma-legacy-bare-canonical-json-sha256-v1"
+    },
+    "legacy_formula": {
+      "const": "SHA256(canonical_json_bytes(payload))"
+    },
+    "lookup_rule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "failure_states": {
+      "const": [
+        "LEGACY_HASH_BINDING_MISSING/HOLD",
+        "LEGACY_HASH_BINDING_MISMATCH/HOLD",
+        "SOURCE_BYTES_MISSING/HOLD"
+      ]
+    },
+    "source_witnesses": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 6,
+      "items": {
+        "$ref": "#/$defs/sourceWitness"
+      }
+    },
+    "bindings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/binding"
+      }
+    },
+    "current_bindings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/currentBinding"
+      }
+    },
+    "new_c2_history_prefix_witnesses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/currentPrefix"
+      }
+    },
+    "no_hash_cycle": {
+      "type": "string",
+      "minLength": 1
+    },
+    "review_input_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "source_path",
+        "raw_sha256",
+        "binding_revision",
+        "authority_effect"
+      ],
+      "properties": {
+        "subject": {
+          "const": "MA-ARCH-REVIEW-v6-CYCLE02"
+        },
+        "source_path": {
+          "const": "cycle-02/consolidated-review-final/REVIEW_OUTPUT_MANIFEST.json"
+        },
+        "raw_sha256": {
+          "const": "e9e4046b8a2f73228cc70d38a9777a73093e1462b75b75ded1bf4c8d3be8f88b"
+        },
+        "binding_revision": {
+          "const": "ACTIVE_INPUT_V2_LATEST_FIXED_FINAL"
+        },
+        "authority_effect": {
+          "const": "NONE"
+        }
+      }
+    },
+    "carrier_scope": {
+      "const": "REVIEW_EVIDENCE_SOURCE_DESIGN_ONLY_NOT_PUBLIC_EXPORT_ALLOWLIST"
+    },
+    "public_git_export_authority": {
+      "const": "NOT_GRANTED"
+    },
+    "formal_export_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_lookup_revision": {
+      "const": "COMPLETE_TARGET_IDENTITY_UNIQUE_EXACT_SOURCE_KEY_V4_NO_DIGEST_FALLBACK"
+    },
+    "unresolved_archive_nested_witnesses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "current_path",
+          "current_json_pointer",
+          "current_entity_id",
+          "current_revision_id",
+          "original_hash",
+          "original_domain",
+          "target_entity_id",
+          "target_revision_id",
+          "reason",
+          "status",
+          "candidate_source_count"
+        ],
+        "properties": {
+          "current_path": {
+            "$ref": "#/$defs/text"
+          },
+          "current_json_pointer": {
+            "$ref": "#/$defs/pointer"
+          },
+          "current_entity_id": {
+            "$ref": "#/$defs/text"
+          },
+          "current_revision_id": {
+            "$ref": "#/$defs/text"
+          },
+          "original_hash": {
+            "$ref": "#/$defs/hash"
+          },
+          "original_domain": {
+            "const": "ma-canonical-json-sha256-v1"
+          },
+          "target_entity_id": {
+            "$ref": "#/$defs/nullableText"
+          },
+          "target_revision_id": {
+            "$ref": "#/$defs/nullableText"
+          },
+          "reason": {
+            "enum": [
+              "INCOMPLETE_TARGET_IDENTITY",
+              "EXACT_TARGET_SOURCE_MISSING",
+              "MULTIPLE_EXACT_SOURCE_KEYS"
+            ]
+          },
+          "status": {
+            "const": "UNKNOWN/HOLD"
+          },
+          "candidate_source_count": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pointer": {
+      "type": "string",
+      "pattern": "^(?:/|$)"
+    },
+    "nullableText": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sourceWitness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "raw_sha256",
+        "byte_length",
+        "carrier_subject",
+        "carrier_source_relative_path"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/text"
+        },
+        "raw_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "byte_length": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "carrier_subject": {
+          "const": "MA-ARCH-REVIEW-v6-CYCLE02"
+        },
+        "carrier_source_relative_path": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "exactKey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_subject",
+        "carrier_subject",
+        "source_path",
+        "source_raw_sha256",
+        "source_json_pointer",
+        "entity_id",
+        "revision_id",
+        "original_hash",
+        "original_domain",
+        "source_payload_projection"
+      ],
+      "properties": {
+        "source_subject": {
+          "$ref": "#/$defs/text"
+        },
+        "carrier_subject": {
+          "const": "MA-ARCH-REVIEW-v6-CYCLE02"
+        },
+        "source_path": {
+          "$ref": "#/$defs/text"
+        },
+        "source_raw_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "source_json_pointer": {
+          "$ref": "#/$defs/pointer"
+        },
+        "entity_id": {
+          "$ref": "#/$defs/text"
+        },
+        "revision_id": {
+          "$ref": "#/$defs/text"
+        },
+        "original_hash": {
+          "$ref": "#/$defs/hash"
+        },
+        "original_domain": {
+          "const": "ma-canonical-json-sha256-v1"
+        },
+        "source_payload_projection": {
+          "enum": [
+            "EXACT_LITERAL_JSON_POINTER",
+            "REGISTRY_AGGREGATE_THREE_SELF_HASH_NULLS_V1"
+          ]
+        }
+      }
+    },
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "binding_id",
+        "exact_key",
+        "effective_domain",
+        "formula",
+        "source_hash_pointer",
+        "source_declared_domain",
+        "source_declared_hash"
+      ],
+      "properties": {
+        "binding_id": {
+          "$ref": "#/$defs/hash"
+        },
+        "exact_key": {
+          "$ref": "#/$defs/exactKey"
+        },
+        "effective_domain": {
+          "const": "ma-legacy-bare-canonical-json-sha256-v1"
+        },
+        "formula": {
+          "const": "SHA256(canonical_json_bytes(payload))"
+        },
+        "source_hash_pointer": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "source_declared_domain": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "source_declared_hash": {
+          "$ref": "#/$defs/nullableText"
+        }
+      }
+    },
+    "currentBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current_path",
+        "current_json_pointer",
+        "current_entity_id",
+        "current_revision_id",
+        "original_hash",
+        "original_domain",
+        "binding_id"
+      ],
+      "properties": {
+        "current_path": {
+          "$ref": "#/$defs/text"
+        },
+        "current_json_pointer": {
+          "$ref": "#/$defs/pointer"
+        },
+        "current_entity_id": {
+          "$ref": "#/$defs/text"
+        },
+        "current_revision_id": {
+          "$ref": "#/$defs/text"
+        },
+        "original_hash": {
+          "$ref": "#/$defs/hash"
+        },
+        "original_domain": {
+          "const": "ma-canonical-json-sha256-v1"
+        },
+        "binding_id": {
+          "$ref": "#/$defs/hash"
+        }
+      }
+    },
+    "sourceProof": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_subject",
+        "carrier_subject",
+        "source_path",
+        "source_raw_sha256",
+        "source_json_pointer",
+        "entity_id",
+        "revision_id",
+        "source_hash_pointer",
+        "source_declared_domain",
+        "source_declared_hash",
+        "source_payload_projection"
+      ],
+      "properties": {
+        "source_subject": {
+          "$ref": "#/$defs/text"
+        },
+        "carrier_subject": {
+          "const": "MA-ARCH-REVIEW-v6-CYCLE02"
+        },
+        "source_path": {
+          "$ref": "#/$defs/text"
+        },
+        "source_raw_sha256": {
+          "$ref": "#/$defs/hash"
+        },
+        "source_json_pointer": {
+          "$ref": "#/$defs/pointer"
+        },
+        "entity_id": {
+          "$ref": "#/$defs/text"
+        },
+        "revision_id": {
+          "$ref": "#/$defs/text"
+        },
+        "source_hash_pointer": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "source_declared_domain": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "source_declared_hash": {
+          "$ref": "#/$defs/nullableText"
+        },
+        "source_payload_projection": {
+          "enum": [
+            "EXACT_LITERAL_JSON_POINTER",
+            "REGISTRY_AGGREGATE_THREE_SELF_HASH_NULLS_V1"
+          ]
+        }
+      }
+    },
+    "currentPrefix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current_path",
+        "current_payload_pointer",
+        "current_hash_pointer",
+        "current_entity_id",
+        "current_revision_id",
+        "source_proof",
+        "normalized_domain",
+        "normalized_hash"
+      ],
+      "properties": {
+        "current_path": {
+          "$ref": "#/$defs/text"
+        },
+        "current_payload_pointer": {
+          "$ref": "#/$defs/pointer"
+        },
+        "current_hash_pointer": {
+          "$ref": "#/$defs/pointer"
+        },
+        "current_entity_id": {
+          "$ref": "#/$defs/text"
+        },
+        "current_revision_id": {
+          "$ref": "#/$defs/text"
+        },
+        "source_proof": {
+          "$ref": "#/$defs/sourceProof"
+        },
+        "normalized_domain": {
+          "const": "ma-canonical-json-sha256-v1"
+        },
+        "normalized_hash": {
+          "$ref": "#/$defs/hash"
+        }
+      }
+    }
+  }
+}

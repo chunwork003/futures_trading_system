@@ -1,0 +1,17 @@
+{
+  "schema": "ma.author.body_catalog_extension.v6",
+  "authority_effect": "NONE",
+  "status": "AUTHOR_PROPOSED_NECESSARY_CONSUMER_CORRECTION_PENDING_INDEPENDENT_REVIEW",
+  "reason": "GraphDraftReadbackV5 requires exact RULE/SAFETY/BuilderPolicy closure, while existing catalog has those Domain definitions absent from finite body readback union.",
+  "preserved": ["API95 operation identities/methods/paths", "Unit96 permanent IDs", "existing E_STRATEGY source owner", "accepted R01 semantics", "P00/runtime authority"],
+  "entries": [
+    {"body_type": "RuleDefinitionRevision", "producer_owner": "E_STRATEGY", "allowed_producer_operations": [], "allowed_internal_producers": ["EXISTING_E_STRATEGY_DEFINITION_IMPORT_ADAPTER"], "read_operations": ["getGraphDraft", "getArtifactContent"], "source_row_schema": false, "unknown_fields": "DENY", "permission": "EXISTING_SERVER_ACTION_SCOPE_PLUS_EVERY_SOURCE_ARTIFACT_READ_PERMISSION", "model_hash_contract": "BODY_HASH_RULES_V5 in BODY_CAPTURE_READBACK_CONTRACTS.md", "producer_rule": "Exact source-owned RULE definition importer; finite typed definition, exact implementation bytes and allowed definition catalog; import/readback does not approve execution or publication."},
+    {"body_type": "SafetyDefinitionRevision", "producer_owner": "E_STRATEGY", "allowed_producer_operations": [], "allowed_internal_producers": ["EXISTING_E_STRATEGY_DEFINITION_IMPORT_ADAPTER"], "read_operations": ["getGraphDraft", "getArtifactContent"], "source_row_schema": false, "unknown_fields": "DENY", "permission": "EXISTING_SERVER_ACTION_SCOPE_PLUS_EVERY_SOURCE_ARTIFACT_READ_PERMISSION", "model_hash_contract": "BODY_HASH_RULES_V5 in BODY_CAPTURE_READBACK_CONTRACTS.md", "producer_rule": "Exact source-owned SAFETY definition importer; immutable non_disableable=true and exact policy bytes; neither replaces G/L account safety nor grants trading authority."},
+    {"body_type": "BuilderPolicyRevision", "producer_owner": "E_STRATEGY", "allowed_producer_operations": [], "allowed_internal_producers": ["EXISTING_E_STRATEGY_BUILDER_POLICY_IMPORT_ADAPTER"], "read_operations": ["getGraphDraft", "getArtifactContent"], "source_row_schema": false, "unknown_fields": "DENY", "permission": "EXISTING_SERVER_ACTION_SCOPE_PLUS_EVERY_SOURCE_ARTIFACT_READ_PERMISSION", "model_hash_contract": "BODY_HASH_RULES_V5 in BODY_CAPTURE_READBACK_CONTRACTS.md", "producer_rule": "Exact existing E/L policy configuration importer; required Safety and each minimum role source-owned; catalog introduction is a readback schema correction only."}
+  ],
+  "tagged_union_additions": {"BodyPayloadV5": {"RuleDefinitionRevision": "RuleDefinitionRevision", "SafetyDefinitionRevision": "SafetyDefinitionRevision", "BuilderPolicyRevision": "BuilderPolicyRevision"}},
+  "enum_additions": {"TypedBodyBindingV5.body_type": ["RuleDefinitionRevision", "SafetyDefinitionRevision", "BuilderPolicyRevision"], "TypedArtifactBodyRequestV5.expected_body_type": ["RuleDefinitionRevision", "SafetyDefinitionRevision", "BuilderPolicyRevision"]},
+  "schema_rule": "Root compiles exact integrated MODEL_CATALOG/TYPE_VARIANTS named closure, recomputes ma-body-schema-sha256-v1 with domain plus LF, then final catalog; helper rebinds all fixture schema/body/receipt hashes from those final refs. No stale digest is accepted.",
+  "producer_plan_owner_units": ["MA04-U02", "MA10-U02", "MA13-U01"],
+  "actual_runtime_evidence": null
+}

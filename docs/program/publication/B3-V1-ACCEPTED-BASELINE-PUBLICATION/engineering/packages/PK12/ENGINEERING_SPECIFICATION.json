@@ -1,0 +1,924 @@
+{
+  "format_role": "COHESIVE_PACKAGE_ENGINEERING_SPEC_NOT_EXECUTION_WO",
+  "package_id": "PK12",
+  "name": "同版本 B3 整合與交付審核",
+  "purpose": "六旅程、Source／Unit／Result 追溯、相同 Release Subject 的 Independent Review 與剩餘資格交付。",
+  "cohesion": "SAME_VERSION_RELEASE_CLOSURE",
+  "unit_ids": [
+    "1850113a-d5c2-447c-acb6-59f804960ffc",
+    "4d2d73f5-5f2b-47ea-bee8-63031e9e9a0e"
+  ],
+  "unit_aliases": [
+    "MA15-U03",
+    "MA15-U06"
+  ],
+  "units": [
+    {
+      "alias": "MA15-U03",
+      "uuid": "1850113a-d5c2-447c-acb6-59f804960ffc",
+      "feature_id": "f3f1b0bb-c24a-42bf-8078-89fc8314968f",
+      "spec": "units/MA15-U03.json",
+      "goal": "SixJourney Integration Fixtures",
+      "dependencies": [
+        {
+          "unit_id": "6aa09fb0-df29-41cc-aa5a-9d7aafb8011a",
+          "unit_alias": "MA15-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "60ee3bdb-789d-5e0f-9b59-5a1d90515c84",
+          "required_feature_id": "f3f1b0bb-c24a-42bf-8078-89fc8314968f",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "cfc91817-46ea-4145-8427-139e06e5569d",
+          "unit_alias": "MA01-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "192b0e77-b779-5eb4-8c1e-22e2a393d8eb",
+          "required_feature_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "b0e3f573-d911-4ea1-8dc3-57a89f7bd95e",
+          "unit_alias": "MA01-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "89590a0a-5580-5199-bfe8-5cc06d83d4b3",
+          "required_feature_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "bb7fcd6e-af41-43e9-aeb4-81fc14571315",
+          "unit_alias": "MA02-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "1c25a469-81c4-561c-8f2c-521763dcead6",
+          "required_feature_id": "75f4af02-d872-4821-8d7e-8471de047126",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "06b5e143-8782-463d-863c-0b58dbde03aa",
+          "unit_alias": "MA03-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "12356876-d0fb-5fc7-80fb-8e18eaaf5677",
+          "required_feature_id": "338687ba-690e-46f2-bf91-dc6221806f44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "ad7fdaed-5e0d-4a51-a24b-1922f8ce6f26",
+          "unit_alias": "MA03-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "1d1da1e3-87a0-5f78-8ad5-5cb264f54471",
+          "required_feature_id": "338687ba-690e-46f2-bf91-dc6221806f44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "cc769c63-0f27-4815-adf3-754774b76d5f",
+          "unit_alias": "MA03-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "c8679414-1a7b-5d18-8f81-d5e1b68b5e99",
+          "required_feature_id": "338687ba-690e-46f2-bf91-dc6221806f44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "a8a56800-81b9-4297-8847-ad2bb530ae83",
+          "unit_alias": "MA03-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "3ae07179-0a3c-5406-b534-a01238433327",
+          "required_feature_id": "338687ba-690e-46f2-bf91-dc6221806f44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "fd74b3fa-93fc-473f-9208-106dc4e1742b",
+          "unit_alias": "MA03-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "2f70d5cd-203c-518a-8776-ce4820962ec6",
+          "required_feature_id": "338687ba-690e-46f2-bf91-dc6221806f44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "332a4057-004a-48e0-8f8c-199d8126c497",
+          "unit_alias": "MA04-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "441ba3a0-328b-54c6-b486-8192048a3652",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "e0279c82-8eec-4de5-80c9-7e1b7d78a48f",
+          "unit_alias": "MA04-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "d9e9bc44-1910-5098-b2cd-dac8002f8e2f",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "9e7f20fa-f68c-45a0-8ed0-e841d9a543da",
+          "unit_alias": "MA04-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "8efa2c6f-6f31-50b5-8c5e-33f39d143cd7",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "cabd3d4c-e10a-4a60-a1c2-8e85cd44684f",
+          "unit_alias": "MA04-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "fc2d1679-9a08-5b9f-a310-8cff88af0d1f",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "5fec1579-d8c0-45a9-b658-3eb47efb5a31",
+          "unit_alias": "MA04-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "231c5ce2-922e-5905-ba76-5500f7cb7609",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "430b85dc-75e0-4811-b798-3fcc76f1f34e",
+          "unit_alias": "MA04-U06",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "bff5c555-25ff-5497-b81c-af5e633c10b2",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "46af7db1-aace-42c4-9e90-1046f5deb3de",
+          "unit_alias": "MA06-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "2a7dc710-6541-5a67-a167-6881274c500d",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "ddc16700-5687-4b64-9110-fb180fe5b60b",
+          "unit_alias": "MA06-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "012053e2-6534-5048-87fb-517f57700685",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "ba31cb9c-7280-486d-bb87-4c876fbeca3c",
+          "unit_alias": "MA06-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "5a75769b-a51a-53dc-a38b-11f93dc860cd",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "210f5fa9-f030-4aab-a156-65f8f340053e",
+          "unit_alias": "MA06-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "4d05b67a-e5fc-58c9-8ef7-97f05641b700",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "7f17ce05-eec2-40d8-9915-267db9c07d6d",
+          "unit_alias": "MA06-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "e9d1dc12-7e4b-50c3-b979-14f7163f5dc8",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "21acd223-737f-4587-b0d8-928191b687fe",
+          "unit_alias": "MA07-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "89dc15bc-2896-5402-aed3-235aeb38c1e5",
+          "required_feature_id": "8aca5f15-4caa-4579-8941-54123ba36710",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "3e17cc07-98bb-4a34-bf93-3559c70e862c",
+          "unit_alias": "MA07-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "733a8da0-2823-50a0-b213-767b9956a90a",
+          "required_feature_id": "8aca5f15-4caa-4579-8941-54123ba36710",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "3ea5aaf9-8a64-48ac-adb0-e5b315c8e548",
+          "unit_alias": "MA07-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "a3e4d7dc-f93f-5fdc-9b46-e848fa0d7169",
+          "required_feature_id": "8aca5f15-4caa-4579-8941-54123ba36710",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "fc92c842-a14b-493b-9779-c83823027490",
+          "unit_alias": "MA07-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "5b1e6f7b-af2e-52a8-9702-e80d28fb2781",
+          "required_feature_id": "8aca5f15-4caa-4579-8941-54123ba36710",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "f4f4e882-c4ab-472e-be9c-4de313d024d5",
+          "unit_alias": "MA08-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "1214700b-50b5-5f77-bdbe-385862769a04",
+          "required_feature_id": "0620fbbc-fb41-42e0-96b0-006d8327f5c3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "c1d4471a-53a0-47aa-9539-31f920cc69df",
+          "unit_alias": "MA08-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "b5973806-5ae1-58af-a5a3-4de45a20c785",
+          "required_feature_id": "0620fbbc-fb41-42e0-96b0-006d8327f5c3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "407f7d9c-05a0-4926-9421-b062cc4fde53",
+          "unit_alias": "MA08-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "5fd10b83-3c4b-587f-9130-8a05d9ee2342",
+          "required_feature_id": "0620fbbc-fb41-42e0-96b0-006d8327f5c3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "e75649b8-6255-49c7-9e1d-58ec44e71b0a",
+          "unit_alias": "MA08-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "1fb67e30-ce85-58e9-b30a-46dbf04dcf78",
+          "required_feature_id": "0620fbbc-fb41-42e0-96b0-006d8327f5c3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "c0ccd521-6c4d-46ad-82c5-a3b5e31f67dc",
+          "unit_alias": "MA08-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "5bcaf2c4-6a45-5d49-8a08-42782526687e",
+          "required_feature_id": "0620fbbc-fb41-42e0-96b0-006d8327f5c3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "f50172c0-079b-483b-ab98-15764bb8068d",
+          "unit_alias": "MA09-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "a13f848e-9e66-59b8-8d6b-2633ed2dcd17",
+          "required_feature_id": "61c2cbff-9a94-43ad-b026-c5436e972ec1",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "72cdaf5b-3421-4f9a-bef8-8614d07aa6f3",
+          "unit_alias": "MA09-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "b61bcce3-f490-5d14-afc6-882e0ad4ef72",
+          "required_feature_id": "61c2cbff-9a94-43ad-b026-c5436e972ec1",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "0725e6af-4fbf-4f0f-b1f4-37fb0455548f",
+          "unit_alias": "MA10-U06",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "791b2c74-25c8-5b4c-b74d-1803b988a6c9",
+          "required_feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "77c0018d-8680-4e94-a7b9-7fe0de492c60",
+          "unit_alias": "MA11-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "34ddd6e0-20f7-52d3-8504-a9ab5e438819",
+          "required_feature_id": "476e74c2-ecb5-4e25-aad4-3845b817c70c",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "e185c30d-eebf-43b9-ae51-16e9fbe512da",
+          "unit_alias": "MA12-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "faa9b100-80ab-5c97-90b6-e9004b5a1671",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "56d3d5a6-e69a-401b-b92a-a6dcba032d10",
+          "unit_alias": "MA12-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "cd1f6f3e-189f-5ab4-9016-0d1eae3f25f9",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "a2c5f009-53d8-4b97-bd37-be95b61ba3fe",
+          "unit_alias": "MA12-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "97914c4f-caad-5c5d-a751-60575764228b",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "0ce2e2ae-646a-4c01-8775-9768cdd56b2e",
+          "unit_alias": "MA12-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "1c60a813-7159-5fa0-aa9f-f85a45cefa17",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "2049e68d-c38a-459f-a0d1-f1df2eda8299",
+          "unit_alias": "MA13-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "063c6d26-4efb-54ad-8a5a-33e95cdc3121",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "7dda8b7f-82d2-46d4-b6c5-7e0c960d0e64",
+          "unit_alias": "MA13-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "04f3a8e8-9c37-59d7-9f5c-7feda5b77b72",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "93f922ea-3084-498d-aa04-2f7c4b41f497",
+          "unit_alias": "MA13-U06",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "d42f6620-27b0-571e-b59a-b81a61a35646",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "c709d850-b687-458d-abdd-669bab608b66",
+          "unit_alias": "MA14-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "70ed4a45-5604-55a8-820d-82aaa1013c1d",
+          "required_feature_id": "15e9f498-3d3a-4bb3-9ac2-fd44c037be44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "79721523-c63f-4fdb-ac01-f16280c0c487",
+          "unit_alias": "MA14-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "2da9c314-ab94-5f68-8b21-bc290be94ee6",
+          "required_feature_id": "15e9f498-3d3a-4bb3-9ac2-fd44c037be44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "26cba0b2-f5f6-4bfc-9a87-04f407a4d874",
+          "unit_alias": "MA14-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "fc67d03f-0906-52fb-8278-929789bc0761",
+          "required_feature_id": "15e9f498-3d3a-4bb3-9ac2-fd44c037be44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "069c5da8-3515-4f82-aec7-1a069091b5c9",
+          "unit_alias": "MA14-U06",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "90ac2f19-ce9c-5ad5-90de-34fe0da6e947",
+          "required_feature_id": "15e9f498-3d3a-4bb3-9ac2-fd44c037be44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "f30d40f9-35c5-476c-9392-7a03a8cf1e1d",
+          "unit_alias": "MA16-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "d5fa3deb-b1af-5189-89c6-d8a7b1979f34",
+          "required_feature_id": "1d0c8c30-cd76-4ce6-abd6-761d630ae1d3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L3",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "docs/architecture/integration/qualification_matrix.v2.json",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/integration/test_multi_asset_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma15_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA15-U06",
+      "uuid": "4d2d73f5-5f2b-47ea-bee8-63031e9e9a0e",
+      "feature_id": "f3f1b0bb-c24a-42bf-8078-89fc8314968f",
+      "spec": "units/MA15-U06.json",
+      "goal": "ReviewFinding／Adoption／RemainingQualification",
+      "dependencies": [
+        {
+          "unit_id": "6aa09fb0-df29-41cc-aa5a-9d7aafb8011a",
+          "gate": "ADOPTED_CONTRACT_AND_REQUIRED_RESULT",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "60ee3bdb-789d-5e0f-9b59-5a1d90515c84",
+          "unit_alias": "MA15-U01",
+          "required_feature_id": "f3f1b0bb-c24a-42bf-8078-89fc8314968f",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        },
+        {
+          "unit_id": "cfc91817-46ea-4145-8427-139e06e5569d",
+          "gate": "EXACT_SOURCE_ADOPTED_NOT_ALL_RUNTIME",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "192b0e77-b779-5eb4-8c1e-22e2a393d8eb",
+          "unit_alias": "MA01-U01",
+          "required_feature_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        },
+        {
+          "unit_id": "f6d3c601-3859-4405-80d1-3ea1b8e737b4",
+          "unit_alias": "MA15-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "30ae3323-5e56-5ce7-be35-4cfa9218f12d",
+          "required_feature_id": "f3f1b0bb-c24a-42bf-8078-89fc8314968f",
+          "gate": "EXACT_UNIT_RESULT_QUALIFIED_OR_COMPILER_PROVED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        },
+        {
+          "unit_id": "1850113a-d5c2-447c-acb6-59f804960ffc",
+          "unit_alias": "MA15-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "e19fac1f-77ae-50d2-bc14-c3ab70e805ea",
+          "required_feature_id": "f3f1b0bb-c24a-42bf-8078-89fc8314968f",
+          "gate": "EXACT_UNIT_RESULT_QUALIFIED_OR_COMPILER_PROVED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        },
+        {
+          "unit_id": "87685a87-d4a5-43f5-b5b9-df5c61d067aa",
+          "unit_alias": "MA15-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "a04a4a0f-3f6c-50a8-b8a2-1c1f41425cb9",
+          "required_feature_id": "f3f1b0bb-c24a-42bf-8078-89fc8314968f",
+          "gate": "EXACT_UNIT_RESULT_QUALIFIED_OR_COMPILER_PROVED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        },
+        {
+          "unit_id": "6fde1133-cc4a-4e92-a48a-97ce79775779",
+          "unit_alias": "MA15-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "395d8b27-0de6-539d-b712-469bb068e2ba",
+          "required_feature_id": "f3f1b0bb-c24a-42bf-8078-89fc8314968f",
+          "gate": "EXACT_UNIT_RESULT_QUALIFIED_OR_COMPILER_PROVED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L3",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "docs/architecture/integration/qualification_matrix.v2.json",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/integration/test_multi_asset_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma15_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "C3 qualification/adoption for R02/R06 or C5/C6 exact P00 process as applicable; cannot use synthetic historical compiler/context proof",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    }
+  ],
+  "source_revisions_hashes": [
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA15-U03"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/86"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U03.v9.json",
+        "raw_bytes_sha256": "492987102586b487fea252f6c45199b4cd4989c76109b446036aebea212a2a2b",
+        "bytes": 167580,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "eb4d54fb991064b28bd74678a5a26332cccbd8db483261352d70ae578dbddd41",
+      "base_plan_revision_id": "e19fac1f-77ae-50d2-bc14-c3ab70e805ea",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\15_INTEGRATION_ACCEPTANCE.md",
+        "raw_bytes_sha256": "eef5a35696a86fe0c0c2d091269fe941872a16a64681f72e4577ab0be29eda4b",
+        "bytes": 10765
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA15-U06"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/89"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U06.v9.json",
+        "raw_bytes_sha256": "3e368958e82c3ef554e99ec70588ce89d4335d3b4db90ac4516c25fb38b36548",
+        "bytes": 7675,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "abc39ee450ccde58a2c711d640a40e5ab5775fd03ea3a43b7eabf3e710ec8b67",
+      "base_plan_revision_id": "249172ce-47aa-5beb-bad5-9f80a082c249",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\15_INTEGRATION_ACCEPTANCE.md",
+        "raw_bytes_sha256": "eef5a35696a86fe0c0c2d091269fe941872a16a64681f72e4577ab0be29eda4b",
+        "bytes": 10765
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    }
+  ],
+  "original_package_input": {
+    "planning_package_id": "PK12",
+    "name": "同版本 B3 整合與交付審核",
+    "status": "PLANNING_AND_COMPILATION_INPUT_CANDIDATE_NOT_SUBMITTED_NOT_EXECUTABLE",
+    "observable_outcome": "六旅程、Source／Unit／Result 追溯、相同 Release Subject 的 Independent Review 與剩餘資格交付。",
+    "cohesion_boundary": "SAME_VERSION_RELEASE_CLOSURE",
+    "unit_aliases": [
+      "MA15-U03",
+      "MA15-U06"
+    ],
+    "unit_ids": [
+      "1850113a-d5c2-447c-acb6-59f804960ffc",
+      "4d2d73f5-5f2b-47ea-bee8-63031e9e9a0e"
+    ],
+    "cross_package_dependencies": [
+      "PK01",
+      "PK02",
+      "PK03",
+      "PK04",
+      "PK05",
+      "PK06",
+      "PK08",
+      "PK09",
+      "PK10",
+      "PK11"
+    ],
+    "api_operations": [],
+    "ui_pages": [
+      "UI04",
+      "UI08"
+    ],
+    "mapping_semantics": {
+      "api_operations": "ALL_MEMBER_TOUCHED_CONSUMER_OR_VERIFICATION_CLOSURE_NOT_IMPLEMENTATION_OWNERSHIP_OR_WRITE_SCOPE",
+      "ui_pages": "ALL_MEMBER_TOUCHED_UI_CONSUMER_CLOSURE_NOT_EXCLUSIVE_UI_OWNERSHIP"
+    },
+    "touched_api_operation_ids": [],
+    "touched_ui_page_ids": [
+      "UI04",
+      "UI08"
+    ],
+    "primary_producer_api_operation_ids": [],
+    "primary_ui_page_ids": [],
+    "risk_tiers": [
+      "L3"
+    ],
+    "backend_scope": "Python owns application/domain/economic state and persistence through existing ports; BFF owns auth/workflow/proxy only. Unit proposed paths must be compiled to exact current allowlist.",
+    "frontend_scope": "PK11 consumes exact pinned API/DTO/error/permission contracts; other packages supply domain fixtures and state/effect semantics. No browser SQL/Broker authority.",
+    "integration_boundary": "Contract-first one canonical operation/model source. Contract tests compare Python/OpenAPI/BFF/React models; interface changes require controlled revision and impacted consumer closure.",
+    "executor_capability": "Actual implementation language/toolchain + domain risk + exact source/context comprehension + positive/negative/concurrency test ability; named tool alone is not qualification.",
+    "targeted_tests": "Use every listed Unit case/fixture and targeted command proposal after actual repository placement; proposals are requirements, not actual results.",
+    "integration_tests": "Pinned producer→consumer DTO/domain/persistence tests, error/retry/unknown/idempotency/CAS and relevant UI actions. Isolated actual PG only under separate grant.",
+    "regression_tests": "Changed source/contract/dependency closure only; protect accepted predecessors. Full B3 same-version journey at PK12 and formal release; no blanket 216-schema rerun for display-only change.",
+    "human_visual_gate": "Affected interactive UI state, layout, keyboard/error/conflict/recovery/authority display reviewed on actual browser; no visual acceptance inferred from API tests.",
+    "writer_worktree_strategy": "Planning/readonly branches may coexist. No worktree is created here. Exact disjoint file scopes, one writer per scope, scoped grants, dependency cuts and integration owner required before parallel implementation. Current WORK NO_PARALLEL_EXECUTION retained until lawfully scoped successor/profile permits concurrent executions.",
+    "context_policy": "Load exact Unit + v9 head/companion + required pairs + minimal producer/consumer closure. Raw provenance retained separately; required source cannot be truncated. R06 current-profile qualification required where used.",
+    "cost_and_eta": {
+      "state": "UNKNOWN",
+      "token_estimate": null,
+      "time_estimate": null,
+      "actual": null,
+      "reason": "No comparable exact implementation cohort; existing WORK forecasts cost before lawful compile and records actual producer evidence."
+    },
+    "entry_gate": "Human A+B adopted scope + existing Owner materialized receipt/fresh re-entry; approved compiler companion adapter/context profile; exact source/preimages/protected scope/dependency results/current capacity/one-writer/grant remain required before execution",
+    "done_and_next_gate": "Per-unit actual evidence→required independent verification→existing WORK Intake; only credited accepted units count once. Package complete does not close P00 or enable runtime.",
+    "dispatch": "NOT_AUTHORIZED",
+    "formal_progress_credit": 0,
+    "planning_companion_revision": "post-human-dual-adoption.planning-companion.1",
+    "predecessor_planning_revision": "adoption-planning.r2",
+    "identity_class": "TEMPORARY_AGGREGATION_LABEL_NOT_NEW_PRODUCT_ID_OR_PROGRESS_DENOMINATOR",
+    "compilation_owner": "EXISTING_WORK_ORCHESTRATOR_AND_P00_COMPILER_OWNER",
+    "closed_schema_adaptation": "HOLD_DIRECT_SUBMISSION: PK labels do not match closed p00.package.v1 PXX identity; use accepted unit companion/approved adapter profile through existing Owner, never coerce IDs or extend a closed schema in place",
+    "exact_write_scope": [],
+    "write_scope_status": "NO_EXECUTABLE_ALLOWLIST_GRANTED; member proposed paths are inputs for later current-blob source assembly",
+    "member_unit_candidate_selectors": [
+      "#/unit_compilation_inputs/MA15-U03",
+      "#/unit_compilation_inputs/MA15-U06"
+    ],
+    "allowed_side_effects_now": [
+      "READ_SOURCE",
+      "AUTHOR_PLANNING_ARTIFACTS_ONLY_IN_AUTHORIZED_OUTPUT_WORKSPACE"
+    ],
+    "compilation_result": null,
+    "compiler_invoked": false
+  },
+  "primary_producer_operations": [],
+  "touched_operations_are_not_write_scope": [],
+  "primary_UI_pages": [],
+  "cross_package_dependencies": [
+    "PK01",
+    "PK02",
+    "PK03",
+    "PK04",
+    "PK05",
+    "PK06",
+    "PK08",
+    "PK09",
+    "PK10",
+    "PK11"
+  ],
+  "release_applicability": [
+    {
+      "unit_alias": "MA15-U03",
+      "unit_id": "1850113a-d5c2-447c-acb6-59f804960ffc",
+      "primary_package": "PK12",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA15-U03/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "9f69189e-eeed-436c-be2d-37f3adc527c4",
+          "revision_id": "e78f0efc-d82c-4f30-a390-810cafa2c999",
+          "title": "全局chapter/API/event/DB/UIjourney一致性",
+          "release_scope": "FULL_PRODUCT_REQUIRED",
+          "in_exact_b3_release_slice": false
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [],
+      "not_in_exact_b3_release_slice_requirement_ids": [
+        "9f69189e-eeed-436c-be2d-37f3adc527c4"
+      ],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA15-U06",
+      "unit_id": "4d2d73f5-5f2b-47ea-bee8-63031e9e9a0e",
+      "primary_package": "PK12",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA15-U06/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "eb69811e-c72c-43fa-a88d-fdaa36d0e7fa",
+          "revision_id": "50312e59-3d56-4449-b162-17e9e84ad88d",
+          "title": "完整traceability/index/status/manifest/checkpoint",
+          "release_scope": "FULL_PRODUCT_REQUIRED",
+          "in_exact_b3_release_slice": false
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [],
+      "not_in_exact_b3_release_slice_requirement_ids": [
+        "eb69811e-c72c-43fa-a88d-fdaa36d0e7fa"
+      ],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    }
+  ],
+  "finding_regression_backlog": [],
+  "proposed_implementation_tests": {
+    "targeted": "Use every listed Unit case/fixture and targeted command proposal after actual repository placement; proposals are requirements, not actual results.",
+    "integration": "Pinned producer→consumer DTO/domain/persistence tests, error/retry/unknown/idempotency/CAS and relevant UI actions. Isolated actual PG only under separate grant.",
+    "regression": "Changed source/contract/dependency closure only; protect accepted predecessors. Full B3 same-version journey at PK12 and formal release; no blanket 216-schema rerun for display-only change.",
+    "actual": "NOT_RUN"
+  },
+  "global_writer": "ONE; no parallelism from worktree or packaging",
+  "context_budget": {
+    "unit_source_bytes_read_into_report": 5691710,
+    "meaning": "DOCUMENT_BYTES_ONLY_NOT_ACTUAL_HOST_INJECTION_OR_TOKEN_COUNT",
+    "actual_tokens": null,
+    "forecasts": {
+      "state": "UNKNOWN",
+      "token_estimate": null,
+      "time_estimate": null,
+      "actual": null,
+      "reason": "No comparable exact implementation cohort; existing WORK forecasts cost before lawful compile and records actual producer evidence."
+    },
+    "qualified_context_profile": "UNRESOLVED"
+  },
+  "planning_status": {
+    "SPEC_READY": "READABLE_SOURCE_BOUND_SPECIFICATION",
+    "PLANNING_COMPLETE": true,
+    "QUALIFICATION_PENDING": true,
+    "IMPLEMENTATION_NOT_AUTHORIZED": true,
+    "EXECUTION_READY": false
+  },
+  "remaining_UNRESOLVED_bindings": [
+    "Exact machine WO/package identity through approved companion/adapter",
+    "Legal source assembly and applicable qualified profile/adapter",
+    "Exact current preimages / grant / budget / actor / writer",
+    "Current dependency result/reuse, product/runtime actual only where applicable"
+  ],
+  "after_grant_sequence": [
+    "Contract/source/allowlist freeze",
+    "One authorized Coding Unit or cohesive exact WO",
+    "Targeted Tests",
+    "Producer/Consumer integration",
+    "Required Regression",
+    "Existing Review/Intake/Acceptance",
+    "Re-entry before next exact authorized work"
+  ]
+}

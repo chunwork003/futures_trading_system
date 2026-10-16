@@ -1,0 +1,87 @@
+{
+  "format_role": "NONAUTHORITATIVE_DISPLAY_CROSSWALK_OVER_EXISTING_MACHINE_AXES_NOT_A_NEW_LIFECYCLE",
+  "revision": "planning.v1",
+  "source_refs": [
+    "automation/policies/authorization_lifecycle.v1_1.yaml",
+    "automation/policies/development_state_machine.v2.yaml",
+    "automation/policies/orchestration_control_policy.v1.yaml"
+  ],
+  "current_controller_activation": "NOT_ACTIVE; current successor acceptance does not activate controlled auto",
+  "rows": [
+    {
+      "requested_display": "PLANNED",
+      "machine_mapping": "Package candidate/source specification only; authorization NOT_AUTHORIZED; execution IDLE or no execution row",
+      "evidence": "Fixed package/input manifest and source selectors",
+      "not_implied": "READY, qualified profile, dispatch"
+    },
+    {
+      "requested_display": "READY_FOR_REVIEW",
+      "machine_mapping": "No new lifecycle value. Design candidate fixed -> review axis PENDING; implementation completion uses execution RESULT_READY with actual result evidence",
+      "evidence": "Immutable exact subject or actual execution result; must state which",
+      "not_implied": "Review PASS or integration/acceptance"
+    },
+    {
+      "requested_display": "QUALIFIED",
+      "machine_mapping": "Named profile/test/environment qualification receipt on existing qualification/eligibility axes; never change authorization by this display",
+      "evidence": "Exact subject + profile + environment + independent receipt + applicability",
+      "not_implied": "AUTHORIZED or invocation"
+    },
+    {
+      "requested_display": "AUTHORIZED",
+      "machine_mapping": "authorization_lifecycle.AUTHORIZED only for exact fresh live grant; eligibility separately re-evaluated",
+      "evidence": "Owner grant, exact scope/base/receipt/budget plus not revoked/superseded/consumed",
+      "not_implied": "RESERVED/CONSUMED/invoked"
+    },
+    {
+      "requested_display": "EXECUTING",
+      "machine_mapping": "development_state_machine.execution RUNNING only with consumed/reservation/dispatch/invocation/writer evidence",
+      "evidence": "Exact durable ordered lifecycle and actual invocation",
+      "not_implied": "Result, review, integration or acceptance"
+    },
+    {
+      "requested_display": "REVIEWED",
+      "machine_mapping": "Review axis stores exact reviewer verdict/evidence; no new global state",
+      "evidence": "Independent bound verdict where required; self test separately typed",
+      "not_implied": "INTEGRATION PASS or MATERIALIZED ACCEPTANCE"
+    },
+    {
+      "requested_display": "ACCEPTED",
+      "machine_mapping": "Existing scoped acceptance receipt/status, e.g. ACCEPTED_MATERIALIZED, only through existing accepting Owner/Intake",
+      "evidence": "Exact subject/coverage/decision/receipt; bounded design vs implementation vs runtime explicit",
+      "not_implied": "Next work authority, P00 closed, runtime qualified or release"
+    }
+  ],
+  "existing_authorization_states": [
+    "NOT_AUTHORIZED",
+    "AUTHORIZED",
+    "RESERVED",
+    "CONSUMED",
+    "SUPERSEDED",
+    "REVOKED"
+  ],
+  "existing_execution_states": [
+    "IDLE",
+    "QUEUED",
+    "PRE_DISPATCH",
+    "RUNNING",
+    "PAUSED_PROVIDER_LIMIT",
+    "RESUME_PENDING_REVALIDATION",
+    "RESULT_READY",
+    "STOPPED"
+  ],
+  "orthogonal_axes": [
+    "AUTHORIZATION",
+    "EXECUTION",
+    "COST_DEMAND_CAPACITY",
+    "PROVIDER_AVAILABILITY",
+    "REVIEW",
+    "INTEGRATION",
+    "ACCEPTANCE"
+  ],
+  "roll_forward_rule": "Re-entry -> resume unfinished before new work -> existing strict queue/lane -> eligibility -> exact authority -> lawful manual single-use dispatch -> result/review/integration/acceptance independently -> choose next. Event/time/quota wake only.",
+  "preparation_window": "Prepare minimal exact next dependency frontier while present result waits; no accepted-result invention or lane reorder; rolling preparation does not create dispatch rights.",
+  "context_cache_key": "repository + path + Git blob SHA; local unpublished artifact uses raw SHA256 + subject + revision with original hash domain; unchanged same-context bytes reused.",
+  "context_overflow": "Do not truncate required producer/consumer/input pairing closure. Split reading into bound staged views only when existing profile permits and complete required reading continuity remains provable; otherwise HOLD affected compile for approved successor/profile. Planning chunks are not C3 qualification.",
+  "cost": "Per-WO P50/P75/P90 estimates before executable handoff; exact actual separately. Fewer than 3 comparable exact samples PROVISIONAL; unknown never fabricated. No estimated token equality from quota percentage.",
+  "control_plane": "No new Controller, compiler, queue, progress engine or acceptance owner."
+}

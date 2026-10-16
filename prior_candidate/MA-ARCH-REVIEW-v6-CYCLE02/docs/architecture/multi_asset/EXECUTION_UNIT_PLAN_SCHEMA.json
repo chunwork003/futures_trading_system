@@ -1,0 +1,2135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "architecture.execution_unit_plan.candidate.v5",
+  "title": "Exact Raw34 ExecutionUnitPlanArtifact candidate.5",
+  "revision": "candidate.5",
+  "authority_effect": "NONE",
+  "type": "object",
+  "required": [
+    "unit_id",
+    "feature_id",
+    "unit_alias",
+    "plan_revision_id",
+    "plan_revision",
+    "predecessor_plan_revision_id",
+    "predecessor_plan_content_hash",
+    "predecessor_hash_domain",
+    "chapter_revision",
+    "source_revision",
+    "dependencies",
+    "allowed_changes",
+    "protected_contracts",
+    "input_output",
+    "database_migration_boundary",
+    "interface_contract",
+    "test_cases",
+    "negative_cases",
+    "expected_evidence",
+    "acceptance_gate",
+    "risk_level",
+    "model_capability_requirement",
+    "estimated_cost",
+    "STOP_conditions",
+    "cohesive_work_group",
+    "goal",
+    "authority_effect",
+    "implementation_status",
+    "plan_schema",
+    "compiler_adapter",
+    "requirement_ids",
+    "requirement_revision_bindings",
+    "readiness_axes",
+    "verification_contract"
+  ],
+  "properties": {
+    "unit_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "feature_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "unit_alias": {
+      "type": "string"
+    },
+    "plan_revision_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "plan_revision": {
+      "const": "candidate.5"
+    },
+    "predecessor_plan_revision_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "predecessor_plan_content_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "predecessor_hash_domain": {
+      "type": "string"
+    },
+    "chapter_revision": {
+      "$ref": "#/$defs/Chapter"
+    },
+    "source_revision": {
+      "$ref": "#/$defs/Source"
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Dependency"
+      },
+      "minItems": 0
+    },
+    "allowed_changes": {
+      "type": "object",
+      "required": [
+        "proposed_exact_paths",
+        "status",
+        "compiler_requirement"
+      ],
+      "properties": {
+        "proposed_exact_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "status": {
+          "const": "PLANNING_ALLOWLIST_NOT_EXECUTION_GRANT"
+        },
+        "compiler_requirement": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "protected_contracts": {
+      "type": "object",
+      "required": [
+        "source_manifest",
+        "preserve",
+        "deny",
+        "resolution_mode",
+        "required_source_ids_or_paths",
+        "exact_blob_refs",
+        "exact_blob_resolution_status",
+        "on_missing"
+      ],
+      "properties": {
+        "source_manifest": {
+          "type": "string"
+        },
+        "preserve": {
+          "type": "string"
+        },
+        "deny": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "resolution_mode": {
+          "type": "string"
+        },
+        "required_source_ids_or_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "exact_blob_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ProtectedBlob"
+          },
+          "minItems": 8
+        },
+        "exact_blob_resolution_status": {
+          "type": "string"
+        },
+        "on_missing": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "input_output": {
+      "type": "object",
+      "required": [
+        "input_model",
+        "output_model",
+        "input_contract_catalog",
+        "preconditions",
+        "postconditions",
+        "schema_refs",
+        "secondary_io",
+        "typed_wire_fixture_refs"
+      ],
+      "properties": {
+        "input_model": {
+          "$ref": "#/$defs/ModelName"
+        },
+        "output_model": {
+          "$ref": "#/$defs/ModelName"
+        },
+        "input_contract_catalog": {
+          "type": "string"
+        },
+        "preconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2
+        },
+        "postconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2
+        },
+        "schema_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SchemaBinding"
+          },
+          "minItems": 1
+        },
+        "secondary_io": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SecondaryIO"
+          },
+          "minItems": 0
+        },
+        "typed_wire_fixture_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TypedWireFixtureRef"
+          },
+          "minItems": 0
+        },
+        "output_variants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string"
+              },
+              "output_model": {
+                "$ref": "#/$defs/ModelName"
+              },
+              "condition": {
+                "type": "string"
+              },
+              "required_context_inputs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 0
+              }
+            },
+            "required": [
+              "kind",
+              "output_model",
+              "condition",
+              "required_context_inputs"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "database_migration_boundary": {
+      "type": "string"
+    },
+    "interface_contract": {
+      "type": "object",
+      "required": [
+        "model_catalog",
+        "api_operations",
+        "event_catalog",
+        "owner",
+        "design_companions",
+        "companion_raw_bytes_sha256",
+        "companion_bindings",
+        "binding_status"
+      ],
+      "properties": {
+        "model_catalog": {
+          "type": "string"
+        },
+        "api_operations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "event_catalog": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "design_companions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "companion_raw_bytes_sha256": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "companion_bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "raw_bytes_sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "raw_bytes_sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "hash_domain": {
+                "const": "raw-bytes-sha256-v1"
+              },
+              "revision": {
+                "type": "string"
+              },
+              "binding_status": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "binding_status": {
+          "type": "string"
+        },
+        "operation_contract_bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "catalog",
+              "operation_id",
+              "request_fields",
+              "response_model",
+              "error_model",
+              "schema_revision",
+              "producer_unit_alias",
+              "consumer_mode",
+              "result_output_models",
+              "oracle_case_ids"
+            ],
+            "properties": {
+              "catalog": {
+                "const": "API_CATALOG.json"
+              },
+              "operation_id": {
+                "type": "string"
+              },
+              "request_fields": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "required"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "response_model": {
+                "type": "string"
+              },
+              "error_model": {
+                "const": "ErrorEnvelope"
+              },
+              "schema_revision": {
+                "const": "candidate.5"
+              },
+              "producer_unit_alias": {
+                "type": "string"
+              },
+              "consumer_mode": {
+                "enum": [
+                  "DESIGN_CHECK_SOURCE",
+                  "IMPLEMENT_OWNER_USECASE",
+                  "IMPLEMENT_OWNER_USECASE_OR_EXACT_SCOPED_REUSE_ADAPTER",
+                  "IMPLEMENTATION_INTEGRATION",
+                  "IMPLEMENT_DOMAIN_MODEL"
+                ]
+              },
+              "result_output_models": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/ModelName"
+                },
+                "minItems": 0
+              },
+              "oracle_case_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 0
+              },
+              "producer_modes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 0
+              },
+              "body_catalog": {
+                "type": "string"
+              },
+              "source_refs": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/ContractRef"
+                },
+                "minItems": 0
+              }
+            },
+            "additionalProperties": false
+          },
+          "minItems": 0
+        },
+        "companion_binding_status": {
+          "type": "string"
+        },
+        "unit_fixture_catalog": {
+          "const": "UNIT_FIXTURES.candidate.v5.json"
+        },
+        "fixture_catalog_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "body_catalog": {
+          "const": "BODY_TYPE_CATALOG.candidate.v5.json"
+        },
+        "body_contract": {
+          "const": "BODY_CAPTURE_READBACK_CONTRACTS.md"
+        },
+        "version": {
+          "const": "candidate.5"
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "operation_contracts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OperationSourceContract"
+          },
+          "minItems": 0
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ContractRef"
+          },
+          "minItems": 0
+        },
+        "producer_modes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "secondary_io": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SecondaryIO"
+          },
+          "minItems": 0
+        },
+        "source_io_requirements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "unit_alias": {
+                "type": "string"
+              },
+              "operations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 0
+              },
+              "add_inputs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 0
+              },
+              "add_outputs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 0
+              },
+              "required_test_oracles": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "unit_alias",
+              "operations",
+              "add_inputs",
+              "add_outputs",
+              "required_test_oracles"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "test_cases": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Test"
+      },
+      "minItems": 2
+    },
+    "negative_cases": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Test"
+      },
+      "minItems": 1
+    },
+    "expected_evidence": {
+      "$ref": "#/$defs/EvidenceRequirement"
+    },
+    "acceptance_gate": {
+      "type": "string"
+    },
+    "risk_level": {
+      "type": "string"
+    },
+    "model_capability_requirement": {
+      "type": "object",
+      "required": [
+        "six_factors",
+        "qualified_cohort",
+        "route",
+        "same_execution_multi_executor",
+        "policy_revision",
+        "fallback_policy"
+      ],
+      "properties": {
+        "six_factors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 6
+        },
+        "qualified_cohort": {
+          "type": "string"
+        },
+        "route": {
+          "type": "string"
+        },
+        "same_execution_multi_executor": {
+          "const": "DENIED"
+        },
+        "policy_revision": {
+          "type": "string"
+        },
+        "fallback_policy": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "estimated_cost": {
+      "type": "object",
+      "required": [
+        "p50_tokens",
+        "p75_tokens",
+        "p90_tokens",
+        "engineering_minutes",
+        "billable_amount",
+        "producer_ref",
+        "confidence",
+        "missing_reason"
+      ],
+      "properties": {
+        "p50_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "p75_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "p90_tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "engineering_minutes": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "billable_amount": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "producer_ref": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "confidence": {
+          "type": "string"
+        },
+        "missing_reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "STOP_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "cohesive_work_group": {
+      "type": "string"
+    },
+    "goal": {
+      "type": "string"
+    },
+    "authority_effect": {
+      "const": "NONE"
+    },
+    "implementation_status": {
+      "type": "string"
+    },
+    "plan_schema": {
+      "type": "string"
+    },
+    "compiler_adapter": {
+      "type": "string"
+    },
+    "requirement_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "minItems": 1
+    },
+    "requirement_revision_bindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "requirement_id",
+          "registry_path",
+          "revision",
+          "registry_hash",
+          "source_revision_binding",
+          "scope"
+        ],
+        "properties": {
+          "requirement_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "registry_path": {
+            "type": "string"
+          },
+          "revision": {
+            "const": "candidate.5"
+          },
+          "registry_hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "source_revision_binding": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "requirement_revision_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "binding_semantics": {
+            "enum": [
+              "IMPLEMENTS_SLICE_NOT_WHOLE_ACCEPTANCE",
+              "QUALIFIES_CHAPTER_CONTRACT_NOT_WHOLE_ACCEPTANCE"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "readiness_axes": {
+      "type": "object",
+      "required": [
+        "architecture_contract",
+        "dependency_qualification",
+        "compiler_contract",
+        "implementation_authorization",
+        "author_source_validation",
+        "independent_review",
+        "formal_acceptance",
+        "runtime_qualification",
+        "release_qualification"
+      ],
+      "properties": {
+        "architecture_contract": {
+          "type": "string"
+        },
+        "dependency_qualification": {
+          "type": "string"
+        },
+        "compiler_contract": {
+          "type": "string"
+        },
+        "implementation_authorization": {
+          "type": "string"
+        },
+        "author_source_validation": {
+          "type": "string"
+        },
+        "independent_review": {
+          "type": "string"
+        },
+        "formal_acceptance": {
+          "type": "string"
+        },
+        "runtime_qualification": {
+          "type": "string"
+        },
+        "release_qualification": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "verification_contract": {
+      "type": "object",
+      "required": [
+        "design_fixture_catalog",
+        "required_case_ids",
+        "implementation_test_file_proposal",
+        "test_function_id_requirement",
+        "targeted_test_command_proposal",
+        "targeted_command_status",
+        "regression_requirement",
+        "negative_and_failure_requirement",
+        "runtime_gate_boundary",
+        "review_requirement",
+        "executor_continuity"
+      ],
+      "properties": {
+        "design_fixture_catalog": {
+          "type": "string"
+        },
+        "required_case_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3
+        },
+        "implementation_test_file_proposal": {
+          "type": "string"
+        },
+        "test_function_id_requirement": {
+          "type": "string"
+        },
+        "targeted_test_command_proposal": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "targeted_command_status": {
+          "type": "string"
+        },
+        "regression_requirement": {
+          "type": "string"
+        },
+        "negative_and_failure_requirement": {
+          "type": "string"
+        },
+        "runtime_gate_boundary": {
+          "type": "string"
+        },
+        "review_requirement": {
+          "type": "string"
+        },
+        "executor_continuity": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "Chapter": {
+      "type": "object",
+      "required": [
+        "chapter_id",
+        "revision",
+        "raw_bytes_sha256",
+        "binding_status"
+      ],
+      "properties": {
+        "chapter_id": {
+          "type": "string"
+        },
+        "revision": {
+          "enum": [
+            "candidate.3",
+            "candidate.4",
+            "candidate.5"
+          ]
+        },
+        "raw_bytes_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "binding_status": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Source": {
+      "type": "object",
+      "required": [
+        "canonical_master",
+        "candidate_source",
+        "observed_authoritative_branch",
+        "target_authoritative_branch",
+        "main_master_migration_status",
+        "source_manifest_path",
+        "source_manifest_hash"
+      ],
+      "properties": {
+        "canonical_master": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "candidate_source": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "observed_authoritative_branch": {
+          "const": "master"
+        },
+        "target_authoritative_branch": {
+          "const": "main"
+        },
+        "main_master_migration_status": {
+          "const": "NOT_EXECUTED_NOT_VERIFIED"
+        },
+        "source_manifest_path": {
+          "const": "SOURCE_MANIFEST.json"
+        },
+        "source_manifest_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "review_subject": {
+          "const": "MA-ARCH-REVIEW-v5-CYCLE01"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Dependency": {
+      "type": "object",
+      "required": [
+        "unit_id",
+        "unit_alias",
+        "required_revision",
+        "required_plan_revision_id",
+        "required_feature_id",
+        "gate",
+        "result_ref",
+        "satisfaction_state",
+        "reuse_proof_policy"
+      ],
+      "properties": {
+        "unit_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "unit_alias": {
+          "type": "string"
+        },
+        "required_revision": {
+          "const": "candidate.5"
+        },
+        "required_plan_revision_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "required_feature_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "gate": {
+          "type": "string"
+        },
+        "result_ref": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "satisfaction_state": {
+          "type": "string"
+        },
+        "reuse_proof_policy": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ProtectedBlob": {
+      "type": "object",
+      "required": [
+        "source_id",
+        "path",
+        "git_commit",
+        "git_blob_sha1",
+        "raw_bytes_sha256",
+        "source_authority_scope",
+        "resolution_status"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "path": {
+          "type": "string"
+        },
+        "git_commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "git_blob_sha1": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "raw_bytes_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_authority_scope": {
+          "type": "string"
+        },
+        "resolution_status": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SchemaBinding": {
+      "type": "object",
+      "required": [
+        "model_name",
+        "catalog",
+        "revision",
+        "raw_bytes_sha256",
+        "binding_status"
+      ],
+      "properties": {
+        "model_name": {
+          "type": "string"
+        },
+        "catalog": {
+          "enum": [
+            "MODEL_CATALOG.json",
+            "TYPE_VARIANTS.json"
+          ]
+        },
+        "revision": {
+          "const": "candidate.5"
+        },
+        "raw_bytes_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "binding_status": {
+          "type": "string"
+        },
+        "model_semantic_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "io_roles": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "PRIMARY_INPUT",
+              "PRIMARY_OUTPUT",
+              "SECONDARY_INPUT",
+              "SECONDARY_OUTPUT",
+              "OUTPUT_VARIANT"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "FixtureBinding": {
+      "type": "object",
+      "required": [
+        "fixture_id",
+        "fixture_revision_id",
+        "path",
+        "selector",
+        "raw_bytes_sha256",
+        "hash_domain",
+        "binding_status"
+      ],
+      "properties": {
+        "fixture_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "fixture_revision_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "path": {
+          "enum": [
+            "UNIT_FIXTURES.candidate.v4.json",
+            "UNIT_FIXTURES.candidate.v5.json",
+            "FINAL_OPERATION_ORACLES.candidate.v5.json",
+            "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json"
+          ]
+        },
+        "selector": {
+          "type": "string",
+          "pattern": "^#/(cases|scenarios)/[0-9]+$"
+        },
+        "raw_bytes_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "hash_domain": {
+          "const": "RAW_FILE_BYTES_SHA256_PLUS_JSON_POINTER"
+        },
+        "binding_status": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Test": {
+      "type": "object",
+      "required": [
+        "test_id",
+        "fixture_ref",
+        "steps",
+        "expected_assertions",
+        "input_model",
+        "output_model",
+        "evidence_level",
+        "runtime_qualification"
+      ],
+      "properties": {
+        "test_id": {
+          "type": "string"
+        },
+        "fixture_ref": {
+          "$ref": "#/$defs/FixtureBinding"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3
+        },
+        "expected_assertions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "input_model": {
+          "$ref": "#/$defs/ModelName"
+        },
+        "output_model": {
+          "$ref": "#/$defs/ModelName"
+        },
+        "evidence_level": {
+          "const": "SPECIFIED_NOT_EXECUTED"
+        },
+        "runtime_qualification": {
+          "const": "NOT_RUN"
+        }
+      },
+      "additionalProperties": false
+    },
+    "EvidenceRequirement": {
+      "type": "object",
+      "required": [
+        "requirement_model",
+        "revision",
+        "evidence_requirement_id",
+        "unit_plan_revision_id",
+        "required_categories",
+        "required_test_case_ids",
+        "accepted_result_model",
+        "actual_evidence_model",
+        "producer_and_cost_rule",
+        "review_owner",
+        "immutable_scope_rule"
+      ],
+      "properties": {
+        "requirement_model": {
+          "const": "RequiredEvidenceContract"
+        },
+        "revision": {
+          "const": "candidate.5"
+        },
+        "evidence_requirement_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "unit_plan_revision_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "required_categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 7
+        },
+        "required_test_case_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3
+        },
+        "accepted_result_model": {
+          "const": "UnitExecutionResult"
+        },
+        "actual_evidence_model": {
+          "const": "ExpectedEvidence"
+        },
+        "producer_and_cost_rule": {
+          "type": "string"
+        },
+        "review_owner": {
+          "const": "EXISTING_INDEPENDENT_REVIEW_AND_WORK_INTAKE"
+        },
+        "immutable_scope_rule": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SecondaryIO": {
+      "type": "object",
+      "required": [
+        "input_model",
+        "output_model",
+        "purpose",
+        "schema_catalog",
+        "schema_revision",
+        "gate"
+      ],
+      "properties": {
+        "input_model": {
+          "$ref": "#/$defs/ModelName"
+        },
+        "output_model": {
+          "$ref": "#/$defs/ModelName"
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "schema_catalog": {
+          "enum": [
+            "MODEL_CATALOG.json",
+            "TYPE_VARIANTS.json",
+            "MODEL_CATALOG.json + TYPE_VARIANTS.json",
+            "MODEL_CATALOG.json + TYPE_VARIANTS.json + API_CATALOG.json"
+          ]
+        },
+        "schema_revision": {
+          "const": "candidate.5"
+        },
+        "gate": {
+          "type": "string"
+        },
+        "operation_id": {
+          "type": "string",
+          "enum": [
+            "listInstruments",
+            "getInstrumentRevision",
+            "getMarketRule",
+            "listDatasets",
+            "sealDatasetSnapshot",
+            "getDatasetSnapshot",
+            "queryObservations",
+            "captureInbox",
+            "dispositionInbox",
+            "listFeatures",
+            "saveFeatureDraft",
+            "saveGraphDraft",
+            "generateCode",
+            "sealResearchSnapshot",
+            "createResearchRun",
+            "getResearchRun",
+            "cancelResearchRun",
+            "saveComparison",
+            "listComparisons",
+            "approveLibraryRelease",
+            "listLibraryReleases",
+            "requestDeploymentAdmission",
+            "startSimulation",
+            "listPortfolioResearch",
+            "savePortfolioResearch",
+            "queryMacroSnapshots",
+            "createScenarioRun",
+            "getAccountCapital",
+            "getPortfolios",
+            "listGroups",
+            "saveGroup",
+            "reviseBudget",
+            "queryPositions",
+            "queryCashFlows",
+            "queryAttribution",
+            "previewRisk",
+            "getRiskDecision",
+            "changeRiskControl",
+            "createOrderIntent",
+            "getOrder",
+            "cancelOrder",
+            "amendOrder",
+            "listReconciliation",
+            "getRecoveryStatus",
+            "getBrokerCapabilities",
+            "listArtifacts",
+            "getArtifactContent",
+            "getRegistry",
+            "proposeRegistry",
+            "getAlias",
+            "getEngineeringStatus",
+            "proposePlanning",
+            "getConfig",
+            "saveConfigCandidate",
+            "getHealth",
+            "getBackupCatalog",
+            "getAudit",
+            "getOperation",
+            "getReviewSubject",
+            "getDashboard",
+            "getSimulation",
+            "pauseSimulation",
+            "resumeSimulation",
+            "replaySimulation",
+            "getArtifactBytes",
+            "previewBudgetAllocation",
+            "confirmBudgetAllocation",
+            "queryMarketBars",
+            "listGraphDrafts",
+            "getGraphDraft",
+            "listResearchRuns",
+            "listOrders",
+            "analyzeInboxSource",
+            "getSourceAnalysis",
+            "createArchivePlan",
+            "executeArchivePlan",
+            "getArchiveOperation",
+            "applyBuilderEdit",
+            "startAnalystRun",
+            "getAnalystRun",
+            "cancelAnalystRun",
+            "applyAnalystSuggestion",
+            "approveLibraryException",
+            "createLabSimulation",
+            "getLabSimulation",
+            "listLabSimulationObservations",
+            "getLabSimulationCounters",
+            "recoverLabSimulation",
+            "createResearchBranch",
+            "cloneResearchBranch",
+            "listResearchBranches",
+            "getResearchBranch",
+            "archiveResearchBranch",
+            "getResearchBranchHistory",
+            "saveManualCodeRevision"
+          ]
+        },
+        "producer_unit_alias": {
+          "type": "string"
+        },
+        "cardinality": {
+          "enum": [
+            "ONE",
+            "PAGED_MANY",
+            "BINARY_REFERENCE",
+            "BINARY_STREAM"
+          ]
+        },
+        "journey_id": {
+          "enum": [
+            "J1",
+            "J2",
+            "J3",
+            "J4",
+            "J5",
+            "J6"
+          ]
+        },
+        "producer": {
+          "type": "string"
+        },
+        "consumer": {
+          "type": "string"
+        },
+        "qualification_mode": {
+          "enum": [
+            "DESIGN_CHECK_SOURCE",
+            "IMPLEMENTATION_INTEGRATION",
+            "SOURCE_INTERFACE_TYPE_COMPATIBILITY",
+            "IMPLEMENT_OWNER_USECASE"
+          ]
+        },
+        "body_catalog": {
+          "type": "string"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ContractRef"
+          },
+          "minItems": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "TypedWireFixtureRef": {
+      "type": "object",
+      "required": [
+        "path",
+        "selector",
+        "case_id",
+        "raw_bytes_sha256",
+        "fixture_kind",
+        "evidence_status"
+      ],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "selector": {
+          "type": "string"
+        },
+        "case_id": {
+          "type": "string"
+        },
+        "raw_bytes_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "fixture_kind": {
+          "type": "string"
+        },
+        "evidence_status": {
+          "const": "SPECIFIED_NOT_EXECUTED"
+        },
+        "binding_status": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ModelName": {
+      "type": "string",
+      "enum": [
+        "AISuggestion",
+        "AccountAllocationSet",
+        "AccountBudgetPolicyDraft",
+        "AccountBudgetPolicyRevision",
+        "AccountCut",
+        "AccountExecutorLeaseWitness",
+        "ActorAuditPayload",
+        "AliasResolutionSelector",
+        "AllocationWeight",
+        "AnalystApplyRequest",
+        "AnalystBudget",
+        "AnalystRequest",
+        "AnalystRun",
+        "AnalystSelection",
+        "AnalystTrialResult",
+        "AnalystUsage",
+        "ApiRequest_amendOrder",
+        "ApiRequest_analyzeInboxSource",
+        "ApiRequest_applyAnalystSuggestion",
+        "ApiRequest_applyBuilderEdit",
+        "ApiRequest_approveLibraryException",
+        "ApiRequest_approveLibraryRelease",
+        "ApiRequest_archiveResearchBranch",
+        "ApiRequest_cancelAnalystRun",
+        "ApiRequest_cancelOrder",
+        "ApiRequest_cancelResearchRun",
+        "ApiRequest_captureInbox",
+        "ApiRequest_changeRiskControl",
+        "ApiRequest_cloneResearchBranch",
+        "ApiRequest_confirmBudgetAllocation",
+        "ApiRequest_createArchivePlan",
+        "ApiRequest_createLabSimulation",
+        "ApiRequest_createOrderIntent",
+        "ApiRequest_createResearchBranch",
+        "ApiRequest_createResearchRun",
+        "ApiRequest_createScenarioRun",
+        "ApiRequest_dispositionInbox",
+        "ApiRequest_executeArchivePlan",
+        "ApiRequest_generateCode",
+        "ApiRequest_getAccountCapital",
+        "ApiRequest_getAlias",
+        "ApiRequest_getAnalystRun",
+        "ApiRequest_getArchiveOperation",
+        "ApiRequest_getArtifactBytes",
+        "ApiRequest_getArtifactContent",
+        "ApiRequest_getAudit",
+        "ApiRequest_getBackupCatalog",
+        "ApiRequest_getBrokerCapabilities",
+        "ApiRequest_getConfig",
+        "ApiRequest_getDashboard",
+        "ApiRequest_getDatasetSnapshot",
+        "ApiRequest_getEngineeringStatus",
+        "ApiRequest_getGraphDraft",
+        "ApiRequest_getHealth",
+        "ApiRequest_getInstrumentRevision",
+        "ApiRequest_getLabSimulation",
+        "ApiRequest_getLabSimulationCounters",
+        "ApiRequest_getMarketRule",
+        "ApiRequest_getOperation",
+        "ApiRequest_getOrder",
+        "ApiRequest_getPortfolios",
+        "ApiRequest_getRecoveryStatus",
+        "ApiRequest_getRegistry",
+        "ApiRequest_getResearchBranch",
+        "ApiRequest_getResearchBranchHistory",
+        "ApiRequest_getResearchRun",
+        "ApiRequest_getReviewSubject",
+        "ApiRequest_getRiskDecision",
+        "ApiRequest_getSimulation",
+        "ApiRequest_getSourceAnalysis",
+        "ApiRequest_listArtifacts",
+        "ApiRequest_listComparisons",
+        "ApiRequest_listDatasets",
+        "ApiRequest_listFeatures",
+        "ApiRequest_listGraphDrafts",
+        "ApiRequest_listGroups",
+        "ApiRequest_listInstruments",
+        "ApiRequest_listLabSimulationObservations",
+        "ApiRequest_listLibraryReleases",
+        "ApiRequest_listOrders",
+        "ApiRequest_listPortfolioResearch",
+        "ApiRequest_listReconciliation",
+        "ApiRequest_listResearchBranches",
+        "ApiRequest_listResearchRuns",
+        "ApiRequest_pauseSimulation",
+        "ApiRequest_previewBudgetAllocation",
+        "ApiRequest_previewRisk",
+        "ApiRequest_proposePlanning",
+        "ApiRequest_proposeRegistry",
+        "ApiRequest_queryAttribution",
+        "ApiRequest_queryCashFlows",
+        "ApiRequest_queryMacroSnapshots",
+        "ApiRequest_queryMarketBars",
+        "ApiRequest_queryObservations",
+        "ApiRequest_queryPositions",
+        "ApiRequest_recoverLabSimulation",
+        "ApiRequest_replaySimulation",
+        "ApiRequest_requestDeploymentAdmission",
+        "ApiRequest_resumeSimulation",
+        "ApiRequest_reviseBudget",
+        "ApiRequest_saveComparison",
+        "ApiRequest_saveConfigCandidate",
+        "ApiRequest_saveFeatureDraft",
+        "ApiRequest_saveGraphDraft",
+        "ApiRequest_saveGroup",
+        "ApiRequest_saveManualCodeRevision",
+        "ApiRequest_savePortfolioResearch",
+        "ApiRequest_sealDatasetSnapshot",
+        "ApiRequest_sealResearchSnapshot",
+        "ApiRequest_startAnalystRun",
+        "ApiRequest_startSimulation",
+        "ArchiveExecuteRequest",
+        "ArchiveExecuteRequestV5",
+        "ArchiveOperationReceipt",
+        "ArchivePlan",
+        "ArchivePlanRequest",
+        "ArtifactAvailability",
+        "ArtifactContentReadV5",
+        "ArtifactHashBinding",
+        "ArtifactHashBindings",
+        "ArtifactManifest",
+        "ArtifactManifestEntry",
+        "ArtifactRevision",
+        "AssetTermsByKind",
+        "AttributionAmount",
+        "AttributionRecord",
+        "BackupCoordinationReceipt",
+        "BackupCoverageEntry",
+        "BackupCoverageOrigin",
+        "BackupCut",
+        "BackupInventoryClosure",
+        "BackupSetManifest",
+        "BarQuery",
+        "BinaryContentMetadata",
+        "BodyClosureGapV5",
+        "BodyConfirmationBindingV5",
+        "BodyPayloadV5",
+        "BodyProtectionAxisV5",
+        "BodyReadbackV5",
+        "BodyRefInputV5",
+        "BodySourceBindingV5",
+        "BondTerms",
+        "BranchArchiveRequest",
+        "BranchCloneRequest",
+        "BranchCreateRequest",
+        "BrokerObservation",
+        "BrokerOrderBinding",
+        "BudgetAllocationConfirm",
+        "BudgetAllocationConfirmV5",
+        "BudgetAllocationPreview",
+        "BudgetAllocationProposal",
+        "BudgetAllocationReceipt",
+        "BudgetCapitalObservation",
+        "BudgetRatio",
+        "BudgetRevision",
+        "BudgetRoundingPolicyRevision",
+        "BudgetRoundingTrace",
+        "BuilderEditCommand",
+        "BuilderNodeBody",
+        "BuilderPolicyRevision",
+        "CanonicalCodeKey",
+        "CanonicalCodeSegment",
+        "CanonicalMarketBarDto",
+        "CapabilityQualifier",
+        "CapabilityRevision",
+        "CapitalReservation",
+        "CaptureReceipt",
+        "CashFlowLeg",
+        "CashFlowSchedule",
+        "CashTerms",
+        "CodeAllocation",
+        "CodeAllocationDraftV5",
+        "CodeAllocationRetirement",
+        "CodeAllocationRetirementDraftV5",
+        "CodeAssignment",
+        "CodeAssignmentDraftV5",
+        "CodeCatalogRevision",
+        "CodePolicyRevision",
+        "CodeSegment",
+        "CodeSegmentRule",
+        "CodeValidity",
+        "CommandEnvelope",
+        "CommandPayloadByOperation",
+        "ComparisonPolicy",
+        "CompatibilityImpact",
+        "CompatibilityPolicy",
+        "CompilationContext",
+        "CompilationProposal",
+        "ConfigEntry",
+        "ConfigRevision",
+        "ConfigValues",
+        "ContentDescriptor",
+        "ContextAssemblyRequest",
+        "ContractRef",
+        "CorporateAction",
+        "CostActual",
+        "CostEstimate",
+        "CostRecord",
+        "Coverage",
+        "CrossChapterContract",
+        "CursorRequest",
+        "CurveSnapshot",
+        "DashboardProjection",
+        "DashboardWidget",
+        "DatasetRevision",
+        "DatasetSelection",
+        "DatasetSnapshot",
+        "DecisionInputCut",
+        "DecisionPolicyRevision",
+        "DependencyHealth",
+        "Deployment",
+        "DeploymentManifest",
+        "Difference",
+        "ETFTerms",
+        "EconomicEvent",
+        "EconomicOrigin",
+        "EconomicPayload",
+        "EffectiveInterval",
+        "EngineeringStatusProjection",
+        "EntitlementSnapshot",
+        "EnumPayload",
+        "EquityTerms",
+        "ErrorEnvelope",
+        "EventEnvelope",
+        "EventPayloadByType",
+        "ExecutableUnitCompanion",
+        "ExecutionUnit",
+        "ExecutionUnitCompilationRequest",
+        "ExecutionUnitPlan",
+        "ExecutionUnitPlanArtifact",
+        "ExecutorProfile",
+        "ExpectedEvidence",
+        "ExpectedProtectedSource",
+        "ExternalCaptureJournalCut",
+        "ExternalCatalogRecord",
+        "ExternalFillProvenance",
+        "FXTerms",
+        "FeatureDefinitionDraft",
+        "FeatureDefinitionRevision",
+        "FeatureNodeBody",
+        "FeaturePort",
+        "FeatureSourceQualification",
+        "FeeTaxComponent",
+        "FieldViolation",
+        "FillProvenanceByBindingKind",
+        "FillV2",
+        "FinalSubmissionWitness",
+        "FinancialAccount",
+        "FundTerms",
+        "FuturesTerms",
+        "GeneratedCodeRevision",
+        "GitRebuildPlan",
+        "GraphDraftReadbackV5",
+        "GraphDraftSelectionV5",
+        "GraphDraftView",
+        "GraphEdge",
+        "GraphNode",
+        "GroupStrategyAllocation",
+        "InstrumentRevision",
+        "IntentPlanRevision",
+        "InventoryCoverageIssue",
+        "InventoryLotRevision",
+        "InventoryLotSelection",
+        "JourneyFixtureOutcome",
+        "JourneyFixtureRequest",
+        "LedgerEntry",
+        "LedgerPolicyRevision",
+        "LedgerPostingRule",
+        "LegacyAlias",
+        "LegacyAliasDraftV5",
+        "LibraryExceptionApproval",
+        "LibraryExceptionRequest",
+        "LibraryRelease",
+        "ListingRevision",
+        "LotPolicy",
+        "MacroSnapshot",
+        "ManualCapitalReferenceRevision",
+        "MarketRuleRevision",
+        "MigrationPlanCheckReceipt",
+        "MigrationRevision",
+        "ModelCapabilityRequirement",
+        "Money",
+        "OperationReadbackV5",
+        "OperationReceipt",
+        "OperationsRunbookReceipt",
+        "OperationsRunbookRequest",
+        "OptionTerms",
+        "OrderAmendment",
+        "OrderAttempt",
+        "OrderIntentV2",
+        "OrderMechanics",
+        "OriginBinding",
+        "OwnerInventorySnapshot",
+        "ParameterField",
+        "ParameterGrid",
+        "ParameterValue",
+        "PinReceipt",
+        "PlanAllowedChanges",
+        "PlanArtifactBinding",
+        "PlanChapterBinding",
+        "PlanDependency",
+        "PlanDependency_result_ref",
+        "PlanFixtureBinding",
+        "PlanIO",
+        "PlanInterfaceContract",
+        "PlanInterfaceContract_companion_bindingsItem",
+        "PlanInterfaceContract_companion_raw_bytes_sha256",
+        "PlanInterfaceContract_operation_contract_bindings",
+        "PlanInterfaceContract_operation_contract_bindingsValue",
+        "PlanInterfaceContract_operation_contract_bindingsValue_request_fields",
+        "PlanInterfaceContract_operation_contract_bindingsValue_request_fieldsValue",
+        "PlanModelCapabilityRequirement",
+        "PlanProtectedBlob",
+        "PlanProtectedContracts",
+        "PlanReadinessAxes",
+        "PlanRequirementRevisionBinding",
+        "PlanSchemaBinding",
+        "PlanSecondaryIO",
+        "PlanSourceBinding",
+        "PlanTestCase",
+        "PlanTypedWireFixtureRef",
+        "PlanVerificationContract",
+        "PlanningAssumptions",
+        "PlanningCandidate",
+        "PortBinding",
+        "PortfolioResearchDefinition",
+        "PortfolioResearchDraft",
+        "PositionsProjection",
+        "PostgresBackupProfile",
+        "PricingObservation",
+        "PrivateInventoryEntry",
+        "ProductTerms",
+        "ProjectionDataByOperation",
+        "ProjectionReceipt",
+        "ProtectionReceipt",
+        "ProviderConfiguration",
+        "PublicationIntent",
+        "QualificationWarning",
+        "QuantityLeg",
+        "RawObject",
+        "RawPlanLosslessBinding",
+        "ReadEnvelope",
+        "ReadModelEvent",
+        "ReconciliationCase",
+        "RecoveryStatus",
+        "RegistryAcceptedCoreSourceRowV5",
+        "RegistryAcceptedCoreSourceRowV5ReconciliationSourceBinding",
+        "RegistryAcceptedCoreSourceRowV5Source",
+        "RegistryBodyPreparationV5",
+        "RegistryBodyQueryV5",
+        "RegistryBodyReadPageV5",
+        "RegistryChange",
+        "RegistryChangeSet",
+        "RegistryChangeV5",
+        "RegistryDeliverableSourceRowV5",
+        "RegistryDeliverableSourceRowV5AllocationsItem",
+        "RegistryDeliverableSourceRowV5Gates",
+        "RegistryDeliverableSourceRowV5GatesImplementation",
+        "RegistryDeliverableSourceRowV5GatesIndependentAcceptance",
+        "RegistryDeliverableSourceRowV5GatesIntegration",
+        "RegistryDeliverableSourceRowV5GatesTargetedTests",
+        "RegistryDesignDeliverableSourceRowV5",
+        "RegistryDraftBindingV5",
+        "RegistryDraftBodyPayloadV5",
+        "RegistryDraftBodySubmissionV5",
+        "RegistryEntity",
+        "RegistryEntityDraftV5",
+        "RegistryEntityRevisionDraftV5",
+        "RegistryEntityRevisionV5",
+        "RegistryFeatureSourceRowV5",
+        "RegistryGraphHead",
+        "RegistryHistoricalSourceRowV5",
+        "RegistryHistoricalSourceRowV5SOURCE",
+        "RegistryImportRequest",
+        "RegistryPhaseSourceRowV5",
+        "RegistryPreparedIdentityV5",
+        "RegistryProposalRequestV5",
+        "RegistryProposalResultV5",
+        "RegistryRelationValidityDraftV5",
+        "RegistryRequirementSourceRowV5",
+        "RegistryRequirementSourceRowV5Code",
+        "RegistryRequirementSourceRowV5CodeSegmentsItem",
+        "RegistryRequirementSourceRowV5SOURCE",
+        "RegistryRequirementSourceRowV5SOURCEPREDECESSOR",
+        "RegistrySemanticPayloadV5",
+        "RegistrySnapshot",
+        "RegistrySnapshotInputV5",
+        "RegistrySourceBinding",
+        "RelationQualifier",
+        "RelationRevision",
+        "RelationRevisionDraftV5",
+        "RelationSourceRecord",
+        "RelationValidity",
+        "ReleaseQualificationSlice",
+        "ReleaseSlice",
+        "RequiredEvidenceContract",
+        "ResearchBranch",
+        "ResearchBranchHistoryEntry",
+        "ResearchComparison",
+        "ResearchMethodConfig",
+        "ResearchMetric",
+        "ResearchProviderProfile",
+        "ResearchRun",
+        "ResearchSimulationAccount",
+        "ResearchSimulationRequest",
+        "ResearchSnapshot",
+        "ResearchSnapshotDraft",
+        "ResearchWindow",
+        "ReservationTransitionReceipt",
+        "ResourceAvailabilityByGroup",
+        "ResourceScope",
+        "RestoreReport",
+        "RestoreRequest",
+        "RestoreTarget",
+        "ReviewExclusion",
+        "ReviewSubject",
+        "ReviewSubjectReadbackV5",
+        "RiskAction",
+        "RiskActionPayload",
+        "RiskDecision",
+        "RiskGuard",
+        "RiskProposal",
+        "RiskValidity",
+        "RuleDefinitionRevision",
+        "RuleNodeBody",
+        "SQLBackupObject",
+        "SafetyDefinitionRevision",
+        "SafetyNodeBody",
+        "ScenarioDefinition",
+        "ScenarioRunConfig",
+        "ScenarioShock",
+        "Sensitivity",
+        "ServiceHealthProjection",
+        "SettlementMoneyLeg",
+        "SettlementObligation",
+        "SimulationConfig",
+        "SimulationObservation",
+        "SimulationQualificationCounters",
+        "SimulationRecoveryRequest",
+        "SimulationSession",
+        "SourceAnalysisFinding",
+        "SourceAnalysisReport",
+        "SourceAnalysisRequest",
+        "SourceAstSymbol",
+        "SourceAuthorityState",
+        "SourceCellRef",
+        "SourceDuplicateCandidate",
+        "SourceHashEntry",
+        "SourceInboxItem",
+        "SourceRowSelectorV5",
+        "SourceSnapshotBinding",
+        "StrategyBudgetAllocation",
+        "StrategyGraphDraft",
+        "StrategyGraphRevision",
+        "StrategyGroup",
+        "StrategyResearchRoot",
+        "StreamFrontier",
+        "StreamSubscriptionRequest",
+        "StreamSubscriptionResult",
+        "SubmissionTransitionReceipt",
+        "SubscriptionCursor",
+        "SubstrategyDefinitionRevision",
+        "SubstrategyNodeBody",
+        "TickBand",
+        "TrustedContextReceipt",
+        "TypedArtifactBodyRequestV5",
+        "TypedBodyBindingV5",
+        "UnitCompileOutcome",
+        "UnitCompileOutcomeBody",
+        "UnitDependency",
+        "UnitDependencyQualification",
+        "UnitExecutionResult",
+        "UnitIO",
+        "UnitResultIntakeReceipt",
+        "UnitResultIntakeRequest",
+        "UnitResumeReceipt",
+        "UnitResumeRequest",
+        "UnitTest",
+        "UnverifiedResearchDirection",
+        "ValuationCut",
+        "ValuationResult",
+        "VirtualPosition"
+      ]
+    },
+    "ContractRef": {
+      "type": "object",
+      "properties": {
+        "entity_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "revision_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "hash_domain": {
+          "type": "string"
+        },
+        "source_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "entity_id",
+        "revision_id",
+        "owner",
+        "hash_domain",
+        "source_hash"
+      ],
+      "additionalProperties": false
+    },
+    "OperationSourceContract": {
+      "type": "object",
+      "properties": {
+        "api": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "api_operations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "input": {
+          "$ref": "#/$defs/ModelName"
+        },
+        "output": {
+          "$ref": "#/$defs/ModelName"
+        },
+        "producer": {
+          "type": "string"
+        },
+        "consumer": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "positive": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "negative": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "race": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 0
+        },
+        "auxiliary_input_models": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ModelName"
+          },
+          "minItems": 0
+        },
+        "auxiliary_output_models": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ModelName"
+          },
+          "minItems": 0
+        },
+        "response_item_model": {
+          "$ref": "#/$defs/ModelName"
+        },
+        "operation_key": {
+          "type": "string"
+        },
+        "oracle_artifact": {
+          "type": "string"
+        },
+        "qualification": {
+          "type": "string"
+        },
+        "surface": {
+          "type": "string"
+        },
+        "client_action_enum": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "input",
+        "output",
+        "producer",
+        "consumer",
+        "steps",
+        "positive",
+        "negative",
+        "race",
+        "operation_key",
+        "oracle_artifact",
+        "qualification"
+      ],
+      "additionalProperties": false
+    },
+    "InterfaceSecondarySourceIO": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "input_model": {
+              "$ref": "#/$defs/ModelName"
+            },
+            "output_model": {
+              "$ref": "#/$defs/ModelName"
+            },
+            "purpose": {
+              "type": "string"
+            },
+            "producer": {
+              "type": "string"
+            },
+            "consumer": {
+              "type": "string"
+            },
+            "schema_revision": {
+              "const": "candidate.5"
+            }
+          },
+          "required": [
+            "input_model",
+            "output_model",
+            "purpose",
+            "producer",
+            "consumer",
+            "schema_revision"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "unit_alias": {
+              "type": "string"
+            },
+            "operations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 0
+            },
+            "add_inputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 0
+            },
+            "add_outputs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 0
+            },
+            "required_test_oracles": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "unit_alias",
+            "operations",
+            "add_inputs",
+            "add_outputs",
+            "required_test_oracles"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "semantic_constraints": [
+    "All96 permanent unit_id/feature_id unchanged; successor plan_revision_id differs from exact immutable predecessor",
+    "Every dependency targets existing exact candidate.4 plan revision; no dependency cycle; actual qualified result or scoped reuse proof remains compile gate",
+    "Fixture selector resolves to same unit/plan/input/output and fixed source/schema bytes; primary/secondary IO cannot cast implicitly",
+    "RequiredEvidenceContract is only demand; ExpectedEvidence is actual result under UnitExecutionResult",
+    "All hashes resolve in final exact subject; companion dictionary projection equals typed companion_bindings list",
+    "Protected predecessor source proofs do not create current authority; WORK re-entry and legal grant are required before executable compile",
+    "CODEX Sol6.1High primary; capability/cohort/tool profile and same-execution multi-executor denial persist for all fallback routes",
+    "No source or simulated test implies actual Runtime/Release Qualification",
+    "Every operation binding uses merged candidate.5 request fields and response model; no v4 request/body masquerades as v5 positive.",
+    "Strict Test wrapper refers one normalized candidate.5 fixture scenario; full source/model oracles preserved in scenarios, no arbitrary object in Unit.Test.",
+    "Legacy288 case bodies preserved; explicit supersession metadata forbids incompatible old fixture from qualifying changed primary/secondary IO.",
+    "Source-interface/DTO compatibility mode is separate from implementation producer/result/reuse qualification; no accepted result fabricated."
+  ]
+}

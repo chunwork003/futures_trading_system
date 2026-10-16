@@ -1,0 +1,790 @@
+{
+  "format_role": "EXECUTOR_READABLE_SOURCE_BOUND_OPERATION_SPEC_NOT_EXECUTION_AUTHORITY",
+  "operation_id": "queryMarketBars",
+  "producer": {
+    "owner": "B_DATA",
+    "unit": "MA03-U02",
+    "unit_id": "ad7fdaed-5e0d-4a51-a24b-1922f8ce6f26",
+    "package": "PK02"
+  },
+  "contract_source": {
+    "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+    "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+    "bytes": 245079
+  },
+  "source_pointer": "#/endpoints/67",
+  "full_api_contract_source": {
+    "operation_id": "queryMarketBars",
+    "method": "GET",
+    "path": "/api/v2/market-bars",
+    "chapter": "MA03",
+    "owner": "B_DATA",
+    "page": "UI02",
+    "role": "VIEWER",
+    "request_payload_fields": {
+      "query": {
+        "type": "BarQuery",
+        "required": true
+      },
+      "page": {
+        "type": "CursorRequest?",
+        "required": false
+      }
+    },
+    "response_model": "CanonicalMarketBarDto",
+    "response_envelope": "ReadEnvelope",
+    "side_effect": "READ_ONLY",
+    "idempotency": "scoped snapshot read",
+    "invariant": "Immutable BarQuery/point-in-time causal aggregation; sourcebar ref exactlegacybridge; noData Coverage evidence not fakebars; EQUAL_OR_REJECT for optional query.page and optional outer page. Compare canonical entire objects, reject422 fields=query.page,page if any mismatch. Neither => limit100,bar_start_asc,snapshot=query.dataset_snapshot_ref,computed_filter_hash; cursor absent. Supplied filter hash recomputed from exact nonpagination query. snapshot must equal query.dataset_snapshot_ref; valid signed cursor binds scope/query/limit/sort/version/expiry.",
+    "runtime_status": "NOT_IMPLEMENTED_NOT_RUNTIME_QUALIFIED",
+    "response_cardinality": "PAGED_MANY",
+    "response_item_model": "CanonicalMarketBarDto",
+    "command_result_binding": null,
+    "query_enum_rule": "TYPE_VARIANTS exact enum bindings; unknown selector denied",
+    "error_model": "ErrorEnvelope",
+    "error_disposition_table": "ERROR_RETRY_DISPOSITION_TABLE.json",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation_contract": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "failure_contract": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "cursor_contract": "EQUAL_OR_REJECT for optional query.page and optional outer page. Compare canonical entire objects, reject422 fields=query.page,page if any mismatch. Neither => limit100,bar_start_asc,snapshot=query.dataset_snapshot_ref,computed_filter_hash; cursor absent. Supplied filter hash recomputed from exact nonpagination query. snapshot must equal query.dataset_snapshot_ref; valid signed cursor binds scope/query/limit/sort/version/expiry.",
+    "dto_version": "MA-DTO-v6",
+    "contract_revision": "candidate.5",
+    "error_protocol_version": "architecture.transport_error.v2",
+    "prior_contract_semantic_sha256": "9624269a244fd05209dc70f35537d0d4c6f72f4bc7cf354102e5e40661047fd7",
+    "dto_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "full_compilation_input_row": {
+    "operation_id": "queryMarketBars",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+      "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+      "bytes": 245079
+    },
+    "source_pointer": "#/endpoints/67",
+    "chapter": "MA03",
+    "domain_contract_owner": "B_DATA",
+    "producer_unit_alias": "MA03-U02",
+    "producer_unit_id": "ad7fdaed-5e0d-4a51-a24b-1922f8ce6f26",
+    "producer_package": "PK02",
+    "consumer_units": [
+      {
+        "unit_alias": "MA03-U02",
+        "mode": "IMPLEMENT_OWNER_USECASE_OR_EXACT_SCOPED_REUSE_ADAPTER",
+        "input_model": "ApiRequest_queryMarketBars",
+        "output_model": "CanonicalMarketBarDto",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/13/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U01",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_queryMarketBars",
+        "output_model": "CanonicalMarketBarDto",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/54/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U02",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_queryMarketBars",
+        "output_model": "CanonicalMarketBarDto",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/55/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U06",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_queryMarketBars",
+        "output_model": "CanonicalMarketBarDto",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/59/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA15-U02",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_queryMarketBars",
+        "output_model": "CanonicalMarketBarDto",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/85/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA15-U03",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_queryMarketBars",
+        "output_model": "CanonicalMarketBarDto",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/86/input_output/secondary_io"
+      }
+    ],
+    "ui_consumers": [
+      {
+        "page_id": "UI02",
+        "route": "/chart",
+        "action_pointers": [
+          "#/pages/1/actions/4"
+        ],
+        "ui_states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "request_model_or_fields": {
+          "page": {
+            "required": false,
+            "type": "CursorRequest?"
+          },
+          "query": {
+            "required": true,
+            "type": "BarQuery"
+          }
+        }
+      }
+    ],
+    "frontend_integration_package": "PK11",
+    "method": "GET",
+    "route": "/api/v2/market-bars",
+    "dto_version": "MA-DTO-v6",
+    "request_model": "ApiRequest_queryMarketBars",
+    "request_fields": {
+      "query": {
+        "type": "BarQuery",
+        "required": true
+      },
+      "page": {
+        "type": "CursorRequest?",
+        "required": false
+      }
+    },
+    "response_model": "CanonicalMarketBarDto",
+    "response_envelope": "ReadEnvelope",
+    "cardinality": "PAGED_MANY",
+    "error_model": "ErrorEnvelope",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "role_is_not_authority": true,
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "scoped snapshot read",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect.",
+    "existing_oracle_case_refs": [
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/201",
+        "case_id": "WIRE-queryMarketBars-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/202",
+        "case_id": "WIRE-queryMarketBars-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/203",
+        "case_id": "WIRE-queryMarketBars-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      }
+    ],
+    "effective_v9_operation_companion": null,
+    "required_mock_design": [
+      "Read exact producer contract/Model/Type/Error table and v9 Unit companion; use effective successor/adapter selection, not legacy positive wire payload as current.",
+      "Plan accepted success body, error/rejection, empty-complete vs UNKNOWN/PARTIAL, pending/unknown receipt, retry/CAS/conflict and re-entry states required by this operation.",
+      "Keep fixture actor/project/account/environment/permission/cut/version fixed; mock command does not approve strategy, financial effect, runtime admission or execution.",
+      "Keep request/response semantics identical across React→ASP.NET BFF→Python API→Core→Persistence; mock replaces an isolated producer boundary, not authorization layers.",
+      "Contract tests must verify producer and consumer against independent named expected oracles, not regenerate expected from actual mock result."
+    ],
+    "mock_runtime_result": "NOT_RUN",
+    "execution_dependency": "EXACT_AUTHORIZED_WORK_ORDER + qualified producer result or explicitly scoped reuse proof + current compiler/profile/writer/capacity",
+    "missing_executable_details": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here."
+  },
+  "effective_v9_companion": null,
+  "v9_companion_applicability": "NOT_IN_43_SPECIAL_SOURCE_PAIR_OPERATIONS; retain exact base API + Unit companion; not missing by filename",
+  "request": {
+    "model": "ApiRequest_queryMarketBars",
+    "fields": {
+      "query": {
+        "type": "BarQuery",
+        "required": true
+      },
+      "page": {
+        "type": "CursorRequest?",
+        "required": false
+      }
+    },
+    "version": "MA-DTO-v6"
+  },
+  "response": {
+    "model": "CanonicalMarketBarDto",
+    "envelope": "ReadEnvelope",
+    "cardinality": "PAGED_MANY"
+  },
+  "named_model_closure": [
+    "ApiRequest_queryMarketBars",
+    "BarQuery",
+    "CanonicalMarketBarDto",
+    "ContractRef",
+    "Coverage",
+    "CursorRequest",
+    "ErrorEnvelope",
+    "FieldViolation",
+    "ProjectionDataByOperation",
+    "ReadEnvelope",
+    "ResourceScope"
+  ],
+  "model_definitions_selector": "MODEL_TYPE_SOURCE_SPECIFICATION.json#/definition_lookup/<name>",
+  "auth_validation_idempotency_unknown": {
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "scoped snapshot read",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "producer_consumer_mock_test_matrix": {
+    "React": "Only display/user intent/typed client and declared page states; no independent business rules or direct SQL/Broker",
+    "ASP_NET_BFF": "Existing auth/session/CSRF/workflow/proxy adapter; preserve exact wire fields/errors/receipt/versions; no alternate Quant rules",
+    "Python_API": "Validate exact DTO/auth/resource/cut/source and delegate sole domain owner; no accepted result from mock",
+    "Quant_Core": "B_DATA owns invariants and effect boundary per source",
+    "Persistence": "Existing port/UoW/canonical ownership; real migration/DB/Restore separately gated",
+    "expected_mock_source": "Named source oracle cases below; do not derive expected from mock output",
+    "mock_states": [
+      "source-defined success",
+      "typed rejected error",
+      "complete-empty versus UNKNOWN/PARTIAL",
+      "pending/unknown OperationReceipt",
+      "exact same-key/same-body retry versus conflict",
+      "version/profile/auth/CAS/stale-source rejection where applicable"
+    ],
+    "compare_layers": [
+      "Python producer contract result",
+      "BFF preserved transport/error result",
+      "React consumer state and receipt readback"
+    ],
+    "actual_test_status": "NOT_RUN"
+  },
+  "exact_oracle_cases": [
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/201",
+        "case_id": "WIRE-queryMarketBars-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-queryMarketBars-POSITIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "queryMarketBars",
+            "method": "GET",
+            "path": "/api/v2/market-bars",
+            "path_values": {},
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "58e87171-3110-5774-ba47-691438297615",
+                "revision_id": "688d60d7-3504-5ab9-bee8-80a264624b3c",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "911ce875eeed430480d30ee52d44f6e42a1a28a249a9ee46532dc8323bc6fd54"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "query": {
+                "listing_ref": {
+                  "entity_id": "6e1ec8fe-f8c6-5de5-a1fb-53913b715994",
+                  "revision_id": "6de9f0c0-95bd-5fb9-a78c-0b4616414e81",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "7c60d6f6ec40fc855bc79980fb384b3e43b361f43756aef3b76d9f86b44658a9"
+                },
+                "dataset_snapshot_ref": {
+                  "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                  "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                },
+                "start": "2026-10-12T01:00:00Z",
+                "end": "2026-10-12T01:03:00Z",
+                "interval": "1m",
+                "series_policy_ref": {
+                  "entity_id": "20eeea35-c6e4-58bb-8525-aa9fb68a2ada",
+                  "revision_id": "a51f966e-aca9-5b56-86bb-40cb2953ebca",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "ac343f0259194c1dca5c7b95e7370bb2356079a5f01ea83207356eb1b721f839"
+                },
+                "known_as_of": "2026-10-12T01:05:00Z",
+                "page": {
+                  "limit": 50,
+                  "cursor": null,
+                  "snapshot_ref": {
+                    "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                    "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                  },
+                  "sort_key": "sequence:asc",
+                  "filter_hash": "46aad960875695319c73ff2c55a842f0eb988e822053365637119f33713edb33"
+                }
+              },
+              "page": null
+            },
+            "command_envelope": null,
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "snapshot": "dataset-snapshot",
+            "bar_sequences": [
+              10,
+              11,
+              12
+            ],
+            "start": "01:00Z",
+            "end_exclusive": "01:03Z"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/67",
+          "input_model": "ApiRequest_queryMarketBars",
+          "response_model": "CanonicalMarketBarDto",
+          "response_envelope": "ReadEnvelope",
+          "response_cardinality": "PAGED_MANY"
+        },
+        "mutation": null,
+        "interleaving": [],
+        "expected_model": "CanonicalMarketBarDto",
+        "expected_domain_model_if_hold": null,
+        "expected_observations": {
+          "bar_count": 3,
+          "ohlc_sequence_10": [
+            "100.00",
+            "102.00",
+            "99.00",
+            "101.00"
+          ],
+          "cursor_snapshot_unchanged": true
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA03-U02",
+        "consumer_units": [
+          "MA10-U02",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/202",
+        "case_id": "WIRE-queryMarketBars-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-queryMarketBars-NEGATIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "queryMarketBars",
+            "method": "GET",
+            "path": "/api/v2/market-bars",
+            "path_values": {},
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "58e87171-3110-5774-ba47-691438297615",
+                "revision_id": "688d60d7-3504-5ab9-bee8-80a264624b3c",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "911ce875eeed430480d30ee52d44f6e42a1a28a249a9ee46532dc8323bc6fd54"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "query": {
+                "listing_ref": {
+                  "entity_id": "6e1ec8fe-f8c6-5de5-a1fb-53913b715994",
+                  "revision_id": "6de9f0c0-95bd-5fb9-a78c-0b4616414e81",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "7c60d6f6ec40fc855bc79980fb384b3e43b361f43756aef3b76d9f86b44658a9"
+                },
+                "dataset_snapshot_ref": {
+                  "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                  "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                },
+                "start": "2026-10-12T01:00:00Z",
+                "end": "2026-10-12T01:03:00Z",
+                "interval": "1m",
+                "series_policy_ref": {
+                  "entity_id": "20eeea35-c6e4-58bb-8525-aa9fb68a2ada",
+                  "revision_id": "a51f966e-aca9-5b56-86bb-40cb2953ebca",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "ac343f0259194c1dca5c7b95e7370bb2356079a5f01ea83207356eb1b721f839"
+                },
+                "known_as_of": "2026-10-12T01:05:00Z",
+                "page": {
+                  "limit": 50,
+                  "cursor": null,
+                  "snapshot_ref": {
+                    "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                    "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                  },
+                  "sort_key": "sequence:asc",
+                  "filter_hash": "46aad960875695319c73ff2c55a842f0eb988e822053365637119f33713edb33"
+                }
+              },
+              "page": null
+            },
+            "command_envelope": null,
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "snapshot": "dataset-snapshot",
+            "bar_sequences": [
+              10,
+              11,
+              12
+            ],
+            "start": "01:00Z",
+            "end_exclusive": "01:03Z"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/67",
+          "mutation_operations": [
+            {
+              "op": "set",
+              "path": "/wire/request_payload/page",
+              "value": {
+                "limit": 50,
+                "cursor": null,
+                "snapshot_ref": {
+                  "entity_id": "5b6000ec-1894-5e66-abca-89e7d13d06b6",
+                  "revision_id": "ef2599f7-cb4d-5583-9b87-8e1dc65bf750",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "bba2f6aab95a1b24b226bc9af661b23def40412b1ae23db3bf0ac428a641adf1"
+                },
+                "sort_key": "sequence:asc",
+                "filter_hash": "0000000000000000000000000000000000000000000000000000000000000000"
+              }
+            }
+          ],
+          "after_mutation_recompute_command_hash": true,
+          "input_model": "ApiRequest_queryMarketBars",
+          "response_model": "CanonicalMarketBarDto",
+          "response_envelope": "ReadEnvelope",
+          "response_cardinality": "PAGED_MANY"
+        },
+        "mutation": "outer page snapshot differs from inner BarQuery.page",
+        "interleaving": [],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "CanonicalMarketBarDto",
+        "expected_observations": {
+          "http": 422,
+          "reason": "PAGE_BOTH_PRESENT_UNEQUAL",
+          "query_executed": false
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA03-U02",
+        "consumer_units": [
+          "MA10-U02",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/203",
+        "case_id": "WIRE-queryMarketBars-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-queryMarketBars-RACE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "queryMarketBars",
+            "method": "GET",
+            "path": "/api/v2/market-bars",
+            "path_values": {},
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "58e87171-3110-5774-ba47-691438297615",
+                "revision_id": "688d60d7-3504-5ab9-bee8-80a264624b3c",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "911ce875eeed430480d30ee52d44f6e42a1a28a249a9ee46532dc8323bc6fd54"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "query": {
+                "listing_ref": {
+                  "entity_id": "6e1ec8fe-f8c6-5de5-a1fb-53913b715994",
+                  "revision_id": "6de9f0c0-95bd-5fb9-a78c-0b4616414e81",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "7c60d6f6ec40fc855bc79980fb384b3e43b361f43756aef3b76d9f86b44658a9"
+                },
+                "dataset_snapshot_ref": {
+                  "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                  "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                },
+                "start": "2026-10-12T01:00:00Z",
+                "end": "2026-10-12T01:03:00Z",
+                "interval": "1m",
+                "series_policy_ref": {
+                  "entity_id": "20eeea35-c6e4-58bb-8525-aa9fb68a2ada",
+                  "revision_id": "a51f966e-aca9-5b56-86bb-40cb2953ebca",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "ac343f0259194c1dca5c7b95e7370bb2356079a5f01ea83207356eb1b721f839"
+                },
+                "known_as_of": "2026-10-12T01:05:00Z",
+                "page": {
+                  "limit": 50,
+                  "cursor": null,
+                  "snapshot_ref": {
+                    "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                    "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                  },
+                  "sort_key": "sequence:asc",
+                  "filter_hash": "46aad960875695319c73ff2c55a842f0eb988e822053365637119f33713edb33"
+                }
+              },
+              "page": null
+            },
+            "command_envelope": null,
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "snapshot": "dataset-snapshot",
+            "bar_sequences": [
+              10,
+              11,
+              12
+            ],
+            "start": "01:00Z",
+            "end_exclusive": "01:03Z"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/67",
+          "actors": [
+            {
+              "actor_id": "A",
+              "request": {
+                "operation_id": "queryMarketBars",
+                "method": "GET",
+                "path": "/api/v2/market-bars",
+                "path_values": {},
+                "authenticated_context_fixture": {
+                  "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+                  "policy_receipt_ref": {
+                    "entity_id": "58e87171-3110-5774-ba47-691438297615",
+                    "revision_id": "688d60d7-3504-5ab9-bee8-80a264624b3c",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "911ce875eeed430480d30ee52d44f6e42a1a28a249a9ee46532dc8323bc6fd54"
+                  },
+                  "scope": {
+                    "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                    "environment": "LAB",
+                    "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                    "group_id": null
+                  }
+                },
+                "request_payload": {
+                  "query": {
+                    "listing_ref": {
+                      "entity_id": "6e1ec8fe-f8c6-5de5-a1fb-53913b715994",
+                      "revision_id": "6de9f0c0-95bd-5fb9-a78c-0b4616414e81",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "7c60d6f6ec40fc855bc79980fb384b3e43b361f43756aef3b76d9f86b44658a9"
+                    },
+                    "dataset_snapshot_ref": {
+                      "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                      "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                    },
+                    "start": "2026-10-12T01:00:00Z",
+                    "end": "2026-10-12T01:03:00Z",
+                    "interval": "1m",
+                    "series_policy_ref": {
+                      "entity_id": "20eeea35-c6e4-58bb-8525-aa9fb68a2ada",
+                      "revision_id": "a51f966e-aca9-5b56-86bb-40cb2953ebca",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "ac343f0259194c1dca5c7b95e7370bb2356079a5f01ea83207356eb1b721f839"
+                    },
+                    "known_as_of": "2026-10-12T01:05:00Z",
+                    "page": {
+                      "limit": 50,
+                      "cursor": null,
+                      "snapshot_ref": {
+                        "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                        "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                      },
+                      "sort_key": "sequence:asc",
+                      "filter_hash": "46aad960875695319c73ff2c55a842f0eb988e822053365637119f33713edb33"
+                    }
+                  },
+                  "page": null
+                },
+                "command_envelope": null,
+                "dto_profile": "candidate.5",
+                "dto_header": {
+                  "X-MA-DTO-Version": "candidate.5"
+                }
+              }
+            },
+            {
+              "actor_id": "B",
+              "source_event_ref": {
+                "entity_id": "1e28ff5a-c854-572c-b852-c1c5990dac89",
+                "revision_id": "cbdbd9d8-5dea-5385-b10c-10f555171b49",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "d03353aff2da0b4d45aa2c32cc71a6508a547971ce6eef42f6d62ac524b806c9"
+              },
+              "generation_before": 4,
+              "generation_after": 5,
+              "frontier_before": 12,
+              "frontier_after": 13
+            }
+          ],
+          "schedule": [
+            {
+              "at": 1,
+              "actor": "A",
+              "action": "read exact initial-world source/ref/generation/frontier"
+            },
+            {
+              "at": 2,
+              "actor": "B",
+              "action": "append immutable successor or race same command according to named interleaving",
+              "named_event": [
+                "dataset corrected to successor after first page"
+              ]
+            },
+            {
+              "at": 3,
+              "actor": "A",
+              "action": "attempt exact original generation/frontier commit or read next snapshot page"
+            }
+          ],
+          "input_model": "ApiRequest_queryMarketBars",
+          "response_model": "CanonicalMarketBarDto",
+          "response_envelope": "ReadEnvelope",
+          "response_cardinality": "PAGED_MANY"
+        },
+        "mutation": null,
+        "interleaving": [
+          "dataset corrected to successor after first page"
+        ],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "CanonicalMarketBarDto",
+        "expected_observations": {
+          "second_page_uses_first_snapshot": true,
+          "no_silent_successor_rows": true
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA03-U02",
+        "consumer_units": [
+          "MA10-U02",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    }
+  ],
+  "additional_required_cases_if_not_in_legacy": "Use current v9 case_refs/required descendants and explicit adapter profile; legacy fixtures not universal current payload positives",
+  "qualification": {
+    "source_assembly": "PENDING",
+    "context_profile": "PENDING_APPLICABILITY",
+    "WO_Grant_Writer_Budget": "NOT_AUTHORIZED",
+    "runtime": "APPLICABLE_NAMED_GATE_ONLY"
+  },
+  "unresolved_implementation_binding": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here.",
+  "implementation_not_authorized": true
+}

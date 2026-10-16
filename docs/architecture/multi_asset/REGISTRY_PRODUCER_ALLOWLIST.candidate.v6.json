@@ -1,0 +1,379 @@
+{
+  "schema": "ma.registry.internal-producer-allowlist.v6",
+  "allowed_producer_operations_semantics": "Existing field permits top-level API response/result capture only. It does not implicitly permit internal bodies. Every internal output additionally requires exact internal producer rule or exact named adapter allowlist; union of permissions is not owner wildcard.",
+  "default": "DENY_UNLISTED_OPERATION_STAGE_OWNER_TYPE_PROFILE",
+  "internal_producer_rules": [
+    {
+      "rule_id": "PROPOSE_FINAL_RegistryEntity",
+      "operation_id": "proposeRegistry",
+      "adapter_id": null,
+      "stage_id": "RESOLVED_DRAFT_CANONICAL_CAPTURE",
+      "input_type": "RegistryEntityDraftV5",
+      "output_type": "RegistryEntity",
+      "owner": "REGISTRY_WRITER",
+      "identity_policy": "PREPARED_SCOPE_COMMAND_SLOT_MAPPING_ONLY",
+      "required_predicates": [
+        "EXISTING_EDITOR_EXACT_SCOPE_GRANT",
+        "COMMAND_HASH_DEDUPE",
+        "CLOSED_DRAFT_SCHEMA",
+        "EXISTING_APPROVED_SOURCE_BYTES",
+        "PREPARED_MAPPING_DURABLE",
+        "DECLARED_FK_RESOLUTION",
+        "BASE_GRAPH_HEAD_CAS",
+        "PERMANENT_KEY_INVARIANTS"
+      ],
+      "authority_effect": "DRAFT_ONLY_NO_ACCEPTANCE_OR_HEAD_ACTIVATION"
+    },
+    {
+      "rule_id": "PROPOSE_FINAL_RegistryEntityRevisionV5",
+      "operation_id": "proposeRegistry",
+      "adapter_id": null,
+      "stage_id": "RESOLVED_DRAFT_CANONICAL_CAPTURE",
+      "input_type": "RegistryEntityRevisionDraftV5",
+      "output_type": "RegistryEntityRevisionV5",
+      "owner": "REGISTRY_WRITER",
+      "identity_policy": "PREPARED_SCOPE_COMMAND_SLOT_MAPPING_ONLY",
+      "required_predicates": [
+        "EXISTING_EDITOR_EXACT_SCOPE_GRANT",
+        "COMMAND_HASH_DEDUPE",
+        "CLOSED_DRAFT_SCHEMA",
+        "EXISTING_APPROVED_SOURCE_BYTES",
+        "PREPARED_MAPPING_DURABLE",
+        "DECLARED_FK_RESOLUTION",
+        "BASE_GRAPH_HEAD_CAS",
+        "PERMANENT_KEY_INVARIANTS"
+      ],
+      "authority_effect": "DRAFT_ONLY_NO_ACCEPTANCE_OR_HEAD_ACTIVATION"
+    },
+    {
+      "rule_id": "PROPOSE_FINAL_RelationRevision",
+      "operation_id": "proposeRegistry",
+      "adapter_id": null,
+      "stage_id": "RESOLVED_DRAFT_CANONICAL_CAPTURE",
+      "input_type": "RelationRevisionDraftV5",
+      "output_type": "RelationRevision",
+      "owner": "REGISTRY_WRITER",
+      "identity_policy": "PREPARED_SCOPE_COMMAND_SLOT_MAPPING_ONLY",
+      "required_predicates": [
+        "EXISTING_EDITOR_EXACT_SCOPE_GRANT",
+        "COMMAND_HASH_DEDUPE",
+        "CLOSED_DRAFT_SCHEMA",
+        "EXISTING_APPROVED_SOURCE_BYTES",
+        "PREPARED_MAPPING_DURABLE",
+        "DECLARED_FK_RESOLUTION",
+        "BASE_GRAPH_HEAD_CAS",
+        "PERMANENT_KEY_INVARIANTS"
+      ],
+      "authority_effect": "DRAFT_ONLY_NO_ACCEPTANCE_OR_HEAD_ACTIVATION"
+    },
+    {
+      "rule_id": "PROPOSE_FINAL_CodeAssignment",
+      "operation_id": "proposeRegistry",
+      "adapter_id": null,
+      "stage_id": "RESOLVED_DRAFT_CANONICAL_CAPTURE",
+      "input_type": "CodeAssignmentDraftV5",
+      "output_type": "CodeAssignment",
+      "owner": "REGISTRY_WRITER",
+      "identity_policy": "PREPARED_SCOPE_COMMAND_SLOT_MAPPING_ONLY",
+      "required_predicates": [
+        "EXISTING_EDITOR_EXACT_SCOPE_GRANT",
+        "COMMAND_HASH_DEDUPE",
+        "CLOSED_DRAFT_SCHEMA",
+        "EXISTING_APPROVED_SOURCE_BYTES",
+        "PREPARED_MAPPING_DURABLE",
+        "DECLARED_FK_RESOLUTION",
+        "BASE_GRAPH_HEAD_CAS",
+        "PERMANENT_KEY_INVARIANTS"
+      ],
+      "authority_effect": "DRAFT_ONLY_NO_ACCEPTANCE_OR_HEAD_ACTIVATION"
+    },
+    {
+      "rule_id": "PROPOSE_FINAL_LegacyAlias",
+      "operation_id": "proposeRegistry",
+      "adapter_id": null,
+      "stage_id": "RESOLVED_DRAFT_CANONICAL_CAPTURE",
+      "input_type": "LegacyAliasDraftV5",
+      "output_type": "LegacyAlias",
+      "owner": "REGISTRY_WRITER",
+      "identity_policy": "PREPARED_SCOPE_COMMAND_SLOT_MAPPING_ONLY",
+      "required_predicates": [
+        "EXISTING_EDITOR_EXACT_SCOPE_GRANT",
+        "COMMAND_HASH_DEDUPE",
+        "CLOSED_DRAFT_SCHEMA",
+        "EXISTING_APPROVED_SOURCE_BYTES",
+        "PREPARED_MAPPING_DURABLE",
+        "DECLARED_FK_RESOLUTION",
+        "BASE_GRAPH_HEAD_CAS",
+        "PERMANENT_KEY_INVARIANTS"
+      ],
+      "authority_effect": "DRAFT_ONLY_NO_ACCEPTANCE_OR_HEAD_ACTIVATION"
+    },
+    {
+      "rule_id": "PROPOSE_FINAL_CodeAllocation",
+      "operation_id": "proposeRegistry",
+      "adapter_id": null,
+      "stage_id": "RESOLVED_DRAFT_CANONICAL_CAPTURE",
+      "input_type": "CodeAllocationDraftV5",
+      "output_type": "CodeAllocation",
+      "owner": "REGISTRY_WRITER",
+      "identity_policy": "PREPARED_SCOPE_COMMAND_SLOT_MAPPING_ONLY",
+      "required_predicates": [
+        "EXISTING_EDITOR_EXACT_SCOPE_GRANT",
+        "COMMAND_HASH_DEDUPE",
+        "CLOSED_DRAFT_SCHEMA",
+        "EXISTING_APPROVED_SOURCE_BYTES",
+        "PREPARED_MAPPING_DURABLE",
+        "DECLARED_FK_RESOLUTION",
+        "BASE_GRAPH_HEAD_CAS",
+        "PERMANENT_KEY_INVARIANTS"
+      ],
+      "authority_effect": "DRAFT_ONLY_NO_ACCEPTANCE_OR_HEAD_ACTIVATION"
+    },
+    {
+      "rule_id": "PROPOSE_FINAL_CodeAllocationRetirement",
+      "operation_id": "proposeRegistry",
+      "adapter_id": null,
+      "stage_id": "RESOLVED_DRAFT_CANONICAL_CAPTURE",
+      "input_type": "CodeAllocationRetirementDraftV5",
+      "output_type": "CodeAllocationRetirement",
+      "owner": "REGISTRY_WRITER",
+      "identity_policy": "PREPARED_SCOPE_COMMAND_SLOT_MAPPING_ONLY",
+      "required_predicates": [
+        "EXISTING_EDITOR_EXACT_SCOPE_GRANT",
+        "COMMAND_HASH_DEDUPE",
+        "CLOSED_DRAFT_SCHEMA",
+        "EXISTING_APPROVED_SOURCE_BYTES",
+        "PREPARED_MAPPING_DURABLE",
+        "DECLARED_FK_RESOLUTION",
+        "BASE_GRAPH_HEAD_CAS",
+        "PERMANENT_KEY_INVARIANTS"
+      ],
+      "authority_effect": "DRAFT_ONLY_NO_ACCEPTANCE_OR_HEAD_ACTIVATION"
+    },
+    {
+      "rule_id": "PROPOSE_FINAL_RegistrySnapshot",
+      "operation_id": "proposeRegistry",
+      "adapter_id": null,
+      "stage_id": "CAPTURED_MEMBER_CANDIDATE_SNAPSHOT",
+      "input_type": "RegistryProposalRequestV5",
+      "output_type": "RegistrySnapshot",
+      "owner": "REGISTRY_WRITER",
+      "identity_policy": "PREPARED_SCOPE_COMMAND_MAPPING",
+      "required_predicates": [
+        "ALL_REQUIRED_BODIES_CAPTURED_VERIFIED",
+        "EXACT_COMPLETE_MEMBERSHIP",
+        "SCHEMA_SOURCE_CATALOG_CLOSURE",
+        "BASE_GRAPH_HEAD_CAS",
+        "ORIGINAL_WRITER_FINAL_UOW"
+      ],
+      "authority_effect": "CANDIDATE_REVIEW_ONLY"
+    },
+    {
+      "rule_id": "PROPOSE_FINAL_ReviewSubject",
+      "operation_id": "proposeRegistry",
+      "adapter_id": null,
+      "stage_id": "FROZEN_RELEVANT_CLOSURE",
+      "input_type": "RegistryProposalRequestV5",
+      "output_type": "ReviewSubject",
+      "owner": "EXISTING_REVIEW_OWNER",
+      "identity_policy": "PREPARED_SCOPE_COMMAND_MAPPING",
+      "required_predicates": [
+        "ALL_REQUIRED_BODIES_CAPTURED_VERIFIED",
+        "EXACT_COMPLETE_MEMBERSHIP",
+        "SCHEMA_SOURCE_CATALOG_CLOSURE",
+        "BASE_GRAPH_HEAD_CAS",
+        "ORIGINAL_WRITER_FINAL_UOW"
+      ],
+      "authority_effect": "CANDIDATE_REVIEW_ONLY"
+    },
+    {
+      "rule_id": "PROPOSE_FINAL_RegistryProposalResultV5",
+      "operation_id": "proposeRegistry",
+      "adapter_id": null,
+      "stage_id": "FINAL_COMMITTED_RESULT",
+      "input_type": "RegistryProposalRequestV5",
+      "output_type": "RegistryProposalResultV5",
+      "owner": "REGISTRY_WRITER",
+      "identity_policy": "PREPARED_SCOPE_COMMAND_MAPPING",
+      "required_predicates": [
+        "ALL_REQUIRED_BODIES_CAPTURED_VERIFIED",
+        "EXACT_COMPLETE_MEMBERSHIP",
+        "SCHEMA_SOURCE_CATALOG_CLOSURE",
+        "BASE_GRAPH_HEAD_CAS",
+        "ORIGINAL_WRITER_FINAL_UOW"
+      ],
+      "authority_effect": "CANDIDATE_REVIEW_ONLY"
+    },
+    {
+      "rule_id": "PROPOSE_CANDIDATE_SEMANTIC_RECORD",
+      "operation_id": "proposeRegistry",
+      "adapter_id": null,
+      "stage_id": "RESOLVED_DRAFT_CANONICAL_CAPTURE",
+      "input_type": "RegistryEntityRevisionDraftV5",
+      "output_type": "RegistryCandidateSemanticRecordV6",
+      "owner": "REGISTRY_WRITER",
+      "identity_policy": "PREPARED_SCOPE_COMMAND_SLOT_MAPPING_ONLY",
+      "required_predicates": [
+        "EXISTING_EDITOR_EXACT_SCOPE_GRANT",
+        "CLOSED_DRAFT_SCHEMA",
+        "EXISTING_APPROVED_SOURCE_BYTES",
+        "PREPARED_MAPPING_DURABLE",
+        "PROPOSED_KIND_EQUALS_WRAPPER_KIND",
+        "ACCEPTANCE_EFFECT_NONE"
+      ],
+      "authority_effect": "DRAFT_ONLY"
+    }
+  ],
+  "adapters": [
+    {
+      "adapter_id": "REGISTRY_PINNED_SOURCE_IMPORT_V6",
+      "invocation": "EXISTING_REGISTRY_WRITER_BOUND_PACKAGE_ONLY_NO_NEW_API",
+      "input_origin": [
+        "EXACT_PINNED_SOURCE_MANIFEST",
+        "FORMAL_GIT_REGISTRY_AT_EXACT_COMMIT"
+      ],
+      "identity_policy": "PRESERVE_ALL_SUPPLIED_PERMANENT_IDS_REVISIONS_AND_ORIGINAL_HASH_DOMAINS",
+      "allowed_output_types": [
+        "RegistryEntity",
+        "RegistryEntityRevisionV5",
+        "RelationRevision",
+        "CodeAssignment",
+        "LegacyAlias",
+        "CodeAllocation",
+        "CodeAllocationRetirement",
+        "RegistrySnapshot",
+        "SourceSnapshotBinding",
+        "CodeCatalogRevision",
+        "CodePolicyRevision",
+        "ReviewSubject",
+        "RegistryAcceptedCoreSourceRowV5",
+        "RegistryDeliverableSourceRowV5",
+        "RegistryDesignDeliverableSourceRowV5",
+        "RegistryFeatureSourceRowV5",
+        "RegistryHistoricalSourceRowV5",
+        "RegistryPhaseSourceRowV5",
+        "RegistryRequirementSourceRowV5",
+        "ExecutionUnitPlan",
+        "RegistryCrossChapterContractSourceRowV6",
+        "RegistryGraphScopeSourceRowV6",
+        "RegistrySourceFileBodyV6",
+        "RegistryCandidateSemanticRecordV6"
+      ],
+      "required_predicates": [
+        "EXISTING_BOUND_SCOPE_GRANT",
+        "FINITE_SOURCE_PROFILE_AND_SCHEMA",
+        "EXACT_SOURCE_RAW_BYTES",
+        "EXACT_MEMBER_SOURCE_HASH_DOMAIN",
+        "IMMUTABLE_REVISION_SAMEHASH_REPLAY_DIFFERENTHASH_CONFLICT",
+        "NO_ALLOCATOR",
+        "NO_FAKE_PRIVATE_BODY",
+        "NO_AUTHORITY_UPGRADE"
+      ],
+      "write_effect": "EXISTING_WRITER_CAPTURE_AND_INDEX_ONLY",
+      "unknown_profile": "DENY",
+      "authority_effect": "NONE"
+    },
+    {
+      "adapter_id": "REGISTRY_GIT_REBUILD_IMPORT_V6",
+      "invocation": "EXISTING_REGISTRY_WRITER_BOUND_PACKAGE_ONLY_NO_NEW_API",
+      "input_origin": [
+        "EXACT_PINNED_SOURCE_MANIFEST",
+        "FORMAL_GIT_REGISTRY_AT_EXACT_COMMIT"
+      ],
+      "identity_policy": "PRESERVE_ALL_SUPPLIED_PERMANENT_IDS_REVISIONS_AND_ORIGINAL_HASH_DOMAINS",
+      "allowed_output_types": [
+        "RegistryEntity",
+        "RegistryEntityRevisionV5",
+        "RelationRevision",
+        "CodeAssignment",
+        "LegacyAlias",
+        "CodeAllocation",
+        "CodeAllocationRetirement",
+        "RegistrySnapshot",
+        "SourceSnapshotBinding",
+        "CodeCatalogRevision",
+        "CodePolicyRevision",
+        "ReviewSubject",
+        "RegistryAcceptedCoreSourceRowV5",
+        "RegistryDeliverableSourceRowV5",
+        "RegistryDesignDeliverableSourceRowV5",
+        "RegistryFeatureSourceRowV5",
+        "RegistryHistoricalSourceRowV5",
+        "RegistryPhaseSourceRowV5",
+        "RegistryRequirementSourceRowV5",
+        "ExecutionUnitPlan",
+        "RegistryCrossChapterContractSourceRowV6",
+        "RegistryGraphScopeSourceRowV6",
+        "RegistrySourceFileBodyV6",
+        "RegistryCandidateSemanticRecordV6"
+      ],
+      "required_predicates": [
+        "EXISTING_BOUND_SCOPE_GRANT",
+        "FINITE_SOURCE_PROFILE_AND_SCHEMA",
+        "EXACT_SOURCE_RAW_BYTES",
+        "EXACT_MEMBER_SOURCE_HASH_DOMAIN",
+        "IMMUTABLE_REVISION_SAMEHASH_REPLAY_DIFFERENTHASH_CONFLICT",
+        "NO_ALLOCATOR",
+        "NO_FAKE_PRIVATE_BODY",
+        "NO_AUTHORITY_UPGRADE"
+      ],
+      "write_effect": "EXISTING_WRITER_CAPTURE_AND_INDEX_ONLY",
+      "unknown_profile": "DENY",
+      "authority_effect": "NONE"
+    },
+    {
+      "adapter_id": "REGISTRY_CLOSED_EXPORT_V6",
+      "invocation": "EXISTING_REGISTRY_WRITER_BOUND_PACKAGE_ONLY_NO_NEW_API",
+      "input_origin": [
+        "EXACT_CAPTURED_REGISTRY_SNAPSHOT"
+      ],
+      "identity_policy": "PRESERVE_ALL_SUPPLIED_PERMANENT_IDS_REVISIONS_AND_ORIGINAL_HASH_DOMAINS",
+      "allowed_output_types": [
+        "RegistryEntity",
+        "RegistryEntityRevisionV5",
+        "RelationRevision",
+        "CodeAssignment",
+        "LegacyAlias",
+        "CodeAllocation",
+        "CodeAllocationRetirement",
+        "RegistrySnapshot",
+        "SourceSnapshotBinding",
+        "CodeCatalogRevision",
+        "CodePolicyRevision",
+        "ReviewSubject",
+        "RegistryAcceptedCoreSourceRowV5",
+        "RegistryDeliverableSourceRowV5",
+        "RegistryDesignDeliverableSourceRowV5",
+        "RegistryFeatureSourceRowV5",
+        "RegistryHistoricalSourceRowV5",
+        "RegistryPhaseSourceRowV5",
+        "RegistryRequirementSourceRowV5",
+        "ExecutionUnitPlan",
+        "RegistryCrossChapterContractSourceRowV6",
+        "RegistryGraphScopeSourceRowV6",
+        "RegistrySourceFileBodyV6",
+        "RegistryCandidateSemanticRecordV6"
+      ],
+      "required_predicates": [
+        "EXISTING_BOUND_SCOPE_GRANT",
+        "FINITE_SOURCE_PROFILE_AND_SCHEMA",
+        "EXACT_SOURCE_RAW_BYTES",
+        "EXACT_MEMBER_SOURCE_HASH_DOMAIN",
+        "IMMUTABLE_REVISION_SAMEHASH_REPLAY_DIFFERENTHASH_CONFLICT",
+        "NO_ALLOCATOR",
+        "NO_FAKE_PRIVATE_BODY",
+        "NO_AUTHORITY_UPGRADE"
+      ],
+      "write_effect": "NONE",
+      "unknown_profile": "DENY",
+      "authority_effect": "NONE"
+    }
+  ],
+  "read_operations": [
+    "getRegistry",
+    "getReviewSubject",
+    "getArtifactContent",
+    "getOperation"
+  ],
+  "export_invariant": "Export preserves source and body identity/domain/hash separately; read permission on every source/captured artifact required. It never allocates IDs, recaptures missing content as AVAILABLE, grants acceptance, or substitutes latest."
+}

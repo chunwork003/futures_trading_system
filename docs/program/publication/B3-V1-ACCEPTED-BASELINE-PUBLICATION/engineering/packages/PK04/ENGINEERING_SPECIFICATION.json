@@ -1,0 +1,1308 @@
+{
+  "format_role": "COHESIVE_PACKAGE_ENGINEERING_SPEC_NOT_EXECUTION_WO",
+  "package_id": "PK04",
+  "name": "私人 Capture、備份與部署基礎",
+  "purpose": "私人原文 Capture／Readback、Provider／Volume／Path、Same-Cut／A-B Catalog；配置、版本與 Migration Plan。",
+  "cohesion": "PRIVATE_DURABILITY_AND_ENVIRONMENT",
+  "unit_ids": [
+    "8127078d-3263-47d4-a1c5-59390da7224d",
+    "edf14ff8-839f-44f4-a1b0-166c024f1515",
+    "2049e68d-c38a-459f-a0d1-f1df2eda8299",
+    "ddb418b7-65aa-4166-8b9f-e61ba66e6268",
+    "7dda8b7f-82d2-46d4-b6c5-7e0c960d0e64",
+    "a74efbae-fd8d-4684-ab41-2d769263f5d8",
+    "417a48ca-cd02-4682-8099-6b22cb9347d6",
+    "ffcf094e-f8ac-4ea4-b8b0-45e90063d3cc"
+  ],
+  "unit_aliases": [
+    "MA13-U01",
+    "MA13-U02",
+    "MA13-U03",
+    "MA13-U04",
+    "MA13-U05",
+    "MA16-U01",
+    "MA16-U02",
+    "MA16-U03"
+  ],
+  "units": [
+    {
+      "alias": "MA13-U01",
+      "uuid": "8127078d-3263-47d4-a1c5-59390da7224d",
+      "feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+      "spec": "units/MA13-U01.json",
+      "goal": "Critical Artifact Capture／Availability",
+      "dependencies": [
+        {
+          "unit_id": "24eadee4-4e15-40a4-90d8-90556f574dd1",
+          "unit_alias": "MA11-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "3f0993a4-967c-5aae-b982-5421bfda841e",
+          "required_feature_id": "476e74c2-ecb5-4e25-aad4-3845b817c70c",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "e185c30d-eebf-43b9-ae51-16e9fbe512da",
+          "unit_alias": "MA12-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "faa9b100-80ab-5c97-90b6-e9004b5a1671",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L3",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "engineering/artifact_capture.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "engineering/backup_set.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma13_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA13-U02",
+      "uuid": "edf14ff8-839f-44f4-a1b0-166c024f1515",
+      "feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+      "spec": "units/MA13-U02.json",
+      "goal": "Provider／Volume／Path／Encryption",
+      "dependencies": [
+        {
+          "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+          "unit_alias": "MA13-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "68f0dc3c-86da-5af4-8490-7460ff221457",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "24eadee4-4e15-40a4-90d8-90556f574dd1",
+          "unit_alias": "MA11-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "3f0993a4-967c-5aae-b982-5421bfda841e",
+          "required_feature_id": "476e74c2-ecb5-4e25-aad4-3845b817c70c",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "e185c30d-eebf-43b9-ae51-16e9fbe512da",
+          "unit_alias": "MA12-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "faa9b100-80ab-5c97-90b6-e9004b5a1671",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L3",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "engineering/artifact_capture.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "engineering/backup_set.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma13_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA13-U03",
+      "uuid": "2049e68d-c38a-459f-a0d1-f1df2eda8299",
+      "feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+      "spec": "units/MA13-U03.json",
+      "goal": "SQL Dump／Artifact Same-Cut Set",
+      "dependencies": [
+        {
+          "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+          "gate": "ADOPTED_CONTRACT_AND_REQUIRED_RESULT",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "68f0dc3c-86da-5af4-8490-7460ff221457",
+          "unit_alias": "MA13-U01",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        },
+        {
+          "unit_id": "24eadee4-4e15-40a4-90d8-90556f574dd1",
+          "gate": "EXACT_SOURCE_ADOPTED_NOT_ALL_RUNTIME",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "3f0993a4-967c-5aae-b982-5421bfda841e",
+          "unit_alias": "MA11-U01",
+          "required_feature_id": "476e74c2-ecb5-4e25-aad4-3845b817c70c",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        },
+        {
+          "unit_id": "e185c30d-eebf-43b9-ae51-16e9fbe512da",
+          "gate": "EXACT_SOURCE_ADOPTED_NOT_ALL_RUNTIME",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "faa9b100-80ab-5c97-90b6-e9004b5a1671",
+          "unit_alias": "MA12-U01",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L4",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "engineering/artifact_capture.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "engineering/backup_set.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma13_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "SEPARATE_EXACT_ENVIRONMENT_AUTHORIZATION_AND_QUALIFICATION_REQUIRED",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA13-U04",
+      "uuid": "ddb418b7-65aa-4166-8b9f-e61ba66e6268",
+      "feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+      "spec": "units/MA13-U04.json",
+      "goal": "A Incremental／B Independent Retention",
+      "dependencies": [
+        {
+          "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+          "gate": "ADOPTED_CONTRACT_AND_REQUIRED_RESULT",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "68f0dc3c-86da-5af4-8490-7460ff221457",
+          "unit_alias": "MA13-U01",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        },
+        {
+          "unit_id": "24eadee4-4e15-40a4-90d8-90556f574dd1",
+          "gate": "EXACT_SOURCE_ADOPTED_NOT_ALL_RUNTIME",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "3f0993a4-967c-5aae-b982-5421bfda841e",
+          "unit_alias": "MA11-U01",
+          "required_feature_id": "476e74c2-ecb5-4e25-aad4-3845b817c70c",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        },
+        {
+          "unit_id": "e185c30d-eebf-43b9-ae51-16e9fbe512da",
+          "gate": "EXACT_SOURCE_ADOPTED_NOT_ALL_RUNTIME",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "faa9b100-80ab-5c97-90b6-e9004b5a1671",
+          "unit_alias": "MA12-U01",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L4",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "engineering/artifact_capture.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "engineering/backup_set.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma13_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "SEPARATE_EXACT_ENVIRONMENT_AUTHORIZATION_AND_QUALIFICATION_REQUIRED",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA13-U05",
+      "uuid": "7dda8b7f-82d2-46d4-b6c5-7e0c960d0e64",
+      "feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+      "spec": "units/MA13-U05.json",
+      "goal": "External Catalog／Historical／Trust",
+      "dependencies": [
+        {
+          "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+          "unit_alias": "MA13-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "68f0dc3c-86da-5af4-8490-7460ff221457",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "24eadee4-4e15-40a4-90d8-90556f574dd1",
+          "unit_alias": "MA11-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "3f0993a4-967c-5aae-b982-5421bfda841e",
+          "required_feature_id": "476e74c2-ecb5-4e25-aad4-3845b817c70c",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "e185c30d-eebf-43b9-ae51-16e9fbe512da",
+          "unit_alias": "MA12-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "faa9b100-80ab-5c97-90b6-e9004b5a1671",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L3",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "engineering/artifact_capture.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "engineering/backup_set.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma13_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA16-U01",
+      "uuid": "a74efbae-fd8d-4684-ab41-2d769263f5d8",
+      "feature_id": "1d0c8c30-cd76-4ce6-abd6-761d630ae1d3",
+      "spec": "units/MA16-U01.json",
+      "goal": "DeploymentManifest／Toolchain Pins",
+      "dependencies": [
+        {
+          "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+          "gate": "EXACT_SOURCE_ADOPTED_NOT_ALL_RUNTIME",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "68f0dc3c-86da-5af4-8490-7460ff221457",
+          "unit_alias": "MA13-U01",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK requires exact source/result/ref applicability and accepted scope; source-design presence is not qualified runtime result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L3",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "application/deployment_manifest.v2.schema.json",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "application/config_compatibility.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma16_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA16-U02",
+      "uuid": "417a48ca-cd02-4682-8099-6b22cb9347d6",
+      "feature_id": "1d0c8c30-cd76-4ce6-abd6-761d630ae1d3",
+      "spec": "units/MA16-U02.json",
+      "goal": "Config／Auth／Environment isolation",
+      "dependencies": [
+        {
+          "unit_id": "a74efbae-fd8d-4684-ab41-2d769263f5d8",
+          "unit_alias": "MA16-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "d03b2395-6156-548e-91f2-15b413927375",
+          "required_feature_id": "1d0c8c30-cd76-4ce6-abd6-761d630ae1d3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+          "unit_alias": "MA13-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "68f0dc3c-86da-5af4-8490-7460ff221457",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L3",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "application/deployment_manifest.v2.schema.json",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "application/config_compatibility.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma16_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA16-U03",
+      "uuid": "ffcf094e-f8ac-4ea4-b8b0-45e90063d3cc",
+      "feature_id": "1d0c8c30-cd76-4ce6-abd6-761d630ae1d3",
+      "spec": "units/MA16-U03.json",
+      "goal": "Migration Plan／Expand Adapter／Rollback",
+      "dependencies": [
+        {
+          "unit_id": "a74efbae-fd8d-4684-ab41-2d769263f5d8",
+          "unit_alias": "MA16-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "d03b2395-6156-548e-91f2-15b413927375",
+          "required_feature_id": "1d0c8c30-cd76-4ce6-abd6-761d630ae1d3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+          "unit_alias": "MA13-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "68f0dc3c-86da-5af4-8490-7460ff221457",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L4",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "application/deployment_manifest.v2.schema.json",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "application/config_compatibility.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma16_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "SEPARATE_EXACT_ENVIRONMENT_AUTHORIZATION_AND_QUALIFICATION_REQUIRED",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    }
+  ],
+  "source_revisions_hashes": [
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA13-U01"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/72"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U01.v9.json",
+        "raw_bytes_sha256": "92249db3b53c54dfe1a3c824967d4110f78decb638543f1d1b3af5a0d1c225d7",
+        "bytes": 6660,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "467a769f061f03e35f13a586292f9abeddaf7ab304fb13ba84d8718b83f4d790",
+      "base_plan_revision_id": "68f0dc3c-86da-5af4-8490-7460ff221457",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\13_STORAGE_RECOVERY_SECURITY.md",
+        "raw_bytes_sha256": "4ddfa15c7861fc6eca59248a4ca4f04c711d4d73c2d12fe10f9928c41b6a634f",
+        "bytes": 17673
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA13-U02"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/73"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U02.v9.json",
+        "raw_bytes_sha256": "3698ef0e67f0db96517bcf6a15af950fe27c30ce3deec488e94c7b9526524c23",
+        "bytes": 6141,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "28715890ff54ce8840b2affa4bae7f11902abc00809f68d3122a505ed3c861bd",
+      "base_plan_revision_id": "cf90e661-8137-5145-b690-0777ca2c36c2",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\13_STORAGE_RECOVERY_SECURITY.md",
+        "raw_bytes_sha256": "4ddfa15c7861fc6eca59248a4ca4f04c711d4d73c2d12fe10f9928c41b6a634f",
+        "bytes": 17673
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA13-U03"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/74"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U03.v9.json",
+        "raw_bytes_sha256": "c7548b06fc82063a3da3e9fe444f4adf4c9b1aafba4ee3e96e04e6dc580a77b3",
+        "bytes": 6054,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "4793b4a3dff1d02b7672fc65df6a57c37c591d0844890c64b09cdd6421aa0fc6",
+      "base_plan_revision_id": "063c6d26-4efb-54ad-8a5a-33e95cdc3121",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\13_STORAGE_RECOVERY_SECURITY.md",
+        "raw_bytes_sha256": "4ddfa15c7861fc6eca59248a4ca4f04c711d4d73c2d12fe10f9928c41b6a634f",
+        "bytes": 17673
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA13-U04"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/75"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U04.v9.json",
+        "raw_bytes_sha256": "995970cbd5be65c7f083d0a7abc55719a8b47466347eb1a589e4672e53d5f4a0",
+        "bytes": 6054,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "44042acaabf618ff9a386be338fff60493b732db1d2b3fe20aa3d8e6542a57d7",
+      "base_plan_revision_id": "d84756c9-4532-541a-a011-a5d7f601dd2d",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\13_STORAGE_RECOVERY_SECURITY.md",
+        "raw_bytes_sha256": "4ddfa15c7861fc6eca59248a4ca4f04c711d4d73c2d12fe10f9928c41b6a634f",
+        "bytes": 17673
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA13-U05"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/76"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U05.v9.json",
+        "raw_bytes_sha256": "954e569a46802adf3202ebc45db6e607f981aa2a410359b1147115b06cdc734b",
+        "bytes": 8030,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "5260be9737c5f1c2c5ed1af377583edb23577dc7aafbfdc7c41b9cb3aeb33aba",
+      "base_plan_revision_id": "04f3a8e8-9c37-59d7-9f5c-7feda5b77b72",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\13_STORAGE_RECOVERY_SECURITY.md",
+        "raw_bytes_sha256": "4ddfa15c7861fc6eca59248a4ca4f04c711d4d73c2d12fe10f9928c41b6a634f",
+        "bytes": 17673
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA16-U01"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/90"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U01.v9.json",
+        "raw_bytes_sha256": "f97a4ec14dfc6a93502b0287d3402158733e3b1890993b67356e6a864107e408",
+        "bytes": 5016,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "0ff35d3e2b509422f4c5512244e25febbe0d6059573e2e41ac6a790eb1c85742",
+      "base_plan_revision_id": "d03b2395-6156-548e-91f2-15b413927375",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\16_DEPLOYMENT_OPERATIONS.md",
+        "raw_bytes_sha256": "7b0211cf4fd342b0700cce78699133c429bd9aa9c051d402e5ae77b7b31d891d",
+        "bytes": 9689
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA16-U02"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/91"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U02.v9.json",
+        "raw_bytes_sha256": "e265fe12b4d2d0a0a71c1ea96443ec4ac205a53e69fc466ce49eabe022f2239e",
+        "bytes": 11553,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "13bb34d8a522932efe4df08988ac04d79aee561f2f451f124eb15bd5d474b4f2",
+      "base_plan_revision_id": "e2aaf8ab-669c-5f9b-be9d-def791046b1a",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\16_DEPLOYMENT_OPERATIONS.md",
+        "raw_bytes_sha256": "7b0211cf4fd342b0700cce78699133c429bd9aa9c051d402e5ae77b7b31d891d",
+        "bytes": 9689
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA16-U03"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/92"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U03.v9.json",
+        "raw_bytes_sha256": "2edaabac61b1216e3b00ff6fd415d9a6248f6d3c27e2407077cf2ce96b613ed4",
+        "bytes": 5593,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "60031068b044536c7081c59463dcf5876c37f8dcca3e2df2888aeaf535c5c165",
+      "base_plan_revision_id": "11e0b610-6e6a-5760-a6a3-e9400bbf2fb1",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\16_DEPLOYMENT_OPERATIONS.md",
+        "raw_bytes_sha256": "7b0211cf4fd342b0700cce78699133c429bd9aa9c051d402e5ae77b7b31d891d",
+        "bytes": 9689
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    }
+  ],
+  "original_package_input": {
+    "planning_package_id": "PK04",
+    "name": "私人 Capture、備份與部署基礎",
+    "status": "PLANNING_AND_COMPILATION_INPUT_CANDIDATE_NOT_SUBMITTED_NOT_EXECUTABLE",
+    "observable_outcome": "私人原文 Capture／Readback、Provider／Volume／Path、Same-Cut／A-B Catalog；配置、版本與 Migration Plan。",
+    "cohesion_boundary": "PRIVATE_DURABILITY_AND_ENVIRONMENT",
+    "unit_aliases": [
+      "MA13-U01",
+      "MA13-U02",
+      "MA13-U03",
+      "MA13-U04",
+      "MA13-U05",
+      "MA16-U01",
+      "MA16-U02",
+      "MA16-U03"
+    ],
+    "unit_ids": [
+      "8127078d-3263-47d4-a1c5-59390da7224d",
+      "edf14ff8-839f-44f4-a1b0-166c024f1515",
+      "2049e68d-c38a-459f-a0d1-f1df2eda8299",
+      "ddb418b7-65aa-4166-8b9f-e61ba66e6268",
+      "7dda8b7f-82d2-46d4-b6c5-7e0c960d0e64",
+      "a74efbae-fd8d-4684-ab41-2d769263f5d8",
+      "417a48ca-cd02-4682-8099-6b22cb9347d6",
+      "ffcf094e-f8ac-4ea4-b8b0-45e90063d3cc"
+    ],
+    "cross_package_dependencies": [
+      "PK03"
+    ],
+    "api_operations": [
+      "getArtifactBytes",
+      "getArtifactContent",
+      "getBackupCatalog",
+      "getConfig",
+      "listArtifacts",
+      "saveConfigCandidate"
+    ],
+    "ui_pages": [
+      "UI14",
+      "UI17"
+    ],
+    "mapping_semantics": {
+      "api_operations": "ALL_MEMBER_TOUCHED_CONSUMER_OR_VERIFICATION_CLOSURE_NOT_IMPLEMENTATION_OWNERSHIP_OR_WRITE_SCOPE",
+      "ui_pages": "ALL_MEMBER_TOUCHED_UI_CONSUMER_CLOSURE_NOT_EXCLUSIVE_UI_OWNERSHIP"
+    },
+    "touched_api_operation_ids": [
+      "getArtifactBytes",
+      "getArtifactContent",
+      "getBackupCatalog",
+      "getConfig",
+      "listArtifacts",
+      "saveConfigCandidate"
+    ],
+    "touched_ui_page_ids": [
+      "UI14",
+      "UI17"
+    ],
+    "primary_producer_api_operation_ids": [
+      "getArtifactBytes",
+      "getArtifactContent",
+      "getBackupCatalog",
+      "getConfig",
+      "listArtifacts",
+      "saveConfigCandidate"
+    ],
+    "primary_ui_page_ids": [],
+    "risk_tiers": [
+      "L3",
+      "L4"
+    ],
+    "backend_scope": "Python owns application/domain/economic state and persistence through existing ports; BFF owns auth/workflow/proxy only. Unit proposed paths must be compiled to exact current allowlist.",
+    "frontend_scope": "PK11 consumes exact pinned API/DTO/error/permission contracts; other packages supply domain fixtures and state/effect semantics. No browser SQL/Broker authority.",
+    "integration_boundary": "Contract-first one canonical operation/model source. Contract tests compare Python/OpenAPI/BFF/React models; interface changes require controlled revision and impacted consumer closure.",
+    "executor_capability": "Actual implementation language/toolchain + domain risk + exact source/context comprehension + positive/negative/concurrency test ability; named tool alone is not qualification.",
+    "targeted_tests": "Use every listed Unit case/fixture and targeted command proposal after actual repository placement; proposals are requirements, not actual results.",
+    "integration_tests": "Pinned producer→consumer DTO/domain/persistence tests, error/retry/unknown/idempotency/CAS and relevant UI actions. Isolated actual PG only under separate grant.",
+    "regression_tests": "Changed source/contract/dependency closure only; protect accepted predecessors. Full B3 same-version journey at PK12 and formal release; no blanket 216-schema rerun for display-only change.",
+    "human_visual_gate": "Affected interactive UI state, layout, keyboard/error/conflict/recovery/authority display reviewed on actual browser; no visual acceptance inferred from API tests.",
+    "writer_worktree_strategy": "Planning/readonly branches may coexist. No worktree is created here. Exact disjoint file scopes, one writer per scope, scoped grants, dependency cuts and integration owner required before parallel implementation. Current WORK NO_PARALLEL_EXECUTION retained until lawfully scoped successor/profile permits concurrent executions.",
+    "context_policy": "Load exact Unit + v9 head/companion + required pairs + minimal producer/consumer closure. Raw provenance retained separately; required source cannot be truncated. R06 current-profile qualification required where used.",
+    "cost_and_eta": {
+      "state": "UNKNOWN",
+      "token_estimate": null,
+      "time_estimate": null,
+      "actual": null,
+      "reason": "No comparable exact implementation cohort; existing WORK forecasts cost before lawful compile and records actual producer evidence."
+    },
+    "entry_gate": "Human A+B adopted scope + existing Owner materialized receipt/fresh re-entry; approved compiler companion adapter/context profile; exact source/preimages/protected scope/dependency results/current capacity/one-writer/grant remain required before execution",
+    "done_and_next_gate": "Per-unit actual evidence→required independent verification→existing WORK Intake; only credited accepted units count once. Package complete does not close P00 or enable runtime.",
+    "dispatch": "NOT_AUTHORIZED",
+    "formal_progress_credit": 0,
+    "planning_companion_revision": "post-human-dual-adoption.planning-companion.1",
+    "predecessor_planning_revision": "adoption-planning.r2",
+    "identity_class": "TEMPORARY_AGGREGATION_LABEL_NOT_NEW_PRODUCT_ID_OR_PROGRESS_DENOMINATOR",
+    "compilation_owner": "EXISTING_WORK_ORCHESTRATOR_AND_P00_COMPILER_OWNER",
+    "closed_schema_adaptation": "HOLD_DIRECT_SUBMISSION: PK labels do not match closed p00.package.v1 PXX identity; use accepted unit companion/approved adapter profile through existing Owner, never coerce IDs or extend a closed schema in place",
+    "exact_write_scope": [],
+    "write_scope_status": "NO_EXECUTABLE_ALLOWLIST_GRANTED; member proposed paths are inputs for later current-blob source assembly",
+    "member_unit_candidate_selectors": [
+      "#/unit_compilation_inputs/MA13-U01",
+      "#/unit_compilation_inputs/MA13-U02",
+      "#/unit_compilation_inputs/MA13-U03",
+      "#/unit_compilation_inputs/MA13-U04",
+      "#/unit_compilation_inputs/MA13-U05",
+      "#/unit_compilation_inputs/MA16-U01",
+      "#/unit_compilation_inputs/MA16-U02",
+      "#/unit_compilation_inputs/MA16-U03"
+    ],
+    "allowed_side_effects_now": [
+      "READ_SOURCE",
+      "AUTHOR_PLANNING_ARTIFACTS_ONLY_IN_AUTHORIZED_OUTPUT_WORKSPACE"
+    ],
+    "compilation_result": null,
+    "compiler_invoked": false
+  },
+  "primary_producer_operations": [
+    {
+      "operation_id": "getArtifactBytes",
+      "spec": "../../contracts/operations/getArtifactBytes.json",
+      "producer": {
+        "owner": "ARTIFACT_PROVIDER",
+        "unit": "MA13-U02",
+        "unit_id": "edf14ff8-839f-44f4-a1b0-166c024f1515",
+        "package": "PK04"
+      }
+    },
+    {
+      "operation_id": "getArtifactContent",
+      "spec": "../../contracts/operations/getArtifactContent.json",
+      "producer": {
+        "owner": "ARTIFACT_PROVIDER",
+        "unit": "MA13-U01",
+        "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+        "package": "PK04"
+      }
+    },
+    {
+      "operation_id": "getBackupCatalog",
+      "spec": "../../contracts/operations/getBackupCatalog.json",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit": "MA13-U05",
+        "unit_id": "7dda8b7f-82d2-46d4-b6c5-7e0c960d0e64",
+        "package": "PK04"
+      }
+    },
+    {
+      "operation_id": "getConfig",
+      "spec": "../../contracts/operations/getConfig.json",
+      "producer": {
+        "owner": "N_APPLICATION",
+        "unit": "MA16-U02",
+        "unit_id": "417a48ca-cd02-4682-8099-6b22cb9347d6",
+        "package": "PK04"
+      }
+    },
+    {
+      "operation_id": "listArtifacts",
+      "spec": "../../contracts/operations/listArtifacts.json",
+      "producer": {
+        "owner": "ARTIFACT_PROVIDER",
+        "unit": "MA13-U01",
+        "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+        "package": "PK04"
+      }
+    },
+    {
+      "operation_id": "saveConfigCandidate",
+      "spec": "../../contracts/operations/saveConfigCandidate.json",
+      "producer": {
+        "owner": "N_APPLICATION",
+        "unit": "MA16-U02",
+        "unit_id": "417a48ca-cd02-4682-8099-6b22cb9347d6",
+        "package": "PK04"
+      }
+    }
+  ],
+  "touched_operations_are_not_write_scope": [
+    "getArtifactBytes",
+    "getArtifactContent",
+    "getBackupCatalog",
+    "getConfig",
+    "listArtifacts",
+    "saveConfigCandidate"
+  ],
+  "primary_UI_pages": [],
+  "cross_package_dependencies": [
+    "PK03"
+  ],
+  "release_applicability": [
+    {
+      "unit_alias": "MA13-U01",
+      "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+      "primary_package": "PK04",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA13-U01/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "ab1edcbe-a3b8-43c0-bfa0-11dd7e98d396",
+          "revision_id": "3237afe4-4d43-469b-9f16-bc8f0d032086",
+          "title": "CriticalCapture不可再生Human/LLM/evidencebytes",
+          "release_scope": "FULL_PRODUCT_REQUIRED",
+          "in_exact_b3_release_slice": false
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [],
+      "not_in_exact_b3_release_slice_requirement_ids": [
+        "ab1edcbe-a3b8-43c0-bfa0-11dd7e98d396"
+      ],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA13-U02",
+      "unit_id": "edf14ff8-839f-44f4-a1b0-166c024f1515",
+      "primary_package": "PK04",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA13-U02/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "a9b06582-3253-4033-bc96-3180abccc1b5",
+          "revision_id": "7398a9e5-93e9-4691-91c5-67eeff1aa94a",
+          "title": "Provider/Volume/encryption/keys／futureNASCloud",
+          "release_scope": "FULL_PRODUCT_REQUIRED",
+          "in_exact_b3_release_slice": false
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [],
+      "not_in_exact_b3_release_slice_requirement_ids": [
+        "a9b06582-3253-4033-bc96-3180abccc1b5"
+      ],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA13-U03",
+      "unit_id": "2049e68d-c38a-459f-a0d1-f1df2eda8299",
+      "primary_package": "PK04",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA13-U03/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "fd0ad555-6b95-4000-90a7-dc8b80000fb8",
+          "revision_id": "bcb2eef5-7055-421a-a52c-f7b9489ea011",
+          "title": "SQL/Artifact/Git同Cut＋Manifest/ExternalCatalog",
+          "release_scope": "FULL_PRODUCT_REQUIRED",
+          "in_exact_b3_release_slice": false
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [],
+      "not_in_exact_b3_release_slice_requirement_ids": [
+        "fd0ad555-6b95-4000-90a7-dc8b80000fb8"
+      ],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA13-U04",
+      "unit_id": "ddb418b7-65aa-4166-8b9f-e61ba66e6268",
+      "primary_package": "PK04",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA13-U04/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "57d1a7b6-b359-445d-a1a3-5020f10d2e7d",
+          "revision_id": "f0c54c0f-958b-41dd-a1be-b47f4c69bce0",
+          "title": "A短期高頻／B長期獨立非mirror",
+          "release_scope": "FULL_PRODUCT_REQUIRED",
+          "in_exact_b3_release_slice": false
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [],
+      "not_in_exact_b3_release_slice_requirement_ids": [
+        "57d1a7b6-b359-445d-a1a3-5020f10d2e7d"
+      ],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA13-U05",
+      "unit_id": "7dda8b7f-82d2-46d4-b6c5-7e0c960d0e64",
+      "primary_package": "PK04",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA13-U05/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "fd0ad555-6b95-4000-90a7-dc8b80000fb8",
+          "revision_id": "bcb2eef5-7055-421a-a52c-f7b9489ea011",
+          "title": "SQL/Artifact/Git同Cut＋Manifest/ExternalCatalog",
+          "release_scope": "FULL_PRODUCT_REQUIRED",
+          "in_exact_b3_release_slice": false
+        },
+        {
+          "entity_id": "a9b06582-3253-4033-bc96-3180abccc1b5",
+          "revision_id": "7398a9e5-93e9-4691-91c5-67eeff1aa94a",
+          "title": "Provider/Volume/encryption/keys／futureNASCloud",
+          "release_scope": "FULL_PRODUCT_REQUIRED",
+          "in_exact_b3_release_slice": false
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [],
+      "not_in_exact_b3_release_slice_requirement_ids": [
+        "fd0ad555-6b95-4000-90a7-dc8b80000fb8",
+        "a9b06582-3253-4033-bc96-3180abccc1b5"
+      ],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA16-U01",
+      "unit_id": "a74efbae-fd8d-4684-ab41-2d769263f5d8",
+      "primary_package": "PK04",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA16-U01/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "005cf3b5-ee6a-4199-8881-b8856dd330ea",
+          "revision_id": "7efde61f-dfdf-4dcf-ac99-4162ac64fca4",
+          "title": "Environment/config/role/secrets/deploymentpin",
+          "release_scope": "FULL_PRODUCT_REQUIRED",
+          "in_exact_b3_release_slice": false
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [],
+      "not_in_exact_b3_release_slice_requirement_ids": [
+        "005cf3b5-ee6a-4199-8881-b8856dd330ea"
+      ],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA16-U02",
+      "unit_id": "417a48ca-cd02-4682-8099-6b22cb9347d6",
+      "primary_package": "PK04",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA16-U02/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "005cf3b5-ee6a-4199-8881-b8856dd330ea",
+          "revision_id": "7efde61f-dfdf-4dcf-ac99-4162ac64fca4",
+          "title": "Environment/config/role/secrets/deploymentpin",
+          "release_scope": "FULL_PRODUCT_REQUIRED",
+          "in_exact_b3_release_slice": false
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [],
+      "not_in_exact_b3_release_slice_requirement_ids": [
+        "005cf3b5-ee6a-4199-8881-b8856dd330ea"
+      ],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA16-U03",
+      "unit_id": "ffcf094e-f8ac-4ea4-b8b0-45e90063d3cc",
+      "primary_package": "PK04",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA16-U03/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "b711a9be-1027-41cc-9d21-cdc7ec0bdb41",
+          "revision_id": "30b3af40-3fe1-48d1-826c-2a11dfa8132d",
+          "title": "SchemaMigration相容／closedschemaadapter/successor",
+          "release_scope": "FULL_PRODUCT_REQUIRED",
+          "in_exact_b3_release_slice": false
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [],
+      "not_in_exact_b3_release_slice_requirement_ids": [
+        "b711a9be-1027-41cc-9d21-cdc7ec0bdb41"
+      ],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    }
+  ],
+  "finding_regression_backlog": [
+    "F3-04",
+    "F4-01",
+    "F4-02",
+    "F4-03",
+    "F4-04",
+    "F4-05",
+    "F5-02",
+    "F6-06",
+    "F2-06",
+    "F4-06",
+    "F5-01",
+    "F5-03",
+    "F5-04",
+    "F5-05",
+    "F5-06",
+    "F5-07",
+    "F5-08",
+    "F6-07",
+    "S6-COV-01",
+    "PRODUCT-S4-01",
+    "PRODUCT-S4-02",
+    "PRODUCT-S4-03",
+    "PRODUCT-S4-04",
+    "PRODUCT-S4-05",
+    "PRODUCT-S4-06"
+  ],
+  "proposed_implementation_tests": {
+    "targeted": "Use every listed Unit case/fixture and targeted command proposal after actual repository placement; proposals are requirements, not actual results.",
+    "integration": "Pinned producer→consumer DTO/domain/persistence tests, error/retry/unknown/idempotency/CAS and relevant UI actions. Isolated actual PG only under separate grant.",
+    "regression": "Changed source/contract/dependency closure only; protect accepted predecessors. Full B3 same-version journey at PK12 and formal release; no blanket 216-schema rerun for display-only change.",
+    "actual": "NOT_RUN"
+  },
+  "global_writer": "ONE; no parallelism from worktree or packaging",
+  "context_budget": {
+    "unit_source_bytes_read_into_report": 1454261,
+    "meaning": "DOCUMENT_BYTES_ONLY_NOT_ACTUAL_HOST_INJECTION_OR_TOKEN_COUNT",
+    "actual_tokens": null,
+    "forecasts": {
+      "state": "UNKNOWN",
+      "token_estimate": null,
+      "time_estimate": null,
+      "actual": null,
+      "reason": "No comparable exact implementation cohort; existing WORK forecasts cost before lawful compile and records actual producer evidence."
+    },
+    "qualified_context_profile": "UNRESOLVED"
+  },
+  "planning_status": {
+    "SPEC_READY": "READABLE_SOURCE_BOUND_SPECIFICATION",
+    "PLANNING_COMPLETE": true,
+    "QUALIFICATION_PENDING": true,
+    "IMPLEMENTATION_NOT_AUTHORIZED": true,
+    "EXECUTION_READY": false
+  },
+  "remaining_UNRESOLVED_bindings": [
+    "Exact machine WO/package identity through approved companion/adapter",
+    "Legal source assembly and applicable qualified profile/adapter",
+    "Exact current preimages / grant / budget / actor / writer",
+    "Current dependency result/reuse, product/runtime actual only where applicable"
+  ],
+  "after_grant_sequence": [
+    "Contract/source/allowlist freeze",
+    "One authorized Coding Unit or cohesive exact WO",
+    "Targeted Tests",
+    "Producer/Consumer integration",
+    "Required Regression",
+    "Existing Review/Intake/Acceptance",
+    "Re-entry before next exact authorized work"
+  ]
+}

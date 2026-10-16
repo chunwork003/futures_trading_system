@@ -1,0 +1,93 @@
+{
+  "record_type": "B3_V1_ACCEPTED_SOURCE_BOUND_ADDENDUM_MANIFEST_V1",
+  "recorded_at": "2026-10-15T14:53:13.052234+00:00",
+  "architecture_subject": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01",
+  "status": "HUMAN_ACCEPTED_LOCAL_MATERIALIZED_SOURCE_BOUND_ADDENDUM",
+  "Owner_receipt": {
+    "repository_path": "docs/program/decisions/B3-V1-DUAL-ADOPTION-20261015-v1.owner.v1.json",
+    "raw_bytes_sha256": "6330d4f2a22333cf3baeb1c1d558731bb896aaadd6b00a23ffd3dc2d82fac942",
+    "bytes": 7348
+  },
+  "exact_A_scope": {
+    "repository_path": "docs/architecture/adopted/DECISION_SCOPE_A.source.v1.json",
+    "raw_bytes_sha256": "ff5fbb4b378dcb9aac91d4a0b55474a8ed9de944121593f7baa441c6f4bd1b01",
+    "bytes": 5330
+  },
+  "exact_B_scope": {
+    "repository_path": "docs/architecture/adopted/DECISION_SCOPE_B.source.v1.json",
+    "raw_bytes_sha256": "6a92215477e06edd2a885846264e4d1b2ecffd72866a4b2e1f8dea756f1590e6",
+    "bytes": 5586
+  },
+  "fixed_envelope": {
+    "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\EXACT_RE_REVIEW_SUBJECT_ENVELOPE.json",
+    "raw_bytes_sha256": "ca68aec60620755c55e598f876dea01a62f7757db381019b99febdb8127d0ae3"
+  },
+  "full_source_manifest": {
+    "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\SOURCE_CLOSURE_BUNDLE_MANIFEST.v9.json",
+    "raw_bytes_sha256": "8f902bfe0bfc73a6ab99893aaeca868e9c103db052aaa40507e0fea2cd8a403a"
+  },
+  "independent_review_manifest": {
+    "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\fresh-review\\FINAL_REVIEW_OUTPUT_MANIFEST.json",
+    "raw_bytes_sha256": "c462fd4d7775ecb1257fed0dbfad4462c4881e38ea330a650788d3e1fb9100f3"
+  },
+  "effective_membership": {
+    "repository_path": "docs/architecture/adopted/EFFECTIVE_ARCHITECTURE_MEMBERSHIP.source.v1.json",
+    "raw_bytes_sha256": "9b5a808eb47d8cd822772bd702fded8e7e6d6e4ede2b2ddb8c33e3b4ec52da09",
+    "bytes": 419855
+  },
+  "effective_direct_artifact_count": 694,
+  "all_audit_inventory_is_normative": false,
+  "effective_registry_head": {
+    "path": "source_closure_v9/PAIRING_AUTHORITY_HEAD.v9.json",
+    "raw_bytes_sha256": "da3b8895a133370b2a7cc75d5a4dd80908accdb12c0b52c3a41a07e0e24c3728"
+  },
+  "closure_rule": "Follow only exact typed ContractRefs, Unit companion pins and versioned v9 Required Source/Companion graph. Preserve source profile/dialect/revision and declared historical adapters; no latest-name lookup or silent predecessor fallback.",
+  "precedence": [
+    "EXISTING_ACCEPTED_DOMAIN_ARCHITECTURE_ADR_PROGRAM_AUTHORITY_SCOPE_PRESERVED",
+    "EXACT_V9_CURRENT_DESIGN_BYTES_AND_EXPLICIT_COMPATIBILITY_SUCCESSORS",
+    "EXACT_V9_HEAD_OPERATION_UNIT_COMPANIONS_FOR_INPUT_QUALIFICATION",
+    "EXTERNAL_FIXED_FINAL_REVIEW_RECEIPT_FOR_REVIEW_STATUS",
+    "THIS_PROPOSED_DECISION_SCOPE_AFTER_HUMAN_ONLY_FOR_B3_DESIGN_AND_NON_AUTHORITY_CHANGING_POLICY_SUPPLEMENT"
+  ],
+  "existing_domain_acceptance_is_preserved": true,
+  "scope": "Complete Personal Futures V1 + Full Strategy Lab V1 B3 design obligations; original full/future source scope retained; MVP is an internal milestone",
+  "scope_counts": {
+    "Architecture_Chapters": 16,
+    "UI": 19,
+    "API": 95,
+    "Units": 96,
+    "existing_unit_dependencies": 364
+  },
+  "accepted_policy_members": [
+    {
+      "repository_path": "docs/architecture/adopted/OWNER_POLICY_SUPPLEMENT.source.v1.json",
+      "raw_bytes_sha256": "d6042f6593a37e847b68e0140a4e496a1929f93ccff9de3d72bcd35950d2451d",
+      "bytes": 11741
+    },
+    {
+      "repository_path": "docs/architecture/adopted/B3_V1_PROJECT_OPERATING_GUIDE.source.v2.md",
+      "raw_bytes_sha256": "dae411b42acba4471307d6291b93c3df7e5f5bb5293ee8b202328e72661803ba",
+      "bytes": 10498
+    },
+    {
+      "repository_path": "docs/architecture/adopted/GUIDE_V2_COMPATIBILITY_ANNEX.source.v1.md",
+      "raw_bytes_sha256": "a83fb8c9c79f447349892da7bae0dc6fdbff675e7a6712ac868b0b86ba414f82",
+      "bytes": 7081
+    }
+  ],
+  "formal_navigation_paths": {
+    "architecture": "docs/architecture/B3_V1_ARCHITECTURE.md",
+    "SOP": "docs/PROJECT_OPERATING_GUIDE.md",
+    "dynamic_current": "docs/CURRENT_STATE.md",
+    "queue": "docs/CURRENT_WORK.md"
+  },
+  "source_selection_rule": "Use exact v9 envelope + effective membership + v9 registry head and declared successors/adapters. Original MASTER_INDEX/DESIGN_STATE labels and old source_revision are historical, not competing current pointers.",
+  "availability": "Full fixed private candidate source verified and retained at external exact paths; this manifest does not claim complete Git-only materialization has already occurred",
+  "Git_publication_state": "NOT_COMMITTED_NOT_PUSHED_NOT_MERGED",
+  "master_main_migration": "NOT_EXECUTED",
+  "local_new_files_do_not_replace_canonical_git_master": true,
+  "execution_effect": "NONE",
+  "P00_closure_effect": "NONE",
+  "runtime_qualification_effect": "NONE",
+  "original_A_B_scope_and_predecessors_unchanged": true
+}

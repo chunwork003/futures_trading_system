@@ -1,0 +1,302 @@
+{
+  "format_role": "EXECUTOR_READABLE_UI_SOURCE_SPEC_NOT_DESIGN_REPLACEMENT",
+  "exact_ui_input": {
+    "page_id": "UI02",
+    "name": "Chart",
+    "route": "/chart",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UI_PAGE_CONTRACTS.json",
+      "raw_bytes_sha256": "ab18284229f7968456fb9b006ade182404ee3f37b385093ce015a58ca87e0536",
+      "bytes": 196438
+    },
+    "source_pointer": "#/pages/1",
+    "primary_ui_package": "PK11",
+    "operation_ids": [
+      "listDatasets",
+      "sealDatasetSnapshot",
+      "getDatasetSnapshot",
+      "queryObservations",
+      "queryMarketBars"
+    ],
+    "consumer_units": [
+      "MA03-U02",
+      "MA03-U04",
+      "MA10-U01",
+      "MA10-U02",
+      "MA15-U02"
+    ],
+    "required_mock_design": "Exact API/DTO/wire error/state/permission contracts; empty vs UNKNOWN, cancel vs completed effect, rejected conflict and restart receipt state; no browser cache as authority.",
+    "visual_acceptance": "FUTURE_HUMAN_BROWSER_CHECK_NOT_RUN",
+    "actual_build_and_integration": "NOT_RUN"
+  },
+  "exact_page_contract": {
+    "actions": [
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "B_DATA",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "listDatasets",
+        "request_model_or_fields": {
+          "page": {
+            "required": false,
+            "type": "CursorRequest"
+          },
+          "series_kind": {
+            "required": false,
+            "type": "enum?"
+          }
+        },
+        "response_model": "DatasetRevision",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA03-U04",
+          "MA10-U01",
+          "MA10-U02",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "B_DATA",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "sealDatasetSnapshot",
+        "request_model_or_fields": {
+          "dataset_refs": {
+            "required": true,
+            "type": "ContractRef[]"
+          },
+          "selection": {
+            "required": true,
+            "type": "DatasetSelection"
+          }
+        },
+        "response_model": "DatasetSnapshot",
+        "role": "RESEARCH_AUTHOR",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+        "unit_consumers": [
+          "MA03-U04",
+          "MA10-U01",
+          "MA10-U02",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "B_DATA",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getDatasetSnapshot",
+        "request_model_or_fields": {
+          "revision": {
+            "required": true,
+            "type": "uuid"
+          }
+        },
+        "response_model": "DatasetSnapshot",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA03-U04",
+          "MA10-U01",
+          "MA10-U02",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "B_DATA",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "queryObservations",
+        "request_model_or_fields": {
+          "end": {
+            "required": true,
+            "type": "instant"
+          },
+          "fields": {
+            "required": true,
+            "type": "string[]"
+          },
+          "instrument_ref": {
+            "required": true,
+            "type": "ContractRef"
+          },
+          "page": {
+            "required": false,
+            "type": "CursorRequest"
+          },
+          "snapshot_ref": {
+            "required": true,
+            "type": "ContractRef"
+          },
+          "start": {
+            "required": true,
+            "type": "instant"
+          }
+        },
+        "response_model": "PricingObservation",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA03-U02",
+          "MA10-U01",
+          "MA10-U02",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "B_DATA",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "queryMarketBars",
+        "request_model_or_fields": {
+          "page": {
+            "required": false,
+            "type": "CursorRequest?"
+          },
+          "query": {
+            "required": true,
+            "type": "BarQuery"
+          }
+        },
+        "response_model": "CanonicalMarketBarDto",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA03-U02",
+          "MA10-U01",
+          "MA10-U02",
+          "MA15-U02"
+        ]
+      }
+    ],
+    "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+    "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+    "implementation_grant": false,
+    "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+    "name": "Chart",
+    "page_id": "UI02",
+    "revision": "candidate.7",
+    "route": "/chart",
+    "runtime": "NOT_RUN",
+    "schema_revision": "candidate.7",
+    "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+    "transport_binding": {
+      "candidate_subject": "MA-ARCH-REVIEW-v7-CYCLE03",
+      "outgoing_header": "X-MA-DTO-Version",
+      "revision_is_not_wire_alias": true,
+      "runtime": "NOT_RUN",
+      "wire_profile": "MA-DTO-v6"
+    }
+  },
+  "single_source_operations": [
+    {
+      "operation_id": "listDatasets",
+      "producer": {
+        "owner": "B_DATA",
+        "unit": "MA03-U04",
+        "unit_id": "a8a56800-81b9-4297-8847-ad2bb530ae83",
+        "package": "PK02"
+      },
+      "spec": "../operations/listDatasets.json"
+    },
+    {
+      "operation_id": "sealDatasetSnapshot",
+      "producer": {
+        "owner": "B_DATA",
+        "unit": "MA03-U04",
+        "unit_id": "a8a56800-81b9-4297-8847-ad2bb530ae83",
+        "package": "PK02"
+      },
+      "spec": "../operations/sealDatasetSnapshot.json"
+    },
+    {
+      "operation_id": "getDatasetSnapshot",
+      "producer": {
+        "owner": "B_DATA",
+        "unit": "MA03-U04",
+        "unit_id": "a8a56800-81b9-4297-8847-ad2bb530ae83",
+        "package": "PK02"
+      },
+      "spec": "../operations/getDatasetSnapshot.json"
+    },
+    {
+      "operation_id": "queryObservations",
+      "producer": {
+        "owner": "B_DATA",
+        "unit": "MA03-U02",
+        "unit_id": "ad7fdaed-5e0d-4a51-a24b-1922f8ce6f26",
+        "package": "PK02"
+      },
+      "spec": "../operations/queryObservations.json"
+    },
+    {
+      "operation_id": "queryMarketBars",
+      "producer": {
+        "owner": "B_DATA",
+        "unit": "MA03-U02",
+        "unit_id": "ad7fdaed-5e0d-4a51-a24b-1922f8ce6f26",
+        "package": "PK02"
+      },
+      "spec": "../operations/queryMarketBars.json"
+    }
+  ],
+  "implementation_boundary": "React → ASP.NET BFF → Python API → Quant Core → Persistence; mock substitutes declared producer boundary only",
+  "visual_gate": "Human browser check after authorized implementation, NOT_RUN",
+  "phase_fix_policy": "Cosmetic/UI detail may be batched within exact grant; auth/error/receipt/version/data-integrity/Capital/Order/Fill drift blocks affected journey immediately",
+  "implementation_not_authorized": true
+}

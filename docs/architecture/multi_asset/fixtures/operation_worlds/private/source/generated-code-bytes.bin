@@ -1,0 +1,4 @@
+def evaluate(close, dataset_completeness, input_integrity):
+    if dataset_completeness != "COMPLETE" or input_integrity != "VERIFIED":
+        return {"state": "HOLD_RESEARCH_EVALUATION"}
+    return {"state": "RESEARCH_PREDICATES", "entry": close > 110, "exit": close <= 100, "strategy_risk": close <= 200, "safety": True}

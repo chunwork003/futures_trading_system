@@ -1,0 +1,3025 @@
+{
+  "format_role": "EXECUTOR_READABLE_SOURCE_BOUND_OPERATION_SPEC_NOT_EXECUTION_AUTHORITY",
+  "operation_id": "getConfig",
+  "producer": {
+    "owner": "N_APPLICATION",
+    "unit": "MA16-U02",
+    "unit_id": "417a48ca-cd02-4682-8099-6b22cb9347d6",
+    "package": "PK04"
+  },
+  "contract_source": {
+    "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+    "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+    "bytes": 245079
+  },
+  "source_pointer": "#/endpoints/52",
+  "full_api_contract_source": {
+    "operation_id": "getConfig",
+    "method": "GET",
+    "path": "/api/v2/config-candidates",
+    "chapter": "MA16",
+    "owner": "N_APPLICATION",
+    "page": "UI17",
+    "role": "RESOURCE_ADMIN",
+    "request_payload_fields": {
+      "config_ref": {
+        "type": "ContractRef?",
+        "required": false
+      },
+      "page": {
+        "type": "CursorRequest",
+        "required": false
+      }
+    },
+    "response_model": "ConfigRevision",
+    "response_envelope": "ReadEnvelope",
+    "side_effect": "READ_ONLY",
+    "idempotency": "snapshot-bound safe query",
+    "invariant": "redactedsecretavailability only",
+    "runtime_status": "NOT_IMPLEMENTED_OR_NOT_VERIFIED_BY_THIS_REVIEW",
+    "response_cardinality": "PAGED_MANY",
+    "response_item_model": "ConfigRevision",
+    "command_result_binding": null,
+    "query_enum_rule": "All enum selectors have TYPE_VARIANTS bindings; unknown semantic enum denied",
+    "error_model": "ErrorEnvelope",
+    "error_disposition_table": "ERROR_RETRY_DISPOSITION_TABLE.json",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation_contract": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "failure_contract": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "cursor_contract": "CursorRequest scoped snapshot; Coverage provedempty, no fake0",
+    "dto_version": "MA-DTO-v6",
+    "error_protocol_version": "architecture.transport_error.v2",
+    "dto_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "full_compilation_input_row": {
+    "operation_id": "getConfig",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+      "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+      "bytes": 245079
+    },
+    "source_pointer": "#/endpoints/52",
+    "chapter": "MA16",
+    "domain_contract_owner": "N_APPLICATION",
+    "producer_unit_alias": "MA16-U02",
+    "producer_unit_id": "417a48ca-cd02-4682-8099-6b22cb9347d6",
+    "producer_package": "PK04",
+    "consumer_units": [
+      {
+        "unit_alias": "MA10-U01",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_getConfig",
+        "output_model": "ConfigRevision",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/54/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U05",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_getConfig",
+        "output_model": "ConfigRevision",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/58/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U06",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_getConfig",
+        "output_model": "ConfigRevision",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/59/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA15-U02",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_getConfig",
+        "output_model": "ConfigRevision",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/85/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA16-U02",
+        "mode": "IMPLEMENT_OWNER_USECASE_OR_EXACT_SCOPED_REUSE_ADAPTER",
+        "input_model": "ApiRequest_getConfig",
+        "output_model": "ConfigRevision",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/91/input_output/secondary_io"
+      }
+    ],
+    "ui_consumers": [
+      {
+        "page_id": "UI17",
+        "route": "/settings",
+        "action_pointers": [
+          "#/pages/16/actions/1"
+        ],
+        "ui_states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "request_model_or_fields": {
+          "config_ref": {
+            "required": false,
+            "type": "ContractRef?"
+          },
+          "page": {
+            "required": false,
+            "type": "CursorRequest"
+          }
+        }
+      }
+    ],
+    "frontend_integration_package": "PK11",
+    "method": "GET",
+    "route": "/api/v2/config-candidates",
+    "dto_version": "MA-DTO-v6",
+    "request_model": "ApiRequest_getConfig",
+    "request_fields": {
+      "config_ref": {
+        "type": "ContractRef?",
+        "required": false
+      },
+      "page": {
+        "type": "CursorRequest",
+        "required": false
+      }
+    },
+    "response_model": "ConfigRevision",
+    "response_envelope": "ReadEnvelope",
+    "cardinality": "PAGED_MANY",
+    "error_model": "ErrorEnvelope",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "role_is_not_authority": true,
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "snapshot-bound safe query",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect.",
+    "existing_oracle_case_refs": [
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/156",
+        "case_id": "WIRE-getConfig-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/157",
+        "case_id": "WIRE-getConfig-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/158",
+        "case_id": "WIRE-getConfig-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      }
+    ],
+    "effective_v9_operation_companion": {
+      "companion": {
+        "path": "source_closure_v9/operations/getConfig.v9.json",
+        "raw_bytes_sha256": "d502ea5c7b19878fa17533cbcae785124a058fe9bd8890695472cb219f419c7d"
+      },
+      "contract_entity_id": "acc6a026-6602-5d6c-9f02-c76a3aea7299",
+      "contract_revision_id": "4afeeeed-6431-5db4-8c5c-c930d55e2d75",
+      "operation_id": "getConfig"
+    },
+    "required_mock_design": [
+      "Read exact producer contract/Model/Type/Error table and v9 Unit companion; use effective successor/adapter selection, not legacy positive wire payload as current.",
+      "Plan accepted success body, error/rejection, empty-complete vs UNKNOWN/PARTIAL, pending/unknown receipt, retry/CAS/conflict and re-entry states required by this operation.",
+      "Keep fixture actor/project/account/environment/permission/cut/version fixed; mock command does not approve strategy, financial effect, runtime admission or execution.",
+      "Keep request/response semantics identical across React→ASP.NET BFF→Python API→Core→Persistence; mock replaces an isolated producer boundary, not authorization layers.",
+      "Contract tests must verify producer and consumer against independent named expected oracles, not regenerate expected from actual mock result."
+    ],
+    "mock_runtime_result": "NOT_RUN",
+    "execution_dependency": "EXACT_AUTHORIZED_WORK_ORDER + qualified producer result or explicitly scoped reuse proof + current compiler/profile/writer/capacity",
+    "missing_executable_details": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here."
+  },
+  "effective_v9_companion": {
+    "actual_pair_catalog": {
+      "path": "source_closure_v9/ACTUAL_SUPPLIED_PAIR_CATALOG.v9.json",
+      "raw_bytes_sha256": "598693c9ab0bb23c206b1b831185e2e7d21bef176664717b6493022fd1ae7cfc"
+    },
+    "authority_effect": "NONE",
+    "case_refs": [
+      {
+        "case_canonical_sha256": "62d30a58ae69a888da2c95dc55ea72f299450f0b2e96f17671eacea5de141007",
+        "case_id": "C6-POSITIVE-FINITE-getConfig",
+        "pointer": "#/cases/15",
+        "source": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        }
+      }
+    ],
+    "consumers": [
+      {
+        "input_model": "ApiRequest_getConfig",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "output_model": "ConfigRevision",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/54/input_output/secondary_io",
+        "unit_alias": "MA10-U01"
+      },
+      {
+        "input_model": "ApiRequest_getConfig",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "output_model": "ConfigRevision",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/58/input_output/secondary_io",
+        "unit_alias": "MA10-U05"
+      },
+      {
+        "input_model": "ApiRequest_getConfig",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "output_model": "ConfigRevision",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/59/input_output/secondary_io",
+        "unit_alias": "MA10-U06"
+      },
+      {
+        "input_model": "ApiRequest_getConfig",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "output_model": "ConfigRevision",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/85/input_output/secondary_io",
+        "unit_alias": "MA15-U02"
+      },
+      {
+        "input_model": "ApiRequest_getConfig",
+        "mode": "IMPLEMENT_OWNER_USECASE_OR_EXACT_SCOPED_REUSE_ADAPTER",
+        "output_model": "ConfigRevision",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/91/input_output/secondary_io",
+        "unit_alias": "MA16-U02"
+      }
+    ],
+    "contract_entity_id": "acc6a026-6602-5d6c-9f02-c76a3aea7299",
+    "contract_revision_id": "4afeeeed-6431-5db4-8c5c-c930d55e2d75",
+    "dto_profile": "MA-DTO-v6",
+    "execution_authorized": false,
+    "expected_pair_spec": {
+      "path": "source_closure_v9/EXPECTED_REQUIRED_PAIRS.v9.json",
+      "raw_bytes_sha256": "86c09e275595a3c996cea79f15e8200df25a53cf7ddf78ffb49eab7cb306250e"
+    },
+    "operation_id": "getConfig",
+    "producer": {
+      "owner": "N_APPLICATION",
+      "unit_alias": "MA16-U02"
+    },
+    "request_model": "ApiRequest_getConfig",
+    "required_descendants": [
+      {
+        "canonical_sha256": "68c7470b3b3121d583c86b53bca8ad693e9e53c74163940fb8c15311ba1082be",
+        "contract_ref": {
+          "entity_id": "ab46d4b9-08e0-56c1-987d-1f7965b02e28",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "1ff07c7f-f9d4-5e2b-a966-03135f272aad",
+          "source_hash": "d230ca30e989e51992eb8d92542b7d25bcab586334504ee54418736c497d4557"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/predecessor-builder-policy",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "2da5580cf52995d4a0bf1a9c7bec8d872495770a05f510807ee272c4b920dad4",
+        "contract_ref": {
+          "entity_id": "1ac78aa9-8970-5c2a-9724-013d99476fd4",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "ac436037-c2b9-5495-bda7-421d70240cee",
+          "source_hash": "d24c53387c167b24a9cf9e59ceb095d71652109024e82cf45affd7234145fb6c"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/predecessor-feature",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "ce6db90dcce165d4978164136e051580bebb3f06ab27013196cc0ab979b9687f",
+        "contract_ref": {
+          "entity_id": "9c813a79-5c19-518f-93c7-4b75c0f1bec5",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "0588b0d7-25aa-5519-8e50-563065cfcc02",
+          "source_hash": "325f9ee4d5a787d14ff7e0925aa1cbfa177d2299643e9d80088bb1b31da28a42"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/predecessor-graph-generation5",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "7b7355b83df961df87c4ab7aeeb1ae354b62d79c0813005d9742f820cb7559bb",
+        "contract_ref": {
+          "entity_id": "a5863d82-3352-534f-a068-ff4702af765d",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "dee7b2dc-9e65-5629-9867-41a5a28010eb",
+          "source_hash": "6862506f4c7f454304ae5660cd6be4a99e2a4825718feb865cf809b8235ec499"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/predecessor-research-config",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "0ad22db85f2275a0a005b1c80764d486395f035d9e68c9352692d56d295d7d9d",
+        "contract_ref": {
+          "entity_id": "a98e6706-492f-53a2-b08e-e225d34307b5",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "0717bb57-4f7a-5a03-a40c-6f9315d67f19",
+          "source_hash": "abb16faf2feaf2ad75c59fef39f5ad07d7bd045391d7699f7729e1c02dc8c143"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/predecessor-rule-ENTRY",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "044af2272cc1e3df52a4cc545a6c86b43172f53b541627cbf510d8b1d9ff0e52",
+        "contract_ref": {
+          "entity_id": "44e6502f-c2e2-54fb-ad92-8f9142184191",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "469ac7c4-63c7-5ece-9a75-51226035b10e",
+          "source_hash": "544e8e83e521e7312c31b3b718794ac533f3fb27cef6faf86c02bb9e008903b3"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/predecessor-rule-EXIT",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "a1697e2c6f83a642cf343fb11351f8c64db9af33896010bf042aff9e31d16b06",
+        "contract_ref": {
+          "entity_id": "e8a30d7f-40b7-5e0f-8c3d-1531ddda84b1",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "f0faa152-f574-55d6-89e2-251ee86e1841",
+          "source_hash": "19654d2068c039e79cac3d76c71be169766e778f53e8dbd9431525f1d4ba3a9d"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/predecessor-rule-STRATEGY_RISK",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "bd996ad649207ee2feb3988f000b324d05294671b87395a31a800de934c808db",
+        "contract_ref": {
+          "entity_id": "44db185a-c893-59e9-9b9c-a2c6460c6d28",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "4b73c2d5-7521-57bb-ae14-8a787ac37e92",
+          "source_hash": "00dcc5bd7d0be65c886fc49006a5da6edf9c78e08231b9ed89ced107cb646441"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/predecessor-safety",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "267f4ea7315eb3bd8e1e01dfbb9710c7c06405f808be01349d99f8c50359ac18",
+        "contract_ref": {
+          "entity_id": "9894a8e6-5ba5-597e-a858-ba0978a59b0d",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "62057d42-6798-50a9-a7f1-0d8c82bc488c",
+          "source_hash": "fa159b764db5d8408acf669309e9b0c906450f5d4815d0f01d88e7efaa22e96b"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/predecessor-builder-policy",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "31f1d4123a994d55e4265075aca843ae51eb6197d4d12c70d592bcf68751d150",
+        "contract_ref": {
+          "entity_id": "9a856a8c-5ce3-5a36-99d2-65ec6466b501",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "0b6e9410-930c-5b8b-958a-05fd94915650",
+          "source_hash": "350e63a34b4cb634facfd2e03e093ec0069b1a2532141e28be73d26641ec0b48"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/predecessor-feature",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "2b72c66cd30446e9a53b6cee6b496aef5ab6af31d994a04f62a20fd7430630c6",
+        "contract_ref": {
+          "entity_id": "c051ee7c-3a82-50f4-a225-1dad5266f1ae",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "7e9d5dad-9100-5241-9e5f-7ff560f18171",
+          "source_hash": "77d15332232f33c4663420929416a56c678c11b0d51083f6661adc9826fd1186"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/predecessor-graph-generation5",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "ed9de5eee2c401c7a4f676f20bedb338b35969db8bd4a95b50f47244587c1a30",
+        "contract_ref": {
+          "entity_id": "8aa3a669-7b16-5492-9a47-0dbb8bac232c",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "cce8a7c6-920e-58cf-93ba-b6a3a69a2e0e",
+          "source_hash": "f24a384807375a5704f6b3f448d2068c94bbfb6e5b38a2d13427d86c09042d4c"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/predecessor-research-config",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "46cddb07126018f050aaae48595cf02cc3eec9c266201db084c870c720f7df31",
+        "contract_ref": {
+          "entity_id": "fedec57f-ac34-5eee-b670-3e179dcce348",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "6a39b0a0-c1a4-51d1-85ef-b354842994de",
+          "source_hash": "541e4dea0d524acaaf45885740730109047e14b7153c2d0ac09f285e50a4623a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/predecessor-rule-ENTRY",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "34e71c8ea85e3013dc362c6d5cd487a1728444fdfb35266bcf463db91d6fc022",
+        "contract_ref": {
+          "entity_id": "db383cda-97b4-5533-9fd5-c3f5e4987868",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "c68ee651-cff8-5d48-ad98-9e666c8b990b",
+          "source_hash": "8a0ce13739e5aa9eecd14ee8d9e271461b40b74097d090ac169d4f0587a1f33c"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/predecessor-rule-EXIT",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "cabd97fb7132734f1a703ab729c62a25809f0a5f6713c8589c7ff61662a4c9bb",
+        "contract_ref": {
+          "entity_id": "958c6586-f4e1-5f81-8785-eb5d0c87d826",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "7fd038e4-e25d-5f9c-8dd4-940edd47112f",
+          "source_hash": "c6e3a6d6dafe5c3e83f095d7ae5634a10ec3f1f8c03d4f021d3ba9dc48966153"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/predecessor-rule-STRATEGY_RISK",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "1cd3b60ea0d46b091750db53cc18b3b85b1e6e216f9feaa0f606b7598b056157",
+        "contract_ref": {
+          "entity_id": "7bb8dbdb-6b7d-55a5-ad94-4883cbbc3c6d",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "bd30ac06-24b8-50e6-af3c-74c4871ae169",
+          "source_hash": "49e5f7191556dcffb10039c0b83adae290a194421a5c7234893fc17036dfdbe5"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/predecessor-safety",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "5448a479bed46f9ced43f7258d34667ee1a70e0b505bde90e3fe39d0cbc988d2",
+        "contract_ref": {
+          "entity_id": "235c358f-b29d-5eb5-af61-a7fdfbe9d871",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "e3c4e842-6d14-573f-b1c1-fa97a19c9247",
+          "source_hash": "631c20c7fcdd3ab0f3d5fc39d7f1d30a9ea96826c65302b9bd490907e479378d"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/predecessor-builder-policy",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "b8d5dee9bd3537ddce2be244f6c2fb35ed24336c29764a196f84581de2a89685",
+        "contract_ref": {
+          "entity_id": "7f082710-5542-5cda-8c21-fee024626dab",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "c1397782-15a6-5fc1-819c-9de5f83bded6",
+          "source_hash": "1b0593b940775042e0445e879fe09c6ae5b1dbfe6980be3e5e6b77bb85b3af99"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/predecessor-feature",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "424442a5a8e6ffc786b8e2af987d9e99293c0bf1e20662bc5d09bdb18b213c2e",
+        "contract_ref": {
+          "entity_id": "ea98a626-c9f2-52c7-ab26-06ed83580d44",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "3f135890-3fbd-5081-be05-dcabecb5d181",
+          "source_hash": "e4e3b44be4d5be0f38a7d762beb1eefab4958e39257ec5592a5818179226f046"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/predecessor-graph-generation5",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "6712d2a45f2de85965bb64efd91217625c1a4998e49303b64e8f60be92c961c7",
+        "contract_ref": {
+          "entity_id": "a921ac54-5284-59be-84c5-c44aedce2820",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "05c793ba-1b16-5d9e-820e-950832ccac58",
+          "source_hash": "357b36cff14d2889a811bb905e7a2ff43520030032c9d5e926f32522d2eb13f6"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/predecessor-research-config",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "aefc40ebea1db5010fa3231dd8dcac7c63554828f27ef4b912434fbbab3ac7a4",
+        "contract_ref": {
+          "entity_id": "9ebc20d5-dd4f-5637-b177-20e9b65d427e",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "0f13d1f4-db87-5c6e-bcd4-67532d260885",
+          "source_hash": "b8c0291208f594376a3c4d6242fe69bc100d56b0daca695279ad86d534eca84c"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/predecessor-rule-ENTRY",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "a33deab4385db2974a9325d0ab0ffb301f4a39d0001bffd63578071dad57a0c1",
+        "contract_ref": {
+          "entity_id": "2400477a-693c-5415-a1ad-8e9248c5c117",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "4b0e62bd-afb0-5173-ad64-45b3458dae38",
+          "source_hash": "80a0ea27d6bbca653a790beb8237dd464401b439591349a36e90135fa9c6e54b"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/predecessor-rule-EXIT",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "90672d9b8d8b12675b7f0a216976d2368b5a9e80995a1780ce7647f09a3dd64d",
+        "contract_ref": {
+          "entity_id": "d93587b1-177e-5863-8db3-64e51e5688c0",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "6c1ab434-6648-5746-860d-6196d9082207",
+          "source_hash": "00272ce2cf7c80341a0d7d18de2563fb1ca82ce8564ca2e27238dc7702ff11d2"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/predecessor-rule-STRATEGY_RISK",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "9b55bcab99f5361ccfeb3ee5dea9be017be0527c293a020efb536cfebdd43e3c",
+        "contract_ref": {
+          "entity_id": "10c8b560-b39c-5206-9cf0-448a21b88ec9",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "d150233a-54f3-5a42-bafb-a3ef38f1f870",
+          "source_hash": "6692fcbad70d46b378a33ebc16602acc40dc9b80f2992a36e9b88e0702854824"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/predecessor-safety",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "a4504479dc820ad709f736f986ac437f80f354c33b5709e193ea097834d290f1",
+        "contract_ref": {
+          "entity_id": "548b9e67-07f2-517e-b9d1-90790d604102",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "4ed2f584-692b-5b3c-b772-105d7308a5e8",
+          "source_hash": "3e0b71d24b2422b4cfa20a667582555348196f44abfc0b6e28f881f861e8ae22"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/predecessor-builder-policy",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "348941167b7442db97669072d37666126a0a0b922cf6929435751a573982ddb4",
+        "contract_ref": {
+          "entity_id": "be362e3a-b807-59a0-adca-ee2c972c44ed",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "f7f5cd1b-6fba-590a-a5e3-034fce149e39",
+          "source_hash": "85b5799a2e611baf27ec803f4cac79bd3ecfbd7afbd8281627f4f6309f7e520a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/predecessor-feature",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "925f8e9b0dc24a102480dfc14a2ec6d6671fe08b6726b5a1ca0ca5ae2772c991",
+        "contract_ref": {
+          "entity_id": "870b7afa-f4c2-5c69-9bd8-eda36dc6938d",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "a7d04c04-8a84-526c-9c81-f0cea66eb4b6",
+          "source_hash": "11d064a095deaa64e7479672471853b40e9711c7876a49779e47071228f04d62"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/predecessor-graph-generation5",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "694d7daa40dbcfe586743b582fe42bd583855d5a6db562b16c51cddb27c2244e",
+        "contract_ref": {
+          "entity_id": "7bd9be95-358f-557f-95b1-768986f458b5",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "1ef60e10-5da2-5434-a529-db274057f848",
+          "source_hash": "5b268965659f26d4238e07fa5b85ac7b0265b8fdf61f2d5483c5b0cfaa0ad487"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/predecessor-research-config",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "28d12edba8a59c3dc33a3ab9b139ca144bae3373e4ff7eb7bef060dbe6b43614",
+        "contract_ref": {
+          "entity_id": "31d61b8d-7714-5bb1-a7f7-57c9b58416cd",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "43f49b11-c7c3-5aca-b82b-bfa2c180f0d5",
+          "source_hash": "75c1354b3ce2ba8a9b0d47ae0812788f198e3ff178b08211c3a7f38b566fbbd2"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/predecessor-rule-ENTRY",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "07452277e7998649a1e198eeef575a346e58f6092f085ea979b00c4fc62430a3",
+        "contract_ref": {
+          "entity_id": "50be6a80-1f71-5a30-84bb-d9fbb1b4fb45",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "cd3a9b63-5c2a-55a0-bab2-bd2963b0f646",
+          "source_hash": "7e0a9851b9dfe237bb52651f9a170ca927795b6bd131e65921575f667971b18a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/predecessor-rule-EXIT",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "37160e371be8ce410a38bb8e35675d60b3557d481effa95c077c0aa870c73a4f",
+        "contract_ref": {
+          "entity_id": "7612cba6-d8f6-5c6b-84e3-3af0a5d3158b",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "d9be4044-4ddc-5860-8ed8-7f6270e41ce3",
+          "source_hash": "727160dd311906a0894053722084ea8f6d8aeb2b34d30608ebc2bf410af45df0"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/predecessor-rule-STRATEGY_RISK",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "6c0d025db1323e4bf9f53ae0cbc12e350da8a18d3f7923e5da1390617bd7427b",
+        "contract_ref": {
+          "entity_id": "fed7141c-100a-51d1-9d32-697dc25865b3",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "afb13d91-4b60-575c-b09f-b92720edd66d",
+          "source_hash": "4b0c5305ee6553f75451f5f6bc116c5c17d5c2a8de59d905745db3fe3697b4c7"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/predecessor-safety",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "71aaeef314d3c511c266879086d7214b0b9642a96234a270683c1f4603f5cdea",
+        "contract_ref": {
+          "entity_id": "94101bc5-28f1-5547-a254-bf45de56886f",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "BODY_CAPTURE_OWNER",
+          "revision_id": "bd284283-8084-5884-8a19-7ee93e379e39",
+          "source_hash": "2c1a498f43d7f7390deffd7c1a162e99261cc077b471b02be3ce02635d7989dc"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/predecessor-builder-policy",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "8ba0978e2778a25a1ee02ddaaaeca63ae48501cfe0d0de2a34d61284029bc268",
+        "contract_ref": {
+          "entity_id": "fdaa296a-8adf-5043-ab95-d8bd61cfad9f",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_FEATURE",
+          "revision_id": "9a14cb40-760c-591e-9e2f-4e1cd8a8c09f",
+          "source_hash": "85b5799a2e611baf27ec803f4cac79bd3ecfbd7afbd8281627f4f6309f7e520a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/predecessor-feature",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "dfa24c943a6136b1596abc843ddaab2bf3c05d1a4543a5cb369916193bde1a41",
+        "contract_ref": {
+          "entity_id": "b3e38651-f948-538a-92b6-3c738f4bca24",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "9fea944d-0bc8-5456-a4f2-a270eff00e56",
+          "source_hash": "11d064a095deaa64e7479672471853b40e9711c7876a49779e47071228f04d62"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/predecessor-graph-generation5",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "1842b0841279fb704f8403eda81215f18c57a56d48b438e688ef4e559cf35a4d",
+        "contract_ref": {
+          "entity_id": "d572c69b-4a3c-55e1-874e-f47f94be1e64",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "N_APPLICATION",
+          "revision_id": "56bbbf5d-0684-5ead-9412-059e2f598e3a",
+          "source_hash": "5b268965659f26d4238e07fa5b85ac7b0265b8fdf61f2d5483c5b0cfaa0ad487"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/predecessor-research-config",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "fd6b688f1fe9b993e3d15e88ac985df95fe80f50439665e00d7b1e68dafe7e64",
+        "contract_ref": {
+          "entity_id": "5cceaea7-ff17-5e79-b8a7-599d3d1f1d0e",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "d180921d-9a24-5aa2-9281-2274d31d307a",
+          "source_hash": "75c1354b3ce2ba8a9b0d47ae0812788f198e3ff178b08211c3a7f38b566fbbd2"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/predecessor-rule-ENTRY",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "3e6a02c8b1b449cd18913b266b7a515e4b4757157dd998ad2c7e955126407ecd",
+        "contract_ref": {
+          "entity_id": "c4e36af5-7cc6-5049-830f-19472db3b45a",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "BODY_CAPTURE_OWNER",
+          "revision_id": "3880638e-1f6c-51d3-a917-c5034131fe7e",
+          "source_hash": "d2426f1a12382bad2de75fc2e871ae316eb4c8eac8a28d4c4430d94b7bb0c764"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/predecessor-rule-EXIT",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "6b998fd03dc7445d560c0dad9721451f0438f6ca43208bc84317d9510dd988bb",
+        "contract_ref": {
+          "entity_id": "ad31fa32-1a60-5e09-aca0-4ab55585cc12",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "7ff71d92-8679-5eda-a797-3bfb536c62e1",
+          "source_hash": "727160dd311906a0894053722084ea8f6d8aeb2b34d30608ebc2bf410af45df0"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/predecessor-rule-STRATEGY_RISK",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "cb03a5b30930112ed580d462fd9a54afe2d378181e2cdccc043399d7c312953f",
+        "contract_ref": {
+          "entity_id": "e962b05d-45d5-51b8-8a2b-7053b270724c",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "fa8a1d60-3d15-56d5-b51c-41bd2acd401b",
+          "source_hash": "4b0c5305ee6553f75451f5f6bc116c5c17d5c2a8de59d905745db3fe3697b4c7"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/predecessor-safety",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "5316d1a0fa98cfab9c53f061087057bf13ced17bc061923bf2d57247a440ad23",
+        "contract_ref": {
+          "entity_id": "6ef356cd-053b-5cb9-8b08-fa130f8b0be1",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "a9687b65-cdac-5a41-bbd6-d4496ca6be64",
+          "source_hash": "17b18f9f0d0389ecede777779f9862043e346af708d9e3e3d5dc3cee9f8bf1eb"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/alignment",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "b7a8477ef810f2498d40844fc879bdce8c7626aad494d860d27c4735c9412545",
+        "contract_ref": {
+          "entity_id": "228c0bc0-b1b9-5f98-8600-fc1b0305cb10",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "bf2800a0-cf04-565e-a4f8-d259539cd179",
+          "source_hash": "fab551e45a252d29f09662374a081546d78acfeff8ee908d6fce8e2de57eb1bf"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/allowed-definitions",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "804b760abf58666a93f8acf9b1a2dc3fb3c74923bd9a406f652a5ce2edb97528",
+        "contract_ref": {
+          "entity_id": "c2a63225-cea3-511d-aeee-49db96e93f6a",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "6f82271b-a709-5517-8da8-b155270464b3",
+          "source_hash": "d230ca30e989e51992eb8d92542b7d25bcab586334504ee54418736c497d4557"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/body-builder-policy",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "10e5ec7b1c20f8d414d233aa24166a170feb0afa99c96642596e8858fdc9c0c6",
+        "contract_ref": {
+          "entity_id": "83c825fd-bbc5-5765-9de0-9e05779af86c",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "8d41e488-f37c-5abf-84a3-8e7efc7dead2",
+          "source_hash": "d24c53387c167b24a9cf9e59ceb095d71652109024e82cf45affd7234145fb6c"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/body-feature",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "352bddbcf0d3213ca81a938f19197cd4d1b2e357b1ecfa9af1c850f9996d122a",
+        "contract_ref": {
+          "entity_id": "a222c99d-e46f-5335-b983-4a321f7a5907",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "9adff60c-081b-52ce-84aa-83314d2c862c",
+          "source_hash": "325f9ee4d5a787d14ff7e0925aa1cbfa177d2299643e9d80088bb1b31da28a42"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/body-graph-generation5",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "934507e30482805073b65df16cf3ff69f0cd7ca35490cec2d4da3d842bd81865",
+        "contract_ref": {
+          "entity_id": "93b02704-0293-530c-80e1-b3357b4f7df7",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "c9814d11-d7f1-58a2-abe0-ba24d3a72ce8",
+          "source_hash": "6862506f4c7f454304ae5660cd6be4a99e2a4825718feb865cf809b8235ec499"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/body-research-config",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "1ccd9057a521ec7d5f77451d0e83b6e9a331ea1d3acf04073c4d9494cff4d227",
+        "contract_ref": {
+          "entity_id": "9dc8a552-997f-5764-9501-2707a4b452da",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "4524a0d5-3280-5d99-9656-ff9ca18cc69c",
+          "source_hash": "abb16faf2feaf2ad75c59fef39f5ad07d7bd045391d7699f7729e1c02dc8c143"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/body-rule-ENTRY",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "ceb1d7ac18183004b3289f640244cceb378f0ff933ed38166c76019df2ffc411",
+        "contract_ref": {
+          "entity_id": "8a243d72-6c48-5185-bcb8-1fdf47dfd219",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "622577f0-4c26-5902-a0db-5ed0a855be75",
+          "source_hash": "544e8e83e521e7312c31b3b718794ac533f3fb27cef6faf86c02bb9e008903b3"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/body-rule-EXIT",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "7c924ad72f92f77a7c2c46fcb5f31141112e0e78cf2f7de4fda836a6a01a6870",
+        "contract_ref": {
+          "entity_id": "c6462997-58d9-5865-8adf-59fe847a379c",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "377d650e-d1a3-5ea5-9ba4-84dfeb7f3f58",
+          "source_hash": "19654d2068c039e79cac3d76c71be169766e778f53e8dbd9431525f1d4ba3a9d"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/body-rule-STRATEGY_RISK",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "4ccfef4b1c76b1ae3aba5899ac25ff93fabbbc78671907a2804acc73c27373bf",
+        "contract_ref": {
+          "entity_id": "22bd1429-ae85-56ea-a9e9-1915b456ec7b",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "919cdfb3-4825-5ccf-a339-11ee535959d6",
+          "source_hash": "00dcc5bd7d0be65c886fc49006a5da6edf9c78e08231b9ed89ced107cb646441"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/body-safety",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "551f09b58b7d8bb8607ba59cc53e59b09a5ced1f427613c0a0b04df2a18d6ce7",
+        "contract_ref": {
+          "entity_id": "bfd9f7e2-ad13-5e89-b938-c747f4b81ac8",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "7b32be3e-266a-57d2-9720-3cd61aa897c5",
+          "source_hash": "ec995126e432902cef61c004e9016a2e7d5537a46d180d3de883fa6510bc1a98"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/config-compatibility",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "cd21045ef9645a758c85990c1bbfd1b77fa5706ef887cd4c4b9c732897f5d283",
+        "contract_ref": {
+          "entity_id": "5012960c-ff74-52c0-8189-de2e99f1de6c",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "b84ea75b-a198-5c53-9ccc-327f30a0dc3a",
+          "source_hash": "a8b912e30b551ff9ec44052a6b21f905b9f85e3d30b10442e666c7fd22a86b95"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/config-owner",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "d453e108e75257d7a13f22dcf4868add924e8cb3a4c12f707b03481f4a390d6b",
+        "contract_ref": {
+          "entity_id": "2984e6f2-0a4e-5c3d-8bd6-60cc360ff02d",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "37824c04-0273-5909-afac-b5e919009f99",
+          "source_hash": "de153b75487bb4626212e7e51863dbc80b4f3ab2290dc301c456d31342dbba8f"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/determinism",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "caee45e36e80916a1e3e02183bb29d3697b66f7f519b728ecdcf0599b6b298bd",
+        "contract_ref": {
+          "entity_id": "ba9ede39-c4aa-5954-92bc-cc5934c94a17",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "f0259a40-77c6-5fcd-8f67-6c773767177b",
+          "source_hash": "a6ca6884e8af24aecf0aa581191d263fe5026d19e62ef62aa07189e0b672d4df"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/feature-close",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "a92e2523487bf3fe4520aacfa4661c84758c0d69dc7278fca2616590fd593b31",
+        "contract_ref": {
+          "entity_id": "641937d3-b690-5425-9a1e-9eb608d6a8c2",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "38493ced-7c6a-5565-8ea4-4561dc9f1feb",
+          "source_hash": "10a0e8e4924aaa6bf268429925a4e6bd89cf0b1b967c8bad94b36f13c0b482ea"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/graph-schema",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "45551d1dbc55dca47dc996029c13632da2bd10230af7cc2c44f46463bb4e9847",
+        "contract_ref": {
+          "entity_id": "94ff57ec-3faa-59dd-8daf-887528d2f6b4",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "0389919a-1d63-58c6-9aa1-53b4a740bf42",
+          "source_hash": "3e0b71d24b2422b4cfa20a667582555348196f44abfc0b6e28f881f861e8ae22"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/input-builder-policy",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "b2e6587a2ec42f6bf83977153a1a04beb5a8c8828eddbd90b8ea1ffab5ff840e",
+        "contract_ref": {
+          "entity_id": "39906151-1dab-564d-bb1d-7c793cb5a8bb",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "94c150ee-e666-5efa-ad3d-7e89ffdf82e8",
+          "source_hash": "85b5799a2e611baf27ec803f4cac79bd3ecfbd7afbd8281627f4f6309f7e520a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/input-feature",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "d8fa1effe878b5765f168cba36894c8c3b0b4320a75672bfe40ca20e65c6b404",
+        "contract_ref": {
+          "entity_id": "06c455da-757c-5096-832b-42f57c4b71ca",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "3c4892e7-f2d3-5a9d-ac36-3703fcc9dc4c",
+          "source_hash": "11d064a095deaa64e7479672471853b40e9711c7876a49779e47071228f04d62"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/input-graph-generation5",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "530d4bcd1b2272da70077e3a0af280f93533b8d33f08964923622dc75c64f4df",
+        "contract_ref": {
+          "entity_id": "116e8496-edc2-53fa-8f47-0a203d5c44a6",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "cd7adc2e-038b-5f22-bf75-28e29d5075bb",
+          "source_hash": "5b268965659f26d4238e07fa5b85ac7b0265b8fdf61f2d5483c5b0cfaa0ad487"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/input-research-config",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "1b0dae5f6f4aa2809a1af1585eed30539bf1b5398ff02dad2f6dbaae492cfade",
+        "contract_ref": {
+          "entity_id": "eb89fe79-6b99-5961-af2d-69ec6353c31f",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "2563bd90-0073-53fc-af4e-e74f4fc0bc8f",
+          "source_hash": "75c1354b3ce2ba8a9b0d47ae0812788f198e3ff178b08211c3a7f38b566fbbd2"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/input-rule-ENTRY",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "7155ec39607fea3e7f8f28782cf4aebcb5e6d3e67888d67ccb6e64aac33252ea",
+        "contract_ref": {
+          "entity_id": "cc5d15fc-537b-509a-a243-475ae3240b7b",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "3eddbe62-c1f3-5381-9686-9ede303bba6e",
+          "source_hash": "7e0a9851b9dfe237bb52651f9a170ca927795b6bd131e65921575f667971b18a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/input-rule-EXIT",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "ce57b806b1e62e72c6fa8f06e859598a7b273c4d348f56fe03ac55b6e0a684e2",
+        "contract_ref": {
+          "entity_id": "cb09b238-05f2-5e9e-ad44-c9eabccbf8b4",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "434bb30b-881a-5070-bb92-344b11477fe7",
+          "source_hash": "727160dd311906a0894053722084ea8f6d8aeb2b34d30608ebc2bf410af45df0"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/input-rule-STRATEGY_RISK",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "9a400e90a94cedf9eff2eb0fab95443e21c74f61e84751d69126dd1a700baaed",
+        "contract_ref": {
+          "entity_id": "a6d4d1c8-cf33-5442-98ca-41317fc9077b",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "232c3f71-40db-5b80-a618-fd4b7b36dc74",
+          "source_hash": "4b0c5305ee6553f75451f5f6bc116c5c17d5c2a8de59d905745db3fe3697b4c7"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/input-safety",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "7ce58440c66574ada3f14d6c1c00655a311156f38fcdd3beca723d6e58e4dc55",
+        "contract_ref": {
+          "entity_id": "f84b923b-7ec4-5dba-a52d-2a7e5d29fb15",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "4952b52e-25a0-5f82-a463-4035ebe6113b",
+          "source_hash": "4c8cda598753485e6d37b40341333fc4e08ed24e148c2923b7be989b8f51b1f8"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/rule-entry",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "6923a9614a28993d34cdd97eb4c4f820bfffda37dddf1957657a56a2d4722c91",
+        "contract_ref": {
+          "entity_id": "42f0ed1f-6e7b-5209-b913-efc976ce74ee",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "3eb644c8-7f61-5a18-8626-874f45378a2f",
+          "source_hash": "9a40c14d1f304e932bf0a7e2b00ce167138a2e11f1acfaf74bcab945504dbf27"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/rule-exit",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "4661269a6dec3a0655cbda4dd7f651c4fdc5040e7a7bd9243090d58cb3f63767",
+        "contract_ref": {
+          "entity_id": "9042f0b9-ab56-550b-9cde-02ba47b07251",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "3c0abfe1-77ef-53b1-99c0-108c8237858d",
+          "source_hash": "274466b2d6b9f833941ef68c3f92deee7ed04827453276601a0fbbdf2a5f2cc4"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/rule-risk",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "cc85a4482bc7df2a38f7520141f62786b260bfa561ea6512ad7c3ff626a25c4a",
+        "contract_ref": {
+          "entity_id": "6f09c4e7-5b71-5930-9625-f186adc55dcf",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "d0334e09-75bb-53b5-bd13-000065130cbb",
+          "source_hash": "f9b167a5f0ce5783d1583943bd0c1b9296d196fc56a5e95b0eeb74bae1241b95"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/artifact_revisions/safety-policy",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "52e171a31d45e3e6e28c5573ec007dcbafdebdcab8f9287ff4184a80d38c7c06",
+        "contract_ref": {
+          "entity_id": "32b01fab-ed94-5a34-bf39-e467b8592082",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "b422af5e-b3f0-5596-9fad-c6944a3939a6",
+          "source_hash": "09aa9dc95fb93fac2d3eba36a8713b8137436c519697538bb00d2e48e7ad384a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/cases/1/expected_cold_operation_readback/data/result_readback/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "3112230ddc694ab37aa2b7cad84162d28e4f9401e8f363c7498e84bc4ddf341e",
+        "contract_ref": {
+          "entity_id": "72a7e466-528a-5358-9d15-a82e898d9b0c",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "0def0386-909d-5027-b7cf-154909c36a3e",
+          "source_hash": "3d362e14988447e602bd8669fa751eeaf6ac09b792edcf716822438786d80c4e"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/cases/3/expected_cold_operation_readback/data/result_readback/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "3112230ddc694ab37aa2b7cad84162d28e4f9401e8f363c7498e84bc4ddf341e",
+        "contract_ref": {
+          "entity_id": "72a7e466-528a-5358-9d15-a82e898d9b0c",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "0def0386-909d-5027-b7cf-154909c36a3e",
+          "source_hash": "3d362e14988447e602bd8669fa751eeaf6ac09b792edcf716822438786d80c4e"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/cases/5/expected_response/data/graph/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "52e171a31d45e3e6e28c5573ec007dcbafdebdcab8f9287ff4184a80d38c7c06",
+        "contract_ref": {
+          "entity_id": "32b01fab-ed94-5a34-bf39-e467b8592082",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "b422af5e-b3f0-5596-9fad-c6944a3939a6",
+          "source_hash": "09aa9dc95fb93fac2d3eba36a8713b8137436c519697538bb00d2e48e7ad384a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/cases/5/expected_response/data/relevant_closure/0/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "24bd73d066cf5ff4a9b384a821ebcb80674795e04f9baa178a426ece470a838a",
+        "contract_ref": {
+          "entity_id": "714ab3c1-a21d-5f09-8776-59ee11462db2",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "ee4ccd70-db7a-53c3-a6ff-1fbab90c427b",
+          "source_hash": "6800f149ec299658abbf6577b0c5ac92a546bce2e040962ab123c6df19e47e7c"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/cases/5/expected_response/data/relevant_closure/1/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "84eed229207a0b7868a726f834f75f4c7d3cb6521291868eccb958d2099d5905",
+        "contract_ref": {
+          "entity_id": "5fb8cab7-bc73-5f31-9a12-11b146755212",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "a886264e-7464-592a-ac7e-8f6b281cd9ae",
+          "source_hash": "a48f65e2ec40f6c2f39b46d15bd9595f442dd969eab6cd24372558c9a13c8bb9"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/cases/5/expected_response/data/relevant_closure/2/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "a67f75823c834d4cca08ce4d147c9d81fbed2a370548fee93b1f29872528d0ae",
+        "contract_ref": {
+          "entity_id": "2a1c6596-1961-5ea7-95ce-43366a024701",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "c6c1e623-c2d8-5f0a-9728-cb5553357f00",
+          "source_hash": "e512b026105e339ffb96590899ec5f9142ed6f712ffdf05f0320685247553f9c"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/cases/5/expected_response/data/relevant_closure/3/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "c3768fe6cef7b826fe188b95ca87e0352346a909ae6c0cf485888f2511cfead1",
+        "contract_ref": {
+          "entity_id": "c990bfbe-3625-5fc0-9007-4ebab85ba50c",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "2701deb1-b973-5411-a581-995293e9a027",
+          "source_hash": "916202ab24023ee953434eb0d11c27d11a3206e8b5c05f8e02f01e5517a0b6b2"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/cases/5/expected_response/data/relevant_closure/4/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "dc73a406727323331a7a182294c7cfba9d11989459c21fd74bc0be418547625d",
+        "contract_ref": {
+          "entity_id": "46b1774f-c9b3-58b9-86e1-2746bf4fb937",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "f02963e8-2a30-5934-880e-cfd201abcd6d",
+          "source_hash": "bccb303590ac1296f5849e8c9ce2cf94e506b51286efef8cee34f28f9dca0406"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/cases/5/expected_response/data/relevant_closure/5/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "3112230ddc694ab37aa2b7cad84162d28e4f9401e8f363c7498e84bc4ddf341e",
+        "contract_ref": {
+          "entity_id": "72a7e466-528a-5358-9d15-a82e898d9b0c",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "0def0386-909d-5027-b7cf-154909c36a3e",
+          "source_hash": "3d362e14988447e602bd8669fa751eeaf6ac09b792edcf716822438786d80c4e"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/cases/8/expected_response/data/result_readback/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "bc7f7be55b034f5d0b81cc42251f0d69ffa4b3bc4e35fa5803f22395e62484cb",
+        "contract_ref": {
+          "entity_id": "903088be-8499-5c3b-afc5-9c242d22bd9d",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "0d5d1081-2302-53ea-a332-fbfde6a73d53",
+          "source_hash": "cd4b1cc36dc61556f8d1beca7ea3df8a10f857d4bea0e681ae1f01ffc34fcd00"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/alignment",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "672cae9f59bc8a2b6949037cd8dcd140c4fe6566785df566dd9557e6c5a2a37c",
+        "contract_ref": {
+          "entity_id": "9e070d80-9dc6-5b65-8236-7503c3618813",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "aa428008-9a09-537d-a34d-f117e0121c8e",
+          "source_hash": "c5aacaf2dbaa99f99e0f5ddbc729a1d3c7f1a94713065019a92e93845a73b979"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/allowed-definitions",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "13d3c6f9b9048fe5ec9c39645ef39482b4fc7afa73d4f9c5c7f022ab4f5e738b",
+        "contract_ref": {
+          "entity_id": "4f63a7c3-07b0-5efd-94a7-a07e6d051dde",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "8460f069-cc30-56db-a227-b1969cb49234",
+          "source_hash": "db6c0dfe1709189bbc0ebd4dae276ec228b924fd6821684e63fb476dc553d077"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/body-builder-policy",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "51d10946e985abef3e12b276a6b5938dbbb6703b169a6106342b64af60f3302d",
+        "contract_ref": {
+          "entity_id": "93d412d0-a92a-57d7-a538-9a6c07d33816",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "10bb8955-f310-515b-90a1-4ea3a3b947f1",
+          "source_hash": "5281ece40729c73ab785d209f8bc3e05d309b89a3cc0bdae3bc9459c1d5b2c0d"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/body-feature",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "f407e15ff80683ab1c54afa19b6c773e6415f3b5ea9a0684cc085b007df6539c",
+        "contract_ref": {
+          "entity_id": "f9cb05a5-3175-52a2-b2a8-2a9e96ca279f",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "6b96005f-69a0-5b9b-92af-30bfa18298df",
+          "source_hash": "75799abb2b9934ba73c08ef4866055de6e45b2235e7b1dab50648a5ca6f70274"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/body-graph-generation5",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "a303017d294c48d8ce7b8bede2f0eae4358f59a16c956ab073a8e42ffb282ec2",
+        "contract_ref": {
+          "entity_id": "eb92477a-e800-528e-9ad8-dbe083606538",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "288ac1cf-9812-53c9-9ab9-acf86ca10814",
+          "source_hash": "99cb2455655f9fa0bf7d80006d182aef40a4a042a080e6b2c730870d3c320493"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/body-research-config",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "131760c1c68af76c9ef4214d9eeff4b916dec5f69054ec77f1880ca32f8d3c01",
+        "contract_ref": {
+          "entity_id": "fadad55c-9d21-5ec5-a87d-ebbade9440e7",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "b6a435d9-fb2a-56f6-ae69-87ef80505b45",
+          "source_hash": "61c0c6564716162d40c556e78d90fd2a85b6e811eee90b2e65a8aa1672c5d28b"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/body-rule-ENTRY",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "4b076565e82e1d2168a62a4f680c90d3cdd83983b02022b419e09f6c1fd4f1de",
+        "contract_ref": {
+          "entity_id": "4a573697-f67b-55db-aa6a-b9ee37c074d7",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "4f204092-86ad-5ab7-86ba-c3a0ffc3c73a",
+          "source_hash": "8aca2d3f5f1cccd187fc963a09c53c2260844dce9a7d28e21ce6b5639e1960c9"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/body-rule-EXIT",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "43ac498a155f424b370db3a80283fbd6db7c0323bf6e768ada6f1cea74d40463",
+        "contract_ref": {
+          "entity_id": "44019d81-eea2-5f4b-ad60-4c3433866815",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "d769d5d3-8c1a-57ff-b777-139cd71102cc",
+          "source_hash": "418bff5f1db9f5eb3c383426a04b8df4f20563646d907daf41d9f77e3d45b139"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/body-rule-STRATEGY_RISK",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "5501b8ed0d1657d0c3deb3d6f43bec12005084172064a37c2d2f04e70d918df1",
+        "contract_ref": {
+          "entity_id": "49201b21-0596-5555-9150-01ed34d91a78",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "1aac20f6-0053-52b9-ab91-9a87affbbbb6",
+          "source_hash": "06b26d16f2bdec24fdd417f030699fb096960c6a863aa38362eee59cb3f04585"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/body-safety",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "11ccdf1db5d675399e78461284d6ac51cfe8ea22d4cdbedbc5129684bd586bab",
+        "contract_ref": {
+          "entity_id": "d78958a4-943b-5abb-8d3e-d3a0ff00c910",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "88ca4883-dd63-574a-9abe-1ec402584afb",
+          "source_hash": "961d73b27551e5f3e296d8af153e9ec50b997d43d6a5330843724d0e39606fe6"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/config-compatibility",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "e3c75dc985f7e4ff6f44616e8a929477d25cd5117450aa995e3de2ec6e7223ec",
+        "contract_ref": {
+          "entity_id": "d6e50e81-2f20-5eab-93a9-3378f1d2780b",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "6653a3aa-778d-518f-92d5-2ec596ab85c3",
+          "source_hash": "9c38a44221ad8098ef6f4349383b81e7529e006e0b3ec93273583e65a269c4e8"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/config-owner",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "23658090264be27e6f53504761b42c2b62b61764af11183150656253020da7d1",
+        "contract_ref": {
+          "entity_id": "68d47910-8491-50d2-8197-2f67906701b1",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "a8b3c399-500e-56b3-97a1-4b96e6538106",
+          "source_hash": "35fce306f7d23b87f4b94ebd3a19d47ba11a56515ac4bec77a2d16bc25deaeb4"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/determinism",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "631829baf1073785371d9b925720973ee13d5ce81d09b95e5d70acce8a32e980",
+        "contract_ref": {
+          "entity_id": "6920a31b-9a87-5ef2-b04b-88abd3b97a01",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "9aca07f7-71cb-5feb-998b-3f6942020ff5",
+          "source_hash": "5b4f0309034211809d170bb79c05d7786054d1466118f5cc13030ba5ef8247af"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/feature-close",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "4c5fdcdde3d58f611cf581b6e91ec8c277085131612a0d11010e8a60752cb7ed",
+        "contract_ref": {
+          "entity_id": "ef142342-a549-5e71-beb4-d7c8d95389cf",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "0c99ae5e-f20b-516b-9107-437ecadba74b",
+          "source_hash": "b6af3a345f44bdf3bd4d1baeb5913c3cffcd849cdf1aad85420be1a6de1dc1d2"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/graph-schema",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "9b191ad0cd71074267bb75c5b86309f9b6c62dcee09246a381574d784b2a687f",
+        "contract_ref": {
+          "entity_id": "dd8610f7-1290-5b4e-8180-0b22eb4a23f8",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "f7bf1bd8-b6ac-59f7-a50c-8361502b4349",
+          "source_hash": "c7d35e7dcc1841b89bbd85f95d682909ab680a995b658e0b96e061b96cbd3774"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/input-builder-policy",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "876c0c64925d622d5a36dabc801ec8d3143bff7d1f20f134bb423c27161b643a",
+        "contract_ref": {
+          "entity_id": "ea1b18c1-3424-54d3-9f40-81965a28ef13",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "0c8711bb-bae3-5982-aad2-3a27175aa329",
+          "source_hash": "6f37d7a0c4b381310bb4fedf1df2bb2baf19f7cc3b4cdd7c803319196607f1ef"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/input-feature",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "edcd661143c28423436eecbe16b62d550430ea4812dc116d5838a1c849f33672",
+        "contract_ref": {
+          "entity_id": "d3377eec-f5e7-5b9f-be51-3227c4a5f4d5",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "4ea73bea-8b78-5fe5-a20e-e6e27214eb2c",
+          "source_hash": "816482988128f83ba7bee4ff1049f6a4cdb148d137fc6043f7d0afce8ad4ef4e"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/input-graph-generation5",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "2dd39e872c123369f74862f49d7f9c1c325fcc7270932cfafe2ef55b655d7c8c",
+        "contract_ref": {
+          "entity_id": "073e5152-f3bc-5dfb-82b4-a8c7a6a15f0a",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "d807c026-fb8b-57f3-80f6-afa9a5b453c2",
+          "source_hash": "ac029ae83537056cd17811bc19fa9ffb987f86643de0a5276a09d1b3bb34f88b"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/input-research-config",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "43591361d936dd9d60c3eafe42505b8b719235565ae9c5413f6760046f5e698a",
+        "contract_ref": {
+          "entity_id": "0a1cb8e8-31df-54a5-8976-0de40089cc0e",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "f82644fe-bf6b-5d66-b7d6-11ead9a16648",
+          "source_hash": "21d64a291bd2388bbe68300379d608b6ab392cba0d6c6113aecf09c08af23c14"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/input-rule-ENTRY",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "855852581e3ac54d67ca1e73cd32fa719864eec44c65026fe5aaa27d88fb0946",
+        "contract_ref": {
+          "entity_id": "2b9064ee-619d-5a0e-b265-379209990c90",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "e2d77eaf-3109-54c7-9818-b3cd9eec792d",
+          "source_hash": "6b07ffde35bd58268704c070987ceb222c199fd5a6800610c989549b685eb73b"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/input-rule-EXIT",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "d6b30ce497c51d8fef877b93868a9a9c5ef71bfc29a0e7c760e15f8920809c50",
+        "contract_ref": {
+          "entity_id": "50acfe3c-9992-59bb-8aa1-28627961b4d0",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "e03938d7-dee5-58ee-acee-de292a37052c",
+          "source_hash": "83e991d325c3c64cb884f77ec13e485dba857d880d632568212da4570d69dcbc"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/input-rule-STRATEGY_RISK",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "87ecd2f01b815a5a2c18ca994ba0747bca10a5896290e840241e4605dae09980",
+        "contract_ref": {
+          "entity_id": "9fd651ec-1ef9-5c45-b1cc-724d04fec705",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "a4455b76-fa8c-54a0-8da7-0d81715be53d",
+          "source_hash": "0095966142dbd7f11b1632a419f5c85d755b8223c767b10fe338d8ee36617a91"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/input-safety",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "3817085c984c3a3d30571da3b50051f6d52dd877307b076e02e8029c90d569e6",
+        "contract_ref": {
+          "entity_id": "e0ac9db4-9d3f-5699-9da0-32678afb6245",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "a3e26f60-7aba-5f93-a8c0-37cfd2eaf34b",
+          "source_hash": "86feff1aa87b458aafaefd0722e0a547892b89f8ea8e6df13132a1584e411e9a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/rule-entry",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "e2ac66a29905b971fcfbf344edf42ebb6cf59ede58d6188961d10da389925024",
+        "contract_ref": {
+          "entity_id": "d6cbbaf9-699b-5ebc-9ba1-748c6e4600f9",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "fe9843bd-320c-52ea-9745-282197e0880e",
+          "source_hash": "5469a7aae1d4c87a40c38e416bac5a673b212b3de7d8e20e8dc0c027abe0c6fc"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/rule-exit",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "70d504879dd2454475aa3b590a1c57808539508a28e93f514eb30690a6fdf154",
+        "contract_ref": {
+          "entity_id": "7a2be9fa-ab15-5c6f-9d49-19b53eeaf87a",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "4b1c9c95-592a-5514-b849-11ff765c6820",
+          "source_hash": "6e4c32f03d2b77f634181eeb8dff63715b8c7170b9605ff483c01e9b5e170d26"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/rule-risk",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "0b00487ea07359b0b8cf66086bff365e193cf8835dd6ae6d5490f633901c4b93",
+        "contract_ref": {
+          "entity_id": "49f3a48c-b05f-53e9-abd0-40c678a8f027",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "37d96af5-abb3-575d-830f-ea15683a048c",
+          "source_hash": "6d2d55036d73ed216455f2af03f7213281f12ba40ff74c950d55a9a732df11a5"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/expected_capture_receipts/safety-policy",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "dc73a406727323331a7a182294c7cfba9d11989459c21fd74bc0be418547625d",
+        "contract_ref": {
+          "entity_id": "46b1774f-c9b3-58b9-86e1-2746bf4fb937",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "f02963e8-2a30-5934-880e-cfd201abcd6d",
+          "source_hash": "bccb303590ac1296f5849e8c9ce2cf94e506b51286efef8cee34f28f9dca0406"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/typed_bodies/builder-policy/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "52e171a31d45e3e6e28c5573ec007dcbafdebdcab8f9287ff4184a80d38c7c06",
+        "contract_ref": {
+          "entity_id": "32b01fab-ed94-5a34-bf39-e467b8592082",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "b422af5e-b3f0-5596-9fad-c6944a3939a6",
+          "source_hash": "09aa9dc95fb93fac2d3eba36a8713b8137436c519697538bb00d2e48e7ad384a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/typed_bodies/feature/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "3112230ddc694ab37aa2b7cad84162d28e4f9401e8f363c7498e84bc4ddf341e",
+        "contract_ref": {
+          "entity_id": "72a7e466-528a-5358-9d15-a82e898d9b0c",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "0def0386-909d-5027-b7cf-154909c36a3e",
+          "source_hash": "3d362e14988447e602bd8669fa751eeaf6ac09b792edcf716822438786d80c4e"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/typed_bodies/graph-generation5/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "70065fb5b2b2275444b12955d5d56307bac8e72bf40d25a4d7fb0e62078e419f",
+        "contract_ref": {
+          "entity_id": "469c9bfb-5e37-5552-a54c-d014d1e4be90",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "f5421979-1967-56e8-b0e0-ab389ded911c",
+          "source_hash": "dd29ed8f6253729c7ad4034d6621de289333795c15007cd8f98218766e696c9f"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/typed_bodies/research-config/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "24bd73d066cf5ff4a9b384a821ebcb80674795e04f9baa178a426ece470a838a",
+        "contract_ref": {
+          "entity_id": "714ab3c1-a21d-5f09-8776-59ee11462db2",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "ee4ccd70-db7a-53c3-a6ff-1fbab90c427b",
+          "source_hash": "6800f149ec299658abbf6577b0c5ac92a546bce2e040962ab123c6df19e47e7c"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/typed_bodies/rule-ENTRY/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "84eed229207a0b7868a726f834f75f4c7d3cb6521291868eccb958d2099d5905",
+        "contract_ref": {
+          "entity_id": "5fb8cab7-bc73-5f31-9a12-11b146755212",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "a886264e-7464-592a-ac7e-8f6b281cd9ae",
+          "source_hash": "a48f65e2ec40f6c2f39b46d15bd9595f442dd969eab6cd24372558c9a13c8bb9"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/typed_bodies/rule-EXIT/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "a67f75823c834d4cca08ce4d147c9d81fbed2a370548fee93b1f29872528d0ae",
+        "contract_ref": {
+          "entity_id": "2a1c6596-1961-5ea7-95ce-43366a024701",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "c6c1e623-c2d8-5f0a-9728-cb5553357f00",
+          "source_hash": "e512b026105e339ffb96590899ec5f9142ed6f712ffdf05f0320685247553f9c"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/typed_bodies/rule-STRATEGY_RISK/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "c3768fe6cef7b826fe188b95ca87e0352346a909ae6c0cf485888f2511cfead1",
+        "contract_ref": {
+          "entity_id": "c990bfbe-3625-5fc0-9007-4ebab85ba50c",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_STRATEGY",
+          "revision_id": "2701deb1-b973-5411-a581-995293e9a027",
+          "source_hash": "916202ab24023ee953434eb0d11c27d11a3206e8b5c05f8e02f01e5517a0b6b2"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+          "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34"
+        },
+        "pointer": "#/typed_bodies/safety/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      }
+    ],
+    "required_pair_ids": [
+      "01a94d9d-7347-57a7-a3bb-4a92ef1d34f3",
+      "0288b631-67c4-54ed-9e2b-f4243a6ff67a",
+      "0422afc1-1e71-51d1-a639-7b940f7a969f",
+      "082e41dc-9bb6-5e5c-bf7e-7c9f3d08eb5f",
+      "0b5e6769-c3ec-56c1-a0b1-30bf63c062c6",
+      "1362093c-be79-53d8-bc25-b6bd89c62154",
+      "13d03a81-a726-5934-b01a-2edd93e8f3d7",
+      "173bcc45-766a-5287-9d20-d203d7bd9e8f",
+      "1f3de979-53d7-5736-8106-29024a098fa7",
+      "22a9404b-bd30-5c5f-a5b8-07ebef8e4d72",
+      "233f23cb-d1f8-5b74-888a-f261b62f9ab1",
+      "27035fa6-0ff6-5476-9393-4dc0fa5f4c9e",
+      "378f2675-d0a3-5c96-a2bc-d26ec80739bb",
+      "38650178-5116-54c2-ae25-91bcfed47726",
+      "4147b9af-5582-50f2-bf33-a8b8cb1f0913",
+      "421c5116-1c00-503f-824e-73cfdcaf3289",
+      "426fe1a4-a53e-5c4d-b75b-8459e8e665be",
+      "431c2105-2cc2-5009-8252-9de770aae4a6",
+      "44b9b7ba-8b06-5546-a5dc-79b3e89b0445",
+      "45612200-9117-5d16-b51c-52b1355b78e6",
+      "49815cd6-9b02-5d9d-80c4-ae98d817d89d",
+      "4e0205ad-a47b-53ca-810e-6a42903ac679",
+      "553e3643-ff0e-5a57-a016-51cbed394c23",
+      "58933512-fb4a-56ce-bc80-8612e7fc2fb6",
+      "597e4769-2cc6-5c7b-b4be-cf3de57f5047",
+      "5b39d28c-162e-5fd1-bed1-c9d5221038bf",
+      "5bb14a80-71c5-5e15-8800-3baf58e85d3f",
+      "5c6cc921-2254-51a9-b020-7300658af9a9",
+      "5e689678-7484-5af3-b15f-a974ccf1dc09",
+      "6b8cb37d-cbf7-55dd-b3c5-5fd4b86f9893",
+      "6bd88bfd-99e9-5b60-9d30-c080acd13480",
+      "6c0d1f6b-02bf-54e8-91a8-cf7e1e04f4e8",
+      "6f1e97d3-28c6-5278-bec7-ec437cc8ea4d",
+      "72358044-e01a-5fac-9e6e-ab9b18b6e362",
+      "73205f57-8a5c-5fc7-ad6a-b9799f9a3c87",
+      "7d654636-d7b3-5af8-9fae-36331c4da5fd",
+      "7e079cf2-6178-56a3-b99e-194e5fbaabc4",
+      "8d9847f0-5cb6-5535-a78a-9ff1624427da",
+      "8dfe72bf-d15f-5c8f-b081-f08bb63b9478",
+      "8f06473e-657f-557f-9a13-cf448f3bf74b",
+      "8fcd1d76-950f-5af0-99d7-9836a2be257a",
+      "912cf099-af80-5a08-86b1-27f65260507f",
+      "971acfe4-d61c-588d-aa49-c784b0d81e6d",
+      "99165e7b-630d-5805-9dd6-f18cae56289e",
+      "99f6b1bb-0d20-515b-847b-316aa0e79e62",
+      "9d983371-ee50-5f1d-ac8a-8a569e07d129",
+      "a09012b9-d999-58b8-82f1-f0a65b138b81",
+      "a325ec83-de8a-535e-b693-b3943dac96bb",
+      "a57dd926-8bc8-5cc9-838f-7b001c822be2",
+      "ab0124af-f2e0-529c-8bd8-db0281b7db3c",
+      "ad244cb2-fe8b-5681-9068-78147b95896b",
+      "addbde3c-d817-5421-b17f-e76b57626a2e",
+      "ae7e143f-d8eb-5d7b-a470-f628362378ba",
+      "b08f9fb2-e219-5aa8-8ee2-8d5e27636cd0",
+      "c2ce096f-612e-52ef-9f65-6e8f3a902374",
+      "c508c334-3bb3-5332-8b68-42f58ab20f3a",
+      "c513ec69-23b2-5ab7-a135-fdd535fb91ab",
+      "cbf85b77-2679-5daa-8f7f-b6c78ff92e1b",
+      "ce99ce00-a83d-5cc1-8e0b-acc7d2df65c5",
+      "d216363d-8b26-5522-b424-17cd5e21ce19",
+      "d778d362-974e-569a-939b-943377ec58a6",
+      "d8789dc2-0753-54c6-99f2-5ab9f02caf08",
+      "e80b3505-7845-5859-ba57-b6938fac16fd",
+      "eb55f5c1-4f77-529d-96f1-6b7b3a274d66",
+      "eb8deb6d-1769-5bce-a2ea-5d6d790c9f1b",
+      "effe650b-77ec-5abc-94a5-ce0bfb819ae7",
+      "f01f3572-077b-56cb-af30-2dda85e0dd31",
+      "fb2c7d63-109f-5033-b683-23758eebd3b3"
+    ],
+    "response_model": "ConfigRevision",
+    "subject": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+  },
+  "v9_companion_applicability": "EXACT_V9_OPERATION_COMPANION",
+  "request": {
+    "model": "ApiRequest_getConfig",
+    "fields": {
+      "config_ref": {
+        "type": "ContractRef?",
+        "required": false
+      },
+      "page": {
+        "type": "CursorRequest",
+        "required": false
+      }
+    },
+    "version": "MA-DTO-v6"
+  },
+  "response": {
+    "model": "ConfigRevision",
+    "envelope": "ReadEnvelope",
+    "cardinality": "PAGED_MANY"
+  },
+  "named_model_closure": [
+    "ApiRequest_getConfig",
+    "ConfigEntry",
+    "ConfigRevision",
+    "ConfigValues",
+    "ContractRef",
+    "Coverage",
+    "CursorRequest",
+    "ErrorEnvelope",
+    "FieldViolation",
+    "ProjectionDataByOperation",
+    "ReadEnvelope",
+    "ResourceScope"
+  ],
+  "model_definitions_selector": "MODEL_TYPE_SOURCE_SPECIFICATION.json#/definition_lookup/<name>",
+  "auth_validation_idempotency_unknown": {
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "snapshot-bound safe query",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "producer_consumer_mock_test_matrix": {
+    "React": "Only display/user intent/typed client and declared page states; no independent business rules or direct SQL/Broker",
+    "ASP_NET_BFF": "Existing auth/session/CSRF/workflow/proxy adapter; preserve exact wire fields/errors/receipt/versions; no alternate Quant rules",
+    "Python_API": "Validate exact DTO/auth/resource/cut/source and delegate sole domain owner; no accepted result from mock",
+    "Quant_Core": "N_APPLICATION owns invariants and effect boundary per source",
+    "Persistence": "Existing port/UoW/canonical ownership; real migration/DB/Restore separately gated",
+    "expected_mock_source": "Named source oracle cases below; do not derive expected from mock output",
+    "mock_states": [
+      "source-defined success",
+      "typed rejected error",
+      "complete-empty versus UNKNOWN/PARTIAL",
+      "pending/unknown OperationReceipt",
+      "exact same-key/same-body retry versus conflict",
+      "version/profile/auth/CAS/stale-source rejection where applicable"
+    ],
+    "compare_layers": [
+      "Python producer contract result",
+      "BFF preserved transport/error result",
+      "React consumer state and receipt readback"
+    ],
+    "actual_test_status": "NOT_RUN"
+  },
+  "exact_oracle_cases": [
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/156",
+        "case_id": "WIRE-getConfig-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-getConfig-POSITIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "getConfig",
+            "method": "GET",
+            "path": "/api/v2/config-candidates",
+            "path_values": {},
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "1b5b79d3-74cc-5835-836e-1189fe6f12b7",
+                "revision_id": "5f5eaf34-04b8-59d4-87f6-d6849c8b17c6",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "6158133f31e9c2e2b184c7ba61236b679cef28f04fcb32a9da2fa9e7de3e6bf2"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "config_ref": null,
+              "page": {
+                "limit": 50,
+                "cursor": null,
+                "snapshot_ref": {
+                  "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                  "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                },
+                "sort_key": "sequence:asc",
+                "filter_hash": "46aad960875695319c73ff2c55a842f0eb988e822053365637119f33713edb33"
+              }
+            },
+            "command_envelope": null,
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_scope": "exact fixture project/account/environment",
+            "current_generation": 4,
+            "causal_snapshot_ref": {
+              "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+              "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+              "owner": "FIXTURE_ONLY",
+              "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+              "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+            },
+            "producer_output_model": "ConfigRevision"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/52",
+          "input_model": "ApiRequest_getConfig",
+          "response_model": "ConfigRevision",
+          "response_envelope": "ReadEnvelope",
+          "response_cardinality": "PAGED_MANY"
+        },
+        "mutation": null,
+        "interleaving": [],
+        "expected_model": "ConfigRevision",
+        "expected_domain_model_if_hold": null,
+        "expected_observations": {
+          "response_model": "ConfigRevision",
+          "cardinality": "PAGED_MANY",
+          "exact_scope": true,
+          "domain_invariant": "redactedsecretavailability only",
+          "source_snapshot_unchanged": true
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA16-U02",
+        "consumer_units": [
+          "MA10-U05",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/157",
+        "case_id": "WIRE-getConfig-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-getConfig-NEGATIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "getConfig",
+            "method": "GET",
+            "path": "/api/v2/config-candidates",
+            "path_values": {},
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "1b5b79d3-74cc-5835-836e-1189fe6f12b7",
+                "revision_id": "5f5eaf34-04b8-59d4-87f6-d6849c8b17c6",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "6158133f31e9c2e2b184c7ba61236b679cef28f04fcb32a9da2fa9e7de3e6bf2"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "config_ref": null,
+              "page": {
+                "limit": 50,
+                "cursor": null,
+                "snapshot_ref": {
+                  "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                  "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                },
+                "sort_key": "sequence:asc",
+                "filter_hash": "46aad960875695319c73ff2c55a842f0eb988e822053365637119f33713edb33"
+              }
+            },
+            "command_envelope": null,
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_scope": "exact fixture project/account/environment",
+            "current_generation": 4,
+            "causal_snapshot_ref": {
+              "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+              "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+              "owner": "FIXTURE_ONLY",
+              "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+              "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+            },
+            "producer_output_model": "ConfigRevision"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/52",
+          "mutation_operations": [
+            {
+              "op": "set",
+              "path": "/wire/authenticated_context_fixture/scope/project_id",
+              "value": "576faf85-1a50-5403-be04-1308b8cf248b"
+            }
+          ],
+          "after_mutation_recompute_command_hash": true,
+          "input_model": "ApiRequest_getConfig",
+          "response_model": "ConfigRevision",
+          "response_envelope": "ReadEnvelope",
+          "response_cardinality": "PAGED_MANY"
+        },
+        "mutation": "request resource scope differs from authenticated project/account/environment",
+        "interleaving": [],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "ConfigRevision",
+        "expected_observations": {
+          "http": 403,
+          "disclosed_private_fields": 0,
+          "side_effects": 0
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA16-U02",
+        "consumer_units": [
+          "MA10-U05",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/158",
+        "case_id": "WIRE-getConfig-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-getConfig-RACE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "getConfig",
+            "method": "GET",
+            "path": "/api/v2/config-candidates",
+            "path_values": {},
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "1b5b79d3-74cc-5835-836e-1189fe6f12b7",
+                "revision_id": "5f5eaf34-04b8-59d4-87f6-d6849c8b17c6",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "6158133f31e9c2e2b184c7ba61236b679cef28f04fcb32a9da2fa9e7de3e6bf2"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "config_ref": null,
+              "page": {
+                "limit": 50,
+                "cursor": null,
+                "snapshot_ref": {
+                  "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                  "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                },
+                "sort_key": "sequence:asc",
+                "filter_hash": "46aad960875695319c73ff2c55a842f0eb988e822053365637119f33713edb33"
+              }
+            },
+            "command_envelope": null,
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_scope": "exact fixture project/account/environment",
+            "current_generation": 4,
+            "causal_snapshot_ref": {
+              "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+              "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+              "owner": "FIXTURE_ONLY",
+              "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+              "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+            },
+            "producer_output_model": "ConfigRevision"
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/52",
+          "actors": [
+            {
+              "actor_id": "A",
+              "request": {
+                "operation_id": "getConfig",
+                "method": "GET",
+                "path": "/api/v2/config-candidates",
+                "path_values": {},
+                "authenticated_context_fixture": {
+                  "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+                  "policy_receipt_ref": {
+                    "entity_id": "1b5b79d3-74cc-5835-836e-1189fe6f12b7",
+                    "revision_id": "5f5eaf34-04b8-59d4-87f6-d6849c8b17c6",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "6158133f31e9c2e2b184c7ba61236b679cef28f04fcb32a9da2fa9e7de3e6bf2"
+                  },
+                  "scope": {
+                    "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                    "environment": "LAB",
+                    "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                    "group_id": null
+                  }
+                },
+                "request_payload": {
+                  "config_ref": null,
+                  "page": {
+                    "limit": 50,
+                    "cursor": null,
+                    "snapshot_ref": {
+                      "entity_id": "cca1b4a2-b6dc-5ec1-9f61-f59d34a71320",
+                      "revision_id": "d48d1d0d-6d5a-5147-abe2-d4e63938e0c8",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "48282f42f1b640023c7a1af1c14c72bd60d2e44ba83036e7cbab4ea6395b25ec"
+                    },
+                    "sort_key": "sequence:asc",
+                    "filter_hash": "46aad960875695319c73ff2c55a842f0eb988e822053365637119f33713edb33"
+                  }
+                },
+                "command_envelope": null,
+                "dto_profile": "candidate.5",
+                "dto_header": {
+                  "X-MA-DTO-Version": "candidate.5"
+                }
+              }
+            },
+            {
+              "actor_id": "B",
+              "source_event_ref": {
+                "entity_id": "f38b918a-35a7-5a82-83f3-ffd3b30dadd7",
+                "revision_id": "54077a85-5dd1-5a7e-ac23-77cb19103f9d",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "2013d2aae96502fdc439331dcaad71a524ec6fd85f05858d7622900d711cf9f7"
+              },
+              "generation_before": 4,
+              "generation_after": 5,
+              "frontier_before": 12,
+              "frontier_after": 13
+            }
+          ],
+          "schedule": [
+            {
+              "at": 1,
+              "actor": "A",
+              "action": "read exact initial-world source/ref/generation/frontier"
+            },
+            {
+              "at": 2,
+              "actor": "B",
+              "action": "append immutable successor or race same command according to named interleaving",
+              "named_event": [
+                "source head advances after read snapshot, or duplicate same command_id/same recomputed digest after reply loss"
+              ]
+            },
+            {
+              "at": 3,
+              "actor": "A",
+              "action": "attempt exact original generation/frontier commit or read next snapshot page"
+            }
+          ],
+          "input_model": "ApiRequest_getConfig",
+          "response_model": "ConfigRevision",
+          "response_envelope": "ReadEnvelope",
+          "response_cardinality": "PAGED_MANY"
+        },
+        "mutation": null,
+        "interleaving": [
+          "source head advances after read snapshot, or duplicate same command_id/same recomputed digest after reply loss"
+        ],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "ConfigRevision",
+        "expected_observations": {
+          "read_snapshot_stable": true,
+          "same_command_commit_count_max": 1,
+          "different_digest_http": 409
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA16-U02",
+        "consumer_units": [
+          "MA10-U05",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    }
+  ],
+  "additional_required_cases_if_not_in_legacy": "Use current v9 case_refs/required descendants and explicit adapter profile; legacy fixtures not universal current payload positives",
+  "qualification": {
+    "source_assembly": "PENDING",
+    "context_profile": "PENDING_APPLICABILITY",
+    "WO_Grant_Writer_Budget": "NOT_AUTHORIZED",
+    "runtime": "APPLICABLE_NAMED_GATE_ONLY"
+  },
+  "unresolved_implementation_binding": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here.",
+  "implementation_not_authorized": true,
+  "v9_case_sources": [
+    {
+      "ref": {
+        "path": "fixtures/operation_worlds/private/BUILDER_OPERATION_WORLD.candidate.v6.json",
+        "raw_bytes_sha256": "d55333971aa82f173acd44424adc8f99011b52229c56b086724d4b99dba3bb34",
+        "pointer": "#/cases/15"
+      },
+      "source_row": {
+        "authority_effect": "NONE",
+        "case_id": "C6-POSITIVE-FINITE-getConfig",
+        "evidence": "EXPECTED_NOT_EXECUTED",
+        "expected_http_status": 200,
+        "expected_missing": [],
+        "expected_response": {
+          "as_of": "2026-10-12T16:12:02Z",
+          "coverage": {
+            "completeness": "COMPLETE",
+            "covered_window": "OWNER_READCUT_GEN6",
+            "empty_proof_ref": null,
+            "frontier": "branch:6;history:5;dataset:2",
+            "requested_scope": "LAB:e170a85c-b4e8-54b4-8c41-2aa34ec7642c",
+            "requested_window": "OWNER_READCUT_GEN6",
+            "success": true
+          },
+          "data": [
+            {
+              "compatibility_ref": {
+                "entity_id": "5a93fc5c-1782-5bdf-85d7-a62b16841ad8",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "N_APPLICATION",
+                "revision_id": "a461254f-50ff-5a52-871d-991f554d5aab",
+                "source_hash": "ec995126e432902cef61c004e9016a2e7d5537a46d180d3de883fa6510bc1a98"
+              },
+              "owner_receipt_ref": null,
+              "policy_refs": [
+                {
+                  "entity_id": "902a286c-9064-5703-9c7c-adbc01d13272",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "E_STRATEGY",
+                  "revision_id": "73b1fc2c-4d55-572e-bb7c-a9f6720ad378",
+                  "source_hash": "3e0b71d24b2422b4cfa20a667582555348196f44abfc0b6e28f881f861e8ae22"
+                }
+              ],
+              "ref": {
+                "entity_id": "d572c69b-4a3c-55e1-874e-f47f94be1e64",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "N_APPLICATION",
+                "revision_id": "56bbbf5d-0684-5ead-9412-059e2f598e3a",
+                "source_hash": "5b268965659f26d4238e07fa5b85ac7b0265b8fdf61f2d5483c5b0cfaa0ad487"
+              },
+              "scope": {
+                "account_id": "e170a85c-b4e8-54b4-8c41-2aa34ec7642c",
+                "environment": "LAB",
+                "group_id": null,
+                "project_id": "89d1b768-da99-56e4-96c4-307aa2725fc3"
+              },
+              "secret_handles": [],
+              "values": {
+                "entries": [
+                  {
+                    "effective_at": "2026-10-12T16:12:02Z",
+                    "key": "lab.entry_threshold",
+                    "owner_ref": {
+                      "entity_id": "2f70a28b-95e7-58d2-812f-0925f7cd49b3",
+                      "hash_domain": "raw-bytes-sha256-v1",
+                      "owner": "N_APPLICATION",
+                      "revision_id": "905f65a9-fc97-5a37-b6ff-f635c7cf1a73",
+                      "source_hash": "a8b912e30b551ff9ec44052a6b21f905b9f85e3d30b10442e666c7fd22a86b95"
+                    },
+                    "secret_handle": null,
+                    "type": "decimal",
+                    "value": "110"
+                  }
+                ]
+              }
+            }
+          ],
+          "missing": [],
+          "next_cursor": null,
+          "resource_scope": {
+            "account_id": "e170a85c-b4e8-54b4-8c41-2aa34ec7642c",
+            "environment": "LAB",
+            "group_id": null,
+            "project_id": "89d1b768-da99-56e4-96c4-307aa2725fc3"
+          },
+          "schema_version": "MA-DTO-v6",
+          "snapshot_ref": {
+            "entity_id": "64c41f90-10a5-5649-9ae1-cb05292262f4",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "E_STRATEGY",
+            "revision_id": "1b7f1cc1-4266-503c-a1f8-612c0416c0e4",
+            "source_hash": "8338d399b7b9ad60f835cd3b421f011a04684162f8f75ebcfca4ad1ef1a1679f"
+          }
+        },
+        "expected_response_canonical_sha256": "f5bd922fc1695038295c9aa4d5b139b2bee46b29823c9cfc224673884a51035e",
+        "expected_response_canonical_utf8": "{\"as_of\":\"2026-10-12T16:12:02Z\",\"coverage\":{\"completeness\":\"COMPLETE\",\"covered_window\":\"OWNER_READCUT_GEN6\",\"empty_proof_ref\":null,\"frontier\":\"branch:6;history:5;dataset:2\",\"requested_scope\":\"LAB:e170a85c-b4e8-54b4-8c41-2aa34ec7642c\",\"requested_window\":\"OWNER_READCUT_GEN6\",\"success\":true},\"data\":[{\"compatibility_ref\":{\"entity_id\":\"5a93fc5c-1782-5bdf-85d7-a62b16841ad8\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"N_APPLICATION\",\"revision_id\":\"a461254f-50ff-5a52-871d-991f554d5aab\",\"source_hash\":\"ec995126e432902cef61c004e9016a2e7d5537a46d180d3de883fa6510bc1a98\"},\"owner_receipt_ref\":null,\"policy_refs\":[{\"entity_id\":\"902a286c-9064-5703-9c7c-adbc01d13272\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"E_STRATEGY\",\"revision_id\":\"73b1fc2c-4d55-572e-bb7c-a9f6720ad378\",\"source_hash\":\"3e0b71d24b2422b4cfa20a667582555348196f44abfc0b6e28f881f861e8ae22\"}],\"ref\":{\"entity_id\":\"d572c69b-4a3c-55e1-874e-f47f94be1e64\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"N_APPLICATION\",\"revision_id\":\"56bbbf5d-0684-5ead-9412-059e2f598e3a\",\"source_hash\":\"5b268965659f26d4238e07fa5b85ac7b0265b8fdf61f2d5483c5b0cfaa0ad487\"},\"scope\":{\"account_id\":\"e170a85c-b4e8-54b4-8c41-2aa34ec7642c\",\"environment\":\"LAB\",\"group_id\":null,\"project_id\":\"89d1b768-da99-56e4-96c4-307aa2725fc3\"},\"secret_handles\":[],\"values\":{\"entries\":[{\"effective_at\":\"2026-10-12T16:12:02Z\",\"key\":\"lab.entry_threshold\",\"owner_ref\":{\"entity_id\":\"2f70a28b-95e7-58d2-812f-0925f7cd49b3\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"N_APPLICATION\",\"revision_id\":\"905f65a9-fc97-5a37-b6ff-f635c7cf1a73\",\"source_hash\":\"a8b912e30b551ff9ec44052a6b21f905b9f85e3d30b10442e666c7fd22a86b95\"},\"secret_handle\":null,\"type\":\"decimal\",\"value\":\"110\"}]}}],\"missing\":[],\"next_cursor\":null,\"resource_scope\":{\"account_id\":\"e170a85c-b4e8-54b4-8c41-2aa34ec7642c\",\"environment\":\"LAB\",\"group_id\":null,\"project_id\":\"89d1b768-da99-56e4-96c4-307aa2725fc3\"},\"schema_version\":\"MA-DTO-v6\",\"snapshot_ref\":{\"entity_id\":\"64c41f90-10a5-5649-9ae1-cb05292262f4\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"E_STRATEGY\",\"revision_id\":\"1b7f1cc1-4266-503c-a1f8-612c0416c0e4\",\"source_hash\":\"8338d399b7b9ad60f835cd3b421f011a04684162f8f75ebcfca4ad1ef1a1679f\"}}",
+        "expected_response_cardinality": "PAGED_MANY",
+        "expected_side_effects": [
+          "NO_EFFECT_PROVEN_READ_ONLY"
+        ],
+        "initial_world_id": "CC02_BUILDER_FINITE_WORLD",
+        "operation_id": "getConfig",
+        "producer_plan_source_binding": {
+          "implementation_eligibility": "NOT_GRANTED_BY_FIXTURE",
+          "plan_revision": "candidate.6",
+          "plan_revision_id": "d106e784-67d8-5cef-a1a0-6e1347c8447e",
+          "producer_header_excerpt_path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\architecture-correction-loop-20261012T161202Z\\cycle-02\\author_fragments\\operation_worlds\\PRODUCER_CONTRACT_HEADER_EXCERPT.candidate.v6.json",
+          "producer_header_excerpt_raw_bytes_sha256": "eb4287d4f9d8cc8762f1cb73b7ccc11439d67cb2079a943d8a168ed5f2d918b6",
+          "qualification": "DESIGN_INPUT_ONLY_NOT_QUALIFIED_RESULT",
+          "source_revision": {
+            "candidate_source": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+            "canonical_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+            "main_master_migration_status": "NOT_EXECUTED_NOT_VERIFIED",
+            "observed_authoritative_branch": "master",
+            "review_subject": "MA-ARCH-REVIEW-v6-CYCLE02",
+            "source_manifest_hash": "f1181870535f0965c94e2b3eadb4616b344c1ff2d6164aafdee48eace813cf7c",
+            "source_manifest_path": "SOURCE_MANIFEST.json",
+            "target_authoritative_branch": "main"
+          },
+          "unit_alias": "MA16-U02",
+          "unit_id": "417a48ca-cd02-4682-8099-6b22cb9347d6",
+          "whole_unit_file_binding": {
+            "excerpt_role": "FINAL_PRODUCER_HEADER_EXCERPT",
+            "fixture_role": "FINAL_OPERATION_WORLD_EXPECTED_DESIGN",
+            "required_role": "FINAL_EXECUTION_UNITS_SOURCE",
+            "rule": "EXTERNAL_FROZEN_REVIEW_ENVELOPE_ONLY",
+            "verification": "External bundle pins the final Unit/world/excerpt raw bytes simultaneously, then checks exact excerpt header equality against final Unit by permanent ID. No staged Unit digest is embedded in either fixture or excerpt."
+          }
+        },
+        "producer_unit": "MA16-U02",
+        "request_payload_canonical_sha256": "b8e3557437f9bfcb88867815f7d4c45173ec545cd1ca0bb55f37d56a876e7cd4",
+        "request_payload_canonical_utf8": "{\"config_ref\":{\"entity_id\":\"d572c69b-4a3c-55e1-874e-f47f94be1e64\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"N_APPLICATION\",\"revision_id\":\"56bbbf5d-0684-5ead-9412-059e2f598e3a\",\"source_hash\":\"5b268965659f26d4238e07fa5b85ac7b0265b8fdf61f2d5483c5b0cfaa0ad487\"},\"page\":{\"cursor\":null,\"filter_hash\":\"4cb4614ec8ce270435bc92c97e8239e2de18d0531cc8a12b17fffe0b91e55b8d\",\"limit\":20,\"snapshot_ref\":{\"entity_id\":\"64c41f90-10a5-5649-9ae1-cb05292262f4\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"E_STRATEGY\",\"revision_id\":\"1b7f1cc1-4266-503c-a1f8-612c0416c0e4\",\"source_hash\":\"8338d399b7b9ad60f835cd3b421f011a04684162f8f75ebcfca4ad1ef1a1679f\"},\"sort_key\":\"entity_id,revision_id\"}}",
+        "wire_request": {
+          "authenticated_context_fixture": {
+            "actor_id": "a0061c07-bcff-5116-995c-daa3bcae3c1a",
+            "policy_receipt_ref": {
+              "entity_id": "ba404f97-ea5c-5523-a589-827e470980e4",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "EXISTING_AUTHORIZATION_OWNER",
+              "revision_id": "4cd88a05-3df9-57c6-aff5-fa69cde4a6db",
+              "source_hash": "267eb444ff8c6130588e0641887c6ca866ce81769cdfa2425d94c9d3c716d800"
+            },
+            "scope": {
+              "account_id": "e170a85c-b4e8-54b4-8c41-2aa34ec7642c",
+              "environment": "LAB",
+              "group_id": null,
+              "project_id": "89d1b768-da99-56e4-96c4-307aa2725fc3"
+            }
+          },
+          "dto_header": {
+            "X-MA-DTO-Version": "MA-DTO-v6"
+          },
+          "dto_profile": "MA-DTO-v6",
+          "method": "GET",
+          "operation_id": "getConfig",
+          "path": "/api/v2/config-candidates",
+          "path_values": {},
+          "request_payload": {
+            "config_ref": {
+              "entity_id": "d572c69b-4a3c-55e1-874e-f47f94be1e64",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "N_APPLICATION",
+              "revision_id": "56bbbf5d-0684-5ead-9412-059e2f598e3a",
+              "source_hash": "5b268965659f26d4238e07fa5b85ac7b0265b8fdf61f2d5483c5b0cfaa0ad487"
+            },
+            "page": {
+              "cursor": null,
+              "filter_hash": "4cb4614ec8ce270435bc92c97e8239e2de18d0531cc8a12b17fffe0b91e55b8d",
+              "limit": 20,
+              "snapshot_ref": {
+                "entity_id": "64c41f90-10a5-5649-9ae1-cb05292262f4",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_STRATEGY",
+                "revision_id": "1b7f1cc1-4266-503c-a1f8-612c0416c0e4",
+                "source_hash": "8338d399b7b9ad60f835cd3b421f011a04684162f8f75ebcfca4ad1ef1a1679f"
+              },
+              "sort_key": "entity_id,revision_id"
+            }
+          }
+        }
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    }
+  ]
+}

@@ -1,0 +1,3301 @@
+{
+  "schema": "ma.registry.actual-value-fixtures.v6",
+  "status": "AUTHOR_FIXED_PROPOSAL_PENDING_FRESH_REVIEW",
+  "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME",
+  "fixture_authorization": "Stipulated exact model grant only; no real authorization/SQL/capture/acceptance claimed. Fixture UUIDs are simulated server output examples, never client predictions or production allocation policy.",
+  "payload_hash_rule": "Fixture model canonical payload bytes in ma-command-canonical-json-sha256-v1; root transport compiler must use its canonical selected domain consistently. Original server submitted raw source hash uses exact canonical input bytes separately.",
+  "new_entity_command_value": {
+    "command_id": "60000000-0000-4000-8000-0000000000c9",
+    "payload_hash_domain": "ma-command-canonical-json-sha256-v1",
+    "payload_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9",
+    "resource_scope": {
+      "project_id": "60000000-0000-4000-8000-000000000001",
+      "environment": "LAB"
+    },
+    "expected_generation": 7,
+    "subject_refs": [
+      {
+        "entity_id": "60000000-0000-4000-8000-000000000002",
+        "revision_id": "60000000-0000-4000-8000-000000002712",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "a546d336f027d685b78f8a0d94ce93f4fa434ebd08d98615b19ef1f41eec800a"
+      },
+      {
+        "entity_id": "7cf7aefb-e259-4cc5-b058-286e7724891f",
+        "revision_id": "302771b0-5d35-4569-beff-dbd9175e76d4",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "ma-canonical-json-sha256-v1",
+        "source_hash": "d95511ffe98568abe5ab7554de49c2a39fecf726002615d45c5a6e2f518a6685"
+      }
+    ],
+    "payload": {
+      "proposal": {
+        "base_snapshot_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000002",
+          "revision_id": "60000000-0000-4000-8000-000000002712",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "a546d336f027d685b78f8a0d94ce93f4fa434ebd08d98615b19ef1f41eec800a"
+        },
+        "base_graph_heads": [
+          {
+            "scope_ref": {
+              "entity_id": "7cf7aefb-e259-4cc5-b058-286e7724891f",
+              "revision_id": "302771b0-5d35-4569-beff-dbd9175e76d4",
+              "owner": "REGISTRY_WRITER",
+              "hash_domain": "ma-canonical-json-sha256-v1",
+              "source_hash": "d95511ffe98568abe5ab7554de49c2a39fecf726002615d45c5a6e2f518a6685"
+            },
+            "snapshot_ref": {
+              "entity_id": "60000000-0000-4000-8000-000000000002",
+              "revision_id": "60000000-0000-4000-8000-000000002712",
+              "owner": "REGISTRY_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "a546d336f027d685b78f8a0d94ce93f4fa434ebd08d98615b19ef1f41eec800a"
+            },
+            "generation": 7,
+            "closure_hash": "9ce86dd6274fa590852bc6fc065c46d35a151bd6c79a101e15cc725548c97e4e",
+            "completeness": "COMPLETE"
+          }
+        ],
+        "body_submissions": [
+          {
+            "local_body_key": "60000000-0000-4000-8000-000000000065",
+            "body_type": "RegistryEntityDraftV5",
+            "write_mode": "CREATE_NEW_DRAFT",
+            "body": {
+              "project_owner": "60000000-0000-4000-8000-000000000001",
+              "kind": "FEATURE",
+              "semantic_payload_ref": {
+                "kind": "LOCAL_DRAFT",
+                "local_body_key": "60000000-0000-4000-8000-000000000066"
+              },
+              "created_source_ref": {
+                "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                "owner": "SOURCE_MANIFEST_OWNER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+              }
+            },
+            "source_bindings": [
+              {
+                "source_ref": {
+                  "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                  "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                  "owner": "SOURCE_MANIFEST_OWNER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_artifact_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000a",
+                  "revision_id": "60000000-0000-4000-8000-00000000271a",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_capture_receipt_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000b",
+                  "revision_id": "60000000-0000-4000-8000-00000000271b",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+                },
+                "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+                "raw_hash_domain": "raw-bytes-sha256-v1",
+                "source_schema_ref": {
+                  "entity_id": "60000000-0000-4000-8000-000000004e82",
+                  "revision_id": "60000000-0000-4000-8000-000000007592",
+                  "owner": "N_APPLICATION_BODY_CATALOG",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+                },
+                "binding_role": "ORIGINAL_SOURCE_RECORD"
+              }
+            ]
+          },
+          {
+            "local_body_key": "60000000-0000-4000-8000-000000000066",
+            "body_type": "RegistryEntityRevisionDraftV5",
+            "write_mode": "CREATE_NEW_DRAFT",
+            "body": {
+              "entity_ref": {
+                "kind": "LOCAL_DRAFT",
+                "local_body_key": "60000000-0000-4000-8000-000000000065"
+              },
+              "entity_kind": "FEATURE",
+              "source_bindings": [
+                {
+                  "source_ref": {
+                    "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                    "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                    "owner": "SOURCE_MANIFEST_OWNER",
+                    "hash_domain": "raw-bytes-sha256-v1",
+                    "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                  },
+                  "source_artifact_ref": {
+                    "entity_id": "60000000-0000-4000-8000-00000000000a",
+                    "revision_id": "60000000-0000-4000-8000-00000000271a",
+                    "owner": "ARTIFACT_WRITER",
+                    "hash_domain": "raw-bytes-sha256-v1",
+                    "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                  },
+                  "source_capture_receipt_ref": {
+                    "entity_id": "60000000-0000-4000-8000-00000000000b",
+                    "revision_id": "60000000-0000-4000-8000-00000000271b",
+                    "owner": "ARTIFACT_WRITER",
+                    "hash_domain": "raw-bytes-sha256-v1",
+                    "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+                  },
+                  "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+                  "raw_hash_domain": "raw-bytes-sha256-v1",
+                  "source_schema_ref": {
+                    "entity_id": "60000000-0000-4000-8000-000000004e82",
+                    "revision_id": "60000000-0000-4000-8000-000000007592",
+                    "owner": "N_APPLICATION_BODY_CATALOG",
+                    "hash_domain": "raw-bytes-sha256-v1",
+                    "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+                  },
+                  "binding_role": "ORIGINAL_SOURCE_RECORD"
+                }
+              ],
+              "payload_type": "RegistryCandidateSemanticRecordV6",
+              "semantic_payload": {
+                "title": "CC02 同批次新實體與配號正例",
+                "rationale": "僅作作者型別與配號設計模型；來源、主文與正式接受分軸驗證。",
+                "proposed_kind": "FEATURE",
+                "source_ref": {
+                  "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                  "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                  "owner": "SOURCE_MANIFEST_OWNER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "target_context_ref": {
+                  "entity_id": "7cf7aefb-e259-4cc5-b058-286e7724891f",
+                  "revision_id": "302771b0-5d35-4569-beff-dbd9175e76d4",
+                  "owner": "REGISTRY_WRITER",
+                  "hash_domain": "ma-canonical-json-sha256-v1",
+                  "source_hash": "d95511ffe98568abe5ab7554de49c2a39fecf726002615d45c5a6e2f518a6685"
+                },
+                "acceptance_effect": "NONE"
+              }
+            },
+            "source_bindings": [
+              {
+                "source_ref": {
+                  "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                  "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                  "owner": "SOURCE_MANIFEST_OWNER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_artifact_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000a",
+                  "revision_id": "60000000-0000-4000-8000-00000000271a",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_capture_receipt_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000b",
+                  "revision_id": "60000000-0000-4000-8000-00000000271b",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+                },
+                "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+                "raw_hash_domain": "raw-bytes-sha256-v1",
+                "source_schema_ref": {
+                  "entity_id": "60000000-0000-4000-8000-000000004e82",
+                  "revision_id": "60000000-0000-4000-8000-000000007592",
+                  "owner": "N_APPLICATION_BODY_CATALOG",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+                },
+                "binding_role": "ORIGINAL_SOURCE_RECORD"
+              }
+            ]
+          },
+          {
+            "local_body_key": "60000000-0000-4000-8000-000000000067",
+            "body_type": "CodeAllocationDraftV5",
+            "write_mode": "CREATE_NEW_DRAFT",
+            "body": {
+              "semantic_key": {
+                "catalog_entity_id": "60000000-0000-4000-8000-00000000000c",
+                "entity_kind": "FEATURE",
+                "namespace": "CC02_DESIGN_FIXTURE",
+                "code_family": "FEATURE",
+                "segments": [
+                  {
+                    "ordinal": 0,
+                    "semantic_type": "fixture_number",
+                    "value_type": "NUMBER",
+                    "numeric_value": 601
+                  }
+                ]
+              },
+              "allocated_target": {
+                "kind": "LOCAL_DRAFT",
+                "local_body_key": "60000000-0000-4000-8000-000000000065"
+              },
+              "initial_entity_revision_ref": {
+                "kind": "LOCAL_DRAFT",
+                "local_body_key": "60000000-0000-4000-8000-000000000066"
+              },
+              "source_ref": {
+                "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                "owner": "SOURCE_MANIFEST_OWNER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+              },
+              "state": "ALLOCATED"
+            },
+            "source_bindings": [
+              {
+                "source_ref": {
+                  "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                  "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                  "owner": "SOURCE_MANIFEST_OWNER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_artifact_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000a",
+                  "revision_id": "60000000-0000-4000-8000-00000000271a",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_capture_receipt_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000b",
+                  "revision_id": "60000000-0000-4000-8000-00000000271b",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+                },
+                "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+                "raw_hash_domain": "raw-bytes-sha256-v1",
+                "source_schema_ref": {
+                  "entity_id": "60000000-0000-4000-8000-000000004e82",
+                  "revision_id": "60000000-0000-4000-8000-000000007592",
+                  "owner": "N_APPLICATION_BODY_CATALOG",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+                },
+                "binding_role": "ORIGINAL_SOURCE_RECORD"
+              }
+            ]
+          },
+          {
+            "local_body_key": "60000000-0000-4000-8000-000000000068",
+            "body_type": "CodeAssignmentDraftV5",
+            "write_mode": "CREATE_NEW_DRAFT",
+            "body": {
+              "entity_ref": {
+                "kind": "LOCAL_DRAFT",
+                "local_body_key": "60000000-0000-4000-8000-000000000065"
+              },
+              "catalog_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000c",
+                "revision_id": "60000000-0000-4000-8000-00000000271c",
+                "owner": "REGISTRY_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "8b8727d8ce184a1de18b3b12d87236b7cd6f7997b30cae8e3adb9f963b586be1"
+              },
+              "namespace": "CC02_DESIGN_FIXTURE",
+              "code_type": "FEATURE",
+              "segments": [
+                {
+                  "ordinal": 0,
+                  "semantic_type": "fixture_number",
+                  "value_type": "NUMBER",
+                  "numeric_value": 601
+                }
+              ],
+              "format_policy_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000d",
+                "revision_id": "60000000-0000-4000-8000-00000000271d",
+                "owner": "REGISTRY_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "94c60f26d985ccf55bb9745a4aa964a58b60a3a8478a967ecb061bb14a947980"
+              },
+              "validity": {
+                "kind": "SOURCE_SNAPSHOT",
+                "governing_snapshot": {
+                  "kind": "PROPOSED_CANDIDATE_SNAPSHOT"
+                }
+              },
+              "allocation_ref": {
+                "kind": "LOCAL_DRAFT",
+                "local_body_key": "60000000-0000-4000-8000-000000000067"
+              }
+            },
+            "source_bindings": [
+              {
+                "source_ref": {
+                  "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                  "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                  "owner": "SOURCE_MANIFEST_OWNER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_artifact_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000a",
+                  "revision_id": "60000000-0000-4000-8000-00000000271a",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_capture_receipt_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000b",
+                  "revision_id": "60000000-0000-4000-8000-00000000271b",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+                },
+                "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+                "raw_hash_domain": "raw-bytes-sha256-v1",
+                "source_schema_ref": {
+                  "entity_id": "60000000-0000-4000-8000-000000004e82",
+                  "revision_id": "60000000-0000-4000-8000-000000007592",
+                  "owner": "N_APPLICATION_BODY_CATALOG",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+                },
+                "binding_role": "ORIGINAL_SOURCE_RECORD"
+              }
+            ]
+          }
+        ],
+        "changes": [
+          {
+            "entity_kind": "FEATURE",
+            "operation": "CREATE",
+            "new_body_key": "60000000-0000-4000-8000-000000000066",
+            "relation_body_keys": []
+          }
+        ],
+        "source_refs": [
+          {
+            "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+            "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+            "owner": "SOURCE_MANIFEST_OWNER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+          }
+        ]
+      }
+    }
+  },
+  "new_entity_local_to_permanent_mapping": {
+    "60000000-0000-4000-8000-000000000065": {
+      "entity_id": "60000000-0000-4000-8000-000000000385",
+      "revision_id": "60000000-0000-4000-8000-000000000386",
+      "owner": "REGISTRY_WRITER",
+      "hash_domain": "raw-bytes-sha256-v1",
+      "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+    },
+    "60000000-0000-4000-8000-000000000067": {
+      "entity_id": "60000000-0000-4000-8000-000000000387",
+      "revision_id": "60000000-0000-4000-8000-000000000388",
+      "owner": "REGISTRY_WRITER",
+      "hash_domain": "raw-bytes-sha256-v1",
+      "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+    },
+    "60000000-0000-4000-8000-000000000068": {
+      "entity_id": "60000000-0000-4000-8000-000000000389",
+      "revision_id": "60000000-0000-4000-8000-00000000038a",
+      "owner": "REGISTRY_WRITER",
+      "hash_domain": "raw-bytes-sha256-v1",
+      "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+    },
+    "60000000-0000-4000-8000-000000000066": {
+      "entity_id": "60000000-0000-4000-8000-000000000385",
+      "revision_id": "60000000-0000-4000-8000-00000000038b",
+      "owner": "REGISTRY_WRITER",
+      "hash_domain": "raw-bytes-sha256-v1",
+      "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+    }
+  },
+  "new_entity_final_bodies": [
+    {
+      "local_body_key": "60000000-0000-4000-8000-000000000065",
+      "body_type": "RegistryEntity",
+      "value": {
+        "project_owner": "60000000-0000-4000-8000-000000000001",
+        "kind": "FEATURE",
+        "semantic_payload_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-00000000038b",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "created_source_ref": {
+          "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+          "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+          "owner": "SOURCE_MANIFEST_OWNER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+        },
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-000000000386",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        }
+      },
+      "canonical_bytes_sha256": "3012ccd994693038e9c74c981d6abfbfad7e41ce9d4405f0636a83b92f52982d",
+      "canonical_byte_size": 876,
+      "actual_body_bytes_path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\architecture-correction-loop-20261012T161202Z\\cycle-02\\author_fragments\\registry\\samples\\values\\new_RegistryEntity.body.json"
+    },
+    {
+      "local_body_key": "60000000-0000-4000-8000-000000000066",
+      "body_type": "RegistryEntityRevisionV5",
+      "value": {
+        "entity_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-000000000386",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "entity_kind": "FEATURE",
+        "source_bindings": [
+          {
+            "source_ref": {
+              "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+              "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+              "owner": "SOURCE_MANIFEST_OWNER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_artifact_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000a",
+              "revision_id": "60000000-0000-4000-8000-00000000271a",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_capture_receipt_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000b",
+              "revision_id": "60000000-0000-4000-8000-00000000271b",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+            },
+            "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+            "raw_hash_domain": "raw-bytes-sha256-v1",
+            "source_schema_ref": {
+              "entity_id": "60000000-0000-4000-8000-000000004e82",
+              "revision_id": "60000000-0000-4000-8000-000000007592",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+            },
+            "binding_role": "ORIGINAL_SOURCE_RECORD"
+          }
+        ],
+        "payload_type": "RegistryCandidateSemanticRecordV6",
+        "semantic_payload": {
+          "title": "CC02 同批次新實體與配號正例",
+          "rationale": "僅作作者型別與配號設計模型；來源、主文與正式接受分軸驗證。",
+          "proposed_kind": "FEATURE",
+          "source_ref": {
+            "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+            "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+            "owner": "SOURCE_MANIFEST_OWNER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+          },
+          "target_context_ref": {
+            "entity_id": "7cf7aefb-e259-4cc5-b058-286e7724891f",
+            "revision_id": "302771b0-5d35-4569-beff-dbd9175e76d4",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "ma-canonical-json-sha256-v1",
+            "source_hash": "d95511ffe98568abe5ab7554de49c2a39fecf726002615d45c5a6e2f518a6685"
+          },
+          "acceptance_effect": "NONE"
+        },
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-00000000038b",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        }
+      },
+      "canonical_bytes_sha256": "79e4afe6b9ed20942d452238dc3ff56c7ef4d2667489663355382e46d1e1e7be",
+      "canonical_byte_size": 2646,
+      "actual_body_bytes_path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\architecture-correction-loop-20261012T161202Z\\cycle-02\\author_fragments\\registry\\samples\\values\\new_RegistryEntityRevisionV5.body.json"
+    },
+    {
+      "local_body_key": "60000000-0000-4000-8000-000000000067",
+      "body_type": "CodeAllocation",
+      "value": {
+        "semantic_key": {
+          "catalog_entity_id": "60000000-0000-4000-8000-00000000000c",
+          "entity_kind": "FEATURE",
+          "namespace": "CC02_DESIGN_FIXTURE",
+          "code_family": "FEATURE",
+          "segments": [
+            {
+              "ordinal": 0,
+              "semantic_type": "fixture_number",
+              "value_type": "NUMBER",
+              "numeric_value": 601
+            }
+          ]
+        },
+        "initial_entity_revision_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-00000000038b",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "source_ref": {
+          "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+          "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+          "owner": "SOURCE_MANIFEST_OWNER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+        },
+        "state": "ALLOCATED",
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000387",
+          "revision_id": "60000000-0000-4000-8000-000000000388",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "allocated_entity_id": "60000000-0000-4000-8000-000000000385"
+      },
+      "canonical_bytes_sha256": "19581d172de0ca4b3b0a33cb88f4869343079d2c28fb37fa2f086ed6dacd2b6c",
+      "canonical_byte_size": 1144,
+      "actual_body_bytes_path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\architecture-correction-loop-20261012T161202Z\\cycle-02\\author_fragments\\registry\\samples\\values\\new_CodeAllocation.body.json"
+    },
+    {
+      "local_body_key": "60000000-0000-4000-8000-000000000068",
+      "body_type": "CodeAssignment",
+      "value": {
+        "entity_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-000000000386",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "catalog_ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000000c",
+          "revision_id": "60000000-0000-4000-8000-00000000271c",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "8b8727d8ce184a1de18b3b12d87236b7cd6f7997b30cae8e3adb9f963b586be1"
+        },
+        "namespace": "CC02_DESIGN_FIXTURE",
+        "code_type": "FEATURE",
+        "segments": [
+          {
+            "ordinal": 0,
+            "semantic_type": "fixture_number",
+            "value_type": "NUMBER",
+            "numeric_value": 601
+          }
+        ],
+        "format_policy_ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000000d",
+          "revision_id": "60000000-0000-4000-8000-00000000271d",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "94c60f26d985ccf55bb9745a4aa964a58b60a3a8478a967ecb061bb14a947980"
+        },
+        "validity": {
+          "kind": "SOURCE_SNAPSHOT",
+          "source_snapshot_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000028",
+            "revision_id": "60000000-0000-4000-8000-000000002738",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+          }
+        },
+        "allocation_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000387",
+          "revision_id": "60000000-0000-4000-8000-000000000388",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000389",
+          "revision_id": "60000000-0000-4000-8000-00000000038a",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        }
+      },
+      "canonical_bytes_sha256": "40b9783f85b2bcde2a8202e63460713f4234b6f9d8538b36e0476c4d8ff94d86",
+      "canonical_byte_size": 1783,
+      "actual_body_bytes_path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\architecture-correction-loop-20261012T161202Z\\cycle-02\\author_fragments\\registry\\samples\\values\\new_CodeAssignment.body.json"
+    }
+  ],
+  "new_entity_candidate_snapshot_value": {
+    "ref": {
+      "entity_id": "60000000-0000-4000-8000-000000000028",
+      "revision_id": "60000000-0000-4000-8000-000000002738",
+      "owner": "REGISTRY_WRITER",
+      "hash_domain": "raw-bytes-sha256-v1",
+      "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+    },
+    "entity_refs": [
+      {
+        "entity_id": "60000000-0000-4000-8000-000000000385",
+        "revision_id": "60000000-0000-4000-8000-000000000386",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+      },
+      {
+        "entity_id": "60000000-0000-4000-8000-000000000385",
+        "revision_id": "60000000-0000-4000-8000-00000000038b",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+      }
+    ],
+    "relation_refs": [],
+    "code_alias_refs": [
+      {
+        "entity_id": "60000000-0000-4000-8000-000000000389",
+        "revision_id": "60000000-0000-4000-8000-00000000038a",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+      }
+    ],
+    "source_refs": [
+      {
+        "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+        "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+        "owner": "SOURCE_MANIFEST_OWNER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+      },
+      {
+        "entity_id": "7cf7aefb-e259-4cc5-b058-286e7724891f",
+        "revision_id": "302771b0-5d35-4569-beff-dbd9175e76d4",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "ma-canonical-json-sha256-v1",
+        "source_hash": "d95511ffe98568abe5ab7554de49c2a39fecf726002615d45c5a6e2f518a6685"
+      },
+      {
+        "entity_id": "60000000-0000-4000-8000-00000000000c",
+        "revision_id": "60000000-0000-4000-8000-00000000271c",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "8b8727d8ce184a1de18b3b12d87236b7cd6f7997b30cae8e3adb9f963b586be1"
+      },
+      {
+        "entity_id": "60000000-0000-4000-8000-00000000000d",
+        "revision_id": "60000000-0000-4000-8000-00000000271d",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "94c60f26d985ccf55bb9745a4aa964a58b60a3a8478a967ecb061bb14a947980"
+      }
+    ],
+    "parent_snapshot_refs": [
+      {
+        "entity_id": "60000000-0000-4000-8000-000000000002",
+        "revision_id": "60000000-0000-4000-8000-000000002712",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "a546d336f027d685b78f8a0d94ce93f4fa434ebd08d98615b19ef1f41eec800a"
+      }
+    ],
+    "code_allocation_refs": [
+      {
+        "entity_id": "60000000-0000-4000-8000-000000000387",
+        "revision_id": "60000000-0000-4000-8000-000000000388",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+      }
+    ],
+    "source_snapshot_refs": []
+  },
+  "new_entity_proposal_result_value": {
+    "review_subject": {
+      "ref": {
+        "entity_id": "60000000-0000-4000-8000-00000000028a",
+        "revision_id": "60000000-0000-4000-8000-00000000299a",
+        "owner": "EXISTING_REVIEW_OWNER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "94545ecbc2f77d33d8187c9ed2f6d301abb37140d0c685633e49a72ad5e2075b"
+      },
+      "roots": [
+        {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-00000000038b",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        }
+      ],
+      "relevant_closure": [
+        {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-000000000386",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-00000000038b",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        {
+          "entity_id": "60000000-0000-4000-8000-000000000387",
+          "revision_id": "60000000-0000-4000-8000-000000000388",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        {
+          "entity_id": "60000000-0000-4000-8000-000000000389",
+          "revision_id": "60000000-0000-4000-8000-00000000038a",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        {
+          "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+          "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+          "owner": "SOURCE_MANIFEST_OWNER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+        },
+        {
+          "entity_id": "7cf7aefb-e259-4cc5-b058-286e7724891f",
+          "revision_id": "302771b0-5d35-4569-beff-dbd9175e76d4",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "ma-canonical-json-sha256-v1",
+          "source_hash": "d95511ffe98568abe5ab7554de49c2a39fecf726002615d45c5a6e2f518a6685"
+        },
+        {
+          "entity_id": "60000000-0000-4000-8000-00000000000c",
+          "revision_id": "60000000-0000-4000-8000-00000000271c",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "8b8727d8ce184a1de18b3b12d87236b7cd6f7997b30cae8e3adb9f963b586be1"
+        },
+        {
+          "entity_id": "60000000-0000-4000-8000-00000000000d",
+          "revision_id": "60000000-0000-4000-8000-00000000271d",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "94c60f26d985ccf55bb9745a4aa964a58b60a3a8478a967ecb061bb14a947980"
+        },
+        {
+          "entity_id": "60000000-0000-4000-8000-0000000001f4",
+          "revision_id": "60000000-0000-4000-8000-000000002904",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "51bf1be594c9c419ff8fca98cf1aae5fc28ed9d4241fbedb476194c5ad1b3353"
+        },
+        {
+          "entity_id": "60000000-0000-4000-8000-0000000001f5",
+          "revision_id": "60000000-0000-4000-8000-000000002905",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "2b79286704033127a3e58189c28c70f6ff7bbd86078815da00505b13c2897d09"
+        },
+        {
+          "entity_id": "60000000-0000-4000-8000-0000000001f6",
+          "revision_id": "60000000-0000-4000-8000-000000002906",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "a9826c985020a7c13fdd834e6ec90ff4b23e6adb20bde1a9ed27353cd80b87df"
+        },
+        {
+          "entity_id": "60000000-0000-4000-8000-0000000001f7",
+          "revision_id": "60000000-0000-4000-8000-000000002907",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "a2081560bb698d8c6750e72a0b29dd0bd16ff23a1f1107ca6fa1fa619ecbaf99"
+        },
+        {
+          "entity_id": "60000000-0000-4000-8000-0000000001f8",
+          "revision_id": "60000000-0000-4000-8000-000000002908",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "ef303115b42d176490e150fa3e6aa606773b0f1508ea900e170d98e310c2b455"
+        },
+        {
+          "entity_id": "60000000-0000-4000-8000-0000000001f9",
+          "revision_id": "60000000-0000-4000-8000-000000002909",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "b5b337b41d5ddf444f11c467970ff4dd7e4fc5a1ade345abe888b725bcb011ba"
+        },
+        {
+          "entity_id": "50b5a04f-f024-4eb0-86a4-899c690870cb",
+          "revision_id": "bf421fcb-6294-59d7-84f2-cad7732faaad",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "ma-named-model-closure-json-sha256-v2",
+          "source_hash": "c10a6ae957bf199dff77e46b7bed98cee6bc637b2a823777a3d682380c298a99"
+        },
+        {
+          "entity_id": "066b270f-a1ba-5222-b5bb-68d4c78d315b",
+          "revision_id": "dd92fc02-bfe7-50b5-aa5a-e0a94c98c91a",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "24d2ea64476c9b66df13d0f88c6f8d3c53725cf1af4b5d86c364e51120e3c55e"
+        }
+      ],
+      "snapshot_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000028",
+        "revision_id": "60000000-0000-4000-8000-000000002738",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+      },
+      "source_hashes": [
+        {
+          "source_ref": {
+            "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+            "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+            "owner": "SOURCE_MANIFEST_OWNER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+          },
+          "hash_domain": "raw-bytes-sha256-v1",
+          "hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+        }
+      ],
+      "compatibility_impact": {
+        "changed_refs": [
+          {
+            "entity_id": "60000000-0000-4000-8000-000000000385",
+            "revision_id": "60000000-0000-4000-8000-000000000386",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          },
+          {
+            "entity_id": "60000000-0000-4000-8000-000000000385",
+            "revision_id": "60000000-0000-4000-8000-00000000038b",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          },
+          {
+            "entity_id": "60000000-0000-4000-8000-000000000387",
+            "revision_id": "60000000-0000-4000-8000-000000000388",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          },
+          {
+            "entity_id": "60000000-0000-4000-8000-000000000389",
+            "revision_id": "60000000-0000-4000-8000-00000000038a",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          }
+        ],
+        "affected_consumers": [],
+        "compatible_proofs": [],
+        "requires_requalification": [
+          {
+            "entity_id": "60000000-0000-4000-8000-000000000385",
+            "revision_id": "60000000-0000-4000-8000-000000000386",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          },
+          {
+            "entity_id": "60000000-0000-4000-8000-000000000385",
+            "revision_id": "60000000-0000-4000-8000-00000000038b",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          },
+          {
+            "entity_id": "60000000-0000-4000-8000-000000000387",
+            "revision_id": "60000000-0000-4000-8000-000000000388",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          },
+          {
+            "entity_id": "60000000-0000-4000-8000-000000000389",
+            "revision_id": "60000000-0000-4000-8000-00000000038a",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          }
+        ]
+      },
+      "exclusions": [],
+      "manifest_hash": "3438aec6673ba74d4942d0ed8b47a128538708c73ff487f0a1ad0d3c6c6fe470"
+    },
+    "draft_bindings": [
+      {
+        "local_body_key": "60000000-0000-4000-8000-000000000065",
+        "binding": {
+          "ref": {
+            "entity_id": "60000000-0000-4000-8000-00000000003c",
+            "revision_id": "60000000-0000-4000-8000-00000000274c",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "ad8b5636324b123ca4eeeb898803589c95795a548f7d2e54e5e532d2232c9e0b"
+          },
+          "subject_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000385",
+            "revision_id": "60000000-0000-4000-8000-000000000386",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          },
+          "resource_scope": {
+            "project_id": "60000000-0000-4000-8000-000000000001",
+            "environment": "LAB"
+          },
+          "body_type": "RegistryEntity",
+          "dto_version": "MA-DTO-v6",
+          "catalog_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000032",
+            "revision_id": "60000000-0000-4000-8000-000000002742",
+            "owner": "N_APPLICATION_BODY_CATALOG",
+            "hash_domain": "ma-body-catalog-canonical-sha256-v1",
+            "source_hash": "4fb895a218ffeee38f1ae8c1b8aacac43c4373540fa46bdc3a1211e2c461b865"
+          },
+          "schema_ref": {
+            "entity_id": "60000000-0000-4000-8000-0000000001f4",
+            "revision_id": "60000000-0000-4000-8000-000000002904",
+            "owner": "N_APPLICATION_BODY_CATALOG",
+            "hash_domain": "ma-body-schema-sha256-v1",
+            "source_hash": "51bf1be594c9c419ff8fca98cf1aae5fc28ed9d4241fbedb476194c5ad1b3353"
+          },
+          "serializer_id": "ma.closed-body.RegistryEntity.candidate6",
+          "content_artifact_ref": {
+            "entity_id": "60000000-0000-4000-8000-0000000000a0",
+            "revision_id": "60000000-0000-4000-8000-0000000027b0",
+            "owner": "ARTIFACT_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "3012ccd994693038e9c74c981d6abfbfad7e41ce9d4405f0636a83b92f52982d"
+          },
+          "content_capture_receipt_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000104",
+            "revision_id": "60000000-0000-4000-8000-000000002814",
+            "owner": "ARTIFACT_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "876efd3eab5d79e00e967b20f32b08ec51dc5ef656942fb8e8552b7e81ee9fa7"
+          },
+          "content_byte_hash": "3012ccd994693038e9c74c981d6abfbfad7e41ce9d4405f0636a83b92f52982d",
+          "content_byte_hash_domain": "raw-bytes-sha256-v1",
+          "content_byte_size": 876,
+          "model_semantic_hash": "3012ccd994693038e9c74c981d6abfbfad7e41ce9d4405f0636a83b92f52982d",
+          "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+          "source_bindings": [
+            {
+              "source_ref": {
+                "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                "owner": "SOURCE_MANIFEST_OWNER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+              },
+              "source_artifact_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000a",
+                "revision_id": "60000000-0000-4000-8000-00000000271a",
+                "owner": "ARTIFACT_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+              },
+              "source_capture_receipt_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000b",
+                "revision_id": "60000000-0000-4000-8000-00000000271b",
+                "owner": "ARTIFACT_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+              },
+              "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+              "raw_hash_domain": "raw-bytes-sha256-v1",
+              "source_schema_ref": {
+                "entity_id": "60000000-0000-4000-8000-000000004e82",
+                "revision_id": "60000000-0000-4000-8000-000000007592",
+                "owner": "N_APPLICATION_BODY_CATALOG",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+              },
+              "binding_role": "ORIGINAL_SOURCE_RECORD"
+            }
+          ],
+          "closure_binding_refs": []
+        }
+      },
+      {
+        "local_body_key": "60000000-0000-4000-8000-000000000066",
+        "binding": {
+          "ref": {
+            "entity_id": "60000000-0000-4000-8000-00000000003d",
+            "revision_id": "60000000-0000-4000-8000-00000000274d",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "523bec206c6ff89b0dfd5b64766de35b2deeae69b074349637886aa2000fae2d"
+          },
+          "subject_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000385",
+            "revision_id": "60000000-0000-4000-8000-00000000038b",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          },
+          "resource_scope": {
+            "project_id": "60000000-0000-4000-8000-000000000001",
+            "environment": "LAB"
+          },
+          "body_type": "RegistryEntityRevisionV5",
+          "dto_version": "MA-DTO-v6",
+          "catalog_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000032",
+            "revision_id": "60000000-0000-4000-8000-000000002742",
+            "owner": "N_APPLICATION_BODY_CATALOG",
+            "hash_domain": "ma-body-catalog-canonical-sha256-v1",
+            "source_hash": "4fb895a218ffeee38f1ae8c1b8aacac43c4373540fa46bdc3a1211e2c461b865"
+          },
+          "schema_ref": {
+            "entity_id": "60000000-0000-4000-8000-0000000001f5",
+            "revision_id": "60000000-0000-4000-8000-000000002905",
+            "owner": "N_APPLICATION_BODY_CATALOG",
+            "hash_domain": "ma-body-schema-sha256-v1",
+            "source_hash": "2b79286704033127a3e58189c28c70f6ff7bbd86078815da00505b13c2897d09"
+          },
+          "serializer_id": "ma.closed-body.RegistryEntityRevisionV5.candidate6",
+          "content_artifact_ref": {
+            "entity_id": "60000000-0000-4000-8000-0000000000a1",
+            "revision_id": "60000000-0000-4000-8000-0000000027b1",
+            "owner": "ARTIFACT_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "79e4afe6b9ed20942d452238dc3ff56c7ef4d2667489663355382e46d1e1e7be"
+          },
+          "content_capture_receipt_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000105",
+            "revision_id": "60000000-0000-4000-8000-000000002815",
+            "owner": "ARTIFACT_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "3bee786339f5a95e4b707bf2bc7b162acab5dcb7b92e69932bcbc206f618184a"
+          },
+          "content_byte_hash": "79e4afe6b9ed20942d452238dc3ff56c7ef4d2667489663355382e46d1e1e7be",
+          "content_byte_hash_domain": "raw-bytes-sha256-v1",
+          "content_byte_size": 2646,
+          "model_semantic_hash": "79e4afe6b9ed20942d452238dc3ff56c7ef4d2667489663355382e46d1e1e7be",
+          "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+          "source_bindings": [
+            {
+              "source_ref": {
+                "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                "owner": "SOURCE_MANIFEST_OWNER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+              },
+              "source_artifact_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000a",
+                "revision_id": "60000000-0000-4000-8000-00000000271a",
+                "owner": "ARTIFACT_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+              },
+              "source_capture_receipt_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000b",
+                "revision_id": "60000000-0000-4000-8000-00000000271b",
+                "owner": "ARTIFACT_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+              },
+              "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+              "raw_hash_domain": "raw-bytes-sha256-v1",
+              "source_schema_ref": {
+                "entity_id": "60000000-0000-4000-8000-000000004e82",
+                "revision_id": "60000000-0000-4000-8000-000000007592",
+                "owner": "N_APPLICATION_BODY_CATALOG",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+              },
+              "binding_role": "ORIGINAL_SOURCE_RECORD"
+            }
+          ],
+          "closure_binding_refs": []
+        }
+      },
+      {
+        "local_body_key": "60000000-0000-4000-8000-000000000067",
+        "binding": {
+          "ref": {
+            "entity_id": "60000000-0000-4000-8000-00000000003e",
+            "revision_id": "60000000-0000-4000-8000-00000000274e",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "d9a93ba145b6467579e603de4160b37d43d5e85b3ab697e9fb02c4809f9ad1f7"
+          },
+          "subject_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000387",
+            "revision_id": "60000000-0000-4000-8000-000000000388",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          },
+          "resource_scope": {
+            "project_id": "60000000-0000-4000-8000-000000000001",
+            "environment": "LAB"
+          },
+          "body_type": "CodeAllocation",
+          "dto_version": "MA-DTO-v6",
+          "catalog_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000032",
+            "revision_id": "60000000-0000-4000-8000-000000002742",
+            "owner": "N_APPLICATION_BODY_CATALOG",
+            "hash_domain": "ma-body-catalog-canonical-sha256-v1",
+            "source_hash": "4fb895a218ffeee38f1ae8c1b8aacac43c4373540fa46bdc3a1211e2c461b865"
+          },
+          "schema_ref": {
+            "entity_id": "60000000-0000-4000-8000-0000000001f6",
+            "revision_id": "60000000-0000-4000-8000-000000002906",
+            "owner": "N_APPLICATION_BODY_CATALOG",
+            "hash_domain": "ma-body-schema-sha256-v1",
+            "source_hash": "a9826c985020a7c13fdd834e6ec90ff4b23e6adb20bde1a9ed27353cd80b87df"
+          },
+          "serializer_id": "ma.closed-body.CodeAllocation.candidate6",
+          "content_artifact_ref": {
+            "entity_id": "60000000-0000-4000-8000-0000000000a2",
+            "revision_id": "60000000-0000-4000-8000-0000000027b2",
+            "owner": "ARTIFACT_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "19581d172de0ca4b3b0a33cb88f4869343079d2c28fb37fa2f086ed6dacd2b6c"
+          },
+          "content_capture_receipt_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000106",
+            "revision_id": "60000000-0000-4000-8000-000000002816",
+            "owner": "ARTIFACT_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "7f54c5ca3975c654fc6bd0011287b1080f3edf2871cc167398bf98f3d40d8816"
+          },
+          "content_byte_hash": "19581d172de0ca4b3b0a33cb88f4869343079d2c28fb37fa2f086ed6dacd2b6c",
+          "content_byte_hash_domain": "raw-bytes-sha256-v1",
+          "content_byte_size": 1144,
+          "model_semantic_hash": "19581d172de0ca4b3b0a33cb88f4869343079d2c28fb37fa2f086ed6dacd2b6c",
+          "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+          "source_bindings": [
+            {
+              "source_ref": {
+                "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                "owner": "SOURCE_MANIFEST_OWNER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+              },
+              "source_artifact_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000a",
+                "revision_id": "60000000-0000-4000-8000-00000000271a",
+                "owner": "ARTIFACT_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+              },
+              "source_capture_receipt_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000b",
+                "revision_id": "60000000-0000-4000-8000-00000000271b",
+                "owner": "ARTIFACT_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+              },
+              "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+              "raw_hash_domain": "raw-bytes-sha256-v1",
+              "source_schema_ref": {
+                "entity_id": "60000000-0000-4000-8000-000000004e82",
+                "revision_id": "60000000-0000-4000-8000-000000007592",
+                "owner": "N_APPLICATION_BODY_CATALOG",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+              },
+              "binding_role": "ORIGINAL_SOURCE_RECORD"
+            }
+          ],
+          "closure_binding_refs": []
+        }
+      },
+      {
+        "local_body_key": "60000000-0000-4000-8000-000000000068",
+        "binding": {
+          "ref": {
+            "entity_id": "60000000-0000-4000-8000-00000000003f",
+            "revision_id": "60000000-0000-4000-8000-00000000274f",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "36155a89013906a247537b4f97d7dbabad7d0159d0ea109e08ee1b70a274619e"
+          },
+          "subject_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000389",
+            "revision_id": "60000000-0000-4000-8000-00000000038a",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          },
+          "resource_scope": {
+            "project_id": "60000000-0000-4000-8000-000000000001",
+            "environment": "LAB"
+          },
+          "body_type": "CodeAssignment",
+          "dto_version": "MA-DTO-v6",
+          "catalog_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000032",
+            "revision_id": "60000000-0000-4000-8000-000000002742",
+            "owner": "N_APPLICATION_BODY_CATALOG",
+            "hash_domain": "ma-body-catalog-canonical-sha256-v1",
+            "source_hash": "4fb895a218ffeee38f1ae8c1b8aacac43c4373540fa46bdc3a1211e2c461b865"
+          },
+          "schema_ref": {
+            "entity_id": "60000000-0000-4000-8000-0000000001f7",
+            "revision_id": "60000000-0000-4000-8000-000000002907",
+            "owner": "N_APPLICATION_BODY_CATALOG",
+            "hash_domain": "ma-body-schema-sha256-v1",
+            "source_hash": "a2081560bb698d8c6750e72a0b29dd0bd16ff23a1f1107ca6fa1fa619ecbaf99"
+          },
+          "serializer_id": "ma.closed-body.CodeAssignment.candidate6",
+          "content_artifact_ref": {
+            "entity_id": "60000000-0000-4000-8000-0000000000a3",
+            "revision_id": "60000000-0000-4000-8000-0000000027b3",
+            "owner": "ARTIFACT_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "40b9783f85b2bcde2a8202e63460713f4234b6f9d8538b36e0476c4d8ff94d86"
+          },
+          "content_capture_receipt_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000107",
+            "revision_id": "60000000-0000-4000-8000-000000002817",
+            "owner": "ARTIFACT_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "ba96063bd021dd85099e3657789fcf3168bb31d84adc481ecbfe4451501395f9"
+          },
+          "content_byte_hash": "40b9783f85b2bcde2a8202e63460713f4234b6f9d8538b36e0476c4d8ff94d86",
+          "content_byte_hash_domain": "raw-bytes-sha256-v1",
+          "content_byte_size": 1783,
+          "model_semantic_hash": "40b9783f85b2bcde2a8202e63460713f4234b6f9d8538b36e0476c4d8ff94d86",
+          "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+          "source_bindings": [
+            {
+              "source_ref": {
+                "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                "owner": "SOURCE_MANIFEST_OWNER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+              },
+              "source_artifact_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000a",
+                "revision_id": "60000000-0000-4000-8000-00000000271a",
+                "owner": "ARTIFACT_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+              },
+              "source_capture_receipt_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000b",
+                "revision_id": "60000000-0000-4000-8000-00000000271b",
+                "owner": "ARTIFACT_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+              },
+              "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+              "raw_hash_domain": "raw-bytes-sha256-v1",
+              "source_schema_ref": {
+                "entity_id": "60000000-0000-4000-8000-000000004e82",
+                "revision_id": "60000000-0000-4000-8000-000000007592",
+                "owner": "N_APPLICATION_BODY_CATALOG",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+              },
+              "binding_role": "ORIGINAL_SOURCE_RECORD"
+            }
+          ],
+          "closure_binding_refs": []
+        }
+      }
+    ],
+    "resolved_changes": {
+      "changes": [
+        {
+          "entity_kind": "FEATURE",
+          "operation": "CREATE",
+          "new_revision_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000385",
+            "revision_id": "60000000-0000-4000-8000-00000000038b",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+          }
+        }
+      ],
+      "proposed_snapshot_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000028",
+        "revision_id": "60000000-0000-4000-8000-000000002738",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+      },
+      "base_generation": 7,
+      "base_graph_heads": [
+        {
+          "scope_ref": {
+            "entity_id": "7cf7aefb-e259-4cc5-b058-286e7724891f",
+            "revision_id": "302771b0-5d35-4569-beff-dbd9175e76d4",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "ma-canonical-json-sha256-v1",
+            "source_hash": "d95511ffe98568abe5ab7554de49c2a39fecf726002615d45c5a6e2f518a6685"
+          },
+          "snapshot_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000002",
+            "revision_id": "60000000-0000-4000-8000-000000002712",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "a546d336f027d685b78f8a0d94ce93f4fa434ebd08d98615b19ef1f41eec800a"
+          },
+          "generation": 7,
+          "closure_hash": "9ce86dd6274fa590852bc6fc065c46d35a151bd6c79a101e15cc725548c97e4e",
+          "completeness": "COMPLETE"
+        }
+      ],
+      "allocation_changes": [
+        {
+          "entity_id": "60000000-0000-4000-8000-000000000387",
+          "revision_id": "60000000-0000-4000-8000-000000000388",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        }
+      ]
+    },
+    "candidate_snapshot_ref": {
+      "entity_id": "60000000-0000-4000-8000-000000000028",
+      "revision_id": "60000000-0000-4000-8000-000000002738",
+      "owner": "REGISTRY_WRITER",
+      "hash_domain": "raw-bytes-sha256-v1",
+      "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+    }
+  },
+  "existing_entity_command_value": {
+    "command_id": "60000000-0000-4000-8000-0000000000ca",
+    "payload_hash_domain": "ma-command-canonical-json-sha256-v1",
+    "payload_hash": "00e370a82804a7ab61dcd24e67967231d15dd79858721bcf5a58eb49297eb2bb",
+    "resource_scope": {
+      "project_id": "60000000-0000-4000-8000-000000000001",
+      "environment": "LAB"
+    },
+    "expected_generation": 7,
+    "subject_refs": [
+      {
+        "entity_id": "60000000-0000-4000-8000-000000000002",
+        "revision_id": "60000000-0000-4000-8000-000000002712",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "a546d336f027d685b78f8a0d94ce93f4fa434ebd08d98615b19ef1f41eec800a"
+      },
+      {
+        "entity_id": "7cf7aefb-e259-4cc5-b058-286e7724891f",
+        "revision_id": "302771b0-5d35-4569-beff-dbd9175e76d4",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "ma-canonical-json-sha256-v1",
+        "source_hash": "d95511ffe98568abe5ab7554de49c2a39fecf726002615d45c5a6e2f518a6685"
+      }
+    ],
+    "payload": {
+      "proposal": {
+        "base_snapshot_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000002",
+          "revision_id": "60000000-0000-4000-8000-000000002712",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "a546d336f027d685b78f8a0d94ce93f4fa434ebd08d98615b19ef1f41eec800a"
+        },
+        "base_graph_heads": [
+          {
+            "scope_ref": {
+              "entity_id": "7cf7aefb-e259-4cc5-b058-286e7724891f",
+              "revision_id": "302771b0-5d35-4569-beff-dbd9175e76d4",
+              "owner": "REGISTRY_WRITER",
+              "hash_domain": "ma-canonical-json-sha256-v1",
+              "source_hash": "d95511ffe98568abe5ab7554de49c2a39fecf726002615d45c5a6e2f518a6685"
+            },
+            "snapshot_ref": {
+              "entity_id": "60000000-0000-4000-8000-000000000002",
+              "revision_id": "60000000-0000-4000-8000-000000002712",
+              "owner": "REGISTRY_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "a546d336f027d685b78f8a0d94ce93f4fa434ebd08d98615b19ef1f41eec800a"
+            },
+            "generation": 7,
+            "closure_hash": "9ce86dd6274fa590852bc6fc065c46d35a151bd6c79a101e15cc725548c97e4e",
+            "completeness": "COMPLETE"
+          }
+        ],
+        "body_submissions": [
+          {
+            "local_body_key": "60000000-0000-4000-8000-000000000067",
+            "body_type": "CodeAllocationDraftV5",
+            "write_mode": "CREATE_NEW_DRAFT",
+            "body": {
+              "semantic_key": {
+                "catalog_entity_id": "60000000-0000-4000-8000-00000000000c",
+                "entity_kind": "FEATURE",
+                "namespace": "CC02_DESIGN_FIXTURE",
+                "code_family": "FEATURE",
+                "segments": [
+                  {
+                    "ordinal": 0,
+                    "semantic_type": "fixture_number",
+                    "value_type": "NUMBER",
+                    "numeric_value": 602
+                  }
+                ]
+              },
+              "allocated_target": {
+                "kind": "EXISTING_EXACT",
+                "existing_ref": {
+                  "entity_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+                  "revision_id": "b4dc8b7a-b1d3-405c-9b5c-dcdba2ba24eb",
+                  "owner": "REGISTRY_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "961c150a21c2e1ae280c6dd89f93ca0ee2630061b493f2be5fd31fb1668a9f89"
+                }
+              },
+              "initial_entity_revision_ref": {
+                "kind": "EXISTING_EXACT",
+                "existing_ref": {
+                  "entity_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+                  "revision_id": "60000000-0000-4000-8000-00000000001f",
+                  "owner": "REGISTRY_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "961c150a21c2e1ae280c6dd89f93ca0ee2630061b493f2be5fd31fb1668a9f89"
+                }
+              },
+              "source_ref": {
+                "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                "owner": "SOURCE_MANIFEST_OWNER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+              },
+              "state": "ALLOCATED"
+            },
+            "source_bindings": [
+              {
+                "source_ref": {
+                  "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                  "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                  "owner": "SOURCE_MANIFEST_OWNER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_artifact_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000a",
+                  "revision_id": "60000000-0000-4000-8000-00000000271a",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_capture_receipt_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000b",
+                  "revision_id": "60000000-0000-4000-8000-00000000271b",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+                },
+                "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+                "raw_hash_domain": "raw-bytes-sha256-v1",
+                "source_schema_ref": {
+                  "entity_id": "60000000-0000-4000-8000-000000004e82",
+                  "revision_id": "60000000-0000-4000-8000-000000007592",
+                  "owner": "N_APPLICATION_BODY_CATALOG",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+                },
+                "binding_role": "ORIGINAL_SOURCE_RECORD"
+              }
+            ]
+          },
+          {
+            "local_body_key": "60000000-0000-4000-8000-000000000068",
+            "body_type": "CodeAssignmentDraftV5",
+            "write_mode": "CREATE_NEW_DRAFT",
+            "body": {
+              "entity_ref": {
+                "kind": "EXISTING_EXACT",
+                "existing_ref": {
+                  "entity_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+                  "revision_id": "b4dc8b7a-b1d3-405c-9b5c-dcdba2ba24eb",
+                  "owner": "REGISTRY_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "961c150a21c2e1ae280c6dd89f93ca0ee2630061b493f2be5fd31fb1668a9f89"
+                }
+              },
+              "catalog_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000c",
+                "revision_id": "60000000-0000-4000-8000-00000000271c",
+                "owner": "REGISTRY_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "8b8727d8ce184a1de18b3b12d87236b7cd6f7997b30cae8e3adb9f963b586be1"
+              },
+              "namespace": "CC02_DESIGN_FIXTURE",
+              "code_type": "FEATURE",
+              "segments": [
+                {
+                  "ordinal": 0,
+                  "semantic_type": "fixture_number",
+                  "value_type": "NUMBER",
+                  "numeric_value": 602
+                }
+              ],
+              "format_policy_ref": {
+                "entity_id": "60000000-0000-4000-8000-00000000000d",
+                "revision_id": "60000000-0000-4000-8000-00000000271d",
+                "owner": "REGISTRY_WRITER",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "source_hash": "94c60f26d985ccf55bb9745a4aa964a58b60a3a8478a967ecb061bb14a947980"
+              },
+              "validity": {
+                "kind": "SOURCE_SNAPSHOT",
+                "governing_snapshot": {
+                  "kind": "PROPOSED_CANDIDATE_SNAPSHOT"
+                }
+              },
+              "allocation_ref": {
+                "kind": "LOCAL_DRAFT",
+                "local_body_key": "60000000-0000-4000-8000-000000000067"
+              }
+            },
+            "source_bindings": [
+              {
+                "source_ref": {
+                  "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+                  "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+                  "owner": "SOURCE_MANIFEST_OWNER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_artifact_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000a",
+                  "revision_id": "60000000-0000-4000-8000-00000000271a",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+                },
+                "source_capture_receipt_ref": {
+                  "entity_id": "60000000-0000-4000-8000-00000000000b",
+                  "revision_id": "60000000-0000-4000-8000-00000000271b",
+                  "owner": "ARTIFACT_WRITER",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+                },
+                "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+                "raw_hash_domain": "raw-bytes-sha256-v1",
+                "source_schema_ref": {
+                  "entity_id": "60000000-0000-4000-8000-000000004e82",
+                  "revision_id": "60000000-0000-4000-8000-000000007592",
+                  "owner": "N_APPLICATION_BODY_CATALOG",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+                },
+                "binding_role": "ORIGINAL_SOURCE_RECORD"
+              }
+            ]
+          }
+        ],
+        "changes": [
+          {
+            "entity_kind": "CODE_ALLOCATION",
+            "operation": "CREATE",
+            "new_body_key": "60000000-0000-4000-8000-000000000067",
+            "relation_body_keys": []
+          }
+        ],
+        "source_refs": [
+          {
+            "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+            "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+            "owner": "SOURCE_MANIFEST_OWNER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+          }
+        ]
+      }
+    }
+  },
+  "existing_entity_final_bodies": [
+    {
+      "local_body_key": "60000000-0000-4000-8000-000000000067",
+      "body_type": "CodeAllocation",
+      "value": {
+        "semantic_key": {
+          "catalog_entity_id": "60000000-0000-4000-8000-00000000000c",
+          "entity_kind": "FEATURE",
+          "namespace": "CC02_DESIGN_FIXTURE",
+          "code_family": "FEATURE",
+          "segments": [
+            {
+              "ordinal": 0,
+              "semantic_type": "fixture_number",
+              "value_type": "NUMBER",
+              "numeric_value": 602
+            }
+          ]
+        },
+        "initial_entity_revision_ref": {
+          "entity_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+          "revision_id": "60000000-0000-4000-8000-00000000001f",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "961c150a21c2e1ae280c6dd89f93ca0ee2630061b493f2be5fd31fb1668a9f89"
+        },
+        "source_ref": {
+          "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+          "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+          "owner": "SOURCE_MANIFEST_OWNER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+        },
+        "state": "ALLOCATED",
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-000000000386",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "00e370a82804a7ab61dcd24e67967231d15dd79858721bcf5a58eb49297eb2bb"
+        },
+        "allocated_entity_id": "cf524f94-5c51-4ab1-b065-32203ae817db"
+      },
+      "canonical_bytes_sha256": "a3a8bd3849d25d6c990722651bf9ca44a0a824c12d962f44b5e41f50e90c6c5d",
+      "canonical_byte_size": 1144,
+      "actual_body_bytes_path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\architecture-correction-loop-20261012T161202Z\\cycle-02\\author_fragments\\registry\\samples\\values\\existing_CodeAllocation.body.json"
+    },
+    {
+      "local_body_key": "60000000-0000-4000-8000-000000000068",
+      "body_type": "CodeAssignment",
+      "value": {
+        "entity_ref": {
+          "entity_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+          "revision_id": "b4dc8b7a-b1d3-405c-9b5c-dcdba2ba24eb",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "961c150a21c2e1ae280c6dd89f93ca0ee2630061b493f2be5fd31fb1668a9f89"
+        },
+        "catalog_ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000000c",
+          "revision_id": "60000000-0000-4000-8000-00000000271c",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "8b8727d8ce184a1de18b3b12d87236b7cd6f7997b30cae8e3adb9f963b586be1"
+        },
+        "namespace": "CC02_DESIGN_FIXTURE",
+        "code_type": "FEATURE",
+        "segments": [
+          {
+            "ordinal": 0,
+            "semantic_type": "fixture_number",
+            "value_type": "NUMBER",
+            "numeric_value": 602
+          }
+        ],
+        "format_policy_ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000000d",
+          "revision_id": "60000000-0000-4000-8000-00000000271d",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "94c60f26d985ccf55bb9745a4aa964a58b60a3a8478a967ecb061bb14a947980"
+        },
+        "validity": {
+          "kind": "SOURCE_SNAPSHOT",
+          "source_snapshot_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000028",
+            "revision_id": "60000000-0000-4000-8000-000000002738",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+          }
+        },
+        "allocation_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-000000000386",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "00e370a82804a7ab61dcd24e67967231d15dd79858721bcf5a58eb49297eb2bb"
+        },
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000387",
+          "revision_id": "60000000-0000-4000-8000-000000000388",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "00e370a82804a7ab61dcd24e67967231d15dd79858721bcf5a58eb49297eb2bb"
+        }
+      },
+      "canonical_bytes_sha256": "be8313ac3faea452e38a2963a6d29cf0d602a96ea9ba92cd404fe2dad2fe71ad",
+      "canonical_byte_size": 1783,
+      "actual_body_bytes_path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\architecture-correction-loop-20261012T161202Z\\cycle-02\\author_fragments\\registry\\samples\\values\\existing_CodeAssignment.body.json"
+    }
+  ],
+  "actual_typed_readbacks": [
+    {
+      "requested_subject_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000385",
+        "revision_id": "60000000-0000-4000-8000-000000000386",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+      },
+      "binding": {
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000003c",
+          "revision_id": "60000000-0000-4000-8000-00000000274c",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "ad8b5636324b123ca4eeeb898803589c95795a548f7d2e54e5e532d2232c9e0b"
+        },
+        "subject_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-000000000386",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "resource_scope": {
+          "project_id": "60000000-0000-4000-8000-000000000001",
+          "environment": "LAB"
+        },
+        "body_type": "RegistryEntity",
+        "dto_version": "MA-DTO-v6",
+        "catalog_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000032",
+          "revision_id": "60000000-0000-4000-8000-000000002742",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-catalog-canonical-sha256-v1",
+          "source_hash": "4fb895a218ffeee38f1ae8c1b8aacac43c4373540fa46bdc3a1211e2c461b865"
+        },
+        "schema_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000001f4",
+          "revision_id": "60000000-0000-4000-8000-000000002904",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "51bf1be594c9c419ff8fca98cf1aae5fc28ed9d4241fbedb476194c5ad1b3353"
+        },
+        "serializer_id": "ma.closed-body.RegistryEntity.candidate6",
+        "content_artifact_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000000a0",
+          "revision_id": "60000000-0000-4000-8000-0000000027b0",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "3012ccd994693038e9c74c981d6abfbfad7e41ce9d4405f0636a83b92f52982d"
+        },
+        "content_capture_receipt_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000104",
+          "revision_id": "60000000-0000-4000-8000-000000002814",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "876efd3eab5d79e00e967b20f32b08ec51dc5ef656942fb8e8552b7e81ee9fa7"
+        },
+        "content_byte_hash": "3012ccd994693038e9c74c981d6abfbfad7e41ce9d4405f0636a83b92f52982d",
+        "content_byte_hash_domain": "raw-bytes-sha256-v1",
+        "content_byte_size": 876,
+        "model_semantic_hash": "3012ccd994693038e9c74c981d6abfbfad7e41ce9d4405f0636a83b92f52982d",
+        "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+        "source_bindings": [
+          {
+            "source_ref": {
+              "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+              "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+              "owner": "SOURCE_MANIFEST_OWNER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_artifact_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000a",
+              "revision_id": "60000000-0000-4000-8000-00000000271a",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_capture_receipt_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000b",
+              "revision_id": "60000000-0000-4000-8000-00000000271b",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+            },
+            "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+            "raw_hash_domain": "raw-bytes-sha256-v1",
+            "source_schema_ref": {
+              "entity_id": "60000000-0000-4000-8000-000000004e82",
+              "revision_id": "60000000-0000-4000-8000-000000007592",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+            },
+            "binding_role": "ORIGINAL_SOURCE_RECORD"
+          }
+        ],
+        "closure_binding_refs": []
+      },
+      "snapshot_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000028",
+        "revision_id": "60000000-0000-4000-8000-000000002738",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+      },
+      "resource_scope": {
+        "project_id": "60000000-0000-4000-8000-000000000001",
+        "environment": "LAB"
+      },
+      "as_of": "2026-10-13T00:00:00Z",
+      "availability": "AVAILABLE",
+      "integrity": "VERIFIED",
+      "capture_state": "CAPTURED_VERIFIED",
+      "sql_index_state": "INDEXED",
+      "protection_a": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "protection_b": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "payload": {
+        "project_owner": "60000000-0000-4000-8000-000000000001",
+        "kind": "FEATURE",
+        "semantic_payload_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-00000000038b",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "created_source_ref": {
+          "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+          "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+          "owner": "SOURCE_MANIFEST_OWNER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+        },
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-000000000386",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        }
+      },
+      "missing": [],
+      "coverage": {
+        "requested_scope": "CC02_AUTHOR_LOGICAL_FIXTURE",
+        "requested_window": "exact fixture snapshot",
+        "covered_window": "exact fixture snapshot",
+        "completeness": "COMPLETE",
+        "success": true,
+        "frontier": "fixture-frontier-7"
+      },
+      "authorization_receipt_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000190",
+        "revision_id": "60000000-0000-4000-8000-0000000028a0",
+        "owner": "N_APPLICATION",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "6026bd45238b57ae41fcc6f20194387caa778b67fcfa9cba46a2526039e0ac96"
+      }
+    },
+    {
+      "requested_subject_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000385",
+        "revision_id": "60000000-0000-4000-8000-00000000038b",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+      },
+      "binding": {
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000003d",
+          "revision_id": "60000000-0000-4000-8000-00000000274d",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "523bec206c6ff89b0dfd5b64766de35b2deeae69b074349637886aa2000fae2d"
+        },
+        "subject_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-00000000038b",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "resource_scope": {
+          "project_id": "60000000-0000-4000-8000-000000000001",
+          "environment": "LAB"
+        },
+        "body_type": "RegistryEntityRevisionV5",
+        "dto_version": "MA-DTO-v6",
+        "catalog_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000032",
+          "revision_id": "60000000-0000-4000-8000-000000002742",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-catalog-canonical-sha256-v1",
+          "source_hash": "4fb895a218ffeee38f1ae8c1b8aacac43c4373540fa46bdc3a1211e2c461b865"
+        },
+        "schema_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000001f5",
+          "revision_id": "60000000-0000-4000-8000-000000002905",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "2b79286704033127a3e58189c28c70f6ff7bbd86078815da00505b13c2897d09"
+        },
+        "serializer_id": "ma.closed-body.RegistryEntityRevisionV5.candidate6",
+        "content_artifact_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000000a1",
+          "revision_id": "60000000-0000-4000-8000-0000000027b1",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "79e4afe6b9ed20942d452238dc3ff56c7ef4d2667489663355382e46d1e1e7be"
+        },
+        "content_capture_receipt_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000105",
+          "revision_id": "60000000-0000-4000-8000-000000002815",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "3bee786339f5a95e4b707bf2bc7b162acab5dcb7b92e69932bcbc206f618184a"
+        },
+        "content_byte_hash": "79e4afe6b9ed20942d452238dc3ff56c7ef4d2667489663355382e46d1e1e7be",
+        "content_byte_hash_domain": "raw-bytes-sha256-v1",
+        "content_byte_size": 2646,
+        "model_semantic_hash": "79e4afe6b9ed20942d452238dc3ff56c7ef4d2667489663355382e46d1e1e7be",
+        "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+        "source_bindings": [
+          {
+            "source_ref": {
+              "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+              "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+              "owner": "SOURCE_MANIFEST_OWNER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_artifact_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000a",
+              "revision_id": "60000000-0000-4000-8000-00000000271a",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_capture_receipt_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000b",
+              "revision_id": "60000000-0000-4000-8000-00000000271b",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+            },
+            "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+            "raw_hash_domain": "raw-bytes-sha256-v1",
+            "source_schema_ref": {
+              "entity_id": "60000000-0000-4000-8000-000000004e82",
+              "revision_id": "60000000-0000-4000-8000-000000007592",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+            },
+            "binding_role": "ORIGINAL_SOURCE_RECORD"
+          }
+        ],
+        "closure_binding_refs": []
+      },
+      "snapshot_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000028",
+        "revision_id": "60000000-0000-4000-8000-000000002738",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+      },
+      "resource_scope": {
+        "project_id": "60000000-0000-4000-8000-000000000001",
+        "environment": "LAB"
+      },
+      "as_of": "2026-10-13T00:00:00Z",
+      "availability": "AVAILABLE",
+      "integrity": "VERIFIED",
+      "capture_state": "CAPTURED_VERIFIED",
+      "sql_index_state": "INDEXED",
+      "protection_a": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "protection_b": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "payload": {
+        "entity_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-000000000386",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "entity_kind": "FEATURE",
+        "source_bindings": [
+          {
+            "source_ref": {
+              "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+              "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+              "owner": "SOURCE_MANIFEST_OWNER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_artifact_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000a",
+              "revision_id": "60000000-0000-4000-8000-00000000271a",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_capture_receipt_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000b",
+              "revision_id": "60000000-0000-4000-8000-00000000271b",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+            },
+            "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+            "raw_hash_domain": "raw-bytes-sha256-v1",
+            "source_schema_ref": {
+              "entity_id": "60000000-0000-4000-8000-000000004e82",
+              "revision_id": "60000000-0000-4000-8000-000000007592",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+            },
+            "binding_role": "ORIGINAL_SOURCE_RECORD"
+          }
+        ],
+        "payload_type": "RegistryCandidateSemanticRecordV6",
+        "semantic_payload": {
+          "title": "CC02 同批次新實體與配號正例",
+          "rationale": "僅作作者型別與配號設計模型；來源、主文與正式接受分軸驗證。",
+          "proposed_kind": "FEATURE",
+          "source_ref": {
+            "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+            "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+            "owner": "SOURCE_MANIFEST_OWNER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+          },
+          "target_context_ref": {
+            "entity_id": "7cf7aefb-e259-4cc5-b058-286e7724891f",
+            "revision_id": "302771b0-5d35-4569-beff-dbd9175e76d4",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "ma-canonical-json-sha256-v1",
+            "source_hash": "d95511ffe98568abe5ab7554de49c2a39fecf726002615d45c5a6e2f518a6685"
+          },
+          "acceptance_effect": "NONE"
+        },
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-00000000038b",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        }
+      },
+      "missing": [],
+      "coverage": {
+        "requested_scope": "CC02_AUTHOR_LOGICAL_FIXTURE",
+        "requested_window": "exact fixture snapshot",
+        "covered_window": "exact fixture snapshot",
+        "completeness": "COMPLETE",
+        "success": true,
+        "frontier": "fixture-frontier-7"
+      },
+      "authorization_receipt_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000190",
+        "revision_id": "60000000-0000-4000-8000-0000000028a0",
+        "owner": "N_APPLICATION",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "6026bd45238b57ae41fcc6f20194387caa778b67fcfa9cba46a2526039e0ac96"
+      }
+    },
+    {
+      "requested_subject_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000387",
+        "revision_id": "60000000-0000-4000-8000-000000000388",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+      },
+      "binding": {
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000003e",
+          "revision_id": "60000000-0000-4000-8000-00000000274e",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "d9a93ba145b6467579e603de4160b37d43d5e85b3ab697e9fb02c4809f9ad1f7"
+        },
+        "subject_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000387",
+          "revision_id": "60000000-0000-4000-8000-000000000388",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "resource_scope": {
+          "project_id": "60000000-0000-4000-8000-000000000001",
+          "environment": "LAB"
+        },
+        "body_type": "CodeAllocation",
+        "dto_version": "MA-DTO-v6",
+        "catalog_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000032",
+          "revision_id": "60000000-0000-4000-8000-000000002742",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-catalog-canonical-sha256-v1",
+          "source_hash": "4fb895a218ffeee38f1ae8c1b8aacac43c4373540fa46bdc3a1211e2c461b865"
+        },
+        "schema_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000001f6",
+          "revision_id": "60000000-0000-4000-8000-000000002906",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "a9826c985020a7c13fdd834e6ec90ff4b23e6adb20bde1a9ed27353cd80b87df"
+        },
+        "serializer_id": "ma.closed-body.CodeAllocation.candidate6",
+        "content_artifact_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000000a2",
+          "revision_id": "60000000-0000-4000-8000-0000000027b2",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "19581d172de0ca4b3b0a33cb88f4869343079d2c28fb37fa2f086ed6dacd2b6c"
+        },
+        "content_capture_receipt_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000106",
+          "revision_id": "60000000-0000-4000-8000-000000002816",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "7f54c5ca3975c654fc6bd0011287b1080f3edf2871cc167398bf98f3d40d8816"
+        },
+        "content_byte_hash": "19581d172de0ca4b3b0a33cb88f4869343079d2c28fb37fa2f086ed6dacd2b6c",
+        "content_byte_hash_domain": "raw-bytes-sha256-v1",
+        "content_byte_size": 1144,
+        "model_semantic_hash": "19581d172de0ca4b3b0a33cb88f4869343079d2c28fb37fa2f086ed6dacd2b6c",
+        "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+        "source_bindings": [
+          {
+            "source_ref": {
+              "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+              "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+              "owner": "SOURCE_MANIFEST_OWNER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_artifact_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000a",
+              "revision_id": "60000000-0000-4000-8000-00000000271a",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_capture_receipt_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000b",
+              "revision_id": "60000000-0000-4000-8000-00000000271b",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+            },
+            "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+            "raw_hash_domain": "raw-bytes-sha256-v1",
+            "source_schema_ref": {
+              "entity_id": "60000000-0000-4000-8000-000000004e82",
+              "revision_id": "60000000-0000-4000-8000-000000007592",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+            },
+            "binding_role": "ORIGINAL_SOURCE_RECORD"
+          }
+        ],
+        "closure_binding_refs": []
+      },
+      "snapshot_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000028",
+        "revision_id": "60000000-0000-4000-8000-000000002738",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+      },
+      "resource_scope": {
+        "project_id": "60000000-0000-4000-8000-000000000001",
+        "environment": "LAB"
+      },
+      "as_of": "2026-10-13T00:00:00Z",
+      "availability": "AVAILABLE",
+      "integrity": "VERIFIED",
+      "capture_state": "CAPTURED_VERIFIED",
+      "sql_index_state": "INDEXED",
+      "protection_a": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "protection_b": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "payload": {
+        "semantic_key": {
+          "catalog_entity_id": "60000000-0000-4000-8000-00000000000c",
+          "entity_kind": "FEATURE",
+          "namespace": "CC02_DESIGN_FIXTURE",
+          "code_family": "FEATURE",
+          "segments": [
+            {
+              "ordinal": 0,
+              "semantic_type": "fixture_number",
+              "value_type": "NUMBER",
+              "numeric_value": 601
+            }
+          ]
+        },
+        "initial_entity_revision_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-00000000038b",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "source_ref": {
+          "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+          "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+          "owner": "SOURCE_MANIFEST_OWNER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+        },
+        "state": "ALLOCATED",
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000387",
+          "revision_id": "60000000-0000-4000-8000-000000000388",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "allocated_entity_id": "60000000-0000-4000-8000-000000000385"
+      },
+      "missing": [],
+      "coverage": {
+        "requested_scope": "CC02_AUTHOR_LOGICAL_FIXTURE",
+        "requested_window": "exact fixture snapshot",
+        "covered_window": "exact fixture snapshot",
+        "completeness": "COMPLETE",
+        "success": true,
+        "frontier": "fixture-frontier-7"
+      },
+      "authorization_receipt_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000190",
+        "revision_id": "60000000-0000-4000-8000-0000000028a0",
+        "owner": "N_APPLICATION",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "6026bd45238b57ae41fcc6f20194387caa778b67fcfa9cba46a2526039e0ac96"
+      }
+    },
+    {
+      "requested_subject_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000389",
+        "revision_id": "60000000-0000-4000-8000-00000000038a",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+      },
+      "binding": {
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000003f",
+          "revision_id": "60000000-0000-4000-8000-00000000274f",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "36155a89013906a247537b4f97d7dbabad7d0159d0ea109e08ee1b70a274619e"
+        },
+        "subject_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000389",
+          "revision_id": "60000000-0000-4000-8000-00000000038a",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "resource_scope": {
+          "project_id": "60000000-0000-4000-8000-000000000001",
+          "environment": "LAB"
+        },
+        "body_type": "CodeAssignment",
+        "dto_version": "MA-DTO-v6",
+        "catalog_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000032",
+          "revision_id": "60000000-0000-4000-8000-000000002742",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-catalog-canonical-sha256-v1",
+          "source_hash": "4fb895a218ffeee38f1ae8c1b8aacac43c4373540fa46bdc3a1211e2c461b865"
+        },
+        "schema_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000001f7",
+          "revision_id": "60000000-0000-4000-8000-000000002907",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "a2081560bb698d8c6750e72a0b29dd0bd16ff23a1f1107ca6fa1fa619ecbaf99"
+        },
+        "serializer_id": "ma.closed-body.CodeAssignment.candidate6",
+        "content_artifact_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000000a3",
+          "revision_id": "60000000-0000-4000-8000-0000000027b3",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "40b9783f85b2bcde2a8202e63460713f4234b6f9d8538b36e0476c4d8ff94d86"
+        },
+        "content_capture_receipt_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000107",
+          "revision_id": "60000000-0000-4000-8000-000000002817",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "ba96063bd021dd85099e3657789fcf3168bb31d84adc481ecbfe4451501395f9"
+        },
+        "content_byte_hash": "40b9783f85b2bcde2a8202e63460713f4234b6f9d8538b36e0476c4d8ff94d86",
+        "content_byte_hash_domain": "raw-bytes-sha256-v1",
+        "content_byte_size": 1783,
+        "model_semantic_hash": "40b9783f85b2bcde2a8202e63460713f4234b6f9d8538b36e0476c4d8ff94d86",
+        "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+        "source_bindings": [
+          {
+            "source_ref": {
+              "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+              "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+              "owner": "SOURCE_MANIFEST_OWNER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_artifact_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000a",
+              "revision_id": "60000000-0000-4000-8000-00000000271a",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_capture_receipt_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000b",
+              "revision_id": "60000000-0000-4000-8000-00000000271b",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+            },
+            "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+            "raw_hash_domain": "raw-bytes-sha256-v1",
+            "source_schema_ref": {
+              "entity_id": "60000000-0000-4000-8000-000000004e82",
+              "revision_id": "60000000-0000-4000-8000-000000007592",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+            },
+            "binding_role": "ORIGINAL_SOURCE_RECORD"
+          }
+        ],
+        "closure_binding_refs": []
+      },
+      "snapshot_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000028",
+        "revision_id": "60000000-0000-4000-8000-000000002738",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+      },
+      "resource_scope": {
+        "project_id": "60000000-0000-4000-8000-000000000001",
+        "environment": "LAB"
+      },
+      "as_of": "2026-10-13T00:00:00Z",
+      "availability": "AVAILABLE",
+      "integrity": "VERIFIED",
+      "capture_state": "CAPTURED_VERIFIED",
+      "sql_index_state": "INDEXED",
+      "protection_a": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "protection_b": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "payload": {
+        "entity_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000385",
+          "revision_id": "60000000-0000-4000-8000-000000000386",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "catalog_ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000000c",
+          "revision_id": "60000000-0000-4000-8000-00000000271c",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "8b8727d8ce184a1de18b3b12d87236b7cd6f7997b30cae8e3adb9f963b586be1"
+        },
+        "namespace": "CC02_DESIGN_FIXTURE",
+        "code_type": "FEATURE",
+        "segments": [
+          {
+            "ordinal": 0,
+            "semantic_type": "fixture_number",
+            "value_type": "NUMBER",
+            "numeric_value": 601
+          }
+        ],
+        "format_policy_ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000000d",
+          "revision_id": "60000000-0000-4000-8000-00000000271d",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "94c60f26d985ccf55bb9745a4aa964a58b60a3a8478a967ecb061bb14a947980"
+        },
+        "validity": {
+          "kind": "SOURCE_SNAPSHOT",
+          "source_snapshot_ref": {
+            "entity_id": "60000000-0000-4000-8000-000000000028",
+            "revision_id": "60000000-0000-4000-8000-000000002738",
+            "owner": "REGISTRY_WRITER",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+          }
+        },
+        "allocation_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000387",
+          "revision_id": "60000000-0000-4000-8000-000000000388",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        },
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000389",
+          "revision_id": "60000000-0000-4000-8000-00000000038a",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+        }
+      },
+      "missing": [],
+      "coverage": {
+        "requested_scope": "CC02_AUTHOR_LOGICAL_FIXTURE",
+        "requested_window": "exact fixture snapshot",
+        "covered_window": "exact fixture snapshot",
+        "completeness": "COMPLETE",
+        "success": true,
+        "frontier": "fixture-frontier-7"
+      },
+      "authorization_receipt_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000190",
+        "revision_id": "60000000-0000-4000-8000-0000000028a0",
+        "owner": "N_APPLICATION",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "6026bd45238b57ae41fcc6f20194387caa778b67fcfa9cba46a2526039e0ac96"
+      }
+    },
+    {
+      "requested_subject_ref": {
+        "entity_id": "50b5a04f-f024-4eb0-86a4-899c690870cb",
+        "revision_id": "bf421fcb-6294-59d7-84f2-cad7732faaad",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "ma-named-model-closure-json-sha256-v2",
+        "source_hash": "c10a6ae957bf199dff77e46b7bed98cee6bc637b2a823777a3d682380c298a99"
+      },
+      "binding": {
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000046",
+          "revision_id": "60000000-0000-4000-8000-000000002756",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "0fc29043a13ee4e82fbcacd4f4e4ee5c4913d1e4cacf3e48acb34f148bbe2a6a"
+        },
+        "subject_ref": {
+          "entity_id": "50b5a04f-f024-4eb0-86a4-899c690870cb",
+          "revision_id": "bf421fcb-6294-59d7-84f2-cad7732faaad",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "ma-named-model-closure-json-sha256-v2",
+          "source_hash": "c10a6ae957bf199dff77e46b7bed98cee6bc637b2a823777a3d682380c298a99"
+        },
+        "resource_scope": {
+          "project_id": "60000000-0000-4000-8000-000000000001",
+          "environment": "LAB"
+        },
+        "body_type": "RegistryCrossChapterContractSourceRowV6",
+        "dto_version": "MA-DTO-v6",
+        "catalog_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000032",
+          "revision_id": "60000000-0000-4000-8000-000000002742",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-catalog-canonical-sha256-v1",
+          "source_hash": "4fb895a218ffeee38f1ae8c1b8aacac43c4373540fa46bdc3a1211e2c461b865"
+        },
+        "schema_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000001f8",
+          "revision_id": "60000000-0000-4000-8000-000000002908",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "ef303115b42d176490e150fa3e6aa606773b0f1508ea900e170d98e310c2b455"
+        },
+        "serializer_id": "ma.closed-body.RegistryCrossChapterContractSourceRowV6.candidate6",
+        "content_artifact_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000000aa",
+          "revision_id": "60000000-0000-4000-8000-0000000027ba",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "747b73e4331cdeeb92b56caf6298e6f29342083ea0758d8bb771613feced56aa"
+        },
+        "content_capture_receipt_ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000010e",
+          "revision_id": "60000000-0000-4000-8000-00000000281e",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "e9c2e97034a0eaec1d8d6886207b786400bb496f1f4d92dada242c66ff7f63ee"
+        },
+        "content_byte_hash": "747b73e4331cdeeb92b56caf6298e6f29342083ea0758d8bb771613feced56aa",
+        "content_byte_hash_domain": "raw-bytes-sha256-v1",
+        "content_byte_size": 8827,
+        "model_semantic_hash": "747b73e4331cdeeb92b56caf6298e6f29342083ea0758d8bb771613feced56aa",
+        "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+        "source_bindings": [
+          {
+            "source_ref": {
+              "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+              "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+              "owner": "SOURCE_MANIFEST_OWNER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_artifact_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000a",
+              "revision_id": "60000000-0000-4000-8000-00000000271a",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_capture_receipt_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000b",
+              "revision_id": "60000000-0000-4000-8000-00000000271b",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+            },
+            "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+            "raw_hash_domain": "raw-bytes-sha256-v1",
+            "source_schema_ref": {
+              "entity_id": "60000000-0000-4000-8000-000000004e82",
+              "revision_id": "60000000-0000-4000-8000-000000007592",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+            },
+            "binding_role": "ORIGINAL_SOURCE_RECORD"
+          }
+        ],
+        "closure_binding_refs": []
+      },
+      "snapshot_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000028",
+        "revision_id": "60000000-0000-4000-8000-000000002738",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+      },
+      "resource_scope": {
+        "project_id": "60000000-0000-4000-8000-000000000001",
+        "environment": "LAB"
+      },
+      "as_of": "2026-10-13T00:00:00Z",
+      "availability": "AVAILABLE",
+      "integrity": "VERIFIED",
+      "capture_state": "CAPTURED_VERIFIED",
+      "sql_index_state": "INDEXED",
+      "protection_a": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "protection_b": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "payload": {
+        "alias": "registry-publication",
+        "compatibility_rule": "Versioned companion / exact subset adapter; accepted predecessors unchanged",
+        "consumers": [
+          "MA12",
+          "MA14"
+        ],
+        "contract_id": "50b5a04f-f024-4eb0-86a4-899c690870cb",
+        "error_codes": [
+          "MISSING_REQUIRED_INPUT",
+          "STALE_CUT",
+          "CONFLICT",
+          "UNSUPPORTED",
+          "UNKNOWN"
+        ],
+        "independent_re_review": "PENDING",
+        "model_closure_names": [
+          "AccountBudgetPolicyDraft",
+          "AccountCut",
+          "AllocationWeight",
+          "AnalystBudget",
+          "AnalystRequest",
+          "AnalystRun",
+          "AnalystSelection",
+          "AnalystTrialResult",
+          "AnalystUsage",
+          "ArchiveOperationReceipt",
+          "ArchivePlan",
+          "ArchivePlanRequest",
+          "ArtifactAvailability",
+          "AttributionAmount",
+          "AttributionRecord",
+          "BackupCoverageEntry",
+          "BackupCoverageOrigin",
+          "BackupSetManifest",
+          "BodyClosureGapV5",
+          "BodyPayloadV5",
+          "BodyProtectionAxisV5",
+          "BodyReadbackV5",
+          "BodySourceBindingV5",
+          "BrokerObservation",
+          "BudgetAllocationPreview",
+          "BudgetAllocationProposal",
+          "BudgetAllocationReceipt",
+          "BudgetRatio",
+          "BudgetRoundingTrace",
+          "BuilderNodeBody",
+          "CanonicalCodeKey",
+          "CanonicalCodeSegment",
+          "CanonicalMarketBarDto",
+          "CapabilityQualifier",
+          "CapabilityRevision",
+          "CashFlowLeg",
+          "CodeAllocation",
+          "CodeAllocationRetirement",
+          "CodeAssignment",
+          "CodeCatalogRevision",
+          "CodePolicyRevision",
+          "CodeSegment",
+          "CodeSegmentRule",
+          "CodeValidity",
+          "CompatibilityImpact",
+          "ConfigEntry",
+          "ConfigRevision",
+          "ConfigValues",
+          "ContractRef",
+          "CostActual",
+          "CostEstimate",
+          "CostRecord",
+          "Coverage",
+          "CursorRequest",
+          "DashboardProjection",
+          "DashboardWidget",
+          "DatasetRevision",
+          "DatasetSelection",
+          "DatasetSnapshot",
+          "DependencyHealth",
+          "Deployment",
+          "Difference",
+          "EffectiveInterval",
+          "EngineeringStatusProjection",
+          "EnumPayload",
+          "EventEnvelope",
+          "EventPayloadByType",
+          "ExecutionUnitPlan",
+          "FeatureDefinitionRevision",
+          "FeatureNodeBody",
+          "FeaturePort",
+          "GeneratedCodeRevision",
+          "GraphDraftView",
+          "GraphEdge",
+          "GraphNode",
+          "GroupStrategyAllocation",
+          "InstrumentRevision",
+          "LedgerEntry",
+          "LegacyAlias",
+          "LibraryExceptionApproval",
+          "LibraryRelease",
+          "LotPolicy",
+          "MacroSnapshot",
+          "MarketRuleRevision",
+          "Money",
+          "OperationReceipt",
+          "OrderAttempt",
+          "ParameterField",
+          "ParameterValue",
+          "PlanningAssumptions",
+          "PlanningCandidate",
+          "PortBinding",
+          "PortfolioResearchDefinition",
+          "PositionsProjection",
+          "PostgresBackupProfile",
+          "PricingObservation",
+          "QualificationWarning",
+          "ReconciliationCase",
+          "RecoveryStatus",
+          "RegistryAcceptedCoreSourceRowV5",
+          "RegistryAcceptedCoreSourceRowV5ReconciliationSourceBinding",
+          "RegistryAcceptedCoreSourceRowV5Source",
+          "RegistryBodyPreparationV5",
+          "RegistryBodyQueryV5",
+          "RegistryBodyReadPageV5",
+          "RegistryChange",
+          "RegistryChangeSet",
+          "RegistryDeliverableSourceRowV5",
+          "RegistryDeliverableSourceRowV5AllocationsItem",
+          "RegistryDeliverableSourceRowV5Gates",
+          "RegistryDeliverableSourceRowV5GatesImplementation",
+          "RegistryDeliverableSourceRowV5GatesIndependentAcceptance",
+          "RegistryDeliverableSourceRowV5GatesIntegration",
+          "RegistryDeliverableSourceRowV5GatesTargetedTests",
+          "RegistryDesignDeliverableSourceRowV5",
+          "RegistryDraftBindingV5",
+          "RegistryEntity",
+          "RegistryEntityRevisionV5",
+          "RegistryFeatureSourceRowV5",
+          "RegistryGraphHead",
+          "RegistryHistoricalSourceRowV5",
+          "RegistryHistoricalSourceRowV5SOURCE",
+          "RegistryPhaseSourceRowV5",
+          "RegistryPreparedIdentityV5",
+          "RegistryProposalResultV5",
+          "RegistryRequirementSourceRowV5",
+          "RegistryRequirementSourceRowV5Code",
+          "RegistryRequirementSourceRowV5CodeSegmentsItem",
+          "RegistryRequirementSourceRowV5SOURCE",
+          "RegistryRequirementSourceRowV5SOURCEPREDECESSOR",
+          "RegistrySemanticPayloadV5",
+          "RegistrySnapshot",
+          "RegistrySourceBinding",
+          "RelationQualifier",
+          "RelationRevision",
+          "RelationValidity",
+          "RequirementScopeChangeSourceV5",
+          "ResearchBranch",
+          "ResearchBranchHistoryEntry",
+          "ResearchComparison",
+          "ResearchMethodConfig",
+          "ResearchRun",
+          "ResearchSimulationAccount",
+          "ResearchSimulationRequest",
+          "ResearchSnapshot",
+          "ResearchWindow",
+          "ResourceAvailabilityByGroup",
+          "ResourceScope",
+          "ReviewExclusion",
+          "ReviewSubject",
+          "RiskAction",
+          "RiskActionPayload",
+          "RiskDecision",
+          "RiskGuard",
+          "RiskValidity",
+          "RuleNodeBody",
+          "SafetyNodeBody",
+          "Sensitivity",
+          "ServiceHealthProjection",
+          "SimulationConfig",
+          "SimulationObservation",
+          "SimulationQualificationCounters",
+          "SimulationSession",
+          "SourceAnalysisFinding",
+          "SourceAnalysisReport",
+          "SourceAnalysisRequest",
+          "SourceAstSymbol",
+          "SourceDuplicateCandidate",
+          "SourceHashEntry",
+          "SourceInboxItem",
+          "SourceRowSelectorV5",
+          "SourceSnapshotBinding",
+          "StrategyBudgetAllocation",
+          "StrategyGraphRevision",
+          "StrategyGroup",
+          "StreamFrontier",
+          "SubstrategyNodeBody",
+          "TickBand",
+          "TypedBodyBindingV5",
+          "UnverifiedResearchDirection",
+          "ValuationResult",
+          "VirtualPosition",
+          "enum:AnalystRun.outcome",
+          "enum:AnalystRun.state",
+          "enum:AnalystSelection.scope_kind",
+          "enum:AnalystTrialResult.outcome",
+          "enum:ArchiveOperationReceipt.cleanup_state",
+          "enum:ArchiveOperationReceipt.state",
+          "enum:ArchivePlan.preflight_disposition",
+          "enum:ArchivePlanRequest.action",
+          "enum:ArtifactAvailability.state",
+          "enum:AttributionRecord.status",
+          "enum:BackupCoverageEntry.capture_state",
+          "enum:BackupCoverageEntry.sql_index_state",
+          "enum:BackupCoverageOrigin.kind",
+          "enum:BackupSetManifest.status",
+          "enum:BackupSetManifest.tamper_protection_level",
+          "enum:BodyClosureGapV5.reason",
+          "enum:BodyProtectionAxisV5.state",
+          "enum:BodyReadbackV5.availability",
+          "enum:BodyReadbackV5.capture_state",
+          "enum:BodyReadbackV5.integrity",
+          "enum:BodyReadbackV5.sql_index_state",
+          "enum:BodySourceBindingV5.binding_role",
+          "enum:BodySourceBindingV5.raw_hash_domain",
+          "enum:BrokerObservation.observation_type",
+          "enum:BudgetAllocationPreview.state",
+          "enum:BudgetAllocationReceipt.outcome",
+          "enum:CanonicalCodeKey.entity_kind",
+          "enum:CanonicalCodeSegment.value_type",
+          "enum:CapabilityRevision.disposition",
+          "enum:CodeAllocation.state",
+          "enum:CodeSegmentRule.value_type",
+          "enum:CodeValidity.kind",
+          "enum:Coverage.completeness",
+          "enum:DashboardWidget.availability",
+          "enum:DatasetRevision.series_kind",
+          "enum:DependencyHealth.state",
+          "enum:Deployment.state",
+          "enum:GraphDraftView.state",
+          "enum:GraphNode.node_kind",
+          "enum:InstrumentRevision.kind",
+          "enum:InstrumentRevision.lifecycle",
+          "enum:LedgerEntry.settlement_state",
+          "enum:LibraryRelease.approval_kind",
+          "enum:LibraryRelease.state",
+          "enum:OperationReceipt.state",
+          "enum:OrderAttempt.state",
+          "enum:PositionsProjection.view",
+          "enum:PricingObservation.price_type",
+          "enum:QualificationWarning.kind",
+          "enum:ReconciliationCase.state",
+          "enum:RecoveryStatus.broker_currentness",
+          "enum:RecoveryStatus.local_validity",
+          "enum:RecoveryStatus.strategy_readiness",
+          "enum:RecoveryStatus.trading_readiness",
+          "enum:RegistryBodyPreparationV5.state",
+          "enum:RegistryBodyQueryV5.mode",
+          "enum:RegistryBodyQueryV5.row_kinds",
+          "enum:RegistryBodyQueryV5.tree_kind",
+          "enum:RegistryEntity.kind",
+          "enum:RegistryEntityRevisionV5.entity_kind",
+          "enum:RegistryEntityRevisionV5.payload_type",
+          "enum:RegistryGraphHead.completeness",
+          "enum:RegistryPreparedIdentityV5.write_mode",
+          "enum:RegistrySourceBinding.binding_kind",
+          "enum:RelationQualifier.scope_kind",
+          "enum:RelationRevision.relation_kind",
+          "enum:RelationValidity.kind",
+          "enum:ResearchBranch.code_graph_status",
+          "enum:ResearchBranch.state",
+          "enum:ResearchBranchHistoryEntry.operation",
+          "enum:ResearchRun.determinism_level",
+          "enum:ResearchRun.status",
+          "enum:ResearchSimulationAccount.state",
+          "enum:ResearchSimulationRequest.mode",
+          "enum:ResourceAvailabilityByGroup.availability_state",
+          "enum:ResourceScope.environment",
+          "enum:RiskDecision.disposition",
+          "enum:ServiceHealthProjection.application_readiness",
+          "enum:ServiceHealthProjection.process_liveness",
+          "enum:ServiceHealthProjection.trading_authority_state",
+          "enum:SimulationObservation.fill_quality",
+          "enum:SimulationObservation.source_quality",
+          "enum:SimulationQualificationCounters.status",
+          "enum:SimulationSession.state",
+          "enum:SourceAnalysisFinding.severity",
+          "enum:SourceAnalysisReport.licence_state",
+          "enum:SourceAnalysisReport.status",
+          "enum:SourceAstSymbol.kind",
+          "enum:SourceDuplicateCandidate.comparison",
+          "enum:SourceInboxItem.disposition",
+          "enum:StrategyGroup.environment",
+          "enum:StrategyGroup.state",
+          "enum:TypedBodyBindingV5.body_type",
+          "enum:TypedBodyBindingV5.content_byte_hash_domain",
+          "enum:TypedBodyBindingV5.dto_version",
+          "enum:TypedBodyBindingV5.model_semantic_hash_domain",
+          "enum:UnverifiedResearchDirection.status",
+          "selector-catalog:EVENT_CATALOG.json"
+        ],
+        "model_hash_domain": "ma-named-model-closure-json-sha256-v2",
+        "model_names": [
+          "CodeAllocation",
+          "CodeAssignment",
+          "LegacyAlias",
+          "RegistryBodyPreparationV5",
+          "RegistryBodyReadPageV5",
+          "RegistryEntityRevisionV5",
+          "RegistryProposalResultV5",
+          "RegistrySnapshot",
+          "RelationRevision",
+          "SourceSnapshotBinding"
+        ],
+        "model_semantic_sha256": "c10a6ae957bf199dff77e46b7bed98cee6bc637b2a823777a3d682380c298a99",
+        "owner": "REGISTRY_WRITER",
+        "prior_revision_id": "9ddd98ed-2c0a-5c24-8114-b106212eb70d",
+        "producer": "MA11",
+        "qualification_gate": "EXACT_REGISTRY_ADOPTION",
+        "qualification_status": "NOT_RUN",
+        "review_subject": "MA-ARCH-REVIEW-v5-CYCLE01",
+        "revision": "candidate.5",
+        "revision_id": "bf421fcb-6294-59d7-84f2-cad7732faaad",
+        "source_chapter": "11_URMS_IDENTITY_RELATIONS.md",
+        "source_chapter_raw_sha256": "1cc690433866d3e58a688a8e2f289fd4833e604ec571e2136a5b1ae2c5c31060"
+      },
+      "missing": [],
+      "coverage": {
+        "requested_scope": "CC02_AUTHOR_LOGICAL_FIXTURE",
+        "requested_window": "exact fixture snapshot",
+        "covered_window": "exact fixture snapshot",
+        "completeness": "COMPLETE",
+        "success": true,
+        "frontier": "fixture-frontier-7"
+      },
+      "authorization_receipt_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000190",
+        "revision_id": "60000000-0000-4000-8000-0000000028a0",
+        "owner": "N_APPLICATION",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "6026bd45238b57ae41fcc6f20194387caa778b67fcfa9cba46a2526039e0ac96"
+      }
+    },
+    {
+      "requested_subject_ref": {
+        "entity_id": "066b270f-a1ba-5222-b5bb-68d4c78d315b",
+        "revision_id": "dd92fc02-bfe7-50b5-aa5a-e0a94c98c91a",
+        "owner": "N_APPLICATION_BODY_CATALOG",
+        "hash_domain": "ma-body-schema-sha256-v1",
+        "source_hash": "24d2ea64476c9b66df13d0f88c6f8d3c53725cf1af4b5d86c364e51120e3c55e"
+      },
+      "binding": {
+        "ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000047",
+          "revision_id": "60000000-0000-4000-8000-000000002757",
+          "owner": "REGISTRY_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "0c11871cd71c99db36f9bfd6683f1b01e5b5479dbd238b8d9523603e8d52d850"
+        },
+        "subject_ref": {
+          "entity_id": "066b270f-a1ba-5222-b5bb-68d4c78d315b",
+          "revision_id": "dd92fc02-bfe7-50b5-aa5a-e0a94c98c91a",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "24d2ea64476c9b66df13d0f88c6f8d3c53725cf1af4b5d86c364e51120e3c55e"
+        },
+        "resource_scope": {
+          "project_id": "60000000-0000-4000-8000-000000000001",
+          "environment": "LAB"
+        },
+        "body_type": "RegistrySourceFileBodyV6",
+        "dto_version": "MA-DTO-v6",
+        "catalog_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000000032",
+          "revision_id": "60000000-0000-4000-8000-000000002742",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-catalog-canonical-sha256-v1",
+          "source_hash": "4fb895a218ffeee38f1ae8c1b8aacac43c4373540fa46bdc3a1211e2c461b865"
+        },
+        "schema_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000001f9",
+          "revision_id": "60000000-0000-4000-8000-000000002909",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "b5b337b41d5ddf444f11c467970ff4dd7e4fc5a1ade345abe888b725bcb011ba"
+        },
+        "serializer_id": "ma.closed-body.RegistrySourceFileBodyV6.candidate6",
+        "content_artifact_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000000ab",
+          "revision_id": "60000000-0000-4000-8000-0000000027bb",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "f83fccf2a5c3c5882660f3d05b7c424ed70b0d6a60b6c4ce0c9b9e81ee56d31e"
+        },
+        "content_capture_receipt_ref": {
+          "entity_id": "60000000-0000-4000-8000-00000000010f",
+          "revision_id": "60000000-0000-4000-8000-00000000281f",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "7514a766174521d52e436a54ff0318e9edd482b54ca8334ba42b100c4ceec49d"
+        },
+        "content_byte_hash": "f83fccf2a5c3c5882660f3d05b7c424ed70b0d6a60b6c4ce0c9b9e81ee56d31e",
+        "content_byte_hash_domain": "raw-bytes-sha256-v1",
+        "content_byte_size": 2721,
+        "model_semantic_hash": "f83fccf2a5c3c5882660f3d05b7c424ed70b0d6a60b6c4ce0c9b9e81ee56d31e",
+        "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+        "source_bindings": [
+          {
+            "source_ref": {
+              "entity_id": "5d194d30-d0f7-40c7-bf82-cbfe719b989c",
+              "revision_id": "2fa9b330-083b-4be4-80d4-bd185e2ccf85",
+              "owner": "SOURCE_MANIFEST_OWNER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_artifact_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000a",
+              "revision_id": "60000000-0000-4000-8000-00000000271a",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed"
+            },
+            "source_capture_receipt_ref": {
+              "entity_id": "60000000-0000-4000-8000-00000000000b",
+              "revision_id": "60000000-0000-4000-8000-00000000271b",
+              "owner": "ARTIFACT_WRITER",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "98bcdb82e35b73ea3ff267eb8ed592691777c02bd087e1d748c7097bdfc682e0"
+            },
+            "raw_byte_hash": "5badafa754c564e115929bd74f276f6624504274f670ee9a84db5376be3b54ed",
+            "raw_hash_domain": "raw-bytes-sha256-v1",
+            "source_schema_ref": {
+              "entity_id": "60000000-0000-4000-8000-000000004e82",
+              "revision_id": "60000000-0000-4000-8000-000000007592",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "source_hash": "b8b113ee9a2fc734a3d80a4cb099763aed3a6a0e1defe93f4d32d2be0127f4c1"
+            },
+            "binding_role": "ORIGINAL_SOURCE_RECORD"
+          }
+        ],
+        "closure_binding_refs": []
+      },
+      "snapshot_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000028",
+        "revision_id": "60000000-0000-4000-8000-000000002738",
+        "owner": "REGISTRY_WRITER",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "c673351442f94e2bbb23ddf585ed00ff182d90b687d8baca60d7a3adc22ba979"
+      },
+      "resource_scope": {
+        "project_id": "60000000-0000-4000-8000-000000000001",
+        "environment": "LAB"
+      },
+      "as_of": "2026-10-13T00:00:00Z",
+      "availability": "AVAILABLE",
+      "integrity": "VERIFIED",
+      "capture_state": "CAPTURED_VERIFIED",
+      "sql_index_state": "INDEXED",
+      "protection_a": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "protection_b": {
+        "state": "NOT_REQUESTED",
+        "receipt_refs": []
+      },
+      "payload": {
+        "profile_id": "CC02_SOURCE_021",
+        "source_subject_ref": {
+          "entity_id": "066b270f-a1ba-5222-b5bb-68d4c78d315b",
+          "revision_id": "dd92fc02-bfe7-50b5-aa5a-e0a94c98c91a",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "ma-body-schema-sha256-v1",
+          "source_hash": "24d2ea64476c9b66df13d0f88c6f8d3c53725cf1af4b5d86c364e51120e3c55e"
+        },
+        "source_artifact_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000001a4",
+          "revision_id": "60000000-0000-4000-8000-0000000028b4",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "6b6efdb0e66b0df8409f4e5ab7a1c691210e19aba0bcc0cb16f935d2f11d4b97"
+        },
+        "source_capture_receipt_ref": {
+          "entity_id": "60000000-0000-4000-8000-0000000001a5",
+          "revision_id": "60000000-0000-4000-8000-0000000028b5",
+          "owner": "ARTIFACT_WRITER",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "4ffb9a655358456b7de70f71adecb12be65df54c574b7412c2665290b3a2ee22"
+        },
+        "source_raw_hash": "6b6efdb0e66b0df8409f4e5ab7a1c691210e19aba0bcc0cb16f935d2f11d4b97",
+        "source_raw_size": 49804497,
+        "source_hash_domain": "raw-bytes-sha256-v1",
+        "selected_byte_hash": "34731e267d00e8ee66573d437fc589970e5e7da640a63ec869c75afacc7ed63f",
+        "selected_byte_size": 915,
+        "selected_bytes_base64": "eyJBY2NvdW50Q3V0Ijp7ImNoYXB0ZXIiOiJNQTA2IiwiZmllbGRzIjp7ImFjY291bnRfcmVmIjp7InJlcXVpcmVkIjp0cnVlLCJ0eXBlIjoiQ29udHJhY3RSZWYifSwiY2FzaF9wb3NpdGlvbl9yZWZzIjp7InJlcXVpcmVkIjp0cnVlLCJ0eXBlIjoiQ29udHJhY3RSZWZbXSJ9LCJmcm9udGllciI6eyJyZXF1aXJlZCI6dHJ1ZSwidHlwZSI6InN0cmluZyJ9LCJoZWFkX3JlZiI6eyJyZXF1aXJlZCI6dHJ1ZSwidHlwZSI6IkNvbnRyYWN0UmVmIn0sIm9yZGVyX3JlZnMiOnsicmVxdWlyZWQiOnRydWUsInR5cGUiOiJDb250cmFjdFJlZltdIn0sInJlY292ZXJ5X2N1dF9yZWYiOnsicmVxdWlyZWQiOnRydWUsInR5cGUiOiJDb250cmFjdFJlZiJ9LCJyZWYiOnsicmVxdWlyZWQiOnRydWUsInR5cGUiOiJDb250cmFjdFJlZiJ9LCJyZXNlcnZhdGlvbl9yZWZzIjp7InJlcXVpcmVkIjp0cnVlLCJ0eXBlIjoiQ29udHJhY3RSZWZbXSJ9fSwiaW52YXJpYW50Ijoi5a6M5pW0IGN1dO+8jHNlcXVlbmNlIOKJoCB0aW1lc3RhbXAiLCJuYW1lIjoiQWNjb3VudEN1dCIsIm93bmVyIjoiSl9BQ0NPVU5UIn0sIkNvbnRyYWN0UmVmIjp7ImNoYXB0ZXIiOiJNQTAxIiwiZmllbGRzIjp7ImVudGl0eV9pZCI6eyJyZXF1aXJlZCI6dHJ1ZSwidHlwZSI6InV1aWQifSwiaGFzaF9kb21haW4iOnsicmVxdWlyZWQiOnRydWUsInR5cGUiOiJzdHJpbmcifSwib3duZXIiOnsicmVxdWlyZWQiOnRydWUsInR5cGUiOiJzdHJpbmcifSwicmV2aXNpb25faWQiOnsicmVxdWlyZWQiOnRydWUsInR5cGUiOiJ1dWlkIn0sInNvdXJjZV9oYXNoIjp7InJlcXVpcmVkIjp0cnVlLCJ0eXBlIjoiaGFzaCJ9fSwiaW52YXJpYW50Ijoi5byV55So57K+56K654mI5pys77yM56aB5q2iIGxhdGVzdCIsIm5hbWUiOiJDb250cmFjdFJlZiIsIm93bmVyIjoiQUxMIn19",
+        "source_parser_id": "PINNED_BODY_SCHEMA_DOCUMENT_V6",
+        "pinned_source_schema_ref": {
+          "entity_id": "60000000-0000-4000-8000-000000004e35",
+          "revision_id": "60000000-0000-4000-8000-000000007545",
+          "owner": "N_APPLICATION_BODY_CATALOG",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "source_hash": "46d9ce576a7296ffdc5528dc7be3e4caa6698ff7fe68bba22e8ab03f72236bce"
+        }
+      },
+      "missing": [],
+      "coverage": {
+        "requested_scope": "CC02_AUTHOR_LOGICAL_FIXTURE",
+        "requested_window": "exact fixture snapshot",
+        "covered_window": "exact fixture snapshot",
+        "completeness": "COMPLETE",
+        "success": true,
+        "frontier": "fixture-frontier-7"
+      },
+      "authorization_receipt_ref": {
+        "entity_id": "60000000-0000-4000-8000-000000000190",
+        "revision_id": "60000000-0000-4000-8000-0000000028a0",
+        "owner": "N_APPLICATION",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "source_hash": "6026bd45238b57ae41fcc6f20194387caa778b67fcfa9cba46a2526039e0ac96"
+      }
+    }
+  ],
+  "snapshot_member_refs": [
+    {
+      "entity_id": "60000000-0000-4000-8000-000000000385",
+      "revision_id": "60000000-0000-4000-8000-000000000386",
+      "owner": "REGISTRY_WRITER",
+      "hash_domain": "raw-bytes-sha256-v1",
+      "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+    },
+    {
+      "entity_id": "60000000-0000-4000-8000-000000000385",
+      "revision_id": "60000000-0000-4000-8000-00000000038b",
+      "owner": "REGISTRY_WRITER",
+      "hash_domain": "raw-bytes-sha256-v1",
+      "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+    },
+    {
+      "entity_id": "60000000-0000-4000-8000-000000000387",
+      "revision_id": "60000000-0000-4000-8000-000000000388",
+      "owner": "REGISTRY_WRITER",
+      "hash_domain": "raw-bytes-sha256-v1",
+      "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+    },
+    {
+      "entity_id": "60000000-0000-4000-8000-000000000389",
+      "revision_id": "60000000-0000-4000-8000-00000000038a",
+      "owner": "REGISTRY_WRITER",
+      "hash_domain": "raw-bytes-sha256-v1",
+      "source_hash": "aeaafc346ff73ee7d1a2687d5d482df8109e94ddc81db497a50decb63bb2adf9"
+    },
+    {
+      "entity_id": "50b5a04f-f024-4eb0-86a4-899c690870cb",
+      "revision_id": "bf421fcb-6294-59d7-84f2-cad7732faaad",
+      "owner": "REGISTRY_WRITER",
+      "hash_domain": "ma-named-model-closure-json-sha256-v2",
+      "source_hash": "c10a6ae957bf199dff77e46b7bed98cee6bc637b2a823777a3d682380c298a99"
+    },
+    {
+      "entity_id": "066b270f-a1ba-5222-b5bb-68d4c78d315b",
+      "revision_id": "dd92fc02-bfe7-50b5-aa5a-e0a94c98c91a",
+      "owner": "N_APPLICATION_BODY_CATALOG",
+      "hash_domain": "ma-body-schema-sha256-v1",
+      "source_hash": "24d2ea64476c9b66df13d0f88c6f8d3c53725cf1af4b5d86c364e51120e3c55e"
+    }
+  ],
+  "replay_final_mapping_unchanged": true,
+  "cases": [
+    {
+      "case_id": "NEW_ENTITY_CODE_SAME_BATCH",
+      "expected": "CANDIDATE_CAPTURE_READY_MODEL_ONLY",
+      "actual": "CANDIDATE_CAPTURE_READY_MODEL_ONLY",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "EXISTING_ENTITY_CODE_SAME_BATCH",
+      "expected": "CANDIDATE_CAPTURE_READY_MODEL_ONLY",
+      "actual": "CANDIDATE_CAPTURE_READY_MODEL_ONLY",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "SAME_COMMAND_SAME_HASH",
+      "expected": "REPLAY_NOOP",
+      "actual": "REPLAY_NOOP",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "SAME_COMMAND_DIFFERENT_HASH",
+      "expected": "COMMAND_HASH_CONFLICT",
+      "actual": "COMMAND_HASH_CONFLICT",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "CLIENT_HASH_UNRECOMPUTABLE",
+      "expected": "PAYLOAD_HASH_MISMATCH",
+      "actual": "PAYLOAD_HASH_MISMATCH",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "STALE_CAS_NO_SLOT_ALLOCATION",
+      "expected": "STALE_CAS_NO_NEW_ALLOCATION",
+      "actual": "STALE_CAS_NO_NEW_ALLOCATION",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "SOURCE_GRANT_DENIED",
+      "expected": "AUTHORIZATION_DENIED_NO_EFFECT",
+      "actual": "AUTHORIZATION_DENIED_NO_EFFECT",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "ORIGINAL_SOURCE_MISSING",
+      "expected": "ORIGIN_MISSING_OR_UNVERIFIABLE",
+      "actual": "ORIGIN_MISSING_OR_UNVERIFIABLE",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "INTERNAL_OWNER_STRING_NOT_AUTHORITY",
+      "expected": "INTERNAL_PRODUCER_NOT_ALLOWLISTED",
+      "actual": "INTERNAL_PRODUCER_NOT_ALLOWLISTED",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "CLIENT_PREDICTED_PERMANENT_UUID",
+      "expected": "UNKNOWN_CLOSED_FIELD",
+      "actual": "UNKNOWN_CLOSED_FIELD",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "LOCAL_TARGET_ALLOCATION_INSTEAD_ENTITY",
+      "expected": "LOCAL_TARGET_WRONG_BODY_TYPE",
+      "actual": "LOCAL_TARGET_WRONG_BODY_TYPE",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "TARGET_INITIAL_REVISION_DIFFERENT_ENTITY",
+      "expected": "ALLOCATION_INITIAL_TARGET_MISMATCH",
+      "actual": "ALLOCATION_INITIAL_TARGET_MISMATCH",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "CLIENT_FORGED_SERVER_SOURCE_ROLE",
+      "expected": "CLIENT_CANNOT_FORGE_ORIGIN_ROLE",
+      "actual": "CLIENT_CANNOT_FORGE_ORIGIN_ROLE",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    },
+    {
+      "case_id": "SELECTOR_BOTH_BRANCHES",
+      "expected": "SELECTOR_BRANCH_CONFLICT",
+      "actual": "SELECTOR_BRANCH_CONFLICT",
+      "matched_expected": true,
+      "evidence_level": "AUTHOR_DESIGN_MODEL_ONLY_NOT_RUNTIME"
+    }
+  ]
+}

@@ -1,0 +1,2746 @@
+{
+  "authority_effect": "NONE",
+  "canonical_logical_path": "docs/architecture/multi_asset/source_closure_v9/EXPECTED_REQUIRED_PAIRS.v9.json",
+  "canonical_raw_sha256": "86c09e275595a3c996cea79f15e8200df25a53cf7ddf78ffb49eab7cb306250e",
+  "kind": "NONAUTHORITATIVE_READABLE_QUERY_PROJECTION_NOT_CANONICAL_OR_COMPILER_INPUT",
+  "operation_id": "getBackupCatalog",
+  "pair_count": 48,
+  "pairs": [
+    {
+      "canonical_pointer": "#/pairs/3292",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "87117e30-9c6d-5239-89b3-e77d9f922bd7",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "55ba64c3-24aa-5a76-bd54-56433e37c10e"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "080839d6-c33b-5005-9a27-cfb74885bd50",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-operation-permission-getBackupCatalog.json",
+        "raw_bytes_sha256": "2101fe62511a33b78e9ce6a2a3e14f752f2de5325e117a1f2da6908bd7fe836c"
+      },
+      "schema_ref": {
+        "entity_id": "3b055b59-df69-50c7-9df1-72a3e86d8ac0",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "3dcabc35-d572-5b1e-a328-443114ef0e57",
+        "source_hash": "2101fe62511a33b78e9ce6a2a3e14f752f2de5325e117a1f2da6908bd7fe836c"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/operation-permission-getBackupCatalog.json",
+        "raw_bytes_sha256": "7d121f2d4f1979917e831611a5571b37f9a65acf3389bddec4872d2958eb361a"
+      },
+      "source_ref": {
+        "entity_id": "c14ca4d1-9f85-5938-8bb2-f8c3144eb704",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "c0f0cf9d-fc27-5161-a2a5-da954f22b6ee",
+        "source_hash": "7d121f2d4f1979917e831611a5571b37f9a65acf3389bddec4872d2958eb361a"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3293",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "d328e8cd-5fe6-55ed-bb51-91bfbf4ccaf0",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "60cfaea0-462c-5745-8ca7-9a853d322d52"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "0a456948-a99b-5bb5-a43e-c9828d263eb4",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-finite-read-snapshot.json",
+        "raw_bytes_sha256": "ab879b74722b7b57cd82380dfedfe6fe570950c78c96108e29b157e548d7cdc5"
+      },
+      "schema_ref": {
+        "entity_id": "4c8c35c7-72be-54b4-b65b-4e64466d3a75",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "2f9bb29c-9362-59dd-b1f3-5209d442c87d",
+        "source_hash": "ab879b74722b7b57cd82380dfedfe6fe570950c78c96108e29b157e548d7cdc5"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/finite-read-snapshot.json",
+        "raw_bytes_sha256": "41378cb6363f7dc566999197e7e7c34b5527297d42fde52d9f1fc456965ab067"
+      },
+      "source_ref": {
+        "entity_id": "9efb8614-b29d-5a5f-97bd-af73a16177be",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "1c31e833-a16a-5d09-9f52-df85085957f0",
+        "source_hash": "41378cb6363f7dc566999197e7e7c34b5527297d42fde52d9f1fc456965ab067"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3294",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "e2a77e8d-04a8-5f45-9e48-0a07c2b66be4",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "3046790e-1c96-5c5a-9864-eadb5d2f05a3"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "0d59353d-3ce8-5d5b-8ce9-111f99fba0fc",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-role-grant-input.json",
+        "raw_bytes_sha256": "c44fbcc7974a7b9148492654d7fabcdd842858b94d35c28819fa8d6bca698871"
+      },
+      "schema_ref": {
+        "entity_id": "deefc474-ff76-5e7c-8806-a8ebc5fc64da",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "41d14d52-4867-5dc8-b64f-b8fb365cc7a1",
+        "source_hash": "c44fbcc7974a7b9148492654d7fabcdd842858b94d35c28819fa8d6bca698871"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-role-grant-input.json",
+        "raw_bytes_sha256": "bb147215390ae12301d66ad378c098bb510741d3f6b7c172a2d0d7627accddd5"
+      },
+      "source_ref": {
+        "entity_id": "cce26c93-7de1-54bf-9651-3f11ce667d02",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "5299341f-69f8-5edc-98b4-eddb7a9cbd83",
+        "source_hash": "bb147215390ae12301d66ad378c098bb510741d3f6b7c172a2d0d7627accddd5"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3295",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "4395b653-0024-545a-a8dd-edbe66169179",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "47c81032-53d2-5061-b095-adab252c9e59"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "0d9f1033-f8f7-53e4-8018-14128b2e29ef",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-unavailable-sql.json",
+        "raw_bytes_sha256": "59194e4b0ef28998634587cbb69bf5a783a0b3c2e0a087bd578e1d98fabc9730"
+      },
+      "schema_ref": {
+        "entity_id": "ebf7f619-56c0-5c67-9832-0d75fbffd7dd",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "47ebe69c-fe76-53d7-8aa0-560568a30b63",
+        "source_hash": "59194e4b0ef28998634587cbb69bf5a783a0b3c2e0a087bd578e1d98fabc9730"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-unavailable-sql.json",
+        "raw_bytes_sha256": "791f78d81ffed171fd350dd5d515392edf62224c090d13a8ef70102313bfc793"
+      },
+      "source_ref": {
+        "entity_id": "ec364627-f4c0-5c8f-98af-7d2723d6ea2f",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "1880c526-2c85-5c19-b256-daac7d61de59",
+        "source_hash": "791f78d81ffed171fd350dd5d515392edf62224c090d13a8ef70102313bfc793"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3296",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "9420f7b4-b054-5b96-9e4e-8068a3376bd2",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "7e6ba544-74e0-531b-b5e8-cbe07fcfa4e8"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "10fc06f3-60ea-580b-a9f3-9a0b7016ebef",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-registry-base-snapshot.json",
+        "raw_bytes_sha256": "29b734dc339953dffc980f5028f536ea0d791214de4d4dfa23e87b5f62d8f4c5"
+      },
+      "schema_ref": {
+        "entity_id": "0c1f1c2e-0114-5be0-a4b9-00601e531088",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "4b77f705-f267-5db9-a450-a5c00b014dfa",
+        "source_hash": "29b734dc339953dffc980f5028f536ea0d791214de4d4dfa23e87b5f62d8f4c5"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-registry-base-snapshot.json",
+        "raw_bytes_sha256": "f2f7d0146c0b31338cda0ca41c4c9af68bf0b6a261f71c764934b3cc56ee922c"
+      },
+      "source_ref": {
+        "entity_id": "49279a2c-8ce8-53fd-b1cf-8bc1876acc42",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "a37184e2-6469-5aac-ae4a-34f4d7f33bfd",
+        "source_hash": "f2f7d0146c0b31338cda0ca41c4c9af68bf0b6a261f71c764934b3cc56ee922c"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3297",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "a57a8e11-5c85-54d9-ba7e-9b5ee3c2b1c1",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "45f2a450-d05d-50e2-921c-f786de2c08e2"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "1f694818-10fc-5627-aff0-d3a3f76bd2a6",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-state-before-getBackupCatalog.json",
+        "raw_bytes_sha256": "484549cb008883abe2ccc3db7f365174a865b01c987fbab2fd6253f6df8c83eb"
+      },
+      "schema_ref": {
+        "entity_id": "739ad1e4-ff36-57bd-b5be-38b33cf3e5a0",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "4a0c43ea-7b9e-5216-afbb-79d24235b7b6",
+        "source_hash": "484549cb008883abe2ccc3db7f365174a865b01c987fbab2fd6253f6df8c83eb"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/state-before-getBackupCatalog.json",
+        "raw_bytes_sha256": "862193aaf41ccb7d42a758cb7c195938d1c9792a1c27d984b4172e692f52e512"
+      },
+      "source_ref": {
+        "entity_id": "dbe747ee-4457-5307-8c83-6589abfd1723",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "b3fe792f-2227-5b87-a47d-2b88c6adecc9",
+        "source_hash": "862193aaf41ccb7d42a758cb7c195938d1c9792a1c27d984b4172e692f52e512"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3298",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "8b4032f0-657c-52a4-b83d-351e91f4b09e",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "64164ca1-b847-553c-adf5-23660f297ade"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "27d9c59a-7596-5c43-a13b-0ef635db6161",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-inventory-closure.json",
+        "raw_bytes_sha256": "846250b4e651e8605c83c4200b0dedb4801b4460edb77b516821a769e89860e2"
+      },
+      "schema_ref": {
+        "entity_id": "5302259d-6086-5f24-8159-44b9e8638781",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "cac0cc93-1bfb-596d-862c-1842f1aa88fc",
+        "source_hash": "846250b4e651e8605c83c4200b0dedb4801b4460edb77b516821a769e89860e2"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-inventory-closure.json",
+        "raw_bytes_sha256": "56c04770518b516ca1803dd63c6bd824835ed1c1d899f12fe3f0e4694d1bc7db"
+      },
+      "source_ref": {
+        "entity_id": "4c30b2f5-238a-567f-98c4-670d506d0dc6",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "de5c28d3-575f-53ed-b776-31c4f8d742d4",
+        "source_hash": "56c04770518b516ca1803dd63c6bd824835ed1c1d899f12fe3f0e4694d1bc7db"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3299",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "b5dc9abf-e723-597c-8450-0d568c316a49",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "5b33bd67-592e-5c6b-b407-3ecad15175fe"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "3c2325c7-6517-5781-aaaa-d118f700fd4c",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-schema-source.json",
+        "raw_bytes_sha256": "5e37579dd4f9d8503f5059c3ea1fb471931a67db12292d80bafdbdb20fd628f5"
+      },
+      "schema_ref": {
+        "entity_id": "118d811a-c86a-55cb-95e8-b9735fc488dc",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "18b3b918-f895-5595-b80f-99b4c781bc63",
+        "source_hash": "5e37579dd4f9d8503f5059c3ea1fb471931a67db12292d80bafdbdb20fd628f5"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-schema-source.json",
+        "raw_bytes_sha256": "ef1fc50dace7aa08c0813d5b1d67a0118d01700d775cd3b73d69963470a20dc3"
+      },
+      "source_ref": {
+        "entity_id": "a5b0ef3a-ac6d-5c3d-8391-adfd744ae458",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "3f5ae616-5ce0-5268-88c4-7c09b7668333",
+        "source_hash": "ef1fc50dace7aa08c0813d5b1d67a0118d01700d775cd3b73d69963470a20dc3"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3300",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "7e7cef7e-857d-566d-8f1d-9305e3db8404",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "2116352e-1fd2-558d-bbde-dba452762aa2"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "3c8f39cb-9e99-5f6a-b710-d1a7520bbde9",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-product-scope.json",
+        "raw_bytes_sha256": "543394abfcb2b8fe16aa344653dc2785f6a72295ac52d7947652324bea0373e9"
+      },
+      "schema_ref": {
+        "entity_id": "77644f69-8c2e-516d-8f7b-ef2f35b6e2f3",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "eed81c6f-5cac-5693-a7d9-c25bed26653d",
+        "source_hash": "543394abfcb2b8fe16aa344653dc2785f6a72295ac52d7947652324bea0373e9"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-product-scope.json",
+        "raw_bytes_sha256": "e5f5eeac8764059359d4c874fd8a5e49802d43e78b2ad8f9328c50e31a8eb297"
+      },
+      "source_ref": {
+        "entity_id": "6786b746-dbd9-5f4d-b7a3-8ecb2ad4da80",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "b87c6f46-7363-599f-b4ba-225371c4b403",
+        "source_hash": "e5f5eeac8764059359d4c874fd8a5e49802d43e78b2ad8f9328c50e31a8eb297"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3301",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "e5b52d13-7822-54bf-9050-f5a7954f20a7",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "8f2895e8-3303-57f6-a147-ac9b632fe8ea"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "410bf68b-8f48-58cf-9c39-e8768b83460b",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-owner-inventory.json",
+        "raw_bytes_sha256": "8f4adea230b2834d1bfa6144d1700e5c22e6414faf509299f632d4398caa2e2a"
+      },
+      "schema_ref": {
+        "entity_id": "7b718df7-c59c-56ca-aafb-0c628f90cb85",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "556f3591-f5e0-54fb-a98d-5a921d9be59b",
+        "source_hash": "8f4adea230b2834d1bfa6144d1700e5c22e6414faf509299f632d4398caa2e2a"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-owner-inventory.json",
+        "raw_bytes_sha256": "87cfac11387cc299b995dd12282de56e803232c5eaa4143474c5620db18e2e2c"
+      },
+      "source_ref": {
+        "entity_id": "d432b40b-ec0a-5b6a-8e75-2735255d9031",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "8669d527-f7a0-587f-b664-5a295055fe2f",
+        "source_hash": "87cfac11387cc299b995dd12282de56e803232c5eaa4143474c5620db18e2e2c"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3302",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "d9a7463c-0e5d-5645-a498-51d7b095bc96",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "a40e11c0-0105-5b22-910e-3b71aabfc25d"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "481c7ed9-b14b-52ed-b203-e475cc2beb18",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-authenticity-receipt.json",
+        "raw_bytes_sha256": "9537090fac70ae7a8a84af7067c2407428843d81ddc479ac1681aa1428b2883f"
+      },
+      "schema_ref": {
+        "entity_id": "43543c72-df96-5a2c-8d86-f5f6fdab3f7c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "a4757dea-1bd9-5a4b-8c5f-92fe72e5902b",
+        "source_hash": "9537090fac70ae7a8a84af7067c2407428843d81ddc479ac1681aa1428b2883f"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-authenticity-receipt.json",
+        "raw_bytes_sha256": "af5ecb509bd6761811135c249f2ed983cc34b4fb71c9975fa84aca1f9841e1f2"
+      },
+      "source_ref": {
+        "entity_id": "6a884607-7d63-58ad-bc0b-90ed35762269",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "9a56cb62-7490-51e0-b12d-45211ed1474e",
+        "source_hash": "af5ecb509bd6761811135c249f2ed983cc34b4fb71c9975fa84aca1f9841e1f2"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3303",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "df103971-825e-5fa4-8a4b-84d0fa3e9699",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "838c947f-5b70-52dd-90f0-3c44c1676e74"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "488b2213-d738-53b4-bd8a-1c7af7d881cb",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-repository-source.json",
+        "raw_bytes_sha256": "2f047a621dc0bfd905f67689a59ab06b7121de06d5290e888c7c8885584c0438"
+      },
+      "schema_ref": {
+        "entity_id": "7e60fc5c-0747-5f98-a867-0a335c1f840e",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "2381005a-2922-5ddc-9b69-926911ec322b",
+        "source_hash": "2f047a621dc0bfd905f67689a59ab06b7121de06d5290e888c7c8885584c0438"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-repository-source.json",
+        "raw_bytes_sha256": "fc32bdcc88e5d86156ab5bc48763bca3c8b53593c3d89cf516af54ff4014326b"
+      },
+      "source_ref": {
+        "entity_id": "2a353d7e-f371-59e3-92f0-3307ddfdd73a",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "871a9082-630f-55ec-a3ed-32ad3cbf323e",
+        "source_hash": "fc32bdcc88e5d86156ab5bc48763bca3c8b53593c3d89cf516af54ff4014326b"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3304",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "13e558d9-f2ea-538a-9100-e60678a925fb",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "56ad7649-5f27-5bef-8aa6-97846eaad81f"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "49b50b90-0b85-56ed-bb6d-99c6a68b7a1b",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-archive-toc-input.json",
+        "raw_bytes_sha256": "f48753a430d836f7fe4061929e0101b0f2c477ddef690b6be987bab87808644f"
+      },
+      "schema_ref": {
+        "entity_id": "ce2c5d98-8782-5812-bad1-81a92f18add1",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "cc198ba6-ae15-5828-a606-b72d039a585b",
+        "source_hash": "f48753a430d836f7fe4061929e0101b0f2c477ddef690b6be987bab87808644f"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-archive-toc-input.json",
+        "raw_bytes_sha256": "ac71bf575e0a7316dd21511e79ad4c5d5548a9dc81bb5288188c1583cb2891b7"
+      },
+      "source_ref": {
+        "entity_id": "075c6914-b7bb-5404-8df5-10cdb1d3a74b",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "2e216deb-1315-5ae8-8d4f-38593a1f107a",
+        "source_hash": "ac71bf575e0a7316dd21511e79ad4c5d5548a9dc81bb5288188c1583cb2891b7"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3305",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "65d18574-cb20-5bcb-8633-c2d27539d40a",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "b5df1b65-c0d9-5adb-bd94-29499358c753"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "4e9b19bf-19e2-597e-9509-8cb8e27cf604",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-backup-partial-manifest.json",
+        "raw_bytes_sha256": "5a5ab2877717a0c2b77a45178a7afccdd279530ec778039969c4aa1f1a671fdd"
+      },
+      "schema_ref": {
+        "entity_id": "6b819d48-6348-574e-81c0-c9d1d373a019",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "3c83850a-c154-5d67-a5c6-6ea620e59f28",
+        "source_hash": "5a5ab2877717a0c2b77a45178a7afccdd279530ec778039969c4aa1f1a671fdd"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-backup-partial-manifest.json",
+        "raw_bytes_sha256": "c1f594104d7e613c6db8ae8b7bc707c183adc62daecfd65cebef9a195d324415"
+      },
+      "source_ref": {
+        "entity_id": "11901b33-be88-58fd-a997-d182dad12bee",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "6282beb6-74ad-537c-af0e-9bef70b3853e",
+        "source_hash": "c1f594104d7e613c6db8ae8b7bc707c183adc62daecfd65cebef9a195d324415"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3306",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "ea06e741-409f-56e9-bcb4-956b640e6f9d",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "ec82d127-1479-552d-a0c5-c6be9f8ccc0b"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "4fe8f357-a8e7-56c2-a53c-d968a1e63093",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-scope-getBackupCatalog.json",
+        "raw_bytes_sha256": "07a9139563085310146012c19031074ba06c6000b3ed0bd1c735b12aecf8a5f4"
+      },
+      "schema_ref": {
+        "entity_id": "25d26300-5301-5cb8-96b7-b0c69eda52df",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "94e13c59-4fd8-5cda-989f-3e2f3940216d",
+        "source_hash": "07a9139563085310146012c19031074ba06c6000b3ed0bd1c735b12aecf8a5f4"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/scope-getBackupCatalog.json",
+        "raw_bytes_sha256": "26ef913f023507307ad0e8bab4e36de2d75e8771c450a849111e926e01385ebe"
+      },
+      "source_ref": {
+        "entity_id": "84270b11-9445-5069-a476-28e76e4267b4",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "41818fe3-0f56-5e0a-98e5-d0a558f37dc2",
+        "source_hash": "26ef913f023507307ad0e8bab4e36de2d75e8771c450a849111e926e01385ebe"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3307",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "1b7c0f2f-c697-507b-8a03-b13debbbabc1",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "96f06070-6afb-5e74-a9b1-b6ffb2cd75c5"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "5dd27a4a-373d-54ee-910e-d063557e65fc",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-backup-partial-manifest.json",
+        "raw_bytes_sha256": "110f35ca4103d2c150b074ddf3a0aecf8f3f024c265c4d31e7cd58a8eeee655d"
+      },
+      "schema_ref": {
+        "entity_id": "90c55e6d-fb64-55fd-82d2-8b2e48a67358",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "020d7a9b-a4b0-5a94-85a6-9f96029327a6",
+        "source_hash": "110f35ca4103d2c150b074ddf3a0aecf8f3f024c265c4d31e7cd58a8eeee655d"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-backup-partial-manifest.json",
+        "raw_bytes_sha256": "a4714d1acd6b559cf159027c2b41152323bf4430eb55ded2a62273cda4bc17ea"
+      },
+      "source_ref": {
+        "entity_id": "f0914768-4931-52c7-86b8-8f69e12d6fdd",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "db5ee60f-bbc0-5f8b-a9db-516e6ff0e9b2",
+        "source_hash": "a4714d1acd6b559cf159027c2b41152323bf4430eb55ded2a62273cda4bc17ea"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3308",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "cd07fd0e-e37e-56fa-b452-5fcf81bed77e",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "1f042418-5913-5853-904c-cb6ba5547728"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "60a37943-b685-5393-9bec-2feed878f34e",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-artifact-manifest.json",
+        "raw_bytes_sha256": "ee183bacaa6bcd79a920029a36280b6b80a5854cce205fb86b3622805f4fbaa6"
+      },
+      "schema_ref": {
+        "entity_id": "8dd7d162-4275-5a84-8d3e-98483ae4df27",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "c04a0519-9c13-58a5-9620-b63ef49784c0",
+        "source_hash": "ee183bacaa6bcd79a920029a36280b6b80a5854cce205fb86b3622805f4fbaa6"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-artifact-manifest.json",
+        "raw_bytes_sha256": "28999bc6b4983f9caf8bc26d324651cb7e04323cefe46ddd8e4dd06eaf5002bc"
+      },
+      "source_ref": {
+        "entity_id": "233c66ab-6253-5c21-b3d3-89c04b20b441",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "d7ece739-17b8-50e8-a79f-ceefadbe9cf9",
+        "source_hash": "28999bc6b4983f9caf8bc26d324651cb7e04323cefe46ddd8e4dd06eaf5002bc"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3309",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "7775b3a7-07aa-545a-ba99-6b44e3f13948",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "ce756f81-b790-5b08-bbe7-60e6a423b5cc"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "6d77bdbb-3d15-595b-9d7b-9b85f8f44e13",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-registry-feature-revision.json",
+        "raw_bytes_sha256": "03e1dc64d54cd1de87b8b74d88228e67dcff42ad82511adb730ff95652077305"
+      },
+      "schema_ref": {
+        "entity_id": "7524ef67-89d2-577a-b1ad-8fcaae006e44",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "825ab8ca-ee4f-5575-8ce9-1d47f5f2601a",
+        "source_hash": "03e1dc64d54cd1de87b8b74d88228e67dcff42ad82511adb730ff95652077305"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-registry-feature-revision.json",
+        "raw_bytes_sha256": "b04de3fb1a58a28e559fdb594516c0f26408edd6d3477927b7b241e0adfc62a2"
+      },
+      "source_ref": {
+        "entity_id": "d6b293d0-d3dc-573e-aeae-df5c34dc2392",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "0e022139-b9f8-533f-b652-e13f3df09c36",
+        "source_hash": "b04de3fb1a58a28e559fdb594516c0f26408edd6d3477927b7b241e0adfc62a2"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3310",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "90f0a9c7-a4c8-581a-81d1-b40ef289ff0a",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "2af8ce49-89b3-54ce-a745-3fe95fc57187"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "759e07c1-e7c6-5142-81af-2273c2a92322",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-collation-input.json",
+        "raw_bytes_sha256": "57023d806bb7d1da584428ef40f10573dbbe4291cad1828ddbe56ee1c3f1026f"
+      },
+      "schema_ref": {
+        "entity_id": "eaf80976-d9d8-5bdd-947b-f8e55ba9c4fa",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "99f2c470-44d0-55e0-8e4d-a20460b7bd97",
+        "source_hash": "57023d806bb7d1da584428ef40f10573dbbe4291cad1828ddbe56ee1c3f1026f"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-collation-input.json",
+        "raw_bytes_sha256": "7da17f6bf43f9a76c3d0c5bc32479eff7d6a1a6f9261fff68d6a995fc1d4a1b7"
+      },
+      "source_ref": {
+        "entity_id": "790d052c-510b-5b46-bd81-f612ff60a2c2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "b66c160d-2c57-5dfb-81e2-5eefa1802698",
+        "source_hash": "7da17f6bf43f9a76c3d0c5bc32479eff7d6a1a6f9261fff68d6a995fc1d4a1b7"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3311",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "c4c1d392-bfe0-5cc0-aef5-d84ceb3d95d5",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "db9e8144-82a8-5369-bb89-2c53c2acf73d"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "76956cba-a049-5bc1-8aec-a332ebbaf98a",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-body-catalog-origin.json",
+        "raw_bytes_sha256": "cd847d91f4d64a1a255c5199b44e08bc45c6135f4eb8f04bcd685728e01b51ae"
+      },
+      "schema_ref": {
+        "entity_id": "2a5870dd-209d-545d-bdd0-5f4549c02c29",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "N_APPLICATION_BODY_CATALOG",
+        "revision_id": "77a77d44-bf9f-5b0b-8a0b-c96f7faa7317",
+        "source_hash": "cd847d91f4d64a1a255c5199b44e08bc45c6135f4eb8f04bcd685728e01b51ae"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/body-catalog-origin.json",
+        "raw_bytes_sha256": "463cd565fdf976e959335d511074a5cf16ae7c496972796bbb71ea97d749a3e3"
+      },
+      "source_ref": {
+        "entity_id": "7f32c461-fbcb-5065-a94c-bb6f40f3ada8",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "N_APPLICATION_BODY_CATALOG",
+        "revision_id": "a953ef0b-ed54-5628-a88a-37638d96bdc3",
+        "source_hash": "463cd565fdf976e959335d511074a5cf16ae7c496972796bbb71ea97d749a3e3"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3312",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "bf04e12e-8fb6-533d-bdab-96ed7016c0aa",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "cbc6146c-7563-5a4a-97b4-cecb7e32029a"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "7849360d-8aff-5b23-a99a-cc90dc5b9884",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "a0c7c6d8b49af7e82a82e3b3d999835dbe1194329d0c6a9390cb152be3a156b7"
+      },
+      "schema_ref": {
+        "entity_id": "f3f2ca6d-a09a-5ac1-99ff-a0a0eb4f2347",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "20f8f724-c83c-531e-8fc7-3768efd5aab0",
+        "source_hash": "a0c7c6d8b49af7e82a82e3b3d999835dbe1194329d0c6a9390cb152be3a156b7"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "4c3c3a079a33add1c94b863252d8e96229c96867aab574c465852acd1c7c114a"
+      },
+      "source_ref": {
+        "entity_id": "2ebf12d9-fced-5ac0-b799-e41512ea8e63",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "894a20c7-2c02-551c-83d5-628874590aa6",
+        "source_hash": "4c3c3a079a33add1c94b863252d8e96229c96867aab574c465852acd1c7c114a"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3313",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "59244ae6-aadd-50d8-8b60-070bbb6f8d08",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "736e49fb-a033-5003-868c-74e83b5b8403"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "796a3f8b-08bc-598a-b59e-b3a4812699be",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-input-capture-feature-semantic.json",
+        "raw_bytes_sha256": "89c27b68c012f0f4d3ca7ca57ba7f76cd66753497f8db3e7b0305a016b91ee70"
+      },
+      "schema_ref": {
+        "entity_id": "2dbe4a82-a56d-5a3f-9585-6763e76cbcbf",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "ab06f661-f405-51de-b74b-b4fc5e108ff4",
+        "source_hash": "89c27b68c012f0f4d3ca7ca57ba7f76cd66753497f8db3e7b0305a016b91ee70"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-input-capture-feature-semantic.json",
+        "raw_bytes_sha256": "4d436906fcdae9b7bdb859af4bce64abaf9fadbc4e010fb7d60b0ab84a14d1b1"
+      },
+      "source_ref": {
+        "entity_id": "71e8bbc1-bd2d-5398-9fe3-2ee174ddb9f0",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "f3a00a4a-734c-57c2-a131-301f33716ee2",
+        "source_hash": "4d436906fcdae9b7bdb859af4bce64abaf9fadbc4e010fb7d60b0ab84a14d1b1"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3314",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "796495b5-f217-5f6c-9d0a-1cecd011b466",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "449043bd-63ea-50ca-9ba8-bb24dcf5d7ef"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "79d30e0f-a6fd-530f-b87d-13ac62283b40",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-formal-git-head.json",
+        "raw_bytes_sha256": "54ac8e38d764e516313c5fbab8170de6c0efb6c46a27662bcebe843ffaeb339c"
+      },
+      "schema_ref": {
+        "entity_id": "cc18755a-1ac8-550c-a089-fd6f8fff851c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "b54073e0-0564-5c81-b2e3-1541531595a7",
+        "source_hash": "54ac8e38d764e516313c5fbab8170de6c0efb6c46a27662bcebe843ffaeb339c"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-formal-git-head.json",
+        "raw_bytes_sha256": "73f2cd7ee8abfc05a28c2266a2c326b1ccac84b4416efc4d8b526e074a0cd97d"
+      },
+      "source_ref": {
+        "entity_id": "4dccc786-c67e-5e00-9482-b6f59c836f8a",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "a8c6fb49-d5a7-5629-a150-2df849ade070",
+        "source_hash": "73f2cd7ee8abfc05a28c2266a2c326b1ccac84b4416efc4d8b526e074a0cd97d"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3315",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "c7cf4b67-2d09-50fc-96a4-723d53371a11",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "8886004a-7614-5723-93b4-61b03bec8851"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "8013ce17-e939-5b6b-ba3a-dff96930f20b",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-revision-submitted-draft.json",
+        "raw_bytes_sha256": "4d3d07acf6548410653fd18e7e57ce4858daa3511169027546a796761ee08d88"
+      },
+      "schema_ref": {
+        "entity_id": "0dc1ab6a-930c-5c7f-9904-1026b02b0d08",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "6e617077-f5ab-5e13-a260-e43a47faa703",
+        "source_hash": "4d3d07acf6548410653fd18e7e57ce4858daa3511169027546a796761ee08d88"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-revision-submitted-draft.json",
+        "raw_bytes_sha256": "fc2272d05fd91f10db63708086d225161dc97c0ec83e674f99f4ac8e65a44a13"
+      },
+      "source_ref": {
+        "entity_id": "b15a03b1-d797-55f4-935d-9e1fbcecb54c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "c96a7d1b-88bc-5128-b991-9e8e4e2c2c18",
+        "source_hash": "fc2272d05fd91f10db63708086d225161dc97c0ec83e674f99f4ac8e65a44a13"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3316",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "2cf5c8e7-928b-5455-96a1-60f1c00b8853",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "62fa804d-145e-5390-925d-90534858a2f2"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "8a8606ba-4bfe-501e-8476-1f5483945d6f",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-getBackupCatalog-response.json",
+        "raw_bytes_sha256": "60a5cf92143fbf4dd1526adbce7aae2d62b3d87adb41a5e399f67a6e917c0014"
+      },
+      "schema_ref": {
+        "entity_id": "b93a43dc-554b-582d-9086-48c2f6f2fed9",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "3e05d5ab-dcec-5023-a7f2-ec447144b8d1",
+        "source_hash": "60a5cf92143fbf4dd1526adbce7aae2d62b3d87adb41a5e399f67a6e917c0014"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-getBackupCatalog-response.json",
+        "raw_bytes_sha256": "5fa6c1cb284aa7f39fd14ecec77c6b7cc0bd1c1ebadbb8e16667dbdea240a7a7"
+      },
+      "source_ref": {
+        "entity_id": "e7929755-6c22-5658-903a-fc089a6589cb",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "ed7b6c56-5464-56b4-b794-af6a5329a808",
+        "source_hash": "5fa6c1cb284aa7f39fd14ecec77c6b7cc0bd1c1ebadbb8e16667dbdea240a7a7"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3317",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "89b3742e-a20c-5408-aec3-43c690ea5b65",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "dc5b6892-2649-5ec1-b4e2-c21d5957319d"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "8cd412d1-1f71-5385-8c02-916a115736b3",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-candidate-semantic-input.json",
+        "raw_bytes_sha256": "02e30e88485185ae45e4933b25a6695e8b4057e3040a38f68742f8be96945eff"
+      },
+      "schema_ref": {
+        "entity_id": "87215846-fa36-5c66-8759-81610ec4b638",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "47ca0c9c-d5e0-5d65-8773-58ac3b504958",
+        "source_hash": "02e30e88485185ae45e4933b25a6695e8b4057e3040a38f68742f8be96945eff"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-candidate-semantic-input.json",
+        "raw_bytes_sha256": "a6b8b1b8e7db70b1576fc564cc3f34d3dd3209ad47dc16f9c1dff59270b6da7a"
+      },
+      "source_ref": {
+        "entity_id": "e02fcfad-2bda-5d16-93a4-8cece2d9e674",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "05f15f7b-6ade-5dab-bce1-b7551a3c1c96",
+        "source_hash": "a6b8b1b8e7db70b1576fc564cc3f34d3dd3209ad47dc16f9c1dff59270b6da7a"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3318",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "6d4dda5d-2823-5937-a5b3-675b4ab8056f",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "1f15b922-32be-5cce-a7ae-ccdddb56edfa"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "a0d92a4c-528a-5903-9e3c-ab256c7122a4",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-catalog-source.json",
+        "raw_bytes_sha256": "ac3b345864af9c769645c502b5c318885fc47098609610a5c281528a010803c2"
+      },
+      "schema_ref": {
+        "entity_id": "b641562c-5595-5e0e-a610-e569f6c3b930",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "042b2a1d-3a6d-5b81-a89f-4225654f05f6",
+        "source_hash": "ac3b345864af9c769645c502b5c318885fc47098609610a5c281528a010803c2"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-catalog-source.json",
+        "raw_bytes_sha256": "1f3f92018d8a2e3b9ac1ef23e20ac6e220b8ec05113908786872a2cae29fd195"
+      },
+      "source_ref": {
+        "entity_id": "8df8a4cc-476e-55a0-9476-5bb73be14be6",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "b8520520-a81c-550e-adb0-73f4ffbeb9a9",
+        "source_hash": "1f3f92018d8a2e3b9ac1ef23e20ac6e220b8ec05113908786872a2cae29fd195"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3319",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "aa609763-6e44-5a06-bce2-6bf2b2f73efd",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "7769f528-886b-5519-a683-f1eb1a2e557a"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "a244ad66-9a93-5536-8c6f-9a457c673a53",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-registry-base-snapshot.json",
+        "raw_bytes_sha256": "3b60d79158d510f99f3d030d8f4c87197aa4dc931a2f1ffecd962010a2997602"
+      },
+      "schema_ref": {
+        "entity_id": "0636abda-7156-5beb-86bd-64a115ae3daa",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "c5eae942-5678-5eec-ba2e-37fa73dadf14",
+        "source_hash": "3b60d79158d510f99f3d030d8f4c87197aa4dc931a2f1ffecd962010a2997602"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-registry-base-snapshot.json",
+        "raw_bytes_sha256": "119db1b6d1ffb2df6f7f8c4268c05f4a7407920aab231b87f78a4b9fa2f24039"
+      },
+      "source_ref": {
+        "entity_id": "d3f39d06-0205-575e-bdb3-66b23894e49b",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "89bf9450-9b01-52c4-97e5-be3cc3ebe46f",
+        "source_hash": "119db1b6d1ffb2df6f7f8c4268c05f4a7407920aab231b87f78a4b9fa2f24039"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3320",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "454cc7ab-1975-5c16-836f-85a8aff43f06",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "673dcbfd-01b1-50db-b0c7-a0f3aafa9a54"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "a8f2ea70-e2b4-5122-8ca7-7c594d13d884",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-authenticated-reader.json",
+        "raw_bytes_sha256": "7d2fc2c7059a807be31a4c589901c9a9e94401bb99d1de226906629022c836c4"
+      },
+      "schema_ref": {
+        "entity_id": "a54f0eb4-2744-51df-b9f5-f230c9194ce5",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "e5e47b03-dda3-5231-bd5b-b4fcada9bb92",
+        "source_hash": "7d2fc2c7059a807be31a4c589901c9a9e94401bb99d1de226906629022c836c4"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/authenticated-reader.json",
+        "raw_bytes_sha256": "2e4099ab621a0c86671fe22aa20103f7ecc8a2236e190308c09ecbc2d5481c9b"
+      },
+      "source_ref": {
+        "entity_id": "95c4c907-f67d-5690-9656-50b8639e0da2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "EXISTING_AUTHORIZATION_OWNER",
+        "revision_id": "4964f7a8-1937-57a1-a642-2abbf9bd6c25",
+        "source_hash": "2e4099ab621a0c86671fe22aa20103f7ecc8a2236e190308c09ecbc2d5481c9b"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3321",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "13cd21e3-114e-5a29-b82e-a37a499acee6",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "a6787d50-f18c-57a0-96fa-550a112c8913"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "a94e3ca3-54be-53eb-84ef-92fa7e2861fd",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-new-feature-source.json",
+        "raw_bytes_sha256": "b8db5462613ec03b25bf57565564769e22a37d6c2b5ac58983ef72b84c3629ae"
+      },
+      "schema_ref": {
+        "entity_id": "99027f9d-dc2a-5d8a-b59e-2030b1bf99f2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "38e3b195-034d-5dd5-bb22-6765a45c6a53",
+        "source_hash": "b8db5462613ec03b25bf57565564769e22a37d6c2b5ac58983ef72b84c3629ae"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-new-feature-source.json",
+        "raw_bytes_sha256": "dc7ff14f365062199d07dfe6e47385eec55b733b7c72b30c44e82489f5a443ef"
+      },
+      "source_ref": {
+        "entity_id": "e9afa664-a675-5b50-ba5a-84be8c4f3c98",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "494a5592-b1ab-5065-ad8b-8281c77e2c94",
+        "source_hash": "dc7ff14f365062199d07dfe6e47385eec55b733b7c72b30c44e82489f5a443ef"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3322",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "fe599c38-57e1-5f87-8a14-f9124df8547e",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "ba860cb2-834d-56cd-adf0-43876188ea16"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "ad734051-4081-533c-b17c-71dda0290772",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "3841dc743a9e1ba2808c705815759e52c4ddfc34cfa0cc3606e08bccb0180e01"
+      },
+      "schema_ref": {
+        "entity_id": "4241865f-5cef-5a69-bb2e-f72778954fbb",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "cb3c0ce7-a442-5d3f-bdcc-25ae88d93b76",
+        "source_hash": "3841dc743a9e1ba2808c705815759e52c4ddfc34cfa0cc3606e08bccb0180e01"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "7d5fb758ed35cd6a7845ef6e3a44b903ca9f18d0a3eed86370248360bcab515a"
+      },
+      "source_ref": {
+        "entity_id": "bfc2a5b7-e206-5b01-8a6a-086a39c20edf",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "1bd0621f-de5b-56e7-9376-872c91fdfcc3",
+        "source_hash": "7d5fb758ed35cd6a7845ef6e3a44b903ca9f18d0a3eed86370248360bcab515a"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3323",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "24888a9a-d96a-52a5-91e8-e698ae95459b",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "8b2b9dfa-823c-512e-9264-c284c1f06530"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "af50c7ee-5548-50da-901e-d1989d6a407e",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-restore-compatibility.json",
+        "raw_bytes_sha256": "60d52a7fe254e35933b3966522b1f4f6a760f232a2607e0c31db336f0c3576e9"
+      },
+      "schema_ref": {
+        "entity_id": "e70b8a65-b05d-5db7-9f17-c7fbd73e94ec",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "1ede3c5f-b9a3-5e03-94ff-3f1af3157387",
+        "source_hash": "60d52a7fe254e35933b3966522b1f4f6a760f232a2607e0c31db336f0c3576e9"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-restore-compatibility.json",
+        "raw_bytes_sha256": "b3c6ef961c277ae4ef9652f80815ded062239d0e445de2bb77d96f57db240f39"
+      },
+      "source_ref": {
+        "entity_id": "b72c4102-6951-5c0b-8850-7e965e3da1b4",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "a33d6fef-e9c1-5d19-a132-0d2b73c9df5e",
+        "source_hash": "b3c6ef961c277ae4ef9652f80815ded062239d0e445de2bb77d96f57db240f39"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3324",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "bb77391f-49ef-570e-a54a-6a1620821ef2",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "3b61c03c-ab48-5a1e-aaea-a29d96a6204a"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "b0e44e79-40e8-5415-ba36-a475365fad36",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-coordination-receipt.json",
+        "raw_bytes_sha256": "5e026994d3ac446995103675b607d95926a8a8a37bfdb4938891d24e4ec3b9f9"
+      },
+      "schema_ref": {
+        "entity_id": "07e06fc5-9a7b-5b9b-9fba-35d9dead25ed",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "fc7391dc-6273-5434-999f-4ddd640b8f39",
+        "source_hash": "5e026994d3ac446995103675b607d95926a8a8a37bfdb4938891d24e4ec3b9f9"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-coordination-receipt.json",
+        "raw_bytes_sha256": "05729b6a34d72bace398e652161def7ddf6be8dc87258253f8d23048f333b1ea"
+      },
+      "source_ref": {
+        "entity_id": "956760b0-aa27-56f4-be11-e6cc73c7bd54",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "b6e92914-98c0-5627-8b6a-ea2c7962b49c",
+        "source_hash": "05729b6a34d72bace398e652161def7ddf6be8dc87258253f8d23048f333b1ea"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3325",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "168899aa-df1f-596f-bac2-ca5a7b27ed8f",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "b1f437b7-828a-5bef-9e8d-4b96fba3fdd9"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "b3c3058e-7ce1-56d2-b5d8-b2ef4b070c36",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-toolchain-input.json",
+        "raw_bytes_sha256": "0da2a5ace896277ccb7abff3bec69b7697a291486db8badc1788071013caf920"
+      },
+      "schema_ref": {
+        "entity_id": "7afbe52e-55be-5afa-91a6-ad577cfe884e",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "92a87804-a35d-5a0d-884b-52bac64a2630",
+        "source_hash": "0da2a5ace896277ccb7abff3bec69b7697a291486db8badc1788071013caf920"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-toolchain-input.json",
+        "raw_bytes_sha256": "fa2133026f1fae976ab466ca856f7c459e85346e0aa6473e7a0b42bc34c2969d"
+      },
+      "source_ref": {
+        "entity_id": "03fcc34a-aac5-5f25-a113-2876bcb86712",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "171661b9-ca2b-5aa3-b55a-88bd6c1fdfcf",
+        "source_hash": "fa2133026f1fae976ab466ca856f7c459e85346e0aa6473e7a0b42bc34c2969d"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3326",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "93e311fb-a01d-59de-a301-f624a78fdd51",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "1d009d65-86fa-5aa7-adda-319f6defc03d"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "b8a29e90-b14d-505f-bf97-567ad3125cf8",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-capture-journal-cut.json",
+        "raw_bytes_sha256": "7d70e5ac6ce9296c7661071902cedf1f94734c3bd9a8d199ee40bd19a60f3d63"
+      },
+      "schema_ref": {
+        "entity_id": "d4edfbcb-1a62-56e1-bb49-68ca6c84322a",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "78a4a8bf-e3ea-5a57-b0d9-5424d7757ce2",
+        "source_hash": "7d70e5ac6ce9296c7661071902cedf1f94734c3bd9a8d199ee40bd19a60f3d63"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-capture-journal-cut.json",
+        "raw_bytes_sha256": "3b7ab621c7b6c740f4e0eed812f46c71cd12370f503706398eb2c18436ba11ff"
+      },
+      "source_ref": {
+        "entity_id": "56b76b19-b3eb-5ee9-a3d9-bafc31b3d8f7",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "d6cffcef-9928-5d6c-ba59-6478ac0e6a5f",
+        "source_hash": "3b7ab621c7b6c740f4e0eed812f46c71cd12370f503706398eb2c18436ba11ff"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3327",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "a4dc9d7b-afc5-5aaf-8036-e0ee29b7f2f2",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "f302f76f-8c5d-5af6-8d4d-76c53c6608e5"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "bf24f572-259f-5da4-9e5b-ed8d9f8f1a05",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-artifact-provider.json",
+        "raw_bytes_sha256": "048804371df75d20ba10edad5a600738a4d8daaa99f519a751b9ea4b10ad6e2c"
+      },
+      "schema_ref": {
+        "entity_id": "fc5a4843-fdaf-5114-9197-8d83cf14b1c4",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "9b4c0725-85f6-56b8-b933-44f211926e0c",
+        "source_hash": "048804371df75d20ba10edad5a600738a4d8daaa99f519a751b9ea4b10ad6e2c"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/artifact-provider.json",
+        "raw_bytes_sha256": "313bdbff36dd02ef6a4c3a3e2ada01cb47254bd7fc87b77cd0dbf0dfeeb44d77"
+      },
+      "source_ref": {
+        "entity_id": "35e3c50b-0507-5cc2-b1cb-79d042ee3eb8",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "9f318058-fb73-54b0-a896-066a90382456",
+        "source_hash": "313bdbff36dd02ef6a4c3a3e2ada01cb47254bd7fc87b77cd0dbf0dfeeb44d77"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3328",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "df330e7a-aa41-5d43-87a9-1523d64a6d56",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "b49f2b82-a3ed-5769-9224-16cf398aa015"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "c09f62f7-31c6-5267-8bb4-c8747af85cf5",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-registry-base-snapshot.json",
+        "raw_bytes_sha256": "4f0ef93692960f4c37365b2a04826d96527251c6faf704c9323597ad01f7ea73"
+      },
+      "schema_ref": {
+        "entity_id": "a173c8d7-1536-59c7-a606-d145e7aad402",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "d248ca6d-f40c-5011-89ba-83b7b00ae574",
+        "source_hash": "4f0ef93692960f4c37365b2a04826d96527251c6faf704c9323597ad01f7ea73"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-registry-base-snapshot.json",
+        "raw_bytes_sha256": "b4c8eead246c5c19ebfd7ef47b95e9899e625e13b4c8aab95f26dba644dd4c95"
+      },
+      "source_ref": {
+        "entity_id": "4b01195c-15ee-5305-ad82-b146e435d21f",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "fca97c72-f7b8-50c4-9e10-8683e7ce51bf",
+        "source_hash": "b4c8eead246c5c19ebfd7ef47b95e9899e625e13b4c8aab95f26dba644dd4c95"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3329",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "9f6aa565-cd1a-5894-95b3-d1c4905c3556",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "841c06c2-bad5-5f4c-b707-198c4eb8373c"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "cf55c612-b9df-5006-802c-bcfce39bab58",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "EXPLICIT_V8_SCHEMA_SUCCESSOR",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-backup-partial-manifest.json",
+        "raw_bytes_sha256": "efa5fd624b669c988f5de382e8a4d7b7c301f0b7f42adeff1eb95f086c2ae615"
+      },
+      "schema_ref": {
+        "entity_id": "906b179b-a18f-578f-bb56-2a3ba2febb92",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "6ecb9fd2-c27f-5d8a-8b53-02b7c67b3d14",
+        "source_hash": "efa5fd624b669c988f5de382e8a4d7b7c301f0b7f42adeff1eb95f086c2ae615"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-backup-partial-manifest.json",
+        "raw_bytes_sha256": "e97b7c820c1df9672770ae6789c63d5ea904d4808316cb972e707f3833bfafef"
+      },
+      "source_ref": {
+        "entity_id": "7498b904-301f-5813-977c-3abec366a575",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "7d79573f-6f43-5801-8fb4-e7306510ba26",
+        "source_hash": "e97b7c820c1df9672770ae6789c63d5ea904d4808316cb972e707f3833bfafef"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3330",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "7d3a3a7f-2c98-566f-b19a-138332d43177",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "d739f519-796c-586d-8cea-80df6db6841b"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "d1bcf3a4-621a-5efb-90fa-4f8ffff6c31e",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-state-after-getBackupCatalog.json",
+        "raw_bytes_sha256": "718f4f0971bf7f783cd9379588db9fee86856eb279adb214fee30cd2f084a5bb"
+      },
+      "schema_ref": {
+        "entity_id": "71743c54-79ea-5ec4-815b-133d3d302def",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "3cfecf18-6671-50f8-98a8-af7b437eac6f",
+        "source_hash": "718f4f0971bf7f783cd9379588db9fee86856eb279adb214fee30cd2f084a5bb"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/state-after-getBackupCatalog.json",
+        "raw_bytes_sha256": "a8f63cba519ffb8d37ca672bb4b481f31d42492370924aabf9e056065a27b1b7"
+      },
+      "source_ref": {
+        "entity_id": "f4ac13d1-23ec-54e3-981b-b112420488d3",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "224b7ebb-a033-5945-ae7e-913f2d9dba45",
+        "source_hash": "a8f63cba519ffb8d37ca672bb4b481f31d42492370924aabf9e056065a27b1b7"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3331",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "18101c73-971c-54ab-adf3-e80e59f27710",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "2fdcdbf0-72e4-5b6c-9ff1-6c86a337856a"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "d2186d90-54dc-579b-8ac3-90d9bb7cd0ad",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-registry-feature-revision.json",
+        "raw_bytes_sha256": "c81d2af77e764a6f718624919d801ad27dcb07be0965b4ee921ec1205085357e"
+      },
+      "schema_ref": {
+        "entity_id": "ce74e603-2bee-547a-a16d-95f85f081b3d",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "b13d54dc-1875-5f58-af93-bddd0874ddb0",
+        "source_hash": "c81d2af77e764a6f718624919d801ad27dcb07be0965b4ee921ec1205085357e"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-registry-feature-revision.json",
+        "raw_bytes_sha256": "19fc0fa840c10305571430dfa744ffe49bc51f784726e3f58e71e261eb364b5c"
+      },
+      "source_ref": {
+        "entity_id": "7e0ad42b-77cf-585f-a1e4-a6d00b1e6e8c",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "f0d7c678-a9d5-580d-a3bd-5dd0fe611686",
+        "source_hash": "19fc0fa840c10305571430dfa744ffe49bc51f784726e3f58e71e261eb364b5c"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3332",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "92b8a765-3fb2-57f6-9dd7-40e568b03779",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "853e97cd-b882-52d3-8c84-3d1c24aee7e6"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "da49771f-edd7-5949-bb03-af61dae0abd4",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-artifact-durability.json",
+        "raw_bytes_sha256": "e163bbf1fec241bac01f785eb7737bacf54da8fab815eb36b28957ef0e040e9e"
+      },
+      "schema_ref": {
+        "entity_id": "03ff84c7-b11c-5a9b-ad65-51d74eb14221",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "ad98c5d2-16cf-5cb9-a16b-4982d3f4711f",
+        "source_hash": "e163bbf1fec241bac01f785eb7737bacf54da8fab815eb36b28957ef0e040e9e"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/artifact-durability.json",
+        "raw_bytes_sha256": "b2c02fc8e82641fe9610963d98254b604510a866d35521d14a0c86fcf92a337c"
+      },
+      "source_ref": {
+        "entity_id": "054f3afb-141e-5af5-aa47-56cde51833fb",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "eaf95e0f-919e-5e98-af1d-bb76b3b404ec",
+        "source_hash": "b2c02fc8e82641fe9610963d98254b604510a866d35521d14a0c86fcf92a337c"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3333",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "a73e82ed-122b-5d96-8aa8-a360c57ff455",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "0632e0de-9295-5861-8ad7-b4938295255d"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "e6c4f3b3-bf15-5879-8061-e692b9224acb",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-retention-policy.json",
+        "raw_bytes_sha256": "26ffff288829eab9bba752058c16d4f916bb44dbcdc60265c3102e4d7b388e9a"
+      },
+      "schema_ref": {
+        "entity_id": "8c8aba78-ca47-56a8-a2db-1d01429d2dcb",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "cff557f6-77de-5148-98e7-988c9e0fea27",
+        "source_hash": "26ffff288829eab9bba752058c16d4f916bb44dbcdc60265c3102e4d7b388e9a"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-retention-policy.json",
+        "raw_bytes_sha256": "8931de37ed99af6fee5112720acc6ba97c0bb75766cc480edbf6426d5adc79af"
+      },
+      "source_ref": {
+        "entity_id": "ec8a5cf1-74d9-5598-b20b-ffc2bad73633",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "f92471f2-cdcd-5734-b119-3a017d3baeaa",
+        "source_hash": "8931de37ed99af6fee5112720acc6ba97c0bb75766cc480edbf6426d5adc79af"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3334",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "94ae047a-c9a8-5de3-b55f-1e76a400b38f",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "5df164e0-26fc-5eb3-bfdb-7dc9722421a2"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "e90b118c-b5e6-5369-ba09-6cd605e778c7",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-verification-registry-feature-entity.json",
+        "raw_bytes_sha256": "d163a3bb9ab4459d1de7b252b065ae46051b2b86b31d3e871a6e72d2dcf70c9c"
+      },
+      "schema_ref": {
+        "entity_id": "db90187f-1694-5164-87d1-100c109c4be2",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "53e89aeb-d240-59ff-8074-526fe93d58d4",
+        "source_hash": "d163a3bb9ab4459d1de7b252b065ae46051b2b86b31d3e871a6e72d2dcf70c9c"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/verification-registry-feature-entity.json",
+        "raw_bytes_sha256": "d90ac77720884aa70831e01cadd158c1a431ce8d5051c79a6f7d34d291733834"
+      },
+      "source_ref": {
+        "entity_id": "caf0204a-7115-5e87-b482-e718d3f98474",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "f2335f18-4068-568b-b16b-7f7b7c281118",
+        "source_hash": "d90ac77720884aa70831e01cadd158c1a431ce8d5051c79a6f7d34d291733834"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3335",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "0a7278af-670d-5e92-a5a6-7dcfe65f263b",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "fa5a6b80-2d20-5edb-8e20-58a6bbddf28d"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "ed3afea4-54fc-5093-8e9e-7849c3cdad33",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-backup-cut.json",
+        "raw_bytes_sha256": "fe4eab942c577400b72547ccac6e85bd634b6e450c6b96ac4237aacd4c6af1ab"
+      },
+      "schema_ref": {
+        "entity_id": "53686508-9039-5a97-9084-fef4c9d08ccc",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "63ca5fae-43de-551d-9b47-995ba8468f5e",
+        "source_hash": "fe4eab942c577400b72547ccac6e85bd634b6e450c6b96ac4237aacd4c6af1ab"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/backup-cut.json",
+        "raw_bytes_sha256": "fc9f2a76b5fd8e32140cc5e9c68b4d145ead6caae9d66747ee358839114c07df"
+      },
+      "source_ref": {
+        "entity_id": "60c67b50-6f96-5ba9-9677-e3e08748171f",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "STORAGE_OWNER",
+        "revision_id": "eb262aa3-81b4-530e-86bb-2d49e1e0dc5e",
+        "source_hash": "fc9f2a76b5fd8e32140cc5e9c68b4d145ead6caae9d66747ee358839114c07df"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3336",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "7b49eb2d-836a-5369-b65b-d2430962e26f",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "a97fe1fe-5985-5edb-a012-3106f245e4d3"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "f185f5e4-ae69-5383-9238-6d3cea372bf3",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-input-getBackupCatalog-request.json",
+        "raw_bytes_sha256": "0cc8a47d6baeebf78d85a9a68c33f103ef9b9a766261c65c6a41731d2b5150a1"
+      },
+      "schema_ref": {
+        "entity_id": "c046eb8d-fbd3-5f2b-961e-7899603d561f",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "ad0fe14a-a296-5a9c-8fdd-671f17356a94",
+        "source_hash": "0cc8a47d6baeebf78d85a9a68c33f103ef9b9a766261c65c6a41731d2b5150a1"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/input-getBackupCatalog-request.json",
+        "raw_bytes_sha256": "17d2414480554badc1b2694e06346a7d39e0208144df6a17f62a88732e309072"
+      },
+      "source_ref": {
+        "entity_id": "8505268f-244b-586c-a579-8a8fefeef483",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "PROJECTION_OWNER",
+        "revision_id": "182bbbce-92b2-5665-bf45-75e917b6fdfd",
+        "source_hash": "17d2414480554badc1b2694e06346a7d39e0208144df6a17f62a88732e309072"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3337",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "e78165f5-4c01-59c7-83ac-d3c05dd98a76",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "683adfc8-b645-599a-b11f-26d2827d01d9"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "f7fbaa8d-a51a-5788-97d5-e85167ffcd15",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "95ae2b9cfe22e40a578ad9170ed8e5aaaae3b9c4f0343ca3b58a2b8e2d79becd"
+      },
+      "schema_ref": {
+        "entity_id": "9dd840f8-6d9a-5560-b92c-b0d266007837",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "7b26b3a9-eeef-54f6-a992-d9c914dcb648",
+        "source_hash": "95ae2b9cfe22e40a578ad9170ed8e5aaaae3b9c4f0343ca3b58a2b8e2d79becd"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-registry-candidate-snapshot.json",
+        "raw_bytes_sha256": "0e3256b7ee456d659ba5011a71e44519b45bf77dc1138bdfd3228c633e28ed74"
+      },
+      "source_ref": {
+        "entity_id": "4d7f0798-9fcd-5719-bf24-c8661779b4e9",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "1c64d8e6-00d9-5ec2-bffe-8354da8f0cff",
+        "source_hash": "0e3256b7ee456d659ba5011a71e44519b45bf77dc1138bdfd3228c633e28ed74"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3338",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "4dd8efb5-e8b5-5e82-8014-01cf9057885e",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "fade8cd1-f9e4-54aa-9ca4-5e7b32f31341"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "f8e3abd1-f00f-5b58-89cf-e8af612e22f7",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-registry-entity-submitted-draft.json",
+        "raw_bytes_sha256": "0780470e13dfa49adfe9c7957e6ba245cbee51c712ef8c8f856044c010913a7b"
+      },
+      "schema_ref": {
+        "entity_id": "5f56ee12-eb7f-5e8e-b595-f85871af73c7",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "a293751c-aa0d-5ab4-be6e-1eb34a08a275",
+        "source_hash": "0780470e13dfa49adfe9c7957e6ba245cbee51c712ef8c8f856044c010913a7b"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/registry-entity-submitted-draft.json",
+        "raw_bytes_sha256": "1c0e8133631e57964b3dd7ec8d896199ff47b03516b716153fc9c9e1e633a1a2"
+      },
+      "source_ref": {
+        "entity_id": "212903a4-def4-54df-8981-f7445a89848e",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "REGISTRY_WRITER",
+        "revision_id": "3c732090-eb0c-523e-b1bc-999477377ef0",
+        "source_hash": "1c0e8133631e57964b3dd7ec8d896199ff47b03516b716153fc9c9e1e633a1a2"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    },
+    {
+      "canonical_pointer": "#/pairs/3339",
+      "case_id": "C7-POSITIVE-getBackupCatalog",
+      "companion_identity": {
+        "companion_type": "SOURCE_SCHEMA_VALIDATION_BINDING",
+        "entity_id": "e2c5cd3b-34c5-58e4-815b-5131d5fe1aa7",
+        "owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER",
+        "revision_id": "ed885f18-3c55-5075-853a-a9a6b4fbf77d"
+      },
+      "effective_dialect": "https://json-schema.org/draft/2020-12/schema",
+      "failure_semantics": [
+        "MISSING_REQUIRED_PAIR_HOLD",
+        "WRONG_EXACT_SOURCE_OR_SCHEMA_REJECT",
+        "UNKNOWN_DIALECT_REJECT",
+        "UNEXPECTED_PAIR_REJECT",
+        "AMBIGUOUS_OR_CONFLICT_REJECT"
+      ],
+      "operation_id": "getBackupCatalog",
+      "pair_id": "fc3ce0f8-238d-58af-b899-92400188463c",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit_alias": "MA13-U05"
+      },
+      "required_unit_aliases": [
+        "MA10-U01",
+        "MA10-U05",
+        "MA10-U06",
+        "MA13-U05",
+        "MA15-U02",
+        "MA15-U03"
+      ],
+      "requirement": "REQUIRED_IN_FIXED_POSITIVE_SOURCE_WORLD",
+      "resolver_method": "STANDARD_DIRECT_EXACT_SOURCE_SCHEMA",
+      "schema": {
+        "path": "fixtures/finite_worlds/schemas/source-source-verification-registry-feature-entity.json",
+        "raw_bytes_sha256": "a8a8b27126777f24b1b886a401df9707861a50ab953b30eccbd0e98645ab003b"
+      },
+      "schema_ref": {
+        "entity_id": "cf464c94-f981-5ac7-9ba9-02dc731ea339",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "f37bcd67-8afd-5e9a-8041-e4ea069131f4",
+        "source_hash": "a8a8b27126777f24b1b886a401df9707861a50ab953b30eccbd0e98645ab003b"
+      },
+      "source": {
+        "path": "fixtures/finite_worlds/sources/source-verification-registry-feature-entity.json",
+        "raw_bytes_sha256": "6c117eda1fd8312202b4f4fb0d0b05ea10b8d1037328c7800b6cb4c580a708f5"
+      },
+      "source_ref": {
+        "entity_id": "092cdf04-a647-5b0c-9426-b70a22b46b4d",
+        "hash_domain": "raw-bytes-sha256-v1",
+        "owner": "ARTIFACT_PROVIDER",
+        "revision_id": "4b1ef730-8a9e-507c-b2aa-9ae6019318b1",
+        "source_hash": "6c117eda1fd8312202b4f4fb0d0b05ea10b8d1037328c7800b6cb4c580a708f5"
+      },
+      "source_version": "MA-ARCH-REVIEW-v7-CYCLE03"
+    }
+  ]
+}

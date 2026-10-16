@@ -1,0 +1,200 @@
+{
+  "format_role": "EXECUTOR_READABLE_UI_SOURCE_SPEC_NOT_DESIGN_REPLACEMENT",
+  "exact_ui_input": {
+    "page_id": "UI14",
+    "name": "Artifact/History",
+    "route": "/artifacts",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UI_PAGE_CONTRACTS.json",
+      "raw_bytes_sha256": "ab18284229f7968456fb9b006ade182404ee3f37b385093ce015a58ca87e0536",
+      "bytes": 196438
+    },
+    "source_pointer": "#/pages/13",
+    "primary_ui_package": "PK11",
+    "operation_ids": [
+      "listArtifacts",
+      "getArtifactContent",
+      "getArtifactBytes"
+    ],
+    "consumer_units": [
+      "MA10-U01",
+      "MA10-U05",
+      "MA10-U06",
+      "MA13-U01",
+      "MA13-U02",
+      "MA15-U02"
+    ],
+    "required_mock_design": "Exact API/DTO/wire error/state/permission contracts; empty vs UNKNOWN, cancel vs completed effect, rejected conflict and restart receipt state; no browser cache as authority.",
+    "visual_acceptance": "FUTURE_HUMAN_BROWSER_CHECK_NOT_RUN",
+    "actual_build_and_integration": "NOT_RUN"
+  },
+  "exact_page_contract": {
+    "actions": [
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "ARTIFACT_PROVIDER",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "listArtifacts",
+        "request_model_or_fields": {
+          "page": {
+            "required": false,
+            "type": "CursorRequest"
+          },
+          "subject_ref": {
+            "required": false,
+            "type": "ContractRef?"
+          }
+        },
+        "response_model": "ArtifactAvailability",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA10-U01",
+          "MA10-U05",
+          "MA13-U01",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+        "domain_owner": "ARTIFACT_PROVIDER",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getArtifactContent",
+        "request_model_or_fields": {
+          "body_request": {
+            "required": false,
+            "type": "TypedArtifactBodyRequestV5?"
+          },
+          "read_mode": {
+            "required": true,
+            "type": "enum"
+          },
+          "revision": {
+            "required": true,
+            "type": "uuid"
+          }
+        },
+        "response_model": "ArtifactContentReadV5",
+        "role": "SCOPED_ARTIFACT_READER",
+        "secondary_operation_bindings": [],
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+          "pending": "operationreceiptref retained",
+          "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+          "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA10-U01",
+          "MA10-U05",
+          "MA10-U06",
+          "MA13-U01",
+          "MA13-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "ARTIFACT_PROVIDER",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getArtifactBytes",
+        "request_model_or_fields": {
+          "descriptor_ref": {
+            "required": true,
+            "type": "ContractRef"
+          }
+        },
+        "response_model": "BinaryContentMetadata",
+        "role": "SCOPED_ARTIFACT_READER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA10-U01",
+          "MA10-U05",
+          "MA13-U02",
+          "MA15-U02"
+        ]
+      }
+    ],
+    "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+    "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+    "implementation_grant": false,
+    "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+    "name": "Artifact/History",
+    "page_id": "UI14",
+    "revision": "candidate.7",
+    "route": "/artifacts",
+    "runtime": "NOT_RUN",
+    "schema_revision": "candidate.7",
+    "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+    "transport_binding": {
+      "candidate_subject": "MA-ARCH-REVIEW-v7-CYCLE03",
+      "outgoing_header": "X-MA-DTO-Version",
+      "revision_is_not_wire_alias": true,
+      "runtime": "NOT_RUN",
+      "wire_profile": "MA-DTO-v6"
+    }
+  },
+  "single_source_operations": [
+    {
+      "operation_id": "listArtifacts",
+      "producer": {
+        "owner": "ARTIFACT_PROVIDER",
+        "unit": "MA13-U01",
+        "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+        "package": "PK04"
+      },
+      "spec": "../operations/listArtifacts.json"
+    },
+    {
+      "operation_id": "getArtifactContent",
+      "producer": {
+        "owner": "ARTIFACT_PROVIDER",
+        "unit": "MA13-U01",
+        "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+        "package": "PK04"
+      },
+      "spec": "../operations/getArtifactContent.json"
+    },
+    {
+      "operation_id": "getArtifactBytes",
+      "producer": {
+        "owner": "ARTIFACT_PROVIDER",
+        "unit": "MA13-U02",
+        "unit_id": "edf14ff8-839f-44f4-a1b0-166c024f1515",
+        "package": "PK04"
+      },
+      "spec": "../operations/getArtifactBytes.json"
+    }
+  ],
+  "implementation_boundary": "React → ASP.NET BFF → Python API → Quant Core → Persistence; mock substitutes declared producer boundary only",
+  "visual_gate": "Human browser check after authorized implementation, NOT_RUN",
+  "phase_fix_policy": "Cosmetic/UI detail may be batched within exact grant; auth/error/receipt/version/data-integrity/Capital/Order/Fill drift blocks affected journey immediately",
+  "implementation_not_authorized": true
+}

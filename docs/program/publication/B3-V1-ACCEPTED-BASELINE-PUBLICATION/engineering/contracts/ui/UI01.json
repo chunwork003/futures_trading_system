@@ -1,0 +1,189 @@
+{
+  "format_role": "EXECUTOR_READABLE_UI_SOURCE_SPEC_NOT_DESIGN_REPLACEMENT",
+  "exact_ui_input": {
+    "page_id": "UI01",
+    "name": "Dashboard",
+    "route": "/dashboard",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UI_PAGE_CONTRACTS.json",
+      "raw_bytes_sha256": "ab18284229f7968456fb9b006ade182404ee3f37b385093ce015a58ca87e0536",
+      "bytes": 196438
+    },
+    "source_pointer": "#/pages/0",
+    "primary_ui_package": "PK11",
+    "operation_ids": [
+      "getAccountCapital",
+      "getHealth",
+      "getDashboard"
+    ],
+    "consumer_units": [
+      "MA06-U06",
+      "MA10-U01",
+      "MA10-U02",
+      "MA15-U02",
+      "MA16-U04"
+    ],
+    "required_mock_design": "Exact API/DTO/wire error/state/permission contracts; empty vs UNKNOWN, cancel vs completed effect, rejected conflict and restart receipt state; no browser cache as authority.",
+    "visual_acceptance": "FUTURE_HUMAN_BROWSER_CHECK_NOT_RUN",
+    "actual_build_and_integration": "NOT_RUN"
+  },
+  "exact_page_contract": {
+    "actions": [
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "J_ACCOUNT",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getAccountCapital",
+        "request_model_or_fields": {
+          "cut_ref": {
+            "required": false,
+            "type": "ContractRef?"
+          }
+        },
+        "response_model": "AccountCut",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA06-U06",
+          "MA10-U01",
+          "MA10-U02",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "O_OPERATIONS",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getHealth",
+        "request_model_or_fields": {
+          "deployment_ref": {
+            "required": false,
+            "type": "ContractRef?"
+          }
+        },
+        "response_model": "ServiceHealthProjection",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA10-U01",
+          "MA10-U02",
+          "MA15-U02",
+          "MA16-U04"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "display_data_path": "ReadEnvelope.data.dashboard",
+        "domain_owner": "N_APPLICATION",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getDashboard",
+        "paper_catalog_data_path": "ReadEnvelope.data.paper_catalog only when requested; otherwise absent or null by optional field rule",
+        "request_model_or_fields": {
+          "account_cut_ref": {
+            "required": false,
+            "type": "ContractRef?"
+          },
+          "paper_catalog_query": {
+            "required": false,
+            "type": "PaperCatalogQueryV6?"
+          }
+        },
+        "response_model": "DashboardProjectionV6",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA10-U01",
+          "MA10-U02",
+          "MA15-U02"
+        ]
+      }
+    ],
+    "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+    "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+    "implementation_grant": false,
+    "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+    "name": "Dashboard",
+    "page_id": "UI01",
+    "revision": "candidate.7",
+    "route": "/dashboard",
+    "runtime": "NOT_RUN",
+    "schema_revision": "candidate.7",
+    "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+    "transport_binding": {
+      "candidate_subject": "MA-ARCH-REVIEW-v7-CYCLE03",
+      "outgoing_header": "X-MA-DTO-Version",
+      "revision_is_not_wire_alias": true,
+      "runtime": "NOT_RUN",
+      "wire_profile": "MA-DTO-v6"
+    }
+  },
+  "single_source_operations": [
+    {
+      "operation_id": "getAccountCapital",
+      "producer": {
+        "owner": "J_ACCOUNT",
+        "unit": "MA06-U06",
+        "unit_id": "0e93d037-baa6-4c80-8de7-c8a92c128830",
+        "package": "PK08"
+      },
+      "spec": "../operations/getAccountCapital.json"
+    },
+    {
+      "operation_id": "getHealth",
+      "producer": {
+        "owner": "O_OPERATIONS",
+        "unit": "MA16-U04",
+        "unit_id": "5fab7bea-92e7-44b4-a481-9a9f8e5df509",
+        "package": "PK10"
+      },
+      "spec": "../operations/getHealth.json"
+    },
+    {
+      "operation_id": "getDashboard",
+      "producer": {
+        "owner": "N_APPLICATION",
+        "unit": "MA10-U02",
+        "unit_id": "5af2fc67-7bb1-425e-99d2-3a345e356b6f",
+        "package": "PK11"
+      },
+      "spec": "../operations/getDashboard.json"
+    }
+  ],
+  "implementation_boundary": "React → ASP.NET BFF → Python API → Quant Core → Persistence; mock substitutes declared producer boundary only",
+  "visual_gate": "Human browser check after authorized implementation, NOT_RUN",
+  "phase_fix_policy": "Cosmetic/UI detail may be batched within exact grant; auth/error/receipt/version/data-integrity/Capital/Order/Fill drift blocks affected journey immediately",
+  "implementation_not_authorized": true
+}

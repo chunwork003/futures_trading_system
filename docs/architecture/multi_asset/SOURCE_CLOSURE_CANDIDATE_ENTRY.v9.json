@@ -1,0 +1,20 @@
+{
+  "subject": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01",
+  "status": "DESIGN_CANDIDATE_NOT_ADOPTED",
+  "authority_effect": "NONE",
+  "authority_head": {
+    "path": "source_closure_v9/PAIRING_AUTHORITY_HEAD.v9.json",
+    "raw_bytes_sha256": "da3b8895a133370b2a7cc75d5a4dd80908accdb12c0b52c3a41a07e0e24c3728"
+  },
+  "qualification_entry": {
+    "module": "source_closure_v9/full_pairing_resolver.py",
+    "function": "verify_effective_unit_inputs",
+    "required_call_binding": ["external_exact_head_pin", "expected_subject", "unit_id"],
+    "success_status": "SOURCE_INPUTS_VERIFIED_NOT_ELIGIBLE",
+    "existing_consumer_owner": "EXISTING_WORK_VERSIONED_COMPANION_ADAPTER"
+  },
+  "predecessor_policy": "V8_BYTES_IMMUTABLE_HISTORICAL_REPLAY_ONLY_CANNOT_SUBSTITUTE_V9_REQUIRED_PAIR_CLOSURE",
+  "missing_or_unknown_binding": "HOLD_NO_AUTOMATIC_PREDECESSOR_SELECTION",
+  "adoption_required": true,
+  "execution_authorized": false
+}

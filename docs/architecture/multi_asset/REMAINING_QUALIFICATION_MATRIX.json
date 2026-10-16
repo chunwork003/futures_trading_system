@@ -1,0 +1,325 @@
+{
+  "schema_version": "architecture.remaining_qualification.v1",
+  "authority_effect": "NONE",
+  "gates": [
+    {
+      "gate_id": "C3_R02_R06",
+      "class": "P00_DESIGN_CLOSURE_BLOCKER",
+      "subjects": [
+        "R02",
+        "R06"
+      ],
+      "required_evidence": "Original exact coverage/qualification/exclusion/trusted-reading/context-successor evidence and adoption",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_APPLICABLE_TO_SOURCE_DESIGN_REVIEW",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": true,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "C5_R08",
+      "class": "P00_DESIGN_CLOSURE_BLOCKER",
+      "subjects": [
+        "R08",
+        "91 original rows",
+        "A-S"
+      ],
+      "required_evidence": "Wait C3; original universe final independent review, separate new delta appendix",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_APPLICABLE_TO_SOURCE_DESIGN_REVIEW",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": true,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "C6_HUMAN_P00",
+      "class": "P00_DESIGN_CLOSURE_BLOCKER",
+      "subjects": [
+        "P00 exact baseline"
+      ],
+      "required_evidence": "Human exact receipt/materialization after C5; no automatic stream closure",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_APPLICABLE_TO_SOURCE_DESIGN_REVIEW",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": true,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "NEW_SCOPE_ADOPTION",
+      "class": "SCOPE_AND_PACKAGE_ADOPTION_BLOCKER",
+      "subjects": [
+        "MA01-MA16",
+        "LAB",
+        "URMS",
+        "multiasset",
+        "release denominator"
+      ],
+      "required_evidence": "Full source-bound delta and baseline/release adoption; no invented progress denominator",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_APPLICABLE_TO_SOURCE_DESIGN_REVIEW",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "REGISTRY_IDENTITY_FREEZE",
+      "class": "SCOPE_AND_PACKAGE_ADOPTION_BLOCKER",
+      "subjects": [
+        "MA11",
+        "MA12",
+        "normalized codes",
+        "same ID rebuild"
+      ],
+      "required_evidence": "Closed typed registry snapshot / scoped aliases / graph / source review",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_APPLICABLE_TO_SOURCE_DESIGN_REVIEW",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "EXECUTION_POLICY_V2_ADOPTION",
+      "class": "SCOPE_AND_PACKAGE_ADOPTION_BLOCKER",
+      "subjects": [
+        "MA14",
+        "candidate policy v2"
+      ],
+      "required_evidence": "Preserve v1, adopt successor through original R07/WORK owner; LM writer/cohort not pre-granted",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_APPLICABLE_TO_SOURCE_DESIGN_REVIEW",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "SQL_RF01_RE_REVIEW",
+      "class": "IMPLEMENTATION_QUALIFICATION_GATE",
+      "subjects": [
+        "SQL-PREFLIGHT RF01"
+      ],
+      "required_evidence": "Source-only independent re-review still pending; cannot borrow 104 author tests",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "ACTUAL_POSTGRESQL",
+      "class": "IMPLEMENTATION_QUALIFICATION_GATE",
+      "subjects": [
+        "FK",
+        "CAS",
+        "two connections",
+        "write-skew",
+        "crash",
+        "receipt durability"
+      ],
+      "required_evidence": "Disposable exact grant and measured SQL evidence, no fake SQL inference",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "GIT_SQL_PUBLICATION",
+      "class": "IMPLEMENTATION_QUALIFICATION_GATE",
+      "subjects": [
+        "unknown outcome",
+        "CAS",
+        "conflict",
+        "replay",
+        "export/import"
+      ],
+      "required_evidence": "Pinned exporter/importer crash tests and recovery receipts",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "WINDOWS_PROVIDER_CAPTURE",
+      "class": "IMPLEMENTATION_QUALIFICATION_GATE",
+      "subjects": [
+        "reparse",
+        "volume/device disjoint",
+        "TOCTOU",
+        "immutable capture",
+        "keys"
+      ],
+      "required_evidence": "Actual isolated Windows filesystem/provider/durability/key recovery tests",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "RESTORE_TEST_A_B_C",
+      "class": "IMPLEMENTATION_QUALIFICATION_GATE",
+      "subjects": [
+        "Git-only",
+        "Full Private",
+        "Historical",
+        "B independent closure"
+      ],
+      "required_evidence": "Actual authorized disposable restore/byte/ref/head/epoch verification; source preservation bundle is not this test",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "RESEARCH_METHODS",
+      "class": "IMPLEMENTATION_QUALIFICATION_GATE",
+      "subjects": [
+        "Backtest",
+        "OOS",
+        "WFO",
+        "MC",
+        "Benchmark",
+        "Ablation",
+        "Sandbox"
+      ],
+      "required_evidence": "Leakage/algorithm/seed/tolerance/capture qualification on immutable fixtures",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "MONEY_SUBMISSION_CUT",
+      "class": "IMPLEMENTATION_QUALIFICATION_GATE",
+      "subjects": [
+        "origin",
+        "reservation C0/C1/C2",
+        "risk",
+        "sealed terminal",
+        "repricing"
+      ],
+      "required_evidence": "Account UoW plus protocol crash/lease/kill/unknown tests; no core semantics improvisation",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "BFF_UI_19_PAGES",
+      "class": "IMPLEMENTATION_QUALIFICATION_GATE",
+      "subjects": [
+        "typed DTO",
+        "auth",
+        "cursor",
+        "stream",
+        "states",
+        "six journeys"
+      ],
+      "required_evidence": "Cross Python/.NET/TS golden fixtures and real E2E; no empty page scaffold credit",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "COMPILER_EXECUTOR_INTAKE",
+      "class": "IMPLEMENTATION_QUALIFICATION_GATE",
+      "subjects": [
+        "18-field plan adapter",
+        "qualified model",
+        "STOP/Resume",
+        "result evidence"
+      ],
+      "required_evidence": "Existing compiler/gates/profile tested; no new authority engine",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "ASSET_ADMISSION",
+      "class": "RELEASE_OR_FUTURE_GATE",
+      "subjects": [
+        "each asset/market/calendar/settlement/valuation/model"
+      ],
+      "required_evidence": "Official source profile qualification per asset, unsupported live routes deny; full product scope preserved",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "SHIOAJI_CAPABILITY",
+      "class": "RELEASE_OR_FUTURE_GATE",
+      "subjects": [
+        "SDK version",
+        "account/env",
+        "listing",
+        "operation",
+        "qualifiers"
+      ],
+      "required_evidence": "Mapping/vendor/read-only/live levels distinct; international API unsupported route denied",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "V1_SIX_JOURNEYS",
+      "class": "RELEASE_OR_FUTURE_GATE",
+      "subjects": [
+        "J1-J6"
+      ],
+      "required_evidence": "Original product release gates with complete source-bound new slice; UNCAlIBRATED remains",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "LIVE_HUMAN_ADMISSION",
+      "class": "RELEASE_OR_FUTURE_GATE",
+      "subjects": [
+        "capital",
+        "risk values",
+        "credentials",
+        "true orders",
+        "fresh reentry"
+      ],
+      "required_evidence": "Exact Human policy/grant plus all required RuntimeQualification, separate from architecture adoption",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    },
+    {
+      "gate_id": "FUTURE_S14_NAS_CLOUD_PITR",
+      "class": "RELEASE_OR_FUTURE_GATE",
+      "subjects": [
+        "S14/S15",
+        "NAS",
+        "Cloud",
+        "offline",
+        "PITR"
+      ],
+      "required_evidence": "Future research source retained; not prerequisite to existing V1 coding",
+      "status": "PENDING_NOT_CLOSED",
+      "runtime_test": "NOT_RUN",
+      "owner": "ORIGINAL_P00_OR_DOMAIN_REVIEW_INTAKE_HUMAN_OWNER",
+      "global_blocking": false,
+      "scope_rule": "Block only affected exact subject/operation; do not implicitly block all P01/P02 or research/data work"
+    }
+  ],
+  "author_check_not_independent_acceptance": true,
+  "source_capture_metadata_limit": "Workbook created metadata 2026-10-11 does not establish Owner-stated earliest 2026-10-02 message/date; original chat message-level evidence unavailable"
+}

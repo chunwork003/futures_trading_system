@@ -1,0 +1,256 @@
+{
+  "format_role": "EXECUTOR_READABLE_UI_SOURCE_SPEC_NOT_DESIGN_REPLACEMENT",
+  "exact_ui_input": {
+    "page_id": "UI17",
+    "name": "Settings",
+    "route": "/settings",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UI_PAGE_CONTRACTS.json",
+      "raw_bytes_sha256": "ab18284229f7968456fb9b006ade182404ee3f37b385093ce015a58ca87e0536",
+      "bytes": 196438
+    },
+    "source_pointer": "#/pages/16",
+    "primary_ui_package": "PK11",
+    "operation_ids": [
+      "getBrokerCapabilities",
+      "getConfig",
+      "saveConfigCandidate",
+      "getBackupCatalog"
+    ],
+    "consumer_units": [
+      "MA09-U01",
+      "MA10-U01",
+      "MA10-U05",
+      "MA13-U05",
+      "MA15-U02",
+      "MA16-U02"
+    ],
+    "required_mock_design": "Exact API/DTO/wire error/state/permission contracts; empty vs UNKNOWN, cancel vs completed effect, rejected conflict and restart receipt state; no browser cache as authority.",
+    "visual_acceptance": "FUTURE_HUMAN_BROWSER_CHECK_NOT_RUN",
+    "actual_build_and_integration": "NOT_RUN"
+  },
+  "exact_page_contract": {
+    "actions": [
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "I_ADAPTER",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getBrokerCapabilities",
+        "request_model_or_fields": {
+          "instrument_kind": {
+            "required": false,
+            "type": "enum?"
+          },
+          "operation": {
+            "required": false,
+            "type": "string?"
+          },
+          "page": {
+            "required": false,
+            "type": "CursorRequest"
+          },
+          "provider": {
+            "required": true,
+            "type": "string"
+          }
+        },
+        "response_model": "CapabilityRevision",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA09-U01",
+          "MA10-U01",
+          "MA10-U05",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "N_APPLICATION",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getConfig",
+        "request_model_or_fields": {
+          "config_ref": {
+            "required": false,
+            "type": "ContractRef?"
+          },
+          "page": {
+            "required": false,
+            "type": "CursorRequest"
+          }
+        },
+        "response_model": "ConfigRevision",
+        "role": "RESOURCE_ADMIN",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA10-U01",
+          "MA10-U05",
+          "MA15-U02",
+          "MA16-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "N_APPLICATION",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "saveConfigCandidate",
+        "request_model_or_fields": {
+          "base_ref": {
+            "required": true,
+            "type": "ContractRef"
+          },
+          "policy_refs": {
+            "required": true,
+            "type": "ContractRef[]"
+          },
+          "values": {
+            "required": true,
+            "type": "ConfigValues"
+          }
+        },
+        "response_model": "ConfigRevision",
+        "role": "RESOURCE_ADMIN",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+        "unit_consumers": [
+          "MA10-U01",
+          "MA10-U05",
+          "MA15-U02",
+          "MA16-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "STORAGE_OWNER",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getBackupCatalog",
+        "request_model_or_fields": {
+          "page": {
+            "required": false,
+            "type": "CursorRequest"
+          },
+          "set_ref": {
+            "required": false,
+            "type": "ContractRef?"
+          }
+        },
+        "response_model": "BackupSetManifest",
+        "role": "RESTORE_OPERATOR",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA10-U01",
+          "MA10-U05",
+          "MA13-U05",
+          "MA15-U02"
+        ]
+      }
+    ],
+    "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+    "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+    "implementation_grant": false,
+    "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+    "name": "Settings",
+    "page_id": "UI17",
+    "revision": "candidate.7",
+    "route": "/settings",
+    "runtime": "NOT_RUN",
+    "schema_revision": "candidate.7",
+    "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+    "transport_binding": {
+      "candidate_subject": "MA-ARCH-REVIEW-v7-CYCLE03",
+      "outgoing_header": "X-MA-DTO-Version",
+      "revision_is_not_wire_alias": true,
+      "runtime": "NOT_RUN",
+      "wire_profile": "MA-DTO-v6"
+    }
+  },
+  "single_source_operations": [
+    {
+      "operation_id": "getBrokerCapabilities",
+      "producer": {
+        "owner": "I_ADAPTER",
+        "unit": "MA09-U01",
+        "unit_id": "2460bd7b-58e9-447e-bdd2-b51e823802d1",
+        "package": "PK09"
+      },
+      "spec": "../operations/getBrokerCapabilities.json"
+    },
+    {
+      "operation_id": "getConfig",
+      "producer": {
+        "owner": "N_APPLICATION",
+        "unit": "MA16-U02",
+        "unit_id": "417a48ca-cd02-4682-8099-6b22cb9347d6",
+        "package": "PK04"
+      },
+      "spec": "../operations/getConfig.json"
+    },
+    {
+      "operation_id": "saveConfigCandidate",
+      "producer": {
+        "owner": "N_APPLICATION",
+        "unit": "MA16-U02",
+        "unit_id": "417a48ca-cd02-4682-8099-6b22cb9347d6",
+        "package": "PK04"
+      },
+      "spec": "../operations/saveConfigCandidate.json"
+    },
+    {
+      "operation_id": "getBackupCatalog",
+      "producer": {
+        "owner": "STORAGE_OWNER",
+        "unit": "MA13-U05",
+        "unit_id": "7dda8b7f-82d2-46d4-b6c5-7e0c960d0e64",
+        "package": "PK04"
+      },
+      "spec": "../operations/getBackupCatalog.json"
+    }
+  ],
+  "implementation_boundary": "React → ASP.NET BFF → Python API → Quant Core → Persistence; mock substitutes declared producer boundary only",
+  "visual_gate": "Human browser check after authorized implementation, NOT_RUN",
+  "phase_fix_policy": "Cosmetic/UI detail may be batched within exact grant; auth/error/receipt/version/data-integrity/Capital/Order/Fill drift blocks affected journey immediately",
+  "implementation_not_authorized": true
+}

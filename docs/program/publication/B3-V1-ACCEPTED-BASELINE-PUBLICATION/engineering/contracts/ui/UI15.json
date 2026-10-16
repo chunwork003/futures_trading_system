@@ -1,0 +1,234 @@
+{
+  "format_role": "EXECUTOR_READABLE_UI_SOURCE_SPEC_NOT_DESIGN_REPLACEMENT",
+  "exact_ui_input": {
+    "page_id": "UI15",
+    "name": "URMS",
+    "route": "/engineering/registry",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UI_PAGE_CONTRACTS.json",
+      "raw_bytes_sha256": "ab18284229f7968456fb9b006ade182404ee3f37b385093ce015a58ca87e0536",
+      "bytes": 196438
+    },
+    "source_pointer": "#/pages/14",
+    "primary_ui_package": "PK11",
+    "operation_ids": [
+      "getRegistry",
+      "proposeRegistry",
+      "getAlias"
+    ],
+    "consumer_units": [
+      "MA10-U01",
+      "MA10-U05",
+      "MA10-U06",
+      "MA11-U01",
+      "MA11-U02",
+      "MA11-U03",
+      "MA11-U04",
+      "MA15-U02"
+    ],
+    "required_mock_design": "Exact API/DTO/wire error/state/permission contracts; empty vs UNKNOWN, cancel vs completed effect, rejected conflict and restart receipt state; no browser cache as authority.",
+    "visual_acceptance": "FUTURE_HUMAN_BROWSER_CHECK_NOT_RUN",
+    "actual_build_and_integration": "NOT_RUN"
+  },
+  "exact_page_contract": {
+    "actions": [
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+        "domain_owner": "PROJECTION_IMPORTER",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getRegistry",
+        "request_model_or_fields": {
+          "query": {
+            "required": true,
+            "type": "RegistryBodyQueryV5"
+          },
+          "snapshot_ref": {
+            "required": true,
+            "type": "ContractRef"
+          }
+        },
+        "response_model": "RegistryBodyReadPageV5",
+        "role": "VIEWER",
+        "secondary_operation_bindings": [
+          {
+            "cardinality": "ONE",
+            "dto_version": "MA-DTO-v6",
+            "operation_id": "getArtifactContent",
+            "permission": "every body/source read separately resource-scoped",
+            "request": "BODY mode only exact known TypedBodyBindingV5.content_artifact_ref path+subject/schema/snapshot; no domainID/artifactID guess",
+            "response_model": "ArtifactContentReadV5"
+          }
+        ],
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+          "pending": "operationreceiptref retained",
+          "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+          "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA10-U01",
+          "MA10-U05",
+          "MA10-U06",
+          "MA11-U01",
+          "MA11-U02",
+          "MA11-U03",
+          "MA11-U04"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "body_read_contract": "BODY_CAPTURE_READBACK_CONTRACTS.md + BODY_TYPE_CATALOG.candidate.v5.json; source exact body hash/schema/scope/snapshot, availability/integrity/index/A/B independent",
+        "domain_owner": "REGISTRY_WRITER",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "proposeRegistry",
+        "request_model_or_fields": {
+          "proposal": {
+            "required": true,
+            "type": "RegistryProposalRequestV5"
+          }
+        },
+        "response_model": "RegistryProposalResultV5",
+        "role": "ENGINEERING_EDITOR",
+        "secondary_operation_bindings": [
+          {
+            "body_read": "After committed exact result_ref discovered, result_body=REQUIRED+expected_result_ref+read_snapshot_ref from receipt ReadEnvelope",
+            "cardinality": "ONE",
+            "discovery": "path id from server OperationReceipt.operation_id; result_body=NONE captures latest lifecycle receipt at explicit readcut",
+            "dto_version": "MA-DTO-v6",
+            "operation_id": "getOperation",
+            "permission": "existing operation receipt read + exact result/source/body read; recheck at boundary",
+            "response_model": "OperationReadbackV5"
+          }
+        ],
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Body page COMPLETE+zero selected members only; missing bytes unsupported schema never empty",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "Read-only last display labelled cached/as_of; no Human confirm, save or new preview authorization from cache",
+          "pending": "operationreceiptref retained",
+          "success": "Exact server receipt/readback body AVAILABLE+VERIFIED, selected snapshot scope; no input/cache fallback",
+          "unknown": "Receipt UNKNOWN query same command; body UNKNOWN/PARTIAL remains explicit, no approval"
+        },
+        "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+        "unit_consumers": [
+          "MA10-U01",
+          "MA10-U05",
+          "MA10-U06",
+          "MA11-U02",
+          "MA11-U04"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "REGISTRY_WRITER",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getAlias",
+        "request_model_or_fields": {
+          "catalog_ref": {
+            "required": true,
+            "type": "ContractRef"
+          },
+          "page": {
+            "required": false,
+            "type": "CursorRequest"
+          },
+          "raw_text": {
+            "required": true,
+            "type": "string"
+          },
+          "selection": {
+            "required": true,
+            "type": "AliasResolutionSelector"
+          },
+          "source_context": {
+            "required": true,
+            "type": "string"
+          }
+        },
+        "response_model": "LegacyAlias",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA10-U01",
+          "MA10-U05",
+          "MA11-U02",
+          "MA15-U02"
+        ]
+      }
+    ],
+    "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+    "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+    "implementation_grant": false,
+    "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+    "name": "URMS",
+    "page_id": "UI15",
+    "revision": "candidate.7",
+    "route": "/engineering/registry",
+    "runtime": "NOT_RUN",
+    "schema_revision": "candidate.7",
+    "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+    "transport_binding": {
+      "candidate_subject": "MA-ARCH-REVIEW-v7-CYCLE03",
+      "outgoing_header": "X-MA-DTO-Version",
+      "revision_is_not_wire_alias": true,
+      "runtime": "NOT_RUN",
+      "wire_profile": "MA-DTO-v6"
+    }
+  },
+  "single_source_operations": [
+    {
+      "operation_id": "getRegistry",
+      "producer": {
+        "owner": "PROJECTION_IMPORTER",
+        "unit": "MA11-U03",
+        "unit_id": "77c0018d-8680-4e94-a7b9-7fe0de492c60",
+        "package": "PK03"
+      },
+      "spec": "../operations/getRegistry.json"
+    },
+    {
+      "operation_id": "proposeRegistry",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit": "MA11-U04",
+        "unit_id": "31426b58-bf4e-49bb-8e9d-3a85cb8c2218",
+        "package": "PK03"
+      },
+      "spec": "../operations/proposeRegistry.json"
+    },
+    {
+      "operation_id": "getAlias",
+      "producer": {
+        "owner": "REGISTRY_WRITER",
+        "unit": "MA11-U02",
+        "unit_id": "550e6375-b311-43cc-a75b-4468b858b826",
+        "package": "PK03"
+      },
+      "spec": "../operations/getAlias.json"
+    }
+  ],
+  "implementation_boundary": "React → ASP.NET BFF → Python API → Quant Core → Persistence; mock substitutes declared producer boundary only",
+  "visual_gate": "Human browser check after authorized implementation, NOT_RUN",
+  "phase_fix_policy": "Cosmetic/UI detail may be batched within exact grant; auth/error/receipt/version/data-integrity/Capital/Order/Fill drift blocks affected journey immediately",
+  "implementation_not_authorized": true
+}

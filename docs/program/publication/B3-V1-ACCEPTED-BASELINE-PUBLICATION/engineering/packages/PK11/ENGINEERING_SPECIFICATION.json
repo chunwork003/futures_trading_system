@@ -1,0 +1,1936 @@
+{
+  "format_role": "COHESIVE_PACKAGE_ENGINEERING_SPEC_NOT_EXECUTION_WO",
+  "package_id": "PK11",
+  "name": "單一契約的 Web 與跨層旅程",
+  "purpose": "共用 UI／DTO／狀態、19 頁、React→ASP.NET BFF→Python API 的完整操作與端到端整合。",
+  "cohesion": "CROSS_LAYER_INTERFACE_AND_VISUAL_ACCEPTANCE",
+  "unit_ids": [
+    "8ae2d3b5-7d39-4d7d-a05c-23ecfbecb8dc",
+    "5af2fc67-7bb1-425e-99d2-3a345e356b6f",
+    "3d613bb3-e281-4ea7-a682-341eb3aff9d8",
+    "75db228f-e2b7-40f6-a45b-0bd6d339aeab",
+    "62dbf7f6-c1bf-406f-b448-e84b114c59e6",
+    "0725e6af-4fbf-4f0f-b1f4-37fb0455548f"
+  ],
+  "unit_aliases": [
+    "MA10-U01",
+    "MA10-U02",
+    "MA10-U03",
+    "MA10-U04",
+    "MA10-U05",
+    "MA10-U06"
+  ],
+  "units": [
+    {
+      "alias": "MA10-U01",
+      "uuid": "8ae2d3b5-7d39-4d7d-a05c-23ecfbecb8dc",
+      "feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+      "spec": "units/MA10-U01.json",
+      "goal": "Shared UI Layout／DTO／State system",
+      "dependencies": [
+        {
+          "unit_id": "cfc91817-46ea-4145-8427-139e06e5569d",
+          "unit_alias": "MA01-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "192b0e77-b779-5eb4-8c1e-22e2a393d8eb",
+          "required_feature_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+          "gate": "EXACT_ADOPTED_SOURCE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L2",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "web/src/contracts/v2.ts",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "application/Contracts/V2/CommandEnvelope.cs",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma10_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA10-U02",
+      "uuid": "5af2fc67-7bb1-425e-99d2-3a345e356b6f",
+      "feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+      "spec": "units/MA10-U02.json",
+      "goal": "Market／Dashboard／Portfolio／Cash UI",
+      "dependencies": [
+        {
+          "unit_id": "8ae2d3b5-7d39-4d7d-a05c-23ecfbecb8dc",
+          "unit_alias": "MA10-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "417bd918-2c37-556f-8405-4f32c83c0e68",
+          "required_feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "cfc91817-46ea-4145-8427-139e06e5569d",
+          "unit_alias": "MA01-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "192b0e77-b779-5eb4-8c1e-22e2a393d8eb",
+          "required_feature_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "69b6baec-4e0d-42df-ab4f-5900e97f48b6",
+          "unit_alias": "MA02-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "ef3b999d-d11d-5bf3-a359-94367868e2bb",
+          "required_feature_id": "75f4af02-d872-4821-8d7e-8471de047126",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "bb7fcd6e-af41-43e9-aeb4-81fc14571315",
+          "unit_alias": "MA02-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "1c25a469-81c4-561c-8f2c-521763dcead6",
+          "required_feature_id": "75f4af02-d872-4821-8d7e-8471de047126",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "ad7fdaed-5e0d-4a51-a24b-1922f8ce6f26",
+          "unit_alias": "MA03-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "1d1da1e3-87a0-5f78-8ad5-5cb264f54471",
+          "required_feature_id": "338687ba-690e-46f2-bf91-dc6221806f44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "a8a56800-81b9-4297-8847-ad2bb530ae83",
+          "unit_alias": "MA03-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "3ae07179-0a3c-5406-b534-a01238433327",
+          "required_feature_id": "338687ba-690e-46f2-bf91-dc6221806f44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "ee90d221-1760-4f91-b1c1-15315ab6e72b",
+          "unit_alias": "MA05-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "5b8e0654-b557-5ac2-afe8-907be0902deb",
+          "required_feature_id": "da4d16e6-0d40-4d42-8dd6-bc7131f93b4b",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "dd14d07c-7b22-4915-bf83-5366df74f34d",
+          "unit_alias": "MA05-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "3d291ea7-b253-5431-b313-49cafa3d309f",
+          "required_feature_id": "da4d16e6-0d40-4d42-8dd6-bc7131f93b4b",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "86028405-7982-4b79-9413-6bcf4abd2776",
+          "unit_alias": "MA05-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "a414ae21-edb4-55c3-b804-e1ca2ba27ca8",
+          "required_feature_id": "da4d16e6-0d40-4d42-8dd6-bc7131f93b4b",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "46af7db1-aace-42c4-9e90-1046f5deb3de",
+          "unit_alias": "MA06-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "2a7dc710-6541-5a67-a167-6881274c500d",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "ddc16700-5687-4b64-9110-fb180fe5b60b",
+          "unit_alias": "MA06-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "012053e2-6534-5048-87fb-517f57700685",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "210f5fa9-f030-4aab-a156-65f8f340053e",
+          "unit_alias": "MA06-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "4d05b67a-e5fc-58c9-8ef7-97f05641b700",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "7f17ce05-eec2-40d8-9915-267db9c07d6d",
+          "unit_alias": "MA06-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "e9d1dc12-7e4b-50c3-b979-14f7163f5dc8",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "0e93d037-baa6-4c80-8de7-c8a92c128830",
+          "unit_alias": "MA06-U06",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "33f557a5-9e04-58de-967b-52a2665b2595",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "5fab7bea-92e7-44b4-a481-9a9f8e5df509",
+          "unit_alias": "MA16-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "37305c52-5893-5bdc-bf62-baad9d9b7841",
+          "required_feature_id": "1d0c8c30-cd76-4ce6-abd6-761d630ae1d3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "a2c5f009-53d8-4b97-bd37-be95b61ba3fe",
+          "unit_alias": "MA12-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "97914c4f-caad-5c5d-a751-60575764228b",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK exact permanent producer ID + exact successor plan revision + qualified result/scoped reuse; matching source/schema/environment/profile/account/cut and operation required; unknown/absent HOLD"
+        },
+        {
+          "unit_id": "e0279c82-8eec-4de5-80c9-7e1b7d78a48f",
+          "unit_alias": "MA04-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "d9e9bc44-1910-5098-b2cd-dac8002f8e2f",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "Existing WORK exact permanent producer ID + exact successor plan revision + qualified result/scoped reuse; matching source/schema/environment/profile/account/cut and operation required; unknown/absent HOLD"
+        },
+        {
+          "unit_id": "407f7d9c-05a0-4926-9421-b062cc4fde53",
+          "unit_alias": "MA08-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "5fd10b83-3c4b-587f-9130-8a05d9ee2342",
+          "required_feature_id": "0620fbbc-fb41-42e0-96b0-006d8327f5c3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "f4f4e882-c4ab-472e-be9c-4de313d024d5",
+          "unit_alias": "MA08-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "1214700b-50b5-5f77-bdbe-385862769a04",
+          "required_feature_id": "0620fbbc-fb41-42e0-96b0-006d8327f5c3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L2",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "web/src/contracts/v2.ts",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "application/Contracts/V2/CommandEnvelope.cs",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma10_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA10-U03",
+      "uuid": "3d613bb3-e281-4ea7-a682-341eb3aff9d8",
+      "feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+      "spec": "units/MA10-U03.json",
+      "goal": "Builder／Research／Compare／Library UI",
+      "dependencies": [
+        {
+          "unit_id": "8ae2d3b5-7d39-4d7d-a05c-23ecfbecb8dc",
+          "unit_alias": "MA10-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "417bd918-2c37-556f-8405-4f32c83c0e68",
+          "required_feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "cfc91817-46ea-4145-8427-139e06e5569d",
+          "unit_alias": "MA01-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "192b0e77-b779-5eb4-8c1e-22e2a393d8eb",
+          "required_feature_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "332a4057-004a-48e0-8f8c-199d8126c497",
+          "unit_alias": "MA04-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "441ba3a0-328b-54c6-b486-8192048a3652",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "e0279c82-8eec-4de5-80c9-7e1b7d78a48f",
+          "unit_alias": "MA04-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "d9e9bc44-1910-5098-b2cd-dac8002f8e2f",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "9e7f20fa-f68c-45a0-8ed0-e841d9a543da",
+          "unit_alias": "MA04-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "8efa2c6f-6f31-50b5-8c5e-33f39d143cd7",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "cabd3d4c-e10a-4a60-a1c2-8e85cd44684f",
+          "unit_alias": "MA04-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "fc2d1679-9a08-5b9f-a310-8cff88af0d1f",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "5fec1579-d8c0-45a9-b658-3eb47efb5a31",
+          "unit_alias": "MA04-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "231c5ce2-922e-5905-ba76-5500f7cb7609",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "430b85dc-75e0-4811-b798-3fcc76f1f34e",
+          "unit_alias": "MA04-U06",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "bff5c555-25ff-5497-b81c-af5e633c10b2",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "3ea5aaf9-8a64-48ac-adb0-e5b315c8e548",
+          "unit_alias": "MA07-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "a3e4d7dc-f93f-5fdc-9b46-e848fa0d7169",
+          "required_feature_id": "8aca5f15-4caa-4579-8941-54123ba36710",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L3",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "web/src/contracts/v2.ts",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "application/Contracts/V2/CommandEnvelope.cs",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma10_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA10-U04",
+      "uuid": "75db228f-e2b7-40f6-a45b-0bd6d339aeab",
+      "feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+      "spec": "units/MA10-U04.json",
+      "goal": "Simulation／Orders／Risk／Positions UI",
+      "dependencies": [
+        {
+          "unit_id": "8ae2d3b5-7d39-4d7d-a05c-23ecfbecb8dc",
+          "unit_alias": "MA10-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "417bd918-2c37-556f-8405-4f32c83c0e68",
+          "required_feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "cfc91817-46ea-4145-8427-139e06e5569d",
+          "unit_alias": "MA01-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "192b0e77-b779-5eb4-8c1e-22e2a393d8eb",
+          "required_feature_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "cabd3d4c-e10a-4a60-a1c2-8e85cd44684f",
+          "unit_alias": "MA04-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "fc2d1679-9a08-5b9f-a310-8cff88af0d1f",
+          "required_feature_id": "12541fd2-1f5c-44fa-a603-af8dd3e3c9da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "ddc16700-5687-4b64-9110-fb180fe5b60b",
+          "unit_alias": "MA06-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "012053e2-6534-5048-87fb-517f57700685",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "0e93d037-baa6-4c80-8de7-c8a92c128830",
+          "unit_alias": "MA06-U06",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "33f557a5-9e04-58de-967b-52a2665b2595",
+          "required_feature_id": "ae372498-3238-4cd2-ace3-fcfd8cf40630",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "3e17cc07-98bb-4a34-bf93-3559c70e862c",
+          "unit_alias": "MA07-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "733a8da0-2823-50a0-b213-767b9956a90a",
+          "required_feature_id": "8aca5f15-4caa-4579-8941-54123ba36710",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "fc92c842-a14b-493b-9779-c83823027490",
+          "unit_alias": "MA07-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "5b1e6f7b-af2e-52a8-9702-e80d28fb2781",
+          "required_feature_id": "8aca5f15-4caa-4579-8941-54123ba36710",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "f4f4e882-c4ab-472e-be9c-4de313d024d5",
+          "unit_alias": "MA08-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "1214700b-50b5-5f77-bdbe-385862769a04",
+          "required_feature_id": "0620fbbc-fb41-42e0-96b0-006d8327f5c3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "407f7d9c-05a0-4926-9421-b062cc4fde53",
+          "unit_alias": "MA08-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "5fd10b83-3c4b-587f-9130-8a05d9ee2342",
+          "required_feature_id": "0620fbbc-fb41-42e0-96b0-006d8327f5c3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "e75649b8-6255-49c7-9e1d-58ec44e71b0a",
+          "unit_alias": "MA08-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "1fb67e30-ce85-58e9-b30a-46dbf04dcf78",
+          "required_feature_id": "0620fbbc-fb41-42e0-96b0-006d8327f5c3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "5af2fc67-7bb1-425e-99d2-3a345e356b6f",
+          "unit_alias": "MA10-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "76b70b63-62b9-506c-8972-88f2d75349f5",
+          "required_feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L3",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "web/src/contracts/v2.ts",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "application/Contracts/V2/CommandEnvelope.cs",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma10_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA10-U05",
+      "uuid": "62dbf7f6-c1bf-406f-b448-e84b114c59e6",
+      "feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+      "spec": "units/MA10-U05.json",
+      "goal": "URMS／Artifact／Automation／Settings UI",
+      "dependencies": [
+        {
+          "unit_id": "8ae2d3b5-7d39-4d7d-a05c-23ecfbecb8dc",
+          "unit_alias": "MA10-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "417bd918-2c37-556f-8405-4f32c83c0e68",
+          "required_feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "cfc91817-46ea-4145-8427-139e06e5569d",
+          "unit_alias": "MA01-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "192b0e77-b779-5eb4-8c1e-22e2a393d8eb",
+          "required_feature_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "2460bd7b-58e9-447e-bdd2-b51e823802d1",
+          "unit_alias": "MA09-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "4884af5b-f805-5d04-bb69-2daf8b8a2c14",
+          "required_feature_id": "61c2cbff-9a94-43ad-b026-c5436e972ec1",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "550e6375-b311-43cc-a75b-4468b858b826",
+          "unit_alias": "MA11-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "7bc24c02-6104-51d8-81bc-8d11ecbdb6f0",
+          "required_feature_id": "476e74c2-ecb5-4e25-aad4-3845b817c70c",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "77c0018d-8680-4e94-a7b9-7fe0de492c60",
+          "unit_alias": "MA11-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "34ddd6e0-20f7-52d3-8504-a9ab5e438819",
+          "required_feature_id": "476e74c2-ecb5-4e25-aad4-3845b817c70c",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "31426b58-bf4e-49bb-8e9d-3a85cb8c2218",
+          "unit_alias": "MA11-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "94a32e44-d14b-5094-99ea-431bd2207bd1",
+          "required_feature_id": "476e74c2-ecb5-4e25-aad4-3845b817c70c",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "e185c30d-eebf-43b9-ae51-16e9fbe512da",
+          "unit_alias": "MA12-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "faa9b100-80ab-5c97-90b6-e9004b5a1671",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "a2c5f009-53d8-4b97-bd37-be95b61ba3fe",
+          "unit_alias": "MA12-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "97914c4f-caad-5c5d-a751-60575764228b",
+          "required_feature_id": "a1d511cb-1c57-4e8e-aef6-eb928a12af4f",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+          "unit_alias": "MA13-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "68f0dc3c-86da-5af4-8490-7460ff221457",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "edf14ff8-839f-44f4-a1b0-166c024f1515",
+          "unit_alias": "MA13-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "cf90e661-8137-5145-b690-0777ca2c36c2",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "7dda8b7f-82d2-46d4-b6c5-7e0c960d0e64",
+          "unit_alias": "MA13-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "04f3a8e8-9c37-59d7-9f5c-7feda5b77b72",
+          "required_feature_id": "9928b207-4c06-44b9-8971-b9902df2b973",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "069c5da8-3515-4f82-aec7-1a069091b5c9",
+          "unit_alias": "MA14-U06",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "90ac2f19-ce9c-5ad5-90de-34fe0da6e947",
+          "required_feature_id": "15e9f498-3d3a-4bb3-9ac2-fd44c037be44",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "417a48ca-cd02-4682-8099-6b22cb9347d6",
+          "unit_alias": "MA16-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "e2aaf8ab-669c-5f9b-be9d-def791046b1a",
+          "required_feature_id": "1d0c8c30-cd76-4ce6-abd6-761d630ae1d3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "5fab7bea-92e7-44b4-a481-9a9f8e5df509",
+          "unit_alias": "MA16-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "37305c52-5893-5bdc-bf62-baad9d9b7841",
+          "required_feature_id": "1d0c8c30-cd76-4ce6-abd6-761d630ae1d3",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L3",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "web/src/contracts/v2.ts",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "application/Contracts/V2/CommandEnvelope.cs",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma10_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    },
+    {
+      "alias": "MA10-U06",
+      "uuid": "0725e6af-4fbf-4f0f-b1f4-37fb0455548f",
+      "feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+      "spec": "units/MA10-U06.json",
+      "goal": "BFF／Python／SignalR與六旅程E2E",
+      "dependencies": [
+        {
+          "unit_id": "8ae2d3b5-7d39-4d7d-a05c-23ecfbecb8dc",
+          "unit_alias": "MA10-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "417bd918-2c37-556f-8405-4f32c83c0e68",
+          "required_feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "cfc91817-46ea-4145-8427-139e06e5569d",
+          "unit_alias": "MA01-U01",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "192b0e77-b779-5eb4-8c1e-22e2a393d8eb",
+          "required_feature_id": "cf524f94-5c51-4ab1-b065-32203ae817db",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "5af2fc67-7bb1-425e-99d2-3a345e356b6f",
+          "unit_alias": "MA10-U02",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "76b70b63-62b9-506c-8972-88f2d75349f5",
+          "required_feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "3d613bb3-e281-4ea7-a682-341eb3aff9d8",
+          "unit_alias": "MA10-U03",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "7639bf66-d6d2-5907-9a93-b6d2f33ac43d",
+          "required_feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "75db228f-e2b7-40f6-a45b-0bd6d339aeab",
+          "unit_alias": "MA10-U04",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "b3df278b-998a-52e8-9617-951daf1c90fb",
+          "required_feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        },
+        {
+          "unit_id": "62dbf7f6-c1bf-406f-b448-e84b114c59e6",
+          "unit_alias": "MA10-U05",
+          "required_revision": "candidate.7",
+          "required_plan_revision_id": "ef3e851b-aeea-5aee-a38b-154921c79d10",
+          "required_feature_id": "7bd79808-0d11-4e8f-8507-d0e427e087da",
+          "gate": "ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+          "result_ref": null,
+          "satisfaction_state": "PENDING_EXACT_RESULT_OR_REUSE_PROOF",
+          "reuse_proof_policy": "existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source design, API name and author fixture are never qualified result"
+        }
+      ],
+      "risk": {
+        "namespace": "B3_CHANGE_RISK",
+        "tier": "L2",
+        "delta_override": "Planning tier is a minimum for the described implementation scope, not a fixed tool/chapter rating. Any authoritative Source/Registry/Acceptance Subject/permission/capital/order/fill/persistence change is at least L3; actual Runtime/Broker/Migration/Restore/Release is L4. A separately bounded pure read-only inspection can be L2 without lowering the implementation gate."
+      },
+      "proposed_files": [
+        {
+          "path": "web/src/contracts/v2.ts",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "application/Contracts/V2/CommandEnvelope.cs",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        },
+        {
+          "path": "tests/architecture_companions/test_ma10_contracts.py",
+          "current_exists": false,
+          "raw_sha256": null,
+          "current_preimage_status": "ABSENT",
+          "authorized": false
+        }
+      ],
+      "remaining_qualification": {
+        "P00": "NO_IMPLICIT_ALL_P00_STREAM_CLOSURE_DEPENDENCY_ADDED; existing WORK checks actually required profile/dependency/result and authority",
+        "runtime": "Any later actual SQL/Broker/Restore/Controller/Release side effect still requires exact named qualification/grant; source completeness is insufficient",
+        "source_assembly": "PENDING_EXACT_ACCEPTED_ASSEMBLY_OR_ACCEPTED_OVERLAY_ADAPTER",
+        "compiler_context_result_adapter": "UNRESOLVED_EXACT_APPLICABLE_PROFILE_AND_RECEIPT",
+        "unit_dependencies": "PENDING_CURRENT_EXACT_ACCEPTED_RESULT_OR_SUPPORTED_REUSE_PROOF; missing means HOLD affected execution, not a fresh architecture defect",
+        "P01_P02_identity": "PK aggregation not closed PXX; no schema modification",
+        "grant_writer_budget": "NOT_AUTHORIZED"
+      }
+    }
+  ],
+  "source_revisions_hashes": [
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA10-U01"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/54"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U01.v9.json",
+        "raw_bytes_sha256": "09c156a1b2776325a8a4a2ecc6aa59e183699619d36ab9ee418a222e1f11abad",
+        "bytes": 176363,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "84d92c2d7527e52f8489075ea8e64630c90544f8a221aa751c49ba732881b6f4",
+      "base_plan_revision_id": "417bd918-2c37-556f-8405-4f32c83c0e68",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\10_WEB_UI_API.md",
+        "raw_bytes_sha256": "d39ddcf729bcac335867ae86f395dbaec3562ab248520aa87f381abe5ced59a0",
+        "bytes": 12749
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA10-U02"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/55"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U02.v9.json",
+        "raw_bytes_sha256": "41b855231e3a3624adddcdb08f4cd696b2e64471bf0e2726c250c1f7b4016afd",
+        "bytes": 61806,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "88f23aecc641ee3b37c6c9a1dd34b96914cedbf06b4daa86cf50ab397f531964",
+      "base_plan_revision_id": "76b70b63-62b9-506c-8972-88f2d75349f5",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\10_WEB_UI_API.md",
+        "raw_bytes_sha256": "d39ddcf729bcac335867ae86f395dbaec3562ab248520aa87f381abe5ced59a0",
+        "bytes": 12749
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA10-U03"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/56"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U03.v9.json",
+        "raw_bytes_sha256": "3c6c71e05ed7c5ad19cebd95718ea1729c3c2ff58b9add69834c8fd4c8e80b7f",
+        "bytes": 101264,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "7e896ee0c4d3a06e9566e6d76c7c44e52f03aa5879d46771178cd4c544563ff6",
+      "base_plan_revision_id": "7639bf66-d6d2-5907-9a93-b6d2f33ac43d",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\10_WEB_UI_API.md",
+        "raw_bytes_sha256": "d39ddcf729bcac335867ae86f395dbaec3562ab248520aa87f381abe5ced59a0",
+        "bytes": 12749
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA10-U04"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/57"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U04.v9.json",
+        "raw_bytes_sha256": "b59c873278ece7e5446f533621b1bf336c8a2792841f378e173832feeecc7ce9",
+        "bytes": 55928,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "315745b1bcb06b8d14513ccc5dad57f4af7843d0a5391c88450873e1e4da293f",
+      "base_plan_revision_id": "b3df278b-998a-52e8-9617-951daf1c90fb",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\10_WEB_UI_API.md",
+        "raw_bytes_sha256": "d39ddcf729bcac335867ae86f395dbaec3562ab248520aa87f381abe5ced59a0",
+        "bytes": 12749
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA10-U05"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/58"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U05.v9.json",
+        "raw_bytes_sha256": "8312b95c2c943210e36f7b9a6d4723efc245b59934973020ef78d8c14f0cf97a",
+        "bytes": 28768,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "926c7933fb6912302d6e634389f10ac0aa68eb0aee657028de7fa8c0ac4f0ae2",
+      "base_plan_revision_id": "ef3e851b-aeea-5aee-a38b-154921c79d10",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\10_WEB_UI_API.md",
+        "raw_bytes_sha256": "d39ddcf729bcac335867ae86f395dbaec3562ab248520aa87f381abe5ced59a0",
+        "bytes": 12749
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    },
+    {
+      "fixed_input": {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "pointer": "#/unit_compilation_inputs/MA10-U06"
+      },
+      "base_plan": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "raw_bytes_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "selector": "#/units/59"
+      },
+      "v9_companion": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U06.v9.json",
+        "raw_bytes_sha256": "d1b6ccf7abc8a7c9e3f9322e918ba3b7bfe5b9f727cb715062eb02e7703c9281",
+        "bytes": 179124,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      "base_canonical_sha256": "dbacecf2a4bebab653f073ecf19ee9557b3bf49bad51aabb6c73ffd31fc90c53",
+      "base_plan_revision_id": "791b2c74-25c8-5b4c-b74d-1803b988a6c9",
+      "chapter": {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\10_WEB_UI_API.md",
+        "raw_bytes_sha256": "d39ddcf729bcac335867ae86f395dbaec3562ab248520aa87f381abe5ced59a0",
+        "bytes": 12749
+      },
+      "architecture": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+    }
+  ],
+  "original_package_input": {
+    "planning_package_id": "PK11",
+    "name": "單一契約的 Web 與跨層旅程",
+    "status": "PLANNING_AND_COMPILATION_INPUT_CANDIDATE_NOT_SUBMITTED_NOT_EXECUTABLE",
+    "observable_outcome": "共用 UI／DTO／狀態、19 頁、React→ASP.NET BFF→Python API 的完整操作與端到端整合。",
+    "cohesion_boundary": "CROSS_LAYER_INTERFACE_AND_VISUAL_ACCEPTANCE",
+    "unit_aliases": [
+      "MA10-U01",
+      "MA10-U02",
+      "MA10-U03",
+      "MA10-U04",
+      "MA10-U05",
+      "MA10-U06"
+    ],
+    "unit_ids": [
+      "8ae2d3b5-7d39-4d7d-a05c-23ecfbecb8dc",
+      "5af2fc67-7bb1-425e-99d2-3a345e356b6f",
+      "3d613bb3-e281-4ea7-a682-341eb3aff9d8",
+      "75db228f-e2b7-40f6-a45b-0bd6d339aeab",
+      "62dbf7f6-c1bf-406f-b448-e84b114c59e6",
+      "0725e6af-4fbf-4f0f-b1f4-37fb0455548f"
+    ],
+    "cross_package_dependencies": [
+      "PK01",
+      "PK02",
+      "PK03",
+      "PK04",
+      "PK05",
+      "PK06",
+      "PK07",
+      "PK08",
+      "PK09",
+      "PK10"
+    ],
+    "api_operations": [
+      "amendOrder",
+      "analyzeInboxSource",
+      "applyAnalystSuggestion",
+      "applyBuilderEdit",
+      "approveLibraryException",
+      "approveLibraryRelease",
+      "archiveResearchBranch",
+      "cancelAnalystRun",
+      "cancelOrder",
+      "cancelResearchRun",
+      "captureInbox",
+      "changeRiskControl",
+      "cloneResearchBranch",
+      "confirmBudgetAllocation",
+      "createArchivePlan",
+      "createLabSimulation",
+      "createOrderIntent",
+      "createResearchBranch",
+      "createResearchRun",
+      "createScenarioRun",
+      "dispositionInbox",
+      "executeArchivePlan",
+      "generateCode",
+      "getAccountCapital",
+      "getAlias",
+      "getAnalystRun",
+      "getArchiveOperation",
+      "getArtifactBytes",
+      "getArtifactContent",
+      "getAudit",
+      "getBackupCatalog",
+      "getBrokerCapabilities",
+      "getConfig",
+      "getDashboard",
+      "getDatasetSnapshot",
+      "getEngineeringStatus",
+      "getGraphDraft",
+      "getHealth",
+      "getInstrumentRevision",
+      "getLabSimulation",
+      "getLabSimulationCounters",
+      "getMarketRule",
+      "getOperation",
+      "getOrder",
+      "getPortfolios",
+      "getRecoveryStatus",
+      "getRegistry",
+      "getResearchBranch",
+      "getResearchBranchHistory",
+      "getResearchRun",
+      "getReviewSubject",
+      "getRiskDecision",
+      "getSimulation",
+      "getSourceAnalysis",
+      "listArtifacts",
+      "listComparisons",
+      "listDatasets",
+      "listFeatures",
+      "listGraphDrafts",
+      "listGroups",
+      "listInstruments",
+      "listLabSimulationObservations",
+      "listLibraryReleases",
+      "listOrders",
+      "listPortfolioResearch",
+      "listReconciliation",
+      "listResearchBranches",
+      "listResearchRuns",
+      "pauseSimulation",
+      "previewBudgetAllocation",
+      "previewRisk",
+      "proposePlanning",
+      "proposeRegistry",
+      "queryAttribution",
+      "queryCashFlows",
+      "queryMacroSnapshots",
+      "queryMarketBars",
+      "queryObservations",
+      "queryPositions",
+      "recoverLabSimulation",
+      "replaySimulation",
+      "requestDeploymentAdmission",
+      "resumeSimulation",
+      "reviseBudget",
+      "saveComparison",
+      "saveConfigCandidate",
+      "saveFeatureDraft",
+      "saveGraphDraft",
+      "saveGroup",
+      "saveManualCodeRevision",
+      "savePortfolioResearch",
+      "sealDatasetSnapshot",
+      "sealResearchSnapshot",
+      "startAnalystRun",
+      "startSimulation"
+    ],
+    "ui_pages": [
+      "UI01",
+      "UI02",
+      "UI03",
+      "UI04",
+      "UI05",
+      "UI06",
+      "UI07",
+      "UI08",
+      "UI09",
+      "UI10",
+      "UI11",
+      "UI12",
+      "UI13",
+      "UI14",
+      "UI15",
+      "UI16",
+      "UI17",
+      "UI18",
+      "UI19"
+    ],
+    "mapping_semantics": {
+      "api_operations": "ALL_MEMBER_TOUCHED_CONSUMER_OR_VERIFICATION_CLOSURE_NOT_IMPLEMENTATION_OWNERSHIP_OR_WRITE_SCOPE",
+      "ui_pages": "ALL_MEMBER_TOUCHED_UI_CONSUMER_CLOSURE_NOT_EXCLUSIVE_UI_OWNERSHIP"
+    },
+    "touched_api_operation_ids": [
+      "amendOrder",
+      "analyzeInboxSource",
+      "applyAnalystSuggestion",
+      "applyBuilderEdit",
+      "approveLibraryException",
+      "approveLibraryRelease",
+      "archiveResearchBranch",
+      "cancelAnalystRun",
+      "cancelOrder",
+      "cancelResearchRun",
+      "captureInbox",
+      "changeRiskControl",
+      "cloneResearchBranch",
+      "confirmBudgetAllocation",
+      "createArchivePlan",
+      "createLabSimulation",
+      "createOrderIntent",
+      "createResearchBranch",
+      "createResearchRun",
+      "createScenarioRun",
+      "dispositionInbox",
+      "executeArchivePlan",
+      "generateCode",
+      "getAccountCapital",
+      "getAlias",
+      "getAnalystRun",
+      "getArchiveOperation",
+      "getArtifactBytes",
+      "getArtifactContent",
+      "getAudit",
+      "getBackupCatalog",
+      "getBrokerCapabilities",
+      "getConfig",
+      "getDashboard",
+      "getDatasetSnapshot",
+      "getEngineeringStatus",
+      "getGraphDraft",
+      "getHealth",
+      "getInstrumentRevision",
+      "getLabSimulation",
+      "getLabSimulationCounters",
+      "getMarketRule",
+      "getOperation",
+      "getOrder",
+      "getPortfolios",
+      "getRecoveryStatus",
+      "getRegistry",
+      "getResearchBranch",
+      "getResearchBranchHistory",
+      "getResearchRun",
+      "getReviewSubject",
+      "getRiskDecision",
+      "getSimulation",
+      "getSourceAnalysis",
+      "listArtifacts",
+      "listComparisons",
+      "listDatasets",
+      "listFeatures",
+      "listGraphDrafts",
+      "listGroups",
+      "listInstruments",
+      "listLabSimulationObservations",
+      "listLibraryReleases",
+      "listOrders",
+      "listPortfolioResearch",
+      "listReconciliation",
+      "listResearchBranches",
+      "listResearchRuns",
+      "pauseSimulation",
+      "previewBudgetAllocation",
+      "previewRisk",
+      "proposePlanning",
+      "proposeRegistry",
+      "queryAttribution",
+      "queryCashFlows",
+      "queryMacroSnapshots",
+      "queryMarketBars",
+      "queryObservations",
+      "queryPositions",
+      "recoverLabSimulation",
+      "replaySimulation",
+      "requestDeploymentAdmission",
+      "resumeSimulation",
+      "reviseBudget",
+      "saveComparison",
+      "saveConfigCandidate",
+      "saveFeatureDraft",
+      "saveGraphDraft",
+      "saveGroup",
+      "saveManualCodeRevision",
+      "savePortfolioResearch",
+      "sealDatasetSnapshot",
+      "sealResearchSnapshot",
+      "startAnalystRun",
+      "startSimulation"
+    ],
+    "touched_ui_page_ids": [
+      "UI01",
+      "UI02",
+      "UI03",
+      "UI04",
+      "UI05",
+      "UI06",
+      "UI07",
+      "UI08",
+      "UI09",
+      "UI10",
+      "UI11",
+      "UI12",
+      "UI13",
+      "UI14",
+      "UI15",
+      "UI16",
+      "UI17",
+      "UI18",
+      "UI19"
+    ],
+    "primary_producer_api_operation_ids": [
+      "getDashboard"
+    ],
+    "primary_ui_page_ids": [
+      "UI01",
+      "UI02",
+      "UI03",
+      "UI04",
+      "UI05",
+      "UI06",
+      "UI07",
+      "UI08",
+      "UI09",
+      "UI10",
+      "UI11",
+      "UI12",
+      "UI13",
+      "UI14",
+      "UI15",
+      "UI16",
+      "UI17",
+      "UI18",
+      "UI19"
+    ],
+    "risk_tiers": [
+      "L2",
+      "L3"
+    ],
+    "backend_scope": "Python owns application/domain/economic state and persistence through existing ports; BFF owns auth/workflow/proxy only. Unit proposed paths must be compiled to exact current allowlist.",
+    "frontend_scope": "PK11 consumes exact pinned API/DTO/error/permission contracts; other packages supply domain fixtures and state/effect semantics. No browser SQL/Broker authority.",
+    "integration_boundary": "Contract-first one canonical operation/model source. Contract tests compare Python/OpenAPI/BFF/React models; interface changes require controlled revision and impacted consumer closure.",
+    "executor_capability": "Actual implementation language/toolchain + domain risk + exact source/context comprehension + positive/negative/concurrency test ability; named tool alone is not qualification.",
+    "targeted_tests": "Use every listed Unit case/fixture and targeted command proposal after actual repository placement; proposals are requirements, not actual results.",
+    "integration_tests": "Pinned producer→consumer DTO/domain/persistence tests, error/retry/unknown/idempotency/CAS and relevant UI actions. Isolated actual PG only under separate grant.",
+    "regression_tests": "Changed source/contract/dependency closure only; protect accepted predecessors. Full B3 same-version journey at PK12 and formal release; no blanket 216-schema rerun for display-only change.",
+    "human_visual_gate": "Affected interactive UI state, layout, keyboard/error/conflict/recovery/authority display reviewed on actual browser; no visual acceptance inferred from API tests.",
+    "writer_worktree_strategy": "Planning/readonly branches may coexist. No worktree is created here. Exact disjoint file scopes, one writer per scope, scoped grants, dependency cuts and integration owner required before parallel implementation. Current WORK NO_PARALLEL_EXECUTION retained until lawfully scoped successor/profile permits concurrent executions.",
+    "context_policy": "Load exact Unit + v9 head/companion + required pairs + minimal producer/consumer closure. Raw provenance retained separately; required source cannot be truncated. R06 current-profile qualification required where used.",
+    "cost_and_eta": {
+      "state": "UNKNOWN",
+      "token_estimate": null,
+      "time_estimate": null,
+      "actual": null,
+      "reason": "No comparable exact implementation cohort; existing WORK forecasts cost before lawful compile and records actual producer evidence."
+    },
+    "entry_gate": "Human A+B adopted scope + existing Owner materialized receipt/fresh re-entry; approved compiler companion adapter/context profile; exact source/preimages/protected scope/dependency results/current capacity/one-writer/grant remain required before execution",
+    "done_and_next_gate": "Per-unit actual evidence→required independent verification→existing WORK Intake; only credited accepted units count once. Package complete does not close P00 or enable runtime.",
+    "dispatch": "NOT_AUTHORIZED",
+    "formal_progress_credit": 0,
+    "planning_companion_revision": "post-human-dual-adoption.planning-companion.1",
+    "predecessor_planning_revision": "adoption-planning.r2",
+    "identity_class": "TEMPORARY_AGGREGATION_LABEL_NOT_NEW_PRODUCT_ID_OR_PROGRESS_DENOMINATOR",
+    "compilation_owner": "EXISTING_WORK_ORCHESTRATOR_AND_P00_COMPILER_OWNER",
+    "closed_schema_adaptation": "HOLD_DIRECT_SUBMISSION: PK labels do not match closed p00.package.v1 PXX identity; use accepted unit companion/approved adapter profile through existing Owner, never coerce IDs or extend a closed schema in place",
+    "exact_write_scope": [],
+    "write_scope_status": "NO_EXECUTABLE_ALLOWLIST_GRANTED; member proposed paths are inputs for later current-blob source assembly",
+    "member_unit_candidate_selectors": [
+      "#/unit_compilation_inputs/MA10-U01",
+      "#/unit_compilation_inputs/MA10-U02",
+      "#/unit_compilation_inputs/MA10-U03",
+      "#/unit_compilation_inputs/MA10-U04",
+      "#/unit_compilation_inputs/MA10-U05",
+      "#/unit_compilation_inputs/MA10-U06"
+    ],
+    "allowed_side_effects_now": [
+      "READ_SOURCE",
+      "AUTHOR_PLANNING_ARTIFACTS_ONLY_IN_AUTHORIZED_OUTPUT_WORKSPACE"
+    ],
+    "compilation_result": null,
+    "compiler_invoked": false
+  },
+  "primary_producer_operations": [
+    {
+      "operation_id": "getDashboard",
+      "spec": "../../contracts/operations/getDashboard.json",
+      "producer": {
+        "owner": "N_APPLICATION",
+        "unit": "MA10-U02",
+        "unit_id": "5af2fc67-7bb1-425e-99d2-3a345e356b6f",
+        "package": "PK11"
+      }
+    }
+  ],
+  "touched_operations_are_not_write_scope": [
+    "amendOrder",
+    "analyzeInboxSource",
+    "applyAnalystSuggestion",
+    "applyBuilderEdit",
+    "approveLibraryException",
+    "approveLibraryRelease",
+    "archiveResearchBranch",
+    "cancelAnalystRun",
+    "cancelOrder",
+    "cancelResearchRun",
+    "captureInbox",
+    "changeRiskControl",
+    "cloneResearchBranch",
+    "confirmBudgetAllocation",
+    "createArchivePlan",
+    "createLabSimulation",
+    "createOrderIntent",
+    "createResearchBranch",
+    "createResearchRun",
+    "createScenarioRun",
+    "dispositionInbox",
+    "executeArchivePlan",
+    "generateCode",
+    "getAccountCapital",
+    "getAlias",
+    "getAnalystRun",
+    "getArchiveOperation",
+    "getArtifactBytes",
+    "getArtifactContent",
+    "getAudit",
+    "getBackupCatalog",
+    "getBrokerCapabilities",
+    "getConfig",
+    "getDashboard",
+    "getDatasetSnapshot",
+    "getEngineeringStatus",
+    "getGraphDraft",
+    "getHealth",
+    "getInstrumentRevision",
+    "getLabSimulation",
+    "getLabSimulationCounters",
+    "getMarketRule",
+    "getOperation",
+    "getOrder",
+    "getPortfolios",
+    "getRecoveryStatus",
+    "getRegistry",
+    "getResearchBranch",
+    "getResearchBranchHistory",
+    "getResearchRun",
+    "getReviewSubject",
+    "getRiskDecision",
+    "getSimulation",
+    "getSourceAnalysis",
+    "listArtifacts",
+    "listComparisons",
+    "listDatasets",
+    "listFeatures",
+    "listGraphDrafts",
+    "listGroups",
+    "listInstruments",
+    "listLabSimulationObservations",
+    "listLibraryReleases",
+    "listOrders",
+    "listPortfolioResearch",
+    "listReconciliation",
+    "listResearchBranches",
+    "listResearchRuns",
+    "pauseSimulation",
+    "previewBudgetAllocation",
+    "previewRisk",
+    "proposePlanning",
+    "proposeRegistry",
+    "queryAttribution",
+    "queryCashFlows",
+    "queryMacroSnapshots",
+    "queryMarketBars",
+    "queryObservations",
+    "queryPositions",
+    "recoverLabSimulation",
+    "replaySimulation",
+    "requestDeploymentAdmission",
+    "resumeSimulation",
+    "reviseBudget",
+    "saveComparison",
+    "saveConfigCandidate",
+    "saveFeatureDraft",
+    "saveGraphDraft",
+    "saveGroup",
+    "saveManualCodeRevision",
+    "savePortfolioResearch",
+    "sealDatasetSnapshot",
+    "sealResearchSnapshot",
+    "startAnalystRun",
+    "startSimulation"
+  ],
+  "primary_UI_pages": [
+    {
+      "page_id": "UI01",
+      "spec": "../../contracts/ui/UI01.json"
+    },
+    {
+      "page_id": "UI02",
+      "spec": "../../contracts/ui/UI02.json"
+    },
+    {
+      "page_id": "UI03",
+      "spec": "../../contracts/ui/UI03.json"
+    },
+    {
+      "page_id": "UI04",
+      "spec": "../../contracts/ui/UI04.json"
+    },
+    {
+      "page_id": "UI05",
+      "spec": "../../contracts/ui/UI05.json"
+    },
+    {
+      "page_id": "UI06",
+      "spec": "../../contracts/ui/UI06.json"
+    },
+    {
+      "page_id": "UI07",
+      "spec": "../../contracts/ui/UI07.json"
+    },
+    {
+      "page_id": "UI08",
+      "spec": "../../contracts/ui/UI08.json"
+    },
+    {
+      "page_id": "UI09",
+      "spec": "../../contracts/ui/UI09.json"
+    },
+    {
+      "page_id": "UI10",
+      "spec": "../../contracts/ui/UI10.json"
+    },
+    {
+      "page_id": "UI11",
+      "spec": "../../contracts/ui/UI11.json"
+    },
+    {
+      "page_id": "UI12",
+      "spec": "../../contracts/ui/UI12.json"
+    },
+    {
+      "page_id": "UI13",
+      "spec": "../../contracts/ui/UI13.json"
+    },
+    {
+      "page_id": "UI14",
+      "spec": "../../contracts/ui/UI14.json"
+    },
+    {
+      "page_id": "UI15",
+      "spec": "../../contracts/ui/UI15.json"
+    },
+    {
+      "page_id": "UI16",
+      "spec": "../../contracts/ui/UI16.json"
+    },
+    {
+      "page_id": "UI17",
+      "spec": "../../contracts/ui/UI17.json"
+    },
+    {
+      "page_id": "UI18",
+      "spec": "../../contracts/ui/UI18.json"
+    },
+    {
+      "page_id": "UI19",
+      "spec": "../../contracts/ui/UI19.json"
+    }
+  ],
+  "cross_package_dependencies": [
+    "PK01",
+    "PK02",
+    "PK03",
+    "PK04",
+    "PK05",
+    "PK06",
+    "PK07",
+    "PK08",
+    "PK09",
+    "PK10"
+  ],
+  "release_applicability": [
+    {
+      "unit_alias": "MA10-U01",
+      "unit_id": "8ae2d3b5-7d39-4d7d-a05c-23ecfbecb8dc",
+      "primary_package": "PK11",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA10-U01/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87",
+          "revision_id": "6ea100e7-b3af-5021-8e7b-259cad6dad3e",
+          "title": "全19頁布局互動／空值錯誤權限",
+          "release_scope": "V1_REQUIRED",
+          "in_exact_b3_release_slice": true
+        },
+        {
+          "entity_id": "090d764d-c672-4b20-a581-b93db2c54dc8",
+          "revision_id": "7e2a7e43-3ffb-564a-95ba-c3b36e5a3c7b",
+          "title": "React/BFF/Python分層／typedwireAPI",
+          "release_scope": "V1_REQUIRED",
+          "in_exact_b3_release_slice": true
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [
+        "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87",
+        "090d764d-c672-4b20-a581-b93db2c54dc8"
+      ],
+      "not_in_exact_b3_release_slice_requirement_ids": [],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA10-U02",
+      "unit_id": "5af2fc67-7bb1-425e-99d2-3a345e356b6f",
+      "primary_package": "PK11",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA10-U02/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87",
+          "revision_id": "6ea100e7-b3af-5021-8e7b-259cad6dad3e",
+          "title": "全19頁布局互動／空值錯誤權限",
+          "release_scope": "V1_REQUIRED",
+          "in_exact_b3_release_slice": true
+        },
+        {
+          "entity_id": "f488c65a-452a-499b-a8c9-a4bb59ce159d",
+          "revision_id": "0ad3dcb2-0742-56e5-9165-e940bb14a526",
+          "title": "source/cut/operationreceipt／realtimegapresume",
+          "release_scope": "V1_REQUIRED",
+          "in_exact_b3_release_slice": true
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [
+        "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87",
+        "f488c65a-452a-499b-a8c9-a4bb59ce159d"
+      ],
+      "not_in_exact_b3_release_slice_requirement_ids": [],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA10-U03",
+      "unit_id": "3d613bb3-e281-4ea7-a682-341eb3aff9d8",
+      "primary_package": "PK11",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA10-U03/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87",
+          "revision_id": "6ea100e7-b3af-5021-8e7b-259cad6dad3e",
+          "title": "全19頁布局互動／空值錯誤權限",
+          "release_scope": "V1_REQUIRED",
+          "in_exact_b3_release_slice": true
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [
+        "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87"
+      ],
+      "not_in_exact_b3_release_slice_requirement_ids": [],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA10-U04",
+      "unit_id": "75db228f-e2b7-40f6-a45b-0bd6d339aeab",
+      "primary_package": "PK11",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA10-U04/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87",
+          "revision_id": "6ea100e7-b3af-5021-8e7b-259cad6dad3e",
+          "title": "全19頁布局互動／空值錯誤權限",
+          "release_scope": "V1_REQUIRED",
+          "in_exact_b3_release_slice": true
+        },
+        {
+          "entity_id": "f488c65a-452a-499b-a8c9-a4bb59ce159d",
+          "revision_id": "0ad3dcb2-0742-56e5-9165-e940bb14a526",
+          "title": "source/cut/operationreceipt／realtimegapresume",
+          "release_scope": "V1_REQUIRED",
+          "in_exact_b3_release_slice": true
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [
+        "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87",
+        "f488c65a-452a-499b-a8c9-a4bb59ce159d"
+      ],
+      "not_in_exact_b3_release_slice_requirement_ids": [],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA10-U05",
+      "unit_id": "62dbf7f6-c1bf-406f-b448-e84b114c59e6",
+      "primary_package": "PK11",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA10-U05/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87",
+          "revision_id": "6ea100e7-b3af-5021-8e7b-259cad6dad3e",
+          "title": "全19頁布局互動／空值錯誤權限",
+          "release_scope": "V1_REQUIRED",
+          "in_exact_b3_release_slice": true
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [
+        "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87"
+      ],
+      "not_in_exact_b3_release_slice_requirement_ids": [],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    },
+    {
+      "unit_alias": "MA10-U06",
+      "unit_id": "0725e6af-4fbf-4f0f-b1f4-37fb0455548f",
+      "primary_package": "PK11",
+      "exact_source": {
+        "file": {
+          "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+          "raw_bytes_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+          "bytes": 11172052,
+          "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+        },
+        "json_pointer": "#/unit_compilation_inputs/MA10-U06/requirements"
+      },
+      "requirement_scope_projection_unchanged": [
+        {
+          "entity_id": "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87",
+          "revision_id": "6ea100e7-b3af-5021-8e7b-259cad6dad3e",
+          "title": "全19頁布局互動／空值錯誤權限",
+          "release_scope": "V1_REQUIRED",
+          "in_exact_b3_release_slice": true
+        },
+        {
+          "entity_id": "090d764d-c672-4b20-a581-b93db2c54dc8",
+          "revision_id": "7e2a7e43-3ffb-564a-95ba-c3b36e5a3c7b",
+          "title": "React/BFF/Python分層／typedwireAPI",
+          "release_scope": "V1_REQUIRED",
+          "in_exact_b3_release_slice": true
+        },
+        {
+          "entity_id": "f488c65a-452a-499b-a8c9-a4bb59ce159d",
+          "revision_id": "0ad3dcb2-0742-56e5-9165-e940bb14a526",
+          "title": "source/cut/operationreceipt／realtimegapresume",
+          "release_scope": "V1_REQUIRED",
+          "in_exact_b3_release_slice": true
+        }
+      ],
+      "in_exact_b3_release_slice_requirement_ids": [
+        "351ef0b6-d641-4ffd-9e5b-21d3f6e00a87",
+        "090d764d-c672-4b20-a581-b93db2c54dc8",
+        "f488c65a-452a-499b-a8c9-a4bb59ce159d"
+      ],
+      "not_in_exact_b3_release_slice_requirement_ids": [],
+      "interpretation": "This is design/planning membership. Current implementation scope must follow each exact requirement/Feature release applicability, retained dependencies and runtime gate. Mixed-scope Unit needs exact allowed slice or qualified reuse proof; neither whole-Unit blanket activation nor a silent dependency waiver is permitted."
+    }
+  ],
+  "finding_regression_backlog": [
+    "F4-08",
+    "F6-01",
+    "F6-02",
+    "S6-TEST-02",
+    "PRODUCT-S4-01",
+    "PRODUCT-S4-02",
+    "PRODUCT-S4-03",
+    "PRODUCT-S4-04",
+    "PRODUCT-S4-05",
+    "PRODUCT-S4-06",
+    "PRODUCT-S5-01",
+    "PRODUCT-S5-02",
+    "PRODUCT-S5-03",
+    "MA-ARCH-v3-S7-IF02",
+    "MA-ARCH-v3-S7-IF03",
+    "MA-ARCH-v3-S7-IF04",
+    "MA-ARCH-v3-S7-IF05",
+    "MA-ARCH-v3-S8-EX01",
+    "MA-ARCH-v3-S8-EX02"
+  ],
+  "proposed_implementation_tests": {
+    "targeted": "Use every listed Unit case/fixture and targeted command proposal after actual repository placement; proposals are requirements, not actual results.",
+    "integration": "Pinned producer→consumer DTO/domain/persistence tests, error/retry/unknown/idempotency/CAS and relevant UI actions. Isolated actual PG only under separate grant.",
+    "regression": "Changed source/contract/dependency closure only; protect accepted predecessors. Full B3 same-version journey at PK12 and formal release; no blanket 216-schema rerun for display-only change.",
+    "actual": "NOT_RUN"
+  },
+  "global_writer": "ONE; no parallelism from worktree or packaging",
+  "context_budget": {
+    "unit_source_bytes_read_into_report": 18134552,
+    "meaning": "DOCUMENT_BYTES_ONLY_NOT_ACTUAL_HOST_INJECTION_OR_TOKEN_COUNT",
+    "actual_tokens": null,
+    "forecasts": {
+      "state": "UNKNOWN",
+      "token_estimate": null,
+      "time_estimate": null,
+      "actual": null,
+      "reason": "No comparable exact implementation cohort; existing WORK forecasts cost before lawful compile and records actual producer evidence."
+    },
+    "qualified_context_profile": "UNRESOLVED"
+  },
+  "planning_status": {
+    "SPEC_READY": "READABLE_SOURCE_BOUND_SPECIFICATION",
+    "PLANNING_COMPLETE": true,
+    "QUALIFICATION_PENDING": true,
+    "IMPLEMENTATION_NOT_AUTHORIZED": true,
+    "EXECUTION_READY": false
+  },
+  "remaining_UNRESOLVED_bindings": [
+    "Exact machine WO/package identity through approved companion/adapter",
+    "Legal source assembly and applicable qualified profile/adapter",
+    "Exact current preimages / grant / budget / actor / writer",
+    "Current dependency result/reuse, product/runtime actual only where applicable"
+  ],
+  "after_grant_sequence": [
+    "Contract/source/allowlist freeze",
+    "One authorized Coding Unit or cohesive exact WO",
+    "Targeted Tests",
+    "Producer/Consumer integration",
+    "Required Regression",
+    "Existing Review/Intake/Acceptance",
+    "Re-entry before next exact authorized work"
+  ]
+}

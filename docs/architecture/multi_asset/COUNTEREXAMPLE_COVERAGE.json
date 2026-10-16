@@ -1,0 +1,308 @@
+{
+  "schema_version": "architecture.counterexample_coverage.v1",
+  "cases": [
+    {
+      "family": "IDENTITY",
+      "case": "A",
+      "subject": "Two source C01 distinct scoped IDs",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "IDENTITY",
+      "case": "B",
+      "subject": "Move LAB feature keeps ID/new parent revision",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "IDENTITY",
+      "case": "C",
+      "subject": "Split Deliverable tasks conserves weight",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "IDENTITY",
+      "case": "D",
+      "subject": "Feature 3 phases maps single ID",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "IDENTITY",
+      "case": "E",
+      "subject": "Ancestor parent cycle rejects",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "IDENTITY",
+      "case": "F",
+      "subject": "Dependency cycle rejects",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "IDENTITY",
+      "case": "G",
+      "subject": "Rename keeps WO/Evidence refs",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "IDENTITY",
+      "case": "H",
+      "subject": "Split/Merge/Retire preserves lineage",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "IDENTITY",
+      "case": "I",
+      "subject": "SQL reset Git rebuild same IDs (actual NOT_RUN)",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "IDENTITY",
+      "case": "J",
+      "subject": "717 edge aggregation rejects 2541",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "IDENTITY",
+      "case": "K",
+      "subject": "GAP07TIME001/AUTOIMP003 typed grammar",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "IDENTITY",
+      "case": "L",
+      "subject": "Draft versus Accepted revision distinct",
+      "source": "11_URMS_IDENTITY_RELATIONS.md",
+      "verification": "SOURCE_CONTRACT_REVIEW; selected pure-model checks in AUTHOR_CHECKS.json; actual registry DB rebuild NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "A",
+      "subject": "SQL Draft no Git formal",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "B",
+      "subject": "Writer changes frozen review candidate",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "C",
+      "subject": "Git success SQL projection fail",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "D",
+      "subject": "Git commit failure after SQL candidate",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "E",
+      "subject": "Git ack lost unknown",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "F",
+      "subject": "same event replay",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "G",
+      "subject": "same ID different hash",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "H",
+      "subject": "old revision against newer head",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "I",
+      "subject": "private bytes missing",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "J",
+      "subject": "hash mismatch restoration claim",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "K",
+      "subject": "new dependency outside review",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "L",
+      "subject": "accepted=true bypass",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "M",
+      "subject": "same ID registry reimport",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "N",
+      "subject": "GAP08 scope not newP08 acceptance",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "PUBLICATION",
+      "case": "O",
+      "subject": "old/newLAB code collision",
+      "source": "12_PUBLICATION_AUTHORITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; selected idempotency/CAS pure-model checks; actual Git/SQL crash NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "A",
+      "subject": "A failed B intact",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "B",
+      "subject": "B failed A intact",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "C",
+      "subject": "only Git",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "D",
+      "subject": "SQL succeeds required Artifact fails",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "E",
+      "subject": "versions change during backup",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "F",
+      "subject": "A cleanup incorrectly deletes B",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "G",
+      "subject": "manifest lost",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "H",
+      "subject": "hash mismatch",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "I",
+      "subject": "Git published projection pending",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "J",
+      "subject": "publication outcome unknown",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "K",
+      "subject": "restored SQL private docs missing",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "L",
+      "subject": "registry replay duplicate",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "M",
+      "subject": "capacity/long-term interruption",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "N",
+      "subject": "ransomware/unauthorized modification",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "O",
+      "subject": "PG/schema incompatibility",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    },
+    {
+      "family": "BACKUP",
+      "case": "P",
+      "subject": "overwrite original DB/storage",
+      "source": "13_STORAGE_RECOVERY_SECURITY.md",
+      "verification": "SOURCE_FAILURE_MATRIX_REVIEW; coverage model check only; actual TestA/B/C/provider/Windows NOT_RUN"
+    }
+  ],
+  "count": 43,
+  "does_not_assert_runtime_pass": true
+}

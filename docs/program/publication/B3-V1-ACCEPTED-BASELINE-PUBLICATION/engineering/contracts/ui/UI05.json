@@ -1,0 +1,485 @@
+{
+  "format_role": "EXECUTOR_READABLE_UI_SOURCE_SPEC_NOT_DESIGN_REPLACEMENT",
+  "exact_ui_input": {
+    "page_id": "UI05",
+    "name": "Research",
+    "route": "/lab/research",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UI_PAGE_CONTRACTS.json",
+      "raw_bytes_sha256": "ab18284229f7968456fb9b006ade182404ee3f37b385093ce015a58ca87e0536",
+      "bytes": 196438
+    },
+    "source_pointer": "#/pages/4",
+    "primary_ui_package": "PK11",
+    "operation_ids": [
+      "sealResearchSnapshot",
+      "createResearchRun",
+      "getResearchRun",
+      "cancelResearchRun",
+      "listResearchRuns",
+      "startAnalystRun",
+      "getAnalystRun",
+      "cancelAnalystRun",
+      "applyAnalystSuggestion"
+    ],
+    "consumer_units": [
+      "MA04-U03",
+      "MA04-U04",
+      "MA04-U06",
+      "MA10-U01",
+      "MA10-U03",
+      "MA15-U02"
+    ],
+    "required_mock_design": "Exact API/DTO/wire error/state/permission contracts; empty vs UNKNOWN, cancel vs completed effect, rejected conflict and restart receipt state; no browser cache as authority.",
+    "visual_acceptance": "FUTURE_HUMAN_BROWSER_CHECK_NOT_RUN",
+    "actual_build_and_integration": "NOT_RUN"
+  },
+  "exact_page_contract": {
+    "actions": [
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "F_RESEARCH",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "sealResearchSnapshot",
+        "request_model_or_fields": {
+          "branch_ref": {
+            "required": true,
+            "type": "ContractRef"
+          },
+          "code_ref": {
+            "required": true,
+            "type": "ContractRef"
+          },
+          "config_ref": {
+            "required": true,
+            "type": "ContractRef"
+          },
+          "dataset_refs": {
+            "required": true,
+            "type": "ContractRef[]"
+          },
+          "engine_ref": {
+            "required": true,
+            "type": "ContractRef"
+          },
+          "feature_refs": {
+            "required": true,
+            "type": "ContractRef[]"
+          },
+          "graph_ref": {
+            "required": true,
+            "type": "ContractRef"
+          },
+          "profile_refs": {
+            "required": true,
+            "type": "ContractRef[]"
+          }
+        },
+        "response_model": "ResearchSnapshot",
+        "role": "RESEARCH_AUTHOR",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+        "unit_consumers": [
+          "MA04-U03",
+          "MA10-U01",
+          "MA10-U03",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "F_RESEARCH",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "createResearchRun",
+        "request_model_or_fields": {
+          "method": {
+            "required": true,
+            "type": "ResearchMethodConfig"
+          },
+          "seed": {
+            "required": false,
+            "type": "int?"
+          },
+          "snapshot_ref": {
+            "required": true,
+            "type": "ContractRef"
+          }
+        },
+        "response_model": "ResearchRun",
+        "role": "RESEARCH_AUTHOR",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+        "unit_consumers": [
+          "MA04-U04",
+          "MA10-U01",
+          "MA10-U03",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "F_RESEARCH",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getResearchRun",
+        "request_model_or_fields": {},
+        "response_model": "ResearchRun",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA04-U04",
+          "MA10-U01",
+          "MA10-U03",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "F_RESEARCH",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "cancelResearchRun",
+        "request_model_or_fields": {
+          "reason": {
+            "required": true,
+            "type": "string"
+          },
+          "run_ref": {
+            "required": true,
+            "type": "ContractRef"
+          }
+        },
+        "response_model": "ResearchRun",
+        "role": "RESEARCH_AUTHOR",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+        "unit_consumers": [
+          "MA04-U04",
+          "MA10-U01",
+          "MA10-U03",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "F_RESEARCH",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "listResearchRuns",
+        "request_model_or_fields": {
+          "branch_ref": {
+            "required": false,
+            "type": "ContractRef?"
+          },
+          "page": {
+            "required": true,
+            "type": "CursorRequest"
+          },
+          "snapshot_ref": {
+            "required": false,
+            "type": "ContractRef?"
+          }
+        },
+        "response_model": "ResearchRun",
+        "role": "RESEARCH_AUTHOR",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA04-U04",
+          "MA10-U01",
+          "MA10-U03",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "F_RESEARCH",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "startAnalystRun",
+        "request_model_or_fields": {
+          "request": {
+            "required": true,
+            "type": "AnalystRequest"
+          }
+        },
+        "response_model": "AnalystRun",
+        "role": "RESEARCH_AUTHOR",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+        "unit_consumers": [
+          "MA04-U06",
+          "MA10-U01",
+          "MA10-U03",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "F_RESEARCH",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "getAnalystRun",
+        "request_model_or_fields": {},
+        "response_model": "AnalystRun",
+        "role": "VIEWER",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Routeenter/filter/open/reload scopedreadsnapshot",
+        "unit_consumers": [
+          "MA04-U06",
+          "MA10-U01",
+          "MA10-U03",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "F_RESEARCH",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "cancelAnalystRun",
+        "request_model_or_fields": {
+          "reason": {
+            "required": true,
+            "type": "string"
+          },
+          "run_ref": {
+            "required": true,
+            "type": "ContractRef"
+          }
+        },
+        "response_model": "AnalystRun",
+        "role": "RESEARCH_AUTHOR",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+        "unit_consumers": [
+          "MA04-U06",
+          "MA10-U01",
+          "MA10-U03",
+          "MA15-U02"
+        ]
+      },
+      {
+        "authorization": "ServerScopedPolicy;buttonlabelnotpermission",
+        "domain_owner": "F_RESEARCH",
+        "fixture_contract": "UNIT_FIXTURES.candidate.v4.json + ERROR_RETRY_DISPOSITION_TABLE.json",
+        "operation_id": "applyAnalystSuggestion",
+        "request_model_or_fields": {
+          "request": {
+            "required": true,
+            "type": "AnalystApplyRequest"
+          }
+        },
+        "response_model": "ResearchBranch",
+        "role": "RESEARCH_AUTHOR",
+        "source": "Exact source/model DTO and own domain source; no browser-cache authority",
+        "states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "trigger": "Userexplicitcommand withserverauth+CAS+receipt",
+        "unit_consumers": [
+          "MA04-U06",
+          "MA10-U01",
+          "MA10-U03",
+          "MA15-U02"
+        ]
+      }
+    ],
+    "empty_state": "Verifiedempty distinct UNKNOWN/PARTIAL/MISSING;neverfake0",
+    "environment": "LAB/PAPER/LIVE resource partition;contextswitch invalidatesoldapproval/draftwrite;UI07LABresearchmodeandPAPERadmittedsessionseparate",
+    "implementation_grant": false,
+    "layout": "12col responsive nav/contextbar/main/detaildrawer;keyboard/focus/labels",
+    "name": "Research",
+    "page_id": "UI05",
+    "revision": "candidate.7",
+    "route": "/lab/research",
+    "runtime": "NOT_RUN",
+    "schema_revision": "candidate.7",
+    "source": "Exact API_CATALOG/model/type/domain companions; Snapshot/cut/coverage and private availability",
+    "transport_binding": {
+      "candidate_subject": "MA-ARCH-REVIEW-v7-CYCLE03",
+      "outgoing_header": "X-MA-DTO-Version",
+      "revision_is_not_wire_alias": true,
+      "runtime": "NOT_RUN",
+      "wire_profile": "MA-DTO-v6"
+    }
+  },
+  "single_source_operations": [
+    {
+      "operation_id": "sealResearchSnapshot",
+      "producer": {
+        "owner": "F_RESEARCH",
+        "unit": "MA04-U03",
+        "unit_id": "9e7f20fa-f68c-45a0-8ed0-e841d9a543da",
+        "package": "PK06"
+      },
+      "spec": "../operations/sealResearchSnapshot.json"
+    },
+    {
+      "operation_id": "createResearchRun",
+      "producer": {
+        "owner": "F_RESEARCH",
+        "unit": "MA04-U04",
+        "unit_id": "cabd3d4c-e10a-4a60-a1c2-8e85cd44684f",
+        "package": "PK06"
+      },
+      "spec": "../operations/createResearchRun.json"
+    },
+    {
+      "operation_id": "getResearchRun",
+      "producer": {
+        "owner": "F_RESEARCH",
+        "unit": "MA04-U04",
+        "unit_id": "cabd3d4c-e10a-4a60-a1c2-8e85cd44684f",
+        "package": "PK06"
+      },
+      "spec": "../operations/getResearchRun.json"
+    },
+    {
+      "operation_id": "cancelResearchRun",
+      "producer": {
+        "owner": "F_RESEARCH",
+        "unit": "MA04-U04",
+        "unit_id": "cabd3d4c-e10a-4a60-a1c2-8e85cd44684f",
+        "package": "PK06"
+      },
+      "spec": "../operations/cancelResearchRun.json"
+    },
+    {
+      "operation_id": "listResearchRuns",
+      "producer": {
+        "owner": "F_RESEARCH",
+        "unit": "MA04-U04",
+        "unit_id": "cabd3d4c-e10a-4a60-a1c2-8e85cd44684f",
+        "package": "PK06"
+      },
+      "spec": "../operations/listResearchRuns.json"
+    },
+    {
+      "operation_id": "startAnalystRun",
+      "producer": {
+        "owner": "F_RESEARCH",
+        "unit": "MA04-U06",
+        "unit_id": "430b85dc-75e0-4811-b798-3fcc76f1f34e",
+        "package": "PK06"
+      },
+      "spec": "../operations/startAnalystRun.json"
+    },
+    {
+      "operation_id": "getAnalystRun",
+      "producer": {
+        "owner": "F_RESEARCH",
+        "unit": "MA04-U06",
+        "unit_id": "430b85dc-75e0-4811-b798-3fcc76f1f34e",
+        "package": "PK06"
+      },
+      "spec": "../operations/getAnalystRun.json"
+    },
+    {
+      "operation_id": "cancelAnalystRun",
+      "producer": {
+        "owner": "F_RESEARCH",
+        "unit": "MA04-U06",
+        "unit_id": "430b85dc-75e0-4811-b798-3fcc76f1f34e",
+        "package": "PK06"
+      },
+      "spec": "../operations/cancelAnalystRun.json"
+    },
+    {
+      "operation_id": "applyAnalystSuggestion",
+      "producer": {
+        "owner": "F_RESEARCH",
+        "unit": "MA04-U06",
+        "unit_id": "430b85dc-75e0-4811-b798-3fcc76f1f34e",
+        "package": "PK06"
+      },
+      "spec": "../operations/applyAnalystSuggestion.json"
+    }
+  ],
+  "implementation_boundary": "React → ASP.NET BFF → Python API → Quant Core → Persistence; mock substitutes declared producer boundary only",
+  "visual_gate": "Human browser check after authorized implementation, NOT_RUN",
+  "phase_fix_policy": "Cosmetic/UI detail may be batched within exact grant; auth/error/receipt/version/data-integrity/Capital/Order/Fill drift blocks affected journey immediately",
+  "implementation_not_authorized": true
+}

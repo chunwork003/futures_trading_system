@@ -1,0 +1,3061 @@
+{
+  "artifact_id": "B3-PRECODE-PUBLIC-REGRESSION-PROJECTION-v1",
+  "role": "DERIVED_PLANNING_SUPPLEMENT_NOT_CANONICAL_NOT_AUTHORITY",
+  "source_supplement_sha256": "8caa816101747a3dd33e112541c2c89cbd7ab964d18a96901e27fdf6760e3dfd",
+  "findings": [
+    {
+      "finding_id": "F2-01",
+      "original_root_cause": "CG1",
+      "enforcement_family_display": "SOURCE_CROSSWALK",
+      "responsible_existing_unit": "MA01-U02",
+      "responsible_unit_id": "a4f5ef10-5f3b-4102-955e-40dfec5e9670",
+      "package": "PK01",
+      "required_consumer_units": [
+        "MA06-U01"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma01_contracts.py",
+      "test_symbol_proposal": "test_f2_01_permanent_regression",
+      "oracle": "將FinancialAccount/Capital映射為OperatorLogin時拒絕；金融身份與登入身份各有唯一typed owner。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/0",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/0",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F2-02",
+      "original_root_cause": "CG1",
+      "enforcement_family_display": "SOURCE_CROSSWALK",
+      "responsible_existing_unit": "MA01-U03",
+      "responsible_unit_id": "633d33a6-fe05-4935-ba18-be8c9566092c",
+      "package": "PK01",
+      "required_consumer_units": [
+        "MA15-U01"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma01_contracts.py",
+      "test_symbol_proposal": "test_f2_02_permanent_regression",
+      "oracle": "K910/K920/L970向P03-ARTIFACTS/P11-HEALTH/P11-BACKUP-RESTORE的三條reverse obligation必須可追溯。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/1",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/1",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F2-03",
+      "original_root_cause": "CG1",
+      "enforcement_family_display": "SOURCE_CROSSWALK",
+      "responsible_existing_unit": "MA01-U03",
+      "responsible_unit_id": "633d33a6-fe05-4935-ba18-be8c9566092c",
+      "package": "PK01",
+      "required_consumer_units": [
+        "MA15-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma01_contracts.py",
+      "test_symbol_proposal": "test_f2_03_permanent_regression",
+      "oracle": "Reuse/Implementation/Qualification/Acceptance各自分型；simulation PASS不能滿足broker qualification。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/2",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/2",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F2-04",
+      "original_root_cause": "CG1",
+      "enforcement_family_display": "RELEASE_SCOPE",
+      "responsible_existing_unit": "MA01-U02",
+      "responsible_unit_id": "a4f5ef10-5f3b-4102-955e-40dfec5e9670",
+      "package": "PK01",
+      "required_consumer_units": [
+        "MA15-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma01_contracts.py",
+      "test_symbol_proposal": "test_f2_04_permanent_regression",
+      "oracle": "Credentialless產品release與Broker/production gate分離；保留M12來源及未來義務。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/3",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/3",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F2-05",
+      "original_root_cause": "CG1",
+      "enforcement_family_display": "RELEASE_SCOPE",
+      "responsible_existing_unit": "MA01-U05",
+      "responsible_unit_id": "b0e3f573-d911-4ea1-8dc3-57a89f7bd95e",
+      "package": "PK01",
+      "required_consumer_units": [
+        "MA15-U01"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma01_contracts.py",
+      "test_symbol_proposal": "test_f2_05_permanent_regression",
+      "oracle": "完整B3 LAB及URMS原子義務皆有source-bound delta；不得用原127分母或一般比較替代六欄Builder。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/4",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/4",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F2-07",
+      "original_root_cause": "CG1",
+      "enforcement_family_display": "WEIGHT",
+      "responsible_existing_unit": "MA01-U03",
+      "responsible_unit_id": "633d33a6-fe05-4935-ba18-be8c9566092c",
+      "package": "PK01",
+      "required_consumer_units": [
+        "MA11-U06"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma01_contracts.py",
+      "test_symbol_proposal": "test_f2_07_permanent_regression",
+      "oracle": "603 unique leaves/2137 weight不因717 mapping edges變成2541。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/5",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/5",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F3-08",
+      "original_root_cause": "CG1",
+      "enforcement_family_display": "WEIGHT",
+      "responsible_existing_unit": "MA01-U03",
+      "responsible_unit_id": "633d33a6-fe05-4935-ba18-be8c9566092c",
+      "package": "PK01",
+      "required_consumer_units": [
+        "MA11-U06"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma01_contracts.py",
+      "test_symbol_proposal": "test_f3_08_permanent_regression",
+      "oracle": "三條reverse mapping完整，權重按唯一baseline allocation聚合而非mapping edge。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/6",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/6",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F6-03",
+      "original_root_cause": "CG1",
+      "enforcement_family_display": "COMPILER",
+      "responsible_existing_unit": "MA14-U01",
+      "responsible_unit_id": "c709d850-b687-458d-abdd-669bab608b66",
+      "package": "PK05",
+      "required_consumer_units": [
+        "MA01-U05"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma14_contracts.py",
+      "test_symbol_proposal": "test_f6_03_permanent_regression",
+      "oracle": "新LAB/AUTO身份保留，以版本化companion接既有closed package；不把LAB直接改名Pxx。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/7",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/7",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F6-04",
+      "original_root_cause": "CG1",
+      "enforcement_family_display": "LAB_LINEAGE",
+      "responsible_existing_unit": "MA04-U03",
+      "responsible_unit_id": "9e7f20fa-f68c-45a0-8ed0-e841d9a543da",
+      "package": "PK06",
+      "required_consumer_units": [
+        "MA04-U05",
+        "MA07-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma04_contracts.py",
+      "test_symbol_proposal": "test_f6_04_permanent_regression",
+      "oracle": "Graph/Code/Snapshot exact相容；研究發布、Library批准與RuntimeAdmission三者不可替代。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L2_WITH_L3_PROTECTED_SUBCASES",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/8",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/8",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F6-05",
+      "original_root_cause": "CG1",
+      "enforcement_family_display": "CAPITAL_ORIGIN",
+      "responsible_existing_unit": "MA06-U04",
+      "responsible_unit_id": "210f5fa9-f030-4aab-a156-65f8f340053e",
+      "package": "PK08",
+      "required_consumer_units": [
+        "MA06-U01",
+        "MA06-U03",
+        "MA08-U02"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma06_contracts.py",
+      "test_symbol_proposal": "test_f6_05_permanent_regression",
+      "oracle": "保留Order/Fill原Group/Strategy/Deployment歸屬；equity不自動變budget，無重複資源占用或內部假撮合。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/9",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/9",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F6-08",
+      "original_root_cause": "CG1",
+      "enforcement_family_display": "P00",
+      "responsible_existing_unit": "MA15-U06",
+      "responsible_unit_id": "4d2d73f5-5f2b-47ea-bee8-63031e9e9a0e",
+      "package": "PK12",
+      "required_consumer_units": [
+        "MA01-U04"
+      ],
+      "test_path_proposal": "tests/integration/test_multi_asset_contracts.py",
+      "test_symbol_proposal": "test_f6_08_permanent_regression",
+      "oracle": "22檔inventory不等91rows/A-S語義閉合；只認exact fresh review及Human C6。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/10",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/10",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F2-08",
+      "original_root_cause": "CG2",
+      "enforcement_family_display": "IDENTITY",
+      "responsible_existing_unit": "MA11-U01",
+      "responsible_unit_id": "24eadee4-4e15-40a4-90d8-90556f574dd1",
+      "package": "PK03",
+      "required_consumer_units": [
+        "MA11-U02"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma11_contracts.py",
+      "test_symbol_proposal": "test_f2_08_permanent_regression",
+      "oracle": "跨catalog的C01及舊P8/新P08各留永久身份；裸字串不能合併。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/11",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/11",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F3-01",
+      "original_root_cause": "CG2",
+      "enforcement_family_display": "IDENTITY",
+      "responsible_existing_unit": "MA11-U02",
+      "responsible_unit_id": "550e6375-b311-43cc-a75b-4468b858b826",
+      "package": "PK03",
+      "required_consumer_units": [
+        "MA01-U02"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma11_contracts.py",
+      "test_symbol_proposal": "test_f3_01_permanent_regression",
+      "oracle": "LAB舊Wave與新Feature同名時仍是不同contextual alias，不得無聲重解。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/12",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/12",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F3-02",
+      "original_root_cause": "CG2",
+      "enforcement_family_display": "IDENTITY",
+      "responsible_existing_unit": "MA11-U02",
+      "responsible_unit_id": "550e6375-b311-43cc-a75b-4468b858b826",
+      "package": "PK03",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma11_contracts.py",
+      "test_symbol_proposal": "test_f3_02_permanent_regression",
+      "oracle": "跨format version保留retired code占用；不同entity不能重新取得同一公開semantic code key。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/13",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/13",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F3-03",
+      "original_root_cause": "CG2",
+      "enforcement_family_display": "REGISTRY",
+      "responsible_existing_unit": "MA11-U03",
+      "responsible_unit_id": "77c0018d-8680-4e94-a7b9-7fe0de492c60",
+      "package": "PK03",
+      "required_consumer_units": [
+        "MA11-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma11_contracts.py",
+      "test_symbol_proposal": "test_f3_03_permanent_regression",
+      "oracle": "Snapshot member固定EntityRevision，relationship endpoint引用精確revision；新head不能改寫舊graph。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/14",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/14",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F3-05",
+      "original_root_cause": "CG2",
+      "enforcement_family_display": "CONCURRENCY",
+      "responsible_existing_unit": "MA11-U05",
+      "responsible_unit_id": "58445c72-5dbd-4e97-8cbe-c077a2a56ed2",
+      "package": "PK03",
+      "required_consumer_units": [
+        "MA11-U03"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma11_contracts.py",
+      "test_symbol_proposal": "test_f3_05_permanent_regression",
+      "oracle": "兩writer各自無環但合併有環：graph-scope CAS/guard及final-batch validation拒絕其中一筆。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/15",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/15",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F3-06",
+      "original_root_cause": "CG2",
+      "enforcement_family_display": "REGISTRY",
+      "responsible_existing_unit": "MA11-U03",
+      "responsible_unit_id": "77c0018d-8680-4e94-a7b9-7fe0de492c60",
+      "package": "PK03",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma11_contracts.py",
+      "test_symbol_proposal": "test_f3_06_permanent_regression",
+      "oracle": "跨relation type/project的完整cycle group聯集有環時拒絕；不只逐type檢查。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/16",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/16",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F3-07",
+      "original_root_cause": "CG2",
+      "enforcement_family_display": "REGISTRY",
+      "responsible_existing_unit": "MA11-U06",
+      "responsible_unit_id": "4dca68b7-4b4d-46f6-942f-88449b4fe158",
+      "package": "PK03",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma11_contracts.py",
+      "test_symbol_proposal": "test_f3_07_permanent_regression",
+      "oracle": "清空SQL後由Git registry重建完全相同ID/revision/alias/relation，不重發UUID。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/17",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/17",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F4-07",
+      "original_root_cause": "CG2",
+      "enforcement_family_display": "REGISTRY",
+      "responsible_existing_unit": "MA11-U06",
+      "responsible_unit_id": "4dca68b7-4b4d-46f6-942f-88449b4fe158",
+      "package": "PK03",
+      "required_consumer_units": [
+        "MA12-U05"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma11_contracts.py",
+      "test_symbol_proposal": "test_f4_07_permanent_regression",
+      "oracle": "Git保存正式關係閉包；缺private body只標missing，不能重發或合併身份。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/18",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/18",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F3-04",
+      "original_root_cause": "CG3",
+      "enforcement_family_display": "AUTHORITY",
+      "responsible_existing_unit": "MA12-U01",
+      "responsible_unit_id": "e185c30d-eebf-43b9-ae51-16e9fbe512da",
+      "package": "PK03",
+      "required_consumer_units": [
+        "MA12-U02"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma12_contracts.py",
+      "test_symbol_proposal": "test_f3_04_permanent_regression",
+      "oracle": "Draft/Accepted registry context分開；不可翻SQL accepted旗標複製接受或原地改revision。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/19",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/19",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F4-01",
+      "original_root_cause": "CG3",
+      "enforcement_family_display": "AUTHORITY",
+      "responsible_existing_unit": "MA12-U02",
+      "responsible_unit_id": "56d3d5a6-e69a-401b-b92a-a6dcba032d10",
+      "package": "PK03",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma12_contracts.py",
+      "test_symbol_proposal": "test_f4_01_permanent_regression",
+      "oracle": "Source integration/publication/SQL欄位不產生formal adoption；既有Human/Review/Intake唯一責任。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/20",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/20",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F4-02",
+      "original_root_cause": "CG3",
+      "enforcement_family_display": "AUTHORITY",
+      "responsible_existing_unit": "MA12-U01",
+      "responsible_unit_id": "e185c30d-eebf-43b9-ae51-16e9fbe512da",
+      "package": "PK03",
+      "required_consumer_units": [
+        "MA12-U06"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma12_contracts.py",
+      "test_symbol_proposal": "test_f4_02_permanent_regression",
+      "oracle": "body不變但dependency改變時重新審必要closure；無關修改不抹除既有historical receipt。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/21",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/21",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F4-03",
+      "original_root_cause": "CG3",
+      "enforcement_family_display": "PUBLICATION",
+      "responsible_existing_unit": "MA12-U04",
+      "responsible_unit_id": "a2c5f009-53d8-4b97-bd37-be95b61ba3fe",
+      "package": "PK03",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma12_contracts.py",
+      "test_symbol_proposal": "test_f4_03_permanent_regression",
+      "oracle": "Git ack lost為UNKNOWN；按exact intent/tree/remote reconcile，不盲重送或假稱成功。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/22",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/22",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F4-04",
+      "original_root_cause": "CG3",
+      "enforcement_family_display": "PUBLICATION",
+      "responsible_existing_unit": "MA12-U05",
+      "responsible_unit_id": "0ce2e2ae-646a-4c01-8775-9768cdd56b2e",
+      "package": "PK03",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma12_contracts.py",
+      "test_symbol_proposal": "test_f4_04_permanent_regression",
+      "oracle": "舊revision不得倒退projection head；完整staging/CAS/atomic receipt避免半graph與duplicate apply。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/23",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/23",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F4-08",
+      "original_root_cause": "CG4",
+      "enforcement_family_display": "AUTHORITY",
+      "responsible_existing_unit": "MA14-U04",
+      "responsible_unit_id": "79721523-c63f-4fdb-ac01-f16280c0c487",
+      "package": "PK05",
+      "required_consumer_units": [
+        "MA12-U02"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma14_contracts.py",
+      "test_symbol_proposal": "test_f4_08_permanent_regression",
+      "oracle": "合法JSON/hash不能證明trusted producer/權限；不接受任意撤credit或自造Acceptance。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/24",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/24",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F6-01",
+      "original_root_cause": "CG4",
+      "enforcement_family_display": "AUTHORITY",
+      "responsible_existing_unit": "MA14-U06",
+      "responsible_unit_id": "069c5da8-3515-4f82-aec7-1a069091b5c9",
+      "package": "PK05",
+      "required_consumer_units": [
+        "MA15-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma14_contracts.py",
+      "test_symbol_proposal": "test_f6_01_permanent_regression",
+      "oracle": "Current摘要以exact receipt/as-of/supersession判定；不把歷史OwnerPending當最新已接受狀態。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/25",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/25",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F6-02",
+      "original_root_cause": "CG4",
+      "enforcement_family_display": "CONTEXT",
+      "responsible_existing_unit": "MA14-U05",
+      "responsible_unit_id": "26cba0b2-f5f6-4bfc-9a87-04f407a4d874",
+      "package": "PK05",
+      "required_consumer_units": [
+        "MA01-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma14_contracts.py",
+      "test_symbol_proposal": "test_f6_02_permanent_regression",
+      "oracle": "Independent obligation oracle須先封存，故意同漏source與projection仍拒絕；未證實injection/continuity保持HOLD。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/26",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/26",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F4-05",
+      "original_root_cause": "CG5",
+      "enforcement_family_display": "CAPTURE",
+      "responsible_existing_unit": "MA13-U01",
+      "responsible_unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+      "package": "PK04",
+      "required_consumer_units": [
+        "MA13-U02"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_f4_05_permanent_regression",
+      "oracle": "immutable body與manifest/hash讀回一致；pathname改寫、未完成body或HASH_MISMATCH不得稱available/restored。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/27",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/27",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F5-02",
+      "original_root_cause": "CG5",
+      "enforcement_family_display": "CAPTURE",
+      "responsible_existing_unit": "MA13-U01",
+      "responsible_unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+      "package": "PK04",
+      "required_consumer_units": [
+        "MA04-U05"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_f5_02_permanent_regression",
+      "oracle": "包含未SQL索引private draft及所有歷史revision；六欄UI不得變六筆保存上限，摘要/LLM重跑不是原文。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/28",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/28",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F6-06",
+      "original_root_cause": "CG5",
+      "enforcement_family_display": "CAPTURE",
+      "responsible_existing_unit": "MA13-U01",
+      "responsible_unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+      "package": "PK04",
+      "required_consumer_units": [
+        "MA13-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_f6_06_permanent_regression",
+      "oracle": "durable capture、SQL indexed、A verified、B verified獨立；capture成功不推導A/B保護。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/29",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/29",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F2-06",
+      "original_root_cause": "CG6",
+      "enforcement_family_display": "RESTORE",
+      "responsible_existing_unit": "MA13-U06",
+      "responsible_unit_id": "93f922ea-3084-498d-aa04-2f7c4b41f497",
+      "package": "PK10",
+      "required_consumer_units": [
+        "MA13-U05"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_f2_06_permanent_regression",
+      "oracle": "Product/Git-only/FullPrivate/Historical profiles各證自身coverage，simulation restore不能證private history完整。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3_DESIGN_L4_REAL_RESTORE",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/30",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/30",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F4-06",
+      "original_root_cause": "CG6",
+      "enforcement_family_display": "SECURITY",
+      "responsible_existing_unit": "MA12-U03",
+      "responsible_unit_id": "b10bf655-7e29-42bb-9a13-76861e6fd09c",
+      "package": "PK03",
+      "required_consumer_units": [
+        "MA13-U02"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma12_contracts.py",
+      "test_symbol_proposal": "test_f4_06_permanent_regression",
+      "oracle": "allowlist拒絕Secrets/private raw/reparse/UNC/device/path escape及TOCTOU；safe diagnostics不洩漏private metadata。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/31",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/31",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F5-01",
+      "original_root_cause": "CG6",
+      "enforcement_family_display": "RESTORE",
+      "responsible_existing_unit": "MA13-U03",
+      "responsible_unit_id": "2049e68d-c38a-459f-a0d1-f1df2eda8299",
+      "package": "PK04",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_f5_01_permanent_regression",
+      "oracle": "同SQL snapshot捕捉dump/heads/frontier/artifact inventory；事後maxEventId不能代替完整cut。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3_DESIGN_L4_REAL_RESTORE",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/32",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/32",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F5-03",
+      "original_root_cause": "CG6",
+      "enforcement_family_display": "RESTORE",
+      "responsible_existing_unit": "MA13-U04",
+      "responsible_unit_id": "ddb418b7-65aa-4166-8b9f-e61ba66e6268",
+      "package": "PK04",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_f5_03_permanent_regression",
+      "oracle": "B retained set自足且不依A base/chunks；A cleanup不得刪B required members或最後可用set。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3_DESIGN_L4_REAL_RESTORE",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/33",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/33",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F5-04",
+      "original_root_cause": "CG6",
+      "enforcement_family_display": "RESTORE",
+      "responsible_existing_unit": "MA13-U05",
+      "responsible_unit_id": "7dda8b7f-82d2-46d4-b6c5-7e0c960d0e64",
+      "package": "PK04",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_f5_04_permanent_regression",
+      "oracle": "manifest與body一起被改不能通過外部sealed receipt；重建catalog標reconstructed/unknown不補造同cut完整性。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3_DESIGN_L4_REAL_RESTORE",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/34",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/34",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F5-05",
+      "original_root_cause": "CG6",
+      "enforcement_family_display": "RESTORE",
+      "responsible_existing_unit": "MA16-U03",
+      "responsible_unit_id": "ffcf094e-f8ac-4ea4-b8b0-45e90063d3cc",
+      "package": "PK04",
+      "required_consumer_units": [
+        "MA13-U06"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma16_contracts.py",
+      "test_symbol_proposal": "test_f5_05_permanent_regression",
+      "oracle": "精確PG/extension/role/schema相容；只能新隔離target，拒絕既有交易DB覆寫。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3_DESIGN_L4_REAL_RESTORE",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/35",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/35",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F5-06",
+      "original_root_cause": "CG6",
+      "enforcement_family_display": "RESTORE",
+      "responsible_existing_unit": "MA13-U06",
+      "responsible_unit_id": "93f922ea-3084-498d-aa04-2f7c4b41f497",
+      "package": "PK10",
+      "required_consumer_units": [
+        "MA16-U05"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_f5_06_permanent_regression",
+      "oracle": "restore維持RecoveryHold及新instance fence；舊lease/outbox/unknownpublication不得自動重送。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3_DESIGN_L4_REAL_RESTORE",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/36",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/36",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F5-07",
+      "original_root_cause": "CG6",
+      "enforcement_family_display": "RESTORE",
+      "responsible_existing_unit": "MA13-U06",
+      "responsible_unit_id": "93f922ea-3084-498d-aa04-2f7c4b41f497",
+      "package": "PK10",
+      "required_consumer_units": [
+        "MA13-U03"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_f5_07_permanent_regression",
+      "oracle": "工程RPO目標不等產品零損失；用同cut實際Drill計RPO/RTO，不把模型數值當已測。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3_DESIGN_L4_REAL_RESTORE",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/37",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/37",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F5-08",
+      "original_root_cause": "CG6",
+      "enforcement_family_display": "SECURITY",
+      "responsible_existing_unit": "MA13-U02",
+      "responsible_unit_id": "edf14ff8-839f-44f4-a1b0-166c024f1515",
+      "package": "PK04",
+      "required_consumer_units": [
+        "MA16-U05"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_f5_08_permanent_regression",
+      "oracle": "driveletter重派/Key遺失/A-B共同污染：volume identity、獨立key recovery及故障域證據各自保留。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/38",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/38",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "F6-07",
+      "original_root_cause": "CG6",
+      "enforcement_family_display": "RESTORE",
+      "responsible_existing_unit": "MA13-U06",
+      "responsible_unit_id": "93f922ea-3084-498d-aa04-2f7c4b41f497",
+      "package": "PK10",
+      "required_consumer_units": [
+        "MA15-U01"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_f6_07_permanent_regression",
+      "oracle": "ProductRecovery/GitOnly/FullPrivate/Historical各具reverse route/coverage；可下載artifact不等工程restore。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3_DESIGN_L4_REAL_RESTORE",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/39",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "2bc77f31b51915978d4ffd56b2bb5ab902b21c5f9004f0efff2d3dad9ef70276",
+        "json_pointer": "#/findings/39",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "S1-AUTH-01",
+      "original_root_cause": "RCG01",
+      "enforcement_family_display": "AUTHORITY",
+      "responsible_existing_unit": "MA01-U01",
+      "responsible_unit_id": "cfc91817-46ea-4145-8427-139e06e5569d",
+      "package": "PK01",
+      "required_consumer_units": [
+        "MA12-U03"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma01_contracts.py",
+      "test_symbol_proposal": "test_s1_auth_01_permanent_regression",
+      "oracle": "main為target policy，現正式master及未執行migration分開；不可把default/tracking當已整合歷史。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/40",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/0",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "S1-SCOPE-02",
+      "original_root_cause": "RCG01",
+      "enforcement_family_display": "RELEASE_SCOPE",
+      "responsible_existing_unit": "MA01-U02",
+      "responsible_unit_id": "a4f5ef10-5f3b-4102-955e-40dfec5e9670",
+      "package": "PK01",
+      "required_consumer_units": [
+        "MA15-U03"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma01_contracts.py",
+      "test_symbol_proposal": "test_s1_scope_02_permanent_regression",
+      "oracle": "B3完整OOS/WFO/MC/AI及所有LAB義務保留；MVP內部切片不變正式scope。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/41",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/1",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "S1-ROUTE-03",
+      "original_root_cause": "RCG01",
+      "enforcement_family_display": "AUTHORITY",
+      "responsible_existing_unit": "MA14-U02",
+      "responsible_unit_id": "4f430dbc-e115-4b81-b167-213e4bec9618",
+      "package": "PK05",
+      "required_consumer_units": [
+        "MA14-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma14_contracts.py",
+      "test_symbol_proposal": "test_s1_route_03_permanent_regression",
+      "oracle": "CODEX primary與合格fallback維持同unit/contract/gates；不依LM-first舊candidate默路由。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          },
+          {
+            "family": "WORKFLOW_AUTHORITY_RESUME",
+            "trigger": "LIFECYCLE_RESULT_EXECUTOR_PROFILE_CONTROLLER_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/42",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/2",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "S2-CODE-01",
+      "original_root_cause": "RCG02",
+      "enforcement_family_display": "IDENTITY",
+      "responsible_existing_unit": "MA11-U02",
+      "responsible_unit_id": "550e6375-b311-43cc-a75b-4468b858b826",
+      "package": "PK03",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma11_contracts.py",
+      "test_symbol_proposal": "test_s2_code_01_permanent_regression",
+      "oracle": "E1退役C01後E2仍不得取得相同catalog/kind/canonical code key；format版本不解除永久占用。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/43",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/3",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "S2-REL-02",
+      "original_root_cause": "RCG02",
+      "enforcement_family_display": "REGISTRY",
+      "responsible_existing_unit": "MA11-U03",
+      "responsible_unit_id": "77c0018d-8680-4e94-a7b9-7fe0de492c60",
+      "package": "PK03",
+      "required_consumer_units": [
+        "MA12-U05"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma11_contracts.py",
+      "test_symbol_proposal": "test_s2_rel_02_permanent_regression",
+      "oracle": "歷史SOURCE_SNAPSHOT關係用具名adapter保留raw hash/endpointrevision；不可捏造instant或拒絕全部歷史重建。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "REVISION_IDENTITY_HISTORY",
+            "trigger": "REGISTRY_SCHEMA_BINDING_REVISION_SNAPSHOT_ALIAS_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/44",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/4",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "S6-COV-01",
+      "original_root_cause": "RCG05",
+      "enforcement_family_display": "RESTORE",
+      "responsible_existing_unit": "MA13-U03",
+      "responsible_unit_id": "2049e68d-c38a-459f-a0d1-f1df2eda8299",
+      "package": "PK04",
+      "required_consumer_units": [
+        "MA13-U01",
+        "MA13-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_s6_cov_01_permanent_regression",
+      "oracle": "SQLindex失敗的durable capture仍在external journal cut及B retainedset requiredclosure，不得標COMPLETE卻漏private original。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3_DESIGN_L4_REAL_RESTORE",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/45",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/5",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "S6-TEST-02",
+      "original_root_cause": "RCG06",
+      "enforcement_family_display": "COMPILER",
+      "responsible_existing_unit": "MA13-U03",
+      "responsible_unit_id": "2049e68d-c38a-459f-a0d1-f1df2eda8299",
+      "package": "PK04",
+      "required_consumer_units": [
+        "MA13-U06"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma13_contracts.py",
+      "test_symbol_proposal": "test_s6_test_02_permanent_regression",
+      "oracle": "BackupCut fixture不得用AccountCut；Git-only RestoreRequest不得要求SQL manifest；typed input與oracle同world。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "SOURCE_COMPANION_CLOSURE",
+            "trigger": "EXPECTED_POLICY_RESOLVER_GRAPH_OPERATION_BODY_UNIT_CATALOG_CONTEXT_HEAD_FIXTURE_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/46",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/6",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "PRODUCT-S4-01",
+      "original_root_cause": "RCG03",
+      "enforcement_family_display": "LAB_LINEAGE",
+      "responsible_existing_unit": "MA04-U01",
+      "responsible_unit_id": "332a4057-004a-48e0-8f8c-199d8126c497",
+      "package": "PK06",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma04_contracts.py",
+      "test_symbol_proposal": "test_product_s4_01_permanent_regression",
+      "oracle": "同名不同bytes archive須HASH_CONFLICT；move成功receipt失敗可reconcile，保留原bytes及postrename hash。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L2_WITH_L3_PROTECTED_SUBCASES",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/47",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/7",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "PRODUCT-S4-02",
+      "original_root_cause": "RCG03",
+      "enforcement_family_display": "LAB_LINEAGE",
+      "responsible_existing_unit": "MA04-U02",
+      "responsible_unit_id": "e0279c82-8eec-4de5-80c9-7e1b7d78a48f",
+      "package": "PK06",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma04_contracts.py",
+      "test_symbol_proposal": "test_product_s4_02_permanent_regression",
+      "oracle": "缺Entry/Exit/strategy risk或停用Safety拒絕；OFF不等FLAT/EXIT，CAS與immutable graph保留。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L2_WITH_L3_PROTECTED_SUBCASES",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/48",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/8",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "PRODUCT-S4-03",
+      "original_root_cause": "RCG03",
+      "enforcement_family_display": "LAB_LINEAGE",
+      "responsible_existing_unit": "MA04-U06",
+      "responsible_unit_id": "430b85dc-75e0-4811-b798-3fcc76f1f34e",
+      "package": "PK06",
+      "required_consumer_units": [
+        "MA04-U03",
+        "MA10-U03"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma04_contracts.py",
+      "test_symbol_proposal": "test_product_s4_03_permanent_regression",
+      "oracle": "AI create/query/cancel/adopt branch closure；未測建議/NO_VALIDATED_IMPROVEMENT分開，必須tested-before-propose。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L2_WITH_L3_PROTECTED_SUBCASES",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/49",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/9",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "PRODUCT-S4-04",
+      "original_root_cause": "RCG03",
+      "enforcement_family_display": "LAB_LINEAGE",
+      "responsible_existing_unit": "MA04-U05",
+      "responsible_unit_id": "5fec1579-d8c0-45a9-b658-3eb47efb5a31",
+      "package": "PK06",
+      "required_consumer_units": [
+        "MA07-U04",
+        "MA10-U03"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma04_contracts.py",
+      "test_symbol_proposal": "test_product_s4_04_permanent_regression",
+      "oracle": "人工exception LibraryRelease保存missingSimulation與永久warning；不得豁免PAPER/LIVEAdmission。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L2_WITH_L3_PROTECTED_SUBCASES",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/50",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/10",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "PRODUCT-S4-05",
+      "original_root_cause": "RCG03",
+      "enforcement_family_display": "LAB_LINEAGE",
+      "responsible_existing_unit": "MA08-U03",
+      "responsible_unit_id": "407f7d9c-05a0-4926-9421-b062cc4fde53",
+      "package": "PK09",
+      "required_consumer_units": [
+        "MA04-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma08_contracts.py",
+      "test_symbol_proposal": "test_product_s4_05_permanent_regression",
+      "oracle": "RECONSTRUCTED_ESTIMATED不計forwardOBSERVED qualification；STANDARD與Replay不同source/world。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L2_WITH_L3_PROTECTED_SUBCASES",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/51",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/11",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "PRODUCT-S4-06",
+      "original_root_cause": "RCG03",
+      "enforcement_family_display": "LAB_LINEAGE",
+      "responsible_existing_unit": "MA04-U03",
+      "responsible_unit_id": "9e7f20fa-f68c-45a0-8ed0-e841d9a543da",
+      "package": "PK06",
+      "required_consumer_units": [
+        "MA10-U03"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma04_contracts.py",
+      "test_symbol_proposal": "test_product_s4_06_permanent_regression",
+      "oracle": "S001 root/branch create/clone/list/read/archive有exactparent/CAS；有evidence的branch只archive不破壞歷史。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CONTENT_CAPTURE_BACKUP",
+            "trigger": "ARTIFACT_CAPTURE_BACKUP_RESTORE_CATALOG_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L2_WITH_L3_PROTECTED_SUBCASES",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/52",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/12",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "PRODUCT-S5-01",
+      "original_root_cause": "RCG04",
+      "enforcement_family_display": "CAPITAL_ORIGIN",
+      "responsible_existing_unit": "MA06-U04",
+      "responsible_unit_id": "210f5fa9-f030-4aab-a156-65f8f340053e",
+      "package": "PK08",
+      "required_consumer_units": [
+        "MA08-U02",
+        "MA09-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma06_contracts.py",
+      "test_symbol_proposal": "test_product_s5_01_permanent_regression",
+      "oracle": "EXTERNAL_UNASSIGNED Fill以external provenance合法發outbox；不捏造OriginBinding，partial/correction/replay歸屬不可改寫。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CAPITAL_ORDER_FILL",
+            "trigger": "CAPITAL_OMS_ORIGIN_ALLOCATION_APPROVAL_CONSUMER_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/53",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/13",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "PRODUCT-S5-02",
+      "original_root_cause": "RCG04",
+      "enforcement_family_display": "CAPITAL_ORIGIN",
+      "responsible_existing_unit": "MA06-U02",
+      "responsible_unit_id": "ddc16700-5687-4b64-9110-fb180fe5b60b",
+      "package": "PK08",
+      "required_consumer_units": [
+        "MA06-U03",
+        "MA06-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma06_contracts.py",
+      "test_symbol_proposal": "test_product_s5_02_permanent_regression",
+      "oracle": "同account budget vector/ratio/reference/generations原子調整；partialfill reservation不得重複占用或跨group自動互抵。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CAPITAL_ORDER_FILL",
+            "trigger": "CAPITAL_OMS_ORIGIN_ALLOCATION_APPROVAL_CONSUMER_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/54",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/14",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "PRODUCT-S5-03",
+      "original_root_cause": "RCG04",
+      "enforcement_family_display": "CAPITAL_ORIGIN",
+      "responsible_existing_unit": "MA08-U03",
+      "responsible_unit_id": "407f7d9c-05a0-4926-9421-b062cc4fde53",
+      "package": "PK09",
+      "required_consumer_units": [
+        "MA10-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma08_contracts.py",
+      "test_symbol_proposal": "test_product_s5_03_permanent_regression",
+      "oracle": "PAPER startSimulation回SimulationSession；LAB research world回ResearchRun；DTO/unitoracle相符且admission不混。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CAPITAL_ORDER_FILL",
+            "trigger": "CAPITAL_OMS_ORIGIN_ALLOCATION_APPROVAL_CONSUMER_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/55",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/15",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "MA-ARCH-v3-S7-IF02",
+      "original_root_cause": "RCG04",
+      "enforcement_family_display": "TRANSPORT",
+      "responsible_existing_unit": "MA03-U02",
+      "responsible_unit_id": "ad7fdaed-5e0d-4a51-a24b-1922f8ce6f26",
+      "package": "PK02",
+      "required_consumer_units": [
+        "MA10-U02"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma03_contracts.py",
+      "test_symbol_proposal": "test_ma_arch_v3_s7_if02_permanent_regression",
+      "oracle": "candle有完整OHLCV/barinterval及合法source/aggregation；單value Observation不能假造candlestick。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CAPITAL_ORDER_FILL",
+            "trigger": "CAPITAL_OMS_ORIGIN_ALLOCATION_APPROVAL_CONSUMER_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L2_WITH_L3_PROTECTED_SUBCASES",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/56",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/16",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "MA-ARCH-v3-S7-IF03",
+      "original_root_cause": "RCG04",
+      "enforcement_family_display": "TRANSPORT",
+      "responsible_existing_unit": "MA10-U02",
+      "responsible_unit_id": "5af2fc67-7bb1-425e-99d2-3a345e356b6f",
+      "package": "PK11",
+      "required_consumer_units": [
+        "MA04-U03",
+        "MA04-U04",
+        "MA08-U01",
+        "MA10-U03",
+        "MA10-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma10_contracts.py",
+      "test_symbol_proposal": "test_ma_arch_v3_s7_if03_permanent_regression",
+      "oracle": "browserrestart不靠cache：orders/jobs/runs/graphdraft都有scoped list/read/cursor/head。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CAPITAL_ORDER_FILL",
+            "trigger": "CAPITAL_OMS_ORIGIN_ALLOCATION_APPROVAL_CONSUMER_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L2_WITH_L3_PROTECTED_SUBCASES",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/57",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/17",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "MA-ARCH-v3-S7-IF04",
+      "original_root_cause": "RCG04",
+      "enforcement_family_display": "TRANSPORT",
+      "responsible_existing_unit": "MA10-U05",
+      "responsible_unit_id": "62dbf7f6-c1bf-406f-b448-e84b114c59e6",
+      "package": "PK11",
+      "required_consumer_units": [
+        "MA13-U02",
+        "MA10-U06"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma10_contracts.py",
+      "test_symbol_proposal": "test_ma_arch_v3_s7_if04_permanent_regression",
+      "oracle": "artifact binaryclient有permissionrecheck/partialstream/hash/expiry/revocation；backendbytes不推導UI已完成。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CAPITAL_ORDER_FILL",
+            "trigger": "CAPITAL_OMS_ORIGIN_ALLOCATION_APPROVAL_CONSUMER_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L2_WITH_L3_PROTECTED_SUBCASES",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/58",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/18",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "MA-ARCH-v3-S7-IF05",
+      "original_root_cause": "RCG04",
+      "enforcement_family_display": "TRANSPORT",
+      "responsible_existing_unit": "MA10-U06",
+      "responsible_unit_id": "0725e6af-4fbf-4f0f-b1f4-37fb0455548f",
+      "package": "PK11",
+      "required_consumer_units": [
+        "MA10-U01",
+        "MA03-U05"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma10_contracts.py",
+      "test_symbol_proposal": "test_ma_arch_v3_s7_if05_permanent_regression",
+      "oracle": "ErrorEnvelope/retry/cursor/SignalR subscribe-resume有單一DTO/schema；unknowncommand查receipt不blind resend。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "CAPITAL_ORDER_FILL",
+            "trigger": "CAPITAL_OMS_ORIGIN_ALLOCATION_APPROVAL_CONSUMER_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L2_WITH_L3_PROTECTED_SUBCASES",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/59",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/19",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "MA-ARCH-v3-S8-EX01",
+      "original_root_cause": "RCG06",
+      "enforcement_family_display": "COMPILER",
+      "responsible_existing_unit": "MA14-U01",
+      "responsible_unit_id": "c709d850-b687-458d-abdd-669bab608b66",
+      "package": "PK05",
+      "required_consumer_units": [
+        "MA14-U04"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma14_contracts.py",
+      "test_symbol_proposal": "test_ma_arch_v3_s8_ex01_permanent_regression",
+      "oracle": "RequiredEvidenceContract是checklist，UnitExecutionResult才actual；禁止將expectedpath/空tests填成已執行evidence。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "SOURCE_COMPANION_CLOSURE",
+            "trigger": "EXPECTED_POLICY_RESOLVER_GRAPH_OPERATION_BODY_UNIT_CATALOG_CONTEXT_HEAD_FIXTURE_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/60",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/20",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "MA-ARCH-v3-S8-EX02",
+      "original_root_cause": "RCG06",
+      "enforcement_family_display": "COMPILER",
+      "responsible_existing_unit": "MA14-U01",
+      "responsible_unit_id": "c709d850-b687-458d-abdd-669bab608b66",
+      "package": "PK05",
+      "required_consumer_units": [],
+      "test_path_proposal": "tests/architecture_companions/test_ma14_contracts.py",
+      "test_symbol_proposal": "test_ma_arch_v3_s8_ex02_permanent_regression",
+      "oracle": "實際raw ExecutionUnitPlan/planchecksum/gate轉換為compiledDTO；不能拿ExecutionUnit fixture冒充真實compilerinput。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "SOURCE_COMPANION_CLOSURE",
+            "trigger": "EXPECTED_POLICY_RESOLVER_GRAPH_OPERATION_BODY_UNIT_CATALOG_CONTEXT_HEAD_FIXTURE_CHANGE"
+          },
+          {
+            "family": "TRANSPORT_AND_CONSUMERS",
+            "trigger": "WIRE_API_DTO_UI_UNIT_VERSION_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/61",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "8ce8db2726dd4ab1505e755139bc5903be1f906ed9d2d16bf857777a7e17d683",
+        "json_pointer": "#/findings/21",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "SPECIAL01-OPS-CLOSURE-01",
+      "original_root_cause": null,
+      "enforcement_family_display": "SOURCE_PAIR",
+      "responsible_existing_unit": "MA14-U01",
+      "responsible_unit_id": "c709d850-b687-458d-abdd-669bab608b66",
+      "package": "PK05",
+      "required_consumer_units": [
+        "MA15-U02"
+      ],
+      "test_path_proposal": "tests/architecture_companions/test_ma14_contracts.py",
+      "test_symbol_proposal": "test_special01_ops_closure_01_permanent_regression",
+      "oracle": "由權威契約封ExpectedPair再比ActualValid；逐項missing/invalid/unexpected/version/hash/ambiguity拒絕，43ops replay。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "SOURCE_COMPANION_CLOSURE",
+            "trigger": "EXPECTED_POLICY_RESOLVER_GRAPH_OPERATION_BODY_UNIT_CATALOG_CONTEXT_HEAD_FIXTURE_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/62",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "1a3a1d69e39f8593158a61bbe6c9f604074e99e60f18ae9b047429581b0a1dbc",
+        "json_pointer": "#/findings/0",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    },
+    {
+      "finding_id": "SCHEMA-SPECIAL01-CONSUMER-PAIR-01",
+      "original_root_cause": null,
+      "enforcement_family_display": "SOURCE_PAIR",
+      "responsible_existing_unit": "MA15-U02",
+      "responsible_unit_id": "f6d3c601-3859-4405-80d1-3ea1b8e737b4",
+      "package": "PK01",
+      "required_consumer_units": [
+        "MA14-U01",
+        "MA10-U06"
+      ],
+      "test_path_proposal": "tests/integration/test_multi_asset_contracts.py",
+      "test_symbol_proposal": "test_schema_special01_consumer_pair_01_permanent_regression",
+      "oracle": "同一Unit/Operation consumer所需companion解析完整，36 knownmissing逐條回歸；216schema/9rawhistory不漂移。",
+      "positive_oracle": "Exact adopted compatible corrected source/world succeeds with expected output/evidence and no unauthorized side effects.",
+      "negative_oracle": "Inject only this preserved minimal counterexample; reject/hold as prescribed by adopted source; observe zero partial acceptance/economic effect.",
+      "change_trigger": {
+        "source": [
+          {
+            "family": "SOURCE_COMPANION_CLOSURE",
+            "trigger": "EXPECTED_POLICY_RESOLVER_GRAPH_OPERATION_BODY_UNIT_CATALOG_CONTEXT_HEAD_FIXTURE_CHANGE"
+          }
+        ],
+        "selection": "Trigger when changed contract, schema, graph, writer/profile or producer/consumer intersects this owner or named required consumer plus exact counterexample invariant; never all64 for a cosmetic change."
+      },
+      "placement": {
+        "precode": "Exact contract/source/currentness/dependency and required oracle availability must be known before affected compilation; no need to implement all64 before unrelated low-risk analysis.",
+        "unit": "Affected invariant positive/negative/source/hash/version tests required before unit result acceptance.",
+        "package": "Cross-layer/consumer tests required when named consumer changes or integration first connects.",
+        "independent": "Existing mandatory L3/L4 exact review; author test cannot replace independent review.",
+        "release": "Full B3 journeys and actual environment profiles only at applicable release/runtime gate."
+      },
+      "risk": "L3",
+      "original_source_descriptor": {
+        "raw_source_sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "json_pointer": "#/findings/63",
+        "body_not_copied": true
+      },
+      "original_evidence_descriptor": {
+        "raw_source_sha256": "1a3a1d69e39f8593158a61bbe6c9f604074e99e60f18ae9b047429581b0a1dbc",
+        "json_pointer": "#/findings/1",
+        "body_not_copied": true
+      },
+      "actual_test_implementation": "NOT_IMPLEMENTED_BY_THIS_TASK",
+      "actual_test_run": "NOT_RUN"
+    }
+  ],
+  "count": 64,
+  "original_64_dispositions_reopened": false,
+  "test_path_or_symbol_is_proposed_not_execution_evidence": true,
+  "source_status": "Source-bound author planning sufficiency only; future WO resolves exact accepted contracts/test preimages/qualification/grant",
+  "private_raw_quotes_included": false
+}

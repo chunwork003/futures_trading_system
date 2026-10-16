@@ -1,0 +1,1919 @@
+{
+  "format_role": "EXECUTOR_READABLE_SOURCE_BOUND_OPERATION_SPEC_NOT_EXECUTION_AUTHORITY",
+  "operation_id": "analyzeInboxSource",
+  "producer": {
+    "owner": "E_RESEARCH",
+    "unit": "MA04-U01",
+    "unit_id": "332a4057-004a-48e0-8f8c-199d8126c497",
+    "package": "PK06"
+  },
+  "contract_source": {
+    "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+    "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+    "bytes": 245079
+  },
+  "source_pointer": "#/endpoints/72",
+  "full_api_contract_source": {
+    "operation_id": "analyzeInboxSource",
+    "method": "POST",
+    "path": "/api/v2/source-inbox/{id}/analyses",
+    "chapter": "MA04",
+    "owner": "E_RESEARCH",
+    "page": "UI04",
+    "role": "RESEARCH_AUTHOR",
+    "request_payload_fields": {
+      "request": {
+        "type": "SourceAnalysisRequest",
+        "required": true
+      }
+    },
+    "response_model": "SourceAnalysisReport",
+    "response_envelope": "OperationReceipt",
+    "side_effect": "SCOPED_COMMAND_SUBJECT_TO_EXISTING_GRANT",
+    "idempotency": "scope + command_id + recomputed canonical payload hash; identical replay returns same receipt; differing hash409",
+    "invariant": "AST-only、resourcebounded、源hash前後一致、unsafe保持QUARANTINE",
+    "runtime_status": "NOT_IMPLEMENTED_OR_NOT_VERIFIED_BY_THIS_REVIEW",
+    "response_cardinality": "ONE",
+    "response_item_model": "SourceAnalysisReport",
+    "command_result_binding": "OperationReceipt.result_ref points to ONE named response_item_model; pending/unknown has no fabricated business result",
+    "query_enum_rule": "All enum selectors have TYPE_VARIANTS bindings; unknown semantic enum denied",
+    "error_model": "ErrorEnvelope",
+    "error_disposition_table": "ERROR_RETRY_DISPOSITION_TABLE.json",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation_contract": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "failure_contract": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "dto_version": "MA-DTO-v6",
+    "error_protocol_version": "architecture.transport_error.v2",
+    "dto_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "full_compilation_input_row": {
+    "operation_id": "analyzeInboxSource",
+    "source_pin": {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+      "raw_bytes_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+      "bytes": 245079
+    },
+    "source_pointer": "#/endpoints/72",
+    "chapter": "MA04",
+    "domain_contract_owner": "E_RESEARCH",
+    "producer_unit_alias": "MA04-U01",
+    "producer_unit_id": "332a4057-004a-48e0-8f8c-199d8126c497",
+    "producer_package": "PK06",
+    "consumer_units": [
+      {
+        "unit_alias": "MA04-U01",
+        "mode": "IMPLEMENT_OWNER_USECASE_OR_EXACT_SCOPED_REUSE_ADAPTER",
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/18/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U01",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/54/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U03",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/56/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA10-U06",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/59/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA15-U02",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/85/input_output/secondary_io"
+      },
+      {
+        "unit_alias": "MA15-U03",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/86/input_output/secondary_io"
+      }
+    ],
+    "ui_consumers": [
+      {
+        "page_id": "UI04",
+        "route": "/lab/builder",
+        "action_pointers": [
+          "#/pages/3/actions/8"
+        ],
+        "ui_states": {
+          "cancel": "requestcancellationonly;effectfinalreceiptseparate",
+          "conflict": "reloadexacthead/presentdiff;noautoapproval",
+          "empty": "Coverageprovedcompleteemptyonly",
+          "failure": "ErrorEnvelope typedretry",
+          "offline": "preserveread-onlydisplay;commandstatusunknown;noqueuedfinancialautoexecute",
+          "pending": "operationreceiptref retained",
+          "success": "verifiedserverreceipt+exactbusinessref;refetchprojection",
+          "unknown": "queryoperationreceipt;nofakesuccess"
+        },
+        "request_model_or_fields": {
+          "request": {
+            "required": true,
+            "type": "SourceAnalysisRequest"
+          }
+        }
+      }
+    ],
+    "frontend_integration_package": "PK11",
+    "method": "POST",
+    "route": "/api/v2/source-inbox/{id}/analyses",
+    "dto_version": "MA-DTO-v6",
+    "request_model": "ApiRequest_analyzeInboxSource",
+    "request_fields": {
+      "request": {
+        "type": "SourceAnalysisRequest",
+        "required": true
+      }
+    },
+    "response_model": "SourceAnalysisReport",
+    "response_envelope": "OperationReceipt",
+    "cardinality": "ONE",
+    "error_model": "ErrorEnvelope",
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "role_is_not_authority": true,
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "scope + command_id + recomputed canonical payload hash; identical replay returns same receipt; differing hash409",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect.",
+    "existing_oracle_case_refs": [
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/216",
+        "case_id": "WIRE-analyzeInboxSource-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/217",
+        "case_id": "WIRE-analyzeInboxSource-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/218",
+        "case_id": "WIRE-analyzeInboxSource-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      }
+    ],
+    "effective_v9_operation_companion": {
+      "companion": {
+        "path": "source_closure_v9/operations/analyzeInboxSource.v9.json",
+        "raw_bytes_sha256": "ae8bb7778dc4dd163dd90e11f649f153cd14ce14388edbeb912d702fa20f00e5"
+      },
+      "contract_entity_id": "138ecf1d-1e62-51aa-a408-321f448f8260",
+      "contract_revision_id": "bfb4a788-e7b8-53c2-8b60-2f56b42eaeed",
+      "operation_id": "analyzeInboxSource"
+    },
+    "required_mock_design": [
+      "Read exact producer contract/Model/Type/Error table and v9 Unit companion; use effective successor/adapter selection, not legacy positive wire payload as current.",
+      "Plan accepted success body, error/rejection, empty-complete vs UNKNOWN/PARTIAL, pending/unknown receipt, retry/CAS/conflict and re-entry states required by this operation.",
+      "Keep fixture actor/project/account/environment/permission/cut/version fixed; mock command does not approve strategy, financial effect, runtime admission or execution.",
+      "Keep request/response semantics identical across React→ASP.NET BFF→Python API→Core→Persistence; mock replaces an isolated producer boundary, not authorization layers.",
+      "Contract tests must verify producer and consumer against independent named expected oracles, not regenerate expected from actual mock result."
+    ],
+    "mock_runtime_result": "NOT_RUN",
+    "execution_dependency": "EXACT_AUTHORIZED_WORK_ORDER + qualified producer result or explicitly scoped reuse proof + current compiler/profile/writer/capacity",
+    "missing_executable_details": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here."
+  },
+  "effective_v9_companion": {
+    "actual_pair_catalog": {
+      "path": "source_closure_v9/ACTUAL_SUPPLIED_PAIR_CATALOG.v9.json",
+      "raw_bytes_sha256": "598693c9ab0bb23c206b1b831185e2e7d21bef176664717b6493022fd1ae7cfc"
+    },
+    "authority_effect": "NONE",
+    "case_refs": [
+      {
+        "case_canonical_sha256": "f3340cb2c8955041cfe38e7a9f8ad33570a6c48e5c891eb851f26f9a4d50d2e8",
+        "case_id": "C7-POSITIVE-analyzeInboxSource",
+        "pointer": "#/cases/16",
+        "source": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        }
+      }
+    ],
+    "consumers": [
+      {
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "mode": "IMPLEMENT_OWNER_USECASE_OR_EXACT_SCOPED_REUSE_ADAPTER",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/18/input_output/secondary_io",
+        "unit_alias": "MA04-U01"
+      },
+      {
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/54/input_output/secondary_io",
+        "unit_alias": "MA10-U01"
+      },
+      {
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/56/input_output/secondary_io",
+        "unit_alias": "MA10-U03"
+      },
+      {
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/59/input_output/secondary_io",
+        "unit_alias": "MA10-U06"
+      },
+      {
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "mode": "DESIGN_CHECK_SOURCE",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "EXACT_SOURCE_INTERFACE_SCHEMA_CHECK_ONLY",
+        "source_pointer": "EXECUTION_UNITS.json#/units/85/input_output/secondary_io",
+        "unit_alias": "MA15-U02"
+      },
+      {
+        "input_model": "ApiRequest_analyzeInboxSource",
+        "mode": "IMPLEMENTATION_INTEGRATION",
+        "output_model": "SourceAnalysisReport",
+        "required_result_or_reuse_ref": null,
+        "satisfaction": "PENDING_EXACT_QUALIFIED_RESULT_OR_SCOPED_REUSE",
+        "source_pointer": "EXECUTION_UNITS.json#/units/86/input_output/secondary_io",
+        "unit_alias": "MA15-U03"
+      }
+    ],
+    "contract_entity_id": "138ecf1d-1e62-51aa-a408-321f448f8260",
+    "contract_revision_id": "bfb4a788-e7b8-53c2-8b60-2f56b42eaeed",
+    "dto_profile": "MA-DTO-v6",
+    "execution_authorized": false,
+    "expected_pair_spec": {
+      "path": "source_closure_v9/EXPECTED_REQUIRED_PAIRS.v9.json",
+      "raw_bytes_sha256": "86c09e275595a3c996cea79f15e8200df25a53cf7ddf78ffb49eab7cb306250e"
+    },
+    "operation_id": "analyzeInboxSource",
+    "producer": {
+      "owner": "E_RESEARCH",
+      "unit_alias": "MA04-U01"
+    },
+    "request_model": "ApiRequest_analyzeInboxSource",
+    "required_descendants": [
+      {
+        "canonical_sha256": "034a27fc5c36db640d1fbd5fa633d7f32cc5cd0340d18ab8fc26cc64b2f1b8df",
+        "contract_ref": {
+          "entity_id": "89b8fb17-e7b6-55b4-8d44-b72927d9bd13",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "f2b96c69-b4b4-5c63-9013-dacb2f13462f",
+          "source_hash": "720e5c65f0b21f440671267b1359a424af41cb8231474d6ecb6b5d71439a1653"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/analyzeInboxSource-response",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "11b40f0502227eff90fa739b56e510288239fe355205ef05fc5e97d249a43fed",
+        "contract_ref": {
+          "entity_id": "216d6bc6-85c4-50e6-aca0-0f9d14bc0672",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "ff57a98d-04de-5edc-87ee-4f912574e798",
+          "source_hash": "0ab6ba2b15fbe0d6c6acd6a2c658a863fe0adeefd917f7dc3ad6c52d8f81ffd2"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/inbox-received",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "7df726209663d8c33063b53e288c3c6b0128242eb09dbde38ac1175931878ea1",
+        "contract_ref": {
+          "entity_id": "7da3955d-0ba3-52d9-90af-f0c51ff55dc3",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "5ae52ddf-2689-5b5d-aa6b-a101681d0637",
+          "source_hash": "0fe3eaed1923c3ce5e332e251a45897a38e520db3559f230fb24d69103aa90da"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/artifact_revisions/source-analysis",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "88cfb58cb012b432cab4a4441461d5b2222853ff6c2003ec03c5245215245944",
+        "contract_ref": {
+          "entity_id": "8efceff3-d708-5f50-855e-2266e1a799a1",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "BODY_CAPTURE_OWNER",
+          "revision_id": "50e089ab-80cd-5c05-a420-973e99ab34a1",
+          "source_hash": "44e6749e50ff603a89bd26b35b49cf70dbd6f161ca823954763b04d8c10afd1a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/cases/15/result_body_readback/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "35975b5626a48f3761fe57adf4e0f3b0559904494855d1627dfc085113f1092c",
+        "contract_ref": {
+          "entity_id": "ada6a3e7-d3fa-5244-ba1f-a87c350637dd",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "BODY_CAPTURE_OWNER",
+          "revision_id": "602b3a00-f1c7-534e-a9d8-2fa143d6b6e5",
+          "source_hash": "e3adc02aad240ada170ea34b58e1f7bdc466df3e0d9b44d2911c330a6583b025"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/cases/16/result_body_readback/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "35975b5626a48f3761fe57adf4e0f3b0559904494855d1627dfc085113f1092c",
+        "contract_ref": {
+          "entity_id": "ada6a3e7-d3fa-5244-ba1f-a87c350637dd",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "BODY_CAPTURE_OWNER",
+          "revision_id": "602b3a00-f1c7-534e-a9d8-2fa143d6b6e5",
+          "source_hash": "e3adc02aad240ada170ea34b58e1f7bdc466df3e0d9b44d2911c330a6583b025"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/cases/17/result_body_readback/binding",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "6f6d9e25e6d86d3039a9a2c03bb9711f99bd9f0afdb407bc32159b1b2f662cb2",
+        "contract_ref": {
+          "entity_id": "fcc9fd5a-97e4-56c6-8e54-bd82b6d2ca32",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "ff9b0351-0760-56f8-bf29-0af11a340ef5",
+          "source_hash": "38cceedcf6e439438da6cde0eca4197f9e0d138b30f4a95c2ca9fdb059dc1bf7"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/analyzeInboxSource-response",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "ba3c13efe61f9c4eb7e731e743450e4b54b81a770306b7f81899373133c41c0a",
+        "contract_ref": {
+          "entity_id": "2b606040-57f1-507e-b43d-e5fbd10a9543",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "05626659-6f18-52a4-943b-43bc647514d4",
+          "source_hash": "4ab760a2972f5cae46b21f49b9fefcebefbdde15e65411201521e152c8f6e3ff"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/inbox-received",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "de842340ea6b14404afb4076410484da3625c840655cb7a7de75d83bab725149",
+        "contract_ref": {
+          "entity_id": "4add45a8-bb62-5b5f-8c0c-51ed921e72fc",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "5411aa3e-5a04-5752-8301-fb7e55de2392",
+          "source_hash": "d98b67ca77c8f90c8c7cc44e83baf2815e45f63e5f5245cd6380ca5ab7531605"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_capture_receipts/source-analysis",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "027f2f26dd60639be91ff8c3e44fcb3921ccbb4d3f4327d2cb6fe20daaa0f685",
+        "contract_ref": {
+          "entity_id": "e9e9aaed-e733-549e-af9b-11beeaaabaa2",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "bd9c486c-c0c8-562e-a799-6625e22b9cc8",
+          "source_hash": "3a0442f5d7e6b8caa8c76464d8daa1bd5f1b9a70ee718f7b47096b2336ca7e55"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/analyzeInboxSource-response",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "aa4e66c0a3589a98f4e2b14847678953e660db4f5ee9e0224255f071d0c71ba9",
+        "contract_ref": {
+          "entity_id": "0c6af8ce-4044-5b1c-8577-8a6d8b1be2c0",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "154f4c88-f25b-5b12-82d5-95fcb813a684",
+          "source_hash": "78e2165432f9543cdabbd47cee6ec36d510c2ecf719d3bb0030706ff7d6e269b"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/inbox-received",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "620c9ce19faaa1def5682d56cd42722043f0d10cd9697e9389b04550318beef2",
+        "contract_ref": {
+          "entity_id": "86e52d7d-7251-510c-a097-8619381a9f2b",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_PROVIDER",
+          "revision_id": "08901efc-e33c-5321-b3fc-aca6ced6ba83",
+          "source_hash": "2466715a9673f97e2e28df6edf592116161dbfec4f4bf85e1bf25c7860e6fe62"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/expected_source_capture_receipts/source-analysis",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "DURABLE_CAPTURE_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "39e726143dbe08915d5a7b1ba7860b50205b1c67f56835fb5c51922f3be4f822",
+        "contract_ref": {
+          "entity_id": "5d5ca5cb-ded9-53f5-a0b8-dfb5b0c0a7dc",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "6d961f0c-891d-5d00-abba-386affd76f2a",
+          "source_hash": "720e5c65f0b21f440671267b1359a424af41cb8231474d6ecb6b5d71439a1653"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/analyzeInboxSource-response",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "b4f636eb4804cfbe2109aa0bf50245609be6977a4ee80bdc6f37166be42b8e78",
+        "contract_ref": {
+          "entity_id": "d6280444-ed80-5252-a660-e34a66adb109",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "b1206fba-092e-5eca-958c-55f50d73d8f6",
+          "source_hash": "5a6fc28a8ad7c74a066c9b57be43e5d2c98f94c6f363cdd17f43cfce6699579a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/inbox-received",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "46d2c164a6e71044384b92165b7057a30c7e26f0e99b51974b026c5cd3cd268e",
+        "contract_ref": {
+          "entity_id": "a20a42fb-0331-5f71-a16a-62d36adfd34d",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "ARTIFACT_WRITER",
+          "revision_id": "9099f87b-8384-5595-a6a3-7b14bd2fb741",
+          "source_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/source_artifact_revisions/source-analysis",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "ARTIFACT_REVISION_DESIGN_EXPECTATION"
+      },
+      {
+        "canonical_sha256": "13a0dc1e22e180e8a07e9d4264950e83f07b87eb8389294d9b86497fab3bc52f",
+        "contract_ref": {
+          "entity_id": "8b8b1aa7-4cb2-5095-ac0e-480fab4392ff",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "BODY_CAPTURE_OWNER",
+          "revision_id": "ec1269f7-a9be-56fa-ae22-b6dcb70d6ee6",
+          "source_hash": "29ac48002749256559cdc4d6d2897aee4acf4277b20f1d0d4f7c03ecfb2271a3"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/analyzeInboxSource-response",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "88cfb58cb012b432cab4a4441461d5b2222853ff6c2003ec03c5245215245944",
+        "contract_ref": {
+          "entity_id": "8efceff3-d708-5f50-855e-2266e1a799a1",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "BODY_CAPTURE_OWNER",
+          "revision_id": "50e089ab-80cd-5c05-a420-973e99ab34a1",
+          "source_hash": "44e6749e50ff603a89bd26b35b49cf70dbd6f161ca823954763b04d8c10afd1a"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/inbox-received",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      },
+      {
+        "canonical_sha256": "35975b5626a48f3761fe57adf4e0f3b0559904494855d1627dfc085113f1092c",
+        "contract_ref": {
+          "entity_id": "f53e72d3-6ca3-575e-bc38-9fafd530b498",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_RESEARCH",
+          "revision_id": "088d4986-d17b-5f94-ad52-6fd9429c50a3",
+          "source_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+        },
+        "immutable_auxiliary_bytes": [],
+        "pin": {
+          "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+          "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47"
+        },
+        "pointer": "#/typed_body_bindings/source-analysis",
+        "qualification": "DESIGN_EXPECTED_NOT_PROVIDER_DURABILITY_OR_RUNTIME_EVIDENCE",
+        "role": "BODY_BINDING_AND_EXPLICIT_SOURCE_BINDINGS"
+      }
+    ],
+    "required_pair_ids": [
+      "0bcdf64d-3a34-50da-9f93-4dcc8efd47d0",
+      "119e9e22-8d40-5f1c-b8d5-d6be05879c56",
+      "184f826f-324b-5c55-b3dc-b5ec1c51b796",
+      "227e9e08-557b-5d61-8c46-3a69976ac2f1",
+      "3b231136-a725-5a52-bdf7-b652c19cc924",
+      "424a2039-e6c0-5ab0-98dc-7288e5cc2ead",
+      "428b7b46-0a11-52f9-99c1-4df0efb57a84",
+      "4ae4cfed-b61d-5afe-baa2-adbd6e55201b",
+      "4f103f9f-2d49-57ae-a824-ede5e41f12f3",
+      "5a52a288-44f5-5556-9096-68049ea02b7e",
+      "670aa8fe-976b-5a1c-a7ea-106f3aea1489",
+      "6f589889-4974-55e1-9878-e314d8f3814a",
+      "79d8719d-086b-5637-8eb5-bcfe528e7caf",
+      "8894a824-0b6d-5b5b-82cb-2c7218a93e9d",
+      "98fdefc3-ce54-5d23-86b4-b359f4634b85",
+      "a26ebb76-861d-51d3-acc5-34d2c90937ec",
+      "a41db4fd-5fd4-54cc-ac9a-8f28fa3801d8",
+      "a5d2cfcf-51af-50c3-adba-9e26c136aa51",
+      "a8da8bca-1467-5dd4-91a6-065aa718fb17",
+      "ccbe139b-bf88-5917-8433-de3562d25fe6",
+      "da947cf8-cd7b-5a90-b569-44b7e569553b",
+      "ddcb1aeb-b767-565f-836f-09a800cbd843",
+      "df19ef45-6e1c-5758-baca-be37b5d2157d",
+      "e6d5c665-4d14-5421-9d2b-cd915f9efa96",
+      "f2419076-a37f-56c2-9a74-9a26d87d61a9",
+      "f4c93f4e-98d7-53c0-aa3e-9038a5f8e6b2"
+    ],
+    "response_model": "SourceAnalysisReport",
+    "subject": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01"
+  },
+  "v9_companion_applicability": "EXACT_V9_OPERATION_COMPANION",
+  "request": {
+    "model": "ApiRequest_analyzeInboxSource",
+    "fields": {
+      "request": {
+        "type": "SourceAnalysisRequest",
+        "required": true
+      }
+    },
+    "version": "MA-DTO-v6"
+  },
+  "response": {
+    "model": "SourceAnalysisReport",
+    "envelope": "OperationReceipt",
+    "cardinality": "ONE"
+  },
+  "named_model_closure": [
+    "ApiRequest_analyzeInboxSource",
+    "ContractRef",
+    "ErrorEnvelope",
+    "FieldViolation",
+    "OperationReceipt",
+    "SourceAnalysisFinding",
+    "SourceAnalysisReport",
+    "SourceAnalysisRequest",
+    "SourceAstSymbol",
+    "SourceDuplicateCandidate"
+  ],
+  "model_definitions_selector": "MODEL_TYPE_SOURCE_SPECIFICATION.json#/definition_lookup/<name>",
+  "auth_validation_idempotency_unknown": {
+    "auth_scope": "SERVER_ACCOUNT_PROJECT_ENV_RESOURCE_ACTION;role_label_only_not_authority",
+    "validation": "Exact named request fields+TYPE_VARIANTS enum/discriminator/cardinality; rejectunknownclosedfields; source refs exact; DecimalUnit/Currency; DomainInvariant before sideeffect",
+    "idempotency": "scope + command_id + recomputed canonical payload hash; identical replay returns same receipt; differing hash409",
+    "failure": "UNKNOWN command effect query OperationReceipt, neverblindresend; reads snapshot/retry; per-domain partials explicitCoverage",
+    "wire_negotiation": "X-MA-DTO-Version: MA-DTO-v6; source candidate revision is not a wire token. Legacy only exact endpoint adapter and legacy_schema_ref; unsupported or mismatch 422 before effect."
+  },
+  "producer_consumer_mock_test_matrix": {
+    "React": "Only display/user intent/typed client and declared page states; no independent business rules or direct SQL/Broker",
+    "ASP_NET_BFF": "Existing auth/session/CSRF/workflow/proxy adapter; preserve exact wire fields/errors/receipt/versions; no alternate Quant rules",
+    "Python_API": "Validate exact DTO/auth/resource/cut/source and delegate sole domain owner; no accepted result from mock",
+    "Quant_Core": "E_RESEARCH owns invariants and effect boundary per source",
+    "Persistence": "Existing port/UoW/canonical ownership; real migration/DB/Restore separately gated",
+    "expected_mock_source": "Named source oracle cases below; do not derive expected from mock output",
+    "mock_states": [
+      "source-defined success",
+      "typed rejected error",
+      "complete-empty versus UNKNOWN/PARTIAL",
+      "pending/unknown OperationReceipt",
+      "exact same-key/same-body retry versus conflict",
+      "version/profile/auth/CAS/stale-source rejection where applicable"
+    ],
+    "compare_layers": [
+      "Python producer contract result",
+      "BFF preserved transport/error result",
+      "React consumer state and receipt readback"
+    ],
+    "actual_test_status": "NOT_RUN"
+  },
+  "exact_oracle_cases": [
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/216",
+        "case_id": "WIRE-analyzeInboxSource-POSITIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-analyzeInboxSource-POSITIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "analyzeInboxSource",
+            "method": "POST",
+            "path": "/api/v2/source-inbox/{id}/analyses",
+            "path_values": {
+              "id": "c90a73d8-d8fd-52bf-b5d6-4876f3c65712"
+            },
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "8b458d8e-3682-5454-bdba-5f1a9ebb4916",
+                "revision_id": "d32c8a89-ca48-5141-9048-ce2b259d6396",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "f4624ccdbac8ae52c9e5eb6d4a8f9edd98e006046ef61bec830cbd25b222e2ae"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "request": {
+                "source_ref": {
+                  "entity_id": "43c695b8-3d3b-5936-bfc0-8fbea267e6d5",
+                  "revision_id": "8079cf4f-bedd-555f-a615-67b358d369a7",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "d876549e2de719d76f124d41cf4658ac0b232424ca8de81d56e0d4d606e0a96f"
+                },
+                "tool_profile_ref": {
+                  "entity_id": "2a1fb485-3829-52cf-bf2e-319012a13a11",
+                  "revision_id": "b8442c28-d899-56a2-937e-fc798d3b7899",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "894e8c4a85d10ed3069dd520aa04bbebb92ef5ec978e66feb6c685fb67b2817f"
+                },
+                "comparison_catalog_ref": {
+                  "entity_id": "f9061aa0-3ba1-5eda-b5f0-7dec9d2fb683",
+                  "revision_id": "518b77e9-d4c7-5021-9c41-b16d802db3c2",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "172600a85b4c089f96acf1fe37b0a79bb67e3da6d0a0b2ca6b219399515abf19"
+                },
+                "resource_budget_ref": {
+                  "entity_id": "6dcc2d6d-5d77-519b-ab5f-18d62c744312",
+                  "revision_id": "8241bf33-7a2b-59c4-b262-dd7dfd2bdd11",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "b109c8b347e8cedef0b8311c17a636f1c77071226ccce75cb448d35ee8e464c1"
+                }
+              }
+            },
+            "command_envelope": {
+              "command_id": "88a5ea34-807f-5d2f-bff2-925731d7a16b",
+              "payload_hash_domain": "canonical-json-sha256-v1",
+              "payload_hash": "86ad3f2fb515a2022a49f57fd493347e9ecc84dcbf579bcdebbb2d6ad1fd5b37",
+              "resource_scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              },
+              "expected_generation": 4,
+              "subject_refs": [
+                {
+                  "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                  "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                }
+              ],
+              "payload": {
+                "request": {
+                  "source_ref": {
+                    "entity_id": "43c695b8-3d3b-5936-bfc0-8fbea267e6d5",
+                    "revision_id": "8079cf4f-bedd-555f-a615-67b358d369a7",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "d876549e2de719d76f124d41cf4658ac0b232424ca8de81d56e0d4d606e0a96f"
+                  },
+                  "tool_profile_ref": {
+                    "entity_id": "2a1fb485-3829-52cf-bf2e-319012a13a11",
+                    "revision_id": "b8442c28-d899-56a2-937e-fc798d3b7899",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "894e8c4a85d10ed3069dd520aa04bbebb92ef5ec978e66feb6c685fb67b2817f"
+                  },
+                  "comparison_catalog_ref": {
+                    "entity_id": "f9061aa0-3ba1-5eda-b5f0-7dec9d2fb683",
+                    "revision_id": "518b77e9-d4c7-5021-9c41-b16d802db3c2",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "172600a85b4c089f96acf1fe37b0a79bb67e3da6d0a0b2ca6b219399515abf19"
+                  },
+                  "resource_budget_ref": {
+                    "entity_id": "6dcc2d6d-5d77-519b-ab5f-18d62c744312",
+                    "revision_id": "8241bf33-7a2b-59c4-b262-dd7dfd2bdd11",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "b109c8b347e8cedef0b8311c17a636f1c77071226ccce75cb448d35ee8e464c1"
+                  }
+                }
+              }
+            },
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_bytes_utf8": "import os\ndef f(x):\n    return x + 1\n",
+            "network_calls": 0
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/72",
+          "input_model": "ApiRequest_analyzeInboxSource",
+          "response_model": "SourceAnalysisReport",
+          "response_envelope": "OperationReceipt",
+          "response_cardinality": "ONE"
+        },
+        "mutation": null,
+        "interleaving": [],
+        "expected_model": "SourceAnalysisReport",
+        "expected_domain_model_if_hold": null,
+        "expected_observations": {
+          "function_count": 1,
+          "import_count": 1,
+          "exec_calls": 0,
+          "qualification": "NOT_QUALIFIED"
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA04-U01",
+        "consumer_units": [
+          "MA10-U03",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/217",
+        "case_id": "WIRE-analyzeInboxSource-NEGATIVE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-analyzeInboxSource-NEGATIVE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "analyzeInboxSource",
+            "method": "POST",
+            "path": "/api/v2/source-inbox/{id}/analyses",
+            "path_values": {
+              "id": "c90a73d8-d8fd-52bf-b5d6-4876f3c65712"
+            },
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "8b458d8e-3682-5454-bdba-5f1a9ebb4916",
+                "revision_id": "d32c8a89-ca48-5141-9048-ce2b259d6396",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "f4624ccdbac8ae52c9e5eb6d4a8f9edd98e006046ef61bec830cbd25b222e2ae"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "request": {
+                "source_ref": {
+                  "entity_id": "43c695b8-3d3b-5936-bfc0-8fbea267e6d5",
+                  "revision_id": "8079cf4f-bedd-555f-a615-67b358d369a7",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "d876549e2de719d76f124d41cf4658ac0b232424ca8de81d56e0d4d606e0a96f"
+                },
+                "tool_profile_ref": {
+                  "entity_id": "2a1fb485-3829-52cf-bf2e-319012a13a11",
+                  "revision_id": "b8442c28-d899-56a2-937e-fc798d3b7899",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "894e8c4a85d10ed3069dd520aa04bbebb92ef5ec978e66feb6c685fb67b2817f"
+                },
+                "comparison_catalog_ref": {
+                  "entity_id": "f9061aa0-3ba1-5eda-b5f0-7dec9d2fb683",
+                  "revision_id": "518b77e9-d4c7-5021-9c41-b16d802db3c2",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "172600a85b4c089f96acf1fe37b0a79bb67e3da6d0a0b2ca6b219399515abf19"
+                },
+                "resource_budget_ref": {
+                  "entity_id": "6dcc2d6d-5d77-519b-ab5f-18d62c744312",
+                  "revision_id": "8241bf33-7a2b-59c4-b262-dd7dfd2bdd11",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "b109c8b347e8cedef0b8311c17a636f1c77071226ccce75cb448d35ee8e464c1"
+                }
+              }
+            },
+            "command_envelope": {
+              "command_id": "88a5ea34-807f-5d2f-bff2-925731d7a16b",
+              "payload_hash_domain": "canonical-json-sha256-v1",
+              "payload_hash": "86ad3f2fb515a2022a49f57fd493347e9ecc84dcbf579bcdebbb2d6ad1fd5b37",
+              "resource_scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              },
+              "expected_generation": 4,
+              "subject_refs": [
+                {
+                  "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                  "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                }
+              ],
+              "payload": {
+                "request": {
+                  "source_ref": {
+                    "entity_id": "43c695b8-3d3b-5936-bfc0-8fbea267e6d5",
+                    "revision_id": "8079cf4f-bedd-555f-a615-67b358d369a7",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "d876549e2de719d76f124d41cf4658ac0b232424ca8de81d56e0d4d606e0a96f"
+                  },
+                  "tool_profile_ref": {
+                    "entity_id": "2a1fb485-3829-52cf-bf2e-319012a13a11",
+                    "revision_id": "b8442c28-d899-56a2-937e-fc798d3b7899",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "894e8c4a85d10ed3069dd520aa04bbebb92ef5ec978e66feb6c685fb67b2817f"
+                  },
+                  "comparison_catalog_ref": {
+                    "entity_id": "f9061aa0-3ba1-5eda-b5f0-7dec9d2fb683",
+                    "revision_id": "518b77e9-d4c7-5021-9c41-b16d802db3c2",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "172600a85b4c089f96acf1fe37b0a79bb67e3da6d0a0b2ca6b219399515abf19"
+                  },
+                  "resource_budget_ref": {
+                    "entity_id": "6dcc2d6d-5d77-519b-ab5f-18d62c744312",
+                    "revision_id": "8241bf33-7a2b-59c4-b262-dd7dfd2bdd11",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "b109c8b347e8cedef0b8311c17a636f1c77071226ccce75cb448d35ee8e464c1"
+                  }
+                }
+              }
+            },
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_bytes_utf8": "import os\ndef f(x):\n    return x + 1\n",
+            "network_calls": 0
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/72",
+          "mutation_operations": [
+            {
+              "op": "set",
+              "path": "/initial_world/tool_profile_allow_import_exec",
+              "value": true
+            }
+          ],
+          "after_mutation_recompute_command_hash": true,
+          "input_model": "ApiRequest_analyzeInboxSource",
+          "response_model": "SourceAnalysisReport",
+          "response_envelope": "OperationReceipt",
+          "response_cardinality": "ONE"
+        },
+        "mutation": "tool profile enables import/exec",
+        "interleaving": [],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "SourceAnalysisReport",
+        "expected_observations": {
+          "disposition": "REJECTED_NO_EFFECT",
+          "exec_calls": 0
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA04-U01",
+        "consumer_units": [
+          "MA10-U03",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    },
+    {
+      "ref": {
+        "path": "OPERATION_EXPECTED_MODEL_ORACLES.candidate.v5.json",
+        "selector": "#/cases/218",
+        "case_id": "WIRE-analyzeInboxSource-RACE-V5",
+        "raw_bytes_sha256": "8c5783b736a16e68776c228d644e41388992ef0274bb8500a0ba718a8ffce872"
+      },
+      "source_row": {
+        "case_id": "WIRE-analyzeInboxSource-RACE-V5",
+        "fixture_kind": "NAMED_ASSEMBLER_WITH_COMPLETE_INPUTS",
+        "assembler": "AssembleOperationWireV5",
+        "assembler_inputs": {
+          "wire": {
+            "operation_id": "analyzeInboxSource",
+            "method": "POST",
+            "path": "/api/v2/source-inbox/{id}/analyses",
+            "path_values": {
+              "id": "c90a73d8-d8fd-52bf-b5d6-4876f3c65712"
+            },
+            "authenticated_context_fixture": {
+              "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+              "policy_receipt_ref": {
+                "entity_id": "8b458d8e-3682-5454-bdba-5f1a9ebb4916",
+                "revision_id": "d32c8a89-ca48-5141-9048-ce2b259d6396",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "f4624ccdbac8ae52c9e5eb6d4a8f9edd98e006046ef61bec830cbd25b222e2ae"
+              },
+              "scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              }
+            },
+            "request_payload": {
+              "request": {
+                "source_ref": {
+                  "entity_id": "43c695b8-3d3b-5936-bfc0-8fbea267e6d5",
+                  "revision_id": "8079cf4f-bedd-555f-a615-67b358d369a7",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "d876549e2de719d76f124d41cf4658ac0b232424ca8de81d56e0d4d606e0a96f"
+                },
+                "tool_profile_ref": {
+                  "entity_id": "2a1fb485-3829-52cf-bf2e-319012a13a11",
+                  "revision_id": "b8442c28-d899-56a2-937e-fc798d3b7899",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "894e8c4a85d10ed3069dd520aa04bbebb92ef5ec978e66feb6c685fb67b2817f"
+                },
+                "comparison_catalog_ref": {
+                  "entity_id": "f9061aa0-3ba1-5eda-b5f0-7dec9d2fb683",
+                  "revision_id": "518b77e9-d4c7-5021-9c41-b16d802db3c2",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "172600a85b4c089f96acf1fe37b0a79bb67e3da6d0a0b2ca6b219399515abf19"
+                },
+                "resource_budget_ref": {
+                  "entity_id": "6dcc2d6d-5d77-519b-ab5f-18d62c744312",
+                  "revision_id": "8241bf33-7a2b-59c4-b262-dd7dfd2bdd11",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "b109c8b347e8cedef0b8311c17a636f1c77071226ccce75cb448d35ee8e464c1"
+                }
+              }
+            },
+            "command_envelope": {
+              "command_id": "88a5ea34-807f-5d2f-bff2-925731d7a16b",
+              "payload_hash_domain": "canonical-json-sha256-v1",
+              "payload_hash": "86ad3f2fb515a2022a49f57fd493347e9ecc84dcbf579bcdebbb2d6ad1fd5b37",
+              "resource_scope": {
+                "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                "environment": "LAB",
+                "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                "group_id": null
+              },
+              "expected_generation": 4,
+              "subject_refs": [
+                {
+                  "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                  "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                  "owner": "FIXTURE_ONLY",
+                  "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                  "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                }
+              ],
+              "payload": {
+                "request": {
+                  "source_ref": {
+                    "entity_id": "43c695b8-3d3b-5936-bfc0-8fbea267e6d5",
+                    "revision_id": "8079cf4f-bedd-555f-a615-67b358d369a7",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "d876549e2de719d76f124d41cf4658ac0b232424ca8de81d56e0d4d606e0a96f"
+                  },
+                  "tool_profile_ref": {
+                    "entity_id": "2a1fb485-3829-52cf-bf2e-319012a13a11",
+                    "revision_id": "b8442c28-d899-56a2-937e-fc798d3b7899",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "894e8c4a85d10ed3069dd520aa04bbebb92ef5ec978e66feb6c685fb67b2817f"
+                  },
+                  "comparison_catalog_ref": {
+                    "entity_id": "f9061aa0-3ba1-5eda-b5f0-7dec9d2fb683",
+                    "revision_id": "518b77e9-d4c7-5021-9c41-b16d802db3c2",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "172600a85b4c089f96acf1fe37b0a79bb67e3da6d0a0b2ca6b219399515abf19"
+                  },
+                  "resource_budget_ref": {
+                    "entity_id": "6dcc2d6d-5d77-519b-ab5f-18d62c744312",
+                    "revision_id": "8241bf33-7a2b-59c4-b262-dd7dfd2bdd11",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "b109c8b347e8cedef0b8311c17a636f1c77071226ccce75cb448d35ee8e464c1"
+                  }
+                }
+              }
+            },
+            "dto_profile": "candidate.5",
+            "dto_header": {
+              "X-MA-DTO-Version": "candidate.5"
+            }
+          },
+          "initial_world": {
+            "source_bytes_utf8": "import os\ndef f(x):\n    return x + 1\n",
+            "network_calls": 0
+          },
+          "referenced_body_catalog_fixture": "WorldBodiesV5",
+          "model_catalog_ref": "FINAL_SUBJECT/MODEL_CATALOG.json",
+          "type_catalog_ref": "FINAL_SUBJECT/TYPE_VARIANTS.json",
+          "operation_contract_ref": "API_CATALOG.json#/endpoints/72",
+          "actors": [
+            {
+              "actor_id": "A",
+              "request": {
+                "operation_id": "analyzeInboxSource",
+                "method": "POST",
+                "path": "/api/v2/source-inbox/{id}/analyses",
+                "path_values": {
+                  "id": "c90a73d8-d8fd-52bf-b5d6-4876f3c65712"
+                },
+                "authenticated_context_fixture": {
+                  "actor_id": "ee2aeb83-c137-5b70-a9d2-c022c01d121d",
+                  "policy_receipt_ref": {
+                    "entity_id": "8b458d8e-3682-5454-bdba-5f1a9ebb4916",
+                    "revision_id": "d32c8a89-ca48-5141-9048-ce2b259d6396",
+                    "owner": "FIXTURE_ONLY",
+                    "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                    "source_hash": "f4624ccdbac8ae52c9e5eb6d4a8f9edd98e006046ef61bec830cbd25b222e2ae"
+                  },
+                  "scope": {
+                    "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                    "environment": "LAB",
+                    "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                    "group_id": null
+                  }
+                },
+                "request_payload": {
+                  "request": {
+                    "source_ref": {
+                      "entity_id": "43c695b8-3d3b-5936-bfc0-8fbea267e6d5",
+                      "revision_id": "8079cf4f-bedd-555f-a615-67b358d369a7",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "d876549e2de719d76f124d41cf4658ac0b232424ca8de81d56e0d4d606e0a96f"
+                    },
+                    "tool_profile_ref": {
+                      "entity_id": "2a1fb485-3829-52cf-bf2e-319012a13a11",
+                      "revision_id": "b8442c28-d899-56a2-937e-fc798d3b7899",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "894e8c4a85d10ed3069dd520aa04bbebb92ef5ec978e66feb6c685fb67b2817f"
+                    },
+                    "comparison_catalog_ref": {
+                      "entity_id": "f9061aa0-3ba1-5eda-b5f0-7dec9d2fb683",
+                      "revision_id": "518b77e9-d4c7-5021-9c41-b16d802db3c2",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "172600a85b4c089f96acf1fe37b0a79bb67e3da6d0a0b2ca6b219399515abf19"
+                    },
+                    "resource_budget_ref": {
+                      "entity_id": "6dcc2d6d-5d77-519b-ab5f-18d62c744312",
+                      "revision_id": "8241bf33-7a2b-59c4-b262-dd7dfd2bdd11",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "b109c8b347e8cedef0b8311c17a636f1c77071226ccce75cb448d35ee8e464c1"
+                    }
+                  }
+                },
+                "command_envelope": {
+                  "command_id": "88a5ea34-807f-5d2f-bff2-925731d7a16b",
+                  "payload_hash_domain": "canonical-json-sha256-v1",
+                  "payload_hash": "86ad3f2fb515a2022a49f57fd493347e9ecc84dcbf579bcdebbb2d6ad1fd5b37",
+                  "resource_scope": {
+                    "project_id": "9efd566e-d2ee-50f6-b219-c60b8f9a35d8",
+                    "environment": "LAB",
+                    "account_id": "4ee5a33e-9ef3-5d61-95b8-c4ba5abbd228",
+                    "group_id": null
+                  },
+                  "expected_generation": 4,
+                  "subject_refs": [
+                    {
+                      "entity_id": "693c332c-3ea3-5b10-a6c1-4227262631f4",
+                      "revision_id": "1f625ff9-8e53-51f8-9d64-9a25e1b16f5f",
+                      "owner": "FIXTURE_ONLY",
+                      "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                      "source_hash": "3cc338aa68039441fb7c537948bd96b597824ac07d2f76edd398a2fed021b4be"
+                    }
+                  ],
+                  "payload": {
+                    "request": {
+                      "source_ref": {
+                        "entity_id": "43c695b8-3d3b-5936-bfc0-8fbea267e6d5",
+                        "revision_id": "8079cf4f-bedd-555f-a615-67b358d369a7",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "d876549e2de719d76f124d41cf4658ac0b232424ca8de81d56e0d4d606e0a96f"
+                      },
+                      "tool_profile_ref": {
+                        "entity_id": "2a1fb485-3829-52cf-bf2e-319012a13a11",
+                        "revision_id": "b8442c28-d899-56a2-937e-fc798d3b7899",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "894e8c4a85d10ed3069dd520aa04bbebb92ef5ec978e66feb6c685fb67b2817f"
+                      },
+                      "comparison_catalog_ref": {
+                        "entity_id": "f9061aa0-3ba1-5eda-b5f0-7dec9d2fb683",
+                        "revision_id": "518b77e9-d4c7-5021-9c41-b16d802db3c2",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "172600a85b4c089f96acf1fe37b0a79bb67e3da6d0a0b2ca6b219399515abf19"
+                      },
+                      "resource_budget_ref": {
+                        "entity_id": "6dcc2d6d-5d77-519b-ab5f-18d62c744312",
+                        "revision_id": "8241bf33-7a2b-59c4-b262-dd7dfd2bdd11",
+                        "owner": "FIXTURE_ONLY",
+                        "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                        "source_hash": "b109c8b347e8cedef0b8311c17a636f1c77071226ccce75cb448d35ee8e464c1"
+                      }
+                    }
+                  }
+                },
+                "dto_profile": "candidate.5",
+                "dto_header": {
+                  "X-MA-DTO-Version": "candidate.5"
+                }
+              }
+            },
+            {
+              "actor_id": "B",
+              "source_event_ref": {
+                "entity_id": "ba37e80c-a584-5e56-8c50-780e09c023e3",
+                "revision_id": "4f6a9ce5-03ea-5405-8854-6a8cb856627c",
+                "owner": "FIXTURE_ONLY",
+                "hash_domain": "MODEL_FIXTURE_CANONICAL_JSON_SHA256",
+                "source_hash": "95f36394f2219fad20ac7d0270daa8792efd2bca4526a91bceca78e1a0363f8f"
+              },
+              "generation_before": 4,
+              "generation_after": 5,
+              "frontier_before": 12,
+              "frontier_after": 13
+            }
+          ],
+          "schedule": [
+            {
+              "at": 1,
+              "actor": "A",
+              "action": "read exact initial-world source/ref/generation/frontier"
+            },
+            {
+              "at": 2,
+              "actor": "B",
+              "action": "append immutable successor or race same command according to named interleaving",
+              "named_event": [
+                "source same revision bytes changed before AST read"
+              ]
+            },
+            {
+              "at": 3,
+              "actor": "A",
+              "action": "attempt exact original generation/frontier commit or read next snapshot page"
+            }
+          ],
+          "input_model": "ApiRequest_analyzeInboxSource",
+          "response_model": "SourceAnalysisReport",
+          "response_envelope": "OperationReceipt",
+          "response_cardinality": "ONE"
+        },
+        "mutation": null,
+        "interleaving": [
+          "source same revision bytes changed before AST read"
+        ],
+        "expected_model": "ErrorEnvelope",
+        "expected_domain_model_if_hold": "SourceAnalysisReport",
+        "expected_observations": {
+          "reason": "SOURCE_CONTENT_CONFLICT",
+          "report_created": false
+        },
+        "required_body_oracle": null,
+        "producer_unit_alias": "MA04-U01",
+        "consumer_units": [
+          "MA10-U03",
+          "MA10-U06",
+          "MA15-U02"
+        ],
+        "qualification": "SPECIFIED_NOT_EXECUTED",
+        "actual_evidence_ref": null
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    }
+  ],
+  "additional_required_cases_if_not_in_legacy": "Use current v9 case_refs/required descendants and explicit adapter profile; legacy fixtures not universal current payload positives",
+  "qualification": {
+    "source_assembly": "PENDING",
+    "context_profile": "PENDING_APPLICABILITY",
+    "WO_Grant_Writer_Budget": "NOT_AUTHORIZED",
+    "runtime": "APPLICABLE_NAMED_GATE_ONLY"
+  },
+  "unresolved_implementation_binding": "Existing WORK resolves actual repository base blobs, exact writer allowlist, fixture supersession/applicability, current test command/environment and expected evidence before any implementation; not invented here.",
+  "implementation_not_authorized": true,
+  "v9_case_sources": [
+    {
+      "ref": {
+        "path": "CYCLE03_FINITE_OPERATION_WORLD.candidate.v7.json",
+        "raw_bytes_sha256": "38d54f128c1b3ea6877fcd7a909c9688e33fc325758186d603e195b3b15b0b47",
+        "pointer": "#/cases/16"
+      },
+      "source_row": {
+        "business_result_body": {
+          "classification_tags": [
+            "AST_ONLY",
+            "SIGNAL_RULE",
+            "NO_IMPORTS"
+          ],
+          "duplicates": [],
+          "findings": [
+            {
+              "line_end": 2,
+              "line_start": 1,
+              "reason": "Function has only a comparison expression; static AST analysis does not execute it.",
+              "rule_id": "C7_AST_NO_IMPORT_CALL",
+              "severity": "INFO"
+            }
+          ],
+          "licence_state": "KNOWN_ALLOWLISTED",
+          "original_byte_hash": "3f3b6b2f39395f0b9e6e00aed9bada7e482d0df6dbdf6cd10d1be1f2becfb2ba",
+          "original_content_ref": {
+            "entity_id": "0b834a90-b07d-5f5a-a87b-891eb833d171",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "E_RESEARCH",
+            "revision_id": "d37dc26a-3c4d-5c26-8491-6673d49dee74",
+            "source_hash": "3f3b6b2f39395f0b9e6e00aed9bada7e482d0df6dbdf6cd10d1be1f2becfb2ba"
+          },
+          "primary_category": "SIGNAL_RULE",
+          "ref": {
+            "entity_id": "f53e72d3-6ca3-575e-bc38-9fafd530b498",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "E_RESEARCH",
+            "revision_id": "088d4986-d17b-5f94-ad52-6fd9429c50a3",
+            "source_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+          },
+          "request": {
+            "comparison_catalog_ref": {
+              "entity_id": "72c5e60c-47d2-51f9-a9a8-900f54136c17",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "06b224b7-9af1-58fd-aae0-0ab119310535",
+              "source_hash": "630fb812302005599f52a2abba34ac43dcad55b80f53c09cf7f57790e6972718"
+            },
+            "resource_budget_ref": {
+              "entity_id": "e08e9681-0950-563c-81ae-05ce210a213b",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "afbcfa75-ef47-56b5-9562-2faa72db3717",
+              "source_hash": "7fb1be5d0a1e1d960e72710839ec6002621c88fd76f0d88f94859fc5f8a2897a"
+            },
+            "source_ref": {
+              "entity_id": "77646167-8c99-5a14-b922-1fdde4d9ffb9",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "cd278beb-0ce9-5f5c-a7fa-efcd01a5a9cc",
+              "source_hash": "5a6fc28a8ad7c74a066c9b57be43e5d2c98f94c6f363cdd17f43cfce6699579a"
+            },
+            "tool_profile_ref": {
+              "entity_id": "fd6bf4e4-6965-551c-adcc-76b135526d36",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "28d1665a-3c4c-53d7-9994-9190aca7b400",
+              "source_hash": "6627825856533b9634c3c2a5c22d7060d0631c7d2a4482272a17329b713c4847"
+            }
+          },
+          "scan_batch_id": "aae7c2f0-169e-5809-a381-d2f81ea8f1c5",
+          "source_metadata_ref": {
+            "entity_id": "d4c6cba4-92a9-5f12-9681-6e5606bd537b",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "E_RESEARCH",
+            "revision_id": "f5846c54-eb3a-5cc4-a70c-5a7e726ad657",
+            "source_hash": "84dabfe33ddbded4ada9e2d2aa5ba908e6276ca24d22c000d915307e2e8d9eb1"
+          },
+          "status": "ANALYZED",
+          "symbols": [
+            {
+              "dependency_names": [],
+              "input_names": [
+                "close"
+              ],
+              "kind": "FUNCTION",
+              "line_end": 2,
+              "line_start": 1,
+              "output_names": [
+                "return"
+              ],
+              "parameters": [
+                "close"
+              ],
+              "qualified_name": "signal"
+            }
+          ]
+        },
+        "business_result_body_canonical_sha256": "0fe3eaed1923c3ce5e332e251a45897a38e520db3559f230fb24d69103aa90da",
+        "business_result_label": "source-analysis",
+        "business_result_model": "SourceAnalysisReport",
+        "business_result_ref": {
+          "entity_id": "f53e72d3-6ca3-575e-bc38-9fafd530b498",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_RESEARCH",
+          "revision_id": "088d4986-d17b-5f94-ad52-6fd9429c50a3",
+          "source_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+        },
+        "case_id": "C7-POSITIVE-analyzeInboxSource",
+        "command_envelope": {
+          "command_id": "1cf3c4e4-492f-5109-99cf-bdf555007138",
+          "expected_generation": 0,
+          "payload": {
+            "request": {
+              "comparison_catalog_ref": {
+                "entity_id": "72c5e60c-47d2-51f9-a9a8-900f54136c17",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "06b224b7-9af1-58fd-aae0-0ab119310535",
+                "source_hash": "630fb812302005599f52a2abba34ac43dcad55b80f53c09cf7f57790e6972718"
+              },
+              "resource_budget_ref": {
+                "entity_id": "e08e9681-0950-563c-81ae-05ce210a213b",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "afbcfa75-ef47-56b5-9562-2faa72db3717",
+                "source_hash": "7fb1be5d0a1e1d960e72710839ec6002621c88fd76f0d88f94859fc5f8a2897a"
+              },
+              "source_ref": {
+                "entity_id": "77646167-8c99-5a14-b922-1fdde4d9ffb9",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "cd278beb-0ce9-5f5c-a7fa-efcd01a5a9cc",
+                "source_hash": "5a6fc28a8ad7c74a066c9b57be43e5d2c98f94c6f363cdd17f43cfce6699579a"
+              },
+              "tool_profile_ref": {
+                "entity_id": "fd6bf4e4-6965-551c-adcc-76b135526d36",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "28d1665a-3c4c-53d7-9994-9190aca7b400",
+                "source_hash": "6627825856533b9634c3c2a5c22d7060d0631c7d2a4482272a17329b713c4847"
+              }
+            }
+          },
+          "payload_hash": "3c69749ba594a61a21debb5087cc64cf9dfa3eb2db97b8bcabe1e17c6533976a",
+          "payload_hash_domain": "ma-canonical-json-sha256-v1",
+          "resource_scope": {
+            "account_id": null,
+            "environment": "LAB",
+            "group_id": null,
+            "project_id": "89d1b768-da99-56e4-96c4-307aa2725fc3"
+          },
+          "subject_refs": [
+            {
+              "entity_id": "77646167-8c99-5a14-b922-1fdde4d9ffb9",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "cd278beb-0ce9-5f5c-a7fa-efcd01a5a9cc",
+              "source_hash": "5a6fc28a8ad7c74a066c9b57be43e5d2c98f94c6f363cdd17f43cfce6699579a"
+            },
+            {
+              "entity_id": "fd6bf4e4-6965-551c-adcc-76b135526d36",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "28d1665a-3c4c-53d7-9994-9190aca7b400",
+              "source_hash": "6627825856533b9634c3c2a5c22d7060d0631c7d2a4482272a17329b713c4847"
+            },
+            {
+              "entity_id": "72c5e60c-47d2-51f9-a9a8-900f54136c17",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "06b224b7-9af1-58fd-aae0-0ab119310535",
+              "source_hash": "630fb812302005599f52a2abba34ac43dcad55b80f53c09cf7f57790e6972718"
+            },
+            {
+              "entity_id": "e08e9681-0950-563c-81ae-05ce210a213b",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "afbcfa75-ef47-56b5-9562-2faa72db3717",
+              "source_hash": "7fb1be5d0a1e1d960e72710839ec6002621c88fd76f0d88f94859fc5f8a2897a"
+            }
+          ]
+        },
+        "command_envelope_payload_exact": true,
+        "expected_http_status": 200,
+        "expected_response": {
+          "command_id": "1cf3c4e4-492f-5109-99cf-bdf555007138",
+          "operation_id": "2ba2ac3c-8aa3-5f62-bace-605d91b33325",
+          "payload_hash": "3c69749ba594a61a21debb5087cc64cf9dfa3eb2db97b8bcabe1e17c6533976a",
+          "reasons": [
+            "SOURCE_DESIGN_ONLY_SYNTHETIC_EXPECTED_TRANSITION"
+          ],
+          "receipt_ref": {
+            "entity_id": "fe6c721d-2793-5ad7-8ac8-e2110fc2a11b",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "E_RESEARCH",
+            "revision_id": "61fc158f-d8a4-50dd-830a-59e28a8e244a",
+            "source_hash": "d9824675df3edf731654d45e6f3b1b933b6526813b54a7034a9830a774b6ebdb"
+          },
+          "result_ref": {
+            "entity_id": "f53e72d3-6ca3-575e-bc38-9fafd530b498",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "E_RESEARCH",
+            "revision_id": "088d4986-d17b-5f94-ad52-6fd9429c50a3",
+            "source_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+          },
+          "state": "SUCCEEDED"
+        },
+        "expected_response_canonical_sha256": "720e5c65f0b21f440671267b1359a424af41cb8231474d6ecb6b5d71439a1653",
+        "expected_response_canonical_utf8": "{\"command_id\":\"1cf3c4e4-492f-5109-99cf-bdf555007138\",\"operation_id\":\"2ba2ac3c-8aa3-5f62-bace-605d91b33325\",\"payload_hash\":\"3c69749ba594a61a21debb5087cc64cf9dfa3eb2db97b8bcabe1e17c6533976a\",\"reasons\":[\"SOURCE_DESIGN_ONLY_SYNTHETIC_EXPECTED_TRANSITION\"],\"receipt_ref\":{\"entity_id\":\"fe6c721d-2793-5ad7-8ac8-e2110fc2a11b\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"E_RESEARCH\",\"revision_id\":\"61fc158f-d8a4-50dd-830a-59e28a8e244a\",\"source_hash\":\"d9824675df3edf731654d45e6f3b1b933b6526813b54a7034a9830a774b6ebdb\"},\"result_ref\":{\"entity_id\":\"f53e72d3-6ca3-575e-bc38-9fafd530b498\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"E_RESEARCH\",\"revision_id\":\"088d4986-d17b-5f94-ad52-6fd9429c50a3\",\"source_hash\":\"59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be\"},\"state\":\"SUCCEEDED\"}",
+        "expected_response_ref": {
+          "entity_id": "61d092c5-d738-5e85-b9e0-f5c64f505558",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "EFFECT_OWNER",
+          "revision_id": "ce1c9d3f-69ed-5d83-84b5-37f8707be7cb",
+          "source_hash": "720e5c65f0b21f440671267b1359a424af41cb8231474d6ecb6b5d71439a1653"
+        },
+        "immutable_read_snapshot_ref": {
+          "entity_id": "9efb8614-b29d-5a5f-97bd-af73a16177be",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "PROJECTION_OWNER",
+          "revision_id": "1c31e833-a16a-5d09-9f52-df85085957f0",
+          "source_hash": "41378cb6363f7dc566999197e7e7c34b5527297d42fde52d9f1fc456965ab067"
+        },
+        "notes": [
+          "Finite operation-specific source/body values; no runtime verification claimed."
+        ],
+        "operation_id": "analyzeInboxSource",
+        "operation_scope_source_ref": {
+          "entity_id": "53b36053-1f4d-58d6-b630-e020a023b3ee",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "EXISTING_AUTHORIZATION_OWNER",
+          "revision_id": "abd876bb-9b71-5eb4-8f66-bb377ada4fe2",
+          "source_hash": "45f63f607d6c3e3f96aa03bd99201860afa5e926e23c44b5c2c645dc9683399a"
+        },
+        "qualification": "SOURCE_DESIGN_ONLY_SYNTHETIC_NOT_EXECUTED",
+        "request_payload_canonical_sha256": "3c69749ba594a61a21debb5087cc64cf9dfa3eb2db97b8bcabe1e17c6533976a",
+        "request_payload_canonical_utf8": "{\"request\":{\"comparison_catalog_ref\":{\"entity_id\":\"72c5e60c-47d2-51f9-a9a8-900f54136c17\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"E_RESEARCH\",\"revision_id\":\"06b224b7-9af1-58fd-aae0-0ab119310535\",\"source_hash\":\"630fb812302005599f52a2abba34ac43dcad55b80f53c09cf7f57790e6972718\"},\"resource_budget_ref\":{\"entity_id\":\"e08e9681-0950-563c-81ae-05ce210a213b\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"E_RESEARCH\",\"revision_id\":\"afbcfa75-ef47-56b5-9562-2faa72db3717\",\"source_hash\":\"7fb1be5d0a1e1d960e72710839ec6002621c88fd76f0d88f94859fc5f8a2897a\"},\"source_ref\":{\"entity_id\":\"77646167-8c99-5a14-b922-1fdde4d9ffb9\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"E_RESEARCH\",\"revision_id\":\"cd278beb-0ce9-5f5c-a7fa-efcd01a5a9cc\",\"source_hash\":\"5a6fc28a8ad7c74a066c9b57be43e5d2c98f94c6f363cdd17f43cfce6699579a\"},\"tool_profile_ref\":{\"entity_id\":\"fd6bf4e4-6965-551c-adcc-76b135526d36\",\"hash_domain\":\"raw-bytes-sha256-v1\",\"owner\":\"E_RESEARCH\",\"revision_id\":\"28d1665a-3c4c-53d7-9994-9190aca7b400\",\"source_hash\":\"6627825856533b9634c3c2a5c22d7060d0631c7d2a4482272a17329b713c4847\"}}}",
+        "request_ref": {
+          "entity_id": "22916898-156a-5c7e-943d-a7f482a00fbd",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "PROJECTION_OWNER",
+          "revision_id": "35181873-6a53-5bed-a77a-090fed7b0add",
+          "source_hash": "3c69749ba594a61a21debb5087cc64cf9dfa3eb2db97b8bcabe1e17c6533976a"
+        },
+        "result_body_readback": {
+          "as_of": "2026-10-14T00:00:00Z",
+          "authorization_receipt_ref": {
+            "entity_id": "95c4c907-f67d-5690-9656-50b8639e0da2",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "EXISTING_AUTHORIZATION_OWNER",
+            "revision_id": "4964f7a8-1937-57a1-a642-2abbf9bd6c25",
+            "source_hash": "2e4099ab621a0c86671fe22aa20103f7ecc8a2236e190308c09ecbc2d5481c9b"
+          },
+          "availability": "AVAILABLE",
+          "binding": {
+            "body_type": "SourceAnalysisReport",
+            "catalog_ref": {
+              "entity_id": "7f32c461-fbcb-5065-a94c-bb6f40f3ada8",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "revision_id": "a953ef0b-ed54-5628-a88a-37638d96bdc3",
+              "source_hash": "463cd565fdf976e959335d511074a5cf16ae7c496972796bbb71ea97d749a3e3"
+            },
+            "closure_binding_refs": [],
+            "content_artifact_ref": {
+              "entity_id": "7da3955d-0ba3-52d9-90af-f0c51ff55dc3",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "ARTIFACT_WRITER",
+              "revision_id": "5ae52ddf-2689-5b5d-aa6b-a101681d0637",
+              "source_hash": "0fe3eaed1923c3ce5e332e251a45897a38e520db3559f230fb24d69103aa90da"
+            },
+            "content_byte_hash": "0fe3eaed1923c3ce5e332e251a45897a38e520db3559f230fb24d69103aa90da",
+            "content_byte_hash_domain": "raw-bytes-sha256-v1",
+            "content_byte_size": 2532,
+            "content_capture_receipt_ref": {
+              "entity_id": "4add45a8-bb62-5b5f-8c0c-51ed921e72fc",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "ARTIFACT_PROVIDER",
+              "revision_id": "5411aa3e-5a04-5752-8301-fb7e55de2392",
+              "source_hash": "d98b67ca77c8f90c8c7cc44e83baf2815e45f63e5f5245cd6380ca5ab7531605"
+            },
+            "dto_version": "MA-DTO-v6",
+            "model_semantic_hash": "8ff78433c422dd9b5b4717105e4c2c28db9363897341379b27f451f62ce7e3bc",
+            "model_semantic_hash_domain": "ma-body-model-canonical-sha256-v1",
+            "ref": {
+              "entity_id": "ada6a3e7-d3fa-5244-ba1f-a87c350637dd",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "BODY_CAPTURE_OWNER",
+              "revision_id": "602b3a00-f1c7-534e-a9d8-2fa143d6b6e5",
+              "source_hash": "e3adc02aad240ada170ea34b58e1f7bdc466df3e0d9b44d2911c330a6583b025"
+            },
+            "resource_scope": {
+              "account_id": null,
+              "environment": "LAB",
+              "group_id": null,
+              "project_id": "89d1b768-da99-56e4-96c4-307aa2725fc3"
+            },
+            "schema_ref": {
+              "entity_id": "640608c3-d56d-5a76-99d1-134d811463ac",
+              "hash_domain": "ma-body-schema-sha256-v1",
+              "owner": "N_APPLICATION_BODY_CATALOG",
+              "revision_id": "b5ecf3cb-a94b-5173-afcb-49a554d7bc2a",
+              "source_hash": "bed21a107b9c489e1fd4154962d15e09505eba099b4191e525274c4fefd72b0e"
+            },
+            "serializer_id": "ma.closed-body.SourceAnalysisReport.MA-DTO-v6",
+            "source_bindings": [
+              {
+                "binding_role": "SUBMITTED_DRAFT_INPUT",
+                "raw_byte_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be",
+                "raw_hash_domain": "raw-bytes-sha256-v1",
+                "row_selector": null,
+                "source_artifact_ref": {
+                  "entity_id": "a20a42fb-0331-5f71-a16a-62d36adfd34d",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "ARTIFACT_WRITER",
+                  "revision_id": "9099f87b-8384-5595-a6a3-7b14bd2fb741",
+                  "source_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+                },
+                "source_capture_receipt_ref": {
+                  "entity_id": "86e52d7d-7251-510c-a097-8619381a9f2b",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "ARTIFACT_PROVIDER",
+                  "revision_id": "08901efc-e33c-5321-b3fc-aca6ced6ba83",
+                  "source_hash": "2466715a9673f97e2e28df6edf592116161dbfec4f4bf85e1bf25c7860e6fe62"
+                },
+                "source_ref": {
+                  "entity_id": "6066f104-e8b5-500e-ac25-9b3337a24791",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "E_RESEARCH",
+                  "revision_id": "09ff5a22-5b62-53f5-bebe-a3521b9b6615",
+                  "source_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+                },
+                "source_schema_ref": {
+                  "entity_id": "30eea94b-7a46-5065-a90f-4af34ecd0204",
+                  "hash_domain": "raw-bytes-sha256-v1",
+                  "owner": "E_RESEARCH",
+                  "revision_id": "eefcde2a-66d2-58bb-a297-423f09ac7e3d",
+                  "source_hash": "c8e8f575efb6b8c05186c0499e7459ead444417ff43d7e1ddd12f10344c978f2"
+                }
+              }
+            ],
+            "subject_ref": {
+              "entity_id": "f53e72d3-6ca3-575e-bc38-9fafd530b498",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "088d4986-d17b-5f94-ad52-6fd9429c50a3",
+              "source_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+            }
+          },
+          "capture_state": "CAPTURED_VERIFIED",
+          "coverage": {
+            "completeness": "COMPLETE",
+            "covered_window": "FINITE_SOURCE_ROWS",
+            "empty_proof_ref": null,
+            "frontier": "C7:1",
+            "requested_scope": "source-analysis",
+            "requested_window": "FINITE_SOURCE_ROWS",
+            "success": true
+          },
+          "integrity": "VERIFIED",
+          "missing": [],
+          "payload": {
+            "classification_tags": [
+              "AST_ONLY",
+              "SIGNAL_RULE",
+              "NO_IMPORTS"
+            ],
+            "duplicates": [],
+            "findings": [
+              {
+                "line_end": 2,
+                "line_start": 1,
+                "reason": "Function has only a comparison expression; static AST analysis does not execute it.",
+                "rule_id": "C7_AST_NO_IMPORT_CALL",
+                "severity": "INFO"
+              }
+            ],
+            "licence_state": "KNOWN_ALLOWLISTED",
+            "original_byte_hash": "3f3b6b2f39395f0b9e6e00aed9bada7e482d0df6dbdf6cd10d1be1f2becfb2ba",
+            "original_content_ref": {
+              "entity_id": "0b834a90-b07d-5f5a-a87b-891eb833d171",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "d37dc26a-3c4d-5c26-8491-6673d49dee74",
+              "source_hash": "3f3b6b2f39395f0b9e6e00aed9bada7e482d0df6dbdf6cd10d1be1f2becfb2ba"
+            },
+            "primary_category": "SIGNAL_RULE",
+            "ref": {
+              "entity_id": "f53e72d3-6ca3-575e-bc38-9fafd530b498",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "088d4986-d17b-5f94-ad52-6fd9429c50a3",
+              "source_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+            },
+            "request": {
+              "comparison_catalog_ref": {
+                "entity_id": "72c5e60c-47d2-51f9-a9a8-900f54136c17",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "06b224b7-9af1-58fd-aae0-0ab119310535",
+                "source_hash": "630fb812302005599f52a2abba34ac43dcad55b80f53c09cf7f57790e6972718"
+              },
+              "resource_budget_ref": {
+                "entity_id": "e08e9681-0950-563c-81ae-05ce210a213b",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "afbcfa75-ef47-56b5-9562-2faa72db3717",
+                "source_hash": "7fb1be5d0a1e1d960e72710839ec6002621c88fd76f0d88f94859fc5f8a2897a"
+              },
+              "source_ref": {
+                "entity_id": "77646167-8c99-5a14-b922-1fdde4d9ffb9",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "cd278beb-0ce9-5f5c-a7fa-efcd01a5a9cc",
+                "source_hash": "5a6fc28a8ad7c74a066c9b57be43e5d2c98f94c6f363cdd17f43cfce6699579a"
+              },
+              "tool_profile_ref": {
+                "entity_id": "fd6bf4e4-6965-551c-adcc-76b135526d36",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "28d1665a-3c4c-53d7-9994-9190aca7b400",
+                "source_hash": "6627825856533b9634c3c2a5c22d7060d0631c7d2a4482272a17329b713c4847"
+              }
+            },
+            "scan_batch_id": "aae7c2f0-169e-5809-a381-d2f81ea8f1c5",
+            "source_metadata_ref": {
+              "entity_id": "d4c6cba4-92a9-5f12-9681-6e5606bd537b",
+              "hash_domain": "raw-bytes-sha256-v1",
+              "owner": "E_RESEARCH",
+              "revision_id": "f5846c54-eb3a-5cc4-a70c-5a7e726ad657",
+              "source_hash": "84dabfe33ddbded4ada9e2d2aa5ba908e6276ca24d22c000d915307e2e8d9eb1"
+            },
+            "status": "ANALYZED",
+            "symbols": [
+              {
+                "dependency_names": [],
+                "input_names": [
+                  "close"
+                ],
+                "kind": "FUNCTION",
+                "line_end": 2,
+                "line_start": 1,
+                "output_names": [
+                  "return"
+                ],
+                "parameters": [
+                  "close"
+                ],
+                "qualified_name": "signal"
+              }
+            ]
+          },
+          "protection_a": {
+            "receipt_refs": [],
+            "state": "NOT_REQUESTED"
+          },
+          "protection_b": {
+            "receipt_refs": [],
+            "state": "NOT_REQUESTED"
+          },
+          "requested_subject_ref": {
+            "entity_id": "f53e72d3-6ca3-575e-bc38-9fafd530b498",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "E_RESEARCH",
+            "revision_id": "088d4986-d17b-5f94-ad52-6fd9429c50a3",
+            "source_hash": "59afe7227eaf2a2fc21642210ebed0aa073929a256b5ee833d40c9e8be89a5be"
+          },
+          "resource_scope": {
+            "account_id": null,
+            "environment": "LAB",
+            "group_id": null,
+            "project_id": "89d1b768-da99-56e4-96c4-307aa2725fc3"
+          },
+          "snapshot_ref": {
+            "entity_id": "9efb8614-b29d-5a5f-97bd-af73a16177be",
+            "hash_domain": "raw-bytes-sha256-v1",
+            "owner": "PROJECTION_OWNER",
+            "revision_id": "1c31e833-a16a-5d09-9f52-df85085957f0",
+            "source_hash": "41378cb6363f7dc566999197e7e7c34b5527297d42fde52d9f1fc456965ab067"
+          },
+          "sql_index_state": "NOT_INDEXED"
+        },
+        "scope_ref": {
+          "entity_id": "285ba1ed-2886-5f53-95a8-b49d23f2a9b2",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_RESEARCH",
+          "revision_id": "ac84f9b9-ad04-523c-9ed9-ef76e7f0f6e7",
+          "source_hash": "26ef913f023507307ad0e8bab4e36de2d75e8771c450a849111e926e01385ebe"
+        },
+        "source_profile": "MA-DTO-v6",
+        "state_after_ref": {
+          "entity_id": "8c535238-5c41-5ee6-9a5e-510b4d7eedcd",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_RESEARCH",
+          "revision_id": "56c6d910-afd7-5b6f-b151-6032e34789e2",
+          "source_hash": "8c659129b7ebff91a432ae866f80db00f07729fe70a9ba0a6c193e71667b7936"
+        },
+        "state_before_ref": {
+          "entity_id": "ef5dddcc-77d2-53ec-aeb4-b395d110f2f9",
+          "hash_domain": "raw-bytes-sha256-v1",
+          "owner": "E_RESEARCH",
+          "revision_id": "5c85c6b9-ae00-5ca9-9441-acf9b05af8ed",
+          "source_hash": "a995c4ff98c46f8e6b11e6a2bab91e1a605975ceb2bf40c430ed89de47623343"
+        },
+        "wire_request": {
+          "authenticated_actor_id": "0908155a-029b-5b33-8e0b-e9846e99808e",
+          "headers": {
+            "X-MA-DTO-Version": "MA-DTO-v6"
+          },
+          "method": "POST",
+          "path": "/api/v2/source-inbox/77646167-8c99-5a14-b922-1fdde4d9ffb9/analyses",
+          "path_params": {
+            "id": "77646167-8c99-5a14-b922-1fdde4d9ffb9"
+          },
+          "request_payload": {
+            "request": {
+              "comparison_catalog_ref": {
+                "entity_id": "72c5e60c-47d2-51f9-a9a8-900f54136c17",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "06b224b7-9af1-58fd-aae0-0ab119310535",
+                "source_hash": "630fb812302005599f52a2abba34ac43dcad55b80f53c09cf7f57790e6972718"
+              },
+              "resource_budget_ref": {
+                "entity_id": "e08e9681-0950-563c-81ae-05ce210a213b",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "afbcfa75-ef47-56b5-9562-2faa72db3717",
+                "source_hash": "7fb1be5d0a1e1d960e72710839ec6002621c88fd76f0d88f94859fc5f8a2897a"
+              },
+              "source_ref": {
+                "entity_id": "77646167-8c99-5a14-b922-1fdde4d9ffb9",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "cd278beb-0ce9-5f5c-a7fa-efcd01a5a9cc",
+                "source_hash": "5a6fc28a8ad7c74a066c9b57be43e5d2c98f94c6f363cdd17f43cfce6699579a"
+              },
+              "tool_profile_ref": {
+                "entity_id": "fd6bf4e4-6965-551c-adcc-76b135526d36",
+                "hash_domain": "raw-bytes-sha256-v1",
+                "owner": "E_RESEARCH",
+                "revision_id": "28d1665a-3c4c-53d7-9994-9190aca7b400",
+                "source_hash": "6627825856533b9634c3c2a5c22d7060d0631c7d2a4482272a17329b713c4847"
+              }
+            }
+          },
+          "resource_scope": {
+            "account_id": null,
+            "environment": "LAB",
+            "group_id": null,
+            "project_id": "89d1b768-da99-56e4-96c4-307aa2725fc3"
+          }
+        },
+        "world_id": "MA-ARCH-REVIEW-v7-CYCLE03"
+      },
+      "status": "EXACT_DESIGN_SOURCE_NOT_RUN",
+      "actual_pass": false
+    }
+  ]
+}

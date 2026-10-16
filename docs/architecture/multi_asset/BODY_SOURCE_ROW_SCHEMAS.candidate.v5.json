@@ -1,0 +1,821 @@
+{
+  "schema_version": "ma.frozen-source-row-schemas.v5",
+  "revision": "candidate.5",
+  "review_subject": "MA-ARCH-REVIEW-v5-CYCLE01",
+  "definitions": {
+    "$defs": {
+      "RegistryFeatureSourceRowV5": {
+        "type": "object",
+        "properties": {
+          "accepted": {
+            "type": "boolean"
+          },
+          "alias": {
+            "type": "string"
+          },
+          "catalog_scope": {
+            "type": "string"
+          },
+          "entity_id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "requirement_id": {
+            "type": "string"
+          },
+          "revision_id": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "string"
+          },
+          "source_key": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "accepted",
+          "alias",
+          "catalog_scope",
+          "entity_id",
+          "kind",
+          "owner",
+          "revision_id",
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryRequirementSourceRowV5DEPENDENCY": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "RegistryRequirementSourceRowV5SOURCESourceLineNumbers": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      },
+      "RegistryRequirementSourceRowV5SOURCE": {
+        "type": "object",
+        "properties": {
+          "binding_level": {
+            "type": "string"
+          },
+          "clause_locator": {
+            "type": "string"
+          },
+          "commit": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "professional_inference": {
+            "type": "string"
+          },
+          "raw_bytes_sha256": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "string"
+          },
+          "source_key": {
+            "type": "string"
+          },
+          "source_line_numbers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "supporting_source_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "binding_level",
+          "clause_locator",
+          "raw_bytes_sha256",
+          "source_id",
+          "source_key"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryRequirementSourceRowV5SOURCEPREDECESSORSourceLineNumbers": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      },
+      "RegistryRequirementSourceRowV5SOURCEPREDECESSOR": {
+        "type": "object",
+        "properties": {
+          "binding_level": {
+            "type": "string"
+          },
+          "clause_locator": {
+            "type": "string"
+          },
+          "raw_bytes_sha256": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "string"
+          },
+          "source_key": {
+            "type": "string"
+          },
+          "source_line_numbers": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "binding_level",
+          "clause_locator",
+          "raw_bytes_sha256",
+          "source_id",
+          "source_key",
+          "source_line_numbers"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryRequirementSourceRowV5ChapterRefs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "RegistryRequirementSourceRowV5CodeSegmentsItem": {
+        "type": "object",
+        "properties": {
+          "format_width": {
+            "type": "integer"
+          },
+          "number": {
+            "type": "integer"
+          },
+          "ordinal": {
+            "type": "integer"
+          },
+          "semantic_type": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ordinal",
+          "semantic_type"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryRequirementSourceRowV5CodeSegments": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/RegistryRequirementSourceRowV5CodeSegmentsItem"
+        }
+      },
+      "RegistryRequirementSourceRowV5Code": {
+        "type": "object",
+        "properties": {
+          "catalog_scope": {
+            "type": "string"
+          },
+          "code_type": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "segments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/RegistryRequirementSourceRowV5CodeSegmentsItem"
+            }
+          }
+        },
+        "required": [
+          "catalog_scope",
+          "code_type",
+          "namespace",
+          "segments"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryRequirementSourceRowV5UnitIds": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "RegistryRequirementSourceRowV5": {
+        "type": "object",
+        "properties": {
+          "ACCEPTANCE_GATE": {
+            "type": "string"
+          },
+          "DEPENDENCY": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "DESIGN_STATUS": {
+            "type": "string"
+          },
+          "ENTITY_ID": {
+            "type": "string"
+          },
+          "IMPLEMENTATION_STATUS": {
+            "type": "string"
+          },
+          "OWNER": {
+            "type": "string"
+          },
+          "RELEASE_SCOPE": {
+            "type": "string"
+          },
+          "REUSE_OR_DELTA": {
+            "type": "string"
+          },
+          "SOURCE": {
+            "$ref": "#/$defs/RegistryRequirementSourceRowV5SOURCE"
+          },
+          "SOURCE_PREDECESSOR": {
+            "$ref": "#/$defs/RegistryRequirementSourceRowV5SOURCEPREDECESSOR"
+          },
+          "chapter_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "code": {
+            "$ref": "#/$defs/RegistryRequirementSourceRowV5Code"
+          },
+          "feature_id": {
+            "type": "string"
+          },
+          "first_usable_slice": {
+            "type": "string"
+          },
+          "formal_credit": {
+            "type": "integer"
+          },
+          "legacy_alias": {
+            "type": "string"
+          },
+          "prior_revision_id": {
+            "type": "string"
+          },
+          "release_binding": {
+            "type": "string"
+          },
+          "revision_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "unit_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "unit_mapping_semantics": {
+            "type": "string"
+          },
+          "scope_change_source": {
+            "$ref": "#/$defs/RequirementScopeChangeSourceV5"
+          }
+        },
+        "required": [
+          "ACCEPTANCE_GATE",
+          "DEPENDENCY",
+          "DESIGN_STATUS",
+          "ENTITY_ID",
+          "IMPLEMENTATION_STATUS",
+          "OWNER",
+          "RELEASE_SCOPE",
+          "REUSE_OR_DELTA",
+          "SOURCE",
+          "chapter_refs",
+          "code",
+          "feature_id",
+          "first_usable_slice",
+          "formal_credit",
+          "legacy_alias",
+          "prior_revision_id",
+          "revision_id",
+          "title",
+          "unit_ids",
+          "unit_mapping_semantics"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryHistoricalSourceRowV5SOURCE": {
+        "type": "object",
+        "properties": {
+          "first_line": {
+            "type": "integer"
+          },
+          "last_line": {
+            "type": "integer"
+          },
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "first_line",
+          "last_line",
+          "path",
+          "sha256"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryHistoricalSourceRowV5ChapterRefs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "RegistryHistoricalSourceRowV5": {
+        "type": "object",
+        "properties": {
+          "ACCEPTANCE_GATE": {
+            "type": "string"
+          },
+          "DESIGN_STATUS": {
+            "type": "string"
+          },
+          "ENTITY_ID": {
+            "type": "string"
+          },
+          "IMPLEMENTATION_STATUS": {
+            "type": "string"
+          },
+          "OWNER": {
+            "type": "string"
+          },
+          "RELEASE_SCOPE": {
+            "type": "string"
+          },
+          "REUSE_OR_DELTA": {
+            "type": "string"
+          },
+          "SOURCE": {
+            "$ref": "#/$defs/RegistryHistoricalSourceRowV5SOURCE"
+          },
+          "catalog_scope": {
+            "type": "string"
+          },
+          "chapter_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "formal_credit": {
+            "type": "integer"
+          },
+          "historical_lifecycle_label": {
+            "type": "string"
+          },
+          "historical_status": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "legacy_alias": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "revision_id": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "integer"
+          },
+          "weight_universe": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ACCEPTANCE_GATE",
+          "DESIGN_STATUS",
+          "ENTITY_ID",
+          "IMPLEMENTATION_STATUS",
+          "OWNER",
+          "RELEASE_SCOPE",
+          "REUSE_OR_DELTA",
+          "SOURCE",
+          "catalog_scope",
+          "chapter_refs",
+          "formal_credit",
+          "kind",
+          "legacy_alias",
+          "name",
+          "revision_id"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryDeliverableSourceRowV5AllocationsItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "weight"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryDeliverableSourceRowV5Allocations": {
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/RegistryDeliverableSourceRowV5AllocationsItem"
+        }
+      },
+      "RegistryDeliverableSourceRowV5GatesImplementation": {
+        "type": "null"
+      },
+      "RegistryDeliverableSourceRowV5GatesIndependentAcceptance": {
+        "type": "null"
+      },
+      "RegistryDeliverableSourceRowV5GatesIntegration": {
+        "type": "null"
+      },
+      "RegistryDeliverableSourceRowV5GatesTargetedTests": {
+        "type": "null"
+      },
+      "RegistryDeliverableSourceRowV5Gates": {
+        "type": "object",
+        "properties": {
+          "implementation": {
+            "$ref": "#/$defs/RegistryDeliverableSourceRowV5GatesImplementation"
+          },
+          "independent_acceptance": {
+            "$ref": "#/$defs/RegistryDeliverableSourceRowV5GatesIndependentAcceptance"
+          },
+          "integration": {
+            "$ref": "#/$defs/RegistryDeliverableSourceRowV5GatesIntegration"
+          },
+          "targeted_tests": {
+            "$ref": "#/$defs/RegistryDeliverableSourceRowV5GatesTargetedTests"
+          }
+        },
+        "required": [
+          "implementation",
+          "independent_acceptance",
+          "integration",
+          "targeted_tests"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryDeliverableSourceRowV5": {
+        "type": "object",
+        "properties": {
+          "ENTITY_ID": {
+            "type": "string"
+          },
+          "alias": {
+            "type": "string"
+          },
+          "allocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/RegistryDeliverableSourceRowV5AllocationsItem"
+            }
+          },
+          "gates": {
+            "$ref": "#/$defs/RegistryDeliverableSourceRowV5Gates"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "package": {
+            "type": "string"
+          },
+          "revision_id": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "integer"
+          },
+          "weight_universe": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ENTITY_ID",
+          "alias",
+          "allocations",
+          "gates",
+          "kind",
+          "package",
+          "revision_id",
+          "source",
+          "status",
+          "weight",
+          "weight_universe"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryPhaseSourceRowV5Dependencies": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "RegistryPhaseSourceRowV5": {
+        "type": "object",
+        "properties": {
+          "alias": {
+            "type": "string"
+          },
+          "catalog_scope": {
+            "type": "string"
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "entity_id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "revision_id": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "alias",
+          "catalog_scope",
+          "dependencies",
+          "entity_id",
+          "kind",
+          "revision_id",
+          "source",
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryAcceptedCoreSourceRowV5ReconciliationSourceBinding": {
+        "type": "object",
+        "properties": {
+          "commit": {
+            "type": "string"
+          },
+          "git_blob_sha1": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "raw_bytes_sha256": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "commit",
+          "git_blob_sha1",
+          "path",
+          "raw_bytes_sha256",
+          "source_id"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryAcceptedCoreSourceRowV5Source": {
+        "type": "object",
+        "properties": {
+          "commit": {
+            "type": "string"
+          },
+          "git_blob_sha1": {
+            "type": "string"
+          },
+          "line": {
+            "type": "integer"
+          },
+          "path": {
+            "type": "string"
+          },
+          "raw_bytes_sha256": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "commit",
+          "git_blob_sha1",
+          "line",
+          "path",
+          "raw_bytes_sha256",
+          "source_id",
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryAcceptedCoreSourceRowV5V1DeltaDeliverables": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "RegistryAcceptedCoreSourceRowV5": {
+        "type": "object",
+        "properties": {
+          "ENTITY_ID": {
+            "type": "string"
+          },
+          "accepted_source": {
+            "type": "string"
+          },
+          "catalog_scope": {
+            "type": "string"
+          },
+          "legacy_alias": {
+            "type": "string"
+          },
+          "new_product_credit": {
+            "type": "integer"
+          },
+          "original_scope_status": {
+            "type": "string"
+          },
+          "reconciliation_source_binding": {
+            "$ref": "#/$defs/RegistryAcceptedCoreSourceRowV5ReconciliationSourceBinding"
+          },
+          "remaining_boundary": {
+            "type": "string"
+          },
+          "revision_id": {
+            "type": "string"
+          },
+          "source": {
+            "$ref": "#/$defs/RegistryAcceptedCoreSourceRowV5Source"
+          },
+          "v1_delta_deliverables": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "weight": {
+            "type": "integer"
+          },
+          "weight_universe": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ENTITY_ID",
+          "accepted_source",
+          "catalog_scope",
+          "legacy_alias",
+          "new_product_credit",
+          "original_scope_status",
+          "reconciliation_source_binding",
+          "remaining_boundary",
+          "revision_id",
+          "source",
+          "v1_delta_deliverables",
+          "weight",
+          "weight_universe"
+        ],
+        "additionalProperties": false
+      },
+      "RegistryDesignDeliverableSourceRowV5": {
+        "type": "object",
+        "properties": {
+          "alias": {
+            "type": "string"
+          },
+          "catalog_scope": {
+            "type": "string"
+          },
+          "chapter_id": {
+            "type": "string"
+          },
+          "counting_weight": {
+            "type": "integer"
+          },
+          "entity_id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "owner": {
+            "type": "string"
+          },
+          "revision_id": {
+            "type": "string"
+          },
+          "source_key": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "alias",
+          "catalog_scope",
+          "chapter_id",
+          "counting_weight",
+          "entity_id",
+          "kind",
+          "owner",
+          "revision_id",
+          "source_key",
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "RequirementScopeChangeSourceV5": {
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "formal_adoption": {
+            "const": false
+          }
+        },
+        "required": [
+          "subject",
+          "reason",
+          "formal_adoption"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "families": {
+    "features": "RegistryFeatureSourceRowV5",
+    "requirements": "RegistryRequirementSourceRowV5",
+    "historical": "RegistryHistoricalSourceRowV5",
+    "P_deliverables": "RegistryDeliverableSourceRowV5",
+    "P_phases": "RegistryPhaseSourceRowV5",
+    "accepted_gap08_core": "RegistryAcceptedCoreSourceRowV5",
+    "design_deliverables": "RegistryDesignDeliverableSourceRowV5"
+  },
+  "source_raw_sha256": "43d89ec2a6435d01465ed717ac1843070d39ea99689331444d58adfed5a97343",
+  "rule": "Named finite original source row schemas only. Null-only slots remain explicit null; unknownfields/shape denied; not financial wire/canonical DTO inference or current acceptance.",
+  "source_review_subject": "MA-ARCH-REVIEW-v7-CYCLE03"
+}

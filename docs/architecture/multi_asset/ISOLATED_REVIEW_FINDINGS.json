@@ -1,0 +1,436 @@
+{
+  "schema_version": "architecture.isolated_review_findings.v1",
+  "status": "NOT_FORMAL_INDEPENDENT_ACCEPTANCE",
+  "original_40_findings_not_closed": true,
+  "findings": [
+    {
+      "id": "AUTH-F01",
+      "reviewer_agent": "fresh_authority_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "CAPABILITY_MAP absent from typed enum",
+      "prior_source_locator": "TYPE_VARIANTS.json:1912-1930",
+      "bounded_correction": "RelationRevision enum + 717 relation roundtrip",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "AUTH-G01",
+      "reviewer_agent": "fresh_authority_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Integration prerequisite closure absent",
+      "prior_source_locator": "EXECUTION_UNITS.json:9379-9390",
+      "bounded_correction": "U06 exact U01-05/result/reuse gates",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "INT-F01",
+      "reviewer_agent": "fresh_integration_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Plan and compiled DTO/evidence shapes conflated",
+      "prior_source_locator": "MODEL_CATALOG.json:2621-2671",
+      "bounded_correction": "Plan schema + compiler adapter + PlanningCandidate",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "INT-F02",
+      "reviewer_agent": "fresh_integration_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "MA10 units incorrectly bind only dashboard",
+      "prior_source_locator": "EXECUTION_UNITS.json:8138-8229",
+      "bounded_correction": "API operations mapped per actual UI journey",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "INT-F03",
+      "reviewer_agent": "fresh_integration_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Physical position forced into VirtualPosition",
+      "prior_source_locator": "API_CATALOG.json:861-887",
+      "bounded_correction": "PositionsProjection physical/virtual with view enum",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "INT-F04",
+      "reviewer_agent": "fresh_integration_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Financial AccountCut used for engineering backup cut",
+      "prior_source_locator": "EXECUTION_UNITS.json:10698-10743",
+      "bounded_correction": "BackupCut/export barrier/pin/snapshot protocol",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "INT-F05",
+      "reviewer_agent": "fresh_integration_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Git-only restore input requires private SQL dump",
+      "prior_source_locator": "EXECUTION_UNITS.json:11142-11187",
+      "bounded_correction": "RestoreRequest tagged sources + GitRebuildPlan",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "INT-F06",
+      "reviewer_agent": "fresh_integration_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "External catalog/capture/protection/physical proof underdefined",
+      "prior_source_locator": "MODEL_CATALOG.json:2469-2614",
+      "bounded_correction": "Capture/Protection/SQLBackup/Manifest/Catalog/RestoreTarget + Invariants",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "INT-F07",
+      "reviewer_agent": "fresh_integration_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Health/UI stream contracts lack independent states/cursor",
+      "prior_source_locator": "API_CATALOG.json:1438-1456",
+      "bounded_correction": "ServiceHealthProjection/ReadModelEvent/SubscriptionCursor",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "INT-G01",
+      "reviewer_agent": "fresh_integration_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Simulation session controls and list cardinality missing",
+      "prior_source_locator": "API_CATALOG.json",
+      "bounded_correction": "SimulationSession start/get/pause/resume/replay; response cardinality",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "INT-G02",
+      "reviewer_agent": "fresh_integration_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Crosschapter contract catalog only prose",
+      "prior_source_locator": "15_INTEGRATION_ACCEPTANCE.md:31-35",
+      "bounded_correction": "CROSS_CHAPTER_CONTRACTS.json exact owners/models/consumers/hash/gate",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "PRD-01",
+      "reviewer_agent": "fresh_product_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "No typed external unassigned Fill",
+      "prior_source_locator": "MODEL_CATALOG.json:1877-1923",
+      "bounded_correction": "FillProvenance branch + ExternalFillProvenance + accepted economic writer",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "PRD-02",
+      "reviewer_agent": "fresh_product_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Own reservation self-invalidates approval cut",
+      "prior_source_locator": "06_PORTFOLIO_CAPITAL_ACCOUNTING.md:16-26",
+      "bounded_correction": "C0/C1/C2 transition receipts/final witness/earmark once",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "PRD-03",
+      "reviewer_agent": "fresh_product_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Late Fill after sealed terminal conflicts accepted ADR",
+      "prior_source_locator": "08_OMS_PAPER_LIVE.md:43",
+      "bounded_correction": "Canonical SEALED terminal INTEGRITY_CONFLICT preserved; raw evidence HOLD",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "PRD-04",
+      "reviewer_agent": "fresh_product_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Economic quantity legs lack resource/unit",
+      "prior_source_locator": "TYPE_VARIANTS.json:899-918,1663-1682",
+      "bounded_correction": "QuantityLeg resource/unit/source policy; typed economic obligations",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "PRD-05",
+      "reviewer_agent": "fresh_product_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Combined multi-group partial fill allocation absent",
+      "prior_source_locator": "07_DECISION_RISK.md:21",
+      "bounded_correction": "First route per-group native child order/immutable origin; unqualified combined batch denied",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "PRD-06",
+      "reviewer_agent": "fresh_product_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Repricing risk/capital increment not specified",
+      "prior_source_locator": "08_OMS_PAPER_LIVE.md:13,43",
+      "bounded_correction": "All repricing re-evaluated/new witness/resource adjustment; unknown old resources held",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    },
+    {
+      "id": "PRD-G01",
+      "reviewer_agent": "fresh_product_review",
+      "evidence_level": "FRESH_CONTEXT_ISOLATED_SOURCE_MODEL_REVIEW",
+      "prior_exact_subject": {
+        "manifest_sha256": "162e2ba48f67bcf289dc0de120b29a4f854a27026d8f98fa114baaafaf119d135",
+        "files_verified": 33,
+        "subject": "MA-ARCH-REVIEW-v1"
+      },
+      "root_attributed_summary_not_raw_transcript": "Duplicate ProductTerms vs asset terms authority",
+      "prior_source_locator": "MODEL_CATALOG.json:373-414",
+      "bounded_correction": "Kind payload authority; legacy projection equality requirement",
+      "status": "V2_BOUNDED_SOURCE_CORRECTION_WITH_V3_SPECIFIC_DELTAS_NOT_FORMALLY_CLOSED",
+      "formal_independent_review_receipt": null,
+      "runtime_test": "NOT_RUN"
+    }
+  ],
+  "successor_subject": "MA-ARCH-REVIEW-v2",
+  "successor_manifest_sha256": "edf47762c7b5636c0ca7b60d175aff3bb5167b823a3b876a8ea8b3e55efb8960",
+  "actual_SQL_filesystem_broker_restore": "NOT_RUN",
+  "v2_delta_findings": [
+    {
+      "id": "V2-AUTH-SOURCE",
+      "reviewer_agent": "fresh_authority_review",
+      "root_attributed_summary_not_raw_transcript": "26 accepted core source rows lack pinned source/hash",
+      "source_locator": "SOURCE_MANIFEST.json / accepted_gap08_core_source_items",
+      "bounded_author_correction": "Two raw pinned Git sources + per-leaf row verification; original acceptance unchanged",
+      "review_subject": "MA-ARCH-REVIEW-v2",
+      "subject_manifest_sha256": "edf47762c7b5636c0ca7b60d175aff3bb5167b823a3b876a8ea8b3e55efb8960",
+      "correction_subject": "MA-ARCH-REVIEW-v3",
+      "status": "AUTHOR_CHECKED_FORMAL_RE_REVIEW_PENDING",
+      "runtime_qualification": "NOT_RUN",
+      "formal_independent_receipt": null
+    },
+    {
+      "id": "V2-AUTH-DEPENDENCY",
+      "reviewer_agent": "fresh_authority_review",
+      "root_attributed_summary_not_raw_transcript": "Git sample omitted 252 unit +15 phase typed dependency edges",
+      "source_locator": "GIT_REGISTRY_REBUILD / RELATION_RULES / EXECUTION_UNITS",
+      "bounded_author_correction": "267 exact-revision DEPENDS_ON, phase kind/scopes, complete graph zero credit",
+      "review_subject": "MA-ARCH-REVIEW-v2",
+      "subject_manifest_sha256": "edf47762c7b5636c0ca7b60d175aff3bb5167b823a3b876a8ea8b3e55efb8960",
+      "correction_subject": "MA-ARCH-REVIEW-v3",
+      "status": "AUTHOR_CHECKED_FORMAL_RE_REVIEW_PENDING",
+      "runtime_qualification": "NOT_RUN",
+      "formal_independent_receipt": null
+    },
+    {
+      "id": "V2-INT-CONTENT",
+      "reviewer_agent": "fresh_integration_review",
+      "root_attributed_summary_not_raw_transcript": "BINARY_REFERENCE artifact response lacks ContentDescriptor",
+      "source_locator": "API_CATALOG getArtifactContent / CONTRACT_INVARIANTS",
+      "bounded_author_correction": "ContentDescriptor + getArtifactBytes/VerifiedBinaryStream + current permission",
+      "review_subject": "MA-ARCH-REVIEW-v2",
+      "subject_manifest_sha256": "edf47762c7b5636c0ca7b60d175aff3bb5167b823a3b876a8ea8b3e55efb8960",
+      "correction_subject": "MA-ARCH-REVIEW-v3",
+      "status": "AUTHOR_CHECKED_FORMAL_RE_REVIEW_PENDING",
+      "runtime_qualification": "NOT_RUN",
+      "formal_independent_receipt": null
+    },
+    {
+      "id": "V2-INT-SIM",
+      "reviewer_agent": "fresh_integration_review",
+      "root_attributed_summary_not_raw_transcript": "startSimulation LAB/PAPER conflicts PAPER-only session model",
+      "source_locator": "API_CATALOG startSimulation / SimulationSession",
+      "bounded_author_correction": "PAPER session only; LAB ResearchRun separate profile",
+      "review_subject": "MA-ARCH-REVIEW-v2",
+      "subject_manifest_sha256": "edf47762c7b5636c0ca7b60d175aff3bb5167b823a3b876a8ea8b3e55efb8960",
+      "correction_subject": "MA-ARCH-REVIEW-v3",
+      "status": "AUTHOR_CHECKED_FORMAL_RE_REVIEW_PENDING",
+      "runtime_qualification": "NOT_RUN",
+      "formal_independent_receipt": null
+    },
+    {
+      "id": "V2-PRD-T12",
+      "reviewer_agent": "fresh_product_review",
+      "root_attributed_summary_not_raw_transcript": "Final witness missing typed T12/attempt/lease/base-result cut",
+      "source_locator": "FinalSubmissionWitness / MONEY_SUBMISSION_CUT_PROTOCOL",
+      "bounded_author_correction": "SubmissionTransitionReceipt/AccountExecutorLeaseWitness complete typed refs",
+      "review_subject": "MA-ARCH-REVIEW-v2",
+      "subject_manifest_sha256": "edf47762c7b5636c0ca7b60d175aff3bb5167b823a3b876a8ea8b3e55efb8960",
+      "correction_subject": "MA-ARCH-REVIEW-v3",
+      "status": "AUTHOR_CHECKED_FORMAL_RE_REVIEW_PENDING",
+      "runtime_qualification": "NOT_RUN",
+      "formal_independent_receipt": null
+    },
+    {
+      "id": "V2-PRD-SETTLEMENT",
+      "reviewer_agent": "fresh_product_review",
+      "root_attributed_summary_not_raw_transcript": "Lot/SettlementObligation/LedgerPolicyRevision absent",
+      "source_locator": "QuantityLeg / EconomicPayload / CorporateAction",
+      "bounded_author_correction": "Typed resources/lot selection/entitlement/obligation/policy + responsibility",
+      "review_subject": "MA-ARCH-REVIEW-v2",
+      "subject_manifest_sha256": "edf47762c7b5636c0ca7b60d175aff3bb5167b823a3b876a8ea8b3e55efb8960",
+      "correction_subject": "MA-ARCH-REVIEW-v3",
+      "status": "AUTHOR_CHECKED_FORMAL_RE_REVIEW_PENDING",
+      "runtime_qualification": "NOT_RUN",
+      "formal_independent_receipt": null
+    },
+    {
+      "id": "V2-PRD-ORIGIN",
+      "reviewer_agent": "fresh_product_review",
+      "root_attributed_summary_not_raw_transcript": "EconomicEvent required origin_ref contradicts external Fill",
+      "source_locator": "EconomicEvent / EconomicPayload / FillV2",
+      "bounded_author_correction": "EconomicOrigin discriminated; assigned-only legacy projection; external/system provenance",
+      "review_subject": "MA-ARCH-REVIEW-v2",
+      "subject_manifest_sha256": "edf47762c7b5636c0ca7b60d175aff3bb5167b823a3b876a8ea8b3e55efb8960",
+      "correction_subject": "MA-ARCH-REVIEW-v3",
+      "status": "AUTHOR_CHECKED_FORMAL_RE_REVIEW_PENDING",
+      "runtime_qualification": "NOT_RUN",
+      "formal_independent_receipt": null
+    }
+  ],
+  "v3_bounded_delta_checks": [
+    {
+      "reviewer_agent": "fresh_integration_review",
+      "subjects": [
+        "V2-INT-CONTENT",
+        "V2-INT-SIM"
+      ],
+      "result": "SOURCE_CORRECTED",
+      "evidence_level": "ISOLATED_SOURCE_REVIEW_UNFROZEN_WORKING_CANDIDATE",
+      "raw_hashes": {
+        "MODEL_CATALOG.json": "59204fd5e18e0a9570a0d8152d5c12a5fc5be9af4c6cf5599a97b933a733b182",
+        "TYPE_VARIANTS.json": "aeacf89eb6a3171a955c58a854e7de15cf70f2b59932be3f2a8799bd08c75d8f",
+        "API_CATALOG.json": "cd315a58101f8722782ae4bf0b1a1615fbf65d283b9518b950910999174aa6ce",
+        "CONTRACT_INVARIANTS.md": "9d8a8d8f5cd81e352c1bd5e9b00c72cc9330505289af9adf92515bd6ea5b6a37"
+      },
+      "formal_independent_receipt": null
+    },
+    {
+      "reviewer_agent": "fresh_product_review",
+      "subjects": [
+        "V2-PRD-T12",
+        "V2-PRD-SETTLEMENT",
+        "V2-PRD-ORIGIN"
+      ],
+      "result": "SOURCE_CORRECTED",
+      "evidence_level": "ISOLATED_SOURCE_REVIEW_UNFROZEN_WORKING_CANDIDATE",
+      "raw_hashes": {
+        "MODEL_CATALOG.json": "59204fd5e18e0a9570a0d8152d5c12a5fc5be9af4c6cf5599a97b933a733b182",
+        "TYPE_VARIANTS.json": "aeacf89eb6a3171a955c58a854e7de15cf70f2b59932be3f2a8799bd08c75d8f",
+        "MONEY_SUBMISSION_CUT_PROTOCOL.md": "52c11fa1a6f715c755203616c143c9132f8fa22ca7347440c2524b4475014813",
+        "CONTRACT_INVARIANTS.md": "9d8a8d8f5cd81e352c1bd5e9b00c72cc9330505289af9adf92515bd6ea5b6a37",
+        "ECONOMIC_RESOURCE_CONTRACTS.md": "09a45ad27f3c23124e1d9b207c6a2618ce538f44562236f22552020ab6a3e457",
+        "CROSS_CHAPTER_CONTRACTS.json": "d3f6007066a2d6fbc6a077778907d7e0d8199d36e8d6b080e710bbb5907b375d"
+      },
+      "formal_independent_receipt": null
+    }
+  ],
+  "authority_reviewer_v2_final_status": "Partial source findings received; full final review unavailable due reviewer execution quota limit. Not treated as PASS.",
+  "v3_dependency_gate_correction": {
+    "reviewer": "fresh_authority_review",
+    "source_finding": "64 dependencies lost exact qualified-result/compiler-proved-reuse qualifier in graph projection",
+    "correction": "Exact original required_gate retained; 64 successor revisions; prior bytes private preservation; 44th check compares all unit qualifiers",
+    "status": "AUTHOR_CHECKED_BOUND_DELTA_RECHECK_PENDING",
+    "runtime_status": "NOT_RUN"
+  }
+}
