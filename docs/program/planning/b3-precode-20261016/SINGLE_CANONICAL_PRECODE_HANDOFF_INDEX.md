@@ -1,0 +1,44 @@
+# B3 V1 — 施工前交接導航（公開路徑候選 v2）
+
+此三檔附錄尚未發布，需另一份精確 Human Publication Grant；不屬原 Publication v3。此處只導航既有來源，不變更Architecture、Current State、Compiler、Acceptance或施工權。
+
+固定已發布來源 Commit：`9643bfc93a1631154be877536a1c91fc58df84be`。目前仍為Topic，尚未整合master或main。
+
+先讀AGENTS→CURRENT_STATE→active manifest/policies→CURRENT_WORK→最新適用Grant／Evidence。以dated supplement辨識Current舊投影，不回寫歷史。
+
+| Package | 功能 | 唯一完整規格 |
+|---|---|---|
+|PK01|來源、Scope 與可追溯採納輸入|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK01/ENGINEERING_SPECIFICATION.json)|
+|PK02|商品與可信資料快照|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK02/ENGINEERING_SPECIFICATION.json)|
+|PK03|永久 Registry 與正式出版投影|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK03/ENGINEERING_SPECIFICATION.json)|
+|PK04|私人 Capture、備份與部署基礎|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK04/ENGINEERING_SPECIFICATION.json)|
+|PK05|既有 WORK 的施工連續性|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK05/ENGINEERING_SPECIFICATION.json)|
+|PK06|完整 Strategy Lab 研究閉環|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK06/ENGINEERING_SPECIFICATION.json)|
+|PK07|Portfolio／Macro 研究與歷史界線|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK07/ENGINEERING_SPECIFICATION.json)|
+|PK08|資金歸屬、原子保留與風險准入|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK08/ENGINEERING_SPECIFICATION.json)|
+|PK09|OMS、STANDARD PAPER 與 Gateway|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK09/ENGINEERING_SPECIFICATION.json)|
+|PK10|恢復與營運證明|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK10/ENGINEERING_SPECIFICATION.json)|
+|PK11|單一契約的 Web 與跨層旅程|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK11/ENGINEERING_SPECIFICATION.json)|
+|PK12|同版本 B3 整合與交付審核|[JSON](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/packages/PK12/ENGINEERING_SPECIFICATION.json)|
+
+同名JSON保留96 Unit永久ID、12 Package、364依賴及95 API／19 UI來源定位；未重新設計或生成替代契約。gzip承載須按原hash讀回，不以摘要取代正文。
+
+[NAV-01 v2精確解析補件](NAVIGATION_RESOLUTION_SUPPLEMENT.candidate.v2.json)具名Catalog固定到engineering/contracts，Operation selector不是operations/相對檔名。Hash／Revision不合、缺少Companion、unsupported selector均HOLD，不猜最新版。
+
+C3 NOT_QUALIFIED；C5未授權／未執行；C6待Human；P00 0/8；全部B3 Unit尚無施工授權。完整原文義務、Host／Context資格、WO／Grant／Budget／Writer Gate保持。
+
+本地原索引／NAV-01、稽核／Supersession Matrix及C3新證據仍保留私有原件。本候選為其公開路徑導出表示，不能沿用原件Hash宣稱同一bytes。
+
+## 跨環境閱讀方式
+
+原 Accepted Architecture／Guide 的 C:/D: links 是保留的歷史locator，GitHub不會自動解析。勿修改或誤用其bytes；使用同名JSON的16章、95 API、19 UI及96 Unit固定public path、SHA256、Git blob、encoding入口。NAV-01 v2列出原入口link ordinal至public target；PUBLICATION_LOCATOR_COMPANION提供原locator exact map，REFERENCE_DOMAIN_DISPOSITION明列私人／歷史不可得範圍。
+
+所有相對pointer及具名Model selector須先固定source commit、解碼gzip並核對原文hash；不能以最新版本或同名檔猜測。此補件是閱讀導航，尚未qualified Compiler／Context／Runtime reader。
+
+| 固定來源 | 公開入口 |
+|---|---|
+|Architecture locator|[Read](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/PUBLICATION_LOCATOR_COMPANION.candidate.json)|
+|Reference availability|[Read](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/REFERENCE_DOMAIN_DISPOSITION.v3.json)|
+|12 Packages index|[Read](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/12_PACKAGE_ENGINEERING_SPECIFICATION_INDEX.json)|
+|Model catalog|[Read](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/contracts/MODEL_TYPE_SOURCE_SPECIFICATION.json)|
+|Pair locators|[Read](https://github.com/chunwork003/futures_trading_system/blob/9643bfc93a1631154be877536a1c91fc58df84be/docs/program/publication/B3-V1-ACCEPTED-BASELINE-PUBLICATION/engineering/contracts/REQUIRED_PAIR_LOCATORS.json)|
