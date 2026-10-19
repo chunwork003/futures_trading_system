@@ -209,7 +209,17 @@ body[data-color-mode="tw"]{--gain:#fa6e74;--loss:#48c695}body[data-color-mode="g
 .palette-role code{color:var(--muted)!important}
 .topnav button,.sidebar .rail-icon,.top .account{color:var(--nav-text,var(--text))!important}.module-head h2,.module .kpi,.module .asset-value{color:var(--card-text,var(--text))!important}.dropdown,.dialog,.palette-role,.shortcut-panel,.rail-flyout{color:var(--panel-text,var(--text))!important}
 
-body[data-unit-mode="muted"] .yunit,body[data-unit-mode="muted"] .currency-part{opacity:.56}body[data-unit-mode="normal"] .yunit,body[data-unit-mode="normal"] .currency-part{opacity:1}body[data-unit-mode="compact"] .yunit{opacity:.48;font-size:9px}body[data-unit-mode="compact"] .currency-part{opacity:.55}</style>
+body[data-unit-mode="muted"] .yunit,body[data-unit-mode="muted"] .currency-part{opacity:.56}body[data-unit-mode="normal"] .yunit,body[data-unit-mode="normal"] .currency-part{opacity:1}body[data-unit-mode="compact"] .yunit{opacity:.48;font-size:9px}body[data-unit-mode="compact"] .currency-part{opacity:.55}
+/* Palette coverage verification: previously hard-coded bright blue in account, filter, table header and source band. */
+.logo{background:var(--blue)!important;color:var(--on-accent)!important}
+.truth,.truth span:not(.warn):not(.demo),.top .truth{background:var(--panel)!important;border-color:var(--border)!important;color:var(--muted)!important}
+#account,.top .account,.right-top .account,#settingBtn,.filters #filterBtn{background:var(--panel2)!important;border-color:var(--border)!important;color:var(--text)!important}
+.hold-table thead,.hold-table thead tr,.hold-table thead th,.hold-table th,.summarytbl thead,.summarytbl th{background:var(--panel2)!important;color:var(--text)!important;border-color:var(--border)!important}
+.filters #filterBtn:hover,#account:hover{background:var(--card)!important}
+.statusband{background:var(--panel)!important}
+.topnav .nav-wrap .nav:hover{background:var(--panel2)!important;color:var(--text)!important}
+.topnav .nav-wrap .nav.active{background:var(--blue)!important;color:var(--on-accent)!important}
+</style>
 </head>
 <body>
 <div id="fullscreen-zone" class="fullscreen-zone">
@@ -490,7 +500,7 @@ cancelFonts=function(){originalCancelFonts();if(openingWorkspaceState){({sideMod
 const originalApplyTheme=applyTheme;
 function relativeLum(h){const [r,g,b]=hexToRgb(h).map(c=>{c/=255;return c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4)});return r*.2126+g*.7152+b*.0722}
 function syncContrast(){if(!autoContrast)return;const lum=relativeLum(themeColors.card),dark=lum<.22;themeColors.text=dark?'#f5f6f7':'#162433';themeColors.muted=dark?'#ced2d4':'#46586d';const root=document.documentElement.style;root.setProperty('--on-accent',relativeLum(themeColors.blue)>.42?'#14202a':'#f6f8fa');root.setProperty('--nav-text',relativeLum(themeColors.nav)>.22?'#162433':'#f2f4f7');root.setProperty('--card-text',dark?'#f2f4f7':'#162433');root.setProperty('--panel-text',relativeLum(themeColors.panel)>.22?'#162433':'#f2f4f7');}
-applyTheme=function(){syncContrast();originalApplyTheme();const hh=rgbToHsl(themeColors.blue)[0];assets.forEach((asset,i)=>{const offs=[-23,24,68,117,178,212][i];asset.color=hslToHex(hh+offs,.67,i===0?.58:.56)});document.documentElement.style.setProperty('--theme-chart',themeColors.blue)};
+applyTheme=function(){syncContrast();originalApplyTheme();const hh=rgbToHsl(themeColors.blue)[0];assets.forEach((asset,i)=>{const wheel={analogous:[-35,-18,0,18,38,58],complement:[-18,0,25,160,180,202],triad:[-10,18,115,135,225,242],square:[0,24,90,115,180,270],mono:[0,0,0,0,0,0]}[themeHarmony]||[-35,-18,0,18,38,58];const offs=wheel[i];asset.color=hslToHex(hh+offs,.67,i===0?.58:.56)});document.documentElement.style.setProperty('--theme-chart',themeColors.blue)};
 $('autoContrast').onchange=e=>{autoContrast=e.target.checked;applyTheme();renderThemeControls()};
 function renderCustomThemes(){const sel=$('customThemeSelect');sel.innerHTML=Object.keys(customThemes).map(name=>`<option value="${safe(name)}" ${selectedCustomTheme===name?'selected':''}>${safe(name)}</option>`).join('')||'<option value="">尚無自訂方案</option>';}
 $('addCustomTheme').onclick=()=>{const name=$('customThemeName').value.trim().slice(0,40);if(!name)return toast('請輸入配色名稱');customThemes[name]={...themeColors};selectedCustomTheme=name;renderCustomThemes();toast('已加入本頁候選配色；按「套用面板設定」並匯出 JSON 才能持續保存')};
