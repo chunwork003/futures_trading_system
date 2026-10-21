@@ -266,10 +266,10 @@ const colorRoles=['--bg','--sidebar','--card','--header','--border','--accent','
 let settingsOriginal=null;
 const oldOpenSettingsV15=openSettings;
 openSettings=function(tab='palette'){
-  if(settingsOriginal===null){settingsOriginal={colors:Object.fromEntries(colorRoles.map(role=>[role,document.documentElement.style.getPropertyValue(role)])),startup:window.d1StartupChoice||'default',pages:(window.d1StartupPages||[]).slice()}}
+  if(settingsOriginal===null){settingsOriginal={colors:Object.fromEntries(colorRoles.map(role=>[role,document.documentElement.style.getPropertyValue(role)])),startup:window.d1StartupChoice||'default',pages:(window.d1StartupPages||[]).slice(),themes:clone(d18CustomThemes),paletteDraft:d18ThemeDraft?clone(d18ThemeDraft):null}}
   oldOpenSettingsV15(tab)
 };
-function rollbackSettingsV15(){if(!settingsOriginal)return;for(const [k,v] of Object.entries(settingsOriginal.colors)){if(v)document.documentElement.style.setProperty(k,v);else document.documentElement.style.removeProperty(k)}window.d1StartupChoice=settingsOriginal.startup;window.d1StartupPages=settingsOriginal.pages;settingsOriginal=null}
+function rollbackSettingsV15(){if(!settingsOriginal)return;for(const [k,v] of Object.entries(settingsOriginal.colors)){if(v)document.documentElement.style.setProperty(k,v);else document.documentElement.style.removeProperty(k)}window.d1StartupChoice=settingsOriginal.startup;window.d1StartupPages=settingsOriginal.pages;d18CustomThemes=clone(settingsOriginal.themes||[]);d18ThemeDraft=settingsOriginal.paletteDraft?clone(settingsOriginal.paletteDraft):null;settingsOriginal=null}
 const prevCancelV15=$('dlgCancel').onclick,prevCloseV15=$('closeDialog').onclick,prevSaveV15=$('dlgSave').onclick;
 $('dlgCancel').onclick=e=>{if(dialogMode==='settings')rollbackSettingsV15();prevCancelV15(e)};
 $('closeDialog').onclick=e=>{if(dialogMode==='settings')rollbackSettingsV15();prevCloseV15(e)};
