@@ -1,0 +1,53 @@
+{
+  "schema": "b3.d1.precode.review.qa-summary.v1",
+  "version": "D1-v1.12-WIP",
+  "source_baseline_commit": "9643bfc93a1631154be877536a1c91fc58df84be",
+  "prototype_path": "docs/design/b3_v1_ui_precode/prototypes/B3_V1_D1_FullDashboard_v1_12_WIP.html",
+  "prototype_sha256_local": "272d5356ad614dabde2f0db01c2b58baa0703353921a25b8aabd3ade25ac29c1",
+  "independent_suites": [
+    {
+      "name": "visual card capacity",
+      "passed": 14,
+      "failed": 0,
+      "detail": "2560/1920/1500/1100/780 widths, up to body zoom 200; eight cards, no unexpected vertical or page horizontal overflow"
+    },
+    {
+      "name": "three-layer editor and startup",
+      "passed": 18,
+      "failed": 0,
+      "detail": "Bounded former v1.9 smoke rerun on final exact source"
+    },
+    {
+      "name": "Adobe-inspired five-swatch palette",
+      "passed": 13,
+      "failed": 0,
+      "detail": "HEX/RGB, color wheel, Cancel, no JS exception"
+    },
+    {
+      "name": "portfolio/asset/shortcut integration",
+      "passed": 26,
+      "failed": 0,
+      "detail": "All+five, p2, tab category fixed six slots, hold pagination, sort, UNKNOWN, top menu, icon import"
+    },
+    {
+      "name": "200 zoom dialog bounding",
+      "passed": 3,
+      "failed": 0,
+      "detail": "1500/1100/780 Settings and Workbench bounds, synthetic CSS zoom"
+    }
+  ],
+  "total_bounded_pass": 74,
+  "total_bounded_fail": 0,
+  "acceptance": "NOT_READY",
+  "not_verified": [
+    "D1-M01–17 exhaustive history",
+    "D1-R14-01–10 all negative cases",
+    "KEEP-01–15 every earlier feature",
+    "native browser zoom and WCAG 200%",
+    "real multi-account and auth authority",
+    "all palette semantics and file upload security",
+    "source-bound 19 UI x six MA10 x 64 findings and UI18",
+    "formal API/DTO QuerySpec semantics"
+  ],
+  "claim_boundary": "74 limited design checks; NOT 74 production E2E tests, nor Human acceptance, nor Coding Authorization"
+}
