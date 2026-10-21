@@ -59,3 +59,11 @@ All tests were re-run on the exact final local prototype after its last change. 
 9. Reviewer roles: Visual UI Reviewer may advise on alignment/visual hierarchy only, never remove agreed functionality or change accepted architecture.
 
 **Release instruction:** Maintain `v1.13 WIP` and continue bounded improvements on subsequent turns. **Do not present a new full preview or claim Human Acceptance** until all user-requested D1 UI behavior is consolidated and formally reviewable.
+
+## Exact Git blob QA reconciliation (2026-10-21)
+
+- GitHub published **blob SHA-1**: `3269e01c01df0dc9eccf764994fae42c401d3ba8`.
+- The container's first tested source had a single **extra terminal LF**: its SHA256 was `06e1d461c3f5c48b3768eced93ba290fa88b370c32df1225bb9f393eb67aed91`. File-content readers removed only that terminal LF when publishing. All interior UTF-16 code units/lines are identical; the differing blob hash was not a code change.
+- A second QA pass removed precisely the terminal LF and verified `git hash-object` = `3269e01c01df0dc9eccf764994fae42c401d3ba8` (matching the retrieved GitHub blob), with exact Git-blob UTF-8 **SHA256** `63fcdc92b261422642bb724716e03e10da2adede92ad88b60a02daaf2f15f5fa`.
+- All six browser test suites were **rerun against these exact Git bytes**: 18/18 + 26/26 + 13/13 + 14/14 + 10/10 + 5/5 = **86/86 bounded mock interaction/visual tests**, no JavaScript exceptions. The 600 property-based rectangle examples are included as one of those five aggregate checks.
+- This exact byte reconciliation supports the Git checkpoint only; it does **not** upgrade D1 to Owner-ready, formally independently reviewed, source-contract accepted, or product Coding-authorized.
