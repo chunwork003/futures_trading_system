@@ -1,0 +1,106 @@
+{
+  "name": "D1 v1.9 bounded precode UI regression",
+  "result": "18/18 PASS",
+  "observed_date": "2026-10-21",
+  "browser": "Chromium (Playwright, standalone set_content)",
+  "source_artifact": "prototypes/B3_V1_D1_FullDashboard_v1_9_THREE_LAYER_CANDIDATE.html",
+  "checks": [
+    {
+      "id": "D19-01",
+      "name": "首頁原始八模組保留",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-02",
+      "name": "三層編輯器入口",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-03",
+      "name": "原有草稿八模組",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-04",
+      "name": "B 呈現類型過濾 C 候選",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-05",
+      "name": "右側＋加入，而非點空白格",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-06",
+      "name": "取消草稿不改首頁",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-07",
+      "name": "一般市場頁面類別鎖定",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-08",
+      "name": "僅自定義頁面可切換來源類別",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-09",
+      "name": "第二層模組 A-G 分區",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-10",
+      "name": "點新資訊格進第三層",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-11",
+      "name": "查詢採規格資料且不執行 SQL",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-12",
+      "name": "第三層返回模組並保留資訊",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-13",
+      "name": "第二層儲存返回工作區",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-14",
+      "name": "指定情境可新增啟動頁面",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-15",
+      "name": "取消後不保留未儲存啟動頁",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-16",
+      "name": "JS 執行無錯誤",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-17",
+      "name": "1500px 編輯器整體未越界",
+      "status": "PASS"
+    },
+    {
+      "id": "D19-18",
+      "name": "1100px 編輯器整體未越界",
+      "status": "PASS"
+    }
+  ],
+  "out_of_scope": [
+    "Real B3 API/DTO/Snapshot/capital SQL",
+    "Full D1-R14, KEEP-01~15, UI01~UI19 and 64 Findings",
+    "200% fonts and full WCAG audit",
+    "Cross-account multi-window and persistent storage"
+  ],
+  "disclaimer": "Targeted mocked HTML-only tests; no B3 implementation or authority acceptance"
+}
