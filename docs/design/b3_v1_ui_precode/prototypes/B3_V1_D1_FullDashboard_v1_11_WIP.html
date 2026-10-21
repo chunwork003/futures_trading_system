@@ -205,6 +205,10 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline-color:var(
 @media(max-width:900px){.bar .brand{font-size:11px;max-width:135px;overflow:hidden;text-overflow:ellipsis}.bar .search{max-width:110px}}
 </style><style>
 /* D1 v1.11 harmonized palette workbench: design-only role colors, no market effect */
+.rail:not(.d1-rail-wide) button:not(.bottom){font-size:32px!important;line-height:1!important}
+.rail button img{width:32px!important;height:32px!important;object-fit:contain}
+.rail.d1-rail-wide button .d1-rail-ico{font-size:28px!important}
+
 .d111-wheel-handles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
 .d111-wheel-handles line{stroke:white;stroke-width:1.4;opacity:.85;filter:drop-shadow(0 1px 1px #223)}
 .d111-wheel-handles circle{stroke:white;stroke-width:1.8;filter:drop-shadow(0 1px 2px #222)}
@@ -956,6 +960,7 @@ d18PaletteRender=function(){d111CloseColor();d111OriginalPaletteRender();const r
 };
 // Keep the dialog bounded. Cancelled per-swatch editor is pure draft; closing the main Settings closes it.
 const d111PriorCloseModal=closeModal;closeModal=function(...args){d111CloseColor();return d111PriorCloseModal(...args);};
+document.addEventListener('keydown',function d111EscapeColor(e){if(e.key==='Escape'&&document.getElementById('d111ColorPop')){e.preventDefault();e.stopImmediatePropagation();d111CloseColor();}},true);
 
 })();
 </script></body></html>
