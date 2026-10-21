@@ -42,3 +42,8 @@
 - Visual UI Reviewer remains advisory only: may advise on size, spacing, color, contrast, legibility; cannot remove earlier functionality, change authority, or amend B3.
 
 **Do not present v1.11 WIP to Human as a completed UI.** Review again and continue development on subsequent 「繼續」 turns.
+## Follow-up correction — palette draft rollback
+
+- WIP prototype commit `969c79c45bdc3cf52af2093b56e60a13414981a9` additionally captures `d18CustomThemes` and `d18ThemeDraft` at Settings-entry, restores both on Cancel/Esc, and only retains on explicit main Settings Save. Previously, a newly named swatch palette remained visible after Cancel even when theme role colors rolled back.
+- Chromium negative test: create `臨時測試` named palette → observe fourth option → main Settings Cancel → reopen Settings → option absent. **PASS**, no uncaught JS error. Pure design-only state, not server persistence.
+- Work remains incomplete; do not present this WIP as Human-ready UI or claim D1 acceptance.
