@@ -1,0 +1,34 @@
+import pathlib,json,hashlib,subprocess,os,datetime
+O=pathlib.Path(__file__).parent;R=pathlib.Path('D:/00_Learn/量化交易/Code/futures_trading_system')
+def j(p):return json.loads(p.read_text(encoding='utf-8-sig'))
+def h(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def write(n,x):
+ with (O/n).open('x',encoding='utf-8',newline='\n') as f:f.write(json.dumps(x,ensure_ascii=False,indent=2)+'\n')
+before=j(O/'SOURCE_AND_GIT_BEFORE.json');after=j(O/'SOURCE_AND_GIT_AFTER.json')
+bad=[]
+for x in after['pins']:
+ p=pathlib.Path(x['path'])
+ if h(p)!=x['expected']:bad.append(str(p))
+for x in after['predecessor_bundle_members']:
+ # exact expectations from first manifest verification, rather than a new self-generated preimage
+ if not x['valid']:bad.append(x['path'])
+for rec in j(O/'PREDECESSOR_MANIFEST_VERIFICATION.json')['records']:
+ for x in rec['members']:
+  if h(pathlib.Path(x['path']))!=x['expected']:bad.append(x['path'])
+for d,m in [('candidate','CANDIDATE_MANIFEST.json'),('fresh-review','REVIEW_OUTPUT_MANIFEST.json')]:
+ root=O/d
+ for x in j(root/m)['files']:
+  if h(root/x['path'])!=x['raw_sha256']:bad.append(str(root/x['path']))
+env=dict(os.environ);env['GIT_OPTIONAL_LOCKS']='0'
+def git(*a):return subprocess.check_output(['git',*a],cwd=R,env=env).decode('utf-8','replace').strip()
+same=git('rev-parse','HEAD')==before['HEAD'] and git('status','--porcelain=v1','--untracked-files=normal')==before['status'] and h(R/'.git/index')==before['index_raw_sha256'] and git('for-each-ref','--format=%(refname) %(objectname)','refs/heads','refs/remotes')==before['heads_and_remotes']
+assert not bad and same,(bad,same)
+stamp=datetime.datetime.now(datetime.timezone.utc).isoformat()
+write('FINAL_INTEGRITY_RECHECK.json',{'recorded_utc':stamp,'Source_drift':bad,'local_HEAD_status_index_refs_unchanged':same,'candidate_Manifest_SHA256':h(O/'candidate/CANDIDATE_MANIFEST.json'),'review_Manifest_SHA256':h(O/'fresh-review/REVIEW_OUTPUT_MANIFEST.json'),'remote_19_heads_unchanged':j(O/'REMOTE_HEAD_RECHECK.json')['unchanged'],'actual_tests':'NOT_RUN; byte/manifest/static source checks only','evidence_production_error':{'type':'One tool source-template JavaScript syntax error before any README write','effect':'No file/source mutation; corrected Markdown fence in new output only'}})
+checkpoint={'task':'B3_V1_FRESH_REENTRY_EXECUTION_CONTINUATION','revision':'reentry-successor.1','created_utc':stamp,'reporting_conclusion':'POLICY_SUCCESSOR_SOURCE_REVIEW_PASSED_PENDING_OWNER_ADOPTION; MA02_PREPARATION_COMPLETE_WITH_EXACT_QUALIFICATION_GAPS','new_Machine_state':False,'authority_effect':'NONE','entrypoint':str(O/'README.md'),'canonical_current_authority':str(R/'docs/CURRENT_STATE.md'),'git':{'local_head':before['HEAD'],'local_branch':before['branch'],'master':'9b5ab5fdd98744a7db45ec9f14b64ef1f324920f','topic':'e287f6ac0744875e8d4bca103a6b73b4cf53416d','all_remote_branches':19,'default':'master','no_Git_mutation':True},'fixed_candidate':{'subject':'B3-V1-CONTINUOUS-POLICY-SUCCESSOR-01/candidate.1','manifest_raw_sha256':h(O/'candidate/CANDIDATE_MANIFEST.json'),'immutable_after_review':True},'independent_review':{'reviewer':'/root/fresh_policy_successor_review','fresh_context':True,'scope':'SOURCE_ONLY_INDEPENDENT_SEMANTIC_REVIEW','verdict':'POLICY_ACCEPTABLE_FOR_OWNER_ADOPTION','manifest_raw_sha256':h(O/'fresh-review/REVIEW_OUTPUT_MANIFEST.json'),'remaining_policy_semantic_findings':0,'native_Reviewer_profile':'NOT_ESTABLISHED; not a controlled product Review receipt','owner_adoption':'NOT_APPROVED'},'completed':['All19 remote branch trees + final HEAD delta audit','H6/Q119/oldIR10 exact integrity and141 original source pins','One immutable bounded F01/F02/F03 policy successor','New isolated fresh-context source semantic review','MA02 source/revision/9fixture readback + U01 accepted Result/body/products scoped reuse proposal','Exact WO compilation input candidate, no Grant','Exact policy Owner decision request','Public publication gap inventory and separate docs branch proposal'],'numbers':{'packages':12,'units':96,'API':95,'UI':19,'dependencies':364,'consumers':578,'MVP_units':57,'MVP_edges':184,'MVP_waves':11,'Accepted_units':1,'new_product_coding':0,'new_Grant_or_qualification':0,'specified_policy_oracles':33,'policy_oracles_semantically_reviewed':33,'policy_oracles_test_executions':0,'MA02_fixture_readback':9,'MA02_product_tests':0},'authority_frontier':j(O/'FRONTIER_DISPOSITION.json'),'remaining_gates':str(O/'NEXT_AUTHORITY_MATRIX.json'),'policy_owner_scope_SHA256':h(O/'POLICY_OWNER_ADOPTION_SCOPE.candidate.json'),'next_minimum_Human_request':str(O/'NEXT_MINIMUM_HUMAN_DECISION_REQUEST.md'),'MA02_next_prompt':str(O/'MA02_U01_NEXT_PREPARATION_PROMPT.md'),'resume_order':['README.md','DURABLE_CHECKPOINT.json','Repository AGENTS/CURRENT_STATE/active manifest/policies/CURRENT_WORK/current lifecycle','REMOTE_HEAD_RECHECK + compare fresh delta only','POLICY_OWNER_ADOPTION_SCOPE/Request + actual Human decision (not presumed)','MA02 packet/WO compilation input/qualification delta','Original Q precompiled index/one exact spec as needed'],'unchanged':{'C3':'NOT_QUALIFIED','C5':'NOT_AUTHORIZED_NOT_EXECUTED','C6':'PENDING_HUMAN','P00':'0/8','U02':'NOT_OBTAINED_HOLD_U02_QF01','U01':'ACCEPTED_MATERIALIZED; old Grant consumed','global_writer_created':False,'Controller':'NOT_ACTIVATED','real_model_API_resource':'NOT_AVAILABLE_AUTHORIZED'},'Ultra_role':'Exit ordinary planning/coding; return at applicable Stage/Catch-up/major protected conflict; qualified substitute reviewers allowed','cost':'Exact tokens/billing UNKNOWN; external modelAPI calls/cost0; elapsed timestamps are not billing','background_work_after_turn':False,'integrity':str(O/'FINAL_INTEGRITY_RECHECK.json'),'output_manifest':'OUTPUT_MANIFEST.json (created after checkpoint; self-excluded, no cyclic hashes)'}
+write('DURABLE_CHECKPOINT.json',checkpoint)
+# File content set is sealed last; manifest does not include its own hash.
+files=[{'path':str(p.relative_to(O)).replace('\\','/'),'raw_sha256':h(p),'bytes':p.stat().st_size} for p in sorted(O.rglob('*')) if p.is_file() and p.name!='OUTPUT_MANIFEST.json']
+write('OUTPUT_MANIFEST.json',{'subject':'B3-FRESH-REENTRY-POLICY-SUCCESSOR-20261022T052152Z','created_utc':stamp,'status':'FIXED_LOCAL_EVIDENCE_AND_CANDIDATES_NOT_ADOPTION_OR_EXECUTION','file_count_excluding_self':len(files),'files':files,'self_excluded':'OUTPUT_MANIFEST.json','no_future_writes_to_fixed_candidate_or_review':True,'publication':'LOCAL_ONLY; do not publish private witness automatically'})
+print(json.dumps({'fixed_files_excluding_self':len(files),'output_manifest_raw_sha256':h(O/'OUTPUT_MANIFEST.json'),'checkpoint_raw_sha256':h(O/'DURABLE_CHECKPOINT.json'),'owner_scope_SHA256':checkpoint['policy_owner_scope_SHA256'],'drift':bad,'same_git':same,'status':checkpoint['reporting_conclusion']}))
+

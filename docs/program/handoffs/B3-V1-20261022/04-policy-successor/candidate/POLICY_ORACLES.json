@@ -1,0 +1,272 @@
+{
+  "role": "POLICY_DESIGN_ORACLES_NOT_NATIVE_ELIGIBILITY_OR_PRODUCT_TEST_RESULTS",
+  "revision": "successor.1",
+  "expected_sealed_before_any_future_runner": true,
+  "actual_execution": "NOT_RUN; source-only semantic review required",
+  "cases": [
+    {
+      "id": "F01-P01",
+      "finding": "F-01",
+      "input": "額外advisory有固定分類Source、readback、durable release、完整mandatory收據、未到deadline，原native route允許新工作",
+      "expected": "僅可記PENDING advisory；下一Unit仍獨立逐gate判定",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F01-N01",
+      "finding": "F-01",
+      "input": "Source/Profile mandatory assurance只改名Stage/advisory",
+      "expected": "HOLD適用使用；不得park放行",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F01-N02",
+      "finding": "F-01",
+      "input": "僅兩個policy flag；review_type或required_before UNKNOWN",
+      "expected": "HOLD；不補造分類",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F01-N03",
+      "finding": "F-01",
+      "input": "Result ref/body digest不同；內層正文更改後沿用原ref",
+      "expected": "拒絕park及Result使用",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F01-N04",
+      "finding": "F-01",
+      "input": "Result或readset未固定／不可讀回",
+      "expected": "HOLD",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F01-N05",
+      "finding": "F-01",
+      "input": "Writer未釋放、釋放無durable證據或存在競爭Writer",
+      "expected": "禁止new dispatch",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F01-N06",
+      "finding": "F-01",
+      "input": "Execution RUNNING／待resume／Invocation UNKNOWN",
+      "expected": "原unfinished優先；不得park",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F01-N07",
+      "finding": "F-01",
+      "input": "native route仍為PENDING_RESULT_REVIEW_INTEGRATION",
+      "expected": "保留原route與STOP，不因park續派",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F01-N08",
+      "finding": "F-01",
+      "input": "advisory未審且到其Stage結論／integration／dependency use／Human decision門檻",
+      "expected": "阻擋該門檻；沒有PASS或credit",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F01-N09",
+      "finding": "F-01",
+      "input": "有更早的原required-before但只依advisory較晚deadline",
+      "expected": "取較早Gate，阻擋越過",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F01-N10",
+      "finding": "F-01",
+      "input": "R0-R3標籤被概括當非強制",
+      "expected": "拒絕推論；保留每項原mandatory義務",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F01-N11",
+      "finding": "F-01",
+      "input": "作者自審或不合格替代Reviewer被當獨立通過",
+      "expected": "PENDING／HOLD，不能promotion",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-P01",
+      "finding": "F-02",
+      "input": "有限且唯一的A/B exact集合；兩個獨立native AUTH；A依法CONSUMED",
+      "expected": "A狀態保留；B狀態不變；不產生B invocation",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-P02",
+      "finding": "F-02",
+      "input": "A已accepted；B的exact binding/qualification/budget有效，native route另一次re-entry合法",
+      "expected": "只由B自己的native流程判定；容器無直接執行效果",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N01",
+      "finding": "F-02",
+      "input": "wildcard、重複member/auth或把queue當集合",
+      "expected": "拒絕容器執行用途",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N02",
+      "finding": "F-02",
+      "input": "envelope存在但B無自己的AUTH或仍有未知WO/preimage/dependency Result",
+      "expected": "B不可執行，完整後需精確批准",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N03",
+      "finding": "F-02",
+      "input": "B重用A consumed AUTH或以envelope ID當authorization_id",
+      "expected": "拒絕redispatch／權限轉授",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N04",
+      "finding": "F-02",
+      "input": "A完成後重跑A；或動態補新child AUTH",
+      "expected": "拒絕；不能WORK自簽",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N05",
+      "finding": "F-02",
+      "input": "同run跨多mainline Package或同時兩Writer",
+      "expected": "STOP；不因Batch例外",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N06",
+      "finding": "F-02",
+      "input": "unknown Invocation卻補造reservation／dispatch，resume建新ID或預算",
+      "expected": "STOP_NO_BACKFILL／拒絕",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N07",
+      "finding": "F-02",
+      "input": "Source/Revision/Profile/WO/preimage漂移，只重算局部Hash",
+      "expected": "STOP受影響項與Consumer，重新精確binding/Authority",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N08",
+      "finding": "F-02",
+      "input": "Owner撤整批、authority過期、共享envelope完整性失敗",
+      "expected": "停止整批未啟動項，running依法safe-stop；保留durable facts",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N09",
+      "finding": "F-02",
+      "input": "只撤B或B輸出失效",
+      "expected": "B及受影響用途HOLD；獨立A不被無故撤已接受歷史",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N10",
+      "finding": "F-02",
+      "input": "逐項或整批硬額超限／無足夠保守預留",
+      "expected": "HOLD；不得超賣或跨項挪用",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N11",
+      "finding": "F-02",
+      "input": "Forecast UNKNOWN被解為無限budget；API cap0但呼叫付費API",
+      "expected": "拒絕；須有限安全界線與精確Owner接受",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N12",
+      "finding": "F-02",
+      "input": "Result固定後不經Review Barrier直接NEXT",
+      "expected": "STOP at original Review Barrier",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N13",
+      "finding": "F-02",
+      "input": "closed Pxx schema塞MA/PK或FrozenSection容納被當新語義支持",
+      "expected": "HOLD；不修改schema／不推定相容",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F02-N14",
+      "finding": "F-02",
+      "input": "Envelope缺期限、集合digest、總額或原生member exact binding",
+      "expected": "規劃而非可執行；Owner不得被視為已批准未知值",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F03-P01",
+      "finding": "F-03",
+      "input": "僅唯讀分析未審candidate及其Consumers",
+      "expected": "可分析；不准產品實作／promotion",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F03-P02",
+      "finding": "F-03",
+      "input": "獨立candidate development Grant，全部required upstream已Accepted且所有自身Gate成立",
+      "expected": "僅其原exact candidate scope可由原生流程判定；不Accepted／不合併",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F03-N01",
+      "finding": "F-03",
+      "input": "A未審candidate；B有candidate Grant、隔離Worktree及固定Hash，擬消費A",
+      "expected": "禁止candidate-to-candidate；B相關實作HOLD",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F03-N02",
+      "finding": "F-03",
+      "input": "將未驗證商業語義叫Mock、以Batch membership替Accepted dependency",
+      "expected": "拒絕",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    },
+    {
+      "id": "F03-N03",
+      "finding": "F-03",
+      "input": "上游新Revision/失敗後下游未重新影響分析",
+      "expected": "HOLD受影響使用，原歷史Receipt不改寫",
+      "actual": null,
+      "status": "SPECIFIED_NOT_EXECUTED"
+    }
+  ]
+}

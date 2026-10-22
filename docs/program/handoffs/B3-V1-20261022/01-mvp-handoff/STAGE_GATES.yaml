@@ -1,0 +1,251 @@
+handoff_id: ULTRA-B3-MVP-EXECUTION-HANDOFF-V1
+authority_effect: NONE
+policy_sources:
+  authorization_lifecycle.v1_1.yaml:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\policies\authorization_lifecycle.v1_1.yaml
+    raw_sha256: 547e5dae820541740a72a341bd1797305929bacdbff21b90acfe8866585f5393
+    bytes: 2108
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  development_entry_protocol.v2.yaml:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\policies\development_entry_protocol.v2.yaml
+    raw_sha256: b5486d9cd27c86555123eed96c57e5b7f59dfd46dbb23cb00b7350feffef8b10
+    bytes: 1485
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  development_state_machine.v2.yaml:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\policies\development_state_machine.v2.yaml
+    raw_sha256: 038e2c226b64d29dce9aa0d3b8cf24321b2bc0c526467b6f8784b11d7d83ff39
+    bytes: 1811
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  execution_capacity_policy.v2_2.yaml:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\policies\execution_capacity_policy.v2_2.yaml
+    raw_sha256: 4e4fd91163d50619e0bea14e96aed67e1568f1bcd781bf4d1ab76c2509ad23cb
+    bytes: 10536
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  WORK:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\prompts\WORK_ORCHESTRATOR_KERNEL.md
+    raw_sha256: 9f170a4aec8019d2a78384a4f445dbcb04e6b317ff1441acfd91315e998a541f
+    bytes: 10763
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  CODEX:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\prompts\CODEX_EXECUTOR_KERNEL.md
+    raw_sha256: 6c3b6dfcbc17cdbd2c37ebd11e26457c2bc6e7534dbc8d63c0d391c042e0e9fa
+    bytes: 9890
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  Guide:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\docs\PROJECT_OPERATING_GUIDE.md
+    raw_sha256: 311e431a21b24b25006ba10c67ed4ab65e6197d3a34a7cd08def8ace7fe68e08
+    bytes: 4585
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  GuideAnnex:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\docs\architecture\adopted\GUIDE_V2_COMPATIBILITY_ANNEX.source.v1.md
+    raw_sha256: a83fb8c9c79f447349892da7bae0dc6fdbff675e7a6712ac868b0b86ba414f82
+    bytes: 7081
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+scope: R0-R3 and G1-G6 are report/test aggregation labels only. Existing machine enums/mandatory Unit review/Wave-final
+  rules unchanged.
+stages:
+- label: R0
+  label_kind: REPORTING_AND_TEST_AGGREGATION_NOT_MACHINE_STATE
+  target_units:
+  - MA02-U01
+  - MA10-U01
+  - MA11-U01
+  - MA01-U05
+  goal: Handoff source/profile/interface qualification before actual use
+  expected_checks:
+  - Resolve Git/master/topic/local/private source cuts and all relevant original/v9/B-TRACE consumers; no omitted dependency
+    or source-only mode promoted to runtime ownership.
+  - Static six-file route/readset/identity/hash/selector check is author navigation validation only. Actual VSCode/LM/CODEX
+    use qualification remains route/Unit specific.
+  - All exact WO/Grant/Source/Context/Result/Intake/Executor/Writer requirements in WORK_ORDER_CONTRACT; no inherited
+    U01/U02 authority.
+  - Before MA10-U01 scaffold, human-pinned React/TypeScript/build toolchain under O130; bind ASP.NET/Python versions
+    and exact workspace file placement. apps/web and web/src are target/proposal locators, not a free write grant.
+  - Before MA03-U02 integration, name the real domain.bars.Bar/backtest.MarketBar/canonical observation -> CanonicalMarketBarDto
+    bridge from accepted Domain source; no silent name equivalence.
+  - Resolve exact source-body fields/precision/availability/errors/cursor and result artifacts; required source gaps
+    HOLD only affected use.
+  actual_product_result: NOT_RUN
+  requires_own_unit_all_cases_and_reviews: true
+  approval_or_execution_effect: NONE
+  does_not_claim:
+  - Actual C3/RQ03/Host qualification
+  - All57 Units authorized
+  - Tool-name implies eligible Executor
+- label: R1
+  label_kind: REPORTING_AND_TEST_AGGREGATION_NOT_MACHINE_STATE
+  target_units:
+  - MA03-U02
+  - MA03-U03
+  - MA03-U04
+  - MA10-U02
+  goal: Mock dataset -> data access -> Market API -> BFF -> candlestick chart
+  expected_checks:
+  - Source-derived synthetic OHLCV dataset with real mock instrument/listing/calendar/dataset/series-policy refs; validate
+    OHLC/timeorder/duplicates/timezone/tradingday/late revision and volume=null vs0.
+  - queryMarketBars GET /api/v2/market-bars -> ReadEnvelope<PAGED_MANY CanonicalMarketBarDto>; keep MA-DTO-v6 and inner/outer
+    cursor EQUAL_OR_REJECT,422 mismatch before effect; noData needs complete Coverage.
+  - React -> ASP.NET BFF -> Python API -> Quant/domain -> persistence boundary; queryObservations PricingObservation
+    is not a candle DTO substitute.
+  - Actual nonproduction PostgreSQL metadata/DataAccess read/write/idempotency/snapshot contract under separately exact
+    approved isolated DB/DDL/migration scope. Market history authority remains Parquet/DuckDB; no automatic entireOHLCV
+    SQL relocation.
+  - 'Do not run tests/integration/test_postgres_foundation.py casually: it calls run_migrations and uses DSN. Missing
+    DSN/skip is NOT qualification PASS.'
+  - Browser chart OHLC interpretation/timezone/paging/series/snapshot/source/quality/loading/empty/error/conflict/reconnect
+    cases; user visual check after real implementation.
+  - Keep every MA10-U02 required case, including portfolio/cash/other interfaces from its actual scope; do not reduce
+    Unit acceptance to just candles.
+  actual_product_result: NOT_RUN
+  requires_own_unit_all_cases_and_reviews: true
+  approval_or_execution_effect: NONE
+  does_not_claim:
+  - True market feed quality
+  - P9/V07/production DB conformance
+  - Broker/LIVE permission
+- label: R2
+  label_kind: REPORTING_AND_TEST_AGGREGATION_NOT_MACHINE_STATE
+  target_units:
+  - MA04-U04
+  - MA10-U03
+  goal: Immutable strategy/mock backtest -> PnL/equity/drawdown -> workspace/results
+  expected_checks:
+  - Exact feature/graph/code/snapshot/data/config/seed/method/trials provenance; same inputs deterministic; next-bar
+    and OOS/WFO no future leakage; cancellation/failure/unimproved result preserved.
+  - Use existing backtest core via reviewed source-bound adapter/scoped reuse; do not rewrite BacktestEngine as MVP shortcut.
+  - Persist/fetch result artifact refs and metrics from proper immutable result body; ResearchRun.result_refs not invented
+    inline PnL DTO fields.
+  - Targeted Unit tests plus candidate independent numeric golden below after formal binding; missing/undefined metric
+    is NA/null+reason, not zero rank.
+  - UI04/05/06 Builder/Research/Comparison plus original MA10-U03 Library/AI/manual obligations and all192 required cases;
+    candidate golden is not a replacement.
+  actual_product_result: NOT_RUN
+  requires_own_unit_all_cases_and_reviews: true
+  approval_or_execution_effect: NONE
+  does_not_claim:
+  - Profitability
+  - PAPER/LIVE runtime admission
+  - AllB3 Lab accepted by a small mock example
+- label: R3
+  label_kind: REPORTING_AND_TEST_AGGREGATION_NOT_MACHINE_STATE
+  target_units:
+  - MA10-U06
+  goal: Existing full BFF/Python/SignalR six-journey E2E and requested MVP integrated experience
+  expected_checks:
+  - Mock source -> canonical dataset/query -> chart -> exact strategy/snapshot -> deterministic research/backtest ->
+    metrics/artifact -> workspace results with same-version/source and complete error/unknown/cancel flow.
+  - All428 MA10-U06 required case IDs, including original six-journey/wire/error/restart obligations remain required.
+    Use authorized fake providers where appropriate; never rewrite true qualification as mockPASS.
+  - Client/server restart and reconnect pin snapshot/cursor/run identity; no phantom success, lost result, duplicated
+    economic effect or consumed invocation redispatch.
+  - Run mandatory final module/integration/full Wave tests required by exact WO/current policy. Exact frontend/backend
+    builds and real browser observations saved, independent Review/Intake/Acceptance separate.
+  - MA15-U03 broader427-case integration and Release qualifications remain for their originally applicable full-release
+    stage; MA10-U06 result is not complete B3 Release Acceptance.
+  actual_product_result: NOT_RUN
+  requires_own_unit_all_cases_and_reviews: true
+  approval_or_execution_effect: NONE
+  does_not_claim:
+  - Production readiness
+  - P00 stream closure
+  - Broker/PostgreSQL/Restore/Controller general qualification
+candidate_numeric_golden:
+  status: CANDIDATE_AUTHOR_INDEPENDENT_ORACLE_PENDING_EXACT_WO_REVIEW_AND_BINDING; NOT_RUN
+  purpose: Tiny arithmetic oracle, not a new product rule or existing accepted runtime evidence
+  assumptions:
+  - Three explicit completed synthetic trade netPnLs, no lookahead/hidden fees; monetary units and fixture terms explicit;
+    not realTAIFEX/Broker economics.
+  - Trade-close equity projection, consistent with existing backtest/metrics.py; not intrabar mark-to-market drawdown.
+  - Wire carries approved result artifact refs; fields below are fixture expectations, not added DTO fields.
+  initial_capital: '10000'
+  trade_net_pnls:
+  - '10'
+  - '-5'
+  - '15'
+  expected_equity:
+  - '10010'
+  - '10005'
+  - '10020'
+  expected_peak:
+  - '10010'
+  - '10010'
+  - '10020'
+  expected_drawdown_magnitude:
+  - '0'
+  - '5'
+  - '0'
+  drawdown_fraction_at_second_trade: 5/10010
+  expected_net_pnl: '20'
+  expected_gross_profit: '25'
+  expected_gross_loss_magnitude: '5'
+  expected_profit_factor: '5'
+  NA_negative: No closed trades or undefined ratio must follow exact method source with null/NA+reason; do not use legacy
+    zero sentinel as current qualified result.
+  source_refs:
+  - D:\00_Learn\量化交易\Code\futures_trading_system\backtest\metrics.py
+  - D:\00_Learn\量化交易\Code\futures_trading_system\docs\blueprint\F_BACKTEST_RESEARCH.md
+  - C:\Users\CHUNs\.codex\visualizations\2026\10\10\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\source-closure-pairing-20261015T005839Z\candidate\docs\architecture\multi_asset\04_RESEARCH_STRATEGY_LAB.md
+risk_review_policy:
+  unit_targeted: Every Unit keeps its exact required case IDs, negative/race tests and mandatory independent review.
+  high_level_stage_review: Higher-capability GPT reviews R1 integration,R2 research contract,R3 full selected E2E after
+    complete feature group; R0 reviews source/profile only when needed, not a new fullB3 review.
+  ordinary_Unit_review: Qualified independent Reviewer under existing contract; does not inherently require Ultra. Author
+    cannot review their own result as independent.
+  trigger_immediate_architecture_escalation:
+  - New evidence-supported major architecture/safety contradiction
+  - Protected authority/schema/identity/capital/order/fill semantic change
+  - Scope/budget/Writer/qualification conflict not resolvable under current authority
+  not_global_reopen:
+  - Cosmetic UI
+  - Ordinary internal algorithm or naming
+  - Known deferred resource/Host availability
+  - Already closed findings with no affected source drift
+finding_regression:
+  source:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\work_orders\planning\B3-V1-REGRESSION-GATES.plan.v1.json
+    raw_sha256: 620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef
+    bytes: 376126
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  original_finding_count: 64
+  rule: Finding -> root cause -> minimal counterexample -> correction -> targeted test -> trigger -> gate -> actual result/evidence.
+    Reuse existing ID and valid evidence; planned tools/tests remain NOT_RUN. Select by changed source/interface/dependency/risk,
+    preserve mandatory full checks.
+  B_TRACE: Use reviewed source-only companion578 mappings; do not reopen or consume historical testPASS as current product
+    evidence.
+deferred_gates:
+- gate: C3/C5/C6/P00
+  current: NOT_QUALIFIED/NOT_AUTHORIZED/PENDING_HUMAN/0_OF_8
+  when_required: By exact selected route/profile/policy, not all-Units blanket. U01/U02 amendments are Unit-specific
+    and not transferable.
+- gate: Isolated PostgreSQL integration
+  current: NOT_RUN_NOT_GRANTED
+  when_required: Before R1 actual DataAccess stagePASS, not before unrelated offline coding. Production migration/real
+    DSN/Restore independent.
+- gate: Live Broker/true feed/Restore/Controller/Release
+  current: NOT_AUTHORIZED_OR_NOT_QUALIFIED
+  when_required: Original actual effect/admission stage only; no implied ability from mocked Unit tests.
+- gate: U02-QF01
+  current: HOLD
+  when_required: U02 only; not incoming edge of requested57-Unit MVP.
+closeout_G1_G6:
+- gate: G1 Architecture Freeze
+  assessment: EXISTING_DESIGN_ACCEPTANCE_REUSED
+  source: Accepted B3 manifest + owner receipt + closedB-TRACE; no source changed/no newAcceptance.
+- gate: G2 Route Integrity
+  assessment: AUTHOR_STATIC_CHECK_REQUIRED_THEN_REPORT
+  source: 96/364 original;57/184 selected exact ancestor closure; no invented/deleted dependency.
+- gate: G3 Work Order Readiness
+  assessment: CANDIDATE_NOT_EXECUTABLE
+  source: Unit57 contracts/pointers present; exact files/toolchain/reuse/applicability/qualified profile/budget/native
+    WO/Grant remain per selected Unit.
+- gate: G4 Execution Re-entry
+  assessment: EXISTING_PROCEDURE_MAPPED_NOT_EXECUTED
+  source: Current/Kernel/10-step lifecycle/resume/source/Writer; actual recipient qualifications NOT_RUN.
+- gate: G5 Stage Review Contract
+  assessment: PROPOSED_AGGREGATION_COMPATIBLE_IF_MANDATORY_REVIEWS_PRESERVED
+  source: Guide/Annex C04 and original requiredreview; R0-R3 not new Machine states/Authority.
+- gate: G6 Dry-run Handoff
+  assessment: STATIC_NAVIGATION_CHECK_ONLY; actual Executor/DB/browser/build trial NOT_RUN
+  source: Author read-only hash/selector/DAG/negative planning checks recorded in HANDOFF_STATUS; no Compiler/Qualification/dispatch.
+final_closeout_recommendation: DESIGN_FROZEN_PENDING_EXECUTION_AUTHORITY
+new_Program_or_Controller: false

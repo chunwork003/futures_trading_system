@@ -1,0 +1,15 @@
+{
+  "scope": "AUTHOR_ARTIFACT_TOOL_ONLY_NOT_B3_CONTRACT_FINDING",
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": "BUILD_SPEC_PROJECTION.py --verify",
+      "exit_code": 1,
+      "output": "Traceback (most recent call last):\r\n  File \"C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\BUILD_SPEC_PROJECTION.py\", line 141, in <module>\r\n    print(json.dumps(build(args.verify),ensure_ascii=False))\r\n                     ~~~~~^^^^^^^^^^^^^\r\n  File \"C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\BUILD_SPEC_PROJECTION.py\", line 134, in build\r\n    write_new(ROOT/'PRECOMPILED_WORK_QUEUE.index.json',index,verify)\r\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r\n  File \"C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\BUILD_SPEC_PROJECTION.py\", line 35, in write_new\r\n    assert read_json(p) == x, f'PROJECTION_DIFF:{p}'\r\n           ^^^^^^^^^^^^^^^^^\r\nAssertionError: PROJECTION_DIFF:C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\PRECOMPILED_WORK_QUEUE.index.json\r\n",
+      "root_cause": "Verifier compared Python edge tuples with JSON-decoded edge lists; serialized bytes were identical. All96 individual spec comparisons had already succeeded.",
+      "minimum_correction": "Compare exact deterministic UTF8 serialization bytes. This is stricter than structural Python equality, not weakening source or test requirements.",
+      "source_or_generated_spec_change": "NONE; author verification helper only",
+      "qualification_or_review_effect": "NONE"
+    }
+  ]
+}

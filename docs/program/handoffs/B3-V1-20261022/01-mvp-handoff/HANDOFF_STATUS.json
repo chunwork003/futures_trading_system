@@ -1,0 +1,1331 @@
+{
+  "handoff_id": "ULTRA-B3-MVP-EXECUTION-HANDOFF-V1",
+  "handoff_revision": "handoff.v1",
+  "created_UTC": "2026-10-22T02:47:28.221361+00:00",
+  "display_verdict": "DESIGN_FROZEN_PENDING_EXECUTION_AUTHORITY",
+  "display_verdict_allowed_option": "B",
+  "is_new_Machine_state": false,
+  "document_status": "CANDIDATE_NAVIGATION_ATTACHMENT_TO_EXISTING_ACCEPTED_SOURCES",
+  "authority_effect": "NONE; not a Current State, Controller, Compiler, Registry, qualification, Grant, Acceptance or dispatch",
+  "entry_point": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-mvp-execution-handoff-v1/MVP_SCOPE.md",
+  "execution_manual": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-mvp-execution-handoff-v1/VS_CODE_EXECUTOR.md",
+  "current_authority_entry": "D:/00_Learn/量化交易/Code/futures_trading_system/docs/CURRENT_STATE.md",
+  "original_task_scope": "Finish MVP route, six-file handoff design and architecture closeout; no new product/qualification/Git/SQL/runtime execution.",
+  "Git": {
+    "local_HEAD": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+    "remote_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+    "publication_v3": "9643bfc93a1631154be877536a1c91fc58df84be",
+    "NAV_topic_HEAD": "e287f6ac0744875e8d4bca103a6b73b4cf53416d",
+    "local_branch": "architecture/p00-v1-baseline",
+    "remote_default_branch": "master",
+    "repository_public": true,
+    "remote_read_only_verification": {
+      "method": "Live GitHub connector GET in this task; no git fetch or remote ref mutation",
+      "master_URL": "https://api.github.com/repos/chunwork003/futures_trading_system/branches/master",
+      "topic_URL": "https://api.github.com/repos/chunwork003/futures_trading_system/git/ref/heads/codex/b3-v1-accepted-baseline-publication",
+      "master_B3_entry": "404 for docs/architecture/B3_V1_ARCHITECTURE.md at master; not published there",
+      "topic_B3_entry": "Readable at exact NAV commit; includes accepted B3/Guide and historical navigation cut"
+    },
+    "local_topic_object": "NOT_PRESENT_IN_LOCAL_OBJECT_DATABASE; no fetch/checkout performed",
+    "main_target_policy": "main final canonical target retained; actual migration NOT_EXECUTED_NOT_VERIFIED",
+    "local_dirty_state": "PREEXISTING_DIRTY_AND_UNTRACKED_PRESERVED",
+    "status_porcelain_at_final": " M docs/CURRENT_STATE.md\n M docs/CURRENT_WORK.md\n?? automation/authorizations/AUTH-MA01-U01-MANUAL-01.v1.yaml\n?? automation/authorizations/AUTH-MA01-U01-U01F01-01.v1.yaml\n?? automation/packages/B3-V1-PK01.MA01-U01.manual.v1.yaml\n?? automation/runs/EXEC-MA01-U01-MANUAL-20261021T024103479475Z/\n?? automation/runs/EXEC-MA01-U01-U01F01-20261021T072411819522Z/\n?? automation/work_orders/MA01-U01-MANUAL-01.acceptance.json\n?? automation/work_orders/MA01-U01-MANUAL-01.current-lifecycle.json\n?? automation/work_orders/MA01-U01-MANUAL-01.eligibility.json\n?? automation/work_orders/MA01-U01-U01F01-01.current-lifecycle.json\n?? automation/work_orders/MA01-U01-U01F01-01.eligibility.json\n?? automation/work_orders/WO-MA01-U01-MANUAL-01.yaml\n?? automation/work_orders/WO-MA01-U01-MANUAL-U01F01-01.yaml\n?? automation/work_orders/executions/WO-MA01-U01-MANUAL-01.writer-lock.yaml\n?? automation/work_orders/executions/WO-MA01-U01-MANUAL-U01F01-01.writer-lock.yaml\n?? automation/work_orders/forecasts/WO-MA01-U01-MANUAL-01.json\n?? automation/work_orders/planning/B3-V1-12-PACKAGES.inputs.candidate.v1.json\n?? automation/work_orders/planning/B3-V1-CONTRACT-FIRST.inputs.candidate.v1.json\n?? automation/work_orders/planning/B3-V1-EXECUTOR-CAPABILITY.plan.v1.json\n?? automation/work_orders/planning/B3-V1-POST-ADOPTION-PLANNING.v1.json\n?? automation/work_orders/planning/B3-V1-REGRESSION-GATES.plan.v1.json\n?? automation/work_orders/planning/B3-V1-ULTRA-FINAL-HANDOFF.candidate.v1.json\n?? automation/work_orders/planning/MA01-U01.manual-source-binding.v1.json\n?? data/\n?? docs/PROJECT_OPERATING_GUIDE.md\n?? docs/architecture/B3_V1_ARCHITECTURE.md\n?? docs/architecture/ENGINEERING_EXECUTION_POLICY.candidate.v1.md\n?? docs/architecture/ENGINEERING_EXECUTION_POLICY.candidate.v2.md\n?? docs/architecture/adopted/\n?? docs/architecture/multi_asset/\n?? docs/program/B3_V1_ENGINEERING_PREPARATION.md\n?? docs/program/decisions/B3-BRIDGE-RR01-OFFLINE-BINDING-ACCEPTANCE.owner.v1.json\n?? docs/program/decisions/B3-V1-DUAL-ADOPTION-20261015-v1.owner.v1.json\n?? docs/program/decisions/MA01-U01-FIRST-RESULT-ACCEPTANCE.owner.v1.json\n?? docs/program/decisions/MA01-U01-MANUAL-CODING-01.owner.v1.json\n?? docs/program/decisions/MA01-U01-MANUAL-LEGACY-CONTEXT-APPLICABILITY-01.owner.v1.json\n?? docs/program/decisions/MA01-U01-U01F01-CORRECTION-01.owner.v1.json\n?? docs/program/decisions/MA01-U02-MANUAL-LEGACY-CONTEXT-APPLICABILITY-01.owner.v1.json\n?? docs/program/source_bound_scope_delta.v2.json\n?? docs/program/source_bound_scope_delta.v2.md\n?? tests/architecture_companions/\n",
+    "status_unchanged_since_handoff_finalization_start": true,
+    "six_file_handoff_publication": "LOCAL_ONLY_NOT_PUBLISHED",
+    "navigation_cannot_override_source_cut": true
+  },
+  "adopted_architecture": {
+    "subject": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01",
+    "envelope_SHA256": "ca68aec60620755c55e598f876dea01a62f7757db381019b99febdb8127d0ae3",
+    "A_scope_SHA256": "ff5fbb4b378dcb9aac91d4a0b55474a8ed9de944121593f7baa441c6f4bd1b01",
+    "B_scope_SHA256": "6a92215477e06edd2a885846264e4d1b2ecffd72866a4b2e1f8dea756f1590e6",
+    "source_manifest_SHA256": "8f902bfe0bfc73a6ab99893aaeca868e9c103db052aaa40507e0fea2cd8a403a",
+    "owner_receipt": "D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/decisions/B3-V1-DUAL-ADOPTION-20261015-v1.owner.v1.json",
+    "prior_review_reused": "Fresh independent source-closure PASS and adopted B3. Not reopened or replaced by author checks.",
+    "historical_accepted_semantics": "Blueprint/ADR/GAP08/R01/R03/R04/R05/R07 retained; no re-interpretation or new review of unaffected scope",
+    "complete_B3_obligations_preserved": true
+  },
+  "effective_engineering_projection": {
+    "finding": "B-TRACE-01",
+    "disposition": "CLOSED_BY_EVIDENCE",
+    "source": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/b3-engineering-consumer-projection-successor-proposed-v1/candidate/ENGINEERING_CONSUMER_PROJECTION_SUCCESSOR.candidate.v1.json",
+    "raw_SHA256": "660c93fec66fa8862cbf9b0ee884ac35f675b4746292cdc5bbd9ee226554886d",
+    "required_together_with_original_sources": true,
+    "new_independent_review": "NOT_RUN_NOT_REQUIRED_BY_THIS_NAVIGATION_TASK; reuse pinned prior independent verdict",
+    "original_summary_alone": "INSUFFICIENT; original primary-IO count does not equal complete 578 Consumer bindings",
+    "source_only_rows": 191,
+    "source_only_means": "Required source checks, not new runtime results, ownership or DAG edges",
+    "accepted_candidate_or_execution_effect": "NONE from supplement; original source-bound closed finding retained",
+    "remote_availability": "This latest local supplement is not asserted to be included in published master/topic"
+  },
+  "progress_snapshot": {
+    "source": "Pinned current documents plus exact U01 external acceptance and U02 trial checkpoint",
+    "accepted_product_Units": 1,
+    "total_product_Units": 96,
+    "accepted_unit_aliases": [
+      "MA01-U01"
+    ],
+    "new_Units_implemented_in_this_task": 0,
+    "new_coding_Grants_in_this_task": 0,
+    "current_executable_frontier": [],
+    "C3": "NOT_QUALIFIED",
+    "C5": "NOT_AUTHORIZED_NOT_EXECUTED",
+    "C6": "PENDING_HUMAN",
+    "P00_closed_streams": 0,
+    "P00_total_streams": 8,
+    "global_writer": "NONE_AT_CURRENT_CHECKPOINT; verify fresh on next entry",
+    "controller": "NOT_ACTIVE",
+    "CONTROLLED_AUTO": "DISABLED",
+    "U01": {
+      "acceptance": "D:/00_Learn/量化交易/Code/futures_trading_system/automation/work_orders/MA01-U01-MANUAL-01.acceptance.json",
+      "owner_acceptance": "D:/00_Learn/量化交易/Code/futures_trading_system/docs/program/decisions/MA01-U01-FIRST-RESULT-ACCEPTANCE.owner.v1.json",
+      "accepted_result_ref": {
+        "entity_id": "bd43a03e-3779-5538-9a43-c34c5a03dcf3",
+        "revision_id": "7150eb08-c86d-55a7-bda6-7dfe55739496",
+        "owner": "EXISTING_WORK_RESULT_INTAKE",
+        "hash_domain": "CANONICAL_JSON_SHA256",
+        "source_hash": "ec62bc2956743f03df641dba02a91ceeba67d0007b956fbece93f72f79d564c3"
+      },
+      "original_body_not_rewritten": "Result body outcome and external Accepted status remain separate; never edit old body to force Accepted",
+      "consumed_authority_reuse": "DENIED"
+    },
+    "U02": {
+      "checkpoint": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/b3-u02-legacy-manual-actual-use-qualification-01/DURABLE_CHECKPOINT.json",
+      "result": "REVIEW_FIX_REQUIRED; U02-QF01 provenance omission, no final Qualification receipt",
+      "pending_request": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/b3-u02-qf01-decision-preparation-20261021-v1/HUMAN_EXACT_U02_QF01_PROVENANCE_REQUEST.scope.json",
+      "pending_request_SHA256": "6ced4fbe93589ce57c11c7ecf0eeae3d24e80b4a52806d2056fe48b8f2cba3bc",
+      "request_approved": false,
+      "in_requested_MVP_ancestor_closure": false,
+      "effects_in_this_task": "NONE; no fix, rerun or transfer of limited qualification"
+    }
+  },
+  "source_classifications": [
+    {
+      "classification": "ACCEPTED",
+      "items": [
+        "B3/Guide source-bound Owner adoption",
+        "U01 exact external Result Acceptance",
+        "Program V2 rev5 original authority",
+        "Existing accepted Blueprint/GAP08 semantics"
+      ],
+      "authority": "Original receipts and source manifests; not this navigation"
+    },
+    {
+      "classification": "DESIGN_FROZEN",
+      "items": [
+        "Existing architecture identity and 364-edge DAG",
+        "Closed Bridge IR/RR and B-TRACE scope"
+      ],
+      "authority": "Reused exact accepted/reviewed sources"
+    },
+    {
+      "classification": "CANDIDATE",
+      "items": [
+        "This six-file navigation package",
+        "Existing engineering path proposals and new-stage aggregation",
+        "Numeric golden proposed for exact WO binding"
+      ],
+      "authority": "No new execution or policy activation"
+    },
+    {
+      "classification": "NOT_AUTHORIZED",
+      "items": [
+        "All newly proposed product Coding/Dispatch",
+        "New Unit intended-use Qualification attempts",
+        "Git/ref integration/publication",
+        "SQL/Migration/Restore/Broker/LIVE/Controller effects"
+      ],
+      "authority": "Need exact current applicable authorization; no inference from this file"
+    },
+    {
+      "classification": "MISSING_EVIDENCE",
+      "items": [
+        "MA02-U01-specific qualified intended use/Profile/Context/Result/Intake when applicable",
+        "Exact next native WO/Grant/budget/writer",
+        "Actual R1 isolated PostgreSQL/Chart integration and later product runtime tests"
+      ],
+      "authority": "Preserve NOT_RUN/HOLD until true evidence"
+    },
+    {
+      "classification": "CONFLICT",
+      "items": [],
+      "qualification": "No new material all-B3 architecture conflict established by this necessary delta analysis. Actual path/source gaps are scoped next-WO preparation, not proof of conformance."
+    }
+  ],
+  "route": {
+    "exact_target": "MA10-U06",
+    "definition": "All ancestors of preserved existing E2E Unit, not arbitrary renumbering or deletion",
+    "units": 96,
+    "edges": 364,
+    "route_units": 57,
+    "route_edges": 184,
+    "route_waves": 11,
+    "APIs": 95,
+    "UI": 19,
+    "consumer_bindings": 578,
+    "selected_consumer_bindings": 404,
+    "original_source_only_rows": 191,
+    "historical_findings": 64,
+    "original_MVP_research_only": {
+      "target": "MA10-U03",
+      "units": 16,
+      "edges": 47
+    },
+    "chart_and_research_union": {
+      "targets": [
+        "MA10-U02",
+        "MA10-U03"
+      ],
+      "units": 38,
+      "edges": 113
+    },
+    "formal_broader_integration": {
+      "target": "MA15-U03",
+      "units": 69,
+      "edges": 264,
+      "unchanged_gate": true
+    },
+    "minimality_scope": "57/184 is minimum ancestor set for chosen existing target; not globally minimum architecture, effort, new-code amount or ETA",
+    "outside_route_original_Units": 39,
+    "full_B3_scope_not_reduced": true,
+    "structural_frontier_after_U01": [
+      "MA01-U05",
+      "MA02-U01",
+      "MA10-U01",
+      "MA11-U01"
+    ],
+    "first_preparation_recommendation": "MA02-U01",
+    "first_preparation_goal": "Permanent Instrument/Listing bridge; prerequisite data identity for market/query path",
+    "first_preparation_is_Coding_WO": false,
+    "parallel_authorization": "NONE; waves are structural; original global single Writer/NO_PARALLEL retained"
+  },
+  "first_unit_preparation": {
+    "alias": "MA02-U01",
+    "unit_id": "69b6baec-4e0d-42df-ab4f-5900e97f48b6",
+    "feature_id": "75f4af02-d872-4821-8d7e-8471de047126",
+    "plan_revision": "candidate.7",
+    "plan_revision_id": "ef3b999d-d11d-5bf3-a359-94367868e2bb",
+    "original_unit_pointer": "EXECUTION_UNITS.json#/units/6",
+    "selected_canonical_body_SHA256": "dce2e833f1f5a9d00687ed025f1f84e8a378651cb09a11f5d8b3ed847074cdbd",
+    "input_model": "InstrumentRevision",
+    "output_model": "ListingRevision",
+    "API": [
+      "getInstrumentRevision",
+      "listInstruments"
+    ],
+    "UI": [
+      "UI03"
+    ],
+    "risk": "HIGH",
+    "required_cases": 9,
+    "dependency": "MA01-U01 accepted, subject to exact Source/Result/Acceptance currentness and scoped reuse rules",
+    "file_proposals": [
+      "domain/instrument_profiles.py",
+      "domain/asset_valuation.py",
+      "tests/architecture_companions/test_ma02_contracts.py"
+    ],
+    "all_proposed_files_currently_absent": true,
+    "allowed_now": [
+      "Read named source/profile/receipt, compare currentness",
+      "Assemble exact intended-use/source/qualification delta",
+      "Prepare existing native singleton WO, budget, finite correction cap, exact file/preimage and test-to-case candidates without invoking controlled compiler or creating Writer"
+    ],
+    "unresolved": [
+      "No MA02-specific qualification receipt or source-reviewed applicability/amendment yet",
+      "Exact route identity/capacity/context/source/result/intake binding",
+      "Exact write scope/preimages and native WO/Grant",
+      "Budget/cost forecast/consent and actual writer eligibility"
+    ],
+    "U01_or_U02_limited_manual_qualification_transfer": "DENIED",
+    "next_unavoidable_Human_decision": "Approve the source-bound MA02-U01-specific route/applicability/qualification Scope once compiled under existing rules; then applicable real qualification and a separately exact Coding Grant. This handoff is not that Grant.",
+    "request_preparation_input": "Use source selectors, existing adopted profiles and all required assurance/review boundaries. Do not recycle consumed U01/U02 grant or invent a new compiler/profile.",
+    "no_full_package_completion_barrier": true
+  },
+  "contract_and_test_boundaries": {
+    "layers": "React -> ASP.NET BFF -> Python API -> Quant Core -> Persistence",
+    "DTO_wire_version": "MA-DTO-v6; historical candidate revision labels are not wire versions",
+    "single_formal_source": true,
+    "market_query": "queryMarketBars / CanonicalMarketBarDto, MA03-U02; actual named type bridge to legacy domain/backtest/canonical observations must be bound before affected use",
+    "PostgreSQL": "Required actual isolated authorized DataAccess integration before R1 Stage PASS. Historical market artifacts retain Parquet/DuckDB/Arrow authority. Do not use engineering registry SQL as product persistence substitute.",
+    "no_SQL_in_this_task": true,
+    "frontend": "O130 human toolchain pin before scaffold; resolve apps/web vs web/src planning locators to exact WO files without broad repo reorganization",
+    "backtest": "Reuse accepted core, frozen source/strategy snapshot, no future leakage/next-bar rules, explicit cost/metric policies",
+    "results": "ResearchRun result_refs -> immutable result artifact; no ad hoc inline UI PnL authority",
+    "required_case_counts": {
+      "MA10-U02": 142,
+      "MA10-U03": 192,
+      "MA10-U06": 428
+    },
+    "numeric_golden": "CANDIDATE_NOT_RUN; details in STAGE_GATES.yaml; no assertion of executed product test",
+    "historical_Finding_obligations": 64,
+    "regression_policy": "Select by original source/risk/change trigger; preserve mandatory original checks and evidence separation"
+  },
+  "G1_G6": [
+    {
+      "gate": "G1 Architecture Freeze",
+      "verdict": "EXISTING_ADOPTED_DESIGN_REUSED",
+      "git_cuts": {
+        "local_HEAD": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+        "remote_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "publication_v3": "9643bfc93a1631154be877536a1c91fc58df84be",
+        "NAV_topic_HEAD": "e287f6ac0744875e8d4bca103a6b73b4cf53416d"
+      },
+      "evidence": [
+        "B3 Owner Receipt",
+        "v9 exact Envelope and Source Manifest",
+        "closed B-TRACE prior independent verdict"
+      ],
+      "limit": "No new formal acceptance or comprehensive re-review"
+    },
+    {
+      "gate": "G2 Route Integrity",
+      "verdict": "AUTHOR_STATIC_NAVIGATION_CHECK_PASSED",
+      "git_cuts": {
+        "local_HEAD": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+        "remote_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "publication_v3": "9643bfc93a1631154be877536a1c91fc58df84be",
+        "NAV_topic_HEAD": "e287f6ac0744875e8d4bca103a6b73b4cf53416d"
+      },
+      "evidence": [
+        "96/364 acyclic preserved",
+        "57/184 exact ancestor set",
+        "11 topological waves",
+        "578 original Consumer rows and404 selected projection"
+      ],
+      "limit": "No runtime or ready/eligibility assertion"
+    },
+    {
+      "gate": "G3 Work Order Readiness",
+      "verdict": "CANDIDATE_ONLY_NOT_EXECUTABLE",
+      "git_cuts": {
+        "local_HEAD": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+        "remote_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "publication_v3": "9643bfc93a1631154be877536a1c91fc58df84be",
+        "NAV_topic_HEAD": "e287f6ac0744875e8d4bca103a6b73b4cf53416d"
+      },
+      "evidence": [
+        "57 source-bound Unit rows and original required cases/file proposals",
+        "WORK_ORDER_CONTRACT.yaml original native schema checklist"
+      ],
+      "limit": "Exact next qualification/paths/budget/WO/Grant/writer still missing"
+    },
+    {
+      "gate": "G4 Execution Re-entry",
+      "verdict": "ORIGINAL_PROCEDURE_MAPPED; ACTUAL_NEW_RECIPIENT_NOT_RUN",
+      "git_cuts": {
+        "local_HEAD": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+        "remote_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "publication_v3": "9643bfc93a1631154be877536a1c91fc58df84be",
+        "NAV_topic_HEAD": "e287f6ac0744875e8d4bca103a6b73b4cf53416d"
+      },
+      "evidence": [
+        "Current state, manifest, kernels, original lifecycle states",
+        "VS_CODE_EXECUTOR.md resume/entry/consumed-run rules"
+      ],
+      "limit": "Prompt/handbook does not qualify intended use"
+    },
+    {
+      "gate": "G5 Stage Review Contract",
+      "verdict": "CANDIDATE_STAGE_AGGREGATION_PRESERVES_ORIGINAL_MANDATORY_REVIEW",
+      "git_cuts": {
+        "local_HEAD": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+        "remote_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "publication_v3": "9643bfc93a1631154be877536a1c91fc58df84be",
+        "NAV_topic_HEAD": "e287f6ac0744875e8d4bca103a6b73b4cf53416d"
+      },
+      "evidence": [
+        "Guide/Annex unchanged",
+        "R1/R2/R3 defined in STAGE_GATES.yaml"
+      ],
+      "limit": "No new machine state/review authority; per-Unit mandatory independent review retained"
+    },
+    {
+      "gate": "G6 Dry-run Handoff",
+      "verdict": "AUTHOR_STATIC_CHECKS_PASSED; ACTUAL_EXECUTOR_HANDOFF_NOT_QUALIFIED",
+      "git_cuts": {
+        "local_HEAD": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+        "remote_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+        "publication_v3": "9643bfc93a1631154be877536a1c91fc58df84be",
+        "NAV_topic_HEAD": "e287f6ac0744875e8d4bca103a6b73b4cf53416d"
+      },
+      "evidence": [
+        "17 named static checks",
+        "8 corrupt-metadata rejection checks",
+        "80 declared pinned sources read back"
+      ],
+      "limit": "No product tests, compiler trial, browser, database, true model call or formal qualification run"
+    }
+  ],
+  "author_static_validation": {
+    "kind": "AUTHOR_READ_ONLY_NAVIGATION_STATIC_DRY_RUN_NOT_QUALIFICATION",
+    "utc": "2026-10-22T02:45:59.899861+00:00",
+    "checks": [
+      {
+        "check": "Original identity and count",
+        "result": "PASS",
+        "denominator": 96
+      },
+      {
+        "check": "All original edges and endpoint revision identity",
+        "result": "PASS",
+        "denominator": 364
+      },
+      {
+        "check": "Original full DAG acyclic",
+        "result": "PASS",
+        "denominator": 96
+      },
+      {
+        "check": "Requested exact ancestor closure",
+        "result": "PASS",
+        "denominator": 57
+      },
+      {
+        "check": "No dropped or invented incoming edge",
+        "result": "PASS",
+        "denominator": 184
+      },
+      {
+        "check": "Eleven selected topological waves",
+        "result": "PASS",
+        "denominator": 11
+      },
+      {
+        "check": "Route Unit body/feature/revision selectors",
+        "result": "PASS",
+        "denominator": 57
+      },
+      {
+        "check": "Full required case inventory preserved",
+        "result": "PASS",
+        "denominator": 57
+      },
+      {
+        "check": "API and UI identities unique",
+        "result": "PASS",
+        "denominator": 114
+      },
+      {
+        "check": "Full reviewed Consumer identity/binding set",
+        "result": "PASS",
+        "denominator": 578
+      },
+      {
+        "check": "Selected Consumer projection exact all roles",
+        "result": "PASS",
+        "denominator": 404
+      },
+      {
+        "check": "UI references resolve",
+        "result": "PASS",
+        "denominator": null
+      },
+      {
+        "check": "MVP is not U02 sequential gate",
+        "result": "PASS",
+        "denominator": null
+      },
+      {
+        "check": "No new Unit coding authority",
+        "result": "PASS",
+        "denominator": 57
+      },
+      {
+        "check": "Required case denominators retained",
+        "result": "PASS",
+        "denominator": 3
+      },
+      {
+        "check": "Exact declared raw source pins",
+        "result": "PASS",
+        "denominator": 80
+      },
+      {
+        "check": "Historical regression obligations retained",
+        "result": "PASS",
+        "denominator": 64
+      }
+    ],
+    "negative_metadata_checks": [
+      {
+        "case": "wrong Unit identity",
+        "expected": "REJECT_NAVIGATION_BINDING",
+        "actual": "REJECT",
+        "status": "PASS"
+      },
+      {
+        "case": "wrong selected source body digest",
+        "expected": "REJECT_NAVIGATION_BINDING",
+        "actual": "REJECT",
+        "status": "PASS"
+      },
+      {
+        "case": "deleted incoming accepted dependency",
+        "expected": "REJECT_NAVIGATION_BINDING",
+        "actual": "REJECT",
+        "status": "PASS"
+      },
+      {
+        "case": "stale plan revision",
+        "expected": "REJECT_NAVIGATION_BINDING",
+        "actual": "REJECT",
+        "status": "PASS"
+      },
+      {
+        "case": "omitted Consumer row",
+        "expected": "REJECT_NAVIGATION_BINDING",
+        "actual": "REJECT",
+        "status": "PASS"
+      },
+      {
+        "case": "one smoke case substituted for required cases",
+        "expected": "REJECT_NAVIGATION_BINDING",
+        "actual": "REJECT",
+        "status": "PASS"
+      },
+      {
+        "case": "nonexistent UI identity",
+        "expected": "REJECT_NAVIGATION_BINDING",
+        "actual": "REJECT",
+        "status": "PASS"
+      },
+      {
+        "case": "navigation claims authority without real Grant",
+        "expected": "REJECT_NAVIGATION_BINDING",
+        "actual": "REJECT",
+        "status": "PASS"
+      }
+    ],
+    "raw_pin_count": 80,
+    "pin_errors": [],
+    "pin_conflicts": [],
+    "raw_pins": [
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\b3-engineering-consumer-projection-successor-proposed-v1\\candidate\\ENGINEERING_CONSUMER_PROJECTION_SUCCESSOR.candidate.v1.json",
+        "sha256": "660c93fec66fa8862cbf9b0ee884ac35f675b4746292cdc5bbd9ee226554886d",
+        "bytes": 7373541
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\b3-engineering-consumer-projection-successor-proposed-v1\\fresh-review\\FINDING_DISPOSITION.json",
+        "sha256": "510d19cecb1a7a763d1644fc28678390ea54929f36b99fd73c32728537f2eec1",
+        "bytes": 6165
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\b3-engineering-consumer-projection-successor-proposed-v1\\fresh-review\\INDEPENDENT_RE_REVIEW_REPORT.md",
+        "sha256": "590d739f628e57ce9af20f233f429e3e166f26997c5e150424b274ec0f7e4be3",
+        "bytes": 7683
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\b3-engineering-consumer-projection-successor-proposed-v1\\fresh-review\\OUTPUT_MANIFEST.json",
+        "sha256": "d2a6d475d166512d148566bd0736a6f4d135e55332200317e9606088a96a78c8",
+        "bytes": 4091
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+        "sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+        "bytes": 245079
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\B3_RELEASE_SLICE.json",
+        "sha256": "181752b8a1d07d35cfd10744241dedf451002cff5c57a39e88299f3235520370",
+        "bytes": 16171
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+        "sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+        "bytes": 13293014
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\MODEL_CATALOG.json",
+        "sha256": "0f1ff22dc245b0f66829c460bfcc9cd0e9bca481ae41eebf6e12c83732c84f5a",
+        "bytes": 279601
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\TYPE_VARIANTS.json",
+        "sha256": "bb436defca5741835ac29c88678c4680e65012442265f7c2551c9ac8f236b4b2",
+        "bytes": 311610
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UI_PAGE_CONTRACTS.json",
+        "sha256": "ab18284229f7968456fb9b006ade182404ee3f37b385093ce015a58ca87e0536",
+        "bytes": 196438
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UNIT_FIXTURES.candidate.v5.json",
+        "sha256": "2ae37fc863cbc72d954b69a571cc71b84c897a609cb530c1107633f433b44fad",
+        "bytes": 24348219
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U01.v9.json",
+        "sha256": "d173d04006528c63ba0d2c7340992a766e79c383d717346d9a0d2a84ab5ab1ca",
+        "bytes": 4498
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U05.v9.json",
+        "sha256": "60495f678202431b56b9f86746ef59fc7bfe049eae93d321b3195744c13661f3",
+        "bytes": 5045
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U01.v9.json",
+        "sha256": "48d5895de8235840e0d4f7d3e28b652e7950c74fb7867035b5388a0d311ff632",
+        "bytes": 5045
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U05.v9.json",
+        "sha256": "4c3eee06d01b0ee1a22dbc7c63ba3a3b6f922908f62dd8e678df15f243c48662",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U01.v9.json",
+        "sha256": "cddfdb66bdbb0fd8e4a20c41153bc756eaac7aeb595e6446d833016e7311d9f8",
+        "bytes": 5016
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U02.v9.json",
+        "sha256": "7a08567f69633c41d9a39a10a0c275fce55dd08f0a8a5bfec39aadae69a2dba2",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U03.v9.json",
+        "sha256": "b8b6899b6a2a309e3d7af39efa972519c22551f7c7149316b954a5e19b448d23",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U04.v9.json",
+        "sha256": "975e62b3f840527c093161e0426869fc4a5880fc39220d9a1536a494d95d0720",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U01.v9.json",
+        "sha256": "81d30aaaa7d5dbe5c58c231eed06fcd137226c978cd2d73675e857dd97813859",
+        "bytes": 12025
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U02.v9.json",
+        "sha256": "2848590406f95513240cbb3e8e45f569ef8c5c5491197739400ef0200f7f8ab4",
+        "bytes": 22209
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U03.v9.json",
+        "sha256": "615091b1f72416fe6b88bd104170abedb575a650231855eb069b35bda21caef9",
+        "bytes": 41382
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U04.v9.json",
+        "sha256": "183b8c7f77728b5a0bd3faff23130a0f4ad94e34f61eac9142c76bb01f7cf57e",
+        "bytes": 47525
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U05.v9.json",
+        "sha256": "3f1e79030ec48996c758c920ab3a80f50da2eac990cb948c152c22260388ccc4",
+        "bytes": 20021
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U06.v9.json",
+        "sha256": "719a465a498429affa6098c093c3eca52f52d4c0b15f0c4daa799081d91117ac",
+        "bytes": 22135
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U01.v9.json",
+        "sha256": "d8f40e3a4676f5cc0aed5c49cd5a81c5d04312429e8d7fe839abb38d04a9f5ec",
+        "bytes": 5016
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U02.v9.json",
+        "sha256": "229b31cb8c2cd914e2b1c554cafa6d65dae4f67d00df73bd0315f09428e6d561",
+        "bytes": 7316
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U03.v9.json",
+        "sha256": "d9402acfd547772342c430a555e147b785a548ac789f55e2ef9ec0409e79060c",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U04.v9.json",
+        "sha256": "b68dc694ef3ec41f901db55cb3af7295695f0faf1e82bdff9a2ed6589a222f00",
+        "bytes": 12436
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U01.v9.json",
+        "sha256": "5d9ebec22b813353f9f5e570a7fd6badaaa78fbe1dcd05375b4d8688b766548c",
+        "bytes": 5045
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U02.v9.json",
+        "sha256": "9b37eabb255e5708ae77dae9e8252d1b288ea47214fca5a3a1dc5bca7b1b9c1f",
+        "bytes": 29957
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U03.v9.json",
+        "sha256": "4c7bfdecc00ed48b32af52cf46ee590ba08fd40b1767bca314dae4869d45f7e7",
+        "bytes": 29351
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U04.v9.json",
+        "sha256": "112865c47e87c2e051a70ba62e087d645db01e3e8f7c759d4fac69fd6ac35c20",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U05.v9.json",
+        "sha256": "6b777cff32693050eb374c4f65266f359dea16a2a095375a9518e34b23acbedc",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U06.v9.json",
+        "sha256": "e5af2f3e0b6e83df30ebbca890407d96784c988288de54c5090a9f0294cf1763",
+        "bytes": 24489
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U01.v9.json",
+        "sha256": "edab1401dffb11ca9b57b5abb3800d1ec4ea362577d7b6df04b52297ed6e55ee",
+        "bytes": 5016
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U02.v9.json",
+        "sha256": "3f516cf898ed9f29850918b07341f4e375d7479edc705c92483bb3a2e0ed0fbc",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U04.v9.json",
+        "sha256": "14420fa2f3e19c68c848ea19939d8e0514703ff67abbca6bc40c1f0d0d9185a7",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U05.v9.json",
+        "sha256": "65e46646f6623375ce7b345f7e12037c54ee8aa5c65227a7bb67c7057489592e",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U01.v9.json",
+        "sha256": "186281f9b788d9996f625afdc108a7f2c0553d2457486cc3ab21e55930a67d81",
+        "bytes": 5045
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U03.v9.json",
+        "sha256": "4f6aa8b341b3ee5fc885482cd3cf4c316ba0c2259afd40192e86726f3e4a6edc",
+        "bytes": 6689
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U04.v9.json",
+        "sha256": "813d152786abd9261d7cfb6a0cbf42ac0a5b2ae8406006ca108ec32b14eee909",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U01.v9.json",
+        "sha256": "b1cc456947442357a1d97ca97e041dc2cc679e2d2b4c3c3dd94c6324ec38856d",
+        "bytes": 6200
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U01.v9.json",
+        "sha256": "09c156a1b2776325a8a4a2ecc6aa59e183699619d36ab9ee418a222e1f11abad",
+        "bytes": 176363
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U02.v9.json",
+        "sha256": "41b855231e3a3624adddcdb08f4cd696b2e64471bf0e2726c250c1f7b4016afd",
+        "bytes": 61806
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U03.v9.json",
+        "sha256": "3c6c71e05ed7c5ad19cebd95718ea1729c3c2ff58b9add69834c8fd4c8e80b7f",
+        "bytes": 101264
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U04.v9.json",
+        "sha256": "b59c873278ece7e5446f533621b1bf336c8a2792841f378e173832feeecc7ce9",
+        "bytes": 55928
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U05.v9.json",
+        "sha256": "8312b95c2c943210e36f7b9a6d4723efc245b59934973020ef78d8c14f0cf97a",
+        "bytes": 28768
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U06.v9.json",
+        "sha256": "d1b6ccf7abc8a7c9e3f9322e918ba3b7bfe5b9f727cb715062eb02e7703c9281",
+        "bytes": 179124
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U01.v9.json",
+        "sha256": "843d72d29ec0cdcaad43d965f73efc4a0d428057e20738a13226a26c621dd1b7",
+        "bytes": 6266
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U02.v9.json",
+        "sha256": "216a3db039d99a075e52622326e0248bddcc13ad15683f0682665d03b4ca09ab",
+        "bytes": 9659
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U03.v9.json",
+        "sha256": "fa81d009ac3bbe652080184b030d0cb066b212b1ef7eaed43e9c286d6b1b0c5d",
+        "bytes": 6814
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U04.v9.json",
+        "sha256": "5d2dbd445e9b97c313af118c3ae4500c845134f1fa62ed1b48f45db6f02b7340",
+        "bytes": 8314
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U01.v9.json",
+        "sha256": "1124429200abfd152d37a53d6da63be200a90fccd7bad404ad78772b04ea44cf",
+        "bytes": 10204
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U02.v9.json",
+        "sha256": "bf48413cebed266f72ee0c6c3de1c81ef1fbc52c7a6c2a9ab82c0c682f04f72e",
+        "bytes": 5535
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U04.v9.json",
+        "sha256": "c3a3878987e1503119e1019674c3a1633c05b2dd868dbeef85d5b38196832e61",
+        "bytes": 7907
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U01.v9.json",
+        "sha256": "92249db3b53c54dfe1a3c824967d4110f78decb638543f1d1b3af5a0d1c225d7",
+        "bytes": 6660
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U02.v9.json",
+        "sha256": "3698ef0e67f0db96517bcf6a15af950fe27c30ce3deec488e94c7b9526524c23",
+        "bytes": 6141
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U05.v9.json",
+        "sha256": "954e569a46802adf3202ebc45db6e607f981aa2a410359b1147115b06cdc734b",
+        "bytes": 8030
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U01.v9.json",
+        "sha256": "1f37b3a6e06cf4d7889ccbe41355c606f531396085d1daa7a9cbf780d451abc9",
+        "bytes": 6689
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U02.v9.json",
+        "sha256": "abd8c0a2d8667c464411136310a41874d0ce203c7384b877ef13f29201427152",
+        "bytes": 5535
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U03.v9.json",
+        "sha256": "5c98b60d732e047d784b4690dd2ad97af7da5e0b445572781607bc1129e6b2a2",
+        "bytes": 5535
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U04.v9.json",
+        "sha256": "f195b13432ab385a25690c3016bf9c23326a6ffee19234fd083ca8e29fde5f74",
+        "bytes": 6689
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U05.v9.json",
+        "sha256": "1bcc52073236516187d40f23f559afca83d33f7ef8a6889284d27579ff5ca823",
+        "bytes": 5593
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U06.v9.json",
+        "sha256": "a6d9831aba0e99a7742f256b897c9a54c5a1b6e2b6871776532a4d44f4c4dbaa",
+        "bytes": 8469
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U01.v9.json",
+        "sha256": "f97a4ec14dfc6a93502b0287d3402158733e3b1890993b67356e6a864107e408",
+        "bytes": 5016
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U02.v9.json",
+        "sha256": "e265fe12b4d2d0a0a71c1ea96443ec4ac205a53e69fc466ce49eabe022f2239e",
+        "bytes": 11553
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U04.v9.json",
+        "sha256": "df6a9cd9f35f9dcf02a9f120d9f7222fa1acaca16d0f732e19198600bd13ce16",
+        "bytes": 6689
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\authorization_lifecycle.v1_1.yaml",
+        "sha256": "547e5dae820541740a72a341bd1797305929bacdbff21b90acfe8866585f5393",
+        "bytes": 2108
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\development_entry_protocol.v2.yaml",
+        "sha256": "b5486d9cd27c86555123eed96c57e5b7f59dfd46dbb23cb00b7350feffef8b10",
+        "bytes": 1485
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\development_state_machine.v2.yaml",
+        "sha256": "038e2c226b64d29dce9aa0d3b8cf24321b2bc0c526467b6f8784b11d7d83ff39",
+        "bytes": 1811
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\execution_capacity_policy.v2_2.yaml",
+        "sha256": "4e4fd91163d50619e0bea14e96aed67e1568f1bcd781bf4d1ab76c2509ad23cb",
+        "bytes": 10536
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\prompts\\CODEX_EXECUTOR_KERNEL.md",
+        "sha256": "6c3b6dfcbc17cdbd2c37ebd11e26457c2bc6e7534dbc8d63c0d391c042e0e9fa",
+        "bytes": 9890
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\prompts\\WORK_ORCHESTRATOR_KERNEL.md",
+        "sha256": "9f170a4aec8019d2a78384a4f445dbcb04e6b317ff1441acfd91315e998a541f",
+        "bytes": 10763
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\MA01-U01-MANUAL-01.acceptance.json",
+        "sha256": "2f577bc44ade1a32cda5b59c01862f257f3e4fede9a08f8c08d923ebd868e322",
+        "bytes": 20599
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+        "sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+        "bytes": 11172052
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-REGRESSION-GATES.plan.v1.json",
+        "sha256": "620501e3fa8b708a5295574f07a93a889aad26d0276f136bb91abb6a461d62ef",
+        "bytes": 376126
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\PROJECT_OPERATING_GUIDE.md",
+        "sha256": "311e431a21b24b25006ba10c67ed4ab65e6197d3a34a7cd08def8ace7fe68e08",
+        "bytes": 4585
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\architecture\\adopted\\GUIDE_V2_COMPATIBILITY_ANNEX.source.v1.md",
+        "sha256": "a83fb8c9c79f447349892da7bae0dc6fdbff675e7a6712ac868b0b86ba414f82",
+        "bytes": 7081
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\program\\decisions\\MA01-U01-FIRST-RESULT-ACCEPTANCE.owner.v1.json",
+        "sha256": "d3deef580bcc795587bbaff8a30549ce216cbe11691c854671bd5f0aaff6b8b5",
+        "bytes": 5445
+      }
+    ],
+    "counts": {
+      "units": 96,
+      "edges": 364,
+      "route_units": 57,
+      "route_edges": 184,
+      "route_waves": 11,
+      "APIs": 95,
+      "UI": 19,
+      "consumer_bindings": 578,
+      "selected_consumer_bindings": 404,
+      "original_source_only_rows": 191,
+      "historical_findings": 64
+    },
+    "all_checks_passed": true,
+    "source_files_written": 0,
+    "products_tests_executed": 0,
+    "formal_qualifications_executed": 0,
+    "formal_independent_review_for_this_handoff": "NOT_RUN",
+    "tool_versions": {
+      "Python": "3.14.2",
+      "PyYAML": "6.0.3",
+      "Git": "git version 2.35.1.windows.2",
+      "PowerShell_execution_shell": "Windows PowerShell via exec_command; no profile settings changed"
+    },
+    "reproducibility_method": [
+      "Parse three YAMLs with PyYAML6.0.3; read raw sources by declared paths; SHA256 raw exact bytes and size where declared",
+      "Read all96 original Unit aliases/UUIDs/revisions; exact dependency endpoint revision checks; topological sort all364 edges",
+      "Compute MA10-U06 recursive ancestor set independent of proposed route; compare exact node and incoming edge sets and per-wave ordering",
+      "Resolve source JSON Pointer index; sort-key compact ensure_ascii=False UTF8 SHA256 of selected original Unit body and required case ID array",
+      "Compare reviewed original578 (operation,Unit,mode,role) rows to all404 selected projection rows; resolve95 API and19 UI IDs",
+      "Read actual regression plan and count64 original obligations; do not execute tests or regenerate expected source definitions",
+      "Mutate only in-memory navigation copies for8 explicit must-reject identity/body/dependency/revision/consumer/case/UI/authorization checks; no source modifications"
+    ],
+    "exclusions": [
+      "Not a substitute standard Schema validator or source grammar review",
+      "Not executing original product/qualification harness",
+      "Not a formal independent Review",
+      "Not claiming every private archive/closed Receipt was fully rehashed in this turn"
+    ],
+    "final_readback": "Six expected filenames only; YAML/JSON parse and all five output-manifest hashes verified after author finalization. Additional64-row/109-obligation regression metadata readback; not product tests or formal qualification."
+  },
+  "protection_and_currentness": {
+    "checked_declared_raw_pins": 80,
+    "declared_pin_mismatch_count": 0,
+    "extra_authority_checkpoint_source_pins": [
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\AGENTS.md",
+        "sha256": "d9a581261f9e61ccc39224de06fd7be3e918a90069887a91d054d49a9813e664",
+        "bytes": 22047,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\CURRENT_STATE.md",
+        "sha256": "8ea282bd3804a18d743d75a455e3aaffa8be145653e6a4b0fa9f14c7354bda16",
+        "bytes": 102251,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\CURRENT_WORK.md",
+        "sha256": "dff1031ca680b4f9bb45d52d9fef488897bda7e01fcdd69b904ebc43f4031d33",
+        "bytes": 70501,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\AI_HANDOFF.md",
+        "sha256": "ade8a65e3d44d66b58c9542a836f3aba44971bc73f25144963de93e9561bb9c9",
+        "bytes": 23631,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\governance\\master_manifest.v1.yaml",
+        "sha256": "8e727b9c548895d482939aad8922517fc4427209d3c395f80f463020b3cf08da",
+        "bytes": 51427,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\architecture\\B3_V1_ARCHITECTURE.md",
+        "sha256": "09e58bbde99569f2205565a3e56053ca1f3c60b97e8e39670ac92139905c9d44",
+        "bytes": 8359,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\PROJECT_OPERATING_GUIDE.md",
+        "sha256": "311e431a21b24b25006ba10c67ed4ab65e6197d3a34a7cd08def8ace7fe68e08",
+        "bytes": 4585,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\program\\decisions\\B3-V1-DUAL-ADOPTION-20261015-v1.owner.v1.json",
+        "sha256": "6330d4f2a22333cf3baeb1c1d558731bb896aaadd6b00a23ffd3dc2d82fac942",
+        "bytes": 7348,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\MA01-U01-MANUAL-01.acceptance.json",
+        "sha256": "2f577bc44ade1a32cda5b59c01862f257f3e4fede9a08f8c08d923ebd868e322",
+        "bytes": 20599,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\program\\decisions\\MA01-U01-FIRST-RESULT-ACCEPTANCE.owner.v1.json",
+        "sha256": "d3deef580bcc795587bbaff8a30549ce216cbe11691c854671bd5f0aaff6b8b5",
+        "bytes": 5445,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\architecture\\adopted\\B3_V1_ACCEPTED_BASELINE.v1.json",
+        "sha256": "163e3c88cc09a7fc7f309a763f2cbc5ce41524306fb7e8af0910bea0018d3535",
+        "bytes": 5152,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\architecture\\adopted\\EFFECTIVE_ARCHITECTURE_MEMBERSHIP.source.v1.json",
+        "sha256": "9b5a808eb47d8cd822772bd702fded8e7e6d6e4ede2b2ddb8c33e3b4ec52da09",
+        "bytes": 419855,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\programs\\AUTO-IMP-PROGRAM-V2\\program.rev5.yaml",
+        "sha256": "de3488423bfda3564eb252e2c8df9dc66577dac4677ebba7ef4a594fdfaae77b",
+        "bytes": 23966,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\blueprint\\B_DATA_PIPELINE.md",
+        "sha256": "348f1d2a5ffb625174090cd76eabbcd8759ca533ec118eb302641ca3a00e6d41",
+        "bytes": 7388,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\blueprint\\D_CANONICAL_DOMAIN.md",
+        "sha256": "e790b3afd824b2a774b8e53bebecdd0b88bc3eb190147c1383c449dbcc20768a",
+        "bytes": 11984,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\blueprint\\F_BACKTEST_RESEARCH.md",
+        "sha256": "aaf7394b1a6af3a2e83d1c14986eae32b42998b43324b48836b3944bc2db2910",
+        "bytes": 7778,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\blueprint\\O_REACT_WORKSPACE.md",
+        "sha256": "d8cb9d84fe967a7031e73979487e1d605a89845122154939166e2e12192174f6",
+        "bytes": 7909,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\blueprint\\K_PERSISTENCE_RECOVERY.md",
+        "sha256": "8d9d3a745fd20bd987858047de25676c8ce31e2bebbe4de7ca47614ea052c5a3",
+        "bytes": 46062,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\architecture\\V1_INCREMENTAL_PERSISTENCE.md",
+        "sha256": "48cd25dfc7c80d817d39dbb3416b203b5b4becead875966f814a93d1616b19cb",
+        "bytes": 8460,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\ARCHITECTURE.md",
+        "sha256": "13fa89a5fd5453d0ab41cbba238bf3f8b2ff0b58303ff0cedfcd6d413d98341b",
+        "bytes": 22899,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\V1_SYSTEM_BLUEPRINT.md",
+        "sha256": "46ac15ab2226b03c1f0940b134e8a0211b80a4a4551194b6e324feb0325bb645",
+        "bytes": 5499,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\EXACT_RE_REVIEW_SUBJECT_ENVELOPE.json",
+        "sha256": "ca68aec60620755c55e598f876dea01a62f7757db381019b99febdb8127d0ae3",
+        "bytes": 9317,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\SOURCE_CLOSURE_BUNDLE_MANIFEST.v9.json",
+        "sha256": "8f902bfe0bfc73a6ab99893aaeca868e9c103db052aaa40507e0fea2cd8a403a",
+        "bytes": 1870609,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\fresh-review\\FINAL_REVIEW_OUTPUT_MANIFEST.json",
+        "sha256": "c462fd4d7775ecb1257fed0dbfad4462c4881e38ea330a650788d3e1fb9100f3",
+        "bytes": 13489,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\b3-u02-legacy-manual-actual-use-qualification-01\\DURABLE_CHECKPOINT.json",
+        "sha256": "5d86afa91e3f3eb4f6b5cf502efa2e3bd0fc505d5c3169696590539db714c804",
+        "bytes": 11267,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\b3-u02-qf01-decision-preparation-20261021-v1\\HUMAN_EXACT_U02_QF01_PROVENANCE_REQUEST.scope.json",
+        "sha256": "6ced4fbe93589ce57c11c7ecf0eeae3d24e80b4a52806d2056fe48b8f2cba3bc",
+        "bytes": 18400,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      }
+    ],
+    "unchanged_reentry_control_paths": [
+      "AGENTS.md",
+      "docs/CURRENT_STATE.md",
+      "docs/CURRENT_WORK.md",
+      "docs/AI_HANDOFF.md",
+      "automation/governance/master_manifest.v1.yaml",
+      "docs/architecture/B3_V1_ARCHITECTURE.md",
+      "docs/PROJECT_OPERATING_GUIDE.md",
+      "docs/program/decisions/B3-V1-DUAL-ADOPTION-20261015-v1.owner.v1.json",
+      "automation/work_orders/MA01-U01-MANUAL-01.acceptance.json",
+      "docs/program/decisions/MA01-U01-FIRST-RESULT-ACCEPTANCE.owner.v1.json"
+    ],
+    "changed_control_paths": [],
+    "git_status_unchanged": true,
+    "git_HEAD_unchanged": true,
+    "repository_source_writes_by_this_task": 0,
+    "outputs_written_only_to": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-mvp-execution-handoff-v1",
+    "git_refs_or_index_writes": 0,
+    "historical_sources_not_modified": true,
+    "protection_limit": "Zero observed drift for named checked pins and entry controls. Prior independent protection evidence reused; no unsupported whole-disk zero-drift claim."
+  },
+  "accepted_program_hash_domain": {
+    "object_id": "c1f6eee06c7a34d2e4d070a80b0f5d69549f0663",
+    "sha256": "680d85e1dd2a19898c0836e85dcd47fe05dd37d42b3fad8128c6d33ea37b1563",
+    "bytes": 23453,
+    "hash_domain": "EXACT_GIT_BLOB_BYTES_SHA256",
+    "worktree_raw_SHA256": "de3488423bfda3564eb252e2c8df9dc66577dac4677ebba7ef4a594fdfaae77b",
+    "rule": "Manifest Git blob hash is not CRLF worktree raw hash; do not compare across domains"
+  },
+  "deferred_and_authority_gates": [
+    {
+      "item": "Selected Executor/Unit intended-use Source/Context/Result/Intake qualification",
+      "status": "HOLD_MISSING_EXACT_RECEIPT",
+      "required_before": "That Unit controlled use/Coding when actually required by applicable policy",
+      "owner": "Existing WORK/Profile owner, qualified reviewer, Human precise Grant"
+    },
+    {
+      "item": "C3 true Host/Injection/Continuity/RQ03; C5/C6/P00",
+      "status": "UNCHANGED_NOT_QUALIFIED_OR_PENDING",
+      "required_before": "Routes/stages named by source; not automatically all Units nor waived by Manual",
+      "owner": "Original P00 owners/Human/qualified independent reviewers"
+    },
+    {
+      "item": "Per-Unit exact WO/Budget/Grant/Capacity/Writer",
+      "status": "NO_NEW_AUTHORIZATION",
+      "required_before": "Every actual new controlled implementation/invocation",
+      "owner": "Existing WORK and Human Grant authority"
+    },
+    {
+      "item": "Actual isolated PostgreSQL/Migration/DataAccess",
+      "status": "NOT_RUN_NOT_AUTHORIZED",
+      "required_before": "Applicable DB effect and R1 stage true integration acceptance",
+      "owner": "Data/persistence owner + named environment/operator + Human grant"
+    },
+    {
+      "item": "Frontend toolchain/path/Contract Mock pin",
+      "status": "PENDING_AFFECTED_WO",
+      "required_before": "Affected scaffold/contract integration",
+      "owner": "Original contract/frontend owner and O130 Human pin"
+    },
+    {
+      "item": "Product targeted/regression/browser/E2E",
+      "status": "NOT_RUN_IN_THIS_TASK",
+      "required_before": "Applicable Unit/Stage acceptance",
+      "owner": "Executor/Reviewer/WORK Intake"
+    },
+    {
+      "item": "Broker/PAPER/LIVE/Restore/Controller/Release",
+      "status": "NOT_AUTHORIZED_OR_NOT_QUALIFIED",
+      "required_before": "Only original actual-effect/admission/release gates",
+      "owner": "Original runtime/risk/operations/Human authorities"
+    },
+    {
+      "item": "U02-QF01 provenance successor and review",
+      "status": "PENDING_ITS_PRECISE_HUMAN_GRANT",
+      "required_before": "U02 only, outside chosen MVP ancestor closure",
+      "owner": "Original U02 qualification lane"
+    }
+  ],
+  "continuous_policy": {
+    "loop": [
+      "READ",
+      "SELECT",
+      "CODE",
+      "TEST",
+      "FIX",
+      "RECORD",
+      "NEXT"
+    ],
+    "navigation_is_not_dispatch": true,
+    "select_next_candidate_without_new_authority": true,
+    "execute_next_only_with_fresh_exact_valid_authority": true,
+    "original_one_mainline_package_per_autonomous_run_preserved": true,
+    "automatic_controller_activation": false,
+    "maximum_fixes": "Stricter applicable policy plus exact Grant cap; preserve current AGENTS maximum two scope-internal cycles per failing test where applicable, not a new per-Unit budget. Never transfer consumed/unrelated correction authority.",
+    "no_self_accepted_or_reviewer_impersonation": true,
+    "no_consumed_dispatch_reuse": true,
+    "new_Program_Controller_Compiler_needed": false,
+    "reason": "Existing Program V2, WORK/CODEX kernels, native records and result/intake interfaces handle these responsibilities; navigation needs no competing engine."
+  },
+  "Ultra_closeout": {
+    "architecture_reopened": false,
+    "ordinary_coding_can_be_owned_by": "Qualified WORK/Executor/Reviewer under original authority; not Ultra daily review",
+    "high_level_review_timing": [
+      "R1 MarketData/DataAccess/Chart complete stage",
+      "R2 Strategy/Backtest/Results complete stage",
+      "R3 Existing E2E complete stage",
+      "Immediate escalation of actual protected-contract/authority/safety conflict"
+    ],
+    "mandatory_independent_Unit_review_not_removed": true,
+    "need_for_new_all_B3_review": "NONE established; only affected scope may reopen on new significant evidenced architecture blocker",
+    "actual_handoff_recipient_execution": "NOT_RUN"
+  },
+  "next_decision_and_handoff": {
+    "handoff_reading_or_candidate_preparation_needs_new_Human_approval": false,
+    "handoff_is_not_policy_activation_or_product_grant": true,
+    "first_legal_task": "Read-only MA02-U01 intended-use/applicability/qualification delta and exact original WO/Grant candidate preparation",
+    "next_Human_gate": "MA02-U01-specific necessary route/applicability/Qualification Scope after exact source-bound compilation; qualification and product Coding Grant cannot be inferred from this document",
+    "MA02_coding_request_ready": false,
+    "must_not_ask_to_reapprove": [
+      "Closed B3",
+      "B-TRACE-01",
+      "Bridge IR/RR",
+      "U01 Accepted Result"
+    ],
+    "optional_future_Git": "Separate smallest exact publication of these navigation files/latest source companion if needed; no silent append to prior grant or commit",
+    "future_repository_restructure": "Only full B3 V1 Code Complete plus separate exact authorization, mapping/rollback/tests/review; not now",
+    "external_API_resources": "None authorized by this task"
+  },
+  "output_manifest": {
+    "root": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-mvp-execution-handoff-v1",
+    "files": [
+      {
+        "path": "MVP_ROUTE.yaml",
+        "sha256": "51dca6c8460db1bee480dbfb935c58302a3298e36ea84bb86924ac8b83dd2133",
+        "bytes": 338652,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "MVP_SCOPE.md",
+        "sha256": "c6d8e1750e8e28d8061d2e657b65f020881c8a33e5c2cb1c2e25f293d807f254",
+        "bytes": 13737,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "STAGE_GATES.yaml",
+        "sha256": "9c0bbcf5759e0c037ec3746eaf4aa88d230115db35904450a5e2b337c989066f",
+        "bytes": 14003,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "VS_CODE_EXECUTOR.md",
+        "sha256": "517aafe311ceb0eb63c1138bd4da483c98fc9843d8905adcb3ddc32f0c0b519c",
+        "bytes": 15673,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      },
+      {
+        "path": "WORK_ORDER_CONTRACT.yaml",
+        "sha256": "f3162192376d805a312e1f0c3d32c4774ac406e20c0ef5ede9bd58001709ee0b",
+        "bytes": 13488,
+        "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+      }
+    ],
+    "covered_file_count": 5,
+    "manifest_hash_domain": "SHA256_EXACT_RAW_BYTES",
+    "self_file": "HANDOFF_STATUS.json",
+    "self_exclusion": "This file intentionally not self-hashed to avoid cyclic binding. Its raw SHA256 is reported externally after finalization.",
+    "six_files_are_navigation_not_new_authority": true
+  },
+  "durable_checkpoint": {
+    "completed": [
+      "Currentness/Git source-cut reconciliation",
+      "Preserved original identities, DAG and reviewed Consumer supplement",
+      "Exact57-Unit/184-edge MVP ancestor route and alternatives",
+      "Five content files with original-policy execution/stage interface",
+      "17 static checks +8 metadata negative cases;80 declared source pins read back",
+      "Frozen six-file navigation package with explicit limits"
+    ],
+    "not_completed": [
+      "MA02-specific qualification/amendment/applicability",
+      "Any new Coding Grant/Writer/Invocation",
+      "New Unit implementation or Acceptance",
+      "R1/R2/R3 real product/build/browser/DB tests",
+      "Git publication or main/master migration",
+      "Formal new qualification or independent review of this handoff"
+    ],
+    "resume_read_order": [
+      "AGENTS.md",
+      "docs/CURRENT_STATE.md",
+      "master_manifest and active policies/program",
+      "docs/CURRENT_WORK.md and latest authoritative records",
+      "this HANDOFF_STATUS.json then MVP_SCOPE.md",
+      "only selected Unit full necessary Source/Companion/reverse closure and exact Grant"
+    ],
+    "stop_reason": "All authorized navigation/design work completed. Further actual new Unit Qualification/Coding effects require exact route-specific authority/resources.",
+    "background_execution_after_turn": "NONE",
+    "ETA_and_new_code_effort": "UNKNOWN_UNCALIBRATED",
+    "frozen_at_UTC": "2026-10-22T02:55:53.201542+00:00",
+    "author_finalization_delta": "Clarified proposed MA02 MVP lane does not rewrite CURRENT_WORK; preserved AGENTS per-failing-test limit; no source or DAG change."
+  },
+  "historical_regression_metadata": {
+    "unique_original_findings": 64,
+    "counterexample_and_trigger_and_result_channel_present": 64,
+    "future_gate_obligations": 109,
+    "all109_have_trigger_oracle_gate_owner_actual_run_label": true,
+    "actual_product_run_labels": [
+      "NOT_RUN"
+    ],
+    "original_root_group_nonempty": 62,
+    "historical_null_root_groups_preserved": [
+      {
+        "finding_id": "SPECIAL01-OPS-CLOSURE-01",
+        "existing_family_ids": [
+          "SOURCE_COMPANION_CLOSURE"
+        ]
+      },
+      {
+        "finding_id": "SCHEMA-SPECIAL01-CONSUMER-PAIR-01",
+        "existing_family_ids": [
+          "SOURCE_COMPANION_CLOSURE"
+        ]
+      }
+    ],
+    "rule": "Do not invent missing historical CG labels. Both retain existing SOURCE_COMPANION_CLOSURE family. Metadata completeness is not executed product regression."
+  }
+}

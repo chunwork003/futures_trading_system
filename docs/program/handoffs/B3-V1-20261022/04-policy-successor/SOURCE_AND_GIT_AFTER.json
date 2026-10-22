@@ -1,0 +1,1499 @@
+{
+  "recorded_utc": "2026-10-22T08:30:08.082735+00:00",
+  "HEAD": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+  "branch": "architecture/p00-v1-baseline",
+  "status": "M docs/CURRENT_STATE.md\n M docs/CURRENT_WORK.md\n?? automation/authorizations/AUTH-MA01-U01-MANUAL-01.v1.yaml\n?? automation/authorizations/AUTH-MA01-U01-U01F01-01.v1.yaml\n?? automation/packages/B3-V1-PK01.MA01-U01.manual.v1.yaml\n?? automation/runs/EXEC-MA01-U01-MANUAL-20261021T024103479475Z/\n?? automation/runs/EXEC-MA01-U01-U01F01-20261021T072411819522Z/\n?? automation/work_orders/MA01-U01-MANUAL-01.acceptance.json\n?? automation/work_orders/MA01-U01-MANUAL-01.current-lifecycle.json\n?? automation/work_orders/MA01-U01-MANUAL-01.eligibility.json\n?? automation/work_orders/MA01-U01-U01F01-01.current-lifecycle.json\n?? automation/work_orders/MA01-U01-U01F01-01.eligibility.json\n?? automation/work_orders/WO-MA01-U01-MANUAL-01.yaml\n?? automation/work_orders/WO-MA01-U01-MANUAL-U01F01-01.yaml\n?? automation/work_orders/executions/WO-MA01-U01-MANUAL-01.writer-lock.yaml\n?? automation/work_orders/executions/WO-MA01-U01-MANUAL-U01F01-01.writer-lock.yaml\n?? automation/work_orders/forecasts/WO-MA01-U01-MANUAL-01.json\n?? automation/work_orders/planning/B3-V1-12-PACKAGES.inputs.candidate.v1.json\n?? automation/work_orders/planning/B3-V1-CONTRACT-FIRST.inputs.candidate.v1.json\n?? automation/work_orders/planning/B3-V1-EXECUTOR-CAPABILITY.plan.v1.json\n?? automation/work_orders/planning/B3-V1-POST-ADOPTION-PLANNING.v1.json\n?? automation/work_orders/planning/B3-V1-REGRESSION-GATES.plan.v1.json\n?? automation/work_orders/planning/B3-V1-ULTRA-FINAL-HANDOFF.candidate.v1.json\n?? automation/work_orders/planning/MA01-U01.manual-source-binding.v1.json\n?? data/\n?? docs/PROJECT_OPERATING_GUIDE.md\n?? docs/architecture/B3_V1_ARCHITECTURE.md\n?? docs/architecture/ENGINEERING_EXECUTION_POLICY.candidate.v1.md\n?? docs/architecture/ENGINEERING_EXECUTION_POLICY.candidate.v2.md\n?? docs/architecture/adopted/\n?? docs/architecture/multi_asset/\n?? docs/program/B3_V1_ENGINEERING_PREPARATION.md\n?? docs/program/decisions/B3-BRIDGE-RR01-OFFLINE-BINDING-ACCEPTANCE.owner.v1.json\n?? docs/program/decisions/B3-V1-DUAL-ADOPTION-20261015-v1.owner.v1.json\n?? docs/program/decisions/MA01-U01-FIRST-RESULT-ACCEPTANCE.owner.v1.json\n?? docs/program/decisions/MA01-U01-MANUAL-CODING-01.owner.v1.json\n?? docs/program/decisions/MA01-U01-MANUAL-LEGACY-CONTEXT-APPLICABILITY-01.owner.v1.json\n?? docs/program/decisions/MA01-U01-U01F01-CORRECTION-01.owner.v1.json\n?? docs/program/decisions/MA01-U02-MANUAL-LEGACY-CONTEXT-APPLICABILITY-01.owner.v1.json\n?? docs/program/source_bound_scope_delta.v2.json\n?? docs/program/source_bound_scope_delta.v2.md\n?? tests/architecture_companions/",
+  "heads_and_remotes": "refs/heads/architecture/p00-v1-baseline 2634717b1443eb95fa0fde4d5d987347ef2160e8\nrefs/heads/auto/WO-AUTO-GOV-EXEC-CAPACITY-V2-01 b899984462e48eb4dd02eae502918bd36ec937d4\nrefs/heads/auto/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01 606d8273cc7ead110547d3fa232b7c5e41c0e78e\nrefs/heads/auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 d368995fe6f66ac38b40ce4399322f455bf97bb9\nrefs/heads/auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6 e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40\nrefs/heads/auto/WO-AUTO-IMP-001-CORR-01 383ea7305557575a3c5330a1c2e2e54161d1dceb\nrefs/heads/auto/WO-AUTO-IMP-001-CORR-02 735678afa9606ccd219a00e1c2f02471442231f7\nrefs/heads/auto/WO-AUTO-IMP-002-01 eccbe997fe4f9f2a9da06026d75df11af9c3a937\nrefs/heads/auto/WO-AUTO-IMP-002-IC01-01 d8eea3d6aba17ee975eb6866feaf8e93fdaf6ffd\nrefs/heads/auto/WO-AUTO-IMP-002-REV2-01 6ad6cff71454a6200e5e92efc61ed22fdf1d3d91\nrefs/heads/auto/WO-AUTO-IMP-002-REV2-RF01-01 6c129d34992c5a3f489bcd1b2d98a95f2136c494\nrefs/heads/auto/WO-AUTO-IMP-002-RF01-01 0c64a9f509ba27c1bc1bad139681951e2f8c2775\nrefs/heads/auto/WO-AUTO-IMP-002-RF02-01 f5fa626b8aa587fa8f43d6f70fa93842d574b356\nrefs/heads/backup/corr02-before-sync-20261005 735678afa9606ccd219a00e1c2f02471442231f7\nrefs/heads/codex/strategy-lab-sql-preflight-01 9b5ab5fdd98744a7db45ec9f14b64ef1f324920f\nrefs/heads/main 0cb0283b8c5f795f8da1672575cbb674945db73a\nrefs/heads/manual/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5 52f0b5da1d050a8876f9716b227055219f4fd070\nrefs/heads/master 9b5ab5fdd98744a7db45ec9f14b64ef1f324920f\nrefs/remotes/origin/HEAD 9b5ab5fdd98744a7db45ec9f14b64ef1f324920f\nrefs/remotes/origin/architecture/p00-v1-baseline d2bd7e9f24d339894b9f559030d1f78b1c78dca7\nrefs/remotes/origin/auto/WO-AUTO-GOV-EXEC-CAPACITY-V2-01 b899984462e48eb4dd02eae502918bd36ec937d4\nrefs/remotes/origin/auto/WO-AUTO-GOV-EXEC-CAPACITY-V2-RF01-01 606d8273cc7ead110547d3fa232b7c5e41c0e78e\nrefs/remotes/origin/auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01 d368995fe6f66ac38b40ce4399322f455bf97bb9\nrefs/remotes/origin/auto/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV6 e8772fd7cceed7d9f07cd6957a1f3ae939fbdd40\nrefs/remotes/origin/auto/WO-AUTO-IMP-001-CORR-01 383ea7305557575a3c5330a1c2e2e54161d1dceb\nrefs/remotes/origin/auto/WO-AUTO-IMP-001-CORR-02 735678afa9606ccd219a00e1c2f02471442231f7\nrefs/remotes/origin/auto/WO-AUTO-IMP-002-01 eccbe997fe4f9f2a9da06026d75df11af9c3a937\nrefs/remotes/origin/auto/WO-AUTO-IMP-002-IC01-01 d8eea3d6aba17ee975eb6866feaf8e93fdaf6ffd\nrefs/remotes/origin/auto/WO-AUTO-IMP-002-REV2-01 6ad6cff71454a6200e5e92efc61ed22fdf1d3d91\nrefs/remotes/origin/auto/WO-AUTO-IMP-002-REV2-RF01-01 6c129d34992c5a3f489bcd1b2d98a95f2136c494\nrefs/remotes/origin/auto/WO-AUTO-IMP-002-RF01-01 0c64a9f509ba27c1bc1bad139681951e2f8c2775\nrefs/remotes/origin/auto/WO-AUTO-IMP-002-RF02-01 f5fa626b8aa587fa8f43d6f70fa93842d574b356\nrefs/remotes/origin/codex/auto-imp-002-rev2-rf01-source-candidate 6380f2ffb62686d7e2543915804940d1855f8c90\nrefs/remotes/origin/main 0cb0283b8c5f795f8da1672575cbb674945db73a\nrefs/remotes/origin/manual/WO-AUTO-GOV-PROGRAM-1_2-ORCH-01-REV5 52f0b5da1d050a8876f9716b227055219f4fd070\nrefs/remotes/origin/master 9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+  "index_raw_sha256": "41ba5f0f91c3f3e795f20b809f7769ff9b47199f3f4e3a47230b89864f2bab7b",
+  "pins": [
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\AGENTS.md",
+      "expected": "d9a581261f9e61ccc39224de06fd7be3e918a90069887a91d054d49a9813e664",
+      "actual": "d9a581261f9e61ccc39224de06fd7be3e918a90069887a91d054d49a9813e664",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\CURRENT_STATE.md",
+      "expected": "8ea282bd3804a18d743d75a455e3aaffa8be145653e6a4b0fa9f14c7354bda16",
+      "actual": "8ea282bd3804a18d743d75a455e3aaffa8be145653e6a4b0fa9f14c7354bda16",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\CURRENT_WORK.md",
+      "expected": "dff1031ca680b4f9bb45d52d9fef488897bda7e01fcdd69b904ebc43f4031d33",
+      "actual": "dff1031ca680b4f9bb45d52d9fef488897bda7e01fcdd69b904ebc43f4031d33",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\AI_HANDOFF.md",
+      "expected": "ade8a65e3d44d66b58c9542a836f3aba44971bc73f25144963de93e9561bb9c9",
+      "actual": "ade8a65e3d44d66b58c9542a836f3aba44971bc73f25144963de93e9561bb9c9",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\governance\\master_manifest.v1.yaml",
+      "expected": "8e727b9c548895d482939aad8922517fc4427209d3c395f80f463020b3cf08da",
+      "actual": "8e727b9c548895d482939aad8922517fc4427209d3c395f80f463020b3cf08da",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\PROJECT_OPERATING_GUIDE.md",
+      "expected": "311e431a21b24b25006ba10c67ed4ab65e6197d3a34a7cd08def8ace7fe68e08",
+      "actual": "311e431a21b24b25006ba10c67ed4ab65e6197d3a34a7cd08def8ace7fe68e08",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\architecture\\B3_V1_ARCHITECTURE.md",
+      "expected": "09e58bbde99569f2205565a3e56053ca1f3c60b97e8e39670ac92139905c9d44",
+      "actual": "09e58bbde99569f2205565a3e56053ca1f3c60b97e8e39670ac92139905c9d44",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\architecture\\adopted\\B3_V1_ACCEPTED_BASELINE.v1.json",
+      "expected": "163e3c88cc09a7fc7f309a763f2cbc5ce41524306fb7e8af0910bea0018d3535",
+      "actual": "163e3c88cc09a7fc7f309a763f2cbc5ce41524306fb7e8af0910bea0018d3535",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\program\\decisions\\B3-V1-DUAL-ADOPTION-20261015-v1.owner.v1.json",
+      "expected": "6330d4f2a22333cf3baeb1c1d558731bb896aaadd6b00a23ffd3dc2d82fac942",
+      "actual": "6330d4f2a22333cf3baeb1c1d558731bb896aaadd6b00a23ffd3dc2d82fac942",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\MA01-U01-MANUAL-01.acceptance.json",
+      "expected": "2f577bc44ade1a32cda5b59c01862f257f3e4fede9a08f8c08d923ebd868e322",
+      "actual": "2f577bc44ade1a32cda5b59c01862f257f3e4fede9a08f8c08d923ebd868e322",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\program\\decisions\\MA01-U01-FIRST-RESULT-ACCEPTANCE.owner.v1.json",
+      "expected": "d3deef580bcc795587bbaff8a30549ce216cbe11691c854671bd5f0aaff6b8b5",
+      "actual": "d3deef580bcc795587bbaff8a30549ce216cbe11691c854671bd5f0aaff6b8b5",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\development_entry_protocol.v2.yaml",
+      "expected": "b5486d9cd27c86555123eed96c57e5b7f59dfd46dbb23cb00b7350feffef8b10",
+      "actual": "b5486d9cd27c86555123eed96c57e5b7f59dfd46dbb23cb00b7350feffef8b10",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\authorization_lifecycle.v1_1.yaml",
+      "expected": "547e5dae820541740a72a341bd1797305929bacdbff21b90acfe8866585f5393",
+      "actual": "547e5dae820541740a72a341bd1797305929bacdbff21b90acfe8866585f5393",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\development_state_machine.v2.yaml",
+      "expected": "038e2c226b64d29dce9aa0d3b8cf24321b2bc0c526467b6f8784b11d7d83ff39",
+      "actual": "038e2c226b64d29dce9aa0d3b8cf24321b2bc0c526467b6f8784b11d7d83ff39",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\execution_capacity_policy.v2_2.yaml",
+      "expected": "4e4fd91163d50619e0bea14e96aed67e1568f1bcd781bf4d1ab76c2509ad23cb",
+      "actual": "4e4fd91163d50619e0bea14e96aed67e1568f1bcd781bf4d1ab76c2509ad23cb",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\telemetry\\execution_cost_contract.v2.yaml",
+      "expected": "daace9c6a9ea0ec83bc86eca6ebcc091318be60c381ab21877dc1d051f8b8120",
+      "actual": "daace9c6a9ea0ec83bc86eca6ebcc091318be60c381ab21877dc1d051f8b8120",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\specs\\work_cost_accounting.v2.yaml",
+      "expected": "070e138173c47f2c24f4c58507c53dd01c6b6ae17bb7c4011bc97642178da201",
+      "actual": "070e138173c47f2c24f4c58507c53dd01c6b6ae17bb7c4011bc97642178da201",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\prompts\\WORK_ORCHESTRATOR_KERNEL.md",
+      "expected": "9f170a4aec8019d2a78384a4f445dbcb04e6b317ff1441acfd91315e998a541f",
+      "actual": "9f170a4aec8019d2a78384a4f445dbcb04e6b317ff1441acfd91315e998a541f",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\prompts\\CODEX_EXECUTOR_KERNEL.md",
+      "expected": "6c3b6dfcbc17cdbd2c37ebd11e26457c2bc6e7534dbc8d63c0d391c042e0e9fa",
+      "actual": "6c3b6dfcbc17cdbd2c37ebd11e26457c2bc6e7534dbc8d63c0d391c042e0e9fa",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-mvp-execution-handoff-v1\\HANDOFF_STATUS.json",
+      "expected": "4b64625861f93086998b8c3b53dcfc0e160414b90eb6f10f972db3c426269ee2",
+      "actual": "4b64625861f93086998b8c3b53dcfc0e160414b90eb6f10f972db3c426269ee2",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-mvp-execution-handoff-v1\\MVP_ROUTE.yaml",
+      "expected": "51dca6c8460db1bee480dbfb935c58302a3298e36ea84bb86924ac8b83dd2133",
+      "actual": "51dca6c8460db1bee480dbfb935c58302a3298e36ea84bb86924ac8b83dd2133",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-mvp-execution-handoff-v1\\WORK_ORDER_CONTRACT.yaml",
+      "expected": "f3162192376d805a312e1f0c3d32c4774ac406e20c0ef5ede9bd58001709ee0b",
+      "actual": "f3162192376d805a312e1f0c3d32c4774ac406e20c0ef5ede9bd58001709ee0b",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-mvp-execution-handoff-v1\\STAGE_GATES.yaml",
+      "expected": "9c0bbcf5759e0c037ec3746eaf4aa88d230115db35904450a5e2b337c989066f",
+      "actual": "9c0bbcf5759e0c037ec3746eaf4aa88d230115db35904450a5e2b337c989066f",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+      "expected": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+      "actual": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\b3-engineering-consumer-projection-successor-proposed-v1\\candidate\\ENGINEERING_CONSUMER_PROJECTION_SUCCESSOR.candidate.v1.json",
+      "expected": "660c93fec66fa8862cbf9b0ee884ac35f675b4746292cdc5bbd9ee226554886d",
+      "actual": "660c93fec66fa8862cbf9b0ee884ac35f675b4746292cdc5bbd9ee226554886d",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+      "expected": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+      "actual": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+      "expected": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+      "actual": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UI_PAGE_CONTRACTS.json",
+      "expected": "ab18284229f7968456fb9b006ade182404ee3f37b385093ce015a58ca87e0536",
+      "actual": "ab18284229f7968456fb9b006ade182404ee3f37b385093ce015a58ca87e0536",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\MODEL_CATALOG.json",
+      "expected": "0f1ff22dc245b0f66829c460bfcc9cd0e9bca481ae41eebf6e12c83732c84f5a",
+      "actual": "0f1ff22dc245b0f66829c460bfcc9cd0e9bca481ae41eebf6e12c83732c84f5a",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\TYPE_VARIANTS.json",
+      "expected": "bb436defca5741835ac29c88678c4680e65012442265f7c2551c9ac8f236b4b2",
+      "actual": "bb436defca5741835ac29c88678c4680e65012442265f7c2551c9ac8f236b4b2",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UNIT_FIXTURES.candidate.v5.json",
+      "expected": "2ae37fc863cbc72d954b69a571cc71b84c897a609cb530c1107633f433b44fad",
+      "actual": "2ae37fc863cbc72d954b69a571cc71b84c897a609cb530c1107633f433b44fad",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\B3_RELEASE_SLICE.json",
+      "expected": "181752b8a1d07d35cfd10744241dedf451002cff5c57a39e88299f3235520370",
+      "actual": "181752b8a1d07d35cfd10744241dedf451002cff5c57a39e88299f3235520370",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U01.v9.json",
+      "expected": "d173d04006528c63ba0d2c7340992a766e79c383d717346d9a0d2a84ab5ab1ca",
+      "actual": "d173d04006528c63ba0d2c7340992a766e79c383d717346d9a0d2a84ab5ab1ca",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\01_SCOPE_SOURCE_AUTHORITY.md",
+      "expected": "6e31510714d36abec3740e7f6613f52ce05929273887837d7047d03aa4f970c2",
+      "actual": "6e31510714d36abec3740e7f6613f52ce05929273887837d7047d03aa4f970c2",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U05.v9.json",
+      "expected": "60495f678202431b56b9f86746ef59fc7bfe049eae93d321b3195744c13661f3",
+      "actual": "60495f678202431b56b9f86746ef59fc7bfe049eae93d321b3195744c13661f3",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U01.v9.json",
+      "expected": "48d5895de8235840e0d4f7d3e28b652e7950c74fb7867035b5388a0d311ff632",
+      "actual": "48d5895de8235840e0d4f7d3e28b652e7950c74fb7867035b5388a0d311ff632",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\02_ASSET_DOMAIN.md",
+      "expected": "1ae53791652c8ba11d52a7843a83323e1fba1579771a6147264bb6f269899fb8",
+      "actual": "1ae53791652c8ba11d52a7843a83323e1fba1579771a6147264bb6f269899fb8",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U01.v9.json",
+      "expected": "09c156a1b2776325a8a4a2ecc6aa59e183699619d36ab9ee418a222e1f11abad",
+      "actual": "09c156a1b2776325a8a4a2ecc6aa59e183699619d36ab9ee418a222e1f11abad",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\10_WEB_UI_API.md",
+      "expected": "d39ddcf729bcac335867ae86f395dbaec3562ab248520aa87f381abe5ced59a0",
+      "actual": "d39ddcf729bcac335867ae86f395dbaec3562ab248520aa87f381abe5ced59a0",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U01.v9.json",
+      "expected": "843d72d29ec0cdcaad43d965f73efc4a0d428057e20738a13226a26c621dd1b7",
+      "actual": "843d72d29ec0cdcaad43d965f73efc4a0d428057e20738a13226a26c621dd1b7",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\11_URMS_IDENTITY_RELATIONS.md",
+      "expected": "60a385c4d6b103ac253902237e4098e90fc4a83c61b664f868b1624a813bba56",
+      "actual": "60a385c4d6b103ac253902237e4098e90fc4a83c61b664f868b1624a813bba56",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U05.v9.json",
+      "expected": "4c3eee06d01b0ee1a22dbc7c63ba3a3b6f922908f62dd8e678df15f243c48662",
+      "actual": "4c3eee06d01b0ee1a22dbc7c63ba3a3b6f922908f62dd8e678df15f243c48662",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U01.v9.json",
+      "expected": "cddfdb66bdbb0fd8e4a20c41153bc756eaac7aeb595e6446d833016e7311d9f8",
+      "actual": "cddfdb66bdbb0fd8e4a20c41153bc756eaac7aeb595e6446d833016e7311d9f8",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\03_MARKET_DATA.md",
+      "expected": "5201c7f63f405b412b41d77ff8809e8c092b7eba4b78bef6421099b778655387",
+      "actual": "5201c7f63f405b412b41d77ff8809e8c092b7eba4b78bef6421099b778655387",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U01.v9.json",
+      "expected": "5d9ebec22b813353f9f5e570a7fd6badaaa78fbe1dcd05375b4d8688b766548c",
+      "actual": "5d9ebec22b813353f9f5e570a7fd6badaaa78fbe1dcd05375b4d8688b766548c",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\06_PORTFOLIO_CAPITAL_ACCOUNTING.md",
+      "expected": "fed7b43efeb28cefe3129f9091716a8a2d34cf6238e7ed23a7ead99a59d10770",
+      "actual": "fed7b43efeb28cefe3129f9091716a8a2d34cf6238e7ed23a7ead99a59d10770",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U02.v9.json",
+      "expected": "216a3db039d99a075e52622326e0248bddcc13ad15683f0682665d03b4ca09ab",
+      "actual": "216a3db039d99a075e52622326e0248bddcc13ad15683f0682665d03b4ca09ab",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U03.v9.json",
+      "expected": "fa81d009ac3bbe652080184b030d0cb066b212b1ef7eaed43e9c286d6b1b0c5d",
+      "actual": "fa81d009ac3bbe652080184b030d0cb066b212b1ef7eaed43e9c286d6b1b0c5d",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U04.v9.json",
+      "expected": "5d2dbd445e9b97c313af118c3ae4500c845134f1fa62ed1b48f45db6f02b7340",
+      "actual": "5d2dbd445e9b97c313af118c3ae4500c845134f1fa62ed1b48f45db6f02b7340",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U01.v9.json",
+      "expected": "1124429200abfd152d37a53d6da63be200a90fccd7bad404ad78772b04ea44cf",
+      "actual": "1124429200abfd152d37a53d6da63be200a90fccd7bad404ad78772b04ea44cf",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\12_PUBLICATION_AUTHORITY.md",
+      "expected": "827a16477e179754f49a141c92ed174e06f5fae37f8aa053e28c72467bf26d3f",
+      "actual": "827a16477e179754f49a141c92ed174e06f5fae37f8aa053e28c72467bf26d3f",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U02.v9.json",
+      "expected": "7a08567f69633c41d9a39a10a0c275fce55dd08f0a8a5bfec39aadae69a2dba2",
+      "actual": "7a08567f69633c41d9a39a10a0c275fce55dd08f0a8a5bfec39aadae69a2dba2",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U03.v9.json",
+      "expected": "b8b6899b6a2a309e3d7af39efa972519c22551f7c7149316b954a5e19b448d23",
+      "actual": "b8b6899b6a2a309e3d7af39efa972519c22551f7c7149316b954a5e19b448d23",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U04.v9.json",
+      "expected": "975e62b3f840527c093161e0426869fc4a5880fc39220d9a1536a494d95d0720",
+      "actual": "975e62b3f840527c093161e0426869fc4a5880fc39220d9a1536a494d95d0720",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U01.v9.json",
+      "expected": "81d30aaaa7d5dbe5c58c231eed06fcd137226c978cd2d73675e857dd97813859",
+      "actual": "81d30aaaa7d5dbe5c58c231eed06fcd137226c978cd2d73675e857dd97813859",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\04_RESEARCH_STRATEGY_LAB.md",
+      "expected": "2dbd519a995eb62637cc6890c7b632c5314254002c9d69c799f9345a59ea201b",
+      "actual": "2dbd519a995eb62637cc6890c7b632c5314254002c9d69c799f9345a59ea201b",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U03.v9.json",
+      "expected": "4c7bfdecc00ed48b32af52cf46ee590ba08fd40b1767bca314dae4869d45f7e7",
+      "actual": "4c7bfdecc00ed48b32af52cf46ee590ba08fd40b1767bca314dae4869d45f7e7",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U04.v9.json",
+      "expected": "112865c47e87c2e051a70ba62e087d645db01e3e8f7c759d4fac69fd6ac35c20",
+      "actual": "112865c47e87c2e051a70ba62e087d645db01e3e8f7c759d4fac69fd6ac35c20",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U05.v9.json",
+      "expected": "6b777cff32693050eb374c4f65266f359dea16a2a095375a9518e34b23acbedc",
+      "actual": "6b777cff32693050eb374c4f65266f359dea16a2a095375a9518e34b23acbedc",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U01.v9.json",
+      "expected": "edab1401dffb11ca9b57b5abb3800d1ec4ea362577d7b6df04b52297ed6e55ee",
+      "actual": "edab1401dffb11ca9b57b5abb3800d1ec4ea362577d7b6df04b52297ed6e55ee",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\07_DECISION_RISK.md",
+      "expected": "583845af956691fc6a232fc3c48f1ea91a31e53520a2b3189575ef4fddf4ab13",
+      "actual": "583845af956691fc6a232fc3c48f1ea91a31e53520a2b3189575ef4fddf4ab13",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U02.v9.json",
+      "expected": "bf48413cebed266f72ee0c6c3de1c81ef1fbc52c7a6c2a9ab82c0c682f04f72e",
+      "actual": "bf48413cebed266f72ee0c6c3de1c81ef1fbc52c7a6c2a9ab82c0c682f04f72e",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U04.v9.json",
+      "expected": "c3a3878987e1503119e1019674c3a1633c05b2dd868dbeef85d5b38196832e61",
+      "actual": "c3a3878987e1503119e1019674c3a1633c05b2dd868dbeef85d5b38196832e61",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U01.v9.json",
+      "expected": "92249db3b53c54dfe1a3c824967d4110f78decb638543f1d1b3af5a0d1c225d7",
+      "actual": "92249db3b53c54dfe1a3c824967d4110f78decb638543f1d1b3af5a0d1c225d7",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\13_STORAGE_RECOVERY_SECURITY.md",
+      "expected": "4ddfa15c7861fc6eca59248a4ca4f04c711d4d73c2d12fe10f9928c41b6a634f",
+      "actual": "4ddfa15c7861fc6eca59248a4ca4f04c711d4d73c2d12fe10f9928c41b6a634f",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U02.v9.json",
+      "expected": "2848590406f95513240cbb3e8e45f569ef8c5c5491197739400ef0200f7f8ab4",
+      "actual": "2848590406f95513240cbb3e8e45f569ef8c5c5491197739400ef0200f7f8ab4",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U01.v9.json",
+      "expected": "d8f40e3a4676f5cc0aed5c49cd5a81c5d04312429e8d7fe839abb38d04a9f5ec",
+      "actual": "d8f40e3a4676f5cc0aed5c49cd5a81c5d04312429e8d7fe839abb38d04a9f5ec",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\05_PORTFOLIO_MACRO_RATE_LAB.md",
+      "expected": "a6c6bb5a019988db43eaad6bf6d219ae40aaa485945dce34f92c3431c1291367",
+      "actual": "a6c6bb5a019988db43eaad6bf6d219ae40aaa485945dce34f92c3431c1291367",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U02.v9.json",
+      "expected": "9b37eabb255e5708ae77dae9e8252d1b288ea47214fca5a3a1dc5bca7b1b9c1f",
+      "actual": "9b37eabb255e5708ae77dae9e8252d1b288ea47214fca5a3a1dc5bca7b1b9c1f",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U02.v9.json",
+      "expected": "3f516cf898ed9f29850918b07341f4e375d7479edc705c92483bb3a2e0ed0fbc",
+      "actual": "3f516cf898ed9f29850918b07341f4e375d7479edc705c92483bb3a2e0ed0fbc",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U04.v9.json",
+      "expected": "14420fa2f3e19c68c848ea19939d8e0514703ff67abbca6bc40c1f0d0d9185a7",
+      "actual": "14420fa2f3e19c68c848ea19939d8e0514703ff67abbca6bc40c1f0d0d9185a7",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U05.v9.json",
+      "expected": "65e46646f6623375ce7b345f7e12037c54ee8aa5c65227a7bb67c7057489592e",
+      "actual": "65e46646f6623375ce7b345f7e12037c54ee8aa5c65227a7bb67c7057489592e",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U01.v9.json",
+      "expected": "186281f9b788d9996f625afdc108a7f2c0553d2457486cc3ab21e55930a67d81",
+      "actual": "186281f9b788d9996f625afdc108a7f2c0553d2457486cc3ab21e55930a67d81",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\08_OMS_PAPER_LIVE.md",
+      "expected": "f879f341072fe6f4cedbb395bffdd7bde5c5b55971b45e247c774432d71f15b1",
+      "actual": "f879f341072fe6f4cedbb395bffdd7bde5c5b55971b45e247c774432d71f15b1",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U02.v9.json",
+      "expected": "3698ef0e67f0db96517bcf6a15af950fe27c30ce3deec488e94c7b9526524c23",
+      "actual": "3698ef0e67f0db96517bcf6a15af950fe27c30ce3deec488e94c7b9526524c23",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U05.v9.json",
+      "expected": "954e569a46802adf3202ebc45db6e607f981aa2a410359b1147115b06cdc734b",
+      "actual": "954e569a46802adf3202ebc45db6e607f981aa2a410359b1147115b06cdc734b",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U01.v9.json",
+      "expected": "1f37b3a6e06cf4d7889ccbe41355c606f531396085d1daa7a9cbf780d451abc9",
+      "actual": "1f37b3a6e06cf4d7889ccbe41355c606f531396085d1daa7a9cbf780d451abc9",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\14_ENGINEERING_EXECUTION.md",
+      "expected": "7f74a8f8d83010928371c3676b8ce001e78bc019527cc8e9d574d4b16be12332",
+      "actual": "7f74a8f8d83010928371c3676b8ce001e78bc019527cc8e9d574d4b16be12332",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U01.v9.json",
+      "expected": "f97a4ec14dfc6a93502b0287d3402158733e3b1890993b67356e6a864107e408",
+      "actual": "f97a4ec14dfc6a93502b0287d3402158733e3b1890993b67356e6a864107e408",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\16_DEPLOYMENT_OPERATIONS.md",
+      "expected": "7b0211cf4fd342b0700cce78699133c429bd9aa9c051d402e5ae77b7b31d891d",
+      "actual": "7b0211cf4fd342b0700cce78699133c429bd9aa9c051d402e5ae77b7b31d891d",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U03.v9.json",
+      "expected": "615091b1f72416fe6b88bd104170abedb575a650231855eb069b35bda21caef9",
+      "actual": "615091b1f72416fe6b88bd104170abedb575a650231855eb069b35bda21caef9",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U02.v9.json",
+      "expected": "229b31cb8c2cd914e2b1c554cafa6d65dae4f67d00df73bd0315f09428e6d561",
+      "actual": "229b31cb8c2cd914e2b1c554cafa6d65dae4f67d00df73bd0315f09428e6d561",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U03.v9.json",
+      "expected": "d9402acfd547772342c430a555e147b785a548ac789f55e2ef9ec0409e79060c",
+      "actual": "d9402acfd547772342c430a555e147b785a548ac789f55e2ef9ec0409e79060c",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U04.v9.json",
+      "expected": "b68dc694ef3ec41f901db55cb3af7295695f0faf1e82bdff9a2ed6589a222f00",
+      "actual": "b68dc694ef3ec41f901db55cb3af7295695f0faf1e82bdff9a2ed6589a222f00",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U06.v9.json",
+      "expected": "e5af2f3e0b6e83df30ebbca890407d96784c988288de54c5090a9f0294cf1763",
+      "actual": "e5af2f3e0b6e83df30ebbca890407d96784c988288de54c5090a9f0294cf1763",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U03.v9.json",
+      "expected": "4f6aa8b341b3ee5fc885482cd3cf4c316ba0c2259afd40192e86726f3e4a6edc",
+      "actual": "4f6aa8b341b3ee5fc885482cd3cf4c316ba0c2259afd40192e86726f3e4a6edc",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U04.v9.json",
+      "expected": "813d152786abd9261d7cfb6a0cbf42ac0a5b2ae8406006ca108ec32b14eee909",
+      "actual": "813d152786abd9261d7cfb6a0cbf42ac0a5b2ae8406006ca108ec32b14eee909",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U01.v9.json",
+      "expected": "b1cc456947442357a1d97ca97e041dc2cc679e2d2b4c3c3dd94c6324ec38856d",
+      "actual": "b1cc456947442357a1d97ca97e041dc2cc679e2d2b4c3c3dd94c6324ec38856d",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\09_BROKER_SHIOAJI.md",
+      "expected": "cdfa2b7103e4167b4bd5ea33cb000238ea6e50dce9944d152cbdcfeb27b8cf7a",
+      "actual": "cdfa2b7103e4167b4bd5ea33cb000238ea6e50dce9944d152cbdcfeb27b8cf7a",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U02.v9.json",
+      "expected": "abd8c0a2d8667c464411136310a41874d0ce203c7384b877ef13f29201427152",
+      "actual": "abd8c0a2d8667c464411136310a41874d0ce203c7384b877ef13f29201427152",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U03.v9.json",
+      "expected": "5c98b60d732e047d784b4690dd2ad97af7da5e0b445572781607bc1129e6b2a2",
+      "actual": "5c98b60d732e047d784b4690dd2ad97af7da5e0b445572781607bc1129e6b2a2",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U05.v9.json",
+      "expected": "1bcc52073236516187d40f23f559afca83d33f7ef8a6889284d27579ff5ca823",
+      "actual": "1bcc52073236516187d40f23f559afca83d33f7ef8a6889284d27579ff5ca823",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U02.v9.json",
+      "expected": "e265fe12b4d2d0a0a71c1ea96443ec4ac205a53e69fc466ce49eabe022f2239e",
+      "actual": "e265fe12b4d2d0a0a71c1ea96443ec4ac205a53e69fc466ce49eabe022f2239e",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U04.v9.json",
+      "expected": "183b8c7f77728b5a0bd3faff23130a0f4ad94e34f61eac9142c76bb01f7cf57e",
+      "actual": "183b8c7f77728b5a0bd3faff23130a0f4ad94e34f61eac9142c76bb01f7cf57e",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U04.v9.json",
+      "expected": "f195b13432ab385a25690c3016bf9c23326a6ffee19234fd083ca8e29fde5f74",
+      "actual": "f195b13432ab385a25690c3016bf9c23326a6ffee19234fd083ca8e29fde5f74",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U04.v9.json",
+      "expected": "df6a9cd9f35f9dcf02a9f120d9f7222fa1acaca16d0f732e19198600bd13ce16",
+      "actual": "df6a9cd9f35f9dcf02a9f120d9f7222fa1acaca16d0f732e19198600bd13ce16",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U05.v9.json",
+      "expected": "3f1e79030ec48996c758c920ab3a80f50da2eac990cb948c152c22260388ccc4",
+      "actual": "3f1e79030ec48996c758c920ab3a80f50da2eac990cb948c152c22260388ccc4",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U02.v9.json",
+      "expected": "41b855231e3a3624adddcdb08f4cd696b2e64471bf0e2726c250c1f7b4016afd",
+      "actual": "41b855231e3a3624adddcdb08f4cd696b2e64471bf0e2726c250c1f7b4016afd",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U06.v9.json",
+      "expected": "a6d9831aba0e99a7742f256b897c9a54c5a1b6e2b6871776532a4d44f4c4dbaa",
+      "actual": "a6d9831aba0e99a7742f256b897c9a54c5a1b6e2b6871776532a4d44f4c4dbaa",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U06.v9.json",
+      "expected": "719a465a498429affa6098c093c3eca52f52d4c0b15f0c4daa799081d91117ac",
+      "actual": "719a465a498429affa6098c093c3eca52f52d4c0b15f0c4daa799081d91117ac",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U04.v9.json",
+      "expected": "b59c873278ece7e5446f533621b1bf336c8a2792841f378e173832feeecc7ce9",
+      "actual": "b59c873278ece7e5446f533621b1bf336c8a2792841f378e173832feeecc7ce9",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U05.v9.json",
+      "expected": "8312b95c2c943210e36f7b9a6d4723efc245b59934973020ef78d8c14f0cf97a",
+      "actual": "8312b95c2c943210e36f7b9a6d4723efc245b59934973020ef78d8c14f0cf97a",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U03.v9.json",
+      "expected": "3c6c71e05ed7c5ad19cebd95718ea1729c3c2ff58b9add69834c8fd4c8e80b7f",
+      "actual": "3c6c71e05ed7c5ad19cebd95718ea1729c3c2ff58b9add69834c8fd4c8e80b7f",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U06.v9.json",
+      "expected": "d1b6ccf7abc8a7c9e3f9322e918ba3b7bfe5b9f727cb715062eb02e7703c9281",
+      "actual": "d1b6ccf7abc8a7c9e3f9322e918ba3b7bfe5b9f727cb715062eb02e7703c9281",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U02.v9.json",
+      "expected": "da97834c9eb7ba0bbf64c2757fbeca8f3334d580a9f408e5c74d64b281f87f98",
+      "actual": "da97834c9eb7ba0bbf64c2757fbeca8f3334d580a9f408e5c74d64b281f87f98",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U03.v9.json",
+      "expected": "47035abbd40f549270b083eb7c55153dc146d45d3113c61e6f8b24261682185c",
+      "actual": "47035abbd40f549270b083eb7c55153dc146d45d3113c61e6f8b24261682185c",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U04.v9.json",
+      "expected": "3830b3677dbdf330350fea705f2b39ba8d0ad39f7af70dfe9f3d63de46e0790c",
+      "actual": "3830b3677dbdf330350fea705f2b39ba8d0ad39f7af70dfe9f3d63de46e0790c",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U01.v9.json",
+      "expected": "4ae7ff0f8a3df4df63a38b3cb73254d8a1ea75dac0a499bf4dd5b378f6edd5b6",
+      "actual": "4ae7ff0f8a3df4df63a38b3cb73254d8a1ea75dac0a499bf4dd5b378f6edd5b6",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\15_INTEGRATION_ACCEPTANCE.md",
+      "expected": "eef5a35696a86fe0c0c2d091269fe941872a16a64681f72e4577ab0be29eda4b",
+      "actual": "eef5a35696a86fe0c0c2d091269fe941872a16a64681f72e4577ab0be29eda4b",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U06.v9.json",
+      "expected": "f861af25a37fe822f236c20ed2c9630f0130912d184e38032952b8b3bb9fdc09",
+      "actual": "f861af25a37fe822f236c20ed2c9630f0130912d184e38032952b8b3bb9fdc09",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U02.v9.json",
+      "expected": "5a011cef69b4eb3853197ddbd8a615ed00a1870d5d9db0101788763c3a10f57b",
+      "actual": "5a011cef69b4eb3853197ddbd8a615ed00a1870d5d9db0101788763c3a10f57b",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U03.v9.json",
+      "expected": "792fe8213a056bb4e30274758d9572485fe79e7788151bed14e5bddd89033e03",
+      "actual": "792fe8213a056bb4e30274758d9572485fe79e7788151bed14e5bddd89033e03",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U04.v9.json",
+      "expected": "8105175a8cf2550cacd8d99ac7d6bcb753798e1c52e326d13b3403f2e3a2c37b",
+      "actual": "8105175a8cf2550cacd8d99ac7d6bcb753798e1c52e326d13b3403f2e3a2c37b",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U05.v9.json",
+      "expected": "50fba58a00d69227e733b16965ac5c573b9cb69b6023b04bcdf3196ae0d6550a",
+      "actual": "50fba58a00d69227e733b16965ac5c573b9cb69b6023b04bcdf3196ae0d6550a",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U02.v9.json",
+      "expected": "381e8f5de3a3138f713f22bb6698ef1ae097d678680a69734e54598e208ce04a",
+      "actual": "381e8f5de3a3138f713f22bb6698ef1ae097d678680a69734e54598e208ce04a",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U04.v9.json",
+      "expected": "0d0ec8837ac9a1b97a24f3017e3500dae129825bee32ddac44f00ee63ae83d92",
+      "actual": "0d0ec8837ac9a1b97a24f3017e3500dae129825bee32ddac44f00ee63ae83d92",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U05.v9.json",
+      "expected": "8732e286455cbc8752e808896083bbed813e8297fcf682d9d2d85076748136f6",
+      "actual": "8732e286455cbc8752e808896083bbed813e8297fcf682d9d2d85076748136f6",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U06.v9.json",
+      "expected": "344da87fef2b2033f264666f869ae659520884a3c21a5aea82e3c51e174f18b9",
+      "actual": "344da87fef2b2033f264666f869ae659520884a3c21a5aea82e3c51e174f18b9",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U05.v9.json",
+      "expected": "e0e81822e48ec381fdcf4968478c05f3c4d7898d52ed3a5f0228b26a1fc7bf06",
+      "actual": "e0e81822e48ec381fdcf4968478c05f3c4d7898d52ed3a5f0228b26a1fc7bf06",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U06.v9.json",
+      "expected": "88d11148592996835943792b285140baf45f30ba39a5ef532d69b15976a7c93d",
+      "actual": "88d11148592996835943792b285140baf45f30ba39a5ef532d69b15976a7c93d",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U03.v9.json",
+      "expected": "a35f017b42deddeb2ca0b26a6e8ba78c244bcd21e5fb50dc6eed5043b6cf16b8",
+      "actual": "a35f017b42deddeb2ca0b26a6e8ba78c244bcd21e5fb50dc6eed5043b6cf16b8",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U05.v9.json",
+      "expected": "54e6ec5431d6a1076e88e21366e3eb7fc5f3f48af1b8392458d29faf617879ae",
+      "actual": "54e6ec5431d6a1076e88e21366e3eb7fc5f3f48af1b8392458d29faf617879ae",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U06.v9.json",
+      "expected": "0bd2bdda2d88594e9be57f4fffc513aa10e6c0da0b964f7397df3ee2fc8d6f13",
+      "actual": "0bd2bdda2d88594e9be57f4fffc513aa10e6c0da0b964f7397df3ee2fc8d6f13",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U03.v9.json",
+      "expected": "7e3796714f94df4399ca59d6867761827169728f056f9bd228f21cb98953cb57",
+      "actual": "7e3796714f94df4399ca59d6867761827169728f056f9bd228f21cb98953cb57",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U06.v9.json",
+      "expected": "24cad1dd466d8b7ca5e4cd4944e6d48e0e37b5a7d7f55f01b4dbfc916cf9ca7c",
+      "actual": "24cad1dd466d8b7ca5e4cd4944e6d48e0e37b5a7d7f55f01b4dbfc916cf9ca7c",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U03.v9.json",
+      "expected": "c7548b06fc82063a3da3e9fe444f4adf4c9b1aafba4ee3e96e04e6dc580a77b3",
+      "actual": "c7548b06fc82063a3da3e9fe444f4adf4c9b1aafba4ee3e96e04e6dc580a77b3",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U04.v9.json",
+      "expected": "995970cbd5be65c7f083d0a7abc55719a8b47466347eb1a589e4672e53d5f4a0",
+      "actual": "995970cbd5be65c7f083d0a7abc55719a8b47466347eb1a589e4672e53d5f4a0",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U05.v9.json",
+      "expected": "7ecc549489f0425a0a9fa5a907a194b7ae65a45e3465f528db7a218fa8c7c424",
+      "actual": "7ecc549489f0425a0a9fa5a907a194b7ae65a45e3465f528db7a218fa8c7c424",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U06.v9.json",
+      "expected": "4a4d6cb2addf8b419130afa9f54d8fa32476ba611e462a91d2224993f7a3703f",
+      "actual": "4a4d6cb2addf8b419130afa9f54d8fa32476ba611e462a91d2224993f7a3703f",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U02.v9.json",
+      "expected": "ef2120754f9924b6da12327e0613a73b36ba9ff3b5a6bd22c586a0111cda5cc6",
+      "actual": "ef2120754f9924b6da12327e0613a73b36ba9ff3b5a6bd22c586a0111cda5cc6",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U05.v9.json",
+      "expected": "6f28fb0581cade8fa78a6d5de5dde9b9cb2ffe0926d317c65db47958f69b444e",
+      "actual": "6f28fb0581cade8fa78a6d5de5dde9b9cb2ffe0926d317c65db47958f69b444e",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U06.v9.json",
+      "expected": "00fb6fb218b0a56e344378e776f03a4e17a16191fdde66954bcbda74b89aa5a9",
+      "actual": "00fb6fb218b0a56e344378e776f03a4e17a16191fdde66954bcbda74b89aa5a9",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U03.v9.json",
+      "expected": "2edaabac61b1216e3b00ff6fd415d9a6248f6d3c27e2407077cf2ce96b613ed4",
+      "actual": "2edaabac61b1216e3b00ff6fd415d9a6248f6d3c27e2407077cf2ce96b613ed4",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U06.v9.json",
+      "expected": "f0eb980c48e96506eaa421edc479c0a27a54b5134102dfa6fb0a7aab3514a79d",
+      "actual": "f0eb980c48e96506eaa421edc479c0a27a54b5134102dfa6fb0a7aab3514a79d",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U06.v9.json",
+      "expected": "4205aae711af5692be95a8aaac26653a3c53b33daa9f4b4796bff7283423fc51",
+      "actual": "4205aae711af5692be95a8aaac26653a3c53b33daa9f4b4796bff7283423fc51",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U02.v9.json",
+      "expected": "44ad6ce2e2863759709cf0d6cb9bbdfd4890e00536db2fc790ac900db9d6dcc4",
+      "actual": "44ad6ce2e2863759709cf0d6cb9bbdfd4890e00536db2fc790ac900db9d6dcc4",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U03.v9.json",
+      "expected": "0d5f8093497e372249be480cfa1042a3c15ea3957d5a4464feb324d1d39b5e96",
+      "actual": "0d5f8093497e372249be480cfa1042a3c15ea3957d5a4464feb324d1d39b5e96",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U04.v9.json",
+      "expected": "6f1f70bff065346ffaea09e108bf5109bf830bcb33feec46ba577febba526ab6",
+      "actual": "6f1f70bff065346ffaea09e108bf5109bf830bcb33feec46ba577febba526ab6",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U05.v9.json",
+      "expected": "5fa1784a06de7a3c73422eb8fb727f169afba87f3026a793b53e7313d25632ee",
+      "actual": "5fa1784a06de7a3c73422eb8fb727f169afba87f3026a793b53e7313d25632ee",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U06.v9.json",
+      "expected": "0ed64d753ac0a67cecc7f2f1a35a3dba4318630a1fa249ec52a871e751755a41",
+      "actual": "0ed64d753ac0a67cecc7f2f1a35a3dba4318630a1fa249ec52a871e751755a41",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U05.v9.json",
+      "expected": "20644c6970b93281ae7df9a4c3f0ddf6398d492fd29ef2ea794493ce37a78eb2",
+      "actual": "20644c6970b93281ae7df9a4c3f0ddf6398d492fd29ef2ea794493ce37a78eb2",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U06.v9.json",
+      "expected": "5f1e84b314005d4f59197473db63ebe455ee25f1e857f502e5a5536c6b890c47",
+      "actual": "5f1e84b314005d4f59197473db63ebe455ee25f1e857f502e5a5536c6b890c47",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U03.v9.json",
+      "expected": "492987102586b487fea252f6c45199b4cd4989c76109b446036aebea212a2a2b",
+      "actual": "492987102586b487fea252f6c45199b4cd4989c76109b446036aebea212a2a2b",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U06.v9.json",
+      "expected": "3e368958e82c3ef554e99ec70588ce89d4335d3b4db90ac4516c25fb38b36548",
+      "actual": "3e368958e82c3ef554e99ec70588ce89d4335d3b4db90ac4516c25fb38b36548",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\AGENTS.md",
+      "expected": "d9a581261f9e61ccc39224de06fd7be3e918a90069887a91d054d49a9813e664",
+      "actual": "d9a581261f9e61ccc39224de06fd7be3e918a90069887a91d054d49a9813e664",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\CURRENT_STATE.md",
+      "expected": "8ea282bd3804a18d743d75a455e3aaffa8be145653e6a4b0fa9f14c7354bda16",
+      "actual": "8ea282bd3804a18d743d75a455e3aaffa8be145653e6a4b0fa9f14c7354bda16",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\CURRENT_WORK.md",
+      "expected": "dff1031ca680b4f9bb45d52d9fef488897bda7e01fcdd69b904ebc43f4031d33",
+      "actual": "dff1031ca680b4f9bb45d52d9fef488897bda7e01fcdd69b904ebc43f4031d33",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\governance\\master_manifest.v1.yaml",
+      "expected": "8e727b9c548895d482939aad8922517fc4427209d3c395f80f463020b3cf08da",
+      "actual": "8e727b9c548895d482939aad8922517fc4427209d3c395f80f463020b3cf08da",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\prompts\\WORK_ORCHESTRATOR_KERNEL.md",
+      "expected": "9f170a4aec8019d2a78384a4f445dbcb04e6b317ff1441acfd91315e998a541f",
+      "actual": "9f170a4aec8019d2a78384a4f445dbcb04e6b317ff1441acfd91315e998a541f",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\prompts\\CODEX_EXECUTOR_KERNEL.md",
+      "expected": "6c3b6dfcbc17cdbd2c37ebd11e26457c2bc6e7534dbc8d63c0d391c042e0e9fa",
+      "actual": "6c3b6dfcbc17cdbd2c37ebd11e26457c2bc6e7534dbc8d63c0d391c042e0e9fa",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\development_entry_protocol.v2.yaml",
+      "expected": "b5486d9cd27c86555123eed96c57e5b7f59dfd46dbb23cb00b7350feffef8b10",
+      "actual": "b5486d9cd27c86555123eed96c57e5b7f59dfd46dbb23cb00b7350feffef8b10",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\development_state_machine.v2.yaml",
+      "expected": "038e2c226b64d29dce9aa0d3b8cf24321b2bc0c526467b6f8784b11d7d83ff39",
+      "actual": "038e2c226b64d29dce9aa0d3b8cf24321b2bc0c526467b6f8784b11d7d83ff39",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\authorization_lifecycle.v1_1.yaml",
+      "expected": "547e5dae820541740a72a341bd1797305929bacdbff21b90acfe8866585f5393",
+      "actual": "547e5dae820541740a72a341bd1797305929bacdbff21b90acfe8866585f5393",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\policies\\execution_capacity_policy.v2_2.yaml",
+      "expected": "4e4fd91163d50619e0bea14e96aed67e1568f1bcd781bf4d1ab76c2509ad23cb",
+      "actual": "4e4fd91163d50619e0bea14e96aed67e1568f1bcd781bf4d1ab76c2509ad23cb",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\docs\\architecture\\adopted\\GUIDE_V2_COMPATIBILITY_ANNEX.source.v1.md",
+      "expected": "a83fb8c9c79f447349892da7bae0dc6fdbff675e7a6712ac868b0b86ba414f82",
+      "actual": "a83fb8c9c79f447349892da7bae0dc6fdbff675e7a6712ac868b0b86ba414f82",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\engine\\contracts.py",
+      "expected": "bae4e97904662c83945571d62b0dd395cfa5b8525ccfb48486dad9c55ff59937",
+      "actual": "bae4e97904662c83945571d62b0dd395cfa5b8525ccfb48486dad9c55ff59937",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\scripts\\p00_compile.py",
+      "expected": "53aeb550928ba69bbafebb0e7a558cab91b1a13e3199483b8ecfd1517f462ae1",
+      "actual": "53aeb550928ba69bbafebb0e7a558cab91b1a13e3199483b8ecfd1517f462ae1",
+      "valid": true
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\platform\\package.schema.v1.json",
+      "expected": "03552d68b291f0c954f0da99ddeac396462b4721e34a92709e0328d5a5b7e3e5",
+      "actual": "03552d68b291f0c954f0da99ddeac396462b4721e34a92709e0328d5a5b7e3e5",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-mvp-execution-handoff-v1\\MVP_SCOPE.md",
+      "expected": "c6d8e1750e8e28d8061d2e657b65f020881c8a33e5c2cb1c2e25f293d807f254",
+      "actual": "c6d8e1750e8e28d8061d2e657b65f020881c8a33e5c2cb1c2e25f293d807f254",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-mvp-execution-handoff-v1\\VS_CODE_EXECUTOR.md",
+      "expected": "517aafe311ceb0eb63c1138bd4da483c98fc9843d8905adcb3ddc32f0c0b519c",
+      "actual": "517aafe311ceb0eb63c1138bd4da483c98fc9843d8905adcb3ddc32f0c0b519c",
+      "valid": true
+    }
+  ],
+  "predecessor_bundle_members": [
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\ADDENDUM_MANIFEST.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\AUTHOR_VALIDATION_FAILURES.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\BUILD_SPEC_PROJECTION.py",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\DEFERRED_REVIEW_LEDGER.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\DURABLE_CHECKPOINT.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\FINAL_VALIDATION.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\GENERATOR_AND_REVIEW_PROTOCOL.md",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\INPUT_SOURCE_WITNESS.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\MINIMUM_POLICY_DECISION_REQUEST.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\poc\\MOCK_POC_RUN.log",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\poc\\POC_RESULTS.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\poc\\test_six_mock_contracts.py",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\POC_CONTRACT.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\PRECOMPILED_MVP_ROUTE.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\PRECOMPILED_WORK_QUEUE.index.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\PROJECTION_VERIFICATION_RESULT.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\README.md",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\REMOTE_SOURCE_WITNESS.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\REVIEW_DEPENDENCY_IMPACT.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\SIX_FILE_SUPPLEMENT_MAP.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\ULTRA_CATCHUP_REVIEW_PROMPT.md",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA01-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA01-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA01-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA01-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA01-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA01-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA02-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA02-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA02-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA02-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA02-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA02-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA03-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA03-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA03-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA03-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA03-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA03-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA04-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA04-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA04-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA04-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA04-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA04-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA05-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA05-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA05-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA05-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA05-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA05-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA06-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA06-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA06-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA06-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA06-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA06-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA07-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA07-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA07-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA07-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA07-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA07-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA08-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA08-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA08-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA08-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA08-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA08-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA09-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA09-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA09-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA09-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA09-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA09-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA10-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA10-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA10-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA10-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA10-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA10-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA11-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA11-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA11-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA11-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA11-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA11-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA12-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA12-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA12-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA12-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA12-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA12-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA13-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA13-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA13-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA13-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA13-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA13-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA14-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA14-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA14-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA14-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA14-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA14-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA15-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA15-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA15-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA15-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA15-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA15-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA16-U01.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA16-U02.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA16-U03.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA16-U04.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA16-U05.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\unit_specs\\MA16-U06.spec.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\VALIDATE_ADDENDUM.py",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-precompiled-queue-addendum-v1\\VS_CODE_CONTINUOUS_CODING_KERNEL.md",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\bounded-continuous-policy-independent-review-20261022T044814Z\\REVIEW_OUTPUT_MANIFEST.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\bounded-continuous-policy-independent-review-20261022T044814Z\\DURABLE_REVIEW_CHECKPOINT.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\bounded-continuous-policy-independent-review-20261022T044814Z\\FINDING_LEDGER.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\bounded-continuous-policy-independent-review-20261022T044814Z\\FRESH_INDEPENDENT_POLICY_REVIEW_REPORT.md",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\bounded-continuous-policy-independent-review-20261022T044814Z\\GIT_INDEX_OBSERVATION_LIMITATION.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\bounded-continuous-policy-independent-review-20261022T044814Z\\OWNER_ADOPTION_GATE_DISPOSITION.md",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\bounded-continuous-policy-independent-review-20261022T044814Z\\REMOTE_REF_VERIFICATION.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\bounded-continuous-policy-independent-review-20261022T044814Z\\REVIEW_INDEPENDENCE_AND_SCOPE.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\bounded-continuous-policy-independent-review-20261022T044814Z\\SOURCE_INTEGRITY_AFTER.json",
+      "valid": true
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\bounded-continuous-policy-independent-review-20261022T044814Z\\SOURCE_INTEGRITY_BEFORE.json",
+      "valid": true
+    }
+  ],
+  "candidate_manifest_raw_sha256": "091fd1e697a32f65c4a65f6b493175d6467671e08c44945c28ec750575942421",
+  "comparison": {
+    "HEAD_unchanged": true,
+    "branch_unchanged": true,
+    "status_unchanged": true,
+    "all_refs_unchanged": true,
+    "index_raw_bytes_unchanged": true,
+    "source_pin_drift_count": 0,
+    "protected_bundle_drift_count": 0,
+    "source_writes_by_this_task": 0
+  }
+}

@@ -1,0 +1,4315 @@
+{
+  "artifact_role": "DERIVED_PRECOMPILED_QUEUE_NOT_AUTHORIZATION_OR_CURRENT_STATE",
+  "revision": "precompiled.v1",
+  "source_subject": "MA-ARCH-REVIEW-v9-SOURCE-CLOSURE-PAIR01",
+  "Git": {
+    "local_HEAD": "2634717b1443eb95fa0fde4d5d987347ef2160e8",
+    "remote_master": "9b5ab5fdd98744a7db45ec9f14b64ef1f324920f",
+    "publication_v3": "9643bfc93a1631154be877536a1c91fc58df84be",
+    "NAV_topic_HEAD": "e287f6ac0744875e8d4bca103a6b73b4cf53416d"
+  },
+  "counts": {
+    "packages": 12,
+    "units": 96,
+    "dependencies": 364,
+    "API": 95,
+    "UI": 19,
+    "consumer_bindings": 578,
+    "MVP_units": 57,
+    "MVP_edges": 184,
+    "MVP_waves": 11
+  },
+  "queue_order": [
+    "MA01-U01",
+    "MA01-U05",
+    "MA02-U01",
+    "MA10-U01",
+    "MA11-U01",
+    "MA02-U05",
+    "MA03-U01",
+    "MA06-U01",
+    "MA11-U02",
+    "MA11-U03",
+    "MA11-U04",
+    "MA12-U01",
+    "MA03-U02",
+    "MA03-U03",
+    "MA03-U04",
+    "MA04-U01",
+    "MA06-U03",
+    "MA06-U04",
+    "MA06-U05",
+    "MA07-U01",
+    "MA12-U02",
+    "MA12-U04",
+    "MA13-U01",
+    "MA04-U02",
+    "MA05-U01",
+    "MA06-U02",
+    "MA07-U02",
+    "MA07-U04",
+    "MA07-U05",
+    "MA08-U01",
+    "MA13-U02",
+    "MA13-U05",
+    "MA14-U01",
+    "MA16-U01",
+    "MA04-U03",
+    "MA05-U02",
+    "MA05-U03",
+    "MA05-U04",
+    "MA06-U06",
+    "MA08-U03",
+    "MA08-U04",
+    "MA09-U01",
+    "MA14-U02",
+    "MA14-U03",
+    "MA14-U05",
+    "MA16-U02",
+    "MA04-U04",
+    "MA14-U04",
+    "MA16-U04",
+    "MA04-U05",
+    "MA10-U02",
+    "MA14-U06",
+    "MA04-U06",
+    "MA10-U04",
+    "MA10-U05",
+    "MA10-U03",
+    "MA10-U06",
+    "MA01-U02",
+    "MA01-U03",
+    "MA01-U04",
+    "MA15-U01",
+    "MA01-U06",
+    "MA02-U02",
+    "MA02-U03",
+    "MA02-U04",
+    "MA11-U05",
+    "MA15-U02",
+    "MA15-U04",
+    "MA15-U05",
+    "MA02-U06",
+    "MA03-U05",
+    "MA11-U06",
+    "MA12-U03",
+    "MA12-U05",
+    "MA03-U06",
+    "MA07-U03",
+    "MA12-U06",
+    "MA13-U03",
+    "MA13-U04",
+    "MA05-U05",
+    "MA07-U06",
+    "MA08-U02",
+    "MA08-U05",
+    "MA13-U06",
+    "MA16-U03",
+    "MA05-U06",
+    "MA08-U06",
+    "MA09-U02",
+    "MA09-U03",
+    "MA09-U04",
+    "MA09-U05",
+    "MA09-U06",
+    "MA16-U05",
+    "MA16-U06",
+    "MA15-U03",
+    "MA15-U06"
+  ],
+  "entries": [
+    {
+      "unit_alias": "MA01-U01",
+      "unit_id": "cfc91817-46ea-4145-8427-139e06e5569d",
+      "plan_revision_id": "192b0e77-b779-5eb4-8c1e-22e2a393d8eb",
+      "package": "PK01",
+      "rank": 0,
+      "MVP": true,
+      "MVP_wave": 0,
+      "spec_file": "unit_specs\\MA01-U01.spec.json",
+      "raw_sha256": "3552a5360efc1799fb3a4d0b3c8457af278bfe12235f445501c0354002ad29b5",
+      "source_unit_canonical_sha256": "5ba6803c9cdc1a8c39b95fc1cbde38614c0f94100fc8ae433bc30f610e1e45e0",
+      "direct_dependencies": [],
+      "accepted_snapshot": true,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA01-U05",
+      "unit_id": "b0e3f573-d911-4ea1-8dc3-57a89f7bd95e",
+      "plan_revision_id": "89590a0a-5580-5199-bfe8-5cc06d83d4b3",
+      "package": "PK01",
+      "rank": 1,
+      "MVP": true,
+      "MVP_wave": 1,
+      "spec_file": "unit_specs\\MA01-U05.spec.json",
+      "raw_sha256": "274faf302b9a2124d506b366e0746c1e3d97cc52f8668281b1cf112d679b9c22",
+      "source_unit_canonical_sha256": "06a1eb61d16e7e81e9de278eacd04b461ac17f4f36c6acb55199e784e5eef9e4",
+      "direct_dependencies": [
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA02-U01",
+      "unit_id": "69b6baec-4e0d-42df-ab4f-5900e97f48b6",
+      "plan_revision_id": "ef3b999d-d11d-5bf3-a359-94367868e2bb",
+      "package": "PK02",
+      "rank": 2,
+      "MVP": true,
+      "MVP_wave": 1,
+      "spec_file": "unit_specs\\MA02-U01.spec.json",
+      "raw_sha256": "033a3737a4f3e2823570a3dfec844f0fdc4f43ad97f8c676e508a1f978f02608",
+      "source_unit_canonical_sha256": "dce2e833f1f5a9d00687ed025f1f84e8a378651cb09a11f5d8b3ed847074cdbd",
+      "direct_dependencies": [
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA10-U01",
+      "unit_id": "8ae2d3b5-7d39-4d7d-a05c-23ecfbecb8dc",
+      "plan_revision_id": "417bd918-2c37-556f-8405-4f32c83c0e68",
+      "package": "PK11",
+      "rank": 3,
+      "MVP": true,
+      "MVP_wave": 1,
+      "spec_file": "unit_specs\\MA10-U01.spec.json",
+      "raw_sha256": "481e459f05acbac6d6dedc0ea6080ed8632ebaaffab3deece09b92fcb7d42a1a",
+      "source_unit_canonical_sha256": "84d92c2d7527e52f8489075ea8e64630c90544f8a221aa751c49ba732881b6f4",
+      "direct_dependencies": [
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA11-U01",
+      "unit_id": "24eadee4-4e15-40a4-90d8-90556f574dd1",
+      "plan_revision_id": "3f0993a4-967c-5aae-b982-5421bfda841e",
+      "package": "PK03",
+      "rank": 4,
+      "MVP": true,
+      "MVP_wave": 1,
+      "spec_file": "unit_specs\\MA11-U01.spec.json",
+      "raw_sha256": "332d9921e9920999a3ea5889037f7e9cd7045cd243ca947ac3791ea6d601e236",
+      "source_unit_canonical_sha256": "e2dc3143b24e0483e074c972a52e5bea22d36abe9e98f5fa3ce9a6a1cec2daa3",
+      "direct_dependencies": [
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA02-U05",
+      "unit_id": "bb7fcd6e-af41-43e9-aeb4-81fc14571315",
+      "plan_revision_id": "1c25a469-81c4-561c-8f2c-521763dcead6",
+      "package": "PK02",
+      "rank": 5,
+      "MVP": true,
+      "MVP_wave": 2,
+      "spec_file": "unit_specs\\MA02-U05.spec.json",
+      "raw_sha256": "e44afc5aebe9337c20dcf7f9c65c686a4fef856d0a154540df2aa71f56a8f321",
+      "source_unit_canonical_sha256": "89b69129f68dae254f7f15e633003f0278f2c781a890854ed1ef3c93947825e4",
+      "direct_dependencies": [
+        "MA02-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA03-U01",
+      "unit_id": "06b5e143-8782-463d-863c-0b58dbde03aa",
+      "plan_revision_id": "12356876-d0fb-5fc7-80fb-8e18eaaf5677",
+      "package": "PK02",
+      "rank": 6,
+      "MVP": true,
+      "MVP_wave": 2,
+      "spec_file": "unit_specs\\MA03-U01.spec.json",
+      "raw_sha256": "a883e051df6982a656018d4a8634a654aaf79565d2956e191abaf95a02a6b895",
+      "source_unit_canonical_sha256": "61703e71265d0c5e18fac259ba5262d44272c055f09d0a5a665983d832956439",
+      "direct_dependencies": [
+        "MA02-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA06-U01",
+      "unit_id": "46af7db1-aace-42c4-9e90-1046f5deb3de",
+      "plan_revision_id": "2a7dc710-6541-5a67-a167-6881274c500d",
+      "package": "PK08",
+      "rank": 7,
+      "MVP": true,
+      "MVP_wave": 2,
+      "spec_file": "unit_specs\\MA06-U01.spec.json",
+      "raw_sha256": "27643ffd1a669042d05af8a15d830178a8c5f919a643188aff724d3fb487b522",
+      "source_unit_canonical_sha256": "8ac65fc7f34f49656ad622c9debb427ad0da7e7d06c737a6a5a2d5d8d5d2bb04",
+      "direct_dependencies": [
+        "MA02-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA11-U02",
+      "unit_id": "550e6375-b311-43cc-a75b-4468b858b826",
+      "plan_revision_id": "7bc24c02-6104-51d8-81bc-8d11ecbdb6f0",
+      "package": "PK03",
+      "rank": 8,
+      "MVP": true,
+      "MVP_wave": 2,
+      "spec_file": "unit_specs\\MA11-U02.spec.json",
+      "raw_sha256": "a657b69d4f4e716070e41091347156c8526b952f0ab88ccca57ba5c6792b1dbd",
+      "source_unit_canonical_sha256": "ffefeb1e1254f093dc064ec92d98d11f50c4f20023a40aa52244077b4539a8b0",
+      "direct_dependencies": [
+        "MA11-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA11-U03",
+      "unit_id": "77c0018d-8680-4e94-a7b9-7fe0de492c60",
+      "plan_revision_id": "34ddd6e0-20f7-52d3-8504-a9ab5e438819",
+      "package": "PK03",
+      "rank": 9,
+      "MVP": true,
+      "MVP_wave": 2,
+      "spec_file": "unit_specs\\MA11-U03.spec.json",
+      "raw_sha256": "a12d76dc7fd734c707478f7a6999d74aed35a794fce05e2213ee084413a627a2",
+      "source_unit_canonical_sha256": "6bb4648332a2b322f0369062859143f9bf985e482efd52068781e548e3a44d8c",
+      "direct_dependencies": [
+        "MA11-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA11-U04",
+      "unit_id": "31426b58-bf4e-49bb-8e9d-3a85cb8c2218",
+      "plan_revision_id": "94a32e44-d14b-5094-99ea-431bd2207bd1",
+      "package": "PK03",
+      "rank": 10,
+      "MVP": true,
+      "MVP_wave": 2,
+      "spec_file": "unit_specs\\MA11-U04.spec.json",
+      "raw_sha256": "54318cf16b84bb47315d50ac9e14e2678564be781d62a4eaceba9868130db56d",
+      "source_unit_canonical_sha256": "b3da68d6294f95fec1d3b6aa9344251a88188519a618f27caaa739db5a1310ca",
+      "direct_dependencies": [
+        "MA11-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA12-U01",
+      "unit_id": "e185c30d-eebf-43b9-ae51-16e9fbe512da",
+      "plan_revision_id": "faa9b100-80ab-5c97-90b6-e9004b5a1671",
+      "package": "PK03",
+      "rank": 11,
+      "MVP": true,
+      "MVP_wave": 2,
+      "spec_file": "unit_specs\\MA12-U01.spec.json",
+      "raw_sha256": "4ca7bfa355fbd2057798c40e7a4a857f6ba060ee78253546eb8295bb79371f96",
+      "source_unit_canonical_sha256": "7ba203fc66ecde1b7b3fcc0b8676af1ca5ec10586ae1ea1353b211c5b21ee8a1",
+      "direct_dependencies": [
+        "MA11-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA03-U02",
+      "unit_id": "ad7fdaed-5e0d-4a51-a24b-1922f8ce6f26",
+      "plan_revision_id": "1d1da1e3-87a0-5f78-8ad5-5cb264f54471",
+      "package": "PK02",
+      "rank": 12,
+      "MVP": true,
+      "MVP_wave": 3,
+      "spec_file": "unit_specs\\MA03-U02.spec.json",
+      "raw_sha256": "6cecef56b1e582b37009b0b233c9da31f89acc8a85ee42c77c9c11f723f37a4f",
+      "source_unit_canonical_sha256": "83ac3591c3a7256dec0af46986ea5d118a3698048484b837f060ea6ec4a50304",
+      "direct_dependencies": [
+        "MA03-U01",
+        "MA02-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA03-U03",
+      "unit_id": "cc769c63-0f27-4815-adf3-754774b76d5f",
+      "plan_revision_id": "c8679414-1a7b-5d18-8f81-d5e1b68b5e99",
+      "package": "PK02",
+      "rank": 13,
+      "MVP": true,
+      "MVP_wave": 3,
+      "spec_file": "unit_specs\\MA03-U03.spec.json",
+      "raw_sha256": "95499225f2192f19c14f84c6072afa5fb91bd983f5f203797b2f1c595e53d2bc",
+      "source_unit_canonical_sha256": "c61b590dc68d57fffe8d255ca199c0b9cbe54957744f7e0672e51f8de7574f85",
+      "direct_dependencies": [
+        "MA03-U01",
+        "MA02-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA03-U04",
+      "unit_id": "a8a56800-81b9-4297-8847-ad2bb530ae83",
+      "plan_revision_id": "3ae07179-0a3c-5406-b534-a01238433327",
+      "package": "PK02",
+      "rank": 14,
+      "MVP": true,
+      "MVP_wave": 3,
+      "spec_file": "unit_specs\\MA03-U04.spec.json",
+      "raw_sha256": "a128dee8ea9afc46e4428e60dadd464556612ef40afbffa17418f8ee827e28fe",
+      "source_unit_canonical_sha256": "03418ba16ca2a4e69d267be4d7119ed290321ef46a2d4f33d767ee8929230f7d",
+      "direct_dependencies": [
+        "MA03-U01",
+        "MA02-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA04-U01",
+      "unit_id": "332a4057-004a-48e0-8f8c-199d8126c497",
+      "plan_revision_id": "441ba3a0-328b-54c6-b486-8192048a3652",
+      "package": "PK06",
+      "rank": 15,
+      "MVP": true,
+      "MVP_wave": 3,
+      "spec_file": "unit_specs\\MA04-U01.spec.json",
+      "raw_sha256": "a414b4521a9b13669203cd3b837d56e72edd065cda8143b78a58240a7e46eb5a",
+      "source_unit_canonical_sha256": "53dbc053f78f590f83e9cf2b05b6313794a484bc8b30317f804ce11f929d3634",
+      "direct_dependencies": [
+        "MA02-U01",
+        "MA03-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA06-U03",
+      "unit_id": "ba31cb9c-7280-486d-bb87-4c876fbeca3c",
+      "plan_revision_id": "5a75769b-a51a-53dc-a38b-11f93dc860cd",
+      "package": "PK08",
+      "rank": 16,
+      "MVP": true,
+      "MVP_wave": 3,
+      "spec_file": "unit_specs\\MA06-U03.spec.json",
+      "raw_sha256": "637d03f491fd949862fc722f5d99ae0c8aab57e07bacb7aa8edaf106259778f9",
+      "source_unit_canonical_sha256": "ed0c71810a9cc679b1aaf5f381ac8d1de1f6408c9c2767e82128d0833f51ac17",
+      "direct_dependencies": [
+        "MA06-U01",
+        "MA02-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA06-U04",
+      "unit_id": "210f5fa9-f030-4aab-a156-65f8f340053e",
+      "plan_revision_id": "4d05b67a-e5fc-58c9-8ef7-97f05641b700",
+      "package": "PK08",
+      "rank": 17,
+      "MVP": true,
+      "MVP_wave": 3,
+      "spec_file": "unit_specs\\MA06-U04.spec.json",
+      "raw_sha256": "0175cfdb5a117773cc13bef635721f974cbbd9d6b044536c7cbb6ddc4c730b30",
+      "source_unit_canonical_sha256": "98900eb768dd3884119113aa5363b20992cdd56b2ddfe5a5e0f232b2cede7a44",
+      "direct_dependencies": [
+        "MA06-U01",
+        "MA02-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA06-U05",
+      "unit_id": "7f17ce05-eec2-40d8-9915-267db9c07d6d",
+      "plan_revision_id": "e9d1dc12-7e4b-50c3-b979-14f7163f5dc8",
+      "package": "PK08",
+      "rank": 18,
+      "MVP": true,
+      "MVP_wave": 3,
+      "spec_file": "unit_specs\\MA06-U05.spec.json",
+      "raw_sha256": "ac1b280b8f50ce8e763d90b5a510b4b8df6096fc345369824e7df695851d1757",
+      "source_unit_canonical_sha256": "7a04d9e09c84bf81283897e63948a06ced91d8801603756369823e717ade7263",
+      "direct_dependencies": [
+        "MA06-U01",
+        "MA02-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA07-U01",
+      "unit_id": "21acd223-737f-4587-b0d8-928191b687fe",
+      "plan_revision_id": "89dc15bc-2896-5402-aed3-235aeb38c1e5",
+      "package": "PK08",
+      "rank": 19,
+      "MVP": true,
+      "MVP_wave": 3,
+      "spec_file": "unit_specs\\MA07-U01.spec.json",
+      "raw_sha256": "7091ec8d2fdec115b8d0c72e8166184ca4ed334ca71aeb7a8871bc730e6a5309",
+      "source_unit_canonical_sha256": "39d4de9b50080756bcc251763568b1fda626d9757b869b24c8f0edd2b1161b85",
+      "direct_dependencies": [
+        "MA06-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA12-U02",
+      "unit_id": "56d3d5a6-e69a-401b-b92a-a6dcba032d10",
+      "plan_revision_id": "cd1f6f3e-189f-5ab4-9016-0d1eae3f25f9",
+      "package": "PK03",
+      "rank": 20,
+      "MVP": true,
+      "MVP_wave": 3,
+      "spec_file": "unit_specs\\MA12-U02.spec.json",
+      "raw_sha256": "0bac1759e5c5c53eaf1271224ec2184d66a4cc0ada8c8a2948df91336e0f8afa",
+      "source_unit_canonical_sha256": "622590cc7cbe2efe9452e840a8347d08f4d678a5bb0c18a643cebec203ac357a",
+      "direct_dependencies": [
+        "MA12-U01",
+        "MA11-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA12-U04",
+      "unit_id": "a2c5f009-53d8-4b97-bd37-be95b61ba3fe",
+      "plan_revision_id": "97914c4f-caad-5c5d-a751-60575764228b",
+      "package": "PK03",
+      "rank": 21,
+      "MVP": true,
+      "MVP_wave": 3,
+      "spec_file": "unit_specs\\MA12-U04.spec.json",
+      "raw_sha256": "6df42db8b0864a6925b08877c024111a5f8a6c82b4cb7a16dc5ab037e2d7c136",
+      "source_unit_canonical_sha256": "95465d759d2a60106b59c164dcbc7a9ee94a9cb9354096bc1fbf663842f61aa6",
+      "direct_dependencies": [
+        "MA12-U01",
+        "MA11-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA13-U01",
+      "unit_id": "8127078d-3263-47d4-a1c5-59390da7224d",
+      "plan_revision_id": "68f0dc3c-86da-5af4-8490-7460ff221457",
+      "package": "PK04",
+      "rank": 22,
+      "MVP": true,
+      "MVP_wave": 3,
+      "spec_file": "unit_specs\\MA13-U01.spec.json",
+      "raw_sha256": "61d57567411128fcd9d9fc24501230d3dff1787476535c93bd0c81bfd5fb78ce",
+      "source_unit_canonical_sha256": "467a769f061f03e35f13a586292f9abeddaf7ab304fb13ba84d8718b83f4d790",
+      "direct_dependencies": [
+        "MA11-U01",
+        "MA12-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA04-U02",
+      "unit_id": "e0279c82-8eec-4de5-80c9-7e1b7d78a48f",
+      "plan_revision_id": "d9e9bc44-1910-5098-b2cd-dac8002f8e2f",
+      "package": "PK06",
+      "rank": 23,
+      "MVP": true,
+      "MVP_wave": 4,
+      "spec_file": "unit_specs\\MA04-U02.spec.json",
+      "raw_sha256": "5197b71c6787a0542e2c2f3da2424753a5d69bf15f17c48d408c374c4d779472",
+      "source_unit_canonical_sha256": "1d747c5fbda794ddebddac9315bcde792bb5162fef0014d4761c671a07d2a4eb",
+      "direct_dependencies": [
+        "MA04-U01",
+        "MA02-U01",
+        "MA03-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA05-U01",
+      "unit_id": "2f7b9a7e-93eb-4f7a-a8c8-40c117209a0a",
+      "plan_revision_id": "cb5c8a40-6a4b-55df-ae7d-11407ef6f661",
+      "package": "PK07",
+      "rank": 24,
+      "MVP": true,
+      "MVP_wave": 4,
+      "spec_file": "unit_specs\\MA05-U01.spec.json",
+      "raw_sha256": "1ccced5f5271de7393f56c90a050b01f544dca9c650be14fc776be1e4d061926",
+      "source_unit_canonical_sha256": "65aed17f88e6e4145eb76ad24ccdc853d31c3d610c2e77d54928b63c23e304a3",
+      "direct_dependencies": [
+        "MA04-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA06-U02",
+      "unit_id": "ddc16700-5687-4b64-9110-fb180fe5b60b",
+      "plan_revision_id": "012053e2-6534-5048-87fb-517f57700685",
+      "package": "PK08",
+      "rank": 25,
+      "MVP": true,
+      "MVP_wave": 4,
+      "spec_file": "unit_specs\\MA06-U02.spec.json",
+      "raw_sha256": "adec80976576a1006d6b9c8304dfa2e4792d807e7e61e2263d2fdd4c5fe4b0b3",
+      "source_unit_canonical_sha256": "84270ad78caaf4873e2119543c8273085818c784f6b8fe09948e2e1e18aa3145",
+      "direct_dependencies": [
+        "MA06-U01",
+        "MA02-U01",
+        "MA06-U03"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA07-U02",
+      "unit_id": "3e17cc07-98bb-4a34-bf93-3559c70e862c",
+      "plan_revision_id": "733a8da0-2823-50a0-b213-767b9956a90a",
+      "package": "PK08",
+      "rank": 26,
+      "MVP": true,
+      "MVP_wave": 4,
+      "spec_file": "unit_specs\\MA07-U02.spec.json",
+      "raw_sha256": "2e10b965d6bb0d5fdb347f777f7042bef876c4b849ce73d1c3b08e9fac27f978",
+      "source_unit_canonical_sha256": "6fa4ea14f554894e0b5b7d5fc454bbceab006b9fecc29e07bff5dde9fbbddaee",
+      "direct_dependencies": [
+        "MA07-U01",
+        "MA06-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA07-U04",
+      "unit_id": "3ea5aaf9-8a64-48ac-adb0-e5b315c8e548",
+      "plan_revision_id": "a3e4d7dc-f93f-5fdc-9b46-e848fa0d7169",
+      "package": "PK08",
+      "rank": 27,
+      "MVP": true,
+      "MVP_wave": 4,
+      "spec_file": "unit_specs\\MA07-U04.spec.json",
+      "raw_sha256": "b2acd97f20fe946ebdf42e02194b0bf0ebf33b1d1220da7c25d0b93436586ccc",
+      "source_unit_canonical_sha256": "00a3c8d9f40019137dc1c201ef0629a323811a303773e9767f1826fd1382dc09",
+      "direct_dependencies": [
+        "MA07-U01",
+        "MA06-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA07-U05",
+      "unit_id": "fc92c842-a14b-493b-9779-c83823027490",
+      "plan_revision_id": "5b1e6f7b-af2e-52a8-9702-e80d28fb2781",
+      "package": "PK08",
+      "rank": 28,
+      "MVP": true,
+      "MVP_wave": 4,
+      "spec_file": "unit_specs\\MA07-U05.spec.json",
+      "raw_sha256": "7dd8a7053417e2b137a78a8e6bebdc3cb1184c4f9943b4efaa9565f718a026e8",
+      "source_unit_canonical_sha256": "b7f54fda78e6326c61e5ed8bba49ab7df155a493f5841b4145b11ff435b1b0f3",
+      "direct_dependencies": [
+        "MA07-U01",
+        "MA06-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA08-U01",
+      "unit_id": "f4f4e882-c4ab-472e-be9c-4de313d024d5",
+      "plan_revision_id": "1214700b-50b5-5f77-bdbe-385862769a04",
+      "package": "PK09",
+      "rank": 29,
+      "MVP": true,
+      "MVP_wave": 4,
+      "spec_file": "unit_specs\\MA08-U01.spec.json",
+      "raw_sha256": "b7472366e3b5755c9070b6f3dad415767e9f62affbf4faf30ee11e7bece5ed14",
+      "source_unit_canonical_sha256": "aef4dd65aebc014de88e31ba8d810441ede03a8d66c60de2f9d7e379103732d1",
+      "direct_dependencies": [
+        "MA07-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA13-U02",
+      "unit_id": "edf14ff8-839f-44f4-a1b0-166c024f1515",
+      "plan_revision_id": "cf90e661-8137-5145-b690-0777ca2c36c2",
+      "package": "PK04",
+      "rank": 30,
+      "MVP": true,
+      "MVP_wave": 4,
+      "spec_file": "unit_specs\\MA13-U02.spec.json",
+      "raw_sha256": "1d49cdf587d2596d351db82d028862fb7f72374354e6c9dbd916261faf808302",
+      "source_unit_canonical_sha256": "28715890ff54ce8840b2affa4bae7f11902abc00809f68d3122a505ed3c861bd",
+      "direct_dependencies": [
+        "MA13-U01",
+        "MA11-U01",
+        "MA12-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA13-U05",
+      "unit_id": "7dda8b7f-82d2-46d4-b6c5-7e0c960d0e64",
+      "plan_revision_id": "04f3a8e8-9c37-59d7-9f5c-7feda5b77b72",
+      "package": "PK04",
+      "rank": 31,
+      "MVP": true,
+      "MVP_wave": 4,
+      "spec_file": "unit_specs\\MA13-U05.spec.json",
+      "raw_sha256": "155796dce59b1b1c70096879dd8dc5ecb4f37b9d447f3535eafd929916fec79e",
+      "source_unit_canonical_sha256": "5260be9737c5f1c2c5ed1af377583edb23577dc7aafbfdc7c41b9cb3aeb33aba",
+      "direct_dependencies": [
+        "MA13-U01",
+        "MA11-U01",
+        "MA12-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA14-U01",
+      "unit_id": "c709d850-b687-458d-abdd-669bab608b66",
+      "plan_revision_id": "70ed4a45-5604-55a8-820d-82aaa1013c1d",
+      "package": "PK05",
+      "rank": 32,
+      "MVP": true,
+      "MVP_wave": 4,
+      "spec_file": "unit_specs\\MA14-U01.spec.json",
+      "raw_sha256": "fe2535b7104cfa77a46ac7343d55ac0de35ebd5bb4c5231ed132b1a35abdd053",
+      "source_unit_canonical_sha256": "df5e8b726565b5c558ec2616e81fdbe7f3a3dd8e08807df0788a51a71f26ce90",
+      "direct_dependencies": [
+        "MA01-U01",
+        "MA01-U05",
+        "MA12-U01",
+        "MA12-U02"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA16-U01",
+      "unit_id": "a74efbae-fd8d-4684-ab41-2d769263f5d8",
+      "plan_revision_id": "d03b2395-6156-548e-91f2-15b413927375",
+      "package": "PK04",
+      "rank": 33,
+      "MVP": true,
+      "MVP_wave": 4,
+      "spec_file": "unit_specs\\MA16-U01.spec.json",
+      "raw_sha256": "db01e6571c2d887d8cfc1abfb18ffb9664b4094fbeeea925f93504034503a0b3",
+      "source_unit_canonical_sha256": "0ff35d3e2b509422f4c5512244e25febbe0d6059573e2e41ac6a790eb1c85742",
+      "direct_dependencies": [
+        "MA13-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA04-U03",
+      "unit_id": "9e7f20fa-f68c-45a0-8ed0-e841d9a543da",
+      "plan_revision_id": "8efa2c6f-6f31-50b5-8c5e-33f39d143cd7",
+      "package": "PK06",
+      "rank": 34,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA04-U03.spec.json",
+      "raw_sha256": "f38404ad04f3295e020ad6cd42815114eb95f691bc13f62f70c6a6f33520df90",
+      "source_unit_canonical_sha256": "dadbfc5a8d138ad7c051db74c5eb2df6d7ecb448f8220d850bf16ebf4fa39aa3",
+      "direct_dependencies": [
+        "MA04-U01",
+        "MA02-U01",
+        "MA03-U01",
+        "MA04-U02",
+        "MA03-U04"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA05-U02",
+      "unit_id": "ee90d221-1760-4f91-b1c1-15315ab6e72b",
+      "plan_revision_id": "5b8e0654-b557-5ac2-afe8-907be0902deb",
+      "package": "PK07",
+      "rank": 35,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA05-U02.spec.json",
+      "raw_sha256": "95a15d3e6487381b7a70bb5063751ee0e0deae549563dd954ec5e54281e4e955",
+      "source_unit_canonical_sha256": "928688d60d004a3c510e8fcb88297c49545808ec8ef2b9b071c7ff3e466484e1",
+      "direct_dependencies": [
+        "MA05-U01",
+        "MA04-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA05-U03",
+      "unit_id": "dd14d07c-7b22-4915-bf83-5366df74f34d",
+      "plan_revision_id": "3d291ea7-b253-5431-b313-49cafa3d309f",
+      "package": "PK07",
+      "rank": 36,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA05-U03.spec.json",
+      "raw_sha256": "e200b42f8a37fb5ab602ac74bd3c0c82b6b367d64def6354f0ddb897fb5d8612",
+      "source_unit_canonical_sha256": "c37ef7d7026118768736e23abe530f707995d7b7c961af3363964b3e3692cce1",
+      "direct_dependencies": [
+        "MA05-U01",
+        "MA04-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA05-U04",
+      "unit_id": "86028405-7982-4b79-9413-6bcf4abd2776",
+      "plan_revision_id": "a414ae21-edb4-55c3-b804-e1ca2ba27ca8",
+      "package": "PK07",
+      "rank": 37,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA05-U04.spec.json",
+      "raw_sha256": "6ea71a7a628ed8432ded381cd0d30cb6e8513f79ef6bb7cc5dc292c6f0a060a4",
+      "source_unit_canonical_sha256": "9cab524afc24a70319ee2ffef71baa14a0ff5132ab05ca55e339cb6673e9456f",
+      "direct_dependencies": [
+        "MA05-U01",
+        "MA04-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA06-U06",
+      "unit_id": "0e93d037-baa6-4c80-8de7-c8a92c128830",
+      "plan_revision_id": "33f557a5-9e04-58de-967b-52a2665b2595",
+      "package": "PK08",
+      "rank": 38,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA06-U06.spec.json",
+      "raw_sha256": "17c6137eca598d7c4f88f4fa08927386481587e9593a5688bc73a9787ba95bae",
+      "source_unit_canonical_sha256": "b0adae4dc6c6c7446ca41c0f6e821dded59997a473c78e28a9166a41835b2425",
+      "direct_dependencies": [
+        "MA06-U01",
+        "MA02-U01",
+        "MA06-U02",
+        "MA06-U03",
+        "MA06-U04",
+        "MA06-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA08-U03",
+      "unit_id": "407f7d9c-05a0-4926-9421-b062cc4fde53",
+      "plan_revision_id": "5fd10b83-3c4b-587f-9130-8a05d9ee2342",
+      "package": "PK09",
+      "rank": 39,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA08-U03.spec.json",
+      "raw_sha256": "e70cbd94f58727ad44072163df0a8aca4098975417276867a1232880baee71f0",
+      "source_unit_canonical_sha256": "33e8fdd4bc44f292fc608787b77f3e38db51027c2a8799c27901c1109fec95e8",
+      "direct_dependencies": [
+        "MA08-U01",
+        "MA07-U01",
+        "MA07-U04",
+        "MA03-U04"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA08-U04",
+      "unit_id": "e75649b8-6255-49c7-9e1d-58ec44e71b0a",
+      "plan_revision_id": "1fb67e30-ce85-58e9-b30a-46dbf04dcf78",
+      "package": "PK09",
+      "rank": 40,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA08-U04.spec.json",
+      "raw_sha256": "d72e4a6a0deae3dfebf3ea56ae218e15576f7aa92c4dd9c20e276080be1f3616",
+      "source_unit_canonical_sha256": "ae4ccc9946c6de8ebd30332fa80db93a31f693cacacc49aedbbb60e06fafaab9",
+      "direct_dependencies": [
+        "MA08-U01",
+        "MA07-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA09-U01",
+      "unit_id": "2460bd7b-58e9-447e-bdd2-b51e823802d1",
+      "plan_revision_id": "4884af5b-f805-5d04-bb69-2daf8b8a2c14",
+      "package": "PK09",
+      "rank": 41,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA09-U01.spec.json",
+      "raw_sha256": "6661d7650c25cf6dfab878c759bb7711c4aed15f94dc0200a791a3a6f10ea263",
+      "source_unit_canonical_sha256": "c41ccb145423797fa3c41777fbd77f6b0034aeba4b8080e494dc15eb0c22bb20",
+      "direct_dependencies": [
+        "MA02-U01",
+        "MA08-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA14-U02",
+      "unit_id": "4f430dbc-e115-4b81-b167-213e4bec9618",
+      "plan_revision_id": "5f7dcff4-0eff-54f7-9cdf-6e765b1cffd5",
+      "package": "PK05",
+      "rank": 42,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA14-U02.spec.json",
+      "raw_sha256": "7aa3afd863fe1da8c8a5a4eea57903f48226b913303ac6fc94854b8b2be87be4",
+      "source_unit_canonical_sha256": "6d66e7d5866daf699d841e64056c5cb7fdad725acecfacb6936ce9395f9bc7b4",
+      "direct_dependencies": [
+        "MA14-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA14-U03",
+      "unit_id": "a78c07f3-7fe9-4937-b2d2-915e8c01061b",
+      "plan_revision_id": "2bd9fc15-5fb5-595e-a9f1-3b197b3ab3c8",
+      "package": "PK05",
+      "rank": 43,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA14-U03.spec.json",
+      "raw_sha256": "c6bee96731c03b1b0dba35d74bf9bcdc1dd1ea53005f805941abf4480aebee14",
+      "source_unit_canonical_sha256": "9364edfd617db3bff78688c9f8ea341561de305f9dd51cce6cf5440b3cd10374",
+      "direct_dependencies": [
+        "MA14-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA14-U05",
+      "unit_id": "26cba0b2-f5f6-4bfc-9a87-04f407a4d874",
+      "plan_revision_id": "fc67d03f-0906-52fb-8278-929789bc0761",
+      "package": "PK05",
+      "rank": 44,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA14-U05.spec.json",
+      "raw_sha256": "9470278166e220163efdc3016da222d9c8cffc8b2622ac23bb85586ab067415e",
+      "source_unit_canonical_sha256": "988d70dfcf975a3eff24780d7cb4eaec05c29cd7ba5307983259d0908436629d",
+      "direct_dependencies": [
+        "MA14-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA16-U02",
+      "unit_id": "417a48ca-cd02-4682-8099-6b22cb9347d6",
+      "plan_revision_id": "e2aaf8ab-669c-5f9b-be9d-def791046b1a",
+      "package": "PK04",
+      "rank": 45,
+      "MVP": true,
+      "MVP_wave": 5,
+      "spec_file": "unit_specs\\MA16-U02.spec.json",
+      "raw_sha256": "15fd5345c79b05d30e5d1da65e684716ca55d0ad12ea4ceaa1f82e4b29ceacbe",
+      "source_unit_canonical_sha256": "13bb34d8a522932efe4df08988ac04d79aee561f2f451f124eb15bd5d474b4f2",
+      "direct_dependencies": [
+        "MA16-U01",
+        "MA13-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA04-U04",
+      "unit_id": "cabd3d4c-e10a-4a60-a1c2-8e85cd44684f",
+      "plan_revision_id": "fc2d1679-9a08-5b9f-a310-8cff88af0d1f",
+      "package": "PK06",
+      "rank": 46,
+      "MVP": true,
+      "MVP_wave": 6,
+      "spec_file": "unit_specs\\MA04-U04.spec.json",
+      "raw_sha256": "cbc92b07098a004e5a576df61034ab709751031ed216c2a4919199da42fd3f71",
+      "source_unit_canonical_sha256": "de35b00665c9985c8fbdfac7c7c0f7d49cfe9f8165e172fe0c839f55eae7f7a5",
+      "direct_dependencies": [
+        "MA04-U01",
+        "MA02-U01",
+        "MA03-U01",
+        "MA04-U03",
+        "MA03-U03",
+        "MA03-U04"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA14-U04",
+      "unit_id": "79721523-c63f-4fdb-ac01-f16280c0c487",
+      "plan_revision_id": "2da9c314-ab94-5f68-8b21-bc290be94ee6",
+      "package": "PK05",
+      "rank": 47,
+      "MVP": true,
+      "MVP_wave": 6,
+      "spec_file": "unit_specs\\MA14-U04.spec.json",
+      "raw_sha256": "e543318f40ff3100d6057ddca0e8a7c6fdc9fc4edc8390f9da8d3c21c35e2c70",
+      "source_unit_canonical_sha256": "5ab9197355a7c3674275bfe1591e5c5ec4bbce082716446ddcf045e7eac0bd60",
+      "direct_dependencies": [
+        "MA14-U01",
+        "MA01-U01",
+        "MA14-U02",
+        "MA14-U03"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA16-U04",
+      "unit_id": "5fab7bea-92e7-44b4-a481-9a9f8e5df509",
+      "plan_revision_id": "37305c52-5893-5bdc-bf62-baad9d9b7841",
+      "package": "PK10",
+      "rank": 48,
+      "MVP": true,
+      "MVP_wave": 6,
+      "spec_file": "unit_specs\\MA16-U04.spec.json",
+      "raw_sha256": "15698e11acc181af38317dd9e88b766c4f5961589977a3f0a33835ad45c7fd8d",
+      "source_unit_canonical_sha256": "7a3a413a1550cc4537a6bb6e1a82d09af391885c7c6cef1c36a2ed7f3d0d0fc4",
+      "direct_dependencies": [
+        "MA16-U01",
+        "MA13-U01",
+        "MA08-U04",
+        "MA13-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA04-U05",
+      "unit_id": "5fec1579-d8c0-45a9-b658-3eb47efb5a31",
+      "plan_revision_id": "231c5ce2-922e-5905-ba76-5500f7cb7609",
+      "package": "PK06",
+      "rank": 49,
+      "MVP": true,
+      "MVP_wave": 7,
+      "spec_file": "unit_specs\\MA04-U05.spec.json",
+      "raw_sha256": "bfe98a0062a73f4b164f3e5eaf185844159025604d7c4137020ea75a9d807da8",
+      "source_unit_canonical_sha256": "88248a7b22ac0fa7d32e4dbe2942cb9f58cefaf85202526fe623a7af8008c91d",
+      "direct_dependencies": [
+        "MA04-U01",
+        "MA02-U01",
+        "MA03-U01",
+        "MA04-U04"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA10-U02",
+      "unit_id": "5af2fc67-7bb1-425e-99d2-3a345e356b6f",
+      "plan_revision_id": "76b70b63-62b9-506c-8972-88f2d75349f5",
+      "package": "PK11",
+      "rank": 50,
+      "MVP": true,
+      "MVP_wave": 7,
+      "spec_file": "unit_specs\\MA10-U02.spec.json",
+      "raw_sha256": "e4298b3f548eed8c5d88d1f4ac185ee68214c304e82bf18d814eec304a2531d6",
+      "source_unit_canonical_sha256": "88f23aecc641ee3b37c6c9a1dd34b96914cedbf06b4daa86cf50ab397f531964",
+      "direct_dependencies": [
+        "MA10-U01",
+        "MA01-U01",
+        "MA02-U01",
+        "MA02-U05",
+        "MA03-U02",
+        "MA03-U04",
+        "MA05-U02",
+        "MA05-U03",
+        "MA05-U04",
+        "MA06-U01",
+        "MA06-U02",
+        "MA06-U04",
+        "MA06-U05",
+        "MA06-U06",
+        "MA16-U04",
+        "MA12-U04",
+        "MA04-U02",
+        "MA08-U03",
+        "MA08-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA14-U06",
+      "unit_id": "069c5da8-3515-4f82-aec7-1a069091b5c9",
+      "plan_revision_id": "90ac2f19-ce9c-5ad5-90de-34fe0da6e947",
+      "package": "PK05",
+      "rank": 51,
+      "MVP": true,
+      "MVP_wave": 7,
+      "spec_file": "unit_specs\\MA14-U06.spec.json",
+      "raw_sha256": "96fd45f1b72972593eb2e9329af84c065a4331cd73f315fb851d43e007354b47",
+      "source_unit_canonical_sha256": "7b6ec56b29a6ea83d058b6509fd8ac7843015bb56e57abbef52e53df65525137",
+      "direct_dependencies": [
+        "MA14-U01",
+        "MA01-U01",
+        "MA14-U02",
+        "MA14-U03",
+        "MA14-U04",
+        "MA14-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA04-U06",
+      "unit_id": "430b85dc-75e0-4811-b798-3fcc76f1f34e",
+      "plan_revision_id": "bff5c555-25ff-5497-b81c-af5e633c10b2",
+      "package": "PK06",
+      "rank": 52,
+      "MVP": true,
+      "MVP_wave": 8,
+      "spec_file": "unit_specs\\MA04-U06.spec.json",
+      "raw_sha256": "f1354995c2f3da27301232db597638b06ed04718412f246018318748e874550c",
+      "source_unit_canonical_sha256": "e2576160ac2336226f1c72ce6b33c7d9c8bccba7e7dff3a54814e7b082175ad2",
+      "direct_dependencies": [
+        "MA04-U01",
+        "MA02-U01",
+        "MA03-U01",
+        "MA04-U02",
+        "MA04-U03",
+        "MA04-U04",
+        "MA04-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA10-U04",
+      "unit_id": "75db228f-e2b7-40f6-a45b-0bd6d339aeab",
+      "plan_revision_id": "b3df278b-998a-52e8-9617-951daf1c90fb",
+      "package": "PK11",
+      "rank": 53,
+      "MVP": true,
+      "MVP_wave": 8,
+      "spec_file": "unit_specs\\MA10-U04.spec.json",
+      "raw_sha256": "5df39b0ac82f5a259f0a964f470d5adb6d1f58a43ef6815f90344c778e92fe9d",
+      "source_unit_canonical_sha256": "315745b1bcb06b8d14513ccc5dad57f4af7843d0a5391c88450873e1e4da293f",
+      "direct_dependencies": [
+        "MA10-U01",
+        "MA01-U01",
+        "MA04-U04",
+        "MA06-U02",
+        "MA06-U06",
+        "MA07-U02",
+        "MA07-U05",
+        "MA08-U01",
+        "MA08-U03",
+        "MA08-U04",
+        "MA10-U02"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA10-U05",
+      "unit_id": "62dbf7f6-c1bf-406f-b448-e84b114c59e6",
+      "plan_revision_id": "ef3e851b-aeea-5aee-a38b-154921c79d10",
+      "package": "PK11",
+      "rank": 54,
+      "MVP": true,
+      "MVP_wave": 8,
+      "spec_file": "unit_specs\\MA10-U05.spec.json",
+      "raw_sha256": "55db51ae9a6d75c372fd810f2286ed4b6c4563e5f4be2d336865bfca3be269ab",
+      "source_unit_canonical_sha256": "926c7933fb6912302d6e634389f10ac0aa68eb0aee657028de7fa8c0ac4f0ae2",
+      "direct_dependencies": [
+        "MA10-U01",
+        "MA01-U01",
+        "MA09-U01",
+        "MA11-U02",
+        "MA11-U03",
+        "MA11-U04",
+        "MA12-U01",
+        "MA12-U04",
+        "MA13-U01",
+        "MA13-U02",
+        "MA13-U05",
+        "MA14-U06",
+        "MA16-U02",
+        "MA16-U04"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA10-U03",
+      "unit_id": "3d613bb3-e281-4ea7-a682-341eb3aff9d8",
+      "plan_revision_id": "7639bf66-d6d2-5907-9a93-b6d2f33ac43d",
+      "package": "PK11",
+      "rank": 55,
+      "MVP": true,
+      "MVP_wave": 9,
+      "spec_file": "unit_specs\\MA10-U03.spec.json",
+      "raw_sha256": "b2725d1087ca7aeb56714781665d237fe386d45cc5da370791e02e2ff150583e",
+      "source_unit_canonical_sha256": "7e896ee0c4d3a06e9566e6d76c7c44e52f03aa5879d46771178cd4c544563ff6",
+      "direct_dependencies": [
+        "MA10-U01",
+        "MA01-U01",
+        "MA04-U01",
+        "MA04-U02",
+        "MA04-U03",
+        "MA04-U04",
+        "MA04-U05",
+        "MA04-U06",
+        "MA07-U04"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA10-U06",
+      "unit_id": "0725e6af-4fbf-4f0f-b1f4-37fb0455548f",
+      "plan_revision_id": "791b2c74-25c8-5b4c-b74d-1803b988a6c9",
+      "package": "PK11",
+      "rank": 56,
+      "MVP": true,
+      "MVP_wave": 10,
+      "spec_file": "unit_specs\\MA10-U06.spec.json",
+      "raw_sha256": "d2f20b35b1f876f65edb47184e112ea303dcc3d75ba06100dec44db720398b9c",
+      "source_unit_canonical_sha256": "dbacecf2a4bebab653f073ecf19ee9557b3bf49bad51aabb6c73ffd31fc90c53",
+      "direct_dependencies": [
+        "MA10-U01",
+        "MA01-U01",
+        "MA10-U02",
+        "MA10-U03",
+        "MA10-U04",
+        "MA10-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA01-U02",
+      "unit_id": "a4f5ef10-5f3b-4102-955e-40dfec5e9670",
+      "plan_revision_id": "e650794d-d3e6-5876-a952-a38fc13f240c",
+      "package": "PK01",
+      "rank": 57,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA01-U02.spec.json",
+      "raw_sha256": "c554ce83f04446b1e1c55a0ef2623ac2164dbfbad22a21ca39700c61a213a373",
+      "source_unit_canonical_sha256": "f343c4046ebc0ff421051d1d632685525955ff0b8bf72c76cd70b7b20d12aa4c",
+      "direct_dependencies": [
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA01-U03",
+      "unit_id": "633d33a6-fe05-4935-ba18-be8c9566092c",
+      "plan_revision_id": "bc4618b8-b7e8-5483-91f2-1a4b2f7bab58",
+      "package": "PK01",
+      "rank": 58,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA01-U03.spec.json",
+      "raw_sha256": "26ef5a76890a7da9d3fbae46557f7947eef40029e1fde6be388f976d37fad4b3",
+      "source_unit_canonical_sha256": "6327030d4a4fcb42313f770c0e211162a489c7646d7e9dda951c257f87768c09",
+      "direct_dependencies": [
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA01-U04",
+      "unit_id": "d577c63a-cdb0-4f9d-b822-e0729b39caea",
+      "plan_revision_id": "aa966552-48c9-597f-bf41-263fd31f4586",
+      "package": "PK01",
+      "rank": 59,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA01-U04.spec.json",
+      "raw_sha256": "1b18da066d496f852013c1dda4bc28ef572ebea3b74f59028e4ff3c0b409c0ff",
+      "source_unit_canonical_sha256": "51a506521da58f952d07f274c81e8f7391c2a4ce86fa2b966af05e0c0d777234",
+      "direct_dependencies": [
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA15-U01",
+      "unit_id": "6aa09fb0-df29-41cc-aa5a-9d7aafb8011a",
+      "plan_revision_id": "60ee3bdb-789d-5e0f-9b59-5a1d90515c84",
+      "package": "PK01",
+      "rank": 60,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA15-U01.spec.json",
+      "raw_sha256": "45859f37041dee2e5ff3a667ba549933afc37c702571d14db885bddd9d843c18",
+      "source_unit_canonical_sha256": "e5b89d8e9ec8ab42ab2aaa949d257dfd6de0c784b9e1ea57dbb1f857155a1b19",
+      "direct_dependencies": [
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA01-U06",
+      "unit_id": "2451c839-f649-459e-ad0a-000ce0d15e70",
+      "plan_revision_id": "fc71825a-74b0-5c82-9bbf-f4cf762609d6",
+      "package": "PK01",
+      "rank": 61,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA01-U06.spec.json",
+      "raw_sha256": "fd0806f298af22a74cf5070bf54eb3ce7d81c7f4122c648e924d8a1b64c32c94",
+      "source_unit_canonical_sha256": "71132234b9f22619b8b5e909d3780f27844a9c919a5e0259b70f657e607da06f",
+      "direct_dependencies": [
+        "MA01-U01",
+        "MA01-U02",
+        "MA01-U03",
+        "MA01-U04",
+        "MA01-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA02-U02",
+      "unit_id": "12e11da3-4d67-4fa7-a29f-f34ac6e64d27",
+      "plan_revision_id": "18a945f6-c11c-53d6-8b4d-938cf594a9e8",
+      "package": "PK02",
+      "rank": 62,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA02-U02.spec.json",
+      "raw_sha256": "4516715eca9779c6ca2f20ad0343378b8ae208e55c0d22ee1ab2de8f3bdf6f70",
+      "source_unit_canonical_sha256": "5b2e0e50cdb957fbea24ba8875c619e461b2382d7bbd82e610e469b0a113aee9",
+      "direct_dependencies": [
+        "MA02-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA02-U03",
+      "unit_id": "1f4be8f2-675d-4a0f-82a9-3f8376c106e2",
+      "plan_revision_id": "56b29247-1f7f-55c0-8904-1730fdfc69be",
+      "package": "PK02",
+      "rank": 63,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA02-U03.spec.json",
+      "raw_sha256": "7d2b8e57854c72655344c5ae87593958f842c9384a1af0373f4dc145d0ed8f4e",
+      "source_unit_canonical_sha256": "5136ae3a1b39bcd9b0388de412dfc3d090157c7b5ce040d88cd752af5da80b1b",
+      "direct_dependencies": [
+        "MA02-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA02-U04",
+      "unit_id": "d8a840bf-577a-4689-9317-2b6db9520ad0",
+      "plan_revision_id": "7953f293-ff11-5928-ba97-2ed128006a98",
+      "package": "PK02",
+      "rank": 64,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA02-U04.spec.json",
+      "raw_sha256": "7b5e5457e0f976f86b04373cf6c77c889655216a5428a38b6cb8c8ffdc9ef1c2",
+      "source_unit_canonical_sha256": "17d5a5dfec65834d681a9a1bb24b15cfb01ee985718e06adaf0a5f2e69b0b7c2",
+      "direct_dependencies": [
+        "MA02-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA11-U05",
+      "unit_id": "58445c72-5dbd-4e97-8cbe-c077a2a56ed2",
+      "plan_revision_id": "a066a46b-7551-5e35-bfbd-46824d44a410",
+      "package": "PK03",
+      "rank": 65,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA11-U05.spec.json",
+      "raw_sha256": "f8ab2c39ae6617f5fb9628eee983d071aaca891830a1045d45aea78261f42448",
+      "source_unit_canonical_sha256": "d87789f9f4a18f94ae78d68a990c493af7ef36dc6ccf228b6f3b72bef347f37c",
+      "direct_dependencies": [
+        "MA11-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA15-U02",
+      "unit_id": "f6d3c601-3859-4405-80d1-3ea1b8e737b4",
+      "plan_revision_id": "30ae3323-5e56-5ce7-be35-4cfa9218f12d",
+      "package": "PK01",
+      "rank": 66,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA15-U02.spec.json",
+      "raw_sha256": "88426b08d634013739b562eff5060b9137c4651d38f34abe2af45e9d25f1ef16",
+      "source_unit_canonical_sha256": "2439bc379a484bfd280634f10bb26eefd753b27de911bfdb113226c77f35b854",
+      "direct_dependencies": [
+        "MA15-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA15-U04",
+      "unit_id": "87685a87-d4a5-43f5-b5b9-df5c61d067aa",
+      "plan_revision_id": "a04a4a0f-3f6c-50a8-b8a2-1c1f41425cb9",
+      "package": "PK01",
+      "rank": 67,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA15-U04.spec.json",
+      "raw_sha256": "13a37aea5f363b2627dbd5ccfeb9cdd2f747848048e5697e10f8e3b2de90ac90",
+      "source_unit_canonical_sha256": "20636d20b5bdd1d905922923594aa2a522962c13be79948ed0a6538fbb61a1ec",
+      "direct_dependencies": [
+        "MA15-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA15-U05",
+      "unit_id": "6fde1133-cc4a-4e92-a48a-97ce79775779",
+      "plan_revision_id": "395d8b27-0de6-539d-b712-469bb068e2ba",
+      "package": "PK01",
+      "rank": 68,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA15-U05.spec.json",
+      "raw_sha256": "a5742b6691b98eac60dd98ea83f61752cb8ce5345c6f567452db31fb84301fe8",
+      "source_unit_canonical_sha256": "fe8dc8016fdf859cf5bc993b32a13d93dee6e422cbe6f6e4ffc388817892686d",
+      "direct_dependencies": [
+        "MA15-U01",
+        "MA01-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA02-U06",
+      "unit_id": "029f6c82-78b0-45d5-9c05-ddea6ce17f02",
+      "plan_revision_id": "783073e4-1985-57cd-bae5-451da454e0c5",
+      "package": "PK02",
+      "rank": 69,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA02-U06.spec.json",
+      "raw_sha256": "5dbb86d39420d1e9b518dad3241b2c061d3cd4245f88e873fe6cde495b01a8ce",
+      "source_unit_canonical_sha256": "1700b4b90cd4074af8085f271ead9562cd753c370027f129afacf087b8e4efca",
+      "direct_dependencies": [
+        "MA02-U01",
+        "MA01-U01",
+        "MA02-U02",
+        "MA02-U03",
+        "MA02-U04",
+        "MA02-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA03-U05",
+      "unit_id": "fd74b3fa-93fc-473f-9208-106dc4e1742b",
+      "plan_revision_id": "2f70d5cd-203c-518a-8776-ce4820962ec6",
+      "package": "PK02",
+      "rank": 70,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA03-U05.spec.json",
+      "raw_sha256": "a668a6c6edbfaf17d3a7d416d45d27d19bdfb0afac2a4c11b8fc453f05f4f5d5",
+      "source_unit_canonical_sha256": "cdba45125d51c565a148ee3b54253bf698964aa6f4a09d3a0b92693a08b49aad",
+      "direct_dependencies": [
+        "MA03-U01",
+        "MA02-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA11-U06",
+      "unit_id": "4dca68b7-4b4d-46f6-942f-88449b4fe158",
+      "plan_revision_id": "3253d481-3840-5424-9e4e-65fe99db98e7",
+      "package": "PK03",
+      "rank": 71,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA11-U06.spec.json",
+      "raw_sha256": "d6a7462dab548c271b5154cfefb05876656e3684524a3241a824a3bcb317485d",
+      "source_unit_canonical_sha256": "cf2493a7501c63468317d01827f32231e8fd73b1f8ac54cf2d58ccc903d95b80",
+      "direct_dependencies": [
+        "MA11-U01",
+        "MA01-U01",
+        "MA11-U02",
+        "MA11-U03",
+        "MA11-U04",
+        "MA11-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA12-U03",
+      "unit_id": "b10bf655-7e29-42bb-9a13-76861e6fd09c",
+      "plan_revision_id": "c32899d0-0302-5ec1-98ac-f98215791331",
+      "package": "PK03",
+      "rank": 72,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA12-U03.spec.json",
+      "raw_sha256": "e96acca9ecefb21b8e84ebf2ae0f13d303d194fb499c628381fec74b9f8511e0",
+      "source_unit_canonical_sha256": "65cd9c2b8ea9eaa7b866c5ea8803bf11ff75986e1daafd551b5cfc0b7164f841",
+      "direct_dependencies": [
+        "MA12-U01",
+        "MA11-U01",
+        "MA11-U04"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA12-U05",
+      "unit_id": "0ce2e2ae-646a-4c01-8775-9768cdd56b2e",
+      "plan_revision_id": "1c60a813-7159-5fa0-aa9f-f85a45cefa17",
+      "package": "PK03",
+      "rank": 73,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA12-U05.spec.json",
+      "raw_sha256": "cfb40b93cb0b4fc097a40f1cc8cd68a7de5fe0aa35d0f19174526bc15a0de878",
+      "source_unit_canonical_sha256": "14fc3a0b69e14a6e7a373ec06401460bb0c5e8f5331e496e87bcb16ff4bd959e",
+      "direct_dependencies": [
+        "MA12-U01",
+        "MA11-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA03-U06",
+      "unit_id": "d8b043c9-d0b1-482e-8983-b27bddb726e5",
+      "plan_revision_id": "180a97f2-2306-520c-9601-ef6a06b49b7f",
+      "package": "PK02",
+      "rank": 74,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA03-U06.spec.json",
+      "raw_sha256": "470a9042fa79b16273da5e4fe5405311eeab87bc7266d66de81a0f022564cb5c",
+      "source_unit_canonical_sha256": "f335156055b1761ae96d7f7d77f6d89599404f5d09ab532222e6896ea0b87529",
+      "direct_dependencies": [
+        "MA03-U01",
+        "MA02-U01",
+        "MA03-U02",
+        "MA03-U03",
+        "MA03-U04",
+        "MA03-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA07-U03",
+      "unit_id": "704034d3-4b03-45a9-a26e-7cf723d3aa91",
+      "plan_revision_id": "0600100f-9ef9-5a1f-874e-1beaba6a5aa6",
+      "package": "PK08",
+      "rank": 75,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA07-U03.spec.json",
+      "raw_sha256": "a4d61fff3680a1e1773263deabfa975b73cce06673ad6d283dbe6190d927165d",
+      "source_unit_canonical_sha256": "99227cf7df55426443459d0650f39b2e3f7a92a570c01ef95405a05e7ae08f06",
+      "direct_dependencies": [
+        "MA07-U01",
+        "MA06-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA12-U06",
+      "unit_id": "cdecd5cf-839c-4da8-85e0-76c1b0863d62",
+      "plan_revision_id": "6404c9f6-9193-5da6-aaf3-2473842180a2",
+      "package": "PK03",
+      "rank": 76,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA12-U06.spec.json",
+      "raw_sha256": "a9b410a13052aec599ab52e6d570c1f0d38c264964850ff8c243d0609b8130d3",
+      "source_unit_canonical_sha256": "6257aabd6e20b0eab06fa85e43a6a44c89c576224521bb20ad52a6ec992e3f34",
+      "direct_dependencies": [
+        "MA12-U01",
+        "MA11-U01",
+        "MA12-U02",
+        "MA12-U03",
+        "MA12-U04",
+        "MA12-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA13-U03",
+      "unit_id": "2049e68d-c38a-459f-a0d1-f1df2eda8299",
+      "plan_revision_id": "063c6d26-4efb-54ad-8a5a-33e95cdc3121",
+      "package": "PK04",
+      "rank": 77,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA13-U03.spec.json",
+      "raw_sha256": "50bba6635e955f04c0dac4a771ae7ce8ce682ca23008d3d96f4cc26b87306a45",
+      "source_unit_canonical_sha256": "4793b4a3dff1d02b7672fc65df6a57c37c591d0844890c64b09cdd6421aa0fc6",
+      "direct_dependencies": [
+        "MA13-U01",
+        "MA11-U01",
+        "MA12-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA13-U04",
+      "unit_id": "ddb418b7-65aa-4166-8b9f-e61ba66e6268",
+      "plan_revision_id": "d84756c9-4532-541a-a011-a5d7f601dd2d",
+      "package": "PK04",
+      "rank": 78,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA13-U04.spec.json",
+      "raw_sha256": "4041ee08ae3d99f8db4928d841d23ddf1318a45286d5bbdccd7dab05c6b1def8",
+      "source_unit_canonical_sha256": "44042acaabf618ff9a386be338fff60493b732db1d2b3fe20aa3d8e6542a57d7",
+      "direct_dependencies": [
+        "MA13-U01",
+        "MA11-U01",
+        "MA12-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA05-U05",
+      "unit_id": "09eade78-0341-48b0-8d74-ba544f389675",
+      "plan_revision_id": "11c3871c-964f-5960-b118-4518ed96d123",
+      "package": "PK07",
+      "rank": 79,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA05-U05.spec.json",
+      "raw_sha256": "251076494d42db6b3469bb094c4124ffbeeecc9fa8c08cdedde6f9e741c3e793",
+      "source_unit_canonical_sha256": "0eeacf7423afa6b45c843ca380f197e2590a22602a967048890c8ca4227174a4",
+      "direct_dependencies": [
+        "MA05-U01",
+        "MA04-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA07-U06",
+      "unit_id": "40e58124-2b3f-4086-9111-27f003bd47e1",
+      "plan_revision_id": "5696b044-1281-5534-ab4b-49d89542d9fe",
+      "package": "PK08",
+      "rank": 80,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA07-U06.spec.json",
+      "raw_sha256": "f69a1c6eba1eca0aa9ea149bdbdd7a735e4c2fa84724e034c8c47275fa0c08d7",
+      "source_unit_canonical_sha256": "7f7492b707deb0e70013717162b6a5b3d49e72d4f611f956a275d293dfe4ddaa",
+      "direct_dependencies": [
+        "MA07-U01",
+        "MA06-U01",
+        "MA07-U02",
+        "MA07-U03",
+        "MA07-U04",
+        "MA07-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA08-U02",
+      "unit_id": "c1d4471a-53a0-47aa-9539-31f920cc69df",
+      "plan_revision_id": "b5973806-5ae1-58af-a5a3-4de45a20c785",
+      "package": "PK09",
+      "rank": 81,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA08-U02.spec.json",
+      "raw_sha256": "aea29acb047fb223d093072472ae43a9d274a431e73bab98b28b871cf8744e70",
+      "source_unit_canonical_sha256": "f67b7fe21edfdc63d270cf84b12b6a60186d5b5b496a19ea22451b34fc68961c",
+      "direct_dependencies": [
+        "MA08-U01",
+        "MA07-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA08-U05",
+      "unit_id": "c0ccd521-6c4d-46ad-82c5-a3b5e31f67dc",
+      "plan_revision_id": "5bcaf2c4-6a45-5d49-8a08-42782526687e",
+      "package": "PK09",
+      "rank": 82,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA08-U05.spec.json",
+      "raw_sha256": "1dab5b1f62893823d8b403de1b8d8b21b270cfd433afb94b0f14bdf390c054a3",
+      "source_unit_canonical_sha256": "e52767ff7e5259d0081d45d6d7438e90713e6980754baa1d411bf8190566b358",
+      "direct_dependencies": [
+        "MA08-U01",
+        "MA07-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA13-U06",
+      "unit_id": "93f922ea-3084-498d-aa04-2f7c4b41f497",
+      "plan_revision_id": "d42f6620-27b0-571e-b59a-b81a61a35646",
+      "package": "PK10",
+      "rank": 83,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA13-U06.spec.json",
+      "raw_sha256": "03e2f5d1d06f876651f1db572f9f905513b2f40ad79b79511e642db954068c9c",
+      "source_unit_canonical_sha256": "693507e08c882fa11174f1afeda9d5285be054bdf5c355b6070c4485edbff3b8",
+      "direct_dependencies": [
+        "MA13-U01",
+        "MA11-U01",
+        "MA12-U01",
+        "MA13-U02",
+        "MA13-U03",
+        "MA13-U04",
+        "MA13-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA16-U03",
+      "unit_id": "ffcf094e-f8ac-4ea4-b8b0-45e90063d3cc",
+      "plan_revision_id": "11e0b610-6e6a-5760-a6a3-e9400bbf2fb1",
+      "package": "PK04",
+      "rank": 84,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA16-U03.spec.json",
+      "raw_sha256": "125ac4e31ffc870c2ef266d913147e81a06b3c5dd77ba17735ccfb8414809f1d",
+      "source_unit_canonical_sha256": "60031068b044536c7081c59463dcf5876c37f8dcca3e2df2888aeaf535c5c165",
+      "direct_dependencies": [
+        "MA16-U01",
+        "MA13-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA05-U06",
+      "unit_id": "262a192c-01ba-4b5c-ad9b-500a8a3e4090",
+      "plan_revision_id": "acf55898-7dc8-5813-a51f-5d13af752361",
+      "package": "PK07",
+      "rank": 85,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA05-U06.spec.json",
+      "raw_sha256": "431782ac9453ef69ad41a74a89028ca22cd6a87598008deb76adf279bd5554f3",
+      "source_unit_canonical_sha256": "a3d63fd6cde4d4d4e311d7f2827bb001e8bfb2f1a4ea66b85397a0ae254e5d36",
+      "direct_dependencies": [
+        "MA05-U01",
+        "MA04-U01",
+        "MA05-U02",
+        "MA05-U03",
+        "MA05-U04",
+        "MA05-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA08-U06",
+      "unit_id": "202b1cf1-aa35-4f14-87cb-d290e6bc19e7",
+      "plan_revision_id": "1dffa8f4-e179-54a5-8e50-c116c7eadcac",
+      "package": "PK09",
+      "rank": 86,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA08-U06.spec.json",
+      "raw_sha256": "703d140f37419116e17c625fed3d279e75c1663ed5d45c3f77bb49ced683bca0",
+      "source_unit_canonical_sha256": "bb8b8606e2a88c35795fc4746c71965b9cf107bc45125620608a190dd6bc3e04",
+      "direct_dependencies": [
+        "MA08-U01",
+        "MA07-U01",
+        "MA08-U02",
+        "MA08-U03",
+        "MA08-U04",
+        "MA08-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA09-U02",
+      "unit_id": "01061dbc-3f06-4bc5-acc1-1ef93dd2648d",
+      "plan_revision_id": "801a894b-2154-5812-98fb-abe8ff21b9de",
+      "package": "PK09",
+      "rank": 87,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA09-U02.spec.json",
+      "raw_sha256": "155138c2a2d54d30124bda91a3154a66e954603c20dfbaeb51416feec667b898",
+      "source_unit_canonical_sha256": "489d15515cf1d3f28fa2f686c561c1f8efd86b98f15d28d57caac67fc4fb5d5b",
+      "direct_dependencies": [
+        "MA09-U01",
+        "MA02-U01",
+        "MA08-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA09-U03",
+      "unit_id": "91466dd0-2754-48f1-a6ab-8efbd4c89dfd",
+      "plan_revision_id": "b38ea556-fc87-5420-b35d-9a4ec26e26b6",
+      "package": "PK09",
+      "rank": 88,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA09-U03.spec.json",
+      "raw_sha256": "6740515686bce9a996b5706aa3f9b31d0211328f7975a50ebcb0d7ce6146d834",
+      "source_unit_canonical_sha256": "1088ad45e882c0ed7cf20e3c5cacb2ae55a63bf3d87660e666a780ae8f232e6d",
+      "direct_dependencies": [
+        "MA09-U01",
+        "MA02-U01",
+        "MA08-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA09-U04",
+      "unit_id": "f50172c0-079b-483b-ab98-15764bb8068d",
+      "plan_revision_id": "a13f848e-9e66-59b8-8d6b-2633ed2dcd17",
+      "package": "PK09",
+      "rank": 89,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA09-U04.spec.json",
+      "raw_sha256": "99d6c503057c2f10af948731c388d14342ae9e18905504224faf9d075892c32d",
+      "source_unit_canonical_sha256": "05034c245755d97519487fe5db14dd7a19ca9acdcecc934683ffcad85dfab34b",
+      "direct_dependencies": [
+        "MA09-U01",
+        "MA02-U01",
+        "MA08-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA09-U05",
+      "unit_id": "72cdaf5b-3421-4f9a-bef8-8614d07aa6f3",
+      "plan_revision_id": "b61bcce3-f490-5d14-afc6-882e0ad4ef72",
+      "package": "PK09",
+      "rank": 90,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA09-U05.spec.json",
+      "raw_sha256": "c4712853fb2d5a9f79f01de6e5dc5c8fc58c384eabf7d78a648c7012ed41488a",
+      "source_unit_canonical_sha256": "21f936a57467eb7d63ade3c2ddfcfb1733ff280a95e0a2092a1a810a6df9b1b2",
+      "direct_dependencies": [
+        "MA09-U01",
+        "MA02-U01",
+        "MA08-U01"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA09-U06",
+      "unit_id": "f0b677d7-6a2c-455c-80ca-800525d686be",
+      "plan_revision_id": "72bf9c2a-2ced-5425-8b9e-a81d3acc71e5",
+      "package": "PK09",
+      "rank": 91,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA09-U06.spec.json",
+      "raw_sha256": "c545e2f73653dbd9b3617caa1ce103042be2b35b862993cb411c60c4f552b74c",
+      "source_unit_canonical_sha256": "ad7a3005e8b0f4403b260b11be17d7cf697ea53328566ee7fedb70c6fe3514d8",
+      "direct_dependencies": [
+        "MA09-U01",
+        "MA02-U01",
+        "MA08-U01",
+        "MA09-U02",
+        "MA09-U03",
+        "MA09-U04",
+        "MA09-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA16-U05",
+      "unit_id": "f30d40f9-35c5-476c-9392-7a03a8cf1e1d",
+      "plan_revision_id": "d5fa3deb-b1af-5189-89c6-d8a7b1979f34",
+      "package": "PK10",
+      "rank": 92,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA16-U05.spec.json",
+      "raw_sha256": "0801f8887fa3e266cecad820b23e838b4ebb9d7946385d988ed92de813781655",
+      "source_unit_canonical_sha256": "90b9cf8f12a8411f3f848fea04b90ce9963e0fd49d829510a397449f12d311aa",
+      "direct_dependencies": [
+        "MA16-U01",
+        "MA13-U01",
+        "MA08-U04",
+        "MA08-U05",
+        "MA13-U06",
+        "MA16-U02",
+        "MA16-U04"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA16-U06",
+      "unit_id": "be07a8ab-2efb-43b3-a9de-a9908893b39d",
+      "plan_revision_id": "c58b2aa9-c603-58b6-bf8b-19aec569e31a",
+      "package": "PK10",
+      "rank": 93,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA16-U06.spec.json",
+      "raw_sha256": "961e5411ec9f79f055fc05efad242f3622d37d8d6073d62e29508b7f2d7cd377",
+      "source_unit_canonical_sha256": "38af766acccd4b1b9b5cff32d2d3288a7d2fa99d33d522f296703c5affd7b48a",
+      "direct_dependencies": [
+        "MA16-U01",
+        "MA13-U01",
+        "MA16-U02",
+        "MA16-U03",
+        "MA16-U04",
+        "MA16-U05",
+        "MA13-U06",
+        "MA11-U06"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA15-U03",
+      "unit_id": "1850113a-d5c2-447c-acb6-59f804960ffc",
+      "plan_revision_id": "e19fac1f-77ae-50d2-bc14-c3ab70e805ea",
+      "package": "PK12",
+      "rank": 94,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA15-U03.spec.json",
+      "raw_sha256": "2b8b3fd694ae39b41d6d0be673bf91a74e196a72d2e1f8f46d791aa256f8b23b",
+      "source_unit_canonical_sha256": "eb4d54fb991064b28bd74678a5a26332cccbd8db483261352d70ae578dbddd41",
+      "direct_dependencies": [
+        "MA15-U01",
+        "MA01-U01",
+        "MA01-U05",
+        "MA02-U05",
+        "MA03-U01",
+        "MA03-U02",
+        "MA03-U03",
+        "MA03-U04",
+        "MA03-U05",
+        "MA04-U01",
+        "MA04-U02",
+        "MA04-U03",
+        "MA04-U04",
+        "MA04-U05",
+        "MA04-U06",
+        "MA06-U01",
+        "MA06-U02",
+        "MA06-U03",
+        "MA06-U04",
+        "MA06-U05",
+        "MA07-U01",
+        "MA07-U02",
+        "MA07-U04",
+        "MA07-U05",
+        "MA08-U01",
+        "MA08-U02",
+        "MA08-U03",
+        "MA08-U04",
+        "MA08-U05",
+        "MA09-U04",
+        "MA09-U05",
+        "MA10-U06",
+        "MA11-U03",
+        "MA12-U01",
+        "MA12-U02",
+        "MA12-U04",
+        "MA12-U05",
+        "MA13-U03",
+        "MA13-U05",
+        "MA13-U06",
+        "MA14-U01",
+        "MA14-U04",
+        "MA14-U05",
+        "MA14-U06",
+        "MA16-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    },
+    {
+      "unit_alias": "MA15-U06",
+      "unit_id": "4d2d73f5-5f2b-47ea-bee8-63031e9e9a0e",
+      "plan_revision_id": "249172ce-47aa-5beb-bad5-9f80a082c249",
+      "package": "PK12",
+      "rank": 95,
+      "MVP": false,
+      "MVP_wave": null,
+      "spec_file": "unit_specs\\MA15-U06.spec.json",
+      "raw_sha256": "f23745db69fad59dccaffaed01deb7267524eec1a4c4ca2bcae98c0a5c9f3474",
+      "source_unit_canonical_sha256": "abc39ee450ccde58a2c711d640a40e5ab5775fd03ea3a43b7eabf3e710ec8b67",
+      "direct_dependencies": [
+        "MA15-U01",
+        "MA01-U01",
+        "MA15-U02",
+        "MA15-U03",
+        "MA15-U04",
+        "MA15-U05"
+      ],
+      "accepted_snapshot": false,
+      "execution_authorized": false
+    }
+  ],
+  "MVP_waves": [
+    [
+      "MA01-U01"
+    ],
+    [
+      "MA01-U05",
+      "MA02-U01",
+      "MA10-U01",
+      "MA11-U01"
+    ],
+    [
+      "MA02-U05",
+      "MA03-U01",
+      "MA06-U01",
+      "MA11-U02",
+      "MA11-U03",
+      "MA11-U04",
+      "MA12-U01"
+    ],
+    [
+      "MA03-U02",
+      "MA03-U03",
+      "MA03-U04",
+      "MA04-U01",
+      "MA06-U03",
+      "MA06-U04",
+      "MA06-U05",
+      "MA07-U01",
+      "MA12-U02",
+      "MA12-U04",
+      "MA13-U01"
+    ],
+    [
+      "MA04-U02",
+      "MA05-U01",
+      "MA06-U02",
+      "MA07-U02",
+      "MA07-U04",
+      "MA07-U05",
+      "MA08-U01",
+      "MA13-U02",
+      "MA13-U05",
+      "MA14-U01",
+      "MA16-U01"
+    ],
+    [
+      "MA04-U03",
+      "MA05-U02",
+      "MA05-U03",
+      "MA05-U04",
+      "MA06-U06",
+      "MA08-U03",
+      "MA08-U04",
+      "MA09-U01",
+      "MA14-U02",
+      "MA14-U03",
+      "MA14-U05",
+      "MA16-U02"
+    ],
+    [
+      "MA04-U04",
+      "MA14-U04",
+      "MA16-U04"
+    ],
+    [
+      "MA04-U05",
+      "MA10-U02",
+      "MA14-U06"
+    ],
+    [
+      "MA04-U06",
+      "MA10-U04",
+      "MA10-U05"
+    ],
+    [
+      "MA10-U03"
+    ],
+    [
+      "MA10-U06"
+    ]
+  ],
+  "original_edges": [
+    [
+      "MA01-U01",
+      "MA01-U02"
+    ],
+    [
+      "MA01-U01",
+      "MA01-U03"
+    ],
+    [
+      "MA01-U01",
+      "MA01-U04"
+    ],
+    [
+      "MA01-U01",
+      "MA01-U05"
+    ],
+    [
+      "MA01-U01",
+      "MA01-U06"
+    ],
+    [
+      "MA01-U01",
+      "MA02-U01"
+    ],
+    [
+      "MA01-U01",
+      "MA02-U02"
+    ],
+    [
+      "MA01-U01",
+      "MA02-U03"
+    ],
+    [
+      "MA01-U01",
+      "MA02-U04"
+    ],
+    [
+      "MA01-U01",
+      "MA02-U05"
+    ],
+    [
+      "MA01-U01",
+      "MA02-U06"
+    ],
+    [
+      "MA01-U01",
+      "MA10-U01"
+    ],
+    [
+      "MA01-U01",
+      "MA10-U02"
+    ],
+    [
+      "MA01-U01",
+      "MA10-U03"
+    ],
+    [
+      "MA01-U01",
+      "MA10-U04"
+    ],
+    [
+      "MA01-U01",
+      "MA10-U05"
+    ],
+    [
+      "MA01-U01",
+      "MA10-U06"
+    ],
+    [
+      "MA01-U01",
+      "MA11-U01"
+    ],
+    [
+      "MA01-U01",
+      "MA11-U02"
+    ],
+    [
+      "MA01-U01",
+      "MA11-U03"
+    ],
+    [
+      "MA01-U01",
+      "MA11-U04"
+    ],
+    [
+      "MA01-U01",
+      "MA11-U05"
+    ],
+    [
+      "MA01-U01",
+      "MA11-U06"
+    ],
+    [
+      "MA01-U01",
+      "MA14-U01"
+    ],
+    [
+      "MA01-U01",
+      "MA14-U02"
+    ],
+    [
+      "MA01-U01",
+      "MA14-U03"
+    ],
+    [
+      "MA01-U01",
+      "MA14-U04"
+    ],
+    [
+      "MA01-U01",
+      "MA14-U05"
+    ],
+    [
+      "MA01-U01",
+      "MA14-U06"
+    ],
+    [
+      "MA01-U01",
+      "MA15-U01"
+    ],
+    [
+      "MA01-U01",
+      "MA15-U02"
+    ],
+    [
+      "MA01-U01",
+      "MA15-U03"
+    ],
+    [
+      "MA01-U01",
+      "MA15-U04"
+    ],
+    [
+      "MA01-U01",
+      "MA15-U05"
+    ],
+    [
+      "MA01-U01",
+      "MA15-U06"
+    ],
+    [
+      "MA01-U02",
+      "MA01-U06"
+    ],
+    [
+      "MA01-U03",
+      "MA01-U06"
+    ],
+    [
+      "MA01-U04",
+      "MA01-U06"
+    ],
+    [
+      "MA01-U05",
+      "MA01-U06"
+    ],
+    [
+      "MA01-U05",
+      "MA14-U01"
+    ],
+    [
+      "MA01-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA02-U01",
+      "MA02-U02"
+    ],
+    [
+      "MA02-U01",
+      "MA02-U03"
+    ],
+    [
+      "MA02-U01",
+      "MA02-U04"
+    ],
+    [
+      "MA02-U01",
+      "MA02-U05"
+    ],
+    [
+      "MA02-U01",
+      "MA02-U06"
+    ],
+    [
+      "MA02-U01",
+      "MA03-U01"
+    ],
+    [
+      "MA02-U01",
+      "MA03-U02"
+    ],
+    [
+      "MA02-U01",
+      "MA03-U03"
+    ],
+    [
+      "MA02-U01",
+      "MA03-U04"
+    ],
+    [
+      "MA02-U01",
+      "MA03-U05"
+    ],
+    [
+      "MA02-U01",
+      "MA03-U06"
+    ],
+    [
+      "MA02-U01",
+      "MA04-U01"
+    ],
+    [
+      "MA02-U01",
+      "MA04-U02"
+    ],
+    [
+      "MA02-U01",
+      "MA04-U03"
+    ],
+    [
+      "MA02-U01",
+      "MA04-U04"
+    ],
+    [
+      "MA02-U01",
+      "MA04-U05"
+    ],
+    [
+      "MA02-U01",
+      "MA04-U06"
+    ],
+    [
+      "MA02-U01",
+      "MA06-U01"
+    ],
+    [
+      "MA02-U01",
+      "MA06-U02"
+    ],
+    [
+      "MA02-U01",
+      "MA06-U03"
+    ],
+    [
+      "MA02-U01",
+      "MA06-U04"
+    ],
+    [
+      "MA02-U01",
+      "MA06-U05"
+    ],
+    [
+      "MA02-U01",
+      "MA06-U06"
+    ],
+    [
+      "MA02-U01",
+      "MA09-U01"
+    ],
+    [
+      "MA02-U01",
+      "MA09-U02"
+    ],
+    [
+      "MA02-U01",
+      "MA09-U03"
+    ],
+    [
+      "MA02-U01",
+      "MA09-U04"
+    ],
+    [
+      "MA02-U01",
+      "MA09-U05"
+    ],
+    [
+      "MA02-U01",
+      "MA09-U06"
+    ],
+    [
+      "MA02-U01",
+      "MA10-U02"
+    ],
+    [
+      "MA02-U02",
+      "MA02-U06"
+    ],
+    [
+      "MA02-U03",
+      "MA02-U06"
+    ],
+    [
+      "MA02-U04",
+      "MA02-U06"
+    ],
+    [
+      "MA02-U05",
+      "MA02-U06"
+    ],
+    [
+      "MA02-U05",
+      "MA10-U02"
+    ],
+    [
+      "MA02-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA03-U01",
+      "MA03-U02"
+    ],
+    [
+      "MA03-U01",
+      "MA03-U03"
+    ],
+    [
+      "MA03-U01",
+      "MA03-U04"
+    ],
+    [
+      "MA03-U01",
+      "MA03-U05"
+    ],
+    [
+      "MA03-U01",
+      "MA03-U06"
+    ],
+    [
+      "MA03-U01",
+      "MA04-U01"
+    ],
+    [
+      "MA03-U01",
+      "MA04-U02"
+    ],
+    [
+      "MA03-U01",
+      "MA04-U03"
+    ],
+    [
+      "MA03-U01",
+      "MA04-U04"
+    ],
+    [
+      "MA03-U01",
+      "MA04-U05"
+    ],
+    [
+      "MA03-U01",
+      "MA04-U06"
+    ],
+    [
+      "MA03-U01",
+      "MA15-U03"
+    ],
+    [
+      "MA03-U02",
+      "MA03-U06"
+    ],
+    [
+      "MA03-U02",
+      "MA10-U02"
+    ],
+    [
+      "MA03-U02",
+      "MA15-U03"
+    ],
+    [
+      "MA03-U03",
+      "MA03-U06"
+    ],
+    [
+      "MA03-U03",
+      "MA04-U04"
+    ],
+    [
+      "MA03-U03",
+      "MA15-U03"
+    ],
+    [
+      "MA03-U04",
+      "MA03-U06"
+    ],
+    [
+      "MA03-U04",
+      "MA04-U03"
+    ],
+    [
+      "MA03-U04",
+      "MA04-U04"
+    ],
+    [
+      "MA03-U04",
+      "MA08-U03"
+    ],
+    [
+      "MA03-U04",
+      "MA10-U02"
+    ],
+    [
+      "MA03-U04",
+      "MA15-U03"
+    ],
+    [
+      "MA03-U05",
+      "MA03-U06"
+    ],
+    [
+      "MA03-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA04-U01",
+      "MA04-U02"
+    ],
+    [
+      "MA04-U01",
+      "MA04-U03"
+    ],
+    [
+      "MA04-U01",
+      "MA04-U04"
+    ],
+    [
+      "MA04-U01",
+      "MA04-U05"
+    ],
+    [
+      "MA04-U01",
+      "MA04-U06"
+    ],
+    [
+      "MA04-U01",
+      "MA05-U01"
+    ],
+    [
+      "MA04-U01",
+      "MA05-U02"
+    ],
+    [
+      "MA04-U01",
+      "MA05-U03"
+    ],
+    [
+      "MA04-U01",
+      "MA05-U04"
+    ],
+    [
+      "MA04-U01",
+      "MA05-U05"
+    ],
+    [
+      "MA04-U01",
+      "MA05-U06"
+    ],
+    [
+      "MA04-U01",
+      "MA10-U03"
+    ],
+    [
+      "MA04-U01",
+      "MA15-U03"
+    ],
+    [
+      "MA04-U02",
+      "MA04-U03"
+    ],
+    [
+      "MA04-U02",
+      "MA04-U06"
+    ],
+    [
+      "MA04-U02",
+      "MA10-U02"
+    ],
+    [
+      "MA04-U02",
+      "MA10-U03"
+    ],
+    [
+      "MA04-U02",
+      "MA15-U03"
+    ],
+    [
+      "MA04-U03",
+      "MA04-U04"
+    ],
+    [
+      "MA04-U03",
+      "MA04-U06"
+    ],
+    [
+      "MA04-U03",
+      "MA10-U03"
+    ],
+    [
+      "MA04-U03",
+      "MA15-U03"
+    ],
+    [
+      "MA04-U04",
+      "MA04-U05"
+    ],
+    [
+      "MA04-U04",
+      "MA04-U06"
+    ],
+    [
+      "MA04-U04",
+      "MA10-U03"
+    ],
+    [
+      "MA04-U04",
+      "MA10-U04"
+    ],
+    [
+      "MA04-U04",
+      "MA15-U03"
+    ],
+    [
+      "MA04-U05",
+      "MA04-U06"
+    ],
+    [
+      "MA04-U05",
+      "MA10-U03"
+    ],
+    [
+      "MA04-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA04-U06",
+      "MA10-U03"
+    ],
+    [
+      "MA04-U06",
+      "MA15-U03"
+    ],
+    [
+      "MA05-U01",
+      "MA05-U02"
+    ],
+    [
+      "MA05-U01",
+      "MA05-U03"
+    ],
+    [
+      "MA05-U01",
+      "MA05-U04"
+    ],
+    [
+      "MA05-U01",
+      "MA05-U05"
+    ],
+    [
+      "MA05-U01",
+      "MA05-U06"
+    ],
+    [
+      "MA05-U02",
+      "MA05-U06"
+    ],
+    [
+      "MA05-U02",
+      "MA10-U02"
+    ],
+    [
+      "MA05-U03",
+      "MA05-U06"
+    ],
+    [
+      "MA05-U03",
+      "MA10-U02"
+    ],
+    [
+      "MA05-U04",
+      "MA05-U06"
+    ],
+    [
+      "MA05-U04",
+      "MA10-U02"
+    ],
+    [
+      "MA05-U05",
+      "MA05-U06"
+    ],
+    [
+      "MA06-U01",
+      "MA06-U02"
+    ],
+    [
+      "MA06-U01",
+      "MA06-U03"
+    ],
+    [
+      "MA06-U01",
+      "MA06-U04"
+    ],
+    [
+      "MA06-U01",
+      "MA06-U05"
+    ],
+    [
+      "MA06-U01",
+      "MA06-U06"
+    ],
+    [
+      "MA06-U01",
+      "MA07-U01"
+    ],
+    [
+      "MA06-U01",
+      "MA07-U02"
+    ],
+    [
+      "MA06-U01",
+      "MA07-U03"
+    ],
+    [
+      "MA06-U01",
+      "MA07-U04"
+    ],
+    [
+      "MA06-U01",
+      "MA07-U05"
+    ],
+    [
+      "MA06-U01",
+      "MA07-U06"
+    ],
+    [
+      "MA06-U01",
+      "MA10-U02"
+    ],
+    [
+      "MA06-U01",
+      "MA15-U03"
+    ],
+    [
+      "MA06-U02",
+      "MA06-U06"
+    ],
+    [
+      "MA06-U02",
+      "MA10-U02"
+    ],
+    [
+      "MA06-U02",
+      "MA10-U04"
+    ],
+    [
+      "MA06-U02",
+      "MA15-U03"
+    ],
+    [
+      "MA06-U03",
+      "MA06-U02"
+    ],
+    [
+      "MA06-U03",
+      "MA06-U06"
+    ],
+    [
+      "MA06-U03",
+      "MA15-U03"
+    ],
+    [
+      "MA06-U04",
+      "MA06-U06"
+    ],
+    [
+      "MA06-U04",
+      "MA10-U02"
+    ],
+    [
+      "MA06-U04",
+      "MA15-U03"
+    ],
+    [
+      "MA06-U05",
+      "MA06-U06"
+    ],
+    [
+      "MA06-U05",
+      "MA10-U02"
+    ],
+    [
+      "MA06-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA06-U06",
+      "MA10-U02"
+    ],
+    [
+      "MA06-U06",
+      "MA10-U04"
+    ],
+    [
+      "MA07-U01",
+      "MA07-U02"
+    ],
+    [
+      "MA07-U01",
+      "MA07-U03"
+    ],
+    [
+      "MA07-U01",
+      "MA07-U04"
+    ],
+    [
+      "MA07-U01",
+      "MA07-U05"
+    ],
+    [
+      "MA07-U01",
+      "MA07-U06"
+    ],
+    [
+      "MA07-U01",
+      "MA08-U01"
+    ],
+    [
+      "MA07-U01",
+      "MA08-U02"
+    ],
+    [
+      "MA07-U01",
+      "MA08-U03"
+    ],
+    [
+      "MA07-U01",
+      "MA08-U04"
+    ],
+    [
+      "MA07-U01",
+      "MA08-U05"
+    ],
+    [
+      "MA07-U01",
+      "MA08-U06"
+    ],
+    [
+      "MA07-U01",
+      "MA15-U03"
+    ],
+    [
+      "MA07-U02",
+      "MA07-U06"
+    ],
+    [
+      "MA07-U02",
+      "MA10-U04"
+    ],
+    [
+      "MA07-U02",
+      "MA15-U03"
+    ],
+    [
+      "MA07-U03",
+      "MA07-U06"
+    ],
+    [
+      "MA07-U04",
+      "MA07-U06"
+    ],
+    [
+      "MA07-U04",
+      "MA08-U03"
+    ],
+    [
+      "MA07-U04",
+      "MA10-U03"
+    ],
+    [
+      "MA07-U04",
+      "MA15-U03"
+    ],
+    [
+      "MA07-U05",
+      "MA07-U06"
+    ],
+    [
+      "MA07-U05",
+      "MA10-U04"
+    ],
+    [
+      "MA07-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA08-U01",
+      "MA08-U02"
+    ],
+    [
+      "MA08-U01",
+      "MA08-U03"
+    ],
+    [
+      "MA08-U01",
+      "MA08-U04"
+    ],
+    [
+      "MA08-U01",
+      "MA08-U05"
+    ],
+    [
+      "MA08-U01",
+      "MA08-U06"
+    ],
+    [
+      "MA08-U01",
+      "MA09-U01"
+    ],
+    [
+      "MA08-U01",
+      "MA09-U02"
+    ],
+    [
+      "MA08-U01",
+      "MA09-U03"
+    ],
+    [
+      "MA08-U01",
+      "MA09-U04"
+    ],
+    [
+      "MA08-U01",
+      "MA09-U05"
+    ],
+    [
+      "MA08-U01",
+      "MA09-U06"
+    ],
+    [
+      "MA08-U01",
+      "MA10-U02"
+    ],
+    [
+      "MA08-U01",
+      "MA10-U04"
+    ],
+    [
+      "MA08-U01",
+      "MA15-U03"
+    ],
+    [
+      "MA08-U02",
+      "MA08-U06"
+    ],
+    [
+      "MA08-U02",
+      "MA15-U03"
+    ],
+    [
+      "MA08-U03",
+      "MA08-U06"
+    ],
+    [
+      "MA08-U03",
+      "MA10-U02"
+    ],
+    [
+      "MA08-U03",
+      "MA10-U04"
+    ],
+    [
+      "MA08-U03",
+      "MA15-U03"
+    ],
+    [
+      "MA08-U04",
+      "MA08-U06"
+    ],
+    [
+      "MA08-U04",
+      "MA10-U04"
+    ],
+    [
+      "MA08-U04",
+      "MA15-U03"
+    ],
+    [
+      "MA08-U04",
+      "MA16-U04"
+    ],
+    [
+      "MA08-U04",
+      "MA16-U05"
+    ],
+    [
+      "MA08-U05",
+      "MA08-U06"
+    ],
+    [
+      "MA08-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA08-U05",
+      "MA16-U05"
+    ],
+    [
+      "MA09-U01",
+      "MA09-U02"
+    ],
+    [
+      "MA09-U01",
+      "MA09-U03"
+    ],
+    [
+      "MA09-U01",
+      "MA09-U04"
+    ],
+    [
+      "MA09-U01",
+      "MA09-U05"
+    ],
+    [
+      "MA09-U01",
+      "MA09-U06"
+    ],
+    [
+      "MA09-U01",
+      "MA10-U05"
+    ],
+    [
+      "MA09-U02",
+      "MA09-U06"
+    ],
+    [
+      "MA09-U03",
+      "MA09-U06"
+    ],
+    [
+      "MA09-U04",
+      "MA09-U06"
+    ],
+    [
+      "MA09-U04",
+      "MA15-U03"
+    ],
+    [
+      "MA09-U05",
+      "MA09-U06"
+    ],
+    [
+      "MA09-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA10-U01",
+      "MA10-U02"
+    ],
+    [
+      "MA10-U01",
+      "MA10-U03"
+    ],
+    [
+      "MA10-U01",
+      "MA10-U04"
+    ],
+    [
+      "MA10-U01",
+      "MA10-U05"
+    ],
+    [
+      "MA10-U01",
+      "MA10-U06"
+    ],
+    [
+      "MA10-U02",
+      "MA10-U04"
+    ],
+    [
+      "MA10-U02",
+      "MA10-U06"
+    ],
+    [
+      "MA10-U03",
+      "MA10-U06"
+    ],
+    [
+      "MA10-U04",
+      "MA10-U06"
+    ],
+    [
+      "MA10-U05",
+      "MA10-U06"
+    ],
+    [
+      "MA10-U06",
+      "MA15-U03"
+    ],
+    [
+      "MA11-U01",
+      "MA11-U02"
+    ],
+    [
+      "MA11-U01",
+      "MA11-U03"
+    ],
+    [
+      "MA11-U01",
+      "MA11-U04"
+    ],
+    [
+      "MA11-U01",
+      "MA11-U05"
+    ],
+    [
+      "MA11-U01",
+      "MA11-U06"
+    ],
+    [
+      "MA11-U01",
+      "MA12-U01"
+    ],
+    [
+      "MA11-U01",
+      "MA12-U02"
+    ],
+    [
+      "MA11-U01",
+      "MA12-U03"
+    ],
+    [
+      "MA11-U01",
+      "MA12-U04"
+    ],
+    [
+      "MA11-U01",
+      "MA12-U05"
+    ],
+    [
+      "MA11-U01",
+      "MA12-U06"
+    ],
+    [
+      "MA11-U01",
+      "MA13-U01"
+    ],
+    [
+      "MA11-U01",
+      "MA13-U02"
+    ],
+    [
+      "MA11-U01",
+      "MA13-U03"
+    ],
+    [
+      "MA11-U01",
+      "MA13-U04"
+    ],
+    [
+      "MA11-U01",
+      "MA13-U05"
+    ],
+    [
+      "MA11-U01",
+      "MA13-U06"
+    ],
+    [
+      "MA11-U02",
+      "MA10-U05"
+    ],
+    [
+      "MA11-U02",
+      "MA11-U06"
+    ],
+    [
+      "MA11-U03",
+      "MA10-U05"
+    ],
+    [
+      "MA11-U03",
+      "MA11-U06"
+    ],
+    [
+      "MA11-U03",
+      "MA15-U03"
+    ],
+    [
+      "MA11-U04",
+      "MA10-U05"
+    ],
+    [
+      "MA11-U04",
+      "MA11-U06"
+    ],
+    [
+      "MA11-U04",
+      "MA12-U03"
+    ],
+    [
+      "MA11-U05",
+      "MA11-U06"
+    ],
+    [
+      "MA11-U06",
+      "MA16-U06"
+    ],
+    [
+      "MA12-U01",
+      "MA10-U05"
+    ],
+    [
+      "MA12-U01",
+      "MA12-U02"
+    ],
+    [
+      "MA12-U01",
+      "MA12-U03"
+    ],
+    [
+      "MA12-U01",
+      "MA12-U04"
+    ],
+    [
+      "MA12-U01",
+      "MA12-U05"
+    ],
+    [
+      "MA12-U01",
+      "MA12-U06"
+    ],
+    [
+      "MA12-U01",
+      "MA13-U01"
+    ],
+    [
+      "MA12-U01",
+      "MA13-U02"
+    ],
+    [
+      "MA12-U01",
+      "MA13-U03"
+    ],
+    [
+      "MA12-U01",
+      "MA13-U04"
+    ],
+    [
+      "MA12-U01",
+      "MA13-U05"
+    ],
+    [
+      "MA12-U01",
+      "MA13-U06"
+    ],
+    [
+      "MA12-U01",
+      "MA14-U01"
+    ],
+    [
+      "MA12-U01",
+      "MA15-U03"
+    ],
+    [
+      "MA12-U02",
+      "MA12-U06"
+    ],
+    [
+      "MA12-U02",
+      "MA14-U01"
+    ],
+    [
+      "MA12-U02",
+      "MA15-U03"
+    ],
+    [
+      "MA12-U03",
+      "MA12-U06"
+    ],
+    [
+      "MA12-U04",
+      "MA10-U02"
+    ],
+    [
+      "MA12-U04",
+      "MA10-U05"
+    ],
+    [
+      "MA12-U04",
+      "MA12-U06"
+    ],
+    [
+      "MA12-U04",
+      "MA15-U03"
+    ],
+    [
+      "MA12-U05",
+      "MA12-U06"
+    ],
+    [
+      "MA12-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA13-U01",
+      "MA10-U05"
+    ],
+    [
+      "MA13-U01",
+      "MA13-U02"
+    ],
+    [
+      "MA13-U01",
+      "MA13-U03"
+    ],
+    [
+      "MA13-U01",
+      "MA13-U04"
+    ],
+    [
+      "MA13-U01",
+      "MA13-U05"
+    ],
+    [
+      "MA13-U01",
+      "MA13-U06"
+    ],
+    [
+      "MA13-U01",
+      "MA16-U01"
+    ],
+    [
+      "MA13-U01",
+      "MA16-U02"
+    ],
+    [
+      "MA13-U01",
+      "MA16-U03"
+    ],
+    [
+      "MA13-U01",
+      "MA16-U04"
+    ],
+    [
+      "MA13-U01",
+      "MA16-U05"
+    ],
+    [
+      "MA13-U01",
+      "MA16-U06"
+    ],
+    [
+      "MA13-U02",
+      "MA10-U05"
+    ],
+    [
+      "MA13-U02",
+      "MA13-U06"
+    ],
+    [
+      "MA13-U03",
+      "MA13-U06"
+    ],
+    [
+      "MA13-U03",
+      "MA15-U03"
+    ],
+    [
+      "MA13-U04",
+      "MA13-U06"
+    ],
+    [
+      "MA13-U05",
+      "MA10-U05"
+    ],
+    [
+      "MA13-U05",
+      "MA13-U06"
+    ],
+    [
+      "MA13-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA13-U05",
+      "MA16-U04"
+    ],
+    [
+      "MA13-U06",
+      "MA15-U03"
+    ],
+    [
+      "MA13-U06",
+      "MA16-U05"
+    ],
+    [
+      "MA13-U06",
+      "MA16-U06"
+    ],
+    [
+      "MA14-U01",
+      "MA14-U02"
+    ],
+    [
+      "MA14-U01",
+      "MA14-U03"
+    ],
+    [
+      "MA14-U01",
+      "MA14-U04"
+    ],
+    [
+      "MA14-U01",
+      "MA14-U05"
+    ],
+    [
+      "MA14-U01",
+      "MA14-U06"
+    ],
+    [
+      "MA14-U01",
+      "MA15-U03"
+    ],
+    [
+      "MA14-U02",
+      "MA14-U04"
+    ],
+    [
+      "MA14-U02",
+      "MA14-U06"
+    ],
+    [
+      "MA14-U03",
+      "MA14-U04"
+    ],
+    [
+      "MA14-U03",
+      "MA14-U06"
+    ],
+    [
+      "MA14-U04",
+      "MA14-U06"
+    ],
+    [
+      "MA14-U04",
+      "MA15-U03"
+    ],
+    [
+      "MA14-U05",
+      "MA14-U06"
+    ],
+    [
+      "MA14-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA14-U06",
+      "MA10-U05"
+    ],
+    [
+      "MA14-U06",
+      "MA15-U03"
+    ],
+    [
+      "MA15-U01",
+      "MA15-U02"
+    ],
+    [
+      "MA15-U01",
+      "MA15-U03"
+    ],
+    [
+      "MA15-U01",
+      "MA15-U04"
+    ],
+    [
+      "MA15-U01",
+      "MA15-U05"
+    ],
+    [
+      "MA15-U01",
+      "MA15-U06"
+    ],
+    [
+      "MA15-U02",
+      "MA15-U06"
+    ],
+    [
+      "MA15-U03",
+      "MA15-U06"
+    ],
+    [
+      "MA15-U04",
+      "MA15-U06"
+    ],
+    [
+      "MA15-U05",
+      "MA15-U06"
+    ],
+    [
+      "MA16-U01",
+      "MA16-U02"
+    ],
+    [
+      "MA16-U01",
+      "MA16-U03"
+    ],
+    [
+      "MA16-U01",
+      "MA16-U04"
+    ],
+    [
+      "MA16-U01",
+      "MA16-U05"
+    ],
+    [
+      "MA16-U01",
+      "MA16-U06"
+    ],
+    [
+      "MA16-U02",
+      "MA10-U05"
+    ],
+    [
+      "MA16-U02",
+      "MA16-U05"
+    ],
+    [
+      "MA16-U02",
+      "MA16-U06"
+    ],
+    [
+      "MA16-U03",
+      "MA16-U06"
+    ],
+    [
+      "MA16-U04",
+      "MA10-U02"
+    ],
+    [
+      "MA16-U04",
+      "MA10-U05"
+    ],
+    [
+      "MA16-U04",
+      "MA16-U05"
+    ],
+    [
+      "MA16-U04",
+      "MA16-U06"
+    ],
+    [
+      "MA16-U05",
+      "MA15-U03"
+    ],
+    [
+      "MA16-U05",
+      "MA16-U06"
+    ]
+  ],
+  "source_pins": [
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-mvp-execution-handoff-v1\\HANDOFF_STATUS.json",
+      "raw_sha256": "4b64625861f93086998b8c3b53dcfc0e160414b90eb6f10f972db3c426269ee2",
+      "bytes": 73677,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-mvp-execution-handoff-v1\\MVP_ROUTE.yaml",
+      "raw_sha256": "51dca6c8460db1bee480dbfb935c58302a3298e36ea84bb86924ac8b83dd2133",
+      "bytes": 338652,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-mvp-execution-handoff-v1\\WORK_ORDER_CONTRACT.yaml",
+      "raw_sha256": "f3162192376d805a312e1f0c3d32c4774ac406e20c0ef5ede9bd58001709ee0b",
+      "bytes": 13488,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\ultra-b3-mvp-execution-handoff-v1\\STAGE_GATES.yaml",
+      "raw_sha256": "9c0bbcf5759e0c037ec3746eaf4aa88d230115db35904450a5e2b337c989066f",
+      "bytes": 14003,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "D:\\00_Learn\\量化交易\\Code\\futures_trading_system\\automation\\work_orders\\planning\\B3-V1-12-PACKAGES.inputs.candidate.v1.json",
+      "raw_sha256": "4448267a36c101318e4f26e8bb73ceeb58e2351ba5fe545b97b5aa3a755c3873",
+      "bytes": 11172052,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\b3-engineering-consumer-projection-successor-proposed-v1\\candidate\\ENGINEERING_CONSUMER_PROJECTION_SUCCESSOR.candidate.v1.json",
+      "raw_sha256": "660c93fec66fa8862cbf9b0ee884ac35f675b4746292cdc5bbd9ee226554886d",
+      "bytes": 7373541,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\EXECUTION_UNITS.json",
+      "raw_sha256": "e9bf2b7994e2d1e20bb72cae5d2e85125a977197a290467c7e7f06cd0f63a33b",
+      "bytes": 13293014,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\API_CATALOG.json",
+      "raw_sha256": "ed7cedfb9e3d6d29cb9b6cfd6cad2583dbb7a7936cc7c68d133cbe114adb3efb",
+      "bytes": 245079,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UI_PAGE_CONTRACTS.json",
+      "raw_sha256": "ab18284229f7968456fb9b006ade182404ee3f37b385093ce015a58ca87e0536",
+      "bytes": 196438,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\MODEL_CATALOG.json",
+      "raw_sha256": "0f1ff22dc245b0f66829c460bfcc9cd0e9bca481ae41eebf6e12c83732c84f5a",
+      "bytes": 279601,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\TYPE_VARIANTS.json",
+      "raw_sha256": "bb436defca5741835ac29c88678c4680e65012442265f7c2551c9ac8f236b4b2",
+      "bytes": 311610,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\UNIT_FIXTURES.candidate.v5.json",
+      "raw_sha256": "2ae37fc863cbc72d954b69a571cc71b84c897a609cb530c1107633f433b44fad",
+      "bytes": 24348219,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\B3_RELEASE_SLICE.json",
+      "raw_sha256": "181752b8a1d07d35cfd10744241dedf451002cff5c57a39e88299f3235520370",
+      "bytes": 16171,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U01.v9.json",
+      "raw_sha256": "d173d04006528c63ba0d2c7340992a766e79c383d717346d9a0d2a84ab5ab1ca",
+      "bytes": 4498,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\01_SCOPE_SOURCE_AUTHORITY.md",
+      "raw_sha256": "6e31510714d36abec3740e7f6613f52ce05929273887837d7047d03aa4f970c2",
+      "bytes": 10241,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U05.v9.json",
+      "raw_sha256": "60495f678202431b56b9f86746ef59fc7bfe049eae93d321b3195744c13661f3",
+      "bytes": 5045,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U01.v9.json",
+      "raw_sha256": "48d5895de8235840e0d4f7d3e28b652e7950c74fb7867035b5388a0d311ff632",
+      "bytes": 5045,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\02_ASSET_DOMAIN.md",
+      "raw_sha256": "1ae53791652c8ba11d52a7843a83323e1fba1579771a6147264bb6f269899fb8",
+      "bytes": 9203,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U01.v9.json",
+      "raw_sha256": "09c156a1b2776325a8a4a2ecc6aa59e183699619d36ab9ee418a222e1f11abad",
+      "bytes": 176363,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\10_WEB_UI_API.md",
+      "raw_sha256": "d39ddcf729bcac335867ae86f395dbaec3562ab248520aa87f381abe5ced59a0",
+      "bytes": 12749,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U01.v9.json",
+      "raw_sha256": "843d72d29ec0cdcaad43d965f73efc4a0d428057e20738a13226a26c621dd1b7",
+      "bytes": 6266,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\11_URMS_IDENTITY_RELATIONS.md",
+      "raw_sha256": "60a385c4d6b103ac253902237e4098e90fc4a83c61b664f868b1624a813bba56",
+      "bytes": 13031,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U05.v9.json",
+      "raw_sha256": "4c3eee06d01b0ee1a22dbc7c63ba3a3b6f922908f62dd8e678df15f243c48662",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U01.v9.json",
+      "raw_sha256": "cddfdb66bdbb0fd8e4a20c41153bc756eaac7aeb595e6446d833016e7311d9f8",
+      "bytes": 5016,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\03_MARKET_DATA.md",
+      "raw_sha256": "5201c7f63f405b412b41d77ff8809e8c092b7eba4b78bef6421099b778655387",
+      "bytes": 7357,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U01.v9.json",
+      "raw_sha256": "5d9ebec22b813353f9f5e570a7fd6badaaa78fbe1dcd05375b4d8688b766548c",
+      "bytes": 5045,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\06_PORTFOLIO_CAPITAL_ACCOUNTING.md",
+      "raw_sha256": "fed7b43efeb28cefe3129f9091716a8a2d34cf6238e7ed23a7ead99a59d10770",
+      "bytes": 8657,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U02.v9.json",
+      "raw_sha256": "216a3db039d99a075e52622326e0248bddcc13ad15683f0682665d03b4ca09ab",
+      "bytes": 9659,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U03.v9.json",
+      "raw_sha256": "fa81d009ac3bbe652080184b030d0cb066b212b1ef7eaed43e9c286d6b1b0c5d",
+      "bytes": 6814,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U04.v9.json",
+      "raw_sha256": "5d2dbd445e9b97c313af118c3ae4500c845134f1fa62ed1b48f45db6f02b7340",
+      "bytes": 8314,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U01.v9.json",
+      "raw_sha256": "1124429200abfd152d37a53d6da63be200a90fccd7bad404ad78772b04ea44cf",
+      "bytes": 10204,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\12_PUBLICATION_AUTHORITY.md",
+      "raw_sha256": "827a16477e179754f49a141c92ed174e06f5fae37f8aa053e28c72467bf26d3f",
+      "bytes": 12663,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U02.v9.json",
+      "raw_sha256": "7a08567f69633c41d9a39a10a0c275fce55dd08f0a8a5bfec39aadae69a2dba2",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U03.v9.json",
+      "raw_sha256": "b8b6899b6a2a309e3d7af39efa972519c22551f7c7149316b954a5e19b448d23",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U04.v9.json",
+      "raw_sha256": "975e62b3f840527c093161e0426869fc4a5880fc39220d9a1536a494d95d0720",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U01.v9.json",
+      "raw_sha256": "81d30aaaa7d5dbe5c58c231eed06fcd137226c978cd2d73675e857dd97813859",
+      "bytes": 12025,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\04_RESEARCH_STRATEGY_LAB.md",
+      "raw_sha256": "2dbd519a995eb62637cc6890c7b632c5314254002c9d69c799f9345a59ea201b",
+      "bytes": 12093,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U03.v9.json",
+      "raw_sha256": "4c7bfdecc00ed48b32af52cf46ee590ba08fd40b1767bca314dae4869d45f7e7",
+      "bytes": 29351,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U04.v9.json",
+      "raw_sha256": "112865c47e87c2e051a70ba62e087d645db01e3e8f7c759d4fac69fd6ac35c20",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U05.v9.json",
+      "raw_sha256": "6b777cff32693050eb374c4f65266f359dea16a2a095375a9518e34b23acbedc",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U01.v9.json",
+      "raw_sha256": "edab1401dffb11ca9b57b5abb3800d1ec4ea362577d7b6df04b52297ed6e55ee",
+      "bytes": 5016,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\07_DECISION_RISK.md",
+      "raw_sha256": "583845af956691fc6a232fc3c48f1ea91a31e53520a2b3189575ef4fddf4ab13",
+      "bytes": 7714,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U02.v9.json",
+      "raw_sha256": "bf48413cebed266f72ee0c6c3de1c81ef1fbc52c7a6c2a9ab82c0c682f04f72e",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U04.v9.json",
+      "raw_sha256": "c3a3878987e1503119e1019674c3a1633c05b2dd868dbeef85d5b38196832e61",
+      "bytes": 7907,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U01.v9.json",
+      "raw_sha256": "92249db3b53c54dfe1a3c824967d4110f78decb638543f1d1b3af5a0d1c225d7",
+      "bytes": 6660,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\13_STORAGE_RECOVERY_SECURITY.md",
+      "raw_sha256": "4ddfa15c7861fc6eca59248a4ca4f04c711d4d73c2d12fe10f9928c41b6a634f",
+      "bytes": 17673,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U02.v9.json",
+      "raw_sha256": "2848590406f95513240cbb3e8e45f569ef8c5c5491197739400ef0200f7f8ab4",
+      "bytes": 22209,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U01.v9.json",
+      "raw_sha256": "d8f40e3a4676f5cc0aed5c49cd5a81c5d04312429e8d7fe839abb38d04a9f5ec",
+      "bytes": 5016,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\05_PORTFOLIO_MACRO_RATE_LAB.md",
+      "raw_sha256": "a6c6bb5a019988db43eaad6bf6d219ae40aaa485945dce34f92c3431c1291367",
+      "bytes": 7133,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U02.v9.json",
+      "raw_sha256": "9b37eabb255e5708ae77dae9e8252d1b288ea47214fca5a3a1dc5bca7b1b9c1f",
+      "bytes": 29957,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U02.v9.json",
+      "raw_sha256": "3f516cf898ed9f29850918b07341f4e375d7479edc705c92483bb3a2e0ed0fbc",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U04.v9.json",
+      "raw_sha256": "14420fa2f3e19c68c848ea19939d8e0514703ff67abbca6bc40c1f0d0d9185a7",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U05.v9.json",
+      "raw_sha256": "65e46646f6623375ce7b345f7e12037c54ee8aa5c65227a7bb67c7057489592e",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U01.v9.json",
+      "raw_sha256": "186281f9b788d9996f625afdc108a7f2c0553d2457486cc3ab21e55930a67d81",
+      "bytes": 5045,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\08_OMS_PAPER_LIVE.md",
+      "raw_sha256": "f879f341072fe6f4cedbb395bffdd7bde5c5b55971b45e247c774432d71f15b1",
+      "bytes": 9662,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U02.v9.json",
+      "raw_sha256": "3698ef0e67f0db96517bcf6a15af950fe27c30ce3deec488e94c7b9526524c23",
+      "bytes": 6141,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U05.v9.json",
+      "raw_sha256": "954e569a46802adf3202ebc45db6e607f981aa2a410359b1147115b06cdc734b",
+      "bytes": 8030,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U01.v9.json",
+      "raw_sha256": "1f37b3a6e06cf4d7889ccbe41355c606f531396085d1daa7a9cbf780d451abc9",
+      "bytes": 6689,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\14_ENGINEERING_EXECUTION.md",
+      "raw_sha256": "7f74a8f8d83010928371c3676b8ce001e78bc019527cc8e9d574d4b16be12332",
+      "bytes": 11898,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U01.v9.json",
+      "raw_sha256": "f97a4ec14dfc6a93502b0287d3402158733e3b1890993b67356e6a864107e408",
+      "bytes": 5016,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\16_DEPLOYMENT_OPERATIONS.md",
+      "raw_sha256": "7b0211cf4fd342b0700cce78699133c429bd9aa9c051d402e5ae77b7b31d891d",
+      "bytes": 9689,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U03.v9.json",
+      "raw_sha256": "615091b1f72416fe6b88bd104170abedb575a650231855eb069b35bda21caef9",
+      "bytes": 41382,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U02.v9.json",
+      "raw_sha256": "229b31cb8c2cd914e2b1c554cafa6d65dae4f67d00df73bd0315f09428e6d561",
+      "bytes": 7316,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U03.v9.json",
+      "raw_sha256": "d9402acfd547772342c430a555e147b785a548ac789f55e2ef9ec0409e79060c",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U04.v9.json",
+      "raw_sha256": "b68dc694ef3ec41f901db55cb3af7295695f0faf1e82bdff9a2ed6589a222f00",
+      "bytes": 12436,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA06-U06.v9.json",
+      "raw_sha256": "e5af2f3e0b6e83df30ebbca890407d96784c988288de54c5090a9f0294cf1763",
+      "bytes": 24489,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U03.v9.json",
+      "raw_sha256": "4f6aa8b341b3ee5fc885482cd3cf4c316ba0c2259afd40192e86726f3e4a6edc",
+      "bytes": 6689,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U04.v9.json",
+      "raw_sha256": "813d152786abd9261d7cfb6a0cbf42ac0a5b2ae8406006ca108ec32b14eee909",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U01.v9.json",
+      "raw_sha256": "b1cc456947442357a1d97ca97e041dc2cc679e2d2b4c3c3dd94c6324ec38856d",
+      "bytes": 6200,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\09_BROKER_SHIOAJI.md",
+      "raw_sha256": "cdfa2b7103e4167b4bd5ea33cb000238ea6e50dce9944d152cbdcfeb27b8cf7a",
+      "bytes": 8451,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U02.v9.json",
+      "raw_sha256": "abd8c0a2d8667c464411136310a41874d0ce203c7384b877ef13f29201427152",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U03.v9.json",
+      "raw_sha256": "5c98b60d732e047d784b4690dd2ad97af7da5e0b445572781607bc1129e6b2a2",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U05.v9.json",
+      "raw_sha256": "1bcc52073236516187d40f23f559afca83d33f7ef8a6889284d27579ff5ca823",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U02.v9.json",
+      "raw_sha256": "e265fe12b4d2d0a0a71c1ea96443ec4ac205a53e69fc466ce49eabe022f2239e",
+      "bytes": 11553,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U04.v9.json",
+      "raw_sha256": "183b8c7f77728b5a0bd3faff23130a0f4ad94e34f61eac9142c76bb01f7cf57e",
+      "bytes": 47525,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U04.v9.json",
+      "raw_sha256": "f195b13432ab385a25690c3016bf9c23326a6ffee19234fd083ca8e29fde5f74",
+      "bytes": 6689,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U04.v9.json",
+      "raw_sha256": "df6a9cd9f35f9dcf02a9f120d9f7222fa1acaca16d0f732e19198600bd13ce16",
+      "bytes": 6689,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U05.v9.json",
+      "raw_sha256": "3f1e79030ec48996c758c920ab3a80f50da2eac990cb948c152c22260388ccc4",
+      "bytes": 20021,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U02.v9.json",
+      "raw_sha256": "41b855231e3a3624adddcdb08f4cd696b2e64471bf0e2726c250c1f7b4016afd",
+      "bytes": 61806,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA14-U06.v9.json",
+      "raw_sha256": "a6d9831aba0e99a7742f256b897c9a54c5a1b6e2b6871776532a4d44f4c4dbaa",
+      "bytes": 8469,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA04-U06.v9.json",
+      "raw_sha256": "719a465a498429affa6098c093c3eca52f52d4c0b15f0c4daa799081d91117ac",
+      "bytes": 22135,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U04.v9.json",
+      "raw_sha256": "b59c873278ece7e5446f533621b1bf336c8a2792841f378e173832feeecc7ce9",
+      "bytes": 55928,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U05.v9.json",
+      "raw_sha256": "8312b95c2c943210e36f7b9a6d4723efc245b59934973020ef78d8c14f0cf97a",
+      "bytes": 28768,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U03.v9.json",
+      "raw_sha256": "3c6c71e05ed7c5ad19cebd95718ea1729c3c2ff58b9add69834c8fd4c8e80b7f",
+      "bytes": 101264,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA10-U06.v9.json",
+      "raw_sha256": "d1b6ccf7abc8a7c9e3f9322e918ba3b7bfe5b9f727cb715062eb02e7703c9281",
+      "bytes": 179124,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U02.v9.json",
+      "raw_sha256": "da97834c9eb7ba0bbf64c2757fbeca8f3334d580a9f408e5c74d64b281f87f98",
+      "bytes": 5045,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U03.v9.json",
+      "raw_sha256": "47035abbd40f549270b083eb7c55153dc146d45d3113c61e6f8b24261682185c",
+      "bytes": 5016,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U04.v9.json",
+      "raw_sha256": "3830b3677dbdf330350fea705f2b39ba8d0ad39f7af70dfe9f3d63de46e0790c",
+      "bytes": 5016,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U01.v9.json",
+      "raw_sha256": "4ae7ff0f8a3df4df63a38b3cb73254d8a1ea75dac0a499bf4dd5b378f6edd5b6",
+      "bytes": 5016,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\15_INTEGRATION_ACCEPTANCE.md",
+      "raw_sha256": "eef5a35696a86fe0c0c2d091269fe941872a16a64681f72e4577ab0be29eda4b",
+      "bytes": 10765,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA01-U06.v9.json",
+      "raw_sha256": "f861af25a37fe822f236c20ed2c9630f0130912d184e38032952b8b3bb9fdc09",
+      "bytes": 7237,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U02.v9.json",
+      "raw_sha256": "5a011cef69b4eb3853197ddbd8a615ed00a1870d5d9db0101788763c3a10f57b",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U03.v9.json",
+      "raw_sha256": "792fe8213a056bb4e30274758d9572485fe79e7788151bed14e5bddd89033e03",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U04.v9.json",
+      "raw_sha256": "8105175a8cf2550cacd8d99ac7d6bcb753798e1c52e326d13b3403f2e3a2c37b",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U05.v9.json",
+      "raw_sha256": "50fba58a00d69227e733b16965ac5c573b9cb69b6023b04bcdf3196ae0d6550a",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U02.v9.json",
+      "raw_sha256": "381e8f5de3a3138f713f22bb6698ef1ae097d678680a69734e54598e208ce04a",
+      "bytes": 176890,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U04.v9.json",
+      "raw_sha256": "0d0ec8837ac9a1b97a24f3017e3500dae129825bee32ddac44f00ee63ae83d92",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U05.v9.json",
+      "raw_sha256": "8732e286455cbc8752e808896083bbed813e8297fcf682d9d2d85076748136f6",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA02-U06.v9.json",
+      "raw_sha256": "344da87fef2b2033f264666f869ae659520884a3c21a5aea82e3c51e174f18b9",
+      "bytes": 7675,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U05.v9.json",
+      "raw_sha256": "e0e81822e48ec381fdcf4968478c05f3c4d7898d52ed3a5f0228b26a1fc7bf06",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA11-U06.v9.json",
+      "raw_sha256": "88d11148592996835943792b285140baf45f30ba39a5ef532d69b15976a7c93d",
+      "bytes": 7785,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U03.v9.json",
+      "raw_sha256": "a35f017b42deddeb2ca0b26a6e8ba78c244bcd21e5fb50dc6eed5043b6cf16b8",
+      "bytes": 9030,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U05.v9.json",
+      "raw_sha256": "54e6ec5431d6a1076e88e21366e3eb7fc5f3f48af1b8392458d29faf617879ae",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA03-U06.v9.json",
+      "raw_sha256": "0bd2bdda2d88594e9be57f4fffc513aa10e6c0da0b964f7397df3ee2fc8d6f13",
+      "bytes": 7675,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U03.v9.json",
+      "raw_sha256": "7e3796714f94df4399ca59d6867761827169728f056f9bd228f21cb98953cb57",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA12-U06.v9.json",
+      "raw_sha256": "24cad1dd466d8b7ca5e4cd4944e6d48e0e37b5a7d7f55f01b4dbfc916cf9ca7c",
+      "bytes": 7785,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U03.v9.json",
+      "raw_sha256": "c7548b06fc82063a3da3e9fe444f4adf4c9b1aafba4ee3e96e04e6dc580a77b3",
+      "bytes": 6054,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U04.v9.json",
+      "raw_sha256": "995970cbd5be65c7f083d0a7abc55719a8b47466347eb1a589e4672e53d5f4a0",
+      "bytes": 6054,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U05.v9.json",
+      "raw_sha256": "7ecc549489f0425a0a9fa5a907a194b7ae65a45e3465f528db7a218fa8c7c424",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA07-U06.v9.json",
+      "raw_sha256": "4a4d6cb2addf8b419130afa9f54d8fa32476ba611e462a91d2224993f7a3703f",
+      "bytes": 7675,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U02.v9.json",
+      "raw_sha256": "ef2120754f9924b6da12327e0613a73b36ba9ff3b5a6bd22c586a0111cda5cc6",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U05.v9.json",
+      "raw_sha256": "6f28fb0581cade8fa78a6d5de5dde9b9cb2ffe0926d317c65db47958f69b444e",
+      "bytes": 5535,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA13-U06.v9.json",
+      "raw_sha256": "00fb6fb218b0a56e344378e776f03a4e17a16191fdde66954bcbda74b89aa5a9",
+      "bytes": 8194,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U03.v9.json",
+      "raw_sha256": "2edaabac61b1216e3b00ff6fd415d9a6248f6d3c27e2407077cf2ce96b613ed4",
+      "bytes": 5593,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA05-U06.v9.json",
+      "raw_sha256": "f0eb980c48e96506eaa421edc479c0a27a54b5134102dfa6fb0a7aab3514a79d",
+      "bytes": 7675,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA08-U06.v9.json",
+      "raw_sha256": "4205aae711af5692be95a8aaac26653a3c53b33daa9f4b4796bff7283423fc51",
+      "bytes": 7785,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U02.v9.json",
+      "raw_sha256": "44ad6ce2e2863759709cf0d6cb9bbdfd4890e00536db2fc790ac900db9d6dcc4",
+      "bytes": 6054,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U03.v9.json",
+      "raw_sha256": "0d5f8093497e372249be480cfa1042a3c15ea3957d5a4464feb324d1d39b5e96",
+      "bytes": 6054,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U04.v9.json",
+      "raw_sha256": "6f1f70bff065346ffaea09e108bf5109bf830bcb33feec46ba577febba526ab6",
+      "bytes": 6054,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U05.v9.json",
+      "raw_sha256": "5fa1784a06de7a3c73422eb8fb727f169afba87f3026a793b53e7313d25632ee",
+      "bytes": 6054,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA09-U06.v9.json",
+      "raw_sha256": "0ed64d753ac0a67cecc7f2f1a35a3dba4318630a1fa249ec52a871e751755a41",
+      "bytes": 8194,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U05.v9.json",
+      "raw_sha256": "20644c6970b93281ae7df9a4c3f0ddf6398d492fd29ef2ea794493ce37a78eb2",
+      "bytes": 8333,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA16-U06.v9.json",
+      "raw_sha256": "5f1e84b314005d4f59197473db63ebe455ee25f1e857f502e5a5536c6b890c47",
+      "bytes": 8881,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U03.v9.json",
+      "raw_sha256": "492987102586b487fea252f6c45199b4cd4989c76109b446036aebea212a2a2b",
+      "bytes": 167580,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    },
+    {
+      "path": "C:\\Users\\CHUNs\\.codex\\visualizations\\2026\\10\\10\\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\\source-closure-pairing-20261015T005839Z\\candidate\\docs\\architecture\\multi_asset\\source_closure_v9\\units\\MA15-U06.v9.json",
+      "raw_sha256": "3e368958e82c3ef554e99ec70588ce89d4335d3b4db90ac4516c25fb38b36548",
+      "bytes": 7675,
+      "hash_domain": "EXACT_RAW_FILE_BYTES_SHA256"
+    }
+  ],
+  "actual_executable_frontier": [],
+  "first_MVP_preparation": "MA02-U01",
+  "classification": "All96 specs generated; exact runtime compilation/Grants/qualification remain per Unit; U01 historical accepted reuse only"
+}

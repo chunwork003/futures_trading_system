@@ -1,0 +1,97 @@
+{
+  "role": "STRUCTURED_RECORDING_OF_FRESH_REVIEWER_VERDICT_NOT_AUTHOR_CORRECTION",
+  "reviewer": "/root/fresh_bounded_policy_reviewer",
+  "original_report": "FRESH_INDEPENDENT_POLICY_REVIEW_REPORT.md",
+  "exact_subject": "ULTRA-B3-PRECOMPILED-QUEUE-ADDENDUM-V1/addendum.v1",
+  "manifest_raw_SHA256": "86b61152e8188c5495da5ba0bfd3cf063f7de1a62f6d82abb48cb1188fdd51c6",
+  "verdict": "REVIEW_FIX_REQUIRED",
+  "adoption_eligible": false,
+  "findings": [
+    {
+      "id": "F-01",
+      "title": "Stage延後與review-only parked判定未完成",
+      "classification": "OPERATIONAL_POLICY_ADOPTION_BLOCKER",
+      "numeric_severity": "NOT_ASSIGNED_BY_REVIEWER",
+      "source": [
+        {
+          "path": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-precompiled-queue-addendum-v1/MINIMUM_POLICY_DECISION_REQUEST.json",
+          "line": 51,
+          "pointer": "#/proposal/minimum_successor_requirements"
+        },
+        {
+          "path": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-precompiled-queue-addendum-v1/DEFERRED_REVIEW_LEDGER.json",
+          "line": 25
+        },
+        {
+          "path": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-precompiled-queue-addendum-v1/poc/test_six_mock_contracts.py",
+          "line": 57
+        }
+      ],
+      "counterexample": "同為fixed result/released Writer/pending review，一項是額外Stage彙總，另一項是必需Source/Profile使用保證；尚無完成predicate區分。P3 prospective fixture僅用policy flags放行，沒有驗review type、required-before、frozen、writer_released。",
+      "minimum_correction": "固定review分類、可park充分條件、不可延後項、最遲補審／blocking gate及與current priority/barrier的精確precedence；補must-reject反例。",
+      "closure": "Exact fixed successor + source-bound parked predicate and applicable positive/negative cases; qualified fresh narrow semantic review; no new Machine enum.",
+      "unchanged": "Existing B3 architecture,96 specs, original Unit/Wave/Human gates and current fail-closed behaviour."
+    },
+    {
+      "id": "F-02",
+      "title": "Bounded Batch Grant未定義",
+      "classification": "REQUESTED_OPERATIONAL_POLICY_NOT_PRESENT_IN_FIXED_SUBJECT",
+      "numeric_severity": "NOT_ASSIGNED_BY_REVIEWER",
+      "source": [
+        {
+          "path": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-precompiled-queue-addendum-v1/GENERATOR_AND_REVIEW_PROTOCOL.md",
+          "line": 21
+        },
+        {
+          "path": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-precompiled-queue-addendum-v1/MINIMUM_POLICY_DECISION_REQUEST.json",
+          "line": 55
+        },
+        {
+          "path": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-precompiled-queue-addendum-v1/poc/test_six_mock_contracts.py",
+          "line": 29
+        },
+        {
+          "path": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-precompiled-queue-addendum-v1/poc/test_six_mock_contracts.py",
+          "line": 101
+        }
+      ],
+      "counterexample": "批准有限集合{MA02-U01,MA02-U05}後，A消耗授權，未定義B的未消耗項/native authorization、partial failure/source revision drift、撤權與防止envelope重用。P1只測不同Unit各自不同mock Grant，沒有Batch。",
+      "minimum_correction": "固定有限集合binding、逐Unit eligibility/scope/Profile/budget、單次消耗與partial completion/revocation/drift/resume；精確對接既有native lifecycle，不轉授具名WO correction authority。",
+      "closure": "Operational bounded authorization contract and exact native lifecycle expression verified with bounded batch positive/negative cases; no96 actual Grants needed for policy review.",
+      "unchanged": "Single Writer, per-autonomous-run package boundary, original Review barrier and all actual-use qualifications."
+    },
+    {
+      "id": "F-03",
+      "title": "未審candidate到下游candidate的使用契約未定義",
+      "classification": "REQUESTED_EXTENSION_NOT_IMPLEMENTED_IN_POLICY_REQUIREMENT_SET",
+      "numeric_severity": "NOT_ASSIGNED_BY_REVIEWER",
+      "source": [
+        {
+          "path": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-precompiled-queue-addendum-v1/GENERATOR_AND_REVIEW_PROTOCOL.md",
+          "line": 24
+        },
+        {
+          "path": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-precompiled-queue-addendum-v1/MINIMUM_POLICY_DECISION_REQUEST.json",
+          "pointer": "#/proposal/purpose"
+        },
+        {
+          "path": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-precompiled-queue-addendum-v1/poc/test_six_mock_contracts.py",
+          "line": 64
+        },
+        {
+          "path": "C:/Users/CHUNs/.codex/visualizations/2026/10/10/01a12634-1a08-7b51-bdfd-2d8ecbcc4889/ultra-b3-precompiled-queue-addendum-v1/poc/test_six_mock_contracts.py",
+          "line": 163
+        }
+      ],
+      "counterexample": "A=MA02-U01未審immutable candidate，B=MA02-U05另有candidate Grant；仍無可放行的candidate consumption條件。P5兩個Lane都要求Accepted上游，只證明拒絕。",
+      "minimum_correction": "若涵蓋串接，固定允許/禁止scope、immutable input/Grant/consumer binding、衍生追蹤、上游失敗或修訂的下游處置及promotion barrier；若只涵蓋獨立工作，明確維持candidate-to-candidate禁止並縮限adoption claim。",
+      "closure": "Explicit fixed scope decision and candidate-only consume/deny rule with appropriate cases; no pending input becomes formal Accepted dependency.",
+      "unchanged": "Current conservative refusal is compliant, not an accepted-B3 defect; mandatory qualification/review/acceptance boundaries remain."
+    }
+  ],
+  "cohesive_correction_count": 1,
+  "correction_owner": "Original Architecture/Governance Owner, not independent Reviewer",
+  "candidate_edits_in_this_review": 0,
+  "original_B3_or_U01_acceptance_reopened": false,
+  "actual_product_coding_or_Grant_or_activation": 0
+}

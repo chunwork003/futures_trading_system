@@ -1,0 +1,105 @@
+{
+  "artifact_role": "SEALED_EXPECTED_SYNTHETIC_ORACLES_NOT_QUALIFICATION",
+  "scope": "Offline pure data-model cases only, no repo mutation/network/model/SQL/Controller",
+  "expected_derived_from": "Hand-written source invariants and explicit source Unit IDs, not actual selector results",
+  "cases": [
+    {
+      "id": "P1",
+      "name": "連續接單",
+      "source_units": [
+        "MA02-U01",
+        "MA02-U05"
+      ],
+      "expected": [
+        "MOCK_ONLY_GATES_SATISFIED",
+        "MOCK_ONLY_GATES_SATISFIED",
+        "STOP_GRANT_MISSING",
+        "STOP_PACKAGE_RUN_BOUNDARY"
+      ],
+      "oracle": "Two sequential synthetic WOs require independent fresh mock grants, accepted dependency evidence after mandatory mock review, released sole Writer. A consumed grant cannot fund the next Unit. Cross autonomous package boundary stops.",
+      "production_claim": "NONE"
+    },
+    {
+      "id": "P2",
+      "name": "中斷恢復",
+      "source_units": [
+        "MA02-U01"
+      ],
+      "expected": [
+        "MOCK_RESUME_SAME_INVOCATION",
+        "STOP_NO_BACKFILL",
+        "STOP_SOURCE_DRIFT",
+        "STOP_COMPETING_WRITER",
+        "STOP_GRANT_CONSUMED"
+      ],
+      "oracle": "Same real-in-fixture invoked identity only; source/continuity/reservation/Writer must match; no new invocation or budget reset. Missing evidence refuses resume.",
+      "production_claim": "NONE"
+    },
+    {
+      "id": "P3",
+      "name": "Review Deferred",
+      "source_units": [
+        "MA02-U01",
+        "MA10-U01"
+      ],
+      "expected": [
+        "PENDING_NOT_ACCEPTED",
+        "STOP_REVIEW_BARRIER",
+        "STOP_REVIEW_BARRIER",
+        "MOCK_ONLY_GATES_SATISFIED"
+      ],
+      "oracle": "Record pending without promotion. Current policy has no general bypass. Only a separately marked prospective-policy synthetic world permits independent work with full new grant; proposed world is not current policy qualification.",
+      "production_claim": "NONE"
+    },
+    {
+      "id": "P4",
+      "name": "無授權停止",
+      "source_units": [
+        "MA02-U01"
+      ],
+      "expected": [
+        "STOP_GRANT_MISSING",
+        "STOP_GRANT_MISSING",
+        "STOP_SOURCE_DRIFT",
+        "STOP_QUALIFICATION",
+        "STOP_BUDGET",
+        "STOP_COMPETING_WRITER"
+      ],
+      "oracle": "Request/reviewPASS/PoC are not grants; missing exact source/profile/budget/writer gates stop with no effects.",
+      "production_claim": "NONE"
+    },
+    {
+      "id": "P5",
+      "name": "未審上游影響",
+      "source_units": [
+        "MA02-U01",
+        "MA02-U05"
+      ],
+      "expected": [
+        "STOP_DEPENDENCY_UNACCEPTED",
+        "STOP_DEPENDENCY_UNACCEPTED"
+      ],
+      "oracle": "Pending or wrong body upstream not accepted. High-risk unreviewed input cannot become formal result even with a candidate grant. Interface source-only row must not add a runtime dependency.",
+      "production_claim": "NONE"
+    },
+    {
+      "id": "P6",
+      "name": "Catch-up補審與重驗",
+      "source_units": [
+        "MA02-U01",
+        "MA02-U05"
+      ],
+      "expected": [
+        "MA02-U01",
+        "MA02-U05",
+        "REJECT_SAME_AUTHOR_REVIEWER",
+        "REJECT_REVIEW_HASH_DRIFT",
+        "REVALIDATION_REQUIRED"
+      ],
+      "oracle": "Root prerequisite review before descendant. Reject author review or altered frozen source; failed root flags exact transitive impact. Accepted U01 not re-reviewed/credited. Candidate correction requires new authority, never auto-RF.",
+      "production_claim": "NONE"
+    }
+  ],
+  "all_synthetic_ids": "MOCK_ONLY prefix; must never enter native Grant/Result/Acceptance or actual deferred ledger",
+  "tests_are_not_native_Profile_qualification": true
+}

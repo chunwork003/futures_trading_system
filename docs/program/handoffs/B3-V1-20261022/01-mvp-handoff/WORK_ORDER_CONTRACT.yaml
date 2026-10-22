@@ -1,0 +1,242 @@
+handoff_id: ULTRA-B3-MVP-EXECUTION-HANDOFF-V1
+format_role: NAVIGATION_CHECKLIST_AND_COMPILATION_INTERFACE; NOT_NEW_MACHINE_SCHEMA
+authority_effect: NONE
+authority_sources:
+  authorization_lifecycle.v1_1.yaml:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\policies\authorization_lifecycle.v1_1.yaml
+    raw_sha256: 547e5dae820541740a72a341bd1797305929bacdbff21b90acfe8866585f5393
+    bytes: 2108
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  development_entry_protocol.v2.yaml:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\policies\development_entry_protocol.v2.yaml
+    raw_sha256: b5486d9cd27c86555123eed96c57e5b7f59dfd46dbb23cb00b7350feffef8b10
+    bytes: 1485
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  development_state_machine.v2.yaml:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\policies\development_state_machine.v2.yaml
+    raw_sha256: 038e2c226b64d29dce9aa0d3b8cf24321b2bc0c526467b6f8784b11d7d83ff39
+    bytes: 1811
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  execution_capacity_policy.v2_2.yaml:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\policies\execution_capacity_policy.v2_2.yaml
+    raw_sha256: 4e4fd91163d50619e0bea14e96aed67e1568f1bcd781bf4d1ab76c2509ad23cb
+    bytes: 10536
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  WORK:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\prompts\WORK_ORCHESTRATOR_KERNEL.md
+    raw_sha256: 9f170a4aec8019d2a78384a4f445dbcb04e6b317ff1441acfd91315e998a541f
+    bytes: 10763
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  CODEX:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\prompts\CODEX_EXECUTOR_KERNEL.md
+    raw_sha256: 6c3b6dfcbc17cdbd2c37ebd11e26457c2bc6e7534dbc8d63c0d391c042e0e9fa
+    bytes: 9890
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  Guide:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\docs\PROJECT_OPERATING_GUIDE.md
+    raw_sha256: 311e431a21b24b25006ba10c67ed4ab65e6197d3a34a7cd08def8ace7fe68e08
+    bytes: 4585
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  GuideAnnex:
+    path: D:\00_Learn\量化交易\Code\futures_trading_system\docs\architecture\adopted\GUIDE_V2_COMPATIBILITY_ANNEX.source.v1.md
+    raw_sha256: a83fb8c9c79f447349892da7bae0dc6fdbff675e7a6712ac868b0b86ba414f82
+    bytes: 7081
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+existing_native_records:
+  implementation: automation/engine/contracts.py
+  models:
+  - WorkPackageRecord
+  - AuthorizationRecord
+  rule: Preserve closed native top-level fields. Below checklist is not serialized as a new native record or accepted
+    by a substitute compiler. Existing WORK compiles original schema and explicit Unit bindings.
+required_before_CODE:
+  unit_id_feature_id_chapter_revision_source_revision: Exact accepted source Subject + Unit selector + current revision/hash;
+    resolve v9 and B-TRACE companion. Never trust latest filename.
+  dependencies: Each incoming original Unit DAG edge needs exact Accepted Result plus external Acceptance or source-qualified
+    scoped reuse. Missing upstream Result != satisfied. Source-only API modes are not new runtime edges.
+  allowed_changes: Approved exact files with operation CREATE_NEW/MODIFY and worktree/raw/Git preimages; planning aliases
+    are proposals. No wildcard. Name tests/generated/build artifacts/control-plane writes too.
+  protected_contracts: Accepted predecessor bytes/IDs/schemas/receipts/history/data/Secrets/current state and other lanes
+    preserved; Current updates only if exact scope permits.
+  input_output_interface_contract: Single source for API operation/DTO/Schema/wire version/producer/consumer/Auth/error/retry/unknown/idempotency;
+    frontend/mocks do not fork semantics.
+  source_assembly_context: Mandatory original/reverse/companion source closure present with exact dialect/selectors/hash
+    domain; body readback, explicit unread/UNKNOWN. HASH/SUMMARY is not body; unqualified Source/Context/Result/Intake
+    remains HOLD.
+  executor_mode_profile: Actual qualified intended use, operator/thread/tool identity/versions and continuity; exact
+    capacity/profile applicability. No automatic transfer from U01/U02/HUMAN_DIALOGUE to another Unit or LM.
+  database_migration_boundary: Record no-SQL or exact separately approved disposable environment/DDL/migration boundary;
+    no implicit production IO.
+  test_cases_negative_cases: All Unit verification_contract required IDs plus positive/negative/race cases; targeted
+    commands fixed with exact argv/cwd/env/raw output paths/exit/time/JUnit. Test specification != actual result.
+  expected_evidence: RequiredEvidenceContract separate from UnitExecutionResult.actual_evidence/ExpectedEvidence. Full
+    result excluding top ref follows original canonical hash; immutable result plus exact review/acceptance, no outcome
+    rewrite.
+  acceptance_gate: Original contract gate, independent reviewer identity and WORK Intake/Integration then separately
+    authorized acceptance. No author self ACCEPTED.
+  risk_level_model_capability_requirement: From actual influence/contract, not IDE or milestone. Scope/Registry/capital/order/fill/source
+    authority require original high-risk checks.
+  estimated_cost_budget: Exact current forecast/confidence or null+reason UNKNOWN; finite initial/correction/review-fix
+    caps and external API/spend limits. Human accepts applicable UNKNOWN; no shared account proxy presented as exact
+    task billing.
+  Grant_and_single_writer: Current effective exact Human/native authority, one new single-use Grant/reservation/Writer
+    lineage, no overlap with other run; no model-invented signature.
+  STOP_conditions: Source/qualification/current drift, ambiguous authority, Writer conflict, denied provider, missing
+    evidence, unsafe effect/scope or exhausted correction budget, reviewer finding outside authorization => STOP affected
+    route; preserve checkpoint.
+single_use_order:
+- FRESH_AUTHORITY_RESOLUTION
+- FRESH_ELIGIBILITY_EVALUATION
+- ACQUIRE_GLOBAL_RUNTIME_WRITER_LOCK
+- ALLOCATE_EXECUTION_ID
+- DURABLY_CREATE_EXECUTION_RESERVATION
+- STATE_TO_RESERVED
+- RECHECK_LOCK_HEAD_AND_BINDING
+- MARK_DISPATCH_COMMITTED
+- STATE_TO_CONSUMED
+- INVOKE_EXECUTOR
+official_Machine_names_not_overridden:
+  authorization:
+  - NOT_AUTHORIZED
+  - AUTHORIZED
+  - RESERVED
+  - CONSUMED
+  - SUPERSEDED
+  - REVOKED
+  execution:
+  - IDLE
+  - QUEUED
+  - PRE_DISPATCH
+  - RUNNING
+  - PAUSED_PROVIDER_LIMIT
+  - RESUME_PENDING_REVALIDATION
+  - RESULT_READY
+  - STOPPED
+  do_not_write_display_labels_to_machine:
+  - MVP
+  - R0
+  - R1
+  - R2
+  - R3
+  - G1
+  - G2
+  - G3
+  - G4
+  - G5
+  - G6
+  - DESIGN_FROZEN_PENDING_EXECUTION_AUTHORITY
+continuous_loop:
+- step: READ
+  owner: Existing WORK/executor re-entry
+  rule: Current authority/unfinished execution/review before new work; use repository not this snapshot.
+- step: SELECT
+  owner: Existing WORK
+  rule: Choose only original incoming-edge-ready candidates; first proposed MVP preparation target MA02-U01. This does not rewrite CURRENT_WORK or activate a new queue item. Selection is non-authority.
+    If no valid Grant or prerequisites, prepare request/STOP rather than CODE.
+- step: CODE
+  owner: Exact qualified Executor
+  rule: Only after original lifecycle PASS_READY_TO_INVOKE_EXECUTOR and actual invocation. One global Writer. No product
+    code by this package.
+- step: TEST
+  owner: Executor
+  rule: Run exact targeted tests first; relevant integration/regression and mandatory final tests preserved. Save actual
+    command/evidence before summarizing.
+- step: FIX
+  owner: Executor within original finite Grant
+  rule: Failed relevant oracle -> analyze root -> minimum same-scope correction only within the stricter applicable policy and exact Grant cap. Preserve AGENTS Level3A maximum two scope-internal cycles per failing test when applicable; this is not a new per-Unit correction budget. Never inherit a consumed or unrelated WO review-fix budget.
+- step: RECORD
+  owner: Executor then existing WORK
+  rule: Freeze diff/body/hash/logs/failures/cost/remaining issues; qualified independent review; mechanical Intake !=
+    semantic acceptance; release Writer only with durable completion/STOP procedure.
+- step: NEXT
+  owner: Existing WORK
+  rule: Update authoritative current/queue only if permitted; select next candidate. Preserve one WorkPackage per autonomous
+    run and no automatic dispatch/next-package authority. Stage continuity cannot consume nonexistent grants.
+resume_contract:
+  same_invoked_execution: Fresh exact current/source/scope/Grant/dispatch/invocation/Writer/provider revalidation; no
+    new execution/reservation/dispatch/budget; missing historical proof STOP_NO_BACKFILL.
+  executor_switch: Durable checkpoint + no concurrent writer + new qualified route/exact legal authorization; no same-execution
+    multi-executor or consumed redispatch.
+result_and_review_intake_template:
+  RequiredEvidenceContract_source: Original selected Unit.expected_evidence, with Unit/plan revision
+  actual_data_required:
+  - Exact changed files/diff/raw candidate pin
+  - Actual producer/invocation/WO/architecture/source/thread/profile refs
+  - Command stdout/stderr/exit/time/JUnit and failures/skips/unverified areas
+  - Actual token/time/cost or null+unavailable reason, correction counters
+  - Exact independent Review subject/manifest/verdict and WORK Intake
+  - Integration/Acceptance separate receipts or PENDING and explicit remaining gate
+  - Current Git HEAD/status, sole Writer lineage/release, STOP/Resume pointers
+  qualified_Result_ref: null
+  actual_Review_ref: null
+  semantic_Acceptance_ref: null
+  example_status: NOT_RUN_NOT_GRANTED
+first_MVP_preparation_example:
+  record_role: READ_ONLY_COMPILATION_INPUT_NOT_WO_NOT_AUTHORITY
+  Unit:
+    alias: MA02-U01
+    unit_id: 69b6baec-4e0d-42df-ab4f-5900e97f48b6
+    plan_revision_id: ef3b999d-d11d-5bf3-a359-94367868e2bb
+    feature_id: 75f4af02-d872-4821-8d7e-8471de047126
+    goal: Permanent Instrument／Listing bridge
+  source_selector: C:\Users\CHUNs\.codex\visualizations\2026\10\10\01a12634-1a08-7b51-bdfd-2d8ecbcc4889\source-closure-pairing-20261015T005839Z\candidate\docs\architecture\multi_asset\EXECUTION_UNITS.json#/units/6
+  dependencies:
+  - unit_id: cfc91817-46ea-4145-8427-139e06e5569d
+    unit_alias: MA01-U01
+    required_revision: candidate.7
+    required_plan_revision_id: 192b0e77-b779-5eb4-8c1e-22e2a393d8eb
+    required_feature_id: cf524f94-5c51-4ab1-b065-32203ae817db
+    gate: ACCEPTED_QUALIFIED_RESULT_OR_SCOPED_REUSE
+    result_ref: null
+    satisfaction_state: PENDING_EXACT_RESULT_OR_REUSE_PROOF
+    reuse_proof_policy: existing WORK checks exact source/schema/profile/environment/operation/cut applicability; source
+      design, API name and author fixture are never qualified result
+  accepted_U01_result:
+    entity_id: bd43a03e-3779-5538-9a43-c34c5a03dcf3
+    revision_id: 7150eb08-c86d-55a7-bda6-7dfe55739496
+    owner: EXISTING_WORK_RESULT_INTAKE
+    hash_domain: CANONICAL_JSON_SHA256
+    source_hash: ec62bc2956743f03df641dba02a91ceeba67d0007b956fbece93f72f79d564c3
+  external_U01_acceptance:
+  - path: D:\00_Learn\量化交易\Code\futures_trading_system\automation\work_orders\MA01-U01-MANUAL-01.acceptance.json
+    raw_sha256: 2f577bc44ade1a32cda5b59c01862f257f3e4fede9a08f8c08d923ebd868e322
+    bytes: 20599
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  - path: D:\00_Learn\量化交易\Code\futures_trading_system\docs\program\decisions\MA01-U01-FIRST-RESULT-ACCEPTANCE.owner.v1.json
+    raw_sha256: d3deef580bcc795587bbaff8a30549ce216cbe11691c854671bd5f0aaff6b8b5
+    bytes: 5445
+    hash_domain: EXACT_RAW_FILE_BYTES_SHA256
+  proposed_files:
+    proposed_exact_paths:
+    - domain/instrument_profiles.py
+    - domain/asset_valuation.py
+    - tests/architecture_companions/test_ma02_contracts.py
+    status: PLANNING_ALLOWLIST_NOT_EXECUTION_GRANT
+    compiler_requirement: Resolve actual repository placement and exact base blobs through existing WORK; no wildcard
+      write
+  qualification_receipt: null
+  exact_operational_binding: null
+  WO: null
+  Grant: null
+  Writer: null
+  Invocation: null
+  test_oracles_source: EXECUTION_UNITS.json#/units/6/test_cases + negative_cases + verification_contract; I1!=I2, immutable
+    legacy integer mapping; wrong/ambiguous listing rejects; same receipt no-op/different hash conflict.
+  next_Human_decision: Existing WORK must first freeze exact MA02-U01 intended-use/profile applicability/qualification
+    request. None is approved by this handoff. Then lawful exact WO/native singleton/budget/Coding Grant; no U02 prerequisite.
+executor_handoff_to_LM:
+  research_local_LM_not_coding_eligibility: true
+  required:
+  - Exact Unit/WO/Grant/Source and full input closure
+  - Qualified capability/profile/context/result/intake for actual model/tool use
+  - Actual operator/producer/thread/environment/version and source/readback continuity
+  - Fresh single Writer/identity and finite budget
+  - Qualified independent review/result intake route
+  U01_or_U02_receipt_transfer: DENIED
+  new_controller_required: false
+not_yet_completed:
+- Exact MA02-U01 qualification/applicability decision and receipt
+- Native singleton operational acceptance/executable WO/Grant
+- Frontend toolchain pin and exact source paths before scaffold
+- PostgreSQL disposable integration qualification before R1 stage PASS
+- Actual code/build/browser/integration/regression evidence
