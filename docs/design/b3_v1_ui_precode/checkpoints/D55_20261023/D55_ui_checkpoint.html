@@ -997,7 +997,8 @@ function d19RenderNav(){
  const el=document.querySelector('#d19Nav');
  el.innerHTML='<div class="d19-paneltitle">頁面／功能類別</div><p class="d19-muted">共用僅同步版型格線；頁面自己的模組身分／資料權限保持獨立，新增佔位須核對。</p>'+Object.entries(d18CatToPages).map(([g,keys])=>`<section class="d19-branch"><button class="d19-branchbtn" data-d19-cat="${g}"><span>${d19E(d18GroupNames[g])}</span><span>${d19.catOpen[g]?'－':'＋'}</span></button>${d19.catOpen[g]?`<div class="d19-pages">${g!=='custom'?`<label class="d19-catbox"><input type="checkbox" data-d19-shared="${g}" ${d19.shared[g]?'checked':''}> 統一模板（配置格線）</label>`:''}${keys.map(k=>`<div class="d19-pagerow"><button class="${d19.page===k?'d19-active':''}" data-d19-page="${k}">${d19E(d18PageName(k))}</button>${g!=='custom'?`<select aria-label="${d19E(d18PageName(k))} 的版型偏好" data-d19-pref="${k}" ${d19.shared[g]?'disabled':''}>${d19Option([['category','類別預設'],['personal','自製版型']],d19.pref[k]||'category')}</select>`:''}</div>`).join('')}</div>`:''}</section>`).join('');
  el.querySelectorAll('[data-d19-cat]').forEach(b=>b.onclick=()=>{d19.catOpen[b.dataset.d19Cat]=!d19.catOpen[b.dataset.d19Cat];d19RenderNav();});
- el.querySelectorAll('[data-d19-shared]').forEach(b=>b.onchange=()=>d19ToggleShared(b.dataset.d19Shared,b.checked)); el.querySelectorAll('[data-d19-pref]').forEach(b=>b.onchange=()=>d19SwitchPreference(b.dataset.d19Pref,b.value));
+ el.querySelectorAll('[data-d19-shared]').forEach(b=>b.onchange=()=>d19ToggleShared(b.dataset.d19Shared,b.checked));
+ el.querySelectorAll('[data-d19-pref]').forEach(b=>b.onchange=()=>d19SwitchPreference(b.dataset.d19Pref,b.value));
  el.querySelectorAll('[data-d19-page]').forEach(b=>b.onclick=()=>{d19.page=b.dataset.d19Page;d19.group=d19PageGroup(d19.page);if(!d19.drafts[d19.page])d19.drafts[d19.page]=[];d19.selectedId=null;d19.kind='';d19.categoryChoice=d19.group==='custom'?'portfolio':d19.group;d19RenderWorkspace();});
 }
 function d19Candidates(){const group=d19.group,all=[...Object.entries(d18ModuleNames).map(([id,name])=>({id,name,subject:(initial.find(x=>x.id===id)?.subject)||'portfolio',kind:d18TypeOf[id]||'composite',category:d18CategoryOfModule[id]||'portfolio',w:initial.find(x=>x.id===id)?.w||3,h:initial.find(x=>x.id===id)?.h||1})),...d19.modules.map(m=>({id:m.id,name:m.name,subject:m.subject,kind:'composite',category:(m.category||'portfolio'),w:m.cols||3,h:m.rows||1,custom:true}))];return all.filter(x=>(group==='custom'?x.category===d19.categoryChoice:x.category===group)&&(!d19.kind||x.kind===d19.kind));}
@@ -1996,7 +1997,8 @@ const d25CanvasBase=d19RenderCanvas;
 d19RenderCanvas=function(){d25CanvasBase();document.querySelector('#d24CanvasAdd')?.remove();document.querySelector('#d20PreviewToggle')?.remove();document.querySelector('#d19Canvas .d20-fullpreview')?.remove();};
 // Module editor: select the cell and apply/replace an INFO; do not duplicate a second "Add" flow.
 d21ModuleInspector=function(){
- const m=d19.mod,right=document.querySelector('#d19ModRight');if(!m||!right)return;d21UpdateSlotFocus(); const chosen=d21SlotSelection,old=chosen?.existing?m.slots[chosen.index]:null;
+ const m=d19.mod,right=document.querySelector('#d19ModRight');if(!m||!right)return;d21UpdateSlotFocus();
+ const chosen=d21SlotSelection,old=chosen?.existing?m.slots[chosen.index]:null;
  const options=d22InfoList.filter(i=>i.subject===m.subject);
  if(!options.some(x=>x.info_id===d22InfoChoice))d22InfoChoice=old?.infoId||options[0]?.info_id||'';
  const active=d22InfoById(d22InfoChoice);
@@ -2995,7 +2997,8 @@ d33Style.textContent=`
 #d19Shade #settingPage .d30-bottom-left .d22-harmony-icons{
  display:flex!important;width:100%!important;height:41px!important;min-width:0!important;
  flex-wrap:nowrap!important;align-items:stretch!important;gap:4px!important;
- overflow-x:auto!important;overflow-y:hidden!important;padding:0!important;margin:0!important;scrollbar-width:none!important}
+ overflow-x:auto!important;overflow-y:hidden!important;padding:0!important;margin:0!important;scrollbar-width:none!important
+}
 #d19Shade #settingPage .d30-bottom-left .d22-harmony-icons button{
  height:41px!important;min-height:41px!important;max-height:41px!important;
  flex:1 1 0!important;min-width:36px!important;max-width:none!important;
@@ -3994,7 +3997,8 @@ d37PaletteStyle.textContent=`
  #d19Shade #settingPage .d30-bottom-left .d22-harmony-icons{width:min(100%,400px)!important;}
 }
 @media(max-width:600px){
- #d19Shade #settingPage .d22-color-studio{padding:12px 4% 14px!important;} #d19Shade #settingPage .d22-color-left{width:min(100%,360px)!important;}
+ #d19Shade #settingPage .d22-color-studio{padding:12px 4% 14px!important;}
+ #d19Shade #settingPage .d22-color-left{width:min(100%,360px)!important;}
  #d19Shade #settingPage .d22-color-right{grid-template-rows:44px var(--d37-visual-h)!important;}
  #d19Shade #settingPage .d22-swatch-strip{height:var(--d37-visual-h)!important;min-height:var(--d37-visual-h)!important;max-height:var(--d37-visual-h)!important;}
  #d19Shade #settingPage .d30-bottom-primary .d22-palette-footer{grid-column:3/6!important;}
@@ -4993,7 +4997,8 @@ const d44ObserveWheel=()=>{
 };
 const d44BeforeColorTabRender=d22RenderColorTab;
 d22RenderColorTab=function(){
- const result=d44BeforeColorTabRender.apply(this,arguments); d44ObserveWheel();d44QueueTitleFit();return result;
+ const result=d44BeforeColorTabRender.apply(this,arguments);
+ d44ObserveWheel();d44QueueTitleFit();return result;
 };
 queueMicrotask(()=>{d44ObserveWheel();d44QueueTitleFit();});
 // ===== END D44 =====
@@ -5992,7 +5997,8 @@ d22RenderPalette=function(){
        d52PendingCustom={name,...snapshot};
     },true);
   }
- return r;};
+ return r;
+};
 const d52PrevOpen=d19Open;
 d19Open=function(){const wasClosed=document.querySelector('#d19Shade')?.hidden!==false;
  if(wasClosed)d52Snapshot=d52Current();const r=d52PrevOpen.apply(this,arguments);if(wasClosed&&d52Saturation===100&&d52ValidColors(d21PaletteColors)&&!d52Match(d52Base,d21PaletteColors))d52Base=d52Copy(d21PaletteColors);d52Paint();return r;};
